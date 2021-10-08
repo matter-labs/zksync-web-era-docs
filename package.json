@@ -39,8 +39,7 @@
     "md:lint": "markdownlint docs",
     "md:deadlinks": "check-md",
     "ci": "yarn run fmt:check; yarn run cspell; yarn run md:lint; yarn run md:deadlinks",
-    "zk-copy": "sh ./cli-merge.sh",
-    "zk-ci-prepare": "yarn ci && yarn docs:build && yarn zk-copy"
+    "zk-ci-prepare": "yarn ci && yarn docs:build"
   },
   "check-md": {
     "cwd": "./docs",
