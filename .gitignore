@@ -1,0 +1,84 @@
+#vuepress files
+
+*.log
+*.gem
+*.rbc
+.bundle
+.config
+coverage
+InstalledFiles
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+tmp
+*.DS_STORE
+build/
+.cache
+.vagrant
+.sass-cache
+vendor
+
+# YARD artifacts
+.yardoc
+_yardoc
+doc/
+.idea/
+
+node_modules
+dist
+
+/.firebase
+
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+/.idea
+/lib
+
+# misc
+.DS_Store
+.env
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.firebase/
+.vscode/
+
+# cache
+.brotli_cache/
+.gzip_cache/
+.assets_cache/
+.buildx-cache/
+.reports/
+/src/static/sw.js
+/public*
+!public/.gitignore
+.nuxt
+/firebase-debug.log
+/report.txt
+/tokens.txt
+/.run/
+
+
+# Yarn 2: upgraded dependency management
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+/.eslintcache

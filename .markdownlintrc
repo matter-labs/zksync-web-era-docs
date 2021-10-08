@@ -1,0 +1,11 @@
+{
+    "default": true,
+    "no-duplicate-header": false,
+    "first-header-h1": false,
+    "first-line-h1": false,
+    "no-inline-html": false,
+    "line-length": { "line_length": 120 },
+    "MD026": {
+     "punctuation": ".,;:!"
+     }
+}
