@@ -126,6 +126,3 @@ trust assumptions altogether by embracing a transparent zero-knowledge proof sys
 
 [Security audits](/updates/security-audits.md) are being conducted before each major update.
 
-## Bug Bounty Program
-
-Besides security audits, we offer bug bounty program. You can read more about it [here](/dev/bug-bounty). 
