@@ -24,7 +24,7 @@ In other words, ZK Rollup strictly inherits the security guarantees of the under
 ## Capabilities
 
 First of all, zkSync, as a scaling solution, is capable of making transfers, and doing them quick and cheap. Interfaces
-and principles of the core zkSync functionality are covered in the [payments section](/dev/payments) of this
+and principles of the core zkSync functionality are covered in the [payments section](/) of this
 documentation.
 
 Secondly, zkSync is smart-contract friendly. Targeting 2021, it will be possible to either write contracts in Zinc,
@@ -35,5 +35,5 @@ Thirdly, zkSync is friendly for exchanges. Atomic swaps — an essential compone
 
 Fourthly, zkSync has native support of NFTs. You can try it out in our [wallet](https://wallet.zksync.io/).
 
-Finally, zkSync support is implemented for all the main platforms. Check out our [SDK section](/api/sdk) of docs, and
+Finally, zkSync support is implemented for all the main platforms. Check out our [SDK section](/) of docs, and
 start developing with zkSync!
