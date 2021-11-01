@@ -60,7 +60,7 @@ If `cspell` doesn't recognize a word but you're sure that it's correct, consider
 
 ## Deployment
 
-`master` branch is automatically deployed to <https://console.firebase.google.com/u/0/project/zksync-js-docs>
+`master` branch is automatically deployed to <https://console.firebase.google.com/u/0/project/zksync-web-v2-docs>
 
 # Deploying altogether
 

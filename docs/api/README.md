@@ -1,7 +1,6 @@
 # zkSync API Reference Overview
 
-## SDK
+Currently, three of our SDKs support zkSync 2.0: Legacy JS SDK, Web3 JS SDK and Rust SDK. 
 
-At this moment, zkSync 2.0 SDK is implemented for the following language:
+The documentation is [available](./sdk/js.md) only for Web3 SDK. In order to use Legacy JS SDK or Rust SDK please refer to their source code.
 
-- [JavaScript / TypeScript](./sdk/js)

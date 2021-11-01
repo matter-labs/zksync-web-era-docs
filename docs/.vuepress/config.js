@@ -108,11 +108,20 @@ module.exports = {
           collapsable: false, // optional, defaults to true
         },
         {
+          title: "Comparison to v1.0", // required
+          path: "/dev/v1-vs-v2.md", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+        },
+        {
           title: "Smart contracts", // required
           path: "/dev/contracts/", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
         },
-        "/dev/bug-bounty",
+        {
+          title: "Troubleshooting", // required
+          path: "/dev/troubleshooting", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+        }
       ],
       "/api": [
         {
@@ -122,7 +131,7 @@ module.exports = {
           sidebarDepth: 0, // optional, defaults to 1
         },
         {
-          title: "JavaScript SDK", // required
+          title: "JS Web3 SDK", // required
           path: "/api/sdk/js", // optional, which should be a absolute path.
           collapsable: true, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
