@@ -30,10 +30,6 @@ $ bash cli-dev.sh ci && yarn zk-ci-prepare
 * [TS Lang](https://www.typescriptlang.org)
 * [Vue.js](https://vuejs.org)
 
-# zkSync docs
-
-This repository contains the zkSync documentation hosted on <zksync.io>.
-
 ## Local testing
 
 ```bash
