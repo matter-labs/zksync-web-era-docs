@@ -1,12 +1,12 @@
-# An (in)complete guide to zkSync 2.0
+# Comparing zkSync 1.x and zkSync 2.0 
 
 This document covers the differencies between zkSync 1.x and 2.0, and aims to provide a tutorial on how to work with
 zkSync 2.0 protocol.
 
-## Differences between 1.x and 2.0
+## Differences
 
 The first and the most noticable difference is, of course, smart contracts support. zkSync 2.0 is capable of deploying
-and executing arbitrary smart contracts compiled from either Zinc programming language or Solidity.
+and executing arbitrary smart contracts compiled from Solidity (currently only version 0.8.0 is supported).
 
 More information on Zinc and Solidity in zkSync 2.0 is coming soon, stay tuned!
 

@@ -111,13 +111,23 @@ module.exports = {
           collapsable: false, // optional, defaults to true
         },
         {
-          title: "Smart contracts", // required
-          path: "/dev/contracts/", // optional, which should be a absolute path.
+          title: "Comparison to Ethereum", // required
+          path: "/dev/ethereum-vs-v2.md", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
         },
         {
-          title: "Troubleshooting", // required
-          path: "/dev/troubleshooting", // optional, which should be a absolute path.
+          title: "Communicating with L1", // required
+          path: "/dev/communication-with-l1.md", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+        },
+        {
+          title: "Installing compiler", // required
+          path: "/dev/compiler.md", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+        },
+        {
+          title: "Hardhat tutorial", // required
+          path: "/dev/hardhat.md", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
         }
       ],
