@@ -6,7 +6,7 @@ zkSync 2.0 protocol.
 ## Differences
 
 The first and the most noticable difference is, of course, smart contracts support. zkSync 2.0 is capable of deploying
-and executing arbitrary smart contracts compiled from Solidity or Zinc (currently only Solidity v0.8.0 is supported).
+and executing arbitrary smart contracts compiled from Solidity or Zinc (currently only Solidity v0.8.x is supported).
 
 However, in order to make the protocol work with smart contracts, we've had to rework the basics of protocol and
 implement many new things. Apart from the smart contracts, differences include:
@@ -37,7 +37,6 @@ itself.
 
 So, the current state of implementation is the **alpha preview**. It means that while there are a lot of things that are
 not there yet, the core of the system is ready, it works and serves its purpose.
-
 
 - zkPorter part is currently disabled. DexEx/UX on zkRollup and zkPorter parts is the same (besides the much cheaper prices of zkPorter of course), but this does not play big role on the testnet.
 - Some features, like L2 -> L1 communication or support for Solidity versions below 0.8.0 may not be available.

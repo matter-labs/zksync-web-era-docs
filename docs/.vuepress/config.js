@@ -121,11 +121,6 @@ module.exports = {
           collapsable: false, // optional, defaults to true
         },
         {
-          title: "Future releases",
-          path: "/dev/future.md",
-          collapsable: false
-        },  
-        {
           title: "Hardhat tutorial", // required
           path: "/dev/hardhat.md", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
@@ -139,8 +134,14 @@ module.exports = {
           sidebarDepth: 0, // optional, defaults to 1
         },
         {
-          title: "JS Web3 SDK", // required
-          path: "/api/js", // optional, which should be a absolute path.
+          title: "Web3 API", // required
+          path: "/api/api.md", // optional, which should be a absolute path.
+          collapsable: true, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+        },
+        {
+          title: "JavaScript SDK", // required
+          path: "/api/js.md", // optional, which should be a absolute path.
           collapsable: true, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
         }

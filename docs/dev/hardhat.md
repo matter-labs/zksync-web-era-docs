@@ -2,3 +2,4 @@
 
 The most convenient way to compile, deploy and test contracts on zkSync is to use its Hardhat plugin.
 
+TODO: waiting for JS SDK
