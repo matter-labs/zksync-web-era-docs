@@ -2,7 +2,7 @@
 
 ## L1 -> L2 communication
 
-Commnuication between the L1 and L2 is not supported yet.
+TODO (depends on whether or not it will be ready for testnet)
 
 ## L2 -> L1 communication
 

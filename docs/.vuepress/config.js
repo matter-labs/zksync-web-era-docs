@@ -121,10 +121,10 @@ module.exports = {
           collapsable: false, // optional, defaults to true
         },
         {
-          title: "Installing compiler", // required
-          path: "/dev/compiler.md", // optional, which should be a absolute path.
-          collapsable: false, // optional, defaults to true
-        },
+          title: "Future releases",
+          path: "/dev/future.md",
+          collapsable: false
+        },  
         {
           title: "Hardhat tutorial", // required
           path: "/dev/hardhat.md", // optional, which should be a absolute path.
@@ -140,7 +140,7 @@ module.exports = {
         },
         {
           title: "JS Web3 SDK", // required
-          path: "/api/sdk/js", // optional, which should be a absolute path.
+          path: "/api/js", // optional, which should be a absolute path.
           collapsable: true, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
         }
