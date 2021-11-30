@@ -1,16 +1,16 @@
 # Comparison to Ethereum
 
-zkSync 2.0 is made to look and feel as Ethereum, but with cheaper fees. However, since it is optimized for zero-knowldege proofs some differences are inevitable.
+zkSync 2.0 is made to look and feel like Ethereum, but with cheaper fees. However, since it is optimized for zero-knowledge proofs some differences are inevitable.
 
 ## Web3 API
 
-zkSync fully supports standard [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API), but also has some additional L2-specific functionality, described [here](../api).
+zkSync fully supports standard [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API), but also has some additional L2-specific functionality, described [here](../api/api).
 
 As long as your code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase needed!_
 
 You can continue using the SDKs which you already use now. Users will continue paying fees in ETH and the UX will identical to the one on Ethereum.
 
-If you want to deploy smart contracts or enable unique zkSync features to your users (e.g. paying fees in the same token which is being swapped), you'll need to use eip712 transaction type.
+If you want to deploy smart contracts or enable unique zkSync features to your users (e.g. paying fees in the same token which is being swapped), you'll need to use the EIP712 transaction type.
 
 More detailed description of the zkSync JSON-RPC API can be found [here](../api/api.md).
 
@@ -20,7 +20,7 @@ For the alpha preview, only Solidity version `0.8.x` is supported.
 
 ## EIP712
 
-Besides supporting native ETH transactions, we support EIP712 transaction type. You can use transactions of this type instead of native ETH ones to pass the token to pay the fee with. Also, it is only possible to deploy smart contracts with this type of transactions.
+Besides supporting native ETH transactions, we support the EIP712 transaction type. You can use transactions of this type to pay fees in ERC20 tokens. Also, it is only possible to deploy smart contracts with this type of transaction.
 
 You don't need to know the details to use our SDK, but if you are curious, you can read more about the format [here](../api/api.md#eip712).
 
@@ -38,16 +38,16 @@ Since the costs for publishing the calldata on L1 are very volatile, the number 
 
 ## Contract Deployment
 
-To maintain the same securiy as on L1, the zkSync operator must publish the contract code for each contract it deploys. However, if there are multiple contracts deployed with the same code, it needs to be published onchain only once.
+To maintain the same security as on L1, the zkSync operator must publish the contract code for each contract it deploys. However, if there are multiple contracts deployed with the same code, it needs to be published onchain only once.
 
-This means that while deploying contracts for the first time may be relatively expensive, using factories, which deploy contracts with the same code multiple times can have huge savings compared to L1.
+This means that while deploying contracts for the first time may be relatively expensive, factories, which deploy contracts with the same code multiple times, can have huge savings compared to L1.
 
-All these specifics make the process of deploying smart contracts on zkEVM comply to the major rule: _The operator should know the code of the contract before it is deployed_. That means that deploying contracts is only possible by the means of `EIP712` transactions with `factory_deps` field set. More on EIP712 transactions [here](../api/api.md#eip712).
+All these specifics make the process of deploying smart contracts on zkEVM comply with the major rule: _The operator should know the code of the contract before it is deployed_. That means that deploying contracts is only possible by the means of `EIP712` transactions with `factory_deps` field with the supplied bytecode. More on EIP712 transactions [here](../api/api.md#eip712).
 
 ## L2 transaction types
 
 There are three types of L2 transactions on zkSync: `Withdraw`, `Execute`, `Deploy`.
 
-- `Withdraw` is used to withdraw native erc20 tokens to L1. _Please note, that this type most likely will be remvoed after the testnet._
+- `Withdraw` is used to withdraw native ERC20 tokens to L1. _Please note, that this type most likely will be removed after the testnet._
 - `Execute` is used to call smart contract functions.
 - `Deploy` is used to deploy smart contracts on zkSync.
