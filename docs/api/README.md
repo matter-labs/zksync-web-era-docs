@@ -6,4 +6,4 @@
 
 ## SDK
 
-- [JavaScript SDK](./js.md) 
+- [JavaScript SDK](./js.md)

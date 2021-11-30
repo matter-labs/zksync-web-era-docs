@@ -1,4 +1,4 @@
-# Comparing zkSync 1.x and zkSync 2.0 
+# Comparing zkSync 1.x and zkSync 2.0
 
 This document covers the differencies between zkSync 1.x and 2.0, and aims to provide a tutorial on how to work with
 zkSync 2.0 protocol.
@@ -41,9 +41,9 @@ not there yet, the core of the system is ready, it works and serves its purpose.
 - zkPorter part is currently disabled. DexEx/UX on zkRollup and zkPorter parts is the same (besides the much cheaper prices of zkPorter of course), but this does not play big role on the testnet.
 - Some features, like L2 -> L1 communication or support for Solidity versions below 0.8.0 may not be available.
 - For now, zero-knowledge proofs for transactions are not available (zkEVM have to be heavily optimized, since each proof
-computation requires _a lot_ of computations, and we're working on it).
+  computation requires _a lot_ of computations, and we're working on it).
 - Changes to the protocol (e.g. changes in ABI) are _possible_. While the protocol core is ready, we are still
-experimenting with some things to provide the most convenient UX/DevEx.
+  experimenting with some things to provide the most convenient UX/DevEx.
 - Account abstractions.
 
 Finally, once again, it's an alpha release. Bugs may occur and the best thing you can do in case of encountering it is
@@ -54,7 +54,7 @@ the problem as soon as possible. We will also maintain a [troubleshooting](./tro
 
 The main part of zkSync 2.0 is the state tree. It's a sparse Merkle tree with depth 265, which holds account states. The topmost 8 bits denote the type of the protocol to be used (0 stands for `zkRollup` and 1 stands for `zkPorter`, the rest 254 types are reserved for the future). Each protocol has storage space of `2^256` slots.
 
-_Note:_ Each account exists in each subtree at the same time, e.g. account can have its funds stored in cold reserve in the rollup part and have all trading done on the porter side. 
+_Note:_ Each account exists in each subtree at the same time, e.g. account can have its funds stored in cold reserve in the rollup part and have all trading done on the porter side.
 
 The same way as in zkSync 1.x, the protocol has multiple types of transactions. Transactions that were available in
 zkSync 1.x and are still available in zkSync 2.0:

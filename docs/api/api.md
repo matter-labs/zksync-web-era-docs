@@ -2,9 +2,9 @@
 
 zkSync 2.0 fully supports standard [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API).
 
-As long as your code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), *no changes for the codebase needed!* 
+As long as your code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase needed!_
 
-You can continue using the SDKs which you already use now. Users will continue paying fees in ETH and the UX will identical to the one on Ethereum. 
+You can continue using the SDKs which you already use now. Users will continue paying fees in ETH and the UX will identical to the one on Ethereum.
 
 However, zkSync has its own specifics which this section is all about.
 
@@ -19,23 +19,23 @@ In order to supply additional fields like token in which to pay the fee or provi
 
 ```json
 {
-    "fee": {
-        "fee_token": "0x0000...0000",
-        "ergs_per_storage_limit": 100000,
-        "ergs_per_pubdata_limit": 1000
-    },
-    "time_range": {
-        "from": 0,
-        "until": 10101010
-    },
-    "withdraw_token": "0x00000...00000" ,
-    "factory_deps": ["0x..."]
+  "fee": {
+    "fee_token": "0x0000...0000",
+    "ergs_per_storage_limit": 100000,
+    "ergs_per_pubdata_limit": 1000
+  },
+  "time_range": {
+    "from": 0,
+    "until": 10101010
+  },
+  "withdraw_token": "0x00000...00000",
+  "factory_deps": ["0x..."]
 }
 ```
 
-- `fee` is an object which describes the token in which the fee is to be paid and also the limit on the numbre of 
-- `time_range` is an object which denotes the timeframe within which the tx is valid. *Most likely will be removed after the testnet.*
-- `withdraw_token` field should be only supplied for `Withdraw` operations. *Most likely will be removed after the testnet.*
+- `fee` is an object which describes the token in which the fee is to be paid and also the limit on the numbre of
+- `time_range` is an object which denotes the timeframe within which the tx is valid. _Most likely will be removed after the testnet._
+- `withdraw_token` field should be only supplied for `Withdraw` operations. _Most likely will be removed after the testnet._
 - `factory_deps` an array which should only be supplied for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecode of the contracts which can be deployed by it.
 
 <!-- TODO: add example -->
@@ -50,19 +50,19 @@ Returns the fee for the transaction. The token in which the fee is calculated is
 
 #### Input parameters
 
-| Parameter | Type               | Description                         |
-| --------- | ------------------ | ----------------------------------- |
-| req       | `CallRequest`      | zkSync transaction to which the estimate the fee of         |
+| Parameter | Type          | Description                                         |
+| --------- | ------------- | --------------------------------------------------- |
+| req       | `CallRequest` | zkSync transaction to which the estimate the fee of |
 
 #### Output format
 
 ```json
 {
-"ergs_limit": 100000000,
-"ergs_price_limit": 10000,
-"fee_token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-"ergs_per_storage_limit": 100,
-"ergs_per_pubdata_limit": 10,
+  "ergs_limit": 100000000,
+  "ergs_price_limit": 10000,
+  "fee_token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  "ergs_per_storage_limit": 100,
+  "ergs_per_pubdata_limit": 10
 }
 ```
 
@@ -96,10 +96,9 @@ Given L2 hash of the withdrawal tx, returns the L1 hash of the transaction where
 
 ### Input parameters
 
-
-| Parameter | Type               | Description                         |
-| --------- | ------------------ | ----------------------------------- |
-| withdrawal_hash       | `H256`      | L2 hash of the withdrawal         |
+| Parameter       | Type   | Description               |
+| --------------- | ------ | ------------------------- |
+| withdrawal_hash | `H256` | L2 hash of the withdrawal |
 
 ### Output format
 
@@ -109,16 +108,15 @@ Given L2 hash of the withdrawal tx, returns the L1 hash of the transaction where
 
 ### Input parameters
 
-| Parameter | Type               | Description                         |
-| --------- | ------------------ | ----------------------------------- |
-| address       | `Address`      | The address of the account         |
-| before       | `u32`      | The offset from which to start returning transactions         |
-| limit | `u8` | The maximum number of transactions to return |
+| Parameter | Type      | Description                                           |
+| --------- | --------- | ----------------------------------------------------- |
+| address   | `Address` | The address of the account                            |
+| before    | `u32`     | The offset from which to start returning transactions |
+| limit     | `u8`      | The maximum number of transactions to return          |
 
 ### Output format
 
 TODO
-
 
 <!--
 #[rpc(name = "zks_estimateFee", returns = "Fee")]

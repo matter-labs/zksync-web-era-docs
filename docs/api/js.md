@@ -10,7 +10,7 @@ yarn add ethers@5.0 # ethers is a peer dependency of zkweb3
 Then you can import all the content of the zkSync library with the following statement:
 
 ```typescript
-import * as zksync from 'zkweb3';
+import * as zksync from "zkweb3";
 ```
 
 ## Connecting to zkSync network
@@ -18,7 +18,7 @@ import * as zksync from 'zkweb3';
 To interact with zkSync network users need to know the endpoint of the operator node.
 
 ```typescript
-const syncProvider = new zksync.Provider('<URL>');
+const syncProvider = new zksync.Provider("<URL>");
 ```
 
 **Note:** Currently, only `rinkeby` network is supported.
@@ -27,7 +27,7 @@ Most operations require some read-only access to the Ethereum network. We use `e
 Ethereum.
 
 ```typescript
-const ethProvider = ethers.getDefaultProvider('rinkeby');
+const ethProvider = ethers.getDefaultProvider("rinkeby");
 ```
 
 ## Creating a Wallet
@@ -53,7 +53,7 @@ We are going to deposit `1.0 ETH` to our zkSync account.
 ```typescript
 const deposit = await syncWallet.deposit({
   token: zksync.utils.ETH_ADDRESS,
-  amount: ethers.utils.parseEther('1.0')
+  amount: ethers.utils.parseEther("1.0"),
 });
 ```
 
@@ -75,7 +75,7 @@ const depositReceipt = await deposit.wait();
 const committedEthBalance = await syncWallet.getBalance(zksync.utils.ETH_ADDRESS);
 
 // Finalized state is final
-const finalizedEthBalance = await syncWallet.getBalance(ETH_ADDRESS, 'finalized');
+const finalizedEthBalance = await syncWallet.getBalance(ETH_ADDRESS, "finalized");
 ```
 
 ## Performing a transfer
@@ -94,16 +94,16 @@ the sender is going to be decreased by `1 ETH` and `1 DAI`).
 not exist, any user can add it!
 
 ```typescript
-const amount = ethers.utils.parseEther('1.0');
+const amount = ethers.utils.parseEther("1.0");
 // get amount in wei by the decimals parameter for the token
-const fee = ethers.utils.parseUnits('1.0', 18);
+const fee = ethers.utils.parseUnits("1.0", 18);
 
 const transfer = await syncWallet.transfer({
   to: syncWallet2.address,
   token: zksync.utils.ETH_ADDRESS,
   amount,
-  feeToken: '0x6b175474e89094c44da98b954eedeac495271d0f', // DAI address
-  fee
+  feeToken: "0x6b175474e89094c44da98b954eedeac495271d0f", // DAI address
+  fee,
 });
 ```
 
@@ -111,12 +111,12 @@ const transfer = await syncWallet.transfer({
 be used to pay the fee. If `fee` field is omitted, SDK will choose the lowest possible fee acceptable by server:
 
 ```typescript
-const amount = ethers.utils.parseEther('1.0');
+const amount = ethers.utils.parseEther("1.0");
 
 const transfer = await syncWallet.transfer({
   to: syncWallet2.address,
   token: zksync.utils.ZKSYNC_ADDRESS,
-  amount
+  amount,
 });
 ```
 
@@ -140,7 +140,7 @@ transaction. But in most cases, a call via L2 is sufficient.
 ```typescript
 const withdrawL2 = await syncWallet.withdraw({
   token: zksync.utils.ETH_ADDRESS,
-  amount: ethers.utils.parseEther('0.5')
+  amount: ethers.utils.parseEther("0.5"),
 });
 ```
 
@@ -159,10 +159,10 @@ First you need to select the bytecode for the contract. The easiest way is to re
 `fs` library, but in general, you can use any way you like.
 
 ```typescript
-import fs from 'fs';
+import fs from "fs";
 
 // Select the path to the file with the bytecode.
-const bytecodePath = '<PATH>';
+const bytecodePath = "<PATH>";
 const bytecode = new Uint8Array(fs.readFileSync(bytecodePath));
 ```
 
@@ -182,7 +182,7 @@ const deployContract = await syncWallet.deployContract({
   accountType,
   bytecode,
   feeToken: zksync.utils.ETH_ADDRESS,
-  fee: ethers.utils.parseEther('0.001')
+  fee: ethers.utils.parseEther("0.001"),
 });
 ```
 
@@ -193,7 +193,7 @@ acceptable by server:
 const deployContract = await syncWallet.syncDeployContract({
   accountType,
   bytecode,
-  feeToken: zksync.utils.ETH_ADDRESS
+  feeToken: zksync.utils.ETH_ADDRESS,
 });
 ```
 
@@ -207,7 +207,7 @@ const deployContractReceipt = await deployContract.wait();
 const contractAddress = deployContractReceipt.contractAddress;
 
 if (!contractAddress) {
-  throw new Error('Failed getting the address of the deployed contract');
+  throw new Error("Failed getting the address of the deployed contract");
 }
 ```
 
@@ -225,7 +225,7 @@ fees.
 ```typescript
 const contract = new zksync.Contract(contractAddress, abi, syncWallet);
 // You can load contract's ABI from JSON as well
-const abi = ['function test(uint256) public'];
+const abi = ["function test(uint256) public"];
 const feeToken = zksync.utils.ETH_ADDRESS;
 // We must specify feeToken for non-readonly calls as the last argument.
 // We can also specify nonce, timerange etc.
@@ -241,6 +241,6 @@ first class citizen token. After adding a token, it can be used in all types of 
 Make sure you are connected to an L1 provider to use this method.
 
 ```typescript
-const tokenAddress = '0x...';
+const tokenAddress = "0x...";
 const addToken = await syncWallet.addToken(tokenAddress);
 ```
