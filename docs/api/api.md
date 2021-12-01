@@ -10,7 +10,7 @@ However, zkSync has its own specifics which this section is all about.
 
 ## EIP712
 
-To specify additional fields like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions as well as two additional ones:
+To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions as well as two additional ones:
 
 - `eip712_meta` of type `Eip712Meta`, which contains additional L2-specific fields (`fee_token`, etc).
 - `transaction_type` should be equal to `712`.

@@ -8,7 +8,7 @@ zkSync fully supports the standard [Ethereum JSON-RPC API](https://eth.wiki/json
 
 As long as your code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase needed!_
 
-You may continue using the SDKs which you use now. Users will continue paying fees in ETH and the UX will be identical to the one on Ethereum.
+You may continue using the SDKs that you use now. Users will continue paying fees in ETH and the UX will be identical to the one on Ethereum.
 
 If you want to deploy smart contracts or enable the unique zkSync features to your users (e.g. paying fees in the same token which is being swapped), you will need to use the EIP712 transaction type.
 
