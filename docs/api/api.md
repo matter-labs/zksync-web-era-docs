@@ -10,7 +10,7 @@ However, zkSync has its own specifics which this section is all about.
 
 ## EIP712
 
-In order to supply additional fields like token in which to pay the fee or provide bytecode for the smart contracts to be deployed, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions as well as two additional ones:
+To specify additional fields like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions as well as two additional ones:
 
 - `eip712_meta` of type `Eip712Meta`, which contains additional L2-specific fields (`fee_token`, etc).
 - `transaction_type` should be equal to `712`.
@@ -33,16 +33,16 @@ In order to supply additional fields like token in which to pay the fee or provi
 }
 ```
 
-- `fee` is an object which describes the token in which the fee is to be paid and also the limit on the numbre of
-- `time_range` is an object which denotes the timeframe within which the tx is valid. _Most likely will be removed after the testnet._
+- `fee` field is an object that describes the token in which the fee is to be paid and also the limit on the number of price in `ergs` per storage slot write and publishing a single pubdata byte.
+- `time_range` field is an object that denotes the timeframe within which the tx is valid. _Most likely will be removed after the testnet._
 - `withdraw_token` field should be only supplied for `Withdraw` operations. _Most likely will be removed after the testnet._
-- `factory_deps` an array which should only be supplied for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecode of the contracts which can be deployed by it.
+- `factory_deps` field is an array that should only be supplied for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecode of the contracts which can be deployed by it.
 
 <!-- TODO: add example -->
 
 ## zkSync-specific JSON-RPC methodss
 
-All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods other than provided here. These methods are to be used internally by the team and are very unstable.
+All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods other than those provided here. These methods are to be used internally by the team and are very unstable.
 
 ### `zks_estimateFee`
 
@@ -92,7 +92,7 @@ None.
 
 ### `zks_getL1WithdrawalTx`
 
-Given L2 hash of the withdrawal tx, returns the L1 hash of the transaction where it was executed on L1 or `null` if the withdrawal has not been executed yet.
+Given the L2 hash of the withdrawal tx, returns the L1 hash of the transaction where it was executed on L1 or `null` if the withdrawal has not been executed yet.
 
 ### Input parameters
 
@@ -112,7 +112,7 @@ Given L2 hash of the withdrawal tx, returns the L1 hash of the transaction where
 | --------- | --------- | ----------------------------------------------------- |
 | address   | `Address` | The address of the account                            |
 | before    | `u32`     | The offset from which to start returning transactions |
-| limit     | `u8`      | The maximum number of transactions to return          |
+| limit     | `u8`      | The maximum number of transactions to be returned     |
 
 ### Output format
 
