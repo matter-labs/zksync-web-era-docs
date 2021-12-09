@@ -14,7 +14,7 @@ block is published over the mainchain network in the cheap `calldata`.
 
 - Mainnet-level security with zero reliance on 3rd parties.
 - Permissionless smart contracts in Solidity / Zinc.
-- No registration is required to receive funds.
+- No registration is required to send or receive funds.
 - Payments to existing Ethereum addresses (including smart-contracts).
 - Fees conveniently payable in the token being transferred.
 - Withdrawals to mainnet in ~10 minutes<sup>\*</sup>
