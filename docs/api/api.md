@@ -10,10 +10,7 @@ However, zkSync has its own specifics which this section is all about.
 
 ## EIP712
 
-To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions as well as two additional ones:
-
-- `eip712_meta` of type `Eip712Meta`, which contains additional L2-specific fields (`fee_token`, etc).
-- `transaction_type` should be equal to `712`.
+To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also has the `eip712_meta` field of type `Eip712Meta`, that contains additional L2-specific fields (`fee_token`, etc). To let the server recognize the EIP712 transactions, the `transaction_type` field should be equal to `712`.
 
 `Eip712Meta` type has the following fields:
 
@@ -33,10 +30,10 @@ To specify additional fields, like the token for fee payment or provide the byte
 }
 ```
 
-- `fee` field is an object that describes the token in which the fee is to be paid and also the limit on the number of price in `ergs` per storage slot write and publishing a single pubdata byte.
-- `time_range` field is an object that denotes the timeframe within which the tx is valid. _Most likely will be removed after the testnet._
-- `withdraw_token` field should be only supplied for `Withdraw` operations. _Most likely will be removed after the testnet._
-- `factory_deps` field is an array that should only be supplied for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecode of the contracts which can be deployed by it.
+- `fee` is a field that describes the token in which the fee is to be paid and also the limit on the number of price in `ergs` per storage slot write and publishing a single pubdata byte.
+- `time_range` is a field that denotes the timeframe, within which the tx is valid. _Most likely will be removed after the testnet._
+- `withdraw_token` is a field that should be only supplied for `Withdraw` operations. _Most likely will be removed after the testnet._
+- `factory_deps` is a field that should only be supplied for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecode of the contracts which can be deployed by it.
 
 <!-- TODO: add example -->
 
@@ -52,7 +49,7 @@ Returns the fee for the transaction. The token in which the fee is calculated is
 
 | Parameter | Type          | Description                                         |
 | --------- | ------------- | --------------------------------------------------- |
-| req       | `CallRequest` | zkSync transaction to which the estimate the fee of |
+| req       | `CallRequest` | For which zkSync transaction to estimate the fee of |
 
 #### Output format
 
@@ -92,52 +89,24 @@ None.
 
 ### `zks_getL1WithdrawalTx`
 
-Given the L2 hash of the withdrawal tx, returns the L1 hash of the transaction where it was executed on L1 or `null` if the withdrawal has not been executed yet.
+Given the hash of the withdrawal tx, returns the hash of the Layer-1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
 
 ### Input parameters
 
 | Parameter       | Type   | Description               |
 | --------------- | ------ | ------------------------- |
-| withdrawal_hash | `H256` | L2 hash of the withdrawal |
+| withdrawal_hash | `H256` | The hash of the withdrawal transaction |
 
 ### Output format
 
 `"0x092ea839f428fba0b8ff23525d4930026e97502f07076ecfd653a1f144ca53d0"`
 
-### `zks_getAccountTransactions`
-
-### Input parameters
-
-| Parameter | Type      | Description                                           |
-| --------- | --------- | ----------------------------------------------------- |
-| address   | `Address` | The address of the account                            |
-| before    | `u32`     | The offset from which to start returning transactions |
-| limit     | `u8`      | The maximum number of transactions to be returned     |
-
 ### Output format
 
 TODO
 
+
 <!--
-#[rpc(name = "zks_estimateFee", returns = "Fee")]
-fn estimate_fee(&self, req: CallRequest) -> BoxFutureResult<Fee>;
-
-#[rpc(name = "zks_getMainContract", returns = "Address")]
-fn get_main_contract(&self) -> BoxFutureResult<Address>;
-
-#[rpc(name = "zks_L1ChainId", returns = "U64")]
-fn l1_chain_id(&self) -> Result<U64>;
-
-#[rpc(name = "zks_getL1WithdrawalTx", returns = "Option<H256>")]
-fn get_eth_withdrawal_tx(&self, withdrawal_hash: H256) -> BoxFutureResult<Option<H256>>;
-
-#[rpc(name = "zks_getAccountTransactions", returns = "Vec<Transaction>")]
-fn get_account_transactions(
-    &self,
-    address: Address,
-    before: u32,
-    limit: u8,
-) -> BoxFutureResult<Vec<Transaction>>;
 
 #[rpc(name = "zks_getConfirmedTokens", returns = "Vec<Token>")]
 fn get_confirmed_tokens(&self, from: u32, limit: u8) -> BoxFutureResult<Vec<Token>>;
@@ -163,5 +132,40 @@ fn get_contract_debug_info(
 
 #[rpc(name = "zks_getTransactionTrace", returns = "Option<VmDebugTrace>")]
 fn get_transaction_trace(&self, hash: H256) -> BoxFutureResult<Option<VmDebugTrace>>;
+
+
+
+
+
+Documented:
+#[rpc(name = "zks_estimateFee", returns = "Fee")]
+fn estimate_fee(&self, req: CallRequest) -> BoxFutureResult<Fee>;
+
+#[rpc(name = "zks_getMainContract", returns = "Address")]
+fn get_main_contract(&self) -> BoxFutureResult<Address>;
+
+#[rpc(name = "zks_L1ChainId", returns = "U64")]
+fn l1_chain_id(&self) -> Result<U64>;
+
+#[rpc(name = "zks_getL1WithdrawalTx", returns = "Option<H256>")]
+fn get_eth_withdrawal_tx(&self, withdrawal_hash: H256) -> BoxFutureResult<Option<H256>>;
+
+
+
+Don't want to document (at least yes:
+
+### `zks_getAccountTransactions`
+
+### Input parameters
+
+| Parameter | Type      | Description                                           |
+| --------- | --------- | ----------------------------------------------------- |
+| address   | `Address` | The address of the account                            |
+| before    | `u32`     | The offset from which to start returning transactions |
+| limit     | `u8`      | The maximum number of transactions to be returned     |
+
+
+
+
 
 -->
