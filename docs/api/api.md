@@ -47,9 +47,9 @@ Returns the fee for the transaction. The token in which the fee is calculated is
 
 #### Input parameters
 
-| Parameter | Type          | Description                                         |
-| --------- | ------------- | --------------------------------------------------- |
-| req       | `CallRequest` | For which zkSync transaction to estimate the fee of |
+| Parameter | Type          | Description                                                  |
+| --------- | ------------- | ------------------------------------------------------------ |
+| req       | `CallRequest` | The zkSync transaction for which the fee should be estimated |
 
 #### Output format
 
@@ -93,8 +93,8 @@ Given the hash of the withdrawal tx, returns the hash of the Layer-1 transaction
 
 ### Input parameters
 
-| Parameter       | Type   | Description               |
-| --------------- | ------ | ------------------------- |
+| Parameter       | Type   | Description                            |
+| --------------- | ------ | -------------------------------------- |
 | withdrawal_hash | `H256` | The hash of the withdrawal transaction |
 
 ### Output format
@@ -104,7 +104,6 @@ Given the hash of the withdrawal tx, returns the hash of the Layer-1 transaction
 ### Output format
 
 TODO
-
 
 <!--
 
