@@ -93,8 +93,8 @@ Given the hash of the withdrawal tx, returns the hash of the Layer-1 transaction
 
 ### Input parameters
 
-| Parameter       | Type   | Description               |
-| --------------- | ------ | ------------------------- |
+| Parameter       | Type   | Description                            |
+| --------------- | ------ | -------------------------------------- |
 | withdrawal_hash | `H256` | The hash of the withdrawal transaction |
 
 ### Output format
@@ -103,8 +103,50 @@ Given the hash of the withdrawal tx, returns the hash of the Layer-1 transaction
 
 ### Output format
 
-TODO
+`0xd8a8165ada7ec780364368bf28e473d439e41c4c95164c23368d368cc3730ea7`
 
+### `zks_getConfirmedTokens`
+
+Returns the list of native ERC-20 tokens. Please note that it does not return the full list of tokens, but requires pagination.
+
+### Input parameters
+
+| Parameter | Type  | Description                                      |
+| --------- | ----- | ------------------------------------------------ |
+| from      | `u32` | The id of tokens from which to start returne     |
+| limit     | `u8`  | The number of tokens to be returned from the API |
+
+### Output format
+
+TODO (easier to do when the public node is ready)
+
+### `zks_isTokenLiquid`
+
+Given token address, returns whether it can be used to pay fees.
+
+### Input parameters
+
+| Parameter | Type   | Description              |
+| --------- | ------ | ------------------------ |
+| address   | `H160` | The address of the token |
+
+### Output format
+
+`true`
+
+### `zks_getTokenPrice`
+
+Given token address, returns its price in USD. Please note that that this is the price which is used by the zkSync team and can be a bit different from the current one on the current market price. On testnets, the token prices can be very different from the current market price.
+
+### Input parameters
+
+| Parameter | Type   | Description              |
+| --------- | ------ | ------------------------ |
+| address   | `H160` | The address of the token |
+
+### Output format
+
+`300.51`
 
 <!--
 
@@ -152,7 +194,7 @@ fn get_eth_withdrawal_tx(&self, withdrawal_hash: H256) -> BoxFutureResult<Option
 
 
 
-Don't want to document (at least yes:
+Don't want to document (at least for now):
 
 ### `zks_getAccountTransactions`
 
