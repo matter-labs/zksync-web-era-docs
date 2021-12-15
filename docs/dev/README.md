@@ -8,7 +8,7 @@ zkSync 2.0 is the new version of the protocol, which is the first zkRollup to na
 - Want to start building right now? Head over to the [quickstart guide](#developer-quickstart).
 - New to rollups and want to learn more? Here is the [zkSync basics guide](#zksync-basics).
 
-## Developer Quickstart
+## Developer quickstart
 
 ### Do I need experience with zkSync 1.x?
 

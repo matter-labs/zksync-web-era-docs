@@ -37,7 +37,7 @@ To specify additional fields, like the token for fee payment or provide the byte
 
 <!-- TODO: add example -->
 
-## zkSync-specific JSON-RPC methodss
+## zkSync-specific JSON-RPC methods
 
 All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods other than those provided here. These methods are to be used internally by the team and are very unstable.
 

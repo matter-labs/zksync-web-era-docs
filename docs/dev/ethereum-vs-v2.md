@@ -36,7 +36,7 @@ Since the costs for publishing the calldata on L1 are very volatile, the number 
 - `ergs_per_storage` — multiplier for `ergs_price` to get the cost of changing 1 storage value.
 - `ergs_per_pubdata` — multiplier for `ergs_price` to get the cost of adding 1 byte of pubdata.
 
-## Contract Deployment
+## Contract deployment
 
 To maintain the same security as L1, the zkSync operator must publish the contract code for each contract it deploys. However, if there are multiple contracts deployed with the same code, it needs to be published onchain only once.
 
