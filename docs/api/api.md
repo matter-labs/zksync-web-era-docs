@@ -30,7 +30,7 @@ To specify additional fields, like the token for fee payment or provide the byte
 }
 ```
 
-- `fee` is a field that describes the token in which the fee is to be paid, and defines the limits on the price in ergs per storage slot write and per publishing a single pubdata byte.
+- `fee` is a field that describes the token in which the fee is to be paid, and defines the limits on the price in `ergs` per storage slot write and per publishing a single pubdata byte.
 - `time_range` is a field that denotes the timeframe, within which the tx is valid. _Most likely will be removed after the testnet._
 - `withdraw_token` is a field that should be only supplied for `Withdraw` operations. _Most likely will be removed after the testnet._
 - `factory_deps` is a field that should only be supplied for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecode of the contracts which can be deployed by it.
@@ -107,14 +107,14 @@ Given the hash of the withdrawal tx, returns the hash of the Layer-1 transaction
 
 ### `zks_getConfirmedTokens`
 
-Given `from` and `limit` returns the information about the tokens with ids in the inverval `[from..from+limit-1]`. The token ids are internal for the zkSync operator.
+Given `from` and `limit`, returns the information about the tokens with ids in the inverval `[from..from+limit-1]`. Token ids are internal for the zkSync operator.
 
 ### Input parameters
 
-| Parameter | Type  | Description                                       |
-| --------- | ----- | ------------------------------------------------- |
-| from      | `u32` | The id of the token from which to start returning |
-| limit     | `u8`  | The number of tokens to be returned from the API  |
+| Parameter | Type  | Description                                                                        |
+| --------- | ----- | ---------------------------------------------------------------------------------- |
+| from      | `u32` | The id of the token from which to start returning the information about the tokens |
+| limit     | `u8`  | The number of tokens to be returned from the API                                   |
 
 ### Output format
 
@@ -136,7 +136,7 @@ Given a token address, returns whether it can be used to pay fees.
 
 ### `zks_getTokenPrice`
 
-Given a token address, returns its price in USD. Please note that that this is the price that is used by the zkSync team and can be a bit different from the current one on the current market price. On testnets, the token prices can be very different from the mainnet market price.
+Given a token address, returns its price in USD. Please note that that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
 
 ### Input parameters
 
