@@ -1,7 +1,7 @@
 # Introduction to zkSync for Developers
 
-zkSync is built on ZK Rollup architecture. ZK Rollup is an L2 scaling solution in which all funds are held by a smart
-contract on the mainchain, while computation and storage are performed off-chain. The validity of all the transactions are secured by zero knowledge proofs, which are verified on smart contract. All of this enables building a trustless protocol, secured by Ethereum, but with much lower fees.
+zkSync is built on ZK Rollup architecture. ZK Rollup is a Layer 2 scaling solution in which all funds are held by a smart
+contract on the mainchain, while computation and storage are performed off-chain. The validity of all the transactions is secured by zero-knowledge proofs, which are verified on the smart contract. All of this enables building a trustless protocol, secured by Ethereum, but with much lower fees.
 
 zkSync 2.0 is the new version of the protocol, which is the first zkRollup to natively support Solidity smart contract development.
 
@@ -12,7 +12,7 @@ zkSync 2.0 is the new version of the protocol, which is the first zkRollup to na
 
 ### Do I need experience with zkSync 1.x?
 
-Some experience with the zkSync 1.x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are completely different systems and the experience with the latter is not needed to build on zkSync 2.0.
+Some experience with the zkSync 1.x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are completely different systems, and the experience with the latter is not needed to build on zkSync 2.0.
 
 If you do have experience building on zkSync 1.x, [here](./v1-vs-v2.md) is the guide on the notable differences.
 
@@ -28,7 +28,7 @@ The only place where using zkSync SDK is required is during the contract deploym
 
 We will show you how to deploy contracts on zkSync using the `Greeter` example from the hardhat tutorial.
 
-TODO: step-by-step guide on plugin installation + Greeter example
+TODO: a step-by-step guide on plugin installation + Greeter example
 
 You can explore more tutorials [here](./tutorials.md).
 
@@ -42,7 +42,7 @@ TODO: Celeste PR
 
 Sidenote: These protocol details are mostly relevant when the zkPorter part is available:
 
-The main part of zkSync 2.0 is the state tree. It's a sparse Merkle tree with with a depth of 265, which holds account states. The topmost 8 bits denote the type of the protocol to be used (0 stands for `zkRollup` and 1 stand for `zkPorter`, the rest 254 types are reserved for the future). Each protocol has a storage space of `2^256` slots.
+The main part of zkSync 2.0 is the state tree. It's a sparse Merkle tree with a depth of 265, which holds account states. The topmost 8 bits denote the type of the protocol to be used (0 stands for `zkRollup` and 1 stands for `zkPorter`, the rest 254 types are reserved for the future). Each protocol has a storage space of `2^256` slots.
 
 _Note:_ Each account exists in each subtree at the same time, e.g. account can have its funds stored in cold reserve in the zkRollup part and have all trading done on the zkPorter side.
 

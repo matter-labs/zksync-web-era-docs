@@ -16,7 +16,7 @@ implement many new things. Apart from the smart contracts, differences include:
 - **Exodus mode was replaced with Priority mode.** Priority mode is a mode where blocks can still be generated in L2, but
   may only consist of requests initiated from L1. Unlike exodus mode, priority mode is not eternal: rollup can continue
   operating once it satisfies all the priority requests received from L1.
-- **Smart contract-centric model made it possible to implement a full fledged Web3 API.** zkSync network can be accessed by
+- **Smart contract-centric model made it possible to implement a full-fledged Web3 API.** zkSync network can be accessed by
   any Web3-compatible client. Though there are [some](./ethereum-vs-v2.md) differences.
 - **There are no account IDs and token IDs.** Everything is accessed using Ethereum addresses, just like in L1.
 - **There is no limit on the number of native tokens.** Any valid ERC20 token can be added to the zkSync 2.0 as a first-class citizen

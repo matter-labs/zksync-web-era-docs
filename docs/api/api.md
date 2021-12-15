@@ -4,13 +4,13 @@ zkSync 2.0 fully supports standard [Ethereum JSON-RPC API](https://eth.wiki/json
 
 As long as your code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase needed!_
 
-You can continue using the SDKs which you already use now. Users will continue paying fees in ETH and the UX will identical to the one on Ethereum.
+You can continue using the SDKs which you use now. Users will continue paying fees in ETH and the UX will identical to the one on Ethereum.
 
 However, zkSync has its own specifics which this section is all about.
 
 ## EIP712
 
-To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also has the `eip712_meta` field of type `Eip712Meta`, that contains additional L2-specific data (`fee_token`, etc). To let the server recognize EIP712 transactions, the `transaction_type` field should be equal to `712`.
+To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also have the `eip712_meta` field of type `Eip712Meta`, which contains additional L2-specific data (`fee_token`, etc). To let the server recognize EIP712 transactions, the `transaction_type` field should be equal to `712`.
 
 `Eip712Meta` type has the following fields:
 
@@ -30,7 +30,7 @@ To specify additional fields, like the token for fee payment or provide the byte
 }
 ```
 
-- `fee` is a field that describes the token in which the fee is to be paid and also the limit on the number of price in `ergs` per storage slot write and publishing a single pubdata byte.
+- `fee` is a field that describes the token in which the fee is to be paid and also the limits on the price in `ergs` per storage slot write and publishing a single pubdata byte.
 - `time_range` is a field that denotes the timeframe, within which the tx is valid. _Most likely will be removed after the testnet._
 - `withdraw_token` is a field that should be only supplied for `Withdraw` operations. _Most likely will be removed after the testnet._
 - `factory_deps` is a field that should only be supplied for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecode of the contracts which can be deployed by it.
@@ -103,18 +103,18 @@ Given the hash of the withdrawal tx, returns the hash of the Layer-1 transaction
 
 ### Output format
 
-`0xd8a8165ada7ec780364368bf28e473d439e41c4c95164c23368d368cc3730ea7`
+`"0xd8a8165ada7ec780364368bf28e473d439e41c4c95164c23368d368cc3730ea7"`
 
 ### `zks_getConfirmedTokens`
 
-Returns the list of native ERC-20 tokens. Please note that it does not return the full list of tokens, but requires pagination.
+Given `from` and `limit` returns the information about the tokens with ids in the inverval `[from..from+limit-1]`. The token ids are internal for the zkSync operator.
 
 ### Input parameters
 
-| Parameter | Type  | Description                                      |
-| --------- | ----- | ------------------------------------------------ |
-| from      | `u32` | The id of tokens from which to start returne     |
-| limit     | `u8`  | The number of tokens to be returned from the API |
+| Parameter | Type  | Description                                       |
+| --------- | ----- | ------------------------------------------------- |
+| from      | `u32` | The id of the token from which to start returning |
+| limit     | `u8`  | The number of tokens to be returned from the API  |
 
 ### Output format
 
@@ -122,7 +122,7 @@ TODO (easier to do when the public node is ready)
 
 ### `zks_isTokenLiquid`
 
-Given token address, returns whether it can be used to pay fees.
+Given a token address, returns whether it can be used to pay fees.
 
 ### Input parameters
 
@@ -136,7 +136,7 @@ Given token address, returns whether it can be used to pay fees.
 
 ### `zks_getTokenPrice`
 
-Given token address, returns its price in USD. Please note that that this is the price which is used by the zkSync team and can be a bit different from the current one on the current market price. On testnets, the token prices can be very different from the current market price.
+Given a token address, returns its price in USD. Please note that that this is the price that is used by the zkSync team and can be a bit different from the current one on the current market price. On testnets, the token prices can be very different from the mainnet market price.
 
 ### Input parameters
 
