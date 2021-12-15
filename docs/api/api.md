@@ -111,10 +111,10 @@ Given `from` and `limit`, returns the information about the tokens with ids in t
 
 ### Input parameters
 
-| Parameter | Type  | Description                                                                        |
-| --------- | ----- | ---------------------------------------------------------------------------------- |
-| from      | `u32` | The id of the token from which to start returning the information about the tokens |
-| limit     | `u8`  | The number of tokens to be returned from the API                                   |
+| Parameter | Type  | Description                                                                 |
+| --------- | ----- | --------------------------------------------------------------------------- |
+| from      | `u32` | The token id from which to start returning the information about the tokens |
+| limit     | `u8`  | The number of tokens to be returned from the API                            |
 
 ### Output format
 
