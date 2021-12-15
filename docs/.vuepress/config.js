@@ -101,10 +101,20 @@ module.exports = {
       // ],
       "/dev": [
         {
-          title: "Introduction", // required
-          path: "/dev/", // optional, which should be a absolute path.
+          title: "Getting started",
+          path: "/dev/",
           collapsable: false, // optional, defaults to true
         },
+        {
+          title: "Alpha preview",
+          path: "/dev/preview.md",
+          collapsable: false
+        },
+        // {
+        //   title: "Introduction", // required
+        //   path: "/dev/", // optional, which should be a absolute path.
+        //   collapsable: false, // optional, defaults to true
+        // },
         {
           title: "Comparison to v1.0", // required
           path: "/dev/v1-vs-v2.md", // optional, which should be a absolute path.
@@ -116,15 +126,15 @@ module.exports = {
           collapsable: false, // optional, defaults to true
         },
         {
+          title: "Tutorials",
+          path: "/dev/tutorials.md",
+          collapsable: false
+        },
+        {
           title: "Communicating with L1", // required
           path: "/dev/communication-with-l1.md", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
         },
-        {
-          title: "Hardhat tutorial", // required
-          path: "/dev/hardhat.md", // optional, which should be a absolute path.
-          collapsable: false, // optional, defaults to true
-        }
       ],
       "/api": [
         {
@@ -144,7 +154,12 @@ module.exports = {
           path: "/api/js.md", // optional, which should be a absolute path.
           collapsable: true, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
-        }
+        },
+        {
+          title: "Hardhat plugin", // required
+          path: "/api/hardhat.md", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+        },
       ],
     },
   },
