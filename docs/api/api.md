@@ -10,7 +10,7 @@ However, zkSync has its own specifics which this section is all about.
 
 ## EIP712
 
-To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also has the `eip712_meta` field of type `Eip712Meta`, that contains additional L2-specific data (`fee_token`, etc). To let the server recognize the EIP712 transactions, the `transaction_type` field should be equal to `712`.
+To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also has the `eip712_meta` field of type `Eip712Meta`, that contains additional L2-specific data (`fee_token`, etc). To let the server recognize EIP712 transactions, the `transaction_type` field should be equal to `712`.
 
 `Eip712Meta` type has the following fields:
 
@@ -47,9 +47,9 @@ Returns the fee for the transaction. The token in which the fee is calculated is
 
 #### Input parameters
 
-| Parameter | Type          | Description                                         |
-| --------- | ------------- | --------------------------------------------------- |
-| req       | `CallRequest` | For which zkSync transaction to estimate the fee of |
+| Parameter | Type          | Description                                                  |
+| --------- | ------------- | ------------------------------------------------------------ |
+| req       | `CallRequest` | The zkSync transaction for which the fee should be estimated |
 
 #### Output format
 
