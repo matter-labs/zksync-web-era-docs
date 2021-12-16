@@ -1,26 +1,13 @@
 # Hardhat plugins for zkSync 2.0
 
-[Hardhat](https://hardhat.org) is an Ethereum development environment, designed for easy smart contract development on Solidity. One of the most prominent features of it is extendability: you can easily add new plugins to your hardhat project. If you learn more about hardhat, check out their [documentation](https://hardhat.org/getting-started/).
+[Hardhat](https://hardhat.org) is an Ethereum development environment, designed for easy smart contract development on Solidity. One of its most prominent features is extendability: you can easily add new plugins to your hardhat project. 
 
 zkSync supports two plugins for hardhat:
 
-- `hardhat-zksync-solc` for easy smart contract compilation.
-- `hardhat-zksync-deploy` for easy smart contract deployment.
+- `@matterlabs/hardhat-zksync-solc` for smart contract compilation.
+- `@matterlabs/hardhat-zksync-deploy` for smart contract deployment.
 
-## NPM
-
-- [hardhat-zksync-solc](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-solc)
-- [hardhat-zksync-deploy](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-deploy)
-
-In order to add these dependencies to your project, run 
-
-```
-# Yarn
-yarn add -D @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
-
-# or for NPM:
-npm i -D @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
-```
+If you learn more about hardhat itself, check out their [documentation](https://hardhat.org/getting-started/).
 
 ## Getting started
 
@@ -28,7 +15,7 @@ We will show you how to setup a zkSync hardhat project from scratch.
 
 ### Initializing the project
 
-First, we should initialize the project and install the dependencies. In order to this, you should run:
+First, we should initialize the project and install the dependencies. Run the following commands in terminal:
 
 ```
 mkdir greeter-example
@@ -36,6 +23,8 @@ cd greeter-example
 yarn init -y
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+
+Please note, that currently typescript is reqiured by zkSync plugins.
 
 Create the `hardhat.config.ts` file and paste the following code there:
 
@@ -66,9 +55,7 @@ module.exports = {
 };
 ```
 
-Plese note, that the 
-
-Create the `contracts` and `deploy` folders. The former is be the place where all the contract's `*.sol` files should be stored and the latter is the place where all the scripts related to deployment of the contract will be put. 
+Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored and the latter is the place where all the scripts related to deployment of the contract will be put. 
 
 Create the `contracts/Greeter.sol` contract and insert the following code there:
 
@@ -102,7 +89,7 @@ yarn hardhat compile
 Now, let's create the deployment script in the `deploy/deploy.ts`:
 
 ```typescript
-import { Wallet, utils } from 'zksync-web3';
+import { utils } from 'zksync-web3';
 import * as ethers from 'ethers';
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -112,7 +99,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     console.log(`Running deploy script for the Greeter contract`);
 
     // Initialize the wallet.
-    const wallet = new Wallet("0x74d8b3a188f7260f67698eb44da07397a298df5427df681ef68c45b34b61f998");
+    const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>");
 
     // Create deployer object and load the artifact of the contract we want to deploy.
     const deployer = new Deployer(hre, wallet);
@@ -165,9 +152,132 @@ Now we can run the script using the following command:
 yarn hardhat deploy-zksync
 ```
 
-Learn more:
+### Paying fees in ERC-20 tokens
 
-- New to `zksync-web3` SDK? [Here](./js) is the documentation.
+Let's see how we can pay fees in `USDC` token.
+
+```typescript
+const USDC_ADDRESS = '0xeb8f08a975ab53e34d8a0330e0d34de942c95926';
+const USDC_DECIMALS = 6;
+
+const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_ADDRESS);
+// Deposit funds to L2.
+const depositHandle = await deployer.zkWallet.deposit({
+  to: deployer.zkWallet.address,
+  token: USDC_ADDRESS,
+  // We deposit more than the minimal required amount to have funds 
+  // for further iteraction with our smart contract.
+  amount: deploymentFee.mul(2),
+  // Unlike ETH, ERC-20 tokens require approval in order to deposit to zkSync.
+  // You can either set the approval in a separate transaction or provide `approveERC20` flag equal to `true`
+  // and the SDK will initiate approval transaction under the hood.
+  approveERC20: true
+});
+
+// Wait until the deposit is processed by zkSync.
+await depositHandle.wait();
+```
+
+We can output the fee in human-readable format:
+
+```typescript
+const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
+console.log(`The deployment will cost ${parsedFee} USDC`);
+```
+
+Please note that the fees on testnet do not correctly represent the fees on the future mainnet release.
+
+Now, we need to pass `USDC` as the `feeToken` to the deployment transaction:
+
+```typescript
+const greeterContract = await deployer.deploy(artifact, [greeting], USDC_ADDRESS);
+```
+
+In order to pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
+
+```typescript
+const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
+    customData: {
+        feeToken: USDC_ADDRESS
+    }
+});
+```
+
+Full example:
+
+```typescript
+import { utils } from 'zksync-web3';
+import * as ethers from 'ethers';
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+
+const USDC_ADDRESS = '0xeb8f08a975ab53e34d8a0330e0d34de942c95926';
+const USDC_DECIMALS = 6;
+
+// An example of a deploy script which will deploy and call a simple contract.
+export default async function (hre: HardhatRuntimeEnvironment) {
+    console.log(`Running deploy script for the Greeter contract`);
+
+    // Initialize the wallet.
+    const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>");
+
+    // Create deployer object and load the artifact of the contract we want to deploy.
+    const deployer = new Deployer(hre, wallet);
+    const artifact = await deployer.loadArtifact("Greeter");
+
+    const greeting = "Hi there!";
+    const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_ADDRESS);
+
+    // Deposit funds to L2
+    const depositHandle = await deployer.zkWallet.deposit({
+        to: deployer.zkWallet.address,
+        token: USDC_ADDRESS,
+        amount: deploymentFee.mul(2),
+        approveERC20: true
+    });
+    // Wait until the deposit is processed on zkSync
+    await depositHandle.wait();
+
+    // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
+    // `greeting` is an argument for contract constructor.
+    const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
+    console.log(`The deployment will cost ${parsedFee} USDC`);
+
+    const greeterContract = await deployer.deploy(artifact, [greeting], USDC_ADDRESS);
+
+    // Show the contract info.
+    const contractAddress = greeterContract.address;
+    console.log(`${artifact.contractName} was deployed to ${contractAddress}!`);
+
+    // Call the deployed contract.
+    const greetingFromContract = await greeterContract.greet();
+    if (greetingFromContract == greeting) {
+        console.log(`Contract greets us with ${greeting}!`);
+    } else {
+        console.error(`Contract said something unexpected: ${greetingFromContract}`);
+    }
+
+    // Edit the greeting of the contract
+    const newGreeting = "Hey guys";
+    const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
+        customData: {
+            feeToken: USDC_ADDRESS
+        }
+    });
+    await setNewGreetingHandle.wait();
+    
+    const newGreetingFromContract = await greeterContract.greet();
+    if (newGreetingFromContract == newGreeting) {
+        console.log(`Contract greets us with ${newGreeting}!`);
+    } else {
+        console.error(`Contract said something unexpected: ${newGreetingFromContract}`);
+    }
+}
+```
+
+### Learn more:
+
+- New to `zksync-web3` SDK? [Here](../js) is the documentation.
 - Want to dive deeper into zkSync `hardhat` plugins? Head straight to the [reference](./).
 
 ## Future releases 

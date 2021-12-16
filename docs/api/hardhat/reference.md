@@ -4,6 +4,20 @@
 
 This plugin is used to provide convenient interface for compiling zkSync smart contracts.
 
+### Npm
+
+[@matterlabs/hardhat-zksync-solc](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-solc)
+
+You can add this plugin to your project with the following comand:
+
+```
+# Yarn
+yarn add -D @matterlabs/hardhat-zksync-solc
+
+# Npm
+npm i -D @matterlabs/hardhat-zksync-solc
+```
+
 ### Exports
 
 This plugin most often will not be used directly in the code.
@@ -36,6 +50,20 @@ zksolc: {
 ## `@matterlabs/hardhat-zksync-deploy`
 
 This plugin provides utilities for deploying smart contracts on zkSync with artifacts built by the `@matterlabs/hardhat-zksync-solc` plugin.
+
+### Npm
+
+[@matterlabs/hardhat-zksync-deploy](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-deploy)
+
+You can add this plugin to your project with the following comand:
+
+```
+# Yarn
+yarn add -D @matterlabs/hardhat-zksync-deploy
+
+# Npm
+npm i -D @matterlabs/hardhat-zksync-deploy
+```
 
 ### Exports
 
