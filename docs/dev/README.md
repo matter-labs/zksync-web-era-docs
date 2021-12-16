@@ -12,7 +12,7 @@ zkSync 2.0 is the new version of the protocol, which is the first ZK Rollup to n
 
 ### Do I need experience with zkSync 1.x?
 
-Some experience with the zkSync 1.x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are completely different systems, and the experience with the latter is not needed to build on zkSync 2.0.
+Some experience with the zkSync 1.x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are very different systems, and the experience with the latter is not needed to build on zkSync 2.0.
 
 If you do have experience building on zkSync 1.x, [here](./v1-vs-v2.md) is a guide on the notable differences.
 
