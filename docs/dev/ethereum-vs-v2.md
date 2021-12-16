@@ -30,13 +30,13 @@ Unlike Ethereum, there is no native token and zkSync supports paying fees in any
 
 Our version of `gas` is called `ergs` and represents not only the costs of computations, but also the cost of publishing data onchain and affecting storage. Similar to `gas`, `ergs` is an absolute unit. VM operations (`add`, `mul`, etc) will also have their costs measured in `ergs`, and they may not be equal to each other. The actual table of operation costs in `ergs` is yet to be defined.
 
-Since the costs for publishing the calldata on L1 are very volatile, the number of `ergs` needed for changing a storage slot is not constant. For each block, the operator define the following dynamic parameters:
+Since the costs for publishing the calldata on L1 are very volatile, the number of `ergs` needed for changing a storage slot is not constant. For each block, the operator defines the following dynamic parameters:
 
 - `ergs_price` table for the current base price in each token. The value of this parameter is used to determine the costs of VM execution in each token.
-- `ergs_per_storage` — multiplier for `ergs_price` to get the cost of changing 1 storage value. Note that this value is used for both zkRollup and zkPorter storage updates.
+- `ergs_per_storage` — multiplier for `ergs_price` to get the cost of changing 1 storage value.
 - `ergs_per_pubdata` — multiplier for `ergs_price` to get the cost of adding 1 byte of pubdata.
 
-## Contract Deployment
+## Contract deployment
 
 To maintain the same security as L1, the zkSync operator must publish the contract code for each contract it deploys. However, if there are multiple contracts deployed with the same code, it needs to be published onchain only once.
 

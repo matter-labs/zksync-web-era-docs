@@ -23,10 +23,10 @@ module.exports = {
     logo: "/LogotypeLight.svg",
     lastUpdated: "Last Updated",
     nav: [
-      {
-        text: "User Docs",
-        link: "/faq/",
-      },
+      // {
+      //   text: "User Docs",
+      //   link: "/faq/",
+      // },
       {
         text: "Developer Docs",
         link: "/dev/",
@@ -43,68 +43,78 @@ module.exports = {
     //displayAllHeaders: true,
     sidebar: {
       "/legal/": ["/legal/terms", "/legal/privacy"],
-      "/faq/": [
-        {
-          title: "Welcome to zkSync", // required
-          path: "/faq/", // optional, which should be a absolute path.
-          collapsable: true, // optional, defaults to true
-          sidebarDepth: 0, // optional, defaults to 1
-        },
-        {
-          title: "Overview", // required
-          path: "/faq/intro.html", // optional, which should be a absolute path.
-          collapsable: true, // optional, defaults to true
-          sidebarDepth: 1, // optional, defaults to 1
-        },
-        {
-          title: "Technology", // required
-          path: "/faq/tech", // optional, which should be a absolute path.
-          collapsable: true, // optional, defaults to true
-          sidebarDepth: 1, // optional, defaults to 1
-        },
-        {
-          title: "Security", // required
-          path: "/faq/security", // optional, which should be a absolute path.
-          collapsable: true, // optional, defaults to true
-          sidebarDepth: 1, // optional, defaults to 1
-        },
-        {
-          title: "Learn By Watching", // required
-          path: "/faq/learnbywatching", // optional, which should be a absolute path.
-          collapsable: true, // optional, defaults to true
-          sidebarDepth: 1, // optional, defaults to 1
-        },
-        {
-          title: "Tokens & Fees", // required
-          path: "/faq/tokens", // optional, which should be a absolute path.
-          collapsable: true, // optional, defaults to true
-          sidebarDepth: 1, // optional, defaults to 1
-        },
-        {
-          title: "Decentralization", // required
-          path: "/faq/decentralization", // optional, which should be a absolute path.
-          collapsable: true, // optional, defaults to true
-          sidebarDepth: 1, // optional, defaults to 1
-        },
-        {
-          title: "Tokenomics", // required
-          path: "/faq/tokenomics", // optional, which should be a absolute path.
-          collapsable: true, // optional, defaults to true
-          sidebarDepth: 1, // optional, defaults to 1
-        },
-        {
-          title: "Privacy", // required
-          path: "/faq/privacy", // optional, which should be a absolute path.
-          collapsable: true, // optional, defaults to true
-          sidebarDepth: 1, // optional, defaults to 1
-        }
-      ],
+      // "/faq/": [
+      //   {
+      //     title: "Welcome to zkSync", // required
+      //     path: "/faq/", // optional, which should be a absolute path.
+      //     collapsable: true, // optional, defaults to true
+      //     sidebarDepth: 0, // optional, defaults to 1
+      //   },
+      //   {
+      //     title: "Overview", // required
+      //     path: "/faq/intro.html", // optional, which should be a absolute path.
+      //     collapsable: true, // optional, defaults to true
+      //     sidebarDepth: 1, // optional, defaults to 1
+      //   },
+      //   {
+      //     title: "Technology", // required
+      //     path: "/faq/tech", // optional, which should be a absolute path.
+      //     collapsable: true, // optional, defaults to true
+      //     sidebarDepth: 1, // optional, defaults to 1
+      //   },
+      //   {
+      //     title: "Security", // required
+      //     path: "/faq/security", // optional, which should be a absolute path.
+      //     collapsable: true, // optional, defaults to true
+      //     sidebarDepth: 1, // optional, defaults to 1
+      //   },
+      //   {
+      //     title: "Learn By Watching", // required
+      //     path: "/faq/learnbywatching", // optional, which should be a absolute path.
+      //     collapsable: true, // optional, defaults to true
+      //     sidebarDepth: 1, // optional, defaults to 1
+      //   },
+      //   {
+      //     title: "Tokens & Fees", // required
+      //     path: "/faq/tokens", // optional, which should be a absolute path.
+      //     collapsable: true, // optional, defaults to true
+      //     sidebarDepth: 1, // optional, defaults to 1
+      //   },
+      //   {
+      //     title: "Decentralization", // required
+      //     path: "/faq/decentralization", // optional, which should be a absolute path.
+      //     collapsable: true, // optional, defaults to true
+      //     sidebarDepth: 1, // optional, defaults to 1
+      //   },
+      //   {
+      //     title: "Tokenomics", // required
+      //     path: "/faq/tokenomics", // optional, which should be a absolute path.
+      //     collapsable: true, // optional, defaults to true
+      //     sidebarDepth: 1, // optional, defaults to 1
+      //   },
+      //   {
+      //     title: "Privacy", // required
+      //     path: "/faq/privacy", // optional, which should be a absolute path.
+      //     collapsable: true, // optional, defaults to true
+      //     sidebarDepth: 1, // optional, defaults to 1
+      //   }
+      // ],
       "/dev": [
         {
-          title: "Introduction", // required
-          path: "/dev/", // optional, which should be a absolute path.
+          title: "Getting started",
+          path: "/dev/",
           collapsable: false, // optional, defaults to true
         },
+        {
+          title: "Alpha preview",
+          path: "/dev/preview.md",
+          collapsable: false
+        },
+        // {
+        //   title: "Introduction", // required
+        //   path: "/dev/", // optional, which should be a absolute path.
+        //   collapsable: false, // optional, defaults to true
+        // },
         {
           title: "Comparison to v1.0", // required
           path: "/dev/v1-vs-v2.md", // optional, which should be a absolute path.
@@ -116,15 +126,15 @@ module.exports = {
           collapsable: false, // optional, defaults to true
         },
         {
+          title: "Tutorials",
+          path: "/dev/tutorials.md",
+          collapsable: false
+        },
+        {
           title: "Communicating with L1", // required
           path: "/dev/communication-with-l1.md", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
         },
-        {
-          title: "Hardhat tutorial", // required
-          path: "/dev/hardhat.md", // optional, which should be a absolute path.
-          collapsable: false, // optional, defaults to true
-        }
       ],
       "/api": [
         {
@@ -144,7 +154,12 @@ module.exports = {
           path: "/api/js.md", // optional, which should be a absolute path.
           collapsable: true, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
-        }
+        },
+        {
+          title: "Hardhat plugin", // required
+          path: "/api/hardhat.md", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+        },
       ],
     },
   },
