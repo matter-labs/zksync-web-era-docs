@@ -1,9 +1,9 @@
 # Introduction to zkSync for Developers
 
 zkSync is built on ZK Rollup architecture. ZK Rollup is a Layer 2 scaling solution in which all funds are held by a smart
-contract on the mainchain, while computation and storage are performed off-chain. The validity of all the transactions is secured by zero-knowledge proofs, which are verified on the smart contract. All of this enables building a trustless protocol, secured by Ethereum, but with much lower fees.
+contract on the mainchain, while computation and storage are performed off-chain. The validity of all the transactions is secured by zero-knowledge proofs, which are verified by the smart contract. All of this enables building a trustless protocol, secured by Ethereum, but with much lower fees.
 
-zkSync 2.0 is the new version of the protocol, which is the first zkRollup to natively support Solidity smart contract development.
+zkSync 2.0 is the new version of the protocol, which is the first ZK Rollup to natively support Solidity smart contract development.
 
 - Want to start building right now? Head over to the [quickstart guide](#developer-quickstart).
 - New to rollups and want to learn more? Here is the [zkSync basics guide](#zksync-basics).
@@ -14,7 +14,7 @@ zkSync 2.0 is the new version of the protocol, which is the first zkRollup to na
 
 Some experience with the zkSync 1.x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are completely different systems, and the experience with the latter is not needed to build on zkSync 2.0.
 
-If you do have experience building on zkSync 1.x, [here](./v1-vs-v2.md) is the guide on the notable differences.
+If you do have experience building on zkSync 1.x, [here](./v1-vs-v2.md) is a guide on the notable differences.
 
 If you don't, all the needed information is provided in the [zkSync basics guide](#zksync-basics).
 
@@ -52,15 +52,15 @@ The protocol has 5 types of transactions.
 
 The ones that can only be enacted from Layer 1 are:
 
-- `Deposit`. This operation moves funds from L1 account to the L2 account.
-- `AddToken`. This operation adds support of a valid ERC-20 token to the L2.
+- `Deposit`. This operation moves funds from an L1 account to an L2 account.
+- `AddToken`. This operation adds a native ERC-20 token to zkSync. <!-- TODO: Include link to the glossary of what is the native (or first-class citizen) erc20 token -->
 
 The ones that can be enacted from both Layer 1 and Layer 2 are:
 
 - `Deploy`. This operation stores the bytecode of the contract in the zkSync network and assigns it an address
   through which the contract can be accessed.
 - `Execute`. This operation executes a smart contract method.
-- `Withdraw`. This operation moves funds from L2 account to the L1 account. _Most likely will be removed soon._
+- `Withdraw`. This operation moves funds from an L2 account to an L1 account. _Most likely will be replaced with a special `Execute` call soon._
 
 ## Glossary
 
