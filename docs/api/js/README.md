@@ -1,16 +1,25 @@
 # JS Web3 SDK
 
+## Concept
+
+While most of the exisitng SDKs should work out of the box, deploying smart contracts or using unique zkSync features like paying fees in other tokens requires providing additional fields to those that the Ethereum transactions have by default. 
+
+To provide easy access to all of the features of zkSync 2.0, we created `zksync-web3` JavaScript SDK, which is made in a way that is has interface very similar to those of [ethers](https://docs.ethers.io/v5/). In fact, `ethers` is a peer dependency of the library and most of the objects exported by `zksync-web3` (e.g. `Wallet`, `Provider` etc) inherit from the corresponding `ethers` objects and override only the fields that need to be changed.
+
+The library is made in such a way that changing `ethers` with `zksync-web3` in your imports should be sufficient in most of the cases.  
+
 ## Adding dependencies
 
 ```bash
-yarn add zkweb3
-yarn add ethers@5.0 # ethers is a peer dependency of zkweb3
+yarn add zksync-web3
+yarn add ethers@5 # ethers is a peer dependency of zkweb3
 ```
 
-Then you can import all the content of the zkSync library with the following statement:
+Then you can import all the content of the `ethers` library and zkSync library with the following statement:
 
 ```typescript
-import * as zksync from "zkweb3";
+import * as zksync from "zksync-web3";
+import * as ethers from "ethers";
 ```
 
 ## Connecting to zkSync network
@@ -18,12 +27,15 @@ import * as zksync from "zkweb3";
 To interact with zkSync network users need to know the endpoint of the operator node.
 
 ```typescript
-const syncProvider = new zksync.Provider("<URL>");
+// Currently, only one environment is supported.
+// Please do not share the link outside of your team. 
+// We plan to gradually roll out the network to wider audience.
+const syncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev"); 
 ```
 
 **Note:** Currently, only `rinkeby` network is supported.
 
-Most operations require some read-only access to the Ethereum network. We use `ethers` library to interact with
+Some operations require access to the Ethereum network. We use `ethers` library to interact with
 Ethereum.
 
 ```typescript
@@ -36,14 +48,10 @@ To control your account in zkSync, use the `zksync.Wallet` object. It can sign t
 `ethers.Wallet` and send transaction to zkSync network using `zksync.Provider`.
 
 ```typescript
-// Create ethereum wallet using ethers.js
-const ethWallet = ethers.Wallet.fromMnemonic(MNEMONIC).connect(ethProvider);
-
-// Derive zksync.Wallet from ethereum wallet.
-// Actually, if we need only the syncWallet we could have used `fromMnemonic` on it directly;
+// Derive zksync.Wallet from ethereum private key.
 // zkSync's wallets support all of the methods of ethers' wallets.
 // Also, both providers are optional and can be connected to later via `connect` and `connectToL1`.
-const syncWallet = new zksync.Wallet(ethWallet.privateKey, syncProvider, ethProvider);
+const syncWallet = new zksync.Wallet(PRIVATE_KEY, syncProvider, ethProvider);
 ```
 
 ## Depositing funds
@@ -61,22 +69,27 @@ const deposit = await syncWallet.deposit({
 the exception of ETH, the address `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` is used for it. To get the ETH address in
 zkSync, we can use the constant `ETH_ADDRESS`.
 
-After the tx is submitted to the Ethereum node, we can track its status using the returned object:
+After the tx is submitted to the Ethereum node, we can track its status using the transaction handle:
 
 ```typescript
-// Await confirmation on L1
+// Await processing of the deposit on L1
+const ethereumTxReceipt = await deposit.waitL1Commit();
+
+// Await processing the deposit on zkSync
 const depositReceipt = await deposit.wait();
 ```
 
 ## Checking zkSync account balance
 
 ```typescript
-// Committed state is not final yet
+// Retreiving the current (committed) balance of an account
 const committedEthBalance = await syncWallet.getBalance(zksync.utils.ETH_ADDRESS);
 
-// Finalized state is final
+// Retrieving the balance of an account in the last finalized block
 const finalizedEthBalance = await syncWallet.getBalance(ETH_ADDRESS, "finalized");
 ```
+
+You can read more about what are committed and finalized balances [here](). <!--- TODO: link to the Celeste part of the docs -->
 
 ## Performing a transfer
 
@@ -84,14 +97,12 @@ Now, let's create a second wallet and transfer some funds into it. Note that we 
 account, without preliminary registration!
 
 ```typescript
-const syncWallet2 = zksync.Wallet.fromMnemonic(MNEMONIC2).connect(syncProvider).connectToL1(ethProvider);
+const syncWallet2 = new zksync.Wallet(PRIVATE_KEY2, syncProvider, ethProvider);
 ```
 
-We are going to transfer `1 ETH` to another account and pay `1 DAI` as a fee to the operator (zkSync account balance of
-the sender is going to be decreased by `1 ETH` and `1 DAI`).
+We are going to transfer `1 ETH` to another account and pay `1 DAI` as a fee to the operator (zkSync account balance of the sender is going to be decreased by `1 ETH` and `1 DAI`).
 
-**NOTE:** You can use any token inside zksync if it was previously added via the `addToken` operation. If the token does
-not exist, any user can add it!
+**NOTE:** You can use any token inside zksync if it was previously added via the `addToken` operation. If the token does not exist, any user can add it!
 
 ```typescript
 const amount = ethers.utils.parseEther("1.0");

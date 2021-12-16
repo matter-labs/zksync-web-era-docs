@@ -151,14 +151,17 @@ module.exports = {
         },
         {
           title: "JavaScript SDK", // required
-          path: "/api/js.md", // optional, which should be a absolute path.
+          path: "/api/js", // optional, which should be a absolute path.
           collapsable: true, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/js/providers"],
         },
         {
-          title: "Hardhat plugin", // required
-          path: "/api/hardhat.md", // optional, which should be a absolute path.
-          collapsable: false, // optional, defaults to true
+          title: "Hardhat", // required
+          path: "/api/hardhat", // optional, which should be a absolute path.
+          collapsable: true, // optional, defaults to true
+          sidebarDepth: 1,
+          children: ["/api/hardhat/reference"],
         },
       ],
     },
