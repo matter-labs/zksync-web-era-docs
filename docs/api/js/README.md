@@ -12,7 +12,7 @@ The library is made in such a way that changing `ethers` with `zksync-web3` in y
 
 ```bash
 yarn add zksync-web3
-yarn add ethers@5 # ethers is a peer dependency of zkweb3
+yarn add ethers@5 # ethers is a peer dependency of zksync-web3
 ```
 
 Then you can import all the content of the `ethers` library and zkSync library with the following statement:
