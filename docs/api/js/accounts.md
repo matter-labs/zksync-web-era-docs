@@ -111,17 +111,18 @@ It is possible to chain `connect` and `connectToL1` nethods:
 const wallet = unconnectedWallet.connect(provider).connectToL1(ethProvider);
 ```
 
-### Getting address of the zkSync smart contract
+### Getting zkSync smart contract
 
 ```typescript
-async getMainContract(): Promise<string>
+async getMainContract(): Promise<Contract>
 ``` 
 
 #### Inputs and outputs
 
 | Name                             | Description                                                            |
 | -------------------------------- | ---------------------------------------------------------------------- |
-| returns                          | Address of the zkSync smart contract                                           |
+| returns                          |  `Contract` wrapper of the zkSync smart contract                                           |
+
 
 > Example
 
@@ -135,7 +136,8 @@ const zkSyncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("rinkeby");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
-console.log(await wallet.getMainContract());
+const contract = await wallet.getMainContract();
+console.log(contract.address);
 ```
 
 
@@ -636,17 +638,17 @@ await txReceipt.wait();
 ```
 
 
-### Getting address of the zkSync smart contract
+### Getting zkSync smart contract
 
 ```typescript
-async getMainContract(): Promise<string>
+async getMainContract(): Promise<Contract>
 ``` 
 
 #### Inputs and outputs
 
 | Name                             | Description                                                            |
 | -------------------------------- | ---------------------------------------------------------------------- |
-| returns                          | Address of the zkSync smart contract                                           |
+| returns                          | `Contract` wrapper of the zkSync smart contract                                           |
 
 > Example
 
@@ -658,9 +660,9 @@ const provider = new ethers.Web3Provider(window.ethereum);
 const zksyncProvider = new Provider('https://z2-dev-api.zksync.dev');
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 
-console.log(await signer.getMainContract());
+const mainContract = await signer.getMainContract();
+console.log(mainContract.address);
 ```
-
 
 ### Getting token balance on L1
 
