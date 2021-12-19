@@ -10,6 +10,4 @@ If your front-end code does not deploy new smart contracts, then no changes for 
 
 If you want to deploy smart contracts or enable advanced zkSync features, like paying fees in ERC20 tokens, then you need to use `zksync-web3` library for that. You can read about the basics [here](./features).
 
-This section will provide you a guide on how to integrate your website with zkSync.
-
-In this tutorial, we will use Vue.js as the web framework of our choice as well as 
+If you want to see some code, check out our basic [tutorial](../dev/tutorials/basic) for full mini-dApp.
