@@ -127,8 +127,10 @@ module.exports = {
         },
         {
           title: "Tutorials",
-          path: "/dev/tutorials.md",
-          collapsable: false
+          path: "/dev/tutorials",
+          collapsable: false,
+          // "/dev/tutorials/bridging.md", "/api/tutorials/dex.md"
+          children: ["/dev/tutorials/basic.md"],
         },
         {
           title: "Communicating with L1", // required
