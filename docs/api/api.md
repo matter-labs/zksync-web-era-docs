@@ -41,7 +41,7 @@ To specify additional fields, like the token for fee payment or provide the byte
 
 All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods other than those provided here. These methods are to be used internally by the team and are very unstable.
 
-### `zks_estimateFee`
+<!-- ### `zks_estimateFee`
 
 Returns the fee for the transaction. The token in which the fee is calculated is returned based on the `fee_token` in the transaction provided.
 
@@ -61,7 +61,7 @@ Returns the fee for the transaction. The token in which the fee is calculated is
   "ergs_per_storage_limit": 100,
   "ergs_per_pubdata_limit": 10
 }
-```
+``` -->
 
 ### `zks_getMainContract`
 
@@ -95,11 +95,7 @@ Given the hash of the withdrawal tx, returns the hash of the Layer-1 transaction
 
 | Parameter       | Type   | Description                            |
 | --------------- | ------ | -------------------------------------- |
-| withdrawal_hash | `H256` | The hash of the withdrawal transaction |
-
-### Output format
-
-`"0x092ea839f428fba0b8ff23525d4930026e97502f07076ecfd653a1f144ca53d0"`
+| withdrawal_hash | `bytes32` | The hash of the withdrawal transaction. |
 
 ### Output format
 
@@ -113,8 +109,8 @@ Given `from` and `limit`, returns the information about the tokens with ids in t
 
 | Parameter | Type  | Description                                                                 |
 | --------- | ----- | --------------------------------------------------------------------------- |
-| from      | `u32` | The token id from which to start returning the information about the tokens |
-| limit     | `u8`  | The number of tokens to be returned from the API                            |
+| from      | `uint32` | The token id from which to start returning the information about the tokens. |
+| limit     | `uint8`  | The number of tokens to be returned from the API.                            |
 
 ### Output format
 
@@ -128,7 +124,7 @@ Given a token address, returns whether it can be used to pay fees.
 
 | Parameter | Type   | Description              |
 | --------- | ------ | ------------------------ |
-| address   | `H160` | The address of the token |
+| address   | `address` | The address of the token. |
 
 ### Output format
 
@@ -142,7 +138,7 @@ Given a token address, returns its price in USD. Please note that that this is t
 
 | Parameter | Type   | Description              |
 | --------- | ------ | ------------------------ |
-| address   | `H160` | The address of the token |
+| address   | `address` | The address of the token. |
 
 ### Output format
 

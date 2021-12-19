@@ -18,4 +18,3 @@ implement many new things. Apart from the smart contracts, differences include:
   operating once it satisfies all the priority requests received from L1.
 - **Smart contract-centric model made it possible to implement a full-fledged Web3 API.** zkSync network can be accessed by
   any Web3-compatible client. Though there are [some](./ethereum-vs-v2.md) differences.
-

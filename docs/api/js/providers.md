@@ -28,24 +28,25 @@ constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish
 ```
 
 #### Inputs and outputs
-| Name                             | Description                                                            |
-| -------------------------------- | ---------------------------------------------------------------------- |
-| url (optional)                  | URL of the zkSync operator node.                                         |
-| network (optional)    | The description of the network.                             |
-| returns                          | `Provider` object.                                           |
+
+| Name               | Description                      |
+| ------------------ | -------------------------------- |
+| url (optional)     | URL of the zkSync operator node. |
+| network (optional) | The description of the network.  |
+| returns            | `Provider` object.               |
 
 > Example
 
 ```typescript
-import { Provider } from 'zksync-web3'
+import { Provider } from "zksync-web3";
 
 const provider = new Provider("https://z2-dev-api.zksync.dev");
 ```
 
 ### `getBalance`
 
-Returns balance of a user for a certain blockTag and a native token. 
-In order to check balance in `ETH` you can either omit the last argument or supply [ETH_ADDRESS](./utils/#eth-address) provided in the `utils` object. 
+Returns balance of a user for a certain blockTag and a native token.
+In order to check balance in `ETH` you can either omit the last argument or supply [ETH_ADDRESS](./utils/#eth-address) provided in the `utils` object.
 
 Example:
 
@@ -54,17 +55,18 @@ async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address):
 ```
 
 #### Inputs and outputs
-| Name                             | Description                                                            |
-| -------------------------------- | ---------------------------------------------------------------------- |
-| address                   | The address of the user to check the balance                                        |
-| blockTag (optional)                   | Which block should we check the balance on. `committed`, i.e. the latest processed one is the default option.                                         |
-| tokenAddress (optional)                   | The address of the token. ETH by default.                                         |                           |
-| returns                          | `BigNumber` object.                                           |
+
+| Name                    | Description                                                                                                   |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------- | --- |
+| address                 | The address of the user to check the balance.                                                                  |
+| blockTag (optional)     | Which block should we check the balance on. `committed`, i.e. the latest processed one is the default option. |
+| tokenAddress (optional) | The address of the token. ETH by default.                                                                     |     |
+| returns                 | `BigNumber` object.                                                                                           |
 
 > Example
 
 ```typescript
-import { Provider } from 'zksync-web3'
+import { Provider } from "zksync-web3";
 
 const provider = new Provider("https://z2-dev-api.zksync.dev");
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
@@ -80,18 +82,18 @@ console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC
 
 ```typescript
 async getMainContractAddress(): Promise<string>
-``` 
+```
 
 #### Inputs and outputs
 
-| Name                             | Description                                                            |
-| -------------------------------- | ---------------------------------------------------------------------- |
-| returns                          | Address of the zkSync smart contract                                           |
+| Name    | Description                          |
+| ------- | ------------------------------------ |
+| returns | Address of the zkSync smart contract. |
 
 > Example
 
 ```typescript
-import { Provider } from 'zksync-web3'
+import { Provider } from "zksync-web3";
 
 const provider = new Provider("https://z2-dev-api.zksync.dev");
 
@@ -108,16 +110,16 @@ async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[
 
 #### Inputs and outputs
 
-| Name                             | Description                                                            |
-| -------------------------------- | ---------------------------------------------------------------------- |
-| start                   | The token id from which to start returning the information about the tokens. Zero by default.                                        |
-| limit                   | The number of tokens to be returned from the API. 255 by default.                                           |
-| returns                          | The array of `Token` objects.                     
+| Name    | Description                                                                                   |
+| ------- | --------------------------------------------------------------------------------------------- |
+| start   | The token id from which to start returning the information about the tokens. Zero by default. |
+| limit   | The number of tokens to be returned from the API. 255 by default.                             |
+| returns | The array of `Token` objects.                                                                 |
 
 > Example
 
 ```typescript
-import { Provider } from 'zksync-web3'
+import { Provider } from "zksync-web3";
 const provider = new Provider("https://z2-dev-api.zksync.dev");
 
 console.log(await provider.getConfirmedTokens());
@@ -131,38 +133,38 @@ Returns `true` or `false` on whether or not a token can be used to pay fees.
 async isTokenLiquid(token: Address): Promise<boolean>
 ```
 
-| Name                             | Description                                                            |
-| -------------------------------- | ---------------------------------------------------------------------- |
-| token                   | The address of the token.                                        |
-| returns                          | Boolean value (`true` or `false`) on whether or not a token can be used to pay fees     
+| Name    | Description                                                                         |
+| ------- | ----------------------------------------------------------------------------------- |
+| token   | The address of the token.                                                           |
+| returns | Boolean value (`true` or `false`) on whether or not a token can be used to pay fees. |
 
 > Example
 
 ```typescript
-import { Provider } from 'zksync-web3'
+import { Provider } from "zksync-web3";
 const provider = new Provider("https://z2-dev-api.zksync.dev");
 
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926"; 
+const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
 console.log(await provider.isTokenLiquid(USDC_ADDRESS)); // Should return true
 ```
 
 ### `getTransactionStatus`
 
-Given transaction hash, returns the status of the transaction. 
+Given transaction hash, returns the status of the transaction.
 
 ```typescript
 async getTransactionStatus(txHash: string): Promise<TransactionStatus>
 ```
 
-| Name                             | Description                                                            |
-| -------------------------------- | ---------------------------------------------------------------------- |
-| token                   | The address of the token.                                        |
-| returns                          | The status of the transaction. You can find the description for `TransactionStatus` enum variants in the [types](./types).    
+| Name    | Description                                                                                                                |
+| ------- | -------------------------------------------------------------------------------------------------------------------------- |
+| token   | The address of the token.                                                                                                  |
+| returns | The status of the transaction. You can find the description for `TransactionStatus` enum variants in the [types](./types). |
 
 > Example
 
 ```typescript
-import { Provider } from 'zksync-web3'
+import { Provider } from "zksync-web3";
 const provider = new Provider("https://z2-dev-api.zksync.dev");
 
 const TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
@@ -171,21 +173,21 @@ console.log(await provider.getTransactionStatus(TX_HASH));
 
 ### `getTransaction`
 
-Given transaction hash, returns zkSync L2 transaction response object. 
+Given transaction hash, returns zkSync L2 transaction response object.
 
 ```typescript
 async getTransaction(hash: string | Promise<string>): Promise<TransactionResponse>
 ```
 
-| Name                             | Description                                                            |
-| -------------------------------- | ---------------------------------------------------------------------- |
-| token                   | The address of the token.                                        |
-| returns                          | `TransactionResponse` object, which allows for easy tracking the state of the transaction. 
+| Name    | Description                                                                                |
+| ------- | ------------------------------------------------------------------------------------------ |
+| token   | The address of the token.                                                                  |
+| returns | `TransactionResponse` object, which allows for easy tracking the state of the transaction. |
 
 > Example
 
 ```typescript
-import { Provider } from 'zksync-web3'
+import { Provider } from "zksync-web3";
 const provider = new Provider("https://z2-dev-api.zksync.dev");
 
 const TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
@@ -205,16 +207,15 @@ Given the hash of the withdrawal tx, returns the hash of the Layer-1 transaction
 async getL1Withdrawal(withdrawalHash: string): Promise<string|null>
 ```
 
-| Name                             | Description                                                            |
-| -------------------------------- | ---------------------------------------------------------------------- |
-| withdrawalHash                   | The hash of the withdrawal transaction.                                        |
-| returns                          | The hash of the layer 1 transaction that executed the withdrawal.    
-
+| Name           | Description                                                       |
+| -------------- | ----------------------------------------------------------------- |
+| withdrawalHash | The hash of the withdrawal transaction.                           |
+| returns        | The hash of the layer 1 transaction that executed the withdrawal. |
 
 > Example
 
 ```typescript
-import { Provider } from 'zksync-web3'
+import { Provider } from "zksync-web3";
 const provider = new Provider("https://z2-dev-api.zksync.dev");
 
 const WITHDRAWAL_TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
@@ -225,7 +226,7 @@ console.log(await provider.getL1Withdrawal(WITHDRAWAL_TX_HASH));
 
 A class which should be used for web3 browser wallet integrations, adapted for easy compatibility with Metamask, WalletConnect and other popular browser wallets.
 
-### Creating `Web3Provider` 
+### Creating `Web3Provider`
 
 The main difference from the constructor of `Provider` class is that it accepts `ExternalProvider` instead of the node URL.
 
@@ -235,16 +236,16 @@ constructor(provider: ExternalProvider, network?: ethers.providers.Networkish)
 
 #### Inputs and outputs
 
-| Name                             | Description                                                            |
-| -------------------------------- | ---------------------------------------------------------------------- |
-| provider                 | The `ethers.providers.ExternalProvider` class instance. For instance, in case of Metamask it is `window.ethereum`.                                         |
-| network (optional)    | The description of the network.                             |
-| returns                          | `Provider` object.                                           |
+| Name               | Description                                                                                                        |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| provider           | The `ethers.providers.ExternalProvider` class instance. For instance, in case of Metamask it is `window.ethereum`. |
+| network (optional) | The description of the network.                                                                                    |
+| returns            | `Provider` object.                                                                                                 |
 
 > Example
 
 ```typescript
-import { Web3Provider } from 'zksync-web3'
+import { Web3Provider } from "zksync-web3";
 
 const provider = new Web3Provider(window.ethereum);
 ```
@@ -253,16 +254,16 @@ const provider = new Web3Provider(window.ethereum);
 
 Returns signer which can be used to sign zkSync transactions. More details on the `Signer` class can be found in the next [section](./accounts.md#signer).
 
-
 #### Inputs and outputs
-| Name                             | Description                                                            |
-| -------------------------------- | ---------------------------------------------------------------------- |
-| returns     | `Signer` class object.
+
+| Name    | Description            |
+| ------- | ---------------------- |
+| returns | `Signer` class object. |
 
 > Example
 
 ```typescript
-import { Web3Provider } from 'zksync-web3'
+import { Web3Provider } from "zksync-web3";
 
 const provider = new Web3Provider(window.ethereum);
 const signer = provider.getSigner();

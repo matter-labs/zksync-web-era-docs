@@ -2,11 +2,11 @@
 
 ## Concept
 
-While most of the exisitng SDKs should work out of the box, deploying smart contracts or using unique zkSync features like paying fees in other tokens requires providing additional fields to those that the Ethereum transactions have by default. 
+While most of the exisitng SDKs should work out of the box, deploying smart contracts or using unique zkSync features like paying fees in other tokens requires providing additional fields to those that the Ethereum transactions have by default.
 
 To provide easy access to all of the features of zkSync 2.0, we created `zksync-web3` JavaScript SDK, which is made in a way that is has interface very similar to those of [ethers](https://docs.ethers.io/v5/). In fact, `ethers` is a peer dependency of the library and most of the objects exported by `zksync-web3` (e.g. `Wallet`, `Provider` etc) inherit from the corresponding `ethers` objects and override only the fields that need to be changed.
 
-The library is made in such a way that changing `ethers` with `zksync-web3` in your imports should be sufficient in most of the cases.  
+The library is made in such a way that changing `ethers` with `zksync-web3` in your imports should be sufficient in most of the cases.
 
 ## Adding dependencies
 
@@ -28,9 +28,9 @@ To interact with zkSync network users need to know the endpoint of the operator 
 
 ```typescript
 // Currently, only one environment is supported.
-// Please do not share the link outside of your team. 
+// Please do not share the link outside of your team.
 // We plan to gradually roll out the network to wider audience.
-const syncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev"); 
+const syncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev");
 ```
 
 **Note:** Currently, only `rinkeby` network is supported.

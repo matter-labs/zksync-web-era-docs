@@ -30,8 +30,8 @@ module.exports = {
         enabled: true,
       },
       experimental: {
-        dockerImage: "zksyncrobot/test-build"
-      }
+        dockerImage: "zksyncrobot/test-build",
+      },
     },
   },
   zkSyncDeploy: {
@@ -39,12 +39,12 @@ module.exports = {
     ethNetwork: "rinkeby",
   },
   solidity: {
-    version: "0.8.10"
-  }
+    version: "0.8.10",
+  },
 };
 ```
 
-Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored and the latter is the place where all the scripts related to deployment of the contract will be put. 
+Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored and the latter is the place where all the scripts related to deployment of the contract will be put.
 
 Create the `contracts/Greeter.sol` contract and insert the following code there:
 
@@ -78,40 +78,40 @@ yarn hardhat compile
 Now, let's create the deployment script in the `deploy/deploy.ts`:
 
 ```typescript
-import { utils } from 'zksync-web3';
-import * as ethers from 'ethers';
+import { utils } from "zksync-web3";
+import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
 // An example of a deploy script which will deploy and call a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
-    console.log(`Running deploy script for the Greeter contract`);
+  console.log(`Running deploy script for the Greeter contract`);
 
-    // Initialize the wallet.
-    const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>");
+  // Initialize the wallet.
+  const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>");
 
-    // Create deployer object and load the artifact of the contract we want to deploy.
-    const deployer = new Deployer(hre, wallet);
-    const artifact = await deployer.loadArtifact("Greeter");
+  // Create deployer object and load the artifact of the contract we want to deploy.
+  const deployer = new Deployer(hre, wallet);
+  const artifact = await deployer.loadArtifact("Greeter");
 
-    // Deposit some funds to L2 in order to be able to perform deposits.
-    const depositAmount = ethers.utils.parseEther("0.001");
-    const depositHandle = await deployer.zkWallet.deposit({
-        to: deployer.zkWallet.address,
-        token: utils.ETH_ADDRESS,
-        amount: depositAmount,
-    });
-    // Wait until the deposit is processed on zkSync
-    await depositHandle.wait();
+  // Deposit some funds to L2 in order to be able to perform deposits.
+  const depositAmount = ethers.utils.parseEther("0.001");
+  const depositHandle = await deployer.zkWallet.deposit({
+    to: deployer.zkWallet.address,
+    token: utils.ETH_ADDRESS,
+    amount: depositAmount,
+  });
+  // Wait until the deposit is processed on zkSync
+  await depositHandle.wait();
 
-    // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
-    // `greeting` is an argument for contract constructor.
-    const greeting = "Hi there!";
-    const greeterContract = await deployer.deploy(artifact, [greeting]);
+  // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
+  // `greeting` is an argument for contract constructor.
+  const greeting = "Hi there!";
+  const greeterContract = await deployer.deploy(artifact, [greeting]);
 
-    // Show the contract info.
-    const contractAddress = greeterContract.address;
-    console.log(`${artifact.contractName} was deployed to ${contractAddress}!`);
+  // Show the contract info.
+  const contractAddress = greeterContract.address;
+  console.log(`${artifact.contractName} was deployed to ${contractAddress}!`);
 }
 ```
 
@@ -126,7 +126,7 @@ yarn hardhat deploy-zksync
 Let's see how we can pay fees in `USDC` token.
 
 ```typescript
-const USDC_ADDRESS = '0xeb8f08a975ab53e34d8a0330e0d34de942c95926';
+const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
 const USDC_DECIMALS = 6;
 
 const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_ADDRESS);
@@ -134,13 +134,13 @@ const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USD
 const depositHandle = await deployer.zkWallet.deposit({
   to: deployer.zkWallet.address,
   token: USDC_ADDRESS,
-  // We deposit more than the minimal required amount to have funds 
+  // We deposit more than the minimal required amount to have funds
   // for further iteraction with our smart contract.
   amount: deploymentFee.mul(2),
   // Unlike ETH, ERC-20 tokens require approval in order to deposit to zkSync.
   // You can either set the approval in a separate transaction or provide `approveERC20` flag equal to `true`
   // and the SDK will initiate approval transaction under the hood.
-  approveERC20: true
+  approveERC20: true,
 });
 
 // Wait until the deposit is processed by zkSync.
@@ -166,63 +166,63 @@ In order to pay fees in USDC for smart contract interaction, supply the fee toke
 
 ```typescript
 const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
-    customData: {
-        feeToken: USDC_ADDRESS
-    }
+  customData: {
+    feeToken: USDC_ADDRESS,
+  },
 });
 ```
 
 Full example:
 
 ```typescript
-import { utils } from 'zksync-web3';
-import * as ethers from 'ethers';
+import { utils } from "zksync-web3";
+import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-const USDC_ADDRESS = '0xeb8f08a975ab53e34d8a0330e0d34de942c95926';
+const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
 const USDC_DECIMALS = 6;
 
 // An example of a deploy script which will deploy and call a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
-    console.log(`Running deploy script for the Greeter contract`);
+  console.log(`Running deploy script for the Greeter contract`);
 
-    // Initialize the wallet.
-    const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>");
+  // Initialize the wallet.
+  const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>");
 
-    // Create deployer object and load the artifact of the contract we want to deploy.
-    const deployer = new Deployer(hre, wallet);
-    const artifact = await deployer.loadArtifact("Greeter");
+  // Create deployer object and load the artifact of the contract we want to deploy.
+  const deployer = new Deployer(hre, wallet);
+  const artifact = await deployer.loadArtifact("Greeter");
 
-    const greeting = "Hi there!";
-    const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_ADDRESS);
+  const greeting = "Hi there!";
+  const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_ADDRESS);
 
-    // Deposit funds to L2
-    const depositHandle = await deployer.zkWallet.deposit({
-        to: deployer.zkWallet.address,
-        token: USDC_ADDRESS,
-        amount: deploymentFee.mul(2),
-        approveERC20: true
-    });
-    // Wait until the deposit is processed on zkSync
-    await depositHandle.wait();
+  // Deposit funds to L2
+  const depositHandle = await deployer.zkWallet.deposit({
+    to: deployer.zkWallet.address,
+    token: USDC_ADDRESS,
+    amount: deploymentFee.mul(2),
+    approveERC20: true,
+  });
+  // Wait until the deposit is processed on zkSync
+  await depositHandle.wait();
 
-    // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
-    // `greeting` is an argument for contract constructor.
-    const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
-    console.log(`The deployment will cost ${parsedFee} USDC`);
+  // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
+  // `greeting` is an argument for contract constructor.
+  const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
+  console.log(`The deployment will cost ${parsedFee} USDC`);
 
-    const greeterContract = await deployer.deploy(artifact, [greeting], USDC_ADDRESS);
+  const greeterContract = await deployer.deploy(artifact, [greeting], USDC_ADDRESS);
 
-    // Show the contract info.
-    const contractAddress = greeterContract.address;
-    console.log(`${artifact.contractName} was deployed to ${contractAddress}!`);
+  // Show the contract info.
+  const contractAddress = greeterContract.address;
+  console.log(`${artifact.contractName} was deployed to ${contractAddress}!`);
 }
 ```
 
 ## Front-end integration
 
-Let's create another folder `greeter-front-end`, where we will build the front-end for our dApp. In this tutorial, we will use `Vue` as the framework of our choice, but the process will be quite similar regardless of the framework you use. 
+Let's create another folder `greeter-front-end`, where we will build the front-end for our dApp. In this tutorial, we will use `Vue` as the framework of our choice, but the process will be quite similar regardless of the framework you use.
 
 ### Setting up the project
 
@@ -248,7 +248,7 @@ We will implement the following functionality:
 
 - The user should be able to get the greeting after the page is loaded.
 - The user should be able to select the token he wants to pay the fee with.
-- The user should be able to change the greeting on the smart contract. 
+- The user should be able to change the greeting on the smart contract.
 
 ### Connecting to Metamask & bridging tokens to zkSync
 
@@ -294,14 +294,14 @@ async getFee() {
 },
 async getBalance() {
     // Return formatted balance
-    return ""; 
+    return "";
 },
 async changeGreeting() {
     this.txStatus = 1;
     try {
         // TODO: Submit the transaction
         this.txStatus = 2;
-        
+
         // TODO: Wait for transaction compilation
         await txHandle.wait();
 
@@ -335,11 +335,11 @@ yarn add ethers zksync-web3
 
 ### Getting the ABI and contract address
 
-Open `./src/App.vue` and set the `GREETER_CONTRACT_ADDRESS` constant equal to the address where your greeter contract was deployed. 
+Open `./src/App.vue` and set the `GREETER_CONTRACT_ADDRESS` constant equal to the address where your greeter contract was deployed.
 
-To interact with our smart contract, we also need its ABI. 
+To interact with our smart contract, we also need its ABI.
 
-- Create the `./src/abi.json` file. 
+- Create the `./src/abi.json` file.
 - You can get the contract's abi in the hardhat project folder in the `./artifacts/Greeter.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` created in the previous step.
 <!-- TODO: hopefully there will be a better way to get the Abi-->
 
@@ -347,17 +347,17 @@ Set the `GREETER_CONTRACT_ABI` to require the api file.
 
 ```js
 // eslint-disable-next-line
-const GREETER_CONTRACT_ADDRESS = '0x...';
+const GREETER_CONTRACT_ADDRESS = "0x...";
 // eslint-disable-next-line
 const GREETER_CONTRACT_ABI = require("./abi.json");
 ```
-
 
 ### Working with provider
 
 Go to the `initializeProviderAndSigner` method in `./src/App.vue`. This method is called after the connection to Metamask is successful.
 
 In this method we should:
+
 - Initialize `Web3Provider` and `Signer` objects for interacting with zkSync
 - Initialize `Contract` object to interact with the `Greeter` contract.
 
@@ -366,7 +366,7 @@ Unfortunately, `Metamask` does not allow to call methods from `zks_` namespace. 
 Let's add the necessary dependencies:
 
 ```javascript
-import { Contract, Web3Provider, Provider } from 'zksync-web3';
+import { Contract, Web3Provider, Provider } from "zksync-web3";
 ```
 
 The first two steps can be done the following way:
@@ -399,7 +399,6 @@ async getGreeting() {
 }
 ```
 
-
 The full methods now look the following way:
 
 ```javascript
@@ -426,7 +425,7 @@ Now, when you connect to your metamask you should see the following page:
 
 ![img](/start-1.png)
 
-You should now also be able to select token to pay the fee. But no balances are updated, *yet*.
+You should now also be able to select token to pay the fee. But no balances are updated, _yet_.
 
 ### Retrieving token balance and transaction fee
 
@@ -453,7 +452,7 @@ async getFee() {
             feeToken: this.selectedToken.address
         }
     });
-    // Getting the price of 
+    // Getting the price of
     const gasPriceInUnits = await this.provider.getGasPrice();
 
     // To display the number of tokens in the human-readable format, we need to format them,
@@ -462,7 +461,7 @@ async getFee() {
 },
 ```
 
-Now, when you open the page and select the token to pay fee with, you can see your balance and the expected fee for the transaction. 
+Now, when you open the page and select the token to pay fee with, you can see your balance and the expected fee for the transaction.
 
 The `Refresh` button should be used to recalculate the fee as the fee may depend on the length of the string to be set.
 
@@ -476,10 +475,10 @@ Interacting wtth smart contract works absolutely the same way as in `ethers`, bu
 
 ```javascript
 const txHandle = await this.contract.setGreeting(this.newGreeting, {
-    customData: {
-        // Passing the token to pay fee with
-        feeToken: this.selectedToken.address
-    }
+  customData: {
+    // Passing the token to pay fee with
+    feeToken: this.selectedToken.address,
+  },
 });
 ```
 
@@ -504,7 +503,7 @@ async changeGreeting() {
         this.txStatus = 2;
         // Wait until the tx is committed
         await txHandle.wait();
-        
+
         this.txStatus = 3;
 
         // Update greeting
@@ -527,7 +526,7 @@ async changeGreeting() {
 
 ### Complete app.
 
-You should now be able to update the greeting. 
+You should now be able to update the greeting.
 
 Type the new greeting in the input box and click on the `Change greeting` button:
 

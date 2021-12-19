@@ -22,7 +22,7 @@ zkSync 2.0 has no "native" token as the fees can be paid in ERC-20s. `ETH` is an
 
 ## Solidity support
 
-For the alpha preview, only Solidity version `0.8.x` is supported. Also, compiling Solidity to zkEVM bytecode requires a special compiler.  
+For the alpha preview, only Solidity version `0.8.x` is supported. Also, compiling Solidity to zkEVM bytecode requires a special compiler.
 
 ## EIP712
 
@@ -60,7 +60,7 @@ This parameter will be most useful for zkPorter transactions. Generally, it is c
 
 ### What does this mean to me?
 
-Despite the differences, the fee model is actually quite similar to one of Ethereum. The same as for Ethereum, the most costly will always be the storage changes. One of the advantages of ZK rollups over optimistic rollups is that instead of publishing the transaction data, ZK rollups publish only state diffs. 
+Despite the differences, the fee model is actually quite similar to one of Ethereum. The same as for Ethereum, the most costly will always be the storage changes. One of the advantages of ZK rollups over optimistic rollups is that instead of publishing the transaction data, ZK rollups publish only state diffs.
 
 That means, that if you update the same storage slot 10 times, only one update will be published on Ethereum and so you will charged for public data only once. But it goes beyond simple storage slots. Let's say that you have a DEX and a `PairFactory` factory for different `Pair` pools. The contract bytecode of `Pair` needs to be published only when the first instance is deployed. After the code of the `Pair` was published once, the subsequent deployments will only involve changing one storage slot -- to set the contract code hash on the newly deployed `Pair`'s address.
 
@@ -81,11 +81,11 @@ All these specifics make the process of deploying smart contracts on zkEVM compl
 
 Summary:
 
-- **How contract deployment works on Ethereum:** 
-To deploy a contract, a user sends transaction to zero address (`0x000...000`) with the `data` field for transaction equal to the contract bytecode concatenated with the constructor parameters.
+- **How contract deployment works on Ethereum:**
+  To deploy a contract, a user sends transaction to zero address (`0x000...000`) with the `data` field for transaction equal to the contract bytecode concatenated with the constructor parameters.
 
 - **How contract deployment works on zkSync:**
-To deploy a contract, a user sends transaction to zero address (`0x000...000`) with the `data` field for transaction equal to the contract bytecode hash concatenated with the constructor parameters. The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
+  To deploy a contract, a user sends transaction to zero address (`0x000...000`) with the `data` field for transaction equal to the contract bytecode hash concatenated with the constructor parameters. The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
 All of the deployment process is handled inside our [hardhat](../api/hardhat) plugin.
 

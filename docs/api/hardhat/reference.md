@@ -78,7 +78,7 @@ class Deployer {
    * @param hre Hardhat runtime environment. This object is provided to scripts by hardhat itself.
    * @param ethWallet The wallet which will be used to deploy the contracts.
    */
-  constructor(hre: HardhatRuntimeEnvironment, ethWallet: ethers.Wallet) 
+  constructor(hre: HardhatRuntimeEnvironment, ethWallet: ethers.Wallet)
 
   /**
    * Loads an artifact and verifies that it was compiled by `zksolc\.
@@ -95,7 +95,7 @@ class Deployer {
    */
   public async loadArtifact(
     contractNameOrFullyQualifiedName: string
-  ): Promise<ZkSyncArtifact> 
+  ): Promise<ZkSyncArtifact>
 
   /**
    * Estimates the price of calling a deploy transaction in a certain fee token.
@@ -127,13 +127,13 @@ class Deployer {
     artifact: ZkSyncArtifact,
     constructorArguments: any[],
     feeToken?: string,
-  ): Promise<zk.Contract> 
+  ): Promise<zk.Contract>
 
   /**
    * Extracts factory dependencies from the artifact.
-   * 
+   *
    * @param artifact Artifact to extract dependencies from
-   * 
+   *
    * @returns Factory dependencies in the format expected by SDK.
    */
   async extractFactoryDeps(artifact: ZkSyncArtifact): Promise<string[]>
