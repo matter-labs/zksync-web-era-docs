@@ -250,6 +250,28 @@ We will implement the following functionality:
 - The user should be able to select the token he wants to pay the fee with.
 - The user should be able to change the greeting on the smart contract. 
 
+### Connecting to Metamask & bridging tokens to zkSync
+
+In order to connect with Metamask to zkSync, you need to add the zkSync alpha testnet network to the wallet.
+
+Open your metamask and click on the network in the top center:
+
+![img](/connect-1.png)
+
+Then click on "Add network".
+
+Fill in the details about zkSync alpha testnet network and click "Save":
+
+- Network Name: `zkSync alpha testnet`
+- New RPC URL: `https://z2-dev-api.zksync.dev`
+- Chain ID: `270`
+
+![img](/connect-2.png)
+
+You can get some tokens on zkSync by bridging them through the wallet.
+
+<!--- TODO: inlcude link to the wallet -->
+
 ### Project structure
 
 All of our code will be written in the `./src/App.vue`. All the front-end code has been written. The only thing left is to fill out the TODO-s:
