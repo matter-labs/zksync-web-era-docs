@@ -201,7 +201,7 @@ await txHandle.waitFinalize();
 
 ### `getL1Withdrawal`
 
-Given the hash of the withdrawal tx, returns the hash of the Layer-1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
+Given the hash of the withdrawal tx, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
 
 ```typescript
 async getL1Withdrawal(withdrawalHash: string): Promise<string|null>

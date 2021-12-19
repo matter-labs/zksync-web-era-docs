@@ -10,7 +10,7 @@ However, zkSync has its own specifics which this section is all about.
 
 ## EIP712
 
-To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also have the `eip712_meta` field of type `Eip712Meta`, which contains additional L2-specific data (`fee_token`, etc). To let the server recognize EIP712 transactions, the `transaction_type` field should be equal to `712`.
+To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also have the `eip712_meta` field of type `Eip712Meta`, which contains additional L2-specific data (`fee_token`, etc). To let the server recognize EIP712 transactions, the `transaction_type` field should be equal to `112` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
 
 `Eip712Meta` type has the following fields:
 
@@ -89,7 +89,7 @@ None.
 
 ### `zks_getL1WithdrawalTx`
 
-Given the hash of the withdrawal tx, returns the hash of the Layer-1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
+Given the hash of the withdrawal tx, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
 
 ### Input parameters
 

@@ -572,7 +572,7 @@ const transferHandle = signer.transfer({
 
 ## `L1Signer`
 
-This class is to be used in browser environemt to do zkSync-related operations on Layer 1. This class extends `ethers.providers.JsonRpcSigner` and so supports all the methods available for it.
+This class is to be used in browser environemt to do zkSync-related operations on layer 1. This class extends `ethers.providers.JsonRpcSigner` and so supports all the methods available for it.
 
 The easiest way to construct it from the `Web3Provider`.
 

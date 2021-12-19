@@ -1,6 +1,6 @@
 # Introduction to zkSync for Developers
 
-zkSync is built on ZK Rollup architecture. ZK Rollup is a Layer 2 scaling solution in which all funds are held by a smart
+zkSync is built on ZK Rollup architecture. ZK Rollup is a layer 2 scaling solution in which all funds are held by a smart
 contract on the mainchain, while computation and storage are performed off-chain. The validity of all the transactions is secured by zero-knowledge proofs, which are verified by the smart contract. All of this enables building a trustless protocol, secured by Ethereum, but with much lower fees.
 
 zkSync 2.0 is the new version of the protocol, which is the first ZK Rollup to natively support Solidity smart contract development.
@@ -57,12 +57,12 @@ _Note:_ Each account exists in each subtree at the same time, e.g. account can h
 
 The protocol has 5 types of transactions.
 
-The ones that can only be enacted from Layer 1 are:
+The ones that can only be enacted from layer 1 are:
 
 - `Deposit`. This operation moves funds from an L1 account to an L2 account.
 - `AddToken`. This operation adds a native ERC-20 token to zkSync. <!-- TODO: Include link to the glossary of what is the native (or first-class citizen) erc20 token -->
 
-The ones that can be enacted from both Layer 1 and Layer 2 are:
+The ones that can be enacted from both layer 1 and layer 2 are:
 
 - `Deploy`. This operation stores the bytecode of the contract in the zkSync network and assigns it an address
   through which the contract can be accessed.
