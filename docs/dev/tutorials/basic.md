@@ -1,4 +1,4 @@
-# Basic
+# Basic tutorial
 
 In this tutorial we will recap and expand on the `Greeter` example in the [Getting started](../README.md#hello-world-on-zksync) guide.
 

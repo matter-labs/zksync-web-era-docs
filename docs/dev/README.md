@@ -8,6 +8,14 @@ zkSync 2.0 is the new version of the protocol, which is the first ZK Rollup to n
 - Want to start building right now? Head over to the [quickstart guide](#developer-quickstart).
 - New to rollups and want to learn more? Here is the [zkSync basics guide](#zksync-basics).
 
+::: warning Closed testnet
+
+The testnet is being rolled out gradually as our team wants to gather feedback before the public launch.
+
+Please, **DO NOT** share this documentation with anyone outside of your team.
+
+:::
+
 ## Developer quickstart
 
 ### Do I need experience with zkSync 1.x?
@@ -26,11 +34,10 @@ The only place where using zkSync SDK is required is during the contract deploym
 
 ### Hello World on zkSync
 
-We will show you how to deploy contracts on zkSync using the `Greeter` example from the hardhat tutorial.
+Check out our step-by-step [tutorial](./tutorials/basic), where you will learn:
 
-TODO: a step-by-step guide on plugin installation + Greeter example
-
-You can explore more tutorials [here](./tutorials.md).
+- How to install zkSync hardhat plugin and deploy smart contracts with it.
+- How to build front-end for your dApp using `zksync-web3` library.
 
 ## zkSync basics
 

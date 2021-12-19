@@ -1,3 +1,3 @@
-# Building DEX on zkSync
+# Deploying DEX on zkSync
 
 

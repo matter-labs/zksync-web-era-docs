@@ -129,8 +129,7 @@ module.exports = {
           title: "Tutorials",
           path: "/dev/tutorials",
           collapsable: false,
-          // "/dev/tutorials/bridging.md", "/api/tutorials/dex.md"
-          children: ["/dev/tutorials/basic.md"],
+          children: ["/dev/tutorials/basic.md", "/dev/tutorials/dex.md"],
         },
         {
           title: "Communicating with L1", // required
@@ -148,20 +147,20 @@ module.exports = {
         {
           title: "Web3 API", // required
           path: "/api/api.md", // optional, which should be a absolute path.
-          collapsable: true, // optional, defaults to true
+          collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
         },
         {
           title: "JavaScript SDK", // required
           path: "/api/js", // optional, which should be a absolute path.
-          collapsable: true, // optional, defaults to true
+          collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
           children: ["/api/js/providers", "/api/js/accounts", "/api/js/contracts", "/api/js/features", "/api/js/utils"],
         },
         {
           title: "Hardhat", // required
           path: "/api/hardhat", // optional, which should be a absolute path.
-          collapsable: true, // optional, defaults to true
+          collapsable: false, // optional, defaults to true
           sidebarDepth: 1,
           children: ["/api/hardhat/reference"],
         },
