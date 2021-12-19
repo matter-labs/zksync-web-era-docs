@@ -103,7 +103,9 @@ Given the hash of the withdrawal tx, returns the hash of the layer 1 transaction
 
 ### `zks_getConfirmedTokens`
 
-Given `from` and `limit`, returns the information about the tokens with ids in the inverval `[from..from+limit-1]`. Token ids are internal for the zkSync operator.
+Given `from` and `limit`, returns the information about the confirmed tokens with ids in the inverval `[from..from+limit-1]`. Confirmed tokens are native tokens which are considered legit by the zkSync team. This method will be mostly used in zkSync wallet interface. 
+
+The tokens are returned in alphabetical order by their symbol, so basically token id is position in alphabetically sorted array of tokens.
 
 ### Input parameters
 
@@ -114,7 +116,28 @@ Given `from` and `limit`, returns the information about the tokens with ids in t
 
 ### Output format
 
-TODO (easier to do when the public node is ready)
+```
+[
+  {
+    "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "decimals": 18,
+    "name": "ETH",
+    "symbol": "ETH"
+  },
+  {
+    "address": "0xd2255612f9b045e9c81244bb874abb413ca139a3",
+    "decimals": 18,
+    "name": "TrueUSD (rinkeby)",
+    "symbol": "TUSD"
+  },
+  {
+    "address": "0xeb8f08a975ab53e34d8a0330e0d34de942c95926",
+    "decimals": 6,
+    "name": "USD Coin (rinkeby)",
+    "symbol": "USDC"
+  }
+]
+```
 
 ### `zks_isTokenLiquid`
 

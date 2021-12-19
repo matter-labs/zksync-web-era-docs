@@ -102,7 +102,9 @@ console.log(await provider.getMainContractAddress());
 
 ### `getConfirmedTokens`
 
-Returns confirmed (e.g. the ones that can be used to pay fees) native ERC-20 tokens.
+Given `from` and `limit`, returns the information about the confirmed tokens with ids in the inverval `[from..from+limit-1]`. Confirmed tokens are native tokens which are considered legit by the zkSync team. This method will be mostly used in zkSync wallet interface. 
+
+The tokens are returned in alphabetical order by their symbol, so basically token id is position in alphabetically sorted array of tokens.
 
 ```typescript
 async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[]>
@@ -114,7 +116,7 @@ async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[
 | ------- | --------------------------------------------------------------------------------------------- |
 | start   | The token id from which to start returning the information about the tokens. Zero by default. |
 | limit   | The number of tokens to be returned from the API. 255 by default.                             |
-| returns | The array of `Token` objects.                                                                 |
+| returns | The array of `Token` objects sorted by their symbol.                                                                 |
 
 > Example
 
