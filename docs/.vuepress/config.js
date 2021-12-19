@@ -129,7 +129,7 @@ module.exports = {
           title: "Tutorials",
           path: "/dev/tutorials",
           collapsable: false,
-          children: ["/dev/tutorials/basic.md", "/dev/tutorials/dex.md"],
+          children: ["/dev/tutorials/basic.md"],
         },
         {
           title: "Communicating with L1", // required
@@ -162,7 +162,7 @@ module.exports = {
           path: "/api/hardhat", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1,
-          children: ["/api/hardhat/reference"],
+          children: ["/api/hardhat/getting-started", "/api/hardhat/reference", "/api/hardhat/testing"],
         },
       ],
     },

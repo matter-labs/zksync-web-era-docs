@@ -84,7 +84,7 @@ class Deployer {
    * Loads an artifact and verifies that it was compiled by `zksolc\.
    *
    * @param contractNameOrFullyQualifiedName The name of the contract.
-   *   It can be a contract bare contract name (e.g. "Token") if it's
+   *   It can be a bare contract name (e.g. "Token") if it's
    *   unique in your project, or a fully qualified contract name
    *   (e.g. "contract/token.sol:Token") otherwise.
    *
@@ -143,8 +143,8 @@ class Deployer {
 
 ```
 zkSyncDeploy: {
-  zkSyncNetwork: "http://127.0.0.1:3050",
-  ethNetwork: "http://127.0.0.1:8545"
+  zkSyncNetwork: "https://z2-dev-api.zksync.dev",
+  ethNetwork: "rinkeby"
 }
 ```
 
