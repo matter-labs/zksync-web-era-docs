@@ -153,7 +153,8 @@ Given a token address, returns whether it can be used to pay fees.
 
 `true`
 
-### `zks_getTokenPrice`
+<!-- TODO: uncomment once fixed --->
+<!-- ### `zks_getTokenPrice`
 
 Given a token address, returns its price in USD. Please note that that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
 
@@ -165,7 +166,7 @@ Given a token address, returns its price in USD. Please note that that this is t
 
 ### Output format
 
-`300.51`
+`3500.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000` -->
 
 <!--
 

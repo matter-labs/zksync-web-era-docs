@@ -150,6 +150,30 @@ const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
 console.log(await provider.isTokenLiquid(USDC_ADDRESS)); // Should return true
 ```
 
+<!-- TODO: uncomment once fixed --->
+<!-- ### `getTokenPrice`
+
+Returns the price USD in for a token. Please note that that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
+
+```typescript
+async getTokenPrice(token: Address): Promise<string>
+```
+
+| Name    | Description                                                                         |
+| ------- | ----------------------------------------------------------------------------------- |
+| token   | The address of the token.                                                           |
+| returns | `string` value of the teken price.  |
+
+> Example
+
+```typescript
+import { Provider } from "zksync-web3";
+const provider = new Provider("https://z2-dev-api.zksync.dev");
+
+const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+console.log(await provider.getTokenPrice(USDC_ADDRESS)); 
+``` -->
+
 ### `getTransactionStatus`
 
 Given transaction hash, returns the status of the transaction.
