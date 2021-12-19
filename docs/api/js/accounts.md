@@ -69,8 +69,6 @@ import { Wallet, Provider } from 'zksync-web3'
 
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
 
-// ... 
-
 const provider = new Provider("https://z2-dev-api.zksync.dev");
 const wallet = unconnectedWallet.connect(provider)
 ```
@@ -98,8 +96,6 @@ import { Wallet } from 'zksync-web3'
 import { ethers } from 'ethers'
 
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
-
-// ... 
 
 const ethProvider = ethers.getDefaultProvider("rinkeby");
 const wallet = unconnectedWallet.connectToL1(ethProvider);
@@ -175,12 +171,12 @@ const ethereumProvider = ethers.getDefaultProvider("rinkeby");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const USDC_ADDRESS = '0xeb8f08a975ab53e34d8a0330e0d34de942c95926';
-const txReceipt = await wallet.approveERC20({
+const txHandle = await wallet.approveERC20({
     USDC_ADDRESS,
     amount: "10000000", // 10.0 USDC
 });
 
-await txReceipt.wait();
+await txHandle.wait();
 ```
 
 
@@ -222,24 +218,24 @@ const ethereumProvider = ethers.getDefaultProvider("rinkeby");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const USDC_ADDRESS = '0xeb8f08a975ab53e34d8a0330e0d34de942c95926';
-const usdcDepositReceipt = await wallet.deposit({
+const usdcDepositHandle = await wallet.deposit({
     token: USDC_ADDRESS,
     amount: "10000000",
     approveERC20: true
 });
 // Note that we wait not only for the L1 transaction to complete, but also for it to be
 // processed by zkSync. If we want to wait only for transaction to be processed on L1,
-// we can use `await usdcDepositReceipt.waitL1Commit()`
-await usdcDepositReceipt.wait();
+// we can use `await usdcDepositHandle.waitL1Commit()`
+await usdcDepositHandle.wait();
 
-const ethDepositReceipt = await wallet.deposit({
+const ethDepositHandle = await wallet.deposit({
     token: zksync.utils.ETH_ADDRESS,
     amount: "10000000",
 });
 // Note that we wait not only for the L1 transaction to complete, but also for it to be
 // processed by zkSync. If we want to wait only for transaction to be processed on L1,
-// we can use `await ethDepositReceipt.waitL1Commit()`
-await ethDepositReceipt.wait();
+// we can use `await ethDepositHandle.waitL1Commit()`
+await ethDepositHandle.wait();
 ```
 
 ### Adding native token to zkSync
@@ -271,12 +267,12 @@ const ethereumProvider = ethers.getDefaultProvider("rinkeby");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const MLTT_ADDRESS = "0x690f4886c6911d81beb8130db30c825c27281f22";
-const addTokenReceipt = await wallet.addToken(MLTT_ADDRESS);
+const addTokenHandle = await wallet.addToken(MLTT_ADDRESS);
 
 // Note that we wait not only for the L1 transaction to complete, but also for it to be
 // processed by zkSync. If we want to wait only for transaction to be processed on L1,
-// we can use `await addTokenReceipt.waitL1Commit()`
-addTokenReceipt.wait();
+// we can use `await addTokenHandle.waitL1Commit()`
+addTokenHandle.wait();
 ```
 
 ### Getting token balance
@@ -629,12 +625,12 @@ const zksyncProvider = new Provider('https://z2-dev-api.zksync.dev');
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 
 const USDC_ADDRESS = '0xeb8f08a975ab53e34d8a0330e0d34de942c95926';
-const txReceipt = await signer.approveERC20({
+const txHandle = await signer.approveERC20({
     USDC_ADDRESS,
     amount: "10000000", // 10.0 USDC
 });
 
-await txReceipt.wait();
+await txHandle.wait();
 ```
 
 
@@ -731,24 +727,24 @@ const zksyncProvider = new Provider('https://z2-dev-api.zksync.dev');
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 
 const USDC_ADDRESS = '0xeb8f08a975ab53e34d8a0330e0d34de942c95926';
-const usdcDepositReceipt = await signer.deposit({
+const usdcDepositHandle = await signer.deposit({
     token: USDC_ADDRESS,
     amount: "10000000",
     approveERC20: true
 });
 // Note that we wait not only for the L1 transaction to complete, but also for it to be
 // processed by zkSync. If we want to wait only for transaction to be processed on L1,
-// we can use `await usdcDepositReceipt.waitL1Commit()`
-await usdcDepositReceipt.wait();
+// we can use `await usdcDepositHandle.waitL1Commit()`
+await usdcDepositHandle.wait();
 
-const ethDepositReceipt = await signer.deposit({
+const ethDepositHandle = await signer.deposit({
     token: zksync.utils.ETH_ADDRESS,
     amount: "10000000",
 });
 // Note that we wait not only for the L1 transaction to complete, but also for it to be
 // processed by zkSync. If we want to wait only for transaction to be processed on L1,
-// we can use `await ethDepositReceipt.waitL1Commit()`
-await ethDepositReceipt.wait();
+// we can use `await ethDepositHandle.waitL1Commit()`
+await ethDepositHandle.wait();
 ```
 
 ### Adding native token to zkSync
@@ -778,11 +774,11 @@ const zksyncProvider = new Provider('https://z2-dev-api.zksync.dev');
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 
 const MLTT_ADDRESS = "0x690f4886c6911d81beb8130db30c825c27281f22";
-const addTokenReceipt = await signer.addToken(MLTT_ADDRESS);
+const addTokenHandle = await signer.addToken(MLTT_ADDRESS);
 
 // Note that we wait not only for the L1 transaction to complete, but also for it to be
 // processed by zkSync. If we want to wait only for transaction to be processed on L1,
-// we can use `await addTokenReceipt.waitL1Commit()`
-addTokenReceipt.wait();
+// we can use `await addTokenHandle.waitL1Commit()`
+addTokenHandle.wait();
 ```
 

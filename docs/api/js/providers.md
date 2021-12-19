@@ -251,7 +251,7 @@ const provider = new Web3Provider(window.ethereum);
 
 ### Getting zkSync Signer
 
-Returns signer which can be used to sign zkSync transactions. More details on the `Signer` class can be found in the next [chapter](./accounts.md#signer).
+Returns signer which can be used to sign zkSync transactions. More details on the `Signer` class can be found in the next [section](./accounts.md#signer).
 
 
 #### Inputs and outputs

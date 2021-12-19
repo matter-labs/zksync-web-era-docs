@@ -1,4 +1,4 @@
-# Reference on zkSync hardhat plugins
+# Reference
 
 ## `@matterlabs/hardhat-zksync-solc`
 

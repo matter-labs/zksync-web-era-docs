@@ -155,7 +155,7 @@ module.exports = {
           path: "/api/js", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
-          children: ["/api/js/providers", "/api/js/accounts", "/api/js/contracts", "/api/js/features", "/api/js/utils"],
+          children: ["/api/js/getting-started", "/api/js/providers", "/api/js/accounts", "/api/js/contracts", "/api/js/features", "/api/js/utils", "/api/js/types"],
         },
         {
           title: "Hardhat", // required

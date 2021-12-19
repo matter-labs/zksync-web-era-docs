@@ -93,6 +93,7 @@
     "@types/babel__preset-env": "^7",
     "@types/hammerjs": "^2.0.39",
     "@typescript-eslint/parser": "^4.15.1",
+    "@vuepress/plugin-toc": "next",
     "check-md": "^1.0.1",
     "commitlint": "^11.0.0",
     "cspell": "^4.1.5",

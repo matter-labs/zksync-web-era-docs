@@ -6,3 +6,4 @@
 
 - [Getting started](./getting-started)
 - [Reference](./reference)
+- [Local testing](./testing)

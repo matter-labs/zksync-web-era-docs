@@ -1,4 +1,4 @@
-# Getting started with hardhat plugin
+# Getting started
 
 [Hardhat](https://hardhat.org) is an Ethereum development environment, designed for easy smart contract development on Solidity. One of its most prominent features is extendability: you can easily add new plugins to your hardhat project. 
 
