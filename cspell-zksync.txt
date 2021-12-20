@@ -84,3 +84,10 @@ convertion
 Keyhash
 Armeabi
 scijava
+
+bytecode
+timeframe
+mkdir
+zksolc
+zksyncrobot
+precompiles
