@@ -150,7 +150,7 @@ Now we can run the script using the following command:
 yarn hardhat deploy-zksync
 ```
 
-## Paying fees in ERC-20 tokens
+## Paying fees in ERC20 tokens
 
 Let's see how we can pay fees in `USDC` token.
 
@@ -166,7 +166,7 @@ const depositHandle = await deployer.zkWallet.deposit({
   // We deposit more than the minimal required amount to have funds
   // for further iteraction with our smart contract.
   amount: deploymentFee.mul(2),
-  // Unlike ETH, ERC-20 tokens require approval in order to deposit to zkSync.
+  // Unlike ETH, ERC20 tokens require approval in order to deposit to zkSync.
   // You can either set the approval in a separate transaction or provide `approveERC20` flag equal to `true`
   // and the SDK will initiate approval transaction under the hood.
   approveERC20: true,

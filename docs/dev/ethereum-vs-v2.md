@@ -16,7 +16,7 @@ A more detailed description of the zkSync JSON-RPC API can be found [here](../ap
 
 ## Native currency
 
-zkSync 2.0 has no "native" token as the fees can be paid in ERC-20s. `ETH` is an ERC-20 token with address `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`.
+zkSync 2.0 has no "native" token as the fees can be paid in ERC20s. `ETH` is an ERC20 token with address `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`.
 
 **Please note**, that support for native ETH transfers (by passing `value` to the transaction) does not work yet. As a consequewnce, `msg.value` is always equal to `0`. Dealing with native ETH is an important part of some protocols and it will be implemented in the future for backward-compatibility.
 
@@ -32,7 +32,7 @@ You don't need to know the details about the transaction format to use our SDK, 
 
 ## Fee model
 
-Unlike Ethereum, there is no native token and zkSync supports paying fees in any ERC-20 tokens.
+Unlike Ethereum, there is no native token and zkSync supports paying fees in any ERC20 tokens.
 
 Our version of `gas` is called `ergs` and represents not only the costs of computations, but also the cost of publishing data onchain and affecting storage. Similar to `gas`, `ergs` is an absolute unit. VM operations (`add`, `mul`, etc) will also have their costs measured in `ergs`, and they may not be equal to each other. The actual table of operation costs in `ergs` is yet to be defined.
 
@@ -81,10 +81,10 @@ All these specifics make the process of deploying smart contracts on zkEVM compl
 
 Summary:
 
-- **How contract deployment works on Ethereum:**
-  To deploy a contract, a user sends transaction to zero address (`0x000...000`) with the `data` field for transaction equal to the contract bytecode concatenated with the constructor parameters.
+- **How contract deployment works on Ethereum.**
+  To deploy a contract, a user sends transaction to zero address (`0x000...000`) with the `data` field of transaction equal to the contract bytecode concatenated with the constructor parameters.
 
-- **How contract deployment works on zkSync:**
+- **How contract deployment works on zkSync.**
   To deploy a contract, a user sends transaction to zero address (`0x000...000`) with the `data` field for transaction equal to the contract bytecode hash concatenated with the constructor parameters. The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
 All of the deployment process is handled inside our [hardhat](../api/hardhat) plugin.
@@ -100,4 +100,4 @@ There are three types of L2 transactions on zkSync: `Withdraw`, `Execute`, `Depl
 There are also two types of transactions, related to bridging native tokens to zkSync:
 
 - `Deposit` is used to move funds from an L1 account to an L2 account.
-- `AddToken` is used to add a native ERC-20 token to zkSync.
+- `AddToken` is used to add a native ERC20 token to zkSync.

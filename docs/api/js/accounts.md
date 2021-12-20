@@ -135,7 +135,7 @@ console.log(contract.address);
 
 ### Approving deposit of tokens
 
-Bridging ERC-20 tokens from Ethereum requires approving the tokens to the zkSync Ethereum smart contract. The `Wallet` object contains a convenient method for that:
+Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync Ethereum smart contract. The `Wallet` object contains a convenient method for that:
 
 ```typescript
 async approveERC20(
@@ -196,7 +196,7 @@ async deposit(transaction: {
 | tramsaction.token                   | The address of the token to deposit.                                                                                                                                             |
 | tramsaction.amount                  | Amount of the token to deposit.                                                                                                                                                  |
 | tramsaction.to (optional)           | The address which will receive the deposited tokens on L2.                                                                                                                       |
-| tramsaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC-20 token and didn't call the `approveERC20` function beforehand. |
+| tramsaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC20 token and didn't call the `approveERC20` function beforehand. |
 | tramsaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                 |
 | returns                             | `PriorityOpResponse` object.                                                                                                                                                      |
 
@@ -371,9 +371,9 @@ console.log(await wallet.getNonce());
 
 ### Transfering tokens inside zkSync
 
-Please note that for now unlike Ethereum, zkSync does not support native transfers, i.e. the `value` field of all transactions is equal to `0`. All the token transfers are done through ERC-20 `transfer` function call.
+Please note that for now unlike Ethereum, zkSync does not support native transfers, i.e. the `value` field of all transactions is equal to `0`. All the token transfers are done through ERC20 `transfer` function call.
 
-But for convenience, `Wallet` object has `transfer` method, which can transfer any `ERC-20` tokens.
+But for convenience, `Wallet` object has `transfer` method, which can transfer any `ERC20` tokens.
 
 ```typescript
 async transfer(tx: {
@@ -521,9 +521,9 @@ console.log(await signer.getNonce());
 
 ### Transfering tokens inside zkSync
 
-Please note that for now unlike Ethereum, zkSync does not support native transfers, i.e. the `value` field of all transactions is equal to `0`. All the token transfers are done through ERC-20 `transfer` function call.
+Please note that for now unlike Ethereum, zkSync does not support native transfers, i.e. the `value` field of all transactions is equal to `0`. All the token transfers are done through ERC20 `transfer` function call.
 
-But for convenience, `Wallet` object has `transfer` method, which can transfer any `ERC-20` tokens.
+But for convenience, `Wallet` object has `transfer` method, which can transfer any `ERC20` tokens.
 
 ```typescript
 async transfer(tx: {
@@ -586,7 +586,7 @@ const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 
 ### Approving deposit of tokens
 
-Bridging ERC-20 tokens from Ethereum requires approving the tokens to the zkSync Ethereum smart contract. The `Wallet` object contains a convenient method for that:
+Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync Ethereum smart contract. The `Wallet` object contains a convenient method for that:
 
 ```typescript
 async approveERC20(
@@ -702,7 +702,7 @@ async deposit(transaction: {
 | tramsaction.token                   | The address of the token to deposit.                                                                                                                                             |
 | tramsaction.amount                  | Amount of the token to deposit.                                                                                                                                                  |
 | tramsaction.to (optional)           | The address which will receive the deposited tokens on L2.                                                                                                                       |
-| tramsaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC-20 token and didn't call the `approveERC20` function beforehand. |
+| tramsaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC20 token and didn't call the `approveERC20` function beforehand. |
 | tramsaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                 |
 | returns                             | `PriorityOpResponse` object.                                                                                                                                                      |
 

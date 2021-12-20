@@ -6,7 +6,7 @@ zkSync supports fully supports Ethereum Web3 API, so you can use the provider ob
 
 - Easily track L1<->L2 transactions.
 - Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use-cases may require to track "finalized" transactions only.
-- Get balance of any native ERC-20 token.
+- Get balance of any native ERC20 token.
 
 And much more! Generally, you can providers from `ethers` for a quick start, but switch to providers from `zksync-web3` library later on.
 

@@ -106,6 +106,11 @@ module.exports = {
           collapsable: false, // optional, defaults to true
         },
         {
+          title: "Intro to zkSync",
+          path: "/dev/concepts.md",
+          collapsable: false
+        },
+        {
           title: "Alpha preview",
           path: "/dev/preview.md",
           collapsable: false

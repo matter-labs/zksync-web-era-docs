@@ -1,12 +1,27 @@
 # Introduction to zkSync for Developers
 
-zkSync is built on ZK Rollup architecture. ZK Rollup is a layer 2 scaling solution in which all funds are held by a smart
-contract on the mainchain, while computation and storage are performed off-chain. The validity of all the transactions is secured by zero-knowledge proofs, which are verified by the smart contract. All of this enables building a trustless protocol, secured by Ethereum, but with much lower fees.
+**zkSync** is a trustless protocol that utilises [zkRollup technology](/faq/tech.md#zk-rollup-architecture) to provide scalable low-cost payments on Ethereum. It uses zero-knowledge proofs to store all funds in a smart
+contract on the mainchain, while computation and storage are performed off-chain. 
 
-zkSync 2.0 is the new version of the protocol, which is the first ZK Rollup to natively support Solidity smart contract development.
+For every Rollup block, a state
+transition zero-knowledge proof (SNARK) is generated and verified by the mainchain contract. This SNARK includes the
+proof of the validity of every single transaction in the Rollup block. Additionally, the public data update for every
+block is published over the mainchain network in the cheap `calldata`.
+
+#### zkSync features
+
+- Mainnet-level security with zero reliance on 3rd parties.
+- Permissionless smart contracts in Solidity / Zinc.
+- No registration is required to send or receive funds.
+- Payments to existing Ethereum addresses (including smart-contracts).
+- Fees conveniently payable in the token being transferred.
+
+## zkSync 2.0
+
+**zkSync 2.0** is the new version of the protocol, which is the first ZK Rollup to natively support Solidity smart contract development.
 
 - Want to start building right now? Head over to the [quickstart guide](#developer-quickstart).
-- New to rollups and want to learn more? Here is the [zkSync basics guide](#zksync-basics).
+- New to rollups and want to learn more? Here is the [Intro to zkSync](./concepts).
 
 ::: warning Closed testnet
 
@@ -28,7 +43,7 @@ If you don't, all the needed information is provided in the [zkSync basics guide
 
 ### What do I need to start building?
 
-All the existing SDKs for Ethereum will work out of the box and your users will have the same experience as on Ethereum. If you want to enable advanced zkSync features, like paying fees in ERC-20 tokens, our SDK should to be used.
+All the existing SDKs for Ethereum will work out of the box and your users will have the same experience as on Ethereum. If you want to enable advanced zkSync features, like paying fees in ERC20 tokens, our SDK should to be used.
 
 The only place where using zkSync SDK is required is during the contract deployment. This can be easily done through our hardhat plugin.
 
@@ -41,7 +56,7 @@ Check out our step-by-step [tutorial](./tutorials/basic), where you will learn:
 
 ## zkSync basics
 
-TODO: Celeste PR
+New to zkSync or zkRollups in general? Go through our 
 
 ### Transaction types
 
@@ -60,7 +75,7 @@ The protocol has 5 types of transactions.
 The ones that can only be enacted from layer 1 are:
 
 - `Deposit`. This operation moves funds from an L1 account to an L2 account.
-- `AddToken`. This operation adds a native ERC-20 token to zkSync. <!-- TODO: Include link to the glossary of what is the native (or first-class citizen) erc20 token -->
+- `AddToken`. This operation adds a native ERC20 token to zkSync. <!-- TODO: Include link to the glossary of what is the native (or first-class citizen) erc20 token -->
 
 The ones that can be enacted from both layer 1 and layer 2 are:
 
@@ -68,7 +83,3 @@ The ones that can be enacted from both layer 1 and layer 2 are:
   through which the contract can be accessed.
 - `Execute`. This operation executes a smart contract method.
 - `Withdraw`. This operation moves funds from an L2 account to an L1 account. _Most likely will be replaced with a special `Execute` call soon._
-
-## Glossary
-
-TODO: Celeste PR

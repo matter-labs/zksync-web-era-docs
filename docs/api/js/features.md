@@ -2,7 +2,7 @@
 
 While zkSync is mostly Web3-compatible, it has some differences compared to Ethereum. The major of those are:
 
-- Transaction fees can be paid in ERC-20 tokens.
+- Transaction fees can be paid in ERC20 tokens.
 - Deployment transactions require the contracts' bytecode to be passed in a separate field.
 - The fee system is somewhat different.
 

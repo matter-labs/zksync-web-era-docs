@@ -8,9 +8,9 @@ import { utils } from "zksync-web3";
 
 Most of the utilities are used internally by zkSync team. So this document will describe only those which should be helpful for you.
 
-### The "address" of Ether ERC-20 smart contract
+### The "address" of Ether ERC20 smart contract
 
-In zkSync, all the native tokens are ERC-20. Thus, there needs to be a smart contract
+In zkSync, all the native tokens are ERC20. Thus, there needs to be a smart contract
 
 ```typescript
 export const ETH_ADDRESS = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";

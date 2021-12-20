@@ -1,6 +1,13 @@
 # Hello zkSync
 
-In this tutorial we will recap and expand on the `Greeter` example in the [Getting started](../README.md#hello-world-on-zksync) guide.
+In this tutorial, we will show how to build a full dApp using zkSync development toolbox.
+
+We will implement the following functionality:
+
+- There will be a greeting stored on a smart contract on zkSync.
+- The user should be able to get the greeting after the dApp page is loaded.
+- The user should be able to change the greeting on the smart contract.
+- The user should be able to select the token he wants to pay the fee with.
 
 ## Initializing the proejct & deploying smart contract
 
@@ -121,7 +128,9 @@ Now we can run the script using the following command:
 yarn hardhat deploy-zksync
 ```
 
-### Paying fees in ERC-20 tokens
+In the output, you should see the address where the contract was deployed.
+
+### Paying for deployment in ERC20 tokens
 
 Let's see how we can pay fees in `USDC` token.
 
@@ -137,7 +146,7 @@ const depositHandle = await deployer.zkWallet.deposit({
   // We deposit more than the minimal required amount to have funds
   // for further iteraction with our smart contract.
   amount: deploymentFee.mul(2),
-  // Unlike ETH, ERC-20 tokens require approval in order to deposit to zkSync.
+  // Unlike ETH, ERC20 tokens require approval in order to deposit to zkSync.
   // You can either set the approval in a separate transaction or provide `approveERC20` flag equal to `true`
   // and the SDK will initiate approval transaction under the hood.
   approveERC20: true,
@@ -243,12 +252,6 @@ yarn serve
 ```
 
 By default, the page should be running at `http://localhost:8080`. You can open that URL in your browser to see the first page.
-
-We will implement the following functionality:
-
-- The user should be able to get the greeting after the page is loaded.
-- The user should be able to select the token he wants to pay the fee with.
-- The user should be able to change the greeting on the smart contract.
 
 ### Connecting to Metamask & bridging tokens to zkSync
 
