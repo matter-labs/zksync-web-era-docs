@@ -282,5 +282,5 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 There are two major points of improvements for the plugins which will be released in the future:
 
-- **Composability with the existing hardhat plugins.** Some popular hardhat plugins may not be compatible with the zkSync development environment. This will be resolved either through cooperation with the plugins' teams or by providing new plugins with the same functionality.
+- **Composability with the existing hardhat plugins.** Compatibility with other hardhat plugins is planned for future, but has not been a focus yet.
 - **JavaScript support.** Currently, `hardhat-zksync-deploy` requires typescript to run.

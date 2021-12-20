@@ -45,7 +45,7 @@ zksolc: {
 
 ### Commands
 
-`yarn hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment. If you are not sure what factory dependencies are, you can read more about them in the [Web3 API](../api.md) documentation.
+`hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment. If you are not sure what factory dependencies are, you can read more about them in the [Web3 API](../api.md) documentation.
 
 ## `@matterlabs/hardhat-zksync-deploy`
 
@@ -150,3 +150,7 @@ zkSyncDeploy: {
 
 - `zkSyncNetwork` is a field with the URL of the zkSync node.
 - `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `rinkeby`) as the value of this field. In this case, the default `ethers` provider for the network will be used.
+
+### Commands
+
+`hardhat deploy-zksync` -- runs through all the scripts in the `deploy` folder. To run a specific script, add the `--script` argument, e.g. `hardhat deploy-zksync --script 001_deploy.ts` will run script `./deploy/001_deploy.ts`.

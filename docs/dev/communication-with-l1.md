@@ -56,7 +56,7 @@ function addToken(address _token) external
 
 ## Calling contract methods from L1
 
-Any L2 transaction can also be called from Ethereum. This feature is ready on zkSync side and will be available very soon as a part of the testnet.
+Any L2 transaction can also be called from Ethereum. This feature is almost ready and will be available very soon as a part of the testnet.
 
 ## L2 -> L1 communication
 
