@@ -12,7 +12,7 @@ You may continue using the SDKs that you use now. Users will continue paying fee
 
 If you want to deploy smart contracts or enable the unique zkSync features to your users (e.g. paying fees in the same token which is being swapped), you will need to use the EIP712 transaction type.
 
-A more detailed description of the zkSync JSON-RPC API can be found [here](../api/api.md).
+A more detailed description of the zkSync JSON-RPC API can be found [here](../api/api).
 
 ## Native currency
 
@@ -60,9 +60,9 @@ This parameter will be most useful for zkPorter transactions. Generally, it is c
 
 ### What does this mean to me?
 
-Despite the differences, the fee model is quite similar to one of Ethereum. The same as for Ethereum, the most costly will always be the storage changes. One of the advantages of ZK rollups over optimistic rollups is that instead of publishing the transaction data, ZK rollups publish only state diffs.
+Despite the differences, the fee model is quite similar to one of Ethereum. The same as for Ethereum, the most costly will always be the storage changes. One of the advantages of zkRollups over optimistic rollups is that instead of publishing the transaction data, zkRollups publish only state diffs.
 
-As already said, if you update the same storage slot 10 times in a single, only one update will be published on Ethereum and so you will be charged for public data only once. But it goes beyond simple storage slots. Let's say that you have a DEX and a `PairFactory` factory for different `Pair` pools. The contract bytecode of `Pair` needs to be published only when the first instance is deployed. After the code of the `Pair` was published once, the subsequent deployments will only involve changing one storage slot -- to set the contract code hash on the newly deployed `Pair`'s address.
+As already said, if you update the same storage slot 10 times in a single block, only one update will be published on Ethereum and so you will be charged for public data only once. But it goes beyond simple storage slots. Let's say that you have a DEX and a `PairFactory` factory for different `Pair` pools. The contract bytecode of `Pair` needs to be published only when the first instance is deployed. After the code of the `Pair` was published once, the subsequent deployments will only involve changing one storage slot -- to set the contract code hash on the newly deployed `Pair`'s address.
 
 So the tips to make the most out of zkSync fee system are the following:
 

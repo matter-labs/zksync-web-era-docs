@@ -548,5 +548,5 @@ TODO: complete project.
 
 ### Learn more
 
-- To learn more about `zksync-web` SDK, check out its [docuemntation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [docuemntation](../../api/hardhat).
+- To learn more about `zksync-web` SDK, check out its [documentation](../../api/js).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
