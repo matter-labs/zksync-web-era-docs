@@ -58,7 +58,7 @@ async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address):
 
 | Name                    | Description                                                                                                   |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------- | --- |
-| address                 | The address of the user to check the balance.                                                                  |
+| address                 | The address of the user to check the balance.                                                                 |
 | blockTag (optional)     | Which block should we check the balance on. `committed`, i.e. the latest processed one is the default option. |
 | tokenAddress (optional) | The address of the token. ETH by default.                                                                     |     |
 | returns                 | `BigNumber` object.                                                                                           |
@@ -86,8 +86,8 @@ async getMainContractAddress(): Promise<string>
 
 #### Inputs and outputs
 
-| Name    | Description                          |
-| ------- | ------------------------------------ |
+| Name    | Description                           |
+| ------- | ------------------------------------- |
 | returns | Address of the zkSync smart contract. |
 
 > Example
@@ -102,7 +102,7 @@ console.log(await provider.getMainContractAddress());
 
 ### `getConfirmedTokens`
 
-Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally. 
+Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally.
 
 The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically sorted array of tokens.
 
@@ -116,7 +116,7 @@ async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[
 | ------- | --------------------------------------------------------------------------------------------- |
 | start   | The token id from which to start returning the information about the tokens. Zero by default. |
 | limit   | The number of tokens to be returned from the API. 255 by default.                             |
-| returns | The array of `Token` objects sorted by their symbol.                                                                 |
+| returns | The array of `Token` objects sorted by their symbol.                                          |
 
 > Example
 
@@ -135,9 +135,9 @@ Returns `true` or `false` on whether or not a token can be used to pay fees.
 async isTokenLiquid(token: Address): Promise<boolean>
 ```
 
-| Name    | Description                                                                         |
-| ------- | ----------------------------------------------------------------------------------- |
-| token   | The address of the token.                                                           |
+| Name    | Description                                                                          |
+| ------- | ------------------------------------------------------------------------------------ |
+| token   | The address of the token.                                                            |
 | returns | Boolean value (`true` or `false`) on whether or not a token can be used to pay fees. |
 
 > Example
@@ -171,7 +171,7 @@ import { Provider } from "zksync-web3";
 const provider = new Provider("https://z2-dev-api.zksync.dev");
 
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
-console.log(await provider.getTokenPrice(USDC_ADDRESS)); 
+console.log(await provider.getTokenPrice(USDC_ADDRESS));
 ``` -->
 
 ### `getTransactionStatus`
@@ -262,11 +262,11 @@ constructor(provider: ExternalProvider, network?: ethers.providers.Networkish)
 
 #### Inputs and outputs
 
-| Name               | Description                                                                                                        |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| Name               | Description                                                                                                            |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------- |
 | provider           | The `ethers.providers.ExternalProvider` class instance. For instance, in the case of Metamask it is `window.ethereum`. |
-| network (optional) | The description of the network.                                                                                    |
-| returns            | `Provider` object.                                                                                                 |
+| network (optional) | The description of the network.                                                                                        |
+| returns            | `Provider` object.                                                                                                     |
 
 > Example
 

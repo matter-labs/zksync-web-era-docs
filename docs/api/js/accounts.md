@@ -56,9 +56,9 @@ connect(provider: Provider): Wallet
 
 #### Inputs and outputs
 
-| Name     | Description                                |
-| -------- | ------------------------------------------ |
-| provider | zkSync node provider.                      |
+| Name     | Description                                 |
+| -------- | ------------------------------------------- |
+| provider | zkSync node provider.                       |
 | returns  | A new `Wallet` object, connected to zkSync. |
 
 > Example
@@ -82,9 +82,9 @@ connectToL1(provider: ethers.providers.Provider)
 
 #### Inputs and outputs
 
-| Name     | Description                                |
-| -------- | ------------------------------------------ |
-| provider | Ethereum node provider.                    |
+| Name     | Description                                   |
+| -------- | --------------------------------------------- |
+| provider | Ethereum node provider.                       |
 | returns  | A new `Wallet` object, connected to Ethereum. |
 
 > Example
@@ -113,8 +113,8 @@ async getMainContract(): Promise<Contract>
 
 #### Inputs and outputs
 
-| Name    | Description                                     |
-| ------- | ----------------------------------------------- |
+| Name    | Description                                      |
+| ------- | ------------------------------------------------ |
 | returns | `Contract` wrapper of the zkSync smart contract. |
 
 > Example
@@ -191,14 +191,14 @@ async deposit(transaction: {
 
 #### Inputs and outputs
 
-| Name                                | Description                                                                                                                                                                      |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| transaction.token                   | The address of the token to deposit.                                                                                                                                             |
-| transaction.amount                  | Amount of the token to deposit.                                                                                                                                                  |
-| transaction.to (optional)           | The address which will receive the deposited tokens on L2.                                                                                                                       |
+| Name                                | Description                                                                                                                                                                     |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| transaction.token                   | The address of the token to deposit.                                                                                                                                            |
+| transaction.amount                  | Amount of the token to deposit.                                                                                                                                                 |
+| transaction.to (optional)           | The address which will receive the deposited tokens on L2.                                                                                                                      |
 | transaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC20 token and didn't call the `approveERC20` function beforehand. |
-| transaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                 |
-| returns                             | `PriorityOpResponse` object.                                                                                                                                                      |
+| transaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                |
+| returns                             | `PriorityOpResponse` object.                                                                                                                                                    |
 
 > Example
 
@@ -282,7 +282,7 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 | ------------------- | ------------------------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                                     |
 | blockTag (optional) | Which block should we check the balance on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The amount of the token the `Wallet`. has                                                                          |
+| returns             | The amount of the token the `Wallet`. has                                                                     |
 
 > Example
 
@@ -316,7 +316,7 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 | ------------------- | ------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                   |
 | blockTag (optional) | Which block should we check the balance on. The latest processed one is the default option. |
-| returns             | The amount of token the `Wallet` has on Ethereum.                                            |
+| returns             | The amount of token the `Wallet` has on Ethereum.                                           |
 
 > Example
 
@@ -351,7 +351,7 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 | Name                | Description                                                                                               |
 | ------------------- | --------------------------------------------------------------------------------------------------------- |
 | blockTag (optional) | Which block should we get the nonce on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The amount of token the `Wallet` has.                                                                      |
+| returns             | The amount of token the `Wallet` has.                                                                     |
 
 > Example
 
@@ -391,8 +391,8 @@ async transfer(tx: {
 
 | Name                  | Description                                                                                                 |
 | --------------------- | ----------------------------------------------------------------------------------------------------------- |
-| tx.to                 | The address of the recipient.                                                                                |
-| tx.amount             | The amount of the token to transfer.                                                                         |
+| tx.to                 | The address of the recipient.                                                                               |
+| tx.amount             | The amount of the token to transfer.                                                                        |
 | token (optional)      | The address of the token. `ETH` by default.                                                                 |
 | feeToken (optional)   | The address of the token which is used to pay fees. `ETH` by default.                                       |
 | nonce (optional)      | The nonce to be supplied. If not provided, the `wallet` will fetch the nonce in the latest committed block. |
@@ -475,7 +475,7 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 | ------------------- | ------------------------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                                     |
 | blockTag (optional) | Which block should we check the balance on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The amount of the token the `Signer` has.                                                                          |
+| returns             | The amount of the token the `Signer` has.                                                                     |
 
 > Example
 
@@ -541,8 +541,8 @@ async transfer(tx: {
 
 | Name                  | Description                                                                                                 |
 | --------------------- | ----------------------------------------------------------------------------------------------------------- |
-| tx.to                 | The address of the recipient.                                                                                |
-| tx.amount             | The amount of the token to transfer.                                                                         |
+| tx.to                 | The address of the recipient.                                                                               |
+| tx.amount             | The amount of the token to transfer.                                                                        |
 | token (optional)      | The address of the token. `ETH` by default.                                                                 |
 | feeToken (optional)   | The address of the token which is used to pay fees. `ETH` by default.                                       |
 | nonce (optional)      | The nonce to be supplied. If not provided, the `wallet` will fetch the nonce in the latest committed block. |
@@ -632,8 +632,8 @@ async getMainContract(): Promise<Contract>
 
 #### Inputs and outputs
 
-| Name    | Description                                     |
-| ------- | ----------------------------------------------- |
+| Name    | Description                                      |
+| ------- | ------------------------------------------------ |
 | returns | `Contract` wrapper of the zkSync smart contract. |
 
 > Example
@@ -662,7 +662,7 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 | ------------------- | ------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                   |
 | blockTag (optional) | Which block should we check the balance on. The latest processed one is the default option. |
-| returns             | The amount of the token the `L1Signer` has on Ethereum.                                            |
+| returns             | The amount of the token the `L1Signer` has on Ethereum.                                     |
 
 > Example
 
@@ -697,14 +697,14 @@ async deposit(transaction: {
 
 #### Inputs and outputs
 
-| Name                                | Description                                                                                                                                                                      |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| transaction.token                   | The address of the token to deposit.                                                                                                                                             |
-| transaction.amount                  | Amount of the token to deposit.                                                                                                                                                  |
-| transaction.to (optional)           | The address which will receive the deposited tokens on L2.                                                                                                                       |
+| Name                                | Description                                                                                                                                                                     |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| transaction.token                   | The address of the token to deposit.                                                                                                                                            |
+| transaction.amount                  | Amount of the token to deposit.                                                                                                                                                 |
+| transaction.to (optional)           | The address which will receive the deposited tokens on L2.                                                                                                                      |
 | transaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC20 token and didn't call the `approveERC20` function beforehand. |
-| transaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                 |
-| returns                             | `PriorityOpResponse` object.                                                                                                                                                      |
+| transaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                |
+| returns                             | `PriorityOpResponse` object.                                                                                                                                                    |
 
 > Example
 

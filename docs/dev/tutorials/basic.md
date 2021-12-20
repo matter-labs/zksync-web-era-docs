@@ -303,7 +303,7 @@ async changeGreeting() {
         // TODO: Submit the transaction
         this.txStatus = 2;
 
-        // TODO: Wait for transaction compilation 
+        // TODO: Wait for transaction compilation
         this.txStatus = 3;
 
         // Update greeting
@@ -328,14 +328,14 @@ On the top of the `<script>` tag, you may see the parts where we should fill in 
 
 ```javascript
 // eslint-disable-next-line
-import { } from 'zksync-web3';
+import {} from "zksync-web3";
 // eslint-disable-next-line
-import { } from 'ethers';
+import {} from "ethers";
 
 // eslint-disable-next-line
-const GREETER_CONTRACT_ADDRESS = ''; // TODO: insert the Greeter contract address here
+const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract address here
 // eslint-disable-next-line
-const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contract ABI here 
+const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contract ABI here
 ```
 
 ### Installing `zksync-web3`
@@ -456,7 +456,7 @@ async getFee() {
             feeToken: this.selectedToken.address
         }
     });
-    // Getting the gas price per one erg. For now, it is the same for all tokens. 
+    // Getting the gas price per one erg. For now, it is the same for all tokens.
     const gasPriceInUnits = await this.provider.getGasPrice();
 
     // To display the number of tokens in the human-readable format, we need to format them,

@@ -18,7 +18,7 @@ All of the following methods are already supported conveniently in our [JavaScri
 
 To bridge ETH to zkSync, you should call the following function of the zkSync smart contract:
 
-```    
+```
 /// @notice Deposit ETH to Layer 2 - transfer ether from user into contract, validate it, register deposit
 /// @param _zkSyncAddress The receiver Layer 2 address
 function depositETH(address _zkSyncAddress) external payable
@@ -43,7 +43,6 @@ function depositERC20(
 ```
 
 Make sure to set the allowance for the zkSync smart contract at least the size of `amount`.
-
 
 ### Adding native tokens to zkSync
 

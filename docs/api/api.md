@@ -93,8 +93,8 @@ Given the hash of the withdrawal tx, returns the hash of the layer 1 transaction
 
 ### Input parameters
 
-| Parameter       | Type   | Description                            |
-| --------------- | ------ | -------------------------------------- |
+| Parameter       | Type      | Description                             |
+| --------------- | --------- | --------------------------------------- |
 | withdrawal_hash | `bytes32` | The hash of the withdrawal transaction. |
 
 ### Output format
@@ -103,14 +103,14 @@ Given the hash of the withdrawal tx, returns the hash of the layer 1 transaction
 
 ### `zks_getConfirmedTokens`
 
-Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally. 
+Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally.
 
 The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically sorted array of tokens.
 
 ### Input parameters
 
-| Parameter | Type  | Description                                                                 |
-| --------- | ----- | --------------------------------------------------------------------------- |
+| Parameter | Type     | Description                                                                  |
+| --------- | -------- | ---------------------------------------------------------------------------- |
 | from      | `uint32` | The token id from which to start returning the information about the tokens. |
 | limit     | `uint8`  | The number of tokens to be returned from the API.                            |
 
@@ -145,8 +145,8 @@ Given a token address, returns whether it can be used to pay fees.
 
 ### Input parameters
 
-| Parameter | Type   | Description              |
-| --------- | ------ | ------------------------ |
+| Parameter | Type      | Description               |
+| --------- | --------- | ------------------------- |
 | address   | `address` | The address of the token. |
 
 ### Output format
