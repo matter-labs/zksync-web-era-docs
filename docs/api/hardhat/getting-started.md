@@ -9,11 +9,11 @@ zkSync supports two plugins for hardhat:
 
 If you learn more about hardhat itself, check out their [documentation](https://hardhat.org/getting-started/).
 
-We will show you how to setup a zkSync hardhat project from scratch.
+We will show you how to set up a zkSync hardhat project from scratch.
 
 ## Initializing the project
 
-First, we should initialize the project and install the dependencies. Run the following commands in terminal:
+First, we should initialize the project and install the dependencies. Run the following commands in the terminal:
 
 ```
 mkdir greeter-example
@@ -22,7 +22,7 @@ yarn init -y
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
-Please note, that currently typescript is reqiured by zkSync plugins.
+Please note, that currently typescript is required by zkSync plugins.
 
 Create the `hardhat.config.ts` file and paste the following code there:
 
@@ -53,7 +53,7 @@ module.exports = {
 };
 ```
 
-Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored and the latter is the place where all the scripts related to deployment of the contract will be put.
+Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored and the latter is the place where all the scripts related to deploying the contract will be put.
 
 Create the `contracts/Greeter.sol` contract and insert the following code there:
 
@@ -92,7 +92,7 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-// An example of a deploy script which will deploy and call a simple contract.
+// An example of a deploy script that will deploy and call a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
@@ -191,7 +191,7 @@ Now, we need to pass `USDC` as the `feeToken` to the deployment transaction:
 const greeterContract = await deployer.deploy(artifact, [greeting], USDC_ADDRESS);
 ```
 
-In order to pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
+To pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
 
 ```typescript
 const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
@@ -212,7 +212,7 @@ import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
 const USDC_DECIMALS = 6;
 
-// An example of a deploy script which will deploy and call a simple contract.
+// An example of a deploy script that will deploy and call a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
@@ -280,7 +280,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 ## Future releases
 
-There are two major points of improvements for the plugins which will be relased in the future:
+There are two major points of improvements for the plugins which will be released in the future:
 
 - **Composability with the existing hardhat plugins.** Some popular hardhat plugins may not be compatible with the zkSync development environment. This will be resolved either through cooperation with the plugins' teams or by providing new plugins with the same functionality.
 - **JavaScript support.** Currently, `hardhat-zksync-deploy` requires typescript to run.

@@ -103,9 +103,9 @@ Given the hash of the withdrawal tx, returns the hash of the layer 1 transaction
 
 ### `zks_getConfirmedTokens`
 
-Given `from` and `limit`, returns the information about the confirmed tokens with ids in the inverval `[from..from+limit-1]`. Confirmed tokens are native tokens which are considered legit by the zkSync team. This method will be mostly used in zkSync wallet interface. 
+Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally. 
 
-The tokens are returned in alphabetical order by their symbol, so basically token id is position in alphabetically sorted array of tokens.
+The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically sorted array of tokens.
 
 ### Input parameters
 

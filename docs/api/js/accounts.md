@@ -1,6 +1,6 @@
 # Accounts
 
-`zksync-web3` exports four classes which can sign transactions on zkSync:
+`zksync-web3` exports four classes that can sign transactions on zkSync:
 
 - `Wallet` class is an extension of the `ethers.Wallet` with additional zkSync features.
 - `EIP712Signer` class which is used to sign `EIP712`-typed zkSync transactions.
@@ -8,7 +8,7 @@
 
 ## `Wallet`
 
-### Creating wallet from private key
+### Creating wallet from a private key
 
 Just like `ethers.Wallet`, the `Wallet` object from `zksync-web3` can be created from Ethereum private key.
 
@@ -42,13 +42,13 @@ const ethereumProvider = ethers.getDefaultProvider("rinkeby");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 ```
 
-### Other ways to create wallet
+### Other ways to create `Wallet` instances
 
-`Wallet` class supports all the methods from `ethers.Wallet` for creating wallets, e.g. creating from mnemonic, creating from encrypted json, creating random wallet, etc. All these methods take the same parameters as `ethers.Wallet`, so you should refer to its documentation on how to use them.
+`Wallet` class supports all the methods from `ethers.Wallet` for creating wallets, e.g. creating from mnemonic, creating from encrypted JSON, creating a random wallet, etc. All these methods take the same parameters as `ethers.Wallet`, so you should refer to its documentation on how to use them.
 
 ### Connecting to zkSync provider
 
-In order to interact with zkSync network, a `Wallet` object should be connected to a `Provider` by either passing it to the constructor or with the `connect` method.
+To interact with zkSync network, a `Wallet` object should be connected to a `Provider` by either passing it to the constructor or with the `connect` method.
 
 ```typescript
 connect(provider: Provider): Wallet
@@ -74,7 +74,7 @@ const wallet = unconnectedWallet.connect(provider);
 
 ### Connecting to Ethereum provider
 
-In order to perform L1 operations, the `Wallet` object needs to be connect to an `ethers.providers.Provider` object.
+To perform L1 operations, the `Wallet` object needs to be connected to an `ethers.providers.Provider` object.
 
 ```typescript
 connectToL1(provider: ethers.providers.Provider)
@@ -177,7 +177,7 @@ await txHandle.wait();
 
 ### Depositing tokens to zkSync
 
-The wallet also have convenience method for briding tokens to zkSync:
+The wallet also has a convenience method for bridging tokens to zkSync:
 
 ```typescript
 async deposit(transaction: {
@@ -193,11 +193,11 @@ async deposit(transaction: {
 
 | Name                                | Description                                                                                                                                                                      |
 | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| tramsaction.token                   | The address of the token to deposit.                                                                                                                                             |
-| tramsaction.amount                  | Amount of the token to deposit.                                                                                                                                                  |
-| tramsaction.to (optional)           | The address which will receive the deposited tokens on L2.                                                                                                                       |
-| tramsaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC20 token and didn't call the `approveERC20` function beforehand. |
-| tramsaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                 |
+| transaction.token                   | The address of the token to deposit.                                                                                                                                             |
+| transaction.amount                  | Amount of the token to deposit.                                                                                                                                                  |
+| transaction.to (optional)           | The address which will receive the deposited tokens on L2.                                                                                                                       |
+| transaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC20 token and didn't call the `approveERC20` function beforehand. |
+| transaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                 |
 | returns                             | `PriorityOpResponse` object.                                                                                                                                                      |
 
 > Example
@@ -218,8 +218,8 @@ const usdcDepositHandle = await wallet.deposit({
   amount: "10000000",
   approveERC20: true,
 });
-// Note that we wait not only for the L1 transaction to complete, but also for it to be
-// processed by zkSync. If we want to wait only for transaction to be processed on L1,
+// Note that we wait not only for the L1 transaction to complete but also for it to be
+// processed by zkSync. If we want to wait only for the transaction to be processed on L1,
 // we can use `await usdcDepositHandle.waitL1Commit()`
 await usdcDepositHandle.wait();
 
@@ -227,8 +227,8 @@ const ethDepositHandle = await wallet.deposit({
   token: zksync.utils.ETH_ADDRESS,
   amount: "10000000",
 });
-// Note that we wait not only for the L1 transaction to complete, but also for it to be
-// processed by zkSync. If we want to wait only for transaction to be processed on L1,
+// Note that we wait not only for the L1 transaction to complete but also for it to be
+// processed by zkSync. If we want to wait only for the transaction to be processed on L1,
 // we can use `await ethDepositHandle.waitL1Commit()`
 await ethDepositHandle.wait();
 ```
@@ -264,8 +264,8 @@ const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 const MLTT_ADDRESS = "0x690f4886c6911d81beb8130db30c825c27281f22";
 const addTokenHandle = await wallet.addToken(MLTT_ADDRESS);
 
-// Note that we wait not only for the L1 transaction to complete, but also for it to be
-// processed by zkSync. If we want to wait only for transaction to be processed on L1,
+// Note that we wait not only for the L1 transaction to complete but also for it to be
+// processed by zkSync. If we want to wait only for the transaction to be processed on L1,
 // we can use `await addTokenHandle.waitL1Commit()`
 addTokenHandle.wait();
 ```
@@ -454,7 +454,7 @@ Signer which is used to sign EIP712 transactions only. Its methods are mostly us
 
 ## `Signer`
 
-This class is to be used in browser environemt. The easiest way to construct it is to use the `getSigner` method of the `Web3Provider`. This structure extends `ethers.providers.JsonRpcSigner` and so supports all the methods available for it.
+This class is to be used in a browser environment. The easiest way to construct it is to use the `getSigner` method of the `Web3Provider`. This structure extends `ethers.providers.JsonRpcSigner` and so supports all the methods available for it.
 
 ```typescript
 import { Web3Provider } from "zksync-web3";
@@ -572,9 +572,9 @@ const transferHandle = signer.transfer({
 
 ## `L1Signer`
 
-This class is to be used in browser environemt to do zkSync-related operations on layer 1. This class extends `ethers.providers.JsonRpcSigner` and so supports all the methods available for it.
+This class is to be used in a browser environment to do zkSync-related operations on layer 1. This class extends `ethers.providers.JsonRpcSigner` and so supports all the methods available for it.
 
-The easiest way to construct it from the `Web3Provider`.
+The easiest way to construct it is from the `Web3Provider`.
 
 ```typescript
 import { Web3Provider, Provider, L1Signer } from "zksync-web3";
@@ -683,7 +683,7 @@ console.log(await signer.getBalanceL1());
 
 ### Depositing tokens to zkSync
 
-The wallet also have convenience method for briding tokens to zkSync:
+The wallet also has a convenience method for bridging tokens to zkSync:
 
 ```typescript
 async deposit(transaction: {
@@ -699,11 +699,11 @@ async deposit(transaction: {
 
 | Name                                | Description                                                                                                                                                                      |
 | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| tramsaction.token                   | The address of the token to deposit.                                                                                                                                             |
-| tramsaction.amount                  | Amount of the token to deposit.                                                                                                                                                  |
-| tramsaction.to (optional)           | The address which will receive the deposited tokens on L2.                                                                                                                       |
-| tramsaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC20 token and didn't call the `approveERC20` function beforehand. |
-| tramsaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                 |
+| transaction.token                   | The address of the token to deposit.                                                                                                                                             |
+| transaction.amount                  | Amount of the token to deposit.                                                                                                                                                  |
+| transaction.to (optional)           | The address which will receive the deposited tokens on L2.                                                                                                                       |
+| transaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC20 token and didn't call the `approveERC20` function beforehand. |
+| transaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                 |
 | returns                             | `PriorityOpResponse` object.                                                                                                                                                      |
 
 > Example
@@ -722,8 +722,8 @@ const usdcDepositHandle = await signer.deposit({
   amount: "10000000",
   approveERC20: true,
 });
-// Note that we wait not only for the L1 transaction to complete, but also for it to be
-// processed by zkSync. If we want to wait only for transaction to be processed on L1,
+// Note that we wait not only for the L1 transaction to complete but also for it to be
+// processed by zkSync. If we want to wait only for the transaction to be processed on L1,
 // we can use `await usdcDepositHandle.waitL1Commit()`
 await usdcDepositHandle.wait();
 
@@ -766,8 +766,8 @@ const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 const MLTT_ADDRESS = "0x690f4886c6911d81beb8130db30c825c27281f22";
 const addTokenHandle = await signer.addToken(MLTT_ADDRESS);
 
-// Note that we wait not only for the L1 transaction to complete, but also for it to be
-// processed by zkSync. If we want to wait only for transaction to be processed on L1,
+// Note that we wait not only for the L1 transaction to complete but also for it to be
+// processed by zkSync. If we want to wait only for the transaction to be processed on L1,
 // we can use `await addTokenHandle.waitL1Commit()`
 addTokenHandle.wait();
 ```

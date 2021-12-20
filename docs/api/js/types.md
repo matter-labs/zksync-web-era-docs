@@ -1,6 +1,6 @@
 # Types
 
-All the types which are used in the SDK can be referenced here:
+All the types which are used in the SDK are referenced here:
 
 ```typescript
 import { BytesLike, BigNumberish, providers } from "ethers";

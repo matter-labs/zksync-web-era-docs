@@ -1,10 +1,10 @@
 # Front-end integration
 
-In this section we will describe how to take most from the zkSync to provide the best UX.
+In this section, we will describe how to take most from the zkSync to provide the best UX.
 
-## Going to production quick
+## Going to production rightaway
 
-If your front-end code does not deploy new smart contracts, then no changes for the codebase required! All the existing SDKs/infrastructure will work out-of-box.
+If your front-end code does not deploy new smart contracts, then no changes for the codebase are required! All the existing SDKs/infrastructure will work out-of-box.
 
 ## Enabling zkSync features
 

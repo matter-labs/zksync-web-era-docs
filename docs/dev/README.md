@@ -14,7 +14,7 @@ block is published over the mainchain network in the cheap `calldata`.
 - Permissionless smart contracts in Solidity / Zinc.
 - No registration is required to send or receive funds.
 - Payments to existing Ethereum addresses (including smart-contracts).
-- Fees conveniently payable in the token being transferred.
+- Fees are conveniently payable in the token being transferred.
 
 ## zkSync 2.0
 
@@ -75,7 +75,7 @@ The protocol has 5 types of transactions.
 The ones that can only be enacted from layer 1 are:
 
 - `Deposit`. This operation moves funds from an L1 account to an L2 account.
-- `AddToken`. This operation adds a native ERC20 token to zkSync. <!-- TODO: Include link to the glossary of what is the native (or first-class citizen) erc20 token -->
+- `AddToken`. This operation adds a native ERC20 token to zkSync. You can learn more about native ERC20 tokens [here](./concepts.md#what-is-the-native-token-of-zksync).
 
 The ones that can be enacted from both layer 1 and layer 2 are:
 

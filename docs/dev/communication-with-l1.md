@@ -8,11 +8,11 @@ The version of the L1 <-> L2 communication described here does not support arbit
 
 ## Bridging native tokens to and from Ethereum
 
-Besides being responsible for block processing, the main zkSync contract also serves as the canonical bridge, which should be the detault for all deposits/withdrawals of native tokens.
+Besides being responsible for block processing, the main zkSync contract also serves as the canonical bridge, which should be the default for all deposits/withdrawals of native tokens.
 
 ### SDK
 
-All of the following methods are already supported in a convenient way in our [JavaScript SDK](../api/js).
+All of the following methods are already supported conveniently in our [JavaScript SDK](../api/js).
 
 ### Bridging ETH to zkSync
 
@@ -24,7 +24,7 @@ To bridge ETH to zkSync, you should call the following function of the zkSync sm
 function depositETH(address _zkSyncAddress) external payable
 ```
 
-All the passed `ETH` will go to the new address. Please note that this will not be the case in the future architecture, where some of `ETH` will go to the operator.
+All the passed `ETH` will go to the new address. Please note that this will not be the case in future architecture, where some of `ETH` will go to the operator.
 
 ### Bridging ERC20 to zkSync
 

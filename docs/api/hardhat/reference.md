@@ -2,13 +2,13 @@
 
 ## `@matterlabs/hardhat-zksync-solc`
 
-This plugin is used to provide convenient interface for compiling zkSync smart contracts.
+This plugin is used to provide a convenient interface for compiling zkSync smart contracts.
 
 ### Npm
 
 [@matterlabs/hardhat-zksync-solc](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-solc)
 
-You can add this plugin to your project with the following comand:
+You can add this plugin to your project with the following command:
 
 ```
 # Yarn
@@ -40,7 +40,7 @@ zksolc: {
 
 - `version` is a field with the version of the plugin.
 - `compilerSource` is a field with the compiler source. It can be either `docker` or `binary`. In the former case, the `dockerImage` value with the name of the compiler docker image should also be provided. In the latter case, the compiler binary should be provided in `$PATH`.
-- `optimizer` is a field which describes parameters of the optimizer.
+- `optimizer` is a field that describes the parameters of the optimizer.
 - `dockerImage` is the name of the docker image of the compiler.
 
 ### Commands
@@ -55,7 +55,7 @@ This plugin provides utilities for deploying smart contracts on zkSync with arti
 
 [@matterlabs/hardhat-zksync-deploy](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-deploy)
 
-You can add this plugin to your project with the following comand:
+You can add this plugin to your project with the following command:
 
 ```
 # Yarn
@@ -69,7 +69,7 @@ npm i -D @matterlabs/hardhat-zksync-deploy
 
 #### `Deployer`
 
-The main export is the `Deployer` class. It is used to wrap `zksync-web3` Wallet instance and provide convenient interface for deploying smart contracts based on the artifacts returned by the `@matterlabs/hardhat-zksync-solc` plugin.
+The main export is the `Deployer` class. It is used to wrap `zksync-web3` Wallet instance and provide a convenient interface for deploying smart contracts based on the artifacts returned by the `@matterlabs/hardhat-zksync-solc` plugin.
 
 ```typescript
 class Deployer {
@@ -148,5 +148,5 @@ zkSyncDeploy: {
 }
 ```
 
-- `zkSyncNetwork` is a field with the url of the zkSync node.
-- `ethNetwork` is a field with the url of the ethereum node. You can also provide network name (e.g. `rinkeby`) as the value of this field. In this case, the default `ethers` provider for the network will be used.
+- `zkSyncNetwork` is a field with the URL of the zkSync node.
+- `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `rinkeby`) as the value of this field. In this case, the default `ethers` provider for the network will be used.

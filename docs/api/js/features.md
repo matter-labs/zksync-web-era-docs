@@ -6,15 +6,15 @@ While zkSync is mostly Web3-compatible, it has some differences compared to Ethe
 - Deployment transactions require the contracts' bytecode to be passed in a separate field.
 - The fee system is somewhat different.
 
-This requires us to extend the standard Ethereum transactoins with new custom fields. We call such extended transactions EIP712 transactions, since we use [EIP712](https://eips.ethereum.org/EIPS/eip-712) to sign them. You can look at the internal structure of the EIP712 transactions [here](.,/api#eip712).
+This requires us to extend the standard Ethereum transactions with new custom fields. We call such extended transactions EIP712 transactions since we use [EIP712](https://eips.ethereum.org/EIPS/eip-712) to sign them. You can look at the internal structure of the EIP712 transactions [here](.,/api#eip712).
 
 This document will focus solely on how to pass these arguments to the SDK.
 
 ## Overrides
 
-`ethers` has a notion of overrides. For any on-chain transaction, the `ethers` finds the optimal `gasPrice`, `gasLimit`, `nonce` and other important fields under the hood. But sometimes, you may have a need to explicitly provide these values (you want set a smaller `gasPrice` for instance or sign a transaction with future `nonce`)
+`ethers` has a notion of overrides. For any on-chain transaction, the `ethers` finds the optimal `gasPrice`, `gasLimit`, `nonce`, and other important fields under the hood. But sometimes, you may have a need to explicitly provide these values (you want to set a smaller `gasPrice` for instance, or sign a transaction with future `nonce`)
 
-In this case you can provide an `Overrides` object as the last parameter. There you can supply fields like `gasPrice`, `gasLimit`, `nonce` etc.
+In this case, you can provide an `Overrides` object as the last parameter. There you can supply fields like `gasPrice`, `gasLimit`, `nonce` etc.
 
 In order to make the SDK as ergonomic as possible, we decided to use the overrides to supply zkSync-specific fields. To supply zkSync-specific fields, you need to pass the following override:
 
@@ -82,4 +82,4 @@ const txHandle = greeter.setGreeting("some new greeting", {
 });
 ```
 
-You can also check out our [tutorial](../../dev/tutorials/basic) on the full-fledged mini-dApp, where users can choose token to pay fee.
+You can also check out our [tutorial](../../dev/tutorials/basic) on the full-fledged mini-dApp, where users can choose token to pay the fee.

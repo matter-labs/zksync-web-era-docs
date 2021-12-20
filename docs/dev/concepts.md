@@ -44,8 +44,10 @@ As stated above, blocks are created by the operators. At this time zkSync is sol
 
 zkSync has no "native" token and the fees can be paid in ERC20s. In order to allow easy and secure bridging of ERC20 tokens between layer 1 and layer 2, zkSync provides a canonical bridge within its smart contract. Tokens, which are bridged this way have the same address on zkSync as on layer 1 and all of them have the same standard ERC20 smart contract code on layer 2. 
 
-We will call such tokens *native* or *first-class citzen*, since they are managed on the protocol level. Anyone can permissionlessly add a new native token to zkSync. Thus, even though technically any of these tokens can be used to pay transaction fees, the operator may decide which of the tokens it wants to accept for fee payment, removing the chance of exploitation using worthless, recently created ERC20 tokens.
+We will call such tokens *native* or *first-class citizen*, since they are managed on the protocol level. Anyone can in a permissionless way add a new native token to zkSync. Thus, even though technically any of these tokens can be used to pay transaction fees, the operator may decide which of the tokens it wants to accept for fee payment, removing the chance of exploitation using worthless, recently created ERC20 tokens.
 
 ## What is zkPorter?
 
-zkPorter is an extension of the zkSync protocol, which is just like zkRollups is secured by the validity proofs, but unlike zkRollups uses a separate decentralized network of guardians to secure data availability. Without need to publish data on Ethereum, zkPorter will provide transaction fees of a few cents for its users, while maintaining security guarantees much stronger than sidechains.
+zkPorter is an extension of the zkSync protocol, which is just like zkRollups is secured by the validity proofs, but unlike zkRollups uses a separate decentralized network of guardians to secure data availability. Without the need to publish data on Ethereum, zkPorter will provide transaction fees of a few cents for its users, while maintaining security guarantees much stronger than sidechains.
+
+The key point is that zkRollup part and the zkPorter parts of zkSync will be completely composable, e.g. smart contracts from one shard will be able to call smart contracts in the other one. 

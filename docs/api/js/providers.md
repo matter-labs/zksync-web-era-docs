@@ -1,19 +1,19 @@
 # Providers
 
-Providers are objects that wrap interaction with the zkSync node. If you are new to concept of providers in `ethers`, you should check out their docs [here](https://docs.ethers.io/v5/api/providers).
+Providers are objects that wrap interaction with the zkSync node. If you are new to the concept of providers in `ethers`, you should check out their docs [here](https://docs.ethers.io/v5/api/providers).
 
 zkSync supports fully supports Ethereum Web3 API, so you can use the provider objects from ethers.js. However, zkSync API provides some additional JSON-RPC methods, which allow:
 
 - Easily track L1<->L2 transactions.
-- Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use-cases may require to track "finalized" transactions only.
-- Get balance of any native ERC20 token.
+- Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use-cases may require tracking "finalized" transactions only.
+- Get the balance of any native ERC20 token.
 
 And much more! Generally, you can providers from `ethers` for a quick start, but switch to providers from `zksync-web3` library later on.
 
 `zksync-web` library exports two types of providers:
 
 - `Provider` which inherits from the `ethers`'s `JsonRpcProvider` and provides access to all the zkSync JSON-RPC endpoints.
-- `Web3Provider` which extends the `Provider` class by making it more compatible with Web3 wallets. This is the type of the wallet which should be used for browser integration.s
+- `Web3Provider` which extends the `Provider` class by making it more compatible with Web3 wallets. This is the type of wallet that should be used for browser integrations.
 
 ## `Provider`
 
@@ -45,8 +45,8 @@ const provider = new Provider("https://z2-dev-api.zksync.dev");
 
 ### `getBalance`
 
-Returns balance of a user for a certain blockTag and a native token.
-In order to check balance in `ETH` you can either omit the last argument or supply [ETH_ADDRESS](./utils/#eth-address) provided in the `utils` object.
+Returns the balance of a user for a certain block tag and a native token.
+In order to check the balance in `ETH` you can either omit the last argument or supply [ETH_ADDRESS](./utils/#eth-address) provided in the `utils` object.
 
 Example:
 
@@ -102,9 +102,9 @@ console.log(await provider.getMainContractAddress());
 
 ### `getConfirmedTokens`
 
-Given `from` and `limit`, returns the information about the confirmed tokens with ids in the inverval `[from..from+limit-1]`. Confirmed tokens are native tokens which are considered legit by the zkSync team. This method will be mostly used in zkSync wallet interface. 
+Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally. 
 
-The tokens are returned in alphabetical order by their symbol, so basically token id is position in alphabetically sorted array of tokens.
+The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically sorted array of tokens.
 
 ```typescript
 async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[]>
@@ -162,7 +162,7 @@ async getTokenPrice(token: Address): Promise<string>
 | Name    | Description                                                                         |
 | ------- | ----------------------------------------------------------------------------------- |
 | token   | The address of the token.                                                           |
-| returns | `string` value of the teken price.  |
+| returns | `string` value of the token price.  |
 
 > Example
 
@@ -250,7 +250,7 @@ console.log(await provider.getL1Withdrawal(WITHDRAWAL_TX_HASH));
 
 ## `Web3Provider`
 
-A class which should be used for web3 browser wallet integrations, adapted for easy compatibility with Metamask, WalletConnect and other popular browser wallets.
+A class that should be used for web3 browser wallet integrations, adapted for easy compatibility with Metamask, WalletConnect, and other popular browser wallets.
 
 ### Creating `Web3Provider`
 
@@ -264,7 +264,7 @@ constructor(provider: ExternalProvider, network?: ethers.providers.Networkish)
 
 | Name               | Description                                                                                                        |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| provider           | The `ethers.providers.ExternalProvider` class instance. For instance, in case of Metamask it is `window.ethereum`. |
+| provider           | The `ethers.providers.ExternalProvider` class instance. For instance, in the case of Metamask it is `window.ethereum`. |
 | network (optional) | The description of the network.                                                                                    |
 | returns            | `Provider` object.                                                                                                 |
 
