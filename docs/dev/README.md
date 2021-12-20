@@ -3,7 +3,7 @@
 **zkSync** is a trustless protocol that utilises [zkRollup technology](/faq/tech.md#zk-rollup-architecture) to provide scalable low-cost payments on Ethereum. It uses zero-knowledge proofs to store all funds in a smart
 contract on the mainchain, while computation and storage are performed off-chain.
 
-For every Rollup block, a state
+For every rollup block, a state
 transition zero-knowledge proof (SNARK) is generated and verified by the mainchain contract. This SNARK includes the
 proof of the validity of every single transaction in the Rollup block. Additionally, the public data update for every
 block is published over the mainchain network in the cheap `calldata`.
@@ -38,8 +38,6 @@ Please, **DO NOT** share this documentation with anyone outside of your team.
 Some experience with the zkSync 1.x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are very different systems, and the experience with the latter is not needed to build on zkSync 2.0.
 
 If you do have experience building on zkSync 1.x, [here](./v1-vs-v2.md) is a guide on the notable differences.
-
-If you don't, all the needed information is provided in the [zkSync basics guide](#zksync-basics).
 
 ### What do I need to start building?
 

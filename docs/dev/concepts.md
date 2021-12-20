@@ -28,11 +28,11 @@ On zkSync finality of a block of transaction is defined by either of the three s
 
 - `Processed`. The transaction is proceesed by the server and is confirmed to be included in the next block.
 - `Committed`. The transaction state diffs were published on Ethereum.
-- `Finalized`. The SNARK validity has been submitted. After this step, the transaction is considered to be final. Please note that since zkSync is layer 2 over Ethereum, you should also wait until the finalization transaction becomes final on Ethereum as well.
+- `Finalized`. The SNARK validity proof has been submitted and verified by the smart contract. After this step, the transaction is considered to be final. Please note that since zkSync is a layer 2 over Ethereum, so you should also wait until the verification transaction becomes final on Ethereum as well.
 
-At the moment, when a user sends a transaction, zkSync waits for the entire block to be filled, meaning finality time may take longer depending on the volume of transactions being submitted via zkSync. As thoroughput increases, the finality time will subsequently decrease. So the typical time for a transaction to go from `Processed` to `Finalized` is a couple of hours.
+At the moment, when a user sends a transaction, zkSync waits for the entire block to be filled, meaning finality time may take longer depending on the volume of transactions being submitted via zkSync. As thoroughput increases, the finality time will subsequently decrease. The typical time for a transaction to go from `Processed` to `Finalized` is a couple of hours.
 
-Please note, that for developer convenience, we will usually treat the `Processed` and `Committed` states as a single stage since they have no different from the UX/DexEx standpoints.
+Please note, that for developer convenience, we will usually treat the `Processed` and `Committed` states as a single stage since they have no difference from the UX/DexEx standpoints.
 
 ## What are operators?
 
@@ -46,7 +46,7 @@ As stated above, blocks are created by the operators. At this time zkSync is sol
 
 zkSync has no "native" token and the fees can be paid in ERC20s. In order to allow easy and secure bridging of ERC20 tokens between layer 1 and layer 2, zkSync provides a canonical bridge within its smart contract. Tokens, which are bridged this way have the same address on zkSync as on layer 1 and all of them have the same standard ERC20 smart contract code on layer 2.
 
-We will call such tokens _native_ or _first-class citizen_, since they are managed on the protocol level. Anyone can in a permissionless way add a new native token to zkSync. Thus, even though technically any of these tokens can be used to pay transaction fees, the operator may decide which of the tokens it wants to accept for fee payment, removing the chance of exploitation using worthless, recently created ERC20 tokens.
+We call such tokens _native_ or _first-class citizen_, since they are managed on the protocol level. Anyone can in a permissionless way add a new native token to zkSync. Thus, even though technically any of these tokens can be used to pay transaction fees, the operator may decide which of the tokens it wants to accept for fee payment, removing the chance of exploitation using worthless, recently created ERC20 tokens.
 
 ## What transaction types does zkSync support?
 
@@ -66,6 +66,6 @@ The ones that can be enacted from both layer 1 and layer 2 are:
 
 ## What is zkPorter?
 
-zkPorter is an extension of the zkSync protocol, which is just like zkRollups is secured by the validity proofs, but unlike zkRollups uses a separate decentralized network of guardians to secure data availability. Without the need to publish data on Ethereum, zkPorter will provide transaction fees of a few cents for its users, while maintaining security guarantees much stronger than sidechains.
+zkPorter is an extension of the zkSync protocol, which is just like zkRollup is secured by the validity proofs, but unlike zkRollup it uses a separate decentralized network of guardians to secure data availability. Without the need to publish data on Ethereum, zkPorter will provide transaction fees of a few cents for its users, while maintaining security guarantees much stronger than sidechains.
 
-The key point is that zkRollup part and the zkPorter parts of zkSync will be completely composable, e.g. smart contracts from one shard will be able to call smart contracts in the other one.
+The key point is that zkRollup part and the zkPorter parts of zkSync will be composable, e.g. smart contracts from one shard will be able to call smart contracts in the other one.
