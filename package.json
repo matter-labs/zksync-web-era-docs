@@ -38,7 +38,7 @@
     "cspell": "cspell docs/**/*.md",
     "md:lint": "markdownlint docs",
     "md:deadlinks": "check-md",
-    "ci": "yarn run fmt:check; yarn run cspell; yarn run md:lint; yarn run md:deadlinks",
+    "ci": "yarn run fmt:check; yarn run cspell; yarn run md:lint;",
     "zk-ci-prepare": "yarn ci && yarn docs:build"
   },
   "check-md": {
