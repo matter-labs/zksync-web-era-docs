@@ -48,6 +48,22 @@ zkSync has no "native" token and the fees can be paid in ERC20s. In order to all
 
 We will call such tokens _native_ or _first-class citizen_, since they are managed on the protocol level. Anyone can in a permissionless way add a new native token to zkSync. Thus, even though technically any of these tokens can be used to pay transaction fees, the operator may decide which of the tokens it wants to accept for fee payment, removing the chance of exploitation using worthless, recently created ERC20 tokens.
 
+## What transaction types does zkSync support?
+
+zkSync supports 5 types of transactions.
+
+The ones that can only be enacted from layer 1 are:
+
+- `Deposit`. This operation moves funds from an L1 account to an L2 account.
+- `AddToken`. This operation adds a native ERC20 token to zkSync. You can learn more about native ERC20 tokens [here](./concepts.md#what-is-the-native-token-of-zksync).
+
+The ones that can be enacted from both layer 1 and layer 2 are:
+
+- `Deploy`. This operation stores the bytecode of the contract in the zkSync network and assigns it an address
+  through which the contract can be accessed.
+- `Execute`. This operation executes a smart contract method.
+- `Withdraw`. This operation moves funds from an L2 account to an L1 account. _Most likely will be replaced with a special `Execute` call soon._
+
 ## What is zkPorter?
 
 zkPorter is an extension of the zkSync protocol, which is just like zkRollups is secured by the validity proofs, but unlike zkRollups uses a separate decentralized network of guardians to secure data availability. Without the need to publish data on Ethereum, zkPorter will provide transaction fees of a few cents for its users, while maintaining security guarantees much stronger than sidechains.

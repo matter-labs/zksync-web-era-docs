@@ -21,7 +21,7 @@ block is published over the mainchain network in the cheap `calldata`.
 **zkSync 2.0** is the new version of the protocol, which is the first ZK Rollup to natively support Solidity smart contract development.
 
 - Want to start building right now? Head over to the [quickstart guide](#developer-quickstart).
-- New to rollups and want to learn more? Here is the [Intro to zkSync](./concepts).
+- New to rollups and want to learn more? Here is the [intro to zkSync](./concepts).
 
 ::: warning Closed testnet
 
@@ -54,11 +54,7 @@ Check out our step-by-step [tutorial](./tutorials/basic), where you will learn:
 - How to install zkSync hardhat plugin and deploy smart contracts with it.
 - How to build front-end for your dApp using `zksync-web3` library.
 
-## zkSync basics
-
-New to zkSync or zkRollups in general? Go through our
-
-### Transaction types
+<!-- ### Transaction types -->
 
 <!--
 
@@ -69,17 +65,3 @@ The main part of zkSync 2.0 is the state tree. It's a sparse Merkle tree with a 
 _Note:_ Each account exists in each subtree at the same time, e.g. account can have its funds stored in cold reserve in the zkRollup part and have all trading done on the zkPorter side.
 
 -->
-
-The protocol has 5 types of transactions.
-
-The ones that can only be enacted from layer 1 are:
-
-- `Deposit`. This operation moves funds from an L1 account to an L2 account.
-- `AddToken`. This operation adds a native ERC20 token to zkSync. You can learn more about native ERC20 tokens [here](./concepts.md#what-is-the-native-token-of-zksync).
-
-The ones that can be enacted from both layer 1 and layer 2 are:
-
-- `Deploy`. This operation stores the bytecode of the contract in the zkSync network and assigns it an address
-  through which the contract can be accessed.
-- `Execute`. This operation executes a smart contract method.
-- `Withdraw`. This operation moves funds from an L2 account to an L1 account. _Most likely will be replaced with a special `Execute` call soon._
