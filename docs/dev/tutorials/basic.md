@@ -281,10 +281,6 @@ All of our code will be written in the `./src/App.vue`. All the front-end code h
 initializeProviderAndSigner() {
     // TODO: initialize provider and signer based on `window.ethereum`
 },
-async getTokens() {
-    // TODO: return the list of tokens in zkSync
-    return [];
-},
 async getGreeting() {
     // TODO: return the current greeting
     return "";
