@@ -10,32 +10,47 @@ However, zkSync has its own specifics which this section is all about.
 
 ## EIP712
 
-To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also have the `eip712_meta` field of type `Eip712Meta`, which contains additional L2-specific data (`fee_token`, etc). To let the server recognize EIP712 transactions, the `transaction_type` field should be equal to `112` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
-
-`Eip712Meta` type has the following fields:
+To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also they have fields which contains additional L2-specific data (`fee_token`, etc):
 
 ```json
-{
-  "fee": {
-    "fee_token": "0x0000...0000",
-    "ergs_per_storage_limit": 100000,
-    "ergs_per_pubdata_limit": 1000
-  },
-  "time_range": {
-    "from": 0,
-    "until": 10101010
-  },
-  "withdraw_token": "0x00000...00000",
-  "factory_deps": ["0x..."]
-}
+"fee": {
+  "fee_token": "0x0000...0000",
+  "ergs_per_storage_limit": 100000,
+  "ergs_per_pubdata_limit": 1000
+},
+"time_range": {
+  "from": 0,
+  "until": 10101010
+},
+"withdraw_token": "0x00000...00000",
+"factory_deps": ["0x..."]
 ```
 
 - `fee` is a field that describes the token in which the fee is to be paid, and defines the limits on the price in `ergs` per storage slot write and per publishing a single pubdata byte.
 - `time_range` is a field that denotes the timeframe, within which the tx is valid. _Most likely will be removed after the testnet._
 - `withdraw_token` is a field that should be only supplied for `Withdraw` operations. _Most likely will be removed after the testnet._
-- `factory_deps` is a field that should only be supplied for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecode of the contracts which can be deployed by it.
+- `factory_deps` is a field that should be a non-empty array of `bytes` only for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
 
-<!-- TODO: add example -->
+To let the server recognize EIP712 transactions, the `transaction_type` field is equal to `112` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
+
+Instead of signing the RLP-encoded transaction, the user signs the following typed EIP712 structure:
+
+| Field name     | Type      |
+| -------------- | --------- |
+| to             | `address` |
+| nonce          | `uint256` |
+| value          | `uint256` |
+| data           | `bytes`   |
+| gasPrice       | `uint256` |
+| gasLimit       | `uint256` |
+| ergsPerStorage | `uint256` |
+| ergsPerPubdata | `uint256` |
+| feeToken       | `address` |
+| withdrawToken  | `address` |
+| validFrom      | `uint64`  |
+| validUntil     | `uint64`  |
+
+These fields are conveniently handled by our [SDK](./js/features).
 
 ## zkSync-specific JSON-RPC methods
 

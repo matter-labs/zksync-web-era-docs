@@ -163,7 +163,7 @@ const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMA
 console.log(`The deployment will cost ${parsedFee} USDC`);
 ```
 
-Please note that the fees on testnet do not correctly represent the fees on the future mainnet release.
+Please note that the fees on the testnet do not correctly represent the fees on the future mainnet release.
 
 Now, we need to pass `USDC` as the `feeToken` to the deployment transaction:
 

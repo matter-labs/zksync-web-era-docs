@@ -1,15 +1,15 @@
 # Getting started
 
-[Hardhat](https://hardhat.org) is an Ethereum development environment, designed for easy smart contract development on Solidity. One of its most prominent features is extendability: you can easily add new plugins to your hardhat project.
+[Hardhat](https://hardhat.org) is an Ethereum development environment, designed for easy smart contract development in Solidity. One of its most prominent features is extendability: you can easily add new plugins to your hardhat project.
 
 zkSync supports two plugins for hardhat:
 
 - `@matterlabs/hardhat-zksync-solc` for smart contract compilation.
 - `@matterlabs/hardhat-zksync-deploy` for smart contract deployment.
 
-If you learn more about hardhat itself, check out their [documentation](https://hardhat.org/getting-started/).
+If you want learn more about hardhat itself, check out their [documentation](https://hardhat.org/getting-started/).
 
-We will show you how to set up a zkSync hardhat project from scratch.
+This tutorial shows how to set up a zkSync hardhat project from scratch.
 
 ## Initializing the project
 
@@ -183,7 +183,7 @@ const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMA
 console.log(`The deployment will cost ${parsedFee} USDC`);
 ```
 
-Please note that the fees on testnet do not correctly represent the fees on the future mainnet release.
+Please note that the fees on the testnet do not correctly represent the fees on the future mainnet release.
 
 Now, we need to pass `USDC` as the `feeToken` to the deployment transaction:
 
