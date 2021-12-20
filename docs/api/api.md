@@ -104,7 +104,7 @@ None.
 
 ### `zks_getL1WithdrawalTx`
 
-Given the hash of the withdrawal tx, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
+Given the hash of the withdrawal tx on layer 2, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
 
 ### Input parameters
 

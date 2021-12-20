@@ -6,7 +6,7 @@ While zkSync is mostly Web3-compatible, it has some differences compared to Ethe
 - Deployment transactions require the contracts' bytecode to be passed in a separate field.
 - The fee system is somewhat different.
 
-This requires us to extend the standard Ethereum transactions with new custom fields. We call such extended transactions EIP712 transactions since we use [EIP712](https://eips.ethereum.org/EIPS/eip-712) to sign them. You can look at the internal structure of the EIP712 transactions [here](.,/api#eip712).
+These require us to extend standard Ethereum transactions with new custom fields. We call such extended transactions EIP712 transactions since we use [EIP712](https://eips.ethereum.org/EIPS/eip-712) to sign them. You can look at the internal structure of the EIP712 transactions [here](.,/api#eip712).
 
 This document will focus solely on how to pass these arguments to the SDK.
 
@@ -69,7 +69,7 @@ Override to deploy a contract with bytecode `0xcde...12` and enforce that the op
 
 ## See in action
 
-If you want to call a method `setGreeting` of an ethers `Contract` object called `greeter`, this would look the following way:
+If you want to call a method `setGreeting` of an `ethers` `Contract` object called `greeter`, this would look the following way:
 
 ```javascript
 // The `setGreeting` method has a single parameter -- new greeting

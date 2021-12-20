@@ -2,7 +2,7 @@
 
 ## Concept
 
-While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features like paying fees in other tokens requires providing additional fields to those that the Ethereum transactions have by default.
+While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features like paying fees in other tokens requires providing additional fields to those that Ethereum transactions have by default.
 
 To provide easy access to all of the features of zkSync 2.0, we created `zksync-web3` JavaScript SDK, which is made in a way that is has an interface very similar to those of [ethers](https://docs.ethers.io/v5/). In fact, `ethers` is a peer dependency of the library and most of the objects exported by `zksync-web3` (e.g. `Wallet`, `Provider` etc) inherit from the corresponding `ethers` objects and override only the fields that need to be changed.
 
@@ -15,16 +15,16 @@ yarn add zksync-web3
 yarn add ethers@5 # ethers is a peer dependency of zksync-web3
 ```
 
-Then you can import all the content of the `ethers` library and zkSync library with the following statement:
+Then you can import all the content of the `ethers` library and the `zksync-web3` library with the following statement:
 
 ```typescript
 import * as zksync from "zksync-web3";
 import * as ethers from "ethers";
 ```
 
-## Connecting to zkSync network
+## Connecting to zkSync
 
-To interact with zkSync network users need to know the endpoint of the operator node.
+To interact with the zkSync network users need to know the endpoint of the operator node.
 
 ```typescript
 // Currently, only one environment is supported.
@@ -40,10 +40,10 @@ Ethereum.
 const ethProvider = ethers.getDefaultProvider("rinkeby");
 ```
 
-## Creating a Wallet
+## Creating a wallet
 
 To control your account in zkSync, use the `zksync.Wallet` object. It can sign transactions with keys stored in
-`ethers.Wallet` and send transaction to zkSync network using `zksync.Provider`.
+`ethers.Wallet` and send transaction to the zkSync network using `zksync.Provider`.
 
 ```typescript
 // Derive zksync.Wallet from ethereum private key.
@@ -63,7 +63,7 @@ const deposit = await syncWallet.deposit({
 });
 ```
 
-**NOTE:** Each token inside zksync has an address. For ERC20 tokens this address coincides with the address in L1, except for ETH, the address `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` is used for it. To get the ETH address in
+**NOTE:** Each token inside zkSync has an address. For ERC20 tokens this address coincides with the address in L1, except for ETH, the address `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` is used for it. To get the ETH address in
 zkSync, we can use the constant `ETH_ADDRESS`.
 
 After the tx is submitted to the Ethereum node, we can track its status using the transaction handle:
@@ -86,7 +86,7 @@ const committedEthBalance = await syncWallet.getBalance(zksync.utils.ETH_ADDRESS
 const finalizedEthBalance = await syncWallet.getBalance(ETH_ADDRESS, "finalized");
 ```
 
-You can read more about what are committed and finalized blocks [here](../../dev/concepts.md#how-does-transaction-finality-work).
+You can read more about what committed and finalized blocks are [here](../../dev/concepts.md#how-does-transaction-finality-work).
 
 ## Performing a transfer
 
@@ -103,20 +103,16 @@ We are going to transfer `1 ETH` to another account and pay `1 USDC` as a fee to
 
 ```typescript
 const amount = ethers.utils.parseEther("1.0");
-// get amount in wei by the decimals parameter for the token
-const fee = ethers.utils.parseUnits("1.0", 18);
 
 const transfer = await syncWallet.transfer({
   to: syncWallet2.address,
   token: zksync.utils.ETH_ADDRESS,
   amount,
   feeToken: "0xeb8f08a975ab53e34d8a0330e0d34de942c95926s", // USDC address
-  fee,
 });
 ```
 
-**Note:** that setting fee and fee token manually is not required. If the `feeToken` field is omitted, then the `token` will
-be used to pay the fee. If the `fee` field is omitted, SDK will choose the lowest possible fee acceptable by server:
+**Note:** that supplying the `token` and `feeToken` fields manually is not required. The default value for both of these fields is `ETH`.
 
 ```typescript
 const amount = ethers.utils.parseEther("1.0");
@@ -152,10 +148,10 @@ const withdrawL2 = await syncWallet.withdraw({
 });
 ```
 
-Assets will be withdrawn to the target wallet after the zero-knowledge proof of zkSync block with this operation is
+Assets will be withdrawn to the target wallet after the validity proof of the zkSync block with this transaction is
 generated and verified by the mainnet contract.
 
-We can wait until the zero knowledge proof verification is complete:
+We can wait until the validity proof verification is complete:
 
 ```typescript
 await withdrawL2.waitFinalize();
@@ -163,11 +159,11 @@ await withdrawL2.waitFinalize();
 
 ## Deploying a contract
 
-A guide on deploying using our hardhat plugin is available [here](../hardhat).
+A guide on deploying smart contracts using our hardhat plugin is available [here](../hardhat).
 
-## Add new token
+## Adding a new native token
 
-Adding tokens to zksync is completely permissionless, any user can add any ERC20 token from Ethereum to zkSync as the
+Adding tokens to zksync is completely permissionless, any user can add any ERC20 token from Ethereum to zkSync as a
 first class citizen token. After adding a token, it can be used in all types of transactions.
 
 Make sure you are connected to an L1 provider to use this method.

@@ -106,4 +106,4 @@ There are also two types of transactions, related to bridging native tokens to z
 
 ## Unsupported opcodes
 
-zkSync does not support `selfdestruct`. 
+zkSync does not support `selfdestruct`.

@@ -3,7 +3,7 @@
 `zksync-web3` exports four classes that can sign transactions on zkSync:
 
 - `Wallet` class is an extension of the `ethers.Wallet` with additional zkSync features.
-- `EIP712Signer` class which is used to sign `EIP712`-typed zkSync transactions.
+- `EIP712Signer` class that is used to sign `EIP712`-typed zkSync transactions.
 - `Signer` and `L1Signer` classes, which should be used for browser integration.
 
 ## `Wallet`
@@ -22,12 +22,12 @@ constructor(
 
 #### Inputs and outputs
 
-| Name                  | Description                                           |
-| --------------------- | ----------------------------------------------------- |
-| privateKey            | The Ethereum private key of the account.              |
-| providerL2 (optional) | zkSync node provider. Needed to interact with zkSync. |
-| providerL1 (optional) | Ethereum node provider. Needed to interact with L1.   |
-| returns               | `Wallet` object.                                      |
+| Name                  | Description                                                       |
+| --------------------- | ----------------------------------------------------------------- |
+| privateKey            | The Ethereum private key of the account.                          |
+| providerL2 (optional) | A zkSync node provider. Needed for interaction with zkSync.       |
+| providerL1 (optional) | An Ethereum node provider. Needed Needed for interaction with L1. |
+| returns               | The new `Wallet` object.                                          |
 
 > Example
 
@@ -48,7 +48,7 @@ const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 ### Connecting to zkSync provider
 
-To interact with zkSync network, a `Wallet` object should be connected to a `Provider` by either passing it to the constructor or with the `connect` method.
+To interact with the zkSync network, the `Wallet` object should be connected to a `Provider` by either passing it to the constructor or with the `connect` method.
 
 ```typescript
 connect(provider: Provider): Wallet
@@ -58,7 +58,7 @@ connect(provider: Provider): Wallet
 
 | Name     | Description                                 |
 | -------- | ------------------------------------------- |
-| provider | zkSync node provider.                       |
+| provider | A zkSync node provider.                     |
 | returns  | A new `Wallet` object, connected to zkSync. |
 
 > Example
@@ -84,7 +84,7 @@ connectToL1(provider: ethers.providers.Provider)
 
 | Name     | Description                                   |
 | -------- | --------------------------------------------- |
-| provider | Ethereum node provider.                       |
+| provider | An Ethereum node provider.                    |
 | returns  | A new `Wallet` object, connected to Ethereum. |
 
 > Example
@@ -99,7 +99,7 @@ const ethProvider = ethers.getDefaultProvider("rinkeby");
 const wallet = unconnectedWallet.connectToL1(ethProvider);
 ```
 
-It is possible to chain `connect` and `connectToL1` nethods:
+It is possible to chain `connect` and `connectToL1` methods:
 
 ```typescript
 const wallet = unconnectedWallet.connect(provider).connectToL1(ethProvider);
@@ -150,7 +150,7 @@ async approveERC20(
 | Name                 | Description                                                                      |
 | -------------------- | -------------------------------------------------------------------------------- |
 | token                | The Ethereum address of the token.                                               |
-| amount               | The amount of token to be approved.                                              |
+| amount               | The amount of the token to be approved.                                          |
 | overrides (optional) | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc. |
 | returns              | `ethers.providers.TransactionResponse` object.                                   |
 
@@ -194,8 +194,8 @@ async deposit(transaction: {
 | Name                                | Description                                                                                                                                                                     |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | transaction.token                   | The address of the token to deposit.                                                                                                                                            |
-| transaction.amount                  | Amount of the token to deposit.                                                                                                                                                 |
-| transaction.to (optional)           | The address which will receive the deposited tokens on L2.                                                                                                                      |
+| transaction.amount                  | The amount of the token to be deposited.                                                                                                                                        |
+| transaction.to (optional)           | The address that will receive the deposited tokens on L2.                                                                                                                       |
 | transaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC20 token and didn't call the `approveERC20` function beforehand. |
 | transaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                |
 | returns                             | `PriorityOpResponse` object.                                                                                                                                                    |
@@ -282,7 +282,7 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 | ------------------- | ------------------------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                                     |
 | blockTag (optional) | Which block should we check the balance on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The amount of the token the `Wallet`. has                                                                     |
+| returns             | The amount of the token the `Wallet` has.                                                                     |
 
 > Example
 
@@ -316,7 +316,7 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 | ------------------- | ------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                   |
 | blockTag (optional) | Which block should we check the balance on. The latest processed one is the default option. |
-| returns             | The amount of token the `Wallet` has on Ethereum.                                           |
+| returns             | The amount of the token the `Wallet` has on Ethereum.                                       |
 
 > Example
 
@@ -340,7 +340,7 @@ console.log(await wallet.getBalanceL1());
 
 ### Getting nonce
 
-`Wallet` also provided the `getNonce` method which is an alias for [getTransactionCount](https://docs.ethers.io/v5/api/signer/#Signer-getTransactionCount).
+`Wallet` also provides the `getNonce` method which is an alias for [getTransactionCount](https://docs.ethers.io/v5/api/signer/#Signer-getTransactionCount).
 
 ```typescript
 async getNonce(blockTag?: BlockTag): Promise<number>
@@ -351,7 +351,7 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 | Name                | Description                                                                                               |
 | ------------------- | --------------------------------------------------------------------------------------------------------- |
 | blockTag (optional) | Which block should we get the nonce on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The amount of token the `Wallet` has.                                                                     |
+| returns             | The amount of the token the `Wallet` has.                                                                 |
 
 > Example
 
@@ -371,9 +371,9 @@ console.log(await wallet.getNonce());
 
 ### Transfering tokens inside zkSync
 
-Please note that for now unlike Ethereum, zkSync does not support native transfers, i.e. the `value` field of all transactions is equal to `0`. All the token transfers are done through ERC20 `transfer` function call.
+Please note that for now, unlike Ethereum, zkSync does not support native transfers, i.e. the `value` field of all transactions is equal to `0`. All the token transfers are done through ERC20 `transfer` function calls.
 
-But for convenience, `Wallet` object has `transfer` method, which can transfer any `ERC20` tokens.
+But for convenience, the `Wallet` class has `transfer` method, which can transfer any `ERC20` tokens.
 
 ```typescript
 async transfer(tx: {
@@ -394,11 +394,11 @@ async transfer(tx: {
 | tx.to                 | The address of the recipient.                                                                               |
 | tx.amount             | The amount of the token to transfer.                                                                        |
 | token (optional)      | The address of the token. `ETH` by default.                                                                 |
-| feeToken (optional)   | The address of the token which is used to pay fees. `ETH` by default.                                       |
+| feeToken (optional)   | The address of the token that is used to pay fees. `ETH` by default.                                        |
 | nonce (optional)      | The nonce to be supplied. If not provided, the `wallet` will fetch the nonce in the latest committed block. |
 | validFrom (optional)  | The UNIX timestamp from which the transaction is valid.                                                     |
 | validUntil (optional) | The UNIX timestamp until which the transaction is valid.                                                    |
-| returns               | `Wallet` object.                                                                                            |
+| returns               | An `ethers.ContractTransaction` object                                                                      |
 
 > Example
 
@@ -429,9 +429,9 @@ You can get an `ethers.Wallet` object with the same private key with `ethWallet(
 
 #### Inputs and outputs
 
-| Name    | Description                                       |
-| ------- | ------------------------------------------------- |
-| returns | `ethers.Wallet` object with the same private key. |
+| Name    | Description                                          |
+| ------- | ---------------------------------------------------- |
+| returns | An `ethers.Wallet` object with the same private key. |
 
 > Example
 
@@ -450,7 +450,7 @@ const ethWallet = wallet.ethWallet();
 
 ## `EIP712Signer`
 
-Signer which is used to sign EIP712 transactions only. Its methods are mostly used internally. More examples are coming soon!
+The methods of this class are mostly used internally. The examples of using this class are coming soon!
 
 ## `Signer`
 
@@ -495,7 +495,7 @@ console.log(await signer.getBalance());
 
 ### Getting nonce
 
-`Wallet` also provided the `getNonce` method which is an alias for [getTransactionCount](https://docs.ethers.io/v5/api/signer/#Signer-getTransactionCount).
+The `Wallet` class also provides the `getNonce` method which is an alias for [getTransactionCount](https://docs.ethers.io/v5/api/signer/#Signer-getTransactionCount).
 
 ```typescript
 async getNonce(blockTag?: BlockTag): Promise<number>
@@ -506,7 +506,7 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 | Name                | Description                                                                                               |
 | ------------------- | --------------------------------------------------------------------------------------------------------- |
 | blockTag (optional) | Which block should we get the nonce on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The amount of token the `Wallet` has                                                                      |
+| returns             | The the `Wallet` has.                                                                                     |
 
 > Example
 
@@ -521,9 +521,9 @@ console.log(await signer.getNonce());
 
 ### Transfering tokens inside zkSync
 
-Please note that for now unlike Ethereum, zkSync does not support native transfers, i.e. the `value` field of all transactions is equal to `0`. All the token transfers are done through ERC20 `transfer` function call.
+Please note that for now, unlike Ethereum, zkSync does not support native transfers, i.e. the `value` field of all transactions is equal to `0`. All the token transfers are done through ERC20 `transfer` function calls.
 
-But for convenience, `Wallet` object has `transfer` method, which can transfer any `ERC20` tokens.
+But for convenience, the `Wallet` class has `transfer` method, which can transfer any `ERC20` tokens.
 
 ```typescript
 async transfer(tx: {
@@ -544,11 +544,11 @@ async transfer(tx: {
 | tx.to                 | The address of the recipient.                                                                               |
 | tx.amount             | The amount of the token to transfer.                                                                        |
 | token (optional)      | The address of the token. `ETH` by default.                                                                 |
-| feeToken (optional)   | The address of the token which is used to pay fees. `ETH` by default.                                       |
+| feeToken (optional)   | The address of the token that is used to pay fees. `ETH` by default.                                        |
 | nonce (optional)      | The nonce to be supplied. If not provided, the `wallet` will fetch the nonce in the latest committed block. |
 | validFrom (optional)  | The UNIX timestamp from which the transaction is valid.                                                     |
 | validUntil (optional) | The UNIX timestamp until which the transaction is valid.                                                    |
-| returns               | `Wallet` object.                                                                                            |
+| returns               | An `ethers.ContractTransaction` object.                                                                     |
 
 > Example
 
@@ -574,7 +574,7 @@ const transferHandle = signer.transfer({
 
 This class is to be used in a browser environment to do zkSync-related operations on layer 1. This class extends `ethers.providers.JsonRpcSigner` and so supports all the methods available for it.
 
-The easiest way to construct it is from the `Web3Provider`.
+The easiest way to construct it is from an `Web3Provider` object.
 
 ```typescript
 import { Web3Provider, Provider, L1Signer } from "zksync-web3";
@@ -601,7 +601,7 @@ async approveERC20(
 | Name                 | Description                                                                      |
 | -------------------- | -------------------------------------------------------------------------------- |
 | token                | The Ethereum address of the token.                                               |
-| amount               | The amount of token to be approved.                                              |
+| amount               | The amount of the token to be approved.                                          |
 | overrides (optional) | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc. |
 | returns              | `ethers.providers.TransactionResponse` object.                                   |
 
@@ -700,8 +700,8 @@ async deposit(transaction: {
 | Name                                | Description                                                                                                                                                                     |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | transaction.token                   | The address of the token to deposit.                                                                                                                                            |
-| transaction.amount                  | Amount of the token to deposit.                                                                                                                                                 |
-| transaction.to (optional)           | The address which will receive the deposited tokens on L2.                                                                                                                      |
+| transaction.amount                  | The amount of the token to be deposited.                                                                                                                                        |
+| transaction.to (optional)           | The address that will receive the deposited tokens on L2.                                                                                                                       |
 | transaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC20 token and didn't call the `approveERC20` function beforehand. |
 | transaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                |
 | returns                             | `PriorityOpResponse` object.                                                                                                                                                    |

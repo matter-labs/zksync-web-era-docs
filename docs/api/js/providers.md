@@ -2,22 +2,22 @@
 
 Providers are objects that wrap interaction with the zkSync node. If you are new to the concept of providers in `ethers`, you should check out their docs [here](https://docs.ethers.io/v5/api/providers).
 
-zkSync supports fully supports Ethereum Web3 API, so you can use the provider objects from ethers.js. However, zkSync API provides some additional JSON-RPC methods, which allow:
+zkSync fully supports Ethereum Web3 API, so you can use the provider objects from ethers.js. However, zkSync API provides some additional JSON-RPC methods, which allow:
 
 - Easily track L1<->L2 transactions.
 - Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use-cases may require tracking "finalized" transactions only.
 - Get the balance of any native ERC20 token.
 
-And much more! Generally, you can providers from `ethers` for a quick start, but switch to providers from `zksync-web3` library later on.
+And much more! Generally, you can use providers from `ethers` for a quick start, but switch to providers from `zksync-web3` library later on.
 
-`zksync-web` library exports two types of providers:
+The `zksync-web` library exports two types of providers:
 
-- `Provider` which inherits from the `ethers`'s `JsonRpcProvider` and provides access to all the zkSync JSON-RPC endpoints.
+- `Provider` which inherits from the `ethers`'s `JsonRpcProvider` and provides access to all of the zkSync JSON-RPC endpoints.
 - `Web3Provider` which extends the `Provider` class by making it more compatible with Web3 wallets. This is the type of wallet that should be used for browser integrations.
 
 ## `Provider`
 
-The most commonly used type of provider. It provides the same functionality as `ethers.providers.JsonRpcProvider`, but extends it with the zkSync-specific methods.
+This is the most commonly used type of provider. It provides the same functionality as `ethers.providers.JsonRpcProvider`, but extends it with the zkSync-specific methods.
 
 ### Creating provider
 
@@ -78,7 +78,7 @@ console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC
 console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5"));
 ```
 
-### Getting address of the zkSync smart contract
+### Getting the zkSync smart contract address
 
 ```typescript
 async getMainContractAddress(): Promise<string>
@@ -86,9 +86,9 @@ async getMainContractAddress(): Promise<string>
 
 #### Inputs and outputs
 
-| Name    | Description                           |
-| ------- | ------------------------------------- |
-| returns | Address of the zkSync smart contract. |
+| Name    | Description                               |
+| ------- | ----------------------------------------- |
+| returns | The address of the zkSync smart contract. |
 
 > Example
 
@@ -176,7 +176,7 @@ console.log(await provider.getTokenPrice(USDC_ADDRESS));
 
 ### `getTransactionStatus`
 
-Given transaction hash, returns the status of the transaction.
+Given a transaction hash, returns the status of the transaction.
 
 ```typescript
 async getTransactionStatus(txHash: string): Promise<TransactionStatus>
@@ -199,7 +199,7 @@ console.log(await provider.getTransactionStatus(TX_HASH));
 
 ### `getTransaction`
 
-Given transaction hash, returns zkSync L2 transaction response object.
+Given a transaction hash, returns zkSync L2 the transaction response object.
 
 ```typescript
 async getTransaction(hash: string | Promise<string>): Promise<TransactionResponse>
@@ -227,7 +227,7 @@ await txHandle.waitFinalize();
 
 ### `getL1Withdrawal`
 
-Given the hash of the withdrawal tx, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
+Given the hash of the withdrawal tx on layer 2, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
 
 ```typescript
 async getL1Withdrawal(withdrawalHash: string): Promise<string|null>
@@ -278,7 +278,7 @@ const provider = new Web3Provider(window.ethereum);
 
 ### Getting zkSync Signer
 
-Returns signer which can be used to sign zkSync transactions. More details on the `Signer` class can be found in the next [section](./accounts.md#signer).
+Returns a `Signer` object that can be used to sign zkSync transactions. More details on the `Signer` class can be found in the next [section](./accounts.md#signer).
 
 #### Inputs and outputs
 
