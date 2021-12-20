@@ -231,11 +231,9 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 ## Front-end integration
 
-Let's create another folder `greeter-front-end`, where we will build the front-end for our dApp. In this tutorial, we will use `Vue` as the framework of our choice, but the process will be quite similar regardless of the framework you use.
-
 ### Setting up the project
 
-To focus on the specifics of using the `zksync-web3` SDK, we created a template, with all the HTML & CSS ready to use.
+In this tutorial, we will use `Vue` as the web framework of our choice, but the process will be quite similar regardless of the framework you use. To focus on the specifics of using the `zksync-web3` SDK, we created a template, with all the front-end work done. The only thing left is to interact with zkSync smart contract.
 
 Clone it:
 
@@ -251,7 +249,7 @@ yarn
 yarn serve
 ```
 
-By default, the page should be running at `http://localhost:8080`. You can open that URL in your browser to see the first page.
+By default, the page should be running at `http://localhost:8080`. You can open that URL in your browser to see the page.
 
 ### Connecting to Metamask & bridging tokens to zkSync
 
@@ -277,7 +275,7 @@ You can get some tokens on zkSync by bridging them through the wallet.
 
 ### Project structure
 
-All of our code will be written in the `./src/App.vue`. All the front-end code has been written. The only thing left is to fill out the TODO-s:
+All of our code will be written in the `./src/App.vue`. All the front-end code has been done. The only thing left is to fill out the TODO-s about interaction with zkSync:
 
 ```javascript
 initializeProviderAndSigner() {
@@ -305,9 +303,7 @@ async changeGreeting() {
         // TODO: Submit the transaction
         this.txStatus = 2;
 
-        // TODO: Wait for transaction compilation
-        await txHandle.wait();
-
+        // TODO: Wait for transaction compilation 
         this.txStatus = 3;
 
         // Update greeting
@@ -328,6 +324,20 @@ async changeGreeting() {
 },
 ```
 
+On the top of the `<script>` tag, you may see the parts where we should fill in the address of the deployed `Greeter` contract and the path to its ABI. We will fill this fields in the following sections.
+
+```javascript
+// eslint-disable-next-line
+import { } from 'zksync-web3';
+// eslint-disable-next-line
+import { } from 'ethers';
+
+// eslint-disable-next-line
+const GREETER_CONTRACT_ADDRESS = ''; // TODO: insert the Greeter contract address here
+// eslint-disable-next-line
+const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contract ABI here 
+```
+
 ### Installing `zksync-web3`
 
 Run the following commands to install `zksync-web3` and `ethers`:
@@ -346,7 +356,7 @@ To interact with our smart contract, we also need its ABI.
 - You can get the contract's abi in the hardhat project folder in the `./artifacts/Greeter.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` created in the previous step.
 <!-- TODO: hopefully there will be a better way to get the Abi-->
 
-Set the `GREETER_CONTRACT_ABI` to require the api file.
+Set the `GREETER_CONTRACT_ABI` to require the ABI file.
 
 ```js
 // eslint-disable-next-line
@@ -361,7 +371,7 @@ Go to the `initializeProviderAndSigner` method in `./src/App.vue`. This method i
 
 In this method we should:
 
-- Initialize `Web3Provider` and `Signer` objects for interacting with zkSync
+- Initialize `Web3Provider` and `Signer` objects for interacting with zkSync.
 - Initialize `Contract` object to interact with the `Greeter` contract.
 
 Unfortunately, `Metamask` does not allow to call methods from `zks_` namespace. That's why we can not use provider obtained from `window.ethereum` for that purpose. We should either have a separate provider based on zkSync node or hardcode the tokens in the website. In this tutorial, we will create a provider, but using the injected `Web3` and hardcoded tokens may be more suitable in some production cases.
@@ -369,16 +379,15 @@ Unfortunately, `Metamask` does not allow to call methods from `zks_` namespace. 
 Let's add the necessary dependencies:
 
 ```javascript
-import { Contract, Web3Provider, Provider } from "zksync-web3";
+import { Contract, Web3Provider } from "zksync-web3";
 ```
 
 The first two steps can be done the following way:
 
 ```javascript
 initializeProviderAndSigner() {
-    this.provider = new Provider('https://z2-dev-api.zksync.dev');
-    // Note that we still need to get the Metamask signer
-    this.signer = (new Web3Provider(window.ethereum)).getSigner();
+    this.provider = new Web3Provider(window.ethereum);
+    this.signer = this.provider.getSigner();
 
     this.contract = new Contract(
         GREETER_CONTRACT_ADDRESS,
@@ -393,9 +402,6 @@ initializeProviderAndSigner() {
 Now we should fill the methods for retrieving the tokens and retrieving the greeting from smart contract:
 
 ```javascript
-async getTokens() {
-    this.tokens = await this.provider.getConfirmedTokens.getTokens();
-}
 async getGreeting() {
     // Note that smart contract calls work the same way as in `ethers`
     this.greeting = await this.contract.greet();
@@ -415,9 +421,6 @@ initializeProviderAndSigner() {
         GREETER_CONTRACT_ABI,
         this.signer
     );
-},
-async getTokens() {
-    return await this.provider.getConfirmedTokens();
 },
 async getGreeting() {
     return await this.contract.greet();
@@ -455,7 +458,7 @@ async getFee() {
             feeToken: this.selectedToken.address
         }
     });
-    // Getting the price of
+    // Getting the gas price per one erg. For now, it is the same for all tokens. 
     const gasPriceInUnits = await this.provider.getGasPrice();
 
     // To display the number of tokens in the human-readable format, we need to format them,
@@ -527,7 +530,7 @@ async changeGreeting() {
 },
 ```
 
-### Complete app.
+### Complete app
 
 You should now be able to update the greeting.
 
@@ -545,6 +548,11 @@ After the transaction is processed, the page updates your balances and you can s
 
 ![img](/start-5.png)
 
+If you face any troubles, please download the complete project here:
+
+TODO: complete project.
+
 ### Learn more
 
 - To learn more about `zksync-web` SDK, check out its [docuemntation](../../api/js).
+- To learn more about the zkSync hardhat plugins, check out their [docuemntation](../../api/hardhat).
