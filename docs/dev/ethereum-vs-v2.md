@@ -24,6 +24,8 @@ zkSync 2.0 has no "native" token as the fees can be paid in ERC20s. `ETH` is an 
 
 For the alpha preview, only Solidity version `0.8.x` is supported. Also, compiling Solidity to zkEVM bytecode requires a special compiler.
 
+Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are supported as precompiles. No actions are required from your side as all the calls to the precompiles are done by compiler under the hood.
+
 ## EIP712
 
 Besides supporting native ETH transactions, zkSync supports the EIP712 transaction type. You can use transactions of this type to pay fees in ERC20 tokens. Also, it is only possible to deploy smart contracts with this type of transaction.
@@ -101,3 +103,7 @@ There are also two types of transactions, related to bridging native tokens to z
 
 - `Deposit` is used to move funds from an L1 account to an L2 account.
 - `AddToken` is used to add a native ERC20 token to zkSync.
+
+## Unsupported opcodes
+
+zkSync does not support `selfdestruct`. 
