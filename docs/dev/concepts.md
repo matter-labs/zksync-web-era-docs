@@ -29,7 +29,7 @@ On zkSync, a transaction is in one the three stages:
 - `Processed`. The transaction is proceesed by the server and is confirmed to be included in the next block.
 - `Committed`. The transaction state diffs were published on Ethereum.
 - `Finalized`. The SNARK validity proof has been submitted and verified by the smart contract. After this step, the transaction is considered to be final.
- 
+
 Note that _finality_ from the zkSync perspective happens when the transaction (the SNARK verification) is processed by L1. At this stage the guarantees are exactly like any other L1 transaction within the same L1 block, which means that the more L1 blocks generated afterwards, the lesser the chance that this transaction will be reverted.
 
 At the moment, when a user sends a transaction, zkSync waits for the entire block to be filled, meaning finality time may take longer depending on the volume of transactions being submitted via zkSync. As thoroughput increases, the finality time will subsequently decrease. The typical time for a transaction to go from `Processed` to `Finalized` is a couple of hours.
