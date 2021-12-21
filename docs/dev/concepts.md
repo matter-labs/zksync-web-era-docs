@@ -10,9 +10,9 @@ With ZK Rollups, funds are locked into the layer 1 blockchain via a smart contra
 
 ## L1 and L2: what's the difference?
 
-In decentralised ecosystems, the term **layer 1** (or **L1**) is used to refer to the underlying primary chain architecture, such as the Ethereum network or Bitcoin. Layer 1 blockchains determine protocol rules, process transaction finality, and perform the base-level functions of applications built upon them.
+In decentralised ecosystems, the term **layer 1** (or **L1**) is used to refer to the underlying primary chain architecture, such as the Ethereum network or Bitcoin. Layer 1 blockchains determine protocol rules and transaction finality, and perform the base-level functions of applications built upon them.
 
-**Layer 2** (or **L2**) is used to describe an overlaying application or network that operates on top of the layer 1 chain. These are most often built to provide further scalability solutions by taking on a portion of transaction-based tasks to lighten the impact on the layer-1 chain, quickening transaction times and lower gas fees.
+**Layer 2** (or **L2**) is used to describe an overlaying application or network that operates on top of the layer 1 chain. These are most often built to provide further scalability solutions by taking on a portion of transaction-based tasks to lighten the impact on the layer-1 chain, quickening transaction times and lowering gas fees.
 
 In the case of zkSync, the main Ethereum blockchain represents L1, and zkSync itself is the L2.
 
@@ -20,7 +20,7 @@ In the case of zkSync, the main Ethereum blockchain represents L1, and zkSync it
 
 In the context of blockchain technology, **transaction finality** refers to the guarantee that transactions cannot be reverted, altered or muted.
 
-For instance, on Ethereum finality is probabilistic, i.e. the more blocks has passed since the transaction was processed, the lesser the chance that this transaction will be reverted.
+For instance, on Ethereum, finality is probabilistic, i.e. the more blocks has passed since the transaction was processed, the lesser the chance that this transaction will be reverted.
 
 In ZK Rollups, once a block has been filled and sealed, its state is committed to the main Ethereum chain. The proving step is then initiated, and a SNARK validity proof is generated for all of the block transactions. Once completed, the SNARK is submitted for verification on the L1 smart contract, and after being verified, the transaction state becomes final.
 
@@ -43,13 +43,13 @@ Please note, that for developer convenience, we will usually treat the `Processe
 
 ## Who creates blocks in ZK Rollups?
 
-As stated above, blocks are created by the operators. At this time zkSync is solely run and operated by the zkSync team's servers, and is therefore centralised; however, this is intended to be transitioned to a decentralised system in the near future.
+As stated above, blocks are created by the operators. At this time zkSync is solely run and operated by the zkSync team's servers, and is therefore centralised; however, this will be be transitioned to a decentralized system in the near future.
 
 ## What is the native token of zkSync?
 
-zkSync has no "native" token and the fees can be paid in ERC20 tokens. In order to allow easy and secure bridging of ERC20 tokens between layer 1 and layer 2, zkSync provides a canonical bridge within its smart contract. Tokens, which are bridged this way have the same address on zkSync as on layer 1 and all of them have the same standard ERC20 smart contract code on layer 2.
+zkSync has no "native" token and the fees can be paid in ERC20 tokens. In order to allow easy and secure bridging of ERC20 tokens between layer 1 and layer 2, zkSync provides a canonical bridge within its smart contract. Tokens that are bridged this way have the same address on zkSync as on layer 1 and all of them have the same standard ERC20 smart contract code on layer 2.
 
-We call such tokens _native_ or _first-class citizen_, since they are managed on the protocol level. Anyone can, in a permissionless way, add a new native token to zkSync. Thus, even though technically any of these tokens can be used to pay transaction fees, the operator may decide which of the tokens it wants to accept for fee payment, removing the chance of exploitation using worthless, recently created ERC20 tokens.
+We call such tokens _native_ or _first-class citizen_, since they are managed on the protocol level. Anyone can, in a permissionless way, add a new native token to zkSync. While technically any of these tokens can be used to pay transaction fees, the operator may decide which tokens it accepts for fee payment (one possible reason to decline a token for fee payment is to remove the chance of exploitation using worthless, recently created ERC20 tokens).
 
 ## What transaction types does zkSync support?
 
@@ -58,7 +58,7 @@ zkSync supports 5 types of transactions.
 The ones that can only be enacted from layer 1 are:
 
 - `Deposit`. This operation moves funds from an L1 account to an L2 account.
-- `AddToken`. This operation registers a native ERC20 token to zkSync. You can learn more about native ERC20 tokens [here](./concepts.md#what-is-the-native-token-of-zksync).
+- `AddToken`. This operation registers a native ERC20 token to zkSync. You can learn more about native ERC20 tokens [above](./concepts.md#what-is-the-native-token-of-zksync).
 
 The ones that can be enacted from both layer 1 and layer 2 are:
 
