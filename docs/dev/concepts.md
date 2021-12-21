@@ -6,7 +6,7 @@ This page aims to introduce developers to the basic concepts behind zkSync, incl
 
 zkRollups ('zk' standing for zero-knowledge) are a recent development intended to increase the scalability of Ethereum by performing calculations off-chain, rolling many transactions up into a single batch, and sending it to the main Ethereum chain for processing in one action. In zkSync, this is done via a **SNARK** (succinct non-interactive argument of knowledge); a cryptographic proof that performs the validation of transactions coming from the batch.
 
-With zkRollups, funds are locked into the layer 1 blockchain via a smart contract. This allows transactions to be processed without the overhead of all the data typically associated with performing a transaction on the chain, only requiring a **validity proof** to reach transaction finality. This exponentially decreases associated transaction processing times and gas fees.
+With zkRollups, funds are locked into the layer 1 blockchain via a smart contract. This allows transactions to be processed without the overhead of all the data typically associated with performing a transaction on the chain, only requiring a **validity proof** to reach transaction finality. This significantly decreases associated transaction processing times and gas fees.
 
 ## L1 and L2: what's the difference?
 
@@ -22,7 +22,7 @@ In the context of blockchain technology, **transaction finality** refers to the 
 
 For instance, on Ethereum finality is probabilistic, i.e. the more blocks has passed since the transaction was processed, the lesser the chance that this transaction will be reverted.
 
-Once a block has been filled and sealed, its state is committed to the main Ethereum chain. The proving step is then initiated, and a SNARK validity proof is generated for all the block transactions. Once completed, the SNARK is submitted for verification on the L1 smart contract, and after being verified, the transaction state becomes final.
+In zkRollups, once a block has been filled and sealed, its state is committed to the main Ethereum chain. The proving step is then initiated, and a SNARK validity proof is generated for all the block transactions. Once completed, the SNARK is submitted for verification on the L1 smart contract, and after being verified, the transaction state becomes final.
 
 On zkSync finality of a block of transaction is defined by either of the three stages:
 
@@ -66,6 +66,6 @@ The ones that can be enacted from both layer 1 and layer 2 are:
 
 ## What is zkPorter?
 
-zkPorter is an extension of the zkSync protocol, which is just like zkRollup is secured by the validity proofs, but unlike zkRollup it uses a separate decentralized network of guardians to secure data availability. Without the need to publish data on Ethereum, zkPorter will provide transaction fees of a few cents for its users, while maintaining security guarantees much stronger than sidechains.
+zkPorter is an extension of the zkSync protocol, which just like zkRollup is secured by validity proofs, but unlike zkRollup it does not store data on chain. Instead, the data is held by separate decentralized network of guardians. Without the need to publish data on Ethereum, zkPorter provides transaction fees of a few cents for its users, while maintaining security guarantees much stronger than sidechains.
 
 The key point is that zkRollup part and the zkPorter parts of zkSync will be composable, e.g. smart contracts from one shard will be able to call smart contracts in the other one.

@@ -12,7 +12,7 @@ This document will focus solely on how to pass these arguments to the SDK.
 
 ## Overrides
 
-`ethers` has a notion of overrides. For any on-chain transaction, the `ethers` finds the optimal `gasPrice`, `gasLimit`, `nonce`, and other important fields under the hood. But sometimes, you may have a need to explicitly provide these values (you want to set a smaller `gasPrice` for instance, or sign a transaction with future `nonce`)
+`ethers` has a notion of overrides. For any on-chain transaction, `ethers` finds the optimal `gasPrice`, `gasLimit`, `nonce`, and other important fields under the hood. But sometimes, you may have a need to explicitly provide these values (you want to set a smaller `gasPrice` for instance, or sign a transaction with future `nonce`)
 
 In this case, you can provide an `Overrides` object as the last parameter. There you can supply fields like `gasPrice`, `gasLimit`, `nonce` etc.
 
@@ -69,7 +69,7 @@ Override to deploy a contract with bytecode `0xcde...12` and enforce that the op
 
 ## See in action
 
-If you want to call a method `setGreeting` of an `ethers` `Contract` object called `greeter`, this would look the following way:
+If you want to call the method `setGreeting` of an ethers `Contract` object called `greeter`, this would look the following way:
 
 ```javascript
 // The `setGreeting` method has a single parameter -- new greeting

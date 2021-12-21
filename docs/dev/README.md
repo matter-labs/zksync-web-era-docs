@@ -11,7 +11,7 @@ block is published over the mainchain network in the cheap `calldata`.
 #### zkSync features
 
 - Mainnet-level security with zero reliance on 3rd parties.
-- Permissionless smart contracts in Solidity / Zinc.
+- Permissionless smart contracts in Solidity.
 - No registration is required to send or receive funds.
 - Payments to existing Ethereum addresses (including smart-contracts).
 - Fees are conveniently payable in the token being transferred.

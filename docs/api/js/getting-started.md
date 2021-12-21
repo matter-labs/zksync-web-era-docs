@@ -112,7 +112,7 @@ const transfer = await syncWallet.transfer({
 });
 ```
 
-**Note:** that supplying the `token` and `feeToken` fields manually is not required. The default value for both of these fields is `ETH`.
+**Note that** supplying the `token` and `feeToken` fields manually is not required. The default value for both of these fields is `ETH`.
 
 ```typescript
 const amount = ethers.utils.parseEther("1.0");
