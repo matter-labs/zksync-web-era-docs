@@ -1,12 +1,12 @@
 # Intro to zkSync
 
-This page aims to introduce developers to the basic concepts behind zkSync, including topics ranging from the basics of zkRollups, L1 and L2 chains, and key differences in developing using zkRollups over other scaling solutions.
+This page aims to introduce developers to the basic concepts behind zkSync, including topics ranging from the basics of ZK Rollups, L1 and L2 chains, and key differences in developing using zkSync over other scaling solutions.
 
-## What are zkRollups?
+## What are ZK Rollups?
 
-zkRollups ('zk' standing for zero-knowledge) are a recent development intended to increase the scalability of Ethereum by performing calculations off-chain, rolling many transactions up into a single batch, and sending it to the main Ethereum chain for processing in one action. In zkSync, this is done via a **SNARK** (succinct non-interactive argument of knowledge); a cryptographic proof that performs the validation of transactions coming from the batch.
+ZK Rollups ('ZK' standing for zero-knowledge) are a recent development intended to increase the scalability of Ethereum by performing calculations off-chain, rolling many transactions up into a single batch, and sending it to the main Ethereum chain for processing in one action. In zkSync, this is done via a **SNARK** (succinct non-interactive argument of knowledge); a cryptographic proof that performs the validation of transactions coming from the batch.
 
-With zkRollups, funds are locked into the layer 1 blockchain via a smart contract. This allows transactions to be processed without the overhead of all the data typically associated with performing a transaction on the chain, only requiring a **validity proof** to reach transaction finality. This significantly decreases associated transaction processing times and gas fees.
+With ZK Rollups, funds are locked into the layer 1 blockchain via a smart contract. This allows transactions to be processed without the overhead of all the data typically associated with performing a transaction on the chain, only requiring a **validity proof** to reach transaction finality. This significantly decreases associated transaction processing times and gas fees.
 
 ## L1 and L2: what's the difference?
 
@@ -22,7 +22,7 @@ In the context of blockchain technology, **transaction finality** refers to the 
 
 For instance, on Ethereum finality is probabilistic, i.e. the more blocks has passed since the transaction was processed, the lesser the chance that this transaction will be reverted.
 
-In zkRollups, once a block has been filled and sealed, its state is committed to the main Ethereum chain. The proving step is then initiated, and a SNARK validity proof is generated for all the block transactions. Once completed, the SNARK is submitted for verification on the L1 smart contract, and after being verified, the transaction state becomes final.
+In ZK Rollups, once a block has been filled and sealed, its state is committed to the main Ethereum chain. The proving step is then initiated, and a SNARK validity proof is generated for all the block transactions. Once completed, the SNARK is submitted for verification on the L1 smart contract, and after being verified, the transaction state becomes final.
 
 On zkSync, a transaction is in one the three stages:
 
@@ -40,7 +40,7 @@ Please note, that for developer convenience, we will usually treat the `Processe
 
 **Operators** are the actors that perform basic zkSync functionalities. They are charged with creating blocks, bundling the transactions, performing the calculations and submitting the data to the main Ethereum chain for verification.
 
-## Who creates blocks in zkRollups?
+## Who creates blocks in ZK Rollups?
 
 As stated above, blocks are created by the operators. At this time zkSync is solely run and operated by the zkSync team's servers, and is therefore centralised; however, this is intended to be transitioned to a decentralised system in the near future.
 
@@ -65,6 +65,10 @@ The ones that can be enacted from both layer 1 and layer 2 are:
   through which the contract can be accessed.
 - `Execute`. This operation executes a smart contract method.
 - `Withdraw`. This operation moves funds from an L2 account to an L1 account. _Most likely will be replaced with a special `Execute` call soon._
+
+## zkRollup vs ZK Rollup
+
+There are different acronyms for Zero-Knowledge Rollups, so both are interchangeable. In the context of zkSync 2.0, we will use the word zkRollup to refer to accounts that will have their data availability secured by Ethereum, unlike the zkPorter accounts, which will have their data secured by a separate decentralized network of guardians.
 
 ## What is zkPorter?
 
