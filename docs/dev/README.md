@@ -1,12 +1,12 @@
 # Introduction to zkSync for Developers
 
 **zkSync** is a trustless protocol that utilises [ZK Rollup technology](/faq/tech.md#zk-rollup-architecture) to provide scalable low-cost payments on Ethereum. It uses zero-knowledge proofs to store all funds in a smart
-contract on the mainchain, while computation and storage are performed off-chain.
+contract on the mainchain, while computation and storing data are performed off-chain.
 
-For every rollup block, a state
-transition zero-knowledge proof (SNARK) is generated and verified by the mainchain contract. This SNARK includes the
-proof of the validity of every single transaction in the rollup block. Additionally, the public data update for every
-block is published over the mainchain network in the cheap `calldata`.
+In ZK rollups, transactions are "rolled up" into a single batch, called the _rollup block_.
+For every rollup block, a zero-knowledge proof (SNARK) of the state transition is generated and verified by the mainchain contract.
+This SNARK proves the validity of every single transaction in the rollup block.
+Additionally, the public data update for every block is published over the mainchain network in the cheap `calldata`.
 
 #### zkSync features
 
@@ -41,7 +41,7 @@ If you do have experience building on zkSync 1.x, [here](./v1-vs-v2.md) is a gui
 
 ### What do I need to start building?
 
-All the existing SDKs for Ethereum will work out of the box and your users will have the same experience as on Ethereum. If you want to enable advanced zkSync features, like paying fees in ERC20 tokens, our SDK should to be used.
+All the existing SDKs for Ethereum will work out of the box and your users will have the same experience as on Ethereum. If you want to enable advanced zkSync features, like paying fees in ERC20 tokens, the zkSync SDK should to be used.
 
 The only place where using zkSync SDK is required is during the contract deployment. This can be easily done through our hardhat plugin.
 
