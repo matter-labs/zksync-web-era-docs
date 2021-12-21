@@ -6,13 +6,13 @@ This page aims to introduce developers to the basic concepts behind zkSync, incl
 
 ZK Rollups ('ZK' standing for zero-knowledge) are a recent development intended to increase the scalability of Ethereum by performing calculations off-chain, rolling many transactions up into a single batch, and sending it to the main Ethereum chain for processing in one action. In zkSync, this is done via a **SNARK** (succinct non-interactive argument of knowledge); a cryptographic proof that performs the validation of transactions coming from the batch.
 
-With ZK Rollups, funds are locked into the layer 1 blockchain via a smart contract. This allows transactions to be processed without the overhead of all the data typically associated with performing a transaction on the chain, only requiring a **validity proof** to reach transaction finality. This significantly decreases associated transaction processing times and gas fees.
+With ZK Rollups, funds are locked into the layer 1 blockchain via a smart contract. This allows transactions to be processed without the overhead of all the data typically associated with performing a transaction on the main chain, only requiring a **validity proof** to reach transaction finality. This significantly decreases associated transaction processing times and gas fees.
 
 ## L1 and L2: what's the difference?
 
 In decentralised ecosystems, the term **layer 1** (or **L1**) is used to refer to the underlying primary chain architecture, such as the Ethereum network or Bitcoin. Layer 1 blockchains determine protocol rules, process transaction finality, and perform the base-level functions of applications built upon them.
 
-**Layer 2** (or **L2**) is used to describe an overlaying application or network that operates on top of the layer 1 chain. These are developed by third parties and are most often built to provide further scalability solutions by taking on a portion of transaction-based tasks to lighten the impact on the layer-1 chain, quickening transaction times and lower gas fees.
+**Layer 2** (or **L2**) is used to describe an overlaying application or network that operates on top of the layer 1 chain. These are most often built to provide further scalability solutions by taking on a portion of transaction-based tasks to lighten the impact on the layer-1 chain, quickening transaction times and lower gas fees.
 
 In the case of zkSync, the main Ethereum blockchain represents L1, and zkSync itself is the L2.
 
@@ -22,10 +22,11 @@ In the context of blockchain technology, **transaction finality** refers to the 
 
 For instance, on Ethereum finality is probabilistic, i.e. the more blocks has passed since the transaction was processed, the lesser the chance that this transaction will be reverted.
 
-In ZK Rollups, once a block has been filled and sealed, its state is committed to the main Ethereum chain. The proving step is then initiated, and a SNARK validity proof is generated for all the block transactions. Once completed, the SNARK is submitted for verification on the L1 smart contract, and after being verified, the transaction state becomes final.
+In ZK Rollups, once a block has been filled and sealed, its state is committed to the main Ethereum chain. The proving step is then initiated, and a SNARK validity proof is generated for all of the block transactions. Once completed, the SNARK is submitted for verification on the L1 smart contract, and after being verified, the transaction state becomes final.
 
-On zkSync, a transaction is in one the three stages:
+On zkSync, each transaction is one of the four stages:
 
+- `Pending`. The transaction was received by the operator, but it has not been processed yet.
 - `Processed`. The transaction is proceesed by the server and is confirmed to be included in the next block.
 - `Committed`. The transaction state diffs were published on Ethereum.
 - `Finalized`. The SNARK validity proof has been submitted and verified by the smart contract. After this step, the transaction is considered to be final.
