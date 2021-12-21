@@ -6,7 +6,7 @@
 import { utils } from "zksync-web3";
 ```
 
-Most of the utilities are used internally by zkSync team. So this document will describe only those which should be helpful for you.
+Most of the utilities are used internally by the zkSync team. So this document will describe only those which should be helpful for you.
 
 ### The "address" of Ether ERC20 smart contract
 

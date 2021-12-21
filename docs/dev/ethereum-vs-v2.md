@@ -44,29 +44,29 @@ Since the costs for publishing the calldata on L1 are very volatile, the number 
 - `ergs_per_storage` — price in `ergs` for changing 1 storage value.
 - `ergs_per_pubdata` — price in `ergs` for adding 1 byte of pubdata.
 
-Please note, that the public data is published only for state diffs. That means, that if you update the same storage slot 10 times, only one update will be published on Ethereum and so you will be charged for public data only once.
+Please note, that the public data is published only for state diffs. That means, that if you update the same storage slot 10 times in the same rollup block, only the final update will be published on Ethereum and so you will be charged for public data only once.
 
 ### Why do we need a different fee model?
 
 - **Why `ergs` and not gas?**
 
-We wanted to show the clear distinction of our fee model from the Ethereum ones. Also, unlike Ethereum, where most of the opcodes have very distinct gas prices, basic zkEVM opcodes will likely have similar `ergs` prices. Generally, the execution itself (arithmetic operations, which do not involve storage updates) are very cheap. As in Ethereum, most of the cost will be incurred for updating the storage.
+We want to show the clear distinction between our fee model and the Ethereum one. Also, unlike Ethereum, where most of the opcodes have very distinct gas prices, basic zkEVM opcodes will likely have similar `ergs` price. Generally, the execution itself (arithmetic operations, which do not involve storage updates) is very cheap. As in Ethereum, most of the cost is incurred for updating the storage.
 
 - **Why can't we have constant price for storage value?**
 
-zkRollup security model means that we periodically publish state diffs on Ethereum. The price of that is defined by Ethereum gas price and, as already said, it is very volatile. That's why the operator can define the new price in `ergs` for publishing pubdata for each block. Users can provide a cap on the `ergs_per_pubdata` in the [EIP712](../api/api.md#eip712) transactions.
+As part of zkRollup security model we periodically publish state diffs on Ethereum. The price of that is defined by Ethereum gas price and, as already said, it is very volatile. That's why the operator can define the new price in `ergs` for publishing pubdata for each block. Users can provide a cap on the `ergs_per_pubdata` in the [EIP712](../api/api.md#eip712) transactions.
 
 - **Why do we need a separate `ergs_per_storage` then?**
 
-This parameter will be most useful for zkPorter transactions. Generally, it is created to prevent state bloat and to be able to pay for publishing state diffs to the guardians. We will show more materials on that in the future with zkPorter release.
+This parameter will be most useful for zkPorter transactions. Generally, it is created to prevent state bloat and to be able to pay for publishing state diffs to the guardians. We will show more materials on that in the future with the zkPorter release.
 
 ### What does this mean to me?
 
 Despite the differences, the fee model is quite similar to one of Ethereum. The same as for Ethereum, the most costly will always be the storage changes. One of the advantages of zkRollups over optimistic rollups is that instead of publishing the transaction data, zkRollups publish only state diffs.
 
-As already said, if you update the same storage slot 10 times in a single block, only one update will be published on Ethereum and so you will be charged for public data only once. But it goes beyond simple storage slots. Let's say that you have a DEX and a `PairFactory` factory for different `Pair` pools. The contract bytecode of `Pair` needs to be published only when the first instance is deployed. After the code of the `Pair` was published once, the subsequent deployments will only involve changing one storage slot -- to set the contract code hash on the newly deployed `Pair`'s address.
+As already said, if you update the same storage slot 10 times in a single block, only one update will be published on Ethereum and so you will be charged for storage change only once. But it goes beyond simple storage slots. Let's say that you have a DEX and a `PairFactory` factory for different `Pair` pools. The contract bytecode of `Pair` needs to be published only when the first instance is deployed. After the code of the `Pair` was published once, the subsequent deployments will only involve changing one storage slot -- to set the contract code hash on the newly deployed `Pair`'s address.
 
-So the tips to make the most out of zkSync fee system are the following:
+So the tips to make the most out of the zkSync fee system are the following:
 
 - **Update storage slots as little as possible.** Cost for execution is a lot smaller than the cost of storage updates.
 - **Reuse as many storage slots as possible.** Only the state diff is published to Ethereum.
@@ -84,10 +84,10 @@ All these specifics make the process of deploying smart contracts on zkEVM compl
 Summary:
 
 - **How deploying contracts works on Ethereum.**
-  To deploy a contract, a user sends a transaction to zero address (`0x000...000`) with the `data` field of the transaction equal to the contract bytecode concatenated with the constructor parameters.
+To deploy a contract, a user sends a transaction to the zero address (`0x000...000`) with the `data` field of the transaction equal to the contract bytecode concatenated with the constructor parameters.
 
 - **How deploying contracts works on zkSync.**
-  To deploy a contract, a user sends a transaction to zero address (`0x000...000`) with the `data` field for the transaction equal to the contract bytecode hash concatenated with the constructor parameters. The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
+  To deploy a contract, a user sends a transaction to the zero address (`0x000...000`) with the `data` field for the transaction equal to the contract bytecode hash concatenated with the constructor parameters. The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
 All of the deployment process is handled inside our [hardhat](../api/hardhat) plugin.
 

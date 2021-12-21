@@ -10,25 +10,27 @@ With zkRollups, funds are locked into the layer 1 blockchain via a smart contrac
 
 ## L1 and L2: what's the difference?
 
-In decentralised ecosystems, the term **layer 1** is used to refer to the underlying primary chain architecture, such as the Ethereum network or Bitcoin. Layer 1 blockchains determine protocol rules, process transaction finality, and perform the base-level functions of applications built upon them.
+In decentralised ecosystems, the term **layer 1** (or **L1**) is used to refer to the underlying primary chain architecture, such as the Ethereum network or Bitcoin. Layer 1 blockchains determine protocol rules, process transaction finality, and perform the base-level functions of applications built upon them.
 
-**Layer 2** is used to describe an overlaying application or network that operates on top of the layer 1 chain. These are developed by third parties and are most often are built to provide further scalability solutions by taking on a portion of transaction-based tasks to lighten the impact on the layer-1 chain, quickening transaction times and lower gas fees.
+**Layer 2** (or **L2**) is used to describe an overlaying application or network that operates on top of the layer 1 chain. These are developed by third parties and are most often built to provide further scalability solutions by taking on a portion of transaction-based tasks to lighten the impact on the layer-1 chain, quickening transaction times and lower gas fees.
 
 In the case of zkSync, the main Ethereum blockchain represents L1, and zkSync itself is the L2.
 
 ## How does transaction finality work?
 
-In the context of blockchain technology, **transaction finality** refers to the guarantee that all transactions and blocks that are processed cannot be reverted, altered or muted.
+In the context of blockchain technology, **transaction finality** refers to the guarantee that transactions cannot be reverted, altered or muted.
 
 For instance, on Ethereum finality is probabilistic, i.e. the more blocks has passed since the transaction was processed, the lesser the chance that this transaction will be reverted.
 
 Once a block has been filled and sealed, its state is committed to the main Ethereum chain. The proving step is then initiated, and a SNARK validity proof is generated for all the block transactions. Once completed, the SNARK is submitted for verification on the L1 smart contract, and after being verified, the transaction state becomes final.
 
-On zkSync finality of a block of transaction is defined by either of the three stages:
+On zkSync, a transaction is in one the three stages:
 
 - `Processed`. The transaction is proceesed by the server and is confirmed to be included in the next block.
 - `Committed`. The transaction state diffs were published on Ethereum.
-- `Finalized`. The SNARK validity proof has been submitted and verified by the smart contract. After this step, the transaction is considered to be final. Please note that since zkSync is a layer 2 over Ethereum, so you should also wait until the verification transaction becomes final on Ethereum as well.
+- `Finalized`. The SNARK validity proof has been submitted and verified by the smart contract. After this step, the transaction is considered to be final.
+ 
+Note that _finality_ from the zkSync perspective happens when the transaction (the SNARK verification) is processed by L1. At this stage the guarantees are exactly like any other L1 transaction within the same L1 block, which means that the more L1 blocks generated afterwards, the lesser the chance that this transaction will be reverted.
 
 At the moment, when a user sends a transaction, zkSync waits for the entire block to be filled, meaning finality time may take longer depending on the volume of transactions being submitted via zkSync. As thoroughput increases, the finality time will subsequently decrease. The typical time for a transaction to go from `Processed` to `Finalized` is a couple of hours.
 
@@ -36,7 +38,7 @@ Please note, that for developer convenience, we will usually treat the `Processe
 
 ## What are operators?
 
-**Operators** are the actors that perform basic zkSync functionalities. They are charged with creating blocks, bundling the transactions, performing the calculations and submitting the data to the main Ethereum chain for verification. Operators are required to stake a bond in the rollup contract in order to incentivize operators to verify and execute transactions correctly, at risk of financial penalization.
+**Operators** are the actors that perform basic zkSync functionalities. They are charged with creating blocks, bundling the transactions, performing the calculations and submitting the data to the main Ethereum chain for verification.
 
 ## Who creates blocks in zkRollups?
 
@@ -44,9 +46,9 @@ As stated above, blocks are created by the operators. At this time zkSync is sol
 
 ## What is the native token of zkSync?
 
-zkSync has no "native" token and the fees can be paid in ERC20s. In order to allow easy and secure bridging of ERC20 tokens between layer 1 and layer 2, zkSync provides a canonical bridge within its smart contract. Tokens, which are bridged this way have the same address on zkSync as on layer 1 and all of them have the same standard ERC20 smart contract code on layer 2.
+zkSync has no "native" token and the fees can be paid in ERC20 tokens. In order to allow easy and secure bridging of ERC20 tokens between layer 1 and layer 2, zkSync provides a canonical bridge within its smart contract. Tokens, which are bridged this way have the same address on zkSync as on layer 1 and all of them have the same standard ERC20 smart contract code on layer 2.
 
-We call such tokens _native_ or _first-class citizen_, since they are managed on the protocol level. Anyone can in a permissionless way add a new native token to zkSync. Thus, even though technically any of these tokens can be used to pay transaction fees, the operator may decide which of the tokens it wants to accept for fee payment, removing the chance of exploitation using worthless, recently created ERC20 tokens.
+We call such tokens _native_ or _first-class citizen_, since they are managed on the protocol level. Anyone can, in a permissionless way, add a new native token to zkSync. Thus, even though technically any of these tokens can be used to pay transaction fees, the operator may decide which of the tokens it wants to accept for fee payment, removing the chance of exploitation using worthless, recently created ERC20 tokens.
 
 ## What transaction types does zkSync support?
 
@@ -68,4 +70,4 @@ The ones that can be enacted from both layer 1 and layer 2 are:
 
 zkPorter is an extension of the zkSync protocol, which is just like zkRollup is secured by the validity proofs, but unlike zkRollup it uses a separate decentralized network of guardians to secure data availability. Without the need to publish data on Ethereum, zkPorter will provide transaction fees of a few cents for its users, while maintaining security guarantees much stronger than sidechains.
 
-The key point is that zkRollup part and the zkPorter parts of zkSync will be composable, e.g. smart contracts from one shard will be able to call smart contracts in the other one.
+The key point is that the zkRollup shard and the zkPorter shard of zkSync will be composable, e.g. smart contracts from one shard will be able to call smart contracts in the other one.
