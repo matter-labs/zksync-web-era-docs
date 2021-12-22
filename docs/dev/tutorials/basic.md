@@ -85,7 +85,7 @@ yarn hardhat compile
 Now, let's create the deployment script in the `deploy/deploy.ts`:
 
 ```typescript
-import { utils } from "zksync-web3";
+import { utils, Wallet } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -95,7 +95,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
-  const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>");
+  const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
 
   // Create deployer object and load the artifact of the contract we want to deploy.
   const deployer = new Deployer(hre, wallet);
@@ -122,7 +122,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-Now we can run the script using the following command:
+Change the `WALLET-PRIVATE-KEY` to the private key of your Rinkeby wallet. Now we can run the script using the following command:
 
 ```
 yarn hardhat deploy-zksync
@@ -131,6 +131,8 @@ yarn hardhat deploy-zksync
 In the output, you should see the address where the contract was deployed.
 
 ### Paying for deployment in ERC20 tokens
+
+This part if optional in case you want to learn how to pay for the deployment of the smart contracts in ERC20. You want to go straight to the front-end integration, click [here](#front-end-integration).
 
 Let's see how we can pay fees in `USDC` token.
 
@@ -184,7 +186,7 @@ const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
 Full example:
 
 ```typescript
-import { utils } from "zksync-web3";
+import { Wallet } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -197,7 +199,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
-  const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>");
+  const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
 
   // Create deployer object and load the artifact of the contract we want to deploy.
   const deployer = new Deployer(hre, wallet);
@@ -332,8 +334,8 @@ const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contrac
 We will add imports above these constants as well, so the header of the `<script>` tag will look the following way:
 
 ```javascript
-import { } from 'zksync-web3';
-import { } from 'ethers';
+import {} from "zksync-web3";
+import {} from "ethers";
 
 // eslint-disable-next-line
 const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract address here
@@ -356,47 +358,47 @@ Open `./src/App.vue` and set the `GREETER_CONTRACT_ADDRESS` constant equal to th
 To interact with our smart contract, we also need its ABI.
 
 - Create the `./src/abi.json` file.
-- You can get the contract's ABI in the hardhat project folder in the `./artifacts/Greeter.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` created in the previous step. The file should look roughly the following way:
+- You can get the contract's ABI in the hardhat project folder from the previous section in the `./artifacts/contracts/tmp/Flattened.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` created in the previous step. The file should look roughly the following way:
 
 ```json
 [
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_greeting",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "inputs": [],
-      "name": "greet",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_greeting",
-          "type": "string"
-        }
-      ],
-      "name": "setGreeting",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    }
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_greeting",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "greet",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_greeting",
+        "type": "string"
+      }
+    ],
+    "name": "setGreeting",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
 ]
 ```
 
@@ -483,7 +485,7 @@ Firstly, let's add the necessary dependencies:
 
 ```javascript
 // `ethers` is only used in this tutorial for its utility functions
-import { ethers } from 'ethers';
+import { ethers } from "ethers";
 ```
 
 Now we can implement the method itself:
@@ -528,8 +530,8 @@ Interacting with smart contract works absolutely the same way as in `ethers`, bu
 ```javascript
 const txHandle = await this.contract.setGreeting(this.newGreeting, {
   customData: {
-      // Passing the token to pay fee with
-      feeToken: this.selectedToken.address,
+    // Passing the token to pay fee with
+    feeToken: this.selectedToken.address,
   },
 });
 ```

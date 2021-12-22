@@ -84,10 +84,12 @@ We can now compile the contracts with the following command:
 yarn hardhat compile
 ```
 
+You may notice that the `tmp` folder was created in the `contracts` directory. This is where the flattened versions of the contracts are stored. This folder is a compilation artifact and you should not add it to version control.
+
 Now, let's create the deployment script in the `deploy/deploy.ts`:
 
 ```typescript
-import { utils } from "zksync-web3";
+import { utils, Wallet } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -97,7 +99,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
-  const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>");
+  const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
 
   // Create deployer object and load the artifact of the contract we want to deploy.
   const deployer = new Deployer(hre, wallet);
@@ -273,6 +275,12 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
+We can run the script using the following command:
+
+```
+yarn hardhat deploy-zksync
+```
+
 ## Learn more
 
 - New to `zksync-web3` SDK? [Here](../js) is the documentation.
@@ -283,4 +291,5 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 There are two major points of improvements for the plugins which will be released in the future:
 
 - **Composability with the existing hardhat plugins.** Compatibility with other hardhat plugins is planned for future, but has not been a focus yet.
+- **Improved compilation experience.** Currently the dependency resolution is done via flattening which may be inconvenient in some edge cases.
 - **JavaScript support.** Currently, `hardhat-zksync-deploy` requires typescript to run.
