@@ -324,9 +324,16 @@ On the top of the `<script>` tag, you may see the parts where we should fill in 
 
 ```javascript
 // eslint-disable-next-line
-import {} from "zksync-web3";
+const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract address here
 // eslint-disable-next-line
-import {} from "ethers";
+const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contract ABI here
+```
+
+We will add imports above these constants as well, so the header of the `<script>` tag will look the following way:
+
+```javascript
+import { } from 'zksync-web3';
+import { } from 'ethers';
 
 // eslint-disable-next-line
 const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract address here
