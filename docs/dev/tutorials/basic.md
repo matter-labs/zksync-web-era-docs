@@ -238,13 +238,13 @@ In this tutorial, we will use `Vue` as the web framework of our choice, but the 
 Clone it:
 
 ```
-git clone TODO
+git clone https://github.com/matter-labs/greeter-tutorial-starter
 ```
 
 Spin up the project:
 
 ```
-cd TODO
+cd greeter-tutorial-starter
 yarn
 yarn serve
 ```
@@ -349,8 +349,49 @@ Open `./src/App.vue` and set the `GREETER_CONTRACT_ADDRESS` constant equal to th
 To interact with our smart contract, we also need its ABI.
 
 - Create the `./src/abi.json` file.
-- You can get the contract's ABI in the hardhat project folder in the `./artifacts/Greeter.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` created in the previous step.
-<!-- TODO: hopefully there will be a better way to get the Abi-->
+- You can get the contract's ABI in the hardhat project folder in the `./artifacts/Greeter.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` created in the previous step. The file should look roughly the following way:
+
+```json
+[
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_greeting",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "greet",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_greeting",
+          "type": "string"
+        }
+      ],
+      "name": "setGreeting",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+]
+```
 
 Set the `GREETER_CONTRACT_ABI` to require the ABI file.
 
@@ -398,7 +439,7 @@ Now we should fill in the method retrieving the greeting from smart contract:
 ```javascript
 async getGreeting() {
     // Smart contract calls work the same way as in `ethers`
-    this.greeting = await this.contract.greet();
+    return await this.contract.greet();
 }
 ```
 
@@ -429,7 +470,16 @@ You should now also be able to select token to pay the fee. But no balances are 
 
 ### Retrieving token balance and transaction fee
 
-The easiest way to retrieve the user's balance is to use the `Signer.getBalance` method:
+The easiest way to retrieve the user's balance is to use the `Signer.getBalance` method.
+
+Firstly, let's add the necessary dependencies:
+
+```javascript
+// `ethers` is only used in this tutorial for its utility functions
+import { ethers } from 'ethers';
+```
+
+Now we can implement the method itself:
 
 ```javascript
 async getBalance() {
@@ -446,12 +496,7 @@ To estimate the fee:
 ```javascript
 async getFee() {
     // Getting the amount of gas (ergs) needed for one transaction
-    const feeInGas = await this.contract.estimateGas.setGreeting(this.newGreeting, {
-        customData: {
-            // We need to pass the fee token to estimate gas correctly
-            feeToken: this.selectedToken.address
-        }
-    });
+    const feeInGas = await this.contract.estimateGas.setGreeting(this.newGreeting);
     // Getting the gas price per one erg. For now, it is the same for all tokens.
     const gasPriceInUnits = await this.provider.getGasPrice();
 
@@ -476,8 +521,8 @@ Interacting with smart contract works absolutely the same way as in `ethers`, bu
 ```javascript
 const txHandle = await this.contract.setGreeting(this.newGreeting, {
   customData: {
-    // Passing the token to pay fee with
-    feeToken: this.selectedToken.address,
+      // Passing the token to pay fee with
+      feeToken: this.selectedToken.address,
   },
 });
 ```
@@ -496,14 +541,14 @@ async changeGreeting() {
     try {
         const txHandle = await this.contract.setGreeting(this.newGreeting, {
             customData: {
-            // Passing the token to pay fee with
-            feeToken: this.selectedToken.address
+                // Passing the token to pay fee with
+                feeToken: this.selectedToken.address
             }
         });
         this.txStatus = 2;
+
         // Wait until the tx is committed
         await txHandle.wait();
-
         this.txStatus = 3;
 
         // Update greeting
@@ -532,7 +577,7 @@ Type the new greeting in the input box and click on the `Change greeting` button
 
 ![img](/start-3.png)
 
-Since the `feeToken` was supplied, the transaction to be sent is of the `eip712` type:
+Since the `feeToken` was supplied, the transaction to be sent is of the `EIP712` type:
 
 ![img](/start-4.png)
 
@@ -541,10 +586,6 @@ Click "Sign".
 After the transaction is processed, the page updates your balances and you can see the new greeting:
 
 ![img](/start-5.png)
-
-If you face any troubles, please download the complete project here:
-
-TODO: complete project.
 
 ### Learn more
 
