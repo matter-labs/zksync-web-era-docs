@@ -6,10 +6,10 @@ To provide easy access to all of the features of zkSync 2.0, we created `zksync-
 
 ## Table of contents
 
-- [Getting started](./getting-started)
-- [Providers](./providers)
-- [Accounts](./accounts)
-- [Contracts](./contracts)
-- [Features](./features)
-- [Utilities](./utils)
-- [Types](./types)
+- [Getting started](./getting-started.md)
+- [Providers](./providers.md)
+- [Accounts](./account.ms)
+- [Contracts](./contracts.md)
+- [Features](./features.md)
+- [Utilities](./utils.md)
+- [Types](./types.md)
