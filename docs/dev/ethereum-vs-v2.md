@@ -40,9 +40,9 @@ Our version of `gas` is called `ergs` and represents not only the costs of compu
 
 Since the costs for publishing the calldata on L1 are very volatile, the number of `ergs` needed for changing a storage slot is not constant. For each block, the operator defines the following dynamic parameters:
 
-- `ergs_price` table for the current base price in each token. The value of this parameter is used to determine the costs of VM execution in each token.
-- `ergs_per_storage` — price in `ergs` for changing 1 storage value.
-- `ergs_per_pubdata` — price in `ergs` for adding 1 byte of pubdata.
+- `ergs_price` — the table for the current base price in each token. The value of this parameter is used to determine the costs of VM execution in each token.
+- `ergs_per_storage` — the price in `ergs` for changing 1 storage value.
+- `ergs_per_pubdata` — the price in `ergs` for adding 1 byte of pubdata.
 
 Please note, that the public data is published only for state diffs. That means, that if you update the same storage slot 10 times in the same rollup block, only the final update will be published on Ethereum and so you will be charged for public data only once.
 
@@ -63,7 +63,7 @@ This parameter will be most useful for zkPorter transactions. Generally, it is c
 
 ### What does this mean to me?
 
-Despite the differences, the fee model is quite similar to one of Ethereum. The same as for Ethereum, the most costly will always be the storage changes. One of the advantages of ZK Rollups over Optimistic Rollups is that instead of publishing all the transaction data, ZK Rollups can publish only state diffs.
+Despite the differences, the fee model is quite similar to the one of Ethereum. Similar to Ethereum, the most costly operation is storage change. One of the advantages of ZK Rollups over Optimistic Rollups is that instead of publishing all the transaction data, ZK Rollups can publish only state diffs, thus making less storage changes.
 
 As already stated, if you update the same storage slot several times in a single block, only the last update will be published on Ethereum, and so you will be charged for storage change only once. But it goes beyond simple storage slots. Let's say that you have a DEX and a `PairFactory` factory for different `Pair` pools. The contract bytecode of `Pair` needs to be published only when the first instance is deployed. After the code of the `Pair` was published once, the subsequent deployments will only involve changing one storage slot -- to set the contract code hash on the newly deployed `Pair`'s address.
 

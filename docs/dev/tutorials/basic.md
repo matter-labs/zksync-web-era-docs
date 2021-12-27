@@ -1,6 +1,6 @@
 # Hello zkSync
 
-In this tutorial, we will show how to build a full dApp using the zkSync development toolbox.
+In this tutorial, we show how to build a full dApp using the zkSync development toolbox.
 
 We will implement the following functionality:
 
