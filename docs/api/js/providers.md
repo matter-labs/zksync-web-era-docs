@@ -217,7 +217,7 @@ import { Provider } from "zksync-web3";
 const provider = new Provider("https://z2-dev-api.zksync.dev");
 
 const TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
-const txHandle = await provider.getTransactionStatus(TX_HASH);
+const txHandle = await provider.getTransaction(TX_HASH);
 
 // Wait until the tx is processed by the server.
 await txHandle.wait();

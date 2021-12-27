@@ -146,7 +146,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-Now we can run the script using the following command:
+After replacing the `WALLET-PRIVATE-KEY` text with the `0x`-prefixed private key of your Ethereum wallet you can run the script using the following command:
 
 ```
 yarn hardhat deploy-zksync
@@ -206,7 +206,7 @@ const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
 Full example:
 
 ```typescript
-import { utils } from "zksync-web3";
+import { utils, Wallet } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -219,7 +219,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
-  const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>");
+  const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
 
   // Create deployer object and load the artifact of the contract we want to deploy.
   const deployer = new Deployer(hre, wallet);
@@ -275,7 +275,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-We can run the script using the following command:
+After replacing the `WALLET-PRIVATE-KEY` text with the `0x`-prefixed private key of your Ethereum wallet you can run the script using the following command:
 
 ```
 yarn hardhat deploy-zksync

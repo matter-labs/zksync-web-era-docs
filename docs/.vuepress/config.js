@@ -134,13 +134,17 @@ module.exports = {
           title: "Tutorials",
           path: "/dev/tutorials",
           collapsable: false,
-          children: ["/dev/tutorials/basic.md"],
+          children: ["/dev/tutorials/connecting-to-metamask.md", "/dev/tutorials/bridging-funds.md", "/dev/tutorials/basic.md"],
         },
         {
           title: "Communicating with L1", // required
           path: "/dev/communication-with-l1.md", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
         },
+        {
+          title: "Troubleshooting",
+          path: "/dev/troubleshooting.md", // optional, which should be a absolute path.
+        }
       ],
       "/api": [
         {

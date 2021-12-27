@@ -267,7 +267,7 @@ const addTokenHandle = await wallet.addToken(MLTT_ADDRESS);
 // Note that we wait not only for the L1 transaction to complete but also for it to be
 // processed by zkSync. If we want to wait only for the transaction to be processed on L1,
 // we can use `await addTokenHandle.waitL1Commit()`
-addTokenHandle.wait();
+await addTokenHandle.wait();
 ```
 
 ### Getting token balance
@@ -769,5 +769,5 @@ const addTokenHandle = await signer.addToken(MLTT_ADDRESS);
 // Note that we wait not only for the L1 transaction to complete but also for it to be
 // processed by zkSync. If we want to wait only for the transaction to be processed on L1,
 // we can use `await addTokenHandle.waitL1Commit()`
-addTokenHandle.wait();
+await addTokenHandle.wait();
 ```

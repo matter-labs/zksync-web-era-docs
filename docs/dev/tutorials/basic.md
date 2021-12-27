@@ -122,7 +122,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-Change the `WALLET-PRIVATE-KEY` to the private key of your Rinkeby wallet. Now we can run the script using the following command:
+After replacing the `WALLET-PRIVATE-KEY` text with the `0x`-prefixed private key of your Ethereum wallet you can run the script using the following command:
 
 ```
 yarn hardhat deploy-zksync
@@ -255,25 +255,10 @@ By default, the page should be running at `http://localhost:8080`. You can open 
 
 ### Connecting to Metamask & bridging tokens to zkSync
 
-To connect with Metamask to zkSync, you need to add the zkSync alpha testnet network to the wallet.
+In order to interact with dApps built on zkSync, you need to connect your Metamask wallet to the zkSync alpha testnet network and bridge some funds to L2.
 
-Open your Metamask wallet and click on the network in the top center:
-
-![img](/connect-1.png)
-
-Then click on "Add network".
-
-Fill in the details about zkSync alpha testnet network and click "Save":
-
-- Network Name: `zkSync alpha testnet`
-- New RPC URL: `https://z2-dev-api.zksync.dev`
-- Chain ID: `270`
-
-![img](/connect-2.png)
-
-You can get some tokens on zkSync by bridging them through the wallet.
-
-<!--- TODO: inlcude link to the wallet -->
+- The [guide](./connecting-to-metamask.md) on connecting to Metamask.
+- The [guide](./bridging-funds.md) on depositing funds to zkSync
 
 ### Project structure
 
