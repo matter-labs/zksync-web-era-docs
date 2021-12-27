@@ -32,4 +32,4 @@ Open the wallet and go to the `Transfer` tab:
 
 Please note, that transfering funds inside zkSync requires your Metamask wallet to be connected to the zkSync alpha testnet network. The tutorial on how to connect your Metamask to this network can be found [here](./connecting-to-metamask.md).
 
-Select the recipient, the token and the samount of the token to transfer and processing by clicking the `Transfer` button.
+Select the recipient, the token and the samount of the token to transfer and proceed by clicking the `Transfer` button.
