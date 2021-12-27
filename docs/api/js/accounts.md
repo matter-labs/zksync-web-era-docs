@@ -22,12 +22,12 @@ constructor(
 
 #### Inputs and outputs
 
-| Name                  | Description                                                       |
-| --------------------- | ----------------------------------------------------------------- |
-| privateKey            | The private key of the Ethereum account.                          |
-| providerL2 (optional) | A zkSync node provider. Needed for interaction with zkSync.       |
-| providerL1 (optional) | An Ethereum node provider. Needed for interaction with L1. |
-| returns               | The new `Wallet` object.                                          |
+| Name                  | Description                                                 |
+| --------------------- | ----------------------------------------------------------- |
+| privateKey            | The private key of the Ethereum account.                    |
+| providerL2 (optional) | A zkSync node provider. Needed for interaction with zkSync. |
+| providerL1 (optional) | An Ethereum node provider. Needed for interaction with L1.  |
+| returns               | The new `Wallet` object.                                    |
 
 > Example
 

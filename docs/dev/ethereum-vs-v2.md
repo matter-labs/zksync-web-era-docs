@@ -121,9 +121,9 @@ There are also two types of transactions, related to bridging native tokens to z
 - `CHAINID` (`chain_id`)
 - `BLOCKHASH` (`tx.blockhash`)
 - `DIFFICULTY` (`block.difficulty`)
-- `PC` 
+- `PC`
 - `BALANCE` (`address(addr).balance`)
-- `SELFBALANCE` (`address(this).balance`) 
+- `SELFBALANCE` (`address(this).balance`)
 - `COINBASE` (`block.coinbase`)
 - `EXTCODEHASH` (`hash`)
 
