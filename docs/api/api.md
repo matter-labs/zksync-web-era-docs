@@ -2,9 +2,9 @@
 
 zkSync 2.0 fully supports standard [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API).
 
-As long as your code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase needed!_
+As long as your code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase are needed!_
 
-You can continue using the SDKs which you use now. Users will continue paying fees in ETH and the UX will identical to the one on Ethereum.
+You can continue using the SDKs that you use now. Users will continue paying fees in ETH and the UX will be identical to the one on Ethereum.
 
 However, zkSync has its own specifics which this section is all about.
 

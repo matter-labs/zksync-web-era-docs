@@ -107,4 +107,28 @@ There are also two types of transactions, related to bridging native tokens to z
 
 ## Unsupported opcodes
 
-zkSync does not support `selfdestruct`.
+### Partial support
+
+- `block.gaslimit` always returns `2^32-1`.
+
+#### Always returning zero
+
+- `GASLIMIT` (`tx.gasprice`)
+- `CALLVALUE` (`msg.value`)
+- `MSIZE`
+- `ORIGIN` (`tx.origin`)
+- `GASPRICE` (`tx.gasprice`)
+- `CHAINID` (`chain_id`)
+- `BLOCKHASH` (`tx.blockhash`)
+- `DIFFICULTY` (`block.difficulty`)
+- `PC` 
+- `BALANCE` (`address(addr).balance`)
+- `SELFBALANCE` (`address(this).balance`) 
+- `COINBASE` (`block.coinbase`)
+- `EXTCODEHASH` (`hash`)
+
+#### NOOP
+
+- `EXTCODECOPY`
+- `SELFDESTRUCT` (`selfdestruct(addr)`)
+- `CALLCODE` (`callcode`)

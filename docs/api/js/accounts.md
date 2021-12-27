@@ -105,7 +105,7 @@ It is possible to chain `connect` and `connectToL1` methods:
 const wallet = unconnectedWallet.connect(provider).connectToL1(ethProvider);
 ```
 
-### Getting zkSync smart contract
+### Getting the zkSync L1 smart contract
 
 ```typescript
 async getMainContract(): Promise<Contract>
@@ -624,7 +624,7 @@ const txHandle = await signer.approveERC20({
 await txHandle.wait();
 ```
 
-### Getting zkSync smart contract
+### Getting the zkSync L1 smart contract
 
 ```typescript
 async getMainContract(): Promise<Contract>
