@@ -24,9 +24,9 @@ constructor(
 
 | Name                  | Description                                                       |
 | --------------------- | ----------------------------------------------------------------- |
-| privateKey            | The Ethereum private key of the account.                          |
+| privateKey            | The private key of the Ethereum account.                          |
 | providerL2 (optional) | A zkSync node provider. Needed for interaction with zkSync.       |
-| providerL1 (optional) | An Ethereum node provider. Needed Needed for interaction with L1. |
+| providerL1 (optional) | An Ethereum node provider. Needed for interaction with L1. |
 | returns               | The new `Wallet` object.                                          |
 
 > Example
@@ -44,9 +44,9 @@ const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 ### Other ways to create `Wallet` instances
 
-`Wallet` class supports all the methods from `ethers.Wallet` for creating wallets, e.g. creating from mnemonic, creating from encrypted JSON, creating a random wallet, etc. All these methods take the same parameters as `ethers.Wallet`, so you should refer to its documentation on how to use them.
+The `Wallet` class supports all the methods from `ethers.Wallet` for creating wallets, e.g. creating from mnemonic, creating from encrypted JSON, creating a random wallet, etc. All these methods take the same parameters as `ethers.Wallet`, so you should refer to its documentation on how to use them.
 
-### Connecting to zkSync provider
+### Connecting to the zkSync provider
 
 To interact with the zkSync network, the `Wallet` object should be connected to a `Provider` by either passing it to the constructor or with the `connect` method.
 
@@ -72,7 +72,7 @@ const provider = new Provider("https://z2-dev-api.zksync.dev");
 const wallet = unconnectedWallet.connect(provider);
 ```
 
-### Connecting to Ethereum provider
+### Connecting to the Ethereum provider
 
 To perform L1 operations, the `Wallet` object needs to be connected to an `ethers.providers.Provider` object.
 
@@ -338,7 +338,7 @@ console.log(await wallet.getBalanceL1(USDC_ADDRESS));
 console.log(await wallet.getBalanceL1());
 ```
 
-### Getting nonce
+### Getting a nonce
 
 `Wallet` also provides the `getNonce` method which is an alias for [getTransactionCount](https://docs.ethers.io/v5/api/signer/#Signer-getTransactionCount).
 
@@ -493,7 +493,7 @@ console.log(await signer.getBalance(USDC_ADDRESS));
 console.log(await signer.getBalance());
 ```
 
-### Getting nonce
+### Getting a nonce
 
 The `Wallet` class also provides the `getNonce` method which is an alias for [getTransactionCount](https://docs.ethers.io/v5/api/signer/#Signer-getTransactionCount).
 

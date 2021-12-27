@@ -1,6 +1,6 @@
 # Hello zkSync
 
-In this tutorial, we will show how to build a full dApp using zkSync development toolbox.
+In this tutorial, we will show how to build a full dApp using the zkSync development toolbox.
 
 We will implement the following functionality:
 
@@ -128,13 +128,13 @@ After replacing the `WALLET-PRIVATE-KEY` text with the `0x`-prefixed private key
 yarn hardhat deploy-zksync
 ```
 
-In the output, you should see the address where the contract was deployed.
+In the output, you should see the address where the contract was deployed to.
 
 ### Paying for deployment in ERC20 tokens
 
 This part if optional in case you want to learn how to pay for the deployment of the smart contracts in ERC20. You want to go straight to the front-end integration, click [here](#front-end-integration).
 
-Let's see how we can pay fees in `USDC` token.
+Let's see how we can pay fees in the `USDC` token.
 
 ```typescript
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
