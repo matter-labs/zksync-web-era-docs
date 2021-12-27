@@ -1,6 +1,6 @@
 # Introduction to zkSync for Developers
 
-**zkSync** is a trustless protocol that utilises [ZK Rollup technology](/faq/tech.md#zk-rollup-architecture) to provide scalable low-cost payments on Ethereum. It uses zero-knowledge proofs to store all funds in a smart
+**zkSync** is a trustless protocol that utilises [ZK Rollup technology](/faq/tech.md#zk-rollup-architecture) to provide scalable low-cost transactions on Ethereum. It uses zero-knowledge proofs to store all funds in a smart
 contract on the mainchain, while computation and storing data are performed off-chain.
 
 In ZK rollups, transactions are "rolled up" into a single batch, called the _rollup block_.

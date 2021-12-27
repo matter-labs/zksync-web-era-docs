@@ -13,3 +13,4 @@ To provide easy access to all of the features of zkSync 2.0, we created `zksync-
 - [Features](./features.md)
 - [Utilities](./utils.md)
 - [Types](./types.md)
+- [Front-end integration](./front-end.md)
