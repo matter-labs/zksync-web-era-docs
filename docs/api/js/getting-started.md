@@ -4,7 +4,7 @@
 
 While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features, like paying fees in other tokens, requires providing additional fields to those that Ethereum transactions have by default.
 
-To provide easy access to all of the features of zkSync 2.0, we created `zksync-web3` JavaScript SDK, which is made in a way that is has an interface very similar to those of [ethers](https://docs.ethers.io/v5/). In fact, `ethers` is a peer dependency of the library and most of the objects exported by `zksync-web3` (e.g. `Wallet`, `Provider` etc) inherit from the corresponding `ethers` objects and override only the fields that need to be changed.
+To provide easy access to all of the features of zkSync 2.0, we created `zksync-web3` JavaScript SDK, which is made in a way that has an interface very similar to those of [ethers](https://docs.ethers.io/v5/). In fact, `ethers` is a peer dependency of our library and most of the objects exported by `zksync-web3` (e.g. `Wallet`, `Provider` etc.) inherit from the corresponding `ethers` objects and override only the fields that need to be changed.
 
 The library is made in such a way that changing `ethers` with `zksync-web3` for client-related me
 
@@ -137,7 +137,7 @@ const transferReceipt = await transfer.waitFinalize();
 ## Withdrawing funds
 
 There are two ways to withdraw funds from zkSync to Ethereum, calling the operation through L2 or L1. If the
-withdrawal operation was called through L1, then the operator will have a period of time during which he must process
+withdrawal operation is called through L1, then the operator has a period of time during which he must process
 the transaction, otherwise `PriorityMode` will be turned on. This ensures that the operator cannot stage the
 transaction. But in most cases, a call via L2 is sufficient.
 

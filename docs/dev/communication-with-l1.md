@@ -24,9 +24,9 @@ To bridge ETH to zkSync, you should call the following function of the zkSync sm
 function depositETH(address _zkSyncAddress) external payable
 ```
 
-All the passed `ETH` will go to the new address. Please note that this will not be the case in future architecture, where some of `ETH` will be used as a fee for the operator for processing the deposit.
+All the passed `ETH` will go to the provided address. Please note that this will not be the case in future architecture, where some of `ETH` will be used as a fee for the operator for processing the deposit.
 
-### Bridging ERC20 to zkSync
+### Bridging ERC20 tokens to zkSync
 
 To bridge ERC20 tokens to zkSync, you should call the following function of the zkSync smart contract:
 

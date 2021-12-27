@@ -6,7 +6,7 @@ zkSync 2.0 is made to look and feel like Ethereum, but with lower fees. However,
 
 zkSync fully supports the standard [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API), but it also has some additional L2-specific functionality.
 
-As long as your code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase needed!_
+As long as your code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase are needed!_
 
 You may continue using the SDKs that you use now. Users will continue paying fees in ETH and the UX will be identical to the one on Ethereum.
 
@@ -24,7 +24,7 @@ zkSync 2.0 has no "native" token as the fees can be paid in ERC20s. `ETH` is an 
 
 For the alpha preview, only Solidity version `0.8.x` is supported. Also, compiling Solidity to zkEVM bytecode requires a special compiler.
 
-Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are supported as precompiles. No actions are required from your side as all the calls to the precompiles are done by compiler under the hood.
+Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are supported as precompiles. No actions are required from your side as all the calls to the precompiles are done by the compiler under the hood.
 
 ## EIP712
 
@@ -34,7 +34,7 @@ You don't need to know the details about the transaction format to use our SDK, 
 
 ## Fee model
 
-Unlike Ethereum, there is no native token and zkSync supports paying fees in any ERC20 tokens.
+Unlike Ethereum, there is no native token in zkSync and fees can be paid in any ERC20 token.
 
 Our version of `gas` is called `ergs` and represents not only the costs of computations, but also the cost of publishing data onchain and affecting storage. Similar to `gas`, `ergs` is an absolute unit. VM operations (`add`, `mul`, etc) will also have their costs measured in `ergs`, and they may not be equal to each other. The actual table of operation costs in `ergs` is yet to be defined.
 
@@ -50,11 +50,12 @@ Please note, that the public data is published only for state diffs. That means,
 
 - **Why `ergs` and not gas?**
 
-We want to show the clear distinction between our fee model and the Ethereum one. Also, unlike Ethereum, where most of the opcodes have very distinct gas prices, basic zkEVM opcodes will likely have similar `ergs` price. Generally, the execution itself (arithmetic operations, which do not involve storage updates) is very cheap. As in Ethereum, most of the cost is incurred for updating the storage.
+We want to show the clear distinction between our fee model and the Ethereum one. Also, unlike Ethereum, where most of the opcodes have very distinct gas prices, basic zkEVM opcodes will likely have similar `ergs` price. Generally, the execution itself (arithmetic operations, which do not involve storage updates) is very cheap. As in Ethereum, most of the cost is incurred for storage updates.
+zzz
 
 - **Why can't we have constant price for storage value?**
 
-As part of zkRollup security model we periodically publish state diffs on Ethereum. The price of that is defined by Ethereum gas price and, as already said, it is very volatile. That's why the operator can define the new price in `ergs` for publishing pubdata for each block. Users can provide a cap on the `ergs_per_pubdata` in the [EIP712](../api/api.md#eip712) transactions.
+As part of the zkRollup security model we periodically publish state diffs on Ethereum. The price of that is defined by Ethereum gas price and, as already said, it is very volatile. That's why the operator can define the new price in `ergs` for publishing pubdata for each block. Users can provide a cap on the `ergs_per_pubdata` in the [EIP712](../api/api.md#eip712) transactions.
 
 - **Why do we need a separate `ergs_per_storage` then?**
 
@@ -64,14 +65,14 @@ This parameter will be most useful for zkPorter transactions. Generally, it is c
 
 Despite the differences, the fee model is quite similar to one of Ethereum. The same as for Ethereum, the most costly will always be the storage changes. One of the advantages of ZK Rollups over Optimistic Rollups is that instead of publishing all the transaction data, ZK Rollups can publish only state diffs.
 
-As already said, if you update the same storage slot 10 times in a single block, only one update will be published on Ethereum and so you will be charged for storage change only once. But it goes beyond simple storage slots. Let's say that you have a DEX and a `PairFactory` factory for different `Pair` pools. The contract bytecode of `Pair` needs to be published only when the first instance is deployed. After the code of the `Pair` was published once, the subsequent deployments will only involve changing one storage slot -- to set the contract code hash on the newly deployed `Pair`'s address.
+As already stated, if you update the same storage slot several times in a single block, only the last update will be published on Ethereum, and so you will be charged for storage change only once. But it goes beyond simple storage slots. Let's say that you have a DEX and a `PairFactory` factory for different `Pair` pools. The contract bytecode of `Pair` needs to be published only when the first instance is deployed. After the code of the `Pair` was published once, the subsequent deployments will only involve changing one storage slot -- to set the contract code hash on the newly deployed `Pair`'s address.
 
 So the tips to make the most out of the zkSync fee system are the following:
 
 - **Update storage slots as little as possible.** Cost for execution is a lot smaller than the cost of storage updates.
-- **Reuse as many storage slots as possible.** Only the state diff is published to Ethereum.
+- **Reuse as many storage slots as possible.** Only the state diff is published on Ethereum.
 - **Users should share as many storage slots as possible.** If 100 users update a storage slot of your contract in a single block, the diff will be published only once. In the future, we will introduce reimbursement for the users, so that the costs for updating shared storage slots are split between the users.
-- **Reuse contract code if possible.** On Ethereum, avoiding constructor parameters and putting them into constants allows for some gas cost reduction upon deployment. On zkSync the opposite is true: deploying the same bytecode for contracts, while changing only constructor parameters can lead to substantial fee savings.
+- **Reuse contract code if possible.** On Ethereum, avoiding constructor parameters and putting them into constants reduces some of the gas cost upon contract deployment. On zkSync the opposite is true: deploying the same bytecode for contracts, while changing only constructor parameters can lead to substantial fee savings.
 
 ## Contract deployment
 
@@ -102,7 +103,7 @@ There are three types of L2 transactions on zkSync: `Withdraw`, `Execute`, `Depl
 There are also two types of transactions, related to bridging native tokens to zkSync:
 
 - `Deposit` is used to move funds from an L1 account to an L2 account.
-- `AddToken` is used to add a native ERC20 token to zkSync.
+- `AddToken` is used to register a native ERC20 token to zkSync.
 
 ## Unsupported opcodes
 

@@ -12,7 +12,7 @@ This document will focus solely on how to pass these arguments to the SDK.
 
 ## Overrides
 
-`ethers` has a notion of overrides. For any on-chain transaction, `ethers` finds the optimal `gasPrice`, `gasLimit`, `nonce`, and other important fields under the hood. But sometimes, you may have a need to explicitly provide these values (you want to set a smaller `gasPrice` for instance, or sign a transaction with future `nonce`)
+`ethers` has a notion of overrides. For any on-chain transaction, `ethers` finds the optimal `gasPrice`, `gasLimit`, `nonce`, and other important fields under the hood. But sometimes, you may have a need to explicitly provide these values (you want to set a smaller `gasPrice` for instance, or sign a transaction with future `nonce`).
 
 In this case, you can provide an `Overrides` object as the last parameter. There you can supply fields like `gasPrice`, `gasLimit`, `nonce` etc.
 
@@ -34,7 +34,7 @@ In order to make the SDK as ergonomic as possible, we decided to use the overrid
 
 Examples:
 
-Override to pay fees in token with address `0xeb8f08a975ab53e34d8a0330e0d34de942c95926`:
+Override to pay fees in the token with the address `0xeb8f08a975ab53e34d8a0330e0d34de942c95926`:
 
 ```typescript
 {
@@ -44,7 +44,8 @@ Override to pay fees in token with address `0xeb8f08a975ab53e34d8a0330e0d34de942
 }
 ```
 
-Override to withdraw ETH and pay fees in token with address `0xeb8f08a975ab53e34d8a0330e0d34de942c95926`:
+Override to withdraw ETH and pay fees in the token with the address `0xeb8f08a975ab53e34d8a0330e0d34de942c95926`:
+zzz
 
 ```typescript
 {

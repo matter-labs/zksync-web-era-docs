@@ -16,7 +16,7 @@ In zkSync, all the native tokens are ERC20. Thus, there needs to be a smart cont
 export const ETH_ADDRESS = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
 ```
 
-### Abi of zkSync smart contract
+### ABI of zkSync smart contract
 
 ```typescript
 export const ZKSYNC_MAIN_ABI = new utils.Interface(require("../abi/ZkSync.json"));
