@@ -1,12 +1,12 @@
 # Alpha preview
 
-zkSync is first and foremost a mission-driven project. Our goal is to make web3 accessible to everyone. zkSync 1.x, the previous version, provides access to transfers, swaps, and NFT minting with Ethereum security for a fraction of the cost.
+zkSync is first and foremost a mission-driven project. Our goal is to make Web3 accessible to everyone. zkSync 1.x, the previous version, provides access to transfers, swaps, and NFT minting with Ethereum security for a fraction of the cost.
 
-zkSync 2.0 opens the whole ecosystem of Ethereum to mass adoption. To make web3 accessible to every person no matter its income, it will let the users choose between high security & 20x fee reduction compared to Ethereum and security much higher than that of a sidechain & near-constant tx costs of a few USD cents. zkSync 2.0 is the first platform that supports both types of users, seamlessly on the same chain. To provide more customization for users' wallets, zkSync 2.0 will also support account abstractions. More features are to come!
+zkSync 2.0 opens the whole ecosystem of Ethereum to mass adoption. To make Web3 accessible to every person no matter its income, it will let the users choose between high security & 20x fee reduction compared to Ethereum and security much higher than that of a sidechain & near-constant tx costs of a few USD cents. zkSync 2.0 is the first platform that supports both types of users, seamlessly on the same chain. To provide more customization for users' wallets, zkSync 2.0 will also support account abstractions. More features are to come!
 
 Implementing all the features required for the next generation of L2s is a big task. We're actively working on making the next generation of zero-knowledge rollups as easy (or even more!) to use as Ethereum itself.
 
-So, the current state of implementation is the **alpha preview**. It means that while there are a lot of things that are not there yet, the core of the system is ready, it works, and serves its purpose.
+So, the current state of implementation is the **alpha preview**. It means that while there are a lot of things that are not supported yet, the core of the system is ready, it works, and serves its purpose.
 
 ## Important links
 

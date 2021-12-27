@@ -4,12 +4,12 @@ zkSync 1.x is the previous iteration of zkSync which has been on mainnet for ove
 
 The first and the most noticeable difference is, of course, smart contract support. zkSync 2.0 is capable of deploying and executing arbitrary smart contracts compiled from Solidity (currently only Solidity v0.8.x is supported).
 
-However, to make the protocol work with smart contracts, we've had to rework the basics of protocol and
-implement many new things. Apart from the smart contracts, differences include:
+However, to make the protocol work with smart contracts, we had to rework the basics of protocol and
+implement many new things. Apart from the smart contracts, the differences include:
 
-- **zkSync 2.0 natively supports ECDSA signatures.** It means, that `ChangePubKey` operation is no longer
+- **zkSync 2.0 natively supports ECDSA signatures.** The `ChangePubKey` operation is no longer
   required, any account can be managed in L2 with the same private key that is used for L1.
-- **Most operations in zkSync 2.0 can be called from both L1 and L2 (not implemented yet).** It means, you can request a withdrawal of funds
+- **Most operations in zkSync 2.0 can be called from both L1 and L2 (not implemented yet).** It means you can request a withdrawal of funds
   without dealing with L2 transactions, or call an L2 transfer from L1.
 - **There are no account IDs and token IDs.** Everything is accessed using Ethereum addresses, just like in L1. Note that it is not possible to reference tokens by their symbol in our SDK, only by address. The address of `ETH` is `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`.
 - **There is no limit on the number of native tokens and adding new tokens is free.** Any valid ERC20 token can be added to the zkSync 2.0 as a first-class citizen token.
