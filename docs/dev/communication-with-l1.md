@@ -42,7 +42,7 @@ function depositERC20(
 ) external
 ```
 
-Make sure to set the allowance for the zkSync smart contract for at least the size of `amount`.
+Make sure to set the allowance for the zkSync smart contract for at least as the `amount`.
 
 ### Adding native tokens to zkSync
 
