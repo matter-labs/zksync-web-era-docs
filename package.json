@@ -37,8 +37,8 @@
     "fmt:check": "prettier --check \"docs/**/*.md\"",
     "cspell": "cspell docs/**/*.md",
     "md:lint": "markdownlint docs",
-    "md:deadlinks": "check-md",
-    "ci": "yarn run fmt:check;",
+    "md:deadlinks": "node ./replacer.js && check-md",
+    "ci": "yarn run md:deadlinks; yarn run fmt:check;",
     "zk-ci-prepare": "yarn ci && yarn docs:build"
   },
   "check-md": {

@@ -46,7 +46,7 @@ const provider = new Provider("https://z2-dev-api.zksync.dev");
 ### `getBalance`
 
 Returns the balance of a user for a certain block tag and a native token.
-In order to check the balance in `ETH` you can either omit the last argument or supply [ETH_ADDRESS](./utils/#eth-address) provided in the `utils` object.
+In order to check the balance in `ETH` you can either omit the last argument or supply `ETH_ADDRESS` provided in the `utils` object.
 
 Example:
 
@@ -102,7 +102,7 @@ console.log(await provider.getMainContractAddress());
 
 ### `getConfirmedTokens`
 
-Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally.
+Given `from` and `limit`, returns the information (address, symbol, name, decimals) about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally.
 
 The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically sorted array of tokens.
 
