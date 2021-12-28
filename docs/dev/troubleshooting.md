@@ -40,6 +40,10 @@ See the previous issue. We disabled other fee paying tokens until it’s resolve
 
 **Solution.** Please use the following link [https://zksync-v2-testnet.zkscan.io/](https://zksync-v2-testnet.zkscan.io).
 
+## My contract does not compile, due to an error with “cyclic dependencies”
+
+Unfortunately, some contracts have trouble to compile with our hardhat plugin. This is due to the contracts importing external dependencies. This happens to a small amount of contracts. We are currently working on resolving this issue.
+
 ## Wallet has no funds / Contract disappeared
 
 We are expected to update our testnet continuously, and so from time to time, we will need to do a re-genesis. This will cause the entire state to reset, and all deployed contracts will cease to exist.
