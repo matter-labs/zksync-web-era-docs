@@ -1,4 +1,4 @@
-# Conencting to Metamask
+# Connecting to Metamask
 
 To connect with Metamask to zkSync, add the zkSync alpha testnet network to the wallet.
 
