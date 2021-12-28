@@ -2,7 +2,7 @@
 
 ## API
 
-- [zkSync JSON-RPC API](./api)
+- [Web3 API](./api.md)
 
 ## SDK
 

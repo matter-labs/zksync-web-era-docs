@@ -21,7 +21,7 @@ Additionally, the public data update for every block is published over the mainc
 **zkSync 2.0** is the new version of the protocol, which is the first ZK Rollup to natively support Solidity smart contract development.
 
 - Want to start building right now? Head over to the [quickstart guide](#developer-quickstart).
-- New to rollups and want to learn more? Here is the [intro to zkSync](./concepts).
+- New to rollups and want to learn more? Here is the [intro to zkSync](./concepts.md).
 
 ::: warning Closed testnet
 
@@ -47,7 +47,7 @@ The only other place where using zkSync SDK is required is during the contract d
 
 ### Hello World on zkSync
 
-Check out our step-by-step [tutorial](./tutorials/basic), where you will learn:
+Check out our step-by-step [tutorial](./tutorials/basic.md), where you will learn:
 
 - How to install zkSync hardhat plugin and deploy smart contracts with it.
 - How to build front-end for your dApp using `zksync-web3` library.
