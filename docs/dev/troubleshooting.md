@@ -13,3 +13,35 @@ It is not currently possible to transfer ERC-20s inside the Metamask interface.
 It is not currently possible to interact with zkSync smart contracts via Metamask with EIP-1559 transactions. The reason for that is that Metamask tries to override several EIP-1559 transaction fields (assuming they can not have zero value), while these fields should be zero for zkSync.
 
 **Solution.** Explicitly specify `{ type: 0 }` in transaction overrides to use Ethereum legacy transactions.
+
+## Transfers with the *entire* token balance fail
+
+If you try to transfer the entire balance of a token, which is also the token you pay the fee with, the transaction fails. The reason is that we don’t deduct the fee before setting the amount to be transferred.
+
+**Solution.** Keep aside a small a amount to cover the fee.
+
+## Errors before sending a transaction
+
+Similar to above, in cases where the fee should be deducted from the token amount, you may get an error if estimate_gas returns an error. 
+
+**Solution.** As above, make sure to keep aside a small amount to cover the fee.
+
+## Fee in USDC (or WBTC) is absurdly high
+
+This is an issue with the number of the decimal point in the USDC token.
+
+**Solution.** You can pay fees in other token, though USDC on L1 is ``cheap''.
+
+## Fee within the wallet is only in ETH
+
+See the previous issue. We disabled other fee paying tokens until it’s resolved.
+
+## The ‘Block Explorer’ link on the wallet is broken
+
+**Solution.** Please use the following link [https://zksync-v2-testnet.zkscan.io/](https://zksync-v2-testnet.zkscan.io).
+
+## Wallet has no funds / Contract disappeared
+
+We are expected to update our testnet continuously, and so from time to time, we will need to do a re-genesis. This will cause the entire state to reset, and all deployed contracts will cease to exist.
+
+**We will communicate re-genesis events before they happen!**
