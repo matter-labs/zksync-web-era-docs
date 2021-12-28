@@ -42,7 +42,7 @@ See the previous issue. We disabled other fee paying tokens until it’s resolve
 
 ## My contract does not compile, due to an error with “cyclic dependencies”
 
-Unfortunately, some contracts have trouble to compile with our hardhat plugin. This is due to the contracts importing external dependencies. This happens to a small amount of contracts. We are currently working on resolving this issue.
+Unfortunately, some contracts have trouble to compile with our hardhat plugin. This is due to the contracts importing external dependencies. This happens to a small number of projects. We are currently working on resolving this issue.
 
 ## Wallet has no funds / Contract disappeared
 
