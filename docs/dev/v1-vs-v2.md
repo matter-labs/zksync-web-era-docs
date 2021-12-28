@@ -1,6 +1,6 @@
 # Comparing zkSync 1.x and zkSync 2.0
 
-zkSync 1.x is the previous iteration of zkSync which has been on mainnet for over a year. It supports cheap transfers, swaps, NFT minting, and trading. Prior experience with zkSync 1.x is not rrquired for using zkSync 2.0; to get started, review the [comparison with Ethereum](./ethereum-vs-v2.md) page, or go through the [list](./tutorials) of comprehensive tutorials.
+zkSync 1.x is the previous iteration of zkSync which has been on mainnet for over a year. It supports cheap transfers, swaps, NFT minting, and trading. Prior experience with zkSync 1.x is not required for using zkSync 2.0; to get started, review the [comparison with Ethereum](./ethereum-vs-v2.md) page, or go through the [list](./tutorials) of comprehensive tutorials.
 
 The first and the most noticeable difference is, of course, smart contract support. zkSync 2.0 is capable of deploying and executing arbitrary smart contracts compiled from Solidity (currently, only Solidity v0.8.x is supported).
 
