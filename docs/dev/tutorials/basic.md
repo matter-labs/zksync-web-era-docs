@@ -118,7 +118,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Show the contract info.
   const contractAddress = greeterContract.address;
-  console.log(`${artifact.contractName} was deployed to ${contractAddress}!`);
+  console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 }
 ```
 
@@ -227,7 +227,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Show the contract info.
   const contractAddress = greeterContract.address;
-  console.log(`${artifact.contractName} was deployed to ${contractAddress}!`);
+  console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 }
 ```
 
