@@ -2,7 +2,7 @@
 
 ::: tip To be changed soon
 
-The version of the L1 <-> L2 communication described here does not support arbitrary calls from L1 to L2. This feature is almost ready and will be shipped soon with the new more detailed documentation to it.
+The version of the L1 <-> L2 communication described here does not support arbitrary calls from L1 to L2. This feature is almost ready for implementation, and will be shipped soon alongside more detailed documentation describing the functionality.
 
 :::
 

@@ -1,17 +1,17 @@
 # Hello zkSync
 
-In this tutorial, we show how to build a full dApp using the zkSync development toolbox.
+This tutorial explains how to build a full dApp using the zkSync development toolbox.
 
-We will implement the following functionality:
+The following functionality will be implemented:
 
 - There will be a greeting stored on a smart contract on zkSync.
-- The user should be able to get the greeting after the dApp page is loaded.
-- The user should be able to change the greeting on the smart contract.
-- The user should be able to select the token he wants to pay the fee with.
+- The user will be able to get the greeting after the dApp page is loaded.
+- The user will be able to change the greeting on the smart contract.
+- The user will be able to select the token that they want to pay the fee with.
 
 ## Initializing the project & deploying smart contract
 
-First, we should initialize the project and install the dependencies. Run the following commands in the terminal:
+1. Initialize the project and install the dependencies. Run the following commands in the terminal:
 
 ```
 mkdir greeter-example
@@ -22,7 +22,7 @@ yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zk
 
 Please note, that currently typescript is required by zkSync plugins.
 
-Create the `hardhat.config.ts` file and paste the following code there:
+2. Create the `hardhat.config.ts` file and paste the following code there:
 
 ```typescript
 require("@matterlabs/hardhat-zksync-deploy");
@@ -51,9 +51,9 @@ module.exports = {
 };
 ```
 
-Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored and the latter is the place where all the scripts related to deploying the contract will be put.
+3. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
 
-Create the `contracts/Greeter.sol` contract and insert the following code there:
+4. Create the `contracts/Greeter.sol` contract and insert the following code there:
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
@@ -76,13 +76,13 @@ contract Greeter {
 }
 ```
 
-We can now compile the contracts with the following command:
+5. Compile the contracts with the following command:
 
 ```
 yarn hardhat compile
 ```
 
-Now, let's create the deployment script in the `deploy/deploy.ts`:
+6. Create the deployment script in the `deploy/deploy.ts`:
 
 ```typescript
 import { utils, Wallet } from "zksync-web3";
@@ -122,7 +122,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-After replacing the `WALLET-PRIVATE-KEY` text with the `0x`-prefixed private key of your Ethereum wallet you can run the script using the following command:
+7. After replacing the `WALLET-PRIVATE-KEY` text with the `0x`-prefixed private key of the Ethereum wallet, run the script using the following command:
 
 ```
 yarn hardhat deploy-zksync
@@ -132,9 +132,9 @@ In the output, you should see the address where the contract was deployed to.
 
 ### Paying for deployment in ERC20 tokens
 
-This part if optional in case you want to learn how to pay for the deployment of the smart contracts in ERC20. You want to go straight to the front-end integration, click [here](#front-end-integration).
+This section is optional, and is used to learn how to pay for the deployment of the smart contracts in ERC20. To go straight to the front-end integration, click [here](#front-end-integration).
 
-Let's see how we can pay fees in the `USDC` token.
+1. For example, to pay fees in the `USDC` token:
 
 ```typescript
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
@@ -158,7 +158,7 @@ const depositHandle = await deployer.zkWallet.deposit({
 await depositHandle.wait();
 ```
 
-We can output the fee in a human-readable format:
+2. The output of the fee can then be produced in a human-readable format:
 
 ```typescript
 const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
@@ -167,13 +167,13 @@ console.log(`The deployment will cost ${parsedFee} USDC`);
 
 Please note that the fees on the testnet do not correctly represent the fees on the future mainnet release.
 
-Now, we need to pass `USDC` as the `feeToken` to the deployment transaction:
+3. `USDC` must then be passed as the `feeToken` to the deployment transaction:
 
 ```typescript
 const greeterContract = await deployer.deploy(artifact, [greeting], USDC_ADDRESS);
 ```
 
-To pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
+4. To pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
 
 ```typescript
 const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
@@ -183,7 +183,7 @@ const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
 });
 ```
 
-Full example:
+#### Full example:
 
 ```typescript
 import { Wallet } from "zksync-web3";
@@ -235,15 +235,15 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 ### Setting up the project
 
-In this tutorial, we will use `Vue` as the web framework of our choice, but the process will be quite similar regardless of the framework you use. To focus on the specifics of using the `zksync-web3` SDK, we created a template, with all the front-end work done. The only thing left is to interact with zkSync smart contract.
+In this tutorial, `Vue` will be used as the web framework of choice, but the process will be quite similar regardless of the framework used. To focus on the specifics of using the `zksync-web3` SDK, a template is supplied with all the front-end work done. The final step is to interact with zkSync smart contract.
 
-Clone it:
+1. Clone it:
 
 ```
 git clone https://github.com/matter-labs/greeter-tutorial-starter
 ```
 
-Spin up the project:
+2. Spin up the project:
 
 ```
 cd greeter-tutorial-starter
@@ -251,18 +251,18 @@ yarn
 yarn serve
 ```
 
-By default, the page should be running at `http://localhost:8080`. You can open that URL in your browser to see the page.
+By default, the page should be running at `http://localhost:8080`. Open this URL in the browser to see the page.
 
 ### Connecting to Metamask & bridging tokens to zkSync
 
-In order to interact with dApps built on zkSync, you need to connect your Metamask wallet to the zkSync alpha testnet network and bridge some funds to L2.
+In order to interact with dApps built on zkSync, connect the Metamask wallet to the zkSync alpha testnet network and bridge some funds to L2.
 
 - The [guide](./connecting-to-metamask.md) on connecting to Metamask.
 - The [guide](./bridging-funds.md) on depositing funds to zkSync
 
 ### Project structure
 
-All of our code will be written in the `./src/App.vue`. All the front-end code has been done. The only thing left is to fill out the TODO-s about interaction with zkSync:
+All of the code will be written in the `./src/App.vue`. All the front-end code has been completed; the only task left is to fill out the TODO-s regarding interaction with zkSync:
 
 ```javascript
 initializeProviderAndSigner() {
@@ -316,7 +316,7 @@ const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract addres
 const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contract ABI here
 ```
 
-We will add imports above these constants as well, so the header of the `<script>` tag will look the following way:
+Add imports above these constants. The header of the `<script>` tag will appear as the following:
 
 ```javascript
 import {} from "zksync-web3";
@@ -338,9 +338,9 @@ yarn add ethers zksync-web3
 
 ### Getting the ABI and contract address
 
-Open `./src/App.vue` and set the `GREETER_CONTRACT_ADDRESS` constant equal to the address where your greeter contract was deployed.
+Open `./src/App.vue` and set the `GREETER_CONTRACT_ADDRESS` constant equal to the address where the greeter contract was deployed.
 
-To interact with our smart contract, we also need its ABI.
+To interact with zkSync's smart contract, we also need its ABI.
 
 - Create the `./src/abi.json` file.
 - You can get the contract's ABI in the hardhat project folder from the previous section in the `./artifacts/contracts/tmp/Flattened.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` created in the previous step. The file should look roughly the following way:
@@ -398,20 +398,20 @@ const GREETER_CONTRACT_ABI = require("./abi.json");
 
 ### Working with provider
 
-Go to the `initializeProviderAndSigner` method in `./src/App.vue`. This method is called after the connection to Metamask is successful.
+1. Go to the `initializeProviderAndSigner` method in `./src/App.vue`. This method is called after the connection to Metamask is successful.
 
 In this method we should:
 
 - Initialize `Web3Provider` and `Signer` objects for interacting with zkSync.
 - Initialize `Contract` object to interact with the `Greeter` contract.
 
-Let's add the necessary dependencies:
+  2. Add the necessary dependencies:
 
 ```javascript
 import { Contract, Web3Provider } from "zksync-web3";
 ```
 
-The two steps can be done the following way:
+3. The two steps can be done the following way:
 
 ```javascript
 initializeProviderAndSigner() {
@@ -428,7 +428,7 @@ initializeProviderAndSigner() {
 
 ### Retreiving the greeting
 
-Now we should fill in the method retrieving the greeting from smart contract:
+1. Fill in the method retrieving the greeting from smart contract:
 
 ```javascript
 async getGreeting() {
@@ -456,24 +456,24 @@ async getGreeting() {
 },
 ```
 
-Now, when you connect to your Metamask you should see the following page:
+After connecting the Metamask wallet, the following page should be viewable:
 
 ![img](/start-1.png)
 
-You should now also be able to select token to pay the fee. But no balances are updated, _yet_.
+The chosen token to pay the fee can now be selected. However, no balances are updated, _yet_.
 
 ### Retrieving token balance and transaction fee
 
 The easiest way to retrieve the user's balance is to use the `Signer.getBalance` method.
 
-Firstly, let's add the necessary dependencies:
+1. Add the necessary dependencies:
 
 ```javascript
 // `ethers` is only used in this tutorial for its utility functions
 import { ethers } from "ethers";
 ```
 
-Now we can implement the method itself:
+2. Implement the method itself:
 
 ```javascript
 async getBalance() {
@@ -485,7 +485,7 @@ async getBalance() {
 },
 ```
 
-To estimate the fee:
+3. stimate the fee:
 
 ```javascript
 async getFee() {
@@ -500,17 +500,17 @@ async getFee() {
 },
 ```
 
-Now, when you open the page and select the token to pay fee with, you can see your balance and the expected fee for the transaction.
+When opening the page and select the token to pay fee with, the balance and the expected fee for the transaction will be available.
 
-The `Refresh` button should be used to recalculate the fee as the fee may depend on the length of the string to be set.
+The `Refresh` button should be used to recalculate the fee, as the fee may depend on the length of the string to be set.
 
-You can even click on the `Change greeting` button, but nothing will be changed since we don't call the contract yet.
+It is possible to also click on the `Change greeting` button, but nothing will be changed as the contract has not been called yet.
 
 ![img](/start-2.png)
 
 ### Updating the greeting
 
-Interacting with smart contract works absolutely the same way as in `ethers`, but we also need to pass the `customData` override to supply the `feeToken` of the transaction.
+1. Interacting with smart contract works absolutely the same way as in `ethers`, however, the `customData` override is required to supply the `feeToken` of the transaction:
 
 ```javascript
 const txHandle = await this.contract.setGreeting(this.newGreeting, {
@@ -521,7 +521,7 @@ const txHandle = await this.contract.setGreeting(this.newGreeting, {
 });
 ```
 
-Now we need to wait until the tx is committed:
+2. Wait until the tx is committed:
 
 ```javascript
 await txHandle.wait();
@@ -565,19 +565,19 @@ async changeGreeting() {
 
 ### Complete app
 
-You should now be able to update the greeting.
+The greeting should now be updatable.
 
-Type the new greeting in the input box and click on the `Change greeting` button:
+1. Type the new greeting in the input box and click on the `Change greeting` button:
 
 ![img](/start-3.png)
 
-Since the `feeToken` was supplied, the transaction to be sent is of the `EIP712` type:
+2. Since the `feeToken` was supplied, the transaction to be sent is of the `EIP712` type:
 
 ![img](/start-4.png)
 
-Click "Sign".
+3. Click "Sign".
 
-After the transaction is processed, the page updates your balances and you can see the new greeting:
+After the transaction is processed, the page updates the balances and the new greeting can be viewed:
 
 ![img](/start-5.png)
 
