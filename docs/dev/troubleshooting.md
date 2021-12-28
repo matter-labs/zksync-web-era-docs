@@ -14,7 +14,7 @@ It is not currently possible to interact with zkSync smart contracts via Metamas
 
 **Solution.** Explicitly specify `{ type: 0 }` in transaction overrides to use Ethereum legacy transactions.
 
-## Transfers with the *entire* token balance fail
+## Transfers with the _entire_ token balance fail
 
 If you try to transfer the entire balance of a token, which is also the token you pay the fee with, the transaction fails. The reason is that we don’t deduct the fee before setting the amount to be transferred.
 
@@ -22,7 +22,7 @@ If you try to transfer the entire balance of a token, which is also the token yo
 
 ## Errors before sending a transaction
 
-Similar to above, in cases where the fee should be deducted from the token amount, you may get an error if estimate_gas returns an error. 
+Similar to above, in cases where the fee should be deducted from the token amount, you may get an error if estimate_gas returns an error.
 
 **Solution.** As above, make sure to keep aside a small amount to cover the fee.
 

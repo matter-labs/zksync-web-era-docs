@@ -8,7 +8,7 @@ For now, Metamask does not support transferring `ERC-20` tokens on zkSync. The z
 
 1. Open the wallet and go to the `Deposit` tab:
 
-![Deposit](/deposit-1.png)
+![img](/deposit-1.png)
 
 Please note, that depositing requires your Metamask wallet to be connected to the `Rinkeby` test network.
 
@@ -18,7 +18,7 @@ Please note, that depositing requires your Metamask wallet to be connected to th
 
 1. Open the wallet and go to the `Withdraw` tab:
 
-![Withdraw](/withdraw-1.png)
+![img](/withdraw-1.png)
 
 Please note that withdrawing funds to L1 requires the Metamask wallet to be connected to the `zkSync alpha testnet` network. The tutorial on how to connect Metamask to this network can be found [here](./connecting-to-metamask.md).
 
@@ -28,7 +28,7 @@ Please note that withdrawing funds to L1 requires the Metamask wallet to be conn
 
 1. Open the wallet and go to the `Transfer` tab:
 
-![Transfer](/transfer-1.png)
+![img](/transfer-1.png)
 
 Please note that transfering funds inside zkSync requires the Metamask wallet to be connected to the `zkSync alpha testnet` network. The tutorial on how to connect your Metamask to this network can be found [here](./connecting-to-metamask.md).
 
