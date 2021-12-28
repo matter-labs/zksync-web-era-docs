@@ -11,6 +11,14 @@ If you want learn more about hardhat itself, check out their [documentation](htt
 
 This tutorial shows how to set up a zkSync hardhat project from scratch.
 
+## Prerequisities
+
+For this tutorial, you will need the following programs to be installed on your computer:
+
+- `yarn` package manager. `npm` examples will be added soon.
+- `Docker` for compilation.
+- A wallet with some Rinkeby `ETH` on L1 (Rinkeby `USDC` is also required for the ERC-20 tutorial) to pay for bridging funds to zkSync as well as deploying smart contracts.
+
 ## Initializing the project
 
 First, we should initialize the project and install the dependencies. Run the following commands in the terminal:
@@ -122,7 +130,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Show the contract info.
   const contractAddress = greeterContract.address;
-  console.log(`${artifact.contractName} was deployed to ${contractAddress}!`);
+  console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 
   // Call the deployed contract.
   const greetingFromContract = await greeterContract.greet();
@@ -154,7 +162,7 @@ yarn hardhat deploy-zksync
 
 ## Paying fees in ERC20 tokens
 
-Let's see how we can pay fees in `USDC` token.
+Let's see how we can pay fees in `USDC` token. After making sure that your wallet has some Rinkeby `USDC` on L1, let's change the depositing code to the following one:
 
 ```typescript
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
@@ -247,7 +255,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Show the contract info.
   const contractAddress = greeterContract.address;
-  console.log(`${artifact.contractName} was deployed to ${contractAddress}!`);
+  console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 
   // Call the deployed contract.
   const greetingFromContract = await greeterContract.greet();
