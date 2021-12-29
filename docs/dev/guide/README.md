@@ -1,5 +1,7 @@
 # Developer guide
 
+A set of practical guidelines and tutorials which will help you get started with development on zkSync.
+
 ## Table of contents
 
 - [Developer quickstart](./quickstart.md)

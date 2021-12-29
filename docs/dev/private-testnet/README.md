@@ -1,5 +1,7 @@
 # Private testnet
 
+Everything specific to private testnet.
+
 ## Table of contents
 
 - [Current status](./status.md)
