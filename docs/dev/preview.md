@@ -3,7 +3,7 @@
 zkSync is, first and foremost, a mission-driven project. Our goal is to make Web3 accessible to everyone. zkSync 1.x, the previous version, provides access to transfers, swaps, and NFT minting with Ethereum security for a fraction of the cost.
 
 zkSync 2.0 opens the whole ecosystem of Ethereum to mass adoption.```
-To make Web3 accessible to every person, no matter their income, zkSync will let users choose between zkRollup, providing 20x fee reduction compared to Ethereum while preserving it's full security, and [zkPorter](./dev/concepts.html#what-is-zkporter), which provides near-constant tx costs of a few USD cents and higher security than that of a sidechain. zkSync 2.0 is the first platform that supports both types of users, seamlessly on the same chain. 
+To make Web3 accessible to every person, no matter their income, zkSync will let users choose between zkRollup, providing 20x fee reduction compared to Ethereum while preserving it's full security, and [zkPorter](./dev/concepts.html#what-is-zkporter), which provides near-constant tx costs of a few USD cents and higher security than that of a sidechain. zkSync 2.0 is the first platform that supports both types of users, seamlessly on the same chain.
 
 To provide more customization for users' wallets, zkSync 2.0 will also support account abstractions. More features are to come.
 
