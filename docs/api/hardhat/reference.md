@@ -8,7 +8,7 @@ This plugin is used to provide a convenient interface for compiling zkSync smart
 
 [@matterlabs/hardhat-zksync-solc](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-solc)
 
-You can add this plugin to your project with the following command:
+Add this plugin to your project with the following command:
 
 ```
 # Yarn
@@ -45,11 +45,11 @@ zksolc: {
 
 ### Commands
 
-`hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment. If you are not sure what factory dependencies are, you can read more about them in the [Web3 API](../api.md) documentation.
+`hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment. To understand what the factory dependencies are, it is possible read more about them in the [Web3 API](../api.md) documentation.
 
 During the compilation, for each subfolder of the `contracts` directory the contracts and their dependencies are flattened into a single `.sol` file and the flattened versions of the contracts are put in the `contracts/tmp` directory. The actual compilation is done over the flattened versions of the contracts.
 
-That means that if a certain contract is a dependency for other smart contracts, it may appear in multiple flattened files. Thus, it will appear multiple times in the `artifacts` folder and so during deployment you may be required to specify the full path to the contract artifact to the `Deployer` class instance. The deployer script will give you hints on what paths may be used. If this contract has a unique name in the project, then you can choose any of the proposed ones.
+If a certain contract is a dependency for other smart contracts, it may appear in multiple flattened files; thus, it will appear multiple times in the `artifacts` folder. During deployment, it may be required to specify the full path to the contract artifact to the `Deployer` class instance. The deployer script will provide hints on what paths may be used. If this contract has a unique name in the project, it is possible choose any of the proposed ones.
 
 ## `@matterlabs/hardhat-zksync-deploy`
 
@@ -59,7 +59,7 @@ This plugin provides utilities for deploying smart contracts on zkSync with arti
 
 [@matterlabs/hardhat-zksync-deploy](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-deploy)
 
-You can add this plugin to your project with the following command:
+Add this plugin to your project with the following command:
 
 ```
 # Yarn
