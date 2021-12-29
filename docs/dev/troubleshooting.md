@@ -47,9 +47,8 @@ Unfortunately, some contracts have trouble to compile with our hardhat plugin. T
 ## My transaction is not shown on the block explorer
 
 **Solution.** Please wait several minutes, the transaction will show in 5-15 minutes.
-<br> As indication that it went through, you can see on your account page on the block explorer, that the correct amount of tokens (after processing your transactions) is shown 
+<br> As indication that it went through, you can see on your account page on the block explorer, that the correct amount of tokens (after processing your transactions) is shown
 under the “Tokens” drop-down box at the top of the page.
-
 
 ## Wallet has no funds / Contract disappeared
 
