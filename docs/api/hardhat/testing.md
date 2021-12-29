@@ -1,5 +1,5 @@
 # Local testing
 
-Currently, to test your zkSync dApps, the testing suite needs to directly interact with our Rinkeby node.
+Currently, to test zkSync dApps, the testing suite needs to directly interact with our Rinkeby node.
 
 In the future, we will release a local development toolkit. Stay tuned!
