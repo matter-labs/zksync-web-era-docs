@@ -2,46 +2,61 @@
 
 zkSync 2.0 fully supports standard [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API).
 
-As long as your code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase needed!_
+As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase are needed._
 
-You can continue using the SDKs which you use now. Users will continue paying fees in ETH and the UX will identical to the one on Ethereum.
+It is possible to continue using the SDK that is currently in use. Users will continue paying fees in ETH, and the UX will be identical to the one on Ethereum.
 
-However, zkSync has its own specifics which this section is all about.
+However, zkSync has its own specifics, which this section describes.
 
 ## EIP712
 
-To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also have the `eip712_meta` field of type `Eip712Meta`, which contains additional L2-specific data (`fee_token`, etc). To let the server recognize EIP712 transactions, the `transaction_type` field should be equal to `712`.
-
-`Eip712Meta` type has the following fields:
+To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also they have fields which contain additional L2-specific data (`fee_token`, etc):
 
 ```json
-{
-  "fee": {
-    "fee_token": "0x0000...0000",
-    "ergs_per_storage_limit": 100000,
-    "ergs_per_pubdata_limit": 1000
-  },
-  "time_range": {
-    "from": 0,
-    "until": 10101010
-  },
-  "withdraw_token": "0x00000...00000",
-  "factory_deps": ["0x..."]
-}
+"fee": {
+  "fee_token": "0x0000...0000",
+  "ergs_per_storage_limit": 100000,
+  "ergs_per_pubdata_limit": 1000
+},
+"time_range": {
+  "from": 0,
+  "until": 10101010
+},
+"withdraw_token": "0x00000...00000",
+"factory_deps": ["0x..."]
 ```
 
 - `fee` is a field that describes the token in which the fee is to be paid, and defines the limits on the price in `ergs` per storage slot write and per publishing a single pubdata byte.
 - `time_range` is a field that denotes the timeframe, within which the tx is valid. _Most likely will be removed after the testnet._
 - `withdraw_token` is a field that should be only supplied for `Withdraw` operations. _Most likely will be removed after the testnet._
-- `factory_deps` is a field that should only be supplied for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecode of the contracts which can be deployed by it.
+- `factory_deps` is a field that should be a non-empty array of `bytes` only for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
 
-<!-- TODO: add example -->
+To let the server recognize EIP712 transactions, the `transaction_type` field is equal to `112` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
+
+Instead of signing the RLP-encoded transaction, the user signs the following typed EIP712 structure:
+
+| Field name     | Type      |
+| -------------- | --------- |
+| to             | `address` |
+| nonce          | `uint256` |
+| value          | `uint256` |
+| data           | `bytes`   |
+| gasPrice       | `uint256` |
+| gasLimit       | `uint256` |
+| ergsPerStorage | `uint256` |
+| ergsPerPubdata | `uint256` |
+| feeToken       | `address` |
+| withdrawToken  | `address` |
+| validFrom      | `uint64`  |
+| validUntil     | `uint64`  |
+
+These fields are conveniently handled by our [SDK](./js/features).
 
 ## zkSync-specific JSON-RPC methods
 
 All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods other than those provided here. These methods are to be used internally by the team and are very unstable.
 
-### `zks_estimateFee`
+<!-- ### `zks_estimateFee`
 
 Returns the fee for the transaction. The token in which the fee is calculated is returned based on the `fee_token` in the transaction provided.
 
@@ -61,7 +76,7 @@ Returns the fee for the transaction. The token in which the fee is calculated is
   "ergs_per_storage_limit": 100,
   "ergs_per_pubdata_limit": 10
 }
-```
+``` -->
 
 ### `zks_getMainContract`
 
@@ -89,17 +104,13 @@ None.
 
 ### `zks_getL1WithdrawalTx`
 
-Given the hash of the withdrawal tx, returns the hash of the Layer-1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
+Given the hash of the withdrawal tx on layer 2, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
 
 ### Input parameters
 
-| Parameter       | Type   | Description                            |
-| --------------- | ------ | -------------------------------------- |
-| withdrawal_hash | `H256` | The hash of the withdrawal transaction |
-
-### Output format
-
-`"0x092ea839f428fba0b8ff23525d4930026e97502f07076ecfd653a1f144ca53d0"`
+| Parameter       | Type      | Description                             |
+| --------------- | --------- | --------------------------------------- |
+| withdrawal_hash | `bytes32` | The hash of the withdrawal transaction. |
 
 ### Output format
 
@@ -107,18 +118,41 @@ Given the hash of the withdrawal tx, returns the hash of the Layer-1 transaction
 
 ### `zks_getConfirmedTokens`
 
-Given `from` and `limit`, returns the information about the tokens with ids in the inverval `[from..from+limit-1]`. Token ids are internal for the zkSync operator.
+Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally.
+
+The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically sorted array of tokens.
 
 ### Input parameters
 
-| Parameter | Type  | Description                                                                 |
-| --------- | ----- | --------------------------------------------------------------------------- |
-| from      | `u32` | The token id from which to start returning the information about the tokens |
-| limit     | `u8`  | The number of tokens to be returned from the API                            |
+| Parameter | Type     | Description                                                                  |
+| --------- | -------- | ---------------------------------------------------------------------------- |
+| from      | `uint32` | The token id from which to start returning the information about the tokens. |
+| limit     | `uint8`  | The number of tokens to be returned from the API.                            |
 
 ### Output format
 
-TODO (easier to do when the public node is ready)
+```
+[
+  {
+    "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "decimals": 18,
+    "name": "ETH",
+    "symbol": "ETH"
+  },
+  {
+    "address": "0xd2255612f9b045e9c81244bb874abb413ca139a3",
+    "decimals": 18,
+    "name": "TrueUSD (rinkeby)",
+    "symbol": "TUSD"
+  },
+  {
+    "address": "0xeb8f08a975ab53e34d8a0330e0d34de942c95926",
+    "decimals": 6,
+    "name": "USD Coin (rinkeby)",
+    "symbol": "USDC"
+  }
+]
+```
 
 ### `zks_isTokenLiquid`
 
@@ -126,15 +160,16 @@ Given a token address, returns whether it can be used to pay fees.
 
 ### Input parameters
 
-| Parameter | Type   | Description              |
-| --------- | ------ | ------------------------ |
-| address   | `H160` | The address of the token |
+| Parameter | Type      | Description               |
+| --------- | --------- | ------------------------- |
+| address   | `address` | The address of the token. |
 
 ### Output format
 
 `true`
 
-### `zks_getTokenPrice`
+<!-- TODO: uncomment once fixed --->
+<!-- ### `zks_getTokenPrice`
 
 Given a token address, returns its price in USD. Please note that that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
 
@@ -142,11 +177,11 @@ Given a token address, returns its price in USD. Please note that that this is t
 
 | Parameter | Type   | Description              |
 | --------- | ------ | ------------------------ |
-| address   | `H160` | The address of the token |
+| address   | `address` | The address of the token. |
 
 ### Output format
 
-`300.51`
+`3500.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000` -->
 
 <!--
 

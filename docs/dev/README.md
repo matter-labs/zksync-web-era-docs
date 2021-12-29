@@ -1,42 +1,58 @@
 # Introduction to zkSync for Developers
 
-zkSync is built on ZK Rollup architecture. ZK Rollup is a Layer 2 scaling solution in which all funds are held by a smart
-contract on the mainchain, while computation and storage are performed off-chain. The validity of all the transactions is secured by zero-knowledge proofs, which are verified by the smart contract. All of this enables building a trustless protocol, secured by Ethereum, but with much lower fees.
+**zkSync** is a trustless protocol that utilises [ZK Rollup technology](./concepts.md#what-are-zk-rollups) to provide scalable low-cost transactions on Ethereum. It uses zero-knowledge proofs to store all funds in a smart
+contract on the mainchain, while computation and storing data are performed off-chain.
 
-zkSync 2.0 is the new version of the protocol, which is the first ZK Rollup to natively support Solidity smart contract development.
+In ZK rollups, transactions are "rolled up" into a single batch, called the _rollup block_.
+For every rollup block, a zero-knowledge proof (SNARK) of the state transition is generated and verified by the mainchain contract.
+This SNARK proves the validity of every single transaction in the rollup block.
+Additionally, the public data update for every block is published over the mainchain network in the cheap `calldata`.
+
+#### zkSync features
+
+- Mainnet-level security with zero reliance on 3rd parties.
+- Permissionless smart contracts in Solidity.
+- No registration is required to send or receive funds.
+- Payments to existing Ethereum addresses (including smart-contracts).
+- Fees are conveniently payable in the token being transferred.
+
+## zkSync 2.0
+
+**zkSync 2.0** is the new version of the protocol, which is the first ZK Rollup to natively support Solidity smart contract development.
 
 - Want to start building right now? Head over to the [quickstart guide](#developer-quickstart).
-- New to rollups and want to learn more? Here is the [zkSync basics guide](#zksync-basics).
+- New to rollups and want to learn more? Here is the [intro to zkSync](./concepts.md).
+
+::: warning Closed testnet
+
+The testnet is being rolled out gradually as our team wants to gather feedback before the public launch.
+
+Please, **DO NOT** share this documentation with anyone outside of your team.
+
+:::
 
 ## Developer quickstart
 
 ### Do I need experience with zkSync 1.x?
 
-Some experience with the zkSync 1.x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are very different systems, and the experience with the latter is not needed to build on zkSync 2.0.
+Some experience with the zkSync 1.x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are very different systems, and experience with the latter is not needed to build on zkSync 2.0.
 
 If you do have experience building on zkSync 1.x, [here](./v1-vs-v2.md) is a guide on the notable differences.
 
-If you don't, all the needed information is provided in the [zkSync basics guide](#zksync-basics).
-
 ### What do I need to start building?
 
-All the existing SDKs for Ethereum will work out of the box and your users will have the same experience as on Ethereum. If you want to enable advanced zkSync features, like paying fees in ERC-20 tokens, our SDK should to be used.
+All the existing SDKs for Ethereum will work out of the box and your users will have the same experience as on Ethereum. If you want to enable advanced zkSync features, like paying fees in ERC20 tokens, the zkSync SDK should to be used.
 
-The only place where using zkSync SDK is required is during the contract deployment. This can be easily done through our hardhat plugin.
+The only other place where using zkSync SDK is required is during the contract deployment. This can be easily done through our hardhat plugin.
 
 ### Hello World on zkSync
 
-We will show you how to deploy contracts on zkSync using the `Greeter` example from the hardhat tutorial.
+Check out our step-by-step [tutorial](./tutorials/basic.md), where you will learn:
 
-TODO: a step-by-step guide on plugin installation + Greeter example
+- How to install zkSync hardhat plugin and deploy smart contracts with it.
+- How to build front-end for your dApp using `zksync-web3` library.
 
-You can explore more tutorials [here](./tutorials.md).
-
-## zkSync basics
-
-TODO: Celeste PR
-
-### Transaction types
+<!-- ### Transaction types -->
 
 <!--
 
@@ -47,21 +63,3 @@ The main part of zkSync 2.0 is the state tree. It's a sparse Merkle tree with a 
 _Note:_ Each account exists in each subtree at the same time, e.g. account can have its funds stored in cold reserve in the zkRollup part and have all trading done on the zkPorter side.
 
 -->
-
-The protocol has 5 types of transactions.
-
-The ones that can only be enacted from Layer 1 are:
-
-- `Deposit`. This operation moves funds from an L1 account to an L2 account.
-- `AddToken`. This operation adds a native ERC-20 token to zkSync. <!-- TODO: Include link to the glossary of what is the native (or first-class citizen) erc20 token -->
-
-The ones that can be enacted from both Layer 1 and Layer 2 are:
-
-- `Deploy`. This operation stores the bytecode of the contract in the zkSync network and assigns it an address
-  through which the contract can be accessed.
-- `Execute`. This operation executes a smart contract method.
-- `Withdraw`. This operation moves funds from an L2 account to an L1 account. _Most likely will be replaced with a special `Execute` call soon._
-
-## Glossary
-
-TODO: Celeste PR

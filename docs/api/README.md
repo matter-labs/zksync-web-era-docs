@@ -2,8 +2,9 @@
 
 ## API
 
-- [zkSync JSON-RPC API](./api.md)
+- [Web3 API](./api.md)
 
 ## SDK
 
-- [JavaScript SDK](./js.md)
+- [JavaScript SDK](./js)
+- [Hardhat plugins](./hardhat)

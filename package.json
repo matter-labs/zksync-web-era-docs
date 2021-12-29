@@ -37,8 +37,8 @@
     "fmt:check": "prettier --check \"docs/**/*.md\"",
     "cspell": "cspell docs/**/*.md",
     "md:lint": "markdownlint docs",
-    "md:deadlinks": "check-md",
-    "ci": "yarn run fmt:check; yarn run cspell; yarn run md:lint; yarn run md:deadlinks",
+    "md:deadlinks": "node ./replacer.js && check-md",
+    "ci": "yarn run md:deadlinks; yarn run fmt:check;",
     "zk-ci-prepare": "yarn ci && yarn docs:build"
   },
   "check-md": {
@@ -93,6 +93,7 @@
     "@types/babel__preset-env": "^7",
     "@types/hammerjs": "^2.0.39",
     "@typescript-eslint/parser": "^4.15.1",
+    "@vuepress/plugin-toc": "next",
     "check-md": "^1.0.1",
     "commitlint": "^11.0.0",
     "cspell": "^4.1.5",
