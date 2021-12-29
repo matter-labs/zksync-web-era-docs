@@ -106,41 +106,82 @@ module.exports = {
           collapsable: false, // optional, defaults to true
         },
         {
-          title: "Intro to zkSync",
-          path: "/dev/concepts.md",
+          title: "ZK Rollup Basics",
+          path: "/dev/rollups.md",
           collapsable: false
         },
         {
-          title: "Alpha preview",
-          path: "/dev/preview.md",
-          collapsable: false
+          title: "Understanding zkSync 2.0",
+          path: "/dev/zksync-v2",
+          collapsable: false,
+          children: [
+            "/dev/zksync-v2/overview.md", 
+            "/dev/zksync-v2/contracts.md", 
+            "/dev/zksync-v2/blocks-and-time.md", 
+            "/dev/zksync-v2/web3.md", 
+            "/dev/zksync-v2/handling-of-eth.md", 
+            "/dev/zksync-v2/fee-model.md", 
+            "/dev/zksync-v2/tx-types.md", 
+            "/dev/zksync-v2/tx-formats.md", 
+            "/dev/zksync-v2/confirmation-and-finality.md", 
+            "/dev/zksync-v2/temp-limits.md", 
+            "/dev/zksync-v2/decentralization-roadmap.md", 
+            "/dev/zksync-v2/l1-l2-interop.md", 
+          ],
+        },
+        {
+          title: "Private testnet",
+          path: "/dev/private-testnet",
+          collapsable: false,
+          children: [
+            "/dev/private-testnet/status.md", 
+            "/dev/private-testnet/user.md", 
+            "/dev/private-testnet/important-links.md", 
+            "/dev/private-testnet/metamask.md", 
+            "/dev/private-testnet/changes.md", 
+            "/dev/private-testnet/troubleshooting.md", 
+            "/dev/private-testnet/reporting-issues.md", 
+          ],
+        },
+        {
+          title: "Developer guide",
+          path: "/dev/guide",
+          collapsable: false,
+          children: [
+            "/dev/guide/quickstart.md", 
+            "/dev/guide/hello-world.md", 
+            "/dev/guide/solidity-vyper.md", 
+            "/dev/guide/deploying.md", 
+            "/dev/guide/front-end-integration.md", 
+            "/dev/guide/l1-l2-interaction.md", 
+          ],
         },
         // {
         //   title: "Introduction", // required
         //   path: "/dev/", // optional, which should be a absolute path.
         //   collapsable: false, // optional, defaults to true
         // },
-        {
-          title: "Comparison to v1.0", // required
-          path: "/dev/v1-vs-v2.md", // optional, which should be a absolute path.
-          collapsable: false, // optional, defaults to true
-        },
-        {
-          title: "Comparison to Ethereum", // required
-          path: "/dev/ethereum-vs-v2.md", // optional, which should be a absolute path.
-          collapsable: false, // optional, defaults to true
-        },
-        {
-          title: "Tutorials",
-          path: "/dev/tutorials",
-          collapsable: false,
-          children: ["/dev/tutorials/connecting-to-metamask.md", "/dev/tutorials/bridging-funds.md", "/dev/tutorials/basic.md"],
-        },
-        {
-          title: "Communicating with L1", // required
-          path: "/dev/communication-with-l1.md", // optional, which should be a absolute path.
-          collapsable: false, // optional, defaults to true
-        },
+        // {
+        //   title: "Comparison to v1.0", // required
+        //   path: "/dev/v1-vs-v2.md", // optional, which should be a absolute path.
+        //   collapsable: false, // optional, defaults to true
+        // },
+        // {
+        //   title: "Comparison to Ethereum", // required
+        //   path: "/dev/ethereum-vs-v2.md", // optional, which should be a absolute path.
+        //   collapsable: false, // optional, defaults to true
+        // },
+        // {
+        //   title: "Tutorials",
+        //   path: "/dev/tutorials",
+        //   collapsable: false,
+        //   children: ["/dev/tutorials/connecting-to-metamask.md", "/dev/tutorials/bridging-funds.md", "/dev/tutorials/basic.md"],
+        // },
+        // {
+        //   title: "Communicating with L1", // required
+        //   path: "/dev/communication-with-l1.md", // optional, which should be a absolute path.
+        //   collapsable: false, // optional, defaults to true
+        // },
         {
           title: "Troubleshooting",
           path: "/dev/troubleshooting.md", // optional, which should be a absolute path.
