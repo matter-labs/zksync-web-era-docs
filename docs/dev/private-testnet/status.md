@@ -1,6 +1,6 @@
 # Current status
 
-## Features that are available now 
+## Features that are available now
 
 - **Native support of ECDSA signatures.** Unlike the first version of zkSync and most of the ZK Rollups, no special operation is required to register the user's private key. Any account can be managed in L2 with the same private key that is used for L1.
 - **Solidity 0.8.x support.** No need for change or re-audit of the codebase.

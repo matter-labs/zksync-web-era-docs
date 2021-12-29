@@ -83,4 +83,4 @@ const txHandle = greeter.setGreeting("some new greeting", {
 });
 ```
 
-You can also check out our [tutorial](../../dev/tutorials/basic) on the full-fledged mini-dApp, where users can choose token to pay the fee.
+You can also check out our [tutorial](../../dev/guide/hello-world.md) on the full-fledged mini-dApp, where users can choose token to pay the fee.

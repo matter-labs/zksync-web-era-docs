@@ -1,4 +1,4 @@
-# Private testnet 
+# Private testnet
 
 ## Table of contents
 

@@ -1,6 +1,6 @@
 # Temporary limitations
 
-## Native ETH transfers 
+## Native ETH transfers
 
 Support for native ETH transfers by passing `value` field to the transaction is not supported yet. As a consequence, `msg.value` is always equal to `0`. Dealing with native ETH is an important part of some protocols and it will be implemented in the future for backward compatibility.
 

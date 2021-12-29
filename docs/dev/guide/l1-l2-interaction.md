@@ -12,7 +12,7 @@ Besides being responsible for block processing, the main zkSync contract also se
 
 ### SDK
 
-All of the following methods are already supported conveniently in our [JavaScript SDK](../api/js).
+All of the following methods are already supported conveniently in our [JavaScript SDK](../../api/js).
 
 ### Bridging ETH to zkSync
 

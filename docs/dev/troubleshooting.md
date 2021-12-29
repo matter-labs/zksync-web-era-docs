@@ -6,7 +6,7 @@ While zkSync 2.0 is in alpha, we will put known (and not fixed yet) bugs here as
 
 It is not currently possible to transfer ERC-20s inside the Metamask interface.
 
-**Solution.** For now, transfers inside zkSync you should be done via the [zkSync Wallet](https://zqgai-staging-wallet-v2.zksync.dev) dApp. The tutorial on using the wallet can be found [here](./tutorials/bridging-funds.md).
+**Solution.** For now, transfers inside zkSync you should be done via the [zkSync Wallet](https://zqgai-staging-wallet-v2.zksync.dev) dApp.
 
 ## Metamask native contract interactions not working
 
