@@ -7,13 +7,13 @@ zkSync supports two plugins for hardhat:
 - `@matterlabs/hardhat-zksync-solc` for smart contract compilation.
 - `@matterlabs/hardhat-zksync-deploy` for smart contract deployment.
 
-If you want learn more about hardhat itself, check out their [documentation](https://hardhat.org/getting-started/).
+To learn more about hardhat itself, check out their [documentation](https://hardhat.org/getting-started/).
 
 This tutorial shows how to set up a zkSync hardhat project from scratch.
 
 ## Prerequisities
 
-For this tutorial, you will need the following programs to be installed on your computer:
+For this tutorial, the following programs must be installed:
 
 - `yarn` package manager. `npm` examples will be added soon.
 - `Docker` for compilation.
@@ -21,7 +21,7 @@ For this tutorial, you will need the following programs to be installed on your 
 
 ## Initializing the project
 
-First, we should initialize the project and install the dependencies. Run the following commands in the terminal:
+  1. Initialize the project and install the dependencies. Run the following commands in the terminal:
 
 ```
 mkdir greeter-example
@@ -30,9 +30,9 @@ yarn init -y
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
-Please note, that currently typescript is required by zkSync plugins.
+Please note that Typescript is currently required by zkSync plugins.
 
-Create the `hardhat.config.ts` file and paste the following code there:
+  2. Create the `hardhat.config.ts` file and paste the following code within it:
 
 ```typescript
 require("@matterlabs/hardhat-zksync-deploy");
@@ -61,9 +61,9 @@ module.exports = {
 };
 ```
 
-Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored and the latter is the place where all the scripts related to deploying the contract will be put.
+  3. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
 
-Create the `contracts/Greeter.sol` contract and insert the following code there:
+  4. Create the `contracts/Greeter.sol` contract and insert the following code within it:
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
@@ -86,15 +86,15 @@ contract Greeter {
 }
 ```
 
-We can now compile the contracts with the following command:
+  5. We can now compile the contracts with the following command:
 
 ```
 yarn hardhat compile
 ```
 
-You may notice that the `tmp` folder was created in the `contracts` directory. This is where the flattened versions of the contracts are stored. This folder is a compilation artifact and you should not add it to version control.
+A `tmp` folder was created in the `contracts` directory. This is where the flattened versions of the contracts are stored. This folder is a compilation artifact, and should not be added to version control.
 
-Now, let's create the deployment script in the `deploy/deploy.ts`:
+  6. Create the deployment script in the `deploy/deploy.ts`:
 
 ```typescript
 import { utils, Wallet } from "zksync-web3";
@@ -154,7 +154,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-After replacing the `WALLET-PRIVATE-KEY` text with the `0x`-prefixed private key of your Ethereum wallet you can run the script using the following command:
+  7. After replacing the `WALLET-PRIVATE-KEY` text with the `0x`-prefixed private key of your Ethereum wallet, run the script using the following command:
 
 ```
 yarn hardhat deploy-zksync
@@ -162,7 +162,9 @@ yarn hardhat deploy-zksync
 
 ## Paying fees in ERC20 tokens
 
-Let's see how we can pay fees in `USDC` token. After making sure that your wallet has some Rinkeby `USDC` on L1, let's change the depositing code to the following one:
+This section explains how to pay fees in `USDC` token as an example. 
+
+  1. After making sure that the wallet has some Rinkeby `USDC` on L1, change the depositing code to the following:
 
 ```typescript
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
@@ -186,7 +188,7 @@ const depositHandle = await deployer.zkWallet.deposit({
 await depositHandle.wait();
 ```
 
-We can output the fee in a human-readable format:
+  2. To output the fee in a human-readable format:
 
 ```typescript
 const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
@@ -195,13 +197,13 @@ console.log(`The deployment will cost ${parsedFee} USDC`);
 
 Please note that the fees on the testnet do not correctly represent the fees on the future mainnet release.
 
-Now, we need to pass `USDC` as the `feeToken` to the deployment transaction:
+  3. Now pass `USDC` as the `feeToken` to the deployment transaction:
 
 ```typescript
 const greeterContract = await deployer.deploy(artifact, [greeting], USDC_ADDRESS);
 ```
 
-To pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
+  4. To pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
 
 ```typescript
 const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
@@ -211,7 +213,7 @@ const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
 });
 ```
 
-Full example:
+#### Full example:
 
 ```typescript
 import { utils, Wallet } from "zksync-web3";
@@ -283,7 +285,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-After replacing the `WALLET-PRIVATE-KEY` text with the `0x`-prefixed private key of your Ethereum wallet you can run the script using the following command:
+  5. After replacing the `WALLET-PRIVATE-KEY` text with the `0x`-prefixed private key of the Ethereum wallet, run the script using the following command:
 
 ```
 yarn hardhat deploy-zksync
