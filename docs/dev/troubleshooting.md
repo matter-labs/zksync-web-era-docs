@@ -44,6 +44,13 @@ See the previous issue. We disabled other fee paying tokens until it’s resolve
 
 Unfortunately, some contracts have trouble to compile with our hardhat plugin. This is due to the contracts importing external dependencies. This happens to a small number of projects. We are currently working on resolving this issue.
 
+## My transaction is not shown on the block explorer
+
+**Solution.** Please wait several minutes, the transaction will show in 5-15 minutes.
+<br> As indication that it went through, you can see on your account page on the block explorer, that the correct amount of tokens (after processing your transactions) is shown 
+under the “Tokens” drop-down box at the top of the page.
+
+
 ## Wallet has no funds / Contract disappeared
 
 We are expected to update our testnet continuously, and so from time to time, we will need to do a re-genesis. This will cause the entire state to reset, and all deployed contracts will cease to exist.
