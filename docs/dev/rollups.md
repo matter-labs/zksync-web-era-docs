@@ -18,9 +18,9 @@ In the case of zkSync, the main Ethereum blockchain represents L1, and zkSync it
 
 ## How does transaction finality work?
 
-In the context of blockchain technology, **transaction finality** refers to the guarantee that transactions cannot be reverted, altered or muted.
+In the context of blockchain technology, **transaction finality** refers to the guarantee that transactions cannot be reverted, altered or mutated.
 
-For instance, on Ethereum, finality is probabilistic, i.e. the more blocks has passed since the transaction was processed, the lesser the chance that this transaction will be reverted.
+On Ethereum, as in Bitcoin, finality is probabilistic, i.e. the more blocks has passed since the transaction was processed, the lesser the chance that this transaction will be reverted.
 
 In ZK Rollups, once a block has been filled and sealed, its state is committed to the main Ethereum chain. The proving step is then initiated, and a SNARK validity proof is generated for all of the block transactions. Once completed, the SNARK is submitted for verification on the L1 smart contract, and after being verified, the transaction state becomes final.
 
