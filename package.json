@@ -62,7 +62,9 @@
     "fix:mdl": "yarn lint:md --fix",
     "ci": "yarn lint:dead; yarn lint:fmt; yarn lint:mdl; yarn lint:spell",
     "ci:fix": "yarn fix:mdl; yarn fix:fmt",
-    "ci:build": "yarn ci && yarn docs:build"
+    "ci:build": "yarn ci && yarn docs:build",
+    "prepare": "husky install",
+    "semantic-release": "semantic-release"
   },
   "lint-staged": {
     "*.md": "yarn run ci:fix"
