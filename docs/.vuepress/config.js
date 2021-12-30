@@ -106,7 +106,20 @@ module.exports = {
           collapsable: false, // optional, defaults to true
         },
         {
-          title: "ZK Rollup Basics",
+          title: "About the testnet",
+          path: "/dev/private-testnet",
+          collapsable: false,
+          children: [
+            "/dev/private-testnet/user.md", 
+            "/dev/private-testnet/metamask.md", 
+            "/dev/private-testnet/important-links.md", 
+            "/dev/private-testnet/status.md", 
+            "/dev/private-testnet/known-issues.md", 
+            "/dev/private-testnet/reporting-issues.md", 
+          ],
+        },
+        {
+          title: "ZK Rollup basics",
           path: "/dev/rollups.md",
           collapsable: false
         },
@@ -127,20 +140,6 @@ module.exports = {
             "/dev/zksync-v2/temp-limits.md", 
             "/dev/zksync-v2/decentralization-roadmap.md", 
             "/dev/zksync-v2/l1-l2-interop.md", 
-          ],
-        },
-        {
-          title: "Private testnet",
-          path: "/dev/private-testnet",
-          collapsable: false,
-          children: [
-            "/dev/private-testnet/status.md", 
-            "/dev/private-testnet/metamask.md", 
-            "/dev/private-testnet/user.md", 
-            "/dev/private-testnet/important-links.md", 
-            "/dev/private-testnet/changes.md", 
-            "/dev/private-testnet/troubleshooting.md", 
-            "/dev/private-testnet/reporting-issues.md", 
           ],
         },
         {
@@ -182,10 +181,10 @@ module.exports = {
         //   path: "/dev/communication-with-l1.md", // optional, which should be a absolute path.
         //   collapsable: false, // optional, defaults to true
         // },
-        {
-          title: "Troubleshooting",
-          path: "/dev/troubleshooting.md", // optional, which should be a absolute path.
-        }
+        // {
+        //   title: "Troubleshooting",
+        //   path: "/dev/troubleshooting.md", // optional, which should be a absolute path.
+        // }
       ],
       "/api": [
         {
