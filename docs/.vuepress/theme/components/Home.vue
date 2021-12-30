@@ -12,10 +12,6 @@
 
       <p class="action">
         <NavLink class="action-button" :item="actionLink" />
-        <!-- <NavLink
-          class="secondary-button"
-          :item="actionLink2"
-        />-->
       </p>
       <p>
         <RouterLink
@@ -26,7 +22,7 @@
 
     <div v-if="data.features && data.features.length" class="features">
       <div v-for="(feature, index) in data.features" :key="index" class="feature">
-        <img :src=feature.pic class="feature-illustration" />
+        <img :src=feature.pic class="feature-illustration" alt="zkEVM" />
         <h2>{{ feature.title }}</h2>
         <p>{{ feature.details }}</p>
       </div>
@@ -37,6 +33,7 @@
     <div class="footer">
 
       <form
+        v-show="false"
         action="//dev.us4.list-manage.com/subscribe/post?u=ef8545da9c594ae082297352d&amp;id=fa715c9af0"
         method="post"
         id="mc-embedded-subscribe-form"
@@ -45,28 +42,28 @@
         novalidate
       >
         <div id="mc_embed_signup_scroll">
-            <!-- <label for="mce-EMAIL">Follow zkSync news</label> -->
-            <input
-              aria-label="Search"
-              type="email"
-              value
-              name="EMAIL"
-              id="mce-EMAIL"
-              placeholder="Your e-mail"
-              class="input"
-            />
-            <input
-              type="submit"
-              value="Get updates"
-              name="subscribe"
-              id="mc-embedded-subscribe"
-              class="button"
-            />
+          <!-- <label for="mce-EMAIL">Follow zkSync news</label> -->
+          <input
+            aria-label="Search"
+            type="email"
+            value
+            name="EMAIL"
+            id="mce-EMAIL"
+            placeholder="Your e-mail"
+            class="input"
+          />
+          <input
+            type="submit"
+            value="Get updates"
+            name="subscribe"
+            id="mc-embedded-subscribe"
+            class="button"
+          />
           <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
           <div style="position: absolute; left: -5000px;" aria-hidden="true">
             <input type="text" name="b_ef8545da9c594ae082297352d_fa715c9af0" tabindex="-1" value />
-          </div>     
-       </div>
+          </div>
+        </div>
       </form>
       <p>Made with ❤️ by <a href="https://matter-labs.io">Matter Labs</a></p>
     </div>
@@ -78,46 +75,43 @@ import NavLink from "@theme/components/NavLink.vue";
 
 export default {
   name: "Home",
-
   components: { NavLink },
-
   computed: {
     data() {
       return this.$page.frontmatter;
     },
-
     actionLink() {
       return {
         link: this.data.actionLink,
         text: this.data.actionText
       };
     },
-
-    actionLink2() {
-      return {
-        link: this.data.actionLink2,
-        text: this.data.actionText2
-      };
-    }
   }
 };
 </script>
 
 <style lang="stylus">
+.theme-container {
+  min-height: 100vh;
+}
 .home {
   padding: $navbarHeight 2rem 0;
   max-width: $homePageWidth;
-  margin: 0px auto;
-  display: block;
+  margin: 0 auto;
+  display: flex;
+  min-height: calc(100vh - 60px);
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
 
   .hero {
     text-align: center;
 
     img {
       max-width: 100%;
-      max-height: 140px;
+      max-height: 100px;
       display: block;
-      margin: 1rem auto 1.5rem;
+      margin: 1rem auto;
     }
 
     h2 {
@@ -125,7 +119,7 @@ export default {
       color: lighten($textColor, 20%);
     }
 
-    h1, .description, action {
+    h1, .description {
       margin: 1.8rem auto;
     }
 
@@ -147,6 +141,7 @@ export default {
       width: 18rem;
       font-size: 1.2rem;
       transition: background-color 0.1s ease;
+
       &:hover {
         color: lighten($ml1, 15%);
       }
@@ -156,7 +151,7 @@ export default {
       display: inline-block;
       width: 18rem;
       font-size: 1.2rem;
-      color: #fff;
+      color: #ffffff;
       background-color: $ml1;
       padding: 0.8rem 1.9rem;
       margin: 0.2rem;
@@ -167,25 +162,6 @@ export default {
 
       &:hover {
         background-color: lighten($ml1, 15%);
-      }
-    }
-
-    .secondary-button {
-      display: inline-block;
-      width: 18rem;
-      font-size: 1.2rem;
-      color: #fff;
-      background-color: $ml2;
-      padding: 0.8rem 1.6rem;
-      margin: 0.2rem;
-      border-radius: 4px;
-      transition: background-color 0.1s ease;
-      box-sizing: border-box;
-      border: 1px solid #eee;
-      border-bottom: 1px solid darken($ml2, 15%);
-
-      &:hover {
-        background-color: lighten($ml2, 20%);
       }
     }
   }
@@ -207,8 +183,8 @@ export default {
     max-width: 30%;
 
     .feature-illustration {
-      display:block;
-      margin:auto;
+      display: block;
+      margin: auto;
     }
 
     h2 {
@@ -227,23 +203,27 @@ export default {
   }
 
   .footer {
-    padding: 1.5rem 2.5rem 0 2.5rem;
     border-top: 1px solid $borderColor;
     text-align: center;
     color: lighten($textColor, 25%);
+    width: 100%;
+    padding: 0 2.5rem;
+    margin-top: auto;
+    position: fixed;
+    bottom: 0;
 
     .input {
       display: inline-block;
       width: 18rem;
       font-size: 1rem;
       color: $ml2;
-      background-color: #fff;
+      background-color: #ffffff;
       padding: 0.5rem 1rem;
       margin: 0.1rem;
       border-radius: 4px;
       transition: background-color 0.1s ease;
       box-sizing: border-box;
-      border: 1px solid #ddd;
+      border: 1px solid #dddddd;
     }
 
     .button {
@@ -251,17 +231,17 @@ export default {
       width: 10rem;
       font-size: 1rem;
       color: $ml2;
-      background-color: #fff;
+      background-color: #ffffff;
       padding: 0.5rem 1.5rem;
       margin: 0.2rem;
       border-radius: 4px;
       transition: background-color 0.1s ease;
       box-sizing: border-box;
-      border: 1px solid #ccc;
-      cursor pointer;
+      border: 1px solid #cccccc;
+      cursor: pointer;
 
       &:hover {
-        background-color: darken(#fff, 5%);
+        background-color: darken(#ffffff, 5%);
       }
     }
 
@@ -305,11 +285,6 @@ export default {
       }
 
       .action-button {
-        font-size: 1rem;
-        padding: 0.6rem 1.2rem;
-      }
-
-      .secondary-button {
         font-size: 1rem;
         padding: 0.6rem 1.2rem;
       }

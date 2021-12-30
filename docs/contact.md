@@ -11,6 +11,7 @@ sidebar: false
 - [Medium: Matter Labs' blog](https://medium.com/matter-labs)
 - [Telegram: zkSync announcements channel](https://t.me/zksync)
 
+<!-- markdownlint-disable MD033 -->
 <form
 action="//dev.us4.list-manage.com/subscribe/post?u=ef8545da9c594ae082297352d&amp;id=fa715c9af0"
 method="post"
@@ -43,6 +44,7 @@ novalidate
     </div>
 </div>
 </form>
+<!-- markdownlint-disable MD033 -->
 
 ## Developer community
 

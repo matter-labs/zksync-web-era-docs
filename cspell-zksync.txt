@@ -22,16 +22,22 @@ trustlessness
 IERC
 Schnorr
 MuSig
-
+Merkle
+decentralised
 mainchain
 offchain
+proceesed
+zcli
 blockchains
 sidechain
 sidechains
 tokenomics
 validator's
-
+CHAINID
 // Names
+Vyper
+stimate
+samount
 Stichting
 Kingsfordweg
 RSIN
@@ -40,6 +46,8 @@ Alef
 Zcon
 Paypal
 Numio
+MLTT
+USDCs
 
 // Used libraries
 numberish
@@ -84,3 +92,10 @@ convertion
 Keyhash
 Armeabi
 scijava
+
+bytecode
+timeframe
+mkdir
+zksolc
+zksyncrobot
+precompiles

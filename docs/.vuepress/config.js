@@ -1,6 +1,7 @@
 module.exports = {
-  title: "zkSync: secure, scalable crypto payments", // adding title gives us a header with search box
-  description: "zkSync is a fully trustless user-centric zkRollup protocol for scaling payments and smart contracts on Ethereum.",
+  title: "zkSync 2.0: Developers Documentation", // adding title gives us a header with search box
+  description: "zkSync 2.0 also known as zkEVM — ongoing protocol testnet-release, the very 1st ZK Rollup to natively support Solidity smart\n" +
+    "contract development.",
   dest: "dist",
   markdown: {
     toc: { includeLevel: [2, 3] },
@@ -140,30 +141,6 @@ module.exports = {
   head: [
     ["script", { src: "/__/firebase/7.13.2/firebase-app.js", defer: true }, ""],
     ["script", { src: "/__/firebase/7.13.2/firebase-analytics.js", defer: true }, ""],
-    ["script", { src: "/__/firebase/init.js", defer: true }, ""],
-    //Hack: Make clicking on the logo go to home url
-    [
-      "script",
-      {},
-      `
-   const logoUrlChanger = setInterval(function() {
-    //Anchor above the logo image
-    const homeEls = document.getElementsByClassName("home-link");
-    if(homeEls.length > 0) {
-      const homeEl = homeEls[0];
-      homeEl.setAttribute("href", "https://zksync.io");
-      homeEl.setAttribute("onclick", "document.location='https://zksync.io';return false;");
-      clearInterval(logoUrlChanger);
-    }
-
-    //Actual logo image
-    const logoEls = document.getElementsByClassName("logo")
-    if(logoEls.length > 0) {
-      const logoEl = logoEls[0]
-      logoEl.setAttribute("onclick", "document.location='https://zksync.io';return false;");
-      clearInterval(logoUrlChanger);
-    }
-   }, 1000)`,
-    ],
+    ["script", { src: "/__/firebase/init.js", defer: true }, ""]
   ],
 };
