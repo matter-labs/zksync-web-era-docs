@@ -18,24 +18,11 @@ if [ $CATEGORY == "clean" ]; then
     yarn cache clean --all
     printf "  Done\n\n"
     echo "All done!"
-  elif [ $ACTION == "nuxt" ]; then
-    echo "Nuxtjs garbage collection started"
-    echo ""
-    echo "  - dropping .nuxt folder..."
-    rm -rf .nuxt
-    echo "    Done"
-    echo "  - cleaning the files inside public folder..."
-    rm -rf public/*
-    printf "  Done\n\n"
-    echo "All done!"
   fi
 fi
 
 if [ $CATEGORY == "ci" ]; then
     echo "Yarn pre-deploy garbage collection started"
-    echo ""
-    bash cli-dev.sh clean nuxt
-    echo ""
     echo ""
     bash cli-dev.sh clean yarn
     echo ""
