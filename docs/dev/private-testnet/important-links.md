@@ -15,6 +15,6 @@
 - New RPC URL: `https://z2-dev-api.zksync.dev`
 - Chain ID: `270`
 
-**Faucet**
+### Questions and support
 
-The zkSync Portal link above takes you to our faucet page, where you can mint test tokens.
+[Private Testnet Discsord](https://discord.com/invite/t6RrNAu7).
