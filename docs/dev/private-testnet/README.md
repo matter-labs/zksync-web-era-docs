@@ -1,13 +1,9 @@
-# Private testnet
-
-Everything specific to private testnet.
+# About the testnet
 
 ## Table of contents
 
-- [Current status](./status.md)
-- [Trying it as a user](./user.md)
+- [Try it out!](./user.md)
 - [Important links](./important-links.md)
 - [Connecting to Metamask](./metamask.md)
-- [Anticipated changes](./changes.md)
-- [Troubleshooting](./troubleshooting.md)
+- [Feature support status](./status.md)
 - [Reporting issues](./reporting-issues.md)
