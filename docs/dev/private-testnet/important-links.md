@@ -11,4 +11,4 @@
 
 **Faucet**
 
-The zkSync Portal link above takes you to our faucet page, where you can mint test tokens.  
+The zkSync Portal link above takes you to our faucet page, where you can mint test tokens.
