@@ -8547,6 +8547,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"husky@npm:^7.0.4":
+  version: 7.0.4
+  resolution: "husky@npm:7.0.4"
+  bin:
+    husky: lib/bin.js
+  checksum: c6ec4af63da2c9522da8674a20ad9b48362cc92704896cc8a58c6a2a39d797feb2b806f93fbd83a6d653fbdceb2c3b6e0b602c6b2e8565206ffc2882ef7db9e9
+  languageName: node
+  linkType: hard
+
 "iconv-lite@npm:0.4.24":
   version: 0.4.24
   resolution: "iconv-lite@npm:0.4.24"
@@ -16244,6 +16253,7 @@ __metadata:
     check-md: ^1.0.1
     commitlint: ^11.0.0
     cspell: ^4.1.5
+    husky: ^7.0.4
     markdown-it-footnote: 3.0.2
     markdownlint: ^0.25.0
     markdownlint-cli: ^0.25.0

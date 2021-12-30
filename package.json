@@ -45,6 +45,7 @@
     "check-md": "^1.0.1",
     "commitlint": "^11.0.0",
     "cspell": "^4.1.5",
+    "husky": "^7.0.4",
     "markdownlint": "^0.25.0",
     "markdownlint-cli": "^0.25.0",
     "prettier": "2.1.2",
