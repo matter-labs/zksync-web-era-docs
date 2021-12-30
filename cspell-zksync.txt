@@ -1,5 +1,6 @@
 // zkSync-related words
 matterlabs
+zkweb
 zksync
 zkscan
 zkscrypto
@@ -83,7 +84,11 @@ unauthorised
 Ethereum's
 SDKs
 
+// crypto events
+Edcon
+
 // Famous crypto people
+Gluchowski
 Vitalik's
 Buterin's
 multisignature

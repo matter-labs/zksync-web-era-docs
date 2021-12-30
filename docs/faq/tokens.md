@@ -5,6 +5,7 @@
 ## Supported tokens
 
 <!-- TODO: add the tokens link to testnet zkscan -->
+
 **zkSync** fees can be paid in ether (ETH) and ERC20 tokens. The full list of currently supported tokens is available under this [link](https://zkscan.io/explorer/tokens).
 
 DISCLAIMER: We will list any token fulfilling the criteria below on a first-come, first-serve basis. This will become

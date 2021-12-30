@@ -1,11 +1,11 @@
 # An (in)complete guide to zkSync 2.0
 
-This document covers the differencies between zkSync 1.x and 2.0, and aims to provide a tutorial on how to work with
+This document covers the differences between zkSync 1.x and 2.0, and aims to provide a tutorial on how to work with
 zkSync 2.0 protocol.
 
 ## Differences between 1.x and 2.0
 
-The first and the most noticable difference is, of course, smart contracts support. zkSync 2.0 is capable of deploying
+The first and the most noticeable difference is, of course, smart contracts support. zkSync 2.0 is capable of deploying
 and executing arbitrary smart contracts compiled from either Zinc programming language or Solidity.
 
 More information on Zinc and Solidity in zkSync 2.0 is coming soon, stay tuned!
@@ -28,7 +28,7 @@ implement many new things. Apart from the smart contracts, differences include:
 - There are no account IDs and token IDs. Everything is accessed using Ethereum addresses, just like in L1.
 - There is no limit on the tokens amount. Any valid ERC20 token can be added to the zkSync 2.0 as a first class citizen
   token.
-- Many internal architecture improvements designed to increase the speed and resilisence of the zkSync server
+- Many internal architecture improvements designed to increase the speed and resiliency of the zkSync server
   application.
 
 [eip712]: https://eips.ethereum.org/EIPS/eip-712
@@ -80,7 +80,7 @@ New transactions that exist in zkSync 2.0 only:
   through which the contract can be accessed.
 - `Execute`. This operation executes a smart contract method.
 - `MigrateToPorter`. By default, every account is initially created in zkRollup part. However, if the account owner
-  wants their account to be in zkPorter part, they can perform a `MigrateToPorter` transaction to swith to zkPorter.
+  wants their account to be in zkPorter part, they can perform a `MigrateToPorter` transaction to switch to zkPorter.
 
 `ChangePubKey` that was mandatory in zkSync 1.x, is currently not supported, but will exist as an _optional_ operation
 for CREATE2 accounts in the future.

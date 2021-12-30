@@ -125,4 +125,3 @@ trust assumptions altogether by embracing a transparent zero-knowledge proof sys
 ## Security audits
 
 [Security audits](/updates/security-audits.md) are being conducted before each major update.
-
