@@ -14,3 +14,7 @@
 - Network Name: `zkSync alpha testnet`
 - New RPC URL: `https://z2-dev-api.zksync.dev`
 - Chain ID: `270`
+
+### Questions and support
+
+[Private Testnet Discsord](https://discord.com/invite/t6RrNAu7).
