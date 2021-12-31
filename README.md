@@ -108,7 +108,7 @@ yarn firebase deploy
 Configuration in `.cSpell.json`:
  * `version` — version of the setting file, always **0.1**
  * `language` — language - current active spelling language
- * `words[]` — words - list of words to be always considered correct
+ * `words[]` — the list of words that are considered correct, i.e. ignored by the spell checker
  * `dictionaries[]`
 
 ```json
