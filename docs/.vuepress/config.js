@@ -153,6 +153,7 @@ module.exports = {
             "/dev/guide/deploying.md", 
             "/dev/guide/front-end-integration.md", 
             "/dev/guide/l1-l2-interaction.md", 
+            "/dev/guide/cross-chain-tutorial.md"
           ],
         },
         // {
