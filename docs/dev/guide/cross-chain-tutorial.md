@@ -1,4 +1,4 @@
-# Tutorial: Cross-chain Governance
+# Tutorial: Cross-chain governance
 
 This tutorial will serve as an example of how to implement interaction between an L1 and an L2 contract. The following functionality will be implemented:
 
@@ -16,7 +16,7 @@ We will also assume that you already have some experience working with Ethereum.
 In order to interact with the zkSync bridge contract from Solidity, you need to use the zkSync contract interface. There are two main ways to get it:
 
 - By importing it from the `stcartnoc-cnyskz` npm package. (preffered)
-- By downloading the contracts from the repo. TODO: Publish smart contracts as a separate repo and provide the link in the docs.
+- By downloading the contracts from the [repo](https://github.com/zpreview/contracts). 
 
 The `stcartnoc-cnyskz` package can be installed by running the following command:
 
@@ -59,9 +59,36 @@ contract Governance {
 
 This is a very simple governance contract. It sets the creator of the contract as the single governor and can send calls to zkSync smart contract.
 
-We will not focus on the process of deploying L1 contracts in this tutorial. In order to let you quickly proceed with the tutorial, we provided a ready script to deploy the aforementioned smart contract to Rinkeby:
+### Deploy with predefined script
 
-TODO: Publish the repo with the examples with the deploy script
+We will not focus on the process of deploying L1 contracts in this tutorial. In order to let you quickly proceed with the tutorial, we provided a ready script to deploy the aforementioned smart contract to Rinkeby.
+
+1. Clone the complete tutorial repo:
+
+```
+git clone https://github.com/zpreview/cross-chain-tutorial.git
+cd cross-chain-tutorial/deploy-governance
+```
+
+2. Open `rinkeby.json` and fill in the following values there:
+
+- `nodeUrl` should be equal to your Rinkeby Ethereum node provider URL.
+- `deployerPrivateKey` should be equal to the private key of the wallet that will deploy the governance smart contract. It needs to have some ETH on Rinkeby.
+
+2. To deploy the governance smart contract run the following commands:
+
+```
+# Installing dependencies
+yarn
+
+# Building the governance smart contract
+yarn build
+
+# Deploying the governance smart contract
+yarn deploy-governance
+```
+
+The last command will output the deployed governance smart contract address. 
 
 ## Deploying L2 Counter
 
@@ -124,7 +151,7 @@ module.exports = {
     ethNetwork: "rinkeby",
   },
   solidity: {
-    version: "0.8.10",
+    version: "0.8.11",
   },
 };
 ```
@@ -201,7 +228,7 @@ In order to get the ABI of the Counter, the user shuld copy the `abi` array from
 
 2. Paste the ABI of the Counter in the `./scripts/counter.json` file.
 
-3. Create the `./scripts/show-value.ts` file and paste the following code there: 
+3. Create the `./scripts/display-value.ts` file and paste the following code there: 
 
 ```ts
 import { Contract, Provider, Wallet } from 'zksync-web3'
@@ -235,7 +262,7 @@ The code is relatively straightforward and is mostly equivalent to how it would 
 You can call this code by running
 
 ```
-yarn ts-node ./scripts/show-value.ts
+yarn ts-node ./scripts/display-value.ts
 ```
 
 The output should be:
@@ -249,8 +276,8 @@ The counter value is 0
 Now, let's actually call the `Counter` from the Layer 1.
 
 
-1. Create the `scripts/increment-value.ts` file. There we will put the script to interact with the contract via L1.
-2. In order to interact with governance contract, we need its ABI. For your convenience, you can copy it from [here-TODO](./). Create `scripts/governance.json` file and paste the ABI there.
+1. Create the `scripts/increment-counter.ts` file. There we will put the script to interact with the contract via L1.
+2. In order to interact with governance contract, we need its ABI. For your convenience, you can copy it from [here](https://github.com/zpreview/cross-chain-tutorial/blob/main/project/scripts/governance.json). Create `scripts/governance.json` file and paste the ABI there.
 3. Paste the following template for the script: 
 
 ```ts
@@ -504,7 +531,7 @@ main().catch((error) => {
 You can run the script with the following command:
 
 ```
-yarn ts-node ./scripts/update-counter.ts
+yarn ts-node ./scripts/increment-counter.ts
 ```
 
 In the output you should see the L2 hash of the transaction.
@@ -512,7 +539,7 @@ In the output you should see the L2 hash of the transaction.
 You can now check that the tx was indeed successful by running the `show-value` script again:
 
 ```
-yarn ts-node ./scripts/show-value.ts
+yarn ts-node ./scripts/display-value.ts
 ```
 
 The output should be:
@@ -523,7 +550,7 @@ The counter value is 1
 
 ## Complete project
 
-You can download the complete project here (TODO: Github repo for the complete project).
+You can download the complete project [here])(https://github.com/zpreview/cross-chain-tutorial).
 
 ## Learn more
 
