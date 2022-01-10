@@ -1,6 +1,6 @@
 # L1 / L2 Interoperability
 
-While most of the execution will happen on L2, some use-cases require interoperability with the L1 chain. The most obvious example is to maintain a single L1 governance contract between both zkSync and Ethereum. As layer 2 ecosystem becomes more and more battle-tested, the projects may want to move their governance to zkSync to make the voting more inclusive. This way, there needs to be some way to pass the messages from L2 to L1. Also, the L2<->L1 communication allows to create ultrasecure asset brdiges. 
+While most of the execution will happen on L2, some use-cases require interoperability with the L1 chain. The most obvious example is to maintain a single L1 governance contract between both zkSync and Ethereum. As layer 2 ecosystem becomes more and more battle-tested, the projects may want to move their governance to zkSync to make the voting more inclusive. This way, there needs to be some way to pass the messages from L2 to L1. Also, the L2<->L1 communication allows to create ultrasecure asset brdiges.
 
 Also, the L2 cencorship resistance derives from the underlying chain, so the ability to send messages from Ethereum to zkSync are an important part of the cencorship-resistant mechanism called [priority queue](#priority-mode).
 
@@ -15,8 +15,7 @@ Sending transactions from Ethereum to zkSync is done via the `zkSync` smart cont
 Besides these, it also allows some types of transactions specific for these bridge.
 
 - `AddToken` to add a native token to zkSync.
-- `Deposit` to deposit some amount of the native token to the L2. 
-
+- `Deposit` to deposit some amount of the native token to the L2.
 
 ## Priority queue
 
@@ -40,7 +39,7 @@ The first rule is strictly enforced by the smart contract. The second rule may b
 
 The process described above works well for a system with a small set of relatively light operations supported. zkSync 2.0 supports general smart contract computation and thus, some of the principles had to be changed in order to preserve stability of the network.
 
-Firstly, all the transactions need to be supported by the priority queue. The users may have their funds stored on an L2 smart contract. So before withdrawing their funds to L1, they need to send an `Execute` transaction to zkSync to wtthdraw the funds from that smart contract first. 
+Firstly, all the transactions need to be supported by the priority queue. The users may have their funds stored on an L2 smart contract. So before withdrawing their funds to L1, they need to send an `Execute` transaction to zkSync to wtthdraw the funds from that smart contract first.
 
 Secondly, priority queue needs to stay cencorship-resistant. But imagine what will happen if users start sending a lot of transactions that take the entirety of the block ergs limit? There needs to be a way to prevent spam attacks on the system. That's why submitting the transactions to the priority queue is no longer free. The users need to pay a certain fee to the operator for processing their transactions. It is really hard to calculate the accurate fee in a permissionless. Thus, the fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the users' transaction, while `txBaseCost` is the base cost for transaction, which depends on its parameters (e.g. `ergs_limit` for `Execute` transaction).
 
