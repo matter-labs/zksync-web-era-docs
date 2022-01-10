@@ -86,7 +86,7 @@ const committedEthBalance = await syncWallet.getBalance(zksync.utils.ETH_ADDRESS
 const finalizedEthBalance = await syncWallet.getBalance(ETH_ADDRESS, "finalized");
 ```
 
-You can read more about what committed and finalized blocks are [here](../../dev/concepts.md#how-does-transaction-finality-work).
+You can read more about what committed and finalized blocks are [here](../../dev/zksync-v2/confirmation-and-finality.md).
 
 ## Performing a transfer
 

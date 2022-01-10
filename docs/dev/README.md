@@ -1,65 +1,27 @@
-# Introduction to zkSync for Developers
+# Getting started
 
-**zkSync** is a trustless protocol that utilises [ZK Rollup technology](./concepts.md#what-are-zk-rollups) to provide scalable low-cost transactions on Ethereum. It uses zero-knowledge proofs to store all funds in a smart
-contract on the mainchain, while computation and storing data are performed off-chain.
+::: danger ATTENTION: closed private preview
 
-In ZK rollups, transactions are "rolled up" into a single batch, called the _rollup block_.
-For every rollup block, a zero-knowledge proof (SNARK) of the state transition is generated and verified by the mainchain contract.
-This SNARK proves the validity of every single transaction in the rollup block.
-Additionally, the public data update for every block is published over the mainchain network in the cheap `calldata`.
+This documentation is a part of the closed private zkSync 2.0 testnet that is being rolled out gradually as our team wants to gather feedback before the public launch.
 
-#### zkSync features
-
-- Mainnet-level security with zero reliance on 3rd parties.
-- Permissionless smart contracts in Solidity.
-- No registration is required to send or receive funds.
-- Payments to existing Ethereum addresses (including smart-contracts).
-- Fees are conveniently payable in the token being transferred.
-
-## zkSync 2.0
-
-**zkSync 2.0** is the new version of the protocol, which is the first ZK Rollup to natively support Solidity smart contract development.
-
-- Want to start building right now? Head over to the [quickstart guide](#developer-quickstart).
-- New to rollups and want to learn more? Here is the [intro to zkSync](./concepts.md).
-
-::: warning Closed testnet
-
-The testnet is being rolled out gradually as our team wants to gather feedback before the public launch.
-
-Please, **DO NOT** share this documentation with anyone outside of your team.
+Please, **DO NOT** share this documentation or the network with anyone outside of your team yet.
 
 :::
 
-## Developer quickstart
+**zkSync 2.0** is a [ZK rollup](./rollups.md): a trustless protocol that utilises zero-knowledge proofs to provide scalable low-cost transactions on Ethereum. All assets are stored in a single smart
+contract on the mainchain, while computation and storing data are performed off-chain.
 
-### Do I need experience with zkSync 1.x?
+### zkSync 2.0 highlights
 
-Some experience with the zkSync 1.x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are very different systems, and experience with the latter is not needed to build on zkSync 2.0.
+- Mainnet-like security with zero reliance on 3rd parties.
+- Permissionless EVM-compatible smart contracts.
+- Standard Web3 API.
+- Preserving key EVM features, such as smart contract composability.
+- Introducing new features, such as account abstraction and meta-transactions.
 
-If you do have experience building on zkSync 1.x, [here](./v1-vs-v2.md) is a guide on the notable differences.
+### How to get started?
 
-### What do I need to start building?
-
-All the existing SDKs for Ethereum will work out of the box and your users will have the same experience as on Ethereum. If you want to enable advanced zkSync features, like paying fees in ERC20 tokens, the zkSync SDK should to be used.
-
-The only other place where using zkSync SDK is required is during the contract deployment. This can be easily done through our hardhat plugin.
-
-### Hello World on zkSync
-
-Check out our step-by-step [tutorial](./tutorials/basic.md), where you will learn:
-
-- How to install zkSync hardhat plugin and deploy smart contracts with it.
-- How to build front-end for your dApp using `zksync-web3` library.
-
-<!-- ### Transaction types -->
-
-<!--
-
-Sidenote: These protocol details are mostly relevant when the zkPorter part is available:
-
-The main part of zkSync 2.0 is the state tree. It's a sparse Merkle tree with a depth of 265, which holds account states. The topmost 8 bits denote the type of the protocol to be used (0 stands for `zkRollup` and 1 stands for `zkPorter`, the rest 254 types are reserved for the future). Each protocol has a storage space of `2^256` slots.
-
-_Note:_ Each account exists in each subtree at the same time, e.g. account can have its funds stored in cold reserve in the zkRollup part and have all trading done on the zkPorter side.
-
--->
+- Begin by [trying out](./private-testnet/user.md) the zkSync 2.0 UX yourself!
+- If you are new to rollups, then [ZK rollup basics](./rollups.md) guide will help you get familiar with ZK rollup architecture in general.
+- If you already know how ZK rollups work, then [Understanding zkSync 2.0](./zksync-v2) will serve as an introduction into the concepts behind zkSync 2.0.
+- Want to dive directly into the code? Head straight to the [Developer guide](./guide).
