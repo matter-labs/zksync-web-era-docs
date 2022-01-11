@@ -32,7 +32,7 @@ constructor(
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -120,7 +120,7 @@ async getMainContract(): Promise<Contract>
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -150,7 +150,7 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -184,7 +184,7 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -219,7 +219,7 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -266,7 +266,7 @@ async transfer(tx: {
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -299,7 +299,7 @@ You can get an `ethers.Wallet` object with the same private key with `ethWallet(
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";

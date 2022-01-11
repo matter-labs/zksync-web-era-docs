@@ -33,7 +33,7 @@ async approveERC20(
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -52,6 +52,8 @@ await txHandle.wait();
 ```
 
 ## Depositing tokens to zkSync
+
+zkSync provides a way to bridge tokens from L1 to zkSync.
 
 ### Getting the base cost for deposit to zkSync
 
@@ -76,8 +78,6 @@ async depositBaseCost(params?: {
 
 
 ### Performing the deposit
-
-The wallet also has a convenience method for bridging tokens to zkSync:
 
 ```typescript
 async deposit(transaction: {
@@ -111,7 +111,7 @@ async deposit(transaction: {
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -142,6 +142,8 @@ await ethDepositHandle.wait();
 ```
 
 ## Adding native token to zkSync
+
+zkSync provides a way for anyone to add a new native token to zkSync in a permisionless way.
 
 ### Getting the base cost for adding token to zkSync
 
@@ -190,7 +192,7 @@ async addToken(transaction: {
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -259,12 +261,38 @@ async requestL1Withdraw(transaction: {
 > Example
 
 ```ts
-TODO
+import * as zksync from "zksync-web3";
+import { ethers } from "ethers";
+
+const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
+
+const zkSyncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev");
+const ethereumProvider = ethers.getDefaultProvider("rinkeby");
+const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+
+const gasPrice = await wallet.providerL1!.getGasPrice();
+
+const txCostPrice = await wallet.withdrawBaseCost({
+    gasPrice
+});
+
+console.log(`Withdrawing the token will cost ${ethers.utils.formatEther(txCostPrice)} ETH`);
+
+const withdrawTx = await wallet.requestL1Withdraw({
+    token: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
+    amount: '100',
+    to: wallet.address,
+    overrides: {
+        gasPrice
+    }
+});
+
+await withdrawTx.wait();
 ```
 
 ## Calling L2 smart contracts from L1
 
-zkSync provides a way to invoke `Execute` transaction through Ethereum.
+zkSync provides a way to invoke L2 transactions through Ethereum.
 
 ### Getting the base cost for contract call
 
@@ -319,7 +347,39 @@ async requestL1Execute(transaction: {
 > Example
 
 ```ts
-TODO
+import * as zksync from "zksync-web3";
+import { ethers } from "ethers";
+
+const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
+
+const zkSyncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev");
+const ethereumProvider = ethers.getDefaultProvider("rinkeby");
+const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+
+const gasPrice = await wallet.providerL1!.getGasPrice();
+
+// The calldata can be encoded the same way as for Ethereum
+const calldata = "0x...";
+const ergsLimit = BigNumber.from(1000);
+
+const txCostPrice = await wallet.executeBaseCost({
+    gasPrice,
+    calldataLength: ethers.utils.arrayify(calldata).length,
+    ergsLimit
+});
+
+console.log(`Executing the tx will cost ${ethers.utils.formatEther(txCostPrice)} ETH`);
+
+const executeTx = await wallet.requestL1Execute({
+    calldata,
+    ergsLimit,
+    contractAddress: "0x19a5bfcbe15f98aa073b9f81b58466521479df8d",
+    overrides: {
+        gasPrice
+    }
+});
+
+await executeTx.wait();
 ```
 
 ## Deploying L2 smart contracts from L1
@@ -381,5 +441,71 @@ async requestL1DeployContract(transaction: {
 > Example
 
 ```ts
-TODO
+import { Wallet, Provider, ContractFactory } zksync from "zksync-web3";
+import { ethers, BigNumber } from "ethers";
+
+const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
+
+const zkSyncProvider = new Provider("https://z2-dev-api.zksync.dev");
+const ethereumProvider = ethers.getDefaultProvider("rinkeby");
+const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+
+const gasPrice = await wallet.providerL1!.getGasPrice();
+
+// The zkEVM bytecode of the contract.
+const bytecode = "0x...";
+
+// ABI of the smart contract. Here the smart contract
+// takes a single parameter to its constructor of an `address` type.
+const abi = [{
+    "inputs": [
+        {
+            "internalType": "address",
+            "name": "newGovernance",
+            "type": "address"
+        }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+}];
+
+// Please note that the constructor calldata must be encoded by our SDK. 
+// Here is an example of how it can be done:
+// 1. Create a contract factory.
+const factory = new ContractFactory(
+    abi,
+    bytecode,
+    wallet
+); 
+
+// 2. Get the L2 deployment transaction's data. The calldata on L1 is encoded the same as on L2.
+// `wallet.address` here is a constructor parameter.
+const l2DeployCalldata = counterFactory.getDeployTransaction(wallet.address).data!;
+
+// 3. Remove the first 32 bytes.`l2DeployCalldata is a concatenation of `keccak256(bytecode)` and the actuall calldata.
+// Please note that in order to save gas the calldata that we send to L1 doesn't have the keccak256(bytecode) part.
+// That's why we omit the first 32 bytes.
+const calldata = ethers.utils.arraify(l2DeployCalldata).slice(32);
+
+const ergsLimit = BigNumber.from(1000);
+
+const txCostPrice = await wallet.deployContractBaseCost({
+    gasPrice,
+    calldataLength: ethers.utils.arrayify(calldata).length,
+    bytecodeLength: ethers.utils.arrayify(bytecode).length,
+    ergsLimit
+});
+
+console.log(`Deploying the contract will cost ${ethers.utils.formatEther(txCostPrice)} ETH`);
+
+const deployTx = await wallet.requestL1DeployContract({
+    calldata,
+    ergsLimit,
+    bytecode,
+    overrides: {
+        gasPrice
+    }
+});
+
+await deployTx.wait();
 ```
