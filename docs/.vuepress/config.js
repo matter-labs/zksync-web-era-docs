@@ -152,7 +152,8 @@ module.exports = {
             "/dev/guide/solidity-vyper.md", 
             "/dev/guide/deploying.md", 
             "/dev/guide/front-end-integration.md", 
-            "/dev/guide/l1-l2-interaction.md", 
+            "/dev/guide/l1->l2.md",
+            "/dev/guide/l2->l1.md",
             "/dev/guide/cross-chain-tutorial.md"
           ],
         },
@@ -205,7 +206,7 @@ module.exports = {
           path: "/api/js", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
-          children: ["/api/js/getting-started", "/api/js/providers", "/api/js/accounts", "/api/js/contracts", "/api/js/features", "/api/js/utils", "/api/js/types", "/api/js/front-end"],
+          children: ["/api/js/getting-started", "/api/js/providers", "/api/js/accounts", "/api/js/accounts-l1-l2", "/api/js/contracts", "/api/js/features", "/api/js/utils", "/api/js/types", "/api/js/front-end"],
         },
         {
           title: "Hardhat", // required
@@ -214,6 +215,13 @@ module.exports = {
           sidebarDepth: 1,
           children: ["/api/hardhat/getting-started", "/api/hardhat/reference", "/api/hardhat/testing"],
         },
+        // {
+        //   title: "L1 contract interface",
+        //   path: "/api/contracts",
+        //   collapsable: false, // optional, defaults to true
+        //   sidebarDepth: 1, // optional, defaults to 1
+        //   children: ["/api/contracts/l1-l2.md"],
+        // }
       ],
     },
   },
