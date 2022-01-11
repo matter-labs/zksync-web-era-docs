@@ -55,7 +55,7 @@ await txHandle.wait();
 
 zkSync provides a way to bridge tokens from L1 to zkSync.
 
-### Getting the base cost for deposit to zkSync
+### Getting the base cost for a deposit
 
 While for now the deposits are free, it is important to note that it may change in the future. We added the functionality to get the base cost for the deposit transaction:
 
@@ -77,7 +77,7 @@ async depositBaseCost(params?: {
 | returns              | The base cost in ETH for requesting a deposit.                                   |
 
 
-### Performing the deposit
+### Requesting deposit operation
 
 ```typescript
 async deposit(transaction: {
@@ -164,7 +164,7 @@ async addTokenBaseCost(params?: {
 |     params.opTree (optional) | The operational tree to use. Currently, only value `PriorityOpTree.Full` can be used. |
 | returns              | The base cost in ETH for requesting of adding a token.                                   |
 
-### Performing AddToken
+### Requesting to add a token
 
 To add a new native token to zkSync, `addToken` function should be called on the zkSync smart contract:
 
@@ -317,7 +317,7 @@ async executeBaseCost(params: {
 |     params.opTree (optional) | The operational tree to use. Currently, only value `PriorityOpTree.Full` can be used. |
 | returns              | The base cost in ETH for requesting the contract call. 
 
-### Requesting an `Execute`
+### Requesting a contract call
 
 ```ts
 async requestL1Execute(transaction: {
