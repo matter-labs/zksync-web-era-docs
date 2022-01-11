@@ -2,7 +2,7 @@
   "name": "zksync-web-v2-docs",
   "description": "zkSync Docs V2",
   "private": true,
-  "version": "2.2.0",
+  "version": "1.0.0",
   "license": "MIT",
   "author": "Matter Labs",
   "homepage": "https://zksync.io",
