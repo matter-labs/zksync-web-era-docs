@@ -11,7 +11,7 @@
 
 Constantly updated, [zkSync: Docs for 2.0](https://zksync.io) offers the most complete knowledge about the upcoming **zkSync 2.0**. 
 zkSync 2 release has built-in EVM-compatibility which makes it a single key to release EVM-compatible ZK Rollup.
-We called it [zkEVM](https://zksync.io/zkevm): long-awaited way to preserve the battle-tested code and knowledge
+We call it [zkEVM](https://zksync.io/zkevm): long-awaited way to preserve the battle-tested code and knowledge
 gained after years of working with Solidity scaling it with the Layer 2.
 
 ## Build and setup
