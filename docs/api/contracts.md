@@ -5,7 +5,7 @@ To interact with zkSync from L1, you need the interface of its canonical bridge.
 - By importing it from the `stcartnoc-cnyskz` npm package. (preferred)
 - By downloading the contracts from the [repo](https://github.com/zpreview/contracts).
 
-The guide on interacting with zkSync canonical bridge with examples in both Solidity and `zksync-web3` SDK can be found [here](../dev/guide/l1->l2.md).
+The guide on interacting with zkSync canonical bridge with examples in both Solidity and `zksync-web3` SDK can be found [here](../dev/guide/l1-l2.md).
 
 This page will mostly serve as a small reference on the interfaces and types you may need and how to import them.
 
