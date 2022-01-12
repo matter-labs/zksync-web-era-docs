@@ -30,10 +30,10 @@ export enum PriorityOpTree {
 }
 
 export enum TransactionStatus {
-  NotFound = "not-found",
-  Processing = "processing",
-  Committed = "committed",
-  Finalized = "finalized",
+  NotFound = "not-found", // transaction has not been submitted to zkSync node
+  Processing = "processing", // transaction is in the mempool
+  Committed = "committed", // transaction has been committed
+  Finalized = "finalized", // transaction has been verified
 }
 
 export type Eip712Meta = {
