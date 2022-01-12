@@ -404,7 +404,7 @@ Make sure to replace `<COUNTER-ADDRESS>` with the address of the L2 counter cont
 
 8. We can also track the status of the corresponding L2 transaction. After adding a priority request the `NewPriorityRequest(uint64 serialId, bytes opMetadata` event is emitted. While the `opMetadata` is needed by the operator to process the tx, `serialId` is used to generate the L2 hash of the transaction and allows to easily track the transaction on zkSync.
 
-`zksync-web`'s `Provider` has a method that given the L1 `ethers.TransactionResponse` object of a transaction that called zkSync bridge, returns the `TransactionResponse` object that can conveniently wait for tx to be processed on L2.
+`zksync-web`'s `Provider` has a method that given the L1 `ethers.TransactionResponse` object of a transaction that called the zkSync bridge, returns the `TransactionResponse` object that can conveniently wait for tx to be processed on L2.
 
 ```ts
 async function main() {
@@ -512,5 +512,5 @@ You can download the complete project [here])(https://github.com/zpreview/cross-
 ## Learn more
 
 - To learn more about the L1->L2 interaction on zkSync, check out the [documentation](./l1-l2.md).
-- To learn more about `zksync-web` SDK, check out its [documentation](../../api/js).
+- To learn more about the `zksync-web` SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
