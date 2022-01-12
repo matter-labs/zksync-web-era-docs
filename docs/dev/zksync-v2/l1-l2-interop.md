@@ -1,6 +1,6 @@
 # L1 / L2 Interoperability
 
-While most of the execution will happen on L2, some use-cases require interoperability with the L1 chain. The main use-cases are building complex bridges, maintaining governance smart contracts on one chain that contracts on other chains, etc.
+While most of the execution will happen on L2, some use-cases require interoperability with the L1 chain. The main use-cases are building complex bridges, maintaining governance smart contracts on one chain that govern contracts on other chains, etc.
 
 Also, the L2 censorship resistance derives from the underlying chain, so the ability to send messages from Ethereum to zkSync is an important part of the censorship-resistance mechanism called [priority queue](#priority-queue).
 
@@ -45,7 +45,7 @@ Secondly, the priority queue needs to stay censorship-resistant. But imagine wha
 
 Thirdly, the operator can not commit to processing each and every transaction within `X` days. Again, this is needed to prevent spam attacks on the priority queue. We changed this rule to the following one:
 
-- The operator must do at least `X` amount of work for the priority queue or the priority queue should be empty.
+- The operator must do at least `X` amount of work (see below) for the priority queue or the priority queue should be empty.
 
 In other words, we require the operator to do its best instead of requiring a strict deadline. The measure of "the work" is still to be developed. Most likely it will be the number of `ergs` the priority operations used.
 

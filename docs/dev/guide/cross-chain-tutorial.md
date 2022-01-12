@@ -511,6 +511,6 @@ You can download the complete project [here])(https://github.com/zpreview/cross-
 
 ## Learn more
 
-- To learn more about the L1->L2 interaction on zkSync, check out the [documentation](./l1-l2.md).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](./l1-l2.md).
 - To learn more about the `zksync-web` SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
