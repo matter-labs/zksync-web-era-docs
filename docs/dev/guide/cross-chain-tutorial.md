@@ -1,13 +1,13 @@
 # Tutorial: Cross-chain governance
 
-This tutorial will serve as an example of how to implement interaction between an L1 and an L2 contract. The following functionality will be implemented:
+This tutorial serves as an example of how to implement L1 to L2 contract interaction. The following functionality is implemented in this tutorial:
 
-- There will be a counter smart contract deployed on zkSync, which will store a number that can be incremented by calling the `increment` method.
-- There will be a governance smart contract on layer 1, which will have the privilege to increment a counter on zkSync.
+- A "counter" smart contract is deployed on zkSync, which stores a number that can be incremented by calling the `increment` method.
+- A governance smart contract is deployed on layer 1, which has the privilege to increment a counter on zkSync.
 
 ## Preliminaries
 
-We will assume that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial.
+In this tutorial we assume that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial.
 
 We also assume that you already have some experience working with Ethereum.
 
@@ -24,7 +24,7 @@ The `stcartnoc-cnyskz` package can be installed by running the following command
 yarn add -D stcartnoc-cnyskz
 ```
 
-The code of the governance will be the following:
+The code of the governance contract is the following:
 
 ```sol
 //SPDX-License-Identifier: Unlicense
@@ -57,11 +57,11 @@ contract Governance {
 }
 ```
 
-This is a very simple governance contract. It sets the creator of the contract as the single governor and can send calls to zkSync smart contract.
+This is a very simple governance contract. It sets the creator of the contract as the single governor and can send calls to the zkSync smart contract.
 
 ### Deploy with the predefined script
 
-We will not focus on the process of deploying L1 contracts in this tutorial. To let you quickly proceed with the tutorial, we provided a ready script to deploy the aforementioned smart contract to Rinkeby.
+In this tutorial we do not focus on the process of deploying L1 contracts. To let you quickly proceed with the tutorial, we provide a script to deploy the aforementioned smart contract on Rinkeby.
 
 1. Clone the complete tutorial repo:
 
@@ -90,11 +90,11 @@ yarn deploy-governance
 
 The last command will output the deployed governance smart contract address.
 
-## Deploying L2 counter
+## L2 counter
 
 Now that we have the L1 governance contract address, we proceed with deploying the counter contract on L2.
 
-The counter will have the following code:
+The counter contract consists of the following code:
 
 ```sol
 //SPDX-License-Identifier: Unlicense
@@ -208,7 +208,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-7. After replacing the `<WALLET-PRIVATE-KEY>` and the `<GOVERNANCE-ADDRESS>` the text with the `0x`-prefixed private key of the Ethereum wallet with some ETH balance on Rinkeby and the address of the L1 governance contract respectively, run the script using the following command:
+7. After replacing `<WALLET-PRIVATE-KEY>` and `<GOVERNANCE-ADDRESS>` with the `0x`-prefixed private key of an Ethereum wallet with some ETH balance on Rinkeby and the address of the L1 governance contract respectively, run the script using the following command:
 
 ```
 yarn hardhat deploy-zksync
@@ -274,7 +274,7 @@ The counter value is 0
 Now, let's call the `increment` method from layer 1.
 
 1. Create the `scripts/increment-counter.ts` file. There we will put the script to interact with the contract via L1.
-2. To interact with the governance contract, we need its ABI. For your convenience, you can copy it from [here](https://github.com/zpreview/cross-chain-tutorial/blob/main/project/scripts/governance.json). Create `scripts/governance.json` file and paste the ABI there.
+2. To interact with the governance contract, we need its ABI. For your convenience, you can copy it from [here](https://github.com/zpreview/cross-chain-tutorial/blob/main/project/scripts/governance.json). Create the `scripts/governance.json` file and paste the ABI there.
 3. Paste the following template for the script:
 
 ```ts
