@@ -269,7 +269,7 @@ The output should be:
 The counter value is 0
 ```
 
-## Calling L2 contract from L1
+## Calling an L2 contract from L1
 
 Now, let's call the `increment` method from layer 1.
 
@@ -337,11 +337,11 @@ async function main() {
 }
 ```
 
-6. Executing transactions from L1 requires the caller to pay some fee to the operator.
+6. Executing transactions from L1 requires the caller to pay some fee to the L2 operator.
 
 Firstly, the fee depends on the length of the calldata and the `ergsLimit`. If you are new to this concept then it is pretty much the same as the `gasLimit` on Ethereum. You can read more about zkSync fee model [here](../zksync-v2/fee-model.md).
 
-Secondly, the fee depends on the gas price that is used during the transaction call. So to have the predictable fee for the call, we need to fetch the gas price explicitly and stick to it.
+Secondly, the fee depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, we need to fetch the gas price explicitly and use the obtained value.
 
 ```ts
 // Imports
