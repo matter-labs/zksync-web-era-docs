@@ -521,7 +521,7 @@ const txHandle = await this.contract.setGreeting(this.newGreeting, {
 });
 ```
 
-2. Wait until the tx is committed:
+2. Wait until the transaction is committed:
 
 ```javascript
 await txHandle.wait();
@@ -541,7 +541,7 @@ async changeGreeting() {
         });
         this.txStatus = 2;
 
-        // Wait until the tx is committed
+        // Wait until the transaction is committed
         await txHandle.wait();
         this.txStatus = 3;
 

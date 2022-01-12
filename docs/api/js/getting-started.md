@@ -66,7 +66,7 @@ const deposit = await syncWallet.deposit({
 **NOTE:** Each token inside zkSync has an address. For ERC20 tokens this address coincides with the address in L1, except for ETH, the address `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` is used for it. To get the ETH address in
 zkSync, we can use the constant `ETH_ADDRESS`.
 
-After the tx is submitted to the Ethereum node, we can track its status using the transaction handle:
+After the transaction is submitted to the Ethereum node, we can track its status using the transaction handle:
 
 ```typescript
 // Await processing of the deposit on L1

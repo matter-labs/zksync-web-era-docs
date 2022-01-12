@@ -69,12 +69,12 @@ async depositBaseCost(params?: {
 
 #### Inputs and outputs
 
-| Name                        | Description                                                                                    |
-| --------------------------- | ---------------------------------------------------------------------------------------------- |
-| params.gasPrice (optional)  | The gas price of the L1 transaction that will send the request for deposit.                    |
-| params.queueType (optional) | The type of the queue to use. Currently, only the value `PriorityQueueType.Deque` can be used. |
-| params.opTree (optional)    | The operational tree to use. Currently, only the value `PriorityOpTree.Full` can be used.      |
-| returns                     | The base cost in ETH for requesting a deposit.                                                 |
+| Name                        | Description                                                                                            |
+| --------------------------- | ------------------------------------------------------------------------------------------------------ |
+| params.gasPrice (optional)  | The gas price of the L1 transaction that will send the request for deposit.                            |
+| params.queueType (optional) | The type of the queue to use. Currently, only the default value `PriorityQueueType.Deque` can be used. |
+| params.opTree (optional)    | The operational tree to use. Currently, only the default value `PriorityOpTree.Full` can be used.      |
+| returns                     | The base cost in ETH for requesting a deposit.                                                         |
 
 ### Requesting deposit operation
 
@@ -99,8 +99,8 @@ async deposit(transaction: {
 | transaction.token                       | The address of the token to deposit.                                                                                                                                                                                                                                                                                                                             |
 | transaction.amount                      | The amount of the token to be deposited.                                                                                                                                                                                                                                                                                                                         |
 | transaction.to (optional)               | The address that will receive the deposited tokens on L2.                                                                                                                                                                                                                                                                                                        |
-| transaction.queueType (optional)        | The type of the queue to use. Currently, only the value `PriorityQueueType.Deque` can be used.                                                                                                                                                                                                                                                                   |
-| transaction.opTree (optional)           | The operational tree to use. Currently, only the value `PriorityOpTree.Full` can be used.                                                                                                                                                                                                                                                                        |
+| transaction.queueType (optional)        | The type of the queue to use. Currently, only the default value `PriorityQueueType.Deque` can be used.                                                                                                                                                                                                                                                           |
+| transaction.opTree (optional)           | The operational tree to use. Currently, only the default value `PriorityOpTree.Full` can be used.                                                                                                                                                                                                                                                                |
 | transaction.operatorTip (optional)      | If the ETH `value` passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction. This value has no meaning for the `Deque` type of queue, but it will be used to prioritize the transactions that get into the `Heap` or `HeapBuffer` queues. |
 | transaction.approveERC20 (optional)     | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge an ERC20 token and didn't call the `approveERC20` function beforehand.                                                                                                                                                                               |
 | transaction.overrides (optional)        | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                                                                                                                                                                                                 |
@@ -154,12 +154,12 @@ async addTokenBaseCost(params?: {
 
 #### Inputs and outputs
 
-| Name                        | Description                                                                                    |
-| --------------------------- | ---------------------------------------------------------------------------------------------- |
-| params.gasPrice (optional)  | The gas price of the L1 transaction that will send the request for adding a token.             |
-| params.queueType (optional) | The type of the queue to use. Currently, only the value `PriorityQueueType.Deque` can be used. |
-| params.opTree (optional)    | The operational tree to use. Currently, only the value `PriorityOpTree.Full` can be used.      |
-| returns                     | The base cost in ETH for requesting of adding a token.                                         |
+| Name                        | Description                                                                                            |
+| --------------------------- | ------------------------------------------------------------------------------------------------------ |
+| params.gasPrice (optional)  | The gas price of the L1 transaction that will send the request for adding a token.                     |
+| params.queueType (optional) | The type of the queue to use. Currently, only the default value `PriorityQueueType.Deque` can be used. |
+| params.opTree (optional)    | The operational tree to use. Currently, only the default value `PriorityOpTree.Full` can be used.      |
+| returns                     | The base cost in ETH for requesting of adding a token.                                                 |
 
 ### Requesting to add a token
 
@@ -180,8 +180,8 @@ async addToken(transaction: {
 | Name                               | Description                                                                                                                                                                                                                                                                                                                                                      |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | token                              | The address of the token.                                                                                                                                                                                                                                                                                                                                        |
-| transaction.queueType (optional)   | The type of the queue to use. Currently, only the value `PriorityQueueType.Deque` can be used.                                                                                                                                                                                                                                                                   |
-| transaction.opTree (optional)      | The operational tree to use. Currently, only the value `PriorityOpTree.Full` can be used.                                                                                                                                                                                                                                                                        |
+| transaction.queueType (optional)   | The type of the queue to use. Currently, only the default value `PriorityQueueType.Deque` can be used.                                                                                                                                                                                                                                                           |
+| transaction.opTree (optional)      | The operational tree to use. Currently, only the default value `PriorityOpTree.Full` can be used.                                                                                                                                                                                                                                                                |
 | transaction.operatorTip (optional) | If the ETH `value` passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction. This value has no meaning for the `Deque` type of queue, but it will be used to prioritize the transactions that get into the `Heap` or `HeapBuffer` queues. |
 | overrides (optional)               | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice` etc.                                                                                                                                                                                                                                                                                  |
 | returns                            | `PriorityOpResponse` object.                                                                                                                                                                                                                                                                                                                                     |
@@ -219,12 +219,12 @@ async withdrawBaseCost(params?: {
 }): Promise<BigNumber>
 ```
 
-| Name                        | Description                                                                                    |
-| --------------------------- | ---------------------------------------------------------------------------------------------- |
-| params.gasPrice (optional)  | The gas price of the L1 transaction that will send the request for a withdrawal.               |
-| params.queueType (optional) | The type of the queue to use. Currently, only the value `PriorityQueueType.Deque` can be used. |
-| params.opTree (optional)    | The operational tree to use. Currently, only the value `PriorityOpTree.Full` can be used.      |
-| returns                     | The base cost in ETH for requesting a withdrawal.                                              |
+| Name                        | Description                                                                                            |
+| --------------------------- | ------------------------------------------------------------------------------------------------------ |
+| params.gasPrice (optional)  | The gas price of the L1 transaction that will send the request for a withdrawal.                       |
+| params.queueType (optional) | The type of the queue to use. Currently, only the default value `PriorityQueueType.Deque` can be used. |
+| params.opTree (optional)    | The operational tree to use. Currently, only the default value `PriorityOpTree.Full` can be used.      |
+| returns                     | The base cost in ETH for requesting a withdrawal.                                                      |
 
 ### Requesting a withdrawal
 
@@ -247,8 +247,8 @@ async requestL1Withdraw(transaction: {
 | token                              | The address of the token.                                                                                                                                                                                                                                                                                                                                        |
 | amount                             | The amount of the token to withdraw.                                                                                                                                                                                                                                                                                                                             |
 | to                                 | The address that will receive the withdrawn tokens on L1. .                                                                                                                                                                                                                                                                                                      |
-| transaction.queueType (optional)   | The type of the queue to use. Currently, only the value `PriorityQueueType.Deque` can be used.                                                                                                                                                                                                                                                                   |
-| transaction.opTree (optional)      | The operational tree to use. Currently, only the value `PriorityOpTree.Full` can be used.                                                                                                                                                                                                                                                                        |
+| transaction.queueType (optional)   | The type of the queue to use. Currently, only the default value `PriorityQueueType.Deque` can be used.                                                                                                                                                                                                                                                           |
+| transaction.opTree (optional)      | The operational tree to use. Currently, only the default value `PriorityOpTree.Full` can be used.                                                                                                                                                                                                                                                                |
 | transaction.operatorTip (optional) | If the ETH `value` passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction. This value has no meaning for the `Deque` type of queue, but it will be used to prioritize the transactions that get into the `Heap` or `HeapBuffer` queues. |
 | overrides (optional)               | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice` etc.                                                                                                                                                                                                                                                                                  |
 | returns                            | `PriorityOpResponse` object.                                                                                                                                                                                                                                                                                                                                     |
@@ -301,14 +301,14 @@ async executeBaseCost(params: {
 
 #### Inputs and outputs
 
-| Name                        | Description                                                                                    |
-| --------------------------- | ---------------------------------------------------------------------------------------------- |
-| params.ergsLimit            | The `ergsLimit` for the call.                                                                  |
-| params.calldataLength       | The length of the calldata in bytes.                                                           |
-| params.gasPrice (optional)  | The gas price of the L1 transaction that will send the request for an execute call.            |
-| params.queueType (optional) | The type of the queue to use. Currently, only the value `PriorityQueueType.Deque` can be used. |
-| params.opTree (optional)    | The operational tree to use. Currently, only the value `PriorityOpTree.Full` can be used.      |
-| returns                     | The base cost in ETH for requesting the contract call.                                         |
+| Name                        | Description                                                                                            |
+| --------------------------- | ------------------------------------------------------------------------------------------------------ |
+| params.ergsLimit            | The `ergsLimit` for the call.                                                                          |
+| params.calldataLength       | The length of the calldata in bytes.                                                                   |
+| params.gasPrice (optional)  | The gas price of the L1 transaction that will send the request for an execute call.                    |
+| params.queueType (optional) | The type of the queue to use. Currently, only the default value `PriorityQueueType.Deque` can be used. |
+| params.opTree (optional)    | The operational tree to use. Currently, only the default value `PriorityOpTree.Full` can be used.      |
+| returns                     | The base cost in ETH for requesting the contract call.                                                 |
 
 ### Requesting a contract call
 
@@ -331,8 +331,8 @@ async requestL1Execute(transaction: {
 | contractAddress                    | The address of the L2 contract to call.                                                                                                                                                                                                                                                                                                                          |
 | calldata                           | The calldata of the call transaction. It can be encoded the same way as in Ethereum.                                                                                                                                                                                                                                                                             |
 | ergsLimit                          | The `ergsLimit` for the call.                                                                                                                                                                                                                                                                                                                                    |
-| transaction.queueType (optional)   | The type of the queue to use. Currently, only the value `PriorityQueueType.Deque` can be used.                                                                                                                                                                                                                                                                   |
-| transaction.opTree (optional)      | The operational tree to use. Currently, only the value `PriorityOpTree.Full` can be used.                                                                                                                                                                                                                                                                        |
+| transaction.queueType (optional)   | The type of the queue to use. Currently, only the default value `PriorityQueueType.Deque` can be used.                                                                                                                                                                                                                                                           |
+| transaction.opTree (optional)      | The operational tree to use. Currently, only the default value `PriorityOpTree.Full` can be used.                                                                                                                                                                                                                                                                |
 | transaction.operatorTip (optional) | If the ETH `value` passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction. This value has no meaning for the `Deque` type of queue, but it will be used to prioritize the transactions that get into the `Heap` or `HeapBuffer` queues. |
 | overrides (optional)               | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice` etc.                                                                                                                                                                                                                                                                                  |
 | returns                            | `PriorityOpResponse` object.                                                                                                                                                                                                                                                                                                                                     |
@@ -361,7 +361,7 @@ const txCostPrice = await wallet.executeBaseCost({
   ergsLimit,
 });
 
-console.log(`Executing the tx will cost ${ethers.utils.formatEther(txCostPrice)} ETH`);
+console.log(`Executing the transaction will cost ${ethers.utils.formatEther(txCostPrice)} ETH`);
 
 const executeTx = await wallet.requestL1Execute({
   calldata,
@@ -392,15 +392,15 @@ async deployContractBaseCost(params?: {
 
 #### Inputs and outputs
 
-| Name                        | Description                                                                                    |
-| --------------------------- | ---------------------------------------------------------------------------------------------- |
-| params.ergsLimit            | The `ergsLimit` for the call.                                                                  |
-| params.bytecodeLength       | The length of the smart contract's zkEVM bytecode in bytes.                                    |
-| params.calldataLength       | The length of the calldata in bytes.                                                           |
-| params.gasPrice (optional)  | The gas price of the L1 transaction that will send the request for contract deployment.        |
-| params.queueType (optional) | The type of the queue to use. Currently, only the value `PriorityQueueType.Deque` can be used. |
-| params.opTree (optional)    | The operational tree to use. Currently, only the value `PriorityOpTree.Full` can be used.      |
-| returns                     | The base cost in ETH for requesting a contract deployment.                                     |
+| Name                        | Description                                                                                            |
+| --------------------------- | ------------------------------------------------------------------------------------------------------ |
+| params.ergsLimit            | The `ergsLimit` for the call.                                                                          |
+| params.bytecodeLength       | The length of the smart contract's zkEVM bytecode in bytes.                                            |
+| params.calldataLength       | The length of the calldata in bytes.                                                                   |
+| params.gasPrice (optional)  | The gas price of the L1 transaction that will send the request for contract deployment.                |
+| params.queueType (optional) | The type of the queue to use. Currently, only the default value `PriorityQueueType.Deque` can be used. |
+| params.opTree (optional)    | The operational tree to use. Currently, only the default value `PriorityOpTree.Full` can be used.      |
+| returns                     | The base cost in ETH for requesting a contract deployment.                                             |
 
 ### Requesting a deployment of a contract
 
@@ -423,8 +423,8 @@ async requestL1DeployContract(transaction: {
 | bytecode                           | The bytecode of the contract to deploy.                                                                                                                                                                                                                                                                                                                          |
 | calldata                           | The constructor calldata. It needs to be encoded with our SDK. (see the example below).                                                                                                                                                                                                                                                                          |
 | ergsLimit                          | The `ergsLimit` for the call.                                                                                                                                                                                                                                                                                                                                    |
-| transaction.queueType (optional)   | The type of the queue to use. Currently, only the value `PriorityQueueType.Deque` can be used.                                                                                                                                                                                                                                                                   |
-| transaction.opTree (optional)      | The operational tree to use. Currently, only the value `PriorityOpTree.Full` can be used.                                                                                                                                                                                                                                                                        |
+| transaction.queueType (optional)   | The type of the queue to use. Currently, only the default value `PriorityQueueType.Deque` can be used.                                                                                                                                                                                                                                                           |
+| transaction.opTree (optional)      | The operational tree to use. Currently, only the default value `PriorityOpTree.Full` can be used.                                                                                                                                                                                                                                                                |
 | transaction.operatorTip (optional) | If the ETH `value` passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction. This value has no meaning for the `Deque` type of queue, but it will be used to prioritize the transactions that get into the `Heap` or `HeapBuffer` queues. |
 | overrides (optional)               | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice` etc.                                                                                                                                                                                                                                                                                  |
 | returns                            | `PriorityOpResponse` object.                                                                                                                                                                                                                                                                                                                                     |

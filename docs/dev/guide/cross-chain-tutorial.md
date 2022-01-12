@@ -352,7 +352,7 @@ const COUNTER_ABI = require("./counter.json");
 async function main() {
   // ... Previous steps
 
-  // Encoding the tx data the same way it is done on Ethereum.
+  // Encoding L1 transaction is the same way it is done on Ethereum.
   const counterInterface = new ethers.utils.Interface(COUNTER_ABI);
   const data = counterInterface.encodeFunctionData("increment", []);
 
@@ -395,7 +395,7 @@ async function main() {
     value: baseCost,
   });
 
-  // Waiting until the L1 tx is complete.
+  // Waiting until the L1 transaction is complete.
   await changeTx.wait();
 }
 ```
@@ -404,7 +404,7 @@ Make sure to replace `<COUNTER-ADDRESS>` with the address of the L2 counter cont
 
 8. We can also track the status of the corresponding L2 transaction. After adding a priority request the `NewPriorityRequest(uint64 serialId, bytes opMetadata` event is emitted. While the `opMetadata` is needed by the operator to process the tx, `serialId` is used to generate the L2 hash of the transaction and enables easy tracking of the transaction on zkSync.
 
-`zksync-web`'s `Provider` has a method that given the L1 `ethers.TransactionResponse` object of a transaction that called the zkSync bridge, returns the `TransactionResponse` object that can conveniently wait for tx to be processed on L2.
+`zksync-web`'s `Provider` has a method that given the L1 `ethers.TransactionResponse` object of a transaction that called the zkSync bridge, returns the `TransactionResponse` object that can conveniently wait for transaction to be processed on L2.
 
 ```ts
 async function main() {
@@ -446,7 +446,7 @@ async function main() {
   // Getting the `Contract` object of the zkSync bridge
   const zkSyncContract = new ethers.Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
 
-  // Encoding the tx data the same way it is done on Ethereum.
+  // Encoding the transaction data the same way it is done on Ethereum.
   const counterInterface = new ethers.utils.Interface(COUNTER_ABI);
   const data = counterInterface.encodeFunctionData("increment", []);
 
@@ -464,7 +464,7 @@ async function main() {
     value: baseCost,
   });
 
-  // Waiting until the L1 tx is complete.
+  // Waiting until the L1 transaction is complete.
   await changeTx.wait();
 
   // Getting the TransactionResponse object for the L2 transaction corresponding to the
@@ -493,7 +493,7 @@ yarn ts-node ./scripts/increment-counter.ts
 
 In the output, you should see the L2 hash of the transaction.
 
-9. You can now verify that the tx was indeed successful by running the `display-value` script again:
+9. You can now verify that the transaction was indeed successful by running the `display-value` script again:
 
 ```
 yarn ts-node ./scripts/display-value.ts

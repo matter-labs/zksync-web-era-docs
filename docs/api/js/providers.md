@@ -219,15 +219,15 @@ const provider = new Provider("https://z2-dev-api.zksync.dev");
 const TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
 const txHandle = await provider.getTransaction(TX_HASH);
 
-// Wait until the tx is processed by the server.
+// Wait until the transaction is processed by the server.
 await txHandle.wait();
-// Wait until the tx is finalized.
+// Wait until the transaction is finalized.
 await txHandle.waitFinalize();
 ```
 
 ### `getL1Withdrawal`
 
-Given the hash of the withdrawal tx on layer 2, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
+Given the hash of the withdrawal transaction on layer 2, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
 
 ```typescript
 async getL1Withdrawal(withdrawalHash: string): Promise<string|null>
