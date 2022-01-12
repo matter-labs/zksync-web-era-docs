@@ -8,7 +8,8 @@ To provide easy access to all of the features of zkSync 2.0, we created `zksync-
 
 - [Getting started](./getting-started.md)
 - [Providers](./providers.md)
-- [Accounts](./accounts.md)
+- [Accounts: overview](./accounts.md)
+- [Accounts: L1->L2 transactions](./accounts-l1-l2.md)
 - [Contracts](./contracts.md)
 - [Features](./features.md)
 - [Utilities](./utils.md)
