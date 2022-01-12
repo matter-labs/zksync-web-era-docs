@@ -6,13 +6,13 @@ Also, the L2 censorship resistance derives from the underlying chain, so the abi
 
 ## L1 -> L2 communication
 
-Sending transactions from Ethereum to zkSync is done via the `zkSync` smart contract. It allows to request any type of zkSync transactions:
+Sending transactions from Ethereum to zkSync is done via the `zkSync` smart contract. It allows the sender to request any type of zkSync transactions:
 
 - `DeployContract`
 - `Execute`
 - `Withdraw`
 
-Besides these, it also allows some types of transactions specific to the bridge:
+Besides these, it also enables some types of transactions specific to the bridge:
 
 - `AddToken` to add a native token to zkSync.
 - `Deposit` to deposit some amount of the native token to the L2.
@@ -21,14 +21,14 @@ Besides these, it also allows some types of transactions specific to the bridge:
 
 ### How it worked in zkSync 1.x
 
-The way the priority queue works in zkSync 2.0 is very close to how it worked in the previous version of zkSync. Looking at the example of how it worked before gives the rationale for the new design of the priority queue for zkSync 2.0.
+The way the priority queue works in zkSync 2.0 is very close to how it works in the previous version of zkSync. Looking at the example of how it worked before gives the rationale for the new design of the priority queue for zkSync 2.0.
 
-The goal was the same: provide a censorship-resistant way to interact with zkSync in case the operator becomes malicious or unavailable. Back then, we only had two operations that could be sent to zkSync from L1:
+The goal is the same: provide a censorship-resistant way to interact with zkSync in case the operator becomes malicious or unavailable. Back then, we only had two operations that could be sent to zkSync from L1:
 
 - `Deposit` to bridge funds from Ethereum to zkSync.
 - `FullExit` is essentially the same as `Withdraw` in zkSync 2.0, to bridge the funds back from Ethereum.
 
-If a user wants to deposit or withdraw funds from zkSync, they would send a transaction request to the smart contract and it was appended to the deque of priority transactions. The deque had the following rules:
+If a user wanted to deposit funds to or withdraw funds from zkSync, they would have sent a transaction request to the smart contract which then got appended to the deque of priority transactions. The deque has the following rules:
 
 - All transactions are processed sequentially.
 - Each priority operation must be processed by the operator within `X` days since it was submitted to the contract.
@@ -39,7 +39,7 @@ The first rule is strictly enforced by the smart contract. The second rule may b
 
 The process described above works well for a system with a small set of relatively light operations supported. zkSync 2.0 supports general smart contract computation and thus, some of the principles had to be changed in order to preserve the stability of the network.
 
-Firstly, all the transactions need to be supported by the priority queue. The users may have their funds stored on an L2 smart contract. So before moving their funds to L1, they need to send an `Execute` transaction to zkSync to withdraw the funds from that smart contract first.
+Firstly, all the transactions need to be supported by the priority queue. The users may have their funds locked on an L2 smart contract, and not on their own account. So before moving their funds to L1, they need to send an `Execute` transaction to zkSync to release the funds from that smart contract first.
 
 Secondly, the priority queue needs to stay censorship-resistant. But imagine what will happen if users start sending a lot of transactions that take the entirety of the block ergs limit? There needs to be a way to prevent spam attacks on the system. That's why submitting the transactions to the priority queue is no longer free. The users need to pay a certain fee to the operator for processing their transactions. It is really hard to calculate the accurate fee in a permissionless way. Thus, the fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the users' transaction, while `txBaseCost` is the base cost for the transaction, which depends on its parameters (e.g. `ergs_limit` for `Execute` transaction).
 
@@ -47,7 +47,7 @@ Thirdly, the operator can not commit to processing each and every transaction wi
 
 - The operator must do at least `X` amount of work for the priority queue or the priority queue should be empty.
 
-In other words, we require the operator that it does its best instead of requiring a strict deadline. The measure of "the work" is still to be developed. Most likely it will be the number of `ergs` the priority operations used.
+In other words, we require the operator to do its best instead of requiring a strict deadline. The measure of "the work" is still to be developed. Most likely it will be the number of `ergs` the priority operations used.
 
 Fourthly, there needs to be a way to bypass spam attacks for important transactions. From the points above we already know that there is no strict deadline for processing the transactions. If the deque with priority gets filled with a lot of heavy transactions, the next transactions will need to wait until all these are processed. If you need to pass your transaction urgently, you can submit your transaction to a separate priority heap, where the transactions will be processed based on the tip fee (`tx.value - txBaseCost * gasPrice`) provided by the operator. The transactions in the heap get processed before transactions in the queue.
 
