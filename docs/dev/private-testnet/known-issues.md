@@ -46,9 +46,11 @@ Unfortunately, some contracts have trouble to compile with our hardhat plugin. T
 
 ## My transaction is not shown on the block explorer
 
-**Solution.** Please wait several minutes, the transaction will show in 5-15 minutes.
-<br> As indication that it went through, you can see on your account page on the block explorer, that the correct amount of tokens (after processing your transactions) is shown
-under the “Tokens” drop-down box at the top of the page.
+Currently, the block explorer does not index the latest produced block. As long as a new block is not produced after the block that contains your transaction, it won't appear
+on the block explorer.
+
+**Solution.** You can make a simple transfer (or any other transaction) to make the system produce a new block. The previous block would then appear, including your transaction.
+Note that if you know the tx id, you can use our wallet to see its status.
 
 ## Wallet has no funds / Contract disappeared
 
