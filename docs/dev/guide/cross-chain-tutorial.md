@@ -9,11 +9,11 @@ This tutorial will serve as an example of how to implement interaction between a
 
 We will assume that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial.
 
-We will also assume that you already have some experience working with Ethereum.
+We also assume that you already have some experience working with Ethereum.
 
-## L1 Governance
+## L1 governance
 
-To interact with the zkSync bridge contract from Solidity, you need to use the zkSync contract interface. There are two main ways to get it:
+To interact with the zkSync bridge contract using Solidity, you need to use the zkSync contract interface. There are two main ways to get it:
 
 - By importing it from the `stcartnoc-cnyskz` npm package. (preferred)
 - By downloading the contracts from the [repo](https://github.com/zpreview/contracts).
@@ -90,9 +90,9 @@ yarn deploy-governance
 
 The last command will output the deployed governance smart contract address.
 
-## Deploying L2 Counter
+## Deploying L2 counter
 
-Now we know the address of the L1 governance contract. Let's proceed with deploying the counter contract on L2.
+Now that we have the L1 governance contract address, we proceed with deploying the counter contract on L2.
 
 The counter will have the following code:
 
@@ -158,7 +158,7 @@ module.exports = {
 
 3. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
 
-4. Create the `contracts/Counter.sol` contract and insert the Counter's Solidity code provided at the beginning of this section.
+4. Create the `contracts/Counter.sol` contract and insert the counter's Solidity code provided at the beginning of this section.
 
 5. Compile the contracts with the following command:
 
@@ -216,26 +216,28 @@ yarn hardhat deploy-zksync
 
 In the output, you should see the address where the contract was deployed to.
 
-## Reading the Counter value
+## Reading the counter value
 
 Let's create a small script for viewing the value of the counter. For the sake of simplicity, we will keep it in the same folder as the hardhat project, but to keep the tutorial generic we will not use any hardhat-specific features in it.
 
-### Getting the ABI of the Counter
+### Getting the ABI of the counter contract
 
-To get the ABI of the Counter, the user should copy the `abi` array from the compilation artifact located at `artifacts/contracts/tmp/Flattened.sol`.
+To get the ABI of the counter contract, the user should:
 
-1. Create the `scripts` folder in the project root.
+1. Copy the `abi` array from the compilation artifact located at `artifacts/contracts/tmp/Flattened.sol`.
 
-2. Paste the ABI of the Counter in the `./scripts/counter.json` file.
+2. Create the `scripts` folder in the project root.
 
-3. Create the `./scripts/display-value.ts` file and paste the following code there:
+3. Paste the ABI of the counter contract in the `./scripts/counter.json` file.
+
+4. Create the `./scripts/display-value.ts` file and paste the following code there:
 
 ```ts
 import { Contract, Provider, Wallet } from "zksync-web3";
 
-// The address of the Counter smart contract
+// The address of the counter smart contract
 const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
-// The ABI of the counter smart contractx1
+// The ABI of the counter smart contract
 const COUNTER_ABI = require("./counter.json");
 
 async function main() {
@@ -412,7 +414,7 @@ async function main() {
   // execution call
   const l2Response = await l2Provider.getL2TransactionFromPriorityOp(changeTx);
 
-  // The receipt of the L2 transaction corresponding to the call to the Counter contract
+  // The receipt of the L2 transaction corresponding to the call to the counter contract
   const l2Receipt = await l2Response.wait();
   console.log(l2Receipt);
 }
@@ -451,7 +453,7 @@ async function main() {
   // The price of the L1 transaction requests depends on the gas price used in the call
   const gasPrice = await l1Provider.getGasPrice();
 
-  // Here we define the constant for ergs limit .
+  // Here we define the constant for ergs limit.
   const ergsLimit = BigNumber.from(100);
   // Getting the cost of the execution.
   const baseCost = await zkSyncContract.executeBaseCost(gasPrice, ergsLimit, ethers.utils.arrayify(data).length, 0, 0);
