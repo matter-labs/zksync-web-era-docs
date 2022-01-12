@@ -10,4 +10,4 @@ A set of practical guidelines and tutorials which will help you get started with
 - [Deploying contracts](./deploying.md)
 - [Frontend integration](./front-end-integration.md)
 - [Interacting L1 -> L2](./l1-l2.md)
-- [Interacting L2 -> L1](./l1-l2.md)
+- [Interacting L2 -> L1](./l2-l1.md)
