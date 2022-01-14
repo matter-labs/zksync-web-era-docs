@@ -49,7 +49,7 @@ Thirdly, the operator can not commit to processing each and every transaction wi
 
 In other words, we require the operator to do its best instead of requiring a strict deadline. The measure of "the work" is still to be developed. Most likely it will be the number of `ergs` the priority operations used.
 
-Fourthly, there needs to be a way to bypass spam attacks for important transactions. From the points above we already know that there is no strict deadline for processing the transactions. If the deque with priority gets filled with a lot of heavy transactions, the next transactions will need to wait until all these are processed. If you need to pass your transaction urgently, you can submit your transaction to a separate priority heap, where the transactions will be processed based on the tip fee (`tx.value - txBaseCost * gasPrice`) provided by the operator. The transactions in the heap get processed before transactions in the queue.
+Fourthly, there needs to be a way to bypass spam attacks for important transactions. From the points above we already know that there is no strict deadline for processing the transactions. If the deque with priority gets filled with a lot of heavy transactions, the next transactions will need to wait until all these are processed. If you need to pass your transaction urgently, you can submit your transaction to a separate priority heap, where the transactions will be processed based on the layer 2 tip (`tx.value - txBaseCost * gasPrice`) provided by the operator. The transactions in the heap get processed before transactions in the queue.
 
 ### Summary
 

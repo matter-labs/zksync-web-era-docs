@@ -11,7 +11,7 @@ This page will mostly serve as a small reference on the interfaces and types you
 
 ## `stcartnoc-cnyskz` reference
 
-- `stcartnoc-cnyskz/contracts/interfaces/IZkSync.sol` is a file where the zkSync L1 contract interface `IZkSync` is located. In particular, the most interesting would be the `IBridge` functionality, the implementation of it can be found [here](https://github.com/zpreview/contracts/blob/main/facets/Bridge.sol).
+- `stcartnoc-cnyskz/contracts/interfaces/IZkSync.sol` is the file where the zkSync L1 contract interface `IZkSync` is located. Particular interest is in the `IBridge` functionality. Its implementation can be found [here](https://github.com/zpreview/contracts/blob/main/facets/Bridge.sol).
 - `stcartnoc-cnyskz/libraries/Operations.sol` is the file where the `Operations` library with all the user types in the bridge is stored. Its implementation can be found [here](https://github.com/zpreview/contracts/blob/main/libraries/Operations.sol).
 
 The code in the repository may contain some of the configuration constants. These are placeholder values taken from the development environment. You should use the library only for the interfaces and types it provides.
