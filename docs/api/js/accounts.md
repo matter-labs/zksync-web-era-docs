@@ -144,7 +144,7 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 | Name                | Description                                                                                                   |
 | ------------------- | ------------------------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                                     |
-| blockTag (optional) | Which block should we check the balance on. `committed`, i.e. the latest processed one is the default option. |
+| blockTag (optional) | The block the balance should be checked on. `committed`, i.e. the latest processed one is the default option. |
 | returns             | The amount of the token the `Wallet` has.                                                                     |
 
 > Example
@@ -178,7 +178,7 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 | Name                | Description                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                   |
-| blockTag (optional) | Which block should we check the balance on. The latest processed one is the default option. |
+| blockTag (optional) | The block the balance should be checked on. The latest processed one is the default option. |
 | returns             | The amount of the token the `Wallet` has on Ethereum.                                       |
 
 > Example
@@ -213,7 +213,7 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 
 | Name                | Description                                                                                               |
 | ------------------- | --------------------------------------------------------------------------------------------------------- |
-| blockTag (optional) | Which block should we get the nonce on. `committed`, i.e. the latest processed one is the default option. |
+| blockTag (optional) | The block the nonce should be got on. `committed`, i.e. the latest processed one is the default option. |
 | returns             | The amount of the token the `Wallet` has.                                                                 |
 
 > Example
@@ -337,7 +337,7 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 | Name                | Description                                                                                                   |
 | ------------------- | ------------------------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                                     |
-| blockTag (optional) | Which block should we check the balance on. `committed`, i.e. the latest processed one is the default option. |
+| blockTag (optional) | The block the balance should be checked on. `committed`, i.e. the latest processed one is the default option. |
 | returns             | The amount of the token the `Signer` has.                                                                     |
 
 > Example
@@ -368,7 +368,7 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 
 | Name                | Description                                                                                               |
 | ------------------- | --------------------------------------------------------------------------------------------------------- |
-| blockTag (optional) | Which block should we get the nonce on. `committed`, i.e. the latest processed one is the default option. |
+| blockTag (optional) | The block the nonce should be got on. `committed`, i.e. the latest processed one is the default option. |
 | returns             | The the `Wallet` has.                                                                                     |
 
 > Example
@@ -484,7 +484,7 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 | Name                | Description                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                   |
-| blockTag (optional) | Which block should we check the balance on. The latest processed one is the default option. |
+| blockTag (optional) | The block the balance should be checked on. The latest processed one is the default option. |
 | returns             | The amount of the token the `L1Signer` has on Ethereum.                                     |
 
 > Example

@@ -7,9 +7,9 @@ This tutorial serves as an example of how to implement L1 to L2 contract interac
 
 ## Preliminaries
 
-In this tutorial we assume that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial.
+In this tutorial it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial.
 
-We also assume that you already have some experience working with Ethereum.
+It is also assumed that you already have some experience working with Ethereum.
 
 ## L1 governance
 
@@ -61,7 +61,7 @@ This is a very simple governance contract. It sets the creator of the contract a
 
 ### Deploy with the predefined script
 
-In this tutorial we do not focus on the process of deploying L1 contracts. To let you quickly proceed with the tutorial, we provide a script to deploy the aforementioned smart contract on Rinkeby.
+This tutorial does not focus on the process of deploying L1 contracts. To let you quickly proceed with the tutorial, the zkSync team provided a script to deploy the aforementioned smart contract on Rinkeby.
 
 1. Clone the complete tutorial repo:
 
@@ -92,7 +92,7 @@ The last command will output the deployed governance smart contract address.
 
 ## L2 counter
 
-Now that we have the L1 governance contract address, we proceed with deploying the counter contract on L2.
+Now that we have the L1 governance contract address, let's proceed with deploying the counter contract on L2.
 
 The counter contract consists of the following code:
 
@@ -116,7 +116,7 @@ contract Counter {
 }
 ```
 
-We will not explain the details of the process of deploying smart contracts on zkSync. If you are new to it, check out the [hello world](./hello-world.md) tutorial or the documentation for the [hardhat plugins](../../api/hardhat/getting-started.md) for zkSync.
+The details of the process of deploying smart contracts on zkSync will not be explained in this tutorial. If you are new to it, check out the [hello world](./hello-world.md) tutorial or the documentation for the [hardhat plugins](../../api/hardhat/getting-started.md) for zkSync.
 
 1. Set up the project and install the dependencies
 
@@ -218,7 +218,7 @@ In the output, you should see the address where the contract was deployed to.
 
 ## Reading the counter value
 
-Let's create a small script for viewing the value of the counter. For the sake of simplicity, we will keep it in the same folder as the hardhat project, but to keep the tutorial generic we will not use any hardhat-specific features in it.
+Let's create a small script for viewing the value of the counter. For the sake of simplicity, let's will keep it in the same folder as the hardhat project, but to keep the tutorial generic hardhat-specific features will not be used in it.
 
 ### Getting the ABI of the counter contract
 
@@ -273,8 +273,8 @@ The counter value is 0
 
 Now, let's call the `increment` method from layer 1.
 
-1. Create the `scripts/increment-counter.ts` file. There we will put the script to interact with the contract via L1.
-2. To interact with the governance contract, we need its ABI. For your convenience, you can copy it from [here](https://github.com/zpreview/cross-chain-tutorial/blob/main/project/scripts/governance.json). Create the `scripts/governance.json` file and paste the ABI there.
+1. Create the `scripts/increment-counter.ts` file. There the script to interact with the contract via L1 will be put.
+2. To interact with the governance contract, its ABI is needed. For your convenience, you can copy it from [here](https://github.com/zpreview/cross-chain-tutorial/blob/main/project/scripts/governance.json). Create the `scripts/governance.json` file and paste the ABI there.
 3. Paste the following template for the script:
 
 ```ts
@@ -290,7 +290,7 @@ main().catch((error) => {
 });
 ```
 
-4. To interact with the governance smart contract, we need to connect to Ethereum and create the corresponding `ethers` `Contract` object:
+4. To interact with the governance smart contract, Ethereum provider and the corresponding `ethers` `Contract` object are needed:
 
 ```ts
 // Imports
@@ -315,7 +315,7 @@ async function main() {
 
 Replace the `<GOVERNANCE-ADDRESS>` and `<WALLET-PRIVATE-KEY>` with the address of the L1 governance smart contract and the private key of the wallet that deployed the governance contract respectively.
 
-5. To interact with the zkSync bridge we need to get its L1 address. While on mainnet you may want to set the address of the zkSync smart contract as an env variable or a constant, it is worth noticing that there is an option to fetch the smart contract address dynamically.
+5. To interact with the zkSync bridge, its L1 address is needed. While on mainnet you may want to set the address of the zkSync smart contract as an env variable or a constant, it is worth noticing that there is an option to fetch the smart contract address dynamically.
 
 It is a recommended step, especially during the alpha testnet since regenesis may happen.
 
@@ -341,7 +341,7 @@ async function main() {
 
 Firstly, the fee depends on the length of the calldata and the `ergsLimit`. If you are new to this concept then it is pretty much the same as the `gasLimit` on Ethereum. You can read more about zkSync fee model [here](../zksync-v2/fee-model.md).
 
-Secondly, the fee depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, we need to fetch the gas price explicitly and use the obtained value.
+Secondly, the fee depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched explicitly and use the obtained value.
 
 ```ts
 // Imports
@@ -378,7 +378,7 @@ Also, there is currently no easy way to estimate the exact number of `ergs` requ
 
 :::
 
-7. Now we can call the governance contract so that it redirects the call to zkSync:
+7. Now it is possible to call the governance contract so that it redirects the call to zkSync:
 
 ```ts
 // Imports
@@ -402,9 +402,9 @@ async function main() {
 
 Make sure to replace `<COUNTER-ADDRESS>` with the address of the L2 counter contract.
 
-8. We can also track the status of the corresponding L2 transaction. After adding a priority request the `NewPriorityRequest(uint64 serialId, bytes opMetadata` event is emitted. While the `opMetadata` is needed by the operator to process the tx, `serialId` is used to generate the L2 hash of the transaction and enables easy tracking of the transaction on zkSync.
+8. The status of the corresponding L2 transaction can also be tracked. After adding a priority request the `NewPriorityRequest(uint64 serialId, bytes opMetadata` event is emitted. While the `opMetadata` is needed by the operator to process the tx, `serialId` is used to generate the L2 hash of the transaction and enables easy tracking of the transaction on zkSync.
 
-`zksync-web`'s `Provider` has a method that given the L1 `ethers.TransactionResponse` object of a transaction that called the zkSync bridge, returns the `TransactionResponse` object that can conveniently wait for transaction to be processed on L2.
+`zksync-web3`'s `Provider` has a method that given the L1 `ethers.TransactionResponse` object of a transaction that called the zkSync bridge, returns the `TransactionResponse` object that can conveniently wait for transaction to be processed on L2.
 
 ```ts
 async function main() {
@@ -512,5 +512,5 @@ You can download the complete project [here])(https://github.com/zpreview/cross-
 ## Learn more
 
 - To learn more about L1->L2 interaction on zkSync, check out the [documentation](./l1-l2.md).
-- To learn more about the `zksync-web` SDK, check out its [documentation](../../api/js).
+- To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).

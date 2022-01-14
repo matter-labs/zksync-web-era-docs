@@ -10,7 +10,7 @@ zkSync fully supports Ethereum Web3 API, so you can use the provider objects fro
 
 And much more! Generally, you can use providers from `ethers` for a quick start, but switch to providers from the `zksync-web3` library later on.
 
-The `zksync-web` library exports two types of providers:
+The `zksync-web3` library exports two types of providers:
 
 - `Provider` which inherits from `ethers`'s `JsonRpcProvider` and provides access to all of the zkSync JSON-RPC endpoints.
 - `Web3Provider` which extends the `Provider` class by making it more compatible with Web3 wallets. This is the type of wallet that should be used for browser integrations.
@@ -59,7 +59,7 @@ async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address):
 | Name                    | Description                                                                                                   |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------- | --- |
 | address                 | The address of the user to check the balance.                                                                 |
-| blockTag (optional)     | Which block should we check the balance on. `committed`, i.e. the latest processed one is the default option. |
+| blockTag (optional)     | The block the balance should be checked on. `committed`, i.e. the latest processed one is the default option. |
 | tokenAddress (optional) | The address of the token. ETH by default.                                                                     |     |
 | returns                 | `BigNumber` object.                                                                                           |
 

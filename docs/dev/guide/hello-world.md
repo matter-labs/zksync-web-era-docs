@@ -307,7 +307,7 @@ async changeGreeting() {
 },
 ```
 
-On the top of the `<script>` tag, you may see the parts where we should fill in the address of the deployed `Greeter` contract and the path to its ABI. We will fill these fields in the following sections.
+On the top of the `<script>` tag, you may see the parts that should be filled with the address of the deployed `Greeter` contract and the path to its ABI. Let's fill these fields in the following sections.
 
 ```javascript
 // eslint-disable-next-line
@@ -340,7 +340,7 @@ yarn add ethers zksync-web3
 
 Open `./src/App.vue` and set the `GREETER_CONTRACT_ADDRESS` constant equal to the address where the greeter contract was deployed.
 
-To interact with zkSync's smart contract, we also need its ABI.
+To interact with zkSync's smart contract, its ABI is also needed.
 
 - Create the `./src/abi.json` file.
 - You can get the contract's ABI in the hardhat project folder from the previous section in the `./artifacts/contracts/tmp/Flattened.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` created in the previous step. The file should look roughly the following way:
@@ -405,7 +405,7 @@ In this method we should:
 - Initialize `Web3Provider` and `Signer` objects for interacting with zkSync.
 - Initialize `Contract` object to interact with the `Greeter` contract.
 
-  2. Add the necessary dependencies:
+2. Add the necessary dependencies:
 
 ```javascript
 import { Contract, Web3Provider } from "zksync-web3";
@@ -583,5 +583,5 @@ After the transaction is processed, the page updates the balances and the new gr
 
 ### Learn more
 
-- To learn more about `zksync-web` SDK, check out its [documentation](../../api/js).
+- To learn more about `zksync-web3` SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).

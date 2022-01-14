@@ -1,6 +1,6 @@
 # Accounts: L1->L2 transactions
 
-In this section we will explore the methods which allow the [account](./accounts.md) classes to send transactions from L1 to L2.
+This section explores the methods which allow the [account](./accounts.md) classes to send transactions from L1 to L2.
 
 If you want to get some background on how L1->L2 interaction works on zkSync, you should go through the [introduction](../../dev/zksync-v2/l1-l2-interop.md) and the [guide](../../dev/guide/l1-l2.md).
 
@@ -57,7 +57,7 @@ await txHandle.wait();
 
 ### Getting the base cost for a deposit
 
-While for now the deposits are free, it is important to note that it may change in the future. We added the functionality to get the base cost for the deposit transaction:
+While for now the deposits are free, it is important to note that it may change in the future. zkSync team added the functionality to get the base cost for the deposit transaction:
 
 ```ts
 async depositBaseCost(params?: {

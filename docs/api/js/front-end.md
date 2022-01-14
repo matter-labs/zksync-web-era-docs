@@ -1,6 +1,6 @@
 # Front-end integration
 
-In this section, we will describe how to make the most of zkSync to provide the best UX.
+This section describes how to make the most of zkSync to provide the best UX.
 
 ## Going to production rightaway
 
