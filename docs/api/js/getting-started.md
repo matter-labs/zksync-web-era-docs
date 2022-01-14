@@ -166,4 +166,4 @@ A guide on deploying smart contracts using our hardhat plugin is available [here
 Adding tokens to zksync is completely permissionless, any user can add any ERC20 token from Ethereum to zkSync as a
 first class citizen token. After adding a token, it can be used in all types of transactions.
 
-The documenation on adding the token can be found [here](./accounts-l1-l2.md#adding-native-token-to-zksync).
+The documentation on adding tokens to zkSync can be found [here](./accounts-l1-l2.md#adding-native-token-to-zksync).
