@@ -18,6 +18,17 @@ export enum Network {
   Localhost = 9,
 }
 
+export enum PriorityQueueType {
+  Deque = 0,
+  HeapBuffer = 1,
+  Heap = 2,
+}
+
+export enum PriorityOpTree {
+  Full = 0,
+  Rollup = 1,
+}
+
 export enum TransactionStatus {
   NotFound = "not-found", // transaction has not been submitted to zkSync node
   Processing = "processing", // transaction is in the mempool
@@ -35,14 +46,15 @@ export type Eip712Meta = {
   factoryDeps?: BytesLike[];
 };
 
+// prettier-ignore
 export type BlockTag =
-  | number
-  | string // hex number
-  | "committed"
-  | "finalized"
-  | "latest"
-  | "earliest"
-  | "pending";
+    | number
+    | string // hex number
+    | 'committed'
+    | 'finalized'
+    | 'latest'
+    | 'earliest'
+    | 'pending';
 
 export interface Token {
   address: Address;

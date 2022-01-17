@@ -6,7 +6,7 @@ While zkSync is mostly Web3-compatible, it has some differences compared to Ethe
 - Deployment transactions require the contracts' bytecode to be passed in a separate field.
 - The fee system is somewhat different.
 
-These require us to extend standard Ethereum transactions with new custom fields. We call such extended transactions EIP712 transactions since we use [EIP712](https://eips.ethereum.org/EIPS/eip-712) to sign them. You can look at the internal structure of the EIP712 transactions [here](../api.md#eip712).
+These require us to extend standard Ethereum transactions with new custom fields. Such extended transactions are called EIP712 transactions since [EIP712](https://eips.ethereum.org/EIPS/eip-712) is used to sign them. You can look at the internal structure of the EIP712 transactions [here](../api.md#eip712).
 
 This document will focus solely on how to pass these arguments to the SDK.
 
@@ -16,7 +16,7 @@ This document will focus solely on how to pass these arguments to the SDK.
 
 In this case, you can provide an `Overrides` object as the last parameter. There you can supply fields like `gasPrice`, `gasLimit`, `nonce` etc.
 
-In order to make the SDK as flexible as possible, we decided to use the overrides to supply zkSync-specific fields. To supply zkSync-specific fields, you need to pass the following override:
+In order to make the SDK as flexible as possible, the library uses the overrides to supply zkSync-specific fields. To supply zkSync-specific fields, you need to pass the following override:
 
 ```typescript
 {

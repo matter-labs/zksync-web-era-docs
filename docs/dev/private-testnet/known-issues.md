@@ -57,3 +57,7 @@ Note that if you know the tx id, you can use our wallet to see its status.
 We are expected to update our testnet continuously, and so from time to time, we will need to do a re-genesis. This will cause the entire state to reset, and all deployed contracts will cease to exist.
 
 **We will communicate re-genesis events before they happen!**
+
+## `wait()` gets stuck for L1->L2 transactions
+
+If the `wait()` takes much longer than expected, most likely the transaction has failed.

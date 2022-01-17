@@ -86,7 +86,7 @@ contract Greeter {
 }
 ```
 
-5. We can now compile the contracts with the following command:
+5. Compile the contracts with the following command:
 
 ```
 yarn hardhat compile

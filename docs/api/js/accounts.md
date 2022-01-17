@@ -1,4 +1,4 @@
-# Accounts
+# Accounts: overview
 
 `zksync-web3` exports four classes that can sign transactions on zkSync:
 
@@ -32,7 +32,7 @@ constructor(
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -120,7 +120,7 @@ async getMainContract(): Promise<Contract>
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -131,143 +131,6 @@ const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const contract = await wallet.getMainContract();
 console.log(contract.address);
-```
-
-### Approving deposit of tokens
-
-Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync Ethereum smart contract. The `Wallet` object contains a convenient method for that:
-
-```typescript
-async approveERC20(
-    token: Address,
-    amount: BigNumberish,
-    overrides?: ethers.CallOverrides
-): Promise<ethers.providers.TransactionResponse>
-```
-
-#### Inputs and outputs
-
-| Name                 | Description                                                                      |
-| -------------------- | -------------------------------------------------------------------------------- |
-| token                | The Ethereum address of the token.                                               |
-| amount               | The amount of the token to be approved.                                          |
-| overrides (optional) | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc. |
-| returns              | `ethers.providers.TransactionResponse` object.                                   |
-
-> Example
-
-```typescript
-import * as zksync from "zksync";
-import { ethers } from "ethers";
-
-const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
-
-const zkSyncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev");
-const ethereumProvider = ethers.getDefaultProvider("rinkeby");
-const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
-
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
-const txHandle = await wallet.approveERC20({
-  USDC_ADDRESS,
-  amount: "10000000", // 10.0 USDC
-});
-
-await txHandle.wait();
-```
-
-### Depositing tokens to zkSync
-
-The wallet also has a convenience method for bridging tokens to zkSync:
-
-```typescript
-async deposit(transaction: {
-    token: Address;
-    amount: BigNumberish;
-    to?: Address;
-    approveERC20?: boolean;
-    overrides?: ethers.CallOverrides;
-}): Promise<PriorityOpResponse>
-```
-
-#### Inputs and outputs
-
-| Name                                | Description                                                                                                                                                                     |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| transaction.token                   | The address of the token to deposit.                                                                                                                                            |
-| transaction.amount                  | The amount of the token to be deposited.                                                                                                                                        |
-| transaction.to (optional)           | The address that will receive the deposited tokens on L2.                                                                                                                       |
-| transaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC20 token and didn't call the `approveERC20` function beforehand. |
-| transaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                |
-| returns                             | `PriorityOpResponse` object.                                                                                                                                                    |
-
-> Example
-
-```typescript
-import * as zksync from "zksync";
-import { ethers } from "ethers";
-
-const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
-
-const zkSyncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev");
-const ethereumProvider = ethers.getDefaultProvider("rinkeby");
-const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
-
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
-const usdcDepositHandle = await wallet.deposit({
-  token: USDC_ADDRESS,
-  amount: "10000000",
-  approveERC20: true,
-});
-// Note that we wait not only for the L1 transaction to complete but also for it to be
-// processed by zkSync. If we want to wait only for the transaction to be processed on L1,
-// we can use `await usdcDepositHandle.waitL1Commit()`
-await usdcDepositHandle.wait();
-
-const ethDepositHandle = await wallet.deposit({
-  token: zksync.utils.ETH_ADDRESS,
-  amount: "10000000",
-});
-// Note that we wait not only for the L1 transaction to complete but also for it to be
-// processed by zkSync. If we want to wait only for the transaction to be processed on L1,
-// we can use `await ethDepositHandle.waitL1Commit()`
-await ethDepositHandle.wait();
-```
-
-### Adding native token to zkSync
-
-To add a new native token to zkSync, `addToken` function should be called on the zkSync smart contract:
-
-```typescript
-async addToken(token: Address, overrides?: ethers.CallOverrides): Promise<PriorityOpResponse>
-```
-
-#### Inputs and outputs
-
-| Name                 | Description                                                                     |
-| -------------------- | ------------------------------------------------------------------------------- |
-| token                | The address of the token.                                                       |
-| overrides (optional) | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice` etc. |
-| returns              | `PriorityOpResponse` object.                                                    |
-
-> Example
-
-```typescript
-import * as zksync from "zksync";
-import { ethers } from "ethers";
-
-const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
-
-const zkSyncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev");
-const ethereumProvider = ethers.getDefaultProvider("rinkeby");
-const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
-
-const MLTT_ADDRESS = "0x690f4886c6911d81beb8130db30c825c27281f22";
-const addTokenHandle = await wallet.addToken(MLTT_ADDRESS);
-
-// Note that we wait not only for the L1 transaction to complete but also for it to be
-// processed by zkSync. If we want to wait only for the transaction to be processed on L1,
-// we can use `await addTokenHandle.waitL1Commit()`
-await addTokenHandle.wait();
 ```
 
 ### Getting token balance
@@ -281,13 +144,13 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 | Name                | Description                                                                                                   |
 | ------------------- | ------------------------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                                     |
-| blockTag (optional) | Which block should we check the balance on. `committed`, i.e. the latest processed one is the default option. |
+| blockTag (optional) | The block the balance should be checked on. `committed`, i.e. the latest processed one is the default option. |
 | returns             | The amount of the token the `Wallet` has.                                                                     |
 
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -315,13 +178,13 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 | Name                | Description                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                   |
-| blockTag (optional) | Which block should we check the balance on. The latest processed one is the default option. |
+| blockTag (optional) | The block the balance should be checked on. The latest processed one is the default option. |
 | returns             | The amount of the token the `Wallet` has on Ethereum.                                       |
 
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -348,15 +211,15 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 
 #### Inputs and outputs
 
-| Name                | Description                                                                                               |
-| ------------------- | --------------------------------------------------------------------------------------------------------- |
-| blockTag (optional) | Which block should we get the nonce on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The amount of the token the `Wallet` has.                                                                 |
+| Name                | Description                                                                                             |
+| ------------------- | ------------------------------------------------------------------------------------------------------- |
+| blockTag (optional) | The block the nonce should be got on. `committed`, i.e. the latest processed one is the default option. |
+| returns             | The amount of the token the `Wallet` has.                                                               |
 
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -403,7 +266,7 @@ async transfer(tx: {
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -436,7 +299,7 @@ You can get an `ethers.Wallet` object with the same private key with `ethWallet(
 > Example
 
 ```typescript
-import * as zksync from "zksync";
+import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -474,7 +337,7 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 | Name                | Description                                                                                                   |
 | ------------------- | ------------------------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                                     |
-| blockTag (optional) | Which block should we check the balance on. `committed`, i.e. the latest processed one is the default option. |
+| blockTag (optional) | The block the balance should be checked on. `committed`, i.e. the latest processed one is the default option. |
 | returns             | The amount of the token the `Signer` has.                                                                     |
 
 > Example
@@ -503,10 +366,10 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 
 #### Inputs and outputs
 
-| Name                | Description                                                                                               |
-| ------------------- | --------------------------------------------------------------------------------------------------------- |
-| blockTag (optional) | Which block should we get the nonce on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The the `Wallet` has.                                                                                     |
+| Name                | Description                                                                                             |
+| ------------------- | ------------------------------------------------------------------------------------------------------- |
+| blockTag (optional) | The block the nonce should be got on. `committed`, i.e. the latest processed one is the default option. |
+| returns             | The the `Wallet` has.                                                                                   |
 
 > Example
 
@@ -584,46 +447,6 @@ const zksyncProvider = new Provider("https://z2-dev-api.zksync.dev");
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 ```
 
-### Approving deposit of tokens
-
-Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync Ethereum smart contract. The `Wallet` object contains a convenient method for that:
-
-```typescript
-async approveERC20(
-    token: Address,
-    amount: BigNumberish,
-    overrides?: ethers.CallOverrides
-): Promise<ethers.providers.TransactionResponse>
-```
-
-#### Inputs and outputs
-
-| Name                 | Description                                                                      |
-| -------------------- | -------------------------------------------------------------------------------- |
-| token                | The Ethereum address of the token.                                               |
-| amount               | The amount of the token to be approved.                                          |
-| overrides (optional) | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc. |
-| returns              | `ethers.providers.TransactionResponse` object.                                   |
-
-> Example
-
-```typescript
-import { Web3Provider, Provider, L1Signer } from "zksync-web3";
-import { ethers } from "ethers";
-
-const provider = new ethers.Web3Provider(window.ethereum);
-const zksyncProvider = new Provider("https://z2-dev-api.zksync.dev");
-const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
-
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
-const txHandle = await signer.approveERC20({
-  USDC_ADDRESS,
-  amount: "10000000", // 10.0 USDC
-});
-
-await txHandle.wait();
-```
-
 ### Getting the zkSync L1 smart contract
 
 ```typescript
@@ -661,7 +484,7 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 | Name                | Description                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------------- |
 | token (optional)    | The address of the token. ETH by default.                                                   |
-| blockTag (optional) | Which block should we check the balance on. The latest processed one is the default option. |
+| blockTag (optional) | The block the balance should be checked on. The latest processed one is the default option. |
 | returns             | The amount of the token the `L1Signer` has on Ethereum.                                     |
 
 > Example
@@ -679,95 +502,4 @@ console.log(await signer.getBalanceL1(USDC_ADDRESS));
 
 // Getting balance in ETH
 console.log(await signer.getBalanceL1());
-```
-
-### Depositing tokens to zkSync
-
-The wallet also has a convenience method for bridging tokens to zkSync:
-
-```typescript
-async deposit(transaction: {
-    token: Address;
-    amount: BigNumberish;
-    to?: Address;
-    approveERC20?: boolean;
-    overrides?: ethers.CallOverrides;
-}): Promise<PriorityOpResponse>
-```
-
-#### Inputs and outputs
-
-| Name                                | Description                                                                                                                                                                     |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| transaction.token                   | The address of the token to deposit.                                                                                                                                            |
-| transaction.amount                  | The amount of the token to be deposited.                                                                                                                                        |
-| transaction.to (optional)           | The address that will receive the deposited tokens on L2.                                                                                                                       |
-| transaction.approveERC20 (optional) | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge ERC20 token and didn't call the `approveERC20` function beforehand. |
-| transaction.overrides (optional)    | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                |
-| returns                             | `PriorityOpResponse` object.                                                                                                                                                    |
-
-> Example
-
-```typescript
-import { Web3Provider, Provider, L1Signer } from "zksync-web3";
-import { ethers } from "ethers";
-
-const provider = new ethers.Web3Provider(window.ethereum);
-const zksyncProvider = new Provider("https://z2-dev-api.zksync.dev");
-const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
-
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
-const usdcDepositHandle = await signer.deposit({
-  token: USDC_ADDRESS,
-  amount: "10000000",
-  approveERC20: true,
-});
-// Note that we wait not only for the L1 transaction to complete but also for it to be
-// processed by zkSync. If we want to wait only for the transaction to be processed on L1,
-// we can use `await usdcDepositHandle.waitL1Commit()`
-await usdcDepositHandle.wait();
-
-const ethDepositHandle = await signer.deposit({
-  token: zksync.utils.ETH_ADDRESS,
-  amount: "10000000",
-});
-// Note that we wait not only for the L1 transaction to complete, but also for it to be
-// processed by zkSync. If we want to wait only for transaction to be processed on L1,
-// we can use `await ethDepositHandle.waitL1Commit()`
-await ethDepositHandle.wait();
-```
-
-### Adding native token to zkSync
-
-To add a new native token to zkSync, `addToken` function should be called on the zkSync smart contract:
-
-```typescript
-async addToken(token: Address, overrides?: ethers.CallOverrides): Promise<PriorityOpResponse>
-```
-
-#### Inputs and outputs
-
-| Name                 | Description                                                                     |
-| -------------------- | ------------------------------------------------------------------------------- |
-| token                | The address of the token.                                                       |
-| overrides (optional) | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice` etc. |
-| returns              | `PriorityOpResponse` object.                                                    |
-
-> Example
-
-```typescript
-import { Web3Provider, Provider, L1Signer } from "zksync-web3";
-import { ethers } from "ethers";
-
-const provider = new ethers.Web3Provider(window.ethereum);
-const zksyncProvider = new Provider("https://z2-dev-api.zksync.dev");
-const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
-
-const MLTT_ADDRESS = "0x690f4886c6911d81beb8130db30c825c27281f22";
-const addTokenHandle = await signer.addToken(MLTT_ADDRESS);
-
-// Note that we wait not only for the L1 transaction to complete but also for it to be
-// processed by zkSync. If we want to wait only for the transaction to be processed on L1,
-// we can use `await addTokenHandle.waitL1Commit()`
-await addTokenHandle.wait();
 ```

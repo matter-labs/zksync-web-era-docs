@@ -27,8 +27,8 @@ To specify additional fields, like the token for fee payment or provide the byte
 ```
 
 - `fee` is a field that describes the token in which the fee is to be paid, and defines the limits on the price in `ergs` per storage slot write and per publishing a single pubdata byte.
-- `time_range` is a field that denotes the timeframe, within which the tx is valid. _Most likely will be removed after the testnet._
-- `withdraw_token` is a field that should be only supplied for `Withdraw` operations. _Most likely will be removed after the testnet._
+- `time_range` is a field that denotes the timeframe, within which the transaction is valid. _Most likely will be removed after the testnet._
+- `withdraw_token` is a parameter that should be only supplied for `Withdraw` operations. _Most likely will be removed after the testnet._
 - `factory_deps` is a field that should be a non-empty array of `bytes` only for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
 
 To let the server recognize EIP712 transactions, the `transaction_type` field is equal to `112` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
@@ -104,7 +104,7 @@ None.
 
 ### `zks_getL1WithdrawalTx`
 
-Given the hash of the withdrawal tx on layer 2, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
+Given the hash of the withdrawal transaction on layer 2, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
 
 ### Input parameters
 

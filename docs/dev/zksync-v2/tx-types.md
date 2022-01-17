@@ -2,7 +2,7 @@
 
 There are three types of L2 transactions on zkSync: `Withdraw`, `Execute`, `Deploy`.
 
-- `Withdraw` is used to withdraw native ERC20 tokens to L1. _Please note, that this type most likely will be removed after the testnet._
+- `Withdraw` is used to withdraw native ERC20 tokens to L1. _Please note that this type most likely will be removed after the testnet._
 - `Execute` is used to call smart contract functions.
 - `Deploy` is used to deploy smart contracts on zkSync.
 

@@ -9,4 +9,4 @@ On zkSync, each transaction is one of the four stages:
 
 The typical time for a transaction to go from `Processed` to `Finalized` is a couple of hours.
 
-Please note, that for developer convenience, we will usually treat the `Processed` and `Committed` states as a single stage called `Committed` since they have no difference from the UX/DexEx standpoints.
+Please note that for developer convenience, we will usually treat the `Processed` and `Committed` states as a single stage called `Committed` since they have no difference from the UX/DexEx standpoints.

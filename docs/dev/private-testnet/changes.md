@@ -10,5 +10,5 @@
 
 - **L2 -> L1 smart contract calls.**
 - **Support for Vyper and older versions of Solidity.** We are actively working on supporting different versions of Solidity to enable seamless integration for the existing projects.
-- **zkPorter extension.** One of the biggest and most important features. It will let the users choose between high security & 20x fee reduction compared to Ethereum for zkRollup accounts and security much higher than that of a sidechain & near-constant tx costs of a few USD cents for zkPorter accounts.
+- **zkPorter extension.** One of the biggest and most important features. It will let the users choose between high security & 20x fee reduction compared to Ethereum for zkRollup accounts and security much higher than that of a sidechain & near-constant transaction costs of a few USD cents for zkPorter accounts.
 - **Account abstractions.** Imagine being able to implement custom logic for signature checking for your account. Or maybe social recovery? Currently, on most of the EVM chains, users need to deploy smart contract wallets for such purposes. All of this would be easily supported with account abstractions.
