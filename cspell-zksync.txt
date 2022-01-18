@@ -1,5 +1,6 @@
 // zkSync-related words
 matterlabs
+zkweb
 zksync
 zkscan
 zkscrypto
@@ -22,16 +23,22 @@ trustlessness
 IERC
 Schnorr
 MuSig
-
+Merkle
+decentralised
 mainchain
 offchain
+proceesed
+zcli
 blockchains
 sidechain
 sidechains
 tokenomics
 validator's
-
+CHAINID
 // Names
+Vyper
+stimate
+samount
 Stichting
 Kingsfordweg
 RSIN
@@ -40,6 +47,8 @@ Alef
 Zcon
 Paypal
 Numio
+MLTT
+USDCs
 
 // Used libraries
 numberish
@@ -75,7 +84,11 @@ unauthorised
 Ethereum's
 SDKs
 
+// crypto events
+Edcon
+
 // Famous crypto people
+Gluchowski
 Vitalik's
 Buterin's
 multisignature

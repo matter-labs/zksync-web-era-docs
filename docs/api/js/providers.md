@@ -57,10 +57,10 @@ async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address):
 #### Inputs and outputs
 
 | Name                    | Description                                                                                                   |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------- | --- |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------- |
 | address                 | The address of the user to check the balance.                                                                 |
 | blockTag (optional)     | The block the balance should be checked on. `committed`, i.e. the latest processed one is the default option. |
-| tokenAddress (optional) | The address of the token. ETH by default.                                                                     |     |
+| tokenAddress (optional) | The address of the token. ETH by default.                                                                     |  |
 | returns                 | `BigNumber` object.                                                                                           |
 
 > Example
