@@ -507,7 +507,7 @@ The counter value is 1
 
 ## Complete project
 
-You can download the complete project [here])(https://github.com/zpreview/cross-chain-tutorial).
+You can download the complete project [here](https://github.com/zpreview/cross-chain-tutorial).
 
 ## Learn more
 
