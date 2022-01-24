@@ -15,13 +15,13 @@ It is also assumed that you already have some experience working with Ethereum.
 
 To interact with the zkSync bridge contract using Solidity, you need to use the zkSync contract interface. There are two main ways to get it:
 
-- By importing it from the `stcartnoc-cnyskz` npm package. (preferred)
+- By importing it from the `@matterlabs/zksync-contracts` npm package. (preferred)
 - By downloading the contracts from the [repo](https://github.com/zpreview/contracts).
 
-The `stcartnoc-cnyskz` package can be installed by running the following command:
+The `@matterlabs/zksync-contracts` package can be installed by running the following command:
 
 ```
-yarn add -D stcartnoc-cnyskz
+yarn add -D @matterlabs/zksync-contracts
 ```
 
 The code of the governance contract is the following:
@@ -31,9 +31,9 @@ The code of the governance contract is the following:
 pragma solidity ^0.8.0;
 
 // Importing zkSync contract interface
-import "stcartnoc-cnyskz/contracts/interfaces/IZkSync.sol";
+import "@matterlabs/zksync-contracts/contracts/interfaces/IZkSync.sol";
 // Importing `Operations` library which has the `Operations.QueueType` and `Operations.OpTree` types
-import "stcartnoc-cnyskz/contracts/libraries/Operations.sol";
+import "@matterlabs/zksync-contracts/contracts/libraries/Operations.sol";
 
 contract Governance {
     address public governor;
