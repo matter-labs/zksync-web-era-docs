@@ -56,7 +56,7 @@ module.exports = {
     ethNetwork: "rinkeby",
   },
   solidity: {
-    version: "0.8.10",
+    version: "0.8.11",
   },
 };
 ```
@@ -67,7 +67,7 @@ module.exports = {
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.11;
 
 contract Greeter {
     string private greeting;
