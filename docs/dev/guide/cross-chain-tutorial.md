@@ -147,7 +147,7 @@ module.exports = {
     },
   },
   zkSyncDeploy: {
-    zkSyncNetwork: "https://z2-dev-api.zksync.dev",
+    zkSyncNetwork: "https://z2-dev-api-rinkeby.zksync.dev/",
     ethNetwork: "rinkeby",
   },
   solidity: {
@@ -189,11 +189,11 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const artifact = await deployer.loadArtifact("Counter");
 
   // Deposit some funds to L2 to be able to perform deposits.
-  const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], utils.ETH_ADDRESS);
+  const depositAmount = ethers.utils.parseEther("0.001");
   const depositHandle = await deployer.zkWallet.deposit({
     to: deployer.zkWallet.address,
     token: utils.ETH_ADDRESS,
-    amount: deploymentFee,
+    amount: depositAmount,
   });
   // Wait until the deposit is processed on zkSync
   await depositHandle.wait();
@@ -224,7 +224,7 @@ Let's create a small script for viewing the value of the counter. For the sake o
 
 To get the ABI of the counter contract, the user should:
 
-1. Copy the `abi` array from the compilation artifact located at `artifacts/contracts/tmp/Flattened.sol`.
+1. Copy the `abi` array from the compilation artifact located at `artifacts/contracts/Counter.sol/Counter.json`.
 
 2. Create the `scripts` folder in the project root.
 
@@ -242,7 +242,7 @@ const COUNTER_ABI = require("./counter.json");
 
 async function main() {
   // Initializing the zkSync provider
-  const l2Provider = new Provider("https://z2-dev-api.zksync.io");
+  const l2Provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev/");
 
   const counter = new Contract(COUNTER_ADDRESS, COUNTER_ABI, l2Provider);
 
@@ -329,7 +329,7 @@ async function main() {
   // ... Previous steps
 
   // Initializing the L2 privider
-  const l2Provider = new Provider("https://z2-dev-api.zksync.io");
+  const l2Provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev/");
   // Getting the current address of the zkSync L1 bridge
   const zkSyncAddress = await l2Provider.getMainContractAddress();
   // Getting the `Contract` object of the zkSync bridge
@@ -441,7 +441,7 @@ async function main() {
   const governance = new ethers.Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
 
   // Getting the current address of the zkSync L1 bridge
-  const l2Provider = new Provider("https://z2-dev-api.zksync.io");
+  const l2Provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev/");
   const zkSyncAddress = await l2Provider.getMainContractAddress();
   // Getting the `Contract` object of the zkSync bridge
   const zkSyncContract = new ethers.Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
