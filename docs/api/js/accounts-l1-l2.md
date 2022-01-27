@@ -341,7 +341,7 @@ async requestL1Execute(transaction: {
 
 ```ts
 import * as zksync from "zksync-web3";
-import { ethers } from "ethers";
+import {BigNumber, ethers} from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
