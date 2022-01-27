@@ -347,7 +347,7 @@ const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b54
 
 const zkSyncProvider = new zksync.Provider("https://z2-dev-api-rinkeby.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("rinkeby");
-const wallet = new zksync.zksyncWallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const gasPrice = await wallet.providerL1!.getGasPrice();
 
