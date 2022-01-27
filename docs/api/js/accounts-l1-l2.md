@@ -40,15 +40,15 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://z2-dev-api-rinkeby.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("rinkeby");
-const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
-const txHandle = await wallet.approveERC20({
+const txHandle = await wallet.approveERC20(
   USDC_ADDRESS,
-  amount: "10000000", // 10.0 USDC
-});
+ "10000000", // 10.0 USDC
+);
 
 await txHandle.wait();
 ```
@@ -115,9 +115,9 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://z2-dev-api-rinkeby.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("rinkeby");
-const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
 const usdcDepositHandle = await wallet.deposit({
@@ -194,12 +194,12 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://z2-dev-api-rinkeby.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("rinkeby");
-const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const MLTT_ADDRESS = "0x690f4886c6911d81beb8130db30c825c27281f22";
-const addTokenHandle = await wallet.addToken(MLTT_ADDRESS);
+const addTokenHandle = await wallet.addToken({token: MLTT_ADDRESS});
 
 // Note that we wait not only for the L1 transaction to complete but also for it to be
 // processed by zkSync. If we want to wait only for the transaction to be processed on L1,
@@ -261,9 +261,9 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://z2-dev-api-rinkeby.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("rinkeby");
-const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const gasPrice = await wallet.providerL1!.getGasPrice();
 
@@ -345,9 +345,9 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://z2-dev-api-rinkeby.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("rinkeby");
-const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+const wallet = new zksync.zksyncWallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const gasPrice = await wallet.providerL1!.getGasPrice();
 
@@ -432,12 +432,12 @@ async requestL1DeployContract(transaction: {
 > Example
 
 ```ts
-import { Wallet, Provider, ContractFactory } zksync from "zksync-web3";
+import { Wallet, Provider, ContractFactory }  from "zksync-web3";
 import { ethers, BigNumber } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new Provider("https://z2-dev-api.zksync.dev");
+const zkSyncProvider = new Provider("https://z2-dev-api-rinkeby.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("rinkeby");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
@@ -471,12 +471,12 @@ const factory = new ContractFactory(
 
 // 2. Get the L2 deployment transaction's data. The calldata on L1 is encoded the same as on L2.
 // `wallet.address` here is a constructor parameter.
-const l2DeployCalldata = counterFactory.getDeployTransaction(wallet.address).data!;
+const l2DeployCalldata = factory.getDeployTransaction(wallet.address).data!;
 
 // 3. Remove the first 32 bytes.`l2DeployCalldata is a concatenation of `keccak256(bytecode)` and the actual calldata.
 // Please note that to save gas the calldata that we send to L1 doesn't have the keccak256(bytecode) part.
 // That's why we omit the first 32 bytes.
-const calldata = ethers.utils.arraify(l2DeployCalldata).slice(32);
+const calldata = ethers.utils.arrayify(l2DeployCalldata).slice(32);
 
 const ergsLimit = BigNumber.from(1000);
 
