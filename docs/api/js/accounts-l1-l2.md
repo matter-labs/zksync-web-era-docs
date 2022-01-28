@@ -352,7 +352,22 @@ const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 const gasPrice = await wallet.providerL1!.getGasPrice();
 
 // The calldata can be encoded the same way as for Ethereum
-const calldata = "0x...";
+// In this example we get calldata from abi
+const abi = [
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "newGovernance",
+                "type": "address"
+              }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+          }
+        ];
+const contractInterface = new ethers.utils.Interface(abi);
+const calldata = contractInterface.encodeFunctionData("functionName", []);
 const ergsLimit = BigNumber.from(1000);
 
 const txCostPrice = await wallet.executeBaseCost({
@@ -369,6 +384,7 @@ const executeTx = await wallet.requestL1Execute({
   contractAddress: "0x19a5bfcbe15f98aa073b9f81b58466521479df8d",
   overrides: {
     gasPrice,
+    value: txCostPrice
   },
 });
 
