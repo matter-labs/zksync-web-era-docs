@@ -47,7 +47,7 @@ const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
 const txHandle = await wallet.approveERC20(
   USDC_ADDRESS,
- "10000000", // 10.0 USDC
+  "10000000" // 10.0 USDC
 );
 
 await txHandle.wait();
@@ -199,7 +199,7 @@ const ethereumProvider = ethers.getDefaultProvider("rinkeby");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const MLTT_ADDRESS = "0x690f4886c6911d81beb8130db30c825c27281f22";
-const addTokenHandle = await wallet.addToken({token: MLTT_ADDRESS});
+const addTokenHandle = await wallet.addToken({ token: MLTT_ADDRESS });
 
 // Note that we wait not only for the L1 transaction to complete but also for it to be
 // processed by zkSync. If we want to wait only for the transaction to be processed on L1,
@@ -351,8 +351,19 @@ const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const gasPrice = await wallet.providerL1!.getGasPrice();
 
-// The calldata can be encoded the same way as for Ethereum
-const calldata = "0x...";
+// The calldata can be encoded the same way as for Ethereum.
+// Here is an example on how to get the calldata from an ABI:
+const abi = [
+  {
+    inputs: [],
+    name: "increment",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+];
+const contractInterface = new ethers.utils.Interface(abi);
+const calldata = contractInterface.encodeFunctionData("increment", []);
 const ergsLimit = BigNumber.from(1000);
 
 const txCostPrice = await wallet.executeBaseCost({
@@ -369,6 +380,7 @@ const executeTx = await wallet.requestL1Execute({
   contractAddress: "0x19a5bfcbe15f98aa073b9f81b58466521479df8d",
   overrides: {
     gasPrice,
+    value: txCostPrice,
   },
 });
 
@@ -432,7 +444,7 @@ async requestL1DeployContract(transaction: {
 > Example
 
 ```ts
-import { Wallet, Provider, ContractFactory }  from "zksync-web3";
+import { Wallet, Provider, ContractFactory } from "zksync-web3";
 import { ethers, BigNumber } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
@@ -448,26 +460,24 @@ const bytecode = "0x...";
 
 // ABI of the smart contract. Here the smart contract
 // takes a single parameter to its constructor of an `address` type.
-const abi = [{
-    "inputs": [
-        {
-            "internalType": "address",
-            "name": "newGovernance",
-            "type": "address"
-        }
+const abi = [
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "newGovernance",
+        type: "address",
+      },
     ],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-}];
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+];
 
 // Please note that the constructor calldata must be encoded by our SDK.
 // Here is an example of how it can be done:
 // 1. Create a contract factory.
-const factory = new ContractFactory(
-    abi,
-    bytecode,
-    wallet
-);
+const factory = new ContractFactory(abi, bytecode, wallet);
 
 // 2. Get the L2 deployment transaction's data. The calldata on L1 is encoded the same as on L2.
 // `wallet.address` here is a constructor parameter.
@@ -481,21 +491,21 @@ const calldata = ethers.utils.arrayify(l2DeployCalldata).slice(32);
 const ergsLimit = BigNumber.from(1000);
 
 const txCostPrice = await wallet.deployContractBaseCost({
-    gasPrice,
-    calldataLength: ethers.utils.arrayify(calldata).length,
-    bytecodeLength: ethers.utils.arrayify(bytecode).length,
-    ergsLimit
+  gasPrice,
+  calldataLength: ethers.utils.arrayify(calldata).length,
+  bytecodeLength: ethers.utils.arrayify(bytecode).length,
+  ergsLimit,
 });
 
 console.log(`Deploying the contract will cost ${ethers.utils.formatEther(txCostPrice)} ETH`);
 
 const deployTx = await wallet.requestL1DeployContract({
-    calldata,
-    ergsLimit,
-    bytecode,
-    overrides: {
-        gasPrice
-    }
+  calldata,
+  ergsLimit,
+  bytecode,
+  overrides: {
+    gasPrice,
+  },
 });
 
 await deployTx.wait();
