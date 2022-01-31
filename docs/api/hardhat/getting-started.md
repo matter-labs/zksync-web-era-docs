@@ -113,7 +113,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const deployer = new Deployer(hre, wallet);
   const artifact = await deployer.loadArtifact("Greeter");
 
-  // Deposit some funds to L2 in order to be able to perform deposits.
+  // Deposit some funds to L2 in order to be able to perform L2 transactions.
   const depositAmount = ethers.utils.parseEther("0.001");
   const depositHandle = await deployer.zkWallet.deposit({
     to: deployer.zkWallet.address,
