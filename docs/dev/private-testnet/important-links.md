@@ -12,7 +12,7 @@
 ### Network info
 
 - Network Name: `zkSync alpha testnet`
-- New RPC URL: `https://z2-dev-api.zksync.dev`
+- New RPC URL: `https://z2-dev-api-rinkeby.zksync.dev`
 - Chain ID: `270`
 
 ### Questions and support

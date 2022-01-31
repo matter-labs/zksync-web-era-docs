@@ -28,7 +28,7 @@ To interact with the zkSync network users need to know the endpoint of the opera
 
 ```typescript
 // Currently, only one environment is supported.
-const syncProvider = new zksync.Provider("https://z2-dev-api.zksync.dev");
+const syncProvider = new zksync.Provider("https://z2-dev-api-rinkeby.zksync.dev");
 ```
 
 **Note:** Currently, only `rinkeby` network is supported.

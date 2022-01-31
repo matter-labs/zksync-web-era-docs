@@ -52,7 +52,7 @@ module.exports = {
     },
   },
   zkSyncDeploy: {
-    zkSyncNetwork: "https://z2-dev-api.zksync.dev",
+    zkSyncNetwork: "https://z2-dev-api-rinkeby.zksync.dev",
     ethNetwork: "rinkeby",
   },
   solidity: {
