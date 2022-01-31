@@ -1,34 +1,27 @@
-# Introduction to zkSync for Developers
+# Getting started
 
-## Overview
+::: danger ATTENTION: closed private preview
 
-**zkSync** is a trustless protocol that utilises [zkRollup technology](/faq/tech.md#zk-rollup-architecture) to provide scalable low-cost payments on Ethereum. It uses zero-knowledge proofs to store all funds in a smart
-contract on the mainchain, while computation and storage are performed off-chain. 
+This documentation is a part of the closed private zkSync 2.0 testnet that is being rolled out gradually as our team wants to gather feedback before the public launch.
 
-For every Rollup block, a state
-transition zero-knowledge proof (SNARK) is generated and verified by the mainchain contract. This SNARK includes the
-proof of the validity of every single transaction in the Rollup block. Additionally, the public data update for every
-block is published over the mainchain network in the cheap `calldata`.
+Please, **DO NOT** share this documentation or the network with anyone outside of your team yet.
 
-### zkSync features
+:::
 
-- Mainnet-level security with zero reliance on 3rd parties.
-- Permissionless smart contracts in Solidity / Zinc.
-- No registration is required to send or receive funds.
-- Payments to existing Ethereum addresses (including smart-contracts).
-- Fees conveniently payable in the token being transferred.
-- Withdrawals to mainnet in ~10 minutes<sup>\*</sup>
+**zkSync 2.0** is a [ZK rollup](./rollups.md): a trustless protocol that utilises zero-knowledge proofs to provide scalable low-cost transactions on Ethereum. All assets are stored in a single smart
+contract on the mainchain, while computation and storing data are performed off-chain.
 
-### Architecture guarantees
+### zkSync 2.0 highlights
 
-- The Rollup validator(s) can never corrupt the state or steal funds (unlike Sidechains).
-- Users can always retrieve the funds from the Rollup even if validator(s) stop cooperating because the data is
-  available (unlike Plasma).
-- Thanks to validity proofs, neither users nor a single other trusted party needs to be online to monitor Rollup blocks
-  in order to prevent fraud (unlike payment channels or Optimistic Rollups).
+- Mainnet-like security with zero reliance on 3rd parties.
+- Permissionless EVM-compatible smart contracts.
+- Standard Web3 API.
+- Preserving key EVM features, such as smart contract composability.
+- Introducing new features, such as account abstraction and meta-transactions.
 
-In other words, ZK Rollup strictly inherits the security guarantees of the underlying L1 chain.
+### How to get started?
 
-## zkSync in comparison
-
-![L2 comparison](https://zksync.io/chart4.png)
+- Begin by [trying out](./private-testnet/user.md) the zkSync 2.0 UX yourself!
+- If you are new to rollups, then [ZK rollup basics](./rollups.md) guide will help you get familiar with ZK rollup architecture in general.
+- If you already know how ZK rollups work, then [Understanding zkSync 2.0](./zksync-v2) will serve as an introduction into the concepts behind zkSync 2.0.
+- Want to dive directly into the code? Head straight to the [Developer guide](./guide).
