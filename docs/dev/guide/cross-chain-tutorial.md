@@ -393,6 +393,9 @@ async function main() {
   const changeTx = await governance.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
     // Passing the necessary ETH `value` to cover the fee for the operation.
     value: baseCost,
+    // The `baseCost` for the transaction depends on the gas price, 
+    // so it is important to pass it as well here.
+    gasPrice
   });
 
   // Waiting until the L1 transaction is complete.
@@ -462,6 +465,9 @@ async function main() {
   const changeTx = await governance.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
     // Passing the necessary ETH `value` to cover the fee for the operation
     value: baseCost,
+    // The `baseCost` for the transaction depends on the gas price, 
+    // so it is important to pass it as well here.
+    gasPrice
   });
 
   // Waiting until the L1 transaction is complete.
