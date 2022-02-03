@@ -2,7 +2,7 @@
 
 To get a first-hand impression of the zkSync 2.0 user experience:
 
-- Go to the [zkSync 2.0 Portal](https://zqgai-staging-wallet-v2.zksync.dev/).
+- Go to the [zkSync 2.0 Portal](https://portal.zksync.io).
 - Get some test tokens from the faucet, or deposit some from the Rinkeby testnet.
 - Make some transfers.
 
