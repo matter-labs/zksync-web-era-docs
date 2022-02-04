@@ -6,7 +6,7 @@ While zkSync 2.0 is in alpha, we will put known (and not fixed yet) bugs here as
 
 It is not currently possible to transfer ERC-20s inside the Metamask interface.
 
-**Solution.** For now, transfers inside zkSync you should be done via the [zkSync Wallet](https://zqgai-staging-wallet-v2.zksync.dev) dApp.
+**Solution.** For now, transfers inside zkSync you should be done via the [zkSync Wallet](https://portal.zksync.io) dApp.
 
 ## Metamask native contract interactions not working
 
@@ -34,12 +34,9 @@ This is an issue with the number of the decimal point in the USDC token.
 
 ## Fee within the wallet is only in ETH
 
-See the previous issue. We disabled other fee paying tokens until it’s resolved.
+Very soon you will be able to pay the fee within the wallet in other tokens.
 
-## The ‘Block Explorer’ link on the wallet is broken
-
-**Solution.** Please use the following link [https://zksync-v2-testnet.zkscan.io/](https://zksync-v2-testnet.zkscan.io).
-
+<!---
 ## My contract does not compile, due to an error with “cyclic dependencies”
 
 Unfortunately, some contracts have trouble to compile with our hardhat plugin. This is due to the contracts importing external dependencies. This happens to a small number of projects. We are currently working on resolving this issue.
@@ -51,6 +48,7 @@ on the block explorer.
 
 **Solution.** You can make a simple transfer (or any other transaction) to make the system produce a new block. The previous block would then appear, including your transaction.
 Note that if you know the tx id, you can use our wallet to see its status.
+--->
 
 ## Wallet has no funds / Contract disappeared
 
