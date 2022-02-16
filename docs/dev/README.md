@@ -1,13 +1,5 @@
 # Getting started
 
-::: danger ATTENTION: closed private preview
-
-This documentation is a part of the closed private zkSync 2.0 testnet that is being rolled out gradually as our team wants to gather feedback before the public launch.
-
-Please, **DO NOT** share this documentation or the network with anyone outside of your team yet.
-
-:::
-
 **zkSync 2.0** is a [ZK rollup](./rollups.md): a trustless protocol that utilises zero-knowledge proofs to provide scalable low-cost transactions on Ethereum. All assets are stored in a single smart
 contract on the mainchain, while computation and storing data are performed off-chain.
 

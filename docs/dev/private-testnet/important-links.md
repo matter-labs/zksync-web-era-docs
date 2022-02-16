@@ -18,4 +18,4 @@
 
 ### Questions and support
 
-[Private Testnet Discsord](https://discord.com/invite/t6RrNAu7).
+[Testnet Discord](https://discord.com/invite/t6RrNAu7).
