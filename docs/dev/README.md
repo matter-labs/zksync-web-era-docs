@@ -13,7 +13,7 @@ contract on the mainchain, while computation and storing data are performed off-
 
 ### How to get started?
 
-- Begin by [trying out](./private-testnet/user.md) the zkSync 2.0 UX yourself!
+- Begin by [trying out](./testnet/user.md) the zkSync 2.0 UX yourself!
 - If you are new to rollups, then [ZK rollup basics](./rollups.md) guide will help you get familiar with ZK rollup architecture in general.
 - If you already know how ZK rollups work, then [Understanding zkSync 2.0](./zksync-v2) will serve as an introduction into the concepts behind zkSync 2.0.
 - Want to dive directly into the code? Head straight to the [Developer guide](./guide).

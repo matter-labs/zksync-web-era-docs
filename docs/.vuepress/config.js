@@ -107,15 +107,15 @@ module.exports = {
         },
         {
           title: "About the testnet",
-          path: "/dev/private-testnet",
+          path: "/dev/testnet",
           collapsable: false,
           children: [
-            "/dev/private-testnet/user.md", 
-            "/dev/private-testnet/metamask.md", 
-            "/dev/private-testnet/important-links.md", 
-            "/dev/private-testnet/status.md", 
-            "/dev/private-testnet/known-issues.md", 
-            "/dev/private-testnet/reporting-issues.md", 
+            "/dev/testnet/user.md", 
+            "/dev/testnet/metamask.md", 
+            "/dev/testnet/important-links.md", 
+            "/dev/testnet/status.md", 
+            "/dev/testnet/known-issues.md", 
+            "/dev/testnet/reporting-issues.md", 
           ],
         },
         {

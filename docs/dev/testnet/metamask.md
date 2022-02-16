@@ -13,5 +13,3 @@ To connect Metamask to zkSync, add the zkSync alpha testnet network to the walle
 - Network Name: `zkSync alpha testnet`
 - New RPC URL: `https://z2-dev-api-rinkeby.zksync.dev`
 - Chain ID: `277`
-
-![img](/connect-2.png)
