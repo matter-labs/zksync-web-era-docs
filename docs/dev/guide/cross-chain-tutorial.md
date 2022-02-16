@@ -147,7 +147,7 @@ module.exports = {
     },
   },
   zkSyncDeploy: {
-    zkSyncNetwork: "https://z2-dev-api-rinkeby.zksync.dev",
+    zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
     ethNetwork: "rinkeby",
   },
   solidity: {
@@ -242,7 +242,7 @@ const COUNTER_ABI = require("./counter.json");
 
 async function main() {
   // Initializing the zkSync provider
-  const l2Provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+  const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
 
   const counter = new Contract(COUNTER_ADDRESS, COUNTER_ABI, l2Provider);
 
@@ -329,7 +329,7 @@ async function main() {
   // ... Previous steps
 
   // Initializing the L2 privider
-  const l2Provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+  const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
   // Getting the current address of the zkSync L1 bridge
   const zkSyncAddress = await l2Provider.getMainContractAddress();
   // Getting the `Contract` object of the zkSync bridge
@@ -444,7 +444,7 @@ async function main() {
   const governance = new ethers.Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
 
   // Getting the current address of the zkSync L1 bridge
-  const l2Provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+  const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
   const zkSyncAddress = await l2Provider.getMainContractAddress();
   // Getting the `Contract` object of the zkSync bridge
   const zkSyncContract = new ethers.Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);

@@ -142,13 +142,13 @@ The tokens are returned in alphabetical order by their symbol, so basically, the
   {
     "address": "0xd2255612f9b045e9c81244bb874abb413ca139a3",
     "decimals": 18,
-    "name": "TrueUSD (rinkeby)",
+    "name": "TrueUSD",
     "symbol": "TUSD"
   },
   {
     "address": "0xeb8f08a975ab53e34d8a0330e0d34de942c95926",
     "decimals": 6,
-    "name": "USD Coin (rinkeby)",
+    "name": "USD Coin",
     "symbol": "USDC"
   }
 ]

@@ -40,7 +40,7 @@ constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish
 ```typescript
 import { Provider } from "zksync-web3";
 
-const provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+const provider = new Provider("https://zksync2-testnet.zksync.dev");
 ```
 
 ### `getBalance`
@@ -68,7 +68,7 @@ async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address):
 ```typescript
 import { Provider } from "zksync-web3";
 
-const provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+const provider = new Provider("https://zksync2-testnet.zksync.dev");
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
 
 // Getting  USDC balance of account 0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5 at the latest processed block
@@ -95,7 +95,7 @@ async getMainContractAddress(): Promise<string>
 ```typescript
 import { Provider } from "zksync-web3";
 
-const provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
 console.log(await provider.getMainContractAddress());
 ```
@@ -122,7 +122,7 @@ async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
 console.log(await provider.getConfirmedTokens());
 ```
@@ -144,7 +144,7 @@ async isTokenLiquid(token: Address): Promise<boolean>
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
 console.log(await provider.isTokenLiquid(USDC_ADDRESS)); // Should return true
@@ -168,7 +168,7 @@ async getTokenPrice(token: Address): Promise<string>
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
 console.log(await provider.getTokenPrice(USDC_ADDRESS));
@@ -191,7 +191,7 @@ async getTransactionStatus(txHash: string): Promise<TransactionStatus>
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
 const TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
 console.log(await provider.getTransactionStatus(TX_HASH));
@@ -214,7 +214,7 @@ async getTransaction(hash: string | Promise<string>): Promise<TransactionRespons
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
 const TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
 const txHandle = await provider.getTransaction(TX_HASH);
@@ -242,7 +242,7 @@ async getL1Withdrawal(withdrawalHash: string): Promise<string|null>
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
 const WITHDRAWAL_TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
 console.log(await provider.getL1Withdrawal(WITHDRAWAL_TX_HASH));
