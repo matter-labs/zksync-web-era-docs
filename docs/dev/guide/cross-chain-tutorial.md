@@ -16,7 +16,7 @@ It is also assumed that you already have some experience working with Ethereum.
 To interact with the zkSync bridge contract using Solidity, you need to use the zkSync contract interface. There are two main ways to get it:
 
 - By importing it from the `@matterlabs/zksync-contracts` npm package. (preferred)
-- By downloading the contracts from the [repo](https://github.com/zpreview/contracts).
+- By downloading the contracts from the [repo](https://github.com/matter-labs/v2-testnet-contracts).
 
 The `@matterlabs/zksync-contracts` package can be installed by running the following command:
 
@@ -66,7 +66,7 @@ This tutorial does not focus on the process of deploying L1 contracts. To let yo
 1. Clone the complete tutorial repo:
 
 ```
-git clone https://github.com/zpreview/cross-chain-tutorial.git
+git clone https://github.com/matter-labs/cross-chain-tutorial.git
 cd cross-chain-tutorial/deploy-governance
 ```
 
@@ -274,7 +274,7 @@ The counter value is 0
 Now, let's call the `increment` method from layer 1.
 
 1. Create the `scripts/increment-counter.ts` file. There the script to interact with the contract via L1 will be put.
-2. To interact with the governance contract, its ABI is needed. For your convenience, you can copy it from [here](https://github.com/zpreview/cross-chain-tutorial/blob/main/project/scripts/governance.json). Create the `scripts/governance.json` file and paste the ABI there.
+2. To interact with the governance contract, its ABI is needed. For your convenience, you can copy it from [here](https://github.com/matter-labs/cross-chain-tutorial/blob/main/project/scripts/governance.json). Create the `scripts/governance.json` file and paste the ABI there.
 3. Paste the following template for the script:
 
 ```ts
@@ -513,7 +513,7 @@ The counter value is 1
 
 ## Complete project
 
-You can download the complete project [here](https://github.com/zpreview/cross-chain-tutorial).
+You can download the complete project [here](https://github.com/matter-labs/cross-chain-tutorial).
 
 ## Learn more
 

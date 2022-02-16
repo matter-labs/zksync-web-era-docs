@@ -6,8 +6,7 @@
 
 ### Block explorer
 
-- [Blockscout](https://zksync-v2-rinkeby2.zkscan.io) — **WARNING**: indexing is currently broken, transactions appear in the blockscout after about 20 min; we're working with the Blockscout team to resolve it.
-
+- [Blockscout](https://zksync-v2-rinkeby2.zkscan.io).
 - Etherscan (coming soon).
 
 ### Network info
