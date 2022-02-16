@@ -26,12 +26,6 @@ Similar to above, in cases where the fee should be deducted from the token amoun
 
 **Solution.** As above, make sure to keep aside a small amount to cover the fee.
 
-## Fee in USDC (or WBTC) is absurdly high
-
-This is an issue with the number of the decimal point in the USDC token.
-
-**Solution.** You can pay fees in other token, though USDC on L1 is ``cheap''.
-
 ## Fee within the wallet is only in ETH
 
 Very soon you will be able to pay the fee within the wallet in other tokens.
