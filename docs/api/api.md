@@ -249,4 +249,4 @@ Don't want to document (at least for now):
 
 ## PubSub API
 
-zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/rpc/pubsub).
+zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/rpc/pubsub), except for `syncing` subscription, as it doesn't have meaning for the zkSync network since technically our nodes are always synced.
