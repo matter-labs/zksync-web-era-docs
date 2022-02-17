@@ -17,7 +17,7 @@ For this tutorial, the following programs must be installed:
 
 - `yarn` package manager. `npm` examples will be added soon.
 - `Docker` for compilation.
-- A wallet with some Rinkeby `ETH` on L1 (Rinkeby `USDC` is also required for the ERC-20 tutorial) to pay for bridging funds to zkSync as well as deploying smart contracts.
+- A wallet with some Görli `ETH` on L1 (Görli `USDC` is also required for the ERC-20 tutorial) to pay for bridging funds to zkSync as well as deploying smart contracts.
 
 ## Initializing the project
 
@@ -52,8 +52,8 @@ module.exports = {
     },
   },
   zkSyncDeploy: {
-    zkSyncNetwork: "https://z2-dev-api-rinkeby.zksync.dev",
-    ethNetwork: "rinkeby",
+    zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
+    ethNetwork: "goerli",
   },
   solidity: {
     version: "0.8.11",
@@ -164,7 +164,7 @@ yarn hardhat deploy-zksync
 
 This section explains how to pay fees in `USDC` token as an example.
 
-1. After making sure that the wallet has some Rinkeby `USDC` on L1, change the depositing code to the following:
+1. After making sure that the wallet has some Görli `USDC` on L1, change the depositing code to the following:
 
 ```typescript
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";

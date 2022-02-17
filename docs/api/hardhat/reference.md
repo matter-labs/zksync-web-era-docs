@@ -155,13 +155,13 @@ class Deployer {
 
 ```
 zkSyncDeploy: {
-  zkSyncNetwork: "https://z2-dev-api-rinkeby.zksync.dev",
-  ethNetwork: "rinkeby"
+  zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
+  ethNetwork: "goerli"
 }
 ```
 
 - `zkSyncNetwork` is a field with the URL of the zkSync node.
-- `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `rinkeby`) as the value of this field. In this case, the default `ethers` provider for the network will be used.
+- `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `goerli`) as the value of this field. In this case, the default `ethers` provider for the network will be used.
 
 ### Commands
 
