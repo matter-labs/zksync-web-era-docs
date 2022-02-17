@@ -43,7 +43,7 @@ module.exports = {
   },
   zkSyncDeploy: {
     zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
-    ethNetwork: "rinkeby",
+    ethNetwork: "goerli",
   },
   solidity: {
     version: "0.8.10",

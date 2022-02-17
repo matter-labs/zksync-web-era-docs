@@ -70,9 +70,9 @@ git clone https://github.com/matter-labs/cross-chain-tutorial.git
 cd cross-chain-tutorial/deploy-governance
 ```
 
-2. Open `rinkeby.json` and fill in the following values there:
+2. Open `goerli.json` and fill in the following values there:
 
-- `nodeUrl` should be equal to your Rinkeby Ethereum node provider URL.
+- `nodeUrl` should be equal to your Goerli Ethereum node provider URL.
 - `deployerPrivateKey` should be equal to the private key of the wallet that will deploy the governance smart contract. It needs to have some ETH on Rinkeby.
 
 2. To deploy the governance smart contract run the following commands:
@@ -148,7 +148,7 @@ module.exports = {
   },
   zkSyncDeploy: {
     zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
-    ethNetwork: "rinkeby",
+    ethNetwork: "goerli",
   },
   solidity: {
     version: "0.8.11",
@@ -303,7 +303,7 @@ const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
 ```ts
 async function main() {
   // Ethereum L1 provider
-  const l1Provider = ethers.providers.getDefaultProvider("rinkeby");
+  const l1Provider = ethers.providers.getDefaultProvider("goerli");
 
   // Governor wallet, the same one as the one that deployed the
   // governance contract
@@ -436,7 +436,7 @@ const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
 
 async function main() {
   // Ethereum L1 provider
-  const l1Provider = ethers.providers.getDefaultProvider("rinkeby");
+  const l1Provider = ethers.providers.getDefaultProvider("goerli");
 
   // Governor wallet
   const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>", l1Provider);
