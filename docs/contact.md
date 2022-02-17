@@ -50,10 +50,10 @@ Chat live with our team and other developers on the official zkSync [Discord](ht
 
 ## User community and support
 
-- [Telegram: user support group](https://t.me/zksync_support) (new!).
-- [Telegram: community discussion group](https://t.me/zksync_community) (new!).
-- [Discord: discussions](https://discord.gg/px2aR7w).
-- Email user support: **support@zksync.io** (new!)
+- [Telegram: user support group](https://t.me/zksync_support)
+- [zkSync 2.0 testnet Discord](https://discord.com/invite/t6RrNAu7).
+- Email user support: **support@zksync.io**
+- [Community Forum](https://community.zksync.io/)
 
 ## Partnerships, integrations and press
 
@@ -63,7 +63,3 @@ Please reach out directly via **hello@matter-labs.io**.
 
 We are always hiring! Please check out our
 [open positions](https://www.notion.so/matterlabs/Career-at-Matter-Labs-4a69ed0f7acb45c89f662cf12dbc2464).
-
-## Security disclosures
-
-For the bug bounty program and vulnerability disclosures, consult our [security policy](https://github.com/matter-labs/zksync/blob/master/SECURITY.md).

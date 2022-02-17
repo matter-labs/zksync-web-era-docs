@@ -15,6 +15,11 @@
 - New RPC URL: `https://z2-dev-api-rinkeby.zksync.dev`
 - Chain ID: `277`
 
+### WebSocket URL
+
+- WebSocket URL: `wss://zksync2-testnet.zksync.dev/ws`
+
 ### Questions and support
 
-[Testnet Discord](https://discord.com/invite/t6RrNAu7).
+- [Testnet Discord](https://discord.com/invite/t6RrNAu7).
+- [Community Forum](https://community.zksync.io/)
