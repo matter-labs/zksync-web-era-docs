@@ -23,7 +23,7 @@ The `aa-signature-checker` library provides a way to verify signatures for accou
 ### Adding the library to your project:
 
 ```
-yarn add @matterlabs/aa-signature-checker
+yarn add @matterlabs/signature-checker
 ```
 
 ### Example of using the library
@@ -31,7 +31,7 @@ yarn add @matterlabs/aa-signature-checker
 ```solidity
 pragma solidity ^0.8.0;
 
-import { SignatureChecker } from "@matterlabs/aa-signature-checker/contracts/SignatureChecker.sol";
+import { SignatureChecker } from "@matterlabs/signature-checker/contracts/SignatureChecker.sol";
 
 contract TestSignatureChecker {
     using SignatureChecker for address;
