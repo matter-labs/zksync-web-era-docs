@@ -1,5 +1,15 @@
 # Getting started
 
+::: warning Alpha testnet
+
+Welcome to the first zkSync 2.0 alpha testnet! Our team would be very happy to see what you can build on zkSync. We are glad for any feedback you could provide!
+
+Note, that the system is still in active development, so:
+- **Breaking changes are possible in the future.**
+- **Some of the updates may require regenesis**, i.e. erasing all the balances, smart contracts, and restarting the blockchain. We will make sure to communicate all regenesis beforehand!
+
+:::
+
 **zkSync 2.0** is a [ZK rollup](./rollups.md): a trustless protocol that utilises zero-knowledge proofs to provide scalable low-cost transactions on Ethereum. All assets are stored in a single smart
 contract on the mainchain, while computation and storing data are performed off-chain.
 
