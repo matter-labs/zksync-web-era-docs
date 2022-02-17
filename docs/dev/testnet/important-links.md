@@ -7,7 +7,6 @@
 ### Block explorer
 
 - [Blockscout](https://zksync-v2-rinkeby2.zkscan.io).
-- Etherscan (coming soon).
 
 ### Network info
 
