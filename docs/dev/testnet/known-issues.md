@@ -53,3 +53,12 @@ We are expected to update our testnet continuously, and so from time to time, we
 ## `wait()` gets stuck for L1->L2 transactions
 
 If the `wait()` takes much longer than expected, most likely the transaction has failed.
+
+## `unexpected end of JSON input` compilation error
+
+This is an error that is usually thrown when compiling a large smart contract codebase, but it may be thrown because of other issues as well. 
+
+If you encounter such an error, please do the following:
+
+- Make sure that you do not have libraries that can not be inlined, i.e. libraries that have `public` or `external` methods. You can read more about this limitation [here](../zksync-v2/temp-limits.md#using-libraries-in-solidity). For instance, most of OpenZeppelin's libaries *can* be inlined, e.g. they only have `internal` methods. You may encounter this issue if you use custom libraries though.
+- Otherwise, report the issue to our team. We will do our best to help you.
