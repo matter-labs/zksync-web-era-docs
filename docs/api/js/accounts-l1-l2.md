@@ -40,8 +40,8 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://z2-dev-api-rinkeby.zksync.dev/");
-const ethereumProvider = ethers.getDefaultProvider("rinkeby");
+const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev/");
+const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
@@ -115,8 +115,8 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://z2-dev-api-rinkeby.zksync.dev/");
-const ethereumProvider = ethers.getDefaultProvider("rinkeby");
+const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev/");
+const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
@@ -194,8 +194,8 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://z2-dev-api-rinkeby.zksync.dev/");
-const ethereumProvider = ethers.getDefaultProvider("rinkeby");
+const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev/");
+const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const MLTT_ADDRESS = "0x690f4886c6911d81beb8130db30c825c27281f22";
@@ -261,8 +261,8 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://z2-dev-api-rinkeby.zksync.dev/");
-const ethereumProvider = ethers.getDefaultProvider("rinkeby");
+const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev/");
+const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const gasPrice = await wallet.providerL1!.getGasPrice();
@@ -345,8 +345,8 @@ import { BigNumber, ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://z2-dev-api-rinkeby.zksync.dev/");
-const ethereumProvider = ethers.getDefaultProvider("rinkeby");
+const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev/");
+const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const gasPrice = await wallet.providerL1!.getGasPrice();
@@ -449,8 +449,8 @@ import { ethers, BigNumber } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new Provider("https://z2-dev-api-rinkeby.zksync.dev/");
-const ethereumProvider = ethers.getDefaultProvider("rinkeby");
+const zkSyncProvider = new Provider("https://zksync2-testnet.zksync.dev/");
+const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const gasPrice = await wallet.providerL1!.getGasPrice();

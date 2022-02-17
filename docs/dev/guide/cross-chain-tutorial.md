@@ -70,9 +70,9 @@ git clone https://github.com/matter-labs/cross-chain-tutorial.git
 cd cross-chain-tutorial/deploy-governance
 ```
 
-2. Open `rinkeby.json` and fill in the following values there:
+2. Open `goerli.json` and fill in the following values there:
 
-- `nodeUrl` should be equal to your Rinkeby Ethereum node provider URL.
+- `nodeUrl` should be equal to your Goerli Ethereum node provider URL.
 - `deployerPrivateKey` should be equal to the private key of the wallet that will deploy the governance smart contract. It needs to have some ETH on Rinkeby.
 
 2. To deploy the governance smart contract run the following commands:
@@ -147,8 +147,8 @@ module.exports = {
     },
   },
   zkSyncDeploy: {
-    zkSyncNetwork: "https://z2-dev-api-rinkeby.zksync.dev",
-    ethNetwork: "rinkeby",
+    zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
+    ethNetwork: "goerli",
   },
   solidity: {
     version: "0.8.11",
@@ -242,7 +242,7 @@ const COUNTER_ABI = require("./counter.json");
 
 async function main() {
   // Initializing the zkSync provider
-  const l2Provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+  const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
 
   const counter = new Contract(COUNTER_ADDRESS, COUNTER_ABI, l2Provider);
 
@@ -303,7 +303,7 @@ const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
 ```ts
 async function main() {
   // Ethereum L1 provider
-  const l1Provider = ethers.providers.getDefaultProvider("rinkeby");
+  const l1Provider = ethers.providers.getDefaultProvider("goerli");
 
   // Governor wallet, the same one as the one that deployed the
   // governance contract
@@ -329,7 +329,7 @@ async function main() {
   // ... Previous steps
 
   // Initializing the L2 privider
-  const l2Provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+  const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
   // Getting the current address of the zkSync L1 bridge
   const zkSyncAddress = await l2Provider.getMainContractAddress();
   // Getting the `Contract` object of the zkSync bridge
@@ -436,7 +436,7 @@ const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
 
 async function main() {
   // Ethereum L1 provider
-  const l1Provider = ethers.providers.getDefaultProvider("rinkeby");
+  const l1Provider = ethers.providers.getDefaultProvider("goerli");
 
   // Governor wallet
   const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>", l1Provider);
@@ -444,7 +444,7 @@ async function main() {
   const governance = new ethers.Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
 
   // Getting the current address of the zkSync L1 bridge
-  const l2Provider = new Provider("https://z2-dev-api-rinkeby.zksync.dev");
+  const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
   const zkSyncAddress = await l2Provider.getMainContractAddress();
   // Getting the `Contract` object of the zkSync bridge
   const zkSyncContract = new ethers.Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
