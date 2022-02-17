@@ -42,8 +42,8 @@ module.exports = {
     },
   },
   zkSyncDeploy: {
-    zkSyncNetwork: "https://z2-dev-api-rinkeby.zksync.dev",
-    ethNetwork: "rinkeby",
+    zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
+    ethNetwork: "goerli",
   },
   solidity: {
     version: "0.8.10",
@@ -257,7 +257,7 @@ By default, the page should be running at `http://localhost:8080`. Open this URL
 
 In order to interact with dApps built on zkSync, connect the Metamask wallet to the zkSync alpha testnet network and bridge some funds to L2.
 
-- The [guide](../private-testnet/metamask.md) on connecting to Metamask.
+- The [guide](../testnet/metamask.md) on connecting to Metamask.
 - Use our [portal](https://zqgai-staging-wallet-v2.zksync.dev) to bridge funds to zkSync.
 
 ### Project structure
@@ -441,7 +441,7 @@ The full methods now look the following way:
 
 ```javascript
 initializeProviderAndSigner() {
-    this.provider = new Provider('https://z2-dev-api-rinkeby.zksync.dev');
+    this.provider = new Provider('https://zksync2-testnet.zksync.dev');
     // Note that we still need to get the Metamask signer
     this.signer = (new Web3Provider(window.ethereum)).getSigner();
 

@@ -1,10 +1,12 @@
 # Getting started
 
-::: danger ATTENTION: closed private preview
+::: warning Alpha testnet
 
-This documentation is a part of the closed private zkSync 2.0 testnet that is being rolled out gradually as our team wants to gather feedback before the public launch.
+Welcome to the first zkSync 2.0 alpha testnet! Our team would be very happy to see what you can build on zkSync. We are glad for any feedback you could provide!
 
-Please, **DO NOT** share this documentation or the network with anyone outside of your team yet.
+Note, that the system is still in active development, so:
+- **Breaking changes are possible in the future.**
+- **Some of the updates may require regenesis**, i.e. erasing all the balances, smart contracts, and restarting the blockchain. We will make sure to communicate all regenesis beforehand! Make sure to follow our [testnet Discord](https://discord.com/invite/t6RrNAu7).
 
 :::
 
@@ -21,7 +23,7 @@ contract on the mainchain, while computation and storing data are performed off-
 
 ### How to get started?
 
-- Begin by [trying out](./private-testnet/user.md) the zkSync 2.0 UX yourself!
+- Begin by [trying out](./testnet/user.md) the zkSync 2.0 UX yourself!
 - If you are new to rollups, then [ZK rollup basics](./rollups.md) guide will help you get familiar with ZK rollup architecture in general.
 - If you already know how ZK rollups work, then [Understanding zkSync 2.0](./zksync-v2) will serve as an introduction into the concepts behind zkSync 2.0.
 - Want to dive directly into the code? Head straight to the [Developer guide](./guide).

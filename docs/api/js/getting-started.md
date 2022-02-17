@@ -28,16 +28,16 @@ To interact with the zkSync network users need to know the endpoint of the opera
 
 ```typescript
 // Currently, only one environment is supported.
-const syncProvider = new zksync.Provider("https://z2-dev-api-rinkeby.zksync.dev");
+const syncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
 ```
 
-**Note:** Currently, only `rinkeby` network is supported.
+**Note:** Currently, only `goerli` network is supported.
 
 Some operations require access to the Ethereum network. `ethers` library should be used to interact with
 Ethereum.
 
 ```typescript
-const ethProvider = ethers.getDefaultProvider("rinkeby");
+const ethProvider = ethers.getDefaultProvider("goerli");
 ```
 
 ## Creating a wallet

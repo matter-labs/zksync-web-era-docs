@@ -142,13 +142,13 @@ The tokens are returned in alphabetical order by their symbol, so basically, the
   {
     "address": "0xd2255612f9b045e9c81244bb874abb413ca139a3",
     "decimals": 18,
-    "name": "TrueUSD (rinkeby)",
+    "name": "TrueUSD",
     "symbol": "TUSD"
   },
   {
     "address": "0xeb8f08a975ab53e34d8a0330e0d34de942c95926",
     "decimals": 6,
-    "name": "USD Coin (rinkeby)",
+    "name": "USD Coin",
     "symbol": "USDC"
   }
 ]
@@ -246,3 +246,9 @@ Don't want to document (at least for now):
 
 
 -->
+
+## PubSub API
+
+zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/rpc/pubsub), except for `syncing` subscription, as it doesn't have meaning for the zkSync network since technically our nodes are always synced.
+
+The WebSocket URL is `wss://zksync2-testnet.zksync.dev/ws`.
