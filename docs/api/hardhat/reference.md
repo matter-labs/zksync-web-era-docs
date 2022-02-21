@@ -33,7 +33,7 @@ zksolc: {
       enabled: true,
     },
     experimental: {
-      dockerImage: "zksyncrobot/test-build"
+      dockerImage: "matterlabs/zksolc"
     }
 }
 ```
