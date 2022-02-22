@@ -20,5 +20,5 @@
 
 ### Questions and support
 
-- [Testnet Discord](https://discord.com/invite/t6RrNAu7).
+- [Discord](https://discord.gg/px2aR7w).
 - [Community Forum](https://community.zksync.io/)

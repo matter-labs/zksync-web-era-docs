@@ -46,12 +46,12 @@ novalidate
 
 ## Developer community
 
-Chat live with our team and other developers on the official zkSync [Discord](https://discord.gg/5b6s7VTC)!
+Chat live with our team and other developers on the official zkSync [Discord](https://discord.gg/px2aR7w)!
 
 ## User community and support
 
 - [Telegram: user support group](https://t.me/zksync_support)
-- [zkSync 2.0 testnet Discord](https://discord.com/invite/t6RrNAu7).
+- [zkSync Discord](https://discord.gg/px2aR7w).
 - Email user support: **support@zksync.io**
 - [Community Forum](https://community.zksync.io/)
 
