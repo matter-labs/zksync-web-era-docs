@@ -56,9 +56,10 @@ If the `wait()` takes much longer than expected, most likely the transaction has
 
 ## `unexpected end of JSON input` compilation error
 
-This is an error that is usually thrown when compiling a large smart contract codebase, but it may be thrown because of other issues as well. 
+This is an error that is usually thrown when compiling a large smart contract codebase.
 
 If you encounter such an error, please do the following:
 
-- Make sure that you do not have libraries that can not be inlined, i.e. libraries that have `public` or `external` methods. You can read more about this limitation [here](../zksync-v2/temp-limits.md#using-libraries-in-solidity). For instance, most of OpenZeppelin's libaries *can* be inlined, e.g. they only have `internal` methods. You may encounter this issue if you use custom libraries though.
-- Otherwise, report the issue to our team. We will do our best to help you.
+- Update the `@matterlabs/hardhat-zksync-solc` library and try to re-compile the smart contracts afterwards.
+- If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](../../api/hardhat/compiling-libraries.md).
+- If the same error persists, report the issue to our team. We will do our best to help you.
