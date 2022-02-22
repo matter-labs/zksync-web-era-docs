@@ -11,12 +11,12 @@ To learn more about hardhat itself, check out their [documentation](https://hard
 
 This tutorial shows how to set up a zkSync hardhat project from scratch.
 
-## Prerequisities
+## Prerequisites
 
 For this tutorial, the following programs must be installed:
 
 - `yarn` package manager. `npm` examples will be added soon.
-- `Docker` for compilation.
+- `Docker` for compilation (must be running during compilation).
 - A wallet with some Görli `ETH` on L1 (Görli `USDC` is also required for the ERC-20 tutorial) to pay for bridging funds to zkSync as well as deploying smart contracts.
 
 ## Initializing the project
