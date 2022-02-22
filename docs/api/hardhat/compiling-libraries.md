@@ -52,7 +52,7 @@ Error in plugin @matterlabs/hardhat-zksync-solc: LLVM("Library `contracts/MiniMa
 
 That error tells us that the address of the `MiniMath` library should be provided.
 
-To resolve the issue, you need to create *a separate project*, where only the library file will be located. After deploying *only* the library to zkSync, you should get the address of the deployed library and pass it to the compiler settings. The process of deploying the library is exactly the same as for deploying the smart contracts. You can learn how to deploy smart contracts on zkSync with the [getting started](./getting-started.md) guide.
+To resolve the issue, you need to create *a separate project*, where only the library file will be located. After deploying *only* the library to zkSync, you should get the address of the deployed library and pass it to the compiler settings. The process of deploying the library is exactly the same as deploying smart contracts. You can learn how to deploy smart contracts on zkSync with the [getting started](./getting-started.md) guide.
 
 Let's say that the address of the deployed library is `0xF9702469Dfb84A9aC171E284F71615bd3D3f1EdC`. To pass this address to the compiler parameters, open the `harhdat.config.ts` file of the project where the `Main` contract is located and change its content to the following one:
 
