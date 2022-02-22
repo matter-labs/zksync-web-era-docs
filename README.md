@@ -6,7 +6,7 @@
 
 ## zkEVM
 
-> zkEVM is a virtual machine that executes smart contracts in a way that is compatible with zero-knowledge-proof computation. It is the . 
+> zkEVM is a virtual machine that executes smart contracts in a way that is compatible with zero-knowledge-proof computation. 
 > Our zk-EVM keeps EVM semantics, but is also ZK-friendly and takes on traditional CPU architectures.
 
 Constantly updated, [zkSync: Docs for 2.0](https://v2-docs.zksync.io/dev) offers the most complete knowledge about the upcoming **zkSync 2.0**. 
