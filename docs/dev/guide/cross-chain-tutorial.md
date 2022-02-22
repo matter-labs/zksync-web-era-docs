@@ -61,7 +61,7 @@ This is a very simple governance contract. It sets the creator of the contract a
 
 ### Deploy with the predefined script
 
-This tutorial does not focus on the process of deploying L1 contracts. To let you quickly proceed with the tutorial, the zkSync team provided a script to deploy the aforementioned smart contract on Rinkeby.
+This tutorial does not focus on the process of deploying L1 contracts. To let you quickly proceed with the tutorial, the zkSync team provided a script to deploy the aforementioned smart contract on Görli.
 
 1. Clone the complete tutorial repo:
 
@@ -73,7 +73,7 @@ cd cross-chain-tutorial/deploy-governance
 2. Open `goerli.json` and fill in the following values there:
 
 - `nodeUrl` should be equal to your Goerli Ethereum node provider URL.
-- `deployerPrivateKey` should be equal to the private key of the wallet that will deploy the governance smart contract. It needs to have some ETH on Rinkeby.
+- `deployerPrivateKey` should be equal to the private key of the wallet that will deploy the governance smart contract. It needs to have some ETH on Görli.
 
 2. To deploy the governance smart contract run the following commands:
 
@@ -142,7 +142,7 @@ module.exports = {
         enabled: true,
       },
       experimental: {
-        dockerImage: "zksyncrobot/test-build",
+        dockerImage: "matterlabs/zksolc",
       },
     },
   },
@@ -208,7 +208,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-7. After replacing `<WALLET-PRIVATE-KEY>` and `<GOVERNANCE-ADDRESS>` with the `0x`-prefixed private key of an Ethereum wallet with some ETH balance on Rinkeby and the address of the L1 governance contract respectively, run the script using the following command:
+7. After replacing `<WALLET-PRIVATE-KEY>` and `<GOVERNANCE-ADDRESS>` with the `0x`-prefixed private key of an Ethereum wallet with some ETH balance on Görli and the address of the L1 governance contract respectively, run the script using the following command:
 
 ```
 yarn hardhat deploy-zksync
