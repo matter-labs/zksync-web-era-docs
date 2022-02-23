@@ -14,7 +14,7 @@ The following functionality will be implemented:
 For this tutorial, the following programs must be installed:
 
 - `yarn` package manager. `npm` examples will be added soon.
-- `Docker` for compilation (must be running during compilation).
+- `Docker` for compilation.
 - A wallet with some Görli `ETH` on L1 (Görli `USDC` is also required for the ERC-20 tutorial) to pay for bridging funds to zkSync as well as deploying smart contracts.
 
 ## Initializing the project & deploying smart contract
