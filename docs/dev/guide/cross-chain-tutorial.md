@@ -148,7 +148,7 @@ module.exports = {
   },
   zkSyncDeploy: {
     zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
-    ethNetwork: "goerli",
+    ethNetwork: "goerli", // Can also be RPC address of network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
   },
   solidity: {
     version: "0.8.11",
