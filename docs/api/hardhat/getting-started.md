@@ -11,7 +11,7 @@ To learn more about hardhat itself, check out their [documentation](https://hard
 
 This tutorial shows how to set up a zkSync hardhat project from scratch.
 
-## Prerequisities
+## Prerequisites
 
 For this tutorial, the following programs must be installed:
 
