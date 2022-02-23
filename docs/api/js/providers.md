@@ -69,7 +69,7 @@ async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address):
 import { Provider } from "zksync-web3";
 
 const provider = new Provider("https://zksync2-testnet.zksync.dev");
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 
 // Getting  USDC balance of account 0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5 at the latest processed block
 console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5", "latest", USDC_ADDRESS));
@@ -146,7 +146,7 @@ async isTokenLiquid(token: Address): Promise<boolean>
 import { Provider } from "zksync-web3";
 const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 console.log(await provider.isTokenLiquid(USDC_ADDRESS)); // Should return true
 ```
 
@@ -170,7 +170,7 @@ async getTokenPrice(token: Address): Promise<string>
 import { Provider } from "zksync-web3";
 const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 console.log(await provider.getTokenPrice(USDC_ADDRESS));
 ``` -->
 

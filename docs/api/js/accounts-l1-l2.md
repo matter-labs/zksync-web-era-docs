@@ -44,7 +44,7 @@ const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev/"
 const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const txHandle = await wallet.approveERC20(
   USDC_ADDRESS,
   "10000000" // 10.0 USDC
@@ -119,7 +119,7 @@ const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev/"
 const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const usdcDepositHandle = await wallet.deposit({
   token: USDC_ADDRESS,
   amount: "10000000",
