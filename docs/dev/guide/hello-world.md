@@ -9,6 +9,14 @@ The following functionality will be implemented:
 - The user will be able to change the greeting on the smart contract.
 - The user will be able to select the token that they want to pay the fee with.
 
+## Prerequisites
+
+For this tutorial, the following programs must be installed:
+
+- `yarn` package manager. `npm` examples will be added soon.
+- `Docker` for compilation.
+- A wallet with some Görli `ETH` on L1 (Görli `USDC` is also required for the ERC-20 tutorial) to pay for bridging funds to zkSync as well as deploying smart contracts.
+
 ## Initializing the project & deploying smart contract
 
 1. Initialize the project and install the dependencies. Run the following commands in the terminal:
