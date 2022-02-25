@@ -145,7 +145,7 @@ This section is optional, and is used to learn how to pay for the deployment of 
 1. For example, to pay fees in the `USDC` token:
 
 ```typescript
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const USDC_DECIMALS = 6;
 
 const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_ADDRESS);
@@ -199,7 +199,7 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const USDC_DECIMALS = 6;
 
 // An example of a deploy script that will deploy and call a simple contract.
