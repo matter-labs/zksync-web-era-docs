@@ -157,7 +157,7 @@ const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b54
 
 const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
 
 // Getting balance in USDC
@@ -191,7 +191,7 @@ const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b54
 
 const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
 
 // Getting balance in USDC
@@ -225,7 +225,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
 const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 // Note that we don't need ethereum provider to get the nonce
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
 
@@ -277,7 +277,7 @@ const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const recipient = zksync.Wallet.createRandom();
 
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 // We transfer 0.01 ETH to the recipient and pay the fee in USDC
 const transferHandle = wallet.transfer({
   to: recipient.address,
@@ -424,7 +424,7 @@ const signer = provider.getSigner();
 
 const recipient = Wallet.createRandom();
 
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 // We transfer 0.01 ETH to the recipient and pay the fee in USDC
 const transferHandle = signer.transfer({
   to: recipient.address,
