@@ -258,7 +258,7 @@ By default, the page should be running at `http://localhost:8080`. Open this URL
 In order to interact with dApps built on zkSync, connect the Metamask wallet to the zkSync alpha testnet network and bridge some funds to L2.
 
 - The [guide](../testnet/metamask.md) on connecting to Metamask.
-- Use our [portal](https://zqgai-staging-wallet-v2.zksync.dev) to bridge funds to zkSync.
+- Use our [portal](https://portal.zksync.io/) to bridge funds to zkSync.
 
 ### Project structure
 
