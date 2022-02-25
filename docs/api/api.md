@@ -146,9 +146,9 @@ The tokens are returned in alphabetical order by their symbol, so basically, the
     "symbol": "TUSD"
   },
   {
-    "address": "0xeb8f08a975ab53e34d8a0330e0d34de942c95926",
+    "address": "0xd35cceead182dcee0f148ebac9447da2c4d449c4",
     "decimals": 6,
-    "name": "USD Coin",
+    "name": "USD Coin (goerli)",
     "symbol": "USDC"
   }
 ]

@@ -34,23 +34,23 @@ In order to make the SDK as flexible as possible, the library uses the overrides
 
 Examples:
 
-Override to pay fees in the token with the address `0xeb8f08a975ab53e34d8a0330e0d34de942c95926`:
+Override to pay fees in the token with the address `0xd35cceead182dcee0f148ebac9447da2c4d449c4`:
 
 ```typescript
 {
   customData: {
-    feeToken: "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+    feeToken: "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
   }
 }
 ```
 
-Override to withdraw ETH and pay fees in the token with the address `0xeb8f08a975ab53e34d8a0330e0d34de942c95926`:
+Override to withdraw ETH and pay fees in the token with the address `0xd35cceead182dcee0f148ebac9447da2c4d449c4`:
 zzz
 
 ```typescript
 {
     customData: {
-        feeToken: "0xeb8f08a975ab53e34d8a0330e0d34de942c95926",
+        feeToken: "0xd35cceead182dcee0f148ebac9447da2c4d449c4",
         withdrawToken: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
     }
 }
@@ -78,7 +78,7 @@ If you want to call the method `setGreeting` of an ethers `Contract` object call
 const txHandle = greeter.setGreeting("some new greeting", {
   customData: {
     // Paying fee in USDC
-    feeToken: "0xeb8f08a975ab53e34d8a0330e0d34de942c95926",
+    feeToken: "0xd35cceead182dcee0f148ebac9447da2c4d449c4",
   },
 });
 ```
