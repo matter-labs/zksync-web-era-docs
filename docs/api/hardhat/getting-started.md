@@ -11,7 +11,7 @@ To learn more about hardhat itself, check out their [documentation](https://hard
 
 This tutorial shows how to set up a zkSync hardhat project from scratch.
 
-## Prerequisities
+## Prerequisites
 
 For this tutorial, the following programs must be installed:
 
@@ -167,7 +167,7 @@ This section explains how to pay fees in `USDC` token as an example.
 1. After making sure that the wallet has some Görli `USDC` on L1, change the depositing code to the following:
 
 ```typescript
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const USDC_DECIMALS = 6;
 
 const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_ADDRESS);
@@ -221,7 +221,7 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const USDC_DECIMALS = 6;
 
 // An example of a deploy script that will deploy and call a simple contract.

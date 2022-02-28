@@ -9,6 +9,14 @@ The following functionality will be implemented:
 - The user will be able to change the greeting on the smart contract.
 - The user will be able to select the token that they want to pay the fee with.
 
+## Prerequisites
+
+For this tutorial, the following programs must be installed:
+
+- `yarn` package manager. `npm` examples will be added soon.
+- `Docker` for compilation.
+- A wallet with some Görli `ETH` on L1 (Görli `USDC` is also required for the ERC-20 tutorial) to pay for bridging funds to zkSync as well as deploying smart contracts.
+
 ## Initializing the project & deploying smart contract
 
 1. Initialize the project and install the dependencies. Run the following commands in the terminal:
@@ -137,7 +145,7 @@ This section is optional, and is used to learn how to pay for the deployment of 
 1. For example, to pay fees in the `USDC` token:
 
 ```typescript
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const USDC_DECIMALS = 6;
 
 const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_ADDRESS);
@@ -191,7 +199,7 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-const USDC_ADDRESS = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const USDC_DECIMALS = 6;
 
 // An example of a deploy script that will deploy and call a simple contract.
@@ -258,11 +266,11 @@ By default, the page should be running at `http://localhost:8080`. Open this URL
 In order to interact with dApps built on zkSync, connect the Metamask wallet to the zkSync alpha testnet network and bridge some funds to L2.
 
 - The [guide](../testnet/metamask.md) on connecting to Metamask.
-- Use our [portal](https://zqgai-staging-wallet-v2.zksync.dev) to bridge funds to zkSync.
+- Use our [portal](https://portal.zksync.io) to bridge funds to zkSync.
 
 ### Project structure
 
-All of the code will be written in the `./src/App.vue`. All the front-end code has been completed; the only task left is to fill out the TODO-s regarding interaction with zkSync:
+All the code will be written in the `./src/App.vue`. All the front-end code has been completed; the only task left is to fill out the TODO-s regarding interaction with zkSync:
 
 ```javascript
 initializeProviderAndSigner() {
@@ -426,7 +434,7 @@ initializeProviderAndSigner() {
 },
 ```
 
-### Retreiving the greeting
+### Retrieving the greeting
 
 1. Fill in the method retrieving the greeting from smart contract:
 
