@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/matter-labs/zksync-web-v2-docs/compare/1.0.0...1.0.1) (2022-02-28)
+
+
+### Bug Fixes
+
+* portal link updated, a couple of the spell errors fixed ([3f18d3c](https://github.com/matter-labs/zksync-web-v2-docs/commit/3f18d3c3fa59eb2e588ed2fbc7f2c1ad460794b7))
+
 # 1.0.0 (2022-01-11)
 
 
