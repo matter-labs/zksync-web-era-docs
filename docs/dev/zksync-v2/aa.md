@@ -68,6 +68,6 @@ export async function isTypedDataSignatureCorrect(
 ): Promise<boolean>;
 ```
 
-Currently these methods only support veryfying the ECDSA signatures, but very soon they will support EIP1271 signature verification as well.
+Currently, these methods only support verifying the ECDSA signatures, but very soon they will support EIP1271 signature verification as well.
 
-Both of these methods return `true` or `false` depending on whether or not message signature is correct.
+Both of these methods return `true` or `false` depending on whether or not the message signature is correct.
