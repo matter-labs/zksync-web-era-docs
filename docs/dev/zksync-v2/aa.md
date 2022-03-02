@@ -45,3 +45,29 @@ contract TestSignatureChecker {
     }
 }
 ```
+
+## Verifying AA signatures within our SDK
+
+It is also **not recommended** to use `ethers.js` library to verify user signatures.
+
+Our SDK provides two methods with its `utils` to verify the signature of an account:
+
+```ts
+export async function isMessageSignatureCorrect(
+    address: string,
+    message: ethers.Bytes | string,
+    signature: SignatureLike
+): Promise<boolean>;
+
+export async function isTypedDataSignatureCorrect(
+    address: string,
+    domain: TypedDataDomain,
+    types: Record<string, Array<TypedDataField>>,
+    value: Record<string, any>,
+    signature: SignatureLike
+): Promise<boolean>;
+```
+
+Currently these methods only support veryfying the ECDSA signatures, but very soon they will support EIP1271 signature verification as well.
+
+Both of these methods return `true` or `false` depending on whether or not message signature is correct.
