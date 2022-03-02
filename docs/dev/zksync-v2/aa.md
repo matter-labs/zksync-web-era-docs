@@ -1,4 +1,4 @@
-# IMPORTANT: Account abstraction support
+# Important: Account abstraction support
 
 ## Introduction
 
