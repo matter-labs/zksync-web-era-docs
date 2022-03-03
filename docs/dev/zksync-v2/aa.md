@@ -18,7 +18,7 @@ One of the most notable differences between various types of accounts to be buil
 
 The `aa-signature-checker` library provides a way to verify signatures for account abstractions. Currently, it only supports verifying the ECDSA signatures. Very soon we will add support for EIP-1271 as well.
 
-*We strongly encourage you to use this library whenever you need to check that a signature of an account is correct.*
+_We strongly encourage you to use this library whenever you need to check that a signature of an account is correct._
 
 ### Adding the library to your project:
 
@@ -53,18 +53,14 @@ It is also **not recommended** to use `ethers.js` library to verify user signatu
 Our SDK provides two methods with its `utils` to verify the signature of an account:
 
 ```ts
-export async function isMessageSignatureCorrect(
-    address: string,
-    message: ethers.Bytes | string,
-    signature: SignatureLike
-): Promise<boolean>;
+export async function isMessageSignatureCorrect(address: string, message: ethers.Bytes | string, signature: SignatureLike): Promise<boolean>;
 
 export async function isTypedDataSignatureCorrect(
-    address: string,
-    domain: TypedDataDomain,
-    types: Record<string, Array<TypedDataField>>,
-    value: Record<string, any>,
-    signature: SignatureLike
+  address: string,
+  domain: TypedDataDomain,
+  types: Record<string, Array<TypedDataField>>,
+  value: Record<string, any>,
+  signature: SignatureLike
 ): Promise<boolean>;
 ```
 
