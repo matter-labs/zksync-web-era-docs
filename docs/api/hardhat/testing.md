@@ -1,16 +1,18 @@
 # Local testing
 
-Sometimes there is a need to test contracts in a local environment so that there is no need to worry about the testnet latency or fees.
+Sometimes there is a need to test contracts in a local environment for network latency or fee reasons. 
 
-zkSync team provides a dockerized local setup for testing purposes.
+zkSync team provides a dockerized local setup for this purpose.
 
 ## Prerequisites
 
 It is required that you have `Docker` and `docker-compose` installed on your computer.
 
+Also, some familiarity with the zkSync hardhat plugin is assumed. If you are new developing on zkSync with hardhat, a nice introduction is [here](./getting-started.md).
+
 ## Installing the testing environment
 
-You can download the dockerized docker setup with the following command.
+You can download the dockerized setup with the following command.
 
 ```
 git clone https://github.com/matter-labs/local-setup.git
@@ -33,7 +35,7 @@ This command will bootstrap three docker containers:
 
 By default, the HTTP JSON-RPC API will run on port `3050`, while WS API will run on port `3051`.
 
-_Note, that it is important that the first `start.sh` script invocation goes uninterrupted. If you face any issues after the bootstrapping process unexpectedly stopped, you should [reset](#resetting-zksync-state) the local zkSync state and try again._
+_Note, that it is important that the first `start.sh` script invocation goes uninterrupted. If you face any issues after the bootstrapping process unexpectedly stopped, you should [reset](#resetting-the-zksync-state) the local zkSync state and try again._
 
 ## Resetting the zkSync state
 
@@ -49,9 +51,27 @@ Note, that you may receive a "permission denied" error when running this command
 sudo ./clear.sh
 ```
 
-## Rich wallets & using custom L1
+## Rich wallets
 
-You can read more about the features of the dockerized setup in its [repo](https://github.com/matter-labs/local-setup).
+Local zkSync setup comes with some "rich" wallets with large amounts of ETH on both L1 and L2.
+
+The full list of the addresses of these accounts with the corresponding private keys can be found [here](https://github.com/matter-labs/local-setup/blob/main/rich-wallets.json).
+
+Also, during the initial bootstrapping of the system, several ERC-20 contracts are deployed locally. Note, that large quantities of these ERC-20 belong to the wallet `0x36615Cf349d7F6344891B1e7CA7C72883F5dc049` (the first one in the list of the rich wallet). Right after bootstrapping the system, these ERC-20 funds are available only on L1.
+
+## Using custom database/L1
+
+To use custom Postgres database or Layer 1, you should change the environment parameters in the docker-compose file:
+
+```yml
+environment:
+    - DATABASE_URL=postgres://postgres@postgres/zksync_local
+    - ETH_CLIENT_WEB3_URL=http://geth:8545
+```
+
+- `DATABASE_URL` is the URL to the Postgres database.
+- `ETH_CLIENT_WEB3_URL` is the URL to the HTTP JSON-RPC interface of the L1 node.
+
 
 ## Testing with `mocha` + `chai`
 
