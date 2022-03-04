@@ -63,3 +63,8 @@ If you encounter such an error, please do the following:
 - Update the `@matterlabs/hardhat-zksync-solc` library and try to re-compile the smart contracts afterwards.
 - If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](../../api/hardhat/compiling-libraries.md).
 - If the same error persists, report the issue to our team. We will do our best to help you.
+
+## `Docker Desktop is not running` / `Docker Desktop is not installed` error
+
+If you are running Windows you may get this error, as a result of incompatibility with our hardhat pluging.
+We are working on fixing this issue. We apologize for the inconvenience.
