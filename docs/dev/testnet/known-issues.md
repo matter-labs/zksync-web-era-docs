@@ -66,5 +66,5 @@ If you encounter such an error, please do the following:
 
 ## `Docker Desktop is not running` / `Docker Desktop is not installed` error
 
-If you are running Windows you may get this error, as a result of incompatibility with our hardhat pluging.
+If you are running Windows you may get this error, as a result of incompatibility with our hardhat plugin.
 We are working on fixing this issue. We apologize for the inconvenience.
