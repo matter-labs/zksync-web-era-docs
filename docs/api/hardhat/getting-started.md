@@ -55,8 +55,13 @@ module.exports = {
     zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
     ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
   },
+  networks: {
+    hardhat: {
+      zksync: true,
+    },
+  },
   solidity: {
-    version: "0.8.11",
+    version: "0.8.12",
   },
 };
 ```
@@ -67,7 +72,7 @@ module.exports = {
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.11;
+pragma solidity ^0.8.0;
 
 contract Greeter {
     string private greeting;
@@ -294,7 +299,7 @@ yarn hardhat deploy-zksync
 ## Learn more
 
 - New to `zksync-web3` SDK? [Here](../js) is the documentation.
-- Want to dive deeper into zkSync `hardhat` plugins? Head straight to the [reference](./).
+- Want to dive deeper into zkSync `hardhat` plugins? Head straight to the [reference](./reference).
 
 ## Future releases
 
