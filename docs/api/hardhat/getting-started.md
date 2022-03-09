@@ -30,7 +30,7 @@ yarn init -y
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
-Please note that Typescript is currently required by zkSync plugins.
+`typescript` and `ts-node` are optional - plugins will work fine in vanilla JavaScript environment. Although, please note that this tutorial *does* use typescript.
 
 2. Create the `hardhat.config.ts` file and paste the following code within it:
 
@@ -306,4 +306,3 @@ yarn hardhat deploy-zksync
 There are two major points of improvements for the plugins which will be released in the future:
 
 - **Composability with the existing hardhat plugins.** Compatibility with other hardhat plugins is planned for future, but has not been a focus yet.
-- **JavaScript support.** Currently, `hardhat-zksync-deploy` requires typescript to run.
