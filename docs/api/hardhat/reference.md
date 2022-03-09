@@ -36,12 +36,18 @@ zksolc: {
       dockerImage: "matterlabs/zksolc"
     }
 }
+networks: {
+  hardhat: {
+    zksync: true,
+  },
+},
 ```
 
 - `version` is a field with the version of the plugin.
 - `compilerSource` is a field with the compiler source. It can be either `docker` or `binary`. In the former case, the `dockerImage` value with the name of the compiler docker image should also be provided. In the latter case, the compiler binary should be provided in `$PATH`.
 - `optimizer` is a field that describes the parameters of the optimizer.
 - `dockerImage` is the name of the docker image of the compiler.
+- `zksync` network option indicates whether zksolc is enabled. `false` by default.
 
 ### Commands
 
