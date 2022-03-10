@@ -56,6 +56,7 @@ module.exports = {
     ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
   },
   networks: {
+    // To compile with zksolc, this must be the default network.
     hardhat: {
       zksync: true,
     },
@@ -97,7 +98,8 @@ contract Greeter {
 yarn hardhat compile
 ```
 
-A `tmp` folder was created in the `contracts` directory. This is where the flattened versions of the contracts are stored. This folder is a compilation artifact, and should not be added to version control.
+A `artifacts-zk` and `cache-zk` folders were created in the root directory (instead of the regular hardhat's `artifacts` and `cache`).
+These are compilation artifacts, and should not be added to version control.
 
 6. Create the deployment script in the `deploy/deploy.ts`:
 
