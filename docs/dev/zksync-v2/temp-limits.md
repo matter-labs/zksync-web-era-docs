@@ -16,12 +16,12 @@ However, if a library contains at least one `public` or `external` method, it is
 
 - `block.gaslimit` always returns `2^32-1`.
 - `EXTCODESIZE` always returns `0xffff`.
+- `MSIZE` always returns `2^16`.
 
 #### Always returning zero
 
 - `GASLIMIT` (`tx.gasprice`)
 - `CALLVALUE` (`msg.value`)
-- `MSIZE`
 - `ORIGIN` (`tx.origin`)
 - `GASPRICE` (`tx.gasprice`)
 - `CHAINID` (`chain_id`)
