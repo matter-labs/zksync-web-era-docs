@@ -148,7 +148,7 @@ The tokens are returned in alphabetical order by their symbol, so basically, the
   {
     "address": "0xd35cceead182dcee0f148ebac9447da2c4d449c4",
     "decimals": 6,
-    "name": "USD Coin",
+    "name": "USD Coin (goerli)",
     "symbol": "USDC"
   }
 ]
