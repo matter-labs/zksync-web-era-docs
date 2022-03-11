@@ -1,9 +1,9 @@
-# Compiling uninlinable libraries
+# Compiling non-inlinable libraries
 
 Solidity libraries can be divided into two categories:
 
 - _Inlinable_. The ones that contain only `private` or `internal` methods. Since they can never be called from outside, the Solidity compiler inlines them, i.e. does not use external calls to access the library methods and uses the code of these libraries as part of the code that uses them.
-- _Uninlinable_. The ones that have at least one `public` or `external` method. While they may be inlined by the Solidity compiler, they are not inlined when compiled to Yul representation. Since Yul is an intermediate step when compiling to zkEVM bytecode, this means that these libraries can not be inlined by the zkSync compiler.
+- _Non-inlinable_. The ones that have at least one `public` or `external` method. While they may be inlined by the Solidity compiler, they are not inlined when compiled to Yul representation. Since Yul is an intermediate step when compiling to zkEVM bytecode, this means that these libraries can not be inlined by the zkSync compiler.
 
 **Practically this means that libraries with public methods need to be deployed separately and their addresses passed as an argument when compiling the main contract.** Usage of the methods of this library will be replaced with calls to the address of it.
 
@@ -11,7 +11,7 @@ Solidity libraries can be divided into two categories:
 
 Please note, that the total majority of the OpenZeppelin utility libraries _are_ inlinable. That means that _there is no need to do any further actions to make them compile_.
 
-This section describes the compilation of uninlinable libraries only.
+This section describes the compilation of non-inlinable libraries only.
 
 ## Example
 

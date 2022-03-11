@@ -7,4 +7,4 @@
 - [Getting started](./getting-started.md)
 - [Reference](./reference.md)
 - [Local testing](./testing.md)
-- [Compiling uninlinable libraries](./compiling-libraries.md)
+- [Compiling non-inlinable libraries](./compiling-libraries.md)
