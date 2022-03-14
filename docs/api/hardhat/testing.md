@@ -77,7 +77,8 @@ environment:
 
 Please note, that since the zkSync node URL is provided in the `hardhat.config.ts`, the best way to use different URLs for production deployment and local testing is to use environment variables. The standard way is to set `NODE_ENV=test` environment variable before invoking the tests.
 
-1. Follow the compilation guide from the [getting started](./getting-started.md) page.
+
+1. Create a new hardhat project and follow the compilation guide from the [getting started](./getting-started.md) page.
 2. To add the test frameworks, run the following command:
 
 ```
@@ -176,4 +177,4 @@ yarn test
 
 ## Full example
 
-The full example with tests can be found in the `./local-setup/example` folder, which comes [in the git repository](https://github.com/matter-labs/local-setup/tree/main/example).
+The full example with tests can be found [here](https://github.com/matter-labs/tutorial-examples/tree/main/local-setup-testing)
