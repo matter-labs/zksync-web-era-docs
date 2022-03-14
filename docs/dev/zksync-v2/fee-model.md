@@ -20,7 +20,7 @@ We want to show the clear distinction between our fee model and the Ethereum one
 
 - **Why can't we have constant price for storage value?**
 
-As part of the zkRollup security model, zkSync periodically publishes state diffs on Ethereum. The price of that is defined by Ethereum gas price and, as stated, is very volatile. This is why why the operator can define the new price in `ergs` for publishing pubdata for each block. Users can provide a cap on the `ergs_per_pubdata` in the [EIP712](../../api/api.md#eip712) transactions.
+As part of the zkRollup security model, zkSync periodically publishes state diffs on Ethereum. The price of that is defined by Ethereum gas price and, as stated, is very volatile. This is why the operator can define the new price in `ergs` for publishing pubdata for each block. Users can provide a cap on the `ergs_per_pubdata` in the [EIP712](../../api/api.md#eip712) transactions.
 
 - **Why do we need a separate `ergs_per_storage` then?**
 

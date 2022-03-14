@@ -26,10 +26,6 @@ Similar to above, in cases where the fee should be deducted from the token amoun
 
 **Solution.** As above, make sure to keep aside a small amount to cover the fee.
 
-## Fee within the wallet is only in ETH
-
-Very soon you will be able to pay the fee within the wallet in other tokens.
-
 <!---
 ## My contract does not compile, due to an error with “cyclic dependencies”
 
@@ -67,4 +63,4 @@ If you encounter such an error, please do the following:
 ## `Docker Desktop is not running` / `Docker Desktop is not installed` error
 
 If you are running Windows you may get this error, as a result of incompatibility with our hardhat plugin.
-We are working on fixing this issue. We apologize for the inconvenience.
+You can still compile the contract using Windows Subsystem for Linux (WSL 2).
