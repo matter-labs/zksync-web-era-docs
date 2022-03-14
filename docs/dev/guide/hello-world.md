@@ -421,15 +421,17 @@ In this method we should:
 2. Add the necessary dependencies:
 
 ```javascript
-import { Contract, Web3Provider } from "zksync-web3";
+import { Contract, Web3Provider, Provider } from "zksync-web3";
 ```
 
 3. The two steps can be done the following way:
 
 ```javascript
 initializeProviderAndSigner() {
-    this.provider = new Web3Provider(window.ethereum);
-    this.signer = this.provider.getSigner();
+    this.provider = new Provider('https://zksync2-testnet.zksync.dev');
+    // Note that we still need to get the Metamask signer
+    this.signer = (new Web3Provider(window.ethereum)).getSigner();
+
 
     this.contract = new Contract(
         GREETER_CONTRACT_ADDRESS,
