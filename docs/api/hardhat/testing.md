@@ -78,7 +78,7 @@ environment:
 Please note, that since the zkSync node URL is provided in the `hardhat.config.ts`, the best way to use different URLs for production deployment and local testing is to use environment variables. The standard way is to set `NODE_ENV=test` environment variable before invoking the tests.
 
 
-1. Create a new hardhat project and follow the compilation guide from the [getting started](./getting-started.md) page.
+1. Create a new hardhat project and follow the contracts' compilation guide from the [getting started](./getting-started.md) page (steps 1 to 5 of the **Initializing the project**  section).
 2. To add the test frameworks, run the following command:
 
 ```
@@ -129,6 +129,12 @@ module.exports = {
   solidity: {
     version: "0.8.11",
   },
+  networks: {
+    // To compile with zksolc, this must be the default network.
+    hardhat: {
+      zksync: true,
+    }
+  }
 };
 ```
 
