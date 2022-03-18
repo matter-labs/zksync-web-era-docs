@@ -50,7 +50,7 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 | validFrom      | `uint64`  |
 | validUntil     | `uint64`  |
 
-These fields are conveniently handled by our [SDK](./js/features).
+These fields are conveniently handled by our [SDK](./js/features.md).
 
 ## zkSync-specific JSON-RPC methods
 
