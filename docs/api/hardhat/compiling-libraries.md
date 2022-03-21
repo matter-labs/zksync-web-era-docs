@@ -56,7 +56,7 @@ To resolve the issue, you need to create *a separate project*, where only the li
 
 Let's say that the address of the deployed library is `0xF9702469Dfb84A9aC171E284F71615bd3D3f1EdC`. To pass this address to the compiler parameters, open the `harhdat.config.ts` file of the project where the `Main` contract is located and change its content to the following one:
 
-```ts
+```typescript
 require("@matterlabs/hardhat-zksync-deploy");
 require("@matterlabs/hardhat-zksync-solc");
 
@@ -95,7 +95,7 @@ module.exports = {
 
 The address of the library is passed in the following lines:
 
-```ts
+```typescript
 libraries: {
   'contracts/MiniMath.sol': {
     'MiniMath': '0xF9702469Dfb84A9aC171E284F71615bd3D3f1EdC'
