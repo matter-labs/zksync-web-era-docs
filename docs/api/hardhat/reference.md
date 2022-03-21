@@ -12,10 +12,10 @@ Add this plugin to your project with the following command:
 
 ```
 # Yarn
-yarn add -D @matterlabs/hardhat-zksync-solc@0.3.1
+yarn add -D @matterlabs/hardhat-zksync-solc@0.3
 
 # Npm
-npm i -D @matterlabs/hardhat-zksync-solc@0.3.1
+npm i -D @matterlabs/hardhat-zksync-solc@0.3
 ```
 
 ### Exports
@@ -71,10 +71,10 @@ Add this plugin to your project with the following command:
 
 ```
 # Yarn
-yarn add -D @matterlabs/hardhat-zksync-deploy@0.2.0
+yarn add -D @matterlabs/hardhat-zksync-deploy@0.2
 
 # Npm
-npm i -D @matterlabs/hardhat-zksync-deploy@0.2.0
+npm i -D @matterlabs/hardhat-zksync-deploy@0.2
 ```
 
 ### Exports

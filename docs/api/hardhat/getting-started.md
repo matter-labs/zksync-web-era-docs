@@ -27,7 +27,7 @@ For this tutorial, the following programs must be installed:
 mkdir greeter-example
 cd greeter-example
 yarn init -y
-yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc@0.3.1 @matterlabs/hardhat-zksync-deploy@0.2.0
+yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc@0.3 @matterlabs/hardhat-zksync-deploy@0.2
 ```
 
 `typescript` and `ts-node` are optional - plugins will work fine in vanilla JavaScript environment. Although, please note that this tutorial *does* use TypeScript.
