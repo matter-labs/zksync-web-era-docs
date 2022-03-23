@@ -24,7 +24,7 @@ This plugin most often will not be used directly in the code.
 
 ### Configuration
 
-```json
+```js
 zksolc: {
   version: "0.1.0",
   compilerSource: "docker",
