@@ -402,7 +402,7 @@ async function main() {
     value: baseCost,
     // Since the `baseCost` depends on the `gasPrice` of the transaction
     // it is important to pass `gasPrice` in the overrides as well.
-    gasPrice
+    gasPrice,
   });
 
   // Waiting until the L1 transaction is complete.
@@ -474,7 +474,7 @@ async function main() {
     value: baseCost,
     // Since the `baseCost` depends on the `gasPrice` of the transaction
     // it is important to pass `gasPrice` in the overrides as well.
-    gasPrice
+    gasPrice,
   });
 
   // Waiting until the L1 transaction is complete.
