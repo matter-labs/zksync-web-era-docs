@@ -12,10 +12,10 @@ Add this plugin to your project with the following command:
 
 ```
 # Yarn
-yarn add -D @matterlabs/hardhat-zksync-solc
+yarn add -D @matterlabs/hardhat-zksync-solc@0.3
 
 # Npm
-npm i -D @matterlabs/hardhat-zksync-solc
+npm i -D @matterlabs/hardhat-zksync-solc@0.3
 ```
 
 ### Exports
@@ -29,8 +29,9 @@ zksolc: {
   version: "0.1.0",
   compilerSource: "docker",
   settings: {
+    compilerPath: "zksolc",
     optimizer: {
-      enabled: true,
+      enabled: true
     },
     experimental: {
       dockerImage: "matterlabs/zksolc"
@@ -38,16 +39,17 @@ zksolc: {
 }
 networks: {
   hardhat: {
-    zksync: true,
-  },
-},
+    zksync: true
+  }
+}
 ```
 
 - `version` is a field with the version of the plugin.
 - `compilerSource` is a field with the compiler source. It can be either `docker` or `binary`. In the former case, the `dockerImage` value with the name of the compiler docker image should also be provided. In the latter case, the compiler binary should be provided in `$PATH`.
+- `compilerPath` is a field with the path to the `zksolc` binary. If `compilerSource` is `docker`, this field is ignored. By default, the binary in `$PATH` is used.
 - `optimizer` is a field that describes the parameters of the optimizer.
-- `dockerImage` is the name of the docker image of the compiler.
-- `zksync` network option indicates whether zksolc is enabled. `false` by default.
+- `dockerImage` is the name of the docker image of the compiler. If `compilerSource` is `binary`, this field is ignored.
+- `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default.
 
 ### Commands
 
@@ -69,10 +71,10 @@ Add this plugin to your project with the following command:
 
 ```
 # Yarn
-yarn add -D @matterlabs/hardhat-zksync-deploy
+yarn add -D @matterlabs/hardhat-zksync-deploy@0.2
 
 # Npm
-npm i -D @matterlabs/hardhat-zksync-deploy
+npm i -D @matterlabs/hardhat-zksync-deploy@0.2
 ```
 
 ### Exports
@@ -137,14 +139,14 @@ class Deployer {
    *
    * @param artifact The previously loaded artifact object.
    * @param constructorArguments List of arguments to be passed to the contract constructor.
-   * @param feeToken Address of the token to pay fees in. If not provided, defaults to ETH.
+   * @param overrides Optional object with additional deploy transaction parameters.
    *
    * @returns A contract object.
    */
   public async deploy(
     artifact: ZkSyncArtifact,
     constructorArguments: any[],
-    feeToken?: string,
+    overrides?: Overrides
   ): Promise<zk.Contract>
 
   /**

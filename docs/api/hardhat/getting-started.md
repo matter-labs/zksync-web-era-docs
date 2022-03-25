@@ -27,10 +27,10 @@ For this tutorial, the following programs must be installed:
 mkdir greeter-example
 cd greeter-example
 yarn init -y
-yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc@0.3 @matterlabs/hardhat-zksync-deploy@0.2
 ```
 
-`typescript` and `ts-node` are optional - plugins will work fine in vanilla JavaScript environment. Although, please note that this tutorial *does* use typescript.
+`typescript` and `ts-node` are optional - plugins will work fine in vanilla JavaScript environment. Although, please note that this tutorial *does* use TypeScript.
 
 2. Create the `hardhat.config.ts` file and paste the following code within it:
 
@@ -207,7 +207,7 @@ Please note that the fees on the testnet do not correctly represent the fees on 
 3. Now pass `USDC` as the `feeToken` to the deployment transaction:
 
 ```typescript
-const greeterContract = await deployer.deploy(artifact, [greeting], USDC_ADDRESS);
+const greeterContract = await deployer.deploy(artifact, [greeting], { feeToken: USDC_ADDRESS });
 ```
 
 4. To pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
@@ -260,7 +260,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
   console.log(`The deployment will cost ${parsedFee} USDC`);
 
-  const greeterContract = await deployer.deploy(artifact, [greeting], USDC_ADDRESS);
+  const greeterContract = await deployer.deploy(artifact, [greeting], { feeToken: USDC_ADDRESS });
 
   // Show the contract info.
   const contractAddress = greeterContract.address;
@@ -308,3 +308,4 @@ yarn hardhat deploy-zksync
 There are two major points of improvements for the plugins which will be released in the future:
 
 - **Composability with the existing hardhat plugins.** Compatibility with other hardhat plugins is planned for future, but has not been a focus yet.
+- **Improved cross-platform support.**
