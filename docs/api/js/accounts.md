@@ -245,8 +245,6 @@ async transfer(tx: {
     token?: Address;
     feeToken?: Address;
     nonce?: Address;
-    validFrom?: number;
-    validUntil?: number;
 }): Promise<ethers.ContractTransaction>
 ```
 
@@ -259,8 +257,6 @@ async transfer(tx: {
 | token (optional)      | The address of the token. `ETH` by default.                                                                 |
 | feeToken (optional)   | The address of the token that is used to pay fees. `ETH` by default.                                        |
 | nonce (optional)      | The nonce to be supplied. If not provided, the `wallet` will fetch the nonce in the latest committed block. |
-| validFrom (optional)  | The UNIX timestamp from which the transaction is valid.                                                     |
-| validUntil (optional) | The UNIX timestamp until which the transaction is valid.                                                    |
 | returns               | An `ethers.ContractTransaction` object                                                                      |
 
 > Example
@@ -395,8 +391,6 @@ async transfer(tx: {
     token?: Address;
     feeToken?: Address;
     nonce?: Address;
-    validFrom?: number;
-    validUntil?: number;
 }): Promise<ethers.ContractTransaction>
 ```
 
@@ -409,8 +403,6 @@ async transfer(tx: {
 | token (optional)      | The address of the token. `ETH` by default.                                                                 |
 | feeToken (optional)   | The address of the token that is used to pay fees. `ETH` by default.                                        |
 | nonce (optional)      | The nonce to be supplied. If not provided, the `wallet` will fetch the nonce in the latest committed block. |
-| validFrom (optional)  | The UNIX timestamp from which the transaction is valid.                                                     |
-| validUntil (optional) | The UNIX timestamp until which the transaction is valid.                                                    |
 | returns               | An `ethers.ContractTransaction` object.                                                                     |
 
 > Example

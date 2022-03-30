@@ -25,8 +25,6 @@ In order to make the SDK as flexible as possible, the library uses the overrides
         ergsPerStorage?: BigNumberish;
         ergsPerPubdata?: BigNumberish;
         withdrawToken?: Address;
-        validFrom?: number;
-        validUntil?: number;
         factoryDeps?: BytesLike[];
     }
 }

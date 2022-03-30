@@ -18,16 +18,11 @@ To specify additional fields, like the token for fee payment or provide the byte
   "ergs_per_storage_limit": 100000,
   "ergs_per_pubdata_limit": 1000
 },
-"time_range": {
-  "from": 0,
-  "until": 10101010
-},
 "withdraw_token": "0x00000...00000",
 "factory_deps": ["0x..."]
 ```
 
 - `fee` is a field that describes the token in which the fee is to be paid, and defines the limits on the price in `ergs` per storage slot write and per publishing a single pubdata byte.
-- `time_range` is a field that denotes the timeframe, within which the transaction is valid. _Most likely will be removed after the testnet._
 - `withdraw_token` is a parameter that should be only supplied for `Withdraw` operations. _Most likely will be removed after the testnet._
 - `factory_deps` is a field that should be a non-empty array of `bytes` only for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
 
@@ -47,8 +42,6 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 | ergsPerPubdata | `uint256` |
 | feeToken       | `address` |
 | withdrawToken  | `address` |
-| validFrom      | `uint64`  |
-| validUntil     | `uint64`  |
 
 These fields are conveniently handled by our [SDK](./js/features.md).
 
