@@ -42,8 +42,6 @@ export type Eip712Meta = {
   ergsPerStorage?: BigNumberish;
   ergsPerPubdata?: BigNumberish;
   withdrawToken?: Address;
-  validFrom?: number;
-  validUntil?: number;
   factoryDeps?: BytesLike[];
 };
 
