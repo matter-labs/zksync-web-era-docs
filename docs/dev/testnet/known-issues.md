@@ -64,3 +64,11 @@ If you encounter such an error, please do the following:
 
 If you are running Windows you may get this error, as a result of incompatibility with our hardhat plugin.
 You can still compile the contract using Windows Subsystem for Linux (WSL 2).
+
+## Can not use CREATE/CREATE2 opcodes with raw bytecode
+
+zkSync does not support using CREATE/CREATE2 with raw bytecode. We highly recommend using the `new` operator to avoid any issues.
+
+## Hardhat's `console.log` does not work
+
+zkSync does not support Nomic Foundation's `console.log` contract. Due to different address derivation rules, even when deployed, the `console.log` library will likely have a different address from the one on Ethereum.
