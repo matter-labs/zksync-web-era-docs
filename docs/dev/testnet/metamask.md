@@ -13,3 +13,5 @@ To connect Metamask to zkSync, add the zkSync alpha testnet network to the walle
 - Network Name: `zkSync alpha testnet`
 - New RPC URL: `https://zksync2-testnet.zksync.dev`
 - Chain ID: `280`
+- Currency Symbol(Optional): `ETH`
+- Block Explorer URL(Optional): `https://etherscan.io`
