@@ -129,10 +129,10 @@ module.exports = {
           collapsable: false,
           children: [
             "/dev/zksync-v2/overview.md",
+            "/dev/zksync-v2/system-contracts.md",
             "/dev/zksync-v2/handling-of-eth.md",  
             "/dev/zksync-v2/fee-model.md",
-            "/dev/zksync-v2/tx-types.md", 
-            "/dev/zksync-v2/tx-formats.md", 
+            "/dev/zksync-v2/tx-types.md",
             "/dev/zksync-v2/contracts.md",
             "/dev/zksync-v2/aa.md",
             "/dev/zksync-v2/blocks-and-time.md", 
