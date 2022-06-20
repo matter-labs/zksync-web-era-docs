@@ -1,5 +1,7 @@
 # Handling of ETH and tokens
 
-zkSync has no "native" token, and the fees can be paid in ERC20 tokens. `ETH` is an ERC20 token with address `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`. In order to allow easy and secure bridging of ERC20 tokens between layer 1 and layer 2, zkSync provides a canonical bridge within its smart contract. Tokens that are bridged this way have the same address on zkSync as on layer 1 and all of them have the same standard ERC20 smart contract code on layer 2.
+zkSync has no "native" token, and the fees can be paid in ETH or ERC20 tokens, but in order to have higher compatibility with Ethereum, we decided to preserve some special behaviour of ether. 
 
-We call such tokens _native_ or _first-class citizen_, since they are managed on the protocol level. Anyone can, in a permissionless way, add a new native token to zkSync. While technically any of these tokens can be used to pay transaction fees, the operator may decide which tokens it accepts for fee payment (one possible reason to decline a token for fee payment is to remove the chance of exploitation using worthless, recently created ERC20 tokens).
+On zkSync, `ETH` is a special token with address `0x000000000000000000000000000000000000800a`. However, it can only be transferred by providing `msg.value`, i.e. the same way it is done on Ethereum and it does *not* expose the ERC20 contract interface. 
+
+Similar to other rollups, zkSync provides native ETH bridge, while the rest of the bridges are built using L1<->L2 messaging. The team provides a generic ERC20 token bridge that can be used by anyone for bridging token to L2.
