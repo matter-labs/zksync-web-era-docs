@@ -22,9 +22,7 @@ In order to make the SDK as flexible as possible, the library uses the overrides
 {
     customData: {
         feeToken?: Address;
-        ergsPerStorage?: BigNumberish;
         ergsPerPubdata?: BigNumberish;
-        withdrawToken?: Address;
         factoryDeps?: BytesLike[];
     }
 }

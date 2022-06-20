@@ -13,7 +13,7 @@ Most of the utilities are used internally by the zkSync team. So this document w
 In zkSync, all the native tokens are ERC20. Thus, there needs to be a smart contract
 
 ```typescript
-export const ETH_ADDRESS = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
+export const ETH_ADDRESS = "0x0000000000000000000000000000000000000000";
 ```
 
 ## ABI of zkSync smart contract

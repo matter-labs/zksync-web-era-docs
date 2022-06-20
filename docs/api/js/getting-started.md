@@ -63,8 +63,7 @@ const deposit = await syncWallet.deposit({
 });
 ```
 
-**NOTE:** Each token inside zkSync has an address. For ERC20 tokens this address coincides with the address in L1, except for ETH, the address `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` is used for it. To get the ETH address in
-zkSync, the `ETH_ADDRESS` constant can be used.
+**NOTE:** Each token inside zkSync has an address. If ERC-20 tokens are being bridged, you should supply the token's L1 address in the `deposit` function or zero address (`0x0000000000000000000000000000000000000000`) if you want to deposit ETH. Note, that for the ERC-20 tokens the address of their corresponding L2 token will be different from the one on Ethereum.
 
 After the transaction is submitted to the Ethereum node, its status can tracked using the transaction handle:
 
@@ -99,7 +98,7 @@ const syncWallet2 = new zksync.Wallet(PRIVATE_KEY2, syncProvider, ethProvider);
 
 Let's transfer `1 ETH` to another account and pay `1 USDC` as a fee to the operator (zkSync account balance of the sender is going to be decreased by `1 ETH` and `1 USDCs`).
 
-**NOTE:** You can use any token inside zksync if it was previously added via the `addToken` operation. If the token does not exist, any user can add it!
+The `transfer` method is a helper method that allows transfering `ETH` or any ERC20 token within a single interface.
 
 ```typescript
 const amount = ethers.utils.parseEther("1.0");
@@ -108,7 +107,8 @@ const transfer = await syncWallet.transfer({
   to: syncWallet2.address,
   token: zksync.utils.ETH_ADDRESS,
   amount,
-  feeToken: "0xd35cceead182dcee0f148ebac9447da2c4d449c4", // USDC address
+  // USDC address
+  feeToken: "0xd35cceead182dcee0f148ebac9447da2c4d449c4", 
 });
 ```
 
@@ -161,9 +161,8 @@ await withdrawL2.waitFinalize();
 
 A guide on deploying smart contracts using our hardhat plugin is available [here](../hardhat).
 
-## Adding a new native token
+## Adding tokens to the standard bridge
 
-Adding tokens to zksync is completely permissionless, any user can add any ERC20 token from Ethereum to zkSync as a
-first class citizen token. After adding a token, it can be used in all types of transactions.
+Adding tokens to zkSync standard bridge can be done in permissionless way. After adding a token, it can be used in all types of transactions.
 
 The documentation on adding tokens to zkSync can be found [here](./accounts-l1-l2.md#adding-native-token-to-zksync).

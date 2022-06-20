@@ -15,3 +15,11 @@ Summary:
   To deploy a contract, a user calls the `create` function of the `DEPLOYER_SYSTEM_CONTRACT` and provides there the hash of the contract to be published as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
 All of the deployment process is handled inside our [hardhat](../../api/hardhat) plugin.
+
+## Differences in `CREATE` behaviour
+
+For the ease of supporting account abstraction, for each account we split the nonce in two parts: *the deployment nonce* and *the transaction nonce*. The deployment nonce is the number of contracts the account has deployed with `CREATE` opcode, while the transaction nonce is used for replay attack protection for the transactions. 
+
+That means, that while for smart contracts the nonce on zkSync behaves the same way as on Ethereum, for EOAs calculating the address of the deployed contract is not as straightforward. On Ethereum, it can be safely calculated as `hash(RLP[address,nonce])`, while on zkSync it is recommended to wait until the contract is deployed and catch the event with the address of the newly deployed contract. All of this is done in the background by the SDK.
+
+In order to gain the deterministic address, you should use `create2`. It is available for EOAs as well, but it is not available in the SDK yet.

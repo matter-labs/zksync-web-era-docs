@@ -2,7 +2,7 @@
 
 zkSync 2.0 fully supports standard [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API).
 
-As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase are needed._
+As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)) or EIP1559-specific features, _no changes for the codebase are needed._
 
 It is possible to continue using the SDK that is currently in use. Users will continue paying fees in ETH, and the UX will be identical to the one on Ethereum.
 
@@ -14,30 +14,31 @@ To specify additional fields, like the token for fee payment or provide the byte
 
 ```json
 "fee": {
-  "fee_token": "0x0000...0000",  "ergs_per_pubdata_limit": 1000
+  "fee_token": "0x0000...0000",
+  "ergs_per_pubdata_limit": 1000
 },
 "factory_deps": ["0x..."]
 ```
 
 - `fee` is a field that describes the token in which the fee is to be paid, and defines the limits on the price in `ergs` per publishing a single pubdata byte.
-- `factory_deps` is a field that should be a non-empty array of `bytes` only for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
+- `factory_deps` is a field that should be a non-empty array of `bytes` for deployment transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
 
-To let the server recognize EIP712 transactions, the `transaction_type` field is equal to `112` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
+To let the server recognize EIP712 transactions, the `transaction_type` field is equal to `113` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
 
 Instead of signing the RLP-encoded transaction, the user signs the following typed EIP712 structure:
 
 | Field name     | Type      |
 | -------------- | --------- |
+| txType          | `uint8` |
 | to             | `address` |
-| nonce          | `uint256` |
 | value          | `uint256` |
 | data           | `bytes`   |
-| gasPrice       | `uint256` |
-| gasLimit       | `uint256` |
-| ergsPerStorage | `uint256` |
-| ergsPerPubdata | `uint256` |
 | feeToken       | `address` |
-| withdrawToken  | `address` |
+| ergsLimit       | `uint256` |
+| gasLimit       | `uint256` |
+| ergsPerPubdataByteLimit | `uint256` |
+| ergsPrice | `uint256` |
+| nonce          | `uint256` |
 
 These fields are conveniently handled by our [SDK](./js/features.md).
 

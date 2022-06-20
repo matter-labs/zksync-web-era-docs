@@ -234,9 +234,7 @@ console.log(await wallet.getNonce());
 
 ### Transfering tokens inside zkSync
 
-Please note that for now, unlike Ethereum, zkSync does not support native transfers, i.e. the `value` field of all transactions is equal to `0`. All the token transfers are done through ERC20 `transfer` function calls.
-
-But for convenience, the `Wallet` class has `transfer` method, which can transfer any `ERC20` tokens.
+For convenience, the `Wallet` class has `transfer` method, which can transfer `ETH` or any `ERC20` token within the same interface.
 
 ```typescript
 async transfer(tx: {
