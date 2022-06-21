@@ -75,7 +75,7 @@ To let you try out the feature faster, we decided to release the account abstrac
 
 ### Nonce holder contract
 
-For optimization purposes, both [tx nonce and the deployment nonce](./contracts.md) are both put in one storage slot inside the `NONCE_HOLDER` system contracts. In order to increment the nonce of your AA, it is highly recommended to call the [incrementNonceIfEquals](https://github.com/matter-labs/v2-testnet-contracts/blob/0e1c95969a2f92974370326e4430f03e417b25e7/l2/system-contracts/interfaces/INonceHolder.sol#L10) function and pass the value of the nonce provided in the transaction. 
+For optimization purposes, both [tx nonce and the deployment nonce](./contracts.md#differences-in-create-behaviour) are both put in one storage slot inside the [NonceHolder](./system-contracts.md#inonceholder) system contracts. In order to increment the nonce of your AA, it is highly recommended to call the [incrementNonceIfEquals](https://github.com/matter-labs/v2-testnet-contracts/blob/0e1c95969a2f92974370326e4430f03e417b25e7/l2/system-contracts/interfaces/INonceHolder.sol#L10) function and pass the value of the nonce provided in the transaction. 
 
 This is will be one of the whitelisted calls, where the AA will be allowed to call outside smart contracts.
 

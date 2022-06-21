@@ -12,7 +12,7 @@ Summary:
   To deploy a contract, a user sends a transaction to the zero address (`0x000...000`) with the `data` field of the transaction equal to the contract bytecode concatenated with the constructor parameters.
 
 - **How deploying contracts works on zkSync.**
-  To deploy a contract, a user calls the `create` function of the `DEPLOYER_SYSTEM_CONTRACT` and provides there the hash of the contract to be published as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
+  To deploy a contract, a user calls the `create` function of the [ContractDeployer](./system-contracts.md#contractdeployer) and provides there the hash of the contract to be published as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
 All of the deployment process is handled inside our [hardhat](../../api/hardhat) plugin.
 
