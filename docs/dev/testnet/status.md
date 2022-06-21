@@ -6,7 +6,7 @@
 - **Solidity 0.8.x support.** No need for change or re-audit of the codebase.
 - **Web3 API**. With small exceptions, our API is fully compatible with Ethereum. This allows seamless integration with existing indexers, explorers, etc.
 - **Support for Ethereum cryptographic primitives**. zkSync natively supports `keccak256`, `sha256`, and `ecrecover` via precompiles.
-- **Hardhat plugin**. Which allows easy testing and development of smart contracts on zkSync.
+- **Hardhat plugin**. This allows easy testing and development of smart contracts on zkSync.
 - **L1 <-> L2 smart contract communication**.
 
 ## Features to be released soon
