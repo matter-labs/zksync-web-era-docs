@@ -20,17 +20,17 @@ The design in spirit is similar to the EIP4337. For the simplicity of the implem
 
 ## Fees
 
-The system charges fee by doing an ERC20/ETH `transfer` from the account abstraction to the operator's account. 
+The system charges fee by doing an ERC20/ETH `transfer` from the account to the operator's account. 
 
 In the EIP4337 you can see three types of gas limits: `verificationGas`, `executionGas`, `preVerificationGas`, which describe the gasLimit for different steps of transaction's inlcusion in block. Currently, zkSync supports only a single field `ergsLimit`, which covers the fee for all of the three. So, when submitting a transaction make sure that the `ergsLimit` is enough to cover verification, pulling the fee (the ERC20 transfer mentioned above) and the actual execution itself.
 
 By default, calling `estimageGas` adds a constant of `20000` to cover charging the fee and the signature verification for EOA accounts.
 
-## Building custom account abstractions
+## Building custom accounts
 
 ### Interface
 
-Each account abstraction is recommended to implement the [IAccountAbstraction](https://github.com/matter-labs/v2-testnet-contracts/blob/main/zksync/system-contracts/interfaces/IAccountAbstraction.sol) interface. It contains the following three methods:
+Each account is recommended to implement the [IAccountAbstraction](https://github.com/matter-labs/v2-testnet-contracts/blob/main/zksync/system-contracts/interfaces/IAccountAbstraction.sol) interface. It contains the following three methods:
 
 - `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) your AA should revert. In case the call to this method returns `true`, the AA is considered to accept the this transaction and will be charged with fee afterwards.
 - `executeTransaction` is mandatory and will be called by the system after the fee is charged from the user. This function should perform the execution of the transaction.
@@ -67,7 +67,7 @@ In order to protect the system from a DDoS threat, the verification step must ha
 
 - The AA can only access its own storage (calling other contracts is allowed only in rare whitelisted cases).
 - The AA can not use context variables, e.g. `block.number`, etc.
-- It is also required that your account abstraction increases the nonce by 1. This restricition is only needed to preserve transaction hashes's collision resistance. In the future, this requirement will be lifted to allow more generic use-cases (e.g. privacy protocols).
+- It is also required that your account increases the nonce by 1. This restricition is only needed to preserve transaction hashes's collision resistance. In the future, this requirement will be lifted to allow more generic use-cases (e.g. privacy protocols).
 
 Transactions that violate the rules above will not be accepted by the API, though these requirements can not be enforced on the circuit/VM level and do not apply to L1->L2 transactions.
 
@@ -104,7 +104,7 @@ const sentTx = await zksyncProvider.sendTransaction(serializedTx);
 
 Your project can start preparing for native AA support. We highly encourage you to do so, since it will allow you to onboard hundreds of thousands of Argent users that already use the first version of zkSync. We expect that in the future even more users will switch to smart wallets.
 
-One of the most notable differences between various types of accounts to be built is different signature schemes. We will expect account abstractions to support the [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271) standard. Our team has created a utility library for verifying account signatures. Currently, it only supports ECDSA signatures, but we will add support for EIP-1271 very soon as well.
+One of the most notable differences between various types of accounts to be built is different signature schemes. We will expect accounts to support the [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271) standard. Our team has created a utility library for verifying account signatures. Currently, it only supports ECDSA signatures, but we will add support for EIP-1271 very soon as well.
 
 The `aa-signature-checker` library provides a way to verify signatures for account abstractions. Currently, it only supports verifying the ECDSA signatures. Very soon we will add support for EIP-1271 as well.
 
