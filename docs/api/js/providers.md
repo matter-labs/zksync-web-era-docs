@@ -69,7 +69,6 @@ async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address):
 import { Provider } from "zksync-web3";
 
 const provider = new Provider("https://zksync2-testnet.zksync.dev");
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 
 // Getting  USDC balance of account 0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5 at the latest processed block
 console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5", "latest", USDC_ADDRESS));
@@ -146,7 +145,6 @@ async isTokenLiquid(token: Address): Promise<boolean>
 import { Provider } from "zksync-web3";
 const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 console.log(await provider.isTokenLiquid(USDC_ADDRESS)); // Should return true
 ```
 
@@ -223,29 +221,6 @@ const txHandle = await provider.getTransaction(TX_HASH);
 await txHandle.wait();
 // Wait until the transaction is finalized.
 await txHandle.waitFinalize();
-```
-
-### `getL1Withdrawal`
-
-Given the hash of the withdrawal transaction on layer 2, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
-
-```typescript
-async getL1Withdrawal(withdrawalHash: string): Promise<string|null>
-```
-
-| Name           | Description                                                       |
-| -------------- | ----------------------------------------------------------------- |
-| withdrawalHash | The hash of the withdrawal transaction.                           |
-| returns        | The hash of the layer 1 transaction that executed the withdrawal. |
-
-> Example
-
-```typescript
-import { Provider } from "zksync-web3";
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
-
-const WITHDRAWAL_TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
-console.log(await provider.getL1Withdrawal(WITHDRAWAL_TX_HASH));
 ```
 
 ## `Web3Provider`

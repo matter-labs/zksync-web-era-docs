@@ -27,7 +27,7 @@ For this tutorial, the following programs must be installed:
 mkdir greeter-example
 cd greeter-example
 yarn init -y
-yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc@0.3 @matterlabs/hardhat-zksync-deploy@0.2
+yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc@0.3 @matterlabs/hardhat-zksync-deploy@0.3
 ```
 
 `typescript` and `ts-node` are optional - plugins will work fine in vanilla JavaScript environment. Although, please note that this tutorial *does* use TypeScript.
@@ -174,7 +174,6 @@ This section explains how to pay fees in `USDC` token as an example.
 1. After making sure that the wallet has some Görli `USDC` on L1, change the depositing code to the following:
 
 ```typescript
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const USDC_DECIMALS = 6;
 
 const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_ADDRESS);
@@ -228,7 +227,6 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const USDC_DECIMALS = 6;
 
 // An example of a deploy script that will deploy and call a simple contract.
