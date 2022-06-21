@@ -6,7 +6,7 @@ Also, the L2 censorship resistance derives from the underlying chain, so the abi
 
 ## L1 -> L2 communication
 
-Sending transactions from Ethereum to zkSync is done via the `zkSync` smart contract. It allows the sender to request transactions directly from the L1. Thereby allowing permissionless pass of any data from the Ethereum into zkSync.
+Sending transactions from Ethereum to zkSync is done via the zkSync smart contract. It allows the sender to request transactions directly from the L1. Thereby allowing permissionless pass of any data from the Ethereum into zkSync.
 
 ## Priority queue
 
@@ -55,7 +55,7 @@ If the operator fails to process the needed L1 transactions, the system enters t
 
 ## L2 -> L1 communication
 
-L2 -> L1 communication, in contrast to the L1 -> L2 communication, is based only on the transfer of the information, and not on the execution transaction on the other side. It is a built-in feature, which is made up of two parts: sending a message from L2 and reading a message in L1. The first is implemented as a call to the L2 system smart contract. And the second is implemented on L1 `zkSync` smart contract as getter function.
+L2 -> L1 communication, in contrast to L1 -> L2 communication, is based only on transferring of the information, and not on the execution transaction on the other side. It is a built-in feature, which is made up of two parts: sending a message from L2 and reading a message in L1. The first is implemented as a call to the L2 system smart contract. And the second is implemented on L1 zkSync smart contract as getter function.
 
 ### Sending message
 
@@ -67,6 +67,6 @@ Every sent message can be read on-chain. Moreover, it is possible to prove that 
 
 #### Summary
 
-- To use L2 -> L1 communication, it is needed to send one transaction in L2 and one in L1.
-- Messages can be of arbitrary-length long.
-- All data to be provided as proof of message inclusion into the L2 block can be restored from Ethereum in any case. However, the operator provides proof for any message by an API method. 
+- L2 -> L1 communication requires one transaction on L2 and one on L1.
+- Messages can be of arbitrary length.
+- All data needed for proving message inclusion into an L2 block can always be restored from Ethereum. However, the easiest way is to request the proof from the operator via the API. 
