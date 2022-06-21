@@ -63,7 +63,7 @@ const deposit = await syncWallet.deposit({
 });
 ```
 
-**NOTE:** Each token inside zkSync has an address. If ERC-20 tokens are being bridged, you should supply the token's L1 address in the `deposit` function or zero address (`0x0000000000000000000000000000000000000000`) if you want to deposit ETH. Note, that for the ERC-20 tokens the address of their corresponding L2 token will be different from the one on Ethereum.
+**NOTE:** Each token inside zkSync has an address. If ERC-20 tokens are being bridged, you should supply the token's L1 address in the `deposit` function, or zero address (`0x0000000000000000000000000000000000000000`) if you want to deposit ETH. Note, that for the ERC-20 tokens the address of their corresponding L2 token will be different from the one on Ethereum.
 
 After the transaction is submitted to the Ethereum node, its status can tracked using the transaction handle:
 
