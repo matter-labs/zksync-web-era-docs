@@ -6,7 +6,7 @@ Also, the L2 censorship resistance derives from the underlying chain, so the abi
 
 ## L1 -> L2 communication
 
-Sending transactions from Ethereum to zkSync is done via the `zkSync` smart contract. It allows the sender to request transactions directly from the L1. Thereby allowing permissionless pass of any data from the Ethereum into zkSync.
+Sending transactions from Ethereum to zkSync is done via the zkSync smart contract. It allows the sender to request transactions directly from the L1. Thereby allowing permissionless pass of any data from the Ethereum into zkSync.
 
 ## Priority queue
 
