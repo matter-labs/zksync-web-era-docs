@@ -98,7 +98,7 @@ const syncWallet2 = new zksync.Wallet(PRIVATE_KEY2, syncProvider, ethProvider);
 
 Let's transfer `1 ETH` to another account and pay `1 USDC` as a fee to the operator (zkSync account balance of the sender is going to be decreased by `1 ETH` and `1 USDCs`).
 
-The `transfer` method is a helper method that allows transfering `ETH` or any ERC20 token within a single interface.
+The `transfer` method is a helper method that enables transferring `ETH` or any ERC20 token within a single interface.
 
 ```typescript
 const amount = ethers.utils.parseEther("1.0");
@@ -163,6 +163,6 @@ A guide on deploying smart contracts using our hardhat plugin is available [here
 
 ## Adding tokens to the standard bridge
 
-Adding tokens to zkSync standard bridge can be done in permissionless way. After adding a token, it can be used in all types of transactions.
+Adding tokens to the zkSync standard bridge can be done in a permissionless way. After adding a token to zkSync, it can be used in all types of transactions.
 
 The documentation on adding tokens to zkSync can be found [here](./accounts-l1-l2.md#adding-native-token-to-zksync).
