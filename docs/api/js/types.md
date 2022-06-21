@@ -37,11 +37,19 @@ export enum TransactionStatus {
     Finalized = 'finalized'
 }
 
+export type AAParams = {
+    from: Address;
+    signature: BytesLike;
+};
+
 export type Eip712Meta = {
     feeToken?: Address;
     ergsPerPubdata?: BigNumberish;
     factoryDeps?: BytesLike[];
+    aaParams?: AAParams;
 };
+
+export type DeploymentType = 'create' | 'createAA';
 
 // prettier-ignore
 export type BlockTag =
