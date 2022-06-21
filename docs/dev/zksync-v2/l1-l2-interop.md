@@ -69,4 +69,4 @@ Every sent message can be read on-chain. Moreover, it is possible to prove that 
 
 - L2 -> L1 communication requires one transaction on L2 and one on L1.
 - Messages can be of arbitrary length.
-- All data needed for proving message inclusion into an L2 block can always be restored from Ethereum. However, the easiest way is to request the proof from the operator via the API. 
+- All the data needed for proving message inclusion in an L2 block can always be restored from Ethereum. However, the easiest way is to request the proof from the operator via API.
