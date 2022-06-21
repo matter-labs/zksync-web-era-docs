@@ -225,29 +225,6 @@ await txHandle.wait();
 await txHandle.waitFinalize();
 ```
 
-### `getL1Withdrawal`
-
-Given the hash of the withdrawal transaction on layer 2, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
-
-```typescript
-async getL1Withdrawal(withdrawalHash: string): Promise<string|null>
-```
-
-| Name           | Description                                                       |
-| -------------- | ----------------------------------------------------------------- |
-| withdrawalHash | The hash of the withdrawal transaction.                           |
-| returns        | The hash of the layer 1 transaction that executed the withdrawal. |
-
-> Example
-
-```typescript
-import { Provider } from "zksync-web3";
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
-
-const WITHDRAWAL_TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
-console.log(await provider.getL1Withdrawal(WITHDRAWAL_TX_HASH));
-```
-
 ## `Web3Provider`
 
 A class that should be used for web3 browser wallet integrations, adapted for easy compatibility with Metamask, WalletConnect, and other popular browser wallets.

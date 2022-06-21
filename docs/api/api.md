@@ -91,20 +91,6 @@ None.
 
 `12`
 
-### `zks_getL1WithdrawalTx`
-
-Given the hash of the withdrawal transaction on layer 2, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
-
-### Input parameters
-
-| Parameter       | Type      | Description                             |
-| --------------- | --------- | --------------------------------------- |
-| withdrawal_hash | `bytes32` | The hash of the withdrawal transaction. |
-
-### Output format
-
-`"0xd8a8165ada7ec780364368bf28e473d439e41c4c95164c23368d368cc3730ea7"`
-
 ### `zks_getConfirmedTokens`
 
 Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally.
