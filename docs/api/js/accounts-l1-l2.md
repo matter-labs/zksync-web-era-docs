@@ -117,9 +117,24 @@ const ethDepositHandle = await wallet.deposit({
 await ethDepositHandle.wait();
 ```
 
-### Adding native token to zkSync
+## Adding native token to zkSync
 
 New tokens are added automatically the first time they are deposited.
+
+## Finalizing withdrawals
+
+Withdrawals are executed in 2 steps - initiated on L2 and finalized on L1.
+
+```typescript
+async finalizeWithdrawal(withdrawalHash: BytesLike, index: number = 0): Promise<ethers.TransactionResponse>
+```
+
+#### Inputs and outputs
+
+| Name                                    | Description                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| withdrawalHash                          | Hash of the L2 transaction where the withdrawal was initiated.                                                                                                                                                                                                                                                                                                                            |
+| index (optional)                        | In case there where multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize (defaults to 0)                                                                                                                                                                                                                                                 |
 
 ## Force-executing transactions on L2
 

@@ -99,6 +99,23 @@ const provider = new Provider("https://zksync2-testnet.zksync.dev");
 console.log(await provider.getMainContractAddress());
 ```
 
+### Getting zkSync default bridge contract addresses
+
+```typescript
+async getDefaultBridgeAddresses(): Promise<{
+    ethL1?: Address;
+    ethL2?: Address;
+    erc20L1?: Address;
+    erc20L2?: Address;
+}>
+```
+
+#### Inputs and outputs
+
+| Name    | Description                               |
+| ------- | ----------------------------------------- |
+| returns | The addresses of default zkSync bridge contracts on both L1 and L2 |
+
 ### `getConfirmedTokens`
 
 Given `from` and `limit`, returns the information (address, symbol, name, decimals) about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally.
@@ -148,13 +165,12 @@ const provider = new Provider("https://zksync2-testnet.zksync.dev");
 console.log(await provider.isTokenLiquid(USDC_ADDRESS)); // Should return true
 ```
 
-<!-- TODO: uncomment once fixed --->
-<!-- ### `getTokenPrice`
+### `getTokenPrice`
 
 Returns the price USD in for a token. Please note that that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
 
 ```typescript
-async getTokenPrice(token: Address): Promise<string>
+async getTokenPrice(token: Address): Promise<string | null>
 ```
 
 | Name    | Description                                                                         |
@@ -168,9 +184,27 @@ async getTokenPrice(token: Address): Promise<string>
 import { Provider } from "zksync-web3";
 const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 console.log(await provider.getTokenPrice(USDC_ADDRESS));
-``` -->
+```
+
+### Getting token's address on L2 from its L1 address and vice-versa
+
+Token's address on L2 will not be the same as on L1. 
+ETH's address is set to zero address on both networks.
+
+Provided methods work only for tokens bridged using default zkSync bridges.
+
+```typescript
+// takes L1 address, returns L2 address
+async l2TokenAddress(l1Token: Address): Promise<Address>
+// takes L2 address, returns L1 address
+async l1TokenAddress(l2Token: Address): Promise<Address>
+```
+
+| Name    | Description                                                                                                                |
+| ------- | -------------------------------------------------------------------------------------------------------------------------- |
+| token   | The address of the token.                                                                                                  |
+| returns | The address of that token on the opposite layer.                                                                           |
 
 ### `getTransactionStatus`
 

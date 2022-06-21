@@ -274,6 +274,27 @@ const transferHandle = wallet.transfer({
 });
 ```
 
+### Initiating a withdrawal to L1
+
+```typescript
+async withdraw(transaction: {
+    token: Address;
+    amount: BigNumberish;
+    to?: Address;
+    bridgeAddress?: Address;
+    overrides?: ethers.CallOverrides;
+}): Promise<TransactionResponse>
+```
+
+| Name                  | Description                                                                                                 |
+| --------------------- | ----------------------------------------------------------------------------------------------------------- |
+| tx.to                 | The address of the recipient on L1.                                                                               |
+| tx.amount             | The amount of the token to transfer.                                                                        |
+| token (optional)      | The address of the token. `ETH` by default.                                                                 |
+| bridgeAddress (optional) | The address of the bridge contract to be used.
+| overrides (optional)  | Transaction overrides, such as `nonce`, `feeToken`, `gasLimit` etc.                                         |
+| returns               | A `TransactionResponse` object                                                                              |
+
 ### Retrieving the underlying L1 wallet
 
 You can get an `ethers.Wallet` object with the same private key with `ethWallet()` method.
