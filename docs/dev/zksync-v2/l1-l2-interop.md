@@ -61,7 +61,7 @@ L2 -> L1 communication, in contrast to L1 -> L2 communication, is based only on 
 
 Each message sent from L2 and L1 contains the sender's address and the message itself. The length of the sent message can be arbitrarily large, but the longer the message, the more expensive it is to send. The operator will "show" each message in Ethereum, so that information about all messages is always publicly available. Because of this, messages sent to L1 are guaranteed to be read, regardless of the honesty of the operator.
 
-### Reading message
+### Reading a message
 
 Every sent message can be read on-chain. Moreover, it is possible to prove that message has been sent in a specific L2 block. To make such proof as cheap as possible for both the user and the validator, we store all messages for each L2 block in the Merkle Tree. Accordingly, any L1 smart contract can consume the sent message by providing proof of inclusion to some of the L2 block. A proof can be generated based only on the data that the operator sent to the `zkSync` L1 smart contract. Proof data is also available upon API request. 
 
