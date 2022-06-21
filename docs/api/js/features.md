@@ -74,7 +74,7 @@ If you want to call the method `setGreeting` of an ethers `Contract` object call
 const txHandle = greeter.setGreeting("some new greeting", {
   customData: {
     // Paying fee in USDC
-    feeToken: "0xd35cceead182dcee0f148ebac9447da2c4d449c4",
+    feeToken: USDC_L2_ADDRESS,
   },
 });
 ```

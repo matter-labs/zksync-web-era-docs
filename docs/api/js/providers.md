@@ -71,7 +71,7 @@ import { Provider } from "zksync-web3";
 const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
 // Getting  USDC balance of account 0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5 at the latest processed block
-console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5", "latest", USDC_ADDRESS));
+console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5", "latest", USDC_L2_ADDRESS));
 
 // Getting ETH balance
 console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5"));
@@ -162,7 +162,7 @@ async isTokenLiquid(token: Address): Promise<boolean>
 import { Provider } from "zksync-web3";
 const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
-console.log(await provider.isTokenLiquid(USDC_ADDRESS)); // Should return true
+console.log(await provider.isTokenLiquid(USDC_L2_ADDRESS)); // Should return true
 ```
 
 ### `getTokenPrice`
@@ -184,7 +184,7 @@ async getTokenPrice(token: Address): Promise<string | null>
 import { Provider } from "zksync-web3";
 const provider = new Provider("https://zksync2-testnet.zksync.dev");
 
-console.log(await provider.getTokenPrice(USDC_ADDRESS));
+console.log(await provider.getTokenPrice(USDC_L2_ADDRESS));
 ```
 
 ### Getting token's address on L2 from its L1 address and vice-versa

@@ -160,7 +160,7 @@ const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
 
 // Getting balance in USDC
-console.log(await wallet.getBalance(USDC_ADDRESS));
+console.log(await wallet.getBalance(USDC_L2_ADDRESS));
 
 // Getting balance in ETH
 console.log(await wallet.getBalance());
@@ -270,7 +270,7 @@ const recipient = zksync.Wallet.createRandom();
 const transferHandle = wallet.transfer({
   to: recipient.address,
   amount: ethers.utils.parseEther("0.01"),
-  overrides: { customData: { feeToken: USDC_ADDRESS } }
+  overrides: { customData: { feeToken: USDC_L2_ADDRESS } }
 });
 ```
 
@@ -359,7 +359,7 @@ const provider = new Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 
 // Getting balance in USDC
-console.log(await signer.getBalance(USDC_ADDRESS));
+console.log(await signer.getBalance(USDC_L2_ADDRESS));
 
 // Getting balance in ETH
 console.log(await signer.getBalance());
@@ -431,7 +431,7 @@ const recipient = Wallet.createRandom();
 const transferHandle = signer.transfer({
   to: recipient.address,
   amount: ethers.utils.parseEther("0.01"),
-  overrides: { customData: { feeToken: USDC_ADDRESS } }
+  overrides: { customData: { feeToken: USDC_L2_ADDRESS } }
 });
 ```
 

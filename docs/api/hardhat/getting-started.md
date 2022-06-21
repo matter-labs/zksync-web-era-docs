@@ -174,9 +174,7 @@ This section explains how to pay fees in `USDC` token as an example.
 1. After making sure that the wallet has some Görli `USDC` on L1, change the depositing code to the following:
 
 ```typescript
-const USDC_DECIMALS = 6;
-
-const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_ADDRESS);
+const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_L2_ADDRESS);
 // Deposit funds to L2.
 const depositHandle = await deployer.zkWallet.deposit({
   to: deployer.zkWallet.address,
@@ -197,6 +195,7 @@ await depositHandle.wait();
 2. To output the fee in a human-readable format:
 
 ```typescript
+const USDC_DECIMALS = 6;
 const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
 console.log(`The deployment will cost ${parsedFee} USDC`);
 ```
@@ -206,7 +205,7 @@ Please note that the fees on the testnet do not correctly represent the fees on 
 3. Now pass `USDC` as the `feeToken` to the deployment transaction:
 
 ```typescript
-const greeterContract = await deployer.deploy(artifact, [greeting], { feeToken: USDC_ADDRESS });
+const greeterContract = await deployer.deploy(artifact, [greeting], { feeToken: USDC_L2_ADDRESS });
 ```
 
 4. To pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
@@ -214,7 +213,7 @@ const greeterContract = await deployer.deploy(artifact, [greeting], { feeToken: 
 ```typescript
 const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
   customData: {
-    feeToken: USDC_ADDRESS,
+    feeToken: USDC_L2_ADDRESS,
   },
 });
 ```
@@ -241,12 +240,12 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const artifact = await deployer.loadArtifact("Greeter");
 
   const greeting = "Hi there!";
-  const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_ADDRESS);
+  const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_L2_ADDRESS);
 
   // Deposit funds to L2
   const depositHandle = await deployer.zkWallet.deposit({
     to: deployer.zkWallet.address,
-    token: USDC_ADDRESS,
+    token: USDC_L2_ADDRESS,
     amount: deploymentFee.mul(2),
     approveERC20: true,
   });
@@ -255,10 +254,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
   // `greeting` is an argument for contract constructor.
-  const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
+  const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_L2_DECIMALS);
   console.log(`The deployment will cost ${parsedFee} USDC`);
 
-  const greeterContract = await deployer.deploy(artifact, [greeting], { feeToken: USDC_ADDRESS });
+  const greeterContract = await deployer.deploy(artifact, [greeting], { feeToken: USDC_L2_ADDRESS });
 
   // Show the contract info.
   const contractAddress = greeterContract.address;
@@ -276,7 +275,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const newGreeting = "Hey guys";
   const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
     customData: {
-      feeToken: USDC_ADDRESS,
+      feeToken: USDC_L2_ADDRESS,
     },
   });
   await setNewGreetingHandle.wait();

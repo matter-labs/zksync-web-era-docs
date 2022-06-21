@@ -108,7 +108,7 @@ const transfer = await syncWallet.transfer({
   token: zksync.utils.ETH_ADDRESS,
   amount,
   // USDC address
-  overrides: { customData: { feeToken: "0xd35cceead182dcee0f148ebac9447da2c4d449c4" } }, 
+  overrides: { customData: { feeToken: USDC_L2_ADDRESS } }, 
 });
 ```
 
