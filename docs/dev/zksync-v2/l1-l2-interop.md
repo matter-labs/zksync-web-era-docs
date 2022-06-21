@@ -6,16 +6,7 @@ Also, the L2 censorship resistance derives from the underlying chain, so the abi
 
 ## L1 -> L2 communication
 
-Sending transactions from Ethereum to zkSync is done via the `zkSync` smart contract. It allows the sender to request any type of zkSync transactions:
-
-- `DeployContract`
-- `Execute`
-- `Withdraw`
-
-Besides these, it also enables some types of transactions specific to the bridge:
-
-- `AddToken` to add a native token to zkSync.
-- `Deposit` to deposit some amount of the native token to the L2.
+Sending transactions from Ethereum to zkSync is done via the `zkSync` smart contract. It allows the sender to request transactions directly from the L1. Thereby allowing permissionless pass of any data from the Ethereum into zkSync.
 
 ## Priority queue
 
@@ -56,13 +47,26 @@ Fourthly, there needs to be a way to bypass spam attacks for important transacti
 For each transaction, besides supplying the transaction input data, the user also provides the following:
 
 - The queue type to use. It is either a `Deque`, `HeapBuffer` or `Heap`. `Deque` is used for sequential processing of the transactions, while `HeapBuffer` and `Heap` are used for fee-prioritized processing of transactions. For the testnet, only `Deque` is available. The details on using `HeapBuffer` and `Heap` will be available later with their release.
-- The operation tree to use. It is either `Full` or `Rollup`. The details about the operation trees will be available once the zkPorter is out. For now, only the `Full` option can be used.
 - The operator fee for the transaction as part of the transaction `value` (the amount of ETH passed with the L1 transaction).
 
 ## Priority mode
 
 If the operator fails to process the needed L1 transactions, the system enters the Priority mode. In this mode, everyone can become an operator by staking tokens. The exact details of the priority mode are still under development and will be described in more detail closer to the mainnet launch.
 
-## L2->L1 communication
+## L2 -> L1 communication
 
-Sending messages from zkSync to Ethereum is not yet available, but it will be implemented later.
+L2 -> L1 communication, in contrast to the L1 -> L2 communication, is based only on the transfer of the information, and not on the execution transaction on the other side. It is a built-in feature, which is made up of two parts: sending a message from L2 and reading a message in L1. The first is implemented as a call to the L2 system smart contract. And the second is implemented on L1 `zkSync` smart contract.
+
+### Sending message
+
+Each message sent from L2 and L1 contains the sender's address and the message itself. The length of the sent message can be arbitrarily large, but the longer the message, the more expensive it is to send. The operator will "show" each message in Ethereum, so that information about all messages is always publicly available. Because of this, messages sent to L1 are guaranteed to be read, regardless of the honesty of the operator.
+
+### Reading message
+
+Every sent message can be read on-chain. Moreover, it is possible to prove that message has been sent in a specific L2 block. To make such proof as cheap as possible for both the user and the validator, we store all messages for each L2 block in the Merkle Tree. Accordingly, any L1 smart contract can consume the sent message by providing proof of inclusion to some of the L2 block. A proof can be generated based only on the data that the operator sent to the `zkSync` L1 smart contract. Proof data is also available upon API request. 
+
+#### Summary
+
+- To use L2 -> L1 communication, it is needed to send one transaction in L2 and one in L1.
+- Messages can be of arbitrary-length long.
+- All data to be provided as proof of message inclusion into the L2 block can be restored from Ethereum in any case. However, the operator provides proof for any message by an API method. 
