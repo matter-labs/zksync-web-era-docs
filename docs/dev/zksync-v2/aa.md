@@ -32,7 +32,7 @@ By default, calling `estimageGas` adds a constant of `20000` to cover charging t
 
 Each account abstraction is recommended to implement the [IAccountAbstraction](https://github.com/matter-labs/v2-testnet-contracts/blob/main/zksync/system-contracts/interfaces/IAccountAbstraction.sol) interface. It contains the following three methods:
 
-- `validateTransaction` is mandatory and will be used by the system to determine if the AA agrees to proceed with the transaction. In case the transaction is not accepted, (e.g. the signature is wrong), your AA should revert. In case the call to this method returns `true`, the AA is considered to accept the this transaction and will be charged fee afterwards.
+- `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) your AA should revert. In case the call to this method returns `true`, the AA is considered to accept the this transaction and will be charged with fee afterwards.
 - `executeTransaction` is mandatory and will be called by the system after the fee is charged from the user. This function should perform the execution of the transaction.
 - `executeTransactionFromOutside`, technically, is not mandatory, but it is *highly encouraged*, since there needs to be some way, in case of priority mode (e.g. when the operator becomes malicious), to be able to start transactions from your AA from the outside (basically this is the fallback to the standard Ethereum approach, where an EOA starts transaction from your smart contract).
 
