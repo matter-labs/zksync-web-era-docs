@@ -1,6 +1,6 @@
 # Tutorial: Cross-chain governance
 
-::: warn Being reworked
+::: warn Being updated
 
 This tutorial is outdated and is currently being reworked.
 
