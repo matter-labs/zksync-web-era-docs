@@ -6,7 +6,7 @@ Some experience with the zkSync 1.x would be helpful to understand some core con
 
 ## What do I need to start building?
 
-All the existing SDKs for Ethereum will work out of the box and your users will have the same experience as on Ethereum. If you want to enable advanced zkSync features, like paying fees in ERC20 tokens, the zkSync SDK should to be used.
+All the existing SDKs for Ethereum will work out of the box and your users will have the same experience as on Ethereum. If you want to enable advanced zkSync features, like paying fees in ERC20 tokens, the zkSync SDK should be used.
 
 The only other place where using zkSync SDK is required is during the contract deployment. This can be easily done through our hardhat plugin.
 

@@ -2,7 +2,7 @@
 
 zkSync 2.0 fully supports standard [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API).
 
-As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase are needed._
+As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)) or EIP1559-specific features, _no changes for the codebase are needed._
 
 It is possible to continue using the SDK that is currently in use. Users will continue paying fees in ETH, and the UX will be identical to the one on Ethereum.
 
@@ -15,33 +15,30 @@ To specify additional fields, like the token for fee payment or provide the byte
 ```json
 "fee": {
   "fee_token": "0x0000...0000",
-  "ergs_per_storage_limit": 100000,
   "ergs_per_pubdata_limit": 1000
 },
-"withdraw_token": "0x00000...00000",
 "factory_deps": ["0x..."]
 ```
 
-- `fee` is a field that describes the token in which the fee is to be paid, and defines the limits on the price in `ergs` per storage slot write and per publishing a single pubdata byte.
-- `withdraw_token` is a parameter that should be only supplied for `Withdraw` operations. _Most likely will be removed after the testnet._
-- `factory_deps` is a field that should be a non-empty array of `bytes` only for `Deploy` transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
+- `fee` is a field that describes the token in which the fee is to be paid, and defines the limits on the price in `ergs` per publishing a single pubdata byte.
+- `factory_deps` is a field that should be a non-empty array of `bytes` for deployment transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
 
-To let the server recognize EIP712 transactions, the `transaction_type` field is equal to `112` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
+To let the server recognize EIP712 transactions, the `transaction_type` field is equal to `113` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
 
 Instead of signing the RLP-encoded transaction, the user signs the following typed EIP712 structure:
 
-| Field name     | Type      |
-| -------------- | --------- |
-| to             | `address` |
-| nonce          | `uint256` |
-| value          | `uint256` |
-| data           | `bytes`   |
-| gasPrice       | `uint256` |
-| gasLimit       | `uint256` |
-| ergsPerStorage | `uint256` |
-| ergsPerPubdata | `uint256` |
-| feeToken       | `address` |
-| withdrawToken  | `address` |
+| Field name              | Type      |
+| ----------------------- | --------- |
+| txType                  | `uint8`   |
+| to                      | `address` |
+| value                   | `uint256` |
+| data                    | `bytes`   |
+| feeToken                | `address` |
+| ergsLimit               | `uint256` |
+| gasLimit                | `uint256` |
+| ergsPerPubdataByteLimit | `uint256` |
+| ergsPrice               | `uint256` |
+| nonce                   | `uint256` |
 
 These fields are conveniently handled by our [SDK](./js/features.md).
 
@@ -95,20 +92,6 @@ None.
 
 `12`
 
-### `zks_getL1WithdrawalTx`
-
-Given the hash of the withdrawal transaction on layer 2, returns the hash of the layer 1 transaction that executed the withdrawal or `null` if the withdrawal has not been executed yet.
-
-### Input parameters
-
-| Parameter       | Type      | Description                             |
-| --------------- | --------- | --------------------------------------- |
-| withdrawal_hash | `bytes32` | The hash of the withdrawal transaction. |
-
-### Output format
-
-`"0xd8a8165ada7ec780364368bf28e473d439e41c4c95164c23368d368cc3730ea7"`
-
 ### `zks_getConfirmedTokens`
 
 Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally.
@@ -124,7 +107,7 @@ The tokens are returned in alphabetical order by their symbol, so basically, the
 
 ### Output format
 
-```
+```json
 [
   {
     "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
@@ -160,6 +143,43 @@ Given a token address, returns whether it can be used to pay fees.
 ### Output format
 
 `true`
+
+### `zks_getL2ToL1MsgProof`
+
+Given a block, a sender and a message, returns the proof for the message sent via the L1Messenger system contract.
+
+### Input parameters
+
+| Parameter | Type      | Description                                                                               |
+| --------- | --------- | ----------------------------------------------------------------------------------------- |
+| block     | `uint32`  | The number of the block where the message was emitted.                                    |
+| sender    | `address` | The sender of the message (i.e. the account that called the L1Messenger system contract). |
+| msg       | `uint256` | The keccak256 hash of the message that was sent.                                          |
+
+### Output format
+
+If there was no such message, the returned value is `null`.
+
+Otherwise, the object of the following format is returned:
+
+```json
+{
+  "id": 0,
+  "proof": [
+    "0x66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
+    "0x2eeb74a6177f588d80c0c752b99556902ddf9682d0b906f5aa2adbaf8466a4e9",
+    "0x1223349a40d2ee10bd1bebb5889ef8018c8bc13359ed94b387810af96c6e4268",
+    "0x5b82b695a7ac2668e188b75f7d4fa79faa504117d1fdfcbe8a46915c1a8a5191"
+  ],
+  "root": "0x6a420705824f0a3a7e541994bc15e14e6a8991cd4e4b2d35c66f6e7647760d97"
+}
+```
+
+The `id` is the position of the leaf in the Merkle tree of L2->L1 messages for the block. The `proof` is the merkle proof for the message, while the `root ` is the root of the merkle tree of L2->L1 messages. Please note, that the merkle tree uses _sha256_ for the trees.
+
+You do not need to care about the intrinsics, since the returned `id` and `proof` can be used rightaway for interacting with zkSync smart contract.
+
+A nice example of using this endpoint via our SDK can be found [here](../dev/guide/l2-l1.md).
 
 <!-- TODO: uncomment once fixed --->
 <!-- ### `zks_getTokenPrice`

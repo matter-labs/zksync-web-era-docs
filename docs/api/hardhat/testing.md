@@ -1,6 +1,6 @@
 # Local testing
 
-Sometimes there is a need to test contracts in a local environment for network latency or fee reasons. 
+Sometimes there is a need to test contracts in a local environment for network latency or fee reasons.
 
 zkSync team provides a dockerized local setup for this purpose.
 
@@ -65,20 +65,18 @@ To use custom Postgres database or Layer 1, you should change the environment pa
 
 ```yml
 environment:
-    - DATABASE_URL=postgres://postgres@postgres/zksync_local
-    - ETH_CLIENT_WEB3_URL=http://geth:8545
+  - DATABASE_URL=postgres://postgres@postgres/zksync_local
+  - ETH_CLIENT_WEB3_URL=http://geth:8545
 ```
 
 - `DATABASE_URL` is the URL to the Postgres database.
 - `ETH_CLIENT_WEB3_URL` is the URL to the HTTP JSON-RPC interface of the L1 node.
 
-
 ## Testing with `mocha` + `chai`
 
 Please note, that since the zkSync node URL is provided in the `hardhat.config.ts`, the best way to use different URLs for production deployment and local testing is to use environment variables. The standard way is to set `NODE_ENV=test` environment variable before invoking the tests.
 
-
-1. Create a new hardhat project and follow the contracts' compilation guide from the [getting started](./getting-started.md) page (steps 1 to 5 of the **Initializing the project**  section).
+1. Create a new hardhat project and follow the contracts' compilation guide from the [getting started](./getting-started.md) page (steps 1 to 5 of the **Initializing the project** section).
 2. To add the test frameworks, run the following command:
 
 ```
@@ -133,8 +131,8 @@ module.exports = {
     // To compile with zksolc, this must be the default network.
     hardhat: {
       zksync: true,
-    }
-  }
+    },
+  },
 };
 ```
 

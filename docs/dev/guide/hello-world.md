@@ -1,5 +1,11 @@
 # Tutorial: Hello World
 
+::: warning Being updated
+
+This tutorial is outdated and is currently being reworked.
+
+:::
+
 This tutorial explains how to build a full dApp using the zkSync development toolbox.
 
 The following functionality will be implemented:
