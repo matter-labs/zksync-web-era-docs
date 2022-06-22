@@ -157,11 +157,10 @@ const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b54
 
 const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
 
 // Getting balance in USDC
-console.log(await wallet.getBalance(USDC_ADDRESS));
+console.log(await wallet.getBalance(USDC_L2_ADDRESS));
 
 // Getting balance in ETH
 console.log(await wallet.getBalance());
@@ -191,7 +190,6 @@ const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b54
 
 const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
 
 // Getting balance in USDC
@@ -225,7 +223,6 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
 const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 // Note that we don't need ethereum provider to get the nonce
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
 
@@ -234,18 +231,15 @@ console.log(await wallet.getNonce());
 
 ### Transfering tokens inside zkSync
 
-Please note that for now, unlike Ethereum, zkSync does not support native transfers, i.e. the `value` field of all transactions is equal to `0`. All the token transfers are done through ERC20 `transfer` function calls.
-
-But for convenience, the `Wallet` class has `transfer` method, which can transfer any `ERC20` tokens.
+For convenience, the `Wallet` class has `transfer` method, which can transfer `ETH` or any `ERC20` token within the same interface.
 
 ```typescript
 async transfer(tx: {
     to: Address;
     amount: BigNumberish;
     token?: Address;
-    feeToken?: Address;
-    nonce?: Address;
-}): Promise<ethers.ContractTransaction>
+    overrides?: ethers.CallOverrides;
+}): Promise<TransactionResponse>
 ```
 
 #### Inputs and outputs
@@ -255,9 +249,8 @@ async transfer(tx: {
 | tx.to                 | The address of the recipient.                                                                               |
 | tx.amount             | The amount of the token to transfer.                                                                        |
 | token (optional)      | The address of the token. `ETH` by default.                                                                 |
-| feeToken (optional)   | The address of the token that is used to pay fees. `ETH` by default.                                        |
-| nonce (optional)      | The nonce to be supplied. If not provided, the `wallet` will fetch the nonce in the latest committed block. |
-| returns               | An `ethers.ContractTransaction` object                                                                      |
+| overrides (optional)  | Transaction overrides, such as `nonce`, `feeToken`, `gasLimit` etc.                                         |
+| returns               | A `TransactionResponse` object                                                                              |
 
 > Example
 
@@ -273,14 +266,34 @@ const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const recipient = zksync.Wallet.createRandom();
 
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 // We transfer 0.01 ETH to the recipient and pay the fee in USDC
 const transferHandle = wallet.transfer({
   to: recipient.address,
   amount: ethers.utils.parseEther("0.01"),
-  feeToken: USDC_ADDRESS,
+  overrides: { customData: { feeToken: USDC_L2_ADDRESS } }
 });
 ```
+
+### Initiating a withdrawal to L1
+
+```typescript
+async withdraw(transaction: {
+    token: Address;
+    amount: BigNumberish;
+    to?: Address;
+    bridgeAddress?: Address;
+    overrides?: ethers.CallOverrides;
+}): Promise<TransactionResponse>
+```
+
+| Name                  | Description                                                                                                 |
+| --------------------- | ----------------------------------------------------------------------------------------------------------- |
+| tx.to                 | The address of the recipient on L1.                                                                               |
+| tx.amount             | The amount of the token to transfer.                                                                        |
+| token (optional)      | The address of the token. `ETH` by default.                                                                 |
+| bridgeAddress (optional) | The address of the bridge contract to be used.
+| overrides (optional)  | Transaction overrides, such as `nonce`, `feeToken`, `gasLimit` etc.                                         |
+| returns               | A `TransactionResponse` object                                                                              |
 
 ### Retrieving the underlying L1 wallet
 
@@ -346,7 +359,7 @@ const provider = new Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 
 // Getting balance in USDC
-console.log(await signer.getBalance(USDC_ADDRESS));
+console.log(await signer.getBalance(USDC_L2_ADDRESS));
 
 // Getting balance in ETH
 console.log(await signer.getBalance());
@@ -389,8 +402,7 @@ async transfer(tx: {
     to: Address;
     amount: BigNumberish;
     token?: Address;
-    feeToken?: Address;
-    nonce?: Address;
+    overrides?: ethers.CallOverrides;
 }): Promise<ethers.ContractTransaction>
 ```
 
@@ -401,8 +413,7 @@ async transfer(tx: {
 | tx.to                 | The address of the recipient.                                                                               |
 | tx.amount             | The amount of the token to transfer.                                                                        |
 | token (optional)      | The address of the token. `ETH` by default.                                                                 |
-| feeToken (optional)   | The address of the token that is used to pay fees. `ETH` by default.                                        |
-| nonce (optional)      | The nonce to be supplied. If not provided, the `wallet` will fetch the nonce in the latest committed block. |
+| overrides (optional)  | Transaction overrides, such as `nonce`, `feeToken`, `gasLimit` etc.                                         |
 | returns               | An `ethers.ContractTransaction` object.                                                                     |
 
 > Example
@@ -416,12 +427,11 @@ const signer = provider.getSigner();
 
 const recipient = Wallet.createRandom();
 
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 // We transfer 0.01 ETH to the recipient and pay the fee in USDC
 const transferHandle = signer.transfer({
   to: recipient.address,
   amount: ethers.utils.parseEther("0.01"),
-  feeToken: USDC_ADDRESS,
+  overrides: { customData: { feeToken: USDC_L2_ADDRESS } }
 });
 ```
 

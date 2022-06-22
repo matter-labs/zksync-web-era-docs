@@ -2,19 +2,109 @@
 
 ## Introduction
 
-A nice introduction to the current state of AA and initial spec (to be changed soon!) can be found [here](https://hackmd.io/@angelfish/BytzUTdCK).
+On Ethereum, there are two types of accounts: externally owned accounts (EOAs) and smart contracts. The former are the only ones that can initiate a transaction, while the latter are the only ones that can implement arbitrary logic. For some use-cases it creates a lot of friction: smart contract wallets, privacy protocols, etc. All of them require L1 relayers, i.e. someone with an EOA to help with facilitating the transactions from the smart contract wallet.
 
-Any feedback or thoughts on it are appreciated!
+Accounts in zkSync 2.0 can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature is called "account abstraction" and it is aimed to resolve the issues described above.
 
-## Current status
+::: warning Unstable feature
 
-Our team is currently working on a new VM that better suits the AA needs. The spec is also in the process of being reworked to improve the security and universality of the account abstractions.
+This is the first release of account abstraction (AA) on zkSync 2.0. We are very happy to hear your feedback! Please note, that **breaking changes to the API/interfaces required for the AA should be anticipated.**
 
-In the meantime, your project can prepare for native AA support. We highly encourage you to do so, since it will allow you to onboard hundreds of thousands of Argent users. We expect that in the future even more users will switch to smart wallets.
+We are also one of the first EVM-compatible chains to adopt AA, so this testnet will be also used to see how "classical" projects from EVM chains can coexist with the account abstraction feature. 
 
-One of the most notable differences between various types of accounts to be built is different signature schemes. We will expect all account abstractions to support the [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271) standard. Our team has created a utility library for verifying account signatures. Currently, it only supports ECDSA signatures, but we will add support for EIP-1271 very soon as well.
+:::
+
+## Design
+
+The design in spirit is similar to the EIP4337. For the simplicity of the implementation, some of the features from the original standard were removed and will be added later on during the testnet. This is one of the main reasons the breaking changes are expected.
+
+## Fees
+
+The system charges fee by doing an ERC20/ETH `transfer` from the account to the operator's account. 
+
+In the EIP4337 you can see three types of gas limits: `verificationGas`, `executionGas`, `preVerificationGas`, which describe the gasLimit for different steps of transaction's inlcusion in block. Currently, zkSync supports only a single field `ergsLimit`, which covers the fee for all of the three. So, when submitting a transaction make sure that the `ergsLimit` is enough to cover verification, pulling the fee (the ERC20 transfer mentioned above) and the actual execution itself.
+
+By default, calling `estimageGas` adds a constant of `20000` to cover charging the fee and the signature verification for EOA accounts.
+
+## Building custom accounts
+
+### Interface
+
+Each account is recommended to implement the [IAccountAbstraction](https://github.com/matter-labs/v2-testnet-contracts/blob/main/zksync/system-contracts/interfaces/IAccountAbstraction.sol) interface. It contains the following three methods:
+
+- `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) your AA should revert. In case the call to this method returns `true`, the AA is considered to accept the this transaction and will be charged with fee afterwards.
+- `executeTransaction` is mandatory and will be called by the system after the fee is charged from the user. This function should perform the execution of the transaction.
+- `executeTransactionFromOutside`, technically, is not mandatory, but it is *highly encouraged*, since there needs to be some way, in case of priority mode (e.g. when the operator becomes malicious), to be able to start transactions from your AA from the outside (basically this is the fallback to the standard Ethereum approach, where an EOA starts transaction from your smart contract).
+
+Note, that each of these methods accept the [Transaction](https://github.com/matter-labs/v2-testnet-contracts/blob/0e1c95969a2f92974370326e4430f03e417b25e7/l2/system-contracts/TransactionHelper.sol#L15) struct. While some of its fields are self-explanatory, there are also 6 `reserved` fields, the meaning of each will be defined by the transaction's type. We decided to not give these fields names, since they might be unneeded in some future transaction types. For now, the convention is:
+
+- `reverted[0]` is the nonce.
+- `reserved[1]` is the `msg.value` that should be passed with the transaction.
+
+An example of the implementation of the AA interface is the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/6a93ff85d33dfff0008624eb9777d5a07a26c55d/l2/system-contracts/DefaultAA.sol#L16) of the EOA account. Please note, that this account, just like standard EOA accounts on Ethereum, successfully returns empty value whenever it is called by an external address and this may not be the behaviour that you would like for your AA.
+
+### EIP1271
+
+If you are building a smart wallet, we also *highly encourage* you to implement the [EIP1271](https://eips.ethereum.org/EIPS/eip-1271) signature validation scheme. This is standard that will be endorsed by the zkSync team. It is used in the signature verification library described below in this section.
+
+### The deployment process
+
+The process of deploying AA is very similar to the one of deploying a smart contract. In order to protect smart contracts that do not want to be treated as an account, a different method of the deployer system contract should be used to do it. Instead of using `create`/`create2`, you should use the `createAA`/`create2AA` methods of the deployer system contract.
+
+An example of how to deploy an AA using the `zksync-web3` SDK:
+
+```ts
+import { ContractFactory } from 'zksync-web3';
+
+const contractFactory = new ContractFactory(abi, bytecode, initiator, 'createAA');
+const aa = await contractFactory.deploy(...args);
+await aa.deployed();
+```
+
+### Limitations of the verification step
+
+In order to protect the system from a DDoS threat, the verification step must have the following limitations:
+
+- The AA can only access its own storage (calling other contracts is allowed only in rare whitelisted cases).
+- The AA can not use context variables, e.g. `block.number`, etc.
+- It is also required that your account increases the nonce by 1. This restricition is only needed to preserve transaction hashes's collision resistance. In the future, this requirement will be lifted to allow more generic use-cases (e.g. privacy protocols).
+
+Transactions that violate the rules above will not be accepted by the API, though these requirements can not be enforced on the circuit/VM level and do not apply to L1->L2 transactions.
+
+To let you try out the feature faster, we decided to release account abstraction publicly before fully implementing the limitations' checks for the verification step of the account. Currently, your transactions may pass through the API despite violating the requests above, but soon this will be changed.
+
+### Nonce holder contract
+
+For optimization purposes, both [tx nonce and the deployment nonce](./contracts.md#differences-in-create-behaviour) are both put in one storage slot inside the [NonceHolder](./system-contracts.md#inonceholder) system contracts. In order to increment the nonce of your AA, it is highly recommended to call the [incrementNonceIfEquals](https://github.com/matter-labs/v2-testnet-contracts/blob/0e1c95969a2f92974370326e4430f03e417b25e7/l2/system-contracts/interfaces/INonceHolder.sol#L10) function and pass the value of the nonce provided in the transaction. 
+
+This is will be one of the whitelisted calls, where the AA will be allowed to call outside smart contracts.
+
+### Sending transactions from the account abstraction
+
+For now, only EIP712 transactions are supported for AA. To submit a transaction from a specific account abstraction, you should provide the `aaParams` object with the `from` and `signature` fields in the custom data:
+
+```ts
+import { utils } from 'zksync-web3'
+
+// here the `tx` is a `TransactionRequest` object from `zksync-web3` SDK.
+// and the zksyncProvider is the `Provider` object from `zksync-web3` SDK connected to zkSync network.
+tx.customData = {
+    ...tx.customData,
+    aaParams: {
+        from: aaAddress,
+        signature: aaSignature
+    }
+};
+const serializedTx = utils.serialize({ ...tx });
+
+const sentTx = await zksyncProvider.sendTransaction(serializedTx);
+```
 
 ## `aa-signature-checker`
+
+Your project can start preparing for native AA support. We highly encourage you to do so, since it will allow you to onboard hundreds of thousands of Argent users that already use the first version of zkSync. We expect that in the future even more users will switch to smart wallets.
+
+One of the most notable differences between various types of accounts to be built is different signature schemes. We will expect accounts to support the [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271) standard. Our team has created a utility library for verifying account signatures. Currently, it only supports ECDSA signatures, but we will add support for EIP-1271 very soon as well.
 
 The `aa-signature-checker` library provides a way to verify signatures for account abstractions. Currently, it only supports verifying the ECDSA signatures. Very soon we will add support for EIP-1271 as well.
 
