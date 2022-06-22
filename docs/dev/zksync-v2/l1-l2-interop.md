@@ -55,11 +55,11 @@ If the operator fails to process the needed L1 transactions, the system enters t
 
 ## L2 -> L1 communication
 
-L2 -> L1 communication, in contrast to L1 -> L2 communication, is based only on transferring of the information, and not on the execution transaction on the other side. It is a built-in feature, which is made up of two parts: sending a message from L2 and reading a message in L1. The first is implemented as a call to the L2 system smart contract. And the second is implemented on L1 zkSync smart contract as a getter function.
+L2 -> L1 communication, in contrast to L1 -> L2 communication, is based only on transferring of the information, and not on the transaction execution on L1. It is a built-in feature, which is made up of two parts: sending a message from L2 and reading it on L1. The first is implemented as a call to an L2 system smart contract. And the second is implemented on the zkSync L1 smart contract as a getter function.
 
 ### Sending messages
 
-Each message sent from L2 to L1 contains the sender's address and the message itself. The length of the sent message can be arbitrarily large, but the longer the message, the more expensive it is to send. The operator will "show" each message in Ethereum, so that information about all messages is always publicly available. Because of this, messages sent to L1 are guaranteed to be read, regardless of the honesty of the operator.
+Each message sent from L2 to L1 contains the sender's address and the message itself. The length of the sent message can be arbitrarily large, but the longer the message, the more expensive it is to send. The operator will "show" each message in Ethereum, so that information about all messages is always publicly available. As a result, messages sent to L1 can be read by anyone, hence there is no need to rely on the operator to "execute" them.
 
 ### Reading messages
 
