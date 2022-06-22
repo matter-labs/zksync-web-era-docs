@@ -108,6 +108,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
+  const provider = new Provider(hre.userConfig.zkSyncDeploy?.zkSyncNetwork)
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
 
   // Create deployer object and load the artifact of the contract we want to deploy.
@@ -147,17 +148,22 @@ In the output, you should see the address where the contract was deployed to.
 
 This section is optional, and is used to learn how to pay for the deployment of the smart contracts in ERC20. To go straight to the front-end integration, click [here](#front-end-integration).
 
+Please note that after depositing the ERC-20 token to zkSync, the address of this token in the zkSync network will be different from Ethereum one.
+To get the address of the ERC-20 token on L2 call `getL2TokenAddress()` method from Provider or Wallet class:
+```typescript
+const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS)
+```
 1. For example, to pay fees in the `USDC` token:
 
 ```typescript
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
+const L1_USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
+const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS)
 const USDC_DECIMALS = 6;
-
-const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_ADDRESS);
+const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], L2_USDC_ADDRESS);
 // Deposit funds to L2.
 const depositHandle = await deployer.zkWallet.deposit({
   to: deployer.zkWallet.address,
-  token: USDC_ADDRESS,
+  token: L1_USDC_ADDRESS,
   // We deposit more than the minimal required amount to have funds
   // for further iteraction with our smart contract.
   amount: deploymentFee.mul(2),
@@ -180,10 +186,10 @@ console.log(`The deployment will cost ${parsedFee} USDC`);
 
 Please note that the fees on the testnet do not correctly represent the fees on the future mainnet release.
 
-3. `USDC` must then be passed as the `feeToken` to the deployment transaction:
+3. `USDC` must then be passed as the `feeToken` to the deployment transaction. 
 
 ```typescript
-const greeterContract = await deployer.deploy(artifact, [greeting], USDC_ADDRESS);
+const greeterContract = await deployer.deploy(artifact, [greeting], L2_USDC_ADDRESS);
 ```
 
 4. To pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
@@ -191,7 +197,7 @@ const greeterContract = await deployer.deploy(artifact, [greeting], USDC_ADDRESS
 ```typescript
 const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
   customData: {
-    feeToken: USDC_ADDRESS,
+    feeToken: L2_USDC_ADDRESS,
   },
 });
 ```
@@ -199,12 +205,13 @@ const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
 #### Full example:
 
 ```typescript
-import { Wallet } from "zksync-web3";
+
+import { Wallet, Provider } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
+const L1_USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
 const USDC_DECIMALS = 6;
 
 // An example of a deploy script that will deploy and call a simple contract.
@@ -212,19 +219,22 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
+  const provider = new Provider(hre.userConfig.zkSyncDeploy?.zkSyncNetwork)
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
+  const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS)
 
   // Create deployer object and load the artifact of the contract we want to deploy.
   const deployer = new Deployer(hre, wallet);
   const artifact = await deployer.loadArtifact("Greeter");
-
+  
+  //estimate contract deploy fee
   const greeting = "Hi there!";
-  const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], USDC_ADDRESS);
+  const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], L2_USDC_ADDRESS);
 
   // Deposit funds to L2
   const depositHandle = await deployer.zkWallet.deposit({
     to: deployer.zkWallet.address,
-    token: USDC_ADDRESS,
+    token: L1_USDC_ADDRESS,
     amount: deploymentFee.mul(2),
     approveERC20: true,
   });
@@ -235,8 +245,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // `greeting` is an argument for contract constructor.
   const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
   console.log(`The deployment will cost ${parsedFee} USDC`);
-
-  const greeterContract = await deployer.deploy(artifact, [greeting], USDC_ADDRESS);
+  
+  const greeterContract = await deployer.deploy(artifact, [greeting], { feeToken: L2_USDC_ADDRESS });
 
   // Show the contract info.
   const contractAddress = greeterContract.address;
@@ -279,44 +289,44 @@ All the code will be written in the `./src/App.vue`. All the front-end code has 
 
 ```javascript
 initializeProviderAndSigner() {
-    // TODO: initialize provider and signer based on `window.ethereum`
+  // TODO: initialize provider and signer based on `window.ethereum`
 },
+
 async getGreeting() {
-    // TODO: return the current greeting
-    return "";
+  // TODO: return the current greeting
+  return "";
 },
+
 async getFee() {
-    // TOOD: return formatted fee
-    return "";
+  // TOOD: return formatted fee
+  return "";
 },
+
 async getBalance() {
-    // Return formatted balance
-    return "";
+  // Return formatted balance
+  return "";
 },
+
 async changeGreeting() {
-    this.txStatus = 1;
-    try {
-        // TODO: Submit the transaction
-        this.txStatus = 2;
-
-        // TODO: Wait for transaction compilation
-        this.txStatus = 3;
-
-        // Update greeting
-        this.greeting = await this.getGreeting();
-
-        this.retreivingFee = true;
-        this.retreivingBalance = true;
-        // Update balance and fee
-        this.currentBalance = await this.getBalance();
-        this.currentFee = await this.getFee();
-    } catch (e) {
-        alert(JSON.stringify(e));
-    }
-
-    this.txStatus = 0;
-    this.retreivingFee = false;
-    this.retreivingBalance = false;
+  this.txStatus = 1;
+  try {
+    // TODO: Submit the transaction
+    this.txStatus = 2;
+    // TODO: Wait for transaction compilation
+    this.txStatus = 3;
+    // Update greeting
+    this.greeting = await this.getGreeting();
+    this.retreivingFee = true;
+    this.retreivingBalance = true;
+    // Update balance and fee
+    this.currentBalance = await this.getBalance();
+    this.currentFee = await this.getFee();
+  } catch (e) {
+    alert(JSON.stringify(e));
+  }
+  this.txStatus = 0;
+  this.retreivingFee = false;
+  this.retreivingBalance = false;
 },
 ```
 
@@ -431,8 +441,6 @@ initializeProviderAndSigner() {
     this.provider = new Provider('https://zksync2-testnet.zksync.dev');
     // Note that we still need to get the Metamask signer
     this.signer = (new Web3Provider(window.ethereum)).getSigner();
-
-
     this.contract = new Contract(
         GREETER_CONTRACT_ADDRESS,
         GREETER_CONTRACT_ABI,
@@ -459,7 +467,6 @@ initializeProviderAndSigner() {
     this.provider = new Provider('https://zksync2-testnet.zksync.dev');
     // Note that we still need to get the Metamask signer
     this.signer = (new Web3Provider(window.ethereum)).getSigner();
-
     this.contract = new Contract(
         GREETER_CONTRACT_ADDRESS,
         GREETER_CONTRACT_ABI,
@@ -493,14 +500,14 @@ import { ethers } from "ethers";
 ```javascript
 async getBalance() {
     // Getting the balance for the signer in the selected token
-    const balanceInUnits = await this.signer.getBalance(this.selectedToken.address);
+    const balanceInUnits = await this.signer.getBalance(this.selectedToken.l2Address);
     // To display the number of tokens in the human-readable format, we need to format them,
     // e.g. if balanceInUnits returns 500000000000000000 wei of ETH, we want to display 0.5 ETH the user
     return ethers.utils.formatUnits(balanceInUnits, this.selectedToken.decimals);
 },
 ```
 
-3. stimate the fee:
+3. estimate the fee:
 
 ```javascript
 async getFee() {
@@ -531,7 +538,7 @@ It is possible to also click on the `Change greeting` button, but nothing will b
 const txHandle = await this.contract.setGreeting(this.newGreeting, {
   customData: {
     // Passing the token to pay fee with
-    feeToken: this.selectedToken.address,
+    feeToken: this.selectedToken.l2Address,
   },
 });
 ```
@@ -551,7 +558,7 @@ async changeGreeting() {
         const txHandle = await this.contract.setGreeting(this.newGreeting, {
             customData: {
                 // Passing the token to pay fee with
-                feeToken: this.selectedToken.address
+                feeToken: this.selectedToken.l2Address
             }
         });
         this.txStatus = 2;
