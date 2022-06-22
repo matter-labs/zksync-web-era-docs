@@ -112,8 +112,8 @@ async getDefaultBridgeAddresses(): Promise<{
 
 #### Inputs and outputs
 
-| Name    | Description                               |
-| ------- | ----------------------------------------- |
+| Name    | Description                                                        |
+| ------- | ------------------------------------------------------------------ |
 | returns | The addresses of default zkSync bridge contracts on both L1 and L2 |
 
 ### `getConfirmedTokens`
@@ -173,10 +173,10 @@ Returns the price USD in for a token. Please note that that this is the price th
 async getTokenPrice(token: Address): Promise<string | null>
 ```
 
-| Name    | Description                                                                         |
-| ------- | ----------------------------------------------------------------------------------- |
-| token   | The address of the token.                                                           |
-| returns | `string` value of the token price.  |
+| Name    | Description                        |
+| ------- | ---------------------------------- |
+| token   | The address of the token.          |
+| returns | `string` value of the token price. |
 
 > Example
 
@@ -189,7 +189,7 @@ console.log(await provider.getTokenPrice(USDC_L2_ADDRESS));
 
 ### Getting token's address on L2 from its L1 address and vice-versa
 
-Token's address on L2 will not be the same as on L1. 
+Token's address on L2 will not be the same as on L1.
 ETH's address is set to zero address on both networks.
 
 Provided methods work only for tokens bridged using default zkSync bridges.
@@ -201,10 +201,10 @@ async l2TokenAddress(l1Token: Address): Promise<Address>
 async l1TokenAddress(l2Token: Address): Promise<Address>
 ```
 
-| Name    | Description                                                                                                                |
-| ------- | -------------------------------------------------------------------------------------------------------------------------- |
-| token   | The address of the token.                                                                                                  |
-| returns | The address of that token on the opposite layer.                                                                           |
+| Name    | Description                                      |
+| ------- | ------------------------------------------------ |
+| token   | The address of the token.                        |
+| returns | The address of that token on the opposite layer. |
 
 ### `getTransactionStatus`
 

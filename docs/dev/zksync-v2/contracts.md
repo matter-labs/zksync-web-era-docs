@@ -18,7 +18,7 @@ All of the deployment process is handled inside our [hardhat](../../api/hardhat)
 
 ## Differences in `CREATE` behaviour
 
-For the ease of supporting account abstraction, for each account we split the nonce in two parts: *the deployment nonce* and *the transaction nonce*. The deployment nonce is the number of contracts the account has deployed with `CREATE` opcode, while the transaction nonce is used for replay attack protection for the transactions. 
+For the ease of supporting account abstraction, for each account we split the nonce in two parts: _the deployment nonce_ and _the transaction nonce_. The deployment nonce is the number of contracts the account has deployed with `CREATE` opcode, while the transaction nonce is used for replay attack protection for the transactions.
 
 That means, that while for smart contracts the nonce on zkSync behaves the same way as on Ethereum, for EOAs calculating the address of the deployed contract is not as straightforward. On Ethereum, it can be safely calculated as `hash(RLP[address,nonce])`, while on zkSync it is recommended to wait until the contract is deployed and catch the event with the address of the newly deployed contract. All of this is done in the background by the SDK.
 

@@ -30,7 +30,7 @@ yarn init -y
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc@0.3 @matterlabs/hardhat-zksync-deploy@0.3
 ```
 
-`typescript` and `ts-node` are optional - plugins will work fine in vanilla JavaScript environment. Although, please note that this tutorial *does* use TypeScript.
+`typescript` and `ts-node` are optional - plugins will work fine in vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
 
 2. Create the `hardhat.config.ts` file and paste the following code within it:
 

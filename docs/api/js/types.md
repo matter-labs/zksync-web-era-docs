@@ -3,7 +3,7 @@
 All the types which are used in the SDK are referenced here:
 
 ```typescript
-import { BytesLike, BigNumberish, providers, BigNumber } from 'ethers';
+import { BytesLike, BigNumberish, providers, BigNumber } from "ethers";
 
 // 0x-prefixed, hex encoded, ethereum account address
 export type Address = string;
@@ -12,44 +12,44 @@ export type Signature = string;
 
 // Ethereum network
 export enum Network {
-    Mainnet = 1,
-    Ropsten = 3,
-    Rinkeby = 4,
-    Goerli = 5,
-    Localhost = 9
+  Mainnet = 1,
+  Ropsten = 3,
+  Rinkeby = 4,
+  Goerli = 5,
+  Localhost = 9,
 }
 
 export enum PriorityQueueType {
-    Deque = 0,
-    HeapBuffer = 1,
-    Heap = 2
+  Deque = 0,
+  HeapBuffer = 1,
+  Heap = 2,
 }
 
 export enum PriorityOpTree {
-    Full = 0,
-    Rollup = 1
+  Full = 0,
+  Rollup = 1,
 }
 
 export enum TransactionStatus {
-    NotFound = 'not-found',
-    Processing = 'processing',
-    Committed = 'committed',
-    Finalized = 'finalized'
+  NotFound = "not-found",
+  Processing = "processing",
+  Committed = "committed",
+  Finalized = "finalized",
 }
 
 export type AAParams = {
-    from: Address;
-    signature: BytesLike;
+  from: Address;
+  signature: BytesLike;
 };
 
 export type Eip712Meta = {
-    feeToken?: Address;
-    ergsPerPubdata?: BigNumberish;
-    factoryDeps?: BytesLike[];
-    aaParams?: AAParams;
+  feeToken?: Address;
+  ergsPerPubdata?: BigNumberish;
+  factoryDeps?: BytesLike[];
+  aaParams?: AAParams;
 };
 
-export type DeploymentType = 'create' | 'createAA';
+export type DeploymentType = "create" | "createAA";
 
 // prettier-ignore
 export type BlockTag =
@@ -62,38 +62,38 @@ export type BlockTag =
     | 'pending';
 
 export interface Token {
-    l1Address: Address;
-    l2Address: Address;
-    /** @deprecated This field is here for backward compatibility - please use l2Address field instead */
-    address: Address;
-    name: string;
-    symbol: string;
-    decimals: number;
+  l1Address: Address;
+  l2Address: Address;
+  /** @deprecated This field is here for backward compatibility - please use l2Address field instead */
+  address: Address;
+  name: string;
+  symbol: string;
+  decimals: number;
 }
 
 export interface MessageProof {
-    id: number;
-    proof: string[];
-    root: string;
+  id: number;
+  proof: string[];
+  root: string;
 }
 
 export interface EventFilter {
-    topics?: Array<string | Array<string> | null>;
-    address?: Address | Array<Address>;
-    limit?: number;
-    fromBlock?: BlockTag;
-    toBlock?: BlockTag;
-    blockHash?: string;
+  topics?: Array<string | Array<string> | null>;
+  address?: Address | Array<Address>;
+  limit?: number;
+  fromBlock?: BlockTag;
+  toBlock?: BlockTag;
+  blockHash?: string;
 }
 
 export interface TransactionResponse extends providers.TransactionResponse {
-    waitFinalize(): Promise<providers.TransactionReceipt>;
+  waitFinalize(): Promise<providers.TransactionReceipt>;
 }
 
 export type TransactionRequest = providers.TransactionRequest & { customData?: Eip712Meta };
 
 export interface PriorityOpResponse extends TransactionResponse {
-    waitL1Commit(confirmation?: number): Promise<providers.TransactionReceipt>;
+  waitL1Commit(confirmation?: number): Promise<providers.TransactionReceipt>;
 }
 
 export type BalancesMap = { [key: string]: BigNumber };

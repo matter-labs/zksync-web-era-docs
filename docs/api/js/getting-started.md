@@ -6,7 +6,7 @@ While most of the existing SDKs should work out of the box, deploying smart cont
 
 To provide easy access to all of the features of zkSync 2.0, the `zksync-web3` JavaScript SDK was created, which is made in a way that has an interface very similar to those of [ethers](https://docs.ethers.io/v5/). In fact, `ethers` is a peer dependency of our library and most of the objects exported by `zksync-web3` (e.g. `Wallet`, `Provider` etc.) inherit from the corresponding `ethers` objects and override only the fields that need to be changed.
 
-The library is made in such a way that after replacing `ethers` with `zksync-web3` most client apps will work out of box. 
+The library is made in such a way that after replacing `ethers` with `zksync-web3` most client apps will work out of box.
 
 ## Adding dependencies
 
@@ -108,7 +108,7 @@ const transfer = await syncWallet.transfer({
   token: zksync.utils.ETH_ADDRESS,
   amount,
   // USDC address
-  overrides: { customData: { feeToken: USDC_L2_ADDRESS } }, 
+  overrides: { customData: { feeToken: USDC_L2_ADDRESS } },
 });
 ```
 

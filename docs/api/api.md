@@ -27,18 +27,18 @@ To let the server recognize EIP712 transactions, the `transaction_type` field is
 
 Instead of signing the RLP-encoded transaction, the user signs the following typed EIP712 structure:
 
-| Field name     | Type      |
-| -------------- | --------- |
-| txType          | `uint8` |
-| to             | `address` |
-| value          | `uint256` |
-| data           | `bytes`   |
-| feeToken       | `address` |
-| ergsLimit       | `uint256` |
-| gasLimit       | `uint256` |
+| Field name              | Type      |
+| ----------------------- | --------- |
+| txType                  | `uint8`   |
+| to                      | `address` |
+| value                   | `uint256` |
+| data                    | `bytes`   |
+| feeToken                | `address` |
+| ergsLimit               | `uint256` |
+| gasLimit                | `uint256` |
 | ergsPerPubdataByteLimit | `uint256` |
-| ergsPrice | `uint256` |
-| nonce          | `uint256` |
+| ergsPrice               | `uint256` |
+| nonce                   | `uint256` |
 
 These fields are conveniently handled by our [SDK](./js/features.md).
 
@@ -107,7 +107,7 @@ The tokens are returned in alphabetical order by their symbol, so basically, the
 
 ### Output format
 
-```
+```json
 [
   {
     "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
@@ -143,6 +143,37 @@ Given a token address, returns whether it can be used to pay fees.
 ### Output format
 
 `true`
+
+### `zks_getL2ToL1MsgProof`
+
+Given, a block, sender and a message, returns the proof for the message sent via the L1Messenger system contract.
+
+### Input parameters
+
+| Parameter | Type      | Description                                                                               |
+| --------- | --------- | ----------------------------------------------------------------------------------------- |
+| block     | `uint32`  | The number of the block where the message was emitted.                                    |
+| sender    | `address` | The sender of the message (i.e. the account that called the L1Messenger system contract). |
+| msg       | `uint256` | The keccak256 hash of the message that was sent.                                          |
+
+### Output format
+
+If there was no such message, the returned value is `null`.
+
+Otherwise, the object of the following format is returned:
+
+```json
+{
+  "id": 0,
+  "proof": [
+    "0x66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
+    "0x2eeb74a6177f588d80c0c752b99556902ddf9682d0b906f5aa2adbaf8466a4e9",
+    "0x1223349a40d2ee10bd1bebb5889ef8018c8bc13359ed94b387810af96c6e4268",
+    "0x5b82b695a7ac2668e188b75f7d4fa79faa504117d1fdfcbe8a46915c1a8a5191"
+  ],
+  "root": "0x6a420705824f0a3a7e541994bc15e14e6a8991cd4e4b2d35c66f6e7647760d97"
+}
+```
 
 <!-- TODO: uncomment once fixed --->
 <!-- ### `zks_getTokenPrice`
