@@ -16,3 +16,4 @@ zkSync 2.0 is made to look and feel like Ethereum, but with lower fees. However,
 - [Current limitations](./temp-limits.md)
 - [Decentralization roadmap](./decentralization-roadmap.md)
 - [L1/L2 Interoperability](./l1-l2-interop.md)
+- [Bridges](./bridges.md)
