@@ -141,7 +141,7 @@ module.exports = {
             "/dev/zksync-v2/temp-limits.md", 
             "/dev/zksync-v2/decentralization-roadmap.md", 
             "/dev/zksync-v2/l1-l2-interop.md", 
-            "/dev/zksync-v2/bridges.md", 
+            "/dev/zksync-v2/bridging-funds.md", 
           ],
         },
         {
@@ -156,7 +156,7 @@ module.exports = {
             "/dev/guide/front-end-integration.md", 
             "/dev/guide/l1-l2.md",
             "/dev/guide/l2-l1.md",
-            "/dev/guide/bridges.md",
+            "/dev/guide/build-custom-bridge.md",
             "/dev/guide/cross-chain-tutorial.md"
           ],
         },
