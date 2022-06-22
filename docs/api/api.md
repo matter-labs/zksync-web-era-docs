@@ -175,6 +175,12 @@ Otherwise, the object of the following format is returned:
 }
 ```
 
+The `id` is the position of the leaf in the Merkle tree of L2->L1 messages for the block. The `proof` is the merkle proof for the message, while the `root ` is the root of the Merkle tree of L2->L1 messages. Please note, that the merkle tree uses *sha256* for the trees.
+
+You do not need to care about the intrinsics, since the returned `id` and `proof` can be used rightaway for interacting with zkSync smart contract.
+
+A nice example of using this endpoint via our SDK can be found [here](../dev/guide/l2-l1.md).
+
 <!-- TODO: uncomment once fixed --->
 <!-- ### `zks_getTokenPrice`
 
