@@ -161,7 +161,7 @@ module.exports = {
 };
 ```
 
-If your default network is not `hardhat`, make sure to inlcude `zksync: true` in its config, too.
+If your default network is not `hardhat`, make sure to include `zksync: true` in its config, too.
 
 3. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
 
@@ -221,7 +221,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 yarn hardhat deploy-zksync
 ```
 
-In the output, you should see the address where the contract was deployed to.
+In the output, you should see the address to which the contract was deployed.
 
 ## Reading the counter value
 
