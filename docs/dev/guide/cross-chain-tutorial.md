@@ -1,5 +1,11 @@
 # Tutorial: Cross-chain governance
 
+::: warn Being reworked
+
+This tutorial is outdated and is currently being reworked.
+
+:::
+
 This tutorial serves as an example of how to implement L1 to L2 contract interaction. The following functionality is implemented in this tutorial:
 
 - A "counter" smart contract is deployed on zkSync, which stores a number that can be incremented by calling the `increment` method.
