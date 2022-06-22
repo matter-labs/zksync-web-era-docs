@@ -146,7 +146,7 @@ Given a token address, returns whether it can be used to pay fees.
 
 ### `zks_getL2ToL1MsgProof`
 
-Given, a block, sender and a message, returns the proof for the message sent via the L1Messenger system contract.
+Given a block, a sender and a message, returns the proof for the message sent via the L1Messenger system contract.
 
 ### Input parameters
 
