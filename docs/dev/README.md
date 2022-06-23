@@ -11,8 +11,8 @@ Note, that the system is still in active development, so:
 
 :::
 
-**zkSync 2.0** is a [ZK rollup](./rollups.md): a trustless protocol that utilises zero-knowledge proofs to provide scalable low-cost transactions on Ethereum. All assets are  
-stored in a single smart contract on the mainchain, while computation and storing data are performed off-chain. As all transactions are proven on Ethereum mainchain, users  
+**zkSync 2.0** is a [ZK rollup](./rollups.md): a trustless protocol that utilises zero-knowledge proofs to provide scalable low-cost transactions on Ethereum. All assets are 
+stored in a single smart contract on the mainchain, while computation and storing data are performed off-chain. As all transactions are proven on Ethereum mainchain, users 
 enjoy the same security level as in Ethereum.
 
 ### zkSync 2.0 highlights
