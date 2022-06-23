@@ -147,9 +147,8 @@ In the output, you should see the address where the contract was deployed to.
 ### Paying for deployment in ERC20 tokens
 
 This section is optional, and is used to learn how to pay for the deployment of the smart contracts in ERC20. To go straight to the front-end integration, click [here](#front-end-integration).
-
-Please note that after depositing the ERC-20 token to zkSync, the address of this token in the zkSync network will be different from Ethereum one.
-To get the address of the ERC-20 token on L2 call `getL2TokenAddress()` method from Provider or Wallet class:
+Note that on the zkSync network, addresses of ERC-20 tokens are different from their addresses on Ethereum. So if, for example, you deposit an ERC-20 token to zkSync, the token address will not be the same as on Ethereum.
+To get the address of an ERC-20 token on L2, call the `getL2TokenAddress()` method from the `Provider` / `Wallet` class:
 ```typescript
 const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS)
 ```
@@ -226,8 +225,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Create deployer object and load the artifact of the contract we want to deploy.
   const deployer = new Deployer(hre, wallet);
   const artifact = await deployer.loadArtifact("Greeter");
-  
-  //estimate contract deploy fee
+
+  //Estimate contract deployment fee
   const greeting = "Hi there!";
   const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], L2_USDC_ADDRESS);
 
@@ -507,7 +506,7 @@ async getBalance() {
 },
 ```
 
-3. estimate the fee:
+3.  Estimate the fee:
 
 ```javascript
 async getFee() {
