@@ -24,7 +24,7 @@ The system charges fee by doing an ERC20/ETH `transfer` from the account to the 
 
 In the EIP4337 you can see three types of gas limits: `verificationGas`, `executionGas`, `preVerificationGas`, which describe the gasLimit for different steps of transaction's inlcusion in block. Currently, zkSync supports only a single field `ergsLimit`, which covers the fee for all of the three. So, when submitting a transaction make sure that the `ergsLimit` is enough to cover verification, pulling the fee (the ERC20 transfer mentioned above) and the actual execution itself.
 
-By default, calling `estimageGas` adds a constant of `20000` to cover charging the fee and the signature verification for EOA accounts.
+By default, calling `estimateGas` adds a constant of `20000` to cover charging the fee and the signature verification for EOA accounts.
 
 ## Building custom accounts
 
