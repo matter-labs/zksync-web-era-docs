@@ -1,44 +1,14 @@
 # Tutorial: Account abstraction
 
-Now, let's learn how to deploy your custom accounts and interact directly with the `ContractDeployer` system contract. 
+Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../zksync-v2/system-contracts.md#contractdeployer) system contract. 
 
-In this tutorial we will build a factory that will deploy multisig accounts, owned by two users each.
+In this tutorial we will build a factory that deploys 2-of-2 multisig accounts.
 
 ## Preliminaries
 
 In this tutorial it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial and have read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
 
-It is also assumed n of the ECDSA signatures of the owners
-        // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long. 
-        require(_signature.length == 130, 'Signature length is incorrect');
-
-        address recoveredAddr1 = ECDSA.recover(_hash, _signature[0:65]);
-        address recoveredAddr2 = ECDSA.recover(_hash, _signature[65:130]);
-
-        require(recoveredAddr1 == owner1);
-        require(recoveredAddr2 == owner2);
-
-        return EIP1271_SUCCESS_RETURN_VALUE; of the ECDSA signatures of the owners
-        // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long. 
-        require(_signature.length == 130, 'Signature length is incorrect');
-
-        address recoveredAddr1 = ECDSA.recover(_hash, _signature[0:65]);
-        address recoveredAddr2 = ECDSA.recover(_hash, _signature[65:130]);
-
-        require(recoveredAddr1 == owner1);
-        require(recoveredAddr2 == owner2);
-
-        return EIP1271_SUCCESS_RETURN_VALUE;n of the ECDSA signatures of the owners
-        // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long. 
-        require(_signature.length == 130, 'Signature length is incorrect');
-
-        address recoveredAddr1 = ECDSA.recover(_hash, _signature[0:65]);
-        address recoveredAddr2 = ECDSA.recover(_hash, _signature[65:130]);
-
-        require(recoveredAddr1 == owner1);
-        require(recoveredAddr2 == owner2);
-
-        return EIP1271_SUCCESS_RETURN_VALUE;t you already have some experience working with Ethereum.
+It is also assumed that you already have some experience working with Ethereum.
 
 ## Installing dependencies
 
@@ -59,7 +29,7 @@ yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/cont
 
 ## Account abstraction
 
-Each account needs to implement the [IAccountAbstraction](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IAccountAbstraction.sol) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
+Each account needs to implement the [IAccountAbstraction](https://github.com/matter-labs/v2-testnet-contracts/blob/07e05084cdbc907387c873c2a2bd3427fe4fe6ad/l2/system-contracts/interfaces/IAccountAbstraction.sol#L7) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
 
 So the sceleton for the contract will look the following way:
 
@@ -119,7 +89,7 @@ The `executeTransactionFromOutside` is needed to allow external users to initiat
 
 ### Signature validation
 
-Firstly, we need to implement the signature validation process. Since we are building a two-account ,multisig, let's pass its owners' addresses in the constructor. For signature validation, we will use openzeppelin's utility libraries for dealing with `ECDSA`. 
+Firstly, we need to implement the signature validation process. Since we are building a two-account multisig, let's pass its owners' addresses in the constructor. For signature validation, we will use openzeppelin's utility libraries for dealing with `ECDSA`. 
 
 Add the following import:
 
@@ -159,7 +129,7 @@ function isValidSignature(bytes32 _hash, bytes calldata _signature) public overr
 
 ### Transaction validation
 
-Let's implement the validation process. It is responsible for validating the signature of the transaction and incrementing the nonce. Note, that there are some limitation on what this method is allowed to do. You can recall them [here](../zksync-v2/aa.md#limitations-of-the-verification-step).
+Let's implement the validation process. It is responsible for validating the signature of the transaction and incrementing the nonce. Note, that there are some limitation on what this method is allowed to do. You can read more about them [here](../zksync-v2/aa.md#limitations-of-the-verification-step).
 
 To increment the nonce, you should use the `incrementNonceIfEquals` method of the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It accepts the nonce of the transaction, checks whether the nonce is the same as the provided one. If not, the transaction reverts. Otherwise, the nonce is increased.
 
@@ -169,17 +139,17 @@ Even though the requirements above allow the accounts to touch only their storag
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
 ```
 
-The `TransactionHelper` library (already imported in the example above) can be used to get the hash of the transaction that should be signed. You may also want to implement your own signature scheme and use different commitment for the transaction to sign. In this example, we will use the hashes provided by this library.
+The `TransactionHelper` library (already imported in the example above) can be used to get the hash of the transaction that should be signed. You can also implement your own signature scheme and use different a commitment for the transaction to sign, but in this example, we will use the hashes provided by this library.
 
 Using the `TransactionHelper` library:
 
-```
+```solidity
 using TransactionHelper for Transaction;
 ```
 
 Now we can implement the `_validateTransaction` method:
 
-```
+```solidity
 function _validateTransaction(Transaction calldata _transaction) internal {
     // Incrementing the nonce of the account.
     // Note, that reserved[0] by convention is currently equal to the nonce passed in the transaction
@@ -455,7 +425,7 @@ _Note, that zkSync has different address derivation rules from Ethereum_. You sh
 
 ### Starting a transaction from this account
 
-Before the AA can do any transactions, we firsly need to top up:
+Before the AA can do any transactions, we firsly need to top it up:
 
 ```ts
 await (await wallet.sendTransaction({
@@ -495,13 +465,13 @@ aaTx = {
 }
 ```
 
-::: info Note on gasLimit
+::: tip Note on gasLimit
 
 Currently, we expect the `gasLimit` to cover both the verification and the execution step. Currently, the number of ergs that is returned by the `estimateGas` is `execution_ergs + 20000`, where `20000` is roughly equals to the overhead needed for the defaultAA to have both fee charged and the signature verified. In case your AA has very expensive verification step, you should some constant to the `gasLimit`.    
 
 :::
 
-Then, we need to sign the transaction and provide the `aaPramas` in the customData of the transaction:
+Then, we need to sign the transaction and provide the `aaParamas` in the customData of the transaction:
 
 ```ts
 const signedTxHash = EIP712Signer.getSignedDigest(aaTx);
