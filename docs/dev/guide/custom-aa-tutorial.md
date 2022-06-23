@@ -6,13 +6,13 @@ In this tutorial we will build a factory that deploys 2-of-2 multisig accounts.
 
 ## Preliminaries
 
-In this tutorial it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial and have read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
+It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial and have read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
 
 It is also assumed that you already have some experience working with Ethereum.
 
 ## Installing dependencies
 
-We will use zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it: 
+We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it: 
 
 ```
 mkdir cross-chain-tutorial
@@ -31,7 +31,7 @@ yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/cont
 
 Each account needs to implement the [IAccountAbstraction](https://github.com/matter-labs/v2-testnet-contracts/blob/07e05084cdbc907387c873c2a2bd3427fe4fe6ad/l2/system-contracts/interfaces/IAccountAbstraction.sol#L7) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
 
-So the sceleton for the contract will look the following way:
+So the skeleton for the contract will look the following way:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -79,17 +79,22 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
         return EIP1271_SUCCESS_RETURN_VALUE;
     }
 
-	receive() external payable {}
+	receive() external payable {
+        // If the bootloader called the `receive` function, it likely means
+        // that something went wrong and the transaction should be aborted. The bootloader should
+        // only interact through the `validateTransaction`/`executeTransaction` methods.  
+        assert(msg.sender != BOOTLOADER_FORMAL_ADDRESS);
+    }
 }
 ```
 
-Note, that only bootloader should be allowed to call the `validateTransaction`/`executeTransaction` methods. That's why the `onlyBootloader` is used for them.
+Note, that only the [bootloader](../zksync-v2/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction` methods. That's why the `onlyBootloader` is used for them.
 
 The `executeTransactionFromOutside` is needed to allow external users to initiate transactions from this account. The easiest way to implement it is to do the same as `validateTransaction` + `executeTransaction` would do.
 
 ### Signature validation
 
-Firstly, we need to implement the signature validation process. Since we are building a two-account multisig, let's pass its owners' addresses in the constructor. For signature validation, we will use openzeppelin's utility libraries for dealing with `ECDSA`. 
+Firstly, we need to implement the signature validation process. Since we are building a two-account multisig, let's pass its owners' addresses in the constructor. For signature validation, we will use Openzeppelin's utility libraries for dealing with `ECDSA`. 
 
 Add the following import:
 
@@ -109,7 +114,7 @@ constructor(address _owner1, address _owner2) {
 }
 ```
 
-And then we can implement the `isValidSignature` method the following way:
+And then we can implement the `isValidSignature` method in the following way:
 
 ```solidity
 function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
@@ -131,7 +136,7 @@ function isValidSignature(bytes32 _hash, bytes calldata _signature) public overr
 
 Let's implement the validation process. It is responsible for validating the signature of the transaction and incrementing the nonce. Note, that there are some limitation on what this method is allowed to do. You can read more about them [here](../zksync-v2/aa.md#limitations-of-the-verification-step).
 
-To increment the nonce, you should use the `incrementNonceIfEquals` method of the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It accepts the nonce of the transaction, checks whether the nonce is the same as the provided one. If not, the transaction reverts. Otherwise, the nonce is increased.
+To increment the nonce, you should use the `incrementNonceIfEquals` method of the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It accepts the nonce of the transaction and checks whether the nonce is the same as the provided one. If not, the transaction reverts. Otherwise, the nonce is increased.
 
 Even though the requirements above allow the accounts to touch only their storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a whitelisted case, since it behaves in the same way as your storage, it just happened to be in another contract. To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, you should add the folloing import:
 
@@ -269,7 +274,12 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
         return EIP1271_SUCCESS_RETURN_VALUE;
 	}
 
-	receive() external payable {}
+	receive() external payable {
+        // If the bootloader called the `receive` function, it likely means
+        // that something went wrong and the transaction should be aborted. The bootloader should
+        // only interact through the `validateTransaction`/`executeTransaction` methods.
+        assert(msg.sender != BOOTLOADER_FORMAL_ADDRESS);
+    }
 }
 ```
 
@@ -377,7 +387,6 @@ Firstly, let's deploy the AA. This will be basically a call to the `deployAccoun
 import { utils, Wallet, Provider, EIP712Signer } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 import { Eip712Meta } from "zksync-web3/build/src/types";
 
 // Put the address of your AA factory
@@ -509,7 +518,6 @@ console.log(`The multisig's nonce after the first tx is ${await provider.getTran
 import { utils, Wallet, Provider, EIP712Signer } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 import { Eip712Meta } from "zksync-web3/build/src/types";
 
 // Put the address of your AA factory
@@ -619,7 +627,7 @@ The multisig's nonce after the first tx is 1
 
 ## Complete project
 
-TODO: add the link to the complete project on github
+You can download the complete project [here](https://github.com/matter-labs/custom-aa-tutorial).
 
 ## Learn more
 
