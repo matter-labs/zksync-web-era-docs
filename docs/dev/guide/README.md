@@ -1,6 +1,6 @@
 # Developer guide
 
-A set of practical guidelines and tutorials which will help you get started with development on zkSync.
+A set of practical guidelines and tutorials that will help you get started with development on zkSync.
 
 ## Table of contents
 

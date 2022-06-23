@@ -2,7 +2,7 @@
 
 ### Faucet, bridge, wallet
 
-[zkSync 2.0 Portal](https://portal.zksync.io).
+[zkSync 2.0 Portal](https://portal.zksync.io)
 
 ### Block explorer
 
@@ -22,5 +22,5 @@
 
 ### Questions and support
 
-- [Discord](https://discord.gg/px2aR7w).
+- [Discord](https://discord.gg/px2aR7w)
 - [Community Forum](https://community.zksync.io/)
