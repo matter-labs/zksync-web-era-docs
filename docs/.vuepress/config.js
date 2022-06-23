@@ -119,7 +119,7 @@ module.exports = {
           ],
         },
         {
-          title: "ZK sollup basics",
+          title: "ZK rollup basics",
           path: "/dev/rollups.md",
           collapsable: false
         },
