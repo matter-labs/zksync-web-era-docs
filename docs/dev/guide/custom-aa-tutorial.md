@@ -2,7 +2,7 @@
 
 Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../zksync-v2/system-contracts.md#contractdeployer) system contract. 
 
-In this tutorial we will build a factory that deploys 2-of-2 multisig accounts.
+In this tutorial we build a factory that deploys 2-of-2 multisig accounts.
 
 ## Preliminaries
 
