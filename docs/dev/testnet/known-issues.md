@@ -4,7 +4,7 @@ While zkSync 2.0 is in alpha, we will put known (and not fixed yet) bugs here as
 
 ## Metamask native transfers not working
 
-It is not currently possible to transfer ERC-20s inside the Metamask interface.
+It is not currently possible to transfer ERC-20 tokens inside the Metamask interface.
 
 **Solution.** For now, transfers inside zkSync you should be done via the [zkSync Wallet](https://portal.zksync.io) dApp.
 
