@@ -1,0 +1,544 @@
+# Tutorial: Account abstraction
+
+Now, let's learn how to deploy your custom accounts and interact directly with the `ContractDeployer` system contract. 
+
+In this tutorial we will build a factory that will deploy multisig accounts, owned by two users each.
+
+## Preliminaries
+
+In this tutorial it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial and have read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
+
+It is also assumed n of the ECDSA signatures of the owners
+        // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long. 
+        require(_signature.length == 130, 'Signature length is incorrect');
+
+        address recoveredAddr1 = ECDSA.recover(_hash, _signature[0:65]);
+        address recoveredAddr2 = ECDSA.recover(_hash, _signature[65:130]);
+
+        require(recoveredAddr1 == owner1);
+        require(recoveredAddr2 == owner2);
+
+        return EIP1271_SUCCESS_RETURN_VALUE; of the ECDSA signatures of the owners
+        // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long. 
+        require(_signature.length == 130, 'Signature length is incorrect');
+
+        address recoveredAddr1 = ECDSA.recover(_hash, _signature[0:65]);
+        address recoveredAddr2 = ECDSA.recover(_hash, _signature[65:130]);
+
+        require(recoveredAddr1 == owner1);
+        require(recoveredAddr2 == owner2);
+
+        return EIP1271_SUCCESS_RETURN_VALUE;n of the ECDSA signatures of the owners
+        // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long. 
+        require(_signature.length == 130, 'Signature length is incorrect');
+
+        address recoveredAddr1 = ECDSA.recover(_hash, _signature[0:65]);
+        address recoveredAddr2 = ECDSA.recover(_hash, _signature[65:130]);
+
+        require(recoveredAddr1 == owner1);
+        require(recoveredAddr2 == owner2);
+
+        return EIP1271_SUCCESS_RETURN_VALUE;t you already have some experience working with Ethereum.
+
+## Installing dependencies
+
+We will use zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it: 
+
+```
+mkdir cross-chain-tutorial
+cd cross-chain-tutorial
+yarn init -y
+yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+```
+
+Since we are working with zkSync contracts, we also need to install the package with the contracts and its peer dependencies:
+
+```
+yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
+```
+
+## Account abstraction
+
+Each account needs to implement the [IAccountAbstraction](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IAccountAbstraction.sol) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
+
+So the sceleton for the contract will look the following way:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccountAbstraction.sol';
+import '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
+
+import "@openzeppelin/contracts/interfaces/IERC1271.sol";
+
+contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
+
+	modifier onlyBootloader() {
+		require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
+		// Continure execution if called from the bootloader.
+		_;
+	}
+
+    function validateTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+        _validateTransaction(_transaction);
+    }
+
+    function _validateTransaction(Transaction calldata _transaction) internal {
+        
+    }
+
+    function executeTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+		_executeTransaction(_transaction)
+	}
+
+    function _executeTransaction(Transaction calldata _transaction) internal {
+        
+    }
+
+    function executeTransactionFromOutside(Transaction calldata _transaction) external payable {
+		_validateTransaction(_transaction);
+		_executeTransaction(_transaction);
+	}
+
+
+	// bytes4(keccak256("isValidSignature(bytes32,bytes)")
+	bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
+
+    function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
+        return EIP1271_SUCCESS_RETURN_VALUE;
+    }
+
+	receive() external payable {}
+}
+```
+
+Note, that only bootloader should be allowed to call the `validateTransaction`/`executeTransaction` methods. That's why the `onlyBootloader` is used for them.
+
+The `executeTransactionFromOutside` is needed to allow external users to initiate transactions from this account. The easiest way to implement it is to do the same as `validateTransaction` + `executeTransaction` would do.
+
+### Signature validation
+
+Firstly, we need to implement the signature validation process. Since we are building a two-account ,multisig, let's pass its owners' addresses in the constructor. For signature validation, we will use openzeppelin's utility libraries for dealing with `ECDSA`. 
+
+Add the following import:
+
+```solidity
+import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+```
+
+Also, add the constructor to the contract:
+
+```solidity
+address public owner1;
+address public owner2;
+
+constructor(address _owner1, address _owner2) {
+    owner1 = _owner1;
+    owner2 = _owner2;
+}
+```
+
+And then we can implement the `isValidSignature` method the following way:
+
+```solidity
+function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
+    // The signature is the concatenation of the ECDSA signatures of the owners
+    // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long. 
+    require(_signature.length == 130, 'Signature length is incorrect');
+
+    address recoveredAddr1 = ECDSA.recover(_hash, _signature[0:65]);
+    address recoveredAddr2 = ECDSA.recover(_hash, _signature[65:130]);
+
+    require(recoveredAddr1 == owner1);
+    require(recoveredAddr2 == owner2);
+
+    return EIP1271_SUCCESS_RETURN_VALUE;
+}
+```
+
+### Transaction validation
+
+Let's implement the validation process. It is responsible for validating the signature of the transaction and incrementing the nonce. Note, that there are some limitation on what this method is allowed to do. You can recall them [here](../zksync-v2/aa.md#limitations-of-the-verification-step).
+
+To increment the nonce, you should use the `incrementNonceIfEquals` method of the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It accepts the nonce of the transaction, checks whether the nonce is the same as the provided one. If not, the transaction reverts. Otherwise, the nonce is increased.
+
+Even though the requirements above allow the accounts to touch only their storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a whitelisted case, since it behaves in the same way as your storage, it just happened to be in another contract. To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, you should add the folloing import:
+
+```solidity
+import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
+```
+
+The `TransactionHelper` library (already imported in the example above) can be used to get the hash of the transaction that should be signed. You may also want to implement your own signature scheme and use different commitment for the transaction to sign. In this example, we will use the hashes provided by this library.
+
+Using the `TransactionHelper` library:
+
+```
+using TransactionHelper for Transaction;
+```
+
+Now we can implement the `_validateTransaction` method:
+
+```
+function _validateTransaction(Transaction calldata _transaction) internal {
+    // Incrementing the nonce of the account.
+    // Note, that reserved[0] by convention is currently equal to the nonce passed in the transaction
+    NONCE_HOLDER_SYSTEM_CONTRACT.incrementNonceIfEquals(_transaction.reserved[0]);
+    bytes32 txHash = _transaction.encodeHash();
+
+    require(isValidSignature(txHash, _transaction.signature) == EIP1271_SUCCESS_RETURN_VALUE);
+}
+```
+
+### Transaction execution
+
+The most basic implementation of the transaction execution is quite straightforward:
+
+```solidity
+function _executeTransaction(Transaction calldata _transaction) internal {
+    uint256 to = _transaction.to;
+    // By convention, the `reserved[1]` field is msg.value
+    uint256 value = _transaction.reserved[1];
+    bytes memory data = _transaction.data;
+
+    bool success;
+    assembly {
+        success := call(gas(), to, value, add(data, 0x20), mload(data), 0, 0)
+    }
+
+    // Needed for the transaction to be correctly processed by the server.
+    require(success);
+}
+```
+
+Note, that whether the operator will consider the transaction successful will depend only on whether or not the call to `executeTransactions` was successful. So, it is highly recommended to put `require(success)` for the transaction, so that the users could get the best UX.
+
+### Full code for the AA
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
+import '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
+
+import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccountAbstraction.sol';
+
+import "@openzeppelin/contracts/interfaces/IERC1271.sol";
+import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+
+contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
+	using TransactionHelper for Transaction;
+
+    address public owner1;
+    address public owner2;
+
+    constructor(address _owner1, address _owner2) {
+        owner1 = _owner1;
+        owner2 = _owner2;
+    }
+
+	// bytes4(keccak256("isValidSignature(bytes32,bytes)")
+	bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
+
+
+	modifier onlyBootloader() {
+		require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
+		// Continure execution if called from the bootloader.
+		_;
+	}
+
+	function validateTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+		_validateTransaction(_transaction);
+	}
+
+	function _validateTransaction(Transaction calldata _transaction) internal {
+        // Incrementing the nonce of the account.
+        // Note, that reserved[0] by convention is currently equal to the nonce passed in the transaction
+        NONCE_HOLDER_SYSTEM_CONTRACT.incrementNonceIfEquals(_transaction.reserved[0]);
+        bytes32 txHash = _transaction.encodeHash();
+
+        require(isValidSignature(txHash, _transaction.signature) == EIP1271_SUCCESS_RETURN_VALUE);
+	}
+
+	function executeTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+		_executeTransaction(_transaction);
+	}
+
+	function executeTransactionFromOutside(Transaction calldata _transaction) external payable {
+		_validateTransaction(_transaction);
+		_executeTransaction(_transaction);
+	}
+
+	function _executeTransaction(Transaction calldata _transaction) internal {
+        uint256 to = _transaction.to;
+        // By convention, the `reserved[1]` field is msg.value
+        uint256 value = _transaction.reserved[1];
+        bytes memory data = _transaction.data;
+
+        bool success;
+        assembly {
+            success := call(gas(), to, value, add(data, 0x20), mload(data), 0, 0)
+        }
+
+        // Needed for the transaction to be correctly processed by the server.
+        require(success);
+	}
+
+	function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
+        // The signature is the concatenation of the ECDSA signatures of the owners
+        // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long. 
+        require(_signature.length == 130, 'Signature length is incorrect');
+
+        address recoveredAddr1 = ECDSA.recover(_hash, _signature[0:65]);
+        address recoveredAddr2 = ECDSA.recover(_hash, _signature[65:130]);
+
+        require(recoveredAddr1 == owner1);
+        require(recoveredAddr2 == owner2);
+
+        return EIP1271_SUCCESS_RETURN_VALUE;
+	}
+
+	receive() external payable {}
+}
+```
+
+## The factory
+
+Now, let's build a factory that can deploy these accounts. Note, that if we want to deploy AA, we need to interact directly with the `DEPLOYER_SYSTEM_CONTRACT`. For deterministic addresses, we will use `create2AA` method.
+
+The code will look the following way:
+
+```solidity
+// SPDX-License-Identifier: MIT
+
+import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
+
+contract AAFactory {
+    bytes32 public aaBytecodeHash;
+    constructor(bytes32 _aaBytecodeHash) {
+        aaBytecodeHash = _aaBytecodeHash;
+    }
+
+    function deployAccount(
+        bytes32 salt,
+        address owner1,
+        address owner2
+    ) external returns (address) {
+        return DEPLOYER_SYSTEM_CONTRACT.create2AA(salt, aaBytecodeHash, 0, abi.encode(owner1, owner2));
+    }
+}
+```
+
+Note, that on zkSync, the deployment is not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via `factoryDeps` field. Note, that the `_aaBytecodeHash` must be formed in a special way:
+
+- Firstly, it is hashed with sha256
+- Then, the first two bytes are replaced with the length of the bytecode in 32-byte words.
+
+You don't need to worry about it, since our SDK provides a built-in method to do it, that will be explained below.
+
+## Deploying the factory
+
+To deploy a factory, we need to create a deployment script. Create the `deploy` folder and create one file there: `deploy-factory.ts`. Put the following deployment script there:
+
+```ts
+import { utils, Wallet } from "zksync-web3";
+import * as ethers from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+
+// An example of a deploy script that will deploy and call a simple contract.
+export default async function (hre: HardhatRuntimeEnvironment) {
+    const wallet = new Wallet("<PRIVATE-KEY>");
+    const deployer = new Deployer(hre, wallet);
+    const factoryArtifact = await deployer.loadArtifact("AAFactory");
+    const aaArtifact = await deployer.loadArtifact("TwoUserMultisig");
+
+    // Deposit some funds to L2 in order to be able to perform L2 transactions.
+    // You can remove the depositing step if you know that the `wallet` has enough
+    // funds on zkSync.
+    const depositAmount = ethers.utils.parseEther("0.001");
+    const depositHandle = await deployer.zkWallet.deposit({
+        to: deployer.zkWallet.address,
+        token: utils.ETH_ADDRESS,
+        amount: depositAmount,
+    });
+    await depositHandle.wait();
+
+    // Getting the bytecodeHash of the AA
+    const bytecodeHash = utils.hashBytecode(aaArtifact.bytecode);
+
+    const factory = await deployer.deploy(factoryArtifact, [bytecodeHash], undefined, [
+        // Since the factory requires the code for the AA to be available,
+        // we should pass it here as well
+        aaArtifact.bytecode
+    ]);
+
+    console.log(`AA factory address: ${factory.address}`);
+}
+```
+
+In order to deploy the factory, you should run compile the contracts and run the script:
+
+```
+yarn hardhat compile
+yarn hardhat deploy-zksync --script deploy-factory.ts
+```
+
+The output should be roughly the following:
+
+```
+AA factory address: 0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627Ds
+```
+
+Where the address will be different for each run.
+
+## Working with accounts
+
+### Deploying account
+
+Now, let's deploy an AA and initiate a new transaction with it.
+
+In the `deploy` folder create a file `deploy-aa.ts`, where we will put the script.
+
+Firstly, let's deploy the AA. This will be basically a call to the `deployAccount` function:
+
+```ts
+import { utils, Wallet, Provider, EIP712Signer } from "zksync-web3";
+import * as ethers from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+import { Eip712Meta } from "zksync-web3/build/src/types";
+
+// Put the address of your AA factory
+const AA_FACTORY_ADDRESS = '0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627D'
+
+// An example of a deploy script that will deploy and call a simple contract.
+export default async function (hre: HardhatRuntimeEnvironment) {
+    const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
+    const wallet = (new Wallet(process.env.TEST_PK!)).connect(provider);
+    const factoryArtifact = await hre.artifacts.readArtifact('AAFactory');
+
+    const aaFactory = new ethers.Contract(
+        AA_FACTORY_ADDRESS,
+        factoryArtifact.abi, 
+        wallet
+    );
+
+    // The two owners of the multisig
+    const owner1 = Wallet.createRandom();
+    const owner2 = Wallet.createRandom();
+
+    // For the simplicity of the tutorial, we will use zero hash as salt
+    const salt =  ethers.constants.HashZero;
+    
+    const tx = await aaFactory.deployAccount(
+        salt,
+        owner1.address,
+        owner2.address
+    );
+
+    // Getting the address of the deployed contract
+    const multisig = const abiCoder = new ethers.utils.AbiCoder();
+    console.log(utils.create2Address(
+        addr,
+        await aaFactory.aaBytecodeHash(),
+        salt,
+        abiCoder.encode(['address','address'], [owner1.address, owner2.address])
+    ));
+    console.log(`Deployed at address ${multisig}`);
+}
+```
+
+Everything is pretty straightforward, except for the last lines:
+
+Currently, the contract deployer emits an event whenever a contract is deployed. 
+
+```ts
+const address = utils.getDeployedContracts(await tx.wait()).map(info => info.deployedAddress)[0];
+```
+
+### Starting a transaction from this account
+
+Before the AA can do any transactions, we firsly need to top up:
+
+```ts
+await (await wallet.sendTransaction({
+    to: multisig,
+    value: ethers.utils.parseEther('0.0001')
+})).wait();
+```
+
+Now, let's as an example try to deploy a new multisig, but the initiator of the transaction will be our account deployed in the previous part:
+
+```ts
+let aaTx = await aaFactory.populateTransaction.deployAccount(
+    salt,
+    Wallet.createRandom().address,
+    Wallet.createRandom().address
+);
+```
+
+Then, we need to fill all the transaction's fields:
+
+```ts
+const gasLimit = await provider.estimateGas(aaTx);
+const gasPrice =  await provider.getGasPrice();
+
+aaTx = {
+    ...aaTx,
+    gasLimit: gasLimit,
+    gasPrice: gasPrice,
+    chainId: (await provider.getNetwork()).chainId,
+    nonce: await provider.getTransactionCount(multisig),
+    type: 113,
+    customData: {
+        ergsPerPubdata: '1',
+        feeToken: utils.ETH_ADDRESS
+    } as Eip712Meta,
+    value: ethers.BigNumber.from(0)
+}
+```
+
+::: info Note on gasLimit
+
+Currently, we expect the `gasLimit` to cover both the verification and the execution step. Currently, the number of ergs that is returned by the `estimateGas` is `execution_ergs + 20000`, where `20000` is roughly equals to the overhead needed for the defaultAA to have both fee charged and the signature verified. In case your AA has very expensive verification step, you should some constant to the `gasLimit`.    
+
+:::
+
+Then, we need to sign the transaction and provide the `aaPramas` in the customData of the transaction:
+
+```ts
+const signedTxHash = EIP712Signer.getSignedDigest(aaTx);
+
+const signature = ethers.utils.concat([
+    // Note, that `signMessage` wouldn't work here, since we don't want
+    // the signed hash to be prefixed with `\x19Ethereum Signed Message:\n`
+    ethers.utils.joinSignature(owner1._signingKey().signDigest(signedTxHash)),
+    ethers.utils.joinSignature(owner2._signingKey().signDigest(signedTxHash))
+])
+
+aaTx.customData = {
+    ...aaTx.customData,
+    aaParams: {
+        from: multisig,
+        signature
+    }
+};
+```
+
+Now, we are ready to send the transaction:
+
+```ts
+const sentTx = await provider.sendTransaction(utils.serialize(aaTx));
+const receipt = await sentTx.wait();
+
+// Checking that the nonce for the account has increased
+console.log(await provider.getTransactionCount(multisig));
+```
+
+### Full example
+
+```ts
+
+```
