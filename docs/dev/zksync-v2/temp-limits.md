@@ -1,4 +1,12 @@
-# Current limitations
+# Temporary limitations
+
+::: tip Call for feedback
+
+As we add new features, this page is constantly updated. Most of the issues listed here (especially around the opcodes) will be resolved by the time of the mainnet launch.  
+
+If any of these block you, let us know on our [discord](https://discord.gg/px2aR7w), so we can prioritize accordingly.
+
+:::
 
 ## Using libraries in Solidity
 
@@ -12,17 +20,14 @@ However, if a library contains at least one `public` or `external` method, it is
 
 - `block.gaslimit` always returns `2^32-1`.
 - `MSIZE` always returns `2^16`.
-
-#### Always returning zero
-
-- `GASLIMIT` (`tx.gasprice`)
-- `ORIGIN` (`tx.origin`)
-- `GASPRICE` (`tx.gasprice`)
-- `CHAINID` (`chain_id`)
-- `BLOCKHASH` (`tx.blockhash`)
-- `DIFFICULTY` (`block.difficulty`)
-- `PC`
-- `COINBASE` (`block.coinbase`)
+- `GASLIMIT` (`tx.gasprice`) always returns `0`.
+- `ORIGIN` (`tx.origin`) always returns `0`.
+- `GASPRICE` (`tx.gasprice`) always returns `0`.
+- `CHAINID` (`chain_id`) always returns `0`.
+- `BLOCKHASH` (`tx.blockhash`) always returns `0`.
+- `DIFFICULTY` (`block.difficulty`) always returns `0`.
+- `PC` always returns `0`.
+- `COINBASE` (`block.coinbase`) always returns `0`.
 
 #### NOOP
 
