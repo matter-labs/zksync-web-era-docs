@@ -6,7 +6,7 @@ In this tutorial we will build a factory that deploys 2-of-2 multisig accounts.
 
 ## Preliminaries
 
-It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial and have read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
+It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial. It is also recommended to read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
 
 It is also assumed that you already have some experience working with Ethereum.
 
@@ -59,7 +59,7 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
     }
 
     function executeTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
-		_executeTransaction(_transaction)
+		_executeTransaction(_transaction);
 	}
 
     function _executeTransaction(Transaction calldata _transaction) internal {
@@ -71,8 +71,6 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
 		_executeTransaction(_transaction);
 	}
 
-
-	// bytes4(keccak256("isValidSignature(bytes32,bytes)")
 	bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
 
     function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
@@ -94,7 +92,7 @@ The `executeTransactionFromOutside` is needed to allow external users to initiat
 
 ### Signature validation
 
-Firstly, we need to implement the signature validation process. Since we are building a two-account multisig, let's pass its owners' addresses in the constructor. For signature validation, we will use Openzeppelin's utility libraries for dealing with `ECDSA`. 
+Firstly, we need to implement the signature validation process. Since we are building a two-account multisig, let's pass its owners' addresses in the constructor. For signature validation, we will use OpenZeppelin's utility libraries for dealing with `ECDSA`. 
 
 Add the following import:
 
@@ -134,7 +132,7 @@ function isValidSignature(bytes32 _hash, bytes calldata _signature) public overr
 
 ### Transaction validation
 
-Let's implement the validation process. It is responsible for validating the signature of the transaction and incrementing the nonce. Note, that there are some limitation on what this method is allowed to do. You can read more about them [here](../zksync-v2/aa.md#limitations-of-the-verification-step).
+Let's implement the validation process. It is responsible for validating the signature of the transaction and incrementing the nonce. Note, that there are some limitations on what this method is allowed to do. You can read more about them [here](../zksync-v2/aa.md#limitations-of-the-verification-step).
 
 To increment the nonce, you should use the `incrementNonceIfEquals` method of the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It accepts the nonce of the transaction and checks whether the nonce is the same as the provided one. If not, the transaction reverts. Otherwise, the nonce is increased.
 
@@ -188,7 +186,7 @@ function _executeTransaction(Transaction calldata _transaction) internal {
 
 Note, that whether the operator will consider the transaction successful will depend only on whether or not the call to `executeTransactions` was successful. So, it is highly recommended to put `require(success)` for the transaction, so that the users could get the best UX.
 
-### Full code for the AA
+### Full code of the account
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -213,9 +211,7 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
         owner2 = _owner2;
     }
 
-	// bytes4(keccak256("isValidSignature(bytes32,bytes)")
 	bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
-
 
 	modifier onlyBootloader() {
 		require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
@@ -327,7 +323,6 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-// An example of a deploy script that will deploy and call a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
     const wallet = new Wallet("<PRIVATE-KEY>");
     const deployer = new Deployer(hre, wallet);
@@ -377,7 +372,7 @@ Where the address will be different for each run.
 
 ### Deploying account
 
-Now, let's deploy an AA and initiate a new transaction with it. In this section we already assume that you have an EOA wallet with enough funds on it.
+Now, let's deploy an account and initiate a new transaction with it. In this section we assume that you already have an EOA account with enough funds on zkSync.
 
 In the `deploy` folder create a file `deploy-multisig.ts`, where we will put the script.
 
@@ -392,7 +387,7 @@ import { Eip712Meta } from "zksync-web3/build/src/types";
 // Put the address of your AA factory
 const AA_FACTORY_ADDRESS = '0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627D'
 
-// An example of a deploy script that will deploy and call a simple contract.
+// An example of a deploy script deploys and calls a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
     const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
     const wallet = (new Wallet("<PRIVATE-KEY>")).connect(provider);
@@ -476,7 +471,7 @@ aaTx = {
 
 ::: tip Note on gasLimit
 
-Currently, we expect the `gasLimit` to cover both the verification and the execution step. Currently, the number of ergs that is returned by the `estimateGas` is `execution_ergs + 20000`, where `20000` is roughly equals to the overhead needed for the defaultAA to have both fee charged and the signature verified. In case your AA has very expensive verification step, you should some constant to the `gasLimit`.    
+Currently, we expect the `gasLimit` to cover both the verification and the execution step. Currently, the number of ergs that is returned by the `estimateGas` is `execution_ergs + 20000`, where `20000` is roughly equals to the overhead needed for the defaultAA to have both fee charged and the signature verified. In case your AA has very expensive verification step, you should add some constant to the `gasLimit`.    
 
 :::
 
@@ -523,7 +518,6 @@ import { Eip712Meta } from "zksync-web3/build/src/types";
 // Put the address of your AA factory
 const AA_FACTORY_ADDRESS = '0xa0eD7885B408961430F89d797cD1cc87530D8fBe'
 
-// An example of a deploy script that will deploy and call a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
     const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
     const wallet = (new Wallet(process.env.TEST_PK!)).connect(provider);
