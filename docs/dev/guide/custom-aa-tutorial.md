@@ -8,7 +8,7 @@ In this tutorial we build a factory that deploys 2-of-2 multisig accounts.
 
 It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial and have read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
 
-It is also assumed that you already have some experience working with Ethereum.
+It is also assumed that you already have some experience working on Ethereum.
 
 ## Installing dependencies
 
@@ -31,7 +31,7 @@ yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/cont
 
 Each account needs to implement the [IAccountAbstraction](https://github.com/matter-labs/v2-testnet-contracts/blob/07e05084cdbc907387c873c2a2bd3427fe4fe6ad/l2/system-contracts/interfaces/IAccountAbstraction.sol#L7) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
 
-So the skeleton for the contract will look the following way:
+The skeleton for the contract will look the following way:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -134,17 +134,17 @@ function isValidSignature(bytes32 _hash, bytes calldata _signature) public overr
 
 ### Transaction validation
 
-Let's implement the validation process. It is responsible for validating the signature of the transaction and incrementing the nonce. Note, that there are some limitation on what this method is allowed to do. You can read more about them [here](../zksync-v2/aa.md#limitations-of-the-verification-step).
+Let's implement the validation process. It is responsible for validating the signature of the transaction and incrementing the nonce. Note, that there are some limitations on what this method is allowed to do. You can read more about them [here](../zksync-v2/aa.md#limitations-of-the-verification-step).
 
-To increment the nonce, you should use the `incrementNonceIfEquals` method of the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It accepts the nonce of the transaction and checks whether the nonce is the same as the provided one. If not, the transaction reverts. Otherwise, the nonce is increased.
+To increment the nonce, you should use the `incrementNonceIfEquals` method of the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether the nonce is the same as the provided one. If not, the transaction reverts. Otherwise, the nonce is increased.
 
-Even though the requirements above allow the accounts to touch only their storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a whitelisted case, since it behaves in the same way as your storage, it just happened to be in another contract. To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, you should add the folloing import:
+Even though the requirements above allow the accounts to touch only their storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a whitelisted case, since it behaves in the same way as your storage, it just happened to be in another contract. To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, you should add the following import:
 
 ```solidity
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
 ```
 
-The `TransactionHelper` library (already imported in the example above) can be used to get the hash of the transaction that should be signed. You can also implement your own signature scheme and use different a commitment for the transaction to sign, but in this example, we will use the hashes provided by this library.
+The `TransactionHelper` library (already imported in the example above) can be used to get the hash of the transaction that should be signed. You can also implement your own signature scheme and use a different commitment for the transaction to sign, but in this example we use the hash provided by this library.
 
 Using the `TransactionHelper` library:
 
@@ -186,7 +186,7 @@ function _executeTransaction(Transaction calldata _transaction) internal {
 }
 ```
 
-Note, that whether the operator will consider the transaction successful will depend only on whether or not the call to `executeTransactions` was successful. So, it is highly recommended to put `require(success)` for the transaction, so that the users could get the best UX.
+Note, that whether the operator will consider the transaction successful will depend only on whether the call to `executeTransactions` was successful. Therefore, it is highly recommended to put `require(success)` for the transaction, so that users get the best UX.
 
 ### Full code for the AA
 
@@ -312,10 +312,10 @@ contract AAFactory {
 
 Note, that on zkSync, the deployment is not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via `factoryDeps` field. Note, that the `_aaBytecodeHash` must be formed in a special way:
 
-- Firstly, it is hashed with sha256
+- Firstly, it is hashed with sha256.
 - Then, the first two bytes are replaced with the length of the bytecode in 32-byte words.
 
-You don't need to worry about it, since our SDK provides a built-in method to do it, that will be explained below.
+You don't need to worry about it, since our SDK provides a built-in method to do it, explained below.
 
 ## Deploying the factory
 
@@ -335,8 +335,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     const aaArtifact = await deployer.loadArtifact("TwoUserMultisig");
 
     // Deposit some funds to L2 in order to be able to perform L2 transactions.
-    // You can remove the depositing step if you know that the `wallet` has enough
-    // funds on zkSync.
+    // You can remove the depositing step if the `wallet` has enough funds on zkSync
     const depositAmount = ethers.utils.parseEther("0.001");
     const depositHandle = await deployer.zkWallet.deposit({
         to: deployer.zkWallet.address,
@@ -345,7 +344,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     });
     await depositHandle.wait();
 
-    // Getting the bytecodeHash of the AA
+    // Getting the bytecodeHash of the account
     const bytecodeHash = utils.hashBytecode(aaArtifact.bytecode);
 
     const factory = await deployer.deploy(factoryArtifact, [bytecodeHash], undefined, [
@@ -358,7 +357,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-In order to deploy the factory, you should run compile the contracts and run the script:
+In order to deploy the factory, you should compile the contracts and run the script:
 
 ```
 yarn hardhat compile
@@ -371,11 +370,11 @@ The output should be roughly the following:
 AA factory address: 0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627Ds
 ```
 
-Where the address will be different for each run.
+Note that the address will be different for each run.
 
 ## Working with accounts
 
-### Deploying account
+### Deploying an account
 
 Now, let's deploy an AA and initiate a new transaction with it. In this section we already assume that you have an EOA wallet with enough funds on it.
 
@@ -434,7 +433,7 @@ _Note, that zkSync has different address derivation rules from Ethereum_. You sh
 
 ### Starting a transaction from this account
 
-Before the AA can do any transactions, we firsly need to top it up:
+Before the deployed account can do any transactions, we need to top it up:
 
 ```ts
 await (await wallet.sendTransaction({
@@ -443,7 +442,7 @@ await (await wallet.sendTransaction({
 })).wait();
 ```
 
-Now, let's as an example try to deploy a new multisig, but the initiator of the transaction will be our account deployed in the previous part:
+Now, as an example, let's try to deploy a new multisig, but the initiator of the transaction will be our deployed account from the previous part:
 
 ```ts
 let aaTx = await aaFactory.populateTransaction.deployAccount(
@@ -631,7 +630,7 @@ You can download the complete project [here](https://github.com/matter-labs/cust
 
 ## Learn more
 
-- To learn more about the account abstraction on zkSync, check out its [documentation](../zksync-v2/aa.md).
-- To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
+- To learn more about account abstraction on zkSync, check out its [documentation page](../zksync-v2/aa.md).
+- To learn more about the `zksync-web3` SDK, check out its [documentation page](../../api/js).
+- To learn more about the zkSync hardhat plugins, check out their [documentation page](../../api/hardhat).
 
