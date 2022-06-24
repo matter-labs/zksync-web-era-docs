@@ -36,4 +36,4 @@ These opcodes will be supported by the time of the mainnet launch.
 ## Ignored by the compiler
 
 - `DIFFICULTY` (`block.difficulty`) always returns `0` (zkSync does not have proof of work consensus).
-- `PC` always returns `0` (we can technically support it, but most likely its use-cases are very specific for the EVM, so to avoid confusion it was decided not to; also, since solidity 0.7.0, it non-accessible in yul and solidity).
+- `PC` always returns `0` (we can technically support it, but most likely its use-cases are very specific for the EVM, so to avoid confusion it was decided not to; also, since solidity 0.7.0, it is non-accessible in yul and solidity).
