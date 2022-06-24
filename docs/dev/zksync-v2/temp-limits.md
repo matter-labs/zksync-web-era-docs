@@ -19,6 +19,7 @@ However, if a library contains at least one `public` or `external` method, it is
 - `SELFDESTRUCT` (it’s considered harmful and there are calls to deactivate it on L1).
 - `EXTCODECOPY` (it can be implemented if needed, but we skip it for now because zkEVM opcodes are not identical to EVM ones anyway).
 - `CALLCODE` (deprecated on Ethereum in favor of `DELEGATECALL`).
+- `DIFFICULTY` (`block.difficulty`) always returns `0` (zkSync does not have proof of work consensus).
 
 ## Temporarily simulated by constant values
 
@@ -35,5 +36,4 @@ These opcodes will be supported by the time of the mainnet launch.
 
 ## Ignored by the compiler
 
-- `DIFFICULTY` (`block.difficulty`) always returns `0` (zkSync does not have proof of work consensus).
-- `PC` always returns `0` (we can technically support it, but most likely its use-cases are very specific for the EVM, so to avoid confusion it was decided not to; also, since solidity 0.7.0, it is non-accessible in yul and solidity).
+- `PC` always returns `0` (since solidity 0.7.0, it is not accessible in Yul and Solidity).
