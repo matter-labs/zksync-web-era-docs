@@ -343,8 +343,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     const bytecodeHash = utils.hashBytecode(aaArtifact.bytecode);
 
     const factory = await deployer.deploy(factoryArtifact, [bytecodeHash], undefined, [
-        // Since the factory requires the code for the AA to be available,
-        // we should pass it here as well
+        // Since the factory requires the code of the multisig to be available,
+        // we should pass it here as well.
         aaArtifact.bytecode
     ]);
 
