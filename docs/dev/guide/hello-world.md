@@ -185,7 +185,7 @@ console.log(`The deployment will cost ${parsedFee} USDC`);
 
 Please note that the fees on the testnet do not correctly represent the fees on the future mainnet release.
 
-3. `USDC` must then be passed as the `feeToken` to the deployment transaction. 
+3. `USDC` must then be passed as the `feeToken` to the deployment transaction: 
 
 ```typescript
 const greeterContract = await deployer.deploy(artifact, [greeting], L2_USDC_ADDRESS);
@@ -226,7 +226,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const deployer = new Deployer(hre, wallet);
   const artifact = await deployer.loadArtifact("Greeter");
 
-  //Estimate contract deployment fee
+  // Estimate contract deployment fee
   const greeting = "Hi there!";
   const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], L2_USDC_ADDRESS);
 
@@ -506,7 +506,7 @@ async getBalance() {
 },
 ```
 
-3.  Estimate the fee:
+3. Estimate the fee:
 
 ```javascript
 async getFee() {
