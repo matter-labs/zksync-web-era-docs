@@ -92,7 +92,7 @@ The `executeTransactionFromOutside` is needed to allow external users to initiat
 
 ### Signature validation
 
-Firstly, we need to implement the signature validation process. Since we are building a two-account multisig, let's pass its owners' addresses in the constructor. For signature validation, we will use OpenZeppelin's utility libraries for dealing with `ECDSA`. 
+Firstly, we need to implement the signature validation process. Since we are building a two-account multisig, let's pass its owners' addresses in the constructor. In this tutorial, we use the OpenZeppelin's `ECDSA` library for signature validation.
 
 Add the following import:
 
