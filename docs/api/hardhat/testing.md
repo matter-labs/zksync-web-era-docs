@@ -1,5 +1,11 @@
 # Local testing
 
+::: warning Being updated
+
+This tutorial is outdated and is currently being reworked.
+
+:::
+
 Sometimes there is a need to test contracts in a local environment for network latency or fee reasons.
 
 zkSync team provides a dockerized local setup for this purpose.
