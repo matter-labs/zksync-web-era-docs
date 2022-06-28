@@ -3,7 +3,7 @@
 All the types which are used in the SDK are referenced here:
 
 ```typescript
-import { BytesLike, BigNumberish, providers } from "ethers";
+import { BytesLike, BigNumberish, providers, BigNumber } from "ethers";
 
 // 0x-prefixed, hex encoded, ethereum account address
 export type Address = string;
@@ -31,19 +31,25 @@ export enum PriorityOpTree {
 }
 
 export enum TransactionStatus {
-  NotFound = "not-found", // transaction has not been submitted to zkSync node
-  Processing = "processing", // transaction is in the mempool
-  Committed = "committed", // transaction has been committed
-  Finalized = "finalized", // transaction has been verified
+  NotFound = "not-found",
+  Processing = "processing",
+  Committed = "committed",
+  Finalized = "finalized",
 }
+
+export type AAParams = {
+  from: Address;
+  signature: BytesLike;
+};
 
 export type Eip712Meta = {
   feeToken?: Address;
-  ergsPerStorage?: BigNumberish;
   ergsPerPubdata?: BigNumberish;
-  withdrawToken?: Address;
   factoryDeps?: BytesLike[];
+  aaParams?: AAParams;
 };
+
+export type DeploymentType = "create" | "createAA";
 
 // prettier-ignore
 export type BlockTag =
@@ -56,10 +62,19 @@ export type BlockTag =
     | 'pending';
 
 export interface Token {
+  l1Address: Address;
+  l2Address: Address;
+  /** @deprecated This field is here for backward compatibility - please use l2Address field instead */
   address: Address;
   name: string;
   symbol: string;
   decimals: number;
+}
+
+export interface MessageProof {
+  id: number;
+  proof: string[];
+  root: string;
 }
 
 export interface EventFilter {
@@ -80,4 +95,6 @@ export type TransactionRequest = providers.TransactionRequest & { customData?: E
 export interface PriorityOpResponse extends TransactionResponse {
   waitL1Commit(confirmation?: number): Promise<providers.TransactionReceipt>;
 }
+
+export type BalancesMap = { [key: string]: BigNumber };
 ```

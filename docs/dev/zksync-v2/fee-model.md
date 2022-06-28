@@ -7,8 +7,7 @@ zkSync's version of `gas` is called `ergs` and represents not only the costs of 
 Since the costs for publishing the calldata on L1 are very volatile, the number of `ergs` needed for changing a storage slot is not constant. For each block, the operator defines the following dynamic parameters:
 
 - `ergs_price` — the table for the current base price in each token. The value of this parameter is used to determine the costs of VM execution in each token.
-- `ergs_per_storage` — the price in `ergs` for changing 1 storage value.
-- `ergs_per_pubdata` — the price in `ergs` for adding 1 byte of pubdata.
+- `ergs_per_pubdata` — the price in `ergs` for publishing one byte of data to Ethereum.
 
 **Please note that the public data is published only for state diffs.** If the same storage slot is updated 10 times in the same rollup block, only the final update will be published on Ethereum, thus only charging for public data once.
 
@@ -21,10 +20,6 @@ We want to show the clear distinction between our fee model and the Ethereum one
 - **Why can't we have constant price for storage value?**
 
 As part of the zkRollup security model, zkSync periodically publishes state diffs on Ethereum. The price of that is defined by Ethereum gas price and, as stated, is very volatile. This is why the operator can define the new price in `ergs` for publishing pubdata for each block. Users can provide a cap on the `ergs_per_pubdata` in the [EIP712](../../api/api.md#eip712) transactions.
-
-- **Why do we need a separate `ergs_per_storage` then?**
-
-This parameter will be most useful for zkPorter transactions. Generally, it is created to prevent state bloat and to be able to pay for publishing state diffs to the guardians. We will show more materials on that in the future with the zkPorter release.
 
 ### What does this mean to me?
 

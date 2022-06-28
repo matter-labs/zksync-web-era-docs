@@ -1,8 +1,12 @@
-# Current limitations
+# Temporary limitations
 
-## Native ETH transfers
+::: tip Call for feedback
 
-Support for native ETH transfers by passing `value` field to the transaction is not supported yet. As a consequence, `msg.value` is always equal to `0`.
+As we add new features, this page is constantly updated.
+
+If any of these block you, let us know on our [discord](https://discord.gg/px2aR7w), so we can prioritize accordingly.
+
+:::
 
 ## Using libraries in Solidity
 
@@ -12,29 +16,29 @@ However, if a library contains at least one `public` or `external` method, it is
 
 ## Unsupported opcodes
 
-#### Returning constant value
+- `SELFDESTRUCT` (it’s considered harmful and there are calls to deactivate it on L1).
+- `EXTCODECOPY` (it can be implemented if needed, but we skip it for now because zkEVM opcodes are not identical to EVM ones anyway).
+- `CALLCODE` (deprecated on Ethereum in favor of `DELEGATECALL`).
+- `DIFFICULTY` (`block.difficulty`) always returns `0` (zkSync does not have proof of work consensus).
+
+## Temporarily simulated by constant values
+
+These opcodes will be supported by the time of the mainnet launch.
 
 - `block.gaslimit` always returns `2^32-1`.
-- `EXTCODESIZE` always returns `0xffff`.
 - `MSIZE` always returns `2^16`.
+- `GASLIMIT` (`tx.gasprice`) always returns `0`.
+- `ORIGIN` (`tx.origin`) always returns `0`.
+- `GASPRICE` (`tx.gasprice`) always returns `0`.
+- `CHAINID` (`chain_id`) always returns `0`.
+- `BLOCKHASH` (`tx.blockhash`) always returns `0`.
+- `COINBASE` (`block.coinbase`) always returns `0`.
 
-#### Always returning zero
+## Ignored by the compiler
 
-- `GASLIMIT` (`tx.gasprice`)
-- `CALLVALUE` (`msg.value`)
-- `ORIGIN` (`tx.origin`)
-- `GASPRICE` (`tx.gasprice`)
-- `CHAINID` (`chain_id`)
-- `BLOCKHASH` (`tx.blockhash`)
-- `DIFFICULTY` (`block.difficulty`)
-- `PC`
-- `BALANCE` (`address(addr).balance`)
-- `SELFBALANCE` (`address(this).balance`)
-- `COINBASE` (`block.coinbase`)
-- `EXTCODEHASH` (`hash`)
+- `PC` always returns `0` (since solidity 0.7.0, it is not accessible in Yul and Solidity).
 
-#### NOOP
 
-- `EXTCODECOPY`
-- `SELFDESTRUCT` (`selfdestruct(addr)`)
-- `CALLCODE` (`callcode`)
+## Precompiles
+
+- We currently only support `sha256` and `erecover`. We don't support any other precompiles! 
