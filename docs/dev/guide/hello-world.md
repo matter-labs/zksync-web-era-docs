@@ -65,7 +65,7 @@
   };
   ```
   `zksolc.settings.experimental.tag` is a tag of the docker container that corresponds to a specific compiler version. If you don't set the tag - the latest version of zksolc is pulled.
-  If you want to verify your contracts on zkscan.io, you must set this field to a *specific* compiler version - the same one you used for deployed contracts.
+  If you want to verify your contracts in zkSync Block Explorer you must set this field to a *specific* compiler version - the same one you used for deployed contracts.
   
   3. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
   
