@@ -17,7 +17,7 @@ It is required that you have `Docker` and `docker-compose` installed on your com
 Also, some familiarity with the zkSync hardhat plugin is assumed. If you are new developing on zkSync with hardhat, a nice introduction is [here](./getting-started.md).
 
 ## Installing the testing environment
-::: warning Being updated
+::: warning 
 
 The local zkSync node is not available now and will be updated soon.
 
