@@ -158,9 +158,9 @@ module.exports = {
   },
 };
 ```
-`zksolc.settings.experimental.tag` is a tag of the docker container that corresponds to a specific compiler version. If you don't set the tag - the latest version of zksolc is pulled.
-If you want to verify your contracts in zkSync Block Explorer you must set this field to a *specific* compiler version - the same one you used for deployed contracts.
-
+.. note::
+  `zksolc.settings.experimental.tag` is a tag of the docker container that corresponds to a specific compiler version. If you don't set the tag - the latest version of zksolc is pulled.
+  If you want to verify your contracts in zkSync Block Explorer you must set this field to a *specific* compiler version - the same one you used for deployed contracts.
 
 If your default network is not `hardhat`, make sure to include `zksync: true` in its config, too.
 
