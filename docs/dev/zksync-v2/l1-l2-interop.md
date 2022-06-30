@@ -28,7 +28,7 @@ If users wanted to deposit funds to, or withdraw funds from, zkSync, they would 
 - All transactions are processed sequentially.
 - Each priority operation must be processed by the operator within `X` days since it was submitted to the contract.
 
-The first rule is strictly enforced by the smart contract. The second rule may be violated if the operator becomes malicious or unavailable. In case that happens, the system entered ''exodus mode''', where no new blocks can be processed and the users can withdraw their funds without cooperation from the operator.
+The first rule is strictly enforced by the smart contract. The second rule may be violated if the operator becomes malicious or unavailable. In case that happens, the system entered ''exodus mode'', where no new blocks can be processed and the users can withdraw their funds without cooperation from the operator.
 
 ### What changes are needed?
 
