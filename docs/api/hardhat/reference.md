@@ -64,16 +64,16 @@ zksolc: {
       enabled: true
     },
     experimental: {
-      dockerImage: "matterlabs/zksolc", 
+      dockerImage: "matterlabs/zksolc",
       tag: "v1.1.0"
     }
   }
 }
 ```
 
-- `zksolc.settings.experimental.tag` is a tag of the docker container that corresponds to a specific compiler version. If you don't set the tag - the latest version of zksolc is 
-pulled.
-If you want to verify your contracts in zkSync Block Explorer you must set this field to a *specific* compiler version - the same one you used for deployed contracts.
+- `zksolc.settings.experimental.tag` is a tag of the docker container that corresponds to a specific compiler version. If you don't set the tag - the latest version of zksolc is
+  pulled.
+  If you want to verify your contracts in zkSync Block Explorer you must set this field to a _specific_ compiler version - the same one you used for deployed contracts.
 
 ### Commands
 

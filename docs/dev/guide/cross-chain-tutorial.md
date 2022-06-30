@@ -41,8 +41,8 @@ contract Governance {
     }
 
     function callZkSync(
-        address zkSyncAddress, 
-        address contractAddr, 
+        address zkSyncAddress,
+        address contractAddr,
         bytes memory data,
         uint64 ergsLimit
     ) external payable {
@@ -140,7 +140,7 @@ module.exports = {
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
-        tag: "v1.1.0"
+        tag: "v1.1.0",
       },
     },
   },
@@ -162,7 +162,7 @@ module.exports = {
 ::: tip Docker image tag
 
 `zksolc.settings.experimental.tag` is a tag of the docker container that corresponds to a specific compiler version. If you don't set the tag - the latest version of zksolc is pulled.
-If you want to verify your contracts in zkSync Block Explorer you must set this field to a *specific* compiler version - the same one you used for deployed contracts.
+If you want to verify your contracts in zkSync Block Explorer you must set this field to a _specific_ compiler version - the same one you used for deployed contracts.
 
 :::
 
@@ -306,7 +306,7 @@ main().catch((error) => {
 
 ```ts
 // Imports
-import { BigNumber, Contract, ethers, Wallet } from 'ethers';
+import { BigNumber, Contract, ethers, Wallet } from "ethers";
 
 const GOVERNANCE_ABI = require("./governance.json");
 const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
@@ -321,11 +321,7 @@ async function main() {
   // governance contract
   const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>", l1Provider);
 
-  const govcontract = new Contract(
-    GOVERNANCE_ADDRESS,
-    GOVERNANCE_ABI,
-    wallet
-  );
+  const govcontract = new Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
 }
 ```
 
@@ -337,7 +333,7 @@ It is a recommended step, especially during the alpha testnet since regenesis ma
 
 ```ts
 // Imports
-import { Provider, utils } from 'zksync-web3';
+import { Provider, utils } from "zksync-web3";
 ```
 
 ```ts
@@ -382,12 +378,7 @@ async function main() {
   const ergsLimit = BigNumber.from(100000);
 
   // Getting the cost of the execution in Wei.
-  const baseCost = await zkSyncContract.l2TransactionBaseCost(
-    gasPrice,
-    ergsLimit,
-    ethers.utils.hexlify(data).length,
-    0,
-  );
+  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length, 0);
 }
 ```
 
@@ -411,17 +402,11 @@ async function main() {
   // ... Previous steps
 
   // Calling the L1 governance contract.
-  const tx = await govcontract.callZkSync(
-    zkSyncAddress,
-    COUNTER_ADDRESS,
-    data,
-    ergsLimit,
-    {
-      // Passing the necessary ETH `value` to cover the fee for the operation
-      value: baseCost,
-      gasPrice
-    }
-  );
+  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
+    // Passing the necessary ETH `value` to cover the fee for the operation
+    value: baseCost,
+    gasPrice,
+  });
 
   // Waiting until the L1 transaction is complete.
   await tx.wait();
@@ -430,8 +415,7 @@ async function main() {
 
 Make sure to replace `<COUNTER-ADDRESS>` with the address of the L2 counter contract.
 
-8. The status of the corresponding L2 transaction can also be tracked. After adding a priority request the `NewPriorityRequest(uint64 txId, bytes32 txHash, uint64 
-   expirationBlock, L2CanonicalTransaction transaction, bytes[] factoryDeps);` event is emitted. While the `transaction` is needed by the operator to process the tx, `txHash` 
+8. The status of the corresponding L2 transaction can also be tracked. After adding a priority request the `NewPriorityRequest(uint64 txId, bytes32 txHash, uint64 expirationBlock, L2CanonicalTransaction transaction, bytes[] factoryDeps);` event is emitted. While the `transaction` is needed by the operator to process the tx, `txHash`
    enables easy tracking of the transaction on zkSync.
 
 `zksync-web3`'s `Provider` has a method that given the L1 `ethers.TransactionResponse` object of a transaction that called the zkSync bridge, returns the `TransactionResponse` object that can conveniently wait for transaction to be processed on L2.
@@ -453,36 +437,28 @@ async function main() {
 ### Complete code
 
 ```ts
-import { BigNumber, Contract, ethers, Wallet } from 'ethers';
-import { Provider, utils } from 'zksync-web3';
+import { BigNumber, Contract, ethers, Wallet } from "ethers";
+import { Provider, utils } from "zksync-web3";
 
-const GOVERNANCE_ABI = require('./governance.json');
-const GOVERNANCE_ADDRESS = '<GOVERNANCE-ADDRESS>';
-const COUNTER_ABI = require('./counter.json');
-const COUNTER_ADDRESS = '<COUNTER-ADDRESS>';
+const GOVERNANCE_ABI = require("./governance.json");
+const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
+const COUNTER_ABI = require("./counter.json");
+const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
 
 async function main() {
   // Ethereum L1 provider
-  const l1Provider = ethers.providers.getDefaultProvider('goerli');
+  const l1Provider = ethers.providers.getDefaultProvider("goerli");
 
   // Governor wallet
-  const wallet = new Wallet('<WALLET-PRIVATE-KEY>', l1Provider);
+  const wallet = new Wallet("<WALLET-PRIVATE-KEY>", l1Provider);
 
-  const govcontract = new Contract(
-    GOVERNANCE_ADDRESS,
-    GOVERNANCE_ABI,
-    wallet
-  );
+  const govcontract = new Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
 
   // Getting the current address of the zkSync L1 bridge
-  const l2Provider = new Provider('https://zksync2-testnet.zksync.dev');
+  const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
   const zkSyncAddress = await l2Provider.getMainContractAddress();
   // Getting the `Contract` object of the zkSync bridge
-  const zkSyncContract = new Contract(
-    zkSyncAddress,
-    utils.ZKSYNC_MAIN_ABI,
-    wallet
-  );
+  const zkSyncContract = new Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
 
   // Encoding the tx data the same way it is done on Ethereum.
   const counterInterface = new ethers.utils.Interface(COUNTER_ABI);
@@ -494,30 +470,19 @@ async function main() {
   // Here we define the constant for ergs limit.
   const ergsLimit = BigNumber.from(100000);
   // Getting the cost of the execution.
-  const baseCost = await zkSyncContract.l2TransactionBaseCost(
-    gasPrice,
-    ergsLimit,
-    ethers.utils.hexlify(data).length,
-    0,
-  );
+  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length, 0);
 
   // Calling the L1 governance contract.
-  const tx = await govcontract.callZkSync(
-    zkSyncAddress,
-    COUNTER_ADDRESS,
-    data,
-    ergsLimit,
-    {
-      // Passing the necessary ETH `value` to cover the fee for the operation
-      value: baseCost,
-      gasPrice
-    }
-  );
+  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
+    // Passing the necessary ETH `value` to cover the fee for the operation
+    value: baseCost,
+    gasPrice,
+  });
 
   // Waiting until the L1 tx is complete.
   await tx.wait();
 
-  // Getting the TransactionResponse object for the L2 transaction corresponding to the 
+  // Getting the TransactionResponse object for the L2 transaction corresponding to the
   // execution call
   const l2Response = await l2Provider.getL2TransactionFromPriorityOp(tx);
 

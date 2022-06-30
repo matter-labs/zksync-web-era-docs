@@ -38,7 +38,6 @@ These opcodes will be supported by the time of the mainnet launch.
 
 - `PC` always returns `0` (since solidity 0.7.0, it is not accessible in Yul and Solidity).
 
-
 ## Precompiles
 
-- We currently only support `sha256` and `erecover`. We don't support any other precompiles! 
+- We currently only support `sha256` and `erecover`. We don't support any other precompiles!

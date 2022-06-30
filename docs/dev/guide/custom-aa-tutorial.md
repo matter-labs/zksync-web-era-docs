@@ -1,6 +1,6 @@
 # Tutorial: Account abstraction
 
-Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../zksync-v2/system-contracts.md#contractdeployer) system contract. 
+Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../zksync-v2/system-contracts.md#contractdeployer) system contract.
 
 In this tutorial we build a factory that deploys 2-of-2 multisig accounts.
 
@@ -12,7 +12,7 @@ It is also assumed that you already have some experience working on Ethereum.
 
 ## Installing dependencies
 
-We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it: 
+We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it:
 
 ```
 mkdir custom-aa-tutorial
@@ -20,9 +20,13 @@ cd custom-aa-tutorial
 yarn init -y
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+
 ##
+
 Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [Hello World](./hello-world.md) tutorial.
+
 ##
+
 Since we are working with zkSync contracts, we also need to install the package with the contracts and its peer dependencies:
 
 ```
@@ -57,7 +61,7 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
     }
 
     function _validateTransaction(Transaction calldata _transaction) internal {
-        
+
     }
 
     function executeTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
@@ -65,7 +69,7 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
 	}
 
     function _executeTransaction(Transaction calldata _transaction) internal {
-        
+
     }
 
     function executeTransactionFromOutside(Transaction calldata _transaction) external payable {
@@ -82,7 +86,7 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
 	receive() external payable {
         // If the bootloader called the `receive` function, it likely means
         // that something went wrong and the transaction should be aborted. The bootloader should
-        // only interact through the `validateTransaction`/`executeTransaction` methods.  
+        // only interact through the `validateTransaction`/`executeTransaction` methods.
         assert(msg.sender != BOOTLOADER_FORMAL_ADDRESS);
     }
 }
@@ -119,7 +123,7 @@ And then we can implement the `isValidSignature` method in the following way:
 ```solidity
 function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
     // The signature is the concatenation of the ECDSA signatures of the owners
-    // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long. 
+    // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long.
     require(_signature.length == 130, 'Signature length is incorrect');
 
     address recoveredAddr1 = ECDSA.recover(_hash, _signature[0:65]);
@@ -260,7 +264,7 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
 
 	function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
         // The signature is the concatenation of the ECDSA signatures of the owners
-        // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long. 
+        // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long.
         require(_signature.length == 130, 'Signature length is incorrect');
 
         address recoveredAddr1 = ECDSA.recover(_hash, _signature[0:65]);
@@ -326,31 +330,31 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-    const wallet = new Wallet("<PRIVATE-KEY>");
-    const deployer = new Deployer(hre, wallet);
-    const factoryArtifact = await deployer.loadArtifact("AAFactory");
-    const aaArtifact = await deployer.loadArtifact("TwoUserMultisig");
+  const wallet = new Wallet("<PRIVATE-KEY>");
+  const deployer = new Deployer(hre, wallet);
+  const factoryArtifact = await deployer.loadArtifact("AAFactory");
+  const aaArtifact = await deployer.loadArtifact("TwoUserMultisig");
 
-    // Deposit some funds to L2 in order to be able to perform L2 transactions.
-    // You can remove the depositing step if the `wallet` has enough funds on zkSync
-    const depositAmount = ethers.utils.parseEther("0.001");
-    const depositHandle = await deployer.zkWallet.deposit({
-        to: deployer.zkWallet.address,
-        token: utils.ETH_ADDRESS,
-        amount: depositAmount,
-    });
-    await depositHandle.wait();
+  // Deposit some funds to L2 in order to be able to perform L2 transactions.
+  // You can remove the depositing step if the `wallet` has enough funds on zkSync
+  const depositAmount = ethers.utils.parseEther("0.001");
+  const depositHandle = await deployer.zkWallet.deposit({
+    to: deployer.zkWallet.address,
+    token: utils.ETH_ADDRESS,
+    amount: depositAmount,
+  });
+  await depositHandle.wait();
 
-    // Getting the bytecodeHash of the account
-    const bytecodeHash = utils.hashBytecode(aaArtifact.bytecode);
+  // Getting the bytecodeHash of the account
+  const bytecodeHash = utils.hashBytecode(aaArtifact.bytecode);
 
-    const factory = await deployer.deploy(factoryArtifact, [bytecodeHash], undefined, [
-        // Since the factory requires the code of the multisig to be available,
-        // we should pass it here as well.
-        aaArtifact.bytecode
-    ]);
+  const factory = await deployer.deploy(factoryArtifact, [bytecodeHash], undefined, [
+    // Since the factory requires the code of the multisig to be available,
+    // we should pass it here as well.
+    aaArtifact.bytecode,
+  ]);
 
-    console.log(`AA factory address: ${factory.address}`);
+  console.log(`AA factory address: ${factory.address}`);
 }
 ```
 
@@ -386,43 +390,35 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Eip712Meta } from "zksync-web3/build/src/types";
 
 // Put the address of your AA factory
-const AA_FACTORY_ADDRESS = '0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627D'
+const AA_FACTORY_ADDRESS = "0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627D";
 
 // An example of a deploy script deploys and calls a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
-    const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
-    const wallet = (new Wallet("<PRIVATE-KEY>")).connect(provider);
-    const factoryArtifact = await hre.artifacts.readArtifact('AAFactory');
+  const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
+  const wallet = new Wallet("<PRIVATE-KEY>").connect(provider);
+  const factoryArtifact = await hre.artifacts.readArtifact("AAFactory");
 
-    const aaFactory = new ethers.Contract(
-        AA_FACTORY_ADDRESS,
-        factoryArtifact.abi, 
-        wallet
-    );
+  const aaFactory = new ethers.Contract(AA_FACTORY_ADDRESS, factoryArtifact.abi, wallet);
 
-    // The two owners of the multisig
-    const owner1 = Wallet.createRandom();
-    const owner2 = Wallet.createRandom();
+  // The two owners of the multisig
+  const owner1 = Wallet.createRandom();
+  const owner2 = Wallet.createRandom();
 
-    // For the simplicity of the tutorial, we will use zero hash as salt
-    const salt =  ethers.constants.HashZero;
-    
-    const tx = await aaFactory.deployAccount(
-        salt,
-        owner1.address,
-        owner2.address
-    );
-    await tx.wait();
+  // For the simplicity of the tutorial, we will use zero hash as salt
+  const salt = ethers.constants.HashZero;
 
-    // Getting the address of the deployed contract
-    const abiCoder = new ethers.utils.AbiCoder();
-    const multisigAddress = utils.create2Address(
-        AA_FACTORY_ADDRESS,
-        await aaFactory.aaBytecodeHash(),
-        salt,
-        abiCoder.encode(['address','address'], [owner1.address, owner2.address])
-    );
-    console.log(`Deployed on address ${multisigAddress}`);
+  const tx = await aaFactory.deployAccount(salt, owner1.address, owner2.address);
+  await tx.wait();
+
+  // Getting the address of the deployed contract
+  const abiCoder = new ethers.utils.AbiCoder();
+  const multisigAddress = utils.create2Address(
+    AA_FACTORY_ADDRESS,
+    await aaFactory.aaBytecodeHash(),
+    salt,
+    abiCoder.encode(["address", "address"], [owner1.address, owner2.address])
+  );
+  console.log(`Deployed on address ${multisigAddress}`);
 }
 ```
 
@@ -433,47 +429,45 @@ _Note, that zkSync has different address derivation rules from Ethereum_. You sh
 Before the deployed account can do any transactions, we need to top it up:
 
 ```ts
-await (await wallet.sendTransaction({
+await(
+  await wallet.sendTransaction({
     to: multisigAddress,
-    value: ethers.utils.parseEther('0.0001')
-})).wait();
+    value: ethers.utils.parseEther("0.0001"),
+  })
+).wait();
 ```
 
 Now, as an example, let's try to deploy a new multisig, but the initiator of the transaction will be our deployed account from the previous part:
 
 ```ts
-let aaTx = await aaFactory.populateTransaction.deployAccount(
-    salt,
-    Wallet.createRandom().address,
-    Wallet.createRandom().address
-);
+let aaTx = await aaFactory.populateTransaction.deployAccount(salt, Wallet.createRandom().address, Wallet.createRandom().address);
 ```
 
 Then, we need to fill all the transaction's fields:
 
 ```ts
 const gasLimit = await provider.estimateGas(aaTx);
-const gasPrice =  await provider.getGasPrice();
+const gasPrice = await provider.getGasPrice();
 
 aaTx = {
-    ...aaTx,
-    gasLimit: gasLimit,
-    gasPrice: gasPrice,
-    chainId: (await provider.getNetwork()).chainId,
-    nonce: await provider.getTransactionCount(multisigAddress),
-    type: 113,
-    customData: {
-        ergsPerPubdata: '1',
-        feeToken: utils.ETH_ADDRESS
-    } as Eip712Meta,
-    value: ethers.BigNumber.from(0)
-}
+  ...aaTx,
+  gasLimit: gasLimit,
+  gasPrice: gasPrice,
+  chainId: (await provider.getNetwork()).chainId,
+  nonce: await provider.getTransactionCount(multisigAddress),
+  type: 113,
+  customData: {
+    ergsPerPubdata: "1",
+    feeToken: utils.ETH_ADDRESS,
+  } as Eip712Meta,
+  value: ethers.BigNumber.from(0),
+};
 ```
 
 ::: tip Note on gasLimit
 
-Currently, we expect the `gasLimit` to cover both the verification and the execution steps. Currently, the number of ergs that is returned by the `estimateGas` is 
-`execution_ergs + 20000`, where `20000` is roughly equals to the overhead needed for the defaultAA to have both fee charged and the signature verified. In case your AA has very expensive verification step, you should add some constant to the `gasLimit`.    
+Currently, we expect the `gasLimit` to cover both the verification and the execution steps. Currently, the number of ergs that is returned by the `estimateGas` is
+`execution_ergs + 20000`, where `20000` is roughly equals to the overhead needed for the defaultAA to have both fee charged and the signature verified. In case your AA has very expensive verification step, you should add some constant to the `gasLimit`.
 
 :::
 
@@ -483,18 +477,18 @@ Then, we need to sign the transaction and provide the `aaParamas` in the customD
 const signedTxHash = EIP712Signer.getSignedDigest(aaTx);
 
 const signature = ethers.utils.concat([
-    // Note, that `signMessage` wouldn't work here, since we don't want
-    // the signed hash to be prefixed with `\x19Ethereum Signed Message:\n`
-    ethers.utils.joinSignature(owner1._signingKey().signDigest(signedTxHash)),
-    ethers.utils.joinSignature(owner2._signingKey().signDigest(signedTxHash))
-])
+  // Note, that `signMessage` wouldn't work here, since we don't want
+  // the signed hash to be prefixed with `\x19Ethereum Signed Message:\n`
+  ethers.utils.joinSignature(owner1._signingKey().signDigest(signedTxHash)),
+  ethers.utils.joinSignature(owner2._signingKey().signDigest(signedTxHash)),
+]);
 
 aaTx.customData = {
-    ...aaTx.customData,
-    aaParams: {
-        from: multisigAddress,
-        signature
-    }
+  ...aaTx.customData,
+  aaParams: {
+    from: multisigAddress,
+    signature,
+  },
 };
 ```
 
@@ -518,92 +512,82 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Eip712Meta } from "zksync-web3/build/src/types";
 
 // Put the address of your AA factory
-const AA_FACTORY_ADDRESS = '0xa0eD7885B408961430F89d797cD1cc87530D8fBe'
+const AA_FACTORY_ADDRESS = "0xa0eD7885B408961430F89d797cD1cc87530D8fBe";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-    const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
-    const wallet = (new Wallet("<PRIVATE-KEY>")).connect(provider);
-    const factoryArtifact = await hre.artifacts.readArtifact('AAFactory');
+  const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
+  const wallet = new Wallet("<PRIVATE-KEY>").connect(provider);
+  const factoryArtifact = await hre.artifacts.readArtifact("AAFactory");
 
-    const aaFactory = new ethers.Contract(
-        AA_FACTORY_ADDRESS,
-        factoryArtifact.abi, 
-        wallet
-    );
+  const aaFactory = new ethers.Contract(AA_FACTORY_ADDRESS, factoryArtifact.abi, wallet);
 
-    // The two owners of the multisig
-    const owner1 = Wallet.createRandom();
-    const owner2 = Wallet.createRandom();
+  // The two owners of the multisig
+  const owner1 = Wallet.createRandom();
+  const owner2 = Wallet.createRandom();
 
-    // For the simplicity of the tutorial, we will use zero hash as salt
-    const salt =  ethers.constants.HashZero;
-    
-    const tx = await aaFactory.deployAccount(
-        salt,
-        owner1.address,
-        owner2.address
-    );
-    await tx.wait();
+  // For the simplicity of the tutorial, we will use zero hash as salt
+  const salt = ethers.constants.HashZero;
 
-    // Getting the address of the deployed contract
-    const abiCoder = new ethers.utils.AbiCoder();
-    const multisigAddress = utils.create2Address(
-        AA_FACTORY_ADDRESS,
-        await aaFactory.aaBytecodeHash(),
-        salt,
-        abiCoder.encode(['address','address'], [owner1.address, owner2.address])
-    );
-    console.log(`Multisig deployed on address ${multisigAddress}`);
+  const tx = await aaFactory.deployAccount(salt, owner1.address, owner2.address);
+  await tx.wait();
 
-    await (await wallet.sendTransaction({
-        to: multisigAddress,
-        value: ethers.utils.parseEther('0.0001')
-    })).wait();
+  // Getting the address of the deployed contract
+  const abiCoder = new ethers.utils.AbiCoder();
+  const multisigAddress = utils.create2Address(
+    AA_FACTORY_ADDRESS,
+    await aaFactory.aaBytecodeHash(),
+    salt,
+    abiCoder.encode(["address", "address"], [owner1.address, owner2.address])
+  );
+  console.log(`Multisig deployed on address ${multisigAddress}`);
 
-    let aaTx = await aaFactory.populateTransaction.deployAccount(
-        salt,
-        Wallet.createRandom().address,
-        Wallet.createRandom().address
-    );
-    const gasLimit = await provider.estimateGas(aaTx);
-    const gasPrice =  await provider.getGasPrice();
+  await (
+    await wallet.sendTransaction({
+      to: multisigAddress,
+      value: ethers.utils.parseEther("0.0001"),
+    })
+  ).wait();
 
-    aaTx = {
-        ...aaTx,
-        gasLimit: gasLimit,
-        gasPrice: gasPrice,
-        chainId: (await provider.getNetwork()).chainId,
-        nonce: await provider.getTransactionCount(multisigAddress),
-        type: 113,
-        customData: {
-            ergsPerPubdata: '1',
-            feeToken: utils.ETH_ADDRESS
-        } as Eip712Meta,
-        value: ethers.BigNumber.from(0)
-    }
-    const signedTxHash = EIP712Signer.getSignedDigest(aaTx);
+  let aaTx = await aaFactory.populateTransaction.deployAccount(salt, Wallet.createRandom().address, Wallet.createRandom().address);
+  const gasLimit = await provider.estimateGas(aaTx);
+  const gasPrice = await provider.getGasPrice();
 
-    const signature = ethers.utils.concat([
-        // Note, that `signMessage` wouldn't work here, since we don't want
-        // the signed hash to be prefixed with `\x19Ethereum Signed Message:\n`
-        ethers.utils.joinSignature(owner1._signingKey().signDigest(signedTxHash)),
-        ethers.utils.joinSignature(owner2._signingKey().signDigest(signedTxHash))
-    ])
+  aaTx = {
+    ...aaTx,
+    gasLimit: gasLimit,
+    gasPrice: gasPrice,
+    chainId: (await provider.getNetwork()).chainId,
+    nonce: await provider.getTransactionCount(multisigAddress),
+    type: 113,
+    customData: {
+      ergsPerPubdata: "1",
+      feeToken: utils.ETH_ADDRESS,
+    } as Eip712Meta,
+    value: ethers.BigNumber.from(0),
+  };
+  const signedTxHash = EIP712Signer.getSignedDigest(aaTx);
 
-    aaTx.customData = {
-        ...aaTx.customData,
-        aaParams: {
-            from: multisigAddress,
-            signature
-        }
-    };
+  const signature = ethers.utils.concat([
+    // Note, that `signMessage` wouldn't work here, since we don't want
+    // the signed hash to be prefixed with `\x19Ethereum Signed Message:\n`
+    ethers.utils.joinSignature(owner1._signingKey().signDigest(signedTxHash)),
+    ethers.utils.joinSignature(owner2._signingKey().signDigest(signedTxHash)),
+  ]);
 
-    console.log(`The multisig's nonce before the first tx is ${await provider.getTransactionCount(multisigAddress)}`);
-    const sentTx = await provider.sendTransaction(utils.serialize(aaTx));
-    await sentTx.wait();
+  aaTx.customData = {
+    ...aaTx.customData,
+    aaParams: {
+      from: multisigAddress,
+      signature,
+    },
+  };
 
-    // Checking that the nonce for the account has increased
-    console.log(`The multisig's nonce after the first tx is ${await provider.getTransactionCount(multisigAddress)}`);
+  console.log(`The multisig's nonce before the first tx is ${await provider.getTransactionCount(multisigAddress)}`);
+  const sentTx = await provider.sendTransaction(utils.serialize(aaTx));
+  await sentTx.wait();
+
+  // Checking that the nonce for the account has increased
+  console.log(`The multisig's nonce after the first tx is ${await provider.getTransactionCount(multisigAddress)}`);
 }
 ```
 
@@ -630,4 +614,3 @@ You can download the complete project [here](https://github.com/matter-labs/cust
 - To learn more about account abstraction on zkSync, check out its [documentation page](../zksync-v2/aa.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation page](../../api/js).
 - To learn more about the zkSync hardhat plugins, check out their [documentation page](../../api/hardhat).
-

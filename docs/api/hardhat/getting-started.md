@@ -30,7 +30,7 @@ yarn init -y
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
-`typescript` and `ts-node` are optional - plugins will work fine in vanilla JavaScript environment. Although, please note that this tutorial *does* use TypeScript.
+`typescript` and `ts-node` are optional - plugins will work fine in vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
 
 2. Create the `hardhat.config.ts` file and paste the following code within it:
 
@@ -48,7 +48,7 @@ module.exports = {
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
-        tag: "v1.1.0"
+        tag: "v1.1.0",
       },
     },
   },
@@ -70,8 +70,8 @@ module.exports = {
 
 ::: tip Docker image tag
 
-  `zksolc.settings.experimental.tag` is a tag of the docker container that corresponds to a specific compiler version. If you don't set the tag - the latest version of zksolc is pulled.
-  If you want to verify your contracts in zkSync Block Explorer you must set this field to a *specific* compiler version - the same one you used for deployed contracts.
+`zksolc.settings.experimental.tag` is a tag of the docker container that corresponds to a specific compiler version. If you don't set the tag - the latest version of zksolc is pulled.
+If you want to verify your contracts in zkSync Block Explorer you must set this field to a _specific_ compiler version - the same one you used for deployed contracts.
 
 :::
 
@@ -211,7 +211,7 @@ To get the address of an ERC-20 token on L2, call the `getL2TokenAddress()` meth
 :::
 
 ```typescript
-const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS)
+const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS);
 ```
 
 2. To output the fee in a human-readable format:
@@ -220,6 +220,7 @@ const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS)
 const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
 console.log(`The deployment will cost ${parsedFee} USDC`);
 ```
+
 Please note that the fees on the testnet do not correctly represent the fees on the future mainnet release.
 
 3. Now pass zkSync `USDC` as the `feeToken` to the deployment transaction:
@@ -254,9 +255,9 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
-  const provider = new Provider(hre.userConfig.zkSyncDeploy?.zkSyncNetwork)
+  const provider = new Provider(hre.userConfig.zkSyncDeploy?.zkSyncNetwork);
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
-  const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS)
+  const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS);
 
   // Create deployer object and load the artifact of the contract we want to deploy.
   const deployer = new Deployer(hre, wallet);
