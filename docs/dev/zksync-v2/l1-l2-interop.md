@@ -55,7 +55,7 @@ For each priority queue transaction, besides supplying the transaction input dat
 
 ## Priority mode
 
-If the operator fails to process the needed L1 transactions, the system enters the ''Priority mode'''. In this mode, everyone can become an operator by staking tokens. The exact details of the priority mode are still under development and will be described in more detail closer to the mainnet launch.
+If the operator fails to process the needed L1 transactions, the system enters the ''Priority mode''. In this mode, everyone can become an operator by staking tokens. The exact details of the priority mode are still under development and will be described in more detail closer to the mainnet launch.
 
 ## L2 -> L1 communication
 
