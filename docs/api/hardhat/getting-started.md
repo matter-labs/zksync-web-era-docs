@@ -198,8 +198,14 @@ const depositHandle = await deployer.zkWallet.deposit({
 // Wait until the deposit is processed by zkSync.
 await depositHandle.wait();
 ```
+
+::: tip Note on L2 token address
+
 Note that on the zkSync network, addresses of ERC-20 tokens are different from their addresses on Ethereum. So if, for example, you deposit an ERC-20 token to zkSync, the token address will not be the same as on Ethereum.
 To get the address of an ERC-20 token on L2, call the `getL2TokenAddress()` method from the `Provider` / `Wallet` class:
+
+:::
+
 ```typescript
 const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS)
 ```
