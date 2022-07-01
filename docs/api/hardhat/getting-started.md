@@ -48,7 +48,6 @@ module.exports = {
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
-        tag: "v1.1.0",
       },
     },
   },
@@ -67,13 +66,6 @@ module.exports = {
   },
 };
 ```
-
-::: tip Docker image tag
-
-`zksolc.settings.experimental.tag` is a tag of the docker container that corresponds to a specific compiler version. If you don't set the tag - the latest version of zksolc is pulled.
-If you want to verify your contracts in zkSync Block Explorer you must set this field to a _specific_ compiler version - the same one you used for deployed contracts.
-
-:::
 
 3. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
 
@@ -223,7 +215,7 @@ console.log(`The deployment will cost ${parsedFee} USDC`);
 
 Please note that the fees on the testnet do not correctly represent the fees on the future mainnet release.
 
-3. Now pass zkSync `USDC` as the `feeToken` to the deployment transaction:
+3. Now pass the L2 `USDC` address as the `feeToken` to the deployment transaction:
 
 ```typescript
 const greeterContract = await deployer.deploy(artifact, [greeting], { feeToken: L2_USDC_ADDRESS });

@@ -52,28 +52,7 @@ networks: {
 - `dockerImage` is the name of the docker image of the compiler. If `compilerSource` is `binary`, this field is ignored.
 - `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default.
 
-Also there can be added a docker image tag:
-
-```typescript
-zksolc: {
-  version: "0.1.0",
-  compilerSource: "docker",
-  settings: {
-    compilerPath: "zksolc",
-    optimizer: {
-      enabled: true
-    },
-    experimental: {
-      dockerImage: "matterlabs/zksolc",
-      tag: "v1.1.0"
-    }
-  }
-}
 ```
-
-- `zksolc.settings.experimental.tag` is a tag of the docker container that corresponds to a specific compiler version. If you don't set the tag - the latest version of zksolc is
-  pulled.
-  If you want to verify your contracts in zkSync Block Explorer you must set this field to a _specific_ compiler version - the same one you used for deployed contracts.
 
 ### Commands
 
@@ -94,12 +73,16 @@ This plugin provides utilities for deploying smart contracts on zkSync with arti
 Add the latest version of this plugin to your project with the following command:
 
 ```
+
 # Yarn
+
 yarn add -D @matterlabs/hardhat-zksync-deploy
 
 # Npm
+
 npm i -D @matterlabs/hardhat-zksync-deploy
-```
+
+````
 
 ### Exports
 
@@ -181,7 +164,7 @@ class Deployer {
    * @returns Factory dependencies in the format expected by SDK.
    */
   async extractFactoryDeps(artifact: ZkSyncArtifact): Promise<string[]>
-```
+````
 
 ### Configuration
 

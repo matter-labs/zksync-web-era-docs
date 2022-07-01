@@ -466,8 +466,7 @@ aaTx = {
 
 ::: tip Note on gasLimit
 
-Currently, we expect the `gasLimit` to cover both the verification and the execution steps. Currently, the number of ergs that is returned by the `estimateGas` is
-`execution_ergs + 20000`, where `20000` is roughly equals to the overhead needed for the defaultAA to have both fee charged and the signature verified. In case your AA has very expensive verification step, you should add some constant to the `gasLimit`.
+Currently, we expect the `gasLimit` to cover both the verification and the execution steps. Currently, the number of ergs that is returned by the `estimateGas` is `execution_ergs + 20000`, where `20000` is roughly equals to the overhead needed for the defaultAA to have both fee charged and the signature verified. In case your AA has very expensive verification step, you should add some constant to the `gasLimit`.
 
 :::
 
