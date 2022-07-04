@@ -52,7 +52,6 @@ networks: {
 - `dockerImage` is the name of the docker image of the compiler. If `compilerSource` is `binary`, this field is ignored.
 - `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default.
 
-```
 
 ### Commands
 
