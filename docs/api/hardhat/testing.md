@@ -1,16 +1,34 @@
 # Local testing
 
+::: warning Being updated
+
+This tutorial is outdated and is currently being reworked.
+
+:::
+
 Sometimes there is a need to test contracts in a local environment for network latency or fee reasons.
 
 zkSync team provides a dockerized local setup for this purpose.
 
 ## Prerequisites
 
+::: warning
+
+The local zkSync node is not available now and will be updated soon.
+
+:::
+
 It is required that you have `Docker` and `docker-compose` installed on your computer.
 
 Also, some familiarity with the zkSync hardhat plugin is assumed. If you are new developing on zkSync with hardhat, a nice introduction is [here](./getting-started.md).
 
 ## Installing the testing environment
+
+::: warning
+
+The local zkSync node is not available now and will be updated soon.
+
+:::
 
 You can download the dockerized setup with the following command.
 

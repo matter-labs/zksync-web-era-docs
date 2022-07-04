@@ -8,14 +8,14 @@ This plugin is used to provide a convenient interface for compiling zkSync smart
 
 [@matterlabs/hardhat-zksync-solc](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-solc)
 
-Add this plugin to your project with the following command:
+Add the latest version of this plugin to your project with the following command:
 
 ```
 # Yarn
-yarn add -D @matterlabs/hardhat-zksync-solc@0.3
+yarn add -D @matterlabs/hardhat-zksync-solc
 
 # Npm
-npm i -D @matterlabs/hardhat-zksync-solc@0.3
+npm i -D @matterlabs/hardhat-zksync-solc
 ```
 
 ### Exports
@@ -24,7 +24,7 @@ This plugin most often will not be used directly in the code.
 
 ### Configuration
 
-```js
+```typescript
 zksolc: {
   version: "0.1.0",
   compilerSource: "docker",
@@ -36,6 +36,7 @@ zksolc: {
     experimental: {
       dockerImage: "matterlabs/zksolc"
     }
+  }
 }
 networks: {
   hardhat: {
@@ -50,6 +51,7 @@ networks: {
 - `optimizer` is a field that describes the parameters of the optimizer.
 - `dockerImage` is the name of the docker image of the compiler. If `compilerSource` is `binary`, this field is ignored.
 - `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default.
+
 
 ### Commands
 
@@ -67,15 +69,19 @@ This plugin provides utilities for deploying smart contracts on zkSync with arti
 
 [@matterlabs/hardhat-zksync-deploy](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-deploy)
 
-Add this plugin to your project with the following command:
+Add the latest version of this plugin to your project with the following command:
 
 ```
+
 # Yarn
-yarn add -D @matterlabs/hardhat-zksync-deploy@0.2
+
+yarn add -D @matterlabs/hardhat-zksync-deploy
 
 # Npm
-npm i -D @matterlabs/hardhat-zksync-deploy@0.2
-```
+
+npm i -D @matterlabs/hardhat-zksync-deploy
+
+````
 
 ### Exports
 
@@ -157,7 +163,7 @@ class Deployer {
    * @returns Factory dependencies in the format expected by SDK.
    */
   async extractFactoryDeps(artifact: ZkSyncArtifact): Promise<string[]>
-```
+````
 
 ### Configuration
 
