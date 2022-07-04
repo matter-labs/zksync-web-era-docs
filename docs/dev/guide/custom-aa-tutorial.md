@@ -21,17 +21,13 @@ yarn init -y
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
-##
-
-Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [Hello World](./hello-world.md) tutorial.
-
-##
-
 Since we are working with zkSync contracts, we also need to install the package with the contracts and its peer dependencies:
 
 ```
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
+
+Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [Hello World](./hello-world.md) tutorial.
 
 ## Account abstraction
 
