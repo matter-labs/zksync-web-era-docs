@@ -1,11 +1,5 @@
 # Tutorial: Cross-chain governance
 
-::: warning Being updated
-
-This tutorial is outdated and is currently being reworked.
-
-:::
-
 This tutorial serves as an example of how to implement L1 to L2 contract interaction. The following functionality is implemented in this tutorial:
 
 - A "counter" smart contract is deployed on zkSync, which stores a number that can be incremented by calling the `increment` method.
@@ -36,10 +30,8 @@ The code of the governance contract is the following:
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-// Importing zkSync contract interface
-import "@matterlabs/zksync-contracts/contracts/interfaces/IZkSync.sol";
-// Importing `Operations` library which has the `Operations.QueueType` and `Operations.OpTree` types
-import "@matterlabs/zksync-contracts/contracts/libraries/Operations.sol";
+import "@matterlabs/zksync-contracts/l1/contracts/zksync/interfaces/IZkSync.sol";
+import "@matterlabs/zksync-contracts/l1/contracts/zksync/Operations.sol";
 
 contract Governance {
     address public governor;
@@ -57,8 +49,7 @@ contract Governance {
         require(msg.sender == governor, "Only governor is allowed");
 
         IZkSync zksync = IZkSync(zkSyncAddress);
-        // Note that we pass the value as the fee for executing the transaction
-        zksync.requestExecute{value: msg.value}(contractAddr, data, ergsLimit, Operations.QueueType.Deque, Operations.OpTree.Full);
+        zksync.requestL2Transaction{value: msg.value}(contractAddr, data, ergsLimit, new bytes[](0), QueueType.Deque);
     }
 }
 ```
@@ -307,7 +298,7 @@ main().catch((error) => {
 
 ```ts
 // Imports
-import { ethers } from "ethers";
+import { BigNumber, Contract, ethers, Wallet } from "ethers";
 
 const GOVERNANCE_ABI = require("./governance.json");
 const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
@@ -322,7 +313,7 @@ async function main() {
   // governance contract
   const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>", l1Provider);
 
-  const governance = new ethers.Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
+  const govcontract = new Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
 }
 ```
 
@@ -334,7 +325,7 @@ It is a recommended step, especially during the alpha testnet since regenesis ma
 
 ```ts
 // Imports
-import { utils, Provider } from "zksync-web3";
+import { Provider, utils } from "zksync-web3";
 ```
 
 ```ts
@@ -346,7 +337,7 @@ async function main() {
   // Getting the current address of the zkSync L1 bridge
   const zkSyncAddress = await l2Provider.getMainContractAddress();
   // Getting the `Contract` object of the zkSync bridge
-  const zkSyncContract = new ethers.Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
+  const zkSyncContract = new Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
 }
 ```
 
@@ -376,10 +367,10 @@ async function main() {
   // Here we define the constant for ergs limit.
   // There is currently no way to get the exact ergsLimit required for an L1->L2 tx.
   // You can read more on that in the tip below
-  const ergsLimit = BigNumber.from(100);
+  const ergsLimit = BigNumber.from(100000);
 
   // Getting the cost of the execution in Wei.
-  const baseCost = await zkSyncContract.executeBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length, 0, 0);
+  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length, 0);
 }
 ```
 
@@ -403,22 +394,21 @@ async function main() {
   // ... Previous steps
 
   // Calling the L1 governance contract.
-  const changeTx = await governance.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
-    // Passing the necessary ETH `value` to cover the fee for the operation.
+  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
+    // Passing the necessary ETH `value` to cover the fee for the operation
     value: baseCost,
-    // Since the `baseCost` depends on the `gasPrice` of the transaction
-    // it is important to pass `gasPrice` in the overrides as well.
     gasPrice,
   });
 
   // Waiting until the L1 transaction is complete.
-  await changeTx.wait();
+  await tx.wait();
 }
 ```
 
 Make sure to replace `<COUNTER-ADDRESS>` with the address of the L2 counter contract.
 
-8. The status of the corresponding L2 transaction can also be tracked. After adding a priority request the `NewPriorityRequest(uint64 serialId, bytes opMetadata` event is emitted. While the `opMetadata` is needed by the operator to process the tx, `serialId` is used to generate the L2 hash of the transaction and enables easy tracking of the transaction on zkSync.
+8. The status of the corresponding L2 transaction can also be tracked. After adding a priority request the `NewPriorityRequest(uint64 txId, bytes32 txHash, uint64 expirationBlock, L2CanonicalTransaction transaction, bytes[] factoryDeps);` event is emitted. While the `transaction` is needed by the operator to process the tx, `txHash`
+   enables easy tracking of the transaction on zkSync.
 
 `zksync-web3`'s `Provider` has a method that given the L1 `ethers.TransactionResponse` object of a transaction that called the zkSync bridge, returns the `TransactionResponse` object that can conveniently wait for transaction to be processed on L2.
 
@@ -428,7 +418,7 @@ async function main() {
 
   // Getting the TransactionResponse object for the L2 transaction corresponding to the
   // execution call
-  const l2Response = await l2Provider.getL2TransactionFromPriorityOp(changeTx);
+  const l2Response = await l2Provider.getL2TransactionFromPriorityOp(tx);
 
   // The receipt of the L2 transaction corresponding to the call to the counter contract
   const l2Receipt = await l2Response.wait();
@@ -439,7 +429,7 @@ async function main() {
 ### Complete code
 
 ```ts
-import { BigNumber, ethers } from "ethers";
+import { BigNumber, Contract, ethers, Wallet } from "ethers";
 import { Provider, utils } from "zksync-web3";
 
 const GOVERNANCE_ABI = require("./governance.json");
@@ -452,17 +442,17 @@ async function main() {
   const l1Provider = ethers.providers.getDefaultProvider("goerli");
 
   // Governor wallet
-  const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>", l1Provider);
+  const wallet = new Wallet("<WALLET-PRIVATE-KEY>", l1Provider);
 
-  const governance = new ethers.Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
+  const govcontract = new Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
 
   // Getting the current address of the zkSync L1 bridge
   const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
   const zkSyncAddress = await l2Provider.getMainContractAddress();
   // Getting the `Contract` object of the zkSync bridge
-  const zkSyncContract = new ethers.Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
+  const zkSyncContract = new Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
 
-  // Encoding the transaction data the same way it is done on Ethereum.
+  // Encoding the tx data the same way it is done on Ethereum.
   const counterInterface = new ethers.utils.Interface(COUNTER_ABI);
   const data = counterInterface.encodeFunctionData("increment", []);
 
@@ -470,30 +460,27 @@ async function main() {
   const gasPrice = await l1Provider.getGasPrice();
 
   // Here we define the constant for ergs limit.
-  const ergsLimit = BigNumber.from(100);
+  const ergsLimit = BigNumber.from(100000);
   // Getting the cost of the execution.
-  const baseCost = await zkSyncContract.executeBaseCost(gasPrice, ergsLimit, ethers.utils.arrayify(data).length, 0, 0);
+  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length, 0);
 
   // Calling the L1 governance contract.
-  const changeTx = await governance.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
+  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
     // Passing the necessary ETH `value` to cover the fee for the operation
     value: baseCost,
-    // Since the `baseCost` depends on the `gasPrice` of the transaction
-    // it is important to pass `gasPrice` in the overrides as well.
     gasPrice,
   });
 
-  // Waiting until the L1 transaction is complete.
-  await changeTx.wait();
+  // Waiting until the L1 tx is complete.
+  await tx.wait();
 
   // Getting the TransactionResponse object for the L2 transaction corresponding to the
   // execution call
-  const l2Response = await l2Provider.getL2TransactionFromPriorityOp(changeTx);
+  const l2Response = await l2Provider.getL2TransactionFromPriorityOp(tx);
 
   // The receipt of the L2 transaction corresponding to the call to the Increment contract
   const l2Receipt = await l2Response.wait();
-
-  console.log(`Transaction successful! L2 hash: ${l2Receipt.transactionHash}`);
+  console.log(l2Receipt);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
