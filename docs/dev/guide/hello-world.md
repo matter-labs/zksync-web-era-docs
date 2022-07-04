@@ -226,6 +226,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Initialize the wallet.
   const provider = new Provider(hre.userConfig.zkSyncDeploy?.zkSyncNetwork);
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
+  
+  // Deriving L2 token address from L1 token address.
   const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS);
 
   // Create deployer object and load the artifact of the contract we want to deploy.
