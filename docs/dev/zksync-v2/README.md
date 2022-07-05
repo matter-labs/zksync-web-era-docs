@@ -11,7 +11,6 @@ zkSync 2.0 is made to look and feel like Ethereum, but with higher throughput an
 - [Handling of ETH and tokens](./handling-of-eth.md)
 - [Fee model](./fee-model.md)
 - [Transaction types](./tx-types.md)
-- [Transaction formats](./tx-formats.md)
 - [Confirmations and finality](./confirmation-and-finality.md)
 - [Current limitations](./temp-limits.md)
 - [Decentralization roadmap](./decentralization-roadmap.md)
