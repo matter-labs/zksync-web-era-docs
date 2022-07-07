@@ -16,7 +16,7 @@ However, we are providing our default bridges (one for ETH and one for ERC20 tok
 
 ::: warning
 
-Addresses of tokens on L2 may differ from the L1
+Addresses of tokens on L2 will always differ from L1 addresses.
 
 :::
 
@@ -41,7 +41,7 @@ In this case the inclusion of the message can be proven on the L1 bridge to retu
 
 ### Withdrawals
 
-User sends a transaction to the L2 bridge calling `withdraw` method, and these actions are getting done within it:
+User makes a transaction to the L2 bridge by calling the `withdraw` method. The following actions are then being executed:
 
 - L2 tokens are being burnt.
 - L2 -> L1 message with the information about the withdrawal is being sent.
