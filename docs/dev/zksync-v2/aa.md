@@ -42,7 +42,7 @@ Each account is recommended to implement the [IAccountAbstraction](https://githu
 Note that each of these methods accept the [Transaction](https://github.com/matter-labs/v2-testnet-contracts/blob/0e1c95969a2f92974370326e4430f03e417b25e7/l2/system-contracts/TransactionHelper.sol#L15) struct. 
 While some of its fields are self-explanatory, there are also 6 `reserved` fields, the meaning of each is defined by the transaction's type. We decided to not give these fields names, since they might be unneeded in some future transaction types. For now, the convention is:
 
-- `reverted[0]` is the nonce.
+- `reserved[0]` is the nonce.
 - `reserved[1]` is `msg.value` that should be passed with the transaction.
 
 An example of the implementation of the AA interface is the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/6a93ff85d33dfff0008624eb9777d5a07a26c55d/l2/system-contracts/DefaultAA.sol#L16) of the EOA account. 
