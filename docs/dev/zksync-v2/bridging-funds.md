@@ -33,11 +33,15 @@ User makes a transaction to the L1 bridge by calling the `deposit` method. The f
 - L1 tokens are being sent to the L1 bridge and become locked there.
 - L1 bridge initiates a transaction to the L2 bridge using L1 -> L2 communication.
 
-Within the L2 transaction tokens are being minted and sent to the specified address on L2.
+Within the L2 transaction, tokens are being minted and sent to the specified address on L2.
+
+For every executed L1 -> L2 transaction there will be an L2 -> L1 log message confirming its execution.
 
 If this transaction fails for any reason (for example, the provided fee is too low)
-then the L2 -> L1 message is being sent.
-In this case the inclusion of the message can be proven on the L1 bridge to return the deposited funds back.
+then the log message will state its failure.
+In this case the inclusion of the log can be proven on the L1 bridge to return the deposited funds back.
+
+The log message described above is not supported yet on our current testnet.
 
 ### Withdrawals
 
