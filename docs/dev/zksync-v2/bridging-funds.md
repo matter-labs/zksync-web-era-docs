@@ -28,24 +28,24 @@ or `getDefaultBridgeAddresses` method of `Provider` in our JS SDK.
 
 ### Deposits
 
-User sends a transaction to the L1 bridge calling `deposit` method, and these actions are getting done within it:
+User makes a transaction to the L1 bridge by calling the `deposit` method. The following actions are then being executed:
 
-- L1 tokens are being sending to the L1 bridge and become locked there.
+- L1 tokens are being sent to the L1 bridge and become locked there.
 - L1 bridge initiates a transaction to the L2 bridge using L1 -> L2 communication.
 
-Within the L2 transaction tokens are being minting to the specified address on L2.
+Within the L2 transaction tokens are being minted and sent to the specified address on L2.
 
-If this transaction fails for any reason (for example provided fee is too low)
-then the L2 -> L1 message is being sending.
-In this case the inclusion of the message can be proven on L1 bridge to return deposited funds back.
+If this transaction fails for any reason (for example, the provided fee is too low)
+then the L2 -> L1 message is being sent.
+In this case the inclusion of the message can be proven on the L1 bridge to return the deposited funds back.
 
 ### Withdrawals
 
 User sends a transaction to the L2 bridge calling `withdraw` method, and these actions are getting done within it:
 
-- L2 tokens are being burning.
-- L2 -> L1 message with the information about the withdrawal is being sending.
+- L2 tokens are being burnt.
+- L2 -> L1 message with the information about the withdrawal is being sent.
 
-After that anyone can finalize the withdrawal on L1 bridge by proving the inclusion of L2 -> L1 message and funds will be sent to the withdrawal recipient.
+After that, anyone can finalize the withdrawal on the L1 bridge by proving the inclusion of the L2 -> L1 message, and the funds will be sent to the withdrawal recipient.
 
 For the testnet we are automatically finalizing all the withdrawals.
