@@ -181,6 +181,25 @@ You do not need to care about the intrinsics, since the returned `id` and `proof
 
 A nice example of using this endpoint via our SDK can be found [here](../dev/guide/l2-l1.md).
 
+### `zks_getBridgeContracts`
+
+Returns L1/L2 addresses of default bridges.
+
+### Input parameters
+
+None.
+
+### Output format
+
+```json
+{
+  "l1Erc20DefaultBridge": "0x7786255495348c08f82c09c82352019fade3bf29",
+  "l1EthDefaultBridge": "0xcbebcd41ceabbc85da9bb67527f58d69ad4dfff5",
+  "l2Erc20DefaultBridge": "0x92131f10c54f9b251a5deaf3c05815f7659bbe02",
+  "l2EthDefaultBridge": "0x2c5d8a991f399089f728f1ae40bd0b11acd0fb62"
+}
+```
+
 <!-- TODO: uncomment once fixed --->
 <!-- ### `zks_getTokenPrice`
 
