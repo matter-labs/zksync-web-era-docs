@@ -61,7 +61,7 @@ The full list of the addresses of these accounts with the corresponding private 
 
 The initial version of local node was shipped with several ERC-20 tokens deployed by default.
 
-It's no longer the case and if you need to interact with ERC-20 tokens, consider deploying them youself.
+It's no longer the case and if you need to interact with ERC-20 tokens, you should deploy them yourself.
 
 If you'd like the local node to come with pre-deployed tokens again, please let us know on our [discord](https://discord.gg/px2aR7w), so we can prioritize accordingly.
 
