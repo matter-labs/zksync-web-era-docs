@@ -52,5 +52,5 @@ User makes a transaction to the L2 bridge by calling the `withdraw` method. The 
 
 After that, anyone can finalize the withdrawal on the L1 bridge by proving the inclusion of the L2 -> L1 message, and the funds will be sent to the withdrawal recipient.
 
-For the testnet we automatically finalize all withdrawals,
+For the testnet, we automatically finalize all withdrawals,
 i.e., for every withdrawal, we will take care of it by making an L1 transaction that proves the inclusion for each message.
