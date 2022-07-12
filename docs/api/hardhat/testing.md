@@ -1,34 +1,16 @@
 # Local testing
 
-::: warning Being updated
-
-This tutorial is outdated and is currently being reworked.
-
-:::
-
 Sometimes there is a need to test contracts in a local environment for network latency or fee reasons.
 
 zkSync team provides a dockerized local setup for this purpose.
 
 ## Prerequisites
 
-::: warning
-
-The local zkSync node is not available now and will be updated soon.
-
-:::
-
 It is required that you have `Docker` and `docker-compose` installed on your computer.
 
 Also, some familiarity with the zkSync hardhat plugin is assumed. If you are new developing on zkSync with hardhat, a nice introduction is [here](./getting-started.md).
 
 ## Installing the testing environment
-
-::: warning
-
-The local zkSync node is not available now and will be updated soon.
-
-:::
 
 You can download the dockerized setup with the following command.
 
@@ -75,7 +57,15 @@ Local zkSync setup comes with some "rich" wallets with large amounts of ETH on b
 
 The full list of the addresses of these accounts with the corresponding private keys can be found [here](https://github.com/matter-labs/local-setup/blob/main/rich-wallets.json).
 
-Also, during the initial bootstrapping of the system, several ERC-20 contracts are deployed locally. Note, that large quantities of these ERC-20 belong to the wallet `0x36615Cf349d7F6344891B1e7CA7C72883F5dc049` (the first one in the list of the rich wallet). Right after bootstrapping the system, these ERC-20 funds are available only on L1.
+::: tip ERC-20 tokens
+
+The initial version of local node was shipped with several ERC-20 tokens deployed by default.
+
+It's no longer the case and if you need to interact with ERC-20 tokens, you should deploy them yourself.
+
+If you'd like the local node to come with pre-deployed tokens again, please let us know on our [discord](https://discord.gg/px2aR7w), so we can prioritize accordingly.
+
+:::
 
 ## Using custom database/L1
 
