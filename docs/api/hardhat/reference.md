@@ -63,16 +63,21 @@ This plugin is used to provide a convenient interface for compiling zkSync smart
 [@matterlabs/hardhat-zksync-vyper](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-vyper)
 
 This plugin is used in conjunction with [@nomiclabs/hardhat-vyper](https://www.npmjs.com/package/@nomiclabs/hardhat-vyper).
-To use it, you have to install and import both of them.
+To use it, you have to install and import both:
+
+```javascript
+import '@nomiclabs/hardhat-vyper';
+import '@matterlabs/hardhat-zksync-vyper';
+```
 
 Add the latest version of this plugin to your project with the following command:
 
 ```
 # Yarn
-yarn add -D @matterlabs/hardhat-zksync-vyper @nomiclabs/hardhat-vyper
+yarn add -D @matterlabs/hardhat-zksync-vyper
 
 # Npm
-npm i -D @matterlabs/hardhat-zksync-vyper @nomiclabs/hardhat-vyper
+npm i -D @matterlabs/hardhat-zksync-vyper
 ```
 
 ### Exports
