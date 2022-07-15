@@ -10,8 +10,8 @@ zkSync has three plugins for hardhat:
 
 To learn more about hardhat itself, check out their [documentation](https://hardhat.org/getting-started/).
 
-This tutorial shows how to set up a zkSync solidity project using hardhat from scratch.
-If you are using vyper, check out the [reference](./reference.md#matterlabs-hardhat-zksync-vyper) for our vyper plugin or the [example](https://github.com/matter-labs/hardhat-zksync/tree/main/examples/vyper-example) in our github repo!
+This tutorial shows how to set up a zkSync Solidity project using hardhat from scratch.
+If you are using Vyper, check out the [reference](./reference.md#matterlabs-hardhat-zksync-vyper) for our vyper plugin or the [example](https://github.com/matter-labs/hardhat-zksync/tree/main/examples/vyper-example) in our github repo!
 
 ## Prerequisites
 
