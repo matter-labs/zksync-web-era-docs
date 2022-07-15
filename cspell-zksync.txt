@@ -104,3 +104,5 @@ mkdir
 zksolc
 zksyncrobot
 precompiles
+vyper
+zkvyper
