@@ -30,11 +30,9 @@ zksolc: {
   compilerSource: "docker",
   settings: {
     compilerPath: "zksolc",
-    optimizer: {
-      enabled: true
-    },
     experimental: {
-      dockerImage: "matterlabs/zksolc"
+      dockerImage: "matterlabs/zksolc",
+      tag: "latest"
     }
   }
 }
@@ -45,21 +43,78 @@ networks: {
 }
 ```
 
-- `version` is a field with the version of the plugin.
+- `version` is a field with the version of the `zksolc` compiler. Currently not used.
 - `compilerSource` is a field with the compiler source. It can be either `docker` or `binary`. In the former case, the `dockerImage` value with the name of the compiler docker image should also be provided. In the latter case, the compiler binary should be provided in `$PATH`.
 - `compilerPath` is a field with the path to the `zksolc` binary. If `compilerSource` is `docker`, this field is ignored. By default, the binary in `$PATH` is used.
-- `optimizer` is a field that describes the parameters of the optimizer.
-- `dockerImage` is the name of the docker image of the compiler. If `compilerSource` is `binary`, this field is ignored.
+- `dockerImage` and `tag` make up the name of the compiler docker image. If `compilerSource` is `binary`, these fields are ignored.
 - `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default.
 
 
 ### Commands
 
-`hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment. To understand what the factory dependencies are, it is possible read more about them in the [Web3 API](../api.md) documentation.
+`hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment. To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.
 
-During the compilation, for each subfolder of the `contracts` directory the contracts and their dependencies are flattened into a single `.sol` file and the flattened versions of the contracts are put in the `contracts/tmp` directory. The actual compilation is done over the flattened versions of the contracts.
+## `@matterlabs/hardhat-zksync-vyper`
 
-If a certain contract is a dependency for other smart contracts, it may appear in multiple flattened files; thus, it will appear multiple times in the `artifacts` folder. During deployment, it may be required to specify the full path to the contract artifact to the `Deployer` class instance. The deployer script will provide hints on what paths may be used. If this contract has a unique name in the project, it is possible choose any of the proposed ones.
+This plugin is used to provide a convenient interface for compiling zkSync smart contracts using Vyper.
+
+### Npm
+
+[@matterlabs/hardhat-zksync-vyper](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-vyper)
+
+This plugin is used in conjunction with [@nomiclabs/hardhat-vyper](https://www.npmjs.com/package/@nomiclabs/hardhat-vyper).
+To use it, you have to install and import both:
+
+```javascript
+import '@nomiclabs/hardhat-vyper';
+import '@matterlabs/hardhat-zksync-vyper';
+```
+
+Add the latest version of this plugin to your project with the following command:
+
+```
+# Yarn
+yarn add -D @matterlabs/hardhat-zksync-vyper
+
+# Npm
+npm i -D @matterlabs/hardhat-zksync-vyper
+```
+
+### Exports
+
+This plugin most often will not be used directly in the code.
+
+### Configuration
+
+```typescript
+zkvyper: {
+  version: "0.1.0",
+  compilerSource: "docker",
+  settings: {
+    compilerPath: "zkvyper",
+    experimental: {
+      dockerImage: "matterlabs/zkvyper",
+      tag: "latest"
+    }
+  }
+}
+networks: {
+  hardhat: {
+    zksync: true
+  }
+}
+```
+
+- `version` is a field with the version of the `zkvyper` compiler. Currently not used.
+- `compilerSource` is a field with the compiler source. It can be either `docker` or `binary`. In the former case, the `dockerImage` value with the name of the compiler docker image should also be provided. In the latter case, the compiler binary should be provided in `$PATH`.
+- `compilerPath` is a field with the path to the `zkvyper` binary. If `compilerSource` is `docker`, this field is ignored. By default, the binary in `$PATH` is used.
+- `dockerImage` and `tag` make up the name of the compiler docker image. If `compilerSource` is `binary`, these fields are ignored.
+- `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default.
+
+
+### Commands
+
+`hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment. To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.
 
 ## `@matterlabs/hardhat-zksync-deploy`
 
