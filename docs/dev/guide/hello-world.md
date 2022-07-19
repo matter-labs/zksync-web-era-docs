@@ -108,7 +108,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
-  const provider = new Provider(hre.userConfig.zkSyncDeploy?.zkSyncNetwork);
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
 
   // Create deployer object and load the artifact of the contract we want to deploy.
@@ -159,7 +158,13 @@ To get the address of an ERC-20 token on L2, call the `getL2TokenAddress()` meth
 const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS);
 ```
 
-1. For example, to pay fees in the `USDC` token:
+1. Import `Provider` from the zksync-web3 library:
+
+```typescript
+import { Provider } from "zksync-web3";
+```
+
+2. For example, to pay fees in the `USDC` token:
 
 ```typescript
 const L1_USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
@@ -183,7 +188,7 @@ const depositHandle = await deployer.zkWallet.deposit({
 await depositHandle.wait();
 ```
 
-2. The output of the fee can then be produced in a human-readable format:
+3. The output of the fee can then be produced in a human-readable format:
 
 ```typescript
 const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
@@ -192,13 +197,13 @@ console.log(`The deployment will cost ${parsedFee} USDC`);
 
 Please note that the fees on the testnet do not correctly represent the fees on the future mainnet release.
 
-3. `USDC` must then be passed as the `feeToken` to the deployment transaction:
+4. `USDC` must then be passed as the `feeToken` to the deployment transaction:
 
 ```typescript
 const greeterContract = await deployer.deploy(artifact, [greeting], L2_USDC_ADDRESS);
 ```
 
-4. To pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
+5. To pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
 
 ```typescript
 const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
