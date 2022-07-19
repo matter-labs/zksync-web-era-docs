@@ -158,7 +158,7 @@ To get the address of an ERC-20 token on L2, call the `getL2TokenAddress()` meth
 const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS);
 ```
 
-1. Import **Provider** from the zksync-web3 library:
+1. Import `Provider` from the zksync-web3 library:
 
 ```typescript
 import { Provider } from "zksync-web3";
