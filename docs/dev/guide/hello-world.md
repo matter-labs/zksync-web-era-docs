@@ -46,6 +46,7 @@ module.exports = {
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
+        tag: "v1.1.0"
       },
     },
   },
