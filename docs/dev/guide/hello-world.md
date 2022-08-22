@@ -46,6 +46,7 @@ module.exports = {
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
+        tag: "v1.1.0"
       },
     },
   },
@@ -64,9 +65,15 @@ module.exports = {
 };
 ```
 
-3. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
+::: warning Tip
 
-4. Create the `contracts/Greeter.sol` contract and insert the following code there:
+If this contract has already been complied, you should delete the artifact and cached folders, otherwise it won't recompile with this compiler version.
+
+:::
+
+1. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
+
+2. Create the `contracts/Greeter.sol` contract and insert the following code there:
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
