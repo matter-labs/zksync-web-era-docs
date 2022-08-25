@@ -2,7 +2,7 @@
 
 ## Concept
 
-While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features, like paying fees in other tokens, requires providing additional fields to those that Ethereum transactions have by default.
+While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features, like account abstraction, requires providing additional fields to those that Ethereum transactions have by default.
 
 To provide easy access to all of the features of zkSync 2.0, the `zksync-web3` JavaScript SDK was created, which is made in a way that has an interface very similar to those of [ethers](https://docs.ethers.io/v5/). In fact, `ethers` is a peer dependency of our library and most of the objects exported by `zksync-web3` (e.g. `Wallet`, `Provider` etc.) inherit from the corresponding `ethers` objects and override only the fields that need to be changed.
 
@@ -65,7 +65,7 @@ const deposit = await syncWallet.deposit({
 
 **NOTE:** Each token inside zkSync has an address. If ERC-20 tokens are being bridged, you should supply the token's L1 address in the `deposit` function, or zero address (`0x0000000000000000000000000000000000000000`) if you want to deposit ETH. Note, that for the ERC-20 tokens the address of their corresponding L2 token will be different from the one on Ethereum.
 
-After the transaction is submitted to the Ethereum node, its status can tracked using the transaction handle:
+After the transaction is submitted to the Ethereum node, its status can be tracked using the transaction handle:
 
 ```typescript
 // Await processing of the deposit on L1
@@ -96,7 +96,7 @@ account, without preliminary registration!
 const syncWallet2 = new zksync.Wallet(PRIVATE_KEY2, syncProvider, ethProvider);
 ```
 
-Let's transfer `1 ETH` to another account and pay `1 USDC` as a fee to the operator (zkSync account balance of the sender is going to be decreased by `1 ETH` and `1 USDCs`).
+Let's transfer `1 ETH` to another account:
 
 The `transfer` method is a helper method that enables transferring `ETH` or any ERC20 token within a single interface.
 
@@ -106,20 +106,6 @@ const amount = ethers.utils.parseEther("1.0");
 const transfer = await syncWallet.transfer({
   to: syncWallet2.address,
   token: zksync.utils.ETH_ADDRESS,
-  amount,
-  // USDC address
-  overrides: { customData: { feeToken: USDC_L2_ADDRESS } },
-});
-```
-
-**Note that** supplying the `token` and `feeToken` fields manually is not required. The default value for both of these fields is `ETH`.
-
-```typescript
-const amount = ethers.utils.parseEther("1.0");
-
-const transfer = await syncWallet.transfer({
-  to: syncWallet2.address,
-  token: zksync.utils.ZKSYNC_ADDRESS,
   amount,
 });
 ```

@@ -15,7 +15,7 @@ For this tutorial, the following programs must be installed:
 
 - `yarn` package manager. `npm` examples will be added soon.
 - `Docker` for compilation.
-- A wallet with some Görli `ETH` on L1 (Görli `USDC` is also required for the ERC-20 tutorial) to pay for bridging funds to zkSync as well as deploying smart contracts.
+- A wallet with some Görli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts.
 
 ## Initializing the project & deploying smart contract
 
@@ -38,7 +38,7 @@ require("@matterlabs/hardhat-zksync-solc");
 
 module.exports = {
   zksolc: {
-    version: "1.1.0",
+    version: "1.1.5",
     compilerSource: "docker",
     settings: {
       optimizer: {
@@ -46,7 +46,7 @@ module.exports = {
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
-        tag: "v1.1.0"
+        tag: "v1.1.5"
       },
     },
   },
@@ -60,7 +60,7 @@ module.exports = {
     },
   },
   solidity: {
-    version: "0.8.10",
+    version: "0.8.16",
   },
 };
 ```
@@ -150,86 +150,13 @@ yarn hardhat deploy-zksync
 
 In the output, you should see the address where the contract was deployed to.
 
-### Paying for deployment in ERC20 tokens
-
-This section is optional, and is used for learning how to pay for deployments of smart contracts in ERC20 tokens. To go straight to the front-end integration, click [here](#front-end-integration).
-
-::: tip Note on L2 token address
-
-Note that on the zkSync network, addresses of ERC-20 tokens are different from their addresses on Ethereum. So if, for example, you deposit an ERC-20 token to zkSync, the token address will not be the same as on Ethereum.
-To get the address of an ERC-20 token on L2, call the `getL2TokenAddress()` method from the `Provider` / `Wallet` class:
-
-:::
+### Full example:
 
 ```typescript
-const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS);
-```
-
-1. Import `Provider` from the zksync-web3 library:
-
-```typescript
-import { Provider } from "zksync-web3";
-```
-
-2. For example, to pay fees in the `USDC` token:
-
-```typescript
-const L1_USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
-const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS);
-const USDC_DECIMALS = 6;
-const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], L2_USDC_ADDRESS);
-// Deposit funds to L2.
-const depositHandle = await deployer.zkWallet.deposit({
-  to: deployer.zkWallet.address,
-  token: L1_USDC_ADDRESS,
-  // We deposit more than the minimal required amount to have funds
-  // for further iteraction with our smart contract.
-  amount: deploymentFee.mul(2),
-  // Unlike ETH, ERC20 tokens require approval in order to deposit to zkSync.
-  // You can either set the approval in a separate transaction or provide `approveERC20` flag equal to `true`
-  // and the SDK will initiate approval transaction under the hood.
-  approveERC20: true,
-});
-
-// Wait until the deposit is processed by zkSync.
-await depositHandle.wait();
-```
-
-3. The output of the fee can then be produced in a human-readable format:
-
-```typescript
-const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
-console.log(`The deployment will cost ${parsedFee} USDC`);
-```
-
-Please note that the fees on the testnet do not correctly represent the fees on the future mainnet release.
-
-4. `USDC` must then be passed as the `feeToken` to the deployment transaction:
-
-```typescript
-const greeterContract = await deployer.deploy(artifact, [greeting], L2_USDC_ADDRESS);
-```
-
-5. To pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
-
-```typescript
-const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
-  customData: {
-    feeToken: L2_USDC_ADDRESS,
-  },
-});
-```
-
-#### Full example:
-
-```typescript
-import { Wallet, Provider } from "zksync-web3";
+import { Wallet, Provider, utils } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
-
-const L1_USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
-const USDC_DECIMALS = 6;
 
 // An example of a deploy script that will deploy and call a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
@@ -239,21 +166,18 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const provider = new Provider(hre.userConfig.zkSyncDeploy?.zkSyncNetwork);
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
   
-  // Deriving L2 token address from L1 token address.
-  const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS);
-
   // Create deployer object and load the artifact of the contract we want to deploy.
   const deployer = new Deployer(hre, wallet);
   const artifact = await deployer.loadArtifact("Greeter");
 
   // Estimate contract deployment fee
   const greeting = "Hi there!";
-  const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], L2_USDC_ADDRESS);
+  const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting]);
 
   // Deposit funds to L2
   const depositHandle = await deployer.zkWallet.deposit({
     to: deployer.zkWallet.address,
-    token: L1_USDC_ADDRESS,
+    token: utils.ETH_ADDRESS,
     amount: deploymentFee.mul(2),
     approveERC20: true,
   });
@@ -262,10 +186,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
   // `greeting` is an argument for contract constructor.
-  const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
-  console.log(`The deployment will cost ${parsedFee} USDC`);
+  const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
+  console.log(`The deployment will cost ${parsedFee} ETH`);
 
-  const greeterContract = await deployer.deploy(artifact, [greeting], { feeToken: L2_USDC_ADDRESS });
+  const greeterContract = await deployer.deploy(artifact, [greeting]);
 
   // Show the contract info.
   const contractAddress = greeterContract.address;

@@ -2,7 +2,7 @@
 
 zkSync 2.0 fully supports standard [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API).
 
-As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)) or EIP1559-specific features, _no changes for the codebase are needed._
+As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase are needed._
 
 It is possible to continue using the SDK that is currently in use. Users will continue paying fees in ETH, and the UX will be identical to the one on Ethereum.
 
@@ -10,17 +10,21 @@ However, zkSync has its own specifics, which this section describes.
 
 ## EIP712
 
-To specify additional fields, like the token for fee payment or provide the bytecode for new smart contracts, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also they have fields which contain additional L2-specific data (`fee_token`, etc):
+To specify additional fields, like the custom signature for custom accounts or the paymaster, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also they have fields which contain additional L2-specific data (`paymaster`, etc):
 
 ```json
-"fee": {
-  "fee_token": "0x0000...0000",
-  "ergs_per_pubdata_limit": 1000
+"ergsPerPubdata": "1212",
+"customSignature": "0x...",
+"paymasterParams": {
+  "paymaster": "0x...",
+  "paymasterInput": "0x..."
 },
 "factory_deps": ["0x..."]
 ```
 
-- `fee` is a field that describes the token in which the fee is to be paid, and defines the limits on the price in `ergs` per publishing a single pubdata byte.
+- `ergsPerPubdata` is a field that describes the maximal amount of ergs the user is willing to pay for a single byte of pubdata.
+- `customSignature` is a field with custom signature, in case the signer's account is not EOA.
+- `paymasterParams` are parameters around the paymaster: it's address and the input to it.
 - `factory_deps` is a field that should be a non-empty array of `bytes` for deployment transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
 
 To let the server recognize EIP712 transactions, the `transaction_type` field is equal to `113` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
@@ -29,16 +33,19 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 
 | Field name              | Type      |
 | ----------------------- | --------- |
-| txType                  | `uint8`   |
-| to                      | `address` |
-| value                   | `uint256` |
-| data                    | `bytes`   |
-| feeToken                | `address` |
-| ergsLimit               | `uint256` |
-| gasLimit                | `uint256` |
-| ergsPerPubdataByteLimit | `uint256` |
-| ergsPrice               | `uint256` |
-| nonce                   | `uint256` |
+| txType                  | `uint256`   |
+| from                  | `uint256`   |
+| to                  | `uint256`   |
+| ergsLimit                  | `uint256`   |
+| ergsPerPubdataByteLimit                  | `uint256`   |
+| maxFeePerErg                      | `address` |
+| maxPriorityFeePerErg                   | `uint256` |
+| paymaster                    | `bytes`   |
+| nonce                | `address` |
+| value               | `uint256` |
+| data                | `bytes` |
+| factoryDeps | `bytes32[]` |
+| paymasterInput               | `bytes` |
 
 These fields are conveniently handled by our [SDK](./js/features.md).
 
@@ -94,7 +101,13 @@ None.
 
 ### `zks_getConfirmedTokens`
 
-Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally.
+::: warning Deprecated
+
+This method is deprecated and will soon be removed.
+
+:::
+
+Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are token that have been bridged through the default bridge.
 
 The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically sorted array of tokens.
 
@@ -129,20 +142,6 @@ The tokens are returned in alphabetical order by their symbol, so basically, the
   }
 ]
 ```
-
-### `zks_isTokenLiquid`
-
-Given a token address, returns whether it can be used to pay fees.
-
-### Input parameters
-
-| Parameter | Type      | Description               |
-| --------- | --------- | ------------------------- |
-| address   | `address` | The address of the token. |
-
-### Output format
-
-`true`
 
 ### `zks_getL2ToL1MsgProof`
 
@@ -199,6 +198,21 @@ None.
   "l2EthDefaultBridge": "0x2c5d8a991f399089f728f1ae40bd0b11acd0fb62"
 }
 ```
+
+### `zks_getTestnetPaymaster`
+
+Returns the address of the [testnet paymaster](../dev/zksync-v2/aa.md#testnet-paymaster): the paymaster that is available on testnets and allows to pay fees in any ERC-20 compatible tokens. 
+
+### Input parameters
+
+None.
+
+### Output format
+
+```json
+"0x7786255495348c08f82c09c82352019fade3bf29"
+```
+
 
 <!-- TODO: uncomment once fixed --->
 <!-- ### `zks_getTokenPrice`

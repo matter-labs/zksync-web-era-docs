@@ -120,7 +120,7 @@ const zkSyncDeploy =
 
 module.exports = {
   zksolc: {
-    version: "0.1.0",
+    version: "0.1.5",
     compilerSource: "docker",
     settings: {
       optimizer: {
@@ -133,7 +133,7 @@ module.exports = {
   },
   zkSyncDeploy,
   solidity: {
-    version: "0.8.11",
+    version: "0.8.16",
   },
   networks: {
     // To compile with zksolc, this must be the default network.

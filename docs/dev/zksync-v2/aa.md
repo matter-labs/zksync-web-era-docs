@@ -34,10 +34,10 @@ Each account is recommended to implement the [IAccountAbstraction](https://githu
 
 Like the original EIP4337, our account abstraction protocol supports paymasters: accounts that can compensate for other accounts' execution. You can read more about them [here](#paymasters).
 
-Each paymaster is recommended to implement the following interface [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/zksync/system-contracts/interfaces/IPaymaster.sol). It contains the following two methods:
+Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/zksync/system-contracts/interfaces/IPaymaster.sol) interface. It contains the following two methods:
 
 - `validateAndPayForPaymasterTransaction` is mandatory and will be used by the system to determine if the paymaster approves paying for this transaction. If the paymaster is willing to pay for the transaction, this method must send at least `tx.gasprice * tx.ergsLimit` to the operator. It should return the `context` that will be one of the call parameters to the `postOp` method.
-- `postOp` is optional and will be called after the transaction has been executed. Note, that unlike the original EIP4337, there *is no guarantee that this method will be called*. In particular, this method won't be called if the transaction has failed with out of gas error.
+- `postOp` is optional and will be called after the transaction has been executed. Note, that unlike the original EIP4337, there *is no guarantee that this method will be called*. In particular, this method won't be called if the transaction has failed with out of gas error. It takes four parameters: the context returned by the `validateAndPayForPaymasterTransaction` method, the transaction itself, whether the execution of the transaction succeeded, and also the maximum amount of ergs the paymaster might be refunded with. More documentation on refunds will be available once their support is added to zkSync.
 
 ### Reserved fields of the `Transaction` struct with special meaning
 
@@ -92,7 +92,7 @@ In the original EIP, the `validateTransaction` step of the AA allows the account
 
 This limitation provides DDoS safety by ensuring that the slots used for validation by various accounts *do not overlap*, so there is no need for them to *actually* belong to the account’s storage.
 
-To allow reading the ERC20 balance of the user, its allowance on the validation step, the following types of slots will be allowed for an account with address `A` on the validation step:
+To allow reading the user's ERC20 balance or allowance on the validation step, the following types of slots will be allowed for an account with address `A` on the validation step:
 
 1. Slots that belong to address `A`.
 2. Slots `A` on any other address.
@@ -132,6 +132,12 @@ await aa.deployed();
 ```
 
 ### Limitations of the verification step
+
+::: warning Not implemented yet
+
+The verification rules are not fully enforced right now. Even if your custom account works right now, it might stop working in the future if it does not follow the rules below.
+
+:::
 
 In order to protect the system from a DoS threat, the verification step must have the following limitations:
 
@@ -174,20 +180,22 @@ const sentTx = await zksyncProvider.sendTransaction(serializedTx);
 
 ## Paymasters
 
-Paymasters are accounts that can pay for other users for their transactions. Imagine being able to pay fees for users of your protocol! The other important use-case of paymasters is to facilitate paying fees in ERC20 tokens. While ETH is the main token of zkSync, some provided can give the ability to exchange ERC20s to ETH on the fly.
+Paymasters are accounts that can pay for other users for their transactions. Imagine being able to pay fees for users of your protocol! The other important use-case of paymasters is to facilitate paying fees in ERC20 tokens. While ETH is the main token of zkSync, paymasters can provide the ability to exchange ERC20s to ETH on the fly.
 
-### Paymaster validation rules
+If users wants to interact with a paymaster, they should provide the non-zero `paymaster` address in their EIP712 transaction. The input data to the paymaster is provided in the `paymasterInput` field of the paymaster.
+
+### Paymaster verification rules
 
 
 ::: warning Not implemented yet
 
-Validation rules are not fully enforced right now. Even if your paymaster works right now, it might stop working in the future if it does not follow the rules below.
+The verification rules are not fully enforced right now. Even if your paymaster works right now, it might stop working in the future if it does not follow the rules below.
 
 :::
 
 Since multiple users should be allowed to access the same paymasters, malicious paymasters *can* do a DoS attack on our system. To work around this, a system similar to the [EIP4337 reputation scoring](https://eips.ethereum.org/EIPS/eip-4337#reputation-scoring-and-throttlingbanning-for-paymasters) will be used.
 
-Unlike in the original EIP, paymasters are allowed to have any logic. Also, the paymaster won't be throttled if either of the following is true:
+Unlike in the original EIP, paymasters are allowed to touch any storage slots. Also, the paymaster won't be throttled if either of the following is true:
 
 - More than `X` minutes has passed since the verification has passed on the API nodes. (The exact value of `X` is TBD).
 - The order of slots being read is the same as during the run on the API node and the first slot which value has changed is one of the user's slots. This is needed to protect the paymaster from malicious users (e.g. the user might have erased the allowance for the ERC20 token).
@@ -224,7 +232,11 @@ function approvalBased(
 )
 ```
 
-The EOA will ensure that the allowance of the `_token` towards the paymaster is set to at least `_minAllowance`. The paymaster if free to interpret the `_innerInput` however it wants to.
+The EOA will ensure that the allowance of the `_token` towards the paymaster is set to at least `_minAllowance`. The paymaster is free to interpret the `_innerInput` however it wants to.
+
+If you are developing a paymaster, you *should not* trust the transaction sender to honestly behave (e.g. provide the required allowance with the `approvalBased` flow). These flows serve mostly as instructions to EOAs and the requirements should always be double-checked by the paymaster.
+
+### Testnet paymaster
 
 ## `aa-signature-checker`
 

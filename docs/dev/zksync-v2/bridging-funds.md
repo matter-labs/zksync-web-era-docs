@@ -6,11 +6,6 @@ Bridging is implemented by having two contracts
 (one deployed to L1, and the second deployed to L2)
 communicating with each other using [L1 <-> L2 interoperability](./l1-l2-interop.md).
 
-There are two dedicated transaction types for native token bridging:
-
-- `Deposit` for bridging tokens to zkSync.
-- `Withdraw` for bridging tokens from zkSync.
-
 Developers are free to build their own bridge for any token.
 However, we are providing our default bridges (one for ETH and one for ERC20 tokens), which can be used for developers to use basic bridging.
 

@@ -2,7 +2,7 @@
 
 While zkSync is mostly Web3-compatible, it has some differences compared to Ethereum. The major of those are:
 
-- Transaction fees can be paid in ERC20 tokens.
+- Account abstraction support (accounts might non-ECDSA signatures and also paymaster support is enabled).
 - Deployment transactions require the contracts' bytecode to be passed in a separate field.
 - The fee system is somewhat different.
 
@@ -21,36 +21,18 @@ In order to make the SDK as flexible as possible, the library uses the overrides
 ```typescript
 {
     customData: {
-        feeToken?: Address;
         ergsPerPubdata?: BigNumberish;
         factoryDeps?: BytesLike[];
+        customSignature?: BytesLike;
+        paymasterParams?: {
+            paymaster: Address;
+            paymasterInput: BytesLike;
+        };
     }
 }
 ```
 
 Examples:
-
-Override to pay fees in the token with the address `0xd35cceead182dcee0f148ebac9447da2c4d449c4`:
-
-```typescript
-{
-  customData: {
-    feeToken: "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
-  }
-}
-```
-
-Override to withdraw ETH and pay fees in the token with the address `0xd35cceead182dcee0f148ebac9447da2c4d449c4`:
-zzz
-
-```typescript
-{
-    customData: {
-        feeToken: "0xd35cceead182dcee0f148ebac9447da2c4d449c4",
-        withdrawToken: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
-    }
-}
-```
 
 Override to deploy a contract with bytecode `0xcde...12` and enforce that the operator will not charge more than `100` ergs per published bytes on layer 1:
 
@@ -64,9 +46,26 @@ Override to deploy a contract with bytecode `0xcde...12` and enforce that the op
 }
 ```
 
+Override and use custom signature `0x123456` for account, while using paymaster with address `0x8e1DC7E4Bb15927E76a854a92Bf8053761501fdC` and paymaster input `0x8c5a3445`:
+
+```typescript
+{
+    // feeToken is not supplied, using ETH by default
+    customData: {
+        customSignature: "0x123456",
+        paymasterParams: {
+            paymaster: "0x8e1DC7E4Bb15927E76a854a92Bf8053761501fdC",
+            paymasterInput: "0x8c5a3445"
+        }
+    }
+}
+```
+
 ## See in action
 
 If you want to call the method `setGreeting` of an ethers `Contract` object called `greeter`, this would look the following way:
+
+<!-- TODO: add an example with paymaster here -->
 
 ```javascript
 // The `setGreeting` method has a single parameter -- new greeting

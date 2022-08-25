@@ -26,7 +26,7 @@ This plugin most often will not be used directly in the code.
 
 ```typescript
 zksolc: {
-  version: "0.1.0",
+  version: "0.1.5",
   compilerSource: "docker",
   settings: {
     compilerPath: "zksolc",
@@ -148,66 +148,66 @@ The main export is the `Deployer` class. It is used to wrap `zksync-web3` Wallet
 class Deployer {
 
   /**
-   * @param hre Hardhat runtime environment. This object is provided to scripts by hardhat itself.
-   * @param zkWallet The wallet which will be used to deploy the contracts.
-   */
+    * @param hre Hardhat runtime environment. This object is provided to scripts by hardhat itself.
+    * @param zkWallet The wallet which will be used to deploy the contracts.
+    */
   constructor(hre: HardhatRuntimeEnvironment, zkWallet: zk.Wallet)
 
   /**
-   * Created a `Deployer` object on ethers.Wallet object.
-   *
-   * @param hre Hardhat runtime environment. This object is provided to scripts by hardhat itself.
-   * @param ethWallet The wallet which will be used to deploy the contracts.
-   */
+    * Created a `Deployer` object on ethers.Wallet object.
+    *
+    * @param hre Hardhat runtime environment. This object is provided to scripts by hardhat itself.
+    * @param ethWallet The wallet which will be used to deploy the contracts.
+    */
   static fromEthWallet(hre: HardhatRuntimeEnvironment, ethWallet: ethers.Wallet)
 
   /**
-   * Loads an artifact and verifies that it was compiled by `zksolc\.
-   *
-   * @param contractNameOrFullyQualifiedName The name of the contract.
-   *   It can be a bare contract name (e.g. "Token") if it's
-   *   unique in your project, or a fully qualified contract name
-   *   (e.g. "contract/token.sol:Token") otherwise.
-   *
-   * @throws Throws an error if a non-unique contract name is used,
-   *   indicating which fully qualified names can be used instead.
-   *
-   * @throws Throws an error if an artifact was not compiled by `zksolc`.
-   */
+    * Loads an artifact and verifies that it was compiled by `zksolc\.
+    *
+    * @param contractNameOrFullyQualifiedName The name of the contract.
+    *   It can be a bare contract name (e.g. "Token") if it's
+    *   unique in your project, or a fully qualified contract name
+    *   (e.g. "contract/token.sol:Token") otherwise.
+    *
+    * @throws Throws an error if a non-unique contract name is used,
+    *   indicating which fully qualified names can be used instead.
+    *
+    * @throws Throws an error if an artifact was not compiled by `zksolc`.
+    */
   public async loadArtifact(
     contractNameOrFullyQualifiedName: string
   ): Promise<ZkSyncArtifact>
 
   /**
-   * Estimates the price of calling a deploy transaction in a certain fee token.
-   *
-   * @param artifact The previously loaded artifact object.
-   * @param constructorArguments List of arguments to be passed to the contract constructor.
-   * @param feeToken Address of the token to pay fees in. If not provided, defaults to ETH.
-   *
-   * @returns Calculated fee in wei of the corresponding fee token.
-   */
+    * Estimates the price of calling a deploy transaction in a certain fee token.
+    *
+    * @param artifact The previously loaded artifact object.
+    * @param constructorArguments List of arguments to be passed to the contract constructor.
+    *
+    * @returns Calculated fee in ETH wei.
+    */
   public async estimateDeployFee(
     artifact: ZkSyncArtifact,
-    constructorArguments: any[],
-    feeToken?: string,
+    constructorArguments: any[]
   ): Promise<ethers.BigNumber>
 
   /**
-   * Sends a deploy transaction to the zkSync network.
-   * For now, it will use defaults for the transaction parameters:
-   * - fee amount is requested automatically from the zkSync server.
-   *
-   * @param artifact The previously loaded artifact object.
-   * @param constructorArguments List of arguments to be passed to the contract constructor.
-   * @param overrides Optional object with additional deploy transaction parameters.
-   *
-   * @returns A contract object.
-   */
+    * Sends a deploy transaction to the zkSync network.
+    * For now, it will use defaults for the transaction parameters:
+    * - fee amount is requested automatically from the zkSync server.
+    *
+    * @param artifact The previously loaded artifact object.
+    * @param constructorArguments List of arguments to be passed to the contract constructor.
+    * @param overrides Optional object with additional deploy transaction parameters.
+    * @param additionalFactoryDeps Additional contract bytecodes to be added to the factory dependencies list.
+    *
+    * @returns A contract object.
+    */
   public async deploy(
     artifact: ZkSyncArtifact,
     constructorArguments: any[],
-    overrides?: Overrides
+    overrides?: Overrides,
+    additionalFactoryDeps?: ethers.BytesLike[],
   ): Promise<zk.Contract>
 
   /**

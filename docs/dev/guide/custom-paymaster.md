@@ -1,4 +1,6 @@
-# Tutorial: Account abstraction
+# Tutorial: Building custom paymaster
+
+<!-- TODO: complete & test the tutorial on custom paymaster -->
 
 Let's see how we can use the paymaster feature and let's build a custom paymaster that will enable us to any user holding our token.
 

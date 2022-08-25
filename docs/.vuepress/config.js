@@ -159,7 +159,6 @@ module.exports = {
             "/dev/guide/build-custom-bridge.md",
             "/dev/guide/cross-chain-tutorial.md",
             "/dev/guide/custom-aa-tutorial.md",
-            "/dev/guide/paymaster-tutorial.md"
           ],
         },
         // {
