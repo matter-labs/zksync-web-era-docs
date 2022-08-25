@@ -236,7 +236,17 @@ The EOA will ensure that the allowance of the `_token` towards the paymaster is 
 
 If you are developing a paymaster, you *should not* trust the transaction sender to honestly behave (e.g. provide the required allowance with the `approvalBased` flow). These flows serve mostly as instructions to EOAs and the requirements should always be double-checked by the paymaster.
 
+#### Working with paymaster flows using `zksync-web3` SDK
+
+The `zksync-web3` SDK provides [methods](../../api/js/utils.md#encoding-paymaster-params) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
+
 ### Testnet paymaster
+
+To let users train in using the paymaster feature on testnet as well as to keep supporting paying fees in ERC20 tokens, the Matter Labs team provides the testnet paymaster, than allows to pay fees in any ERC20 token at the 1:1 exchange rate with ETH (i.e. one wei on this token is equal to 1 wei of ETH).
+
+The paymaster supports only the [approval based](#approval-based-paymaster-flow) paymaster flow and requires that the `token` param is equal to the token being swapped and `minAllowance` to equal to least `tx.maxFeePerErg * tx.ergsLimit`. 
+
+An example of how to use testnet paymaster can be seen in the [hello world](../guide/hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
 
 ## `aa-signature-checker`
 

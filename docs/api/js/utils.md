@@ -29,3 +29,13 @@ Convenient when interacting with native tokens on zkSync.
 ```typescript
 export const IERC20 = new utils.Interface(require("../abi/IERC20.json"));
 ```
+
+## Encoding paymaster params
+
+Utility method that returns the correctly formed `paymasterParams` object for the common [paymaster flows](../../dev/zksync-v2/aa.md#built-in-paymaster-flows).
+
+```typescript
+export function getPaymasterParams(paymasterAddress: Address, paymasterInput: PaymasterInput): PaymasterParams;
+```
+
+The definition of the `PaymasterInput` can be found [here](./types.md).

@@ -61,20 +61,40 @@ Override and use custom signature `0x123456` for account, while using paymaster 
 }
 ```
 
+## Encoding paymaster params
+
+While the paymaster feature by itself does not impose any limitations on values of the `paymasterInput`, the Matter Labs team endorses certain types of [paymaster flows](../../dev/zksync-v2/aa.md#built-in-paymaster-flows) that are processable by EOAs.
+
+zkSync SDK provides a utility method that can be used to get the correctly formed `paymasterParams` object: [getPaymasterParams](./utils.md#encoding-paymaster-params).
+
 ## See in action
 
-If you want to call the method `setGreeting` of an ethers `Contract` object called `greeter`, this would look the following way:
-
-<!-- TODO: add an example with paymaster here -->
+If you want to call the method `setGreeting` of an ethers `Contract` object called `greeter`, this would look the following way, while paying fees with the [testnet paymaster](../../dev/zksync-v2/aa.md#testnet-paymaster):
 
 ```javascript
 // The `setGreeting` method has a single parameter -- new greeting
 // We will set its value as `some new greeting`.
-const txHandle = greeter.setGreeting("some new greeting", {
-  customData: {
-    // Paying fee in USDC
-    feeToken: USDC_L2_ADDRESS,
-  },
+const greeting = "some new greeting";
+const tx = await greeter.populateTransaction.setGreeting(greeting);
+const gasPrice = await sender.provider.getGasPrice();
+const gasLimit = await greeter.estimateGas.setGreeting(greeting);
+const fee = gasPrice.mul(gasLimit);
+
+const paymasterParams = utils.getPaymasterParams(testnetPaymaster, {
+    type: 'ApprovalBased',
+    token,
+    minimalAllowance: fee,
+    innerInput: new Uint8Array()
+});
+const sentTx = await sender.sendTransaction({
+    ...tx,
+    maxFeePerGas: gasPrice,
+    maxPriorityFeePerGas: BigNumber.from(0),
+    gasLimit,
+    customData: {
+        ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+        paymasterParams
+    }
 });
 ```
 
