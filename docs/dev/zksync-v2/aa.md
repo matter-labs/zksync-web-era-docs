@@ -18,25 +18,25 @@ zkSync 2.0 is one of the first EVM-compatible chains to adopt AA, so this testne
 
 ## Design
 
-The account abstraction protocol on zkSync is in spirit very similar to EIP4337, however there are still some changes for the sake of efficiency and better UX.
+The account abstraction protocol on zkSync is in spirit very similar to [EIP4337](https://eips.ethereum.org/EIPS/eip-4337), though our protocol is still different for the sake of efficiency and better UX.
 
 ### IAccount interface
 
 Each account is recommended to implement the [IAccountAbstraction](https://github.com/matter-labs/v2-testnet-contracts/blob/main/zksync/system-contracts/interfaces/IAccountAbstraction.sol) interface. It contains the following five methods:
 
-- `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) the transaction fails. In case the call to this method returns `true`, the implemented account logic is considered to accept the transaction and will be charged with fee afterwards.
+- `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) the method should revert. In case the call to this method succeedes, the implemented account logic is considered to accept the transaction, and the system will proceed with the transaction flow.
 - `executeTransaction` is mandatory and will be called by the system after the fee is charged from the user. This function should perform the execution of the transaction.
-- `payForTransaction` is optional and will be called by the system if the transaction has no paymaster, i.e. the account is willing to pay for the transaction. This method should be used to pay for the fees by the account. Note, that if your account will never pay any fees and always rely on the [paymaster](#paymasters) feature, you don't have to implement this method. This method must send at least `tx.gasprice * tx.ergsLimit` to the operator.
+- `payForTransaction` is optional and will be called by the system if the transaction has no paymaster, i.e. the account is willing to pay for the transaction. This method should be used to pay for the fees by the account. Note, that if your account will never pay any fees and will always rely on the [paymaster](#paymasters) feature, you don't have to implement this method. This method must send at least `tx.gasprice * tx.ergsLimit` ETH to the [bootloader](./system-contracts.md#bootloader) address.
 - `prePaymaster` is optional and will be called by the system if the transaction has a paymaster, i.e. there is someone else who will pay the transaction fees for the user. This method should be used to prepare for the interaction with the paymaster. One of the notable [examples](#approval-based-paymaster-flow) where it can be helpful is to approve the ERC-20 tokens for the paymaster.
 - `executeTransactionFromOutside`, technically, is not mandatory, but it is _highly encouraged_, since there needs to be some way, in case of priority mode (e.g. when the operator becomes malicious), to be able to start transactions from your account from ``outside'' (basically this is the fallback to the standard Ethereum approach, where an EOA starts transaction from your smart contract).
 
 ### IPaymaster interface
 
-Like the original EIP4337, our account abstraction protocol supports paymasters: accounts that can compensate for other accounts' execution. You can read more implementing paymasters [here](#paymasters).
+Like the original EIP4337, our account abstraction protocol supports paymasters: accounts that can compensate for other accounts' execution. You can read more about them [here](#paymasters).
 
 Each paymaster is recommended to implement the following interface [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/zksync/system-contracts/interfaces/IPaymaster.sol). It contains the following two methods:
 
-- `validateAndPayForPaymasterTransaction` is mandatory and will be used by the system to determine if the paymaster approves paying for this transaction. If the paymaster is willing to pay for the transaction, this method must send at least `tx.gasprice * tx.ergsLimit` to the operator.
+- `validateAndPayForPaymasterTransaction` is mandatory and will be used by the system to determine if the paymaster approves paying for this transaction. If the paymaster is willing to pay for the transaction, this method must send at least `tx.gasprice * tx.ergsLimit` to the operator. It should return the `context` that will be one of the call parameters to the `postOp` method.
 - `postOp` is optional and will be called after the transaction has been executed. Note, that unlike the original EIP4337, there *is no guarantee that this method will be called*. In particular, this method won't be called if the transaction has failed with out of gas error.
 
 ### Reserved fields of the `Transaction` struct with special meaning
@@ -47,7 +47,7 @@ While some of its fields are self-explanatory, there are also 6 `reserved` field
 - `reserved[0]` is the nonce.
 - `reserved[1]` is `msg.value` that should be passed with the transaction.
 
-### Flow
+### The transaction flow
 
 Each transaction goes through the following flow:
 
@@ -55,13 +55,13 @@ Each transaction goes through the following flow:
 
 During the validation step, the account should decide whether it accepts the transaction and if so, pay the fees for it. If any of the parts of the validation fails, the account is not charged with any fee and such transaction can not be included in a block.
 
-**Step 1.** The system calls the `validateTransaction` method of the account. If it does not revert, based on whether the transaction has the paymaster the following methods are called:
+**Step 1.** The system calls the `validateTransaction` method of the account. If it does not revert, proceed to the second step.
 
-**Step 2 (no paymaster).** The system calls the `payForTransaction` method of the account. If it does not revert,we proceed to the third step.
+**Step 2 (no paymaster).** The system calls the `payForTransaction` method of the account. If it does not revert, proceed to the third step.
 
-**Step 2 (paymaster).** The system calls the `prePaymaster` method of the sender. If this call does not revert, then the `validateAndPayForPaymasterTransaction` method of the paymaster is called. If it does not revert, we proceeed to the third step.
+**Step 2 (paymaster).** The system calls the `prePaymaster` method of the sender. If this call does not revert, then the `validateAndPayForPaymasterTransaction` method of the paymaster is called. If it does not revert too, proceeed to the third step.
 
-**Step 3.** The system verifies that the account has sent at least `tx.ergsPrice * tx.ergsLimit` ETH to the bootloader. If it is the case, the veriifcation is considered complete and we can proceed to the next step.
+**Step 3.** The system verifies that the bootloader has received at least `tx.ergsPrice * tx.ergsLimit` ETH to the bootloader. If it is the case, the veriifcation is considered complete and we can proceed to the next step.
 
 #### The execution step
 
@@ -69,20 +69,18 @@ The execution step is considered responsible for the actual execution of the tra
 
 **Step 4.** The system calls the `executeTransaction` method of the account.
 
-**Step 5. (only in case the transaction had the paymaster)** The `postOp` method of the paymaster is called. This step should typically be used for refunding the sender the unused ergs in case the paymaster was used to facilitate paying fees in ERC-20 tokens.
+**Step 5. (only in case the transaction has a paymaster)** The `postOp` method of the paymaster is called. This step should typically be used for refunding the sender the unused ergs in case the paymaster was used to facilitate paying fees in ERC-20 tokens.
 
 ### Fees
 
-The system charges fees by doing an ERC20/ETH `transfer` from an account to the operator's account.
-
 In the EIP4337 you can see three types of gas limits: `verificationGas`, `executionGas`, `preVerificationGas`, that describe the gas limit for the different steps of the transaction's inclusion in a block. 
-Currently, zkSync supports only a single field, `ergsLimit`, that covers the fee for all three. When submitting a transaction make sure that `ergsLimit` is enough to cover verification, paying the fee (the ERC20 transfer mentioned above) and the actual execution itself.
+zkSync has only a single field, `ergsLimit`, that covers the fee for all three. When submitting a transaction make sure that `ergsLimit` is enough to cover verification, paying the fee (the ERC20 transfer mentioned above) and the actual execution itself.
 
-By default, calling `estimateGas` adds a constant of `20000` to cover charging the fee and the signature verification for EOA accounts.
+By default, calling `estimateGas` adds a constant to cover charging the fee and the signature verification for EOA accounts.
 
 ## Extending EIP4337
 
-To provide DDoS protection for the operator, the original EIP4337 imposes several [restrictions](https://eips.ethereum.org/EIPS/eip-4337#simulation) the validation step of the account. Most of them, especially regarding the forbidden opcodes are still relevant. However, several restrictions have been lifted for better UX.
+To provide DDoS protection for the operator, the original EIP4337 imposes several [restrictions](https://eips.ethereum.org/EIPS/eip-4337#simulation) on the validation step of the account. Most of them, especially regarding the forbidden opcodes are still relevant. However, several restrictions have been lifted for better UX.
 
 ### Extending the allowed opcodes
 
@@ -98,12 +96,12 @@ To allow reading the ERC20 balance of the user, its allowance on the validation 
 
 1. Slots that belong to address `A`.
 2. Slots `A` on any other address.
-3. Slots of type `keccak256(A || X)` on any other address. (to cover `mapping(address => value)`, which is usually used for balance in ERC20 token.
-4. Slots of type `keccak256(X || OWN)` on any other address, where `OWN` is some slot of the previous (to cover `mapping(address ⇒ mapping(address ⇒ uint256))` that are usually used for `allowances` in ERC20 tokens.
+3. Slots of type `keccak256(A || X)` on any other address. (to cover `mapping(address => value)`, which is usually used for balance in ERC20 tokens.
+4. Slots of type `keccak256(X || OWN)` on any other address, where `OWN` is some slot of the previous (third) type (to cover `mapping(address ⇒ mapping(address ⇒ uint256))` that are usually used for `allowances` in ERC20 tokens.
 
 ### What could be allowed in the future
 
-In the future, we might even allow time-bound transactions, e.g. allow checking that `block.timestamp <= value` if it returned `false`, etc. This would require deploying a separate library of such trusted methods, but it would greatly the account abstraction experience.
+In the future, we might even allow time-bound transactions, e.g. allow checking that `block.timestamp <= value` if it returned `false`, etc. This would require deploying a separate library of such trusted methods, but it would greatly increase the capabilities of accounts.
 
 ## Building custom accounts
 
@@ -137,7 +135,7 @@ await aa.deployed();
 
 In order to protect the system from a DoS threat, the verification step must have the following limitations:
 
-- The account logic can only access its own storage (calling other contracts is allowed only in rare whitelisted cases).
+- The account logic can only touch slots that belong to the account. Note, that the [definition](#extending-the-set-of-slots-that-belong-to-a-user) is far beyond just the slots that are at the users' address.
 - The account logic can not use context variables (e.g. `block.number`).
 - It is also required that your account increases the nonce by 1. This restriction is only needed to preserve transaction hash collision resistance. In the future, this requirement will be lifted to allow more generic use-cases (e.g. privacy protocols).
 
@@ -176,20 +174,57 @@ const sentTx = await zksyncProvider.sendTransaction(serializedTx);
 
 ## Paymasters
 
-TODO:
+Paymasters are accounts that can pay for other users for their transactions. Imagine being able to pay fees for users of your protocol! The other important use-case of paymasters is to facilitate paying fees in ERC20 tokens. While ETH is the main token of zkSync, some provided can give the ability to exchange ERC20s to ETH on the fly.
 
-### Validation rules
+### Paymaster validation rules
 
-TODO:
 
-### General paymaster flow
+::: warning Not implemented yet
 
-TODO:
+Validation rules are not fully enforced right now. Even if your paymaster works right now, it might stop working in the future if it does not follow the rules below.
 
-### Approval-based paymaster flow
+:::
 
-TODO:
+Since multiple users should be allowed to access the same paymasters, malicious paymasters *can* do a DoS attack on our system. To work around this, a system similar to the [EIP4337 reputation scoring](https://eips.ethereum.org/EIPS/eip-4337#reputation-scoring-and-throttlingbanning-for-paymasters) will be used.
 
+Unlike in the original EIP, paymasters are allowed to have any logic. Also, the paymaster won't be throttled if either of the following is true:
+
+- More than `X` minutes has passed since the verification has passed on the API nodes. (The exact value of `X` is TBD).
+- The order of slots being read is the same as during the run on the API node and the first slot which value has changed is one of the user's slots. This is needed to protect the paymaster from malicious users (e.g. the user might have erased the allowance for the ERC20 token).
+
+### Built-in paymaster flows
+
+While some paymasters can trivially operate without any interaction from users (e.g. a protocol that always pays fees for their users), some require active participation from the transaction's sender. A notable example is a paymaster that swaps users' ERC20 tokens to ETH as it requires the user to set the necessary allowance to the paymaster.
+
+The account abstraction protocol by itself is generic and allows both accounts and paymasters to implement arbitrary interactions. However, the code of default accounts (EOAs) is constant, but we still want them to be able to participate in the ecosystem of custom accounts and paymasters. That's why we have standardized the `paymasterInput` field of the transaction to cover most common uses-cases of the paymaster feature. 
+
+Your own accounts are free to implement or not implement the support for this flows. However, this is highly encouraged to keep the interface the same for both EOAs and custom accounts.
+
+#### General paymaster flow
+
+It should be used if no prior actions are required from the user for the paymaster to operate. 
+
+The `paymasterInput` field must be encoded as a call to a function with the following interface: 
+
+```solidity
+function general(bytes calldata data);
+``` 
+
+EOA accounts will do nothing and the paymaster can interpret this `data` in any way.
+
+#### Approval-based paymaster flow
+
+It should be used if the user is required to set certain allowance to a token for the paymaster to operate. The `paymasterInput` field must be encoded as a call to a function with the following signature:
+
+```solidity
+function approvalBased(
+    address _token, 
+    uint256 _minAllowance, 
+    bytes calldata _innerInput
+)
+```
+
+The EOA will ensure that the allowance of the `_token` towards the paymaster is set to at least `_minAllowance`. The paymaster if free to interpret the `_innerInput` however it wants to.
 
 ## `aa-signature-checker`
 
