@@ -119,14 +119,14 @@ This is the standard that is endorsed by the zkSync team. It is used in the sign
 
 The process of deploying account logic is very similar to the one of deploying a smart contract. 
 In order to protect smart contracts that do not want to be treated as an account, a different method of the deployer system contract should be used to do it. 
-Instead of using `create`/`create2`, you should use the `createAA`/`create2AA` methods of the deployer system contract.
+Instead of using `create`/`create2`, you should use the `createAccount`/`create2Account` methods of the deployer system contract.
 
 Here is an example of how to deploy account logic using the `zksync-web3` SDK:
 
 ```ts
 import { ContractFactory } from "zksync-web3";
 
-const contractFactory = new ContractFactory(abi, bytecode, initiator, "createAA");
+const contractFactory = new ContractFactory(abi, bytecode, initiator, "createAccount");
 const aa = await contractFactory.deploy(...args);
 await aa.deployed();
 ```
@@ -159,19 +159,17 @@ This is one of the whitelisted calls, where the account logic is allowed to call
 
 ### Sending transactions from an account
 
-For now, only EIP712 transactions are supported. To submit a transaction from a specific account, you should provide the `aaParams` object with the `from` and `signature` fields in the custom data:
+For now, only EIP712 transactions are supported. To submit a transaction from a specific account, you should provide `from` field of the transaction as the address of the sender and `customSignature` field of the `customData` with the signature for the account.
 
 ```ts
 import { utils } from "zksync-web3";
 
 // here the `tx` is a `TransactionRequest` object from `zksync-web3` SDK.
 // and the zksyncProvider is the `Provider` object from `zksync-web3` SDK connected to zkSync network.
+tx.from = aaAddress;
 tx.customData = {
   ...tx.customData,
-  aaParams: {
-    from: aaAddress,
-    signature: aaSignature,
-  },
+  customSignature: aaSignature,
 };
 const serializedTx = utils.serialize({ ...tx });
 
