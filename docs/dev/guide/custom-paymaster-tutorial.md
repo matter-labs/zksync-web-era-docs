@@ -15,8 +15,8 @@ It is also assumed that you already have some experience working on Ethereum.
 We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it:
 
 ```
-mkdir custom-aa-tutorial
-cd custom-aa-tutorial
+mkdir custom-paymaster-tutorial
+cd custom-paymaster-tutorial
 yarn init -y
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
@@ -60,35 +60,8 @@ contract MyPaymaster is IPaymaster {
     allowedToken = _erc20;
   }
 
-  function validateAndPayForPaymasterTransaction(Transaction calldata _transaction) external payable returns (bytes memory context) onlyBootloader {
-      // We need to validate the fee 
-      require(_transaction.paymasterInput.length >= 4, "The standard paymaster input must be at least 4 bytes long");
-
-      bytes4 paymasterInputSelector = bytes4(_transaction.paymasterInput[0:4]);
-      if (paymasterInputSelector == IPaymasterFlow.approvalBased.selector) {
-          // While the actual data consists of address, uint256 and bytes data,
-          // the data is not needed for the testnet paymaster
-          (address token, uint256 amount, ) = abi.decode(_transaction.paymasterInput[4:], (address, uint256, bytes));
-
-          // Firstly, we verify that the user has provided enough allowance
-          address userAddress = address(uint160(_transaction.from));
-          address thisAddress = address(this);
-
-          uint256 providedAllowance = IERC20(token).allowance(userAddress, thisAddress);
-          require(providedAllowance >= amount, "The user did not provide enough allowance");
-
-          // The testnet paymaster exchanges X wei of the token to the X wei of ETH.
-          uint256 requiredETH = _transaction.ergsLimit * _transaction.maxFeePerErg;
-          require(amount >= requiredETH, "User does not provide enough tokens to exchange");
-
-          // Pulling all the tokens from the user
-          IERC20(token).transferFrom(userAddress, thisAddress, amount);
-          // The bootloader never returns any data, so it can safely be ignored here.
-          (bool success, ) = payable(BOOTLOADER_ADDRESS).call{value: requiredETH}("");
-          require(success, "Failed to transfer funds to the bootloader");
-      } else {
-          revert("Unsupported paymaster flow");
-      }
+  function validateAndPayForPaymasterTransaction(Transaction calldata _transaction) external payable override returns (bytes memory context) onlyBootloader {
+    // Transaction validation logic goes here
   }
 
 	function postOp(
@@ -162,12 +135,11 @@ IERC20(token).transferFrom(userAddress, thisAddress, 1);
 require(success, "Failed to transfer funds to the bootloader");
 ```
 
-
 ::: tip
 
 The [rules](../zksync-v2/aa.md#paymaster-validation-rules) for the paymaster throttling say that the paymaster won't be throttled if the first storage read that differed was a storage slot that belonged to the user.
 
-That is why it is important to verify that the user provided all the allowed prerequisites to the transaction *before* performing any logic. This is the reason we check that the user provided enough allowance *first*, and only then we do the *transferFrom*. 
+That is why it is important to verify that the user provided all the allowed prerequisites to the transaction *before* performing any logic. This is the reason we check that the user provided enough allowance *first*, and only then we do the *transferFrom*.
 
 :::
 

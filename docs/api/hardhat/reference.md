@@ -148,44 +148,44 @@ The main export is the `Deployer` class. It is used to wrap `zksync-web3` Wallet
 class Deployer {
 
   /**
-    * @param hre Hardhat runtime environment. This object is provided to scripts by hardhat itself.
-    * @param zkWallet The wallet which will be used to deploy the contracts.
-    */
+   * @param hre Hardhat runtime environment. This object is provided to scripts by hardhat itself.
+   * @param zkWallet The wallet which will be used to deploy the contracts.
+   */
   constructor(hre: HardhatRuntimeEnvironment, zkWallet: zk.Wallet)
 
   /**
-    * Created a `Deployer` object on ethers.Wallet object.
-    *
-    * @param hre Hardhat runtime environment. This object is provided to scripts by hardhat itself.
-    * @param ethWallet The wallet which will be used to deploy the contracts.
-    */
+   * Created a `Deployer` object on ethers.Wallet object.
+   *
+   * @param hre Hardhat runtime environment. This object is provided to scripts by hardhat itself.
+   * @param ethWallet The wallet which will be used to deploy the contracts.
+   */
   static fromEthWallet(hre: HardhatRuntimeEnvironment, ethWallet: ethers.Wallet)
 
   /**
-    * Loads an artifact and verifies that it was compiled by `zksolc\.
-    *
-    * @param contractNameOrFullyQualifiedName The name of the contract.
-    *   It can be a bare contract name (e.g. "Token") if it's
-    *   unique in your project, or a fully qualified contract name
-    *   (e.g. "contract/token.sol:Token") otherwise.
-    *
-    * @throws Throws an error if a non-unique contract name is used,
-    *   indicating which fully qualified names can be used instead.
-    *
-    * @throws Throws an error if an artifact was not compiled by `zksolc`.
-    */
+   * Loads an artifact and verifies that it was compiled by `zksolc\.
+   *
+   * @param contractNameOrFullyQualifiedName The name of the contract.
+   *   It can be a bare contract name (e.g. "Token") if it's
+   *   unique in your project, or a fully qualified contract name
+   *   (e.g. "contract/token.sol:Token") otherwise.
+   *
+   * @throws Throws an error if a non-unique contract name is used,
+   *   indicating which fully qualified names can be used instead.
+   *
+   * @throws Throws an error if an artifact was not compiled by `zksolc`.
+   */
   public async loadArtifact(
     contractNameOrFullyQualifiedName: string
   ): Promise<ZkSyncArtifact>
 
   /**
-    * Estimates the price of calling a deploy transaction in a certain fee token.
-    *
-    * @param artifact The previously loaded artifact object.
-    * @param constructorArguments List of arguments to be passed to the contract constructor.
-    *
-    * @returns Calculated fee in ETH wei.
-    */
+   * Estimates the price of calling a deploy transaction in a certain fee token.
+   *
+   * @param artifact The previously loaded artifact object.
+   * @param constructorArguments List of arguments to be passed to the contract constructor.
+   *
+   * @returns Calculated fee in ETH wei.
+   */
   public async estimateDeployFee(
     artifact: ZkSyncArtifact,
     constructorArguments: any[]
