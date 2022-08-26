@@ -5,6 +5,7 @@ A set of practical guidelines and tutorials that will help you get started with 
 ## Table of contents
 
 - [Developer quickstart](./quickstart.md)
+- [Smart Contract verification](./quickstart.md)
 - [Tutorial: Hello world!](./hello-world.md)
 - [Support for Solidity/Vyper](./solidity-vyper.md)
 - [Deploying contracts](./deploying.md)

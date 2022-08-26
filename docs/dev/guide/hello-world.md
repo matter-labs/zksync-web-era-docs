@@ -138,6 +138,9 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const greeting = "Hi there!";
   const greeterContract = await deployer.deploy(artifact, [greeting]);
 
+  //obtain the Constructor Arguments
+console.log("constructor args:" + greeterContract.interface.encodeDeploy([greeting]));
+
   // Show the contract info.
   const contractAddress = greeterContract.address;
   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
