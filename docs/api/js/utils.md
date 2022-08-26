@@ -39,3 +39,12 @@ export function getPaymasterParams(paymasterAddress: Address, paymasterInput: Pa
 ```
 
 The definition of the `PaymasterInput` can be found [here](./types.md).
+
+## Default pubdata price limit
+
+Currently, there is no method to accurately estimate the required `ergsPerPubdataLimit`. That's why for now, it is highly recommended to provide the `DEFAULT_ERGS_PER_PUBDATA_LIMIT`. The users are not charged more by providing it.
+
+```typescript
+const GAS_PER_PUBDATA_BYTE = 16;
+export const DEFAULT_ERGS_PER_PUBDATA_LIMIT = GAS_PER_PUBDATA_BYTE * 10_000;
+```

@@ -2,9 +2,11 @@
 
 <!-- TODO: complete & test the tutorial on custom paymaster -->
 
-Let's see how we can use the paymaster feature and let's build a custom paymaster that will enable us to any user holding our token.
+Let's see how we can use the paymaster feature to build a custom paymaster that will enable us to pay fees for any user holding our token.
 
 ## Preliminaries
+
+It is hihgly recommended to read about the [design](../zksync-v2/aa.md) of the account abstraction protocol before diving into this tutorial.
 
 It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial. It is also recommended to read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
 
@@ -39,46 +41,43 @@ The skeleton for the paymaster will look the following way:
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol';
-import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol';
-import '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
+import { IPaymaster, ExecutionResult } from '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol';
+import { IPaymasterFlow } from '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol';
+import { TransactionHelper, Transaction } from '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
+
+import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
 
 import "@openzeppelin/contracts/interfaces/IERC20.sol";
 
 contract MyPaymaster is IPaymaster {
-  uint256 constant PRICE_FOR_PAYING_FEES = 1;
+    uint256 constant PRICE_FOR_PAYING_FEES = 1;
 
-  address public allowedToken;
+    address public allowedToken;
 
-  modifier onlyBootloader() {
-    require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
-    // Continure execution if called from the bootloader.
-    _;
-  }
+    modifier onlyBootloader() {
+        require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
+        // Continure execution if called from the bootloader.
+        _;
+    }
 
-  constructor(address _erc20) {
-    allowedToken = _erc20;
-  }
+    constructor(address _erc20) {
+        allowedToken = _erc20;
+    }
 
-  function validateAndPayForPaymasterTransaction(Transaction calldata _transaction) external payable override returns (bytes memory context) onlyBootloader {
-    // Transaction validation logic goes here
-  }
+    function validateAndPayForPaymasterTransaction(Transaction calldata _transaction) external payable override onlyBootloader returns (bytes memory context) {
+        // Transaction validation logic goes here
+    }
 
-	function postOp(
-		bytes calldata _context,
-		Transaction calldata _transaction,
-		ExecutionResult _txResult,
-		uint256 _maxRefundedErgs
-	) external payable onlyBootloader {
-    // This contract does not support any refunding logic
-  }
+    function postOp(
+      bytes calldata _context,
+      Transaction calldata _transaction,
+      ExecutionResult _txResult,
+      uint256 _maxRefundedErgs
+    ) external payable onlyBootloader {
+        // This contract does not support any refunding logic
+    }
 
-  receive() external payable {
-      // If the bootloader called the `receive` function, it likely means
-      // that something went wrong and the transaction should be aborted. The bootloader should
-      // only interact through the `validateTransaction`/`executeTransaction` methods.
-      assert(msg.sender != BOOTLOADER_FORMAL_ADDRESS);
-  }
+    receive() external payable {}
 }
 ```
 
@@ -112,7 +111,7 @@ if (paymasterInputSelector == IPaymasterFlow.approvalBased.selector) {
 
 Then, we need to check that the user indeed provided enough allowance:
 
-```
+```solidity
 address userAddress = address(uint160(_transaction.from));
 address thisAddress = address(this);
 
@@ -122,11 +121,10 @@ require(providedAllowance >= PRICE_FOR_PAYING_FEES, "The user did not provide en
 
 Then, we finally transfer the funds to the user in exchnage for 1 unit of this token.
 
-```
+```solidity
 // Note, that while the minimal amount of ETH needed is tx.ergsPrice * tx.ergsLimit,
 // neither paymaster, nor account to touch this context variable.
 uint256 requiredETH = _transaction.ergsLimit * _transaction.maxFeePerErg;
-require(amount >= requiredETH, "User does not provide enough tokens to exchange");
 
 // Pulling all the tokens from the user
 IERC20(token).transferFrom(userAddress, thisAddress, 1);
@@ -135,11 +133,11 @@ IERC20(token).transferFrom(userAddress, thisAddress, 1);
 require(success, "Failed to transfer funds to the bootloader");
 ```
 
-::: tip
+::: tip You should validate all the requirements first
 
 The [rules](../zksync-v2/aa.md#paymaster-validation-rules) for the paymaster throttling say that the paymaster won't be throttled if the first storage read that differed was a storage slot that belonged to the user.
 
-That is why it is important to verify that the user provided all the allowed prerequisites to the transaction *before* performing any logic. This is the reason we check that the user provided enough allowance *first*, and only then we do the *transferFrom*.
+That is why it is important to verify that the user provided all the allowed prerequisites to the transaction *before* performing any logic. This is the reason we check that the user provided enough allowance *first*, and only then we do the transferFrom.
 
 :::
 
@@ -149,79 +147,75 @@ That is why it is important to verify that the user provided all the allowed pre
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol';
-import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol';
-import '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
+import { IPaymaster, ExecutionResult } from '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol';
+import { IPaymasterFlow } from '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol';
+import { TransactionHelper, Transaction } from '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
+
+import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
 
 import "@openzeppelin/contracts/interfaces/IERC20.sol";
 
 contract MyPaymaster is IPaymaster {
-  uint256 constant PRICE_FOR_PAYING_FEES = 1;
+    uint256 constant PRICE_FOR_PAYING_FEES = 1;
 
-  address public allowedToken;
+    address public allowedToken;
 
-  modifier onlyBootloader() {
-    require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
-    // Continure execution if called from the bootloader.
-    _;
-  }
+    modifier onlyBootloader() {
+        require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
+        // Continure execution if called from the bootloader.
+        _;
+    }
 
-  constructor(address _erc20) {
-    allowedToken = _erc20;
-  }
+    constructor(address _erc20) {
+        allowedToken = _erc20;
+    }
 
-  function validateAndPayForPaymasterTransaction(Transaction calldata _transaction) external payable returns (bytes memory context) onlyBootloader {
-      // We need to validate the fee 
-      require(_transaction.paymasterInput.length >= 4, "The standard paymaster input must be at least 4 bytes long");
+    function validateAndPayForPaymasterTransaction(Transaction calldata _transaction) external payable override onlyBootloader returns (bytes memory context) {
+        require(_transaction.paymasterInput.length >= 4, "The standard paymaster input must be at least 4 bytes long");
 
-      bytes4 paymasterInputSelector = bytes4(_transaction.paymasterInput[0:4]);
-      if (paymasterInputSelector == IPaymasterFlow.approvalBased.selector) {
-          // While the actual data consists of address, uint256 and bytes data,
-          // the data is not needed for the testnet paymaster
-          (address token, uint256 amount, ) = abi.decode(_transaction.paymasterInput[4:], (address, uint256, bytes));
+        bytes4 paymasterInputSelector = bytes4(_transaction.paymasterInput[0:4]);
+        if (paymasterInputSelector == IPaymasterFlow.approvalBased.selector) {
+            (address token, uint256 minAllowance, bytes memory data) = abi.decode(_transaction.paymasterInput[4:], (address, uint256, bytes));
 
-          // Firstly, we verify that the user has provided enough allowance
-          address userAddress = address(uint160(_transaction.from));
-          address thisAddress = address(this);
+            require(token == allowedToken, "Invalid token");
+            require(minAllowance >= 1, "Min allowance too low");
 
-          uint256 providedAllowance = IERC20(token).allowance(userAddress, thisAddress);
-          require(providedAllowance >= amount, "The user did not provide enough allowance");
+            address userAddress = address(uint160(_transaction.from));
+            address thisAddress = address(this);
 
-          // The testnet paymaster exchanges X wei of the token to the X wei of ETH.
-          uint256 requiredETH = _transaction.ergsLimit * _transaction.maxFeePerErg;
-          require(amount >= requiredETH, "User does not provide enough tokens to exchange");
+            uint256 providedAllowance = IERC20(token).allowance(userAddress, thisAddress);
+            require(providedAllowance >= PRICE_FOR_PAYING_FEES, "The user did not provide enough allowance");
 
-          // Pulling all the tokens from the user
-          IERC20(token).transferFrom(userAddress, thisAddress, amount);
-          // The bootloader never returns any data, so it can safely be ignored here.
-          (bool success, ) = payable(BOOTLOADER_ADDRESS).call{value: requiredETH}("");
-          require(success, "Failed to transfer funds to the bootloader");
-      } else {
-          revert("Unsupported paymaster flow");
-      }
-  }
+            // Note, that while the minimal amount of ETH needed is tx.ergsPrice * tx.ergsLimit,
+            // neither paymaster, nor account to touch this context variable.
+            uint256 requiredETH = _transaction.ergsLimit * _transaction.maxFeePerErg;
 
-	function postOp(
-		bytes calldata _context,
-		Transaction calldata _transaction,
-		ExecutionResult _txResult,
-		uint256 _maxRefundedErgs
-	) external payable onlyBootloader {
-    // This contract does not support any refunding logic
-  }
+            // Pulling all the tokens from the user
+            IERC20(token).transferFrom(userAddress, thisAddress, 1);
+            // The bootloader never returns any data, so it can safely be ignored here.
+            (bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{value: requiredETH}("");
+            require(success, "Failed to transfer funds to the bootloader");
+        } else {
+            revert("Unsupported paymaster flow");
+        }
+    }
 
-  receive() external payable {
-      // If the bootloader called the `receive` function, it likely means
-      // that something went wrong and the transaction should be aborted. The bootloader should
-      // only interact through the `validateTransaction`/`executeTransaction` methods.
-      assert(msg.sender != BOOTLOADER_FORMAL_ADDRESS);
-  }
+    function postOp(
+        bytes calldata _context,
+        Transaction calldata _transaction,
+        ExecutionResult _txResult,
+        uint256 _maxRefundedErgs
+    ) external payable onlyBootloader {
+        // This contract does not support any refunding logic
+    }
+
+    receive() external payable {}
 }
 ```
 
-## The ERC20 contract 
+## Deploying an ERC20 contract 
 
-To test our paymaster, we need to deploy an ERC20 token. For the sake of simplicity we will use the standard OpenZeppelin library for it:
+To test our paymaster, we need to deploy an ERC20 token. For the sake of simplicity we will use a somewhat modified OpenZeppelin implementation of it:
 
 Create the `MyERC20.sol` file and put the following code in it:
 

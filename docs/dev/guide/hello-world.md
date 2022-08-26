@@ -131,7 +131,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     to: deployer.zkWallet.address,
     token: utils.ETH_ADDRESS,
     amount: deploymentFee.mul(2),
-    approveERC20: true,
   });
   // Wait until the deposit is processed on zkSync
   await depositHandle.wait();
@@ -275,7 +274,7 @@ Open `./src/App.vue` and set the `GREETER_CONTRACT_ADDRESS` constant equal to th
 To interact with zkSync's smart contract, its ABI is also needed.
 
 - Create the `./src/abi.json` file.
-- You can get the contract's ABI in the hardhat project folder from the previous section in the `./artifacts/contracts/tmp/Flattened.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` created in the previous step. The file should look roughly the following way:
+- You can get the contract's ABI in the hardhat project folder from the previous section in the `./artifacts-zk/contracts/Greeter.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` created in the previous step. The file should look roughly the following way:
 
 ```json
 [
@@ -431,6 +430,12 @@ async getFee() {
 },
 ```
 
+::: tip Paying fees in ERC20
+
+Unlike the previous version, zkSync 2.0 does not natively support paying fees in ERC20 tokens, but the account abstraction feature facilitates that. An example on how to use the testnet paymaster will be provided in this tutorial below. However, when going on mainnet, you shoud either provide the paymaster services [yourself](./custom-paymaster-tutorial.md) or use a 3rd party paymaster. 
+
+:::
+
 When opening the page and select the token to pay fee with, the balance and the expected fee for the transaction will be available.
 
 The `Refresh` button should be used to recalculate the fee, as the fee may depend on the length of the string to be set.
@@ -441,7 +446,7 @@ It is possible to also click on the `Change greeting` button, but nothing will b
 
 ### Updating the greeting
 
-1. Interacting with smart contract works absolutely the same way as in `ethers`, however, the `customData` override is required to supply the `feeToken` of the transaction:
+1. Interacting with smart contract works absolutely the same way as in `ethers`, however, if we want to use zkSync-specific features we may need to provide some additional parameters in the overrides:
 
 ```javascript
 // The example of paying fees using a paymaster will be shown in the 
@@ -487,9 +492,17 @@ async changeGreeting() {
 },
 ```
 
+You now have a fully functioal Greeter-dApp! However, it does not leverage any zkSync-specific features.
+
 ### Paying fees using testnet paymaster
 
 Even though ether is the only token you can pay the fees with, the account abstraction feature allows you to integrate [paymasters](../zksync-v2/aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](../zksync-v2/aa.md#testnet-paymaster) that is provided on all zkSync testnets. It allows to pay fees in any ERC20 tokens with the exchange rate of ETH of 1:1, i.e. one wei of the token for one wei of ETH.
+
+::: tip Mainnet integration
+
+Testnet paymaster is purely for demonstration of the feature and won't be available on mainnet. When integrating your protocol on mainnet, you should follow the documentation of the paymaster you will use.
+
+:::
 
 The address of the paymaster as well as the required input should be provided in the `getOverrides` method.
 
@@ -507,18 +520,23 @@ async getOverrides() {
 }
 ```
 
-Note, that it is recommended to retrive the testnet paymaster each time before interacting with it as it may change.
+Note, that it is recommended to retrive the testnet paymaster's address each time before any interactions as it may change.
 
-2. We need to calculate how much tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token at 1:1 rate, then the number if the same as of the ERC20 token:
+2. Add `utils` to the imports from `zksync-web3` SDK:
+
+```javascript
+import { Contract, Web3Provider, Provider, utils } from "zksync-web3";
+```
+
+2. We need to calculate how much tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token at 1:1 rate, then the number is the same as of the ERC20 token:
 
 ```javascript
 async getOverrides() {
   if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
     const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
 
-    const tx = await erc20contract.populateTransaction.transfer(receiver.address, amount);
-    const gasPrice = await sender.provider.getGasPrice();
-    const gasLimit = await erc20contract.estimateGas.transfer(receiver.address, amount);
+    const gasPrice = await this.provider.getGasPrice();
+    const gasLimit = await this.contract.estimateGas.setGreeting(this.newGreeting);
     const fee = gasPrice.mul(gasLimit);
 
     // ..
@@ -535,13 +553,13 @@ async getOverrides() {
   if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
     const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
 
-    const gasPrice = await sender.provider.getGasPrice();
-    const gasLimit = await erc20contract.estimateGas.transfer(receiver.address, amount);
+    const gasPrice = await this.provider.getGasPrice();
+    const gasLimit = await this.contract.estimateGas.setGreeting(this.newGreeting);
     const fee = gasPrice.mul(gasLimit);
 
     const paymasterParams = utils.getPaymasterParams(testnetPaymaster, {
         type: 'ApprovalBased',
-        token,
+        token: this.selectedToken.l2Address,
         minimalAllowance: fee,
         innerInput: new Uint8Array()
     });

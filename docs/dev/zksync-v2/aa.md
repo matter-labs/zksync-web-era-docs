@@ -22,7 +22,7 @@ The account abstraction protocol on zkSync is in spirit very similar to [EIP4337
 
 ### IAccount interface
 
-Each account is recommended to implement the [IAccountAbstraction](https://github.com/matter-labs/v2-testnet-contracts/blob/main/zksync/system-contracts/interfaces/IAccountAbstraction.sol) interface. It contains the following five methods:
+Each account is recommended to implement the [IAccount](https://github.com/matter-labs/v2-testnet-contracts/blob/main/zksync/system-contracts/interfaces/IAccount.sol) interface. It contains the following five methods:
 
 - `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) the method should revert. In case the call to this method succeedes, the implemented account logic is considered to accept the transaction, and the system will proceed with the transaction flow.
 - `executeTransaction` is mandatory and will be called by the system after the fee is charged from the user. This function should perform the execution of the transaction.

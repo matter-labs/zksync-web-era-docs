@@ -6,6 +6,8 @@ In this tutorial we build a factory that deploys 2-of-2 multisig accounts.
 
 ## Preliminaries
 
+It is hihgly recommended to read about the [design](../zksync-v2/aa.md) of the account abstraction protocol before diving into this tutorial.
+
 It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial. It is also recommended to read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
 
 It is also assumed that you already have some experience working on Ethereum.
@@ -31,7 +33,7 @@ Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folde
 
 ## Account abstraction
 
-Each account needs to implement the [IAccountAbstraction](https://github.com/matter-labs/v2-testnet-contracts/blob/07e05084cdbc907387c873c2a2bd3427fe4fe6ad/l2/system-contracts/interfaces/IAccountAbstraction.sol#L7) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
+Each account needs to implement the [IAccount](https://github.com/matter-labs/v2-testnet-contracts/blob/07e05084cdbc907387c873c2a2bd3427fe4fe6ad/l2/system-contracts/interfaces/IAccount.sol#L7) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
 
 The skeleton for the contract will look the following way:
 
@@ -39,12 +41,12 @@ The skeleton for the contract will look the following way:
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccountAbstraction.sol';
+import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol';
 import '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
 
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 
-contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
+contract TwoUserMultisig is IAccount, IERC1271 {
 
 	modifier onlyBootloader() {
 		require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
@@ -188,7 +190,7 @@ function payForTransaction(Transaction calldata _transaction) external payable o
 
 While generally the account abstraction protocol allows to perform arbitrary actions when interacting with the paymasters, there are some [common patterns](../zksync-v2/aa.md#built-in-paymaster-flows) with the built-in support from EOAs. Unless you want to implement or restrict some specific paymaster use-cases from your account, it is better to keep it consistent with the EOAs. The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processed the `prePaymaster` step the same as EOA does.
 
-```
+```solidity
 function prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
     _transaction.processPaymasterInput();
 }
@@ -226,12 +228,12 @@ pragma solidity ^0.8.0;
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
 import '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
 
-import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccountAbstraction.sol';
+import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol';
 
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
-contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
+contract TwoUserMultisig is IAccount, IERC1271 {
 	using TransactionHelper for Transaction;
 
     address public owner1;
@@ -341,7 +343,7 @@ contract AAFactory {
         address owner1,
         address owner2
     ) external returns (address) {
-        return DEPLOYER_SYSTEM_CONTRACT.create2Account(salt, aaBytecodeHash, 0, abi.encode(owner1, owner2));
+        (accountAddress, ) = DEPLOYER_SYSTEM_CONTRACT.create2Account(salt, aaBytecodeHash, 0, abi.encode(owner1, owner2));
     }
 }
 ```
@@ -418,10 +420,9 @@ In the `deploy` folder create a file `deploy-multisig.ts`, where we will put the
 Firstly, let's deploy the AA. This will be basically a call to the `deployAccount` function:
 
 ```ts
-import { utils, Wallet, Provider, EIP712Signer } from "zksync-web3";
+import { utils, Wallet, Provider, EIP712Signer, types } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { Eip712Meta } from "zksync-web3/build/src/types";
 
 // Put the address of your AA factory
 const AA_FACTORY_ADDRESS = "0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627D";
@@ -492,8 +493,9 @@ aaTx = {
   nonce: await provider.getTransactionCount(multisigAddress),
   type: 113,
   customData: {
-    ergsPerPubdata: "1",
-  } as Eip712Meta,
+    // Note, that we are using the `DEFAULT_ERGS_PER_PUBDATA_LIMIT`
+    ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+  } as types.Eip712Meta,
   value: ethers.BigNumber.from(0),
 };
 ```
@@ -536,10 +538,9 @@ console.log(`The multisig's nonce after the first tx is ${await provider.getTran
 ### Full example
 
 ```ts
-import { utils, Wallet, Provider, EIP712Signer } from "zksync-web3";
+import { utils, Wallet, Provider, EIP712Signer, types } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { Eip712Meta } from "zksync-web3/build/src/types";
 
 // Put the address of your AA factory
 const AA_FACTORY_ADDRESS = "0xa0eD7885B408961430F89d797cD1cc87530D8fBe";
@@ -592,7 +593,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     type: 113,
     customData: {
       ergsPerPubdata: "1",
-    } as Eip712Meta,
+    } as types.Eip712Meta,
     value: ethers.BigNumber.from(0),
   };
   const signedTxHash = EIP712Signer.getSignedDigest(aaTx);
@@ -606,7 +607,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   aaTx.customData = {
     ...aaTx.customData,
-    customsignature: signature,
+    customSignature: signature,
   };
 
   console.log(`The multisig's nonce before the first tx is ${await provider.getTransactionCount(multisigAddress)}`);
