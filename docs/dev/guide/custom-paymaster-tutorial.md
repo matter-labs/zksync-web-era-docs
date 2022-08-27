@@ -250,7 +250,7 @@ contract MyERC20 is ERC20 {
 
 ## Deploying the paymaster
 
-To deploy the paymaster, we need to create a deployment script. Create the `deploy` folder and create one file there: `deploy-paymaster.ts`. Put the following deployment script there:
+To deploy the ERC20 token and the paymaster, we need to create a deployment script. Create the `deploy` folder and create one file there: `deploy-paymaster.ts`. Put the following deployment script there:
 
 ```ts
 import { utils, Wallet } from "zksync-web3";
@@ -259,42 +259,142 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
+  // The wallet that will deploy the token and the paymaster
+  // It is assumed that this wallet already has sufficient funds on zkSync
   const wallet = new Wallet("<PRIVATE-KEY>");
-  const deployer = new Deployer(hre, wallet);
-  const factoryArtifact = await deployer.loadArtifact("AAFactory");
-  const aaArtifact = await deployer.loadArtifact("TwoUserMultisig");
+  // The wallet that will receive ERC20 tokens
+  const emptyWallet = Wallet.createRandom();
+  console.log(`Empty wallet's address: ${emptyWallet.address}`);
+  console.log(`Empty wallet's private key: ${emptyWallet.privateKey}`);
 
-  // TODO: deployment script for ERC20 tokens and the paymaster
+  const deployer = new Deployer(hre, wallet);
+
+  // Deploying the ERC20 token
+  const erc20Artifact = await deployer.loadArtifact("MyERC20");
+  const erc20 = await deployer.deploy(erc20Artifact, ["MyToken", "MyToken", 18]);
+  console.log(`ERC20 address: ${erc20.address}`);
+
+  // Deploying the paymaster
+  const paymasterArtifact = await deployer.loadArtifact("MyPaymaster");
+  const paymaster = await deployer.deploy(paymasterArtifact, [erc20.address]);
+  console.log(`Paymaster address: ${paymaster.address}`);
+
+  // Supplying paymaster with ETH 
+  await (
+    await deployer.zkWallet.sendTransaction({
+      to: paymaster.address,
+      value: ethers.utils.parseEther('0.01')
+    })
+  ).wait()
+
+  // Supplying the ERC20 tokens to the empty wallet:
+  await (
+    // We will give the empty wallet 3 units of the token:
+    await erc20.mint(emptyWallet.address, 3)
+  ).wait();
+
+  console.log(`Done!`);
 }
 ```
 
-In order to deploy the ERC20 token and the paymaster, you should compile the contracts and run the script:
+Besides deploying the paymaster it also creates an empty wallet and gives some of the `MyERC20` tokens to it, so that it can use the paymaster.
+
+To deploy the ERC20 token and the paymaster, you should compile the contracts and run the script:
 
 ```
 yarn hardhat compile
-yarn hardhat deploy-zksync --script deploy-factory.ts
+yarn hardhat deploy-zksync --script deploy-paymaster.ts
 ```
 
 The output should be roughly the following:
 
 ```
-MyERC20 address: 0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627Ds
-MyPaymaster address: TODO
+Empty wallet's address: 0xAd155D3069BB3c587E995916B320444056d8191F
+Empty wallet's private key: 0x236d735297617cc68f4ec8ceb40b351ca5be9fc585d446fa95dff02354ac04fb
+ERC20 address: 0x65C899B5fb8Eb9ae4da51D67E1fc417c7CB7e964
+Paymaster address: 0x0a67078A35745947A37A552174aFe724D8180c25
+Done!
 ```
 
-Note that the address will be different for each run.
+Note that the addresses and private keys will be different for each run.
 
-## Working with the paymaster
+## Using the paymaster
 
-Create `transaction.ts` script in the `deploy` folder. You can see the example of interacting with the paymaster in the code snippet below:
+Create `use-paymaster.ts` script in the `deploy` folder. You can see the example of interacting with the paymaster in the code snippet below:
 
 ```ts
-TODO: code snippet of interaction with the paymaster
+import { Provider, utils, Wallet } from "zksync-web3";
+import * as ethers from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+
+// Put the address of the deployed paymaster here
+const PAYMASTER_ADDRESS = '';
+
+// Put the address of the ERC20 token here:
+const TOKEN_ADDRESS = '';
+
+// Wallet private key
+const EMPTY_WALLET_PRIVATE_KEY = '';
+
+function getToken(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
+  const artifact = hre.artifacts.readArtifactSync('MyERC20');
+  return new ethers.Contract(
+    TOKEN_ADDRESS,
+    artifact.abi,
+    wallet
+  )
+}
+
+export default async function (hre: HardhatRuntimeEnvironment) {
+  const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
+  const emptyWallet = new Wallet(EMPTY_WALLET_PRIVATE_KEY, provider);
+
+  // Obviously this step is not required, but it is here purely to demonstrate
+  // that indeed the wallet has no ether.
+  const ethBalance = await emptyWallet.getBalance();
+  if(!ethBalance.eq(0)) {
+      throw new Error('The wallet is not empty');
+  }
+
+  console.log(`Balance of the user before mint: ${await emptyWallet.getBalance(TOKEN_ADDRESS)}`);
+  
+  const erc20 = getToken(hre, emptyWallet);
+  
+  // Encoding the "ApprovalBased" paymaster flow's input
+  const paymasterParams = utils.getPaymasterParams(PAYMASTER_ADDRESS, {
+    type: 'ApprovalBased',
+    token: TOKEN_ADDRESS,
+    minimalAllowance: ethers.BigNumber.from(1),
+    innerInput: new Uint8Array()
+  });
+
+  await (
+    await erc20.mint(emptyWallet.address, 100, {
+      customData: {
+        paymasterParams,
+        ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+      }
+    })
+  ).wait()
+
+  console.log(`Balance of the user after mint: ${await emptyWallet.getBalance(TOKEN_ADDRESS)}`);
+}
+```
+
+After filling in the parameters `PAYMASTER_ADDRESS`,`TOKEN_ADDRESS` and `EMPTY_WALLET_PRIVATE_KEY` with the output provided in the previous step, run this script with the following command:
+
+```
+yarn hardhat deploy-zksync --script use-paymaster.ts
+```
+
+The output should be roughly the following:
+
+```
+Balance of the user before mint: 3
+Balance of the user after mint: 102
 ```
 
 ## Complete project
-
-TODO: upload the project to the tutorials.
 
 You can download the complete project [here](https://github.com/matter-labs/custom-paymaster-tutorial).
 
