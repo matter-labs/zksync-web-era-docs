@@ -71,6 +71,8 @@ If this contract has already been complied, you should delete the artifact and c
 
 :::
 
+To learn how to verify your smart contrcat using zkSync block explorer, click [here](./contract-verification.md).
+
 3. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
 
 4. Create the `contracts/Greeter.sol` contract and insert the following code there:
@@ -141,6 +143,9 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`The deployment will cost ${parsedFee} ETH`);
 
   const greeterContract = await deployer.deploy(artifact, [greeting]);
+
+  //obtain the Constructor Arguments
+console.log("constructor args:" + greeterContract.interface.encodeDeploy([greeting]));
 
   // Show the contract info.
   const contractAddress = greeterContract.address;
