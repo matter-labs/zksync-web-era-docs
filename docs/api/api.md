@@ -10,7 +10,7 @@ However, zkSync has its own specifics, which this section describes.
 
 ## EIP712
 
-To specify additional fields, like the custom signature for custom accounts or to choose the paymaster, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also they have fields that contain additional L2-specific data (`paymaster`, etc):
+To specify additional fields, like the custom signature for custom accounts or to choose the paymaster, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but they also have fields that contain additional L2-specific data (`paymaster`, etc):
 
 ```json
 "ergsPerPubdata": "1212",
