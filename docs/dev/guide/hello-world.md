@@ -533,7 +533,7 @@ Note, that it is recommended to retrieve the testnet paymaster's address each ti
 import { Contract, Web3Provider, Provider, utils } from "zksync-web3";
 ```
 
-2. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token to ETH at 1:1 rate, then the number is the same as of ETH:
+2. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token to ETH at a 1:1 rate, the amount is the same as the ETH amount:
 
 ```javascript
 async getOverrides() {
