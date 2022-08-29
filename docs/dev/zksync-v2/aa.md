@@ -80,7 +80,7 @@ By default, calling `estimateGas` adds a constant to cover charging the fee and 
 
 ## Extending EIP4337
 
-To provide DDoS protection for the operator, the original EIP4337 imposes several [restrictions](https://eips.ethereum.org/EIPS/eip-4337#simulation) on the validation step of the account. Most of them, especially regarding the forbidden opcodes are still relevant. However, several restrictions have been lifted for better UX.
+To provide DoS protection for the operator, the original EIP4337 imposes several [restrictions](https://eips.ethereum.org/EIPS/eip-4337#simulation) on the validation step of the account. Most of them, especially regarding the forbidden opcodes are still relevant. However, several restrictions have been lifted for better UX.
 
 ### Extending the allowed opcodes
 

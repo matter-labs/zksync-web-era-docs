@@ -55,7 +55,7 @@ In the future, we will also add the ability to "prioritize" L1->L2 transactions,
 
 If the operator fails to process the needed L1 transactions, the system enters the ''Priority mode''. In this mode, everyone can become an operator by staking tokens. The exact details of the priority mode are still under development and will be described in more detail closer to the mainnet launch.
 
-Note, that for security reasons, the priority mode is not enabled while the system is in alpha.
+To reduce risks, alpha mainnet will start with a mechanism to instantly stop and upgrade the network, which contradicts the purpose of the priority mode. Priority mode will be gradually introduced in the following releases.
 
 ## L2 -> L1 communication
 

@@ -48,11 +48,11 @@ import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 
 contract TwoUserMultisig is IAccount, IERC1271 {
 
-	modifier onlyBootloader() {
-		require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
-		// Continure execution if called from the bootloader.
-		_;
-	}
+    modifier onlyBootloader() {
+        require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
+        // Continure execution if called from the bootloader.
+        _;
+    }
 
     function validateTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
         _validateTransaction(_transaction);
@@ -63,33 +63,33 @@ contract TwoUserMultisig is IAccount, IERC1271 {
     }
 
     function executeTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
-		_executeTransaction(_transaction);
-	}
+        executeTransaction(_transaction);
+	  }
 
     function _executeTransaction(Transaction calldata _transaction) internal {
 
     }
 
     function executeTransactionFromOutside(Transaction calldata _transaction) external payable {
-		_validateTransaction(_transaction);
-		_executeTransaction(_transaction);
-	}
+        _validateTransaction(_transaction);
+        _executeTransaction(_transaction);
+    }
 
-	bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
+	  bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
 
     function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
         return EIP1271_SUCCESS_RETURN_VALUE;
     }
   
-  function payForTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+    function payForTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
 
-  }
+    }
 
-	function prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
+    function prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
 
-  }
+    }
 
-	receive() external payable {
+	  receive() external payable {
         // If the bootloader called the `receive` function, it likely means
         // that something went wrong and the transaction should be aborted. The bootloader should
         // only interact through the `validateTransaction`/`executeTransaction` methods.
@@ -234,7 +234,7 @@ import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
 contract TwoUserMultisig is IAccount, IERC1271 {
-	using TransactionHelper for Transaction;
+    using TransactionHelper for Transaction;
 
     address public owner1;
     address public owner2;
@@ -244,37 +244,37 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         owner2 = _owner2;
     }
 
-	bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
+    bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
 
-	modifier onlyBootloader() {
-		require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
-		// Continure execution if called from the bootloader.
-		_;
-	}
+    modifier onlyBootloader() {
+        require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
+        // Continure execution if called from the bootloader.
+        _;
+    }
 
-	function validateTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
-		_validateTransaction(_transaction);
-	}
+    function validateTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+        _validateTransaction(_transaction);
+    }
 
-	function _validateTransaction(Transaction calldata _transaction) internal {
+    function _validateTransaction(Transaction calldata _transaction) internal {
         // Incrementing the nonce of the account.
         // Note, that reserved[0] by convention is currently equal to the nonce passed in the transaction
         NONCE_HOLDER_SYSTEM_CONTRACT.incrementNonceIfEquals(_transaction.reserved[0]);
         bytes32 txHash = _transaction.encodeHash();
 
         require(isValidSignature(txHash, _transaction.signature) == EIP1271_SUCCESS_RETURN_VALUE);
-	}
+    }
 
-	function executeTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
-		_executeTransaction(_transaction);
-	}
+    function executeTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+        _executeTransaction(_transaction);
+    }
 
-	function executeTransactionFromOutside(Transaction calldata _transaction) external payable {
-		_validateTransaction(_transaction);
-		_executeTransaction(_transaction);
-	}
+    function executeTransactionFromOutside(Transaction calldata _transaction) external payable {
+        _validateTransaction(_transaction);
+        _executeTransaction(_transaction);
+    }
 
-	function _executeTransaction(Transaction calldata _transaction) internal {
+    function _executeTransaction(Transaction calldata _transaction) internal {
         uint256 to = _transaction.to;
         // By convention, the `reserved[1]` field is msg.value
         uint256 value = _transaction.reserved[1];
@@ -287,9 +287,9 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 
         // Needed for the transaction to be correctly processed by the server.
         require(success);
-	}
+    }
 
-	function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
+    function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
         // The signature is the concatenation of the ECDSA signatures of the owners
         // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long.
         require(_signature.length == 130, 'Signature length is incorrect');
@@ -301,18 +301,18 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         require(recoveredAddr2 == owner2);
 
         return EIP1271_SUCCESS_RETURN_VALUE;
-	}
+    }
 
-  function payForTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
-      bool success = _transaction.payToTheBootloader();
-      require(success, "Failed to pay the fee to the operator");
-  }
+    function payForTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+        bool success = _transaction.payToTheBootloader();
+        require(success, "Failed to pay the fee to the operator");
+    }
 
-  function prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
-      _transaction.processPaymasterInput();
-  }
+    function prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
+        _transaction.processPaymasterInput();
+    }
 
-	receive() external payable {
+    receive() external payable {
         // If the bootloader called the `receive` function, it likely means
         // that something went wrong and the transaction should be aborted. The bootloader should
         // only interact through the `validateTransaction`/`executeTransaction` methods.

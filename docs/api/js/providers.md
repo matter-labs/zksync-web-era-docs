@@ -170,7 +170,7 @@ console.log(await provider.getConfirmedTokens());
 
 ::: warning Deprecated
 
-This method is deprecated and will soon be removed.
+This method is deprecated and will be removed soon.
 
 :::
 
