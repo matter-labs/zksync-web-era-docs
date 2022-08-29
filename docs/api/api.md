@@ -38,10 +38,10 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 | to                  | `uint256`   |
 | ergsLimit                  | `uint256`   |
 | ergsPerPubdataByteLimit                  | `uint256`   |
-| maxFeePerErg                      | `address` |
+| maxFeePerErg                      | `uint256 ` |
 | maxPriorityFeePerErg                   | `uint256` |
-| paymaster                    | `bytes`   |
-| nonce                | `address` |
+| paymaster                    | `uint256`   |
+| nonce                | `uint256` |
 | value               | `uint256` |
 | data                | `bytes` |
 | factoryDeps | `bytes32[]` |
