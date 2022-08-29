@@ -5,6 +5,7 @@
 When you deploy a smart contract on a network, you’re essentially deploying the bytecode produced by the Solidity compiler.
 
 Contract verification is ensuring the correctness, security, and safety of the smart contract implementations which allows smart contract developers to prove and publish the source code of the contracts deployed on-chain.
+
 <br>
 
 <hr>
@@ -27,6 +28,7 @@ Code verification requires six arguments:
 - The constructor arguments
  
  If any of these pieces of information is wrong, the process of verification fails.
+
 <br>
 
 <hr>
@@ -35,11 +37,13 @@ Code verification requires six arguments:
 
 ## Modes of verification
 
-Depending on whether your contract is deployed on a network or with zkSync, there are two modes of contract verification:
+When your smart contract is deployed on zkSync, every zkSync user on the block explorer will be able to check the verified source code and interact with it.
 
-- Public: Every zkSync user on the block explorer will be able to check the verified source code and interact with it. 
-- Private: The contract is verified and thus valid within a single project in zkSync, available to you and anybody with access to the project.
+<br>
 
+<hr>
+
+<br>
 
 
 ## Verifying Contracts Using the zkSync Block Explorer
@@ -49,6 +53,7 @@ You can verify your contract so that zkSync can convert it all into a format tha
 To get started click the **Tools** tab in the top header, a dropdown will pop up and select **Smart Contract Verification**,  after which you will be shown the following screen:
 
 ![Smart Contract Verification page!](../../assets/images/verify-contract.png "verify contact")
+
 <br>
 
 <hr>
