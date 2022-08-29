@@ -133,7 +133,7 @@ require(success, "Failed to transfer funds to the bootloader");
 
 The [rules](../zksync-v2/aa.md#paymaster-validation-rules) for the paymaster throttling say that the paymaster won't be throttled if the first storage read the value of which differed from the execution on the API was a storage slot that belonged to the user.
 
-That is why it is important to verify that the user provided all the allowed prerequisites to the transaction *before* performing any logic. This is the reason we check that the user provided enough allowance *first*, and only then we do the transferFrom.
+That is why it is important to verify that the user provided all the allowed prerequisites to the transaction *before* performing any logic. This is the reason we *first* check that the user provided enough allowance, and only then we do `transferFrom`.
 
 :::
 
@@ -211,7 +211,7 @@ contract MyPaymaster is IPaymaster {
 
 ## Deploying an ERC20 contract 
 
-To test our paymaster, we need to deploy an ERC20 token. For the sake of simplicity we will use a somewhat modified OpenZeppelin implementation of it:
+To test our paymaster, we need an ERC20 token. We are now going to deploy one. For the sake of simplicity we will use a somewhat modified OpenZeppelin implementation of it:
 
 Create the `MyERC20.sol` file and put the following code in it:
 
@@ -316,7 +316,7 @@ Note that the addresses and private keys will be different for each run.
 
 ## Using the paymaster
 
-Create `use-paymaster.ts` script in the `deploy` folder. You can see the example of interacting with the paymaster in the code snippet below:
+Create the `use-paymaster.ts` script in the `deploy` folder. You can see the example for interacting with the paymaster in the code snippet below:
 
 ```ts
 import { Provider, utils, Wallet } from "zksync-web3";
