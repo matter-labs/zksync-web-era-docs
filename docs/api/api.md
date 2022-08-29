@@ -139,7 +139,7 @@ The tokens are returned in alphabetical order by their symbol, so basically, the
 
 ### `zks_getL2ToL1MsgProof`
 
-Given a block, a sender, a message and an optional log index in block of the L1->L2 message, returns the proof for the message sent via the L1Messenger system contract.
+Given a block, a sender, a message and an optional message log index in the block containing the L1->L2 message, returns the proof for the message sent via the L1Messenger system contract.
 
 ### Input parameters
 
