@@ -249,7 +249,7 @@ async transfer(tx: {
 | tx.to                | The address of the recipient.                                       |
 | tx.amount            | The amount of the token to transfer.                                |
 | token (optional)     | The address of the token. `ETH` by default.                         |
-| overrides (optional) | Transaction overrides, such as `nonce`, `feeToken`, `gasLimit` etc. |
+| overrides (optional) | Transaction overrides, such as `nonce`, `gasLimit` etc. |
 | returns              | A `TransactionResponse` object                                      |
 
 > Example
@@ -270,7 +270,6 @@ const recipient = zksync.Wallet.createRandom();
 const transferHandle = wallet.transfer({
   to: recipient.address,
   amount: ethers.utils.parseEther("0.01"),
-  overrides: { customData: { feeToken: USDC_L2_ADDRESS } },
 });
 ```
 
@@ -292,7 +291,7 @@ async withdraw(transaction: {
 | tx.amount                | The amount of the token to transfer.                                |
 | token (optional)         | The address of the token. `ETH` by default.                         |
 | bridgeAddress (optional) | The address of the bridge contract to be used.                      |
-| overrides (optional)     | Transaction overrides, such as `nonce`, `feeToken`, `gasLimit` etc. |
+| overrides (optional)     | Transaction overrides, such as `nonce`, `gasLimit` etc. |
 | returns                  | A `TransactionResponse` object                                      |
 
 ### Retrieving the underlying L1 wallet
@@ -413,7 +412,7 @@ async transfer(tx: {
 | tx.to                | The address of the recipient.                                       |
 | tx.amount            | The amount of the token to transfer.                                |
 | token (optional)     | The address of the token. `ETH` by default.                         |
-| overrides (optional) | Transaction overrides, such as `nonce`, `feeToken`, `gasLimit` etc. |
+| overrides (optional) | Transaction overrides, such as `nonce`, `gasLimit` etc. |
 | returns              | An `ethers.ContractTransaction` object.                             |
 
 > Example
@@ -431,7 +430,6 @@ const recipient = Wallet.createRandom();
 const transferHandle = signer.transfer({
   to: recipient.address,
   amount: ethers.utils.parseEther("0.01"),
-  overrides: { customData: { feeToken: USDC_L2_ADDRESS } },
 });
 ```
 
