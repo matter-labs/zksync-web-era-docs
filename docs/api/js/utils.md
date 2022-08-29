@@ -8,7 +8,7 @@ import { utils } from "zksync-web3";
 
 Most of the utilities are used internally by the zkSync team. So this document will describe only those which should be helpful for you.
 
-## The "address" of Ether
+## The "address" of ether
 
 While formally ether is a token with address `0x000000000000000000000000000000000000800a` on zkSync, we use the "zero address" as a more user-friendly alias:
 

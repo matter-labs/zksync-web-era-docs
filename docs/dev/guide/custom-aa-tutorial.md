@@ -10,8 +10,6 @@ It is highly recommended to read about the [design](../zksync-v2/aa.md) of the a
 
 It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial. It is also recommended to read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
 
-It is also assumed that you already have some experience working on Ethereum.
-
 ## Installing dependencies
 
 We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it:
@@ -98,7 +96,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 }
 ```
 
-Note, that only the [bootloader](../zksync-v2/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prePaymaster` methods. That's why the `onlyBootloader` is used for them.
+Note, that only the [bootloader](../zksync-v2/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prePaymaster` methods. That's why the `onlyBootloader` modifier is used for them.
 
 The `executeTransactionFromOutside` is needed to allow external users to initiate transactions from this account. The easiest way to implement it is to do the same as `validateTransaction` + `executeTransaction` would do.
 

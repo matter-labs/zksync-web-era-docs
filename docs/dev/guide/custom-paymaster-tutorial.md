@@ -8,8 +8,6 @@ It is highly recommended to read about the [design](../zksync-v2/aa.md) of the a
 
 It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial. It is also recommended to read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
 
-It is also assumed that you already have some experience working on Ethereum.
-
 ## Installing dependencies
 
 We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it:
@@ -79,11 +77,11 @@ contract MyPaymaster is IPaymaster {
 }
 ```
 
-Note, that only the [bootloader](../zksync-v2/system-contracts.md#bootloader) should be allowed to call the `validateAndPayForPaymasterTransaction`/`postOp` methods. That's why the `onlyBootloader` is used for them.
+Note, that only the [bootloader](../zksync-v2/system-contracts.md#bootloader) should be allowed to call the `validateAndPayForPaymasterTransaction`/`postOp` methods. That's why the `onlyBootloader` modifier is used for them.
 
-### Parsing paymaster input
+### Parsing the paymaster input
 
-In this tutorial, you want tocharge the user one unit of the `allowedToken` in exchange for his fees being paid by the contract.
+In this tutorial, we want to charge the user one unit of the `allowedToken` in exchange for his fees being paid by the contract.
 
 The input that the paymaster should receive is encoded in the `paymasterInput`. As described [here](../zksync-v2/aa.md#built-in-paymaster-flows), there are some standardized ways to encode user interactions with paymasterInput. To charge the user, we will require that he has provided enough allowance to the paymaster contract. This is what the `approvalBased` flow can help us with.
 
