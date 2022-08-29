@@ -24,7 +24,7 @@ To specify additional fields, like the custom signature for custom accounts or t
 
 - `ergsPerPubdata` is a field that describes the maximal amount of ergs the user is willing to pay for a single byte of pubdata.
 - `customSignature` is a field with a custom signature, in case the signer's account is not EOA.
-- `paymasterParams` are parameters configuring the custom paymaster for the transaction. Paymaster parameters contain the address of the paymaster and the encoded input to invoke it.
+- `paymasterParams` is a field with parameters for configuring the custom paymaster for the transaction. The paymaster parameters contain the address of the paymaster and the encoded input to invoke it.
 - `factory_deps` is a field that should be a non-empty array of `bytes` for deployment transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
 
 To let the server recognize EIP712 transactions, the `transaction_type` field is equal to `113` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
