@@ -511,7 +511,7 @@ Testnet paymaster is purely for demonstration of the feature and won't be availa
 
 The address of the paymaster as well as the required input should be provided in the `getOverrides` method.
 
-1. We need to retrieve the testnet paymaster:
+1. We need to retrieve the address of the testnet paymaster:
 
 ```javascript
 async getOverrides() {
