@@ -316,7 +316,7 @@ Note that the addresses and private keys will be different for each run.
 
 ## Using the paymaster
 
-Create `use-paymaster.ts` script in the `deploy` folder. You can see the example of interacting with the paymaster in the code snippet below:
+Create the `use-paymaster.ts` script in the `deploy` folder. You can see the example for interacting with the paymaster in the code snippet below:
 
 ```ts
 import { Provider, utils, Wallet } from "zksync-web3";
