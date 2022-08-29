@@ -29,7 +29,7 @@ async approveERC20(
 | -------------------- | -------------------------------------------------------------------------------- |
 | token                | The Ethereum address of the token.                                               |
 | amount               | The amount of the token to be approved.                                          |
-| overrides (optional) | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc. You can also provide custom address of the L1 bridge to use (the bridge provided by the Matter Labs team is used by default). |
+| overrides (optional) | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc. You can also provide a custom address of the L1 bridge to use (the bridge provided by the Matter Labs team is used by default). |
 | returns              | `ethers.providers.TransactionResponse` object.                                   |
 
 > Example
