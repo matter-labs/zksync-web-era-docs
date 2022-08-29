@@ -25,13 +25,13 @@ Since we are working with zkSync contracts, we also need to install the package 
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [Hello World](./hello-world.md) tutorial.
+Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [Hello World](./hello-world.md) tutorial.
 
 ## Design
 
 Our protocol will be a dummy protocol that allows anyone to swap a certain ERC-20 token in exchange for paying fees for the transaction.
 
-The skeleton for the paymaster will look the following way:
+The skeleton for the paymaster looks the following way:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -81,9 +81,9 @@ Note, that only the [bootloader](../zksync-v2/system-contracts.md#bootloader) sh
 
 ### Parsing the paymaster input
 
-In this tutorial, we want to charge the user one unit of the `allowedToken` in exchange for his fees being paid by the contract.
+In this tutorial, we want to charge the user one unit of the `allowedToken` in exchange for her fees being paid by the contract.
 
-The input that the paymaster should receive is encoded in the `paymasterInput`. As described [here](../zksync-v2/aa.md#built-in-paymaster-flows), there are some standardized ways to encode user interactions with paymasterInput. To charge the user, we will require that he has provided enough allowance to the paymaster contract. This is what the `approvalBased` flow can help us with.
+The input that the paymaster should receive is encoded in the `paymasterInput`. As described [here](../zksync-v2/aa.md#built-in-paymaster-flows), there are some standardized ways to encode user interactions with paymasterInput. To charge the user, we will require that she has provided enough allowance to the paymaster contract. This is what the `approvalBased` flow can help us with.
 
 Firstly, we'll need to check that the `paymasterInput` was encoded as in the `approvalBased` flow:
 

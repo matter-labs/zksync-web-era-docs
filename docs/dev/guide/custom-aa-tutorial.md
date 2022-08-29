@@ -186,7 +186,7 @@ function payForTransaction(Transaction calldata _transaction) external payable o
 
 ### Implementing `prePaymaster`
 
-While generally the account abstraction protocol allows to perform arbitrary actions when interacting with the paymasters, there are some [common patterns](../zksync-v2/aa.md#built-in-paymaster-flows) with the built-in support from EOAs. Unless you want to implement or restrict some specific paymaster use-cases from your account, it is better to keep it consistent with the EOAs. The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processed the `prePaymaster` step the same as EOA does.
+While generally the account abstraction protocol enables performing arbitrary actions when interacting with the paymasters, there are some [common patterns](../zksync-v2/aa.md#built-in-paymaster-flows) with the built-in support from EOAs. Unless you want to implement or restrict some specific paymaster use-cases from your account, it is better to keep it consistent with EOAs. The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processed the `prePaymaster` step the same as EOA does.
 
 ```solidity
 function prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
