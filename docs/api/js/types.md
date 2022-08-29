@@ -19,17 +19,6 @@ export enum Network {
     Localhost = 9
 }
 
-export enum PriorityQueueType {
-    Deque = 0,
-    HeapBuffer = 1,
-    Heap = 2
-}
-
-export enum PriorityOpTree {
-    Full = 0,
-    Rollup = 1
-}
-
 export enum TransactionStatus {
     NotFound = 'not-found',
     Processing = 'processing',
