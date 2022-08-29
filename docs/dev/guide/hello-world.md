@@ -501,7 +501,7 @@ You now have a fully functioal Greeter-dApp! However, it does not leverage any z
 
 ### Paying fees using testnet paymaster
 
-Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](../zksync-v2/aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](../zksync-v2/aa.md#testnet-paymaster) that is provided on all zkSync testnets. It allows users to pay fees in an ERC20 token with the exchange rate of ETH of 1:1, i.e. one "wei" of the token for one wei of ETH.
+Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](../zksync-v2/aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](../zksync-v2/aa.md#testnet-paymaster) that is provided on all zkSync testnets. It allows users to pay fees in an ERC20 token with the exchange rate of ETH of 1:1, i.e. one unit of the token for one wei of ETH.
 
 ::: tip Mainnet integration
 

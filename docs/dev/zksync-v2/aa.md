@@ -240,7 +240,7 @@ The `zksync-web3` SDK provides [methods](../../api/js/utils.md#encoding-paymaste
 
 ### Testnet paymaster
 
-To let users experience using with paymasters on testnet, as well as to keep supporting paying fees in ERC20 tokens, the Matter Labs team provides the testnet paymaster, that enables paying fees in ERC20 token at a 1:1 exchange rate with ETH (i.e. one "wei" on this token is equal to 1 wei of ETH).
+To let users experience using with paymasters on testnet, as well as to keep supporting paying fees in ERC20 tokens, the Matter Labs team provides the testnet paymaster, that enables paying fees in ERC20 token at a 1:1 exchange rate with ETH (i.e. one unit of this token is equal to 1 wei of ETH).
 
 The paymaster supports only the [approval based](#approval-based-paymaster-flow) paymaster flow and requires that the `token` param is equal to the token being swapped and `minAllowance` to equal to least `tx.maxFeePerErg * tx.ergsLimit`. 
 
