@@ -46,11 +46,6 @@ In other words, we require the operator to do its best instead of requiring a st
 
 In the future, we will also add the ability to "prioritize" L1->L2 transactions, allowing users to speed the inclusion of their transaction in exchange for paying bigger fee to the operator.
 
-### Summary
-
-- L1->L2 are not free for the users.
-- Unlike the counterpart from the previous version of zkSync, all kinds of transactions are enabled. 
-
 ## Priority mode
 
 If the operator fails to process the needed L1 transactions, the system enters the ''Priority mode''. In this mode, everyone can become an operator by staking tokens. The exact details of the priority mode are still under development and will be described in more detail closer to the mainnet launch.
@@ -69,7 +64,7 @@ Each message sent from L2 to L1 contains the sender's address and the message it
 
 Every message sent can be read on-chain. Moreover, it is possible to prove that message has been sent in a specific L2 block. To make such proof as cheap as possible for both the user and the operator, we store all messages, for each L2 block, in a merkle tree. Accordingly, any L1 smart contract can consume the message sent by providing a proof of inclusion in some L2 block. A proof can be generated based only on the data that the operator sent to the zkSync L1 smart contract. The proof can also be obtained via [the API](../../api/api.md#zksgetl2tol1msgproof).
 
-#### Summary
+### Summary on L2->L1 messaging
 
 - L2 -> L1 communication requires one transaction on L2 and one on L1.
 - Messages can be of arbitrary length.
