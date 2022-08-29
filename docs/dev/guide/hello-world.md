@@ -7,7 +7,7 @@ The following functionality will be implemented:
 - There will be a greeting stored on a smart contract on zkSync.
 - The user will be able to get the greeting after the dApp page is loaded.
 - The user will be able to change the greeting on the smart contract.
-- The user will be able to select the token that they want to pay the fee with. By the default the tutorial supports only a single token: ether. An example on how to pay fees with ERC20 tokens will be shown in the [paying fees using testnet paymaster](#paying-fees-using-testnet-paymaster). If you decide to build a project on mainnet, you should read the documentation for the paymaster you are going to use.
+- The user will be able to select the token that they want to pay the fee with. By default, the tutorial supports only a single token: ether. An example on how to pay fees with ERC20 tokens will be shown in the [paying fees using testnet paymaster](#paying-fees-using-testnet-paymaster). If you decide to build a project on mainnet, you should read the documentation for the [paymaster](../zksync-v2/aa.md#paymasters) you are going to use.
 
 ## Prerequisites
 
@@ -432,7 +432,7 @@ async getFee() {
 
 ::: tip Paying fees in ERC20
 
-Unlike the previous version, zkSync 2.0 does not natively support paying fees in ERC20 tokens, but the account abstraction feature facilitates that. An example on how to use the testnet paymaster will be provided in this tutorial below. However, when going on mainnet, you shoud either provide the paymaster services [yourself](./custom-paymaster-tutorial.md) or use a 3rd party paymaster. 
+Unlike the previous version, zkSync 2.0 does not natively support paying fees in ERC20 tokens, but the account abstraction feature facilitates that. An example on how to use the testnet paymaster will be provided in this tutorial below. However, when going on mainnet, you should either provide the paymaster services [yourself](./custom-paymaster-tutorial.md) or use a 3rd party paymaster. 
 
 :::
 
@@ -446,7 +446,7 @@ It is possible to also click on the `Change greeting` button, but nothing will b
 
 ### Updating the greeting
 
-1. Interacting with smart contract works absolutely the same way as in `ethers`, however, if we want to use zkSync-specific features we may need to provide some additional parameters in the overrides:
+1. Interacting with a smart contract works absolutely the same way as in `ethers`, however, if we want to use zkSync-specific features we may need to provide some additional parameters in the overrides:
 
 ```javascript
 // The example of paying fees using a paymaster will be shown in the 
@@ -520,7 +520,7 @@ async getOverrides() {
 }
 ```
 
-Note, that it is recommended to retrive the testnet paymaster's address each time before any interactions as it may change.
+Note, that it is recommended to retrieve the testnet paymaster's address each time before any interactions as it may change.
 
 2. Add `utils` to the imports from `zksync-web3` SDK:
 
@@ -528,7 +528,7 @@ Note, that it is recommended to retrive the testnet paymaster's address each tim
 import { Contract, Web3Provider, Provider, utils } from "zksync-web3";
 ```
 
-2. We need to calculate how much tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token at 1:1 rate, then the number is the same as of the ERC20 token:
+2. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token at 1:1 rate, then the number is the same as of the ERC20 token:
 
 ```javascript
 async getOverrides() {

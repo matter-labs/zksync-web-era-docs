@@ -2,7 +2,7 @@
 
 While zkSync is mostly Web3-compatible, it has some differences compared to Ethereum. The major of those are:
 
-- Account abstraction support (accounts might non-ECDSA signatures and also paymaster support is enabled).
+- Account abstraction support (accounts may have near-arbitrary validation logic, and also paymaster support is enabled).
 - Deployment transactions require the contracts' bytecode to be passed in a separate field.
 - The fee system is somewhat different.
 
@@ -38,7 +38,6 @@ Override to deploy a contract with bytecode `0xcde...12` and enforce that the op
 
 ```typescript
 {
-    // feeToken is not supplied, using ETH by default
     customData: {
         ergsPerPubdata: "100",
         factoryDeps: ["0xcde...12"],
@@ -50,7 +49,6 @@ Override and use custom signature `0x123456` for account, while using paymaster 
 
 ```typescript
 {
-    // feeToken is not supplied, using ETH by default
     customData: {
         customSignature: "0x123456",
         paymasterParams: {

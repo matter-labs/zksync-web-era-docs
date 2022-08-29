@@ -1,12 +1,10 @@
 # Tutorial: Building custom paymaster
 
-<!-- TODO: complete & test the tutorial on custom paymaster -->
-
 Let's see how we can use the paymaster feature to build a custom paymaster that will enable us to pay fees for any user holding our token.
 
 ## Preliminaries
 
-It is hihgly recommended to read about the [design](../zksync-v2/aa.md) of the account abstraction protocol before diving into this tutorial.
+It is highly recommended to read about the [design](../zksync-v2/aa.md) of the account abstraction protocol before diving into this tutorial.
 
 It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial. It is also recommended to read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
 
@@ -89,7 +87,7 @@ In this tutorial, we want to charge the user one unit of the `allowedToken` in e
 
 The input that the paymaster should receive is encoded in the `paymasterInput`. As described [here](../zksync-v2/aa.md#built-in-paymaster-flows), there are some standardized ways to encode user interactions with paymasterInput. To charge the user, we will require that he has provided enough allowance to the paymaster contract. This is what the `approvalBased` flow can help us with.
 
-Firsly, we'll need to check that the `paymasterInput` was encoded as in the `approvalBased` flow:
+Firstly, we'll need to check that the `paymasterInput` was encoded as in the `approvalBased` flow:
 
 ```solidity
 require(_transaction.paymasterInput.length >= 4, "The standard paymaster input must be at least 4 bytes long");
@@ -123,7 +121,7 @@ Then, we finally transfer the funds to the user in exchnage for 1 unit of this t
 
 ```solidity
 // Note, that while the minimal amount of ETH needed is tx.ergsPrice * tx.ergsLimit,
-// neither paymaster, nor account to touch this context variable.
+// neither paymaster nor account are allowed to access this context variable.
 uint256 requiredETH = _transaction.ergsLimit * _transaction.maxFeePerErg;
 
 // Pulling all the tokens from the user
@@ -187,7 +185,7 @@ contract MyPaymaster is IPaymaster {
             require(providedAllowance >= PRICE_FOR_PAYING_FEES, "The user did not provide enough allowance");
 
             // Note, that while the minimal amount of ETH needed is tx.ergsPrice * tx.ergsLimit,
-            // neither paymaster, nor account to touch this context variable.
+            // neither paymaster nor account are allowed to access this context variable.
             uint256 requiredETH = _transaction.ergsLimit * _transaction.maxFeePerErg;
 
             // Pulling all the tokens from the user

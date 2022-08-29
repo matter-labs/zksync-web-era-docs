@@ -2,7 +2,7 @@
 
 zkSync 2.0 fully supports standard [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API).
 
-As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes for the codebase are needed._
+As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes to the codebase are needed._
 
 It is possible to continue using the SDK that is currently in use. Users will continue paying fees in ETH, and the UX will be identical to the one on Ethereum.
 
@@ -10,7 +10,7 @@ However, zkSync has its own specifics, which this section describes.
 
 ## EIP712
 
-To specify additional fields, like the custom signature for custom accounts or the paymaster, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also they have fields which contain additional L2-specific data (`paymaster`, etc):
+To specify additional fields, like the custom signature for custom accounts or the paymaster, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but also they have fields that contain additional L2-specific data (`paymaster`, etc):
 
 ```json
 "ergsPerPubdata": "1212",
@@ -23,7 +23,7 @@ To specify additional fields, like the custom signature for custom accounts or t
 ```
 
 - `ergsPerPubdata` is a field that describes the maximal amount of ergs the user is willing to pay for a single byte of pubdata.
-- `customSignature` is a field with custom signature, in case the signer's account is not EOA.
+- `customSignature` is a field with a custom signature, in case the signer's account is not EOA.
 - `paymasterParams` are parameters around the paymaster: it's address and the input to it.
 - `factory_deps` is a field that should be a non-empty array of `bytes` for deployment transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
 
@@ -101,13 +101,7 @@ None.
 
 ### `zks_getConfirmedTokens`
 
-::: warning Deprecated
-
-This method is deprecated and will soon be removed.
-
-:::
-
-Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are token that have been bridged through the default bridge.
+Given `from` and `limit`, returns the information about the confirmed tokens with ids in the interval `[from..from+limit-1]`. "Confirmed" is a misnomer here, since a confirmed token is one that has been bridged through the default zkSync bridge.
 
 The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically sorted array of tokens.
 
@@ -145,7 +139,7 @@ The tokens are returned in alphabetical order by their symbol, so basically, the
 
 ### `zks_getL2ToL1MsgProof`
 
-Given a block, a sender and a message, returns the proof for the message sent via the L1Messenger system contract.
+Given a block, a sender, message and optionally log index in block of the L1->L2 message, returns the proof for the message sent via the L1Messenger system contract.
 
 ### Input parameters
 
@@ -154,6 +148,7 @@ Given a block, a sender and a message, returns the proof for the message sent vi
 | block     | `uint32`  | The number of the block where the message was emitted.                                    |
 | sender    | `address` | The sender of the message (i.e. the account that called the L1Messenger system contract). |
 | msg       | `uint256` | The keccak256 hash of the message that was sent.                                          |
+| l2_log_position       | `uint256 | null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/zksync-v2/system-contracts.md#il1messenger) when submitting this message. If it is ommitted, the proof for the first message with such content will be returned.                                          |
 
 ### Output format
 

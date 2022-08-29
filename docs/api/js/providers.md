@@ -141,13 +141,7 @@ async getDefaultBridgeAddresses(): Promise<{
 
 ### `getConfirmedTokens`
 
-::: warning Deprecated
-
-This method is deprecated and will soon be removed.
-
-:::
-
-Given `from` and `limit`, returns the information (address, symbol, name, decimals) about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally.
+Given `from` and `limit`, returns the information (address, symbol, name, decimals) about the confirmed tokens with ids in the interval `[from..from+limit-1]`. "Confirmed" is a misnomer here, since a confirmed token is one that has been bridged through the default zkSync bridge. This method will be mostly used by the zkSync team internally.
 
 The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically sorted array of tokens.
 
