@@ -45,7 +45,7 @@ Override to deploy a contract with bytecode `0xcde...12` and enforce that the op
 }
 ```
 
-Override and use custom signature `0x123456` for account, while using paymaster with address `0x8e1DC7E4Bb15927E76a854a92Bf8053761501fdC` and paymaster input `0x8c5a3445`:
+Use custom signature `0x123456` for account, while using paymaster with address `0x8e1DC7E4Bb15927E76a854a92Bf8053761501fdC` and paymaster input `0x8c5a3445`:
 
 ```typescript
 {
@@ -71,8 +71,8 @@ If you want to call the method `setGreeting` of an ethers `Contract` object call
 
 ```javascript
 // The `setGreeting` method has a single parameter -- new greeting
-// We will set its value as `some new greeting`.
-const greeting = "some new greeting";
+// We will set its value as `a new greeting`.
+const greeting = "a new greeting";
 const tx = await greeter.populateTransaction.setGreeting(greeting);
 const gasPrice = await sender.provider.getGasPrice();
 const gasLimit = await greeter.estimateGas.setGreeting(greeting);

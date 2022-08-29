@@ -15,7 +15,7 @@ For this tutorial, the following programs must be installed:
 
 - `yarn` package manager. `npm` examples will be added soon.
 - `Docker` for compilation.
-- A wallet with some Görli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Some L2 ERC20 tokens are required for the testnet paymaster tutorial.
+- A wallet with sufficient Görli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Some L2 ERC20 tokens are required for the testnet paymaster tutorial.
 
 ## Initializing the project & deploying smart contract
 
@@ -120,7 +120,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const provider = new Provider(hre.userConfig.zkSyncDeploy?.zkSyncNetwork);
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
   
-  // Create deployer object and load the artifact of the contract you want todeploy.
+  // Create deployer object and load the artifact of the contract you want to deploy.
   const deployer = new Deployer(hre, wallet);
   const artifact = await deployer.loadArtifact("Greeter");
 

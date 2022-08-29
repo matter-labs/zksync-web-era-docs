@@ -19,7 +19,7 @@ For this tutorial, the following programs must be installed:
 
 - `yarn` package manager. `npm` examples will be added soon.
 - `Docker` for compilation.
-- A wallet with some Görli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts.
+- A wallet with sufficient Görli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts.
 
 ## Initializing the project
 
