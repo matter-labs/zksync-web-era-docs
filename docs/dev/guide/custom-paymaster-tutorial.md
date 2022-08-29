@@ -33,7 +33,7 @@ Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, li
 
 Our protocol will be a dummy protocol that allows anyone to swap a certain ERC-20 token in exchange for paying fees for the transaction.
 
-The skeleton for the paymaster will look the following way:
+The skeleton for the paymaster looks the following way:
 
 ```solidity
 // SPDX-License-Identifier: MIT
