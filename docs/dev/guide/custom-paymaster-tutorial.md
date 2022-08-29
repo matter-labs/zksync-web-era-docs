@@ -83,7 +83,7 @@ Note, that only the [bootloader](../zksync-v2/system-contracts.md#bootloader) sh
 
 ### Parsing paymaster input
 
-In this tutorial, we want to charge the user one unit of the `allowedToken` in exchange for his fees being paid by the contract.
+In this tutorial, you want tocharge the user one unit of the `allowedToken` in exchange for his fees being paid by the contract.
 
 The input that the paymaster should receive is encoded in the `paymasterInput`. As described [here](../zksync-v2/aa.md#built-in-paymaster-flows), there are some standardized ways to encode user interactions with paymasterInput. To charge the user, we will require that he has provided enough allowance to the paymaster contract. This is what the `approvalBased` flow can help us with.
 
