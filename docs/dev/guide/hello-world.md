@@ -15,7 +15,7 @@ For this tutorial, the following programs must be installed:
 
 - `yarn` package manager. `npm` examples will be added soon.
 - `Docker` for compilation.
-- A wallet with sufficient Görli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Some L2 ERC20 tokens are required for the testnet paymaster tutorial.
+- A wallet with sufficient Görli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Some ERC20 tokens on zkSync are required for the testnet paymaster tutorial.
 
 ## Initializing the project & deploying smart contract
 
@@ -437,7 +437,7 @@ async getFee() {
 
 ::: tip Paying fees in ERC20
 
-Unlike the previous version, zkSync 2.0 does not natively support paying fees in ERC20 tokens, but the account abstraction feature facilitates that. An example on how to use the testnet paymaster will be provided in this tutorial below. However, when going on mainnet, you should either provide the paymaster services [yourself](./custom-paymaster-tutorial.md) or use a 3rd party paymaster. 
+zkSync 2.0 does not natively support paying fees in ERC20 tokens, as the account abstraction feature facilitates that. An example on how to use the testnet paymaster will be provided in this tutorial below. However, when working on mainnet, you should either provide the paymaster services [yourself](./custom-paymaster-tutorial.md) or use a 3rd party paymaster. 
 
 :::
 
@@ -451,7 +451,7 @@ It is possible to also click on the `Change greeting` button, but nothing will b
 
 ### Updating the greeting
 
-1. Interacting with a smart contract works absolutely the same way as in `ethers`, however, if you want touse zkSync-specific features we may need to provide some additional parameters in the overrides:
+1. Interacting with a smart contract works absolutely the same way as in `ethers`, however, if you want to use zkSync-specific features you may need to provide some additional parameters in the overrides:
 
 ```javascript
 // The example of paying fees using a paymaster will be shown in the 
@@ -501,7 +501,7 @@ You now have a fully functioal Greeter-dApp! However, it does not leverage any z
 
 ### Paying fees using testnet paymaster
 
-Even though ether is the only token you can pay the fees with, the account abstraction feature allows you to integrate [paymasters](../zksync-v2/aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](../zksync-v2/aa.md#testnet-paymaster) that is provided on all zkSync testnets. It allows to pay fees in any ERC20 tokens with the exchange rate of ETH of 1:1, i.e. one wei of the token for one wei of ETH.
+Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](../zksync-v2/aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](../zksync-v2/aa.md#testnet-paymaster) that is provided on all zkSync testnets. It allows users to pay fees in an ERC20 token with the exchange rate of ETH of 1:1, i.e. one "wei" of the token for one wei of ETH.
 
 ::: tip Mainnet integration
 

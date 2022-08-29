@@ -44,7 +44,7 @@ Thirdly, the operator can not commit to processing each and every transaction wi
 
 In other words, we require the operator to do its best instead of requiring a strict deadline. The measure of "the work" is still to be developed. Most likely it will be the number of `ergs` the priority operations used.
 
-In the future, we will also add the ability to "prioritize" L1->L2 transactions, allowing users to speed the inclusion of their transaction in exchange for paying bigger fee to the operator.
+In the future, we will also add the ability to "prioritize" L1->L2 transactions, allowing users to speed the inclusion of their transaction in exchange for paying higher fee to the operator.
 
 ## Priority mode
 
