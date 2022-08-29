@@ -584,7 +584,7 @@ async getOverrides() {
 }
 ```
 
-4. Use list with tokens that contains ERC20s. Change the following line:
+4. Use a list of ERC20s tokens. Change the following line:
 
 ```javascript
 const allowedTokens = require("./eth.json");
