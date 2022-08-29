@@ -211,7 +211,7 @@ contract MyPaymaster is IPaymaster {
 
 ## Deploying an ERC20 contract 
 
-To test our paymaster, we need to deploy an ERC20 token. For the sake of simplicity we will use a somewhat modified OpenZeppelin implementation of it:
+To test our paymaster, we need an ERC20 token. We are now going to deploy one. For the sake of simplicity we will use a somewhat modified OpenZeppelin implementation of it:
 
 Create the `MyERC20.sol` file and put the following code in it:
 
