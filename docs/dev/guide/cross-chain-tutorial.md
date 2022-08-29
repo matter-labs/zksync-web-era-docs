@@ -31,7 +31,6 @@ The code of the governance contract is the following:
 pragma solidity ^0.8.0;
 
 import "@matterlabs/zksync-contracts/l1/contracts/zksync/interfaces/IZkSync.sol";
-import "@matterlabs/zksync-contracts/l1/contracts/zksync/Operations.sol";
 
 contract Governance {
     address public governor;
@@ -132,7 +131,7 @@ require("@matterlabs/hardhat-zksync-solc");
 
 module.exports = {
   zksolc: {
-    version: "1.1.0",
+    version: "1.1.5",
     compilerSource: "docker",
     settings: {
       optimizer: {
@@ -140,7 +139,8 @@ module.exports = {
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
-      },
+        tag: "v1.1.5"
+      }
     },
   },
   zkSyncDeploy: {
@@ -370,7 +370,7 @@ async function main() {
   const ergsLimit = BigNumber.from(100000);
 
   // Getting the cost of the execution in Wei.
-  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length, 0);
+  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length);
 }
 ```
 
@@ -462,7 +462,7 @@ async function main() {
   // Here we define the constant for ergs limit.
   const ergsLimit = BigNumber.from(100000);
   // Getting the cost of the execution.
-  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length, 0);
+  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length);
 
   // Calling the L1 governance contract.
   const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {

@@ -455,7 +455,7 @@ It is possible to also click on the `Change greeting` button, but nothing will b
 
 ```javascript
 // The example of paying fees using a paymaster will be shown in the 
-// sections below.
+// section below.
 const txHandle = await this.contract.setGreeting(this.newGreeting, await this.getOverrides());
 ```
 
@@ -533,7 +533,7 @@ Note, that it is recommended to retrieve the testnet paymaster's address each ti
 import { Contract, Web3Provider, Provider, utils } from "zksync-web3";
 ```
 
-2. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token at 1:1 rate, then the number is the same as of the ERC20 token:
+2. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token to ETH at 1:1 rate, then the number is the same as of ETH:
 
 ```javascript
 async getOverrides() {

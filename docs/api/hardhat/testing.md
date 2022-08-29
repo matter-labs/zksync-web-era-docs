@@ -120,7 +120,7 @@ const zkSyncDeploy =
 
 module.exports = {
   zksolc: {
-    version: "0.1.5",
+    version: "1.1.5",
     compilerSource: "docker",
     settings: {
       optimizer: {
@@ -128,7 +128,8 @@ module.exports = {
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
-      },
+        tag: "v1.1.5"
+      }
     },
   },
   zkSyncDeploy,

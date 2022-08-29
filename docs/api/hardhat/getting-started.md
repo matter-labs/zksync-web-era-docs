@@ -50,7 +50,8 @@ module.exports = {
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
-      },
+        tag: "v1.1.5"
+      }
     },
   },
   zkSyncDeploy: {
@@ -58,7 +59,6 @@ module.exports = {
     ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
   },
   networks: {
-    // To compile with zksolc, this must be the default network.
     hardhat: {
       zksync: true,
     },

@@ -62,7 +62,7 @@ require("@matterlabs/hardhat-zksync-solc");
 
 module.exports = {
   zksolc: {
-    version: "0.1.0",
+    version: "1.1.5",
     compilerSource: "docker",
     settings: {
       optimizer: {
@@ -70,6 +70,7 @@ module.exports = {
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
+        tag: "v1.1.5"
       },
       libraries: {
         "contracts/MiniMath.sol": {
@@ -78,17 +79,17 @@ module.exports = {
       },
     },
   },
+  zkSyncDeploy: {
+    zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
+    ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
+  },
   networks: {
     hardhat: {
       zksync: true,
     },
   },
-  zkSyncDeploy: {
-    zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
-    ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
-  },
   solidity: {
-    version: "0.8.12",
+    version: "0.8.16",
   },
 };
 ```
