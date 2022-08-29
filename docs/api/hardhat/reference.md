@@ -193,14 +193,14 @@ class Deployer {
 
   /**
     * Sends a deploy transaction to the zkSync network.
-    * For now, it will use defaults for the transaction parameters:
-    * - fee amount is requested automatically from the zkSync server.
+    * For now it uses defaults values for the transaction parameters:
     *
     * @param artifact The previously loaded artifact object.
     * @param constructorArguments List of arguments to be passed to the contract constructor.
     * @param overrides Optional object with additional deploy transaction parameters.
     * @param additionalFactoryDeps Additional contract bytecodes to be added to the factory dependencies list.
-    *
+    * The fee amount is requested automatically from the zkSync server.
+    * 
     * @returns A contract object.
     */
   public async deploy(

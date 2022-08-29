@@ -10,7 +10,7 @@ Most of the utilities are used internally by the zkSync team. So this document w
 
 ## The "address" of Ether
 
-While formally on zkSync, ether is a token with address `0x000000000000000000000000000000000000800a`, we use zero as a more user-friendly alias:
+While formally ether is a token with address `0x000000000000000000000000000000000000800a` on zkSync, we use the "zero address" as a more user-friendly alias:
 
 ```typescript
 export const ETH_ADDRESS = "0x0000000000000000000000000000000000000000";
@@ -42,7 +42,7 @@ The definition of the `PaymasterInput` can be found [here](./types.md).
 
 ## Default pubdata price limit
 
-Currently, there is no method to accurately estimate the required `ergsPerPubdataLimit`. That's why for now, it is highly recommended to provide the `DEFAULT_ERGS_PER_PUBDATA_LIMIT`. The users are not charged more by providing it.
+Currently, there is no method to accurately estimate the required `ergsPerPubdataLimit`. That's why for now, it is highly recommended to provide the `DEFAULT_ERGS_PER_PUBDATA_LIMIT`. Users are not charged more by providing it.
 Later on it will be possible to query the current recommended limit.
 
 ```typescript
