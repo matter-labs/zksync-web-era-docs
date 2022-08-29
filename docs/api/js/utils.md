@@ -43,6 +43,7 @@ The definition of the `PaymasterInput` can be found [here](./types.md).
 ## Default pubdata price limit
 
 Currently, there is no method to accurately estimate the required `ergsPerPubdataLimit`. That's why for now, it is highly recommended to provide the `DEFAULT_ERGS_PER_PUBDATA_LIMIT`. The users are not charged more by providing it.
+Later on it will be possible to query the current recommended limit.
 
 ```typescript
 const GAS_PER_PUBDATA_BYTE = 16;
