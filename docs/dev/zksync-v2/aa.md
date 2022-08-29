@@ -195,7 +195,7 @@ Since multiple users should be allowed to access the same paymasters, malicious 
 
 Unlike in the original EIP, paymasters are allowed to touch any storage slots. Also, the paymaster won't be throttled if either of the following is true:
 
-- More than `X` minutes have passed since the verification has passed on the API nodes. (The exact value of `X` is TBD).
+- More than `X` minutes have passed since the verification has passed on the API nodes. (The exact value of `X` will be defined later).
 - The order of slots being read is the same as during the run on the API node and the first slot whose value has changed is one of the user's slots. This is needed to protect the paymaster from malicious users (e.g. the user might have erased the allowance for the ERC20 token).
 
 ### Built-in paymaster flows
