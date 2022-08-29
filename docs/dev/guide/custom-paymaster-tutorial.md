@@ -1,6 +1,6 @@
 # Tutorial: Building custom paymaster
 
-Let's see how we can use the paymaster feature to build a custom paymaster that will enable us to pay fees for any user holding our token.
+Let's see how we can use the paymaster feature to build a custom paymaster that allows users to pay fees in our token. For the simplicity of the tutorial, we will assume that paying a single unit of our token is enough to cover any transaction fee.
 
 ## Preliminaries
 
