@@ -37,7 +37,7 @@ Code verification requires six arguments:
 
 ## Source code privacy
 
-When your smart contract is deployed on zkSync, every zkSync user on the block explorer will be able to check the verified source code and interact with it.
+When your smart contract is deployed on zkSync and verified on the block explorer, users are able to check the verified source code and interact with it.
 
 <br>
 
