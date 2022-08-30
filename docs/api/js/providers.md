@@ -6,7 +6,6 @@ zkSync fully supports Ethereum Web3 API, so you can use the provider objects fro
 
 - Easily track L1<->L2 transactions.
 - Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use-cases may require tracking "finalized" transactions only.
-- Get the balance of any native ERC20 token.
 
 And much more! Generally, you can use providers from `ethers` for a quick start, but switch to providers from the `zksync-web3` library later on.
 
@@ -99,6 +98,30 @@ const provider = new Provider("https://zksync2-testnet.zksync.dev");
 console.log(await provider.getMainContractAddress());
 ```
 
+### Getting testnet paymaster address
+
+On zkSync testnets, the [testnet paymaster](../../dev/zksync-v2/aa.md#testnet-paymaster) is available.
+
+```typescript
+async getTestnetPaymasterAddress(): Promise<string|null>
+```
+
+#### Inputs and outputs
+
+| Name    | Description                               |
+| ------- | ----------------------------------------- |
+| returns | The address of the testnet paymaster or `null` if there isn't any. |
+
+> Example
+
+```typescript
+import { Provider } from "zksync-web3";
+
+const provider = new Provider("https://zksync2-testnet.zksync.dev");
+
+console.log(await provider.getTestnetPaymasterAddress());
+```
+
 ### Getting zkSync default bridge contract addresses
 
 ```typescript
@@ -118,7 +141,7 @@ async getDefaultBridgeAddresses(): Promise<{
 
 ### `getConfirmedTokens`
 
-Given `from` and `limit`, returns the information (address, symbol, name, decimals) about the confirmed tokens with ids in the interval `[from..from+limit-1]`. Confirmed tokens are native tokens that are considered legit by the zkSync team. This method will be mostly used by the zkSync team internally.
+Given `from` and `limit` returns information (address, symbol, name, decimals) about the confirmed tokens with IDs in the interval `[from..from+limit-1]`. "Confirmed" is a misnomer here, since a confirmed token is one that has been bridged through the default zkSync bridge. This method will mostly be used by the zkSync team internally.
 
 The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically sorted array of tokens.
 
@@ -143,29 +166,13 @@ const provider = new Provider("https://zksync2-testnet.zksync.dev");
 console.log(await provider.getConfirmedTokens());
 ```
 
-### `isTokenLiquid`
-
-Returns `true` or `false` on whether or not a token can be used to pay fees.
-
-```typescript
-async isTokenLiquid(token: Address): Promise<boolean>
-```
-
-| Name    | Description                                                                          |
-| ------- | ------------------------------------------------------------------------------------ |
-| token   | The address of the token.                                                            |
-| returns | Boolean value (`true` or `false`) on whether or not a token can be used to pay fees. |
-
-> Example
-
-```typescript
-import { Provider } from "zksync-web3";
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
-
-console.log(await provider.isTokenLiquid(USDC_L2_ADDRESS)); // Should return true
-```
-
 ### `getTokenPrice`
+
+::: warning Deprecated
+
+This method is deprecated and will be removed soon.
+
+:::
 
 Returns the price USD in for a token. Please note that that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
 
