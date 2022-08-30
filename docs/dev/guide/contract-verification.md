@@ -37,7 +37,7 @@ Code verification requires six arguments:
 
 ## Source code privacy
 
-When your smart contract is deployed on zkSync, every zkSync user on the block explorer will be able to check the verified source code and interact with it.
+When your smart contract is deployed on zkSync and verified on the block explorer, users are able to check the verified source code and interact with it.
 
 <br>
 
@@ -77,15 +77,16 @@ To verify the contract, enter the following details;
 <br>
 **Note:** You may need to flatten your Solidity code if it utilizes a library or inherits dependencies from another contract. 
 <br> 
-We recommend using the [truffle flattener](https://github.com/NomicFoundation/truffle-flattener) or the [POA Solidity flattener](https://github.com/poanetwork/Solidity-flattener).
+We recommend using the [truffle flattener](https://github.com/NomicFoundation/truffle-flattener) or the [POA Solidity flattener](https://github.com/poanetwork/solidity-flattener).
 
-- Constructor arguments: If Constructor Arguments are required by the contract, you should add them here, but in [ABI hex encoded form](https://solidity.readthedocs.io/en/develop/abi-spec.html).
+
+- Constructor arguments: If constructor arguments are required by the contract, you should add them here, but in [ABI hex encoded form](https://solidity.readthedocs.io/en/develop/abi-spec.html).
   
 <br>
 
 ### How can you obtain your constructor arguments?
 
-> **Note:** The easiest way to get the constructor argument data is to write it by yourself to the console while deploying.
+> **Note:** The easiest way to get the constructor argument data is to print it to the console while deploying.
 
 For example, if using our [tutorial](./hello-world.md), you can find line:
 
