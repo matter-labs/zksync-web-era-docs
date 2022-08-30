@@ -6,9 +6,9 @@ In this tutorial we build a factory that deploys 2-of-2 multisig accounts.
 
 ## Preliminaries
 
-It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial. It is also recommended to read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
+It is highly recommended to read about the [design](../zksync-v2/aa.md) of the account abstraction protocol before diving into this tutorial.
 
-It is also assumed that you already have some experience working on Ethereum.
+It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial. It is also recommended to read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
 
 ## Installing dependencies
 
@@ -31,7 +31,7 @@ Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folde
 
 ## Account abstraction
 
-Each account needs to implement the [IAccountAbstraction](https://github.com/matter-labs/v2-testnet-contracts/blob/07e05084cdbc907387c873c2a2bd3427fe4fe6ad/l2/system-contracts/interfaces/IAccountAbstraction.sol#L7) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
+Each account needs to implement the [IAccount](https://github.com/matter-labs/v2-testnet-contracts/blob/07e05084cdbc907387c873c2a2bd3427fe4fe6ad/l2/system-contracts/interfaces/IAccount.sol#L7) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
 
 The skeleton for the contract will look the following way:
 
@@ -39,18 +39,18 @@ The skeleton for the contract will look the following way:
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccountAbstraction.sol';
+import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol';
 import '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
 
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 
-contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
+contract TwoUserMultisig is IAccount, IERC1271 {
 
-	modifier onlyBootloader() {
-		require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
-		// Continure execution if called from the bootloader.
-		_;
-	}
+    modifier onlyBootloader() {
+        require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
+        // Continure execution if called from the bootloader.
+        _;
+    }
 
     function validateTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
         _validateTransaction(_transaction);
@@ -61,25 +61,33 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
     }
 
     function executeTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
-		_executeTransaction(_transaction);
-	}
+        executeTransaction(_transaction);
+	  }
 
     function _executeTransaction(Transaction calldata _transaction) internal {
 
     }
 
     function executeTransactionFromOutside(Transaction calldata _transaction) external payable {
-		_validateTransaction(_transaction);
-		_executeTransaction(_transaction);
-	}
+        _validateTransaction(_transaction);
+        _executeTransaction(_transaction);
+    }
 
-	bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
+	  bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
 
     function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
         return EIP1271_SUCCESS_RETURN_VALUE;
     }
+  
+    function payForTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
 
-	receive() external payable {
+    }
+
+    function prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
+
+    }
+
+	  receive() external payable {
         // If the bootloader called the `receive` function, it likely means
         // that something went wrong and the transaction should be aborted. The bootloader should
         // only interact through the `validateTransaction`/`executeTransaction` methods.
@@ -88,7 +96,7 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
 }
 ```
 
-Note, that only the [bootloader](../zksync-v2/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction` methods. That's why the `onlyBootloader` is used for them.
+Note, that only the [bootloader](../zksync-v2/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prePaymaster` methods. That's why the `onlyBootloader` modifier is used for them.
 
 The `executeTransactionFromOutside` is needed to allow external users to initiate transactions from this account. The easiest way to implement it is to do the same as `validateTransaction` + `executeTransaction` would do.
 
@@ -138,7 +146,7 @@ Let's implement the validation process. It is responsible for validating the sig
 
 To increment the nonce, you should use the `incrementNonceIfEquals` method of the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether the nonce is the same as the provided one. If not, the transaction reverts. Otherwise, the nonce is increased.
 
-Even though the requirements above allow the accounts to touch only their storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a whitelisted case, since it behaves in the same way as your storage, it just happened to be in another contract. To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, you should add the following import:
+Even though the requirements above allow the accounts to touch only their storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../zksync-v2/aa.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happened to be in another contract. To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, you should add the following import:
 
 ```solidity
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
@@ -162,6 +170,27 @@ function _validateTransaction(Transaction calldata _transaction) internal {
     bytes32 txHash = _transaction.encodeHash();
 
     require(isValidSignature(txHash, _transaction.signature) == EIP1271_SUCCESS_RETURN_VALUE);
+}
+```
+
+### Paying fees for the transaction
+
+We should now implement the `payForTransaction` method. The `TransactionHelper` library already provides us with the `payToTheBootloader` method, that sends `_transaction.maxFeePerErg * _transaction.ergsLimit` ETH to the bootloader. So the implementation is rather straightforward:
+
+```solidity
+function payForTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+		bool success = _transaction.payToTheBootloader();
+		require(success, "Failed to pay the fee to the operator");
+}
+```
+
+### Implementing `prePaymaster`
+
+While generally the account abstraction protocol enables performing arbitrary actions when interacting with the paymasters, there are some [common patterns](../zksync-v2/aa.md#built-in-paymaster-flows) with the built-in support from EOAs. Unless you want to implement or restrict some specific paymaster use-cases from your account, it is better to keep it consistent with EOAs. The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processed the `prePaymaster` step the same as EOA does.
+
+```solidity
+function prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
+    _transaction.processPaymasterInput();
 }
 ```
 
@@ -197,13 +226,13 @@ pragma solidity ^0.8.0;
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
 import '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
 
-import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccountAbstraction.sol';
+import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol';
 
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
-contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
-	using TransactionHelper for Transaction;
+contract TwoUserMultisig is IAccount, IERC1271 {
+    using TransactionHelper for Transaction;
 
     address public owner1;
     address public owner2;
@@ -213,37 +242,37 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
         owner2 = _owner2;
     }
 
-	bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
+    bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
 
-	modifier onlyBootloader() {
-		require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
-		// Continure execution if called from the bootloader.
-		_;
-	}
+    modifier onlyBootloader() {
+        require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
+        // Continure execution if called from the bootloader.
+        _;
+    }
 
-	function validateTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
-		_validateTransaction(_transaction);
-	}
+    function validateTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+        _validateTransaction(_transaction);
+    }
 
-	function _validateTransaction(Transaction calldata _transaction) internal {
+    function _validateTransaction(Transaction calldata _transaction) internal {
         // Incrementing the nonce of the account.
         // Note, that reserved[0] by convention is currently equal to the nonce passed in the transaction
         NONCE_HOLDER_SYSTEM_CONTRACT.incrementNonceIfEquals(_transaction.reserved[0]);
         bytes32 txHash = _transaction.encodeHash();
 
         require(isValidSignature(txHash, _transaction.signature) == EIP1271_SUCCESS_RETURN_VALUE);
-	}
+    }
 
-	function executeTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
-		_executeTransaction(_transaction);
-	}
+    function executeTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+        _executeTransaction(_transaction);
+    }
 
-	function executeTransactionFromOutside(Transaction calldata _transaction) external payable {
-		_validateTransaction(_transaction);
-		_executeTransaction(_transaction);
-	}
+    function executeTransactionFromOutside(Transaction calldata _transaction) external payable {
+        _validateTransaction(_transaction);
+        _executeTransaction(_transaction);
+    }
 
-	function _executeTransaction(Transaction calldata _transaction) internal {
+    function _executeTransaction(Transaction calldata _transaction) internal {
         uint256 to = _transaction.to;
         // By convention, the `reserved[1]` field is msg.value
         uint256 value = _transaction.reserved[1];
@@ -256,9 +285,9 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
 
         // Needed for the transaction to be correctly processed by the server.
         require(success);
-	}
+    }
 
-	function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
+    function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
         // The signature is the concatenation of the ECDSA signatures of the owners
         // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long.
         require(_signature.length == 130, 'Signature length is incorrect');
@@ -270,9 +299,18 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
         require(recoveredAddr2 == owner2);
 
         return EIP1271_SUCCESS_RETURN_VALUE;
-	}
+    }
 
-	receive() external payable {
+    function payForTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+        bool success = _transaction.payToTheBootloader();
+        require(success, "Failed to pay the fee to the operator");
+    }
+
+    function prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
+        _transaction.processPaymasterInput();
+    }
+
+    receive() external payable {
         // If the bootloader called the `receive` function, it likely means
         // that something went wrong and the transaction should be aborted. The bootloader should
         // only interact through the `validateTransaction`/`executeTransaction` methods.
@@ -283,7 +321,7 @@ contract TwoUserMultisig is IAccountAbstraction, IERC1271 {
 
 ## The factory
 
-Now, let's build a factory that can deploy these accounts. Note, that if we want to deploy AA, we need to interact directly with the `DEPLOYER_SYSTEM_CONTRACT`. For deterministic addresses, we will use `create2AA` method.
+Now, let's build a factory that can deploy these accounts. Note, that if we want to deploy AA, we need to interact directly with the `DEPLOYER_SYSTEM_CONTRACT`. For deterministic addresses, we will use `create2Account` method.
 
 The code will look the following way:
 
@@ -303,7 +341,7 @@ contract AAFactory {
         address owner1,
         address owner2
     ) external returns (address) {
-        return DEPLOYER_SYSTEM_CONTRACT.create2AA(salt, aaBytecodeHash, 0, abi.encode(owner1, owner2));
+        (accountAddress, ) = DEPLOYER_SYSTEM_CONTRACT.create2Account(salt, aaBytecodeHash, 0, abi.encode(owner1, owner2));
     }
 }
 ```
@@ -380,10 +418,9 @@ In the `deploy` folder create a file `deploy-multisig.ts`, where we will put the
 Firstly, let's deploy the AA. This will be basically a call to the `deployAccount` function:
 
 ```ts
-import { utils, Wallet, Provider, EIP712Signer } from "zksync-web3";
+import { utils, Wallet, Provider, EIP712Signer, types } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { Eip712Meta } from "zksync-web3/build/src/types";
 
 // Put the address of your AA factory
 const AA_FACTORY_ADDRESS = "0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627D";
@@ -447,15 +484,16 @@ const gasPrice = await provider.getGasPrice();
 
 aaTx = {
   ...aaTx,
+  from: multisigAddress,
   gasLimit: gasLimit,
   gasPrice: gasPrice,
   chainId: (await provider.getNetwork()).chainId,
   nonce: await provider.getTransactionCount(multisigAddress),
   type: 113,
   customData: {
-    ergsPerPubdata: "1",
-    feeToken: utils.ETH_ADDRESS,
-  } as Eip712Meta,
+    // Note, that we are using the `DEFAULT_ERGS_PER_PUBDATA_LIMIT`
+    ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+  } as types.Eip712Meta,
   value: ethers.BigNumber.from(0),
 };
 ```
@@ -480,10 +518,7 @@ const signature = ethers.utils.concat([
 
 aaTx.customData = {
   ...aaTx.customData,
-  aaParams: {
-    from: multisigAddress,
-    signature,
-  },
+  customSignature: signature,
 };
 ```
 
@@ -501,10 +536,9 @@ console.log(`The multisig's nonce after the first tx is ${await provider.getTran
 ### Full example
 
 ```ts
-import { utils, Wallet, Provider, EIP712Signer } from "zksync-web3";
+import { utils, Wallet, Provider, EIP712Signer, types } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { Eip712Meta } from "zksync-web3/build/src/types";
 
 // Put the address of your AA factory
 const AA_FACTORY_ADDRESS = "0xa0eD7885B408961430F89d797cD1cc87530D8fBe";
@@ -549,6 +583,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   aaTx = {
     ...aaTx,
+    from: multisigAddress,
     gasLimit: gasLimit,
     gasPrice: gasPrice,
     chainId: (await provider.getNetwork()).chainId,
@@ -556,8 +591,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     type: 113,
     customData: {
       ergsPerPubdata: "1",
-      feeToken: utils.ETH_ADDRESS,
-    } as Eip712Meta,
+    } as types.Eip712Meta,
     value: ethers.BigNumber.from(0),
   };
   const signedTxHash = EIP712Signer.getSignedDigest(aaTx);
@@ -571,10 +605,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   aaTx.customData = {
     ...aaTx.customData,
-    aaParams: {
-      from: multisigAddress,
-      signature,
-    },
+    customSignature: signature,
   };
 
   console.log(`The multisig's nonce before the first tx is ${await provider.getTransactionCount(multisigAddress)}`);

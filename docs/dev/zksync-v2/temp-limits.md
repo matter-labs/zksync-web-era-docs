@@ -19,7 +19,6 @@ However, if a library contains at least one `public` or `external` method, it is
 - `SELFDESTRUCT` (it’s considered harmful and there are calls to deactivate it on L1).
 - `EXTCODECOPY` (it can be implemented if needed, but we skip it for now because zkEVM opcodes are not identical to EVM ones anyway).
 - `CALLCODE` (deprecated on Ethereum in favor of `DELEGATECALL`).
-- `DIFFICULTY` (`block.difficulty`) always returns `0` (zkSync does not have proof of work consensus).
 
 ## Temporarily simulated by constant values
 
@@ -27,12 +26,8 @@ These opcodes will be supported by the time of the mainnet launch.
 
 - `block.gaslimit` always returns `2^32-1`.
 - `MSIZE` always returns `2^16`.
-- `GASLIMIT` (`tx.gasprice`) always returns `0`.
-- `ORIGIN` (`tx.origin`) always returns `0`.
-- `GASPRICE` (`tx.gasprice`) always returns `0`.
-- `CHAINID` (`chain_id`) always returns `0`.
-- `BLOCKHASH` (`tx.blockhash`) always returns `0`.
-- `COINBASE` (`block.coinbase`) always returns `0`.
+- `COINBASE` (`block.coinbase`) always returns the [bootloader](./system-contracts.md#bootloader) address.
+- `DIFFICULTY` (`block.difficulty`) always returns `2500000000000000` (zkSync does not have proof of work consensus).
 
 ## Ignored by the compiler
 

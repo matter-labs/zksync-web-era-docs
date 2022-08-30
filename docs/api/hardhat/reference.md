@@ -26,7 +26,7 @@ This plugin most often will not be used directly in the code.
 
 ```typescript
 zksolc: {
-  version: "0.1.0",
+  version: "0.1.5",
   compilerSource: "docker",
   settings: {
     compilerPath: "zksolc",
@@ -183,31 +183,31 @@ class Deployer {
    *
    * @param artifact The previously loaded artifact object.
    * @param constructorArguments List of arguments to be passed to the contract constructor.
-   * @param feeToken Address of the token to pay fees in. If not provided, defaults to ETH.
    *
-   * @returns Calculated fee in wei of the corresponding fee token.
+   * @returns Calculated fee in ETH wei.
    */
   public async estimateDeployFee(
     artifact: ZkSyncArtifact,
-    constructorArguments: any[],
-    feeToken?: string,
+    constructorArguments: any[]
   ): Promise<ethers.BigNumber>
 
   /**
-   * Sends a deploy transaction to the zkSync network.
-   * For now, it will use defaults for the transaction parameters:
-   * - fee amount is requested automatically from the zkSync server.
-   *
-   * @param artifact The previously loaded artifact object.
-   * @param constructorArguments List of arguments to be passed to the contract constructor.
-   * @param overrides Optional object with additional deploy transaction parameters.
-   *
-   * @returns A contract object.
-   */
+    * Sends a deploy transaction to the zkSync network.
+    * For now it uses defaults values for the transaction parameters:
+    *
+    * @param artifact The previously loaded artifact object.
+    * @param constructorArguments List of arguments to be passed to the contract constructor.
+    * @param overrides Optional object with additional deploy transaction parameters.
+    * @param additionalFactoryDeps Additional contract bytecodes to be added to the factory dependencies list.
+    * The fee amount is requested automatically from the zkSync server.
+    * 
+    * @returns A contract object.
+    */
   public async deploy(
     artifact: ZkSyncArtifact,
     constructorArguments: any[],
-    overrides?: Overrides
+    overrides?: Overrides,
+    additionalFactoryDeps?: ethers.BytesLike[],
   ): Promise<zk.Contract>
 
   /**

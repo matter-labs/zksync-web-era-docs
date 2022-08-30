@@ -7,7 +7,7 @@ The following functionality will be implemented:
 - There will be a greeting stored on a smart contract on zkSync.
 - The user will be able to get the greeting after the dApp page is loaded.
 - The user will be able to change the greeting on the smart contract.
-- The user will be able to select the token that they want to pay the fee with.
+- The user will be able to select the token that they want to pay the fee with. By default, the tutorial supports only a single token: ether. An example on how to pay fees with ERC20 tokens will be shown in the [paying fees using testnet paymaster](#paying-fees-using-testnet-paymaster). If you decide to build a project on mainnet, you should read the documentation for the [paymaster](../zksync-v2/aa.md#paymasters) you are going to use.
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ For this tutorial, the following programs must be installed:
 
 - `yarn` package manager. `npm` examples will be added soon.
 - `Docker` for compilation.
-- A wallet with some Görli `ETH` on L1 (Görli `USDC` is also required for the ERC-20 tutorial) to pay for bridging funds to zkSync as well as deploying smart contracts.
+- A wallet with sufficient Görli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Some ERC20 tokens on zkSync are required for the testnet paymaster tutorial.
 
 ## Initializing the project & deploying smart contract
 
@@ -38,7 +38,7 @@ require("@matterlabs/hardhat-zksync-solc");
 
 module.exports = {
   zksolc: {
-    version: "1.1.0",
+    version: "1.1.5",
     compilerSource: "docker",
     settings: {
       optimizer: {
@@ -46,7 +46,7 @@ module.exports = {
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
-        tag: "v1.1.0"
+        tag: "v1.1.5"
       },
     },
   },
@@ -60,7 +60,7 @@ module.exports = {
     },
   },
   solidity: {
-    version: "0.8.10",
+    version: "0.8.16",
   },
 };
 ```
@@ -107,7 +107,7 @@ yarn hardhat compile
 6. Create the deployment script in the `deploy/deploy.ts`:
 
 ```typescript
-import { utils, Wallet } from "zksync-web3";
+import { Wallet, Provider, utils } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -117,25 +117,31 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
+  const provider = new Provider(hre.userConfig.zkSyncDeploy?.zkSyncNetwork);
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
-
-  // Create deployer object and load the artifact of the contract we want to deploy.
+  
+  // Create deployer object and load the artifact of the contract you want to deploy.
   const deployer = new Deployer(hre, wallet);
   const artifact = await deployer.loadArtifact("Greeter");
 
-  // Deposit some funds to L2 in order to be able to perform L2 transactions.
-  const depositAmount = ethers.utils.parseEther("0.001");
+  // Estimate contract deployment fee
+  const greeting = "Hi there!";
+  const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting]);
+
+  // Deposit funds to L2
   const depositHandle = await deployer.zkWallet.deposit({
     to: deployer.zkWallet.address,
     token: utils.ETH_ADDRESS,
-    amount: depositAmount,
+    amount: deploymentFee.mul(2),
   });
   // Wait until the deposit is processed on zkSync
   await depositHandle.wait();
 
   // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
   // `greeting` is an argument for contract constructor.
-  const greeting = "Hi there!";
+  const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
+  console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
+
   const greeterContract = await deployer.deploy(artifact, [greeting]);
 
   //obtain the Constructor Arguments
@@ -154,129 +160,6 @@ yarn hardhat deploy-zksync
 ```
 
 In the output, you should see the address where the contract was deployed to.
-
-### Paying for deployment in ERC20 tokens
-
-This section is optional, and is used for learning how to pay for deployments of smart contracts in ERC20 tokens. To go straight to the front-end integration, click [here](#front-end-integration).
-
-::: tip Note on L2 token address
-
-Note that on the zkSync network, addresses of ERC-20 tokens are different from their addresses on Ethereum. So if, for example, you deposit an ERC-20 token to zkSync, the token address will not be the same as on Ethereum.
-To get the address of an ERC-20 token on L2, call the `getL2TokenAddress()` method from the `Provider` / `Wallet` class:
-
-:::
-
-```typescript
-const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS);
-```
-
-1. Import `Provider` from the zksync-web3 library:
-
-```typescript
-import { Provider } from "zksync-web3";
-```
-
-2. For example, to pay fees in the `USDC` token:
-
-```typescript
-const L1_USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
-const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS);
-const USDC_DECIMALS = 6;
-const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], L2_USDC_ADDRESS);
-// Deposit funds to L2.
-const depositHandle = await deployer.zkWallet.deposit({
-  to: deployer.zkWallet.address,
-  token: L1_USDC_ADDRESS,
-  // We deposit more than the minimal required amount to have funds
-  // for further iteraction with our smart contract.
-  amount: deploymentFee.mul(2),
-  // Unlike ETH, ERC20 tokens require approval in order to deposit to zkSync.
-  // You can either set the approval in a separate transaction or provide `approveERC20` flag equal to `true`
-  // and the SDK will initiate approval transaction under the hood.
-  approveERC20: true,
-});
-
-// Wait until the deposit is processed by zkSync.
-await depositHandle.wait();
-```
-
-3. The output of the fee can then be produced in a human-readable format:
-
-```typescript
-const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
-console.log(`The deployment will cost ${parsedFee} USDC`);
-```
-
-Please note that the fees on the testnet do not correctly represent the fees on the future mainnet release.
-
-4. `USDC` must then be passed as the `feeToken` to the deployment transaction:
-
-```typescript
-const greeterContract = await deployer.deploy(artifact, [greeting], L2_USDC_ADDRESS);
-```
-
-5. To pay fees in USDC for smart contract interaction, supply the fee token in the `customData` override:
-
-```typescript
-const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting, {
-  customData: {
-    feeToken: L2_USDC_ADDRESS,
-  },
-});
-```
-
-#### Full example:
-
-```typescript
-import { Wallet, Provider } from "zksync-web3";
-import * as ethers from "ethers";
-import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
-
-const L1_USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
-const USDC_DECIMALS = 6;
-
-// An example of a deploy script that will deploy and call a simple contract.
-export default async function (hre: HardhatRuntimeEnvironment) {
-  console.log(`Running deploy script for the Greeter contract`);
-
-  // Initialize the wallet.
-  const provider = new Provider(hre.userConfig.zkSyncDeploy?.zkSyncNetwork);
-  const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
-  
-  // Deriving L2 token address from L1 token address.
-  const L2_USDC_ADDRESS = await provider.l2TokenAddress(L1_USDC_ADDRESS);
-
-  // Create deployer object and load the artifact of the contract we want to deploy.
-  const deployer = new Deployer(hre, wallet);
-  const artifact = await deployer.loadArtifact("Greeter");
-
-  // Estimate contract deployment fee
-  const greeting = "Hi there!";
-  const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting], L2_USDC_ADDRESS);
-
-  // Deposit funds to L2
-  const depositHandle = await deployer.zkWallet.deposit({
-    to: deployer.zkWallet.address,
-    token: L1_USDC_ADDRESS,
-    amount: deploymentFee.mul(2),
-    approveERC20: true,
-  });
-  // Wait until the deposit is processed on zkSync
-  await depositHandle.wait();
-
-  // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
-  // `greeting` is an argument for contract constructor.
-  const parsedFee = ethers.utils.formatUnits(deploymentFee.toString(), USDC_DECIMALS);
-  console.log(`The deployment will cost ${parsedFee} USDC`);
-
-  const greeterContract = await deployer.deploy(artifact, [greeting], { feeToken: L2_USDC_ADDRESS });
-
-  // Show the contract info.
-  const contractAddress = greeterContract.address;
-  console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
-}
-```
 
 ## Front-end integration
 
@@ -330,7 +213,13 @@ async getBalance() {
   // Return formatted balance
   return "";
 },
+async getOverrides() {
+  if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
+    // TODO: Return data for the paymaster
+  }
 
+  return {};
+},
 async changeGreeting() {
   this.txStatus = 1;
   try {
@@ -390,7 +279,7 @@ Open `./src/App.vue` and set the `GREETER_CONTRACT_ADDRESS` constant equal to th
 To interact with zkSync's smart contract, its ABI is also needed.
 
 - Create the `./src/abi.json` file.
-- You can get the contract's ABI in the hardhat project folder from the previous section in the `./artifacts/contracts/tmp/Flattened.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` created in the previous step. The file should look roughly the following way:
+- You can get the contract's ABI in the hardhat project folder from the previous section in the `./artifacts-zk/contracts/Greeter.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` created in the previous step. The file should look roughly the following way:
 
 ```json
 [
@@ -510,7 +399,7 @@ The chosen token to pay the fee can now be selected. However, no balances are up
 
 ### Retrieving token balance and transaction fee
 
-The easiest way to retrieve the user's balance is to use the `Signer.getBalance` method.
+The easiest way to retrieve the user's balance is to use the `Signer.getBalance` method. 
 
 1. Add the necessary dependencies:
 
@@ -546,6 +435,12 @@ async getFee() {
 },
 ```
 
+::: tip Paying fees in ERC20
+
+zkSync 2.0 does not natively support paying fees in ERC20 tokens, as the account abstraction feature facilitates that. An example on how to use the testnet paymaster will be provided in this tutorial below. However, when working on mainnet, you should either provide the paymaster services [yourself](./custom-paymaster-tutorial.md) or use a 3rd party paymaster. 
+
+:::
+
 When opening the page and select the token to pay fee with, the balance and the expected fee for the transaction will be available.
 
 The `Refresh` button should be used to recalculate the fee, as the fee may depend on the length of the string to be set.
@@ -556,15 +451,12 @@ It is possible to also click on the `Change greeting` button, but nothing will b
 
 ### Updating the greeting
 
-1. Interacting with smart contract works absolutely the same way as in `ethers`, however, the `customData` override is required to supply the `feeToken` of the transaction:
+1. Interacting with a smart contract works absolutely the same way as in `ethers`, however, if you want to use zkSync-specific features you may need to provide some additional parameters in the overrides:
 
 ```javascript
-const txHandle = await this.contract.setGreeting(this.newGreeting, {
-  customData: {
-    // Passing the token to pay fee with
-    feeToken: this.selectedToken.l2Address,
-  },
-});
+// The example of paying fees using a paymaster will be shown in the 
+// section below.
+const txHandle = await this.contract.setGreeting(this.newGreeting, await this.getOverrides());
 ```
 
 2. Wait until the transaction is committed:
@@ -579,12 +471,8 @@ The full method looks the following way:
 async changeGreeting() {
     this.txStatus = 1;
     try {
-        const txHandle = await this.contract.setGreeting(this.newGreeting, {
-            customData: {
-                // Passing the token to pay fee with
-                feeToken: this.selectedToken.l2Address
-            }
-        });
+        const txHandle = await this.contract.setGreeting(this.newGreeting, await this.getOverrides());
+
         this.txStatus = 2;
 
         // Wait until the transaction is committed
@@ -609,6 +497,105 @@ async changeGreeting() {
 },
 ```
 
+You now have a fully functioal Greeter-dApp! However, it does not leverage any zkSync-specific features.
+
+### Paying fees using testnet paymaster
+
+Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](../zksync-v2/aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](../zksync-v2/aa.md#testnet-paymaster) that is provided on all zkSync testnets. It allows users to pay fees in an ERC20 token with the exchange rate of ETH of 1:1, i.e. one unit of the token for one wei of ETH.
+
+::: tip Mainnet integration
+
+Testnet paymaster is purely for demonstration of the feature and won't be available on mainnet. When integrating your protocol on mainnet, you should follow the documentation of the paymaster you will use.
+
+:::
+
+The address of the paymaster as well as the required input should be provided in the `getOverrides` method.
+
+1. We need to retrieve the address of the testnet paymaster:
+
+```javascript
+async getOverrides() {
+  if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
+    const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
+
+    // ..
+  }
+
+  return {};
+}
+```
+
+Note, that it is recommended to retrieve the testnet paymaster's address each time before any interactions as it may change.
+
+2. Add `utils` to the imports from `zksync-web3` SDK:
+
+```javascript
+import { Contract, Web3Provider, Provider, utils } from "zksync-web3";
+```
+
+2. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token to ETH at a 1:1 rate, the amount is the same as the ETH amount:
+
+```javascript
+async getOverrides() {
+  if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
+    const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
+
+    const gasPrice = await this.provider.getGasPrice();
+    const gasLimit = await this.contract.estimateGas.setGreeting(this.newGreeting);
+    const fee = gasPrice.mul(gasLimit);
+
+    // ..
+  }
+
+  return {};
+}
+```
+
+3. Now, what is left is to encode the paymasterInput by the [protocol requirements](../zksync-v2/aa.md#testnet-paymaster) and return the needed overrides:
+
+```javascript
+async getOverrides() {
+  if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
+    const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
+
+    const gasPrice = await this.provider.getGasPrice();
+    const gasLimit = await this.contract.estimateGas.setGreeting(this.newGreeting);
+    const fee = gasPrice.mul(gasLimit);
+
+    const paymasterParams = utils.getPaymasterParams(testnetPaymaster, {
+        type: 'ApprovalBased',
+        token: this.selectedToken.l2Address,
+        minimalAllowance: fee,
+        innerInput: new Uint8Array()
+    });
+    
+    return {
+        maxFeePerGas: gasPrice,
+        maxPriorityFeePerGas: ethers.BigNumber.from(0),
+        gasLimit,
+        customData: {
+            ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+            paymasterParams
+        }
+    };
+  }
+
+  return {};
+}
+```
+
+4. Use a list of ERC20s tokens. Change the following line:
+
+```javascript
+const allowedTokens = require("./eth.json");
+```
+
+to the following one:
+
+```javascript
+const allowedTokens = require("./erc20.json");
+```
+
 ### Complete app
 
 The greeting should now be updatable.
@@ -617,7 +604,7 @@ The greeting should now be updatable.
 
 ![img](/start-3.png)
 
-2. Since the `feeToken` was supplied, the transaction to be sent is of the `EIP712` type:
+2. Since the `paymasterParams` were supplied, the transaction to be sent is of the `EIP712` type:
 
 ![img](/start-4.png)
 
