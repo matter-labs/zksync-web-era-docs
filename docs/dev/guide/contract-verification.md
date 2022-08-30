@@ -83,28 +83,22 @@ We recommend using the [truffle flattener](https://github.com/NomicFoundation/tr
   
 <br>
 
-**Note:** To obtain the Constructor arguments, after deploying your contract, include this 
+### How can you obtain your constructor arguments?
+
+> **Note:** The easiest way to get the constructor argument data is to write it by yourself to the console while deploying.
+
+For example, if using our [tutorial](./hello-world.md), you can find line:
+
+`const greeterContract = await deployer.deploy(artifact, [greeting]);` <br>
+
+if you add the next line as <br>
+
+`console.log(greeterContract.interface.encodeDeploy([greeting]);` <br>
+then you will receive constructor argument data.
 <br>
 
-```
-console.log("constructor args:" + greeterContract.interface.encodeDeploy([greeting]));
-
-``` 
-
-For example;
-
-```typescript
-// Deploy this contract. 
-// `greeting` is an argument for contract constructor.
-
-const greeting = "Hi there!";
-const greeterContract = await deployer.deploy(artifact, [greeting]);
-
-//obtain the Constructor Arguments
-console.log("constructor args:" + greeterContract.interface.encodeDeploy([greeting]));
-```
-
 - Lastly, click the **Verify Smart Contract** button.
+  
 <br>
 If all goes well, you will see a success message.
 
