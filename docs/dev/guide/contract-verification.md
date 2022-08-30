@@ -85,7 +85,7 @@ We recommend using the [truffle flattener](https://github.com/NomicFoundation/tr
 
 ### How can you obtain your constructor arguments?
 
-> **Note:** The easiest way to get the constructor argument data is to write it by yourself to the console while deploying.
+> **Note:** The easiest way to get the constructor argument data is to print it to the console while deploying.
 
 For example, if using our [tutorial](./hello-world.md), you can find line:
 
