@@ -79,7 +79,7 @@ To verify the contract, enter the following details;
 <br> 
 We recommend using the [truffle flattener](https://github.com/NomicFoundation/truffle-flattener) or the [POA Solidity flattener](https://github.com/poanetwork/Solidity-flattener).
 
-- Constructor arguments: If Constructor Arguments are required by the contract, you should add them here, but in [ABI hex encoded form](https://Solidity.readthedocs.io/en/develop/abi-spec.html).
+- Constructor arguments: If constructor arguments are required by the contract, you should add them here, but in [ABI hex encoded form](https://solidity.readthedocs.io/en/develop/abi-spec.html).
   
 <br>
 
