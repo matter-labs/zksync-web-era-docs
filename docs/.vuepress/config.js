@@ -150,8 +150,8 @@ module.exports = {
           collapsable: false,
           children: [
             "/dev/guide/quickstart.md",
-            "/dev/guide/contract-verification.md",
             "/dev/guide/hello-world.md",
+            "/dev/guide/contract-verification.md",
             "/dev/guide/solidity-vyper.md",
             "/dev/guide/deploying.md",
             "/dev/guide/front-end-integration.md",
