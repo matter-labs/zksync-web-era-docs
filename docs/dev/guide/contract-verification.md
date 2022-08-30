@@ -79,7 +79,7 @@ To verify the contract, enter the following details;
 <br> 
 We recommend using the [truffle flattener](https://github.com/NomicFoundation/truffle-flattener) or the [POA Solidity flattener](https://github.com/poanetwork/Solidity-flattener).
 
-- Constructor arguments: If Constructor Arguments are required by the contract, you should add them here, but in [ABI hex encoded form](https://Solidity.readthedocs.io/en/develop/abi-spec.html).
+- Constructor arguments: If Constructor Arguments are required by the contract, you should add them here, but in [ABI hex encoded form](https://solidity.readthedocs.io/en/develop/abi-spec.html).
   
 <br>
 
@@ -89,13 +89,17 @@ We recommend using the [truffle flattener](https://github.com/NomicFoundation/tr
 
 For example, if using our [tutorial](./hello-world.md), you can find line:
 
-`const greeterContract = await deployer.deploy(artifact, [greeting]);` <br>
+```js
+const greeterContract = await deployer.deploy(artifact, [greeting]);
+```
 
-if you add the next line as <br>
+if you add the next line as
 
-`console.log(greeterContract.interface.encodeDeploy([greeting]);` <br>
+```js
+console.log(greeterContract.interface.encodeDeploy([greeting]);
+```
+
 then you will receive constructor argument data.
-<br>
 
 - Lastly, click the **Verify Smart Contract** button.
   
