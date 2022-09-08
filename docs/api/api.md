@@ -55,7 +55,7 @@ All zkSync-specific methods are located in the `zks_` namespace. The API may als
 
 ::: warning
 
-Please note that, Metamask does not support zks_ namespace's methods, we are working to support it in the future.
+Please note that, Metamask does not support zks_ namespace's methods, we are working to support it in the future, alternatively you can use `Provider` class with the testnet RPC instead of relying on the Metamask's injected provider.
 
 :::
 
