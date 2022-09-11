@@ -453,7 +453,7 @@ zkSync 2.0 нативно не поддерживает оплату комис�
 
 Также можно нажать на кнопку `Change greeting,` но ничего не произойдет, так как контракт еще не был вызыван.
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Изменение приветствия
 
@@ -610,14 +610,14 @@ const allowedTokens = require("./erc20.json");
 
 1. Введите новое приветствие в поле для вводе и кликните на кнопку `Change greeting`:
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 &#x20; 2\.  Так как параметры `paymasterParams` были предоставлены, отправляемая транзакция будет типа`EIP712` :
 
 \
 
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -625,7 +625,7 @@ const allowedTokens = require("./erc20.json");
 
 После подтверждения транзакции страница обновится и можно будет увидеть обновленные баланс и приветствие:&#x20;
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Узнайте больше <a href="#learn-more" id="learn-more"></a>
 

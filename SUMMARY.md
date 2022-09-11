@@ -27,3 +27,4 @@
 * [Руководство разработчика](rukovodstvo-razrabotchika/README.md)
   * [Быстрый старт](rukovodstvo-razrabotchika/bystryi-start.md)
   * [Руководство Hello World!](rukovodstvo-razrabotchika/rukovodstvo-hello-world.md)
+  * [Верификация контракта](rukovodstvo-razrabotchika/verifikaciya-kontrakta.md)
