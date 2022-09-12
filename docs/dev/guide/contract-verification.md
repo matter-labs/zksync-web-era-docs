@@ -15,7 +15,7 @@ If the two sides match in every way, the contract is verified.
 
 Code verification requires six arguments: 
 
-- The compiler address
+- The contract address
 - The contract name
 - The source code, including the source of all imports
 - The version of the compiler used to produce the deployed bytecode
