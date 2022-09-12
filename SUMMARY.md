@@ -28,3 +28,4 @@
   * [Быстрый старт](rukovodstvo-razrabotchika/bystryi-start.md)
   * [Руководство Hello World!](rukovodstvo-razrabotchika/rukovodstvo-hello-world.md)
   * [Верификация контракта](rukovodstvo-razrabotchika/verifikaciya-kontrakta.md)
+  * [Поддержка Solidity/Vyper](rukovodstvo-razrabotchika/podderzhka-solidity-vyper.md)
