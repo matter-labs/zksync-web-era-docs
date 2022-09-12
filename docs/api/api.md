@@ -214,6 +214,17 @@ None.
 "0x7786255495348c08f82c09c82352019fade3bf29"
 ```
 
+### `zks_L1BatchNumber`
+
+Returns the number of the latest L1 batch.
+
+### Input parameters
+
+None.
+
+### Output format
+
+`"0x1234"`
 
 <!-- TODO: uncomment once fixed --->
 <!-- ### `zks_getTokenPrice`
@@ -293,6 +304,13 @@ Don't want to document (at least for now):
 
 
 -->
+
+## Extensions of the standard methods
+
+### `eth_getTransactionReceipt`
+
+Additional nullable field `l1BatchNumber` is added to the receipts.
+It is equal to the number of L1 batch that the transaction is included in.
 
 ## PubSub API
 
