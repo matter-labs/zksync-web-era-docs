@@ -6,11 +6,6 @@ When you deploy a smart contract on a network, you’re essentially deploying th
 
 Verifying a contract entails determining whether the on-chain bytecode generated from the Smart Contract source code complies. If it does, we can state that we have confirmed the bytecode's source code's integrity. Hence the name – verification.
 
-<br>
-
-<hr>
-
-<br>
 
 ## How are smart contracts verified in zkSync?
 
@@ -29,21 +24,11 @@ Code verification requires six arguments:
  
  If any of these pieces of information is wrong, the process of verification fails.
 
-<br>
-
-<hr>
-
-<br>
 
 ## Source code privacy
 
 When your smart contract is deployed on zkSync and verified on the block explorer, users are able to check the verified source code and interact with it.
 
-<br>
-
-<hr>
-
-<br>
 
 
 ## Verifying Contracts Using the zkSync Block Explorer
@@ -54,11 +39,7 @@ To get started click the **Tools** tab in the top header, a dropdown will pop up
 
 ![Smart Contract Verification page!](../../assets/images/verify-contract.png "verify contact")
 
-<br>
 
-<hr>
-
-<br>
 
 ### Enter contract details
 

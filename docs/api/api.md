@@ -51,7 +51,13 @@ These fields are conveniently handled by our [SDK](./js/features.md).
 
 ## zkSync-specific JSON-RPC methods
 
-All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods other than those provided here. These methods are to be used internally by the team and are very unstable.
+All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods other than those provided here. These methods are to be used internally by the team and are very unstable. 
+
+::: warning
+
+Please note that, Metamask does not support zks_ namespace's methods, we are working to support it in the future, alternatively you can use `Provider` class with the testnet RPC instead of relying on the Metamask's injected provider.
+
+:::
 
 <!-- ### `zks_estimateFee`
 
