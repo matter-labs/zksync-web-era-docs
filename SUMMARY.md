@@ -31,3 +31,4 @@
   * [Поддержка Solidity/Vyper](rukovodstvo-razrabotchika/podderzhka-solidity-vyper.md)
   * [Развертывание контрактов](rukovodstvo-razrabotchika/razvertyvanie-kontraktov.md)
   * [Интеграция фронденда](rukovodstvo-razrabotchika/integraciya-frondenda.md)
+  * [L1 -> L2 коммуникация](rukovodstvo-razrabotchika/l1-greater-than-l2-kommunikaciya.md)
