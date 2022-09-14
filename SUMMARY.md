@@ -33,3 +33,4 @@
   * [Интеграция фронденда](rukovodstvo-razrabotchika/integraciya-frondenda.md)
   * [L1 -> L2 коммуникация](rukovodstvo-razrabotchika/l1-greater-than-l2-kommunikaciya.md)
   * [L2 -> L1 коммуникация](rukovodstvo-razrabotchika/l2-greater-than-l1-kommunikaciya.md)
+  * [Разработка собственного моста](rukovodstvo-razrabotchika/razrabotka-sobstvennogo-mosta.md)
