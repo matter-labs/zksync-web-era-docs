@@ -513,6 +513,6 @@ The counter value is 1
 
 ### Узнать больше <a href="#learn-more" id="learn-more"></a>
 
-* Больше о взаимодействии L1->L2 на zkSync в этой [документации](https://v2-docs.zksync.io/dev/guide/l1-l2.html).
+* Узнать больше о взаимодействии L1->L2 на zkSync в этой [документации](https://v2-docs.zksync.io/dev/guide/l1-l2.html).
 * Узнать больше о `zksync-web3` SDK в этой [документации.](https://v2-docs.zksync.io/api/js)
 * Узнать больше о плагинах hardhat zkSync в этой [документации.](https://v2-docs.zksync.io/api/hardhat)
