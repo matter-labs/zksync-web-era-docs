@@ -372,12 +372,147 @@ async function main() {
 ```
 
 {% hint style="success" %}
-**Fee model and fee estimation are WIP**
+**Комиссионная модель и расчет комисси находятся в разработке.**
 
-You may have noticed the lack of the `ergs_per_pubdata` and `ergs_per_storage` fields in the L1->L2 transactions. These are surely important for the security of the protocol and they will be added soon. Please note that this will be a breaking change for the contract interface.
+Вы могли заметить отсутствие полей `ergs_per_pubdata` и `ergs_per_storage` в L1->L2 транзакциях. Несомненно, они важны для безопасности протокола и будут добавлены в скором времени. Пожалуйста, учтите, что это будет критическим изменением для интерфейса контрактов.
 
-Also, there is currently no easy way to estimate the exact number of `ergs` required for execution of an L1->L2 tx. At the time of this writing, the transactions may be processed even if the supplied `ergsLimit` is `0`. This will change in the future.
+Также, на данный момент нет простого способа расчитать точное количество ergs, необходимого для исполнения L1->L2 транзакции. На момент написания этого текста транзакции могут обрабатываться даже при `ergsLimit` равном `0.` Это изменится в будущем.
 {% endhint %}
 
+&#x20; 7\.  Теперь можно вызвать контракт управления таким образом, что он перенаправляет вызов на zkSync.
 
+```typescript
+// Imports
+const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
+```
 
+```typescript
+async function main() {
+  // ... Previous steps
+
+  // Calling the L1 governance contract.
+  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
+    // Passing the necessary ETH `value` to cover the fee for the operation
+    value: baseCost,
+    gasPrice,
+  });
+
+  // Waiting until the L1 transaction is complete.
+  await tx.wait();
+}
+```
+
+Не забудьте заменить `<COUNTER-ADDRESS>` адресом контракта счетчика на L2.
+
+&#x20; 8\.  Статус соответствующей транзакции на L2 также можно отследить. После добавления приоритетного запроса `NewPriorityRequest(uint64 txId, bytes32 txHash, uint64 expirationBlock, L2CanonicalTransaction transaction, bytes[] factoryDeps);` происходит событие. Тогда как `transaction` нужна оператору для проведения транзакции, `txHash` позволяет легкое отслеживание транзакции на zkSync.
+
+`Provider` `zksync-web3` имеет метод, который задаёт объект L1 `ethers.TransactionResponse` транзакции, который вызывает мост zkSync, возвращает объект `TransactionResponse`, который может комфортно ожидать обработки транзакции на L2.
+
+```typescript
+async function main() {
+  // ... Previous steps
+
+  // Getting the TransactionResponse object for the L2 transaction corresponding to the
+  // execution call
+  const l2Response = await l2Provider.getL2TransactionFromPriorityOp(tx);
+
+  // The receipt of the L2 transaction corresponding to the call to the counter contract
+  const l2Receipt = await l2Response.wait();
+  console.log(l2Receipt);
+}
+```
+
+#### Полный код <a href="#complete-code" id="complete-code"></a>
+
+```typescript
+import { BigNumber, Contract, ethers, Wallet } from "ethers";
+import { Provider, utils } from "zksync-web3";
+
+const GOVERNANCE_ABI = require("./governance.json");
+const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
+const COUNTER_ABI = require("./counter.json");
+const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
+
+async function main() {
+  // Ethereum L1 provider
+  const l1Provider = ethers.providers.getDefaultProvider("goerli");
+
+  // Governor wallet
+  const wallet = new Wallet("<WALLET-PRIVATE-KEY>", l1Provider);
+
+  const govcontract = new Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
+
+  // Getting the current address of the zkSync L1 bridge
+  const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
+  const zkSyncAddress = await l2Provider.getMainContractAddress();
+  // Getting the `Contract` object of the zkSync bridge
+  const zkSyncContract = new Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
+
+  // Encoding the tx data the same way it is done on Ethereum.
+  const counterInterface = new ethers.utils.Interface(COUNTER_ABI);
+  const data = counterInterface.encodeFunctionData("increment", []);
+
+  // The price of the L1 transaction requests depends on the gas price used in the call
+  const gasPrice = await l1Provider.getGasPrice();
+
+  // Here we define the constant for ergs limit.
+  const ergsLimit = BigNumber.from(100000);
+  // Getting the cost of the execution.
+  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length);
+
+  // Calling the L1 governance contract.
+  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
+    // Passing the necessary ETH `value` to cover the fee for the operation
+    value: baseCost,
+    gasPrice,
+  });
+
+  // Waiting until the L1 tx is complete.
+  await tx.wait();
+
+  // Getting the TransactionResponse object for the L2 transaction corresponding to the
+  // execution call
+  const l2Response = await l2Provider.getL2TransactionFromPriorityOp(tx);
+
+  // The receipt of the L2 transaction corresponding to the call to the Increment contract
+  const l2Receipt = await l2Response.wait();
+  console.log(l2Receipt);
+}
+
+// We recommend this pattern to be able to use async/await everywhere
+// and properly handle errors.
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+```
+
+Вы можете запустить скрипт следующей командой:
+
+```
+yarn ts-node ./scripts/increment-counter.ts
+```
+
+В вывове вы должны увидеть хэш транзакции на L2.
+
+&#x20; 9\.  Теперь вы можете удостовериться, что транзакция была успешно проведена путем повторного запуска скрипта `display-value`:
+
+```
+yarn ts-node ./scripts/display-value.ts
+```
+
+Вывод должен быть таким:
+
+```
+The counter value is 1
+```
+
+### Полный проект <a href="#complete-project" id="complete-project"></a>
+
+Вы можете скачать полный проект [тут](https://github.com/matter-labs/cross-chain-tutorial).
+
+### Узнать больше <a href="#learn-more" id="learn-more"></a>
+
+* Больше о взаимодействии L1->L2 на zkSync в этой [документации](https://v2-docs.zksync.io/dev/guide/l1-l2.html).
+* Узнать больше о `zksync-web3` SDK в этой [документации.](https://v2-docs.zksync.io/api/js)
+* Узнать больше о плагинах hardhat zkSync в этой [документации.](https://v2-docs.zksync.io/api/hardhat)
