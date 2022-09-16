@@ -35,3 +35,4 @@
   * [L2 -> L1 коммуникация](rukovodstvo-razrabotchika/l2-greater-than-l1-kommunikaciya.md)
   * [Разработка собственного моста](rukovodstvo-razrabotchika/razrabotka-sobstvennogo-mosta.md)
   * [Руководство: кросс-чейн управление](rukovodstvo-razrabotchika/rukovodstvo-kross-chein-upravlenie.md)
+  * [Руководство: абстракция аккаунта](rukovodstvo-razrabotchika/rukovodstvo-abstrakciya-akkaunta.md)
