@@ -4,7 +4,7 @@ To maintain the same security as L1, the zkSync operator must publish on chain t
 
 While deploying contracts for the first time may be relatively expensive, factories, which deploy contracts with the same code multiple times, can have huge savings compared to L1.
 
-All these specifics make the process of deploying smart contracts on zkEVM comply with the major rule: _The operator should know the code of the contract before it is deployed_. This means that deploying contracts is only possible by the means of `EIP712` transactions with the `factory_deps` field contains the supplied bytecode. More on EIP712 transactions [here](../../api/api.md#eip712).
+All these specifics make the process of deploying smart contracts on zkEVM comply with the major rule: _The operator should know the code of the contract before it is deployed_. This means that deploying contracts is only possible by the means of `EIP712` transactions with the `factory_deps` field contains the supplied bytecode. More on EIP712 transactions [here](./../../../api/api.md#eip712).
 
 Summary:
 
@@ -14,7 +14,7 @@ Summary:
 - **How deploying contracts works on zkSync.**
   To deploy a contract, a user calls the `create` function of the [ContractDeployer](./system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
-All the deployment process is handled inside our [hardhat](../../api/hardhat) plugin.
+All the deployment process is handled inside our [hardhat](./../../../api/hardhat) plugin.
 
 ## Differences in `CREATE` behaviour
 

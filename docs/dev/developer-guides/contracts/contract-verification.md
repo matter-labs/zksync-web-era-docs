@@ -69,7 +69,7 @@ We recommend using the [truffle flattener](https://github.com/NomicFoundation/tr
 
 > **Note:** The easiest way to get the constructor argument data is to print it to the console while deploying.
 
-For example, if using our [tutorial](./hello-world.md), you can find line:
+For example, if using our [tutorial](./../hello-world.md), you can find line:
 
 ```js
 const greeterContract = await deployer.deploy(artifact, [greeting]);
@@ -90,7 +90,7 @@ If all goes well, you will see a success message.
 
 <br>
 
-![Smart Contract Verified!](../../assets/images/contract-verified.png "Contract Verified")
+![Smart Contract Verified!](./../../../assets/images/contract-verified.png "Contract Verified")
 
 
 

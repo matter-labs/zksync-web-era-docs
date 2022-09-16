@@ -7,7 +7,7 @@ The following functionality will be implemented:
 - There will be a greeting stored on a smart contract on zkSync.
 - The user will be able to get the greeting after the dApp page is loaded.
 - The user will be able to change the greeting on the smart contract.
-- The user will be able to select the token that they want to pay the fee with. By default, the tutorial supports only a single token: ether. An example on how to pay fees with ERC20 tokens will be shown in the [paying fees using testnet paymaster](#paying-fees-using-testnet-paymaster). If you decide to build a project on mainnet, you should read the documentation for the [paymaster](../zksync-v2/aa.md#paymasters) you are going to use.
+- The user will be able to select the token that they want to pay the fee with. By default, the tutorial supports only a single token: ether. An example on how to pay fees with ERC20 tokens will be shown in the [paying fees using testnet paymaster](#paying-fees-using-testnet-paymaster). If you decide to build a project on mainnet, you should read the documentation for the [paymaster](./transactions/aa.md#paymasters) you are going to use.
 
 ## Prerequisites
 
@@ -71,11 +71,11 @@ If this contract has already been complied, you should delete the artifact and c
 
 :::
 
-To learn how to verify your smart contrcat using zkSync block explorer, click [here](./contract-verification.md).
+To learn how to verify your smart contrcat using zkSync block explorer, click [here](./contracts/contract-verification.md).
 
-3. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
+1. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
 
-4. Create the `contracts/Greeter.sol` contract and insert the following code there:
+2. Create the `contracts/Greeter.sol` contract and insert the following code there:
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
@@ -187,7 +187,7 @@ By default, the page should be running at `http://localhost:8080`. Open this URL
 
 In order to interact with dApps built on zkSync, connect the Metamask wallet to the zkSync alpha testnet network and bridge some funds to L2.
 
-- The [guide](../testnet/metamask.md) on connecting to Metamask.
+- The [guide](./../fundamentals/testnet.md#connecting-metamask) on connecting to Metamask.
 - Use our [portal](https://portal.zksync.io) to bridge funds to zkSync.
 
 ### Project structure
@@ -393,7 +393,7 @@ async getGreeting() {
 
 After connecting the Metamask wallet, the following page should be viewable:
 
-![img](/start-1.png)
+![img](./../../assets/images/start-1.png)
 
 The chosen token to pay the fee can now be selected. However, no balances are updated, _yet_.
 
@@ -447,7 +447,7 @@ The `Refresh` button should be used to recalculate the fee, as the fee may depen
 
 It is possible to also click on the `Change greeting` button, but nothing will be changed as the contract has not been called yet.
 
-![img](/start-2.png)
+![img](./../../assets/images/start-2.png)
 
 ### Updating the greeting
 
@@ -602,19 +602,19 @@ The greeting should now be updatable.
 
 1. Type the new greeting in the input box and click on the `Change greeting` button:
 
-![img](/start-3.png)
+![img](./../../assets/images/start-3.png)
 
-2. Since the `paymasterParams` were supplied, the transaction to be sent is of the `EIP712` type:
+1. Since the `paymasterParams` were supplied, the transaction to be sent is of the `EIP712` type:
 
-![img](/start-4.png)
+![img](./../../assets/images/start-4.png)
 
-3. Click "Sign".
+1. Click "Sign".
 
 After the transaction is processed, the page updates the balances and the new greeting can be viewed:
 
-![img](/start-5.png)
+![img](./../../assets/images/start-5.png)
 
 ### Learn more
 
-- To learn more about `zksync-web3` SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
+- To learn more about `zksync-web3` SDK, check out its [documentation](./.././../api/js).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](./.././../api/hardhat).
