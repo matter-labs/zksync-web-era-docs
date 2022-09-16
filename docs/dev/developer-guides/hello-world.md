@@ -393,7 +393,7 @@ async getGreeting() {
 
 After connecting the Metamask wallet, the following page should be viewable:
 
-![img](./../../assets/images/start-1.png)
+![img](../asset/../../assets/images/start-1.png)
 
 The chosen token to pay the fee can now be selected. However, no balances are updated, _yet_.
 
