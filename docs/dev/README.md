@@ -1,6 +1,7 @@
 # zkSync Documentation
 
-This documentation is intended to assist you in developing with zkSync. It introduces the concept of zkSync, describes the zkSync technology stack, and details advanced subjects for more complicated applications and use cases.
+This documentation is intended to assist you in developing on zkSync. 
+It introduces the concept of zkSync, describes the zkSync technology stack, and some advanced subjects for complex applications and use cases.
 
 Because this is a community initiative, feel free to suggest new topics, add new content, and provide examples wherever you believe they will be useful. If you're unsure how to proceed, [follow these instructions](#).
 
