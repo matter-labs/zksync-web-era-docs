@@ -1,13 +1,5 @@
 # Important links
 
-### Faucet, bridge, wallet
-
-[zkSync 2.0 Portal](https://portal.zksync.io)
-
-### Block explorer
-
-- [Blockscout](https://zksync2-testnet.zkscan.io)
-
 ### Network info
 
 - Network Name: `zkSync alpha testnet`

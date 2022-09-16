@@ -1,24 +1,25 @@
-# Known issues
+# FAQ
 
-While zkSync 2.0 is in alpha, we will put known (and not fixed yet) bugs here as well as workarounds for them.
+While zkSync 2.0 is in alpha, we will answer some issues you might encounter in your integration
 
-## Metamask native contract interactions not working
+
+## Why is Metamask native contract interactions not working?
 
 It is not currently possible to interact with zkSync smart contracts via Metamask with EIP-1559 transactions. zkSync does not support EIP1559 transactions.
 
 **Solution.** Explicitly specify `{ type: 0 }` in transaction overrides to use Ethereum legacy transactions.
 
-## Wallet has no funds / Contract disappeared
+## Why does my wallet have no funds and my contract disappears?
 
 We are expected to update our testnet continuously, and so from time to time, we will need to do a re-genesis. This will cause the entire state to reset, and all deployed contracts will cease to exist.
 
 **We will communicate re-genesis events before they happen!**
 
-## `wait()` gets stuck for L1->L2 transactions
+## Why does `wait()` get stuck for L1->L2 transactions?
 
 If the `wait()` takes much longer than expected, most likely the transaction has failed.
 
-## `unexpected end of JSON input` compilation error
+## Why is there an `unexpected end of JSON input` compilation error?
 
 This is an error that is usually thrown when compiling a large smart contract codebase.
 
@@ -28,16 +29,16 @@ If you encounter such an error, please do the following:
 - If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](../../api/hardhat/compiling-libraries.md).
 - If the same error persists, report the issue to our team. We will do our best to help you.
 
-## `Docker Desktop is not running` / `Docker Desktop is not installed` error
+## Why is Docker Desktop not running and why does Docker Desktop show not installed error?
 
 If you are running Windows you may get this error, as a result of incompatibility with our hardhat plugin.
 You can still compile the contract using Windows Subsystem for Linux (WSL 2).
 
-## Can not use CREATE/CREATE2 opcodes with raw bytecode
+## Why can't i use CREATE/CREATE2 opcodes with raw bytecode?
 
 zkSync does not support using CREATE/CREATE2 with raw bytecode. We highly recommend using the `new` operator to avoid any issues.
 
-## Hardhat's `console.log` does not work
+## Why is Hardhat's `console.log` does not work?
 
 zkSync does not support the Nomic Foundation's `console.log` contract. Due to different address derivation rules, even when deployed, the `console.log` library will likely have a different address from the one on Ethereum.
 
