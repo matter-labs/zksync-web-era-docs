@@ -67,7 +67,6 @@ module.exports = {
           children: [
             "/dev/developer-guides/hello-world.md",
             "/dev/developer-guides/contracts/system-contracts.md",
-            "/dev/developer-guides/contracts/solidity-vyper.md",
             "/dev/developer-guides/contracts/contracts.md",
             "/dev/developer-guides/contracts/contract-verification.md",
             "/dev/developer-guides/transactions/transactions.md",
@@ -75,6 +74,7 @@ module.exports = {
             "/dev/developer-guides/Bridging/bridging-funds.md",
             "/dev/developer-guides/Bridging/l1-l2-interop.md",
             "/dev/developer-guides/Bridging/l1-l2.md",
+            "/dev/developer-guides/Bridging/l2-l1.md",
           ],
         },
         {

@@ -2,11 +2,11 @@
 
 Let's see how we can use the paymaster feature to build a custom paymaster that allows users to pay fees in our token. For the simplicity of the tutorial, we will assume that paying a single unit of our token is enough to cover any transaction fee.
 
-## Preliminaries
+## Prerequisite
 
-It is highly recommended to read about the [design](../zksync-v2/aa.md) of the account abstraction protocol before diving into this tutorial.
+To better understand this page, we recommend you first read up on [account abstraction design](../developer-guides/transactions/aa.md) before diving into this tutorial.
 
-It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./hello-world.md) tutorial. It is also recommended to read the [introduction](../zksync-v2/system-contracts.md) to the system contracts.
+It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./../developer-guides/hello-world.md) tutorial. It is also recommended to read the [introduction](../developer-guides/contracts/system-contracts.md) to the system contracts.
 
 ## Installing dependencies
 
@@ -25,7 +25,7 @@ Since we are working with zkSync contracts, we also need to install the package 
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [Hello World](./hello-world.md) tutorial.
+Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [Hello World](../developer-guides/hello-world.md) tutorial.
 
 ## Design
 
@@ -77,13 +77,13 @@ contract MyPaymaster is IPaymaster {
 }
 ```
 
-Note, that only the [bootloader](../zksync-v2/system-contracts.md#bootloader) should be allowed to call the `validateAndPayForPaymasterTransaction`/`postOp` methods. That's why the `onlyBootloader` modifier is used for them.
+Note, that only the [bootloader](../developer-guides/contracts/system-contracts.md#bootloader) should be allowed to call the `validateAndPayForPaymasterTransaction`/`postOp` methods. That's why the `onlyBootloader` modifier is used for them.
 
 ### Parsing the paymaster input
 
 In this tutorial, we want to charge the user one unit of the `allowedToken` in exchange for her fees being paid by the contract.
 
-The input that the paymaster should receive is encoded in the `paymasterInput`. As described [here](../zksync-v2/aa.md#built-in-paymaster-flows), there are some standardized ways to encode user interactions with paymasterInput. To charge the user, we will require that she has provided enough allowance to the paymaster contract. This is what the `approvalBased` flow can help us with.
+The input that the paymaster should receive is encoded in the `paymasterInput`. As described [here](../developer-guides/transactions/aa.md#built-in-paymaster-flows), there are some standardized ways to encode user interactions with paymasterInput. To charge the user, we will require that she has provided enough allowance to the paymaster contract. This is what the `approvalBased` flow can help us with.
 
 Firstly, we'll need to check that the `paymasterInput` was encoded as in the `approvalBased` flow:
 
@@ -115,7 +115,7 @@ uint256 providedAllowance = IERC20(token).allowance(userAddress, thisAddress);
 require(providedAllowance >= PRICE_FOR_PAYING_FEES, "The user did not provide enough allowance");
 ```
 
-Then, we finally transfer the funds to the user in exchnage for 1 unit of this token.
+Then, we finally transfer the funds to the user in exchange for 1 unit of this token.
 
 ```solidity
 // Note, that while the minimal amount of ETH needed is tx.ergsPrice * tx.ergsLimit,
@@ -131,7 +131,7 @@ require(success, "Failed to transfer funds to the bootloader");
 
 ::: tip You should validate all the requirements first
 
-The [rules](../zksync-v2/aa.md#paymaster-validation-rules) for the paymaster throttling say that the paymaster won't be throttled if the first storage read the value of which differed from the execution on the API was a storage slot that belonged to the user.
+The [rules](../developer-guides/transactions/aa.md#paymaster-validation-rules) for the paymaster throttling say that the paymaster won't be throttled if the first storage read the value of which differed from the execution on the API was a storage slot that belonged to the user.
 
 That is why it is important to verify that the user provided all the allowed prerequisites to the transaction *before* performing any logic. This is the reason we *first* check that the user provided enough allowance, and only then we do `transferFrom`.
 
@@ -396,6 +396,6 @@ You can download the complete project [here](https://github.com/matter-labs/cust
 
 ## Learn more
 
-- To learn more about account abstraction on zkSync, check out its [documentation page](../zksync-v2/aa.md).
-- To learn more about the `zksync-web3` SDK, check out its [documentation page](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation page](../../api/hardhat).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/Bridging/l1-l2.md).
+- To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).

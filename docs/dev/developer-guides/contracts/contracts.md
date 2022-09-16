@@ -16,6 +16,13 @@ Summary:
 
 All the deployment process is handled inside our [hardhat](./../../../api/hardhat) plugin.
 
+## Solidity/Vyper support
+
+Compiling Solidity to zkEVM bytecode requires a special compiler. For the time being Solidity `>=0.4.0` versions are supported, though it is still recommended to use `^0.8.0` as the most stable ones. Vyper `^0.3.3` is also supported.
+
+Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are supported as precompiles. No actions are required from your side as all the calls to the precompiles are done by the compiler under the hood.
+
+
 ## Differences in `CREATE` behaviour
 
 For the ease of supporting account abstraction, for each account we split the nonce in two parts: _the deployment nonce_ and _the transaction nonce_. The deployment nonce is the number of contracts the account has deployed with `CREATE` opcode, while the transaction nonce is used for replay attack protection for the transactions.

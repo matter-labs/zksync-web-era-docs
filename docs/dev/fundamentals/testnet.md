@@ -25,7 +25,7 @@ To connect Metamask to zkSync, add the zkSync alpha testnet network to the walle
 
 1. Open the Metamask wallet and click on the network in the top center:
 
-![img](./../../assets/images/connect-1.png)
+![img](../../assets/images/connect-1.png)
 
 1. Click on "Add network".
 

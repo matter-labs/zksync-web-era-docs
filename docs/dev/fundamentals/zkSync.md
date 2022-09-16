@@ -66,6 +66,6 @@ Please note that for developer convenience, we usually treat the `Processed` and
 
 ### How to get started?
 
-- Begin by building a dApp in the [quickstart section](,/../../developer-guides/hello-world.md)
-- See the info on RPC nodes, wallet, block explorer on the [important links](./../troubleshooting/important-links.md) page.
+- Begin by building a dApp in the [quickstart section](../../developer-guides/hello-world.md)
+- See the info on RPC nodes, wallet, block explorer on the [important links](../troubleshooting/important-links.md) page.
 

@@ -154,7 +154,7 @@ Given a block, a sender, a message and an optional message log index in the bloc
 | block     | `uint32`  | The number of the block where the message was emitted.                                    |
 | sender    | `address` | The sender of the message (i.e. the account that called the L1Messenger system contract). |
 | msg       | `uint256` | The keccak256 hash of the message that was sent.                                          |
-| l2_log_position       | `uint256 | null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/zksync-v2/system-contracts.md#il1messenger) when submitting this message. If it is ommitted, the proof for the first message with such content will be returned.                                          |
+| l2_log_position       | `uint256 | null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/contracts/system-contracts.md#il1messenger) when submitting this message. If it is ommitted, the proof for the first message with such content will be returned.                                          |
 
 ### Output format
 
@@ -179,10 +179,10 @@ The `id` is the position of the leaf in the Merkle tree of L2->L1 messages for t
 
 You do not need to care about the intrinsics, since the returned `id` and `proof` can be used rightaway for interacting with zkSync smart contract.
 
-A nice example of using this endpoint via our SDK can be found [here](../dev/guide/l2-l1.md).
+A nice example of using this endpoint via our SDK can be found [here](../dev/developer-guides/Bridging/l2-l1.md).
 
 ### `zks_getBridgeContracts`
-
+ 
 Returns L1/L2 addresses of default bridges.
 
 ### Input parameters
@@ -202,7 +202,7 @@ None.
 
 ### `zks_getTestnetPaymaster`
 
-Returns the address of the [testnet paymaster](../dev/zksync-v2/aa.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens. 
+Returns the address of the [testnet paymaster](../dev/developer-guides/transactions/aa.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens. 
 
 ### Input parameters
 

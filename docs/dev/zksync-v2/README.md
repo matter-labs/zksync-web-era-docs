@@ -4,7 +4,7 @@ zkSync 2.0 is made to look and feel like Ethereum, but with higher throughput an
 
 ## Table of contents
 
-- [2.0 Overview](./overview.md)
+<!-- - [2.0 Overview](./overview.md)
 - [Contract instantiation](./contracts.md)
 - [Block numbers and time](./blocks-and-time.md)
 - [Web3 API](./web3.md)
@@ -15,4 +15,4 @@ zkSync 2.0 is made to look and feel like Ethereum, but with higher throughput an
 - [Current limitations](./temp-limits.md)
 - [Decentralization roadmap](./decentralization-roadmap.md)
 - [L1/L2 Interoperability](./l1-l2-interop.md)
-- [Bridging funds](./bridging-funds.md)
+- [Bridging funds](./bridging-funds.md) -->

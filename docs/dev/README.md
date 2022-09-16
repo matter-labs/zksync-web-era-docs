@@ -2,7 +2,7 @@
 
 This documentation is intended to assist you in developing with zkSync. It introduces the concept of zkSync, describes the zkSync technology stack, and details advanced subjects for more complicated applications and use cases.
 
-Because this is an open-source community project, please feel free to suggest new topics, contribute new content, and provide examples wherever you believe they will be useful. If you're unsure how to do so, [follow these instructions](https://github.com/ethereum/ethereum-org-website/blob/dev/docs/editing-markdown.md).
+Because this is a community initiative, feel free to suggest new topics, add new content, and provide examples wherever you believe they will be useful. If you're unsure how to proceed, [follow these instructions](#).
 
 ## MODULES
 
@@ -13,13 +13,12 @@ If this is your first time using zkSync, we recommend that you kickoff at the be
 - [Intro to Rollups](./fundamentals/rollups.md) - A brief overview of rollups.
 - [zkSync overview](./fundamentals/zkSync.md) - A quick overview of zkSync technologies.
 - [zkSync testnet](./fundamentals/testnet.md) - A brief intro into zkSync testnest.
-
+ 
 ### Developer guides
 
 - [Quickstart](./developer-guides/hello-world.md) - Learn how to build a full dApp using the zkSync development toolbox.
 - [Contracts](#) - An overview on zkSync system contracts and smart contracts.
   - [System contract](./developer-guides/contracts/system-contracts.md) - A brief overview of zkSync contract.
-  - [Solidity and Vyper support](./developer-guides/contracts/solidity-vyper.md) - A brief explainer on zkSync support for solidity versions.
   - [Contract deployment](./developer-guides/contracts/contracts.md) - A guide on how to deploy smart contract on zkSync.
   - [Contract verification](./developer-guides/contracts/contract-verification.md) - A guide on how to verify smart contract with zkSync block explorer.
 - [Transactions](#) - Learn how zkSync handles transactions.

@@ -61,13 +61,13 @@ Use custom signature `0x123456` for account, while using paymaster with address 
 
 ## Encoding paymaster params
 
-While the paymaster feature by itself does not impose any limitations on values of the `paymasterInput`, the Matter Labs team endorses certain types of [paymaster flows](../../dev/zksync-v2/aa.md#built-in-paymaster-flows) that are processable by EOAs.
+While the paymaster feature by itself does not impose any limitations on values of the `paymasterInput`, the Matter Labs team endorses certain types of [paymaster flows](../dev/../../dev/developer-guides/transactions/aa.md#built-in-paymaster-flows) that are processable by EOAs.
 
 zkSync SDK provides a utility method that can be used to get the correctly formed `paymasterParams` object: [getPaymasterParams](./utils.md#encoding-paymaster-params).
 
 ## See in action
 
-If you want to call the method `setGreeting` of an ethers `Contract` object called `greeter`, this would look the following way, while paying fees with the [testnet paymaster](../../dev/zksync-v2/aa.md#testnet-paymaster):
+If you want to call the method `setGreeting` of an ethers `Contract` object called `greeter`, this would look the following way, while paying fees with the [testnet paymaster](../dev/../../dev/developer-guides/transactions/aa.md#testnet-paymaster):
 
 ```javascript
 // The `setGreeting` method has a single parameter -- new greeting
@@ -96,4 +96,4 @@ const sentTx = await sender.sendTransaction({
 });
 ```
 
-You can also check out our [tutorial](../../dev/guide/hello-world.md) on the full-fledged mini-dApp, where users can choose token to pay the fee.
+You can also check out our [tutorial](../../dev/developer-guides/hello-world.md) on the full-fledged mini-dApp, where users can choose token to pay the fee.

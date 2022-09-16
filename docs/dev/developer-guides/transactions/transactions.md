@@ -10,6 +10,12 @@ Note that _finality_ from the zkSync perspective happens when the transaction (t
 
 At the moment, when a user sends a transaction, zkSync waits for the entire block to be filled, meaning finality time may take longer depending on the volume of transactions being submitted via zkSync. As throughput increases, the finality time will subsequently decrease.
 
+# Transaction types
+
+zkSync supports Ethereum's "legacy" (pre-EIP2718) transaction types, EIP1559 transaction type, and its custom EIP712 transactions. You can use transactions of this type to use zkSync-specific features like account abstraction. Additionally, it is only possible to deploy smart contracts with this type of transaction.
+
+Knowing the details about the transaction format is not required to use zkSync's SDK, but if you are curious, you can read more about it [here](../../../api/api.md#eip712).
+
 ## What are operators?
 
 **Operators** are the actors that perform basic ZK rollup functionalities. They are charged with creating blocks, bundling the transactions, performing the calculations and submitting the data to the main Ethereum chain for verification.

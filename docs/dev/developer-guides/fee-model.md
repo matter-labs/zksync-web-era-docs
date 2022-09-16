@@ -31,3 +31,11 @@ So the tips to make the most out of the zkSync fee system are the following:
 - **Reuse as many storage slots as possible.** Only the state diff is published on Ethereum.
 - **Users should share as many storage slots as possible.** If 100 users update a storage slot of your contract in a single block, the diff will be published only once. In the future, we will introduce reimbursement for the users, so that the costs for updating shared storage slots are split between the users.
 - **Reuse contract code if possible.** On Ethereum, avoiding constructor parameters and putting them into constants reduces some of the gas cost upon contract deployment. On zkSync the opposite is true: deploying the same bytecode for contracts, while changing only constructor parameters can lead to substantial fee savings.
+
+### Handling of ETH and tokens
+
+The previous versions of the testnet allowed users to pay fees with ERC20 tokens. However with the advent of the [paymaster](./aa.md#paymasters) feature it has become redundant. To provide better compatibility and alignment with the L1, zkSync 2.0 allows only ether as a fee token.
+
+`ETH` is implemented as a special token with address `0x000000000000000000000000000000000000800a`, though zero address (`0x0000000000000000000000000000000000000000`) is often used as an alias for it. It can only be transferred by providing `msg.value`, i.e. the same way it is done on Ethereum and it does _not_ expose the ERC20 contract interface.
+
+Similar to other rollups, zkSync provides a native ETH bridge, while the rest of the bridges are built using L1<->L2 messaging. The team provides a generic ERC20 token bridge that can be used by anyone for bridging token to L2. More details on the bridges' architecture will be published soon.
