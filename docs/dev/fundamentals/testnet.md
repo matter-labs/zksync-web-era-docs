@@ -19,6 +19,24 @@ To get a first-hand impression of the zkSync 2.0 user experience:
 
 The Portal is the central entry point into the zkSync 2.0 ecosystem for users and developers alike. It contains links to all relevant resources, such as block explorer or the catalog of featured dapps.
 
+## Do I need experience with zkSync 1.x?
+
+Some experience with zkSync 1.x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are very different systems, and experience with the latter is not needed to build on zkSync 2.0.
+
+## What do I need to start building?
+
+All the existing SDKs for Ethereum will work out of the box and your users will have the same experience as on Ethereum. If you want to enable advanced zkSync features, like account abstraction, the zkSync SDK should be used.
+
+The only other place where using zkSync SDK is required is during contract deployment. This can be easily done through our hardhat plugin.
+
+## Hello World on zkSync
+
+Check out our step-by-step [tutorial](../developer-guides/hello-world.md), where you will learn:
+
+- How to install zkSync hardhat plugin and deploy smart contracts with it.
+- How to build front-end for your dApp using `zksync-web3` library.
+
+
 ## Connecting Metamask
 
 To connect Metamask to zkSync, add the zkSync alpha testnet network to the wallet.
@@ -27,9 +45,9 @@ To connect Metamask to zkSync, add the zkSync alpha testnet network to the walle
 
 ![img](../../assets/images/connect-1.png)
 
-1. Click on "Add network".
+2. Click on "Add network".
 
-2. Fill in the details about zkSync alpha testnet network and click "Save":
+3. Fill in the details about zkSync alpha testnet network and click "Save":
 
 - Network Name: `zkSync alpha testnet`
 - New RPC URL: `https://zksync2-testnet.zksync.dev`
