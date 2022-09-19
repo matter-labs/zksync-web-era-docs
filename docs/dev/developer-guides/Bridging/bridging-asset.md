@@ -1,4 +1,4 @@
-# Bridging funds
+# Bridging assets
 
 ## Introduction
 

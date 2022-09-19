@@ -71,7 +71,7 @@ module.exports = {
             "/dev/developer-guides/contracts/contract-verification.md",
             "/dev/developer-guides/transactions/transactions.md",
             "/dev/developer-guides/transactions/aa.md",
-            "/dev/developer-guides/Bridging/bridging-funds.md",
+            "/dev/developer-guides/Bridging/bridging-asset.md",
             "/dev/developer-guides/Bridging/l1-l2-interop.md",
             "/dev/developer-guides/Bridging/l1-l2.md",
             "/dev/developer-guides/Bridging/l2-l1.md",
