@@ -6,13 +6,13 @@
 
 ### Подготовка <a href="#preliminaries" id="preliminaries"></a>
 
-Прежде чем углубиться в данное руководство, крайне рекомендуется прочитать [дизайне ](https://v2-docs.zksync.io/dev/zksync-v2/aa.html)протокола абстракции аккаунта.
+Прежде чем углубиться в данное руководство, крайне рекомендуется прочитать [дизайне](https://v2-docs.zksync.io/dev/zksync-v2/aa.html)протокола абстракции аккаунта.
 
 Предполагается, что вы уже знакомы с развертыванием контрактов на zkSync. Если нет, пожалуйста обратитесь к первому разделу руководства [Hello World](https://v2-docs.zksync.io/dev/guide/hello-world.html). Также рекомендуется прочесть [введение ](https://v2-docs.zksync.io/dev/zksync-v2/system-contracts.html)в системные контракты.
 
 ### Установка зависимостей <a href="#installing-dependencies" id="installing-dependencies"></a>
 
-Мы будет использоваться hardhat плагин zkSync для разработки этого контракта. Во-первых, нам нужно установиться все зависимости для него:
+Мы будет использоваться hardhat плагин zkSync для разработки этого контракта. Во-первых, нам нужно установить все зависимости для него:
 
 ```
 mkdir custom-aa-tutorial
@@ -321,7 +321,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 
 ### Фабрика (factory) <a href="#the-factory" id="the-factory"></a>
 
-Теперь давайте создадим фабрику, которая может развертывать такие аккаунты. Заметьте, что если вы хотите развернуть АА (абстрагированный аккаунт), то нужно взаимодействовать напрямую с `DEPLOYER_SYSTEM_CONTRACT`. Для Note, that if we want to deploy AA, we need to interact directly with the `DEPLOYER_SYSTEM_CONTRACT`. Для детерминированных адресов, мы будет использовать метод `create2Account` .
+Теперь давайте создадим фабрику, которая может развертывать такие аккаунты. Заметьте, что если вы хотите развернуть АА (абстрагированный аккаунт), то нужно взаимодействовать напрямую с `DEPLOYER_SYSTEM_CONTRACT`. Для детерминированных адресов, мы будет использовать метод `create2Account`.
 
 Код будет выглядеть так:
 
@@ -639,4 +639,4 @@ The multisig's nonce after the first tx is 1
 
 * Узнать больше об абстракции аккаунта на zkSync можно на этой [странице документации](https://v2-docs.zksync.io/dev/zksync-v2/aa.html).
 * Узнать больше о `zksync-web3` SDK можно на этой странице [документации](https://v2-docs.zksync.io/api/js).
-* Узнать больше о hardhar плагинах zkSync можно на этой странице [документации](https://v2-docs.zksync.io/api/hardhat).
+* Узнать больше о hardhat плагинах zkSync можно на этой странице [документации](https://v2-docs.zksync.io/api/hardhat).

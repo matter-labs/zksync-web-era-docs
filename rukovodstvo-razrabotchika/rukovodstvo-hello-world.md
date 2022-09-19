@@ -17,7 +17,7 @@
 * Менеджер пакетов `yarn` package manager. Примеры с `npm` будут добавлены позже.
 * `Docker` для компиляции.
 * Кошелек с достаточным количеством Görli `ETH` на L1 для платы за перенос средств на zkSync, а так же для развертывания контрактов. Нужно немного ERC20 токенов на zkSync для руководства testnet paymaster.
-* A wallet with sufficient Görli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Some ERC20 tokens on zkSync are required for the testnet paymaster tutorial.
+
 
 ### Создание проекта и развертывание смарт-контракта <a href="#initializing-the-project-deploying-smart-contract" id="initializing-the-project-deploying-smart-contract"></a>
 
@@ -32,7 +32,7 @@ yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zk
 
 Пожалуйста, помните, на данный момент для плагинов zkSync необходим typescript.
 
-2\. Создайте файл `hardhat.config.ts` и вставьте в него следующий код:
+2. Создайте файл `hardhat.config.ts` и вставьте в него следующий код:
 
 ```solidity
 require("@matterlabs/hardhat-zksync-deploy");
@@ -185,8 +185,6 @@ yarn serve
 
 По умолчанию, страница должна работать на `http://localhost:8080`. Открой этот адрес в браузере, чтобы увидеть эту страницу.
 
-By default, the page should be running at `http://localhost:8080`. Open this URL in the browser to see the page.
-
 #### Подключение к Metamask и перенос токенов на zkSync. <a href="#connecting-to-metamask-bridging-tokens-to-zksync" id="connecting-to-metamask-bridging-tokens-to-zksync"></a>
 
 Чтобы взаимодействовать с приложениями, построенными на zkSync, подключите Metamask к сети zkSync alpha testnet и перенесите немного средств на L2.
@@ -247,7 +245,7 @@ async changeGreeting() {
 },
 ```
 
-Наверху тега `<script>` вы можете увидеть элементы, которые нужно заполнить адресом развернутого контракта `Greeter` и путь к его ABI. Давайте заполним эти поля в следующих секциях.
+На верху тега `<script>` вы можете увидеть элементы, которые нужно заполнить адресом развернутого контракта `Greeter` и путь к его ABI. Давайте заполним эти поля в следующих секциях.
 
 ```javascript
 // eslint-disable-next-line
@@ -267,8 +265,6 @@ const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract addres
 // eslint-disable-next-line
 const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contract ABI here
 ```
-
-Add imports above these constants. The header of the `<script>` tag will appear as the following:
 
 #### Установка `zksync-web3` <a href="#installing-zksync-web3" id="installing-zksync-web3"></a>
 
@@ -338,7 +334,7 @@ const GREETER_CONTRACT_ADDRESS = "0x...";
 const GREETER_CONTRACT_ABI = require("./abi.json");
 ```
 
-#### Работа с провайдеров <a href="#working-with-provider" id="working-with-provider"></a>
+#### Работа с провайдером <a href="#working-with-provider" id="working-with-provider"></a>
 
 1. Перейдите к методу `initializeProviderAndSigner` в `./src/App.vue`. Этот метод вызывается после успешного подключения к Metamask.
 
@@ -604,7 +600,7 @@ const allowedTokens = require("./eth.json");
 const allowedTokens = require("./erc20.json");
 ```
 
-#### Закончите приложение <a href="#complete-app" id="complete-app"></a>
+#### Законченное приложение <a href="#complete-app" id="complete-app"></a>
 
 Теперь приветствие должно быть изменяемым.
 
