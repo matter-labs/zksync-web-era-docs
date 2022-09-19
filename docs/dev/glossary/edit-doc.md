@@ -1,4 +1,4 @@
-# Contribute to documentation (Markdown Files)
+# Contribute to documentation
 
 - On docs homepage, click on `Edit Page`
 - You need to be signed in to GitHub

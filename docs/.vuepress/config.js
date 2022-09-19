@@ -84,8 +84,8 @@ module.exports = {
           children: [
             "/dev/troubleshooting/important-links.md",
             "/dev/troubleshooting/faq/known-issues.md",
-            "/dev/glossary/glossary.md",
             "/dev/glossary/edit-doc.md",
+            "/dev/glossary/glossary.md",
             
 
           ],
