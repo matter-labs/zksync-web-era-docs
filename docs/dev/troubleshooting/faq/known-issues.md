@@ -1,6 +1,6 @@
 # FAQ
 
-While zkSync 2.0 is in alpha, we will answer some issues you might encounter in your integration
+While zkSync 2.0 is in alpha, we will answer some issues you might encounter in your integration.
 
 
 ## Why is Metamask native contract interactions not working?

@@ -21,7 +21,7 @@ As part of the zkRollup security model, zkSync periodically publishes state diff
 
 ### What does this mean to me?
 
-Despite the differences, the fee model is quite similar to the one of Ethereum; the most costly operation is storage change. One of the advantages of ZK Rollups over Optimistic Rollups is that, instead of publishing all the transaction data, ZK Rollups can publish only state diffs, thus making less storage changes.
+Despite the differences, the fee model is quite similar to the one of Ethereum; the most costly operation is storage change. One of the advantages of zk rollups over optimistic Rollups is that, instead of publishing all the transaction data, zk rollups can publish only state diffs, thus making less storage changes.
 
 As already stated, if the same storage slot is updated several times in a single block, only the last update will be published on Ethereum, and the cost of storage change will only be charged once; but it goes beyond simple storage slots. For example, a DEX and a `PairFactory` factory for different `Pair` pools. The contract bytecode of `Pair` needs to be published only when the first instance is deployed. After the code of the `Pair` was published once, the subsequent deployments will only involve changing one storage slot -- to set the contract code hash on the newly deployed `Pair`'s address.
 
@@ -32,10 +32,3 @@ So the tips to make the most out of the zkSync fee system are the following:
 - **Users should share as many storage slots as possible.** If 100 users update a storage slot of your contract in a single block, the diff will be published only once. In the future, we will introduce reimbursement for the users, so that the costs for updating shared storage slots are split between the users.
 - **Reuse contract code if possible.** On Ethereum, avoiding constructor parameters and putting them into constants reduces some of the gas cost upon contract deployment. On zkSync the opposite is true: deploying the same bytecode for contracts, while changing only constructor parameters can lead to substantial fee savings.
 
-### Handling of ETH and tokens
-
-The previous versions of the testnet allowed users to pay fees with ERC20 tokens. However with the advent of the [paymaster](./aa.md#paymasters) feature it has become redundant. To provide better compatibility and alignment with the L1, zkSync 2.0 allows only ether as a fee token.
-
-`ETH` is implemented as a special token with address `0x000000000000000000000000000000000000800a`, though zero address (`0x0000000000000000000000000000000000000000`) is often used as an alias for it. It can only be transferred by providing `msg.value`, i.e. the same way it is done on Ethereum and it does _not_ expose the ERC20 contract interface.
-
-Similar to other rollups, zkSync provides a native ETH bridge, while the rest of the bridges are built using L1<->L2 messaging. The team provides a generic ERC20 token bridge that can be used by anyone for bridging token to L2. More details on the bridges' architecture will be published soon.

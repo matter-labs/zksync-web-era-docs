@@ -7,6 +7,7 @@ In addition, the L2 censorship resistance is derived from the underlying chain, 
 ## L1 -> L2 communication
 
 Sending transactions from Ethereum to zkSync is done via the zkSync smart contract. It allows the sender to request transactions directly from L1. Thereby allowing permissionless pass of any data from the Ethereum into zkSync.
+[Read more](./l1-l2.md) about l1/l2 communication.
 
 ## Priority queue
 
@@ -55,6 +56,7 @@ To reduce risks, alpha mainnet will start with a mechanism to instantly stop and
 ## L2 -> L1 communication
 
 L2 -> L1 communication, in contrast to L1 -> L2 communication, is based only on transferring of the information, and not on the transaction execution on L1. It is a built-in feature, which is made up of two parts: sending a message from L2 and reading it on L1. The first is implemented as a call to an L2 system smart contract. And the second is implemented on the zkSync L1 smart contract as a getter function.
+[Read more](./l2-l1.md) about l2/l1 communication.
 
 ### Sending messages
 

@@ -53,7 +53,7 @@ module.exports = {
         {
           title: "Understanding zkSync",
           path: "/dev/fundamentals",
-          collapsable: true,
+          collapsable: false,
           children: [
             "/dev/fundamentals/rollups.md",
             "/dev/fundamentals/zkSync.md",
@@ -63,7 +63,7 @@ module.exports = {
         {
           title: "Developer guides",
           path: "/dev/developer-guides",
-          collapsable: true,
+          collapsable: false,
           children: [
             "/dev/developer-guides/hello-world.md",
             "/dev/developer-guides/contracts/system-contracts.md",
@@ -80,119 +80,27 @@ module.exports = {
         {
           title: "Troubleshooting",
           path: "/dev/troubleshooting",
-          collapsable: true,
+          collapsable: false,
           children: [
             "/dev/troubleshooting/reporting-issues.md",
             "/dev/troubleshooting/important-links.md",
-            "/dev/troubleshooting/temp-limits.md",
             "/dev/troubleshooting/faq/known-issues.md",
+            "/dev/glossary/glossary.md",
+            "/dev/glossary/edit-doc.md",
+            
+
           ],
         },
         {
           title: "Tutorials",
           path: "/dev/tutorials",
-          collapsable: true,
+          collapsable: false,
           children: [
             "/dev/tutorials/cross-chain-tutorial.md",
             "/dev/tutorials/custom-aa-tutorial.md",
             "/dev/tutorials/custom-paymaster-tutorial.md",
           ],
-
-               //<! -- OLD STRUTURE -->
-        // {
-        //   title: "Getting started",
-        //   path: "/dev/",
-        //   collapsable: false, // optional, defaults to true
-        // },
-        // {
-        //   title: "About the testnet",
-        //   path: "/dev/testnet",
-        //   collapsable: false,
-        //   children: [
-        //     "/dev/testnet/user.md",
-        //     "/dev/testnet/metamask.md",
-        //     "/dev/testnet/important-links.md",
-        //     "/dev/testnet/status.md",
-        //     "/dev/testnet/known-issues.md",
-        //     "/dev/testnet/reporting-issues.md",
-        //   ],
-        // },
-        // {
-        //   title: "ZK rollup basics",
-        //   path: "/dev/rollups.md",
-        //   collapsable: false
-        // },
-        // {
-        //   title: "Understanding zkSync 2.0",
-        //   path: "/dev/zksync-v2",
-        //   collapsable: false,
-        //   children: [
-        //     "/dev/zksync-v2/overview.md",
-        //     "/dev/zksync-v2/system-contracts.md",
-        //     "/dev/zksync-v2/handling-of-eth.md",
-        //     "/dev/zksync-v2/fee-model.md",
-        //     "/dev/zksync-v2/tx-types.md",
-        //     "/dev/zksync-v2/contracts.md",
-        //     "/dev/zksync-v2/aa.md",
-        //     "/dev/zksync-v2/blocks-and-time.md",
-        //     "/dev/zksync-v2/web3.md",
-        //     "/dev/zksync-v2/confirmation-and-finality.md",
-        //     "/dev/zksync-v2/temp-limits.md",
-        //     "/dev/zksync-v2/decentralization-roadmap.md",
-        //     "/dev/zksync-v2/l1-l2-interop.md",
-        //     "/dev/zksync-v2/bridging-funds.md",
-        //   ],
-        // },
-        // {
-        //   title: "Developer guide",
-        //   path: "/dev/guide",
-        //   collapsable: false,
-        //   children: [
-        //     "/dev/guide/quickstart.md",
-        //     "/dev/guide/hello-world.md",
-        //     "/dev/guide/contract-verification.md",
-        //     "/dev/guide/solidity-vyper.md",
-        //     "/dev/guide/deploying.md",
-        //     "/dev/guide/front-end-integration.md",
-        //     "/dev/guide/l1-l2.md",
-        //     "/dev/guide/l2-l1.md",
-        //     "/dev/guide/build-custom-bridge.md",
-        //     "/dev/guide/cross-chain-tutorial.md",
-        //     "/dev/guide/custom-aa-tutorial.md",
-        //     "/dev/guide/custom-paymaster-tutorial.md",
-        //     "/dev/guide/migration-to-testnet-paymaster.md"
-        //   ],
         },
-        // {
-        //   title: "Introduction", // required
-        //   path: "/dev/", // optional, which should be a absolute path.
-        //   collapsable: false, // optional, defaults to true
-        // },
-        // {
-        //   title: "Comparison to v1.0", // required
-        //   path: "/dev/v1-vs-v2.md", // optional, which should be a absolute path.
-        //   collapsable: false, // optional, defaults to true
-        // },
-        // {
-        //   title: "Comparison to Ethereum", // required
-        //   path: "/dev/ethereum-vs-v2.md", // optional, which should be a absolute path.
-        //   collapsable: false, // optional, defaults to true
-        // },
-        // {
-        //   title: "Tutorials",
-        //   path: "/dev/tutorials",
-        //   collapsable: false,
-        //   children: ["/dev/tutorials/connecting-to-metamask.md", "/dev/tutorials/bridging-funds.md", "/dev/tutorials/basic.md"],
-        // },
-        // {
-        //   title: "Communicating with L1", // required
-        //   path: "/dev/communication-with-l1.md", // optional, which should be a absolute path.
-        //   collapsable: false, // optional, defaults to true
-        // },
-        // {
-        //   title: "Troubleshooting",
-        //   path: "/dev/troubleshooting.md", // optional, which should be a absolute path.
-        // }
       ],
       "/api": [
         {

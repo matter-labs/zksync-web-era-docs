@@ -1,10 +1,10 @@
-## How does transaction finality work?
+## When does a transaction become final?
 
-In the context of blockchain technology, **transaction finality** refers to the guarantee that transactions cannot be reverted, altered or mutated.
+In the context of blockchain network, **transaction finality** refers to the guarantee that transactions cannot be reverted, altered or mutated.
 
 On Ethereum, as in Bitcoin, finality is probabilistic, i.e. the more blocks that passed since the transaction was processed, the lesser the chance that this transaction will be reverted.
 
-In ZK rollups, once a block has been filled and sealed, its state is committed to the main Ethereum chain. The proving step is then initiated, and a SNARK validity proof is generated for all the block transactions. Once completed, the SNARK is submitted for verification on the L1 smart contract, and after being verified, the transaction state becomes final.
+In zk rollups, once a block has been filled and sealed, its state is committed to the main Ethereum chain. The proving step is then initiated, and a SNARK validity proof is generated for all the block transactions. Once completed, the SNARK is submitted for verification on the L1 smart contract, and after being verified, the transaction state becomes final.
 
 Note that _finality_ from the zkSync perspective happens when the transaction (the SNARK verification) is processed by L1. At this stage, the guarantees are exactly like any other L1 transaction within the same L1 block; the more L1 blocks that generated after the initial block is processed, the lesser the chance that this transaction will be reverted.
 
