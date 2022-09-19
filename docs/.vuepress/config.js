@@ -82,7 +82,6 @@ module.exports = {
           path: "/dev/troubleshooting",
           collapsable: false,
           children: [
-            "/dev/troubleshooting/reporting-issues.md",
             "/dev/troubleshooting/important-links.md",
             "/dev/troubleshooting/faq/known-issues.md",
             "/dev/glossary/glossary.md",
