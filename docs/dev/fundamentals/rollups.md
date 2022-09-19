@@ -31,7 +31,7 @@ This separates optimistic rollups from zero-knowledge rollups that publish cry
 In decentralised ecosystems, the term **layer 1** (or **L1**) is used to refer to the underlying primary chain architecture, such as the Ethereum network or Bitcoin. Layer 1 blockchains determine protocol rules and transaction finality,
 and perform the base-level functions of applications built upon them.
 
-**Layer 2** (or **L2**) is used to describe an overlaying application or network that operates on top of the layer 1 chain. These are most often built to provide further scalability solutions by taking on a portion of transaction-based tasks to lighten the impact on the layer-1 chain, quickening transaction times and lowering gas fees.
+The term **Layer 2** (or **L2**) is used to describe an overlaying application or network that operates on top of the layer 1 chain. These are most often built to provide further scalability solutions by taking on a portion of transaction-based tasks to lighten the impact on the layer-1 chain, quickening transaction times and lowering gas fees.
 
 zkSync is an L2, where L1 is the main Ethereum blockchain.
 
