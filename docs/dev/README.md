@@ -21,7 +21,7 @@ If this is your first time using zkSync, we recommend that you kickoff at the be
 - [Contracts](#) - An overview on zkSync system contracts and smart contracts.
   - [System contract](./developer-guides/contracts/system-contracts.md) - A brief overview of zkSync contract.
   - [Contract deployment](./developer-guides/contracts/contracts.md) - A guide on how to deploy smart contract on zkSync.
-  - [Contract verification](./developer-guides/contracts/contract-verification.md) - A guide on how to verify smart contract with zkSync block explorer.
+  - [Contract verification](./developer-guides/contracts/contract-verification.md) - A guide on how to verify smart contract on zkSync block explorer.
 - [Transactions](#) - Learn how zkSync handles transactions.
   - [Transaction finality](./developer-guides/transactions/transactions.md) - A quick guide on zkSync transaction finality.
   - [Account abstraction](./developer-guides/transactions/aa.md) - Learn how zkSync 2.0 can initiate transactions, like an EOA.
