@@ -22,7 +22,7 @@ With ZK rollups, funds are locked on a smart contract in the layer 1 blockchain.
 ### What are Optimistic rollups?
 
 Optimistic rollups, which rely on fraud proofs, are considered “optimistic” because they assume off-chain transactions are valid and don't publish proofs of validity for transaction batches posted on-chain. 
-They keep track of their entire history of state roots and the hash of each batch. Anyone who discovers that one batch has an incorrect post-state root can publish proof to the chain, proving that the batch was computed incorrectly. 
+They keep track of their entire history of state roots and the hash of each batch. Anyone who discovers that one batch has an incorrect post-state root can publish a fraud proof to the L1 chain, proving that the batch was computed incorrectly. 
 The contract verifies the proof and reverts that batch and all batches after it.
 This separates optimistic rollups from zero-knowledge rollups that publish cryptographic proofs of validity for off-chain transactions.
 
