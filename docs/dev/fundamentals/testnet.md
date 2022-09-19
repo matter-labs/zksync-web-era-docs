@@ -1,6 +1,6 @@
 # zkSync Testnet
 
-Welcome to zkSync 2.0 alpha testnet! Our team would be very happy to see what you can build on zkSync. We are glad for any feedback you could provide!
+Welcome to zkSync 2.0 testnet! Our team would be very happy to see what you can build on zkSync. We are glad for any feedback you could provide!
 
 ::: warning Alpha testnet
 
