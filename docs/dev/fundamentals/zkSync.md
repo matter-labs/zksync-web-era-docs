@@ -8,7 +8,7 @@ If you are unfamiliar with rollups, you should cover the [rollups basics](./roll
 zkSync ensures that all assets are stored in a single smart contract on the mainchain, while computation and storing data are performed off-chain. As all transactions are proven on the Ethereum mainchain, users enjoy the same security level as in Ethereum.
 
 zkSync 2.0 is made to look and feel like Ethereum, but with lower fees. Just like on Ethereum, smart contracts are written in Solidity/Vyper and can be called using the same clients as the other EVM-compatible chains.
-zkSync doesn't require you to register a separate private key to use before usage, it supports existing Ethereum wallets work out of the box.
+zkSync 2.0 doesn't require you to register a separate private key to use before usage, it supports existing Ethereum wallets which work out of the box.
 
 At this time zkSync is solely run and operated by the zkSync team's servers, and is therefore centralized; however, this will be be transitioned to a decentralized system in the near future.
 
