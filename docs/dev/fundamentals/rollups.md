@@ -33,5 +33,5 @@ and perform the base-level functions of applications built upon them.
 
 **Layer 2** (or **L2**) is used to describe an overlaying application or network that operates on top of the layer 1 chain. These are most often built to provide further scalability solutions by taking on a portion of transaction-based tasks to lighten the impact on the layer-1 chain, quickening transaction times and lowering gas fees.
 
-In the case of zkSync, the main Ethereum blockchain is L1, and the zkSync network is L2.
+zkSync is an L2, where L1 is the main Ethereum blockchain.
 
