@@ -19,21 +19,22 @@ Instead of submitting each transaction separately, zk rollup operators submit a 
 The validity proof uses cryptography to establish that the proposed changes to Ethereum's state are indeed the outcome of completing all of the transactions in the batch.
 In zkSync, this is done via a **SNARK** (succinct non-interactive argument of knowledge), a cryptographic proof that performs the validation of transactions in the batch.
 
-With zk rollups, funds are locked on a smart contract in the layer 1 blockchain. This allows transactions to be processed without the overhead of all the data typically associated with performing a transaction on the main chain, only requiring a **validity proof** to reach transaction finality. This significantly decreases associated transaction processing times and gas fees.
+With zk rollups, funds are locked on a smart contract in the layer 1 blockchain. 
+This allows transactions to be processed without the overhead of all the data typically associated with performing a transaction on the main chain, only requiring a **validity proof** to reach transaction finality. This significantly decreases associated transaction processing times and gas fees.
 
 ### What are optimistic rollups?
 
-optimistic rollups, which rely on fraud proofs, are considered “optimistic” because they assume off-chain transactions are valid and don't publish proofs of validity for transaction batches posted on-chain. 
-They keep track of their entire history of state roots and the hash of each batch. Anyone who discovers that one batch has an incorrect post-state root can publish proof to the chain, proving that the batch was computed incorrectly. 
+Optimistic rollups, which rely on fraud proofs, are considered “optimistic” because they assume off-chain transactions are valid and don't publish proofs of validity for transaction batches posted on-chain. 
+They keep track of their entire history of state roots and the hash of each batch. Anyone who discovers that one batch has an incorrect post-state root can publish proof to the chain, proving that the batch was computed incorrectly.
 The contract verifies the proof and reverts that batch and all batches after it.
-This separates optimistic rollups from zero-knowledge rollups that publish cryptographic proofs of validity for off-chain transactions.
+This separates optimistic rollups from zero-knowledge rollups that actually publishing proofs of validity for off-chain transactions.
 
 ## L1 and L2: what's the difference?
 
-In decentralised ecosystems, the term **layer 1** (or **L1**) is used to refer to the underlying primary chain architecture, such as the Ethereum network or Bitcoin. Layer 1 blockchains determine protocol rules and transaction finality,
+In decentralised ecosystems, the term **layer 1** (or **L1**) is used to refer to the underlying primary chain, such as the Ethereum network or Bitcoin. Layer 1 blockchains determine protocol rules and transaction finality,
 and perform the base-level functions of applications built upon them.
 
-**Layer 2** (or **L2**) is used to describe an overlaying application or network that operates on top of the layer 1 chain. These are most often built to provide further scalability solutions by taking on a portion of transaction-based tasks to lighten the impact on the layer-1 chain, quickening transaction times and lowering gas fees.
+The term **Layer 2** (or **L2**) is used to describe an overlaying application or network that operates on top of the layer 1 chain. These are most often built to provide further scalability solutions by taking on a portion of transaction-based tasks to lighten the impact on the layer-1 chain, quickening transaction times and lowering gas fees.
 
-In the case of zkSync, the main Ethereum blockchain is L1, and the zkSync network is L2.
+zkSync is an L2, where L1 is the main Ethereum blockchain.
 

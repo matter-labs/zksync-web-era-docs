@@ -22,6 +22,10 @@ If this is your first time using zkSync, we recommend that you kickoff at the be
   - [Contract verification](./developer-guides/contracts/contract-verification.md) - A guide on how to verify smart contract with zkSync block explorer.
 - [Transactions](./developer-guides/transactions/transactions.md) - A guide on how zkSync handles transactions.
   - [Account abstraction](./developer-guides/transactions/aa.md) - Learn how zkSync 2.0 platform handles transactions.
+=======
+  - [Contract verification](./developer-guides/contracts/contract-verification.md) - A guide on how to verify smart contract on zkSync block explorer.
+- [Transactions](./developer-guides/transactions/transactions.md) - Learn how zkSync handles transactions.
+  - [Account abstraction](./developer-guides/transactions/aa.md) - Learn how zkSync 2.0 can initiate transactions, like an EOA.
 - [Fee mechanism](./developer-guides/fee-model.md) - A quick overview of zkSync fee structure.
 - [bridging of funds](./developer-guides/bridging/bridging-funds.md) - A brief intro on token bridging.
   - [L1 / L2 Interoperability](./developer-guides/bridging/l1-l2-interop.md) - A quick brief on data communication between l1 and l2.
@@ -39,13 +43,13 @@ If this is your first time using zkSync, we recommend that you kickoff at the be
 
 - Faucet, bridge, wallet - Explore our faucet, bridge and wallet feature.
 [zkSync 2.0 Portal](https://portal.zksync.io)
+- Block explorer - Search for real-time and historical information about blocks, transactions, addresses, and more on zkSync.
 
-- Block explorer - Search for real-time and historical information about blocks, transactions, addresses, and more on zkSync
 [Explorer](https://zksync2-testnet.zkscan.io)
 
 
 ### Examples and tutorials
 
-- [Cross-chain governance](./tutorials/cross-chain-tutorial.md) - Learn how to implement L1-to-L2 contract interaction.
-- [Account abstraction](./tutorials/custom-aa-tutorial.md) - Learn how to deploy your custom accounts and interact directly with the zkSync system contract.
-- [Building custom paymasters](./tutorials/custom-paymaster-tutorial.md) - Learn how to build a custom paymaster to allow users pay fees in our token.
+- [Cross-chain governance](./tutorials/cross-chain-tutorial.md) - Learn how to implement L1 to L2 contract interaction.
+- [Account abstraction](./tutorials/custom-aa-tutorial.md) - Learn how to deploy your custom accounts and interact zkSync system contracts.
+- [Building custom paymasters](./tutorials/custom-paymaster-tutorial.md) - Learn how to build a custom paymaster to allow users to pay fees in your token.
