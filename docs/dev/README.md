@@ -52,4 +52,4 @@ If this is your first time using zkSync, we recommend that you kickoff at the be
 
 - [Cross-chain governance](./tutorials/cross-chain-tutorial.md) - Learn how to implement L1 to L2 contract interaction.
 - [Account abstraction](./tutorials/custom-aa-tutorial.md) - Learn how to deploy your custom accounts and interact zkSync system contracts.
-- [Building custom paymasters](./tutorials/custom-paymaster-tutorial.md) - Learn how to build a custom paymaster to allow users pay fees in our token.
+- [Building custom paymasters](./tutorials/custom-paymaster-tutorial.md) - Learn how to build a custom paymaster to allow users to pay fees in your token.
