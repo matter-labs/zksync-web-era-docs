@@ -1,4 +1,4 @@
-# Overview
+# Glossary
 
 This section contains a comprehensive list of terms associated to zkSync and it's related ecosystem.
 
