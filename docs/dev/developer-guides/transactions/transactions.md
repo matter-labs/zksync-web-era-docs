@@ -1,4 +1,53 @@
-## When does a transaction become final?
+# Overview
+
+In ethereum, transactions are referred to as cryptographically signed instructions by an externally-owned account(owned by users not code dependent) that is added to a block and recorded in the blockchain, when initiated by the same EOA, can be transmitted to the Ethereum network.
+
+The the state of the Ethereum virtual machine (EVM) is changed when a transaction is initiated, the transaction can range from from sending ether to other accounts or calling functions of a smart contract.
+
+## Structure of a transaction
+
+In Ethereum, there are some specific data's that are formed when a transaction is initiated;
+
+- Recipient:
+  
+The address of the account that will receive the transaction is called the recipient. The recipient can be an externally owned account or a contract account. Each transaction is directed towards a recipient.
+
+- Nonce:
+
+This field is the latest transaction, based on the account’s counter that keeps track of the number of transactions it executes. The transaction nonce is used by the network to ensure that transactions are executed in the proper order.
+
+- Gas Price:
+  
+Any transaction requires some fee that is paid by the creator of the transaction. The fee is calculated per gas unit. The unit is Wei a smaller unit of ether.
+
+- Gas Limit:
+
+The creator of the transaction gives the number of gas units that can be used for the transaction. This is the maximum limit of gas that would be consumed.
+
+- Value:
+  
+The value specifies the amount of Wei or Ether that the sender account wants to send to the recipient.
+
+- Data:
+
+If a transaction recipient is a smart contract then the data contains information for executing functions of the contract. This includes data of variable length.
+
+- Signature:
+
+A Signature is the identification of the sender. The signature is generated when an externally owned account confirms and signs the transaction via its private key.
+
+### Types of transactions
+
+On Ethereum there are a few different types of transactions:
+
+- Simple or assets transfers: This refers to regular transfer of tokens in form ether to another account. Although this type of transaction has a value, it does not contain any data.
+For example, if Bob sends assets(in form of ether) from his account to account Y, for purchasing an item, the gas price is set by the bob by default.
+
+- Contract deployment transactions: This type of transaction is such that happens when a contract is deployed on the Ethereum network. Although this type of transaction has the bytecode of the smart contract as it's data, it does not have recipient(a "to" address).
+- Function Execution transaction: This type of transaction calls the function of an account when a contract is deployed on Ethereum. Since the transaction is concerned with a contract account, the recipient("to" address) becomes a contract address. 
+It contains the function name and arguments as data.
+
+### When does a transaction become final?
 
 In the context of blockchain network, **transaction finality** refers to the guarantee that transactions cannot be reverted, altered or mutated.
 

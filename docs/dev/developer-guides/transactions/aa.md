@@ -2,7 +2,7 @@
 
 ## Introduction
 
-On Ethereum, there are two types of accounts: externally owned accounts (EOAs) and smart contracts. The former type is the only one that can initiate transactions, 
+On Ethereum, there are two types of accounts: [externally owned accounts (EOAs)](./account.md#externally-owned-accounts-eoa) and [smart contracts](account.md#contract-accounts-smart-contracts) . The former type is the only one that can initiate transactions, 
 while the latter is the only one that can implement arbitrary logic. For some use-cases, like smart-contract wallets or privacy protocols, this difference can creates a lot of friction.
 As a result they require L1 relayers, e.g. an EOA to help facilitate transactions from a smart-contract wallet.
 
@@ -15,6 +15,10 @@ This is the test release of account abstraction (AA) on zkSync 2.0. We are very 
 zkSync 2.0 is one of the first EVM-compatible chains to adopt AA, so this testnet is also used to see how "classical" projects from EVM chains can coexist with the account abstraction feature.
 
 :::
+
+### Perequisites
+
+To better understand this page, we recommend you take some time to first read [accounts](account.md) and [transaction](transactions.md).
 
 ## Design
 
