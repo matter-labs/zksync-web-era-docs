@@ -32,9 +32,7 @@
 
 Чтобы начать, кликните на вкладку **Tools** наверху, появится всплывающий список, там выберите **Smart Contract Verification,** после чего вы увидите следующий экран:
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 #### Введите детали контракта <a href="#enter-contract-details" id="enter-contract-details"></a>
 
@@ -73,7 +71,6 @@ console.log(greeterContract.interface.encodeDeploy([greeting]);
 * В конце нажмите на кнопку **Verify Smart Contract**.
 
 \
-Если все в порядке, вы увидите сообщение об успехе.\
+Если все в порядке, вы увидите сообщение об успехе.\\
 
-
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
