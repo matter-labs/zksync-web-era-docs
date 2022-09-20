@@ -37,3 +37,4 @@
   * [Руководство: кросс-чейн управление](rukovodstvo-razrabotchika/rukovodstvo-kross-chein-upravlenie.md)
   * [Руководство: абстракция аккаунта](rukovodstvo-razrabotchika/rukovodstvo-abstrakciya-akkaunta.md)
   * [Руководство: разработка кастомного paymaster](rukovodstvo-razrabotchika/rukovodstvo-razrabotka-kastomnogo-paymaster.md)
+  * [Переход на testnet paymaster](rukovodstvo-razrabotchika/perekhod-na-testnet-paymaster.md)
