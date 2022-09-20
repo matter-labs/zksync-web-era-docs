@@ -4,9 +4,9 @@
 
 ### Подготовка <a href="#preliminaries" id="preliminaries"></a>
 
-Крайне рекомендуется ознакомиться с [дизайном ](https://v2-docs.zksync.io/dev/zksync-v2/aa.html)протокола абстракции аккаунта прежде, чем углубляться в данное руководство.
+Крайне рекомендуется ознакомиться с [дизайном ](../ponimanie-zksync-2.0/vazhno-podderzhka-abstrakcii-akkaunta.md)протокола абстракции аккаунта прежде, чем углубляться в данное руководство.
 
-Предполагается, что вы уже знакомы с развертыванием контрактов на zkSync. Если нет, пожалуйста обратитесь к первому разделу руководства [Hello World](https://v2-docs.zksync.io/dev/guide/hello-world.html). Также [рекомендуется ](https://v2-docs.zksync.io/dev/zksync-v2/system-contracts.html)ознакомиться с введением в системные контракты.
+Предполагается, что вы уже знакомы с развертыванием контрактов на zkSync. Если нет, пожалуйста обратитесь к первому разделу руководства [Hello World](rukovodstvo-hello-world.md). Также [рекомендуется ](../ponimanie-zksync-2.0/ponimanie-sistemnykh-kontraktov.md)ознакомиться с введением в системные контракты.
 
 ### Установка зависимостей <a href="#installing-dependencies" id="installing-dependencies"></a>
 
@@ -25,7 +25,7 @@ yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zk
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Создайте файл конфига `hardhat.config.ts` , директории `contracts` и `deploy` , как в руководстве [Hello World](https://v2-docs.zksync.io/dev/guide/hello-world.html).
+Создайте файл конфига `hardhat.config.ts` , директории `contracts` и `deploy` , как в руководстве [Hello World](rukovodstvo-hello-world.md).
 
 ### Дизайн <a href="#design" id="design"></a>
 
@@ -77,13 +77,13 @@ contract MyPaymaster is IPaymaster {
 }
 ```
 
-Возьмите на заметку, что только у [bootloader](https://v2-docs.zksync.io/dev/zksync-v2/system-contracts.html#bootloader) должен быть доступ к вызову методов `validateAndPayForPaymasterTransaction`/`postOp`. Именно поэтому для них используется модификатор `onlyBootloader` .
+Возьмите на заметку, что только у [bootloader](../ponimanie-zksync-2.0/ponimanie-sistemnykh-kontraktov.md#bootloader) должен быть доступ к вызову методов `validateAndPayForPaymasterTransaction`/`postOp`. Именно поэтому для них используется модификатор `onlyBootloader` .
 
 #### Парсинг вводимых данных paymaster <a href="#parsing-the-paymaster-input" id="parsing-the-paymaster-input"></a>
 
 В этом руководстве мы хотим взять с пользователя одну единицу `allowedToken` в обмен на оплату его комиссий контрактом.
 
-Вводные данные, которые paymaster должен получить закодированы в `paymasterInput`. Как  описывается [здесь](https://v2-docs.zksync.io/dev/zksync-v2/aa.html#built-in-paymaster-flows), есть несколько стандартизированных путей кодировки взаимодействия пользователя с `paymasterInput`. Для того, чтобы списать средства пользователя, нам необходимо будет запросить, чтобы он предоставил достаточное число разрешение на трату (allowance) для контракта paymaster. Это то, где порядок исполнения `approvalBased` может нам помочь.
+Вводные данные, которые paymaster должен получить закодированы в `paymasterInput`. Как  описывается [здесь](../ponimanie-zksync-2.0/vazhno-podderzhka-abstrakcii-akkaunta.md#built-in-paymaster-flows), есть несколько стандартизированных путей кодировки взаимодействия пользователя с `paymasterInput`. Для того, чтобы списать средства пользователя, нам необходимо будет запросить, чтобы он предоставил достаточное число разрешение на трату (allowance) для контракта paymaster. Это то, где порядок исполнения `approvalBased` может нам помочь.
 
 Во-первых, нам нужно удостовериться, что `paymasterInput` был закодирован по порядку исполнения `approvalBased`:
 
@@ -219,12 +219,6 @@ contract MyPaymaster is IPaymaster {
 
 Создайте файл `MyERC20.sol` и вставьте в него следующий код:&#x20;
 
-
-
-&#x20;We are now going to deploy one. For the sake of simplicity we will use a somewhat modified OpenZeppelin implementation of it:
-
-Create the `MyERC20.sol` file and put the following code in it:&#x20;
-
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
 
@@ -254,7 +248,7 @@ contract MyERC20 is ERC20 {
 }
 ```
 
-
+### &#x20;<a href="#deploying-the-paymaster" id="deploying-the-paymaster"></a>
 
 ### Развертывание paymaster <a href="#deploying-the-paymaster" id="deploying-the-paymaster"></a>
 
@@ -408,6 +402,6 @@ Balance of the user after mint: 102
 
 ### Узнать больше <a href="#learn-more" id="learn-more"></a>
 
-* Об абстракции аккаунте можно на этой [странице документации](https://v2-docs.zksync.io/dev/zksync-v2/aa.html).
+* Об абстракции аккаунта можно на этой [странице документации](../ponimanie-zksync-2.0/vazhno-podderzhka-abstrakcii-akkaunta.md).
 * О `zksync-web3`  можно на этой [странице документации](https://v2-docs.zksync.io/api/js).&#x20;
 * О hardhat плагинах zkSync можно на этой [странице документации](https://v2-docs.zksync.io/api/hardhat).

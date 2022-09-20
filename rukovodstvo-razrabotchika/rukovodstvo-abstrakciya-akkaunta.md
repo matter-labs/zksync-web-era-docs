@@ -1,14 +1,14 @@
 # Руководство: абстракция аккаунта
 
-Теперь давайте научимся реализовывать кастомные аккаунты и взаимодействовать напрямую с системным контрактов [ContractDeployer](https://v2-docs.zksync.io/dev/zksync-v2/system-contracts.html#contractdeployer).
+Теперь давайте научимся реализовывать кастомные аккаунты и взаимодействовать напрямую с системным контрактом [ContractDeployer](../ponimanie-zksync-2.0/ponimanie-sistemnykh-kontraktov.md#contractdeployer).
 
 В этом руководстве мы создадим фабрику (factory), которая развертывает аккаунты с мультиподписью типа "2-из-2ух".
 
 ### Подготовка <a href="#preliminaries" id="preliminaries"></a>
 
-Прежде чем углубиться в данное руководство, крайне рекомендуется прочитать [дизайне](https://v2-docs.zksync.io/dev/zksync-v2/aa.html)протокола абстракции аккаунта.
+Прежде чем углубиться в данное руководство, крайне рекомендуется прочитать [дизайне](../ponimanie-zksync-2.0/vazhno-podderzhka-abstrakcii-akkaunta.md) протокола абстракции аккаунта.
 
-Предполагается, что вы уже знакомы с развертыванием контрактов на zkSync. Если нет, пожалуйста обратитесь к первому разделу руководства [Hello World](https://v2-docs.zksync.io/dev/guide/hello-world.html). Также рекомендуется прочесть [введение ](https://v2-docs.zksync.io/dev/zksync-v2/system-contracts.html)в системные контракты.
+Предполагается, что вы уже знакомы с развертыванием контрактов на zkSync. Если нет, пожалуйста обратитесь к первому разделу руководства [Hello World](rukovodstvo-hello-world.md). Также рекомендуется прочесть [введение ](../ponimanie-zksync-2.0/ponimanie-sistemnykh-kontraktov.md)в системные контракты.
 
 ### Установка зависимостей <a href="#installing-dependencies" id="installing-dependencies"></a>
 
@@ -21,17 +21,17 @@ yarn init -y
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
-Так как мы работаем с контрактами zkSync, нам также нужно установить пакет с контрактами и необходимые зависимости:&#x20;
+Так как мы работаем с контрактами zkSync, нам также нужно установить пакет с контрактами и необходимые зависимости:
 
 ```
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Также создайте файл конфигурации `hardhat.config.ts`, директории `contracts` и `deploy` как в руководстве [Hello World](https://v2-docs.zksync.io/dev/guide/hello-world.html).
+Также создайте файл конфигурации `hardhat.config.ts`, директории `contracts` и `deploy` как в руководстве [Hello World](rukovodstvo-hello-world.md).
 
 ### Абстракция аккаунта <a href="#account-abstraction" id="account-abstraction"></a>
 
-Каждый аккаунт должен реализовывать интерфейс [IAccount](https://github.com/matter-labs/v2-testnet-contracts/blob/07e05084cdbc907387c873c2a2bd3427fe4fe6ad/l2/system-contracts/interfaces/IAccount.sol#L7). Так как мы делаем аккаунт с подписантами, нам также нужно реализовать[EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
+Каждый аккаунт должен реализовывать интерфейс [IAccount](https://github.com/matter-labs/v2-testnet-contracts/blob/07e05084cdbc907387c873c2a2bd3427fe4fe6ad/l2/system-contracts/interfaces/IAccount.sol#L7). Так как мы делаем аккаунт с подписантами, нам также нужно реализовать [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
 Скелет контракта будет выглядеть следующим образом:
 
@@ -96,7 +96,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 }
 ```
 
-Учтите, что только [bootloader](https://v2-docs.zksync.io/dev/zksync-v2/system-contracts.html#bootloader) должен быть допущен к вызову методов `validateTransaction`/`executeTransaction`/`payForTransaction`/`prePaymaster`. Поэтому для них используется модификатор `onlyBootloader` .
+Учтите, что только [bootloader](../ponimanie-zksync-2.0/ponimanie-sistemnykh-kontraktov.md#bootloader) должен быть допущен к вызову методов `validateTransaction`/`executeTransaction`/`payForTransaction`/`prePaymaster`. Поэтому для них используется модификатор `onlyBootloader` .
 
 Метод `executeTransactionFromOutside` нужен для доступа внешним пользователям к инициации транзакции с данного аккаунта. Наиболее легий способ реализовать его - сделать тоже самое, что бы сделали `validateTransaction` + `executeTransaction` .
 
@@ -142,17 +142,17 @@ function isValidSignature(bytes32 _hash, bytes calldata _signature) public overr
 
 #### Валидация транзакции <a href="#transaction-validation" id="transaction-validation"></a>
 
-Давайте реализуем процесс валидации. Он отвечает за валидацию подписи транзакции и увеличение значения nonce. Заметьте, что есть некоторые ограничения в том, что этому методу позволено выполнять. Вы можете подробнее  узнать о них [тут](https://v2-docs.zksync.io/dev/zksync-v2/aa.html#limitations-of-the-verification-step).
+Давайте реализуем процесс валидации. Он отвечает за валидацию подписи транзакции и увеличение значения nonce. Заметьте, что есть некоторые ограничения в том, что этому методу позволено выполнять. Вы можете подробнее узнать о них [тут](../ponimanie-zksync-2.0/vazhno-podderzhka-abstrakcii-akkaunta.md#limitations-of-the-verification-step).
 
 Для увеличения nonce нужно использовать метод `incrementNonceIfEquals` системного контракта `NONCE_HOLDER_SYSTEM_CONTRACT` . Он берет Nonce транзакции и проверяет, совпадает ли текущий nonce с предоставленным. Если нет, то транзакция отменяется. В ином случае, nonce увеличивается.
 
-Хоть и требования выше позволяют аккаунтам изменять только свои слоты хранилища, доступ к вашему nonce в `ONCE_HOLDER_SYSTEM_CONTRACT` - это [разрешенный](https://v2-docs.zksync.io/dev/zksync-v2/aa.html#extending-the-set-of-slots-that-belong-to-a-user) случай, так как он ведет себя так же, как ваше хранилище, но просто случилось так, что он находится в другом контракте. Для вызова `NONCE_HOLDER_SYSTEM_CONTRACT` вам нужно добавить следующий импорт:
+Хоть и требования выше позволяют аккаунтам изменять только свои слоты хранилища, доступ к вашему nonce в `ONCE_HOLDER_SYSTEM_CONTRACT` - это [разрешенный](../ponimanie-zksync-2.0/vazhno-podderzhka-abstrakcii-akkaunta.md#extending-the-set-of-slots-that-belong-to-a-user) случай, так как он ведет себя так же, как ваше хранилище, но просто случилось так, что он находится в другом контракте. Для вызова `NONCE_HOLDER_SYSTEM_CONTRACT` вам нужно добавить следующий импорт:
 
 ```typescript
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
 ```
 
-Библиотека `TransactionHelper`  (уже импортированная в примере выше) может использоваться для получения хэша транзакции, которую нужно подписать. Вы также можете реализовать свою собственную схему подписи и использовать иное обязательство (commitment) для подписи транзакции, но в этом примере мы испольщуем хэш, предоставленный этой библиотекой.
+Библиотека `TransactionHelper` (уже импортированная в примере выше) может использоваться для получения хэша транзакции, которую нужно подписать. Вы также можете реализовать свою собственную схему подписи и использовать иное обязательство (commitment) для подписи транзакции, но в этом примере мы испольщуем хэш, предоставленный этой библиотекой.
 
 Использование библиотеки `TransactionHelper` :
 
@@ -175,7 +175,7 @@ function _validateTransaction(Transaction calldata _transaction) internal {
 
 #### Оплата комиссий за транзакцию <a href="#paying-fees-for-the-transaction" id="paying-fees-for-the-transaction"></a>
 
-Теперь нам нужно реализовать метод `payForTransaction` . Библиотека `TransactionHelper`уже предоставляет нам `payToTheBootloader` ,  который отправляет`_transaction.maxFeePerErg * _transaction.ergsLimit` ETH в пользу bootloader. Таким образом, реализация относительно прямолинейна:
+Теперь нам нужно реализовать метод `payForTransaction` . Библиотека `TransactionHelper`уже предоставляет нам `payToTheBootloader` , который отправляет`_transaction.maxFeePerErg * _transaction.ergsLimit` ETH в пользу bootloader. Таким образом, реализация относительно прямолинейна:
 
 ```solidity
 function payForTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
@@ -186,7 +186,7 @@ function payForTransaction(Transaction calldata _transaction) external payable o
 
 #### Реализация `prePaymaster` <a href="#implementing-prepaymaster" id="implementing-prepaymaster"></a>
 
-Тогда как обычно протокол абстракции аккаунта позволяет исполнять произвольные действия при взаимодействии с paymaster'ами, есть несколько [общих паттернов](https://v2-docs.zksync.io/dev/zksync-v2/aa.html#built-in-paymaster-flows) со встроенной поддержкой из EOA-аккаунтов. Если только вы не хотите реализовать или запретить некоторые специфические возможные действия для вашего аккаунта, лучше держать его в соответствии с EOA. Библиотека `TransactionHelper` предоставляет метод `processPaymasterInput` , который делает именно это: проходит шаг `prePaymaster` так же, как и EOA.
+Тогда как обычно протокол абстракции аккаунта позволяет исполнять произвольные действия при взаимодействии с paymaster'ами, есть несколько [общих паттернов](../ponimanie-zksync-2.0/vazhno-podderzhka-abstrakcii-akkaunta.md#built-in-paymaster-flows) со встроенной поддержкой из EOA-аккаунтов. Если только вы не хотите реализовать или запретить некоторые специфические возможные действия для вашего аккаунта, лучше держать его в соответствии с EOA. Библиотека `TransactionHelper` предоставляет метод `processPaymasterInput` , который делает именно это: проходит шаг `prePaymaster` так же, как и EOA.
 
 ```solidity
 unction prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
@@ -455,7 +455,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-_Заметьте, что правила извлечения адреса на zkSync отличаются от Эфириума._ Вам всегда нужно использовать утилитарные методы `createAddress` и  `create2Address`  из `zksync-web3` SDK.
+_Заметьте, что правила извлечения адреса на zkSync отличаются от Эфириума._ Вам всегда нужно использовать утилитарные методы `createAddress` и `create2Address` из `zksync-web3` SDK.
 
 #### Инициация транзакции с этого аккаунта <a href="#starting-a-transaction-from-this-account" id="starting-a-transaction-from-this-account"></a>
 
@@ -501,7 +501,7 @@ aaTx = {
 {% hint style="success" %}
 **Заметка по `gasLimit`**
 
-На даннйы момент мы ожидаем, что `gasLimit` должен покрывать и шаг верификации и шаг исполнения. Сейчас число ergs, возвращаемое функцией `estimateGas` равно `execution_ergs + 20000`, где `20000` примерно равны накладным расходам defaultAA, необходимым для взимания комиссии и проверки подписи. В случае, если ваш АА имеет очень дорогой шаг верификации, вам стоит добавит константу в `gasLimit`.
+На данный момент мы ожидаем, что `gasLimit` должен покрывать и шаг верификации, и шаг исполнения. Сейчас число ergs, возвращаемое функцией `estimateGas` равно `execution_ergs + 20000`, где `20000` примерно равны накладным расходам defaultAA, необходимым для взимания комиссии и проверки подписи. В случае, если ваш АА имеет очень дорогой шаг верификации, вам стоит добавит константу в `gasLimit`.
 {% endhint %}
 
 Затем нам нужно подписать транзакцию и предоставить `aaParamas` в `customData` транзакции:
@@ -637,6 +637,6 @@ The multisig's nonce after the first tx is 1
 
 ### Узнать больше <a href="#learn-more" id="learn-more"></a>
 
-* Узнать больше об абстракции аккаунта на zkSync можно на этой [странице документации](https://v2-docs.zksync.io/dev/zksync-v2/aa.html).
+* Узнать больше об абстракции аккаунта на zkSync можно на этой [странице документации](../ponimanie-zksync-2.0/vazhno-podderzhka-abstrakcii-akkaunta.md).
 * Узнать больше о `zksync-web3` SDK можно на этой странице [документации](https://v2-docs.zksync.io/api/js).
 * Узнать больше о hardhat плагинах zkSync можно на этой странице [документации](https://v2-docs.zksync.io/api/hardhat).
