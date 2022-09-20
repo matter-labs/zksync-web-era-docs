@@ -28,7 +28,7 @@
 
 [Интерфейс](https://github.com/matter-labs/v2-testnet-contracts/blob/6a93ff85d33dfff0008624eb9777d5a07a26c55d/l2/system-contracts/interfaces/INonceHolder.sol#L5)
 
-Этот контракт хранит nonce'ы аккаунта. Nonce'ы аккаунта хранятся в одном месте ради эффективности ([nonce транзакции и nonce развертывания](https://v2-docs.zksync.io/dev/zksync-v2/contracts.html#differences-in-create-behaviour) хранятся в одном месте) и для упрощения работы оператора.
+Этот контракт хранит nonce'ы аккаунта. Nonce'ы аккаунта хранятся в одном месте ради эффективности ([nonce транзакции и nonce развертывания](razvertyvanie-kontrakta.md#differences-in-create-behaviour) хранятся в одном месте) и для упрощения работы оператора.
 
 ### Bootloader <a href="#bootloader" id="bootloader"></a>
 

@@ -25,5 +25,5 @@
 * Ознакомьтесь с информацией о RPC узлах, кошельке, обозревателе блоков на странице [важные ссылки](testnet/vazhnye-ssylki.md).
 * Если вы новичок в rollups, тогда гайд [основы ZK rollup](osnovy-zk-rollup.md) поможет вам познакомиться с основами архитектуры ZK rollup'ов.
 * Если вы уже знаете как работают ZK rollups, тогда [понимание zkSync 2.0](ponimanie-zksync-2.0/) послужит для вас введением в концепты, на которых строится zkSync 2.0.
-* Want to dive directly into the code? Head straight to the [Developer guide](https://v2-docs.zksync.io/dev/guide).
+* Хотите сразу погрузиться в код? Переходите к [Руководству разработчика](rukovodstvo-razrabotchika/).
 

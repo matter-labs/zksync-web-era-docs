@@ -24,7 +24,7 @@
 
 * `block.gaslimit` всегда возвращает `2^32-1`.
 * `MSIZE` всегда возвращает `2^16`.
-* `COINBASE` (`block.coinbase`) всегда возвращает адрес [bootloader](https://v2-docs.zksync.io/dev/zksync-v2/system-contracts.html#bootloader).
+* `COINBASE` (`block.coinbase`) всегда возвращает адрес [bootloader](ponimanie-sistemnykh-kontraktov.md#bootloader).
 * `DIFFICULTY` (`block.difficulty`) всегда возвращает `2500000000000000` (zkSync не имеет консенсуса Proof-of-Work).
 
 ### Игнорируются компилятором <a href="#ignored-by-the-compiler" id="ignored-by-the-compiler"></a>
