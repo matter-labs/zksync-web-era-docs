@@ -4,6 +4,11 @@ In ethereum, transactions are referred to as cryptographically signed instructio
 
 The the state of the Ethereum virtual machine (EVM) is changed when a transaction is initiated, the transaction can range from from sending ether to other accounts or calling functions of a smart contract.
 
+
+## Prerequisite
+
+To help you understand this page better, we recommend you first read [accounts](account.md).
+
 ## Structure of a transaction
 
 In Ethereum, there are some specific data's that are formed when a transaction is initiated;
