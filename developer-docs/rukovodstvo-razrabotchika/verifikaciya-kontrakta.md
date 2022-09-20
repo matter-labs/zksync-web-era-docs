@@ -32,7 +32,7 @@
 
 Чтобы начать, кликните на вкладку **Tools** наверху, появится всплывающий список, там выберите **Smart Contract Verification,** после чего вы увидите следующий экран:
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 #### Введите детали контракта <a href="#enter-contract-details" id="enter-contract-details"></a>
 
@@ -43,7 +43,7 @@
 * Optimisation: Проверяется, использовалась ли оптимизацтя во время компиляции контракта. Если вы включали оптимизацию во время компиляции, выберите **Yes**, если нет, то **No.**
 * Compiler Version: Здесь определяется точно версия компилятора, использованная для компиляции смарт-контракта. Нажмите на выпадающее меню и выберите использованную вами версию.
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 * Enter the Solidity Contract code: Скопируйте код из вашего редактора и вставьте в текстовое поле.\
   **Внимание:** Вам, возможно, придется сгладить ваш Solidity код, если в нем используются библиотеки, или наследуются зависимости из другого контракта.\
@@ -73,4 +73,4 @@ console.log(greeterContract.interface.encodeDeploy([greeting]);
 \
 Если все в порядке, вы увидите сообщение об успехе.\\
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
