@@ -1,56 +1,54 @@
 # Overview
 
-An account is an important component of the zkSync protocol, it is an entity, similar to a bank account but for tokens, where crypto assets can be transferred to other accounts, held and also used to execute smart contracts, typically it is composed of an address along with a private key.
+An account is a crucial part of the zkSync protocol; it is an entity similar to a bank account but for tokens, where crypto assets can be transferred to other accounts, kept, and used to carry out smart contracts. Typically, an account comprises an address and a private key.
 
 
-## How many types of Ethereum accounts are there?
+## Types of Ethereum accounts
 
-Two different types of accounts that exist on the L2 network. The first is called an externally owned account (EOA). The second is called a contract account. 
-Externally owned accounts are controlled by anyone with the private keys. Contract accounts are smart contracts deployed to the network and controlled by code. Both types are identified by an Ethereum address. In terms of capabilities, the two account types can:
+On the Ethereum network, there are two distinct kinds of accounts. The first is referred to as an externally owned account (EOA). The second is referred to as a contract account. 
+Anyone with private keys can manage accounts that are externally owned. Contract accounts are smart contracts that have been deployed on the network and are governed by code. An Ethereum address serves as a unique identifier for both types. The two account types can:
 
-- Interact with smart contracts on the chain.
-- Receive, hold, and send ETH and tokens.
+- Interact with smart contracts on the chain. 
+- Receive, store, and send ETH and tokens.
 
 ### Externally owned accounts (EOA)
 
-EOAs are owned by people on the Ethereum network.
-Which means an individual creates an account on Ethereum and a public-private key pair is generated for the account. The account is not identified by the person’s name or any personal information.
-The secured private key of the EOA gives control and access to one’s assets and contracts.
-The public key which is generated from the private key via a one-way cryptographic function, acts as the identity of the account.
-The address of an Ethereum account is generated through its public key.
-This type of account interacts with other externally owned accounts and contract accounts. It carries out transactions with the former one and interacts with the latter one by calling and executing its functions.
-Creating an externally owned account does not cost gas fees.
+This indicates a public-private key pair is generated for an account after a person creates one on Ethereum. The user's name or any other personal details are not used to identify the account. 
+Through the EOA's secured private key, a person can control and get to their assets and contracts. 
+Using a one-way cryptographic process, the private key is used to make the public key, which is the identity of the account. 
+An Ethereum account's public key is used to generate the account's address. 
+Other externally owned accounts and contract accounts communicate with this kind of account. It interacts with the latter by calling and performing its functions and transacting with the former. 
+There are no gas fees associated with creating an externally owned account.
 
-**Note**  
-An account is not a wallet. An account is the keypair for a user-owned Ethereum account, while a wallet is an interface or application that lets you interact with your Ethereum account.
+**Note** 
+An account is not a wallet. A wallet is an application that lets you connect to your Ethereum account. An account is a pair of keys for an Ethereum account that belongs to a user.
 
- This control occurs often through a wallet application. Externally owned accounts are simple accounts without any associated code or data storage. This type of account is controlled by and cryptographically signed using a private key in the "real world."
+Wallet apps are frequently used to exercise this control. Simple accounts with no accompanying code or data storage are externally owned. This account is managed by and cryptographically signed using a private key in the "real world."
 
 ### Contract accounts (smart contracts)
 
-A contract account can perform all of the functions of an externally owned account, but unlike EOAs there are controlled by code executed by the Ethereum Virtual Machine, and they do not own a private key. Contract accounts have associated code and data storage, but not private keys. They "control themselves.” 
-These accounts do so in the way determined by their smart contract code.
-Creating a contract account has a cost some gas fees.
+A contract account can carry out all the operations of an externally owned account (EOA). Still, unlike EOAs, it is managed by code that the Ethereum Virtual Machine performs, and it lacks a private key. Private keys are not associated with contract accounts; code and data storage are. They "control themselves." 
+These accounts operate in the manner specified by their smart contract code. 
+There are various gas fees associated with opening a contract account.
 
-## Types of contract account
+### Various types of contract accounts
 
-There are two type of contract account — Simple account & Multisig( Multisignature) account
+Simple accounts and Multisig(Multisignature) accounts are the two types of contract accounts.
 
-Simple account & Multisig account are created and owned by Accounts.
+Simple accounts and Multisig accounts are formed and owned by accounts.
 
-- Simplet account : Only one account bother creates and owns the account.
-- Multisig account : A Multisig Wallet has several owner accounts one of which will also be the creator account.
+- Simple account: The account is created and owned by just one account. 
+- Multisig account: A Multisig wallet has multiple owner accounts, one of which will also be the creator account.
 
 
 ## Account state
 
-This field gives the hash value of the contract code of the account.
-In the case of contract accounts, the smart contract code is hashed and the resulting value is stored in this field.
-While for externally owned accounts, this field contains the hash value of an empty string.
+The smart contract code is hashed in the case of contract accounts, and the resulting value is kept in this field. 
+For externally owned accounts, the hash value in this field will be an empty string.
 
-There are components that make up the state of an account, regardless of the type of account:
+Regardless of the type of account, the following elements contribute to the state of the account:
 
-- **codeHash**: This represents the hash value of the contract code of the account, for externally owned accounts, this field contains the hash value of an empty string, while for contract accounts, the smart contract code is hashed and the resulting value is stored in this field.
-- **nonce**: For a externally owned account the nonce of an account depicts the number of transactions sent from the account address, while for a contract account it indicates the number of contracts created by the account.
-- **balance**: It shows the balance(in wei) contained in the address. Wei is a a unit of ether (ETH) where 1 eth = 1x10e18 Wei.
-- **storageRoot**: This contains the hash value of the root node of Merkle Patricia tree that encodes the storage contents of the account, and this field of account is empty by default.
+-**codeHash**: This represents the hash value of the contract code of the account, for externally owned accounts, this field contains the hash value of an empty string, while for contract accounts, the smart contract code is hashed and the resulting value is stored in this field.
+- **nonce**: For an externally owned account, the nonce of an account shows the number of transactions sent from the account address, whereas for a contract account, it shows the number of contracts the account has produced. 
+- **balance**: It displays the balance (in Wei) stored in the address. Wei is an ether (ETH) unit, with 1 eth equaling 1 x 1018 Wei. 
+- **storageRoot**: This account field is empty by default and holds the hash value of the root node of the Merkle Patricia tree that encodes the account's storage contents.

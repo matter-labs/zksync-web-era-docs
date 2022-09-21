@@ -1,6 +1,6 @@
-# Tutorial: Hello World
+# Quickstart
 
-This tutorial explains how to build a full dApp using the zkSync development toolbox.
+In about 5 minutes this tutorial will show you how to build a full dApp using the zkSync development toolbox.
 
 The following functionality will be implemented:
 

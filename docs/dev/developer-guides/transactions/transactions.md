@@ -1,75 +1,62 @@
 # Overview
 
-In ethereum, transactions are referred to as cryptographically signed instructions by an externally-owned account(owned by users not code dependent) that is added to a block and recorded in the blockchain, when initiated by the same EOA, can be transmitted to the Ethereum network.
+Transactions in Ethereum are cryptographically signed instructions by an externally owned account (an account owned by a user and not by code). These instructions are stored in the blockchain and added to a block.
 
-The the state of the Ethereum virtual machine (EVM) is changed when a transaction is initiated, the transaction can range from from sending ether to other accounts or calling functions of a smart contract.
+The state of the Ethereum virtual machine (EVM) changes when a transaction is initiated. A transaction can be anything from sending ether to another account to invoking the functions of a smart contract.
 
 
 ## Prerequisite
 
-To help you understand this page better, we recommend you first read [accounts](account.md).
+We recommend you first read [accounts](account.md) to understand this page.
 
-## Structure of a transaction
+## How a transaction works
 
-In Ethereum, there are some specific data's that are formed when a transaction is initiated;
+When a user initiates a transaction on Ethereum, some specific data is created;
 
-- Recipient:
-  
-The address of the account that will receive the transaction is called the recipient. The recipient can be an externally owned account or a contract account. Each transaction is directed towards a recipient.
+- Receiver: The recipient is the account's address to receive the transaction. The receiver can be a contract account or an externally owned account. Each transaction is aimed toward a specific recipient.
 
-- Nonce:
+- Nonce: This field displays the most recent transaction based on the account's counter, which maintains track of how many transactions it does. The network uses the transaction nonce to ensure that transactions are completed in the correct sequence.
 
-This field is the latest transaction, based on the account’s counter that keeps track of the number of transactions it executes. The transaction nonce is used by the network to ensure that transactions are executed in the proper order.
+- Gas Price: Most transactions necessitate the payment of a fee to the transaction's author. This cost is computed per unit of gas. The unit is Wei, a smaller ether unit.
 
-- Gas Price:
-  
-Any transaction requires some fee that is paid by the creator of the transaction. The fee is calculated per gas unit. The unit is Wei a smaller unit of ether.
+- Gas Limit: The transaction author specifies the number of gas units used for the transaction. This is the total amount of gas that could be consumed.
 
-- Gas Limit:
+- Value: The quantity of Wei or Ether that the sender account wishes to transmit to the recipient is represented by the value.
 
-The creator of the transaction gives the number of gas units that can be used for the transaction. This is the maximum limit of gas that would be consumed.
+- Data: If the transaction receiver is a smart contract, the data contains information for the contract's functions to be executed. This comprises data with varying lengths.
 
-- Value:
-  
-The value specifies the amount of Wei or Ether that the sender account wants to send to the recipient.
+- Signature: A signature indicates who sent the communication. The signature is created when an externally owned account confirms and signs the transaction with its private key.
 
-- Data:
+### Transaction Types
 
-If a transaction recipient is a smart contract then the data contains information for executing functions of the contract. This includes data of variable length.
+There are several kinds of transactions on Ethereum:
 
-- Signature:
+- Simple or asset transfers: This refers to the regular tokens transfer in the form of ether from one account to another.
 
-A Signature is the identification of the sender. The signature is generated when an externally owned account confirms and signs the transaction via its private key.
-
-### Types of transactions
-
-On Ethereum there are a few different types of transactions:
-
-- Simple or assets transfers: This refers to regular transfer of tokens in form ether to another account. Although this type of transaction has a value, it does not contain any data.
-For example, if Bob sends assets(in form of ether) from his account to account Y, for purchasing an item, the gas price is set by the bob by default.
-
-- Contract deployment transactions: This type of transaction is such that happens when a contract is deployed on the Ethereum network. Although this type of transaction has the bytecode of the smart contract as it's data, it does not have recipient(a "to" address).
-- Function Execution transaction: This type of transaction calls the function of an account when a contract is deployed on Ethereum. Since the transaction is concerned with a contract account, the recipient("to" address) becomes a contract address. 
+- Contract deployment transactions: A contract deployment transaction occurs when a contract is deployed on the Ethereum network. Although this transaction contains the smart contract's bytecode as data, it lacks a receiver (a "to" address).
+- Function Execution transaction: When a contract is deployed on Ethereum, this sort of transaction calls the function of an account. Because the transaction involves a contract account, the recipient's ("to") address becomes a contract address.
 It contains the function name and arguments as data.
 
-### When does a transaction become final?
+::: tip
+zkSync supports Ethereum's "old" (pre-EIP2718) transaction types, the EIP1559 transaction type, and its EIP712 transactions. Transactions of this type can be used to access zkSync-specific features such as account abstraction. Furthermore, smart contracts can only be deployed with this sort of transaction.
 
-In the context of blockchain network, **transaction finality** refers to the guarantee that transactions cannot be reverted, altered or mutated.
+It is not necessary to understand the transaction format to utilize zkSync's SDK, but if you are interested, you can learn more about it [here](../../../api/api.md#eip712).
 
-On Ethereum, as in Bitcoin, finality is probabilistic, i.e. the more blocks that passed since the transaction was processed, the lesser the chance that this transaction will be reverted.
+:::
 
-In zk rollups, once a block has been filled and sealed, its state is committed to the main Ethereum chain. The proving step is then initiated, and a SNARK validity proof is generated for all the block transactions. Once completed, the SNARK is submitted for verification on the L1 smart contract, and after being verified, the transaction state becomes final.
+### When is a transaction considered final?
 
-Note that _finality_ from the zkSync perspective happens when the transaction (the SNARK verification) is processed by L1. At this stage, the guarantees are exactly like any other L1 transaction within the same L1 block; the more L1 blocks that generated after the initial block is processed, the lesser the chance that this transaction will be reverted.
+**Transaction finality** refers to the promise that transactions cannot be reversed, altered, or mutated in the context of a blockchain network.
 
-At the moment, when a user sends a transaction, zkSync waits for the entire block to be filled, meaning finality time may take longer depending on the volume of transactions being submitted via zkSync. As throughput increases, the finality time will subsequently decrease.
+Finality on Ethereum, like in Bitcoin, is probabilistic, which means that the more blocks passed after the transaction was executed, the less likely it is that this transaction will be overturned.
 
-# Transaction types
+Once a block has been filled and sealed in zk rollups, its state is committed to the main Ethereum chain. The proving stage is then started, and a SNARK validity proof is constructed for each block transaction. Once completed, the SNARK is sent for verification on the L1 smart contract, and the transaction state becomes final following verification.
 
-zkSync supports Ethereum's "legacy" (pre-EIP2718) transaction types, EIP1559 transaction type, and its custom EIP712 transactions. You can use transactions of this type to use zkSync-specific features like account abstraction. Additionally, it is only possible to deploy smart contracts with this type of transaction.
+From the standpoint of zkSync, _finality_ occurs when the transaction (the SNARK verification) is executed by L1. At this point, the guarantees are the same as any other L1 transaction within the same L1 block; the more L1 blocks issued after the initial block is processed, the less likely this transaction will be overturned.
 
-Knowing the details about the transaction format is not required to use zkSync's SDK, but if you are curious, you can read more about it [here](../../../api/api.md#eip712).
+When a user transmits a transaction, zkSync currently waits for the entire block to be filled, which means the finality time may be longer depending on the volume of transactions sent via zkSync. The finality time will reduce as the throughput increases.
 
-## What are operators?
 
-**Operators** are the actors that perform basic ZK rollup functionalities. They are charged with creating blocks, bundling the transactions, performing the calculations and submitting the data to the main Ethereum chain for verification.
+## What exactly are operators?
+
+**Operators** are the actors who carry out essential ZK rollup functions. They are responsible for producing blocks, packaging transactions, conducting calculations, and submitting data to the main Ethereum chain for verification.
