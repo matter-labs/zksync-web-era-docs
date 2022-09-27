@@ -7,7 +7,7 @@ The state of the Ethereum virtual machine (EVM) changes when a transaction is in
 
 ## Prerequisite
 
-We recommend you first read [accounts](account.md) to understand this page.
+We recommend you first read [accounts](https://ethereum.org/en/developers/docs/accounts/) to understand this page.
 
 ## How a transaction works
 

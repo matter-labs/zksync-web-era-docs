@@ -18,16 +18,11 @@ If this is your first time using zkSync, we recommend that you kickoff at the be
 
 - [Quickstart](./developer-guides/hello-world.md) - Learn how to build a full dApp using the zkSync development toolbox.
 - [Contracts](./developer-guides/contracts/system-contracts.md) - A brief overview of zkSync system contracts.
-  - [Contract deployment](./developer-guides/contracts/contracts.md) - A guide on how to deploy smart contract on zkSync.
+  - [Contract deployment](./developer-guides/contracts/contracts.md) - A guide on how to deploy smart contracts on zkSync.
   - [Contract verification](./developer-guides/contracts/contract-verification.md) - A guide on how to verify smart contracts with zkSync block explorer.
 - [Transactions](./developer-guides/transactions/transactions.md) - A guide on how zkSync handles transactions.
-  - [Account abstraction](./developer-guides/transactions/aa.md) - Learn how zkSync 2.0 platform handles transactions.
+  - [Account abstraction](./developer-guides/transactions/aa.md) - Learn how zkSync 2.0 platform handles transactions.**
   - [Blocks](./developer-guides/transactions/blocks.md) - Learn how blocks work on zkSync.
-  - [Account](./developer-guides/transactions/account.md) - Learn how accounts work on zkSync.
-=======
-  - [Contract verification](./developer-guides/contracts/contract-verification.md) - A guide on how to verify smart contract on zkSync block explorer.
-- [Transactions](./developer-guides/transactions/transactions.md) - Learn how zkSync handles transactions.
-  - [Account abstraction](./developer-guides/transactions/aa.md) - Learn how zkSync 2.0 can initiate transactions, like an EOA.
 - [Fee mechanism](./developer-guides/fee-model.md) - A quick overview of zkSync fee structure.
 - [bridging of funds](./developer-guides/bridging/bridging-asset.md) - A brief intro on token bridging.
   - [L1 / L2 Interoperability](./developer-guides/bridging/l1-l2-interop.md) - A quick brief on data communication between l1 and l2.

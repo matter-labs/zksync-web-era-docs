@@ -2,7 +2,8 @@
 
 ## Introduction
 
-On Ethereum, there are two types of accounts: [externally owned accounts (EOAs)](./account.md#externally-owned-accounts-eoa) and [smart contracts](account.md#contract-accounts-smart-contracts) . The former type is the only one that can initiate transactions, 
+On Ethereum, there are two types of accounts: [externally owned accounts (EOAs)](https://ethereum.org/en/developers/docs/accounts/#externally-owned-accounts-and-key-pairs) and [contracts accounts](https://ethereum.org/en/developers/docs/accounts/#contract-accounts).
+The former type is the only one that can initiate transactions, 
 while the latter is the only one that can implement arbitrary logic. For some use-cases, like smart-contract wallets or privacy protocols, this difference can creates a lot of friction.
 As a result they require L1 relayers, e.g. an EOA to help facilitate transactions from a smart-contract wallet.
 
@@ -16,9 +17,9 @@ zkSync 2.0 is one of the first EVM-compatible chains to adopt AA, so this testne
 
 :::
 
-### Perequisites
+### Prerequisites
 
-To better understand this page, we recommend you take some time to first read [accounts](account.md) and [transaction](transactions.md).
+To better understand this page, we recommend you take some time to first read a guide on [accounts](https://ethereum.org/en/developers/docs/accounts/) and [transaction](transactions.md).
 
 ## Design
 

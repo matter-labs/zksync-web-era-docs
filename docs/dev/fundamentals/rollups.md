@@ -2,19 +2,20 @@
 
 To better understand rollups we need to dive briefly into Ethereum and Layer 2 solutions.
 
-The enormous demands from users to transact Ethereum put a limit on the network capacity by causing congestion, resulting in slow transactions and increased gas prices. While this has remained so for a while, an improved solution is needed, one that can maintain scalability.
-That is, to increase finality and achieve high transaction rates per second without having to trade off security. That's where layer 2 solutions shine.
+The design of Ethereum is such that when the demand from users to transact increases, a limit is placed on the network capacity, thereby causing congestion, which results in slow transactions and increased gas prices.
+While this has remained so for a while, an improved solution is needed, one that can maintain scalability.
+That is, to increase finality and achieve high transaction rate per second without having to trade off security. That's where layer 2 solutions shine.
 
 Layer 2 solutions are designed as an extension to Ethereum, offer various solutions poised to be the critical scalability solution to the inherent network congestion on Ethereum. Covering all Layer 2 solutions is beyond the scope of this doc.
 We will go through a brief explainer on rollups in this section.
 
-## optimistic rollups versus zk rollups
+## Optimistic rollups versus zk rollups
 
-There are mainly two types of rollups, zk rollups and optimistic rollups.
+There are mainly two types of rollups, zk rollups and Optimistic rollups.
 
 ### What are zk rollups?
 
-zk rollups ('ZK' standing for zero-knowledge) are a recent development intended to increase the scalability of Ethereum by performing calculations off-chain, rolling many transactions up into a single batch, and sending it to the main Ethereum chain for verification in a single action. 
+zk rollups ('zk' standing for zero-knowledge) are a recent development intended to increase the scalability of Ethereum by performing calculations off-chain, rolling many transactions up into a single batch, and sending it to the main Ethereum chain for verification in a single action. 
 Instead of submitting each transaction separately, zk rollup operators submit a summary of the required changes to represent all transactions in a batch. Additionally, they produce validity proofs to demonstrate the legitimacy of their changes.
 The validity proof uses cryptography to establish that the proposed changes to Ethereum's state are indeed the outcome of completing all of the transactions in the batch.
 On zkSync, this is done via a **SNARK** (succinct non-interactive argument of knowledge), a cryptographic proof that performs the validation of transactions in the batch.
@@ -22,12 +23,12 @@ On zkSync, this is done via a **SNARK** (succinct non-interactive argument of kn
 With zk rollups, funds are locked on a smart contract on the layer 1 blockchain. 
 This allows transactions to be processed without the overhead of all the data typically associated with performing a transaction on the main chain, only requiring a **validity proof** to reach transaction finality. This significantly decreases associated transaction processing times and gas fees.
 
-### What are optimistic rollups?
+### What are Optimistic rollups?
 
-Optimistic rollups, which rely on fraud proofs, are considered “optimistic” because they assume off-chain transactions are valid and don't publish proofs of validity for transaction batches posted on-chain. 
+Optimistic rollups, which rely on fraud proofs, are considered “Optimistic” because they assume off-chain transactions are valid and don't publish proofs of validity for transaction batches posted on-chain. 
 They keep track of their entire history of state roots and the hash of each batch. Anyone who discovers that one batch has an incorrect post-state root can publish proof to the chain, proving that the batch was computed incorrectly.
 The contract verifies the proof and reverts that batch and all batches after it.
-This separates optimistic rollups from zero-knowledge rollups that actually publishing proofs of validity for off-chain transactions.
+This separates Optimistic rollups from zero-knowledge rollups that actually publishing proofs of validity for off-chain transactions.
 
 ## L1 and L2: what's the difference?
 

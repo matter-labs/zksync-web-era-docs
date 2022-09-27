@@ -69,7 +69,6 @@ module.exports = {
             "/dev/developer-guides/contracts/system-contracts.md",
             "/dev/developer-guides/contracts/contracts.md",
             "/dev/developer-guides/contracts/contract-verification.md",
-            "/dev/developer-guides/transactions/account.md",
             "/dev/developer-guides/transactions/transactions.md",
             "/dev/developer-guides/transactions/blocks.md",
             "/dev/developer-guides/transactions/aa.md",
