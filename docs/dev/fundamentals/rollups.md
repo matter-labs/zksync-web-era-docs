@@ -19,7 +19,7 @@ Instead of submitting each transaction separately, zk rollup operators submit a 
 The validity proof uses cryptography to establish that the proposed changes to Ethereum's state are indeed the outcome of completing all of the transactions in the batch.
 On zkSync, this is done via a **SNARK** (succinct non-interactive argument of knowledge), a cryptographic proof that performs the validation of transactions in the batch.
 
-With zk rollups, funds are locked on a smart contract in the layer 1 blockchain. 
+With zk rollups, funds are locked on a smart contract on the layer 1 blockchain. 
 This allows transactions to be processed without the overhead of all the data typically associated with performing a transaction on the main chain, only requiring a **validity proof** to reach transaction finality. This significantly decreases associated transaction processing times and gas fees.
 
 ### What are optimistic rollups?
