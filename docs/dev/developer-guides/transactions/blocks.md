@@ -50,7 +50,7 @@ The user would send a few transactions if there weren't a timeout, but the load 
 
 ### Hashes
 
-You may determine the L2 block's hash by knowing the L2 block number because it is deterministic and equivalent to "keccak256(l2 block number)".
+You may determine the L2 block's hash by knowing the L2 block number because it is deterministic and equivalent to "keccak256(l2_block_number)".
 Every block needs a unique hash, which we mandated for Web3 API compatibility. Additionally, to avoid confusing users, we employ the `keccak hash` function to make hashes appear to be random numbers.
 
 Storage root hash, L1 batch number, and other data are used to determine the hash of the L1 batch. The proofs we supplied to L1 demonstrate that we conduct transactions that cause a state change from the old storage root hash to the committed storage root hash.
