@@ -16,7 +16,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 ### Developer guides
 
 - [Quickstart](./developer-guides/hello-world.md) - Learn how to build a full dApp using the zkSync development toolbox.
-- [Contracts](./developer-guides/contracts/system-contracts.md) - A brief overview of zkSync system contract.
+- [Contracts](./developer-guides/contracts/system-contracts.md) - A brief overview of zkSync system contracts.
   - [Contract deployment](./developer-guides/contracts/contracts.md) - A guide on how to deploy smart contract on zkSync.
   - [Contract verification](./developer-guides/contracts/contract-verification.md) - A guide on how to verify smart contract with zkSync block explorer.
 - [Transactions](./developer-guides/transactions/transactions.md) - A guide on how zkSync handles transactions.
