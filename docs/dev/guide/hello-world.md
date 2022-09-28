@@ -71,11 +71,11 @@ If this contract has already been complied, you should delete the artifact and c
 
 :::
 
-To learn how to verify your smart contrcat using zkSync block explorer, click [here](./contract-verification.md).
+To learn how to verify your smart contract using zkSync block explorer, click [here](./contract-verification.md).
 
-3. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
+1. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
 
-4. Create the `contracts/Greeter.sol` contract and insert the following code there:
+2. Create the `contracts/Greeter.sol` contract and insert the following code there:
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
