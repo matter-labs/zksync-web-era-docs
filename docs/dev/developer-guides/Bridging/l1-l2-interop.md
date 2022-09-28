@@ -4,15 +4,12 @@ While most of the execution will happen on L2, some use-cases require interopera
 
 In addition, the L2 censorship resistance is derived from the underlying chain, so the ability to send messages from Ethereum to zkSync is an important part of the censorship-resistance mechanism called [priority queue](#priority-queue).
 
-## L1 -> L2 communication
-
 Sending transactions from Ethereum to zkSync is done via the zkSync smart contract. It allows the sender to request transactions directly from L1. Thereby allowing permissionless pass of any data from the Ethereum into zkSync.
 [Read more](./l1-l2.md) about l1/l2 communication.
 
 ## Priority queue
 
 The goal of the priority queue is to provide a censorship-resistant way to interact with zkSync in case the operator becomes malicious or unavailable.
-
 The way the priority queue works in zkSync 2.0 is very close to how it works in the previous version of zkSync.
 For the full picture, we first present how priority queue works on zkSync 1.x.
 This gives the rationale for the new design of the priority queue for zkSync 2.0.
@@ -37,7 +34,10 @@ The process described above works well for a system with a small set of relative
 
 Firstly, all transactions need to be supported by the priority queue. Users may have their funds locked on an L2 smart contract, and not on their own L2 account. Therefore before moving their funds to L1, they need to send an `Execute` transaction to zkSync to release the funds from that smart contract first.
 
-Secondly, the priority queue needs to stay censorship-resistant. But imagine what will happen if users start sending a lot of transactions that take the entirety of the block ergs limit? There needs to be a way to prevent spam attacks on the system. That's why submitting transactions to the priority queue is no longer free. Users need to pay a certain fee to the operator for processing their transactions. It is really hard to calculate the accurate fee in a permissionless way. Thus, the fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the users' transaction, while `txBaseCost` is the base cost for the transaction, which depends on its parameters (e.g. `ergs_limit` for `Execute` transaction).
+Secondly, the priority queue needs to stay censorship-resistant. But imagine what will happen if users start sending a lot of transactions that take the entirety of the block ergs limit? There needs to be a way to prevent spam attacks on the system. 
+That's why submitting transactions to the priority queue is no longer free. 
+Users need to pay a certain fee to the operator for processing their transactions. It is really hard to calculate the accurate fee in a permissionless way. 
+Thus, the fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the users' transaction, while `txBaseCost` is the base cost for the transaction, which depends on its parameters (e.g. `ergs_limit` for `Execute` transaction).
 
 Thirdly, the operator can not commit to processing each and every transaction within `X` days. Again, this is needed to prevent spam attacks on the priority queue. We changed this rule to the following one:
 
@@ -53,10 +53,7 @@ If the operator fails to process the needed L1 transactions, the system enters t
 
 To reduce risks, alpha mainnet will start with a mechanism to instantly stop and upgrade the network, which contradicts the purpose of the priority mode. Priority mode will be gradually introduced in the following releases.
 
-## L2 -> L1 communication
-
-L2 -> L1 communication, in contrast to L1 -> L2 communication, is based only on transferring of the information, and not on the transaction execution on L1. It is a built-in feature, which is made up of two parts: sending a message from L2 and reading it on L1. The first is implemented as a call to an L2 system smart contract. And the second is implemented on the zkSync L1 smart contract as a getter function.
-[Read more](./l2-l1.md) about l2/l1 communication.
+The [L2 -> L1 communication](./l2-l1.md), in contrast to L1 -> L2 communication, is based only on transferring of the information, and not on the transaction execution on L1. It is a built-in feature, which is made up of two parts: sending a message from L2 and reading it on L1. The first is implemented as a call to an L2 system smart contract. And the second is implemented on the zkSync L1 smart contract as a getter function.
 
 ### Sending messages
 

@@ -29,13 +29,16 @@ When a user initiates a transaction on Ethereum, some specific data is created;
 
 ### Transaction Types
 
-There are several kinds of transactions on Ethereum:
-
 - Simple or asset transfers: This refers to the regular tokens transfer in the form of ether from one account to another.
 
-- Contract deployment transactions: A contract deployment transaction occurs when a contract is deployed on the Ethereum network. Although this transaction contains the smart contract's bytecode as data, it lacks a receiver (a "to" address).
-- Function Execution transaction: When a contract is deployed on Ethereum, this sort of transaction calls the function of an account. Because the transaction involves a contract account, the recipient's ("to") address becomes a contract address.
-It contains the function name and arguments as data.
+To deploy a contract, a user calls the create function of the ContractDeployer and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the factory_deps field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the factory_deps as well.
+
+- Contract deployment transactions: Contract deployment on zkSync is quite different from Ethereum.
+  - Ethereum: Contract deployment occurs when a user sends a transaction to the zero address `(0x000...000)` with the `data` field of the transaction equal to the contract bytecode concatenated with the constructor parameters.
+  - zkSync: To deploy a contract on zkSync, a user calls the `create` function of the [ContractDeployer](../contracts/system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. 
+  The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. 
+  If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
+  Read more on [contract deployment](../contracts/contracts.md).
 
 ::: tip
 zkSync supports Ethereum's "old" (pre-EIP2718) transaction types, the EIP1559 transaction type, and its EIP712 transactions. Transactions of this type can be used to access zkSync-specific features such as account abstraction. Furthermore, smart contracts can only be deployed with this sort of transaction.
