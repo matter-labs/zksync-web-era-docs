@@ -187,7 +187,7 @@ By default, the page should be running at `http://localhost:8080`. Open this URL
 
 In order to interact with dApps built on zkSync, connect the Metamask wallet to the zkSync alpha testnet network and bridge some funds to L2.
 
-- The [guide](./../fundamentals/testnet.md#connecting-metamask) on connecting to Metamask.
+- The [guide](../fundamentals/testnet.md#connecting-metamask) on connecting to Metamask.
 - Use our [portal](https://portal.zksync.io) to bridge funds to zkSync.
 
 ### Project structure
@@ -447,7 +447,7 @@ The `Refresh` button should be used to recalculate the fee, as the fee may depen
 
 It is possible to also click on the `Change greeting` button, but nothing will be changed as the contract has not been called yet.
 
-![img](./../../assets/images/start-2.png)
+![img](../../assets/images/start-2.png)
 
 ### Updating the greeting
 
@@ -602,19 +602,19 @@ The greeting should now be updatable.
 
 1. Type the new greeting in the input box and click on the `Change greeting` button:
 
-![img](./../../assets/images/start-3.png)
+![img](../../assets/images/start-3.png)
 
 1. Since the `paymasterParams` were supplied, the transaction to be sent is of the `EIP712` type:
 
-![img](./../../assets/images/start-4.png)
+![img](../../assets/images/start-4.png)
 
 1. Click "Sign".
 
 After the transaction is processed, the page updates the balances and the new greeting can be viewed:
 
-![img](./../../assets/images/start-5.png)
+![img](../../assets/images/start-5.png)
 
 ### Learn more
 
-- To learn more about `zksync-web3` SDK, check out its [documentation](./.././../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](./.././../api/hardhat).
+- To learn more about `zksync-web3` SDK, check out its [documentation](../../api/js).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).

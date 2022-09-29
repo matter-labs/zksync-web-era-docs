@@ -2,9 +2,6 @@
 
 Get brief explainers on your integration with zkSync.
 
-
-
-
 ## Table of contents
 
 - [Important links](./troubleshooting/important-links.md)

@@ -61,7 +61,7 @@ Each message sent from L2 to L1 contains the sender's address and the message it
 
 ### Reading messages
 
-Every message sent can be read on-chain. Moreover, it is possible to prove that message has been sent in a specific L2 block. To make such proof as cheap as possible for both the user and the operator, we store all messages, for each L2 block, in a merkle tree. Accordingly, any L1 smart contract can consume the message sent by providing a proof of inclusion in some L2 block. A proof can be generated based only on the data that the operator sent to the zkSync L1 smart contract. The proof can also be obtained via [the API](./../../../api/api.md#zksgetl2tol1msgproof).
+Every message sent can be read on-chain. Moreover, it is possible to prove that message has been sent in a specific L2 block. To make such proof as cheap as possible for both the user and the operator, we store all messages, for each L2 block, in a merkle tree. Accordingly, any L1 smart contract can consume the message sent by providing a proof of inclusion in some L2 block. A proof can be generated based only on the data that the operator sent to the zkSync L1 smart contract. The proof can also be obtained via [the API](../../../api/api.md#zksgetl2tol1msgproof).
 
 ### Summary on L2->L1 messaging
 
