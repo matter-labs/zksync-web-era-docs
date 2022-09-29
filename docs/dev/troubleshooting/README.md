@@ -8,4 +8,3 @@ Get brief explainers on your integration with zkSync.
 - [Important links](./troubleshooting/important-links.md)
 - [Status](./troubleshooting/status.md)
 - [FAQ's](./troubleshooting/faq/known-issues.md)
-

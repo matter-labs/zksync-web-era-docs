@@ -9,8 +9,7 @@ Because the documentation is open sourced, feel free to suggest new topics, add 
 
 If this is your first time using zkSync, we recommend that you kickoff at the beginning and work your way through the documentation like you would with a book.
 
-
-- [Intro to Rollups](./fundamentals/rollups.md) - A brief overview of rollups.
+- [Intro to rollups](./fundamentals/rollups.md) - A brief overview of rollups.
 - [zkSync overview](./fundamentals/zkSync.md) - A quick overview of zkSync technologies.
 - [zkSync testnet](./fundamentals/testnet.md) - A brief intro into zkSync testnest.
  
@@ -41,7 +40,6 @@ If this is your first time using zkSync, we recommend that you kickoff at the be
 - Block explorer - Search for real-time and historical information about blocks, transactions, addresses, and more on zkSync.
 
 [Explorer](https://zksync2-testnet.zkscan.io)
-
 
 ### Examples and tutorials
 

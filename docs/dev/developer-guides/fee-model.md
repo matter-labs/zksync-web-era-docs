@@ -21,7 +21,7 @@ As part of the zkRollup security model, zkSync periodically publishes state diff
 
 ### What does this mean to me?
 
-Despite the differences, the fee model is quite similar to the one of Ethereum; the most costly operation is storage change. One of the advantages of zk rollups over optimistic Rollups is that, instead of publishing all the transaction data, zk rollups can publish only state diffs, thus making less storage changes.
+Despite the differences, the fee model is quite similar to the one of Ethereum; the most costly operation is storage change. One of the advantages of zk rollups over optimistic rollups is that, instead of publishing all the transaction data, zk rollups can publish only state diffs, thus making less storage changes.
 
 As already stated, if the same storage slot is updated several times in a single block, only the last update will be published on Ethereum, and the cost of storage change will only be charged once; but it goes beyond simple storage slots. For example, a DEX and a `PairFactory` factory for different `Pair` pools. The contract bytecode of `Pair` needs to be published only when the first instance is deployed. After the code of the `Pair` was published once, the subsequent deployments will only involve changing one storage slot -- to set the contract code hash on the newly deployed `Pair`'s address.
 
@@ -31,4 +31,3 @@ So the tips to make the most out of the zkSync fee system are the following:
 - **Reuse as many storage slots as possible.** Only the state diff is published on Ethereum.
 - **Users should share as many storage slots as possible.** If 100 users update a storage slot of your contract in a single block, the diff will be published only once. In the future, we will introduce reimbursement for the users, so that the costs for updating shared storage slots are split between the users.
 - **Reuse contract code if possible.** On Ethereum, avoiding constructor parameters and putting them into constants reduces some of the gas cost upon contract deployment. On zkSync the opposite is true: deploying the same bytecode for contracts, while changing only constructor parameters can lead to substantial fee savings.
-

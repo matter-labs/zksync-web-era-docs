@@ -1,16 +1,16 @@
 # Tutorial: Account abstraction
 
-Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](./../developer-guides/contracts/system-contracts.md#contractdeployer) system contract.
+Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../developer-guides/contracts/system-contracts.md#contractdeployer) system contract.
 
 In this tutorial we build a factory that deploys 2-of-2 multisig accounts.
 
 ## Preliminaries
 
-It is highly recommended to read about the [design](./../developer-guides/transactions/aa.md) of the account abstraction protocol before diving into this tutorial.
+It is highly recommended to read about the [design](../developer-guides/transactions/aa.md) of the account abstraction protocol before diving into this tutorial.
 
 It is assumed that you are already familiar with deploying smart contracts on zkSync. 
-If not, please refer to the first section of the [Hello World](./../developer-guides/hello-world.md) tutorial. 
-It is also recommended to read the [introduction](./../developer-guides/contracts/system-contracts.md) to the system contracts.
+If not, please refer to the first section of the [Hello World](../developer-guides/hello-world.md) tutorial. 
+It is also recommended to read the [introduction](../developer-guides/contracts/system-contracts.md) to the system contracts.
 
 ## Installing dependencies
 
@@ -98,7 +98,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 }
 ```
 
-Note, that only the [bootloader](./../developer-guides/contracts/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prePaymaster` methods. 
+Note, that only the [bootloader](../developer-guides/contracts/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prePaymaster` methods. 
 That's why the `onlyBootloader` modifier is used for them.
 
 The `executeTransactionFromOutside` is needed to allow external users to initiate transactions from this account. The easiest way to implement it is to do the same as `validateTransaction` + `executeTransaction` would do.
@@ -145,11 +145,11 @@ function isValidSignature(bytes32 _hash, bytes calldata _signature) public overr
 
 ### Transaction validation
 
-Let's implement the validation process. It is responsible for validating the signature of the transaction and incrementing the nonce. Note, that there are some limitations on what this method is allowed to do. You can read more about them [here](./../developer-guides/transactions/aa.md#limitations-of-the-verification-step).
+Let's implement the validation process. It is responsible for validating the signature of the transaction and incrementing the nonce. Note, that there are some limitations on what this method is allowed to do. You can read more about them [here](../developer-guides/transactions/aa.md#limitations-of-the-verification-step).
 
 To increment the nonce, you should use the `incrementNonceIfEquals` method of the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether the nonce is the same as the provided one. If not, the transaction reverts. Otherwise, the nonce is increased.
 
-Even though the requirements above allow the accounts to touch only their storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](./../developer-guides/transactions/aa.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happened to be in another contract. To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, you should add the following import:
+Even though the requirements above allow the accounts to touch only their storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../developer-guides/transactions/aa.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happened to be in another contract. To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, you should add the following import:
 
 ```solidity
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
@@ -189,7 +189,7 @@ function payForTransaction(Transaction calldata _transaction) external payable o
 
 ### Implementing `prePaymaster`
 
-While generally the account abstraction protocol enables performing arbitrary actions when interacting with the paymasters, there are some [common patterns](./../developer-guides/transactions/aa.md#built-in-paymaster-flows) with the built-in support from EOAs.
+While generally the account abstraction protocol enables performing arbitrary actions when interacting with the paymasters, there are some [common patterns](../developer-guides/transactions/aa.md#built-in-paymaster-flows) with the built-in support from EOAs.
  Unless you want to implement or restrict some specific paymaster use-cases from your account, it is better to keep it consistent with EOAs. The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processed the `prePaymaster` step the same as EOA does.
 
 ```solidity
@@ -641,6 +641,6 @@ You can download the complete project [here](https://github.com/matter-labs/cust
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](./../developer-guides/Bridging/l1-l2.md).
-- To learn more about the `zksync-web3` SDK, check out its [documentation](./../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](./../../api/hardhat).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/Bridging/l1-l2.md).
+- To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).

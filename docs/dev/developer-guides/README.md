@@ -15,4 +15,3 @@ Take a deeper dive into zkSync ecosystem.
 - [L1 / L2 Interoperability](./developer-guides/bridging/l1-l2-interop.md)
 - [L1 / L2 communication](./developer-guides/bridging/l1-l2.md)
 - [L2 / L1 communication](./developer-guides/bridging/l2-l1.md)
-

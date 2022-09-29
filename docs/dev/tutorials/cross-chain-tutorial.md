@@ -7,7 +7,7 @@ This tutorial serves as an example of how to implement L1 to L2 contract interac
 
 ## Preliminaries
 
-In this tutorial it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](./../developer-guides/hello-world.md) tutorial.
+In this tutorial it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](../developer-guides/hello-world.md) tutorial.
 
 It is also assumed that you already have some experience working with Ethereum.
 
@@ -113,7 +113,7 @@ contract Counter {
 ```
 
 The details of the process of deploying smart contracts on zkSync will not be explained in this tutorial. 
-If you are new to it, check out the [hello world](./../developer-guides/hello-world.md) tutorial or the documentation for the [hardhat plugins](./../../api/hardhat/getting-started.md) for zkSync.
+If you are new to it, check out the [hello world](../developer-guides/hello-world.md) tutorial or the documentation for the [hardhat plugins](../../api/hardhat/getting-started.md) for zkSync.
 
 1. Set up the project and install the dependencies
 
@@ -344,7 +344,7 @@ async function main() {
 
 6. Executing transactions from L1 requires the caller to pay some fee to the L2 operator.
 
-Firstly, the fee depends on the length of the calldata and the `ergsLimit`. If you are new to this concept then it is pretty much the same as the `gasLimit` on Ethereum. You can read more about zkSync fee model [here](./../developer-guides/fee-model.md).
+Firstly, the fee depends on the length of the calldata and the `ergsLimit`. If you are new to this concept then it is pretty much the same as the `gasLimit` on Ethereum. You can read more about zkSync fee model [here](../developer-guides/fee-model.md).
 
 Secondly, the fee depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched explicitly and use the obtained value.
 
@@ -519,5 +519,5 @@ You can download the complete project [here](https://github.com/matter-labs/cros
 ## Learn more
 
 - To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/Bridging/l1-l2.md).
-- To learn more about the `zksync-web3` SDK, check out its [documentation](./../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](./../../api/hardhat).
+- To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).

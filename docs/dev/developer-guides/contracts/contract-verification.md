@@ -37,7 +37,7 @@ You can verify your contract so that zkSync can convert it all into a format tha
 
 To get started click the **Tools** tab in the top header, a dropdown will pop up and select **Smart Contract Verification**,  after which you will be shown the following screen:
 
-![Smart Contract Verification page!](./../../../assets/images/verify-contract.png "verify contract")
+![Smart Contract Verification page!](../../../assets/images/verify-contract.png "verify contract")
 
 
 
@@ -52,7 +52,7 @@ To verify the contract, enter the following details;
   
 <br>
 
-![Compiler version!](./../../../assets/images/compiler-version.png "compiler version")
+![Compiler version!](../../../assets/images/compiler-version.png "compiler version")
 
 - Enter the Solidity Contract code: Copy the code from your editor and paste in the text area.
 <br>
@@ -90,7 +90,7 @@ If all goes well, you will see a success message.
 
 <br>
 
-![Smart Contract Verified!](./../../../assets/images/contract-verified.png "Contract Verified")
+![Smart Contract Verified!](../../../assets/images/contract-verified.png "Contract Verified")
 
 
 

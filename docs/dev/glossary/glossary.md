@@ -4,11 +4,11 @@ This section contains a comprehensive list of terms associated to zkSync and it'
 
 ## A
 
-### Account
+### account
 
 An object containing an address, balance, nonce, and optional storage and code. An account can be a contract account or an externally owned account (EOA).
 
-### Application Programming Interface (API)
+### application programming interface (API)
 
 An Application Programming Interface (API) is a set of definitions for how to use a piece of software. An API sits between an application and a web server, and facilitates the transfer of data between them.
 
@@ -16,7 +16,7 @@ An Application Programming Interface (API) is a set of definitions for how to us
 
 ## B
 
-### Blocks
+### blocks
 
 A block is a bundled unit of information that include an ordered list of transactions and consensus-related information. 
 
@@ -35,13 +35,13 @@ A dapp is a web application that is built on top of open, decentralized, peer-to
 
 ## E
 
-### Ether
+### ether
 
 The native cryptocurrency used by the Ethereum ecosystem, which covers gas costs when executing transactions.
 
 ## F
 
-### Finality
+### finality
 
 Finality is the guarantee that a set of transactions before a given time will not change and can't be reverted.
 
@@ -63,7 +63,7 @@ A fixed-length fingerprint of variable-size input, produced by a hash function.
 
 ## I
 
-### Internal transaction
+### internal transaction
 
 A transaction sent from a contract account to another contract account.
 
@@ -75,7 +75,7 @@ Cryptographic hash function used in Ethereum. Keccak-256 was standardized as SHA
 
 ## L
 
-### Layer 2
+### layer 2
 
 An overlaying application or network that operates on top of Ethereum protocol. 
 
@@ -95,9 +95,9 @@ Mainnet is blockchain protocol that is fully developed and deployed, with real v
 
 A random number used once to iterate the output hash calculations.
 
-## O
+<!-- ## O
 
-## P
+## P -->
 
 ### private chain
 
