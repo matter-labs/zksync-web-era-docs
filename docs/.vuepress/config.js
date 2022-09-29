@@ -84,6 +84,7 @@ module.exports = {
           collapsable: false,
           children: [
             "/dev/troubleshooting/important-links.md",
+            "/dev/troubleshooting/status.md",
             "/dev/troubleshooting/faq/known-issues.md",
             "/dev/glossary/edit-doc.md",
             "/dev/glossary/glossary.md",

@@ -3,14 +3,14 @@
 This documentation is intended to assist you in developing on zkSync. 
 It introduces the concept of zkSync, describes the zkSync network stack, and some advanced subjects for complex applications and use cases.
 
-Because the documentation is open sourced, feel free to suggest new topics, add new content, and provide examples wherever you believe they will be useful. If you're unsure how to proceed, [follow these instructions](./glossary/edit-doc.md).
+Because the documentation is open-sourced, feel free to suggest new topics, add new content, and provide examples wherever you believe they will be useful. If you're unsure how to proceed, [follow these instructions](./glossary/edit-doc.md).
 
 ## Fundamental topics
 
-If this is your first time using zkSync, we recommend that you kickoff at the beginning and work your way through the documentation like you would with a book.
+If this is your first time using zkSync, we recommend that you kick off at the beginning and work your way through the documentation like you would with a book.
 
 - [Intro to rollups](./fundamentals/rollups.md) - A brief overview of rollups.
-- [zkSync overview](./fundamentals/zkSync.md) - A quick overview of zkSync technologies.
+- [zkSync Overview](./fundamentals/zkSync.md) - A quick overview of zkSync technologies.
 - [zkSync testnet](./fundamentals/testnet.md) - A brief intro into zkSync testnest.
  
 ### Developer guides
@@ -27,11 +27,11 @@ If this is your first time using zkSync, we recommend that you kickoff at the be
   - [L1 / L2 Interoperability](./developer-guides/bridging/l1-l2-interop.md) - A quick brief on data communication between l1 and l2.
     - [L1 / L2 communication](./developer-guides/bridging/l1-l2.md) - Learn how to send data from Ethereum to zkSync.
     - [L2 / L1 communication](./developer-guides/bridging/l2-l1.md) - Learn how to send data from zkSync to Ethereum.
-- [Troubleshooting](./troubleshooting/important-links.md) - Get quick reference to important links and report known issues to us here.
+- [Troubleshooting](./troubleshooting/important-links.md) - Get a quick reference to important links and report known issues to us here.
   - [Status](./troubleshooting/status.md) - Get updates on things we are currently working on.
-  - [FAQ's](./troubleshooting/faq/known-issues.md) - Get answers to your frequently asked questions.
+  - [FAQs](./troubleshooting/faq/known-issues.md) - Get answers to your frequently asked questions.
 
-- [Glossary](./glossary/glossary.md) - An alphabetical list of words relating to zkSync and it's ecosystem.
+- [Glossary](./glossary/glossary.md) - An alphabetical list of words relating to zkSync and its ecosystem.
 
 ### Developer Tools
 
