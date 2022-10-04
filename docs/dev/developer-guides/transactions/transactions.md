@@ -4,7 +4,6 @@ Transactions in Ethereum are cryptographically signed instructions by an externa
 
 The state of the Ethereum virtual machine (EVM) changes when a transaction is initiated. A transaction can be anything from sending ether to another account to invoking the functions of a smart contract.
 
-
 ## Prerequisite
 
 We recommend you first read [accounts](https://ethereum.org/en/developers/docs/accounts/) to understand this page.

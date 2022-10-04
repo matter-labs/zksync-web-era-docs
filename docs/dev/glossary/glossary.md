@@ -35,13 +35,21 @@ A dapp is a web application that is built on top of open, decentralized, peer-to
 
 ## E
 
+<<<<<<< HEAD
 ### ether
+=======
+### Ether
+>>>>>>> 5ca676d (update glossary contents)
 
 The native cryptocurrency used by the Ethereum ecosystem, which covers gas costs when executing transactions.
 
 ## F
 
+<<<<<<< HEAD
 ### finality
+=======
+### Finality
+>>>>>>> 5ca676d (update glossary contents)
 
 Finality is the guarantee that a set of transactions before a given time will not change and can't be reverted.
 
@@ -63,7 +71,11 @@ A fixed-length fingerprint of variable-size input, produced by a hash function.
 
 ## I
 
+<<<<<<< HEAD
 ### internal transaction
+=======
+### Internal transaction
+>>>>>>> 5ca676d (update glossary contents)
 
 A transaction sent from a contract account to another contract account.
 
@@ -75,7 +87,11 @@ Cryptographic hash function used in Ethereum. Keccak-256 was standardized as SHA
 
 ## L
 
+<<<<<<< HEAD
 ### layer 2
+=======
+### Layer 2
+>>>>>>> 5ca676d (update glossary contents)
 
 An overlaying application or network that operates on top of Ethereum protocol. 
 
@@ -92,15 +108,27 @@ Mainnet is blockchain protocol that is fully developed and deployed, with real v
 ## N
 
 ### nonce
+<<<<<<< HEAD
+=======
 
 A random number used once to iterate the output hash calculations.
 
+## O
+>>>>>>> 5ca676d (update glossary contents)
+
+A random number used once to iterate the output hash calculations.
+
+<<<<<<< HEAD
 <!-- ## O
 
 ## P -->
 
 ### private chain
 
+=======
+### private chain
+
+>>>>>>> 5ca676d (update glossary contents)
 A fully private blockchain is one with authorized access, not publicly available for use.
 
 ## S
@@ -109,6 +137,10 @@ A fully private blockchain is one with authorized access, not publicly available
 
 Demonstrating cryptographically that a transaction was approved by the holder of a specific private key.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ca676d (update glossary contents)
 ## T
 
 ### testnet

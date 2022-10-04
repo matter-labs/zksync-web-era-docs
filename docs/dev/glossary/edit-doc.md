@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Contribute to documentation
+=======
+# Contribute to documentation (Markdown Files)
+>>>>>>> 5ca676d (update glossary contents)
 
 - On docs homepage, click on `Edit Page`
 - You need to be signed in to GitHub
