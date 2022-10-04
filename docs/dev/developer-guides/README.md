@@ -1,6 +1,6 @@
 # Developer guides
 
-Take a deeper dive into zkSync ecosystem.
+Take a deeper dive into the zkSync ecosystem.
 
 ## Table of contents
 

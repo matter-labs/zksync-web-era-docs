@@ -1,6 +1,6 @@
 # Foundational topics
 
-Learn the basics of zkSync and it's ecosystem.
+Learn the basics of zkSync and its ecosystem.
 
 
 ## Table of contents

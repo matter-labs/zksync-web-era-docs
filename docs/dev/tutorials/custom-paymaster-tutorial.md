@@ -133,7 +133,7 @@ require(success, "Failed to transfer funds to the bootloader");
 
 The [rules](../developer-guides/transactions/aa.md#paymaster-validation-rules) for the paymaster throttling say that the paymaster won't be throttled if the first storage read the value of which differed from the execution on the API was a storage slot that belonged to the user.
 
-That is why it is important to verify that the user provided all the allowed prerequisites to the transaction *before* performing any logic. This is the reason we *first* check that the user provided enough allowance, and only then we do `transferFrom`.
+That is why it is important to verify that the user provided all the allowed prerequisites to the transaction *before* performing any logic. This is the reason we *first* check that the user provided enough allowance, and only then do we do `transferFrom`.
 
 :::
 
@@ -377,7 +377,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-After filling in the parameters `PAYMASTER_ADDRESS`,`TOKEN_ADDRESS` and `EMPTY_WALLET_PRIVATE_KEY` with the output provided in the previous step, run this script with the following command:
+After filling in the parameters `PAYMASTER_ADDRESS`, `TOKEN_ADDRESS` and `EMPTY_WALLET_PRIVATE_KEY` with the output provided in the previous step, run this script with the following command:
 
 ```
 yarn hardhat deploy-zksync --script use-paymaster.ts

@@ -12,7 +12,7 @@ If any of these block you, let us know on our [discord](https://discord.gg/px2aR
 
 If a Solidity library can be inlined, i.e. it only contains `private` or `internal` methods, then this library can be used without any limitations.
 
-However, if a library contains at least one `public` or `external` method, it is no longer inlined in the Yul representation. These addresses need to be passed explicitly to our compiler. This is not currently supported by our hardhat plugin, but will be added later.
+However, if a library contains at least one `public` or `external` method, it is no longer inlined in the Yul representation. These addresses need to be passed explicitly to our compiler. This is not currently supported by our hardhat plugin but will be added later.
 
 ## Unsupported opcodes
 
@@ -30,7 +30,7 @@ These opcodes will be supported by the time of the mainnet launch.
 
 ## Ignored by the compiler
 
-- `PC` always returns `0` (since solidity 0.7.0, it is not accessible in Yul and Solidity).
+- `PC` always returns `0` (since solidity is 0.7.0, it is not accessible in Yul and Solidity).
 
 ## Precompiles
 
@@ -38,7 +38,7 @@ These opcodes will be supported by the time of the mainnet launch.
 
 ## Currently supported features
 
-- **Native support of ECDSA signatures.** Unlike the first version of zkSync and most of zk rollups, no special operation is required to register the user's private key. Any account can be managed on L2 with the same private key that is used on L1.
+- **Native support of ECDSA signatures.** Unlike the first version of zkSync and most zk rollups, no special operation is required to register the user's private key. Any account can be managed on L2 with the same private key that is used on L1.
 - **Solidity 0.8.x and Vyper support.** No need for change or re-audit of the codebase.
 - **Web3 API**. With small exceptions, our API is fully compatible with Ethereum. This enables seamless integration with existing indexers, explorers, etc.
 - **Support for Ethereum cryptographic primitives**. zkSync natively supports `keccak256`, `sha256`, and `ecrecover` via precompiles.

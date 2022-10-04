@@ -7,7 +7,7 @@ Welcome to zkSync 2.0 testnet! Our team would be very happy to see what you can 
 Note, that the system is still in active development, so:
 
 - **Breaking changes are possible in the future.**
-- **Some of the updates may require regenesis**, i.e. erasing all the balances, smart contracts, and restarting the blockchain. We will make sure to communicate all regenesis beforehand! Make sure to follow our [Discord](https://discord.gg/px2aR7w).
+- **Some of the updates may require regenesis**, i.e. erasing all the balances, and smart contracts, and restarting the blockchain. We will make sure to communicate all regenesis beforehand! Make sure to follow our [Discord](https://discord.gg/px2aR7w).
 
 :::
 
@@ -34,7 +34,7 @@ The only other place where using zkSync SDK is required is during contract deplo
 Check out our step-by-step [tutorial](../developer-guides/hello-world.md), where you will learn:
 
 - How to install zkSync hardhat plugin and deploy smart contracts with it.
-- How to build front-end for your dApp using `zksync-web3` library.
+- How to build front-end for your dApp using the `zksync-web3` library.
 
 ## Connecting Metamask
 

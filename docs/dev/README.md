@@ -20,7 +20,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
   - [Contract deployment](./developer-guides/contracts/contracts.md) - A guide on how to deploy smart contracts on zkSync.
   - [Contract verification](./developer-guides/contracts/contract-verification.md) - A guide on how to verify smart contracts with zkSync block explorer.
 - [Transactions](./developer-guides/transactions/transactions.md) - A guide on how zkSync handles transactions.
-  - [Account abstraction](./developer-guides/transactions/aa.md) - Learn how zkSync platform handles transactions.
+  - [Account abstraction](./developer-guides/transactions/aa.md) - Learn how the zkSync platform handles transactions.
   - [Blocks](./developer-guides/transactions/blocks.md) - Learn how blocks work on zkSync.
 - [Fee mechanism](./developer-guides/fee-model.md) - A quick overview of the zkSync fee structure.
 - [bridging of funds](./developer-guides/bridging/bridging-asset.md) - A brief intro on token bridging.
@@ -28,10 +28,10 @@ If this is your first time using zkSync, we recommend that you kick off at the b
     - [L1 / L2 communication](./developer-guides/bridging/l1-l2.md) - Learn how to send data from Ethereum to zkSync.
     - [L2 / L1 communication](./developer-guides/bridging/l2-l1.md) - Learn how to send data from zkSync to Ethereum.
 - [Troubleshooting](./troubleshooting/reporting-issues.md) - Report known issues to us here.
-  - [Important links](./troubleshooting/important-links.md) - Get quick reference to important links.
+  - [Important links](./troubleshooting/important-links.md) - Get a quick reference to important links.
   - [Temporary limitations](./troubleshooting/temp-limits.md)
   - [Status](./troubleshooting/status.md) - Get updates on things we are currently working on.
-  - [FAQ's](./troubleshooting/faq/known-issues.md) - Get answers to your frequently asked questions
+  - [FAQ](./troubleshooting/faq/known-issues.md) - Get answers to your frequently asked questions
 
 - [Glossary](./glossary/glossary.md) - An alphabetical list of words relating to zkSync and its ecosystem.
 

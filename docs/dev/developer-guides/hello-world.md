@@ -7,7 +7,7 @@ The following functionality will be implemented:
 - There will be a greeting stored on a smart contract on zkSync.
 - The user will be able to get the greeting after the dApp page is loaded.
 - The user will be able to change the greeting on the smart contract.
-- The user will be able to select the token that they want to pay the fee with. By default, the tutorial supports only a single token: ether. An example on how to pay fees with ERC20 tokens will be shown in the [paying fees using testnet paymaster](#paying-fees-using-testnet-paymaster). If you decide to build a project on mainnet, you should read the documentation for the [paymaster](./transactions/aa.md#paymasters) you are going to use.
+- The user will be able to select the token that they want to pay the fee with. By default, the tutorial supports only a single token: ether. An example of how to pay fees with ERC20 tokens will be shown in the [paying fees using testnet paymaster](#paying-fees-using-testnet-paymaster). If you decide to build a project on mainnet, you should read the documentation for the [paymaster](./transactions/aa.md#paymasters) you are going to use.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ For this tutorial, the following programs must be installed:
 - `Docker` for compilation.
 - A wallet with sufficient Görli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Some ERC20 tokens on zkSync are required for the testnet paymaster tutorial.
 
-## Initializing the project & deploying smart contract
+## Initializing the project & deploying a smart contract
 
 1. Initialize the project and install the dependencies. Run the following commands in the terminal:
 
@@ -67,7 +67,7 @@ module.exports = {
 
 ::: warning Tip
 
-If this contract has already been complied, you should delete the artifact and cached folders, otherwise it won't recompile with this compiler version.
+If this contract has already complied, you should delete the artifact and cached folders, otherwise, it won't recompile with this compiler version.
 
 :::
 
@@ -340,7 +340,7 @@ const GREETER_CONTRACT_ABI = require("./abi.json");
 In this method we should:
 
 - Initialize `Web3Provider` and `Signer` objects for interacting with zkSync.
-- Initialize `Contract` object to interact with the `Greeter` contract.
+- Initialize the `Contract` object to interact with the `Greeter` contract.
 
 2. Add the necessary dependencies:
 
@@ -365,7 +365,7 @@ initializeProviderAndSigner() {
 
 ### Retrieving the greeting
 
-1. Fill in the method retrieving the greeting from smart contract:
+1. Fill in the method retrieving the greeting from the smart contract:
 
 ```javascript
 async getGreeting() {
@@ -438,11 +438,11 @@ async getFee() {
 
 ::: tip Paying fees in ERC20
 
-zkSync 2.0 does not natively support paying fees in ERC20 tokens, as the account abstraction feature facilitates that. An example on how to use the testnet paymaster will be provided in this tutorial below. However, when working on mainnet, you should either provide the paymaster services [yourself](./custom-paymaster-tutorial.md) or use a 3rd party paymaster. 
+zkSync 2.0 does not natively support paying fees in ERC20 tokens, as the account abstraction feature facilitates that. An example of how to use the testnet paymaster will be provided in this tutorial below. However, when working on mainnet, you should either provide the paymaster services [yourself](./custom-paymaster-tutorial.md) or use a 3rd party paymaster. 
 
 :::
 
-When opening the page and select the token to pay fee with, the balance and the expected fee for the transaction will be available.
+When opening the page and selecting the token to pay the fee, the balance and the expected fee for the transaction will be available.
 
 The `Refresh` button should be used to recalculate the fee, as the fee may depend on the length of the string to be set.
 
@@ -498,7 +498,7 @@ async changeGreeting() {
 },
 ```
 
-You now have a fully functioal Greeter-dApp! However, it does not leverage any zkSync-specific features.
+You now have a fully functional Greeter-dApp! However, it does not leverage any zkSync-specific features.
 
 ### Paying fees using testnet paymaster
 
@@ -585,7 +585,7 @@ async getOverrides() {
 }
 ```
 
-4. Use a list of ERC20s tokens. Change the following line:
+4. Use a list of ERC20 tokens. Change the following line:
 
 ```javascript
 const allowedTokens = require("./eth.json");

@@ -1,8 +1,7 @@
 # Tutorial: Account abstraction
 
 Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../developer-guides/contracts/system-contracts.md#contractdeployer) system contract.
-
-In this tutorial we build a factory that deploys 2-of-2 multisig accounts.
+In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 
 ## Prerequisite
 
@@ -105,7 +104,7 @@ The `executeTransactionFromOutside` is needed to allow external users to initiat
 
 ### Signature validation
 
-Firstly, we need to implement the signature validation process. Since we are building a two-account multisig, let's pass its owners' addresses in the constructor. In this tutorial, we use the OpenZeppelin's `ECDSA` library for signature validation.
+Firstly, we need to implement the signature validation process. Since we are building a two-account multisig, let's pass its owners' addresses in the constructor. In this tutorial, we use OpenZeppelin's `ECDSA` library for signature validation.
 
 Add the following import:
 
@@ -155,7 +154,7 @@ Even though the requirements above allow the accounts to touch only their storag
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
 ```
 
-The `TransactionHelper` library (already imported in the example above) can be used to get the hash of the transaction that should be signed. You can also implement your own signature scheme and use a different commitment for the transaction to sign, but in this example we use the hash provided by this library.
+The `TransactionHelper` library (already imported in the example above) can be used to get the hash of the transaction that should be signed. You can also implement your own signature scheme and use a different commitment for the transaction to sign, but in this example, we use the hash provided by this library.
 
 Using the `TransactionHelper` library:
 
@@ -190,7 +189,7 @@ function payForTransaction(Transaction calldata _transaction) external payable o
 ### Implementing `prePaymaster`
 
 While generally the account abstraction protocol enables performing arbitrary actions when interacting with the paymasters, there are some [common patterns](../developer-guides/transactions/aa.md#built-in-paymaster-flows) with the built-in support from EOAs.
- Unless you want to implement or restrict some specific paymaster use-cases from your account, it is better to keep it consistent with EOAs. The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processed the `prePaymaster` step the same as EOA does.
+ Unless you want to implement or restrict some specific paymaster use cases from your account, it is better to keep it consistent with EOAs. The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processed the `prePaymaster` step the same as EOA does.
 
 ```solidity
 function prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
@@ -350,7 +349,7 @@ contract AAFactory {
 }
 ```
 
-Note, that on zkSync, the deployment is not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via `factoryDeps` field. Note, that the `_aaBytecodeHash` must be formed in a special way:
+Note, that on zkSync, the deployment is not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via `factoryDeps` field. Note, that the `_aaBytecodeHash` must be formed specially:
 
 - Firstly, it is hashed with sha256.
 - Then, the first two bytes are replaced with the length of the bytecode in 32-byte words.
@@ -415,11 +414,10 @@ Note that the address will be different for each run.
 
 ### Deploying an account
 
-Now, let's deploy an account and initiate a new transaction with it. In this section we assume that you already have an EOA account with enough funds on zkSync.
+Now, let's deploy an account and initiate a new transaction with it. In this section, we assume that you already have an EOA account with enough funds on zkSync.
+In the `deploy`, folder creates a file `deploy-multisig.ts`, where we will put the script.
 
-In the `deploy` folder create a file `deploy-multisig.ts`, where we will put the script.
-
-Firstly, let's deploy the AA. This will be basically a call to the `deployAccount` function:
+Firstly, let's deploy the AA. This will be a call to the `deployAccount` function:
 
 ```ts
 import { utils, Wallet, Provider, EIP712Signer, types } from "zksync-web3";
@@ -480,7 +478,7 @@ Now, as an example, let's try to deploy a new multisig, but the initiator of the
 let aaTx = await aaFactory.populateTransaction.deployAccount(salt, Wallet.createRandom().address, Wallet.createRandom().address);
 ```
 
-Then, we need to fill all the transaction's fields:
+Then, we need to fill all the transaction fields:
 
 ```ts
 const gasLimit = await provider.estimateGas(aaTx);
@@ -504,7 +502,7 @@ aaTx = {
 
 ::: tip Note on gasLimit
 
-Currently, we expect the `gasLimit` to cover both the verification and the execution steps. Currently, the number of ergs that is returned by the `estimateGas` is `execution_ergs + 20000`, where `20000` is roughly equals to the overhead needed for the defaultAA to have both fee charged and the signature verified. In case your AA has very expensive verification step, you should add some constant to the `gasLimit`.
+Currently, we expect the `gasLimit` to cover both the verification and the execution steps. Currently, the number of ergs that is returned by the `estimateGas` is `execution_ergs + 20000`, where `20000` is roughly equal to the overhead needed for the defaultAA to have both fee charged and the signature verified. In case your AA has a very expensive verification step, you should add some constant to the `gasLimit`.
 
 :::
 

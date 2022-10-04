@@ -4,7 +4,7 @@
 
 When you deploy a smart contract on a network, you’re essentially deploying the bytecode produced by the Solidity compiler.
 
-Verifying a contract entails determining whether the on-chain bytecode generated from the Smart Contract source code complies. If it does, we can state that we have confirmed the bytecode's source code's integrity. Hence the name – verification.
+Verifying a contract entails determining whether the on-chain bytecode generated from the Smart Contract source code compiles. If it does, we can state that we have confirmed the bytecode's source code's integrity. Hence the name – verification.
 
 
 ## How are smart contracts verified in zkSync?
@@ -27,7 +27,7 @@ Code verification requires six arguments:
 
 ## Source code privacy
 
-When your smart contract is deployed on zkSync and verified on the block explorer, users are able to check the verified source code and interact with it.
+When your smart contract is deployed on zkSync and verified on the block explorer, users can check the verified source code and interact with it.
 
 
 
@@ -43,7 +43,7 @@ To get started click the **Tools** tab in the top header, a dropdown will pop up
 
 To verify the contract, enter the following details;
 
-- Contract address: The address provided must match with `0x` address supplied during contract creation.
+- Contract address: The address provided must match with the `0x` address supplied during contract creation.
 - Contract name: The name must be identical to the name provided in the contract.
 - Optimization: This checks whether or not optimization was used while compiling the contract, If you enabled optimization during compilation, check **Yes** otherwise select **No**
 - Compiler version: This specifies the exact version of the compiler used to compile a smart contract. Click on the dropdown to specify the compiler version used.
@@ -52,14 +52,14 @@ To verify the contract, enter the following details;
 
 ![Compiler version!](../../../assets/images/compiler-version.png "compiler version")
 
-- Enter the Solidity Contract code: Copy the code from your editor and paste in the text area.
+- Enter the Solidity Contract code: Copy the code from your editor and paste it into the text area.
 <br>
 **Note:** You may need to flatten your Solidity code if it utilizes a library or inherits dependencies from another contract. 
 <br> 
 We recommend using the [truffle flattener](https://github.com/NomicFoundation/truffle-flattener) or the [POA Solidity flattener](https://github.com/poanetwork/solidity-flattener).
 
 
-- Constructor arguments: If constructor arguments are required by the contract, you should add them here, but in [ABI hex encoded form](https://solidity.readthedocs.io/en/develop/abi-spec.html).
+- Constructor arguments: If constructor arguments are required by the contract, you should add them here, but in [ABI hex-encoded form](https://solidity.readthedocs.io/en/develop/abi-spec.html).
   
 <br>
 
@@ -67,7 +67,7 @@ We recommend using the [truffle flattener](https://github.com/NomicFoundation/tr
 
 > **Note:** The easiest way to get the constructor argument data is to print it to the console while deploying.
 
-For example, if using our [tutorial](../hello-world.md), you can find line:
+For example, if using our [tutorial](../hello-world.md), you can find the line:
 
 ```js
 const greeterContract = await deployer.deploy(artifact, [greeting]);

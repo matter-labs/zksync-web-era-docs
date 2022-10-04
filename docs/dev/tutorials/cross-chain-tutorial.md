@@ -6,8 +6,7 @@ This tutorial serves as an example of how to implement L1 to L2 contract interac
 - A governance smart contract is deployed on layer 1, which has the privilege to increment a counter on zkSync.
 
 ## Preliminaries
-
-In this tutorial it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](../developer-guides/hello-world.md) tutorial.
+In this tutorial, it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](../developer-guides/hello-world.md) tutorial.
 
 It is also assumed that you already have some experience working with Ethereum.
 
@@ -88,7 +87,7 @@ The last command will output the deployed governance smart contract address.
 
 ## L2 counter
 
-Now that we have the L1 governance contract address, let's proceed with deploying the counter contract on L2.
+Now that we have the L1 governance contract addressed, let's proceed with deploying the counter contract on L2.
 
 The counter contract consists of the following code:
 
@@ -295,7 +294,7 @@ main().catch((error) => {
 });
 ```
 
-4. To interact with the governance smart contract, Ethereum provider and the corresponding `ethers` `Contract` object are needed:
+4. To interact with the governance smart contract, the Ethereum provider and the corresponding `ethers` `Contract` object are needed:
 
 ```ts
 // Imports
@@ -379,7 +378,7 @@ async function main() {
 
 You may have noticed the lack of the `ergs_per_pubdata` and `ergs_per_storage` fields in the L1->L2 transactions. These are surely important for the security of the protocol and they will be added soon. Please note that this will be a breaking change for the contract interface.
 
-Also, there is currently no easy way to estimate the exact number of `ergs` required for execution of an L1->L2 tx. At the time of this writing, the transactions may be processed even if the supplied `ergsLimit` is `0`. This will change in the future.
+Also, there is currently no easy way to estimate the exact number of `ergs` required for the execution of an L1->L2 tx. At the time of this writing, the transactions may be processed even if the supplied `ergsLimit` is `0`. This will change in the future.
 
 :::
 
@@ -411,7 +410,7 @@ Make sure to replace `<COUNTER-ADDRESS>` with the address of the L2 counter cont
 8. The status of the corresponding L2 transaction can also be tracked. After adding a priority request the `NewPriorityRequest(uint64 txId, bytes32 txHash, uint64 expirationBlock, L2CanonicalTransaction transaction, bytes[] factoryDeps);` event is emitted. While the `transaction` is needed by the operator to process the tx, `txHash`
    enables easy tracking of the transaction on zkSync.
 
-`zksync-web3`'s `Provider` has a method that given the L1 `ethers.TransactionResponse` object of a transaction that called the zkSync bridge, returns the `TransactionResponse` object that can conveniently wait for transaction to be processed on L2.
+`zksync-web3`'s `Provider` has a method that gives the L1 `ethers.TransactionResponse` object of a transaction that is called the zkSync bridge, returns the `TransactionResponse` object that can conveniently wait for the transaction to be processed on L2.
 
 ```ts
 async function main() {

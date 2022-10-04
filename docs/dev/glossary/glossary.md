@@ -1,6 +1,6 @@
 # Glossary
 
-This section contains a comprehensive list of terms associated to zkSync and it's related ecosystem.
+This section contains a comprehensive list of terms associated with zkSync and its ecosystem.
 
 ## A
 
@@ -10,7 +10,7 @@ An object containing an address, balance, nonce, and optional storage and code. 
 
 ### application programming interface (API)
 
-An Application Programming Interface (API) is a set of definitions for how to use a piece of software. An API sits between an application and a web server, and facilitates the transfer of data between them.
+An Application Programming Interface (API) is a set of definitions for how to use a piece of software. An API sits between an application and a web server and facilitates the transfer of data between them.
 
 
 
@@ -37,7 +37,7 @@ A dapp is a web application that is built on top of open, decentralized, peer-to
 
 ### ether
 
-The native cryptocurrency used by the Ethereum ecosystem, which covers gas costs when executing transactions.
+The native cryptocurrency is used by the Ethereum ecosystem, to cover gas costs when executing transactions.
 
 ## F
 
@@ -49,7 +49,7 @@ Finality is the guarantee that a set of transactions before a given time will no
 
 ### gas
 
-A virtual fee used in Ethereum to execute smart contracts.
+A virtual fee is used in Ethereum to execute smart contracts.
 
 ### gas price
 
@@ -65,25 +65,25 @@ A fixed-length fingerprint of variable-size input, produced by a hash function.
 
 ### internal transaction
 
-A transaction sent from a contract account to another contract account.
+A transaction is sent from a contract account to another contract account.
 
 ## K
 
 ### keccak-256
 
-Cryptographic hash function used in Ethereum. Keccak-256 was standardized as SHA-3.
+The cryptographic hash function used in Ethereum. Keccak-256 was standardized as SHA-3.
 
 ## L
 
 ### layer 2
 
-An overlaying application or network that operates on top of Ethereum protocol. 
+An overlaying application or network that operates on top of the Ethereum protocol. 
 
 ## M
 
 ### mainnet
 
-Mainnet is blockchain protocol that is fully developed and deployed, with real value.
+Mainnet is a blockchain protocol that is fully developed and deployed, with real value.
 
 ### mint
 
@@ -93,7 +93,7 @@ Mainnet is blockchain protocol that is fully developed and deployed, with real v
 
 ### nonce
 
-A random number used once to iterate the output hash calculations.
+A random number is used once to iterate the output hash calculations.
 
 <!-- ## O
 ## P -->
@@ -112,7 +112,7 @@ Demonstrating cryptographically that a transaction was approved by the holder of
 
 ### testnet
 
-A network used to simulate the behavior of a [mainnet](#mainnet) blockchain network.
+A network is used to simulate the behavior of a [mainnet](#mainnet) blockchain network.
 
 ### token
 
@@ -134,4 +134,4 @@ The smallest denomination of [ether](#ether).
 
 ### zero-knowledge proof (zk proof)
 
-A zero-knowledge proof is a cryptographic method that allows you prove the truth of a statement without sharing the statement's contents or revealing how you discovered the truth.
+A zero-knowledge proof is a cryptographic method that allows you to prove the truth of a statement without sharing the statement's contents or revealing how you discovered the truth.

@@ -95,12 +95,7 @@ contract Greeter {
 ```
 
 5. Compile the contracts with the following command:
-
-```
-yarn hardhat compile
-```
-
-A `artifacts-zk` and `cache-zk` folders were created in the root directory (instead of the regular hardhat's `artifacts` and `cache`).
+An `artifacts-zk` and `cache-zk` folders were created in the root directory (instead of the regular hardhat's `artifacts` and `cache`).
 These are compilation artifacts, and should not be added to version control.
 
 6. Create the deployment script in the `deploy/deploy.ts`:
@@ -178,5 +173,5 @@ yarn hardhat deploy-zksync
 
 There are two major points of improvement for the plugins which will be released in the future:
 
-- **Composability with the existing hardhat plugins.** Compatibility with other hardhat plugins is planned for future, but has not been a focus yet.
+- **Composability with the existing hardhat plugins.** Compatibility with other hardhat plugins is planned for the future but has not been a focus yet.
 - **Improved cross-platform support.**

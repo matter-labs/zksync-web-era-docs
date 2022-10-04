@@ -1,10 +1,10 @@
 # Contract deployment
 
-To maintain the same security as L1, the zkSync operator must publish on chain the contract code for each contract it deploys. However, if there are multiple contracts deployed with the same code, it needs to be published only once.
+To maintain the same security as L1, the zkSync operator must publish on the chain the contract code for each contract it deploys. However, if there are multiple contracts deployed with the same code, it needs to be published only once.
 
 While deploying contracts for the first time may be relatively expensive, factories, which deploy contracts with the same code multiple times, can have huge savings compared to L1.
 
-All these specifics make the process of deploying smart contracts on zkEVM comply with the major rule: _The operator should know the code of the contract before it is deployed_. This means that deploying contracts is only possible by the means of `EIP712` transactions with the `factory_deps` field contains the supplied bytecode. More on EIP712 transactions [here](../../../api/api.md#eip712).
+All these specifics make the process of deploying smart contracts on zkEVM comply with the major rule: _The operator should know the code of the contract before it is deployed_. This means that deploying contracts is only possible by the means of `EIP712` transactions with the `factory_deps` field containing the supplied bytecode. More on EIP712 transactions [here](../../../api/api.md#eip712).
 
 Summary:
 
@@ -32,8 +32,7 @@ Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are
 
 ## Differences in `CREATE` behaviour
 
-For the ease of supporting account abstraction, for each account we split the nonce in two parts: _the deployment nonce_ and _the transaction nonce_. The deployment nonce is the number of contracts the account has deployed with `CREATE` opcode, while the transaction nonce is used for replay attack protection for the transactions.
+For the ease of supporting account abstraction, for each account, we split the nonce into two parts: _the deployment nonce_ and _the transaction nonce_. The deployment nonce is the number of contracts the account has deployed with `CREATE` opcode, while the transaction nonce is used for replay attack protection for the transactions.
 
-This means that while for smart contracts the nonce on zkSync behaves the same way as on Ethereum, for EOAs calculating the address of the deployed contract is not as straightforward. On Ethereum, it can be safely calculated as `hash(RLP[address,nonce])`, while on zkSync it is recommended to wait until the contract is deployed and catch the event with the address of the newly deployed contract. All of this is done in the background by the SDK.
-
-In order to gain a deterministic address, you should use `create2`. It is available for EOAs as well, but it is not available in the SDK yet.
+This means that while for smart contracts the nonce on zkSync behaves the same way as on Ethereum, for EOAs calculating the address of the deployed contract is not as straightforward. On Ethereum, it can be safely calculated as `hash(RLP[address, nonce])`, while on zkSync it is recommended to wait until the contract is deployed and catch the event with the address of the newly deployed contract. All of this is done in the background by the SDK.
+To gain a deterministic address, you should use `create2`. It is available for EOAs as well, but it is not available in the SDK yet.

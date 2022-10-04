@@ -2,7 +2,7 @@
 
 While zkSync 2.0 is in alpha, we will answer some issues you might encounter in your integration.
 
-## Why is Metamask native contract interactions not working?
+## Why are Metamask native contract interactions not working?
 
 It is not currently possible to interact with zkSync smart contracts via Metamask with EIP-1559 transactions. zkSync does not support EIP1559 transactions.
 
@@ -55,7 +55,7 @@ It is not currently possible to transfer ERC-20 tokens inside the Metamask inter
 
 If you try to transfer the entire balance of a token, which is also the token you pay the fee with, the transaction fails. The reason is that we don’t deduct the fee before setting the amount to be transferred.
 
-**Solution.** Keep aside a small a amount to cover the fee.
+**Solution.** Keep aside a small amount to cover the fee.
 
 ## Errors before sending a transaction
 
@@ -65,7 +65,7 @@ Similar to above, in cases where the fee should be deducted from the token amoun
 
 ## My contract does not compile, due to an error with “cyclic dependencies”
 
-Unfortunately, some contracts have trouble to compile with our hardhat plugin. This is due to the contracts importing external dependencies. This happens to a small number of projects. We are currently working on resolving this issue.
+Unfortunately, some contracts have trouble compiling with our hardhat plugin. This is due to the contracts importing external dependencies. This happens to a small number of projects. We are currently working on resolving this issue.
 
 ## My transaction is not shown on the block explorer
 
