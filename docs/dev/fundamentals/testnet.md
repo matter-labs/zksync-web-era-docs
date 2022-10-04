@@ -20,10 +20,6 @@ To get a first-hand impression of the zkSync 2.0 user experience:
 
 The Portal is the central entry point into the zkSync 2.0 ecosystem for users and developers alike. It contains links to all relevant resources, such as block explorer or the catalog of featured dapps.
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 57200d3 (made update fle structure)
 ## Do I need experience with zkSync 1.x?
 
 Some experience with zkSync 1.x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are very different systems, and experience with the latter is not needed to build on zkSync 2.0.
@@ -40,11 +36,7 @@ Check out our step-by-step [tutorial](../developer-guides/hello-world.md), where
 
 - How to install zkSync hardhat plugin and deploy smart contracts with it.
 - How to build front-end for your dApp using `zksync-web3` library.
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 57200d3 (made update fle structure)
 ## Connecting Metamask
 
 To connect Metamask to zkSync, add the zkSync alpha testnet network to the wallet.

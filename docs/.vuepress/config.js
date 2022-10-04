@@ -84,17 +84,10 @@ module.exports = {
           collapsable: false,
           children: [
             "/dev/troubleshooting/important-links.md",
-<<<<<<< HEAD
             "/dev/troubleshooting/status.md",
             "/dev/troubleshooting/faq/known-issues.md",
             "/dev/glossary/edit-doc.md",
             "/dev/glossary/glossary.md",
-=======
-            "/dev/troubleshooting/faq/known-issues.md",
-            "/dev/glossary/glossary.md",
-            "/dev/glossary/edit-doc.md",
->>>>>>> 5ca676d (update glossary contents)
-            
 
           ],
         },
@@ -107,7 +100,6 @@ module.exports = {
             "/dev/tutorials/custom-aa-tutorial.md",
             "/dev/tutorials/custom-paymaster-tutorial.md",
           ],
-<<<<<<< HEAD
         },
         
       ]
@@ -207,10 +199,6 @@ module.exports = {
         //   title: "Troubleshooting",
         //   path: "/dev/troubleshooting.md", // optional, which should be a absolute path.
         // }
-=======
-        },
-      ],
->>>>>>> 5ca676d (update glossary contents)
       "/api": [
         {
           title: "Overview", // required

@@ -10,7 +10,6 @@ That is, to increase finality and achieve high transaction rate per second witho
 Layer 2 solutions are designed as an extension to Ethereum, offer various solutions poised to be the critical scalability solution to the inherent network congestion on Ethereum. Covering all Layer 2 solutions is beyond the scope of this doc.
 We will go through a brief explainer on rollups in this section.
 
-<<<<<<< HEAD
 ## Optimistic rollups versus zk rollups
 
 There are mainly two types of rollups, zk rollups and Optimistic rollups.
@@ -24,30 +23,11 @@ On zkSync, this is done via a **SNARK** (succinct non-interactive argument of kn
 
 With zk rollups, funds are locked on a smart contract on the layer 1 blockchain. 
 This allows transactions to be processed without the overhead of all the data typically associated with performing a transaction on the main chain, only requiring a **validity proof** to reach transaction finality. This significantly decreases associated transaction processing times and gas fees.
-=======
-## optimistic rollups versus zk rollups
-
-There are mainly two types of rollups, zk rollups and optimistic rollups.
-
-### What are zk rollups?
-
-zk rollups ('ZK' standing for zero-knowledge) are a recent development intended to increase the scalability of Ethereum by performing calculations off-chain, rolling many transactions up into a single batch, and sending it to the main Ethereum chain for verification in a single action. 
-Instead of submitting each transaction separately, zk rollup operators submit a summary of the required changes to represent all transactions in a batch. Additionally, they produce validity proofs to demonstrate the legitimacy of their changes.
-The validity proof uses cryptography to establish that the proposed changes to Ethereum's state are indeed the outcome of completing all of the transactions in the batch.
-In zkSync, this is done via a **SNARK** (succinct non-interactive argument of knowledge), a cryptographic proof that performs the validation of transactions in the batch.
-
-With zk rollups, funds are locked on a smart contract in the layer 1 blockchain. This allows transactions to be processed without the overhead of all the data typically associated with performing a transaction on the main chain, only requiring a **validity proof** to reach transaction finality. This significantly decreases associated transaction processing times and gas fees.
->>>>>>> 5ca676d (update glossary contents)
 
 ### What are optimistic rollups?
 
-<<<<<<< HEAD
 Optimistic rollups, which rely on fraud proofs, are considered “Optimistic” because they assume off-chain transactions are valid and don't publish proofs of validity for transaction batches posted on-chain. 
 They keep track of their entire history of state roots and the hash of each batch. Anyone who discovers that one batch has an incorrect post-state root can publish proof to the chain, proving that the batch was computed incorrectly.
-=======
-optimistic rollups, which rely on fraud proofs, are considered “optimistic” because they assume off-chain transactions are valid and don't publish proofs of validity for transaction batches posted on-chain. 
-They keep track of their entire history of state roots and the hash of each batch. Anyone who discovers that one batch has an incorrect post-state root can publish proof to the chain, proving that the batch was computed incorrectly. 
->>>>>>> 5ca676d (update glossary contents)
 The contract verifies the proof and reverts that batch and all batches after it.
 This separates Optimistic rollups from zero-knowledge rollups that actually publishing proofs of validity for off-chain transactions.
 
