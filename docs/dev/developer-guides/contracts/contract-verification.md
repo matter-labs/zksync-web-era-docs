@@ -37,7 +37,13 @@ You can verify your contract so that zkSync can convert it all into a format tha
 
 To get started click the **Tools** tab in the top header, a dropdown will pop up and select **Smart Contract Verification**,  after which you will be shown the following screen:
 
+<<<<<<< HEAD
 ![Smart Contract Verification page!](../../../assets/images/verify-contract.png "verify contract")
+=======
+![Smart Contract Verification page!](./../../../assets/images/verify-contract.png "verify contract")
+
+
+>>>>>>> 76b1f5c (resolve image broken path)
 
 ### Enter contract details
 
