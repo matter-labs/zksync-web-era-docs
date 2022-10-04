@@ -5,7 +5,7 @@ Solidity libraries can be divided into two categories:
 - _Inlinable_. The ones that contain only `private` or `internal` methods. Since they can never be called from outside, the Solidity compiler inlines them, i.e. does not use external calls to access the library methods and uses the code of these libraries as part of the code that uses them.
 - _Non-inlinable_. The ones that have at least one `public` or `external` method. While they may be inlined by the Solidity compiler, they are not inlined when compiled to Yul representation. Since Yul is an intermediate step when compiling to zkEVM bytecode, this means that these libraries can not be inlined by the zkSync compiler.
 
-**Practically this means that libraries with public methods need to be deployed separately and their addresses passed as an argument when compiling the main contract.** Usage of the methods of this library will be replaced with calls to the address of it.
+**Practically this means that libraries with public methods need to be deployed separately and their addresses passed as an argument when compiling the main contract.** Usage of the methods of this library will be replaced with calls to its address of it.
 
 ## OpenZeppelin utility libraries
 
@@ -52,7 +52,7 @@ Error in plugin @matterlabs/hardhat-zksync-solc: LLVM("Library `contracts/MiniMa
 
 That error tells us that the address of the `MiniMath` library should be provided.
 
-To resolve the issue, you need to create _a separate project_, where only the library file will be located. After deploying _only_ the library to zkSync, you should get the address of the deployed library and pass it to the compiler settings. The process of deploying the library is exactly the same as deploying smart contracts. You can learn how to deploy smart contracts on zkSync with the [getting started](./getting-started.md) guide.
+To resolve the issue, you need to create _a separate project_, where only the library file will be located. After deploying _only_ the library to zkSync, you should get the address of the deployed library and pass it to the compiler settings. The process of deploying the library is the same as deploying smart contracts. You can learn how to deploy smart contracts on zkSync with the [getting started](./getting-started.md) guide.
 
 Let's say that the address of the deployed library is `0xF9702469Dfb84A9aC171E284F71615bd3D3f1EdC`. To pass this address to the compiler parameters, open the `harhdat.config.ts` file of the project where the `Main` contract is located and change its content to the following one:
 
