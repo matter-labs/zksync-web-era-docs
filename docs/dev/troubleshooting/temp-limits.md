@@ -26,7 +26,7 @@ These opcodes will be supported by the time of the mainnet launch.
 
 - `block.gaslimit` always returns `2^32-1`.
 - `MSIZE` always returns `2^16`.
-- `COINBASE` (`block.coinbase`) always returns the [bootloader](./system-contracts.md#bootloader) address.
+- `COINBASE` (`block.coinbase`) always returns the [bootloader](./../developer-guides/contracts/system-contracts.md#bootloader) address.
 - `DIFFICULTY` (`block.difficulty`) always returns `2500000000000000` (zkSync does not have proof of work consensus).
 
 ## Ignored by the compiler
