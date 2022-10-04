@@ -39,8 +39,6 @@ To get started click the **Tools** tab in the top header, a dropdown will pop up
 
 ![Smart Contract Verification page!](../../../assets/images/verify-contract.png "verify contract")
 
-
-
 ### Enter contract details
 
 To verify the contract, enter the following details;
@@ -91,6 +89,3 @@ If all goes well, you will see a success message.
 <br>
 
 ![Smart Contract Verified!](../../../assets/images/contract-verified.png "Contract Verified")
-
-
-
