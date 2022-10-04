@@ -102,7 +102,104 @@ module.exports = {
             "/dev/tutorials/custom-paymaster-tutorial.md",
           ],
         },
-      ],
+        
+      ]
+    }
+               //<! -- OLD STRUTURE -->
+        // {
+        //   title: "Getting started",
+        //   path: "/dev/",
+        //   collapsable: false, // optional, defaults to true
+        // },
+        // {
+        //   title: "About the testnet",
+        //   path: "/dev/testnet",
+        //   collapsable: false,
+        //   children: [
+        //     "/dev/testnet/user.md",
+        //     "/dev/testnet/metamask.md",
+        //     "/dev/testnet/important-links.md",
+        //     "/dev/testnet/status.md",
+        //     "/dev/testnet/known-issues.md",
+        //     "/dev/testnet/reporting-issues.md",
+        //   ],
+        // },
+        // {
+        //   title: "ZK rollup basics",
+        //   path: "/dev/rollups.md",
+        //   collapsable: false
+        // },
+        // {
+        //   title: "Understanding zkSync 2.0",
+        //   path: "/dev/zksync-v2",
+        //   collapsable: false,
+        //   children: [
+        //     "/dev/zksync-v2/overview.md",
+        //     "/dev/zksync-v2/system-contracts.md",
+        //     "/dev/zksync-v2/handling-of-eth.md",
+        //     "/dev/zksync-v2/fee-model.md",
+        //     "/dev/zksync-v2/tx-types.md",
+        //     "/dev/zksync-v2/contracts.md",
+        //     "/dev/zksync-v2/aa.md",
+        //     "/dev/zksync-v2/blocks-and-time.md",
+        //     "/dev/zksync-v2/web3.md",
+        //     "/dev/zksync-v2/confirmation-and-finality.md",
+        //     "/dev/zksync-v2/temp-limits.md",
+        //     "/dev/zksync-v2/decentralization-roadmap.md",
+        //     "/dev/zksync-v2/l1-l2-interop.md",
+        //     "/dev/zksync-v2/bridging-funds.md",
+        //   ],
+        // },
+        // {
+        //   title: "Developer guide",
+        //   path: "/dev/guide",
+        //   collapsable: false,
+        //   children: [
+        //     "/dev/guide/quickstart.md",
+        //     "/dev/guide/hello-world.md",
+        //     "/dev/guide/contract-verification.md",
+        //     "/dev/guide/solidity-vyper.md",
+        //     "/dev/guide/deploying.md",
+        //     "/dev/guide/front-end-integration.md",
+        //     "/dev/guide/l1-l2.md",
+        //     "/dev/guide/l2-l1.md",
+        //     "/dev/guide/build-custom-bridge.md",
+        //     "/dev/guide/cross-chain-tutorial.md",
+        //     "/dev/guide/custom-aa-tutorial.md",
+        //     "/dev/guide/custom-paymaster-tutorial.md",
+        //     "/dev/guide/migration-to-testnet-paymaster.md"
+        //   ],
+        },
+        // {
+        //   title: "Introduction", // required
+        //   path: "/dev/", // optional, which should be a absolute path.
+        //   collapsable: false, // optional, defaults to true
+        // },
+        // {
+        //   title: "Comparison to v1.0", // required
+        //   path: "/dev/v1-vs-v2.md", // optional, which should be a absolute path.
+        //   collapsable: false, // optional, defaults to true
+        // },
+        // {
+        //   title: "Comparison to Ethereum", // required
+        //   path: "/dev/ethereum-vs-v2.md", // optional, which should be a absolute path.
+        //   collapsable: false, // optional, defaults to true
+        // },
+        // {
+        //   title: "Tutorials",
+        //   path: "/dev/tutorials",
+        //   collapsable: false,
+        //   children: ["/dev/tutorials/connecting-to-metamask.md", "/dev/tutorials/bridging-funds.md", "/dev/tutorials/basic.md"],
+        // },
+        // {
+        //   title: "Communicating with L1", // required
+        //   path: "/dev/communication-with-l1.md", // optional, which should be a absolute path.
+        //   collapsable: false, // optional, defaults to true
+        // },
+        // {
+        //   title: "Troubleshooting",
+        //   path: "/dev/troubleshooting.md", // optional, which should be a absolute path.
+        // }
       "/api": [
         {
           title: "Overview", // required
@@ -143,8 +240,6 @@ module.exports = {
           ],
         },
       ],
-    },
-  },
   head: [
     ["script", { src: "/__/firebase/7.13.2/firebase-app.js", defer: true }, ""],
     ["script", { src: "/__/firebase/7.13.2/firebase-analytics.js", defer: true }, ""],
@@ -154,7 +249,7 @@ module.exports = {
       "script",
       {},
       `
-   const logoUrlChanger = setInterval(function() {
+  const logoUrlChanger = setInterval(function() {
     //Anchor above the logo image
     const homeEls = document.getElementsByClassName("home-link");
     if(homeEls.length > 0) {
@@ -171,7 +266,7 @@ module.exports = {
       logoEl.setAttribute("onclick", "document.location='https://zksync.io';return false;");
       clearInterval(logoUrlChanger);
     }
-   }, 1000)`,
+  }, 1000)`,
     ],
   ],
 };

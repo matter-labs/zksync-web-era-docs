@@ -109,7 +109,6 @@ A fully private blockchain is one with authorized access, not publicly available
 
 Demonstrating cryptographically that a transaction was approved by the holder of a specific private key.
 
-
 ## T
 
 ### testnet

@@ -63,3 +63,4 @@ When a user transmits a transaction, zkSync currently waits for the entire block
 ## What exactly are operators?
 
 **Operators** are the actors who carry out essential ZK rollup functions. They are responsible for producing blocks, packaging transactions, conducting calculations, and submitting data to the main Ethereum chain for verification.
+

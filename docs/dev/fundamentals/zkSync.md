@@ -4,11 +4,14 @@
 
 If you are unfamiliar with rollups, you should cover the [rollups basics](./rollups.md) and read about zk rollups and optimistic rollups, before learning about zkSync.
 
+
 **zkSync** is a [ZK rollup](./rollups.md) trustless protocol that utilises zero-knowledge proofs to provide scalable low-cost transactions on Ethereum. 
 zkSync ensures that all assets are stored in a single smart contract on the mainchain, while computation and storing data are performed off-chain. As all transactions are proven on the Ethereum mainchain, users enjoy the same security level as in Ethereum.
 
 zkSync 2.0 is made to look and feel like Ethereum, but with lower fees. Just like on Ethereum, smart contracts are written in Solidity/Vyper and can be called using the same clients as the other EVM-compatible chains.
+
 zkSync 2.0 doesn't require you to register a separate private key to use before usage, it supports existing Ethereum wallets which work out of the box.
+
 
 At this time zkSync is solely run and operated by the zkSync team's servers, and is therefore centralized; however, this will be be transitioned to a decentralized system in the near future.
 
@@ -16,6 +19,7 @@ At this time zkSync is solely run and operated by the zkSync team's servers, and
 
 zkSync [stands out remarkably](https://blog.matter-labs.io/evaluating-ethereum-l2-scaling-solutions-a-comparison-framework-b6b2f410f955) in security and usability among existing L2 scaling solutions. 
 Thanks to the combination of cutting-edge cryptography and on-chain data availability, zkRollup (the core network of zkSync) is the only L2 scaling solution that doesn't require any operational activity to keep the funds safe. 
+
 For example, users can go offline and still be able to withdraw their assets safely when they come back, even if the zkRollup validators are no longer around.
 
 In the following sections we will cover some attributes of zkSync.
@@ -68,4 +72,5 @@ Please note that for developer convenience, we usually treat the `Processed` and
 
 - Begin by building a dApp in the [quickstart section](../../developer-guides/hello-world.md)
 - See the info on RPC nodes, wallet, block explorer on the [important links](../troubleshooting/important-links.md) page.
+
 

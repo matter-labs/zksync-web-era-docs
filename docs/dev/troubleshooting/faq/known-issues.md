@@ -3,6 +3,7 @@
 While zkSync 2.0 is in alpha, we will answer some issues you might encounter in your integration.
 
 
+
 ## Why is Metamask native contract interactions not working?
 
 It is not currently possible to interact with zkSync smart contracts via Metamask with EIP-1559 transactions. zkSync does not support EIP1559 transactions.

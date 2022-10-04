@@ -6,6 +6,7 @@ The design of Ethereum is such that when the demand from users to transact incre
 While this has remained so for a while, an improved solution is needed, one that can maintain scalability.
 That is, to increase finality and achieve high transaction rate per second without having to trade off security. That's where layer 2 solutions shine.
 
+
 Layer 2 solutions are designed as an extension to Ethereum, offer various solutions poised to be the critical scalability solution to the inherent network congestion on Ethereum. Covering all Layer 2 solutions is beyond the scope of this doc.
 We will go through a brief explainer on rollups in this section.
 
@@ -30,7 +31,7 @@ They keep track of their entire history of state roots and the hash of each batc
 The contract verifies the proof and reverts that batch and all batches after it.
 This separates Optimistic rollups from zero-knowledge rollups that actually publishing proofs of validity for off-chain transactions.
 
-## L1 and L2: what's the difference?
+### L1 and L2: what's the difference?
 
 In decentralised ecosystems, the term **layer 1** (or **L1**) is used to refer to the underlying primary chain, such as the Ethereum network or Bitcoin. Layer 1 blockchains determine protocol rules and transaction finality,
 and perform the base-level functions of applications built upon them.
@@ -38,4 +39,3 @@ and perform the base-level functions of applications built upon them.
 The term **Layer 2** (or **L2**) is used to describe an overlaying application or network that operates on top of the layer 1 chain. These are most often built to provide further scalability solutions by taking on a portion of transaction-based tasks to lighten the impact on the layer-1 chain, quickening transaction times and lowering gas fees.
 
 zkSync is an L2, where L1 is the main Ethereum blockchain.
-

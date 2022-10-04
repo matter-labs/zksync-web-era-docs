@@ -20,7 +20,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
   - [Contract deployment](./developer-guides/contracts/contracts.md) - A guide on how to deploy smart contracts on zkSync.
   - [Contract verification](./developer-guides/contracts/contract-verification.md) - A guide on how to verify smart contracts with zkSync block explorer.
 - [Transactions](./developer-guides/transactions/transactions.md) - A guide on how zkSync handles transactions.
-  - [Account abstraction](./developer-guides/transactions/aa.md) - Learn how zkSync platform handles transactions.
+  - [Account abstraction](./developer-guides/transactions/aa.md) - Learn the dynamics of account abstraction on zkSync.
   - [Blocks](./developer-guides/transactions/blocks.md) - Learn how blocks work on zkSync.
 - [Fee mechanism](./developer-guides/fee-model.md) - A quick overview of the zkSync fee structure.
 - [bridging of funds](./developer-guides/bridging/bridging-asset.md) - A brief intro on token bridging.
@@ -46,3 +46,4 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Cross-chain governance](./tutorials/cross-chain-tutorial.md) - Learn how to use L1 to L2 contract interaction.
 - [Account abstraction](./tutorials/custom-aa-tutorial.md) - Learn how to deploy your custom accounts and interact zkSync system contracts.
 - [Building custom paymasters](./tutorials/custom-paymaster-tutorial.md) - Learn how to build a custom paymaster to allow users to pay fees in your token.
+
