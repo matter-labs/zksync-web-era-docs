@@ -8,7 +8,6 @@ While the previous iterations of zkSync 2.0 testnet natively supported paying fe
 
 For the sake of supporting the ecosystem, zkSync does not plan to deploy any paymaster on mainnet. However, with better DevEx in mind, we have deployed one on the testnet. The testnet paymaster enables paying fees in an ERC-20 compatible token at a 1:1 exchange rate. You can read the documentation [here](../developer-guides/transactions/aa.md#testnet-paymaster). In this section, we show a brief example on migration from the old way of paying fees with ERC20 tokens to the new ones.
 
-
 This document is about the testnet paymaster *only*. When deploying your project on mainnet, you will need to either deploy your paymaster or find a 3rd party's one and read its documentation.
 
 ## Previous interface

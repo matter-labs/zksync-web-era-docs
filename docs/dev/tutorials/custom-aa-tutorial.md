@@ -2,9 +2,10 @@
 
 Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../developer-guides/contracts/system-contracts.md#contractdeployer) system contract.
 
+
 In this tutorial we build a factory that deploys 2-of-2 multisig accounts.
 
-## Preliminaries
+## Prerequisite
 
 It is highly recommended to read about the [design](../developer-guides/transactions/aa.md) of the account abstraction protocol before diving into this tutorial.
 
