@@ -15,7 +15,6 @@ Unless there are exceptional circumstances, all network participants agree with
 
 Every node adds the newly created block to the end of its blockchain after it has been assembled by one of the network's validators, and a new validator is chosen to build the following block.
 
-
 ## Block numbers and time
 
 On zkSync, when users send transactions, those transactions are included in L2 blocks. These L2 blocks are sealed every X seconds (X is not decided yet, but it will surely be in the 1–5 range). Typically, the user needs to wait at most X seconds to get the receipt and be informed that his transaction is included in some block.
