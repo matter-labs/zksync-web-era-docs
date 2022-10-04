@@ -6,7 +6,6 @@ The design of Ethereum is such that when the demand from users to transact incre
 While this has remained so for a while, an improved solution is needed, one that can maintain scalability.
 That is, to increase finality and achieve high transaction rate per second without having to trade off security. That's where layer 2 solutions shine.
 
-
 Layer 2 solutions are designed as an extension to Ethereum, offer various solutions poised to be the critical scalability solution to the inherent network congestion on Ethereum. Covering all Layer 2 solutions is beyond the scope of this doc.
 We will go through a brief explainer on rollups in this section.
 
@@ -24,7 +23,7 @@ On zkSync, this is done via a **SNARK** (succinct non-interactive argument of kn
 With zk rollups, funds are locked on a smart contract on the layer 1 blockchain. 
 This allows transactions to be processed without the overhead of all the data typically associated with performing a transaction on the main chain, only requiring a **validity proof** to reach transaction finality. This significantly decreases associated transaction processing times and gas fees.
 
-### What are optimistic rollups?
+### What are Optimistic rollups?
 
 Optimistic rollups, which rely on fraud proofs, are considered “Optimistic” because they assume off-chain transactions are valid and don't publish proofs of validity for transaction batches posted on-chain. 
 They keep track of their entire history of state roots and the hash of each batch. Anyone who discovers that one batch has an incorrect post-state root can publish proof to the chain, proving that the batch was computed incorrectly.
