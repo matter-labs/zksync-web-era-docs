@@ -18,7 +18,9 @@ Every node adds the newly created block to the end of its blockchain after it ha
 
 ## Block numbers and time
 
-On zkSync, 
+On zkSync, when users send transactions, those transactions are included in L2 blocks. These L2 blocks are sealed every X seconds (X is not decided yet, but it will surely be in the 1–5 range). Typically, the user needs to wait at most X seconds to get the receipt and be informed that his transaction is included in some block.
+In L1 batches, we send some information about L2 blocks to the L1 contract (known as a commitment); later, we generate proof for the blocks and send them to the L1 contract. The L1 contract then verifies that the given proof is correct.
+All actions on L1 require some gas to be spent. So, for example, if we aggregate some transactions into 1 block instead of 2, we will save some gas because we will need to send only one commitment and one proof instead of two. Thus, we aggregate ranges of L2 blocks into L1 batches and send one commitment/proof per L1 batch to save on gas costs.
 
 
 ### Block Numbers: Ethereum vs. zkSync
