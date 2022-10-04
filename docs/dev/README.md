@@ -27,7 +27,6 @@ If this is your first time using zkSync, we recommend that you kick off at the b
   - [L1 / L2 Interoperability](./developer-guides/bridging/l1-l2-interop.md) - A quick brief on data communication between l1 and l2.
     - [L1 / L2 communication](./developer-guides/bridging/l1-l2.md) - Learn how to send data from Ethereum to zkSync.
     - [L2 / L1 communication](./developer-guides/bridging/l2-l1.md) - Learn how to send data from zkSync to Ethereum.
-    - 
 - [Troubleshooting](./troubleshooting/reporting-issues.md) - Report known issues to us here.
   - [Important links](./troubleshooting/important-links.md) - Get quick reference to important links.
   - [Temporary limitations](./troubleshooting/temp-limits.md)
@@ -48,4 +47,3 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Cross-chain governance](./tutorials/cross-chain-tutorial.md) - Learn how to use L1 to L2 contract interaction.
 - [Account abstraction](./tutorials/custom-aa-tutorial.md) - Learn how to deploy your custom accounts and interact zkSync system contracts.
 - [Building custom paymasters](./tutorials/custom-paymaster-tutorial.md) - Learn how to build a custom paymaster to allow users to pay fees in your token.
-

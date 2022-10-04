@@ -69,7 +69,6 @@ We recommend using the [truffle flattener](https://github.com/NomicFoundation/tr
 
 For example, if using our [tutorial](../hello-world.md), you can find line:
 
-
 ```js
 const greeterContract = await deployer.deploy(artifact, [greeting]);
 ```
