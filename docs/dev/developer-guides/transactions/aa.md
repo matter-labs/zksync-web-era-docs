@@ -158,7 +158,6 @@ Currently, your transactions may pass through the API despite violating the requ
 ### Nonce holder contract
 
 For optimization purposes, both [tx nonce and the deployment nonce](../contracts/contracts.md#differences-in-create-behaviour) are put in one storage slot inside the [NonceHolder](../contracts/system-contracts.md#inonceholder) system contracts. 
-
 In order to increment the nonce of your account, it is highly recommended to call the [incrementNonceIfEquals](https://github.com/matter-labs/v2-testnet-contracts/blob/0e1c95969a2f92974370326e4430f03e417b25e7/l2/system-contracts/interfaces/INonceHolder.sol#L10) function and pass the value of the nonce provided in the transaction.
 
 This is one of the whitelisted calls, where the account logic is allowed to call outside smart contracts.

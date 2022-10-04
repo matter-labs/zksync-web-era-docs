@@ -95,9 +95,7 @@ Mainnet is blockchain protocol that is fully developed and deployed, with real v
 
 A random number used once to iterate the output hash calculations.
 
-
 <!-- ## O
-
 ## P -->
 
 ### private chain
