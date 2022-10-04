@@ -26,8 +26,6 @@ These opcodes will be supported by the time of the mainnet launch.
 
 - `block.gaslimit` always returns `2^32-1`.
 - `MSIZE` always returns `2^16`.
-- `COINBASE` (`block.coinbase`) always returns the [bootloader](./../developer-guides/contracts/system-contracts.md#bootloader) address.
->>>>>>> 5ca676d (update glossary contents)
 - `DIFFICULTY` (`block.difficulty`) always returns `2500000000000000` (zkSync does not have proof of work consensus).
 
 ## Ignored by the compiler
@@ -44,7 +42,6 @@ These opcodes will be supported by the time of the mainnet launch.
 - **Solidity 0.8.x and Vyper support.** No need for change or re-audit of the codebase.
 - **Web3 API**. With small exceptions, our API is fully compatible with Ethereum. This enables seamless integration with existing indexers, explorers, etc.
 - **Support for Ethereum cryptographic primitives**. zkSync natively supports `keccak256`, `sha256`, and `ecrecover` via precompiles.
->>>>>>> 57200d3 (made update fle structure)
 - **Hardhat plugin**. This allows easy testing and development of smart contracts on zkSync.
 - **L1 <-> L2 smart contract communication**.
 

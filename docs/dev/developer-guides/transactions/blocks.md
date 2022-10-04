@@ -12,7 +12,6 @@ To fully understand this page, we suggest you first read a guide on[accounts](ht
 Blocks are strictly ordered (each new block has a connection to its parent block), and transactions within blocks are strictly ordered to keep track of the history of transactions.
 Unless there are exceptional circumstances, all network participants agree with the precise number and history of blocks at any particular time and attempt to combine the pending live transaction requests into the upcoming block.
 
-
 Every node adds the newly created block to the end of its blockchain after it has been assembled by one of the network's validators, and a new validator is chosen to build the following block.
 
 ## Block numbers and time
@@ -20,13 +19,6 @@ Every node adds the newly created block to the end of its blockchain after it ha
 On zkSync, when users send transactions, those transactions are included in L2 blocks. These L2 blocks are sealed every X seconds (X is not decided yet, but it will surely be in the 1–5 range). Typically, the user needs to wait at most X seconds to get the receipt and be informed that his transaction is included in some block.
 In L1 batches, we send some information about L2 blocks to the L1 contract (known as a commitment); later, we generate proof for the blocks and send them to the L1 contract. The L1 contract then verifies that the given proof is correct.
 All actions on L1 require some gas to be spent. So, for example, if we aggregate some transactions into 1 block instead of 2, we will save some gas because we will need to send only one commitment and one proof instead of two. Thus, we aggregate ranges of L2 blocks into L1 batches and send one commitment/proof per L1 batch to save on gas costs.
-
-
-### Block Numbers: Ethereum vs. zkSync
-
-The structure of L2 blocks is similar to that of L1 blocks. 
-In zkSync, we send to the L1 contract some information about L2 blocks (a commitment), then we produce a proof for the blocks and transmit it back to the L1 contract, which confirms that the proof is valid.
-
 
 ### Ethereum Block Numbers Within zkSync
 
