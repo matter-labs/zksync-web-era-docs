@@ -1,50 +1,96 @@
-# Introduction to zkSync
+# An Overview of zkSync
+
 
 ## Prerequisites
 
+
 If you are unfamiliar with rollups, you should cover the [rollups basics](./rollups.md) and read about zk rollups and optimistic rollups, before learning about zkSync.
 
-**zkSync** is a [ZK rollup](./rollups.md) trustless protocol that utilizes zero-knowledge proofs to provide scalable low-cost transactions on Ethereum. 
-zkSync ensures that all assets are stored in a single smart contract on the mainchain, while computation and storing data are performed off-chain. As all transactions are proven on the Ethereum mainchain, users enjoy the same security level as in Ethereum.
+
+## Introduction
+
+
+**zkSync** is a [ZK rollup](./rollups.md) trustless protocol that uses zero-knowledge proofs to provide scalable, low-cost transactions on Ethereum.
+zkSync ensures that all assets are stored in a single smart contract on the mainchain while computation and storing data are performed off-chain. As all transactions are proven on the Ethereum mainchain, users enjoy the same security level as in Ethereum.
+
 
 zkSync 2.0 is made to look and feel like Ethereum, but with lower fees. Just like on Ethereum, smart contracts are written in Solidity/Vyper and can be called using the same clients as the other EVM-compatible chains.
 
-zkSync 2.0 doesn't require you to register a separate private key to use before usage, it supports existing Ethereum wallets that work out of the box.
+
+zkSync 2.0 doesn't require you to register a separate private key to use before usage; it supports existing Ethereum wallets that work out of the box.
+At this time, zkSync is solely run and operated by the zkSync team's servers and is therefore centralized. However, this will be transitioned to a decentralized system in the near future.
 
 
-At this time zkSync is solely run and operated by the zkSync team's servers, and is therefore centralized; however, this will be transitioned to a decentralized system in the near future.
-
-## zkSync in comparison
-
-zkSync [stands out remarkably](https://blog.matter-labs.io/evaluating-ethereum-l2-scaling-solutions-a-comparison-framework-b6b2f410f955) in security and usability among existing L2 scaling solutions. 
-Thanks to the combination of cutting-edge cryptography and on-chain data availability, zkRollup (the core network of zkSync) are the only L2 scaling solution that doesn't require any operational activity to keep the funds safe. 
-For example, users can go offline and still be able to withdraw their assets safely when they come back, even if the zkRollup validators are no longer around.
-
-In the following sections, we will cover some attributes of zkSync.
-
-## Transaction types
-
-zkSync supports Ethereum's "legacy" (pre-EIP2718) transaction types, EIP1559 transaction type, and its custom EIP712 transactions. You can use transactions of this type to use zkSync-specific features like account abstraction. 
-Additionally, it is only possible to deploy smart contracts with this type of transaction.
-
-Knowing the details about the transaction format is not required to use zkSync's SDK, but if you are curious, you can read more about it [here](../../api/api.md#eip712).
+## zkSync's architecture
+In zkSync 2.0, the L2 state will be divided into 2 sides: zkRollup with on-chain data availability and zkPorter with off-chain data availability.
 
 
-## Confirmations and finality
+Both parts will be able to work with each other and be put together. This means that contracts and accounts on the zkRollup side will be able to work with accounts on the zkPorter side without any problems, and vice versa.
 
-On zkSync, each transaction is at one of the four stages:
+
+The general rollup workflow is as follows:
+
+
+- Users can become owners in a rollup by depositing assets from L1 or receiving a transfer from other owners.
+- Owners can transfer assets to each other.
+- Owners can withdraw assets under their control to an L1 address.
+Rollup operation requires the assistance of an operator, who rolls transactions together, computes a zero-knowledge proof of the correct state transition, and affects the state transition by interacting with the rollup contract.
+To understand the design, we need to look into how zkSync rollup transactions.
+
+
+zkSync operations are divided into rollup transactions (initiated inside Rollup by a Rollup account) and priority operations (initiated on the mainchain by an Ethereum account).
+
+
+The zkSync rollup operation lifecycles are as follows;
+- User creates a transaction or a priority operation.
+- After processing this request, the operator creates a rollup operation and adds it to the block.
+- Once the block is complete, the operator submits it to the zkSync smart contract as a block commitment. Part of the logic of some rollup operations is checked by the smart contract.
+- The proof for the block is submitted to the zkSync smart contract as the block verification. If the verification succeeds, the new state is considered finalized.
+
+
+Furthermore, on zkSync, each L2 block will progress through the following four stages until it is finalized.
+
 
 - `Pending`: The transaction was received by the operator, but it has not been processed yet.
-- `Processed` transaction is processed by the operator and is confirmed to be included in the next block.
-- `Committed`: transaction state diffs were published on Ethereum.
-- `Finalized`: The SNARK validity proof for the transaction has been submitted and verified by the smart contract. After this step, the transaction is considered to be final.
+- `Processed`: The transaction is processed by the operator and is confirmed to be included in the next block.
+- `Committed`: It indicates that the transaction data of this block has been posted on Ethereum. It does not prove that it has been executed in a valid way, but it ensures the availability of the block data.
+- `Finalized`: This indicates that the SNARK validity proof for the transaction has been submitted and verified by the smart contract. After this step, the transaction is considered to be final.
+
 
 The typical time for a transaction to go from `Processed` to `Finalized` is a couple of hours at the current stage.
+
 
 Please note that for developer convenience, we usually treat the `Processed` and `Committed` states as a single stage called `Committed` since they have no difference from the UX/DexEx standpoints.
 
 
-## zkSync features
+### The State of the Rollup
+The current version of zkSync 2.0 solves the needs of most applications on Ethereum, and with more features planned for release soon, zkSync 2.0 will provide developers with a design space to experiment with applications not possible on Ethereum today. With this release, we are supporting the following features:
+
+
+- Native support of ECDSA signatures: Unlike the first version of zkSync and most of the ZK Rollups, no special operation is required to register the user’s private key. Any account can be managed in L2 with the same private key that is used for L1.
+- Solidity 0.8.x support: Deploy your existing codebase with little to no changes required.
+Web3 API. With small exceptions, our API is fully compatible with Ethereum. This allows seamless integration with existing indexers, explorers, etc.
+- Support for Ethereum cryptographic primitives: zkSync natively supports `keccak256`, `sha256`, and `ecrecover` via precompilers.
+- Hardhat plugin: Allows easy testing and development of smart contracts on zkSync.
+- L1 → L2 smart contract messaging: Allows developers to pass data from Ethereum L1 to smart contracts on zkSync, providing the required information to run various smart contracts.
+There are some features that are not included in our current testnet that we’re looking to ship in future upgrades. In estimated chronological order, this includes:
+
+
+- Account abstraction: Imagine being able to implement custom logic for signature checking for your account. Or maybe social recovery? Currently, on most of the EVM chains, users need to deploy smart contract wallets for such purposes. All of this would be easily supported with account abstraction.
+- Support for older versions of Solidity. We are working hard to support different versions of Solidity so that new projects can be added without any problems.
+- zkPorter: One of the largest and most important features, zkPorter will allow users to choose between a zkRollup account featuring the highest security and a 20x fee reduction compared to Ethereum, or a zkPorter account featuring stable transaction fees of just a few cents in a different security model (much higher than that of a sidechain). Both zkPorter accounts, and zkRollup accounts, will be able to interact seamlessly together under the hood.
+
+
+## zkSync in comparison
+
+
+zkSync [stands out remarkably](https://blog.matter-labs.io/evaluating-ethereum-l2-scaling-solutions-a-comparison-framework-b6b2f410f955) in security and usability among existing L2 scaling solutions.
+Thanks to the combination of cutting-edge cryptography and on-chain data availability, zkRollup (the core network of zkSync) is the only L2 scaling solution that doesn't require any operational activity to keep the funds safe.
+For example, users can go offline and still be able to withdraw their assets safely when they come back, even if the zkRollup validators are no longer around.
+
+
+## zkSync characteristics
+
 
 - ETH and ERC20 token transfers with instant confirmations and 10-minute finality on L1
 - Transaction fees are extremely low (1/100th of the mainnet cost for ERC20 tokens and 1/30th for ETH transfers).
@@ -58,7 +104,9 @@ Please note that for developer convenience, we usually treat the `Processed` and
 - zkSync has native support for NFTs.
 - There is no requirement for an operational activity to keep the funds safe.
 
-### zkSync 2.0 highlights
+
+## Highlights of zkSync 2.0
+
 
 - Mainnet-like security with zero reliance on 3rd parties.
 - Permissionless EVM-compatible smart contracts.
@@ -66,7 +114,9 @@ Please note that for developer convenience, we usually treat the `Processed` and
 - Preserving key EVM features, such as smart contract composability.
 - Introducing new features, such as account abstraction and meta-transactions.
 
-### How to get started?
+
+## How to get started?
+
 
 - Begin by building a dApp in the [quickstart section](../../developer-guides/hello-world.md)
 - See the info on RPC nodes, wallet, and block explorer on the [important links](../troubleshooting/important-links.md) page.

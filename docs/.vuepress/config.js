@@ -57,7 +57,7 @@ module.exports = {
           children: [
             "/dev/fundamentals/rollups.md",
             "/dev/fundamentals/zkSync.md",
-            "/dev/fundamentals/testnet.md",
+            // "/dev/fundamentals/testnet.md",
           ],
         },
         {

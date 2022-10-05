@@ -1,4 +1,4 @@
-# Important: Account abstraction support
+# Account abstraction support
 
 ## Introduction
 
@@ -23,7 +23,7 @@ To better understand this page, we recommend you take some time to first read a 
 
 ## Design
 
-The account abstraction protocol on zkSync is in spirit very similar to [EIP4337](https://eips.ethereum.org/EIPS/eip-4337), though our protocol is still different for the sake of efficiency and better UX.
+The account abstraction protocol on zkSync is very similar to [EIP4337](https://eips.ethereum.org/EIPS/eip-4337), though our protocol is still different for the sake of efficiency and better UX.
 
 ### IAccount interface
 

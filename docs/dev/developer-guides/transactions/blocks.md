@@ -1,4 +1,4 @@
-# General
+# Blocks
 
 A block in Ethereum is a list of transactions that have been recorded historically. They are collections of transactions that include the hash of the chain's previous block.
 We group transactions into blocks to ensure everyone on the network stays in sync and agrees on the detailed history of transactions. It implies that hundreds of transactions are simultaneously committed, decided upon, and synced.
