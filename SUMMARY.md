@@ -39,3 +39,6 @@
     * [Руководство: абстракция аккаунта](developer-docs/rukovodstvo-razrabotchika/rukovodstvo-abstrakciya-akkaunta.md)
     * [Руководство: разработка кастомного paymaster](developer-docs/rukovodstvo-razrabotchika/rukovodstvo-razrabotka-kastomnogo-paymaster.md)
     * [Переход на testnet paymaster](developer-docs/rukovodstvo-razrabotchika/perekhod-na-testnet-paymaster.md)
+* [API Reference](api-reference/README.md)
+  * [Обзор](api-reference/obzor.md)
+  * [Web3 API](api-reference/web3-api.md)
