@@ -7,7 +7,7 @@ To interact with zkSync from L1, you need the interface of its canonical bridge.
 
 The guide on interacting with the zkSync canonical bridge with examples in both Solidity and `zksync-web3` SDK can be found [here](../dev/developer-guides/Bridging/l1-l2.md).
 
-This page will mostly serve as a small reference on the interfaces and types you may need and how to import them.
+This page will primarily serve as a quick reference for the interfaces and types you may require, as well as how to import them.
 
 ## `@matterlabs/zksync-contracts` reference
 
