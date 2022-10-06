@@ -23,9 +23,9 @@ zkSync [stands out remarkably](https://blog.matter-labs.io/evaluating-ethereum-l
 On zkSync, each transaction is at one of the four stages:
 
 - `Pending`: The transaction was received by the operator, but it has not been processed yet.
-- `Processed` transaction is processed by the operator and is confirmed to be included in the next block.
-- `Committed`: transaction state diffs were published on Ethereum.
-- `Finalized`: The SNARK validity proof for the transaction has been submitted and verified by the smart contract. After this step, the transaction is considered to be final.
+- `Processed`: The transaction is processed by the operator and is confirmed to be included in the next block.
+- `Committed`: It indicates that the transaction data of this block has been posted on Ethereum. It does not prove that it has been executed in a valid way, but it ensures the availability of the block data.
+- `Finalized`: This indicates that the SNARK validity proof for the transaction has been submitted and verified by the smart contract. After this step, the transaction is considered to be final.
 
 The typical time for a transaction to go from `Processed` to `Finalized` is a couple of hours at the current stage.
 
