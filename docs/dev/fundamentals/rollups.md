@@ -1,5 +1,7 @@
 # Rollups
 
+## Introduction
+
 To better understand rollups we need to dive briefly into Ethereum and Layer 2 solutions.
 
 The design of Ethereum is such that when the demand from users to transact increases, a limit is placed on the network capacity, thereby causing congestion, which results in slow transactions and increased gas prices.
