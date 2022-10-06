@@ -42,3 +42,4 @@
 * [API Reference](api-reference/README.md)
   * [Обзор](api-reference/obzor.md)
   * [Web3 API](api-reference/web3-api.md)
+  * [Интерфейс контрактов](api-reference/interfeis-kontraktov.md)
