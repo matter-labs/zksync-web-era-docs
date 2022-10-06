@@ -27,7 +27,7 @@ jobs:
         run: yarn run docs:build
 
       - name: "Deploy preview"
-        uses: matter-labs/action-hosting-deploy@v0
+        uses: matter-labs/action-hosting-deploy@main
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_AQWZX_ZKSYNC_V2_DOCS }}"
