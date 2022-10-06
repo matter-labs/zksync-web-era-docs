@@ -29,7 +29,7 @@ When a user initiates a transaction on Ethereum, some specific data is created;
 
 - Simple or asset transfers: This refers to the regular tokens transfer in the form of ether from one account to another.
 
-To deploy a contract, a user calls the create function of the ContractDeployer and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the factory_deps field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the factory_deps as well.
+To deploy a contract, a user calls the `create` function of the ContractDeployer and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the factory_deps field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the factory_deps as well.
 
 - Contract deployment transactions: Contract deployment on zkSync is quite different from Ethereum.
   - Ethereum: Contract deployment occurs when a user sends a transaction to the zero address `(0x000...000)` with the `data` field of the transaction equal to the contract bytecode concatenated with the constructor parameters.

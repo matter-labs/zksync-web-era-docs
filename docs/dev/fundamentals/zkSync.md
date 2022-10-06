@@ -17,18 +17,6 @@ At this time zkSync is solely run and operated by the zkSync team's servers, and
 ## zkSync in comparison
 
 zkSync [stands out remarkably](https://blog.matter-labs.io/evaluating-ethereum-l2-scaling-solutions-a-comparison-framework-b6b2f410f955) in security and usability among existing L2 scaling solutions. 
-Thanks to the combination of cutting-edge cryptography and on-chain data availability, zkRollup (the core network of zkSync) are the only L2 scaling solution that doesn't require any operational activity to keep the funds safe. 
-For example, users can go offline and still be able to withdraw their assets safely when they come back, even if the zkRollup validators are no longer around.
-
-In the following sections, we will cover some attributes of zkSync.
-
-## Transaction types
-
-zkSync supports Ethereum's "legacy" (pre-EIP2718) transaction types, EIP1559 transaction type, and its custom EIP712 transactions. You can use transactions of this type to use zkSync-specific features like account abstraction. 
-Additionally, it is only possible to deploy smart contracts with this type of transaction.
-
-Knowing the details about the transaction format is not required to use zkSync's SDK, but if you are curious, you can read more about it [here](../../api/api.md#eip712).
-
 
 ## Confirmations and finality
 
@@ -46,17 +34,9 @@ Please note that for developer convenience, we usually treat the `Processed` and
 
 ## zkSync features
 
-- ETH and ERC20 token transfers with instant confirmations and 10-minute finality on L1
-- Transaction fees are extremely low (1/100th of the mainnet cost for ERC20 tokens and 1/30th for ETH transfers).
-- No registration is required to receive funds.
+- ETH and ERC20 token transfers with instant confirmations and fast finality on L1
+- Transaction fees are extremely low for the mainnet cost for ERC20 tokens and that of ETH transfers.
 - Payments to existing Ethereum addresses (including smart contracts) can be conveniently paid with the token being transferred.
-- Withdrawals to the mainnet take ~10 minutes.
-- As with the Ethereum mainnet, no third parties are needed to keep funds safe.
-- Users are always in control of their funds.
-- zkSync is smart-contract friendly; it allows you to reuse existing Solidity code.
-- zkSync is friendlier for exchanges.
-- zkSync has native support for NFTs.
-- There is no requirement for an operational activity to keep the funds safe.
 
 ### zkSync 2.0 highlights
 
@@ -64,7 +44,7 @@ Please note that for developer convenience, we usually treat the `Processed` and
 - Permissionless EVM-compatible smart contracts.
 - Standard Web3 API.
 - Preserving key EVM features, such as smart contract composability.
-- Introducing new features, such as account abstraction and meta-transactions.
+- Introducing new features, such as account abstraction.
 
 ### How to get started?
 

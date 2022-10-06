@@ -16,11 +16,11 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 ### Developer guides
 
 - [Quickstart](./developer-guides/hello-world.md) - Learn how to build a full dApp using the zkSync development toolbox.
-- [Contracts](./developer-guides/contracts/system-contracts.md) - A brief overview of zkSync system contracts.
-  - [Contract deployment](./developer-guides/contracts/contracts.md) - A guide on how to deploy smart contracts on zkSync.
+- [Contract deployment](./developer-guides/contracts/contracts.md) - A guide on how to deploy smart contracts on zkSync.
   - [Contract verification](./developer-guides/contracts/contract-verification.md) - A guide on how to verify smart contracts with zkSync block explorer.
+- [System contracts](./developer-guides/contracts/system-contracts.md) - A brief overview of zkSync system contracts.
 - [Transactions](./developer-guides/transactions/transactions.md) - A guide on how zkSync handles transactions.
-  - [Account abstraction](./developer-guides/transactions/aa.md) - Learn how the zkSync platform handles transactions.
+  - [Account abstraction](./developer-guides/transactions/aa.md) - Learn about account abstraction.
   - [Blocks](./developer-guides/transactions/blocks.md) - Learn how blocks work on zkSync.
 - [Fee mechanism](./developer-guides/fee-model.md) - A quick overview of the zkSync fee structure.
 - [bridging of funds](./developer-guides/bridging/bridging-asset.md) - A brief intro on token bridging.

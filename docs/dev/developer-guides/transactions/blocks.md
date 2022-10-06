@@ -48,4 +48,3 @@ Every block needs a unique hash, which we proposed for Web3 API compatibility. A
 - Gas limit: The current block gas limit, always returns `2^32-1`.
 - Coinbase:  The current block miner’s address, returns the [bootloader](../contracts/system-contracts.md#bootloader) address.
 - Difficulty: The current block difficulty, returns `2500000000000000` (zkSync does not have proof of work consensus).
-- MSIZE: It returns the size of the memory, usually `2^16`.

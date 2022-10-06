@@ -71,7 +71,7 @@ A transaction is sent from a contract account to another contract account.
 
 ### keccak-256
 
-The cryptographic hash function used in Ethereum. Keccak-256 was standardized as SHA-3.
+A cryptographic hash function used in Ethereum. Keccak-256 was standardized as SHA-3.
 
 ## L
 
@@ -87,7 +87,7 @@ Mainnet is a blockchain protocol that is fully developed and deployed, with real
 
 ### mint
 
- Minting is the process of creating new tokens and bringing them into circulation so that they can be used.
+Minting is the process of creating new tokens and bringing them into circulation so that they can be used.
 
 ## N
 
@@ -95,8 +95,9 @@ Mainnet is a blockchain protocol that is fully developed and deployed, with real
 
 A random number is used once to iterate the output hash calculations.
 
-<!-- ## O
-## P -->
+<!-- ## O -->
+
+## P 
 
 ### private chain
 
