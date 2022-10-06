@@ -1,16 +1,16 @@
 # Web3 API
 
-zkSync 2.0 fully supports standard [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API).
+zkSync 2.0 fully supports the standard [Ethereum JSON-RPC API] (https://eth.wiki/json-rpc/API) and adds some L2-specific features.
 
 As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes to the codebase are needed._
 
 It is possible to continue using the SDK that is currently in use. Users will continue paying fees in ETH, and the UX will be identical to the one on Ethereum.
 
-However, zkSync has its own specifics, which this section describes.
+However, zkSync has its specifics, which this section describes.
 
 ## EIP712
 
-To specify additional fields, like the custom signature for custom accounts or to choose the paymaster, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but they also have fields that contain additional L2-specific data (`paymaster`, etc):
+To specify additional fields, like the custom signature for custom accounts or to choose the paymaster, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but they also have fields that contain additional L2-specific data (`paymaster`, etc).
 
 ```json
 "ergsPerPubdata": "1212",
@@ -22,9 +22,9 @@ To specify additional fields, like the custom signature for custom accounts or t
 "factory_deps": ["0x..."]
 ```
 
-- `ergsPerPubdata` is a field that describes the maximal amount of ergs the user is willing to pay for a single byte of pubdata.
-- `customSignature` is a field with a custom signature, in case the signer's account is not EOA.
-- `paymasterParams` is a field with parameters for configuring the custom paymaster for the transaction. The paymaster parameters contain the address of the paymaster and the encoded input to invoke it.
+- `ergsPerPubdata`: is a field that describes the maximal amount of ergs the user is willing to pay for a single byte of pubdata. 
+- `customSignature` is a field with a custom signature, in case the signer's account is not EOA. 
+- `paymasterParams` is a field with parameters for configuring the custom paymaster for the transaction. The address of the paymaster and the encoded input to call it are in the paymaster parameters.
 - `factory_deps` is a field that should be a non-empty array of `bytes` for deployment transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
 
 To let the server recognize EIP712 transactions, the `transaction_type` field is equal to `113` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
@@ -51,11 +51,11 @@ These fields are conveniently handled by our [SDK](./js/features.md).
 
 ## zkSync-specific JSON-RPC methods
 
-All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods other than those provided here. These methods are to be used internally by the team and are very unstable. 
+All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods other than those provided here. These methods are to be used internally by the team and are very unstable.
 
 ::: warning
 
-Please note that, Metamask does not support zks_ namespace's methods, we are working to support it in the future, alternatively you can use `Provider` class with the testnet RPC instead of relying on the Metamask's injected provider.
+Please note that Metamask does not support zks_ namespace's methods, we are working to support it in the future, alternatively, you can use the `Provider` class with the testnet RPC instead of relying on Metamask's injected provider.
 
 :::
 
@@ -107,9 +107,9 @@ None.
 
 ### `zks_getConfirmedTokens`
 
-Given `from` and `limit` returns information about the confirmed tokens with IDs in the interval `[from..from+limit-1]`. "Confirmed" is a misnomer here, since a confirmed token is one that has been bridged through the default zkSync bridge.
+Given `from` and `limit` return information about the confirmed tokens with IDs in the interval `[from..from+limit-1]`. "Confirmed" is the wrong word here, since a confirmed token has already been bridged through the default zkSync bridge.
 
-The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically sorted array of tokens.
+The tokens are returned in alphabetical order by their symbols, so a token's id is just its place in an array of tokens that has been sorted by symbols.
 
 ### Input parameters
 
@@ -145,7 +145,7 @@ The tokens are returned in alphabetical order by their symbol, so basically, the
 
 ### `zks_getL2ToL1MsgProof`
 
-Given a block, a sender, a message and an optional message log index in the block containing the L1->L2 message, returns the proof for the message sent via the L1Messenger system contract.
+Given a block, a sender, and a message, and an optional message log index in the block containing the L1->L2 message, returns the proof for the message sent via the L1Messenger system contract.
 
 ### Input parameters
 
@@ -153,7 +153,7 @@ Given a block, a sender, a message and an optional message log index in the bloc
 | --------- | --------- | ----------------------------------------------------------------------------------------- |
 | block     | `uint32`  | The number of the block where the message was emitted.                                    |
 | sender    | `address` | The sender of the message (i.e. the account that called the L1Messenger system contract). |
-| msg       | `uint256` | The keccak256 hash of the message that was sent.                                          |
+| msg       | `uint256` | The keccak256 hash of the sent message.                                          |
 | l2_log_position       | `uint256 | null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/contracts/system-contracts.md#il1messenger) when submitting this message. If it is ommitted, the proof for the first message with such content will be returned.                                          |
 
 ### Output format
@@ -174,10 +174,9 @@ Otherwise, the object of the following format is returned:
   "root": "0x6a420705824f0a3a7e541994bc15e14e6a8991cd4e4b2d35c66f6e7647760d97"
 }
 ```
+The `id` is the position of the leaf in the Merkle tree of L2->L1 messages for the block. The `proof` is the Merkle proof for the message, while the `root ` is the root of the Merkle tree of L2->L1 messages. Please note, that the Merkle tree uses _sha256_ for the trees.
 
-The `id` is the position of the leaf in the Merkle tree of L2->L1 messages for the block. The `proof` is the merkle proof for the message, while the `root ` is the root of the merkle tree of L2->L1 messages. Please note, that the merkle tree uses _sha256_ for the trees.
-
-You do not need to care about the intrinsics, since the returned `id` and `proof` can be used rightaway for interacting with zkSync smart contract.
+You do not need to care about the intrinsics, since the returned `id` and `proof` can be used right away for interacting with the zkSync smart contract.
 
 A nice example of using this endpoint via our SDK can be found [here](../dev/developer-guides/Bridging/l2-l1.md).
 
@@ -202,7 +201,7 @@ None.
 
 ### `zks_getTestnetPaymaster`
 
-Returns the address of the [testnet paymaster](../dev/developer-guides/transactions/aa.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens. 
+Returns the address of the [testnet paymaster](../dev/developer-guides/transactions/aa.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
 
 ### Input parameters
 
@@ -296,6 +295,6 @@ Don't want to document (at least for now):
 
 ## PubSub API
 
-zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/rpc/pubsub), except for `syncing` subscription, as it doesn't have meaning for the zkSync network since technically our nodes are always synced.
+zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/rpc/pubsub), except for the `syncing` subscription, as it doesn't have meaning for the zkSync network since technically our nodes are always synced.
 
 The WebSocket URL is `wss://zksync2-testnet.zksync.dev/ws`.

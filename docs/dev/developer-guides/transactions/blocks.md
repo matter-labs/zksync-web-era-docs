@@ -1,4 +1,4 @@
-# General
+# Blocks
 
 A block in Ethereum is a list of transactions that have been recorded historically. They are collections of transactions that include the hash of the chain's previous block.
 We group transactions into blocks to ensure everyone on the network stays in sync and agrees on the detailed history of transactions. It implies that hundreds of transactions are simultaneously committed, decided upon, and synced.
@@ -22,7 +22,7 @@ All actions on L1 require some gas to be spent. So, for example, if we aggregate
 
 ### Ethereum Block Numbers Within zkSync
 
-L1 batch is a range of L2 blocks that are committed and finalized on L1 as one whole. The reason for having them is to save on fixed gas costs while publishing L2 block data on the L1 chain.
+The L1 batch is a range of L2 blocks that are committed and finalized on L1 as one whole. The reason for having them is to save on fixed gas costs while publishing L2 block data on the L1 chain.
 Accessing block numbers within a zkSync API is similar to how you would do it on Ethereum. For example, `eth_blockNumber` returns the number of the latest L2 block, and `eth_getBlockByNumber` returns the information about the L2 block by its number.
 
 The **capacity,** which includes the number of transactions and storage writes, of the L1 batch is limited because of two different things:

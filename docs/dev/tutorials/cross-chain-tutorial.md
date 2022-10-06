@@ -1,4 +1,4 @@
-# Tutorial: Cross-chain governance
+# Cross-chain governance
 
 This tutorial serves as an example of how to implement L1 to L2 contract interaction. The following functionality is implemented in this tutorial:
 

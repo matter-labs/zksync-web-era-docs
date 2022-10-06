@@ -1,4 +1,4 @@
-# Introduction
+# Rollups
 
 To better understand rollups we need to dive briefly into Ethereum and Layer 2 solutions.
 
