@@ -35,7 +35,7 @@ Please note that for developer convenience, we usually treat the `Processed` and
 ## zkSync features
 
 - ETH and ERC20 token transfers with instant confirmations and fast finality on L1
-- Transaction fees are extremely low for the mainnet cost for ERC20 tokens and that of ETH transfers.
+- Transaction fees are extremely low for the mainnet cost for ERC20 tokens and ETH transfers.
 - Payments to existing Ethereum addresses (including smart contracts) can be conveniently paid with the token being transferred.
 
 ### zkSync 2.0 highlights
