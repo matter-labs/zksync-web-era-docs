@@ -18,7 +18,7 @@ At this time, zkSync is solely run and operated by the zkSync team's servers and
 
 zkSync [stands out remarkably](https://blog.matter-labs.io/evaluating-ethereum-l2-scaling-solutions-a-comparison-framework-b6b2f410f955) in security and usability among existing L2 scaling solutions. 
 
-Both parts will be able to work with each other and be put together. This means that contracts and accounts on the zkrollup side will be able to work with accounts on the zkPorter side without any problems, and vice versa.
+Both parts will be able to work with each other and be put together. This means that contracts and accounts on the zkRollup side will be able to work with accounts on the zkPorter side without any problems, and vice versa.
 
 
 The general rollup workflow is as follows:
@@ -26,8 +26,8 @@ The general rollup workflow is as follows:
 - Users can become owners in a rollup by depositing assets from L1 or receiving a transfer from other owners.
 - Owners can transfer assets to each other.
 - Owners can withdraw assets under their control to an L1 address.
-rollup operation requires the assistance of an operator, who rolls transactions together, computes a zero-knowledge proof of the correct state transition, and affects the state transition by interacting with the rollup contract.
-To understand the design, we need to look into how zkSync rollup transactions works.
+Rollup operation requires the assistance of an operator, who rolls transactions together, computes a zero-knowledge proof of the correct state transition, and affects the state transition by interacting with the rollup contract.
+To understand the design, we need to look into how zkSync rollup transactions work.
 
 zkSync operations are divided into rollup transactions (initiated inside rollup by a rollup account) and priority operations (initiated on the mainchain by an Ethereum account).
 
@@ -48,7 +48,7 @@ The typical time for a transaction to go from `Processed` to `Finalized` is a co
 
 Please note that for developer convenience, we usually treat the `Processed` and `Committed` states as a single stage called `Committed` since they have no difference from the UX/DexEx standpoints.
 
-### The State of the rollup
+### The State of zkSync
 The current version of zkSync 2.0 solves the needs of most applications on Ethereum, and with more features planned for release soon, zkSync 2.0 will provide developers with a design space to experiment with applications not possible on Ethereum today. With this release, we are supporting the following features:
 
 - Native support of ECDSA signatures: Unlike the first version of zkSync and most of the ZK rollups, no special operation is required to register the user’s private key. Any account can be managed in L2 with the same private key that is used for L1.
@@ -59,13 +59,13 @@ Web3 API. With small exceptions, our API is fully compatible with Ethereum. This
 - L1 → L2 smart contract messaging: Allows developers to pass data from Ethereum L1 to smart contracts on zkSync, providing the required information to run various smart contracts.
 Some features are not included in our current testnet that we’re looking to ship in future upgrades. In estimated chronological order, this includes:
 
-- zkPorter: One of the largest and most important features, zkPorter will allow users to choose between a zkrollup account featuring the highest security and a 20x fee reduction compared to Ethereum, or a zkPorter account featuring stable transaction fees of just a few cents in a different security model (much higher than that of a sidechain). Both zkPorter accounts, and zkrollup accounts, will be able to interact seamlessly together under the hood.
+- zkPorter: One of the largest and most important features, zkPorter will allow users to choose between a zkRollup account featuring the highest security and a 20x fee reduction compared to Ethereum, or a zkPorter account featuring stable transaction fees of just a few cents in a different security model (much higher than that of a sidechain). Both zkPorter accounts, and zkRollup accounts, will be able to interact seamlessly together under the hood.
 
 ## zkSync in comparison
 
 zkSync [stands out remarkably](https://blog.matter-labs.io/evaluating-ethereum-l2-scaling-solutions-a-comparison-framework-b6b2f410f955) in security and usability among existing L2 scaling solutions.
-Thanks to the combination of cutting-edge cryptography and on-chain data availability, zkrollup (the core network of zkSync) are the only L2 scaling solution that doesn't require any operational activity to keep the funds safe.
-For example, users can go offline and still be able to withdraw their assets safely when they come back, even if the zkrollup validators are no longer around.
+Thanks to the combination of cutting-edge cryptography and on-chain data availability, zkRollup (the core network of zkSync) are the only L2 scaling solution that doesn't require any operational activity to keep the funds safe.
+For example, users can go offline and still be able to withdraw their assets safely when they come back, even if the zkRollup validators are no longer around.
 
 ## zkSync characteristics
 

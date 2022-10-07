@@ -1,6 +1,6 @@
 module.exports = {
   title: "zkSync: secure, scalable crypto payments", // adding title gives us a header with search box
-  description: "zkSync is a fully trustless user-centric zkrollup protocol for scaling payments and smart contracts on Ethereum.",
+  description: "zkSync is a fully trustless user-centric zkRollup protocol for scaling payments and smart contracts on Ethereum.",
   dest: "dist",
   markdown: {
     toc: { includeLevel: [2, 3] },
