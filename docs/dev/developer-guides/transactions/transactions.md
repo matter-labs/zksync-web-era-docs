@@ -7,7 +7,7 @@ The state of the Ethereum virtual machine (EVM) changes when a transaction is in
 
 We recommend you first read [accounts](https://ethereum.org/en/developers/docs/accounts/) to understand this page.
 
-## How a transaction works
+## How transactions work
 
 When a user initiates a transaction on Ethereum, some specific data is created;
 

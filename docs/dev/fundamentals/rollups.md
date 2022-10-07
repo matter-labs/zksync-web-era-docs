@@ -1,12 +1,11 @@
-# Rollups
+# rollups
 
 ## Introduction
 
 To better understand rollups we need to dive briefly into Ethereum and Layer 2 solutions.
 
-The design of Ethereum is such that when the demand from users to transact increases, a limit is placed on the network capacity, thereby causing congestion, which results in slow transactions and increased gas prices.
-While this has remained so for a while, an improved solution is needed, one that can maintain scalability.
-That is, to increase finality and achieve a high transaction rate per second without having to trade off security. That's where layer 2 solutions shine.
+In Ethereum, network congestion occurs and results in slow transactions and increased gas prices.
+While this has remained so for a while, an improved solution is needed, one that will not put limits on the throughput, but instead, increase finality and achieve a high transaction rate per second without having to trade off security. That's where layer 2 solutions shine.
 
 Layer 2 solutions are designed as an extension to Ethereum, and offer various solutions poised to be the critical scalability solution to the inherent network congestion on Ethereum. Covering all Layer 2 solutions is beyond the scope of this doc.
 We will go through a brief explainer on rollups in this section.
