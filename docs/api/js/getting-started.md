@@ -81,11 +81,10 @@ const depositReceipt = await deposit.wait();
 // Retreiving the current (committed) balance of an account
 const committedEthBalance = await syncWallet.getBalance(zksync.utils.ETH_ADDRESS);
 
-// Retrieving the balance of an account in the last finalized block
+// Retrieving the balance of an account in the last finalized block zkSync.md#confirmations-and-finality
 const finalizedEthBalance = await syncWallet.getBalance(ETH_ADDRESS, "finalized");
 ```
-
-You can read more about what committed and finalized blocks are [here](../../dev/zksync-v2/confirmation-and-finality.md).
+You can read more about what committed and finalized blocks are [here](../../dev/fundamentals/zkSync.md#confirmations-and-finality).
 
 ## Performing a transfer
 

@@ -10,8 +10,8 @@ zkSync has three plugins for hardhat:
 
 To learn more about hardhat itself, check out their [documentation](https://hardhat.org/getting-started/).
 
-This tutorial shows how to set up a zkSync Solidity project using hardhat from scratch.
-If you are using Vyper, check out the [reference](./reference.md#matterlabs-hardhat-zksync-vyper) for our Vyper plugin or the [example](https://github.com/matter-labs/hardhat-zksync/tree/main/examples/vyper-example) in our github repo!
+This tutorial shows how to set up a zkSync Solidity project using a hardhat from scratch.
+If you are using Vyper, check out the [reference](./reference.md#matterlabs-hardhat-zksync-vyper) for our Vyper plugin or the [example](https://github.com/matter-labs/hardhat-zksync/tree/main/examples/vyper-example) in our GitHub repo!
 
 ## Prerequisites
 
@@ -32,7 +32,7 @@ yarn init -y
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
-`typescript` and `ts-node` are optional - plugins will work fine in vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
+`typescript` and `ts-node` are optional - plugins will work fine in a vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
 
 2. Create the `hardhat.config.ts` file and paste the following code within it:
 
@@ -95,12 +95,7 @@ contract Greeter {
 ```
 
 5. Compile the contracts with the following command:
-
-```
-yarn hardhat compile
-```
-
-A `artifacts-zk` and `cache-zk` folders were created in the root directory (instead of the regular hardhat's `artifacts` and `cache`).
+An `artifacts-zk` and `cache-zk` folders were created in the root directory (instead of the regular hardhat's `artifacts` and `cache`).
 These are compilation artifacts, and should not be added to version control.
 
 6. Create the deployment script in the `deploy/deploy.ts`:
@@ -176,7 +171,7 @@ yarn hardhat deploy-zksync
 
 ## Future releases
 
-There are two major points of improvements for the plugins which will be released in the future:
+There are two major points of improvement for the plugins which will be released in the future:
 
-- **Composability with the existing hardhat plugins.** Compatibility with other hardhat plugins is planned for future, but has not been a focus yet.
+- **Composability with the existing hardhat plugins.** Compatibility with other hardhat plugins is planned for the future but has not been a focus yet.
 - **Improved cross-platform support.**

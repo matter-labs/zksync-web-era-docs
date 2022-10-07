@@ -10,4 +10,4 @@ If your front-end code does not deploy new smart contracts, then no changes to t
 
 If you want to deploy smart contracts or enable advanced zkSync features, like account abstraction, then you need to use the `zksync-web3` library for that. You can read about the basics [here](./features.md).
 
-If you want to see some code, check out our basic [tutorial](../../dev/guide/hello-world.md) for full mini-dApp.
+If you want to see some code, check out our basic [tutorial](../../dev/developer-guides/hello-world.md) for full mini-dApp.

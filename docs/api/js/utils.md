@@ -32,7 +32,7 @@ export const IERC20 = new utils.Interface(require("../abi/IERC20.json"));
 
 ## Encoding paymaster params
 
-Utility method that returns the correctly formed `paymasterParams` object for the common [paymaster flows](../../dev/zksync-v2/aa.md#built-in-paymaster-flows).
+Utility method that returns the correctly formed `paymasterParams` object for the common [paymaster flows](../../dev/developer-guides/transactions/aa.md#built-in-paymaster-flows).
 
 ```typescript
 export function getPaymasterParams(paymasterAddress: Address, paymasterInput: PaymasterInput): PaymasterParams;

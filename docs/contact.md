@@ -44,7 +44,7 @@ novalidate
 </div>
 </form>
 
-## Developer community
+## Developer Community
 
 Chat live with our team and other developers on the official zkSync [Discord](https://discord.gg/px2aR7w)!
 

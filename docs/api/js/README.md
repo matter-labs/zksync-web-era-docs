@@ -7,8 +7,8 @@ To provide easy access to all of the features of zkSync 2.0, the `zksync-web3` J
 ## Table of contents
 
 - [Getting started](./getting-started.md)
-- [Providers](./providers.md)
-- [Accounts: overview](./accounts.md)
+- [Providers](./providers.md) 
+- [Accounts: Overview](./accounts.md)
 - [Accounts: L1->L2 transactions](./accounts-l1-l2.md)
 - [Contracts](./contracts.md)
 - [Features](./features.md)

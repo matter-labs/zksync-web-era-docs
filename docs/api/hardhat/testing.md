@@ -8,7 +8,7 @@ zkSync team provides a dockerized local setup for this purpose.
 
 It is required that you have `Docker` and `docker-compose` installed on your computer.
 
-Also, some familiarity with the zkSync hardhat plugin is assumed. If you are new developing on zkSync with hardhat, a nice introduction is [here](./getting-started.md).
+Also, some familiarity with the zkSync hardhat plugin is assumed. If you are newly developing on zkSync with hardhat, a nice introduction is [here](./getting-started.md).
 
 ## Installing the testing environment
 
@@ -52,14 +52,13 @@ sudo ./clear.sh
 ```
 
 ## Rich wallets
-
-Local zkSync setup comes with some "rich" wallets with large amounts of ETH on both L1 and L2.
+The local zkSync setup comes with some "rich" wallets with large amounts of ETH on both L1 and L2.
 
 The full list of the addresses of these accounts with the corresponding private keys can be found [here](https://github.com/matter-labs/local-setup/blob/main/rich-wallets.json).
 
 ::: tip ERC-20 tokens
 
-The initial version of local node was shipped with several ERC-20 tokens deployed by default.
+The initial version of the local node was shipped with several ERC-20 tokens deployed by default.
 
 It's no longer the case and if you need to interact with ERC-20 tokens, you should deploy them yourself.
 
@@ -68,8 +67,7 @@ If you'd like the local node to come with pre-deployed tokens again, please let 
 :::
 
 ## Using custom database/L1
-
-To use custom Postgres database or Layer 1, you should change the environment parameters in the docker-compose file:
+To use a custom Postgres database or Layer 1, you should change the environment parameters in the docker-compose file:
 
 ```yml
 environment:
@@ -82,7 +80,7 @@ environment:
 
 ## Testing with `mocha` + `chai`
 
-Please note, that since the zkSync node URL is provided in the `hardhat.config.ts`, the best way to use different URLs for production deployment and local testing is to use environment variables. The standard way is to set `NODE_ENV=test` environment variable before invoking the tests.
+Please note, that since the zkSync node URL is provided in the `hardhat.config.ts`, the best way to use different URLs for production deployment and local testing is to use environment variables. The standard way is to set the `NODE_ENV=test` environment variable before invoking the tests.
 
 1. Create a new hardhat project and follow the contracts' compilation guide from the [getting started](./getting-started.md) page (steps 1 to 5 of the **Initializing the project** section).
 2. To add the test frameworks, run the following command:
@@ -99,55 +97,12 @@ yarn add -D mocha chai @types/mocha @types/chai
 }
 ```
 
-This will enable running tests in a hardhat environment with `NODE_ENV` env variable set as `test`.
+This will enable running tests in a hardhat environment with the `NODE_ENV` env variable set as a `test`.
 
-4. Modify `hardhat.config.ts` to use local node for testing:
+4. Modify `hardhat.config.ts` to use the local node for testing:
+Create a `test` folder, where the tests will reside.
 
-```ts
-require("@matterlabs/hardhat-zksync-deploy");
-require("@matterlabs/hardhat-zksync-solc");
-
-const zkSyncDeploy =
-  process.env.NODE_ENV == "test"
-    ? {
-        zkSyncNetwork: "http://localhost:3050",
-        ethNetwork: "http://localhost:8545",
-      }
-    : {
-        zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
-        ethNetwork: "goerli",
-      };
-
-module.exports = {
-  zksolc: {
-    version: "1.1.5",
-    compilerSource: "docker",
-    settings: {
-      optimizer: {
-        enabled: true,
-      },
-      experimental: {
-        dockerImage: "matterlabs/zksolc",
-        tag: "v1.1.5"
-      }
-    },
-  },
-  zkSyncDeploy,
-  solidity: {
-    version: "0.8.16",
-  },
-  networks: {
-    // To compile with zksolc, this must be the default network.
-    hardhat: {
-      zksync: true,
-    },
-  },
-};
-```
-
-4. Create `test` folder, where the tests will reside.
-
-5. Now we can write our first test! Create `test/main.test.ts` file with the following content:
+5. Now we can write our first test! Create a `test/main.test.ts` file with the following content:
 
 ```ts
 import { expect } from "chai";
