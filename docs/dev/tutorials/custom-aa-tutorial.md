@@ -179,7 +179,7 @@ function _validateTransaction(bytes32 _suggestedSignedHash, Transaction calldata
         address(NONCE_HOLDER_SYSTEM_CONTRACT),
         0,
         abi.encodeCall(INonceHolder.incrementMinNonceIfEquals, (_transaction.reserved[0]))
-		);
+    );
     
     bytes32 txHash;
     // While the suggested signed hash is usually provided, it is generally

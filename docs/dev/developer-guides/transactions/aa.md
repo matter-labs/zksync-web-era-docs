@@ -45,11 +45,11 @@ The following protocol is used:
 - If the nonce has not been used yet, the transaction validation is run. The provided nonce is expected to be marked as "used" during this time.
 - After the validation, the system checks whether this nonce is now marked as used.
 
-The users are allowed to use any 256-bit number as nonce and they can put any non-zero value under the corresponding key in the system contract. You can read more about how to mark a certain nonce as used in the [documentation](../contracts/system-contracts.md#inonceholder) of the NonceHolder contract.
+The users will be allowed to use any 256-bit number as nonce and they can put any non-zero value under the corresponding key in the system contract. This is already supported by the protocol, but not on the server side. More documentation on this as well as tutorials will be available once the support on the server side is released.
 
 ### Standardizing transaction hashes
 
-In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](../contracts/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA methods (in case the accounts may need this value for some reason). That's why all the methods of the IAccount interface, that will be described below, contain the hash of the transaction as well as the recommended signed digest (the digest that is signed by EOAs for this transaction). 
+In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](../contracts/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA methods (in case the accounts may need this value for some reason). That's why all the methods of the `IAccount` and `IPaymaster` interfaces, that will be described below, contain the hash of the transaction as well as the recommended signed digest (the digest that is signed by EOAs for this transaction). 
 
 ### IAccount interface
 
@@ -88,13 +88,13 @@ During the validation step, the account should decide whether it accepts the tra
 
 **Step 1.** The system checks that the nonce of the transaction has not been used before. You can read more about preserving the nonce uniqueness [here](#keeping-nonces-unique).
 
-**Step 2.** The system calls the `validateTransaction` method of the account. If it does not revert, proceed to the second step.
+**Step 2.** The system calls the `validateTransaction` method of the account. If it does not revert, proceed to the next step.
 
 **Step 3.** The system checks that the nonce of the transaction has been marked as used.
 
-**Step 4 (no paymaster).** The system calls the `payForTransaction` method of the account. If it does not revert, proceed to the third step.
+**Step 4 (no paymaster).** The system calls the `payForTransaction` method of the account. If it does not revert, proceed to the next step.
 
-**Step 4 (paymaster).** The system calls the `prePaymaster` method of the sender. If this call does not revert, then the `validateAndPayForPaymasterTransaction` method of the paymaster is called. If it does not revert too, proceed to the third step.
+**Step 4 (paymaster).** The system calls the `prePaymaster` method of the sender. If this call does not revert, then the `validateAndPayForPaymasterTransaction` method of the paymaster is called. If it does not revert too, proceed to the next step.
 
 **Step 3.** The system verifies that the bootloader has received at least `tx.ergsPrice * tx.ergsLimit` ETH to the bootloader. If it is the case, the verification is considered complete and we can proceed to the next step.
 
