@@ -1,5 +1,11 @@
 # Account abstraction
 
+::: warn To be updated
+
+This tutorial has not been fully tested. We will test it and fix all possible issues asap.
+
+:::
+
 Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../developer-guides/contracts/system-contracts.md#contractdeployer) system contract.
 In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 
@@ -162,10 +168,10 @@ Using the `TransactionHelper` library:
 using TransactionHelper for Transaction;
 ```
 
-Also, note that since the non-view methods of the `NONCE_HOLDER_SYSTEM_CONTRACT` are required to be called with the `isSystem` flag on, the [systemCall](https://github.com/matter-labs/v2-testnet-contracts/blob/a3cd3c557208f2cd18e12c41840c5d3728d7f71b/l2/system-contracts/SystemContractsCaller.sol#L55) method of the `SystemContractCaller` library should be used, so this library needs to be imported as well:
+Also, note that since the non-view methods of the `NONCE_HOLDER_SYSTEM_CONTRACT` are required to be called with the `isSystem` flag on, the [systemCall](https://github.com/matter-labs/v2-testnet-contracts/blob/a3cd3c557208f2cd18e12c41840c5d3728d7f71b/l2/system-contracts/SystemContractsCaller.sol#L55) method of the `SystemContractsCaller` library should be used, so this library needs to be imported as well:
 
 ```solidity
-import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractCaller.sol';
+import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.sol';
 ```
 
 Now we can implement the `_validateTransaction` method:
@@ -276,7 +282,7 @@ import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
 import '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
 
 import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol';
-import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractCaller.sol';
+import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.sol';
 
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
@@ -336,18 +342,23 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         _executeTransaction(_transaction);
     }
 
-    function _executeTransaction(Transaction calldata _transaction) internal {
-        uint256 to = _transaction.to;
-        // By convention, the `reserved[1]` field is msg.value
-        uint256 value = _transaction.reserved[1];
-        bytes memory data = _transaction.data;
+    address to = address(uint160(_transaction.to));
+    uint256 value = _transaction.reserved[1];
+    bytes memory data = _transaction.data;
 
+    if(to == address(DEPLOYER_SYSTEM_CONTRACT)) {
+        // We allow calling ContractDeployer with any calldata
+        SystemContractsCaller.systemCall(
+            uint32(gasleft()),
+            to,
+            uint128(_transaction.reserved[1]), // By convention, reserved[1] is `value`
+            _transaction.data
+        );
+    } else {
         bool success;
         assembly {
             success := call(gas(), to, value, add(data, 0x20), mload(data), 0, 0)
         }
-
-        // Needed for the transaction to be correctly processed by the server.
         require(success);
     }
 
@@ -391,9 +402,10 @@ The code will look the following way:
 
 ```solidity
 // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
-import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractCaller.sol';
+import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.sol';
 
 contract AAFactory {
     bytes32 public aaBytecodeHash;
@@ -405,12 +417,12 @@ contract AAFactory {
         bytes32 salt,
         address owner1,
         address owner2
-    ) external returns (address) {
+    ) external returns (address accountAddress) {
         bytes memory returnData = SystemContractsCaller.systemCall(
             uint32(gasleft()),
-            address(NONCE_HOLDER_SYSTEM_CONTRACT),
+            address(DEPLOYER_SYSTEM_CONTRACT),
             0,
-            abi.encodeCall(DEPLOYER_SYSTEM_CONTRACT.create2Account, (salt, aaBytecodeHash, 0, abi.encode(owner1, owner2))
+            abi.encodeCall(DEPLOYER_SYSTEM_CONTRACT.create2Account, (salt, aaBytecodeHash, abi.encode(owner1, owner2))
         );
 
         (accountAddress, ) = abi.decode(returnData, (address, bytes));
