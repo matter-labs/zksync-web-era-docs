@@ -27,7 +27,7 @@ The account abstraction protocol on zkSync is very similar to [EIP4337](https://
 
 ### Keeping nonces unique
 
-::: warn Changes are expected
+::: warning Changes are expected
 
 The current model has some important drawbacks: it does not allow custom wallets to send multiple transactions at the same time, while keeping the deterministic ordering. For EOAs the nonces are expected to be sequentially growing, while for the custom accounts the order of transactions can not be determined for sure. 
 

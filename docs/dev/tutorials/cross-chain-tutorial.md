@@ -1,6 +1,6 @@
 # Cross-chain governance
 
-::: warn To be updated
+::: warning To be updated
 
 While generally up to date, this tutorial has not been fully tested. We will test it and fix all possible issues asap.
 
