@@ -35,7 +35,7 @@ In the future, we plan to switch to a model, where the accounts could choose whe
 
 :::
 
-One of the important invariants of every blockchain is that each transaction has a unique hash. Holding this property with an arbitrary account abstraction is not trivial though as an account can, in general, accept accept multiple identical transactions. Even though these transactions would be technically valid by the rules of the blockchain, violating hash uniqueness would be very hard for indexers and other tooling to process.
+One of the important invariants of every blockchain is that each transaction has a unique hash. Holding this property with an arbitrary account abstraction is not trivial though as an account can, in general, accept multiple identical transactions. Even though these transactions would be technically valid by the rules of the blockchain, violating hash uniqueness would be very hard for indexers and other tooling to process.
 
 There needs to be a solution on the protocol level that is both cheap for the users and robust in case of a malicious operator. One of the easiest ways to ensure that the transaction hashes do not repeat is to have a pair (sender, nonce) always unique.
 
@@ -45,11 +45,13 @@ The following protocol is used:
 - If the nonce has not been used yet, the transaction validation is run. The provided nonce is expected to be marked as "used" during this time.
 - After the validation, the system checks whether this nonce is now marked as used.
 
-The users will be allowed to use any 256-bit number as nonce and they can put any non-zero value under the corresponding key in the system contract. This is already supported by the protocol, but not on the server side. More documentation on this as well as tutorials will be available once the support on the server side is released.
+The users will be allowed to use any 256-bit number as nonce and they can put any non-zero value under the corresponding key in the system contract. This is already supported by the protocol, but not on the server side. 
+
+More documentation on various interactions with the `NonceHolder` system contract as well as tutorials will be available once the support on the server side is released. For now, it is only recommended to use the `incrementNonceIfEquals` method of it, which practically enforces the sequential ordering of nonces.
 
 ### Standardizing transaction hashes
 
-In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](../contracts/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA methods (in case the accounts may need this value for some reason). That's why all the methods of the `IAccount` and `IPaymaster` interfaces, that will be described below, contain the hash of the transaction as well as the recommended signed digest (the digest that is signed by EOAs for this transaction). 
+In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](../contracts/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA methods (in case the accounts may need this value for some reason). That's why all the methods of the `IAccount` and `IPaymaster` interfaces, which will be described below, contain the hash of the transaction as well as the recommended signed digest (the digest that is signed by EOAs for this transaction). 
 
 ### IAccount interface
 
@@ -115,9 +117,9 @@ By default, calling `estimateGas` adds a constant to cover charging the fee and 
 
 ## Using `SystemContractCaller` library
 
-For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with special `isSystem` flag. You can read more about it [here](../contracts/system-contracts.md#protected-access-to-some-of-the-system-contracts). In order to make a call with this flag, the `systemCall` method of the [SystemContractCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/sb-system-contracts-for-new-update/l2/system-contracts/SystemContractsCaller.sol) library should be used.
+For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](../contracts/system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall` method of the [SystemContractCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/sb-system-contracts-for-new-update/l2/system-contracts/SystemContractsCaller.sol) library should be used.
 
-Using this library is practically a must when developing custom accounts, since this is the only way to call non-view methods of the `NonceHolder` system contract. Also, you will have to use this library if you want to allow users to deploy contracts of their own. You can use the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/sb-system-contracts-for-new-update/l2/system-contracts/DefaultAccount.sol) of the EOA account as a reference. 
+Using this library is practically a must when developing custom accounts since this is the only way to call non-view methods of the `NonceHolder` system contract. Also, you will have to use this library if you want to allow users to deploy contracts of their own. You can use the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/sb-system-contracts-for-new-update/l2/system-contracts/DefaultAccount.sol) of the EOA account as a reference. 
 
 ## Extending EIP4337
 
