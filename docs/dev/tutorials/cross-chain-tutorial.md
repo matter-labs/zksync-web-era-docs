@@ -2,7 +2,7 @@
 
 ::: warn To be updated
 
-This tutorial has not been fully tested. We will test it and fix all possible issues asap.
+While generally up to date, this tutorial has not been fully tested. We will test it and fix all possible issues asap.
 
 :::
 
