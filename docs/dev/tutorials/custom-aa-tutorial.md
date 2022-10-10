@@ -53,15 +53,15 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         _;
     }
 
-    function validateTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
-        _validateTransaction(_transaction);
+    function validateTransaction(bytes32, bytes32 _suggestedSignedHash, Transaction calldata _transaction) external payable override onlyBootloader {
+        _validateTransaction(_suggestedSignedHash, _transaction);
     }
 
-    function _validateTransaction(Transaction calldata _transaction) internal {
+    function _validateTransaction(bytes32 _suggestedSignedHash, Transaction calldata _transaction) internal {
 
     }
 
-    function executeTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+    function executeTransaction(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
         executeTransaction(_transaction);
 	  }
 
@@ -80,11 +80,11 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         return EIP1271_SUCCESS_RETURN_VALUE;
     }
   
-    function payForTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+    function payForTransaction(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
 
     }
 
-    function prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
+    function prePaymaster(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
 
     }
 
@@ -162,14 +162,34 @@ Using the `TransactionHelper` library:
 using TransactionHelper for Transaction;
 ```
 
+Also, note that since the non-view methods of the `NONCE_HOLDER_SYSTEM_CONTRACT` are required to be called with the `isSystem` flag on, the [systemCall](https://github.com/matter-labs/v2-testnet-contracts/blob/a3cd3c557208f2cd18e12c41840c5d3728d7f71b/l2/system-contracts/SystemContractsCaller.sol#L55) method of the `SystemContractCaller` library should be used, so this library needs to be imported as well:
+
+```solidity
+import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractCaller.sol';
+```
+
 Now we can implement the `_validateTransaction` method:
 
 ```solidity
-function _validateTransaction(Transaction calldata _transaction) internal {
+function _validateTransaction(bytes32 _suggestedSignedHash, Transaction calldata _transaction) internal {
     // Incrementing the nonce of the account.
     // Note, that reserved[0] by convention is currently equal to the nonce passed in the transaction
-    NONCE_HOLDER_SYSTEM_CONTRACT.incrementNonceIfEquals(_transaction.reserved[0]);
-    bytes32 txHash = _transaction.encodeHash();
+    SystemContractsCaller.systemCall(
+        uint32(gasleft()),
+        address(NONCE_HOLDER_SYSTEM_CONTRACT),
+        0,
+        abi.encodeCall(INonceHolder.incrementMinNonceIfEquals, (_transaction.reserved[0]))
+    );
+    
+    bytes32 txHash;
+    // While the suggested signed hash is usually provided, it is generally
+    // not recommended to rely on it to be present, since in the future
+    // there may be tx types with no suggested signed hash.
+    if(_suggestedSignedHash == bytes32(0)) {
+        txHash = _transaction.encodeHash();
+    } else {
+        txHash = _suggestedSignedHash;
+    }
 
     require(isValidSignature(txHash, _transaction.signature) == EIP1271_SUCCESS_RETURN_VALUE);
 }
@@ -180,7 +200,7 @@ function _validateTransaction(Transaction calldata _transaction) internal {
 We should now implement the `payForTransaction` method. The `TransactionHelper` library already provides us with the `payToTheBootloader` method, that sends `_transaction.maxFeePerErg * _transaction.ergsLimit` ETH to the bootloader. So the implementation is rather straightforward:
 
 ```solidity
-function payForTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+function payForTransaction(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
 		bool success = _transaction.payToTheBootloader();
 		require(success, "Failed to pay the fee to the operator");
 }
@@ -192,7 +212,7 @@ While generally the account abstraction protocol enables performing arbitrary ac
  Unless you want to implement or restrict some specific paymaster use cases from your account, it is better to keep it consistent with EOAs. The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processed the `prePaymaster` step the same as EOA does.
 
 ```solidity
-function prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
+function prePaymaster(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
     _transaction.processPaymasterInput();
 }
 ```
@@ -218,6 +238,32 @@ function _executeTransaction(Transaction calldata _transaction) internal {
 }
 ```
 
+However, note that calling ContractDeployer is only possible with the `isSystem` call flag. In order to permit your users to deploy contracts, you should do so explicitly:
+
+```solidity
+function _execute(Transaction calldata _transaction) internal {
+    address to = address(uint160(_transaction.to));
+    uint256 value = _transaction.reserved[1];
+    bytes memory data = _transaction.data;
+
+    if(to == address(DEPLOYER_SYSTEM_CONTRACT)) {
+        // We allow calling ContractDeployer with any calldata
+        SystemContractsCaller.systemCall(
+            uint32(gasleft()),
+            to,
+            uint128(_transaction.reserved[1]), // By convention, reserved[1] is `value`
+            _transaction.data
+        );
+    } else {
+        bool success;
+        assembly {
+            success := call(gas(), to, value, add(data, 0x20), mload(data), 0, 0)
+        }
+        require(success);
+    }
+}
+```
+
 Note, that whether the operator will consider the transaction successful will depend only on whether the call to `executeTransactions` was successful. Therefore, it is highly recommended to put `require(success)` for the transaction, so that users get the best UX.
 
 ### Full code of the account
@@ -230,6 +276,7 @@ import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
 import '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
 
 import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol';
+import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractCaller.sol';
 
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
@@ -253,25 +300,39 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         _;
     }
 
-    function validateTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
-        _validateTransaction(_transaction);
+    function validateTransaction(bytes32, bytes32 _suggestedSignedHash, Transaction calldata _transaction) external payable override onlyBootloader {
+        _validateTransaction(_suggestedSignedHash, _transaction);
     }
 
-    function _validateTransaction(Transaction calldata _transaction) internal {
+    function _validateTransaction(bytes32 _suggestedSignedHash, Transaction calldata _transaction) internal {
         // Incrementing the nonce of the account.
         // Note, that reserved[0] by convention is currently equal to the nonce passed in the transaction
-        NONCE_HOLDER_SYSTEM_CONTRACT.incrementNonceIfEquals(_transaction.reserved[0]);
-        bytes32 txHash = _transaction.encodeHash();
+        SystemContractsCaller.systemCall(
+            uint32(gasleft()),
+            address(NONCE_HOLDER_SYSTEM_CONTRACT),
+            0,
+            abi.encodeCall(INonceHolder.incrementMinNonceIfEquals, (_transaction.reserved[0]))
+        );
+        
+        bytes32 txHash;
+        // While the suggested signed hash is usually provided, it is generally
+        // not recommended to rely on it to be present, since in the future
+        // there may be tx types with no suggested signed hash.
+        if(_suggestedSignedHash == bytes32(0)) {
+            txHash = _transaction.encodeHash();
+        } else {
+            txHash = _suggestedSignedHash;
+        }
 
         require(isValidSignature(txHash, _transaction.signature) == EIP1271_SUCCESS_RETURN_VALUE);
     }
 
-    function executeTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+    function executeTransaction(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
         _executeTransaction(_transaction);
     }
 
     function executeTransactionFromOutside(Transaction calldata _transaction) external payable {
-        _validateTransaction(_transaction);
+        _validateTransaction(bytes32(0), _transaction);
         _executeTransaction(_transaction);
     }
 
@@ -304,12 +365,12 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         return EIP1271_SUCCESS_RETURN_VALUE;
     }
 
-    function payForTransaction(Transaction calldata _transaction) external payable override onlyBootloader {
+    function payForTransaction(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
         bool success = _transaction.payToTheBootloader();
         require(success, "Failed to pay the fee to the operator");
     }
 
-    function prePaymaster(Transaction calldata _transaction) external payable override onlyBootloader {
+    function prePaymaster(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
         _transaction.processPaymasterInput();
     }
 
@@ -332,6 +393,7 @@ The code will look the following way:
 // SPDX-License-Identifier: MIT
 
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
+import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractCaller.sol';
 
 contract AAFactory {
     bytes32 public aaBytecodeHash;
@@ -344,7 +406,14 @@ contract AAFactory {
         address owner1,
         address owner2
     ) external returns (address) {
-        (accountAddress, ) = DEPLOYER_SYSTEM_CONTRACT.create2Account(salt, aaBytecodeHash, 0, abi.encode(owner1, owner2));
+        bytes memory returnData = SystemContractsCaller.systemCall(
+            uint32(gasleft()),
+            address(NONCE_HOLDER_SYSTEM_CONTRACT),
+            0,
+            abi.encodeCall(DEPLOYER_SYSTEM_CONTRACT.create2Account, (salt, aaBytecodeHash, 0, abi.encode(owner1, owner2))
+        );
+
+        (accountAddress, ) = abi.decode(returnData, (address, bytes));
     }
 }
 ```
