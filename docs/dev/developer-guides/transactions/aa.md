@@ -27,7 +27,7 @@ The account abstraction protocol on zkSync is very similar to [EIP4337](https://
 
 ### Keeping nonces unique
 
-::: warn Changes are expected
+::: warning Changes are expected
 
 The current model has some important drawbacks: it does not allow custom wallets to send multiple transactions at the same time, while keeping the deterministic ordering. For EOAs the nonces are expected to be sequentially growing, while for the custom accounts the order of transactions can not be determined for sure. 
 
@@ -115,9 +115,9 @@ zkSync has only a single field, `ergsLimit`, that covers the fee for all three. 
 
 By default, calling `estimateGas` adds a constant to cover charging the fee and the signature verification for EOA accounts.
 
-## Using `SystemContractCaller` library
+## Using `SystemContractsCaller` library
 
-For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](../contracts/system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall` method of the [SystemContractCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/sb-system-contracts-for-new-update/l2/system-contracts/SystemContractsCaller.sol) library should be used.
+For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](../contracts/system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall` method of the [SystemContractsCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/sb-system-contracts-for-new-update/l2/system-contracts/SystemContractsCaller.sol) library should be used.
 
 Using this library is practically a must when developing custom accounts since this is the only way to call non-view methods of the `NonceHolder` system contract. Also, you will have to use this library if you want to allow users to deploy contracts of their own. You can use the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/sb-system-contracts-for-new-update/l2/system-contracts/DefaultAccount.sol) of the EOA account as a reference. 
 
