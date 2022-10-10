@@ -60,15 +60,17 @@ contract MyPaymaster is IPaymaster {
         allowedToken = _erc20;
     }
 
-    function validateAndPayForPaymasterTransaction(Transaction calldata _transaction) external payable override onlyBootloader returns (bytes memory context) {
+    function validateAndPayForPaymasterTransaction(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader returns (bytes memory context) {
         // Transaction validation logic goes here
     }
 
     function postOp(
-      bytes calldata _context,
-      Transaction calldata _transaction,
-      ExecutionResult _txResult,
-      uint256 _maxRefundedErgs
+        bytes calldata _context,
+        Transaction calldata _transaction,
+        bytes32 _txHash,
+        bytes32 _suggestedSignedHash,
+        ExecutionResult _txResult,
+        uint256 _maxRefundedErgs
     ) external payable onlyBootloader {
         // This contract does not support any refunding logic
     }
@@ -166,7 +168,7 @@ contract MyPaymaster is IPaymaster {
         allowedToken = _erc20;
     }
 
-    function validateAndPayForPaymasterTransaction(Transaction calldata _transaction) external payable override onlyBootloader returns (bytes memory context) {
+    function validateAndPayForPaymasterTransaction(bytes32 _txHash, bytes32 _suggestedSignedHash, Transaction calldata _transaction) external payable override onlyBootloader returns (bytes memory context) {
         require(_transaction.paymasterInput.length >= 4, "The standard paymaster input must be at least 4 bytes long");
 
         bytes4 paymasterInputSelector = bytes4(_transaction.paymasterInput[0:4]);
@@ -199,6 +201,8 @@ contract MyPaymaster is IPaymaster {
     function postOp(
         bytes calldata _context,
         Transaction calldata _transaction,
+        bytes32 _txHash,
+        bytes32 _suggestedSignedHash,
         ExecutionResult _txResult,
         uint256 _maxRefundedErgs
     ) external payable onlyBootloader {
