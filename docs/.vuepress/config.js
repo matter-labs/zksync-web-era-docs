@@ -102,7 +102,47 @@ module.exports = {
           ],
         },
         
-      ]
+      ],
+      "/api": [
+        {
+          title: "Overview", // required
+          path: "/api/", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 0, // optional, defaults to 1
+        },
+        {
+          title: "Web3 API", // required
+          path: "/api/api.md", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+        },
+        {
+          title: "L1 contract interface",
+          path: "/api/contracts.md",
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          //children: ["/api/contracts/l1-l2.md"],
+        },
+        {
+          title: "JavaScript SDK", // required
+          path: "/api/js", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/js/getting-started", "/api/js/providers", "/api/js/accounts", "/api/js/accounts-l1-l2", "/api/js/contracts", "/api/js/features", "/api/js/utils", "/api/js/types", "/api/js/front-end"],
+        },
+        {
+          title: "Hardhat", // required
+          path: "/api/hardhat", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1,
+          children: [
+            "/api/hardhat/getting-started",
+            "/api/hardhat/reference",
+            "/api/hardhat/testing",
+            "/api/hardhat/compiling-libraries"
+          ],
+        },
+      ],
     }
                //<! -- OLD STRUTURE -->
         // {
@@ -199,46 +239,7 @@ module.exports = {
         //   title: "Troubleshooting",
         //   path: "/dev/troubleshooting.md", // optional, which should be a absolute path.
         // }
-      "/api": [
-        {
-          title: "Overview", // required
-          path: "/api/", // optional, which should be a absolute path.
-          collapsable: false, // optional, defaults to true
-          sidebarDepth: 0, // optional, defaults to 1
-        },
-        {
-          title: "Web3 API", // required
-          path: "/api/api.md", // optional, which should be a absolute path.
-          collapsable: false, // optional, defaults to true
-          sidebarDepth: 1, // optional, defaults to 1
-        },
-        {
-          title: "L1 contract interface",
-          path: "/api/contracts.md",
-          collapsable: false, // optional, defaults to true
-          sidebarDepth: 1, // optional, defaults to 1
-          //children: ["/api/contracts/l1-l2.md"],
-        },
-        {
-          title: "JavaScript SDK", // required
-          path: "/api/js", // optional, which should be a absolute path.
-          collapsable: false, // optional, defaults to true
-          sidebarDepth: 1, // optional, defaults to 1
-          children: ["/api/js/getting-started", "/api/js/providers", "/api/js/accounts", "/api/js/accounts-l1-l2", "/api/js/contracts", "/api/js/features", "/api/js/utils", "/api/js/types", "/api/js/front-end"],
-        },
-        {
-          title: "Hardhat", // required
-          path: "/api/hardhat", // optional, which should be a absolute path.
-          collapsable: false, // optional, defaults to true
-          sidebarDepth: 1,
-          children: [
-            "/api/hardhat/getting-started",
-            "/api/hardhat/reference",
-            "/api/hardhat/testing",
-            "/api/hardhat/compiling-libraries"
-          ],
-        },
-      ],
+
   head: [
     ["script", { src: "/__/firebase/7.13.2/firebase-app.js", defer: true }, ""],
     ["script", { src: "/__/firebase/7.13.2/firebase-analytics.js", defer: true }, ""],
