@@ -62,7 +62,7 @@ require("@matterlabs/hardhat-zksync-solc");
 
 module.exports = {
   zksolc: {
-    version: "1.1.5",
+    version: "1.2.0",
     compilerSource: "docker",
     settings: {
       optimizer: {
@@ -70,7 +70,7 @@ module.exports = {
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
-        tag: "v1.1.5"
+        tag: "v1.2.0"
       },
       libraries: {
         "contracts/MiniMath.sol": {
