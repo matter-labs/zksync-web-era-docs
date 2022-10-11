@@ -21,7 +21,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [System contracts](./developer-guides/contracts/system-contracts.md) - A brief overview of zkSync system contracts.
 - [Transactions](./developer-guides/transactions/transactions.md) - A guide on how zkSync handles transactions.
   - [Account abstraction](./developer-guides/transactions/aa.md) - Learn about account abstraction.
-  - [Blocks](./developer-guides/transactions/blocks.md) - Learn how blocks work on zkSync.
+  - [Blocks](./developer-guides/transactions/blocks.md) - Learn about blocks in zkSync.
   - [Fee mechanism](./developer-guides/transactions/fee-model.md) - A quick overview of the zkSync fee structure.
 - [Bridging of funds](./developer-guides/bridging/bridging-asset.md) - A brief intro on token bridging.
   - [L1 / L2 Interoperability](./developer-guides/bridging/l1-l2-interop.md) - A quick brief on data communication between l1 and l2.
