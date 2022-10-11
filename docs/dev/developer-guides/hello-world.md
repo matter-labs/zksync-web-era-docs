@@ -7,7 +7,9 @@ The following functionality will be implemented:
 - There will be a greeting stored on a smart contract on zkSync.
 - The user will be able to get the greeting after the dApp page is loaded.
 - The user will be able to change the greeting on the smart contract.
-- The user will be able to select the token that they want to pay the fee with. By default, the tutorial supports only a single token: ether. An example of how to pay fees with ERC20 tokens will be shown in the [paying fees using testnet paymaster](#paying-fees-using-testnet-paymaster). If you decide to build a project on mainnet, you should read the documentation for the [paymaster](./transactions/aa.md#paymasters) you are going to use.
+- The user will be able to select the token that they want to pay the fee with.
+
+- By default, the tutorial supports only a single token: ether. An example of how to pay fees with ERC20 tokens will be shown in the [paying fees using testnet paymaster](#paying-fees-using-testnet-paymaster). If you decide to build a project on mainnet, you should read the documentation for the [paymaster](./transactions/aa.md#paymasters) you are going to use.
 
 ## Prerequisites
 
@@ -438,7 +440,9 @@ async getFee() {
 
 ::: tip Paying fees in ERC20
 
-zkSync 2.0 does not natively support paying fees in ERC20 tokens, as the account abstraction feature facilitates that. An example of how to use the testnet paymaster will be provided in this tutorial below. However, when working on mainnet, you should either provide the paymaster services [yourself](./custom-paymaster-tutorial.md) or use a 3rd party paymaster. 
+zkSync 2.0 does not natively support paying fees in ERC20 tokens, as the account abstraction feature facilitates that. An example of how to use the testnet paymaster will be 
+provided in this tutorial below. However, when working on mainnet, you should either provide the paymaster services [yourself](../tutorials/custom-paymaster-tutorial.md) or use a 
+3rd party paymaster. 
 
 :::
 
