@@ -38,7 +38,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - Faucet, bridge, wallet - Explore our faucet, bridge and wallet feature on
   [zkSync 2.0 Portal](https://portal.zksync.io).
 - Block explorer - Search for real-time and historical information about blocks, transactions, addresses and more on
-  [zkSync 2.0 block explorer](https://zksync2-testnet.zkscan.io).
+[zkSync 2.0 block explorer](https://zksync2-testnet.zkscan.io).
 
 ### Examples and tutorials
 
