@@ -23,9 +23,8 @@ Both parts will be able to work with each other and be put together. This means 
 
 The general rollup workflow is as follows:
 
-- Users can become owners in a rollup by depositing assets from L1 or receiving a transfer from other owners.
-- Owners can transfer assets to each other.
-- Owners can withdraw assets under their control to an L1 address.
+- Users can receive, deposit, and transfer assets to each other.
+- Users can withdraw assets under their control to an L1 address.
 Rollup operation requires the assistance of an operator, who rolls transactions together, computes a zero-knowledge proof of the correct state transition, and affects the state transition by interacting with the rollup contract.
 To understand the design, we need to look into how zkSync rollup transactions work.
 
