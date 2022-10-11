@@ -1,6 +1,6 @@
 # Contribute to documentation
 On the docs homepage, click on `Edit Page`
-- You need to be signed in to GitHub
+- You need to be signed into GitHub
   - Go to [GitHub](https://github.com/join) to create an account.
 - Click on the pen icon to fork the repo so you can start contributing to the documentation
   ![fork-repo](https://user-images.githubusercontent.com/55744578/136702921-3105350a-a68a-4aa4-8c5d-fb24742652b2.jpg)
