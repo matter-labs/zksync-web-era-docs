@@ -13,8 +13,8 @@ In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 
 It is highly recommended to read about the [design](../developer-guides/transactions/aa.md) of the account abstraction protocol before diving into this tutorial.
 
-It is assumed that you are already familiar with deploying smart contracts on zkSync. 
-If not, please refer to the first section of the [Hello World](../developer-guides/hello-world.md) tutorial. 
+It is assumed that you are already familiar with deploying smart contracts on zkSync.
+If not, please refer to the first section of the [Hello World](../developer-guides/hello-world.md) tutorial.
 It is also recommended to read the [introduction](../developer-guides/contracts/system-contracts.md) to the system contracts.
 
 ## Installing dependencies
@@ -85,7 +85,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
     function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
         return EIP1271_SUCCESS_RETURN_VALUE;
     }
-  
+
     function payForTransaction(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
 
     }
@@ -103,7 +103,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 }
 ```
 
-Note, that only the [bootloader](../developer-guides/contracts/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prePaymaster` methods. 
+Note, that only the [bootloader](../developer-guides/contracts/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prePaymaster` methods.
 That's why the `onlyBootloader` modifier is used for them.
 
 The `executeTransactionFromOutside` is needed to allow external users to initiate transactions from this account. The easiest way to implement it is to do the same as `validateTransaction` + `executeTransaction` would do.
@@ -186,7 +186,7 @@ function _validateTransaction(bytes32 _suggestedSignedHash, Transaction calldata
         0,
         abi.encodeCall(INonceHolder.incrementMinNonceIfEquals, (_transaction.reserved[0]))
     );
-    
+
     bytes32 txHash;
     // While the suggested signed hash is usually provided, it is generally
     // not recommended to rely on it to be present, since in the future
@@ -215,7 +215,7 @@ function payForTransaction(bytes32, bytes32, Transaction calldata _transaction) 
 ### Implementing `prePaymaster`
 
 While generally the account abstraction protocol enables performing arbitrary actions when interacting with the paymasters, there are some [common patterns](../developer-guides/transactions/aa.md#built-in-paymaster-flows) with the built-in support from EOAs.
- Unless you want to implement or restrict some specific paymaster use cases from your account, it is better to keep it consistent with EOAs. The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processed the `prePaymaster` step the same as EOA does.
+Unless you want to implement or restrict some specific paymaster use cases from your account, it is better to keep it consistent with EOAs. The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processed the `prePaymaster` step the same as EOA does.
 
 ```solidity
 function prePaymaster(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
@@ -319,7 +319,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
             0,
             abi.encodeCall(INonceHolder.incrementMinNonceIfEquals, (_transaction.reserved[0]))
         );
-        
+
         bytes32 txHash;
         // While the suggested signed hash is usually provided, it is generally
         // not recommended to rely on it to be present, since in the future
@@ -409,6 +409,7 @@ import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.s
 
 contract AAFactory {
     bytes32 public aaBytecodeHash;
+
     constructor(bytes32 _aaBytecodeHash) {
         aaBytecodeHash = _aaBytecodeHash;
     }
@@ -422,7 +423,10 @@ contract AAFactory {
             uint32(gasleft()),
             address(DEPLOYER_SYSTEM_CONTRACT),
             0,
-            abi.encodeCall(DEPLOYER_SYSTEM_CONTRACT.create2Account, (salt, aaBytecodeHash, abi.encode(owner1, owner2))
+            abi.encodeCall(
+                DEPLOYER_SYSTEM_CONTRACT.create2Account,
+                (salt, aaBytecodeHash, abi.encode(owner1, owner2))
+            )
         );
 
         (accountAddress, ) = abi.decode(returnData, (address, bytes));
@@ -506,7 +510,7 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 // Put the address of your AA factory
-const AA_FACTORY_ADDRESS = "0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627D";
+const AA_FACTORY_ADDRESS = "<YOUR_FACTORY_ADDRESS>";
 
 // An example of a deploy script deploys and calls a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
@@ -624,7 +628,7 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 // Put the address of your AA factory
-const AA_FACTORY_ADDRESS = "0xa0eD7885B408961430F89d797cD1cc87530D8fBe";
+const AA_FACTORY_ADDRESS = "<YOUR_FACTORY_ADDRESS>";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
