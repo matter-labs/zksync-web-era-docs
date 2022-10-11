@@ -1,7 +1,8 @@
 # Understanding system contracts
-To keep the zero-knowledge circuits as simple as possible and enable simple extensions, a large chunk of the logic of zkSync was moved to the so-called "system contracts" -- a set of contracts that have special privileges and serve special purposes, e.g. deployment of contracts, making sure that the user pays only once for publishing contracts' calldata, etc.
+To keep the zero-knowledge circuits as simple as possible and enable simple extensions. A large chunk of the logic of zkSync was moved to the so-called "system contracts" – a 
+set of contracts that have special privileges and serve special purposes, e.g. deployment of contracts, making sure that the user pays only once for publishing contracts' calldata, etc.
 
-Until the code for the system contracts has gone through thorough testing, the code for all the system contracts will not be public. This section will only provide you with the knowledge needed to build on zkSync.
+Until the code for the system contracts has gone thorough testing, the code for all the system contracts will not be public. This section will only provide you with the knowledge needed to build on zkSync.
 
 ## Interfaces
 
@@ -13,7 +14,8 @@ This section will describe the semantic meaning of some of the most popular syst
 
 [Interface](https://github.com/matter-labs/v2-testnet-contracts/blob/8de367778f3b7ed7e47ee8233c46c7fe046a75a3/l2/system-contracts/interfaces/IContractDeployer.sol#L5)
 
-This contract is used to deploy new smart contracts. Its job is to make sure that the bytecode for each deployed contract is known. This contract also defined the derivation address. Whenever a contract is deployed it emits the `ContractDeployed` event.
+This contract is used to deploy new smart contracts. Its job is to make sure that the bytecode for each deployed contract is known. This contract also defines the derivation 
+address. Whenever a contract is deployed, it emits the `ContractDeployed` event.
 
 In the future, we will add a description of how to interact directly with this contract.
 
@@ -21,7 +23,7 @@ In the future, we will add a description of how to interact directly with this c
 
 [Interface](https://github.com/matter-labs/v2-testnet-contracts/blob/8de367778f3b7ed7e47ee8233c46c7fe046a75a3/l2/system-contracts/interfaces/IL1Messenger.sol#L5)
 
-This contract is used to send messages from zkSync to Ethereum L1. For each message sent the `L1MessageSent` event is emitted.
+This contract is used to send messages from zkSync to Ethereum. For each message sent, the `L1MessageSent` event is emitted.
 
 ## INonceHolder
 
@@ -39,4 +41,4 @@ For now, you do not have to know any details about it, but knowing that it exist
 
 Some of the system contracts have impact on the account that may not be expected on Ethereum. For instance, on Ethereum the only way EOA account could increase its nonce is by sending a transaction. Also, sending a transaction could only increase nonce by 1 at a time. On zkSync nonces are implemented via the [NonceHolder](#inonceholder) system contract and, if naively implemented, the users could be allowed to increment their nonces by calling this contract. That's why the calls to most of the non-view methods of the nonce holder were restricted to be called only with a special `isSystem` flag, so that interactions with important system contracts could be conciously managed by the developer of the account.
 
-The same applies to the [ContractDeployer](#contractdeployer) system contract. This means, that, for instance, you would need to explicitly allow your users to deploy contracts, as it is done in the DefaultAccount's [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/3f4b6f906c649671022794ecb5cfc1151c278d93/l2/system-contracts/DefaultAccount.sol#L88).
+The same applies to the [ContractDeployer](#contractdeployer) system contract. This means that, for instance, you would need to explicitly allow your users to deploy contracts, as it is done in the DefaultAccount's [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/3f4b6f906c649671022794ecb5cfc1151c278d93/l2/system-contracts/DefaultAccount.sol#L88).
