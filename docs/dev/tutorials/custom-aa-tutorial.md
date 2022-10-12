@@ -724,6 +724,6 @@ You can download the complete project [here](https://github.com/matter-labs/cust
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/Bridging/l1-l2.md).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
