@@ -1,11 +1,5 @@
 # Building custom paymaster
 
-::: warning To be updated
-
-While generally up to date, this tutorial has not been fully tested. We will test it and fix all possible issues asap.
-
-:::
-
 Let's see how we can use the paymaster feature to build a custom paymaster that allows users to pay fees in our token. For the simplicity of the tutorial, we will assume that paying a single unit of our token is enough to cover any transaction fee.
 
 ## Prerequisite
@@ -105,7 +99,7 @@ if (paymasterInputSelector == IPaymasterFlow.approvalBased.selector) {
     require(token == allowedToken, "Invalid token");
     require(minAllowance >= 1, "Min allowance too low");
 
-    // 
+    //
     // ...
     //
 } else {
@@ -141,7 +135,7 @@ require(success, "Failed to transfer funds to the bootloader");
 
 The [rules](../developer-guides/transactions/aa.md#paymaster-validation-rules) for the paymaster throttling say that the paymaster won't be throttled if the first storage read the value of which differed from the execution on the API was a storage slot that belonged to the user.
 
-That is why it is important to verify that the user provided all the allowed prerequisites to the transaction *before* performing any logic. This is the reason we *first* check that the user provided enough allowance, and only then do we do `transferFrom`.
+That is why it is important to verify that the user provided all the allowed prerequisites to the transaction _before_ performing any logic. This is the reason we _first_ check that the user provided enough allowance, and only then do we do `transferFrom`.
 
 :::
 
@@ -219,7 +213,7 @@ contract MyPaymaster is IPaymaster {
 }
 ```
 
-## Deploying an ERC20 contract 
+## Deploying an ERC20 contract
 
 To test our paymaster, we need an ERC20 token. We are now going to deploy one. For the sake of simplicity we will use a somewhat modified OpenZeppelin implementation of it:
 
@@ -285,19 +279,17 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const paymaster = await deployer.deploy(paymasterArtifact, [erc20.address]);
   console.log(`Paymaster address: ${paymaster.address}`);
 
-  // Supplying paymaster with ETH 
+  // Supplying paymaster with ETH
   await (
     await deployer.zkWallet.sendTransaction({
       to: paymaster.address,
-      value: ethers.utils.parseEther('0.01')
+      value: ethers.utils.parseEther("0.03"),
     })
-  ).wait()
+  ).wait();
 
   // Supplying the ERC20 tokens to the empty wallet:
-  await (
-    // We will give the empty wallet 3 units of the token:
-    await erc20.mint(emptyWallet.address, 3)
-  ).wait();
+  await // We will give the empty wallet 3 units of the token:
+  (await erc20.mint(emptyWallet.address, 3)).wait();
 
   console.log(`Done!`);
 }
@@ -334,21 +326,17 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 // Put the address of the deployed paymaster here
-const PAYMASTER_ADDRESS = '';
+const PAYMASTER_ADDRESS = "";
 
 // Put the address of the ERC20 token here:
-const TOKEN_ADDRESS = '';
+const TOKEN_ADDRESS = "";
 
 // Wallet private key
-const EMPTY_WALLET_PRIVATE_KEY = '';
+const EMPTY_WALLET_PRIVATE_KEY = "";
 
 function getToken(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
-  const artifact = hre.artifacts.readArtifactSync('MyERC20');
-  return new ethers.Contract(
-    TOKEN_ADDRESS,
-    artifact.abi,
-    wallet
-  )
+  const artifact = hre.artifacts.readArtifactSync("MyERC20");
+  return new ethers.Contract(TOKEN_ADDRESS, artifact.abi, wallet);
 }
 
 export default async function (hre: HardhatRuntimeEnvironment) {
@@ -358,30 +346,31 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Obviously this step is not required, but it is here purely to demonstrate
   // that indeed the wallet has no ether.
   const ethBalance = await emptyWallet.getBalance();
-  if(!ethBalance.eq(0)) {
-      throw new Error('The wallet is not empty');
+  if (!ethBalance.eq(0)) {
+    throw new Error("The wallet is not empty");
   }
 
   console.log(`Balance of the user before mint: ${await emptyWallet.getBalance(TOKEN_ADDRESS)}`);
-  
+
   const erc20 = getToken(hre, emptyWallet);
-  
+
   // Encoding the "ApprovalBased" paymaster flow's input
   const paymasterParams = utils.getPaymasterParams(PAYMASTER_ADDRESS, {
-    type: 'ApprovalBased',
+    type: "ApprovalBased",
     token: TOKEN_ADDRESS,
     minimalAllowance: ethers.BigNumber.from(1),
-    innerInput: new Uint8Array()
+    innerInput: new Uint8Array(),
   });
 
   await (
     await erc20.mint(emptyWallet.address, 100, {
+      // gasLimit:  20000000 # provide manual gas limit
       customData: {
         paymasterParams,
         ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
-      }
+      },
     })
-  ).wait()
+  ).wait();
 
   console.log(`Balance of the user after mint: ${await emptyWallet.getBalance(TOKEN_ADDRESS)}`);
 }
@@ -399,6 +388,12 @@ The output should be roughly the following:
 Balance of the user before mint: 3
 Balance of the user after mint: 102
 ```
+
+## Common errors
+
+If the `use-paymaster.ts` script fails with error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer funds to the bootloader`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use [zkSync Portal](https://portal.zksync.io/).
+
+If the `use-paymaster.ts` script fails when minting new ERC20 tokens with error `Error: transaction failed`, and the transactions appear with status "Failed" in the [zkSync explorer](https://scan-v2.zksync.dev/), please reach out to us on [our Discord](https://discord.com/invite/px2aR7w) or [contact page](https://zksync.io/contact.html). As a workaround, try including the `gasLimit` parameter in the transaction.
 
 ## Complete project
 
