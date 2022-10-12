@@ -9,27 +9,47 @@ While generally up to date, this tutorial has not been fully tested. We will tes
 This tutorial serves as an example of how to implement L1 to L2 contract interaction. The following functionality is implemented in this tutorial:
 
 - A "counter" smart contract is deployed on zkSync, which stores a number that can be incremented by calling the `increment` method.
-- A governance smart contract is deployed on layer 1, which has the privilege to increment a counter on zkSync.
+- A "governance" smart contract is deployed on layer 1, which has the privilege to increment the counter on zkSync.
 
 ## Preliminaries
+
 In this tutorial, it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](../developer-guides/hello-world.md) tutorial.
 
 It is also assumed that you already have some experience working with Ethereum.
 
+## Project structure
+
+As we will be deploying contracts in both L1 and L2, we'll separate this project in two different folders:
+
+- `/governance`: for the L1 contract, and scripts.
+- `/counter`: for the zkSync contract, and scripts.
+
+So go ahead and create these folders.
+
+<!-- To initialise the project in the `/counter` folder, follow the instructions as mentioned in the [Quickstart](../developer-guides/hello-world.html#initializing-the-project-deploying-a-smart-contract) section of our docs. -->
+
+::: tip
+
+Note that the `governance` project is a default Hardhat project because it'll be used to deploy a contract just in L1, while the `counter` project includes all the zkSync dependencies and specific configuration as it'll deploy the contract in L2.
+
+:::
+
 ## L1 governance
+
+To initialise the project inside the `/governance` folder, run `npx hardhat init` and select the option "Create a Typescript project".
 
 To interact with the zkSync bridge contract using Solidity, you need to use the zkSync contract interface. There are two main ways to get it:
 
 - By importing it from the `@matterlabs/zksync-contracts` npm package. (preferred)
 - By downloading the contracts from the [repo](https://github.com/matter-labs/v2-testnet-contracts).
 
-The `@matterlabs/zksync-contracts` package can be installed by running the following command:
+The `@matterlabs/zksync-contracts` package can be installed by running the following command (just make sure you're inside the `/governance` folder):
 
 ```
 yarn add -D @matterlabs/zksync-contracts
 ```
 
-The code of the governance contract is the following:
+The code of the governance contract that we will deploy on L1 is the following:
 
 ```sol
 //SPDX-License-Identifier: Unlicense
@@ -60,33 +80,82 @@ contract Governance {
 
 This is a very simple governance contract. It sets the creator of the contract as the single governor and can send calls to the zkSync smart contract.
 
-### Deploy with the predefined script
+### Deploy L1 governance contract
 
-This tutorial does not focus on the process of deploying L1 contracts. To let you quickly proceed with the tutorial, the zkSync team provided a script to deploy the aforementioned smart contract on Görli.
+Although this tutorial does not focus on the process of deploying contracts on L1, we'll give you a quick overview on how to continue.
 
-1. Clone the complete tutorial repo:
+1. You'll need an RPC node endpoint to the Göerli testnet to submit the deploymet transaction. You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
+
+2. Create the file `/governance/goerli.json` and fill in the following values:
+
+```json
+{
+  "nodeUrl": "", // your Goerli Ethereum node provider URL.
+  "deployerPrivateKey": "" //private key of the wallet that will deploy the governance smart contract. It needs to have some ETH on Göerli.
+}
+```
+
+3. Add the Göerli network section to the `hardhat.config.ts` file:
+
+```ts
+import { HardhatUserConfig, task } from "hardhat/config";
+import "@nomiclabs/hardhat-etherscan";
+import "@nomiclabs/hardhat-waffle";
+import "@typechain/hardhat";
+
+// import file with Goerli params
+const goerli = require('./goerli.json');
+
+const config: HardhatUserConfig = {
+  solidity: {
+    version: "0.8.4",
+  networks: {
+    // Göerli network
+    goerli: {
+      url: goerli.nodeUrl,
+      accounts: [goerli.deployerPrivateKey]
+    },
+  }
+}
+```
+
+4. Create the deployment script `/governance/deploy/deploy.ts` with the following code:
+
+```ts
+// We require the Hardhat Runtime Environment explicitly here. This is optional
+// but useful for running the script in a standalone fashion through `node <script>`.
+//
+// When running the script with `npx hardhat run <script>` you'll find the Hardhat
+// Runtime Environment's members available in the global scope.
+import { ethers } from "hardhat";
+
+async function main() {
+  // We get the contract to deploy
+  const Governance = await ethers.getContractFactory("Governance");
+
+  const contract = await Governance.deploy();
+  await contract.deployed();
+
+  console.log(`Governance contract was successfully deployed at ${contract.address}`);
+}
+
+// We recommend this pattern to be able to use async/await everywhere
+// and properly handle errors.
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+```
+
+5. Compile the contract and run the deployment script with:
 
 ```
-git clone https://github.com/matter-labs/cross-chain-tutorial.git
-cd cross-chain-tutorial/deploy-governance
-```
+# compile contract
+yarn hardhat compile
 
-2. Open `goerli.json` and fill in the following values there:
+# deploy contract
+yarn hardhat run --network goerli ./scripts/deploy.ts`
 
-- `nodeUrl` should be equal to your Goerli Ethereum node provider URL.
-- `deployerPrivateKey` should be equal to the private key of the wallet that will deploy the governance smart contract. It needs to have some ETH on Görli.
-
-2. To deploy the governance smart contract run the following commands:
-
-```
-# Installing dependencies
-yarn
-
-# Building the governance smart contract
-yarn build
-
-# Deploying the governance smart contract
-yarn deploy-governance
 ```
 
 The last command will output the deployed governance smart contract address.
@@ -95,37 +164,11 @@ The last command will output the deployed governance smart contract address.
 
 Now that we have the L1 governance contract addressed, let's proceed with deploying the counter contract on L2.
 
-The counter contract consists of the following code:
-
-```sol
-//SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
-
-contract Counter {
-    uint256 public value = 0;
-    address public governance;
-
-    constructor(address newGovernance) {
-        governance = newGovernance;
-    }
-
-    function increment() public {
-        require(msg.sender == governance, "Only governance is allowed");
-
-        value += 1;
-    }
-}
-```
-
-The details of the process of deploying smart contracts on zkSync will not be explained in this tutorial. 
-If you are new to it, check out the [hello world](../developer-guides/hello-world.md) tutorial or the documentation for the [hardhat plugins](../../api/hardhat/getting-started.md) for zkSync.
-
-1. Set up the project and install the dependencies
+1. To initialise the project in the `/counter` folder run the following commands:
 
 ```
-mkdir cross-chain-tutorial
-cd cross-chain-tutorial
 yarn init -y
+# install all dependencies
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
@@ -145,8 +188,8 @@ module.exports = {
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
-        tag: "v1.2.0"
-      }
+        tag: "v1.2.0",
+      },
     },
   },
   zkSyncDeploy: {
@@ -168,9 +211,29 @@ If your default network is not `hardhat`, make sure to include `zksync: true` in
 
 3. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
 
-4. Create the `contracts/Counter.sol` contract and insert the counter's Solidity code provided at the beginning of this section.
+4. Create the `contracts/Counter.sol` contract file. This contract will have a simple function to increment the counter which can only be invoked by the governance contract deployed in L1. Here is the code:
 
-5. Compile the contracts with the following command:
+```sol
+//SPDX-License-Identifier: Unlicense
+pragma solidity ^0.8.0;
+
+contract Counter {
+    uint256 public value = 0;
+    address public governance;
+
+    constructor(address newGovernance) {
+        governance = newGovernance;
+    }
+
+    function increment() public {
+        require(msg.sender == governance, "Only governance is allowed");
+
+        value += 1;
+    }
+}
+```
+
+5. Compile the contract with the following command:
 
 ```
 yarn hardhat compile
@@ -218,7 +281,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-7. After replacing `<WALLET-PRIVATE-KEY>` and `<GOVERNANCE-ADDRESS>` with the `0x`-prefixed private key of an Ethereum wallet with some ETH balance on Görli and the address of the L1 governance contract respectively, run the script using the following command:
+7. After replacing `<WALLET-PRIVATE-KEY>` and `<GOVERNANCE-ADDRESS>` with the `0x`-prefixed private key of an Ethereum wallet with some ETH balance on Göerli, and the address of the L1 governance contract respectively, run the script using the following command:
 
 ```
 yarn hardhat deploy-zksync
@@ -226,21 +289,27 @@ yarn hardhat deploy-zksync
 
 In the output, you should see the address to which the contract was deployed.
 
+::: tip
+
+You can find more specific details about deploying contracts in the [hello world](../developer-guides/hello-world.md) tutorial or the documentation for the [hardhat plugins](../../api/hardhat/getting-started.md) for zkSync.
+
+:::
+
 ## Reading the counter value
 
-Let's create a small script for viewing the value of the counter. For the sake of simplicity, let's will keep it in the same folder as the hardhat project, but to keep the tutorial generic hardhat-specific features will not be used in it.
+Let's create a small script for viewing the value of the counter. For the sake of simplicity, we will create this scripts inside the `/counter` folder. To keep the tutorial generic hardhat-specific features will not be used in it.
 
 ### Getting the ABI of the counter contract
 
 To get the ABI of the counter contract, the user should:
 
-1. Copy the `abi` array from the compilation artifact located at `artifacts/contracts/Counter.sol/Counter.json`.
+1. Copy the `abi` array from the compilation artifact located at `artifacts-zk/contracts/Counter.sol/Counter.json`.
 
-2. Create the `scripts` folder in the project root.
+2. Create the `scripts` folder inside the `/counter` project folder.
 
-3. Paste the ABI of the counter contract in the `./scripts/counter.json` file.
+3. Paste the ABI of the counter contract in the `/counter/scripts/counter.json` file.
 
-4. Create the `./scripts/display-value.ts` file and paste the following code there:
+4. Create the `/counter/scripts/display-value.ts` file and paste the following code there:
 
 ```ts
 import { Contract, Provider, Wallet } from "zksync-web3";
@@ -265,7 +334,7 @@ main().catch((error) => {
 });
 ```
 
-The code is relatively straightforward and is mostly equivalent to how it would work with `ethers`.
+The code is relatively straightforward and is mostly equivalent to how it would work with `ethers`. It will just retrieve the counter value from the L2 contract.
 
 After replacing `<COUNTER-ADDRESS>` with the address of the deployed counter contract, run this script by running
 
@@ -281,11 +350,10 @@ The counter value is 0
 
 ## Calling an L2 contract from L1
 
-Now, let's call the `increment` method from layer 1.
+Now, let's call the `increment` method from Layer 1.
 
-1. Create the `scripts/increment-counter.ts` file. There the script to interact with the contract via L1 will be put.
-2. To interact with the governance contract, its ABI is needed. For your convenience, you can copy it from [here](https://github.com/matter-labs/cross-chain-tutorial/blob/main/project/scripts/governance.json). Create the `scripts/governance.json` file and paste the ABI there.
-3. Paste the following template for the script:
+1. Get the ABI array of the compiled Governance contract, which is located in `/governance/artifacts/contracts/Governance.sol/Governance.json`, and save it in a new file as `/counter/scripts/governance.json`.
+2. Create the `counter/scripts/increment-counter.ts` file and paste the following template for the script:
 
 ```ts
 // Imports and constants will be put here
@@ -384,11 +452,11 @@ async function main() {
 
 You may have noticed the lack of the `ergs_per_pubdata` and `ergs_per_storage` fields in the L1->L2 transactions. These are surely important for the security of the protocol and they will be added soon. Please note that this will be a breaking change for the contract interface.
 
-Also, there is currently no easy way to estimate the exact number of `ergs` required for the execution of an L1->L2 tx. At the time of this writing, the transactions may be processed even if the supplied `ergsLimit` is `0`. This will change in the future.
+Also, there is currently no easy way to estimate the exact number of `ergs` required for the execution of an L1->L2 transaction. At the time of this writing, the transactions may be processed even if the supplied `ergsLimit` is `0`. This will change in the future.
 
 :::
 
-1. Now it is possible to call the governance contract so that it redirects the call to zkSync:
+7. Now it is possible to call the governance contract, which will redirect the call to zkSync:
 
 ```ts
 // Imports
