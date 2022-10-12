@@ -5,9 +5,7 @@ A block is an ordered list of transactions. Each block (except for the Genesis b
 ## Blocks in zkSync 2.0
 
 In zkSync there are two notions of ``blocks'': an L2 block and an L1 rollup block.
-
-L2 blocks, or just "blocks", are simply the blocks created 
-on L2, that is on the zkSync network. They are not included on the Ethereum chain. An L1 rollup block, which we call "batch", is a set of 
+L2 blocks, or just "blocks", are simply the blocks created on L2, that is on the zkSync network. They are not included on the Ethereum chain. An L1 rollup block, which we call "batch", is a set of 
 consecutive (L2) blocks, it contains all the transactions, and in the same order, from the first block in the batch to the last block in the 
 batch.
 
@@ -48,7 +46,7 @@ Imagine if there weren't a timeout, users would send some transactions, and the 
 
 Block hash in zkSync are deterministic and are derived from the following formula: "keccak256(l2_block_number)".
 The reason for having a deterministic block hash is that these hashes are not provable (remember that L2 blocks are not submitted to L1). 
-Projects are advised not the use the L2 block hash as a source of randomness.
+Projects are advised not to use the L2 block hash as a source of randomness.
 
 ### Block Properties
 - Timestamp: The current block's creation time as seconds since the Unix epoch
