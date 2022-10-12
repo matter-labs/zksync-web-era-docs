@@ -42,7 +42,7 @@ public class Main {
 
 ```
 
-### EthSigner
+## EthSigner
 
 ```java
 import io.zksync.crypto.signer.EthSigner;
