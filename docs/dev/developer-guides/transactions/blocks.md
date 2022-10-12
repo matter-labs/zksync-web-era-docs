@@ -1,34 +1,37 @@
 # Blocks
 
-A block in Ethereum is a list of transactions that have been recorded historically. They are collections of transactions that include the hash of the chain's previous block.
-We group transactions into blocks to ensure everyone on the network stays in sync and agrees on the detailed history of transactions. It implies that hundreds of transactions are simultaneously committed, decided upon, and synced.
+A block is an ordered list of transactions. Each block (except for the Genesis block) points to the previous block it extends, thus creating a chain of blocks.
 
-## Prerequisite
+## Blocks in zkSync 2.0
 
-To fully understand this page, we suggest you first read a guide on [transactions](transactions.md).
+In zkSync there are two notions of ``blocks'': an L2 block and an L1 rollup block. L2 blocks, or just "blocks", are simply the blocks created 
+on L2, that is on the zkSync network. They are not included on the Ethereum chain. An L1 rollup block, which we call "batch", is a set of 
+consecutive (L2) blocks, it contains all the transactions, and in the same order, from the first block in the batch to the last block in the 
+batch. L1 batches, as the name suggests, are submitted to Ethereum. The main reason to have these different notions is that a block can 
+contain a minimal number of transactions, thus be processed quickly, while in a batch we would like to include many transactions, to make 
+the cost on interaction with L1 spread among many transactions.
 
-## How do Ethereum blocks work?
 
-Blocks are strictly ordered (each new block has a connection to its parent block), and transactions within blocks are strictly ordered to keep track of the history of transactions.
-Unless there are exceptional circumstances, all network participants agree with the precise number and history of blocks at any particular time and attempt to combine the pending live transaction requests into the upcoming block.
+## Block numbers
+**TODO**
+- need to explain how to retrieve L1BatchNumber
 
-Every node adds the newly created block to the end of its blockchain after it has been assembled by one of the network's validators, and a new validator is chosen to build the following block.
+Accessing block numbers within zkSync API is similar to how you would do it on Ethereum. For example, `eth_blockNumber` returns the number 
+of the latest L2 block, and `eth_getBlockByNumber`, given a block number, returns the information about the requested block.
 
-## Block numbers and time
+## Block processing time
+**TODO**
+- explain blocks/batch timing:
+-- blocks are processed immediately; once we decentralise the system, block time will be a couple of seconds, in order for the actors to achieve consensus
+-- batch time depends on the system activity -- the more active the system is, the faster we <em>seal</em> a batch. explain the seal criteria  
 
-On zkSync, when users send transactions, those transactions are included in L2 blocks. These L2 blocks are sealed every X seconds (X is not decided yet, but it will surely be in the 1–5 range). Typically, the user needs to wait at most X seconds to get the receipt and be informed that his transaction is included in some block.
-In L1 batches, we send some information about L2 blocks to the L1 contract (known as a commitment); later, we generate proof for the blocks and send them to the L1 contract. The L1 contract then verifies that the given proof is correct.
-All actions on L1 require some gas to be spent. So, for example, if we aggregate some transactions into 1 block instead of 2, we will save some gas because we will need to send only one commitment and one proof instead of two. Thus, we aggregate ranges of L2 blocks into L1 batches and send one commitment/proof per L1 batch to save on gas costs.
+refer to the tx status here: https://v2-docs.zksync.io/dev/fundamentals/zkSync.html#zksync-in-comparison
 
-### Ethereum Block Numbers Within zkSync
+DELETE THIS:
 
-The L1 batch is a range of L2 blocks that are committed and finalized on L1 as one whole. The reason for having them is to save on fixed gas costs while publishing L2 block data on the L1 chain.
-Accessing block numbers within a zkSync API is similar to how you would do it on Ethereum. For example, `eth_blockNumber` returns the number of the latest L2 block, and `eth_getBlockByNumber` returns the information about the L2 block by its number.
-
-The **capacity,** which includes the number of transactions and storage writes, of the L1 batch is limited because of two different things:
+The batch size is limited due to the following:
 1. For small L1 batches, a prover can produce proofs in an adequate amount of time.
 2. The required gas for the transaction to commit the L1 batch on the L1 contract must not exceed the permitted gas for the L1 block. Because that gas depends on L1 batch size, capacity is constrained.
-
 
 L1 batches are sealed for two reasons:
 
@@ -39,8 +42,9 @@ Imagine if there weren't a timeout, users would send some transactions, and the 
 
 ### Hashes
 
-You may determine the L2 block's hash by knowing the L2 block number because it is deterministic and equivalent to "keccak256(l2_block_number)".
-Every block needs a unique hash, which we proposed for Web3 API compatibility. Additionally, to avoid confusing users, we employ the `keccak hash` function to make hashes appear to be random numbers.
+Block hash in zkSync are deterministic and are derived from the following formula: "keccak256(l2_block_number)".
+The reason for having a deterministic block hash is that these hashes are not provable (remember that L2 blocks are not submitted to L1). 
+Projects are advised not the use the L2 block hash as a source of randomness.
 
 ### Block Properties
 - Timestamp: The current block's creation time as seconds since the Unix epoch
