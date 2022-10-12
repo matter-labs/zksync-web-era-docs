@@ -26,7 +26,7 @@ of the latest L2 block, and `eth_getBlockByNumber`, given a block number, return
 ## Block processing time
 **TODO**
 - explain blocks/batch timing:
--- blocks are processed immediately; once we decentralise the system, block time will be a couple of seconds, in order for the actors to achieve consensus
+-- blocks are processed immediately; once we decentralize the system, block time will be a couple of seconds, for the actors to achieve consensus
 -- batch time depends on the system activity -- the more active the system is, the faster we <em>seal</em> a batch. explain the seal criteria  
 
 refer to the tx status here: https://v2-docs.zksync.io/dev/fundamentals/zkSync.html#zksync-in-comparison
