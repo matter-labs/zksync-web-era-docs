@@ -391,9 +391,9 @@ Balance of the user after mint: 102
 
 ## Common errors
 
-If the `use-paymaster.ts` script fails with error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer funds to the bootloader`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use the [zkSync portal](https://staging-portal.zksync.dev/).
+If the `use-paymaster.ts` script fails with error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer funds to the bootloader`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use [zkSync Portal](https://portal.zksync.io/).
 
-If the `use-paymaster.ts` script fails when minting new ERC20 tokens with error `Error: transaction failed`, and the transactions appear with status "Failed" in the [zkSync explorer](https://scan-v2.zksync.dev/), please reach out to us on our Discord. As a workaround, try including the `gasLimit` parameter in the transaction.
+If the `use-paymaster.ts` script fails when minting new ERC20 tokens with error `Error: transaction failed`, and the transactions appear with status "Failed" in the [zkSync explorer](https://scan-v2.zksync.dev/), please reach out to us on [our Discord](https://discord.com/invite/px2aR7w) or [contact page](https://zksync.io/contact.html). As a workaround, try including the `gasLimit` parameter in the transaction.
 
 ## Complete project
 
