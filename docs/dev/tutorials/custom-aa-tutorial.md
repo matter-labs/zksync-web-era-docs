@@ -1,11 +1,5 @@
 # Account abstraction
 
-::: warning To be updated
-
-While generally up to date, this tutorial has not been fully tested. We will test it and fix all possible issues asap.
-
-:::
-
 Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../developer-guides/contracts/system-contracts.md#contractdeployer) system contract.
 In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 
@@ -247,7 +241,7 @@ function _executeTransaction(Transaction calldata _transaction) internal {
 However, note that calling ContractDeployer is only possible with the `isSystem` call flag. In order to permit your users to deploy contracts, you should do so explicitly:
 
 ```solidity
-function _execute(Transaction calldata _transaction) internal {
+function _executeTransaction(Transaction calldata _transaction) internal {
     address to = address(uint160(_transaction.to));
     uint256 value = _transaction.reserved[1];
     bytes memory data = _transaction.data;
@@ -278,94 +272,139 @@ Note, that whether the operator will consider the transaction successful will de
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
-import '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
-
-import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol';
-import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.sol';
+import "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol";
+import "@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol";
 
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
+
+// Used for signature validation
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
+// Access zkSync system contracts, in this case for nonce validation vs NONCE_HOLDER_SYSTEM_CONTRACT
+import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
+// to call non-view method of system contracts
+import "@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.sol";
+
 contract TwoUserMultisig is IAccount, IERC1271 {
+    // to get transaction hash
     using TransactionHelper for Transaction;
 
+    // state variables for account owners
     address public owner1;
     address public owner2;
+
+    bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
+
+    modifier onlyBootloader() {
+        require(
+            msg.sender == BOOTLOADER_FORMAL_ADDRESS,
+            "Only bootloader can call this method"
+        );
+        // Continure execution if called from the bootloader.
+        _;
+    }
 
     constructor(address _owner1, address _owner2) {
         owner1 = _owner1;
         owner2 = _owner2;
     }
 
-    bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
-
-    modifier onlyBootloader() {
-        require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
-        // Continure execution if called from the bootloader.
-        _;
-    }
-
-    function validateTransaction(bytes32, bytes32 _suggestedSignedHash, Transaction calldata _transaction) external payable override onlyBootloader {
+    function validateTransaction(
+        bytes32,
+        bytes32 _suggestedSignedHash,
+        Transaction calldata _transaction
+    ) external payable override onlyBootloader {
         _validateTransaction(_suggestedSignedHash, _transaction);
     }
 
-    function _validateTransaction(bytes32 _suggestedSignedHash, Transaction calldata _transaction) internal {
+    function _validateTransaction(
+        bytes32 _suggestedSignedHash,
+        Transaction calldata _transaction
+    ) internal {
         // Incrementing the nonce of the account.
         // Note, that reserved[0] by convention is currently equal to the nonce passed in the transaction
         SystemContractsCaller.systemCall(
             uint32(gasleft()),
             address(NONCE_HOLDER_SYSTEM_CONTRACT),
             0,
-            abi.encodeCall(INonceHolder.incrementMinNonceIfEquals, (_transaction.reserved[0]))
+            abi.encodeCall(
+                INonceHolder.incrementMinNonceIfEquals,
+                (_transaction.reserved[0])
+            )
         );
 
         bytes32 txHash;
         // While the suggested signed hash is usually provided, it is generally
         // not recommended to rely on it to be present, since in the future
         // there may be tx types with no suggested signed hash.
-        if(_suggestedSignedHash == bytes32(0)) {
+        if (_suggestedSignedHash == bytes32(0)) {
             txHash = _transaction.encodeHash();
         } else {
             txHash = _suggestedSignedHash;
         }
 
-        require(isValidSignature(txHash, _transaction.signature) == EIP1271_SUCCESS_RETURN_VALUE);
-    }
-
-    function executeTransaction(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
-        _executeTransaction(_transaction);
-    }
-
-    function executeTransactionFromOutside(Transaction calldata _transaction) external payable {
-        _validateTransaction(bytes32(0), _transaction);
-        _executeTransaction(_transaction);
-    }
-
-    address to = address(uint160(_transaction.to));
-    uint256 value = _transaction.reserved[1];
-    bytes memory data = _transaction.data;
-
-    if(to == address(DEPLOYER_SYSTEM_CONTRACT)) {
-        // We allow calling ContractDeployer with any calldata
-        SystemContractsCaller.systemCall(
-            uint32(gasleft()),
-            to,
-            uint128(_transaction.reserved[1]), // By convention, reserved[1] is `value`
-            _transaction.data
+        require(
+            isValidSignature(txHash, _transaction.signature) ==
+                EIP1271_SUCCESS_RETURN_VALUE
         );
-    } else {
-        bool success;
-        assembly {
-            success := call(gas(), to, value, add(data, 0x20), mload(data), 0, 0)
-        }
-        require(success);
     }
 
-    function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
+    function executeTransaction(
+        bytes32,
+        bytes32,
+        Transaction calldata _transaction
+    ) external payable override onlyBootloader {
+        _executeTransaction(_transaction);
+    }
+
+    function _executeTransaction(Transaction calldata _transaction) internal {
+        address to = address(uint160(_transaction.to));
+        uint256 value = _transaction.reserved[1];
+        bytes memory data = _transaction.data;
+
+        if (to == address(DEPLOYER_SYSTEM_CONTRACT)) {
+            // We allow calling ContractDeployer with any calldata
+            SystemContractsCaller.systemCall(
+                uint32(gasleft()),
+                to,
+                uint128(_transaction.reserved[1]), // By convention, reserved[1] is `value`
+                _transaction.data
+            );
+        } else {
+            bool success;
+            assembly {
+                success := call(
+                    gas(),
+                    to,
+                    value,
+                    add(data, 0x20),
+                    mload(data),
+                    0,
+                    0
+                )
+            }
+            require(success);
+        }
+    }
+
+    function executeTransactionFromOutside(Transaction calldata _transaction)
+        external
+        payable
+    {
+        _validateTransaction(bytes32(0), _transaction);
+
+        _executeTransaction(_transaction);
+    }
+
+    function isValidSignature(bytes32 _hash, bytes calldata _signature)
+        public
+        view
+        override
+        returns (bytes4)
+    {
         // The signature is the concatenation of the ECDSA signatures of the owners
         // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long.
-        require(_signature.length == 130, 'Signature length is incorrect');
+        require(_signature.length == 130, "Signature length is incorrect");
 
         address recoveredAddr1 = ECDSA.recover(_hash, _signature[0:65]);
         address recoveredAddr2 = ECDSA.recover(_hash, _signature[65:130]);
@@ -376,12 +415,20 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         return EIP1271_SUCCESS_RETURN_VALUE;
     }
 
-    function payForTransaction(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
+    function payForTransaction(
+        bytes32,
+        bytes32,
+        Transaction calldata _transaction
+    ) external payable override onlyBootloader {
         bool success = _transaction.payToTheBootloader();
         require(success, "Failed to pay the fee to the operator");
     }
 
-    function prePaymaster(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
+    function prePaymaster(
+        bytes32,
+        bytes32,
+        Transaction calldata _transaction
+    ) external payable override onlyBootloader {
         _transaction.processPaymasterInput();
     }
 
@@ -392,6 +439,8 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         assert(msg.sender != BOOTLOADER_FORMAL_ADDRESS);
     }
 }
+
+
 ```
 
 ## The factory
@@ -552,7 +601,8 @@ Before the deployed account can do any transactions, we need to top it up:
 await(
   await wallet.sendTransaction({
     to: multisigAddress,
-    value: ethers.utils.parseEther("0.0001"),
+    // You can increase the amount of ETH sent to the multisig
+    value: ethers.utils.parseEther("0.003"),
   })
 ).wait();
 ```
@@ -632,7 +682,7 @@ const AA_FACTORY_ADDRESS = "<YOUR_FACTORY_ADDRESS>";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
-  const wallet = new Wallet("<PRIVATE-KEY>").connect(provider);
+  const wallet = new Wallet("<YOUR_PRIVATE_KEY>").connect(provider);
   const factoryArtifact = await hre.artifacts.readArtifact("AAFactory");
 
   const aaFactory = new ethers.Contract(AA_FACTORY_ADDRESS, factoryArtifact.abi, wallet);
@@ -660,11 +710,13 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   await (
     await wallet.sendTransaction({
       to: multisigAddress,
-      value: ethers.utils.parseEther("0.0001"),
+      // You can increase the amount of ETH sent to the multisig
+      value: ethers.utils.parseEther("0.001"),
     })
   ).wait();
 
   let aaTx = await aaFactory.populateTransaction.deployAccount(salt, Wallet.createRandom().address, Wallet.createRandom().address);
+
   const gasLimit = await provider.estimateGas(aaTx);
   const gasPrice = await provider.getGasPrice();
 
@@ -677,7 +729,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     nonce: await provider.getTransactionCount(multisigAddress),
     type: 113,
     customData: {
-      ergsPerPubdata: "1",
+      ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
     } as types.Eip712Meta,
     value: ethers.BigNumber.from(0),
   };
@@ -717,6 +769,12 @@ Multisig deployed on address 0xCEBc59558938bccb43A6C94769F87bBdb770E956
 The multisig's nonce before the first tx is 0
 The multisig's nonce after the first tx is 1
 ```
+
+::: tip
+
+If you get an error `Not enough balance to cover the fee.`, try increasing the amount of ETH sent to the multisig wallet so it has enough funds to pay for the transaction fees.
+
+:::
 
 ## Complete project
 
