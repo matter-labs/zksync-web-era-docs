@@ -101,17 +101,6 @@ module.exports = {
             "/dev/tutorials/custom-paymaster-tutorial.md",
           ],
         },
-
-        {
-          title: "Tooling",
-          path: "/dev/tools",
-          collapsable: false,
-          children: [
-            "/dev/tools/python.md",
-            "/dev/tools/java.md",
-            "/dev/tools/go.md",
-          ],
-        },
         
       ],
       "/api": [
@@ -140,6 +129,27 @@ module.exports = {
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
           children: ["/api/js/getting-started", "/api/js/providers", "/api/js/accounts", "/api/js/accounts-l1-l2", "/api/js/contracts", "/api/js/features", "/api/js/utils", "/api/js/types", "/api/js/front-end"],
+        },
+        {
+          title: "Python SDK", // required
+          path: "/api/python", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/python/getting-started"],
+        },
+        {
+          title: "Java SDK", // required
+          path: "/api/java", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/java/getting-started"],
+        },
+        {
+          title: "GO SDK", // required
+          path: "/api/go", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/go/getting-started"],
         },
         {
           title: "Hardhat", // required
