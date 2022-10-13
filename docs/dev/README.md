@@ -47,3 +47,9 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Cross-chain governance](./tutorials/cross-chain-tutorial.md) - Learn how to use L1 to L2 contract interaction.
 - [Account abstraction](./tutorials/custom-aa-tutorial.md) - Learn how to deploy your custom accounts and interact zkSync system contracts.
 - [Building custom paymasters](./tutorials/custom-paymaster-tutorial.md) - Learn how to build a custom paymaster to allow users to pay fees in your token.
+
+### Tooling and SDK
+
+- [Python](./tools/python.md) - Make transfers, check your balance, deploy contracts with Create and Create2 in your python application with zkSync python SDK
+- [Java](./tools/java.md) - Learn how to build decentralized applications using the zkSync java sdk.
+- [GO](./tools/go.md) - Build decentralized application with zkSync GO sdk.

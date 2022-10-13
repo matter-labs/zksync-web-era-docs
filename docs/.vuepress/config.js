@@ -101,6 +101,17 @@ module.exports = {
             "/dev/tutorials/custom-paymaster-tutorial.md",
           ],
         },
+
+        {
+          title: "Tooling",
+          path: "/dev/tools",
+          collapsable: false,
+          children: [
+            "/dev/tools/python.md",
+            "/dev/tools/java.md",
+            "/dev/tools/go.md",
+          ],
+        },
         
       ],
       "/api": [
