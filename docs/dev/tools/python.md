@@ -5,7 +5,7 @@ In this guide we will demonstrate how to:
 1. Connect to the zkSync network.
 2. Deposit assets from Ethereum into zkSync.
 3. Check Balance 
-4. Transfer funds (ERC20 tokens) into zkSync network
+4. Transfer funds (ERC20 tokens) into the zksync network
 5. Withdraw funds (Native coins)
 6. Deploy contract with create method
 7. Deploy contract with create2 method
@@ -321,8 +321,8 @@ if __name__ == "__main__":
 
 ```
 
-## Deploying a contract with create method
-With zkSync, you can deploy contract using the `create` method, by simply building the contract into a binary format and deploying to the zkSync network.
+## Deploying a contract with Create
+With zkSync, you can deploy a contract using the `create` method, by simply building the contract into a binary format and deploying it to the zkSync network.
 
 In the next steps, we will guide you through how it works.
 
@@ -466,7 +466,7 @@ if __name__ == "__main__":
     deploy_contract_create()
 
 ```
-## Deploying a contract with create2
+## Deploying a contract with Create2
 
 Using the [CREATE2](https://eips.ethereum.org/EIPS/eip-1014) opcode gives you the ability to predict the address where a contract will be deployed, without ever having to do so, hence improving user onboarding.
 

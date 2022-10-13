@@ -5,7 +5,7 @@ In this guide we will demonstrate how to:
 1. Connect to the zkSync network.
 2. Deposit assets from Ethereum into zkSync.
 3. Check Balance 
-4. Transfer funds (ERC20 tokens) into ZkSync network
+4. Transfer funds (ERC20 tokens) into the zksync network
 5. Withdraw funds (Native coins)
 
 ## Prerequisite

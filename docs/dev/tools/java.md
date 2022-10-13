@@ -1,10 +1,21 @@
 # Getting started
 
-For connecting ZkSync java SDK, just add the following dependency to your build file.
+1. Connect to the zksync network.
+2. Deposit assets from Ethereum into zksync.
+3. Check Balance 
+4. Transfer funds (ERC20 tokens) into the zksync network
+5. Withdraw funds (Native coins)
+6. Deploy contract with create method
+
+## Prerequisite
+This guide assumes that you are familiar with the basics of java and you have java configured on your local machine.
+
+##  Installation
+For connecting zksync java SDK, just add the following dependency to your build file.
 
 Maven `pom.xml`
 
-```
+```gradle
 <project>
   ...
   <dependencies>
@@ -24,25 +35,33 @@ Gradle `build.gradle`
 dependencies {
     implementation "io.zksync:zksync2:0.0.1"
 }
-
 ```
 
-## ZkSync Web3 client
+## Instantiating the SDK
 
 ```java
 
-import io.zksync.protocol.ZkSync;
+import io.zksync.protocol.zksync;
 import org.web3j.protocol.http.HttpService;
 
 public class Main {
     public static void main(String ...args) {
-        ZkSync zksync = ZkSync.build(new HttpService("<http://127.0.0.1:3050>"));
+        zksync zksync = zksync.build(new HttpService("<http://127.0.0.1:3050>"));
     }
 }
 
 ```
 
-## EthSigner
+## Ethereum signer
+
+::: warning
+
+⚠️ Never commit private keys to file tracking history, or your account could be compromised.
+
+:::
+
+Ethereum signer is necessary for sending both L1 and L2 transactions since L2 transactions require an Ethereum signature as a part of a 2-factor authentication scheme. 
+Ethereum signer is represented by the `PrivateKeyEthSigner` abstract class from `zksync.crypto.signer`.
 
 ```java
 import io.zksync.crypto.signer.EthSigner;
@@ -51,7 +70,7 @@ import org.web3j.crypto.Credentials;
 
 public class Main {
     public static void main(String ...args) {
-        long chainId = 123L;// Chainid of the ZkSync network
+        long chainId = 123L;// Chainid of the zksync network
 
         Credentials credentials = Credentials.create("0x<private_key>");
 
@@ -61,11 +80,12 @@ public class Main {
 
 ```
 
-## ZkSync wallet
+## Creating a wallet
+To control your account in zksync, use the `zksync.crypto.signer.EthSigner`. It can sign transactions with keys and send transactions to the zksync network.
 
 ```java
 import io.zksync.crypto.signer.EthSigner;
-import io.zksync.protocol.ZkSync;
+import io.zksync.protocol.zksync;
 import io.zksync.protocol.core.Token;
 
 public class Main {
@@ -79,11 +99,14 @@ public class Main {
 
 ```
 
+## Interacting with the SDK
+Once you instantiate the SDK, you can use the SDK's functions like `deposit`, `get_account_balance`, `transfer_to_self`, `transfer_erc20_token`, and `withdraw` to get the respective SDK instances. 
+
 ## Transactions
 
-ZkSync2 supports Ethereum's `Legacy` and `EIP-1155` transactions except for deploying contracts.
+zksync2 supports Ethereum's `Legacy` and `EIP-1155` transactions except for deploying contracts.
 
-### Deploy contract (Create 2) [EIP-1014](https://eips.ethereum.org/EIPS/eip-1014)
+Deploy contract (Create 2) [EIP-1014](https://eips.ethereum.org/EIPS/eip-1014)
 
 
 ```java
@@ -92,7 +115,7 @@ import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
 import io.zksync.methods.request.Transaction;
-import io.zksync.protocol.ZkSync;
+import io.zksync.protocol.zksync;
 import io.zksync.protocol.core.ZkBlockParameterName;
 import io.zksync.transaction.fee.Fee;
 import io.zksync.transaction.type.Transaction712;
@@ -154,14 +177,14 @@ public class Main {
 
         String sentTransactionHash = zksync.ethSendRawTransaction(Numeric.toHexString(message)).send().getTransactionHash();
 
-        // You can check transaction status as the same way as in Web3
+        // You can check the transaction status 
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
 
 ```
 
-### Deploy contract (Create)
+### Deploying a contract with create
 
 ```java
 
@@ -169,12 +192,12 @@ import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
 import io.zksync.methods.request.Transaction;
-import io.zksync.protocol.ZkSync;
+import io.zksync.protocol.zksync;
 import io.zksync.protocol.core.ZkBlockParameterName;
 import io.zksync.transaction.fee.Fee;
 import io.zksync.transaction.type.Transaction712;
 import io.zksync.utils.ContractDeployer;
-import io.zksync.utils.ZkSyncAddresses;
+import io.zksync.utils.zksyncAddresses;
 import io.zksync.wrappers.NonceHolder;
 import org.web3j.abi.datatypes.Address;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
@@ -193,7 +216,7 @@ public class Main {
 
         BigInteger chainId = zksync.ethChainId().send().getChainId();
 
-        NonceHolder nonceHolder = NonceHolder.load(ZkSyncAddresses.NONCE_HOLDER_ADDRESS, zksync, new ReadonlyTransactionManager(zksync, signer.getAddress()), new DefaultGasProvider());
+        NonceHolder nonceHolder = NonceHolder.load(zksyncAddresses.NONCE_HOLDER_ADDRESS, zksync, new ReadonlyTransactionManager(zksync, signer.getAddress()), new DefaultGasProvider());
 
         BigInteger deploymentNonce = nonceHolder.getDeploymentNonce(signer.getAddress()).send();
 
@@ -235,7 +258,7 @@ public class Main {
 
         String sentTransactionHash = zksync.ethSendRawTransaction(Numeric.toHexString(message)).send().getTransactionHash();
 
-        // You can check transaction status as the same way as in Web3
+        // You can check the transaction status
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
@@ -268,7 +291,7 @@ import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
 import io.zksync.methods.request.Transaction;
-import io.zksync.protocol.ZkSync;
+import io.zksync.protocol.zksync;
 import io.zksync.protocol.core.ZkBlockParameterName;
 import io.zksync.transaction.fee.Fee;
 import io.zksync.transaction.type.Transaction712;
@@ -323,7 +346,7 @@ public class Main {
 
         String sentTransactionHash = zksync.ethSendRawTransaction(Numeric.toHexString(message)).send().getTransactionHash();
 
-        // You can check transaction status as the same way as in Web3
+        // You can check the transaction status
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
@@ -364,11 +387,11 @@ public class Main {
 ```java
 
 import io.zksync.crypto.signer.EthSigner;
-import io.zksync.protocol.ZkSync;
+import io.zksync.protocol.zksync;
 import io.zksync.protocol.core.Token;
 import io.zksync.transaction.fee.DefaultTransactionFeeProvider;
 import io.zksync.transaction.fee.ZkTransactionFeeProvider;
-import io.zksync.transaction.manager.ZkSyncTransactionManager;
+import io.zksync.transaction.manager.zksyncTransactionManager;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.tx.gas.DefaultGasProvider;
 
@@ -380,7 +403,7 @@ public class Main {
         EthSigner signer; // Initialize signer
 
         ZkTransactionFeeProvider feeProvider = new DefaultTransactionFeeProvider(zksync, Token.ETH);
-        ZkSyncTransactionManager transactionManager = new ZkSyncTransactionManager(zksync, signer, feeProvider);
+        zksyncTransactionManager transactionManager = new zksyncTransactionManager(zksync, signer, feeProvider);
 
         // Wrapper class of a contract generated by Web3j or Epirus ClI
         SomeContract contract = SomeContract.load("0x<contract_address>", zksync, transactionManager, new DefaultGasProvider()).send();
@@ -404,7 +427,7 @@ import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
 import io.zksync.methods.request.Transaction;
-import io.zksync.protocol.ZkSync;
+import io.zksync.protocol.zksync;
 import io.zksync.protocol.core.ZkBlockParameterName;
 import io.zksync.transaction.fee.Fee;
 import io.zksync.transaction.type.Transaction712;
@@ -459,7 +482,7 @@ public class Main {
 
         String sentTransactionHash = zksync.ethSendRawTransaction(Numeric.toHexString(message)).send().getTransactionHash();
 
-        // You can check transaction status as the same way as in Web3
+        // You can check the transaction status
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
@@ -474,7 +497,7 @@ import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
 import io.zksync.methods.request.Transaction;
-import io.zksync.protocol.ZkSync;
+import io.zksync.protocol.zksync;
 import io.zksync.protocol.core.Token;
 import io.zksync.protocol.core.ZkBlockParameterName;
 import io.zksync.transaction.fee.Fee;
@@ -493,7 +516,7 @@ public class Main {
 
         BigInteger chainId = zksync.ethChainId().send().getChainId();
 
-        // Here we're getting tokens supported by ZkSync
+        // Here we're getting tokens supported by zksync
         Token token = zksync.zksGetConfirmedTokens(0, (short) 100).send()
                 .getResult().stream()
                 .findAny().orElseThrow(IllegalArgumentException::new);
@@ -536,7 +559,7 @@ public class Main {
 
         String sentTransactionHash = zksync.ethSendRawTransaction(Numeric.toHexString(message)).send().getTransactionHash();
 
-        // You can check transaction status as the same way as in Web3
+        // You can check the transaction status
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
@@ -579,7 +602,7 @@ import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
 import io.zksync.methods.request.Transaction;
-import io.zksync.protocol.ZkSync;
+import io.zksync.protocol.zksync;
 import io.zksync.protocol.core.Token;
 import io.zksync.protocol.core.ZkBlockParameterName;
 import io.zksync.transaction.fee.Fee;
@@ -640,7 +663,7 @@ public class Main {
 
         String sentTransactionHash = zksync.ethSendRawTransaction(Numeric.toHexString(message)).send().getTransactionHash();
 
-        // You can check transaction status as the same way as in Web3
+        // You can check the transaction status 
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
@@ -655,7 +678,7 @@ import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
 import io.zksync.methods.request.Transaction;
-import io.zksync.protocol.ZkSync;
+import io.zksync.protocol.zksync;
 import io.zksync.protocol.core.Token;
 import io.zksync.protocol.core.ZkBlockParameterName;
 import io.zksync.transaction.fee.Fee;
@@ -679,7 +702,7 @@ public class Main {
                 .ethGetTransactionCount(signer.getAddress(), ZkBlockParameterName.COMMITTED).send()
                 .getTransactionCount();
 
-        // Here we're getting tokens supported by ZkSync
+        // Here we're getting tokens supported by zksync
         Token token = zksync.zksGetConfirmedTokens(0, (short) 100).send()
                 .getResult().stream()
                 .findAny().orElseThrow(IllegalArgumentException::new);
@@ -721,7 +744,7 @@ public class Main {
 
         String sentTransactionHash = zksync.ethSendRawTransaction(Numeric.toHexString(message)).send().getTransactionHash();
 
-        // You can check transaction status as the same way as in Web3
+        // You can check the transaction status
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
@@ -756,14 +779,13 @@ public class Main {
 ```
 
 ## Wallet
-
-### Get price of the execution of the transaction
+Get the price of the execution of the transaction
 
 ```java
 
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Transaction;
-import io.zksync.protocol.ZkSync;
+import io.zksync.protocol.zksync;
 import io.zksync.transaction.fee.Fee;
 
 import java.math.BigInteger;
@@ -788,7 +810,7 @@ public class Main {
 ```java
 
 import io.zksync.methods.request.Transaction;
-import io.zksync.protocol.ZkSync;
+import io.zksync.protocol.zksync;
 import io.zksync.protocol.core.Token;
 import io.zksync.transaction.fee.DefaultTransactionFeeProvider;
 import io.zksync.transaction.fee.Fee;
