@@ -50,6 +50,6 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 
 ### Tooling and SDK
 
-- [Python](./tools/python.md) - Make transfers, check your balance, deploy contracts with Create and Create2 in your python application with zkSync python SDK
-- [Java](./tools/java.md) - Learn how to build decentralized applications using the zkSync java sdk.
-- [GO](./tools/go.md) - Build decentralized application with zkSync GO sdk.
+- [Python](./tools/python.md) - Make transfers, check your balance, and deploy contracts with Create and Create2 in your python application with zkSync Python SDK
+- [Java](./tools/java.md) - Learn how to build decentralized applications using the zkSync java SDK.
+- [GO](./tools/go.md) - Build a decentralized application with zkSync GO SDK.
