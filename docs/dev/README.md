@@ -33,8 +33,6 @@ If this is your first time using zkSync, we recommend that you kick off at the b
   - [Status](./troubleshooting/status.md) - Get updates on things we are currently working on.
   - [FAQ](./troubleshooting/faq/known-issues.md) - Get answers to your frequently asked questions
 
-- [Glossary](./glossary/glossary.md) - An alphabetical list of words relating to zkSync and its ecosystem.
-
 ### Developer Tools
 
 - Faucet, bridge, wallet - Explore our faucet, bridge and wallet feature on

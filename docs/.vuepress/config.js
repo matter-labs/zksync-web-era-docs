@@ -87,7 +87,6 @@ module.exports = {
             "/dev/troubleshooting/status.md",
             "/dev/troubleshooting/faq/known-issues.md",
             "/dev/glossary/edit-doc.md",
-            "/dev/glossary/glossary.md",
 
           ],
         },
