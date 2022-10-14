@@ -13,7 +13,7 @@ It is also assumed that you already have some experience working with Ethereum.
 
 ## Project structure
 
-As we will be deploying contracts in both L1 and L2, we'll separate this project in two different folders:
+As we will deploy contracts on both L1 and L2, we'll separate this project in two different folders:
 
 - `/L1-governance`: for the L1 contract, and scripts.
 - `/L2-counter`: for the zkSync contract, and scripts.
