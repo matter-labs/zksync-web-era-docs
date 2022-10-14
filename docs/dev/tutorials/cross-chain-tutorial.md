@@ -16,7 +16,7 @@ It is also assumed that you already have some experience working with Ethereum.
 As we will be deploying contracts in both L1 and L2, we'll separate this project in two different folders:
 
 - `/L1-governance`: for the L1 contract, and scripts.
-- `/L2-counter`: for the zkSync contract, and scripts.
+- `/L2-counter`: for the L2 contract, and scripts.
 
 So go ahead and create these folders.
 
@@ -448,7 +448,7 @@ Also, there is currently no easy way to estimate the exact number of `ergs` requ
 
 :::
 
-7. Now it is possible to call the governance contract, which will redirect the call to zkSync:
+7. Now it is possible to call the governance contract, that will redirect the call to zkSync:
 
 ```ts
 // Imports
