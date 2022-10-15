@@ -28,9 +28,15 @@ yarn init -y
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
+2. Initialise hardhat
+```
+yarn hardhat init
+```
+Hardhat will ask you a few questions, select `Create a TypeScript project`, and use default values for the rest.
+
 Please note that currently typescript is required by zkSync plugins.
 
-2. Create the `hardhat.config.ts` file and paste the following code there:
+3. Edit the `hardhat.config.ts` file and paste the following code there:
 
 ```typescript
 require("@matterlabs/hardhat-zksync-deploy");
@@ -73,7 +79,11 @@ If this contract has already complied, you should delete the artifact and cached
 
 To learn how to verify your smart contract using zkSync block explorer, click [here](./contracts/contract-verification.md).
 
-1. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
+1. Create the `deploy` folder, it will contain all the scripts related to deploying the contracts.
+
+```
+mkdir deploy
+```
 
 2. Create the `contracts/Greeter.sol` contract and insert the following code there:
 
