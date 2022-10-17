@@ -47,15 +47,7 @@ Imagine if there weren't a timeout, users would send some transactions, and the 
 
 Block hash in zkSync are deterministic and are derived from the following formula: "keccak256(l2_block_number)".
 The reason for having a deterministic block hash is that these hashes are not provable (remember that L2 blocks are not submitted to L1). 
-<<<<<<< HEAD
-<<<<<<< HEAD
 Projects are advised not to use the L2 block hash as a source of randomness.
-=======
-Projects are advised not the use the L2 block hash as a source of randomness.
->>>>>>> 413f291 (blocks)
-=======
-Projects are advised not to use the L2 block hash as a source of randomness.
->>>>>>> 628fedf (update grammar)
 
 ### Block Properties
 - Timestamp: The current block's creation time as seconds since the Unix epoch
