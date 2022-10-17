@@ -36,7 +36,7 @@ module.exports = {
         link: "/dev/",
       },
       {
-        text: "API Reference",
+        text: "Tools/SDKs",
         link: "/api/",
       },
       {
