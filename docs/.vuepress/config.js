@@ -20,11 +20,10 @@ module.exports = {
     ],
   ],
   themeConfig: {
+    repo: 'matter-labs/zksync-web-v2-docs',
+    editLinks: true,
     logo: "/LogotypeLight.svg",
     lastUpdated: "Last Updated",
-    repoLabel: 'Contribute!',
-    editLinks: true,
-    editLinkText: 'Edit this page',
     nav: [
       // {
       //   text: "User Docs",
