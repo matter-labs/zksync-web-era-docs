@@ -1,20 +1,20 @@
 # Edit or review a documentation page
 
 
-**Goal:** 
+### Goal
 Find a documentation page that you think needs updating. proofread, or edit the page.
 
-**Skills required:**
+### Skills required
 
 - Understands and writes English well
 - Experienced in technical writing
-- Experience with blockchain technologies(preferably Ethereum, L2, web3)
+- Experience with blockchain technologies(preferably Ethereum, L2s, web3)
 
-**Background and reference information:**
+### Background and reference information
 
 [Content style guide](https://www.notion.so/matterlabs/Communication-Strategy-a4836bd6d2254268b60a489d82992d71) - zkSync content style guide.
 
-**Categories of contribution**
+### Categories of contributionß
 
 Review the page, to see if it needs editing. Things to look for:
 1. Proofreading (spelling, grammar, punctuation)
@@ -22,7 +22,7 @@ Review the page, to see if it needs editing. Things to look for:
 3. 404 links - Make edits and create a PR to fix any broken links.
 4. Language translation - We will make a guide for you to follow if you want to translate zkSync documentation to a non-english language.
 
-**Detailed steps:** 
+### Detailed steps
 
 1. In the page of interest, click on `Edit this page`,
 2. Step 1 takes you to GitHub, create an account on [GitHub](https://github.com/join), and if you already have an account, then sign in.
