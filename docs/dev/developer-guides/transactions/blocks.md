@@ -5,7 +5,9 @@ A block is an ordered list of transactions. Each block (except for the Genesis b
 ## Blocks in zkSync 2.0
 
 In zkSync there are two notions of ``blocks'': an L2 block and an L1 rollup block.
+
 L2 blocks, or just "blocks", are simply the blocks created on L2, that is on the zkSync network. They are not included on the Ethereum chain. An L1 rollup block, which we call "batch", is a set of 
+
 consecutive (L2) blocks, it contains all the transactions, and in the same order, from the first block in the batch to the last block in the 
 batch.
 
