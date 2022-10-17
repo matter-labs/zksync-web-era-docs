@@ -22,6 +22,7 @@ module.exports = {
   themeConfig: {
     logo: "/LogotypeLight.svg",
     lastUpdated: "Last Updated",
+    editLinks: true,
     nav: [
       // {
       //   text: "User Docs",
@@ -86,7 +87,8 @@ module.exports = {
             "/dev/troubleshooting/important-links.md",
             "/dev/troubleshooting/status.md",
             "/dev/troubleshooting/faq/known-issues.md",
-            "/dev/glossary/edit-doc.md",
+            "/dev/docs-contribution/docs-doc.md",
+            "/dev/docs-contribution/edit-doc.md",
 
           ],
         },

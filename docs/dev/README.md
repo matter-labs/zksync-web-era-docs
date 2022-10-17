@@ -3,7 +3,7 @@
 This documentation is intended to assist you in developing on zkSync. 
 It introduces the concept of zkSync, describes the zkSync network stack, and some advanced subjects for complex applications and use cases.
 
-Because the documentation is open-sourced, feel free to suggest new topics, add new content, and provide examples wherever you believe they will be useful. If you're unsure how to proceed, [follow these instructions](./glossary/edit-doc.md).
+Because the documentation is open-sourced, feel free to suggest new topics, add new content, and provide examples wherever you believe they will be useful. If you're unsure how to proceed, [follow these instructions](./docs-contribution/docs.md).
 
 ## Fundamental topics
 
