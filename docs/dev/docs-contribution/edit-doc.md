@@ -25,8 +25,7 @@ Review the page, to see if it needs editing. Things to look for:
 **Detailed steps:** 
 
 1. Click on `Edit Page`, on the page you want to contribute.
-2. Signup into GitHub, if you already have an account, then signin.
-  - Go to [GitHub](https://github.com/join) to create an account.
+2. Go to [GitHub](https://github.com/join) to create an account, if you already have an account, then signin.
 3. Click on the pen icon to fork the repo so you can start contributing to the documentation
   ![fork-repo](https://user-images.githubusercontent.com/55744578/136702921-3105350a-a68a-4aa4-8c5d-fb24742652b2.jpg)
 4. Editing MD files
