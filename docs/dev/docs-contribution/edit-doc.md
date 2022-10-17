@@ -14,7 +14,7 @@ Find a documentation page that you think needs updating. proofread, or edit the 
 
 [Content style guide](https://www.notion.so/matterlabs/Communication-Strategy-a4836bd6d2254268b60a489d82992d71) - zkSync content style guide.
 
-### Categories of contributionß
+### Categories of contribution
 
 Review the page, to see if it needs editing. Things to look for:
 1. Proofreading (spelling, grammar, punctuation)
