@@ -72,6 +72,7 @@ module.exports = {
             "/dev/developer-guides/transactions/transactions.md",
             "/dev/developer-guides/transactions/blocks.md",
             "/dev/developer-guides/transactions/aa.md",
+            "/dev/developer-guides/transactions/fee-model.md",
             "/dev/developer-guides/Bridging/bridging-asset.md",
             "/dev/developer-guides/Bridging/l1-l2-interop.md",
             "/dev/developer-guides/Bridging/l1-l2.md",
