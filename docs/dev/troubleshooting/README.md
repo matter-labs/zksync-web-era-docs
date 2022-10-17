@@ -4,7 +4,7 @@ Get brief explainers on your integration with zkSync.
 
 ## Table of contents
 
-- [Important links](./troubleshooting/important-links.md)
-- [Important links](./troubleshooting/important-links.md)
-- [Status](./troubleshooting/status.md)
-- [FAQ's](./troubleshooting/faq/known-issues.md)
+- [Important links](./important-links.md)
+- [Important links](./important-links.md)
+- [Status](./status.md)
+- [FAQ's](./faq/known-issues.md)
