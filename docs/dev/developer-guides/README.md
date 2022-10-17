@@ -10,7 +10,7 @@ Take a deeper dive into the zkSync ecosystem.
 - [Contract verification](./contracts/contract-verification.md)
 - [Transaction finality](./transactions/transactions.md)
 - [Account abstraction](./transactions/aa.md)
-- [Fee mechanism](./fee-model.md)
+- [Fee mechanism](./transactions/fee-model.md)
 - [Bridging of funds](./bridging/bridging-asset.md)
 - [L1 / L2 Interoperability](./bridging/l1-l2-interop.md)
 - [L1 / L2 communication](./bridging/l1-l2.md)
