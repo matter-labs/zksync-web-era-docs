@@ -22,7 +22,8 @@ module.exports = {
   themeConfig: {
     repo: 'matter-labs/zksync-web-v2-docs',
     editLinks: true,
-    docsDir: '/main/docs',
+    docsDir: 'docs',
+    docsBranch: 'main',
     logo: "/LogotypeLight.svg",
     lastUpdated: "Last Updated",
     nav: [
