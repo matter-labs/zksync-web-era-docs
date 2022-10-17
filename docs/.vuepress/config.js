@@ -88,7 +88,7 @@ module.exports = {
             "/dev/troubleshooting/important-links.md",
             "/dev/troubleshooting/status.md",
             "/dev/troubleshooting/faq/known-issues.md",
-            "/dev/docs-contribution/docs-doc.md",
+            "/dev/docs-contribution/docs.md",
             "/dev/docs-contribution/edit-doc.md",
           ],
         },
