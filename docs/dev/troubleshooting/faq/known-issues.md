@@ -1,6 +1,6 @@
 # FAQ
 
-While zkSync 2.0 is in alpha, we will answer some issues you might encounter in your integration.
+zkSync 2.0 is currently in alpha stage, hence some things you are use to may not work. Please keep in mind that the system is still under ongoing development.
 
 ## Why are Metamask native contract interactions not working?
 
