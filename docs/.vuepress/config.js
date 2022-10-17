@@ -23,6 +23,7 @@ module.exports = {
     logo: "/LogotypeLight.svg",
     lastUpdated: "Last Updated",
     editLinks: true,
+    editLinkText: 'Edit this page',
     nav: [
       // {
       //   text: "User Docs",
