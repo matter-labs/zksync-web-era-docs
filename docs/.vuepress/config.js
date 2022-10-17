@@ -22,6 +22,7 @@ module.exports = {
   themeConfig: {
     logo: "/LogotypeLight.svg",
     lastUpdated: "Last Updated",
+    repoLabel: 'Contribute!',
     editLinks: true,
     editLinkText: 'Edit this page',
     nav: [
