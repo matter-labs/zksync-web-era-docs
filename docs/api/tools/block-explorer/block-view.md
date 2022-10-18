@@ -2,8 +2,9 @@
 
 ![Block view!](../../../assets/images/block-tx.png "View blocks on zkSync")
 
-By default, the block explorer home screen displays the 5 most recent blocks on the chain. Click on a specific block number for information about that block, or View All Blocks for a more detailed overview of recent blocks. 
-The blocks page can also be accessed from the top menu.
+The block explorer home screen, by default, displays the 5 most recent blocks in the chain. 
+View all blocks for a more complete overview of recent blocks, or click on a specific block number for details on that block.
+The blocks page is also accessible via the top menu.
 
 ![Access the block page](../../../assets/images/block-menu.png "Blocks menu")
 

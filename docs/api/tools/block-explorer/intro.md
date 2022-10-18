@@ -6,7 +6,7 @@ The zkSync block explorer is an environment-specific terminal that displays real
 It is an online platform that can be used to utilize both high-level data (such as contracts, transaction rates, and so on) and more detailed insights (e.g. block contents, transaction hashes, sending accounts, etc.).
 Consider it a window into the zkSync blockchain, letting you see what's going on there.
 
-Our block explorer graphically displays block activity as it is validated in real-time, allowing users to engage with the data more effectively. They may seek for a specific block number and investigate it further by reading the address and transaction details that comprise a block.
+Our block explorer graphically displays block activity as it is validated in real-time, allowing users to engage with the data more effectively. They may seek a specific block number and investigate it further by reading the address and transaction details that comprise a block.
 
 The zkSync block explorer presently includes indices for Ethereum, DAI, LINK, wBTC, and USDC, which serve as the foundation for learning how to traverse and grasp data for other blockchains. More cryptocurrencies and functionality will be added to our block explorer so that users may study real-time blockchain data and do more in-depth analysis.
 
