@@ -4,7 +4,7 @@ A block is an ordered list of transactions. Each block (except for the Genesis b
 
 ## Blocks in zkSync 2.0
 
-In zkSync there are two notions of ``blocks'': an L2 block and an L1 rollup block.
+In zkSync there are two notions of "blocks": an L2 block and an L1 rollup block.
 
 L2 blocks, or just "blocks", are simply the blocks created on L2, that is on the zkSync network. They are not included on the Ethereum chain. An L1 rollup block, which we call "batch", is a set of 
 consecutive (L2) blocks, it contains all the transactions, and in the same order, from the first block in the batch to the last block in the 
@@ -34,7 +34,7 @@ Batch time, in general, depends on the system activity - the more active the sys
 There are several criteria for sealing a block, which we defer from explaining in detail here, as the system is still under testing and 
 these may change. 
 In general, a batch will get sealed when:
-1. The batch ``capacity''' is reached. Capacity includes L1 gas used, L2 ergs consumed and several other parameters. 
+1. The batch "capacity" is reached. Capacity includes L1 gas used, L2 ergs consumed and several other parameters. 
 2. The batch timeout has passed.
 
 After submitting transactions, users can check where in the process their transaction is as explained [here](../../fundamentals/zkSync.md#zksync-overview).
