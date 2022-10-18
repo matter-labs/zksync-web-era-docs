@@ -43,7 +43,7 @@ You may determine the L2 block's hash by knowing the L2 block number because it 
 Every block needs a unique hash, which we proposed for Web3 API compatibility. Additionally, to avoid confusing users, we employ the `keccak hash` function to make hashes appear to be random numbers.
 
 ### Block Properties
-- Timestamp: The current block's creation time as seconds since the Unix epoch
+- Timestamp: The current block's creation time in seconds since the Unix epoch
 - Block number: The unique sequential number for this block.
 - Gas limit: The current block gas limit, always returns `2^32-1`.
 - Coinbase:  The current block miner’s address, returns the [bootloader](../contracts/system-contracts.md#bootloader) address.

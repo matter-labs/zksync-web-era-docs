@@ -31,9 +31,9 @@ For more details on blocks, see the docs on [Blocks](../../../dev/developer-guid
 
 | Value            | Description      |
 | ----------------------- | --------- |
-| Block number            | The height on the chain.|
+| Block number            | The unique sequential number for this block.|
 | Block size              | The size of the block.  |
-| Timestamp               | The ISO timestamp when the block was created and was included in the blockchain.  |
+| Timestamp               | The current block's creation time in seconds since the Unix epoch. |
 | Root hash               | The Cryptographic hash of the block header. |
 | status                  | The status of the block, could be `sealed`, `finalized`, or `unfinalized`.  |
 
@@ -45,7 +45,7 @@ Transactions are chosen from the network mempool in order of highest fee first.
 | Value            | Description      |
 | ----------------------- | --------- |
 | Block                   | The the block containing the transaction.|
-| Timestamp               | The ISO timestamp when the transaction was created.  |
+| Timestamp               | The current transaction's creation time in seconds since the Unix epoch.  |
 | Hash                    | The hash of the transaction serving as the transaction’s ID |
 | From                    | The account sending the transaction. |
 | To                      | The account or smart contract the transaction targeted. |
