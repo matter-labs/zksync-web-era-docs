@@ -143,6 +143,13 @@ module.exports = {
             "/api/hardhat/compiling-libraries"
           ],
         },
+        {
+          title: "Block Explorer", // required
+          path: "/api/tools/block-explorer", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/tools/block-explorer/intro", "/api/tools/block-explorer/block-view", "/api/tools/block-explorer/contract-verification"],
+        },
       ],
     }
                //<! -- OLD STRUTURE -->
