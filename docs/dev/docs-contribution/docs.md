@@ -1,14 +1,8 @@
 # Contribute to documentation
 
-zkSync documentation is open-sourced, hence embracing contributions from the community by people all around the World, just like you.
+zkSync documentation is open-sourced, hence embracing contributions from the community by people all around the world, just like you.
 
 Contributing to any large project requires collaboration between project members and the people and processes that make that a productive and enjoyable experience.
-
-The Documentation team is the central body that:
-
-- Maintains processes, and guidelines for documentation.
-- Highlights priorities for zkSync documentation.
-- Suggests tool changes to improve the experience of people who read and write documentation.
 
 As collaboration on contribution to zkSync documentation is such an integral part of the community, there are many ways to communicate with others doing the same and to learn from them:
 
