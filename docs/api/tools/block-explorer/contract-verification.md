@@ -46,7 +46,8 @@ To verify the contract, enter the following details;
 - Contract address: The address provided must match with the `0x` address supplied during contract creation.
 - Contract name: The name must be identical to the name provided in the contract.
 - Optimization: This checks whether or not optimization was used while compiling the contract, If you enabled optimization during compilation, check **Yes** otherwise select **No**
-- Compiler version: This specifies the exact version of the compiler used to compile a smart contract. Click on the dropdown to specify the compiler version used.
+- Solidity compiler version(Solc): This specifies the exact version of the compiler used to compile a smart contract. Click on the dropdown to specify the compiler version used.
+- zkSync compiler version(Zksolc): The zkSync compiler version used, the default is set to `v1.2.0`.
   
 <br>
 

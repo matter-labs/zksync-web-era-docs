@@ -14,10 +14,13 @@ zkSync block explorer currently has indices for Ethereum, DAI, LINK, wBTC, and U
 
 Users and traders, who often buy and sell crypto can utilize the block explorer to check on the status of their transactions. Once users initiate a transaction, they will receive an automatically-generated transaction hash and can use it to look up details of the payment and whether it was successful or not.
 
-To assist users in using the block explorer, we have written this guide and will be highliting specific touch points in the block explorer, for an optimal learning experience. To start, you can open up https://scan-v2.zksync.dev/ in your web browser and follow along using the guide.
+To assist users and traders in using the block explorer and to enhance optimal learning experience, we have written this guide and will be highliting specific touch points in the block explorer:
+
+1. [Search bar](./search.md) - Search by wallet address, transaction hash, block number or contract address.
+2. [Block view](./block-view.md) - Get all the details about a block included in zkSync network.
+3. [Transaction view](./block-view.md#transactions) - Fetch and analyse the lists of transaction that occurs on-chain.
+4. [Smart contract verification](./contract-verification.md) - Verify smart contracts with zkSync block explorer.
+5. [zkEVM Debugger]() - Replay execution of your smart-contracts, and read each instruction.
+
+To start, you can open up https://scan-v2.zksync.dev/ in your web browser and follow along using the guide.
 Let’s take a look at the block explorer!
-
-
-## Conclusion(TO BE REMOVED, BEFORE PUSHING)
-
-Have fun on your blockchain journey! Our aim for the block explorer is a no-frills, user-friendly tool that gives you easy access to data from multiple search points, and provides a more intuitive understanding of what you’re searching for.

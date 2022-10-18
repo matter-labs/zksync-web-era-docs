@@ -17,7 +17,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 
 - [Quickstart](./developer-guides/hello-world.md) - Learn how to build a full dApp using the zkSync development toolbox.
 - [Contract deployment](./developer-guides/contracts/contracts.md) - A guide on how to deploy smart contracts on zkSync.
-  - [Contract verification](./developer-guides/contracts/contract-verification.md) - A guide on how to verify smart contracts with zkSync block explorer.
+  - [Contract verification](../api/tools/block-explorer/contract-verification.md) - A guide on how to verify smart contracts with zkSync block explorer.
 - [System contracts](./developer-guides/contracts/system-contracts.md) - A brief overview of zkSync system contracts.
 - [Transactions](./developer-guides/transactions/transactions.md) - A guide on how zkSync handles transactions.
   - [Account abstraction](./developer-guides/transactions/aa.md) - Learn about account abstraction.
@@ -39,8 +39,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 
 - Faucet, bridge, wallet - Explore our faucet, bridge and wallet feature.
 [zkSync 2.0 Portal](https://portal.zksync.io)
-- Block explorer - Search for real-time and historical information about blocks, transactions, addresses, and more on zkSync.
-[Explorer](https://zksync2-testnet.zkscan.io)
+- [Block explorer](./api/tools/block-explorer/) - Search for real-time and historical information about blocks, transactions, addresses, and more on zkSync.
 
 ### Examples and tutorials
 
