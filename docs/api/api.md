@@ -178,7 +178,7 @@ The `id` is the position of the leaf in the Merkle tree of L2->L1 messages for t
 
 You do not need to care about the intrinsics, since the returned `id` and `proof` can be used right away for interacting with the zkSync smart contract.
 
-A nice example of using this endpoint via our SDK can be found [here](../dev/developer-guides/Bridging/l2-l1.md).
+A nice example of using this endpoint via our SDK can be found [here](../dev/developer-guides/bridging/l2-l1.md).
 
 ### `zks_getBridgeContracts`
  

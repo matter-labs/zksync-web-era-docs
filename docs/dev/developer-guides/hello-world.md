@@ -15,6 +15,7 @@ The testnet paymaster is just for testing. If you decide to build a project on m
 
 :::
 
+
 ## Prerequisites
 
 For this tutorial, the following programs must be installed:
@@ -560,6 +561,7 @@ async getOverrides() {
 ```
 
 3. Now, what is left is to encode the paymasterInput following the [protocol requirements](./transactions/aa.md#testnet-paymaster) and return the needed overrides:
+
 
 ```javascript
 async getOverrides() {
