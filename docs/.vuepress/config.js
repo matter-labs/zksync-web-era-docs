@@ -76,7 +76,6 @@ module.exports = {
             "/dev/developer-guides/transactions/transactions.md",
             "/dev/developer-guides/transactions/blocks.md",
             "/dev/developer-guides/transactions/aa.md",
-            "/dev/developer-guides/transactions/fee-model.md",
             "/dev/developer-guides/bridging/bridging-asset.md",
             "/dev/developer-guides/bridging/l1-l2-interop.md",
             "/dev/developer-guides/bridging/l1-l2.md",
@@ -101,6 +100,7 @@ module.exports = {
           collapsable: false,
           children: ["/dev/tutorials/cross-chain-tutorial.md", "/dev/tutorials/custom-aa-tutorial.md", "/dev/tutorials/custom-paymaster-tutorial.md"],
         },
+
       ],
       "/api": [
         {
