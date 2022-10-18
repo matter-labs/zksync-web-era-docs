@@ -16,11 +16,14 @@ the cost on interaction with L1 spread among many transactions.
 
 
 ## Block numbers
-**TODO**
-- need to explain how to retrieve L1BatchNumber
 
 Accessing block numbers within zkSync API is similar to how you would do it on Ethereum. For example, `eth_blockNumber` returns the number 
 of the latest L2 block, and `eth_getBlockByNumber`, given a block number, returns the information about the requested block.
+
+For L1 batches, to retrieve the latest batch number, use zkSync API method `zks_L1BatchNumber`.
+Additionally, querying on a block, you can see the batch number for the batch that includes the block. 
+Within transaction receipts, the field `l1BatchNumber` is the batch number that includes the transaction.
+The field `l1BatchTxIndex` returns the transaction position among all of the batch transactions.
 
 ## Block processing time
 **TODO**
