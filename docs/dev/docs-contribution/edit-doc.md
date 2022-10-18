@@ -1,13 +1,7 @@
 # Edit or review a documentation page
 
 ### Goal
-Find a documentation page that you think needs updating. proofread, or edit the page.
-
-### Skills required
-
-- Understands and writes English well
-- Experienced in technical writing
-- Experience with blockchain technologies(preferably Ethereum, L2s, web3)
+Find a documentation page that you think needs updating, proofreading, or editing.
 
 ### Background and reference information
 
@@ -25,7 +19,7 @@ Review the page, to see if it needs editing. Things to look for:
 
 1. In the page of interest, click on `Edit this page`,
 2. Step 1 takes you to GitHub: either create an account on [GitHub](https://github.com/join), or if you already have an account, then sign in.
-3. Click on the pen icon to fork the repo so you can start contributing to the documentation
+3. Click on the pen icon to fork the repo so you can start contributing to the documentation.
   ![fork-repo](https://user-images.githubusercontent.com/55744578/136702921-3105350a-a68a-4aa4-8c5d-fb24742652b2.jpg)
 4. Edit MD files:
   - We use markdown in the documentation, you will need to know markdown to be able to contribute to the docs.
@@ -37,5 +31,5 @@ Review the page, to see if it needs editing. Things to look for:
 
 ### Learning/Improvement resources: 
 
-- [Technical Writing Best Practices](https://proedit.com/technical-writing-best-practices/)
-- [9 Technical Writing Tips Every Writer Needs to Know](https://www.instructionalsolutions.com/blog/technical-writing-tips)
+- [Technical Writing Best Practices](https://proedit.com/technical-writing-best-practices/).
+- [9 Technical Writing Tips Every Writer Needs to Know](https://www.instructionalsolutions.com/blog/technical-writing-tips).
