@@ -41,7 +41,7 @@ After submitting transactions, users can check where in the process their transa
 
 ### Hashes
 
-Block hash in zkSync are deterministic and are derived from the following formula: "keccak256(l2_block_number)".
+Block hashes in zkSync are deterministic and are derived from the following formula: "keccak256(l2_block_number)".
 The reason for having a deterministic block hash is that these hashes are not provable (remember that L2 blocks are not submitted to L1). 
 Projects are advised not to use the L2 block hash as a source of randomness.
 

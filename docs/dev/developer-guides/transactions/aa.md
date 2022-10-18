@@ -7,7 +7,8 @@ The former type is the only one that can initiate transactions,
 while the latter is the only one that can implement arbitrary logic. For some use-cases, like smart-contract wallets or privacy protocols, this difference can create a lot of friction.
 As a result, such applications require L1 relayers, e.g. an EOA to help facilitate transactions from a smart-contract wallet.
 
-Accounts in zkSync 2.0 can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature is called "account abstraction" and it is aimed to resolve the issues described above.
+Accounts in zkSync 2.0 can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature is called "account 
+abstraction" and it aims to resolve the issues described above.
 
 ::: warning Unstable feature
 
