@@ -43,3 +43,5 @@
   * [Обзор](api-reference/obzor.md)
   * [Web3 API](api-reference/web3-api.md)
   * [Интерфейс контрактов L1](api-reference/interfeis-kontraktov-l1.md)
+  * [JavaScript Web3 SDK](api-reference/javascript-web3-sdk/README.md)
+    * [Начало](api-reference/javascript-web3-sdk/nachalo.md)

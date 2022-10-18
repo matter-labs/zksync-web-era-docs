@@ -1,6 +1,6 @@
 # Web3 API
 
-zkSync 2.0 полностью поддерживаем стандарт [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API).
+zkSync 2.0 полностью поддерживает стандарт [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API).
 
 Пока код не включает в себя развертывание новых смарт-контрактов (они могут быть развернуты только с использованием транзакций типа EIP712, подробнее об этом [ниже](https://app.gitbook.com/s/Q94rnwzPd443twWxJNpi/\~/changes/1FFkP4GZejfjyey9uMAD/api-reference/web3-api#eip712)), _никаких изменений в кодовой базе не требуется_.
 
