@@ -26,25 +26,18 @@ Within transaction receipts, the field `l1BatchNumber` is the batch number that 
 The field `l1BatchTxIndex` returns the transaction position among all of the batch transactions.
 
 ## Block processing time
-**TODO**
-- explain blocks/batch timing:
--- blocks are processed immediately; once we decentralize the system, block time will be a couple of seconds, for the actors to achieve consensus
--- batch time depends on the system activity -- the more active the system is, the faster we <em>seal</em> a batch. explain the seal criteria  
 
-refer to the tx status here: https://v2-docs.zksync.io/dev/fundamentals/zkSync.html#zksync-in-comparison
+Transactions are processed immediately by the operator and added to blocks, which are then generated. Once the system operation will become 
+fully decentralised, block time will take a couple of seconds, as the involved entities need to achieve consensus.
 
-DELETE THIS:
+Batch time, in general, depends on the system activity - the more active the system has, the faster we <em>seal</em> a batch.
+There are several criteria for sealing a block, which we defer from explaining in detail here, as the system is still under testing and 
+these may change. 
+In general, a batch will get sealed when:
+1. The batch ``capacity''' is reached. Capacity includes L1 gas used, L2 ergs consumed and several other parameters. 
+2. The batch timeout has passed.
 
-The batch size is limited due to the following:
-1. For small L1 batches, a prover can produce proofs in an adequate amount of time.
-2. The required gas for the transaction to commit the L1 batch on the L1 contract must not exceed the permitted gas for the L1 block. Because that gas depends on L1 batch size, capacity is constrained.
-
-L1 batches are sealed for two reasons:
-
-1. The capacity is reached (well, because we can't send an L1 batch that exceeds capacity).
-2. Timeout has passed. We do not have a precise estimate on the timeout for now.
-Users require a timeout season to ensure that their transactions become final on L1 on time.
-Imagine if there weren't a timeout, users would send some transactions, and the load would be very low to fill an L1 batch capacity, resulting in users waiting for finality for days.
+After submitting transactions, users can check where in the process their transaction is as explained [here](../../fundamentals/zkSync.md#zksync-overview).
 
 ### Hashes
 
