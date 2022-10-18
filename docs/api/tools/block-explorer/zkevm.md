@@ -2,7 +2,7 @@
 
 ### Overview
 
-The downside of contract execution is that it is very hard to say what a transaction did. A transaction receipt does contain a status code to check whether execution succeeded or not, but there is no way to see what data was modified, nor what external contracts were invoked. zkSync resolves this by replaying the execution of your smart contracts and collecting data about precisely what was executed by the EVM, so you can read each instruction.
+The disadvantage of contract execution is that it is difficult to determine what a transaction did. A transaction receipt has a status code that indicates whether or not the execution was successful, but there is no way to determine what data was updated or which external contracts were triggered. This is remedied by zkSync zkEVM debugger, which replays the execution of your smart contracts and captures data on exactly what the EVM did, allowing you to examine each instruction.
 
 The debugger page can also be accessed from the top menu.
 
