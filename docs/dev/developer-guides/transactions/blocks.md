@@ -11,8 +11,7 @@ consecutive (L2) blocks, it contains all the transactions, and in the same order
 batch.
 
 L1 batches, as the name suggests, are submitted to Ethereum. The main reason to have these different notions is that a block can 
-contain a minimal number of transactions, thus be processed quickly, while in a batch we would like to include many transactions, to make 
-the cost on interaction with L1 spread among many transactions.
+contain a minimal number of transactions, and thus be processed quickly, while in a batch we would like to include many transactions, to make the cost of interaction with L1 spread among many transactions.
 
 
 ##  Block and Batch numbers
@@ -25,8 +24,7 @@ Additionally, when querying for a given block information, you can find the batc
 
 ## Block processing time
 
-Transactions are processed immediately by the operator and added to blocks, which are then generated. Once the system operation will become 
-fully decentralised, block time will take a couple of seconds, as the involved entities need to achieve consensus.
+Transactions are processed immediately by the operator and added to blocks, which are then generated. Once the system operation will become fully decentralized, block time will take a couple of seconds, as the involved entities need to achieve consensus.
 
 Batch time, in general, depends on the system activity - the more active the system has, the faster we <em>seal</em> a batch.
 There are several criteria for sealing a block, which we defer from explaining in detail here, as the system is still under testing and 
