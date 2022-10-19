@@ -28,6 +28,3 @@ For the ease of supporting account abstraction, for each account, we split the n
 
 This means that while for smart contracts the nonce on zkSync behaves the same way as on Ethereum, for EOAs calculating the address of the deployed contract is not as straightforward. On Ethereum, it can be safely calculated as `hash(RLP[address, nonce])`, while on zkSync it is recommended to wait until the contract is deployed and catch the event with the address of the newly deployed contract. All of this is done in the background by the SDK.
 To gain a deterministic address, you should use `create2`. It is available for EOAs as well, but it is not available in the SDK yet.
-
-## Verify smart contracts
-Now that you have learned how to deploy your contracts, you might be interested to know how you can **verify** the contracts deployed on zkSync using the official block explorer. All the details about how to verify contracts can be found [here](../../../api/tools/block-explorer/contract-verification.md).
