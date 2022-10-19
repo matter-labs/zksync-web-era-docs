@@ -68,6 +68,7 @@ module.exports = {
             "/dev/developer-guides/hello-world.md",
             "/dev/developer-guides/contracts/system-contracts.md",
             "/dev/developer-guides/contracts/contracts.md",
+            "/api/tools/block-explorer/contract-verification.md",
             "/dev/developer-guides/transactions/transactions.md",
             "/dev/developer-guides/transactions/blocks.md",
             "/dev/developer-guides/transactions/aa.md",
