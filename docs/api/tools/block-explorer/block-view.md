@@ -1,6 +1,6 @@
-# View Blocks
+# Browse blocks
 
-![Block view!](../../../assets/images/block-tx.png "View blocks on zkSync")
+![Browse blocks!](../../../assets/images/block-tx.png "View blocks on zkSync")
 
 The block explorer home screen, by default, displays the 5 most recent blocks in the chain. 
 View all blocks for a more complete overview of recent blocks, or click on a specific block number for details on that block.
@@ -10,12 +10,11 @@ The blocks page is also accessible via the top menu.
 
 ## View all blocks
 
-The view all blocks page shows updated details from the most recent blocks. Use the pagination to navigate to the next page.
+With each block is packed with information, you can click on a block number to see all the details of that specific block. If you want to browse more blocks, click the [Blocks](https://explorer.zksync.io/blocks/) section of the navigation menu. Use the pagination to navigate to the next page.
 
-However, if you have already left the homepage, you can always search for any Ethereum, DAI, LINK, wBTC, and USDC block by typing in the block number.
-Each block is packed with information. 
+However, if you have already left the homepage, you can always search for any block by typing in the block number.
 
-![View all blocks](../../../assets/images/view-block.png "View all blocks")
+![Browse all blocks](../../../assets/images/view-block.png "Browse all blocks")
 
 There are two main sections inside a block:
 

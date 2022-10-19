@@ -5,11 +5,11 @@ Our user-friendly search tool gives you easy access to data from multiple search
 
 ![Search Bar!](../../../assets/images/search-bar.png "search bar")
 
-The main search bar is where you can look up something specific right away. As a block explorer user, you can perform a search for the following items:
+The main search bar is where you can look up something specific right away. You can search by:
 ‍
-1. Blocks number: The number of the desired block for inspection. For example, enter `0` to see the contents of the chain’s genesis block. 
-2. Transactions hash/ID: The ID of a specific transaction. A transaction implies that byte code has been executed by the EVM. These include deployments of smart contracts and subsequent invocations.
-3. Wallet address: The wallet address of a sender or a receiver of a token, could be Ethereum, DAI, LINK, wBTC, or USDC.
+1. Block number: The number of the desired block for inspection. For example, enter `0` to see the contents of the chain’s genesis block. 
+2. Transaction hash/ID: The ID of a specific transaction. A transaction implies that byte code has been executed by the EVM. These include deployments of smart contracts and subsequent invocations.
+3. Wallet address: The wallet address of a sender or a receiver of a token.
 4. Contract address: The callable address of an Ethereum smart contract deployed on zkSync.
 
 One common use case that you can try on the block explorer is checking on the status of a transaction. This can be done by copying and pasting the transaction ID into the search bar. Users can also confirm whether the cryptocurrency they are waiting on has arrived yet by pasting their wallet address into the search bar, other use cases include searching for a contract address that has been deployed on zkSync.
