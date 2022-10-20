@@ -2,12 +2,13 @@
 
 ## Introduction
 
-On Ethereum, there are two types of accounts: [externally owned accounts (EOAs)](https://ethereum.org/en/developers/docs/accounts/#externally-owned-accounts-and-key-pairs) and [contracts accounts](https://ethereum.org/en/developers/docs/accounts/#contract-accounts).
+On Ethereum there are two types of accounts: [externally owned accounts (EOAs)](https://ethereum.org/en/developers/docs/accounts/#externally-owned-accounts-and-key-pairs) and [contracts accounts](https://ethereum.org/en/developers/docs/accounts/#contract-accounts).
 The former type is the only one that can initiate transactions, 
-while the latter is the only one that can implement arbitrary logic. For some use-cases, like smart-contract wallets or privacy protocols, this difference can creates a lot of friction.
-As a result they require L1 relayers, e.g. an EOA to help facilitate transactions from a smart-contract wallet.
+while the latter is the only one that can implement arbitrary logic. For some use-cases, like smart-contract wallets or privacy protocols, this difference can create a lot of friction.
+As a result, such applications require L1 relayers, e.g. an EOA to help facilitate transactions from a smart-contract wallet.
 
-Accounts in zkSync 2.0 can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature is called "account abstraction" and it is aimed to resolve the issues described above.
+Accounts in zkSync 2.0 can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature is called "account 
+abstraction" and it aims to resolve the issues described above.
 
 ::: warning Unstable feature
 
@@ -19,7 +20,7 @@ zkSync 2.0 is one of the first EVM-compatible chains to adopt AA, so this testne
 
 ### Prerequisites
 
-To better understand this page, we recommend you take some time to first read a guide on [accounts](https://ethereum.org/en/developers/docs/accounts/) and [transaction](transactions.md).
+To better understand this page, we recommend you take some time to first read a guide on [accounts](https://ethereum.org/en/developers/docs/accounts/).
 
 ## Design
 
@@ -29,15 +30,18 @@ The account abstraction protocol on zkSync is very similar to [EIP4337](https://
 
 ::: warning Changes are expected
 
-The current model has some important drawbacks: it does not allow custom wallets to send multiple transactions at the same time, while keeping the deterministic ordering. For EOAs the nonces are expected to be sequentially growing, while for the custom accounts the order of transactions can not be determined for sure. 
+The current model has some important drawbacks: it does not allow custom wallets to send multiple transactions at the same time, while keeping a deterministic ordering. For 
+EOAs the nonces are expected to be sequentially growing, while for the custom accounts the order of transactions can not be determined for sure. 
 
-In the future, we plan to switch to a model, where the accounts could choose whether they would want to have sequential nonce ordering (the same as EOA) or they want to have arbitrary ordering.  
+In the future, we plan to switch to a model where the accounts could choose whether they would want to have sequential nonce ordering (the same as EOA) or they want to have arbitrary ordering.  
 
 :::
 
-One of the important invariants of every blockchain is that each transaction has a unique hash. Holding this property with an arbitrary account abstraction is not trivial though as an account can, in general, accept multiple identical transactions. Even though these transactions would be technically valid by the rules of the blockchain, violating hash uniqueness would be very hard for indexers and other tooling to process.
+One of the important invariants of every blockchain is that each transaction has a unique hash. Holding this property with an arbitrary account abstraction is not trivial, 
+though accounts can, in general, accept multiple identical transactions. Even though these transactions would be technically valid by the rules of the blockchain, violating 
+hash uniqueness would be very hard for indexers and other tools to process.
 
-There needs to be a solution on the protocol level that is both cheap for the users and robust in case of a malicious operator. One of the easiest ways to ensure that the transaction hashes do not repeat is to have a pair (sender, nonce) always unique.
+There needs to be a solution on the protocol level that is both cheap for users and robust in case of a malicious operator. One of the easiest ways to ensure that transaction hashes do not repeat is to have a pair (sender, nonce) always unique.
 
 The following protocol is used:
 
@@ -45,17 +49,22 @@ The following protocol is used:
 - If the nonce has not been used yet, the transaction validation is run. The provided nonce is expected to be marked as "used" during this time.
 - After the validation, the system checks whether this nonce is now marked as used.
 
-The users will be allowed to use any 256-bit number as nonce and they can put any non-zero value under the corresponding key in the system contract. This is already supported by the protocol, but not on the server side. 
+Users will be allowed to use any 256-bit number as nonce and they can put any non-zero value under the corresponding key in the system contract. This is already supported by 
+the protocol, but not on the server side. 
 
-More documentation on various interactions with the `NonceHolder` system contract as well as tutorials will be available once the support on the server side is released. For now, it is only recommended to use the `incrementNonceIfEquals` method of it, which practically enforces the sequential ordering of nonces.
+More documentation on various interactions with the `NonceHolder` system contract as well as tutorials will be available once support on the server side is released. For now, 
+it is recommended to only use the `incrementNonceIfEquals` method, which practically enforces the sequential ordering of nonces.
 
 ### Standardizing transaction hashes
 
-In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](../contracts/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA methods (in case the accounts may need this value for some reason). That's why all the methods of the `IAccount` and `IPaymaster` interfaces, which will be described below, contain the hash of the transaction as well as the recommended signed digest (the digest that is signed by EOAs for this transaction). 
+In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](..
+/contracts/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA 
+methods (in case the accounts may need this value for some reason). That's why all the methods of the `IAccount` and `IPaymaster` interfaces, which are described below, 
+contain the hash of the transaction as well as the recommended signed digest (the digest that is signed by EOAs for this transaction). 
 
 ### IAccount interface
 
-Each account is recommended to implement the [IAccount](https://github.com/matter-labs/v2-testnet-contracts/blob/main/zksync/system-contracts/interfaces/IAccount.sol) interface. It contains the following five methods:
+Each account is recommended to implement the [IAccount](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IAccount.sol) interface. It contains the following five methods:
 
 - `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) the method should revert. In case the call to this method succeedes, the implemented account logic is considered to accept the transaction, and the system will proceed with the transaction flow.
 - `executeTransaction` is mandatory and will be called by the system after the fee is charged from the user. This function should perform the execution of the transaction.
@@ -65,12 +74,13 @@ Each account is recommended to implement the [IAccount](https://github.com/matte
 
 ### IPaymaster interface
 
-Like the original EIP4337, our account abstraction protocol supports paymasters: accounts that can compensate for other accounts' transactions execution. You can read more about them [here](#paymasters).
+Like in EIP4337, our account abstraction protocol supports paymasters: accounts that can compensate for other accounts' transactions execution. You can read more about them 
+[here](#paymasters).
 
-Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/zksync/system-contracts/interfaces/IPaymaster.sol) interface. It contains the following two methods:
+Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IPaymaster.sol) interface. It contains the following two methods:
 
 - `validateAndPayForPaymasterTransaction` is mandatory and will be used by the system to determine if the paymaster approves paying for this transaction. If the paymaster is willing to pay for the transaction, this method must send at least `tx.gasprice * tx.ergsLimit` to the operator. It should return the `context` that will be one of the call parameters to the `postOp` method.
-- `postOp` is optional and will be called after the transaction has been executed. Note, that unlike the original EIP4337, there *is no guarantee that this method will be called*. In particular, this method won't be called if the transaction has failed with `out of gas` error. It takes four parameters: the context returned by the `validateAndPayForPaymasterTransaction` method, the transaction itself, whether the execution of the transaction succeeded, and also the maximum amount of ergs the paymaster might be refunded with. More documentation on refunds will be available once their support is added to zkSync.
+- `postOp` is optional and will be called after the transaction has been executed. Note that unlike EIP4337, there *is no guarantee that this method will be called*. In particular, this method won't be called if the transaction has failed with `out of gas` error. It takes four parameters: the context returned by the `validateAndPayForPaymasterTransaction` method, the transaction itself, whether the execution of the transaction succeeded, and also the maximum amount of ergs the paymaster might be refunded with. More documentation on refunds will be available once their support is added to zkSync.
 
 ### Reserved fields of the `Transaction` struct with special meaning
 
@@ -98,24 +108,27 @@ During the validation step, the account should decide whether it accepts the tra
 
 **Step 4 (paymaster).** The system calls the `prePaymaster` method of the sender. If this call does not revert, then the `validateAndPayForPaymasterTransaction` method of the paymaster is called. If it does not revert too, proceed to the next step.
 
-**Step 3.** The system verifies that the bootloader has received at least `tx.ergsPrice * tx.ergsLimit` ETH to the bootloader. If it is the case, the verification is considered complete and we can proceed to the next step.
+**Step 5.** The system verifies that the bootloader has received at least `tx.ergsPrice * tx.ergsLimit` ETH to the bootloader. If it is the case, the verification is considered 
+complete and we can proceed to the next step.
 
 #### The execution step
 
 The execution step is considered responsible for the actual execution of the transaction and sending the refunds for any unused ergs back to the user. If there is any revert on this step, the transaction is still considered valid and will be included in the block.
 
-**Step 4.** The system calls the `executeTransaction` method of the account.
+**Step 6.** The system calls the `executeTransaction` method of the account.
 
-**Step 5. (only in case the transaction has a paymaster)** The `postOp` method of the paymaster is called. This step should typically be used for refunding the sender the unused ergs in case the paymaster was used to facilitate paying fees in ERC-20 tokens.
+**Step 7. (only in case the transaction has a paymaster)** The `postOp` method of the paymaster is called. This step should typically be used for refunding the sender the 
+unused ergs in case the paymaster was used to facilitate paying fees in ERC-20 tokens.
 
 ### Fees
 
 In EIP4337 you can see three types of gas limits: `verificationGas`, `executionGas`, `preVerificationGas`, that describe the gas limit for the different steps of the transaction inclusion in a block.
-zkSync has only a single field, `ergsLimit`, that covers the fee for all three. When submitting a transaction, make sure that `ergsLimit` is enough to cover verification, paying the fee (the ERC20 transfer mentioned above), and the actual execution itself.
+zkSync 2 has only a single field, `ergsLimit`, that covers the fee for all three. When submitting a transaction, make sure that `ergsLimit` is enough to cover verification, 
+paying the fee (the ERC20 transfer mentioned above), and the actual execution itself.
 
 By default, calling `estimateGas` adds a constant to cover charging the fee and the signature verification for EOA accounts.
 
-## Using `SystemContractsCaller` library
+## Using the `SystemContractsCaller` library
 
 For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](../contracts/system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall` method of the [SystemContractsCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/sb-system-contracts-for-new-update/l2/system-contracts/SystemContractsCaller.sol) library should be used.
 
@@ -123,7 +136,8 @@ Using this library is practically a must when developing custom accounts since t
 
 ## Extending EIP4337
 
-To provide DoS protection for the operator, the original EIP4337 imposes several [restrictions](https://eips.ethereum.org/EIPS/eip-4337#simulation) on the validation step of the account. Most of them, especially regarding the forbidden opcodes are still relevant. However, several restrictions have been lifted for better UX.
+To provide DoS protection for the operator, EIP4337 imposes several [restrictions](https://eips.ethereum.org/EIPS/eip-4337#simulation) on the validation step of the account. 
+Most of them, especially those regarding the forbidden opcodes, are still relevant. However, several restrictions have been lifted for better UX.
 
 ### Extending the allowed opcodes
 
@@ -221,7 +235,8 @@ const sentTx = await zksyncProvider.sendTransaction(serializedTx);
 
 ## Paymasters
 
-Paymasters are accounts that can compensate for other accounts' transactions. Imagine being able to pay fees for users of your protocol! The other important use-case of paymasters is to facilitate paying fees in ERC20 tokens. While ETH is the main token of zkSync, paymasters can provide the ability to exchange ERC20 tokens to ETH on the fly.
+Imagine being able to pay fees for users of your protocol! Paymasters are accounts that can compensate for other accounts' transactions. The other important use-case of 
+paymasters is to facilitate paying fees in ERC20 tokens. While ETH is the formal fee token in zkSync, paymasters can provide the ability to exchange ERC20 tokens to ETH on the fly.
 
 If users want to interact with a paymaster, they should provide the non-zero `paymaster` address in their EIP712 transaction. The input data to the paymaster is provided in the `paymasterInput` field of the paymaster.
 
@@ -238,7 +253,7 @@ Since multiple users should be allowed to access the same paymaster, malicious p
 
 Unlike in the original EIP, paymasters are allowed to touch any storage slots. Also, the paymaster won't be throttled if either of the following is true:
 
-- More than `X` minutes have passed since the verification has passed on the API nodes. (The exact value of `X` will be defined later).
+- More than `X` minutes have passed since the verification has passed on the API nodes (the exact value of `X` will be defined later).
 - The order of slots being read is the same as during the run on the API node and the first slot whose value has changed is one of the user's slots. This is needed to protect the paymaster from malicious users (e.g. the user might have erased the allowance for the ERC20 token).
 
 ### Built-in paymaster flows

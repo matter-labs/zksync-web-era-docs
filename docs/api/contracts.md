@@ -5,7 +5,7 @@ To interact with zkSync from L1, you need the interface of its canonical bridge.
 - By importing it from the `@matterlabs/zksync-contracts` npm package. (preferred)
 - By downloading the contracts from the [repo](https://github.com/matter-labs/v2-testnet-contracts).
 
-The guide on interacting with the zkSync canonical bridge with examples in both Solidity and `zksync-web3` SDK can be found [here](../dev/developer-guides/Bridging/l1-l2.md).
+The guide on interacting with the zkSync canonical bridge with examples in both Solidity and `zksync-web3` SDK can be found [here](../dev/developer-guides/bridging/l1-l2.md).
 
 This page will primarily serve as a quick reference for the interfaces and types you may require, as well as how to import them.
 
