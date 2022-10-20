@@ -45,3 +45,4 @@
   * [Интерфейс контрактов L1](api-reference/interfeis-kontraktov-l1.md)
   * [JavaScript Web3 SDK](api-reference/javascript-web3-sdk/README.md)
     * [Начало](api-reference/javascript-web3-sdk/nachalo.md)
+    * [Провайдеры](api-reference/javascript-web3-sdk/provaidery.md)
