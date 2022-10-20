@@ -20,11 +20,14 @@ Accessing block numbers within zkSync API is similar to how you would do it on E
 of the latest L2 block, and `eth_getBlockByNumber`, given a block number, returns the information about the requested block.
 
 For L1 batches, to retrieve the latest batch number, use zkSync API method `zks_L1BatchNumber`.
-Additionally, when querying for a given block information, you can find the batch number that includes the block. Within transaction receipts, the field `l1BatchNumber` is also the batch that includes the transaction. The field `l1BatchTxIndex` returns the transaction position among all of the batch transactions.
+Additionally, querying on a block, you can see the batch number for the batch that includes the block. 
+Within transaction receipts, the field `l1BatchNumber` is the batch number that includes the transaction.
+The field `l1BatchTxIndex` returns the transaction position among all of the batch transactions.
 
 ## Block processing time
 
-Transactions are processed immediately by the operator and added to blocks, which are then generated. Once the system operation will become fully decentralized, block time will take a couple of seconds, as the involved entities need to achieve consensus.
+Transactions are processed immediately by the operator and added to blocks, which are then generated. Once the system operation will become 
+fully decentralised, block time will take a couple of seconds, as the involved entities need to achieve consensus.
 
 Batch time, in general, depends on the system activity - the more active the system has, the faster we <em>seal</em> a batch.
 There are several criteria for sealing a block, which we defer from explaining in detail here, as the system is still under testing and 
