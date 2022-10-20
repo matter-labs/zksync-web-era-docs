@@ -4,7 +4,7 @@
 
 When you deploy a smart contract on a network, you’re essentially deploying the bytecode produced by the Solidity compiler.
 
-Verifying a contract entails determining whether the on-chain bytecode generated from the Smart Contract source code compiles. If it does, we can state that we have confirmed the bytecode's source code's integrity. Hence the name – verification.
+Verifying a contract entails determining whether the on-chain bytecode matches a given source code when it is compiled. If it does, we can state that we have confirmed the bytecode's source code's integrity. Hence the name – verification.
 
 
 ## How are smart contracts verified in zkSync?
@@ -29,11 +29,7 @@ Code verification requires six arguments:
 
 When your smart contract is deployed on zkSync and verified on the block explorer, users can check the verified source code and interact with it.
 
-
-
 ## Verifying Contracts Using the zkSync Block Explorer
-
-You can verify your contract so that zkSync can convert it all into a format that is readable by everyone. It is beneficial if you want to make the most of our zkEVM Debugger capabilities.
 
 To get started click the **Tools** tab in the top header, a dropdown will pop up and select **Smart Contract Verification**,  after which you will be shown the following screen:
 
@@ -43,9 +39,9 @@ To get started click the **Tools** tab in the top header, a dropdown will pop up
 
 To verify the contract, enter the following details;
 
-- Contract address: The address provided must match with the `0x` address supplied during contract creation.
+- Contract address: The address provided must match with the `0x` address generated during contract creation.
 - Contract name: The name must be identical to the name provided in the contract.
-- Optimization: This checks whether or not optimization was used while compiling the contract, If you enabled optimization during compilation, check **Yes** otherwise select **No**
+- Optimization: This checks whether or not optimization was used while compiling the contract. If you enabled optimization during compilation, check **Yes** otherwise select **No**
 - Solidity compiler version(Solc): This specifies the exact version of the compiler used to compile a smart contract. Click on the dropdown to specify the compiler version used.
 - zkSync compiler version(Zksolc): The zkSync compiler version used, the default is set to `v1.2.0`.
   

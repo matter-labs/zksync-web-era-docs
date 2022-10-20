@@ -57,7 +57,7 @@ module.exports = {
           children: [
             "/dev/fundamentals/rollups.md",
             "/dev/fundamentals/zkSync.md",
-            // "/dev/fundamentals/testnet.md",
+            "/dev/fundamentals/testnet.md",
           ],
         },
         {
@@ -87,8 +87,7 @@ module.exports = {
             "/dev/troubleshooting/important-links.md",
             "/dev/troubleshooting/status.md",
             "/dev/troubleshooting/faq/known-issues.md",
-            "/dev/glossary/edit-doc.md",
-            "/dev/glossary/glossary.md",
+            "/dev/troubleshooting/edit-doc.md",
 
           ],
         },
@@ -148,7 +147,7 @@ module.exports = {
           path: "/api/tools/block-explorer", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
-          children: ["/api/tools/block-explorer/intro", "/api/tools/block-explorer/block-view", "/api/tools/block-explorer/contract-verification", "/api/tools/block-explorer/zkevm.md"],
+          children: ["/api/tools/block-explorer/intro", "/api/tools/block-explorer/block-view", "/api/tools/block-explorer/contract-verification"],
         },
       ],
     }
