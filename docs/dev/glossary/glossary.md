@@ -6,7 +6,7 @@ This section contains a comprehensive list of terms associated with zkSync and i
 
 ### account
 
-An object containing an address, balance, nonce, and optional storage and code. An account can be a contract account or an externally owned account (EOA).
+An object containing an address, balance, nonce, and optional storage and code.
 
 ### application programming interface (API)
 
@@ -16,20 +16,13 @@ An Application Programming Interface (API) is a set of definitions for how to us
 
 ## B
 
-### blocks
+### block
 
 A block is a bundled unit of information that include an ordered list of transactions and consensus-related information. 
 
-## C
-
-### contract account
-
-An account containing code that executes whenever it receives a transaction from another account (EOA or contract).
-
-
 ## D
 
-### Dapp
+### dapp
 
 A dapp is a web application that is built on top of open, decentralized, peer-to-peer infrastructure services.
 
