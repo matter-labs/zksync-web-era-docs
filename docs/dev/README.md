@@ -29,7 +29,6 @@ If this is your first time using zkSync, we recommend that you kick off at the b
     - [L2 / L1 communication](./developer-guides/bridging/l2-l1.md) - Learn how to send data from zkSync to Ethereum.
 - [Troubleshooting](./troubleshooting/reporting-issues.md) - Report known issues to us here.
   - [Important links](./troubleshooting/important-links.md) - Get a quick reference to important links.
-  - [Temporary limitations](./troubleshooting/temp-limits.md) - Get the current restrictions on the system.
   - [Status](./troubleshooting/status.md) - Get updates on things we are currently working on.
   - [FAQ](./troubleshooting/faq/known-issues.md) - Get answers to your frequently asked questions
 
