@@ -26,7 +26,7 @@ The field `l1BatchTxIndex` returns the transaction position among all of the bat
 
 ## Block processing time
 
-Transactions are processed immediately by the operator and added to blocks, which are then generated. Once the system operation will become 
+Transactions are processed immediately by the operator and added to blocks, which are then immediately generated. Once zkSync becomes
 fully decentralised, block time will take a couple of seconds, as the involved entities need to achieve consensus.
 
 Batch time, in general, depends on the system activity - the more active the system has, the faster we <em>seal</em> a batch.
