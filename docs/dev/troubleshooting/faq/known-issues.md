@@ -1,6 +1,6 @@
 # FAQ
 
-zkSync 2.0 is currently in alpha stage, hence some things you are use to may not work. Please keep in mind that the system is still under ongoing development.
+zkSync 2.0 is currently in the alpha stage, hence some things you are used to may not work. Please keep in mind that the system is still under ongoing development.
 
 ## Why are Metamask native contract interactions not working?
 
@@ -10,7 +10,7 @@ It is not currently possible to interact with zkSync smart contracts via Metamas
 
 ## Why does my wallet have no funds and my contract disappears?
 
-We are expected to update our testnet continuously, and so from time to time, we will need to do a re-genesis. This will cause the entire state to reset, and all deployed contracts will cease to exist.
+We are expected to update our testnet continuously, so from time to time, we will need to do a re-genesis. This will cause the entire state to reset, and all deployed contracts will cease to exist.
 
 **We will communicate re-genesis events before they happen!**
 
@@ -25,7 +25,7 @@ This is an error that is usually thrown when compiling a large smart contract co
 If you encounter such an error, please do the following:
 
 - Update the `@matterlabs/hardhat-zksync-solc` library and try to re-compile the smart contracts afterwards.
-- If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](../../api/hardhat/compiling-libraries.md).
+- If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](../../../api/hardhat/compiling-libraries.md).
 - If the same error persists, report the issue to our team. We will do our best to help you.
 
 ## Why is Docker Desktop not running and why does Docker Desktop show not installed error?

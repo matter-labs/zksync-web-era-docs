@@ -28,11 +28,11 @@ Since we are working with zkSync contracts, we also need to install the package 
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [Hello World](../developer-guides/hello-world.md)tutorial.
+Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [Hello World](../developer-guides/hello-world.md) tutorial.
 
 ## Account abstraction
 
-Each account needs to implement the [IAccount](https://github.com/matter-labs/v2-testnet-contracts/blob/07e05084cdbc907387c873c2a2bd3427fe4fe6ad/l2/system-contracts/interfaces/IAccount.sol#L7) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
+Each account needs to implement the [IAccount](../developer-guides/transactions/aa.md#iaccount-interface) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
 
 The skeleton for the contract will look the following way:
 
