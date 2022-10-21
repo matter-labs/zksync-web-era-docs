@@ -20,7 +20,7 @@ In the previous version of zkSync, we only had two operations that could be sent
 - `Deposit` to bridge funds from Ethereum to zkSync. 
 - `FullExit` to bridges the funds back from Ethereum (this is essentially the same as `Withdraw` in zkSync 2.0). 
 
-If users wanted to deposit funds to, or withdraw funds from zkSync, they would have sent a transaction request to the smart contract which then got appended to the queue of priority transactions. The queue has the following rules:
+If users wanted to deposit funds to, or withdraw funds from zkSync, they would have to sent a transaction request to the smart contract which then got appended to the queue of priority transactions. The queue has the following rules:
 
 - All transactions are processed sequentially.
 - Each priority operation must be processed by the operator within `X` days since it was submitted to the contract.
