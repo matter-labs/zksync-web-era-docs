@@ -11,8 +11,7 @@ consecutive (L2) blocks, it contains all the transactions, and in the same order
 batch.
 
 L1 batches, as the name suggests, are submitted to Ethereum. The main reason to have these different notions is that a block can 
-contain a minimal number of transactions, thus be processed quickly, while in a batch we would like to include many transactions, to make 
-the cost on interaction with L1 spread among many transactions.
+contain a minimal number of transactions, and thus be processed quickly, while in a batch we would like to include many transactions, to make the cost of interaction with L1 spread among many transactions.
 
 ## Block numbers
 
@@ -20,7 +19,7 @@ Accessing block numbers within zkSync API is similar to how you would do it on E
 of the latest L2 block, and `eth_getBlockByNumber`, given a block number, returns the information about the requested block.
 
 For L1 batches, to retrieve the latest batch number, use zkSync API method `zks_L1BatchNumber`.
-Additionally, querying on a block, you can see the batch number for the batch that includes the block. 
+Additionally, by querying on a block, you can see the batch number for the batch that includes the block. 
 Within transaction receipts, the field `l1BatchNumber` is the batch number that includes the transaction.
 The field `l1BatchTxIndex` returns the transaction position among all of the batch transactions.
 
