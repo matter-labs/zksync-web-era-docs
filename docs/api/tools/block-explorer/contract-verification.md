@@ -53,7 +53,7 @@ To verify the contract, enter the following details;
 <br>
 **Note:** You may need to flatten your Solidity code if it utilizes a library or inherits dependencies from another contract. 
 <br> 
-We recommend using the [truffle flattener](https://github.com/NomicFoundation/truffle-flattener) or the [POA Solidity flattener](https://github.com/poanetwork/solidity-flattener).
+We recommend using [Hardhat flatten](https://medium.com/coinmonks/flattening-smart-contracts-using-hardhat-dffe7dbc7b3f), [Truffle flattener](https://github.com/NomicFoundation/truffle-flattener) or the [POA Solidity flattener](https://github.com/poanetwork/solidity-flattener).
 
 
 - Constructor arguments: If constructor arguments are required by the contract, you should add them here, but in [ABI hex-encoded form](https://solidity.readthedocs.io/en/develop/abi-spec.html).
