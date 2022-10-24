@@ -1,4 +1,4 @@
-# Fee model
+# Fee Mechanism
 
 zkSync's version of `gas` is called `ergs` and represents not only the costs of computations but also the cost of publishing data on-chain and affecting storage. Similar to `gas`, `ergs` is an absolute unit. VM operations (`add`, `mul`, etc.) will also have their costs measured in `ergs`, and they may not be equal to each other. The actual table of operation costs in `ergs` is yet to be defined.
 

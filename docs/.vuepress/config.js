@@ -78,8 +78,21 @@ module.exports = {
             "/dev/developer-guides/transactions/aa.md",
             "/dev/developer-guides/bridging/bridging-asset.md",
             "/dev/developer-guides/bridging/l1-l2-interop.md",
-            "/dev/developer-guides/bridging/l1-l2.md",
             "/dev/developer-guides/bridging/l2-l1.md",
+            "/dev/developer-guides/building-on-zsync/security.md",
+          ],
+        },
+        {
+          title: "Developer guides",
+          path: "/dev/developer-guides",
+          collapsable: false,
+          children: [
+            "/dev/developer-guides/building-on-zsync/tools.md",
+            "/dev/developer-guides/transactions/fee-model.md",
+            "/dev/developer-guides/bridging/l1-l2.md",
+            "/dev/developer-guides/building-on-zsync/events.md",
+            "/dev/developer-guides/building-on-zsync/rpc.md",
+            "/dev/developer-guides/building-on-zsync/videos.md",
           ],
         },
         {

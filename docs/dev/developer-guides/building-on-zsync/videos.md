@@ -1,0 +1,20 @@
+# Developer Videos
+
+### zkSync 2.0 for Builders - Alex Gluchowski
+
+This talk covers everything you need to know about zkSync 2.0, and the user, and developer experience perspectives when building on zkSync.
+
+<iframe src="https://www.youtube.com/embed/xd2siik0iBU" title="zSync 2.0 for Builders - Alex Gluchowski" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### The zkEVM is Here - Steve Newcomb
+
+In this talk, Steve discusses how zkSync is going to be shipping the world's first zkEVM and how it's going to impact the blockchain space. 
+
+<iframe src="https://www.youtube.com/embed/QkZUlqetTRA" title="The zkEVM is Here - Steve Newcomb" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### zkEVM: Compatibility vs Equivalence - Alex Gluchowski
+
+In this talk, Alex explains what it means for a zkEVM to be compatible or equivalent, he also discussed the difference between Compatibility vs Equivalence as regards to zkEVMs.
+
+
+<iframe src="https://www.youtube.com/embed/-Kglh-5Na-k?start=2265" title="zkEVM: Compatibility vs Equivalence - Alex Gluchowski" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
