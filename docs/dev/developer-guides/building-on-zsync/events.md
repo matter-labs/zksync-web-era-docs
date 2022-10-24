@@ -1,9 +1,9 @@
 # zkSync Events
 
 ## Overview 
-Events are a way to publish actions to listeners outside the blockchain, this is because smart contracts themselves cannot listen to any events.
+Given that smart contracts themselves cannot listen to any events, events are a mechanism to publish actions to listeners outside the blockchain.
 
-All information in the blockchain is public and any actions can be found by looking into the transactions closely enough but events are a shortcut to ease the development of outside systems in cooperation with smart contracts, they allow Dapps to monitor and react to what's happening to a smart contract. They are also indexable, meaning you can search for them. So whenever something happens within your smart contract that some system outside the blockchain should know about you should emit an event and the outside system can listen for such events.
+The blockchain makes all information available to the public, and any actions can be discovered by carefully looking into the transactions, but events are a shortcut for making the development of external systems work with smart contracts; they let Dapps keep track of and respond to what's happening to a smart contract. They can also be searched for because they are indexable. Therefore, you should emit an event anytime something occurs in your smart contract that some system outside the blockchain should be aware of so that the outside system may listen for such occurrences. 
 Events are included in the transaction logs of the same block that fired the event.
 
 zkSync events in terms of their operations are quite similar to Ethereum.
