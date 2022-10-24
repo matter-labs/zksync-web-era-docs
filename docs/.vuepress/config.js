@@ -83,7 +83,7 @@ module.exports = {
           ],
         },
         {
-          title: "Developer guides",
+          title: "Building on zkSync",
           path: "/dev/developer-guides",
           collapsable: false,
           children: [
