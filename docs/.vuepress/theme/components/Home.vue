@@ -108,6 +108,8 @@ export default {
   order: 1;
   margin-right: 0;
   margin-left: 1rem;
+  position: fixed !important;
+  right: 0;
 
   .suggestions {
     left: auto !important;
@@ -118,6 +120,10 @@ export default {
 .navbar {
   display: flex;
   justify-content: flex-start;
+
+  .repo-link {
+    display: none;
+  }
 
   .links {
     left: 20rem;
