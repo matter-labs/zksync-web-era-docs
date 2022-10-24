@@ -79,7 +79,7 @@ module.exports = {
             "/dev/developer-guides/bridging/bridging-asset.md",
             "/dev/developer-guides/bridging/l1-l2-interop.md",
             "/dev/developer-guides/bridging/l2-l1.md",
-            "/dev/developer-guides/building-on-zsync/security.md",
+            "/dev/developer-guides/security.md",
           ],
         },
         {
