@@ -44,7 +44,7 @@ The reason for having a deterministic block hash is that these hashes are not pr
 Projects are advised not to use the L2 block hash as a source of randomness.
 
 ### Block Properties
-- Timestamp: The current block's creation time as seconds since the Unix epoch
+- Timestamp: The current block's creation time in seconds since the Unix epoch
 - Block number: The unique sequential number for this block.
 - Gas limit: The current block gas limit, always returns `2^32-1`.
 - Coinbase:  The current block miner’s address, returns the [bootloader](../contracts/system-contracts.md#bootloader) address.
