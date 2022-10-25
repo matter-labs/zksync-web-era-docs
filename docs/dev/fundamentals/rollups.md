@@ -32,7 +32,7 @@ The main difference between ZK and Optimistic rollups is in the way this batch o
 ### What are ZK rollups?
 
 In ZK rollups ('ZK' standing for zero-knowledge) the batch of transactions is verified for correctness on the Ethereum network. After the 
-verification passes, the batch of transactions is considered final like any other Etheruem transaction. This is achieved through the power 
+verification passes, the batch of transactions is considered final like any other Ethereum transaction. This is achieved through the power 
 of cryptographic <em>validity proofs</em> (commonly called zero-knowledge proofs). With any batch of off-chain transactions, the ZK rollup 
 operator generates a proof of validity for this batch. Once the proof is generated, it is submitted to Ethereum to make the roll-up batch final. 
 In zkSync, this is done via a **SNARK**, succinct non-interactive argument of knowledge.
