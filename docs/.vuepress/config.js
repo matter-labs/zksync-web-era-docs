@@ -52,7 +52,7 @@ module.exports = {
           },
           {
             text: 'v1.x',
-            link: 'https://v1-docs.zksync.io'
+            link: 'https://docs.zksync.io'
           }
         ]
       }
