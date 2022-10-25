@@ -43,6 +43,19 @@ module.exports = {
         text: "Contact",
         link: "/contact.html",
       },
+      {
+        text: 'v2.0',
+        items: [
+          {
+            text: 'v2.0',
+            link: '/dev/'
+          },
+          {
+            text: 'v1.x',
+            link: 'https://docs.zksync.io'
+          }
+        ]
+      }
     ],
     //displayAllHeaders: true,
     sidebar: {
