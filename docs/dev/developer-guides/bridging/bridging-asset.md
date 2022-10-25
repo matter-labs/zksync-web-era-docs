@@ -21,7 +21,7 @@ Addresses of tokens on L2 will always differ from L1 addresses.
 You can get default bridges' addresses using the `zks_getBridgeContracts` endpoint or `getDefaultBridgeAddresses` method of `Provider` in our JS SDK.
 
 ### Deposits
-User make transactions to the L1 bridge by calling the `deposit` method. The following actions are then being executed:
+Users make transactions to the L1 bridge by calling the `deposit` method. The following actions are then being executed:
 
 - L1 tokens are being sent to the L1 bridge and become locked there.
 - The L1 bridge initiates a transaction to the L2 bridge using L1 -> L2 communication.
@@ -37,6 +37,7 @@ In this case the inclusion of the log can be proven on the L1 bridge to return t
 The log message described above is not fully supported by our SDK on our current testnet.
 
 ### Withdrawals
+
 The user makes a transaction to the L2 bridge by calling the `withdraw` method. The following actions are then being executed:
 
 - L2 tokens are being burnt.

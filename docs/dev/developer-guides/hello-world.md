@@ -78,7 +78,7 @@ If this contract has already complied, you should delete the artifact and cached
 
 :::
 
-To learn how to verify your smart contract using zkSync block explorer, click [here](./contracts/contract-verification.md).
+To learn how to verify your smart contract using zkSync block explorer, click [here](../../api/tools/block-explorer/contract-verification.md).
 
 1. Create the `contracts` and `deploy` folders. The former is the place where we will store all the smart contracts' `*.sol` files, and the latter is the place where we will put all the scripts related to deploying the contracts.
 
