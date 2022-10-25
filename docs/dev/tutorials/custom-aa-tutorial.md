@@ -8,7 +8,7 @@ In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 It is highly recommended to read about the [design](../developer-guides/transactions/aa.md) of the account abstraction protocol before diving into this tutorial.
 
 It is assumed that you are already familiar with deploying smart contracts on zkSync.
-If not, please refer to the first section of the [Hello World](../developer-guides/hello-world.md) tutorial.
+If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md).
 It is also recommended to read the [introduction](../developer-guides/contracts/system-contracts.md) to the system contracts.
 
 ## Installing dependencies
@@ -28,7 +28,7 @@ Since we are working with zkSync contracts, we also need to install the package 
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [Hello World](../developer-guides/hello-world.md) tutorial.
+Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [quickstart tutorial](../developer-guides/hello-world.md).
 
 ## Account abstraction
 

@@ -7,7 +7,7 @@ This tutorial serves as an example of how to implement L1 to L2 contract interac
 
 ## Preliminaries
 
-In this tutorial, it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](../developer-guides/hello-world.md) tutorial.
+In this tutorial, it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md).
 
 It is also assumed that you already have some experience working with Ethereum.
 
@@ -283,7 +283,7 @@ In the output, you should see the address to which the contract was deployed.
 
 ::: tip
 
-You can find more specific details about deploying contracts in the [hello world](../developer-guides/hello-world.md) tutorial or the documentation for the [hardhat plugins](../../api/hardhat/getting-started.md) for zkSync.
+You can find more specific details about deploying contracts in the [quickstart tutorial](../developer-guides/hello-world.md) or the documentation for the [hardhat plugins](../../api/hardhat/getting-started.md) for zkSync.
 
 :::
 
