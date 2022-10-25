@@ -13,7 +13,7 @@ mainchain, users enjoy the same security level as in Ethereum.
 
 zkSync 2.0 is made to look and feel like Ethereum, but with lower fees. Just like on Ethereum, smart contracts are written in Solidity/Vyper and can be called using the same clients as the other EVM-compatible chains.
 
-You don't need to register a separate private key before usage; it supports existing Ethereum wallets that work out of the box.
+You don't need to register a separate private key before usage; zkSync supports existing Ethereum wallets out of the box.
 At this time, zkSync is solely run and operated by the zkSync team's servers and is therefore centralized. However, this will be transitioned to a decentralized system shortly.
 
 ## zkSync overview
