@@ -6,8 +6,7 @@ Take a deeper dive into the zkSync ecosystem.
 
 - [Quickstart](./hello-world.md)
 - [System contract](./contracts/system-contracts.md)
-- [Contract deployment](./contracts/contracts.md) 
-- [Contract verification](./contracts/contract-verification.md)
+- [Contract deployment](./contracts/contracts.md)
 - [Transaction finality](./transactions/transactions.md)
 - [Account abstraction](./transactions/aa.md)
 - [Fee mechanism](./fee-model.md)
