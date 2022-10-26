@@ -249,7 +249,7 @@ async changeGreeting() {
 },
 ```
 
-On the top of the `<script>` tag, you may see the parts that should be filled with the address of the deployed `Greeter` contract and the path to its ABI. We will fill these fields in the following sections.
+At the top of the `<script>` tag, you may see the parts that should be filled with the address of the deployed `Greeter` contract and the path to its ABI. We will fill these fields in the following sections.
 
 ```javascript
 // eslint-disable-next-line
