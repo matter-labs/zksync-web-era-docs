@@ -6,7 +6,7 @@ Let's see how we can use the paymaster feature to build a custom paymaster that 
 
 To better understand this page, we recommend you first read up on [account abstraction design](../developer-guides/transactions/aa.md) before diving into this tutorial.
 
-It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](../developer-guides/hello-world.md) tutorial. It is also recommended to read the [introduction](../developer-guides/contracts/system-contracts.md) to the system contracts.
+It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md). It is also recommended to read the [introduction](../developer-guides/contracts/system-contracts.md) to the system contracts.
 
 ## Installing dependencies
 
@@ -25,7 +25,7 @@ Since we are working with zkSync contracts, we also need to install the package 
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [Hello World](../developer-guides/hello-world.md) tutorial.
+Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [quickstart tutorial](../developer-guides/hello-world.md).
 
 ## Design
 
