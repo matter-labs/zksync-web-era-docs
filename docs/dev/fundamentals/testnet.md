@@ -29,9 +29,9 @@ All the existing SDKs for Ethereum will work out of the box and your users will 
 
 The only other place where using zkSync SDK is required is during contract deployment. This can be easily done through our hardhat plugin.
 
-## Hello World on zkSync
+## Quickstart on zkSync
 
-Check out our step-by-step [tutorial](../developer-guides/hello-world.md), where you will learn:
+Check out our step-by-step [quickstart guide](../developer-guides/hello-world.md), where you will learn:
 
 - How to install zkSync hardhat plugin and deploy smart contracts with it.
 - How to build the front-end for your dApp using the `zksync-web3` library.
