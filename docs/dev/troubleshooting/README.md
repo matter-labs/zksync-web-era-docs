@@ -7,3 +7,4 @@ Get brief explainers on your integration with zkSync.
 - [Important links](./important-links.md)
 - [Status](./status.md)
 - [FAQ's](./faq/known-issues.md)
+- [Contribute to documentation](./docs-contribution/docs.md)
