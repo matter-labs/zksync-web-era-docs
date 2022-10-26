@@ -100,13 +100,13 @@ module.exports = {
           collapsable: false,
           children: [
             "/dev/developer-guides/hello-world.md",
-            "/dev/developer-guides/building-on-zsync/tools.md",
+            "/dev/developer-guides/building-on-zksync/tools.md",
             "/dev/developer-guides/bridging/l1-l2.md",
             "/dev/developer-guides/contracts/contracts.md",
             "/dev/developer-guides/contracts/contract-verification.md",
-            "/dev/developer-guides/building-on-zsync/events.md",
-            "/dev/developer-guides/building-on-zsync/rpc.md",
-            "/dev/developer-guides/building-on-zsync/videos.md",
+            "/dev/developer-guides/building-on-zksync/events.md",
+            "/dev/developer-guides/building-on-zksync/rpc.md",
+            "/dev/developer-guides/building-on-zksync/videos.md",
           ],
         },
         {
