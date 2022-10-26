@@ -63,12 +63,12 @@ module.exports = {
 
       "/dev": [
         {
-          title: "Overview",
+          title: "Introduction",
           path: "/dev/",
           collapsable: false, // optional, defaults to true
         },
         {
-          title: "Understanding zkSync",
+          title: "Getting started",
           path: "/dev/fundamentals",
           collapsable: false,
           children: [
@@ -78,21 +78,21 @@ module.exports = {
           ],
         },
         {
-          title: "Developer guides",
+          title: "Understanding zkSync",
           path: "/dev/developer-guides",
           collapsable: false,
           children: [
-            "/dev/developer-guides/hello-world.md",
-            "/dev/developer-guides/contracts/system-contracts.md",
-            "/dev/developer-guides/contracts/contracts.md",
-            "/dev/developer-guides/contracts/contract-verification.md",
             "/dev/developer-guides/transactions/transactions.md",
             "/dev/developer-guides/transactions/blocks.md",
+            "/dev/developer-guides/contracts/system-contracts.md",
             "/dev/developer-guides/transactions/aa.md",
+            "/dev/developer-guides/security.md",
+            "/dev/developer-guides/transactions/fee-model.md",
             "/dev/developer-guides/bridging/bridging-asset.md",
             "/dev/developer-guides/bridging/l1-l2-interop.md",
             "/dev/developer-guides/bridging/l2-l1.md",
-            "/dev/developer-guides/security.md",
+
+            
           ],
         },
         {
@@ -100,9 +100,11 @@ module.exports = {
           path: "/dev/developer-guides",
           collapsable: false,
           children: [
+            "/dev/developer-guides/hello-world.md",
             "/dev/developer-guides/building-on-zsync/tools.md",
-            "/dev/developer-guides/transactions/fee-model.md",
             "/dev/developer-guides/bridging/l1-l2.md",
+            "/dev/developer-guides/contracts/contracts.md",
+            "/dev/developer-guides/contracts/contract-verification.md",
             "/dev/developer-guides/building-on-zsync/events.md",
             "/dev/developer-guides/building-on-zsync/rpc.md",
             "/dev/developer-guides/building-on-zsync/videos.md",
