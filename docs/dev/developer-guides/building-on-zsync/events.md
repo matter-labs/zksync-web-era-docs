@@ -1,4 +1,4 @@
-# zkSync Events
+# zkSync events
 
 ## Overview 
 Given that smart contracts themselves cannot listen to any events, events are a mechanism to publish actions to listeners outside the blockchain.

@@ -1,4 +1,4 @@
-# Security Model
+# Security model
 
 Given that zkSync is still in its early stages of development, there is a chance that our codebase contains undiscovered bugs that could lead to the loss of users' assets. As a result, we are constantly working to strengthen our security protocols to ensure that users and developers have a seamless onboarding experience when building on zkSync.
 zkSync smart contract codebase is presently being audited, but audits are not a guarantee of quality, and they are not a guarantee that a codebase has been thoroughly vetted for vulnerabilities. It's crucial to realize that zkSync usage exposes you to the possibility of defects in the zkSync codebase.

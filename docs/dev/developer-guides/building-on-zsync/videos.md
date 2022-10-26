@@ -1,4 +1,4 @@
-# Developer Videos
+# Developer videos
 
 ### zkSync 2.0 for Builders - Alex Gluchowski
 
