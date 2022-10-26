@@ -17,9 +17,7 @@ The testnet paymaster is just for testing. If you decide to build a project on m
 
 ## Prerequisites
 
-For this tutorial, the following programs must be installed:
-
-- `yarn` package manager. `npm` examples will be added soon.
+- `yarn` package manager. [Here is the installation guide](https://yarnpkg.com/getting-started/install)(`npm` examples will be added soon.)
 - A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. ERC20 tokens on zkSync are required if you want to implement the testnet paymaster. We recommend using [the faucet from the zkSync portal](https://portal.zksync.io/faucet).
 
 ## Initializing the project & deploying a smart contract
