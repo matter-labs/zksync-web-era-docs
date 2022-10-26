@@ -8,3 +8,4 @@ Learn the basics of zkSync and its ecosystem.
 - [Intro to rollups](./rollups.md)
 - [zkSync overview](./zkSync.md)
 - [zkSync testnet](./testnet.md)
+- [FAQ](./faq/known-issues.md)

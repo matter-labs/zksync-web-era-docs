@@ -75,6 +75,7 @@ module.exports = {
             "/dev/fundamentals/rollups.md",
             "/dev/fundamentals/zkSync.md",
             "/dev/fundamentals/testnet.md",
+            "/dev/fundamentals/faq/known-issues.md",
           ],
         },
         {
@@ -91,8 +92,6 @@ module.exports = {
             "/dev/developer-guides/bridging/bridging-asset.md",
             "/dev/developer-guides/bridging/l1-l2-interop.md",
             "/dev/developer-guides/bridging/l2-l1.md",
-
-            
           ],
         },
         {
@@ -117,9 +116,7 @@ module.exports = {
           children: [
             "/dev/troubleshooting/important-links.md",
             "/dev/troubleshooting/status.md",
-            "/dev/troubleshooting/faq/known-issues.md",
             "/dev/troubleshooting/edit-doc.md",
-
           ],
         },
         {
