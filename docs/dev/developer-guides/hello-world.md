@@ -164,7 +164,7 @@ In the output, you should see the address the contract was deployed to.
 
 Congratulations! You have deployed a smart contract to zkSync! Now you can visit the [zkSync block explorer](https://explorer.zksync.io/) and search you contract address to confirm it was successfully deployed.
 
-You can find all the details about how to verify your smart contract using zkSync block explorer [here](../../api/tools/block-explorer/contract-verification.md).
+[This guide](../../api/tools/block-explorer/contract-verification.md) explains how to verify your smart contract using the zkSync block explorer.
 
 ## Front-end integration
 
