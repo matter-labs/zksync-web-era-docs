@@ -43,6 +43,19 @@ module.exports = {
         text: "Contact",
         link: "/contact.html",
       },
+      {
+        text: 'v2.0',
+        items: [
+          {
+            text: 'v2.0',
+            link: '/dev/'
+          },
+          {
+            text: 'v1.x',
+            link: 'https://docs.zksync.io'
+          }
+        ]
+      }
     ],
     //displayAllHeaders: true,
     sidebar: {
@@ -61,7 +74,7 @@ module.exports = {
           children: [
             "/dev/fundamentals/rollups.md",
             "/dev/fundamentals/zkSync.md",
-            // "/dev/fundamentals/testnet.md",
+            "/dev/fundamentals/testnet.md",
           ],
         },
         {
@@ -103,8 +116,8 @@ module.exports = {
             "/dev/troubleshooting/important-links.md",
             "/dev/troubleshooting/status.md",
             "/dev/troubleshooting/faq/known-issues.md",
-            "/dev/docs-contribution/docs.md",
-            "/dev/docs-contribution/edit-doc.md",
+            "/dev/troubleshooting/edit-doc.md",
+
           ],
         },
         {
@@ -158,6 +171,13 @@ module.exports = {
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1,
           children: ["/api/hardhat/getting-started", "/api/hardhat/reference", "/api/hardhat/testing", "/api/hardhat/compiling-libraries"],
+        },
+        {
+          title: "Block Explorer", // required
+          path: "/api/tools/block-explorer", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/tools/block-explorer/intro", "/api/tools/block-explorer/block-view", "/api/tools/block-explorer/contract-verification"],
         },
       ],
     },

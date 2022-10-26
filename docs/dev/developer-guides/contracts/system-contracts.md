@@ -3,7 +3,7 @@
 To keep the zero-knowledge circuits as simple as possible and enable simple extensions, a large chunk of the logic of zkSync was moved to the so-called "system contracts" – a 
 set of contracts that have special privileges and serve special purposes, e.g. deployment of contracts, making sure that the user pays only once for publishing contracts' calldata, etc.
 
-Until the code for the system contracts has gone through thorough testing, the code for all the system contracts will not be public. This section will only provide you with the 
+The code for the system contracts will not be public until has gone through thorough testing. This section will only provide you with the 
 knowledge needed to build on zkSync.
 
 ## Interfaces
