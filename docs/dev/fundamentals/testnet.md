@@ -31,7 +31,7 @@ The only other place where using zkSync SDK is required is during contract deplo
 
 ## Quickstart on zkSync
 
-Check out our step-by-step [quickstart tutorial](../developer-guides/hello-world.md), where you will learn:
+Check out our step-by-step [quickstart guide](../developer-guides/hello-world.md), where you will learn:
 
 - How to install zkSync hardhat plugin and deploy smart contracts with it.
 - How to build the front-end for your dApp using the `zksync-web3` library.
