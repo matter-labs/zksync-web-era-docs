@@ -1,10 +1,10 @@
 # Building custom paymaster
 
-Let's see how we can use the paymaster feature to build a custom paymaster that allows users to pay fees in our token.
+Let's see how we can use the paymaster feature to build a custom paymaster that allows users to pay fees in our token. In this tutorial we will:
 
-1. First we will create an ERC20 token contract and send some tokens to a brand new wallet.
-2. Then, we will create a paymaster that will assume that a single unit of the ERC20 token is enough to cover any transaction fee.
-3. Finally we will send a `mint` transaction from the newly created wallet via the paymaster. Even though the transaction would normally require some ETH to pay for the gas fees, our paymaster will execute the transaction in exchange for 1 unit of the ERC20 token.
+- Create a paymaster that will assume that a single unit of an ERC20 token is enough to cover any transaction fee.
+- Create the ERC20 token contract and send some tokens to a brand new wallet.
+- Finally we will send a `mint` transaction from the newly created wallet via the paymaster. Even though the transaction would normally require some ETH to pay for the gas fee, our paymaster will execute the transaction in exchange for 1 unit of the ERC20 token.
 
 ## Prerequisite
 
