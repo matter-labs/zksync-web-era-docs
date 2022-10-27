@@ -1,4 +1,4 @@
-# Java SDK
+# Getting started
 
 In this guide we will demonstrate how to:
 
@@ -38,11 +38,10 @@ dependencies {
 }
 ```
 
-## Getting started
-
-To start using this SDK, you just need to pass in a provider configuration.
-
 ## Instantiating the SDK
+To start using this SDK, you just need to pass in a provider configuration.
+Once you have all the necessary dependencies, you can follow the following setup steps to get started with the SDK.
+To interact with zkSync network users need to connect the endpoint of the operator node.
 
 ```java
 

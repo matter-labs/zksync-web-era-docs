@@ -1,4 +1,4 @@
-# Python SDK
+# Getting started
 
 In this guide we will demonstrate how to:
 
@@ -23,10 +23,9 @@ To install the SDK with the `pip install` command, run the following:
 pip install zksync2
 
 ```
+## Instantiating the SDK
 
-## Getting started
 To start using this SDK, you just need to pass in a provider configuration.
-### Instantiating the SDK
 Once you have all the necessary dependencies, you can follow the following setup steps to get started with the SDK.
 To interact with zkSync network users need to connect the endpoint of the operator node.
 
@@ -72,9 +71,12 @@ signer = PrivateKeyEthSigner(account, chain_id)
 ```
 
 ## Interacting with the SDK
+
 Once you instantiate the SDK, you can use the SDK's functions like `deposit`, `get_account_balance`, `transfer_to_self`, `transfer_erc20_token`, and `withdraw` to get the respective SDK instances. 
 
 ## Depositing funds
+
+This example shows how to deposit funds into an address.
 
 ```py
 
@@ -114,6 +116,8 @@ if __name__ == "__main__":
 
 ## Checking balance
 
+This example shows how to check your balance on the zkSync network.
+
 ```py
 
 from eth_account import Account
@@ -136,6 +140,8 @@ if __name__ == "__main__":
 ```
 
 ## Performing a transfer
+
+This example shows how to execute a transfer from one account to another, on the zkSync network.
 
 ```py
 
@@ -194,6 +200,8 @@ if __name__ == "__main__":
 ```
 
 ## Transfer funds (ERC20 tokens)
+
+This example shows how to transfer ERC20 tokens into your account on the zkSync network.
 
 ```py
 
@@ -257,6 +265,8 @@ if __name__ == "__main__":
 ```
 
 ## Withdrawing funds
+
+This examples shows how to withdraw funds into your account.
 
 ```py
 

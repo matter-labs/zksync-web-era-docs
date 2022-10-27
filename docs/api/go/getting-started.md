@@ -1,4 +1,4 @@
-# Go SDK
+# Getting started
 
 In this guide we will demonstrate how to:
 
@@ -23,12 +23,9 @@ To install the SDK with the `go get` command, run the following:
 get github.com/zksync-sdk/zksync2-go
 
 ```
-
-## Getting started
+## Instantiating the SDK
 
 To start using this SDK, you just need to pass in a provider configuration.
-
-### Instantiating the SDK
 
 Once you have all the necessary dependencies, you can follow the following setup steps to get started with SDK read-only functions:
 Using these three instances `ZkSync Provider`, `EthereumProvider` and `Wallet`, you can perform all basic actions with ZkSync network.
@@ -61,13 +58,13 @@ ethRpc, err := rpc.Dial("https://goerli.infura.io/v3/<your_infura_node_id>")
 ep, err := w.CreateEthereumProvider(ethRpc)
 
 ```
-### Working With Contracts
+## Working With Contracts
 
 Once you instantiate the SDK, you can use it to access your zkSync contracts. You can use SDK's contract getter functions like `L2Create2Address`, and `getContractDeployerABI`, to get the respective SDK contract instances. To deposit funds on zkSync for example, you can do the following.
 
 Here are a few examples:
 
-### Depositing funds
+## Depositing funds
 
 ```go
 
@@ -120,7 +117,7 @@ func main() {
 }
 
 ```
-### Withdraw
+## Withdraw
 
 Assets will be withdrawn to the target wallet after the zero-knowledge proof of zkSync block with this operation is generated and verified by the contract.
 
@@ -150,7 +147,7 @@ func main() {
 }
 
 ```
-### Deploy smart contract (basic case)
+## Deploy smart contract (basic case)
 
 ``` go
 
@@ -184,7 +181,7 @@ func main() {
 
 ```
 
-### Execute smart contract (basic case)
+## Execute smart contract (basic case)
 
 In order to execute smart contract, the SDK needs to know the contract address that is performing the execution. 
 For that, you need to use `ABI.Pack()` [method]("https://github.com/ethereum/go-ethereum/accounts/abi") to load the ABI of your contract, or you need to encode calldata to execute function and its parameters.
