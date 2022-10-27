@@ -265,6 +265,7 @@ import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 export default async function (hre: HardhatRuntimeEnvironment) {
   // The wallet that will deploy the token and the paymaster
   // It is assumed that this wallet already has sufficient funds on zkSync
+  // ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
   const wallet = new Wallet("<PRIVATE-KEY>");
   // The wallet that will receive ERC20 tokens
   const emptyWallet = Wallet.createRandom();
@@ -336,9 +337,10 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 const PAYMASTER_ADDRESS = "<PAYMASTER_ADDRESS>";
 
 // Put the address of the ERC20 token here:
-const TOKEN_ADDRESS = "<TOKEN_ADDRESS";
+const TOKEN_ADDRESS = "<TOKEN_ADDRESS>";
 
 // Wallet private key
+// ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
 const EMPTY_WALLET_PRIVATE_KEY = "<EMPTY_WALLET_PRIVATE_KEY>";
 
 function getToken(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
