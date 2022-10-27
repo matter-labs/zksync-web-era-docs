@@ -8,7 +8,7 @@ Let's see how we can use the paymaster feature to build a custom paymaster that 
 
 ## Prerequisite
 
-To better understand this page, we recommend you first read up on [account abstraction design](../developer-guides/transactions/aa.md) before diving into this tutorial.
+To better understand this page, we recommend you first read up on [account abstraction design](../developer-guides/aa.md) before diving into this tutorial.
 
 It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md). It is also recommended to read the [introduction](../developer-guides/contracts/system-contracts.md) to the system contracts.
 
@@ -89,7 +89,7 @@ Note, that only the [bootloader](../developer-guides/contracts/system-contracts.
 
 In this tutorial, we want to charge the user one unit of the `allowedToken` in exchange for her fees being paid by the contract.
 
-The input that the paymaster should receive is encoded in the `paymasterInput`. As described [in the paymaster documentation](../developer-guides/transactions/aa.md#built-in-paymaster-flows), there are some standardized ways to encode user interactions with paymasterInput. To charge the user, we will require that she has provided enough allowance to the paymaster contract. This is what the `approvalBased` flow can help us with.
+The input that the paymaster should receive is encoded in the `paymasterInput`. As described [in the paymaster documentation](../developer-guides/aa.md#built-in-paymaster-flows), there are some standardized ways to encode user interactions with paymasterInput. To charge the user, we will require that she has provided enough allowance to the paymaster contract. This is what the `approvalBased` flow can help us with.
 
 Firstly, we'll need to check that the `paymasterInput` was encoded as in the `approvalBased` flow:
 
@@ -137,7 +137,7 @@ require(success, "Failed to transfer funds to the bootloader");
 
 ::: tip You should validate all the requirements first
 
-The [rules](../developer-guides/transactions/aa.md#paymaster-validation-rules) for the paymaster throttling say that the paymaster won't be throttled if the first storage read the value of which differed from the execution on the API was a storage slot that belonged to the user.
+The [rules](../developer-guides/aa.md#paymaster-validation-rules) for the paymaster throttling say that the paymaster won't be throttled if the first storage read the value of which differed from the execution on the API was a storage slot that belonged to the user.
 
 That is why it is important to verify that the user provided all the allowed prerequisites to the transaction _before_ performing any logic. This is the reason we _first_ check that the user provided enough allowance, and only then do we do `transferFrom`.
 
