@@ -1,4 +1,4 @@
-# Getting started 
+# Python SDK
 
 In this guide we will demonstrate how to:
 
@@ -11,18 +11,22 @@ In this guide we will demonstrate how to:
 7. Deploy contract with create2 method
 
 ## Prerequisite
-This guide assumes that you are familiar with the basics of python and you have python configured on your local machine.
+
+This guide assumes that you are familiar with [Python programming](https://docs.python.org/3/) language.
 
 ##  Installation
-Python zkSync SDK currently is not published on PyPI, thus can be installed (preferably in a virtualenv) using pip as follows:
+
+To install the SDK with the `pip install` command, run the following:
 
 ```py
 
-pip install git+https://github.com/zkSync-sdk/zkSync2-python.git
+pip install zksync2
 
 ```
 
-## Instantiating the SDK
+## Getting started
+To start using this SDK, you just need to pass in a provider configuration.
+### Instantiating the SDK
 Once you have all the necessary dependencies, you can follow the following setup steps to get started with the SDK.
 To interact with zkSync network users need to connect the endpoint of the operator node.
 

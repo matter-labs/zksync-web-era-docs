@@ -1,4 +1,4 @@
-# Get started
+# Go SDK
 
 In this guide we will demonstrate how to:
 
@@ -9,12 +9,14 @@ In this guide we will demonstrate how to:
 5. Withdraw funds (Native coins)
 
 ## Prerequisite
-This guide assumes that you are familiar with the basics of go and you have it configured on your local machine.
+
+This guide assumes that you are familiar with the [Go programming](https://go.dev/doc/) language
 Also, the required version is >= 1.17 and Go modules were used.
 
 
 ## Installation
-Add this package to your project:
+
+To install the SDK with the `go get` command, run the following:
 
 ```go 
 
@@ -22,88 +24,195 @@ get github.com/zksync-sdk/zksync2-go
 
 ```
 
-## How to init main components
-Using these three instances `ZkSync Provider`, `EthereumProvider` and `Wallet`, you can perform all basic actions with ZkSync network, just explore their public methods and package helpers.
+## Getting started
 
-A few examples are below:
+To start using this SDK, you just need to pass in a provider configuration.
 
-## Depositing funds
+### Instantiating the SDK
+
+Once you have all the necessary dependencies, you can follow the following setup steps to get started with SDK read-only functions:
+Using these three instances `ZkSync Provider`, `EthereumProvider` and `Wallet`, you can perform all basic actions with ZkSync network.
 
 ```go
 
-tx, err := ep.Deposit(
-    zksync2.CreateETH(),
-    big.NewInt(1000000000000000), 
-    common.HexToAddress("<target_L2_address>"), 
-    nil,
-)
-if err != nil {
-    panic(err)
-}
-fmt.Println("Tx hash", tx.Hash())
-Transfer
-hash, err := w.Transfer(
-    common.HexToAddress("<target_L2_address>"), 
-    big.NewInt(1000000000000),
-    nil, 
-    nil,
-)
-if err != nil {
-    panic(err)
-}
-fmt.Println("Tx hash", hash)
-Withdraw
-hash, err := w.Withdraw(
-    common.HexToAddress("<target_L1_address>"), 
-    big.NewInt(1000000000000), 
-    nil, 
-    nil,
-)
-if err != nil {
-    panic(err)
-}
-fmt.Println("Tx hash", hash)
-Deploy smart contract (basic case)
-hash, err := w.Deploy(bytecode, nil, nil, nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println("Tx hash", hash)
+package main
 
-// use helper to get (compute) address of deployed SC
-addr, err := zksync2.ComputeL2Create2Address(
-	common.HexToAddress("<deployer_L2_address>"), 
-	bytecode, 
-	nil, 
-	nil,
+import (
+    "github.com/ethereum/go-ethereum/rpc"
+    "github.com/zksync-sdk/zksync2-go"
 )
-if err != nil {
-    panic(err)
-}
-fmt.Println("Deployed address", addr.String())
+
+// first, init Ethereum Signer, from your mnemonic
+es, err := zksync2.NewEthSignerFromMnemonic("<mnemonic words>", zksync2.ZkSyncChainIdMainnet)
+
+// or from raw PrivateKey bytes
+es, err = zksync2.NewEthSignerFromRawPrivateKey(pkBytes, zksync2.ZkSyncChainIdMainnet)
+
+// also, init ZkSync Provider, specify ZkSync2 RPC URL (e.g. testnet)
+zp, err := zksync2.NewDefaultProvider("https://zksync2-testnet.zksync.dev")
+
+// then init Wallet, passing just created Ethereum Signer and ZkSync Provider   
+w, err := zksync2.NewWallet(es, zp)
+
+// init default RPC client to Ethereum node (Goerli network in case of ZkSync2 testnet)
+ethRpc, err := rpc.Dial("https://goerli.infura.io/v3/<your_infura_node_id>")
+
+// and use it to create Ethereum Provider by Wallet 
+ep, err := w.CreateEthereumProvider(ethRpc)
 
 ```
-## Execute smart contract (basic case)
+### Working With Contracts
+
+Once you instantiate the SDK, you can use it to access your zkSync contracts. You can use SDK's contract getter functions like `L2Create2Address`, and `getContractDeployerABI`, to get the respective SDK contract instances. To deposit funds on zkSync for example, you can do the following.
+
+Here are a few examples:
+
+### Depositing funds
 
 ```go
 
-// you need to encode calldata for executing function and its parameters
-// or use ABI.Pack() method for loaded ABI for your contract ("github.com/ethereum/go-ethereum/accounts/abi")
-calldata := crypto.Keccak256([]byte("get()"))[:4]
-hash, err := w.Execute(
-    common.HexToAddress("<contract_address>"),
-    calldata,
-    nil,
+package main
+
+import (
+    "github.com/ethereum/go-ethereum/rpc"
+    "github.com/zksync-sdk/zksync2-go"
 )
-if err != nil {
-    panic(err)
+
+func main() {
+
+    tx, err := ep.Deposit(
+        zksync2.CreateETH(),
+        big.NewInt(1000000000000000), 
+        common.HexToAddress("<target_L2_address>"), 
+        nil,
+    )
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("Tx hash", tx.Hash())
+
 }
-fmt.Println("Tx hash", hash)
-Get balance of ZkSync account
-bal, err := w.GetBalance()
-if err != nil {
-    panic(err)
+
+```
+## Transfer
+
+```go
+package main
+
+import (
+    "github.com/ethereum/go-ethereum/rpc"
+    "github.com/zksync-sdk/zksync2-go"
+)
+
+func main() {
+
+    hash, err := w.Transfer(
+        common.HexToAddress("<target_L2_address>"), 
+        big.NewInt(1000000000000),
+        nil, 
+        nil,
+    )
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("Tx hash", hash)
+
 }
-fmt.Println("Balance", bal)
+
+```
+### Withdraw
+
+Assets will be withdrawn to the target wallet after the zero-knowledge proof of zkSync block with this operation is generated and verified by the contract.
+
+
+```go 
+
+package main
+
+import (
+    "github.com/ethereum/go-ethereum/rpc"
+    "github.com/zksync-sdk/zksync2-go"
+)
+
+func main() {
+
+    hash, err := w.Withdraw(
+        common.HexToAddress("<target_L1_address>"), 
+        big.NewInt(1000000000000), 
+        nil, 
+        nil,
+    )
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("Tx hash", hash)
+
+}
+
+```
+### Deploy smart contract (basic case)
+
+``` go
+
+    package main
+
+import (
+    "github.com/ethereum/go-ethereum/rpc"
+    "github.com/zksync-sdk/zksync2-go"
+)
+
+func main() {
+
+    hash, err := w.Deploy(bytecode, nil, nil, nil, nil)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("Tx hash", hash)
+
+    // use helper to get (compute) address of deployed SC
+    addr, err := zksync2.ComputeL2Create2Address(
+        common.HexToAddress("<deployer_L2_address>"), 
+        bytecode, 
+        nil, 
+        nil,
+    )
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("Deployed address", addr.String())
+}
+
+```
+
+### Execute smart contract (basic case)
+
+In order to execute smart contract, the SDK needs to know the contract address that is performing the execution. 
+For that, you need to use `ABI.Pack()` [method]("https://github.com/ethereum/go-ethereum/accounts/abi") to load the ABI of your contract, or you need to encode calldata to execute function and its parameters.
+
+To execute smart contract, you can use the following setup, to encode the calldata:
+
+```go
+
+package main
+
+import (
+    "github.com/ethereum/go-ethereum/rpc"
+    "github.com/zksync-sdk/zksync2-go"
+)
+
+func main() {
+
+    calldata := crypto.Keccak256([]byte("get()"))[:4]
+    hash, err := w.Execute(
+        common.HexToAddress("<contract_address>"),
+        calldata,
+        nil,
+    )
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("Tx hash", hash)
+
+}
 
 ```

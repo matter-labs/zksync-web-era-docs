@@ -6,7 +6,7 @@ Let's see how we can use the paymaster feature to build a custom paymaster that 
 
 To better understand this page, we recommend you first read up on [account abstraction design](../developer-guides/transactions/aa.md) before diving into this tutorial.
 
-It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](../developer-guides/hello-world.md) tutorial. It is also recommended to read the [introduction](../developer-guides/contracts/system-contracts.md) to the system contracts.
+It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md). It is also recommended to read the [introduction](../developer-guides/contracts/system-contracts.md) to the system contracts.
 
 ## Installing dependencies
 
@@ -25,7 +25,7 @@ Since we are working with zkSync contracts, we also need to install the package 
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [Hello World](../developer-guides/hello-world.md) tutorial.
+Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [quickstart tutorial](../developer-guides/hello-world.md).
 
 ## Design
 
@@ -391,9 +391,9 @@ Balance of the user after mint: 102
 
 ## Common errors
 
-If the `use-paymaster.ts` script fails with error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer funds to the bootloader`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use [zkSync Portal](https://portal.zksync.io/).
+If the `use-paymaster.ts` script fails with the error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer funds to the bootloader`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use [zkSync Portal](https://portal.zksync.io/).
 
-If the `use-paymaster.ts` script fails when minting new ERC20 tokens with error `Error: transaction failed`, and the transactions appear with status "Failed" in the [zkSync explorer](https://scan-v2.zksync.dev/), please reach out to us on [our Discord](https://discord.com/invite/px2aR7w) or [contact page](https://zksync.io/contact.html). As a workaround, try including the `gasLimit` parameter in the transaction.
+If the `use-paymaster.ts` script fails when minting new ERC20 tokens with the error `Error: transaction failed`, and the transactions appear with status "Failed" in the [zkSync explorer](https://explorer.zksync.io/), please reach out to us on [our Discord](https://discord.com/invite/px2aR7w) or [contact page](https://zksync.io/contact.html). As a workaround, try including the `gasLimit` parameter in the transaction.
 
 ## Complete project
 
@@ -401,6 +401,6 @@ You can download the complete project [here](https://github.com/matter-labs/cust
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/Bridging/l1-l2.md).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).

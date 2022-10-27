@@ -1,17 +1,18 @@
-# Getting started
+# Java SDK
 
-1. Connect to the zksync network.
-2. Deposit assets from Ethereum into zksync.
+In this guide we will demonstrate how to:
+
+1. Connect to the zkSync network.
+2. Deposit assets from Ethereum into zkSync.
 3. Check Balance 
-4. Transfer funds (ERC20 tokens) into the zksync network
+4. Transfer funds (ERC20 tokens) into the zkSync network
 5. Withdraw funds (Native coins)
-6. Deploy contract with create method
 
 ## Prerequisite
-This guide assumes that you are familiar with the basics of java and you have java configured on your local machine.
+This guide assumes that you are familiar with the basics of [Java programming](https://docs.oracle.com/en/java/) language.
 
 ##  Installation
-For connecting zksync java SDK, just add the following dependency to your build file.
+For connecting zkSync Java SDK, just add the following dependency to your build file.
 
 Maven `pom.xml`
 
@@ -36,6 +37,10 @@ dependencies {
     implementation "io.zksync:zksync2:0.0.1"
 }
 ```
+
+## Getting started
+
+To start using this SDK, you just need to pass in a provider configuration.
 
 ## Instantiating the SDK
 
