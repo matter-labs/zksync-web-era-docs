@@ -1,4 +1,4 @@
-# FAQ
+# Known issues
 
 zkSync 2.0 is currently in the alpha stage, hence some things you are used to may not work. Please keep in mind that the system is still under ongoing development.
 

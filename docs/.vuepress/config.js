@@ -75,7 +75,6 @@ module.exports = {
             "/dev/fundamentals/rollups.md",
             "/dev/fundamentals/zkSync.md",
             "/dev/fundamentals/testnet.md",
-            "/dev/fundamentals/faq/known-issues.md",
           ],
         },
         {
@@ -86,7 +85,7 @@ module.exports = {
             "/dev/developer-guides/transactions/transactions.md",
             "/dev/developer-guides/transactions/blocks.md",
             "/dev/developer-guides/contracts/system-contracts.md",
-            "/dev/developer-guides/transactions/aa.md",
+            "/dev/developer-guides/aa.md",
             "/dev/developer-guides/security.md",
             "/dev/developer-guides/transactions/fee-model.md",
             "/dev/developer-guides/bridging/bridging-asset.md",
@@ -100,8 +99,7 @@ module.exports = {
           collapsable: false,
           children: [
             "/dev/developer-guides/hello-world.md",
-            "/dev/developer-guides/building-on-zksync/tools.md",
-            "/dev/developer-guides/bridging/l1-l2.md",
+            "/dev/developer-guides/zksync-contract.md",
             "/dev/developer-guides/contracts/contracts.md",
             "/dev/developer-guides/contracts/contract-verification.md",
             "/dev/developer-guides/building-on-zksync/events.md",
@@ -118,7 +116,7 @@ module.exports = {
             "/dev/troubleshooting/status.md",
             "/dev/troubleshooting/docs-contribution/docs.md",
             "/dev/troubleshooting/docs-contribution/edit-doc.md",
-
+            "/dev/troubleshooting/known-issues.md",
           ],
         },
         {
