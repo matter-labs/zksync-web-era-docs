@@ -380,8 +380,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const paymasterParams = utils.getPaymasterParams(PAYMASTER_ADDRESS, {
     type: "ApprovalBased",
     token: TOKEN_ADDRESS,
-    // set minimalAllowance as calculated fee
-    minimalAllowance: fee,
+    // set minimalAllowance as we defined in the paymaster contract
+    minimalAllowance: ethers.BigNumber.from(1),
     innerInput: new Uint8Array(),
   });
 
