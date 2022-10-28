@@ -178,7 +178,7 @@ Head to [https://portal.zksync.io/](https://portal.zksync.io/) and connect you
 You may also add the network manually to your metamask.
 
 - Network Name: `zkSync alpha testnet`
-- New RPC URL: `[https://zksync2-testnet.zksync.dev](https://zksync2-testnet.zksync.dev/)`
+- RPC URL: `https://zksync2-testnet.zksync.dev`
 - Chain ID: `280`
 
 **Step 2 (Skip if you don’t have Goerli ETH)**
@@ -209,6 +209,6 @@ At last we go to “Withdraw” to withdraw some $DAI from zkSync back to Goerli
 
 ![image](../../assets/images/faq-5.png)
 
-### What is a testnet ReGenesis?
+## What is a testnet ReGenesis?
 
 Sometimes, the team working on zkSync will initiate a regenesis on testnet - a restart of the blockchain which will introduce upgrades and return the state to the initial point. This won't happen on mainnet, and it is unlikely to happen on testnet after mainnet launch.
