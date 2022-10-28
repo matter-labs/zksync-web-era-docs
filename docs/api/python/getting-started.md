@@ -42,7 +42,7 @@ zkSync_web3 = zkSyncBuilder.build(ZKSYNC_NETWORK_URL)
 
 ```
 
-The SDK supports the goerli, and zkSync testnet networks.
+The SDK supports the mainnet, goerli, zkSync testnet networks or even a private network.
 
 ## Ethereum signer
 
@@ -69,10 +69,9 @@ account: LocalAccount = Account.from_key(PRIVATE_KEY)
 signer = PrivateKeyEthSigner(account, chain_id)
 
 ```
+## Working with contracts
 
-## Interacting with the SDK
-
-Once you instantiate the SDK, you can use the SDK's functions like `deposit`, `get_account_balance`, `transfer_to_self`, `transfer_erc20_token`, and `withdraw` to get the respective SDK instances. 
+Once you instantiate the SDK, you can use it to access zkSync system contracts. 
 
 ## Depositing funds
 

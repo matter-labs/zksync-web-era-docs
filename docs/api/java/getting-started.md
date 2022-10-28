@@ -103,9 +103,8 @@ public class Main {
 
 ```
 
-## Interacting with the SDK
-Once you instantiate the SDK, you can use the SDK's functions like `deposit`, `get_account_balance`, `transfer_to_self`, `transfer_erc20_token`, and `withdraw` to get the respective SDK instances. 
-
+## Working with contracts
+Once you instantiate the SDK, you can use it to access zkSync system contracts. 
 ## Transactions
 
 zksync2 supports Ethereum's `Legacy` and `EIP-1155` transactions except for deploying contracts.

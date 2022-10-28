@@ -10,10 +10,10 @@ In this guide we will demonstrate how to:
 
 ## Prerequisite
 
-This guide assumes that you are familiar with the [Go programming](https://go.dev/doc/) language
-Also, the required version is >= 1.17 and Go modules were used.
+This guide assumes that you are familiar with the [Go programming](https://go.dev/doc/) language.
+Also, the required version is >= 1.17 and Go modules are required.
 
-
+ 
 ## Installation
 
 To install the SDK with the `go get` command, run the following:
@@ -27,7 +27,7 @@ get github.com/zksync-sdk/zksync2-go
 
 To start using this SDK, you just need to pass in a provider configuration.
 
-Once you have all the necessary dependencies, you can follow the following setup steps to get started with SDK read-only functions:
+Once you have all the necessary dependencies, you can follow the setup steps to get started using the SDK.
 Using these three instances `ZkSync Provider`, `EthereumProvider` and `Wallet`, you can perform all basic actions with ZkSync network.
 
 ```go
@@ -58,12 +58,10 @@ ethRpc, err := rpc.Dial("https://goerli.infura.io/v3/<your_infura_node_id>")
 ep, err := w.CreateEthereumProvider(ethRpc)
 
 ```
-## Working With Contracts
+## Working with contracts
 
-Once you instantiate the SDK, you can use it to access your zkSync contracts. You can use SDK's contract getter functions like `L2Create2Address`, and `getContractDeployerABI`, to get the respective SDK contract instances. To deposit funds on zkSync for example, you can do the following.
-
-Here are a few examples:
-
+Once you instantiate the SDK, you can use it to access zkSync system contracts. 
+To deposit funds on zkSync for example, you can do the following.
 ## Depositing funds
 
 ```go
@@ -118,9 +116,6 @@ func main() {
 
 ```
 ## Withdraw
-
-Assets will be withdrawn to the target wallet after the zero-knowledge proof of zkSync block with this operation is generated and verified by the contract.
-
 
 ```go 
 
@@ -183,8 +178,7 @@ func main() {
 
 ## Execute smart contract (basic case)
 
-In order to execute smart contract, the SDK needs to know the contract address that is performing the execution. 
-For that, you need to use `ABI.Pack()` [method]("https://github.com/ethereum/go-ethereum/accounts/abi") to load the ABI of your contract, or you need to encode calldata to execute function and its parameters.
+In order to interact with smart contract, the SDK needs to know the contract address you want to interact with, as well as its ABI. For that, you need to use ABI.Pack() [method]("https://github.com/ethereum/go-ethereum/accounts/abi") to load the ABI of your contract, or encode the calldata to execute function and its parameters.
 
 To execute smart contract, you can use the following setup, to encode the calldata:
 
