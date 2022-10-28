@@ -99,13 +99,19 @@ module.exports = {
           collapsable: false,
           children: [
             "/dev/developer-guides/hello-world.md",
-            "/dev/developer-guides/zksync-contract.md",
+            "/dev/developer-guides/bridging/l1-l2.md",
             "/dev/developer-guides/contracts/contracts.md",
             "/dev/developer-guides/contracts/contract-verification.md",
             "/dev/developer-guides/building-on-zksync/events.md",
             "/dev/developer-guides/building-on-zksync/rpc.md",
             "/dev/developer-guides/building-on-zksync/videos.md",
           ],
+        },
+        {
+          title: "Tutorials",
+          path: "/dev/tutorials",
+          collapsable: false,
+          children: ["/dev/tutorials/cross-chain-tutorial.md", "/dev/tutorials/custom-aa-tutorial.md", "/dev/tutorials/custom-paymaster-tutorial.md"],
         },
         {
           title: "Troubleshooting",
@@ -119,13 +125,6 @@ module.exports = {
             "/dev/troubleshooting/known-issues.md",
           ],
         },
-        {
-          title: "Tutorials",
-          path: "/dev/tutorials",
-          collapsable: false,
-          children: ["/dev/tutorials/cross-chain-tutorial.md", "/dev/tutorials/custom-aa-tutorial.md", "/dev/tutorials/custom-paymaster-tutorial.md"],
-        },
-
       ],
       "/api": [
         {

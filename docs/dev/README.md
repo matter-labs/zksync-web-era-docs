@@ -22,10 +22,10 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Transactions](./developer-guides/transactions/transactions.md) - A guide on how zkSync handles transactions.
   - [Blocks](./developer-guides/transactions/blocks.md) - Learn how blocks work on zkSync.
   - [Fee mechanism](./developer-guides/transactions/fee-model.md) - A quick overview of the zkSync fee structure.
-- [Interacting with zkSync contracts ](./developer-guides/zksync-contract.md) - Learn how to interact zkSync contract using Solidity.
 - [Account abstraction](./developer-guides/aa.md) - Learn about account abstraction.
 - [Bridging of funds](./developer-guides/bridging/bridging-asset.md) - A brief intro on token bridging.
   - [L1 / L2 Interoperability](./developer-guides/bridging/l1-l2-interop.md) - A quick brief on data communication between l1 and l2.
+    - [L1 / L2 communication](./developer-guides/bridging/l1-l2.md) - Learn how to send data from Ethereum to zkSync.
     - [L2 / L1 communication](./developer-guides/bridging/l2-l1.md) - Learn how to send data from zkSync to Ethereum.
 - [Important links](./troubleshooting/important-links.md) - Get a quick reference to important links.
 - [Status](./troubleshooting/status.md) - Get updates on things we are currently working on.
