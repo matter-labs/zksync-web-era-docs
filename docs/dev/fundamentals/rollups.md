@@ -1,4 +1,4 @@
-# Rollups
+# Intro to rollups
 
 ## Introduction
 

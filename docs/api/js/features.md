@@ -67,7 +67,7 @@ zkSync SDK provides a utility method that can be used to get the correctly forme
 
 ## See in action
 
-If you want to call the method `setGreeting` of an ethers `Contract` object called `greeter`, this would look the following way, while paying fees with the [testnet paymaster](../../dev/developer-guides/aa.md#built-in-paymaster-flows):
+If you want to call the method `setGreeting` of an ethers `Contract` object called `greeter`, this would look the following way, while paying fees with the [testnet paymaster](../../dev/developer-guides/aa.md#testnet-paymaster):
 
 ```javascript
 // The `setGreeting` method has a single parameter -- new greeting

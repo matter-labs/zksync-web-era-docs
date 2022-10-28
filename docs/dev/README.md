@@ -27,9 +27,9 @@ If this is your first time using zkSync, we recommend that you kick off at the b
   - [L1 / L2 Interoperability](./developer-guides/bridging/l1-l2-interop.md) - A quick brief on data communication between l1 and l2.
     - [L1 / L2 communication](./developer-guides/bridging/l1-l2.md) - Learn how to send data from Ethereum to zkSync.
     - [L2 / L1 communication](./developer-guides/bridging/l2-l1.md) - Learn how to send data from zkSync to Ethereum.
-- [FAQs](./troubleshooting/faq/known-issues.md) - Get answers to your frequently asked questions
 - [Important links](./troubleshooting/important-links.md) - Get a quick reference to important links.
 - [Status](./troubleshooting/status.md) - Get updates on things we are currently working on.
+- [Known Issues](./troubleshooting/known-issues.md) - Get answers to common issues you may find.
 
 ### Developer Tools
 
