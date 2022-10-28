@@ -1,4 +1,4 @@
-# An Overview of zkSync
+# zkSync basics
 
 ## Prerequisites
 
