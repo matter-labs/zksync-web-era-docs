@@ -33,7 +33,7 @@ To gain a deterministic address, you should use `create2`. It is available for E
 
 ## Note on `factory deps`
 
-Under the hood, zkSync stores not bytecodes of contracts, but [specially formatted](#format-of-bytecode-hash) hashes of their bytecodes. You can see that even the [ContractDeployer](./system-contracts.md#contractdeployer) system contract accepts the bytecode hash of the deployed contract and not its bytecode. However, in order for contract deployment to succeed, the operator needs to know the bytecode. Exactly for this reason the `factory_deps` (i.e. factory dependencies) field for transactions is used: it contains the bytecodes that should be known to the operator in order for this transaction to succeed. Once the transaction succeeds, these bytecodes will be published on L1 and will considered as "known" to the operator forever.
+Under the hood, zkSync stores not bytecodes of contracts, but [specially formatted](#format-of-bytecode-hash) hashes of their bytecodes. You can see that even the [ContractDeployer](./system-contracts.md#contractdeployer) system contract accepts the bytecode hash of the deployed contract and not its bytecode. However, in order for contract deployment to succeed, the operator needs to know the bytecode. Exactly for this reason the `factory_deps` (i.e. factory dependencies) field for transactions is used: it contains the bytecodes that should be known to the operator in order for this transaction to succeed. Once the transaction succeeds, these bytecodes will be published on L1 and will be considered as "known" to the operator forever.
 
 Some examples of usage are:
 - The obvious one, is when you deploy a contract, you need to provide its code in the `factory_deps` field.
