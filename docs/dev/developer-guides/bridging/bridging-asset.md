@@ -23,20 +23,20 @@ You can get default bridges' addresses using the `zks_getBridgeContracts` endpoi
 ### Deposits (to L2)
 Users must call the `deposit` method on the L1 bridge contract, which will trigger the following actions:
 
-- User's L1 tokens will be sent to the L1 bridge and become locked there.
+- The user's L1 tokens will be sent to the L1 bridge and become locked there.
 - The L1 bridge initiates a transaction to the L2 bridge using L1 -> L2 communication.
 - Within the L2 transaction, tokens will be minted and sent to the specified address on L2.
-    - If the token does not exists on zkSync yet, a new contract is deployed for it. Given the L2 token address is deterministic (based on the orignial L1 address, name and synbol), it doesn't matter who is the first person briding it, the new L2 address will be the same.
+    - If the token does not exist on zkSync yet, a new contract is deployed for it. Given the L2 token address is deterministic (based on the orignial L1 address, name and symbol), it doesn't matter who is the first person briding it, the new L2 address will be the same.
 - For every executed L1 -> L2 transaction, there will be an L2 -> L1 log message confirming its execution.
 
 ::: warning
 
 If this transaction fails for any reason (for example, the provided fee is too low) the log message will state its failure.
-In this case the inclusion of the log can be proven on the L1 bridge to return the deposited funds to the original sender by calling the method `claimFailedDeposit`.
+In this case, the inclusion of the log can be proven on the L1 bridge to return the deposited funds to the original sender by calling the method `claimFailedDeposit`.
 
 :::
 
-The log message described above is not yet fully supported by our SDK, but is available on the L1 bridge contract.
+The log message described above is not yet fully supported by our SDK but is available on the L1 bridge contract.
 
 ### Withdrawals (to L1)
 Users must call the `withdraw` method on the L2 bridge contract, which will trigger the following actions:

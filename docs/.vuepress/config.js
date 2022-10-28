@@ -63,12 +63,12 @@ module.exports = {
 
       "/dev": [
         {
-          title: "Overview",
+          title: "Introduction",
           path: "/dev/",
           collapsable: false, // optional, defaults to true
         },
         {
-          title: "Understanding zkSync",
+          title: "Getting started",
           path: "/dev/fundamentals",
           collapsable: false,
           children: [
@@ -78,34 +78,33 @@ module.exports = {
           ],
         },
         {
-          title: "Developer guides",
+          title: "Understanding zkSync",
           path: "/dev/developer-guides",
           collapsable: false,
           children: [
-            "/dev/developer-guides/hello-world.md",
-            "/dev/developer-guides/contracts/system-contracts.md",
-            "/dev/developer-guides/contracts/contracts.md",
-            "/dev/developer-guides/contracts/contract-verification.md",
             "/dev/developer-guides/transactions/transactions.md",
             "/dev/developer-guides/transactions/blocks.md",
-            "/dev/developer-guides/transactions/aa.md",
+            "/dev/developer-guides/contracts/system-contracts.md",
+            "/dev/developer-guides/aa.md",
+            "/dev/developer-guides/security.md",
+            "/dev/developer-guides/transactions/fee-model.md",
             "/dev/developer-guides/bridging/bridging-asset.md",
             "/dev/developer-guides/bridging/l1-l2-interop.md",
-            "/dev/developer-guides/bridging/l1-l2.md",
             "/dev/developer-guides/bridging/l2-l1.md",
           ],
         },
         {
-          title: "Troubleshooting",
-          path: "/dev/troubleshooting",
+          title: "Building on zkSync",
+          path: "/dev/developer-guides",
           collapsable: false,
           children: [
-            "/dev/troubleshooting/important-links.md",
-            "/dev/troubleshooting/status.md",
-            "/dev/troubleshooting/faq/known-issues.md",
-            "/dev/troubleshooting/docs-contribution/docs.md",
-            "/dev/troubleshooting/docs-contribution/edit-doc.md",
-
+            "/dev/developer-guides/hello-world.md",
+            "/dev/developer-guides/bridging/l1-l2.md",
+            "/dev/developer-guides/contracts/contracts.md",
+            "/dev/developer-guides/contracts/contract-verification.md",
+            "/dev/developer-guides/building-on-zksync/events.md",
+            "/dev/developer-guides/building-on-zksync/rpc.md",
+            "/dev/developer-guides/building-on-zksync/videos.md",
           ],
         },
         {
@@ -114,7 +113,18 @@ module.exports = {
           collapsable: false,
           children: ["/dev/tutorials/cross-chain-tutorial.md", "/dev/tutorials/custom-aa-tutorial.md", "/dev/tutorials/custom-paymaster-tutorial.md"],
         },
-
+        {
+          title: "Troubleshooting",
+          path: "/dev/troubleshooting",
+          collapsable: false,
+          children: [
+            "/dev/troubleshooting/important-links.md",
+            "/dev/troubleshooting/status.md",
+            "/dev/troubleshooting/docs-contribution/docs.md",
+            "/dev/troubleshooting/docs-contribution/edit-doc.md",
+            "/dev/troubleshooting/known-issues.md",
+          ],
+        },
       ],
       "/api": [
         {
