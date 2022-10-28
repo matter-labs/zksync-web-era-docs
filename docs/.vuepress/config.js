@@ -75,6 +75,7 @@ module.exports = {
             "/dev/fundamentals/rollups.md",
             "/dev/fundamentals/zkSync.md",
             "/dev/fundamentals/testnet.md",
+            "/dev/fundamentals/faq.md",
           ],
         },
         {
