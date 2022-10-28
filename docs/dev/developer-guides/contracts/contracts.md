@@ -41,8 +41,9 @@ Some examples of usage are:
 
 Both of these examples are already seemlessly done under the hood by our [hardhat plugin](../../../api/hardhat/getting-started.md).
 
-Note, that the factory deps do not necessarily have to be used by the transaction in any way. These are just markers that these bytecodes should be published on L1 with this transaction. If your contract contains a lot of various factory dependencies and they do not fit inside a single L1 block, you can split the list of factory dependencies between multiple transactions.   
+Note, that the factory deps do not necessarily have to be used by the transaction in any way. These are just markers that these bytecodes should be published on L1 with this transaction. If your contract contains a lot of various factory dependencies and they do not fit inside a single L1 block, you can split the list of factory dependencies between multiple transactions. 
 
+For example, let's say that you want to deploy a contract `A` that can also deploy contracts `B` and `C`. This means that you will have three factory dependencies for your deployment transaction: `A`,`B` and `C`. If the pubdata required to publish all of them is too large to fit into one block, you can send a dummy transaction with only factory dependencies `A` and `B` (assuming their combined length is small enough) and do the actual deploy with a second transaction while providing the bytecode of contract `C` as a factory dependency for it. Note, that if some contract *on its own* is larger than the allowed limit per block, this contract has to be split into smaller ones.
 
 ### L1->L2 communication
 
