@@ -11,10 +11,10 @@ Sending transactions from Ethereum to zkSync is done via the zkSync smart contra
 
 The goal of the priority queue is to provide a censorship-resistant way to interact with zkSync in case the operator becomes malicious or unavailable.
 The way the priority queue works in zkSync 2.0 is very close to how it worked in the previous version of zkSync.
-For the full picture, we first present how the priority queue works on zkSync 1. x.
+For the full picture, we first present how the priority queue works on zkSync 1.x.
 This gives the rationale for the new design of the priority queue for zkSync 2.0.
 
-### How it works in zkSync 1. x
+### How it works in zkSync 1.x
 
 In the previous version of zkSync, we only had two operations that could be sent to zkSync from L1:
 - `Deposit` to bridge funds from Ethereum to zkSync. 

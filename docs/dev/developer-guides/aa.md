@@ -153,8 +153,8 @@ To enable reading the user's ERC20 balance or allowance on the validation step, 
 
 1. Slots that belong to address `A`.
 2. Slots `A` on any other address.
-3. Slots of type `keccak256(A || X)` on any other address. (to cover `mapping(address => value)`, which is usually used for balance in ERC20 tokens.
-4. Slots of type `keccak256(X || OWN)` on any other address, where `OWN` is some slot of the previous (third) type (to cover `mapping(address ⇒ mapping(address ⇒ uint256))` that are usually used for `allowances` in ERC20 tokens.
+3. Slots of type `keccak256(A || X)` on any other address. (to cover `mapping(address => value)`, which is usually used for balance in ERC20 tokens).
+4. Slots of type `keccak256(X || OWN)` on any other address, where `OWN` is some slot of the previous (third) type (to cover `mapping(address ⇒ mapping(address ⇒ uint256))` that are usually used for `allowances` in ERC20 tokens).
 
 ### What could be allowed in the future?
 
