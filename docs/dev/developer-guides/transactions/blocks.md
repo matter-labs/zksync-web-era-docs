@@ -29,7 +29,7 @@ Transactions are processed immediately by the operator and added to blocks, whic
 fully decentralised, block time will take a couple of seconds, as the involved entities need to achieve consensus.
 
 Batch time, in general, depends on the system activity - the more active the system has, the faster we <em>seal</em> a batch.
-There are several criteria for sealing a block, which we defer from explaining in detail here, as the system is still under testing and 
+There are several criteria for sealing a batch, which we defer from explaining in detail here, as the system is still under testing and 
 these may change. 
 In general, a batch will get sealed when:
 1. The batch "capacity" is reached. Capacity includes L1 gas used, L2 ergs consumed and several other parameters. 
