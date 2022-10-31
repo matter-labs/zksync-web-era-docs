@@ -1,8 +1,9 @@
-# Understanding system contracts
+# System contracts
+
 To keep the zero-knowledge circuits as simple as possible and enable simple extensions, a large chunk of the logic of zkSync was moved to the so-called "system contracts" – a 
 set of contracts that have special privileges and serve special purposes, e.g. deployment of contracts, making sure that the user pays only once for publishing contracts' calldata, etc.
 
-The code for the system contracts will not be public until has gone through thorough testing. This section will only provide you with the 
+The code for the system contracts will not be public until it has gone through thorough testing. This section will only provide you with the 
 knowledge needed to build on zkSync.
 
 ## Interfaces
@@ -40,6 +41,6 @@ For now, you do not have to know any details about it, but knowing that it exist
 
 ## Protected access to some of the system contracts
 
-Some of the system contracts have impact on the account that may not be expected on Ethereum. For instance, on Ethereum the only way EOA account could increase its nonce is by sending a transaction. Also, sending a transaction could only increase nonce by 1 at a time. On zkSync nonces are implemented via the [NonceHolder](#inonceholder) system contract and, if naively implemented, the users could be allowed to increment their nonces by calling this contract. That's why the calls to most of the non-view methods of the nonce holder were restricted to be called only with a special `isSystem` flag, so that interactions with important system contracts could be conciously managed by the developer of the account.
+Some of the system contracts have impact on the account that may not be expected on Ethereum. For instance, on Ethereum the only way an EOA could increase its nonce is by sending a transaction. Also, sending a transaction could only increase nonce by 1 at a time. On zkSync nonces are implemented via the [NonceHolder](#inonceholder) system contract and, if naively implemented, the users could be allowed to increment their nonces by calling this contract. That's why the calls to most of the non-view methods of the nonce holder were restricted to be called only with a special `isSystem` flag, so that interactions with important system contracts could be conciously managed by the developer of the account.
 
 The same applies to the [ContractDeployer](#contractdeployer) system contract. This means that, for instance, you would need to explicitly allow your users to deploy contracts, as it is done in the DefaultAccount's [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/3f4b6f906c649671022794ecb5cfc1151c278d93/l2/system-contracts/DefaultAccount.sol#L88).

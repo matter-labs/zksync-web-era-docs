@@ -7,7 +7,7 @@ This tutorial serves as an example of how to implement L1 to L2 contract interac
 
 ## Preliminaries
 
-In this tutorial, it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Hello World](../developer-guides/hello-world.md) tutorial.
+In this tutorial, it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md).
 
 It is also assumed that you already have some experience working with Ethereum.
 
@@ -283,7 +283,7 @@ In the output, you should see the address to which the contract was deployed.
 
 ::: tip
 
-You can find more specific details about deploying contracts in the [hello world](../developer-guides/hello-world.md) tutorial or the documentation for the [hardhat plugins](../../api/hardhat/getting-started.md) for zkSync.
+You can find more specific details about deploying contracts in the [quickstart tutorial](../developer-guides/hello-world.md) or the documentation for the [hardhat plugins](../../api/hardhat/getting-started.md) for zkSync.
 
 :::
 
@@ -387,7 +387,7 @@ async function main() {
 
 Replace the `<GOVERNANCE-ADDRESS>` and `<WALLET-PRIVATE-KEY>` with the address of the L1 governance smart contract and the private key of the wallet that deployed the governance contract respectively.
 
-5. To interact with the zkSync bridge, we need its L1 address. While on mainnet you may want to set the address of the zkSync smart contract as an env variable or a constant, it is worth noticing that you can fetch the smart contract address dynamically.We recommended this approach, especially during the alpha testnet since regenesis may happen and contract addresses might change.
+5. To interact with the zkSync bridge, we need its L1 address. While on mainnet you may want to set the address of the zkSync smart contract as an env variable or a constant, it is worth noticing that you can fetch the smart contract address dynamically. We recommended this approach if you're working on a testnet since regenesis may happen and contract addresses might change.
 
 ```ts
 // Imports
