@@ -1,6 +1,6 @@
 module.exports = {
-  title: "zkSync: secure, scalable crypto payments", // adding title gives us a header with search box
-  description: "zkSync is a fully trustless user-centric zkRollup protocol for scaling payments and smart contracts on Ethereum.",
+  title: "zkSync — Accelerating the mass adoption of crypto for personal sovereignty", // adding title gives us a header with search box
+  description: "zkSync is a ZK rollup that represents the end-game for scaling Ethereum - one that scales its technology and values without degrading security or decentralization",
   dest: "dist",
   markdown: {
     toc: { includeLevel: [2, 3] },
@@ -71,7 +71,13 @@ module.exports = {
           title: "Getting started",
           path: "/dev/fundamentals",
           collapsable: false,
-          children: ["/dev/fundamentals/rollups.md", "/dev/fundamentals/zkSync.md", "/dev/fundamentals/testnet.md"],
+          children: [
+            "/dev/fundamentals/rollups.md",
+            "/dev/fundamentals/zkSync.md",
+            "/dev/fundamentals/testnet.md",
+            "/dev/fundamentals/faq.md",
+          ],
+
         },
         {
           title: "Understanding zkSync",
