@@ -43,11 +43,11 @@ import (
     "github.com/zksync-sdk/zksync2-go"
 )
 
-// first, init Ethereum Signer, from your mnemonic
-ethereumSigner, err := zksync2.NewEthSignerFromMnemonic("<mnemonic words>", zksync2.ZkSyncChainIdMainnet)
+// first, init Ethereum Signer, from your mnemonic, and with the chain Id (in zkSync testnet case, 280)
+ethereumSigner, err := zksync2.NewEthSignerFromMnemonic("<mnemonic words>", 280)
 
 // or from raw PrivateKey bytes
-ethereumSigner, err = zksync2.NewEthSignerFromRawPrivateKey(pkBytes, zksync2.ZkSyncChainIdMainnet)
+ethereumSigner, err = zksync2.NewEthSignerFromRawPrivateKey(pkBytes, 280)
 
 // also, init ZkSync Provider, specify ZkSync2 RPC URL (e.g. testnet)
 zkSyncProvider, err := zksync2.NewDefaultProvider("https://zksync2-testnet.zksync.dev")
@@ -62,7 +62,7 @@ ethRpc, err := rpc.Dial("https://goerli.infura.io/v3/<your_infura_node_id>")
 ethereumProvider, err := w.CreateEthereumProvider(ethRpc)
 
 ```
-## Depositing funds
+## Deposit funds
 
 ```go
 
