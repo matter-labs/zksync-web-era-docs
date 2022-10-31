@@ -4,15 +4,15 @@ In this guide we will demonstrate how to:
 
 1. Connect to the zkSync network.
 2. Deposit assets from Ethereum into zkSync.
-3. Check Balance 
-4. Transfer funds (ERC20 tokens) into the zkSync network
-5. Withdraw funds (Native coins)
+3. Transfer and withdraw funds (native and ERC20 tokens).
+4. Deploy a smart contract.
+5. Interact with any smart contract.
 
 ## Prerequisite
-This guide assumes that you are familiar with the basics of [Java programming](https://docs.oracle.com/en/java/) language.
+This guide assumes that you are familiar with the basics of [Java](https://docs.oracle.com/en/java/) programming language.
 
 ##  Installation
-For connecting zkSync Java SDK, just add the following dependency:
+To install the zkSync Java SDK, just add the following dependency:
 
 Maven `pom.xml`
 
@@ -40,8 +40,6 @@ dependencies {
 
 ## Instantiating the SDK
 To start using this SDK, you just need to pass in a provider configuration.
-Once you have all the necessary dependencies, you can follow the following setup steps to get started with the SDK.
-To interact with zkSync network users need to connect the endpoint of the operator node.
 
 ```java
 
@@ -64,7 +62,7 @@ public class Main {
 
 :::
 
-Ethereum signer is necessary for sending both L1 and L2 transactions since L2 transactions require an Ethereum signature as a part of a 2-factor authentication scheme. 
+Ethereum signer is necessary for sending both L1 and L2 transactions, given L2 transactions require an Ethereum signature as a part of a 2-factor authentication scheme.
 Ethereum signer is represented by the `PrivateKeyEthSigner` abstract class from `zksync.crypto.signer`.
 
 ```java
@@ -103,13 +101,9 @@ public class Main {
 
 ```
 
-## Working with contracts
-Once you instantiate the SDK, you can use it to access zkSync system contracts. 
 ## Transactions
 
 zksync2 supports Ethereum's `Legacy` and `EIP-1155` transactions except for deploying contracts.
-
-Deploy contract (Create 2) [EIP-1014](https://eips.ethereum.org/EIPS/eip-1014)
 
 
 ```java
@@ -187,7 +181,7 @@ public class Main {
 
 ```
 
-### Deploying a contract with create
+### Deploy a smart contract
 
 ```java
 
@@ -286,7 +280,7 @@ public class Main {
 
 ```
 
-### Execute contract
+### Interacting with smart contracts
 
 ```java
 
@@ -356,7 +350,7 @@ public class Main {
 
 ```
 
-### Execute contact via ZkSyncWallet
+### Interacting with smart contracts via ZkSyncWallet
 
 ```java 
 
@@ -385,7 +379,7 @@ public class Main {
 
 ```
 
-### Execute contract via Web3j generic Contract
+### Interacting with smart contracts via Web3j generic Contract
 
 ```java
 
@@ -422,7 +416,7 @@ public class Main {
 
 ```
 
-### Transfer funds (Native coins)
+### Transfer funds
 
 ```java
 
@@ -597,7 +591,7 @@ public class Main {
 
 ```
 
-### Withdraw funds (Native coins)
+### Withdraw funds
 
 ```java
 

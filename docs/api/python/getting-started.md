@@ -4,15 +4,14 @@ In this guide we will demonstrate how to:
 
 1. Connect to the zkSync network.
 2. Deposit assets from Ethereum into zkSync.
-3. Check Balance 
-4. Transfer funds (ERC20 tokens) into the zksync network
-5. Withdraw funds (Native coins)
-6. Deploy contract with create method
-7. Deploy contract with create2 method
+3. Check balances.
+4. Transfer and withdraw funds (native and ERC20 tokens).
+5. Deploy a smart contract.
+6. Deploy a smart contract with create2.
 
 ## Prerequisite
 
-This guide assumes that you are familiar with [Python programming](https://docs.python.org/3/) language.
+This guide assumes that you are familiar with [Python](https://docs.python.org/3/) programming language.
 
 ##  Installation
 
@@ -26,8 +25,6 @@ pip install zksync2
 ## Instantiating the SDK
 
 To start using this SDK, you just need to pass in a provider configuration.
-Once you have all the necessary dependencies, you can follow the following setup steps to get started with the SDK.
-To interact with zkSync network users need to connect the endpoint of the operator node.
 
 ```py
 
@@ -41,8 +38,6 @@ eth_web3 = Web3(Web3.HTTPProvider(URL_TO_ETH_NETWORK))
 zkSync_web3 = zkSyncBuilder.build(ZKSYNC_NETWORK_URL)
 
 ```
-
-The SDK supports the mainnet, goerli, zkSync testnet networks or even a private network.
 
 ## Ethereum signer
 
@@ -61,17 +56,12 @@ from eth_account.signers.local import LocalAccount
 from zkSync2.signer.eth_signer import PrivateKeyEthSigner
 import os
 
-# This PRIVATE KEY is coming from your environment variables. Make sure to never put it in a tracked file or share it with anyone.
 PRIVATE_KEY = os.environ.get("YOUR_PRIVATE_KEY")
 
 account: LocalAccount = Account.from_key(PRIVATE_KEY)
 signer = PrivateKeyEthSigner(account, chain_id)
 
 ```
-## Working with contracts
-
-Once you instantiate the SDK, you can use it to access zkSync system contracts. 
-
 ## Depositing funds
 
 This example shows how to deposit funds into an address.
@@ -333,7 +323,7 @@ if __name__ == "__main__":
 
 ```
 
-## Deploying a contract with Create
+## Deploy a smart contract
 With zkSync, you can deploy a contract using the `create` method, by simply building the contract into a binary format and deploying it to the zkSync network.
 
 In the next steps, we will guide you through how it works.
@@ -478,7 +468,7 @@ if __name__ == "__main__":
     deploy_contract_create()
 
 ```
-## Deploying a contract with Create2
+## Deploy a smart contract with Create2
 
 Using the [CREATE2](https://eips.ethereum.org/EIPS/eip-1014) opcode gives you the ability to predict the address where a contract will be deployed, without ever having to do so, hence improving user onboarding.
 
