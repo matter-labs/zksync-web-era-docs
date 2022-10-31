@@ -5,10 +5,10 @@ In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 
 ## Prerequisite
 
-It is highly recommended to read about the [design](../developer-guides/transactions/aa.md) of the account abstraction protocol before diving into this tutorial.
+It is highly recommended to read about the [design](../developer-guides/aa.md) of the account abstraction protocol before diving into this tutorial.
 
 It is assumed that you are already familiar with deploying smart contracts on zkSync.
-If not, please refer to the first section of the [Hello World](../developer-guides/hello-world.md) tutorial.
+If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md).
 It is also recommended to read the [introduction](../developer-guides/contracts/system-contracts.md) to the system contracts.
 
 ## Installing dependencies
@@ -28,11 +28,11 @@ Since we are working with zkSync contracts, we also need to install the package 
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [Hello World](../developer-guides/hello-world.md)tutorial.
+Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [quickstart tutorial](../developer-guides/hello-world.md).
 
 ## Account abstraction
 
-Each account needs to implement the [IAccount](https://github.com/matter-labs/v2-testnet-contracts/blob/07e05084cdbc907387c873c2a2bd3427fe4fe6ad/l2/system-contracts/interfaces/IAccount.sol#L7) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
+Each account needs to implement the [IAccount](../developer-guides/aa.md#iaccount-interface) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
 
 The skeleton for the contract will look the following way:
 
@@ -144,17 +144,17 @@ function isValidSignature(bytes32 _hash, bytes calldata _signature) public overr
 
 ### Transaction validation
 
-Let's implement the validation process. It is responsible for validating the signature of the transaction and incrementing the nonce. Note, that there are some limitations on what this method is allowed to do. You can read more about them [here](../developer-guides/transactions/aa.md#limitations-of-the-verification-step).
+Let's implement the validation process. It is responsible for validating the signature of the transaction and incrementing the nonce. Note, that there are some limitations on what this method is allowed to do. You can read more about them [here](../developer-guides/aa.md#limitations-of-the-verification-step).
 
 To increment the nonce, you should use the `incrementNonceIfEquals` method of the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether the nonce is the same as the provided one. If not, the transaction reverts. Otherwise, the nonce is increased.
 
-Even though the requirements above allow the accounts to touch only their storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../developer-guides/transactions/aa.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happened to be in another contract. To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, you should add the following import:
+Even though the requirements above allows the accounts to touch only their storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../developer-guides/aa.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happened to be in another contract. To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, you should add the following import:
 
 ```solidity
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
 ```
 
-The `TransactionHelper` library (already imported in the example above) can be used to get the hash of the transaction that should be signed. You can also implement your own signature scheme and use a different commitment for the transaction to sign, but in this example, we use the hash provided by this library.
+The `TransactionHelper` library (already imported in the example above) can be used to get the hash of the transaction that should be signed. You can also implement your own signature scheme and use a different commitment for the transaction to sign, but in this example we use the hash provided by this library.
 
 Using the `TransactionHelper` library:
 
@@ -208,7 +208,7 @@ function payForTransaction(bytes32, bytes32, Transaction calldata _transaction) 
 
 ### Implementing `prePaymaster`
 
-While generally the account abstraction protocol enables performing arbitrary actions when interacting with the paymasters, there are some [common patterns](../developer-guides/transactions/aa.md#built-in-paymaster-flows) with the built-in support from EOAs.
+While generally the account abstraction protocol enables performing arbitrary actions when interacting with the paymasters, there are some [common patterns](../developer-guides/aa.md#built-in-paymaster-flows) with the built-in support from EOAs.
 Unless you want to implement or restrict some specific paymaster use cases from your account, it is better to keep it consistent with EOAs. The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processed the `prePaymaster` step the same as EOA does.
 
 ```solidity
@@ -782,6 +782,6 @@ You can download the complete project [here](https://github.com/matter-labs/cust
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/Bridging/l1-l2.md).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).

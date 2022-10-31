@@ -1,6 +1,6 @@
 # Web3 API
 
-zkSync 2.0 fully supports the standard [Ethereum JSON-RPC API] (https://eth.wiki/json-rpc/API) and adds some L2-specific features.
+zkSync 2.0 fully supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/) and adds some L2-specific features.
 
 As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes to the codebase are needed._
 
@@ -178,7 +178,7 @@ The `id` is the position of the leaf in the Merkle tree of L2->L1 messages for t
 
 You do not need to care about the intrinsics, since the returned `id` and `proof` can be used right away for interacting with the zkSync smart contract.
 
-A nice example of using this endpoint via our SDK can be found [here](../dev/developer-guides/Bridging/l2-l1.md).
+A nice example of using this endpoint via our SDK can be found [here](../dev/developer-guides/bridging/l2-l1.md).
 
 ### `zks_getBridgeContracts`
  
@@ -201,7 +201,7 @@ None.
 
 ### `zks_getTestnetPaymaster`
 
-Returns the address of the [testnet paymaster](../dev/developer-guides/transactions/aa.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
+Returns the address of the [testnet paymaster](../dev/developer-guides/aa.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
 
 ### Input parameters
 

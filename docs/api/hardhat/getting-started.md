@@ -94,7 +94,8 @@ contract Greeter {
 }
 ```
 
-5. Compile the contracts with the following command:
+5. Compile the contracts with the following command: `yarn hardhat compile`.
+
 An `artifacts-zk` and `cache-zk` folders were created in the root directory (instead of the regular hardhat's `artifacts` and `cache`).
 These are compilation artifacts, and should not be added to version control.
 
