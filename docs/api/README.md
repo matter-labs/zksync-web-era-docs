@@ -15,3 +15,6 @@ We support a few languages (and are working on more) to make it easier for you t
 
 - [JavaScript SDK](./js)
 - [Hardhat plugins](./hardhat)
+- [Python SDK](./python/getting-started.md)
+- [GO SDK](./go/getting-started.md)
+- [Java SDK](./java/getting-started.md)
