@@ -166,6 +166,27 @@ module.exports = {
           ],
         },
         {
+          title: "Python SDK", // required
+          path: "/api/getting-started", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/python/getting-started"],
+        },
+        {
+          title: "Java SDK", // required
+          path: "/api/getting-started", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/java/getting-started"],
+        },
+        {
+          title: "GO SDK", // required
+          path: "/api/getting-started", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/go/getting-started"],
+        },
+        {
           title: "Hardhat", // required
           path: "/api/hardhat", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true

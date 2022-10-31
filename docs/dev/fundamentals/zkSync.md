@@ -8,7 +8,7 @@ If you are unfamiliar with rollups, you should cover the [rollups basics](./roll
 
 **zkSync** is a [ZK rollup](./rollups.md#what-are-zk-rollups), a trustless protocol that uses cryptographic validity proofs to provide 
 scalable and low-cost transactions on Ethereum.
-In zkSync, computation is performed off-chain and most of data is stored off-chain as well. As all transactions are proven on the Ethereum 
+In zkSync, computation is performed off-chain and most data is stored off-chain as well. As all transactions are proven on the Ethereum 
 mainchain, users enjoy the same security level as in Ethereum.
 
 zkSync 2.0 is made to look and feel like Ethereum, but with lower fees. Just like on Ethereum, smart contracts are written in Solidity/Vyper and can be called using the same clients as the other EVM-compatible chains.
@@ -55,7 +55,7 @@ The current version of zkSync 2.0 solves the needs of most applications on Ether
 
 - Native support of ECDSA signatures: Unlike the first version of zkSync and most of the ZK rollups, no special operation is required to register the user’s private key. Any account can be managed in L2 with the same private key that is used for L1.
 - Solidity 0.8.x support: Deploy your existing codebase with little to no changes required.
-Web3 API. With small exceptions, our API is fully compatible with Ethereum. This allows seamless integration with existing indexers, explorers, etc.
+- With small exceptions, our Web3 API is fully compatible with Ethereum. This allows seamless integration with existing indexers, explorers, etc.
 - Support for Ethereum cryptographic primitives: zkSync natively supports `keccak256`, `sha256`, and `ecrecover` via precompiles.
 - Hardhat plugin: Enables easy testing and development of smart contracts on zkSync.
 - L1 → L2 smart contract messaging: Allows developers to pass data from Ethereum to smart contracts on zkSync, providing the required information to run various smart contracts.
