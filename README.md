@@ -29,7 +29,7 @@ $ yarn config set nodeLinker "node_modules"
 # you should see:
 # ➤ YN0000: Successfully set nodeLinker to 'node_modules'
 
-# the regular dependency installation (with re-validaton of the local cache
+# the regular dependency installation (with re-validation of the local cache
 $ yarn install --check-cache
 ```
 
