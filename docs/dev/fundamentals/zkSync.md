@@ -55,7 +55,7 @@ The current version of zkSync 2.0 solves the needs of most applications on Ether
 
 - Native support of ECDSA signatures: Unlike the first version of zkSync and most of the ZK rollups, no special operation is required to register the user’s private key. Any account can be managed in L2 with the same private key that is used for L1.
 - Solidity 0.8.x support: Deploy your existing codebase with little to no changes required.
-With small exceptions, our API is fully compatible with Ethereum. This allows seamless integration with existing indexers, explorers, etc.
+- With small exceptions, our Web3 API is fully compatible with Ethereum. This allows seamless integration with existing indexers, explorers, etc.
 - Support for Ethereum cryptographic primitives: zkSync natively supports `keccak256`, `sha256`, and `ecrecover` via precompiles.
 - Hardhat plugin: Enables easy testing and development of smart contracts on zkSync.
 - L1 → L2 smart contract messaging: Allows developers to pass data from Ethereum to smart contracts on zkSync, providing the required information to run various smart contracts.
