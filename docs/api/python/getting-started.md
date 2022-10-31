@@ -34,8 +34,8 @@ To interact with zkSync network users need to connect the endpoint of the operat
 from web3 import Web3
 from zkSync2.module.module_builder import zkSyncBuilder
 
-URL_TO_ETH_NETWORK = "https://goerli.infura.io/v3/25be7ab42c414680a5f89297f8a11a4d"
-ZKSYNC_NETWORK_URL = "https://zkSync2-testnet.zkSync.dev"
+URL_TO_ETH_NETWORK = "GOERLI_HTTPS_RPC"
+ZKSYNC_NETWORK_URL = "https://zksync2-testnet.zksync.dev"
 
 eth_web3 = Web3(Web3.HTTPProvider(URL_TO_ETH_NETWORK))
 zkSync_web3 = zkSyncBuilder.build(ZKSYNC_NETWORK_URL)
@@ -52,7 +52,6 @@ The SDK supports the mainnet, goerli, zkSync testnet networks or even a private 
 
 :::
 
-Ethereum signer is necessary for sending both L1 and L2 transactions since L2 transactions require an Ethereum signature as a part of 2-factor authentication scheme. 
 Ethereum signer is represented by the `PrivateKeyEthSigner` abstract class from `zkSync2.signer.eth_signer`.
 
 ```py
@@ -591,3 +590,9 @@ if __name__ == "__main__":
     deploy_contract_create2()
 
 ```
+
+::: warning
+
+⚠️ This section of the docs is still in progress and will be updated with more detailed information soon.
+
+:::

@@ -12,7 +12,7 @@ In this guide we will demonstrate how to:
 This guide assumes that you are familiar with the basics of [Java programming](https://docs.oracle.com/en/java/) language.
 
 ##  Installation
-For connecting zkSync Java SDK, just add the following dependency to your build file.
+For connecting zkSync Java SDK, just add the following dependency:
 
 Maven `pom.xml`
 
@@ -832,3 +832,9 @@ public class Main {
 }
 
 ```
+
+::: warning
+
+⚠️ This section of the docs is still in progress and will be updated with more detailed information soon.
+
+:::

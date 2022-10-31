@@ -40,22 +40,22 @@ import (
 )
 
 // first, init Ethereum Signer, from your mnemonic
-es, err := zksync2.NewEthSignerFromMnemonic("<mnemonic words>", zksync2.ZkSyncChainIdMainnet)
+ethereumSigner, err := zksync2.NewEthSignerFromMnemonic("<mnemonic words>", zksync2.ZkSyncChainIdMainnet)
 
 // or from raw PrivateKey bytes
-es, err = zksync2.NewEthSignerFromRawPrivateKey(pkBytes, zksync2.ZkSyncChainIdMainnet)
+ethereumSigner, err = zksync2.NewEthSignerFromRawPrivateKey(pkBytes, zksync2.ZkSyncChainIdMainnet)
 
 // also, init ZkSync Provider, specify ZkSync2 RPC URL (e.g. testnet)
-zp, err := zksync2.NewDefaultProvider("https://zksync2-testnet.zksync.dev")
+zkSyncProvider, err := zksync2.NewDefaultProvider("https://zksync2-testnet.zksync.dev")
 
 // then init Wallet, passing just created Ethereum Signer and ZkSync Provider   
-w, err := zksync2.NewWallet(es, zp)
+wallet, err := zksync2.NewWallet(ethereumSigner, zkSyncProvider)
 
 // init default RPC client to Ethereum node (Goerli network in case of ZkSync2 testnet)
 ethRpc, err := rpc.Dial("https://goerli.infura.io/v3/<your_infura_node_id>")
 
 // and use it to create Ethereum Provider by Wallet 
-ep, err := w.CreateEthereumProvider(ethRpc)
+ethereumProvider, err := w.CreateEthereumProvider(ethRpc)
 
 ```
 ## Working with contracts
@@ -144,6 +144,8 @@ func main() {
 ```
 ## Deploy smart contract (basic case)
 
+You can access the contract deployer interface as follows:
+
 ``` go
 
     package main
@@ -162,7 +164,7 @@ func main() {
     fmt.Println("Tx hash", hash)
 
     // use helper to get (compute) address of deployed SC
-    addr, err := zksync2.ComputeL2Create2Address(
+    address, err := zksync2.ComputeL2Create2Address(
         common.HexToAddress("<deployer_L2_address>"), 
         bytecode, 
         nil, 
@@ -171,14 +173,14 @@ func main() {
     if err != nil {
         panic(err)
     }
-    fmt.Println("Deployed address", addr.String())
+    fmt.Println("Deployed address", address.String())
 }
 
 ```
 
 ## Execute smart contract (basic case)
 
-In order to interact with smart contract, the SDK needs to know the contract address you want to interact with, as well as its ABI. For that, you need to use ABI.Pack() [method]("https://github.com/ethereum/go-ethereum/accounts/abi") to load the ABI of your contract, or encode the calldata to execute function and its parameters.
+In order to interact with smart contract, the SDK needs to know the contract address you want to interact with, as well as its ABI. For that, you need to use ABI.Pack() [method](https://github.com/ethereum/go-ethereum/accounts/abi) to load the ABI of your contract, or encode the calldata to execute function and its parameters.
 
 To execute smart contract, you can use the following setup, to encode the calldata:
 
@@ -207,3 +209,9 @@ func main() {
 }
 
 ```
+
+::: warning
+
+⚠️ This section of the docs is still in progress and will be updated with more detailed information soon.
+
+:::
