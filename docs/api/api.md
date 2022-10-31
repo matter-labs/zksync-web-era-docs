@@ -201,7 +201,7 @@ None.
 
 ### `zks_getTestnetPaymaster`
 
-Returns the address of the [testnet paymaster](../dev/developer-guides/transactions/aa.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
+Returns the address of the [testnet paymaster](../dev/developer-guides/aa.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
 
 ### Input parameters
 

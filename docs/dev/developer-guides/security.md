@@ -34,7 +34,7 @@ To be eligible for the bug bounty, a bug should adhere to the security assumptio
 ## Disclosure Policy
 
 Let us know as soon as possible upon discovery of a potential security issue.
-Provide us with a reasonable amount of time to resolve the issue before any disclosure to the public or a third
+Provide us with a reasonable amount of time to resolve the issue before any disclosure to the public or a third party.
 
 ### The wrong way to disclose
 

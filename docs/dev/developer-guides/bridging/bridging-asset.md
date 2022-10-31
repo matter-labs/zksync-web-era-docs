@@ -26,7 +26,7 @@ Users must call the `deposit` method on the L1 bridge contract, which will trigg
 - The user's L1 tokens will be sent to the L1 bridge and become locked there.
 - The L1 bridge initiates a transaction to the L2 bridge using L1 -> L2 communication.
 - Within the L2 transaction, tokens will be minted and sent to the specified address on L2.
-    - If the token does not exist on zkSync yet, a new contract is deployed for it. Given the L2 token address is deterministic (based on the orignial L1 address, name and symbol), it doesn't matter who is the first person briding it, the new L2 address will be the same.
+    - If the token does not exist on zkSync yet, a new contract is deployed for it. Given the L2 token address is deterministic (based on the original L1 address, name and symbol), it doesn't matter who is the first person bridging it, the new L2 address will be the same.
 - For every executed L1 -> L2 transaction, there will be an L2 -> L1 log message confirming its execution.
 
 ::: warning

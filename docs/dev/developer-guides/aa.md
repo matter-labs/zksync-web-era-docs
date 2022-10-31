@@ -45,7 +45,7 @@ There needs to be a solution on the protocol level that is both cheap for users 
 
 The following protocol is used:
 
-- Before each transaction starts, the system queries the [NonceHolder](../contracts/system-contracts.md#inonceholder) to check whether the provided nonce has already been used or not.
+- Before each transaction starts, the system queries the [NonceHolder](./contracts/system-contracts.md#inonceholder) to check whether the provided nonce has already been used or not.
 - If the nonce has not been used yet, the transaction validation is run. The provided nonce is expected to be marked as "used" during this time.
 - After the validation, the system checks whether this nonce is now marked as used.
 
@@ -68,7 +68,7 @@ Each account is recommended to implement the [IAccount](https://github.com/matte
 
 - `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) the method should revert. In case the call to this method succeedes, the implemented account logic is considered to accept the transaction, and the system will proceed with the transaction flow.
 - `executeTransaction` is mandatory and will be called by the system after the fee is charged from the user. This function should perform the execution of the transaction.
-- `payForTransaction` is optional and will be called by the system if the transaction has no paymaster, i.e. the account is willing to pay for the transaction. This method should be used to pay for the fees by the account. Note, that if your account will never pay any fees and will always rely on the [paymaster](#paymasters) feature, you don't have to implement this method. This method must send at least `tx.gasprice * tx.ergsLimit` ETH to the [bootloader](../contracts/system-contracts.md#bootloader) address.
+- `payForTransaction` is optional and will be called by the system if the transaction has no paymaster, i.e. the account is willing to pay for the transaction. This method should be used to pay for the fees by the account. Note, that if your account will never pay any fees and will always rely on the [paymaster](#paymasters) feature, you don't have to implement this method. This method must send at least `tx.gasprice * tx.ergsLimit` ETH to the [bootloader](./contracts/system-contracts.md#bootloader) address.
 - `prePaymaster` is optional and will be called by the system if the transaction has a paymaster, i.e. there is a different address that pays the transaction fees for the user. This method should be used to prepare for the interaction with the paymaster. One of the notable [examples](#approval-based-paymaster-flow) where it can be helpful is to approve the ERC-20 tokens for the paymaster.
 - `executeTransactionFromOutside`, technically, is not mandatory, but it is _highly encouraged_, since there needs to be some way, in case of priority mode (e.g. if the operator is unresponsive), to be able to start transactions from your account from ``outside'' (basically this is the fallback to the standard Ethereum approach, where an EOA starts transaction from your smart contract).
 
@@ -130,7 +130,7 @@ By default, calling `estimateGas` adds a constant to cover charging the fee and 
 
 ## Using the `SystemContractsCaller` library
 
-For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](../contracts/system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall` method of the [SystemContractsCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/sb-system-contracts-for-new-update/l2/system-contracts/SystemContractsCaller.sol) library should be used.
+For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](./contracts/system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall` method of the [SystemContractsCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/sb-system-contracts-for-new-update/l2/system-contracts/SystemContractsCaller.sol) library should be used.
 
 Using this library is practically a must when developing custom accounts since this is the only way to call non-view methods of the `NonceHolder` system contract. Also, you will have to use this library if you want to allow users to deploy contracts of their own. You can use the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/sb-system-contracts-for-new-update/l2/system-contracts/DefaultAccount.sol) of the EOA account as a reference.
 
@@ -153,8 +153,8 @@ To enable reading the user's ERC20 balance or allowance on the validation step, 
 
 1. Slots that belong to address `A`.
 2. Slots `A` on any other address.
-3. Slots of type `keccak256(A || X)` on any other address. (to cover `mapping(address => value)`, which is usually used for balance in ERC20 tokens.
-4. Slots of type `keccak256(X || OWN)` on any other address, where `OWN` is some slot of the previous (third) type (to cover `mapping(address ⇒ mapping(address ⇒ uint256))` that are usually used for `allowances` in ERC20 tokens.
+3. Slots of type `keccak256(A || X)` on any other address. (to cover `mapping(address => value)`, which is usually used for balance in ERC20 tokens).
+4. Slots of type `keccak256(X || OWN)` on any other address, where `OWN` is some slot of the previous (third) type (to cover `mapping(address ⇒ mapping(address ⇒ uint256))` that are usually used for `allowances` in ERC20 tokens).
 
 ### What could be allowed in the future?
 
@@ -209,7 +209,7 @@ Currently, your transactions may pass through the API despite violating the requ
 
 ### Nonce holder contract
 
-For optimization purposes, both [tx nonce and the deployment nonce](../contracts/contracts.md#differences-in-create-behaviour) are put in one storage slot inside the [NonceHolder](../contracts/system-contracts.md#inonceholder) system contracts.
+For optimization purposes, both [tx nonce and the deployment nonce](./contracts/contracts.md#differences-in-create-behaviour) are put in one storage slot inside the [NonceHolder](./contracts/system-contracts.md#inonceholder) system contracts.
 In order to increment the nonce of your account, it is highly recommended to call the [incrementNonceIfEquals](https://github.com/matter-labs/v2-testnet-contracts/blob/0e1c95969a2f92974370326e4430f03e417b25e7/l2/system-contracts/interfaces/INonceHolder.sol#L10) function and pass the value of the nonce provided in the transaction.
 
 This is one of the whitelisted calls, where the account logic is allowed to call outside smart contracts.
@@ -293,7 +293,7 @@ If you are developing a paymaster, you _should not_ trust the transaction sender
 
 #### Working with paymaster flows using `zksync-web3` SDK
 
-The `zksync-web3` SDK provides [methods](../../../api/js/utils.md#encoding-paymaster-param) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
+The `zksync-web3` SDK provides [methods](../../api/js/utils.md#encoding-paymaster-param) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
 
 ### Testnet paymaster
 
@@ -301,7 +301,7 @@ To let users experience using with paymasters on testnet, as well as to keep sup
 
 The paymaster supports only the [approval based](#approval-based-paymaster-flow) paymaster flow and requires that the `token` param is equal to the token being swapped and `minAllowance` to equal to least `tx.maxFeePerErg * tx.ergsLimit`.
 
-An example of how to use testnet paymaster can be seen in the [quickstart](../hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
+An example of how to use testnet paymaster can be seen in the [quickstart](./hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
 
 ## `aa-signature-checker`
 
