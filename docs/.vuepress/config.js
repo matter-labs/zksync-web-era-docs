@@ -98,7 +98,7 @@ module.exports = {
         },
         {
           title: "Building on zkSync",
-          path: "/dev/developer-guides",
+          path: "/dev/developer-guides/building-on-zksync",
           collapsable: false,
           children: [
             "/dev/developer-guides/hello-world.md",
