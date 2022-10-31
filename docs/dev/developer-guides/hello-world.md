@@ -11,18 +11,14 @@ This is what we're going to build:
 
 ::: tip
 
-The testnet paymaster is just for testing. If you decide to build a project on mainnet, you should read the documentation about [paymasters](./transactions/aa.md#paymasters).
+The testnet paymaster is just for testing. If you decide to build a project on mainnet, you should read the documentation about [paymasters](./aa.md#paymasters).
 
 :::
 
-
 ## Prerequisites
 
-For this tutorial, the following programs must be installed:
-
-- `yarn` package manager. `npm` examples will be added soon.
-- `Docker` for compilation.
-- A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. ERC20 tokens on zkSync are required if you want to implement the testnet paymaster.
+- `yarn` package manager. [Here is the installation guide](https://yarnpkg.com/getting-started/install)(`npm` examples will be added soon.)
+- A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. ERC20 tokens on zkSync are required if you want to implement the testnet paymaster. We recommend using [the faucet from the zkSync portal](https://portal.zksync.io/faucet).
 
 ## Initializing the project & deploying a smart contract
 
@@ -46,7 +42,7 @@ require("@matterlabs/hardhat-zksync-solc");
 module.exports = {
   zksolc: {
     version: "1.2.0",
-    compilerSource: "docker",
+    compilerSource: "binary",
     settings: {
       optimizer: {
         enabled: true,
@@ -74,11 +70,9 @@ module.exports = {
 
 ::: warning Tip
 
-If this contract has already complied, you should delete the artifact and cached folders, otherwise, it won't recompile with this compiler version.
+If the contract was already compiled, you should delete the `artifacts-zk` and `cache-zk` folders, otherwise, it won't recompile unless you change the compiler version.
 
 :::
-
-To learn how to verify your smart contract using zkSync block explorer, click [here](./contracts/contract-verification.md).
 
 1. Create the `contracts` and `deploy` folders. The former is the place where we will store all the smart contracts' `*.sol` files, and the latter is the place where we will put all the scripts related to deploying the contracts.
 
@@ -168,6 +162,10 @@ yarn hardhat deploy-zksync
 
 In the output, you should see the address the contract was deployed to.
 
+Congratulations! You have deployed a smart contract to zkSync! Now you can visit the [zkSync block explorer](https://explorer.zksync.io/) and search you contract address to confirm it was successfully deployed.
+
+[This guide](../../api/tools/block-explorer/contract-verification.md) explains how to verify your smart contract using the zkSync block explorer.
+
 ## Front-end integration
 
 ### Setting up the project
@@ -251,7 +249,7 @@ async changeGreeting() {
 },
 ```
 
-On the top of the `<script>` tag, you may see the parts that should be filled with the address of the deployed `Greeter` contract and the path to its ABI. Let's fill these fields in the following sections.
+At the top of the `<script>` tag, you may see the parts that should be filled with the address of the deployed `Greeter` contract and the path to its ABI. We will fill these fields in the following sections.
 
 ```javascript
 // eslint-disable-next-line
@@ -268,7 +266,7 @@ Run the following command on the greeter-tutorial-starter root folder to install
 yarn add ethers zksync-web3
 ```
 
-After that, import both libraries in the ``script` part of the `App.vue` file (right before the contract constant). It should look like this:
+After that, import both libraries in the `script` part of the `App.vue` file (right before the contract constant). It should look like this:
 
 ```javascript
 import {} from "zksync-web3";
@@ -284,7 +282,7 @@ const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contrac
 
 Open `./src/App.vue` and set the `GREETER_CONTRACT_ADDRESS` constant equal to the address where the greeter contract was deployed.
 
-To interact with zkSync's smart contract, we also need its ABI.
+To interact with the smart contract we just deployed to zkSync, we also need its ABI. ABI stands for Application Binary Interface and, in short, it's a file that describes all available names and types of the smart contract methods to interact with it.
 
 - Create the `./src/abi.json` file.
 - You can get the contract's ABI in the hardhat project folder from the previous section in the `./artifacts-zk/contracts/Greeter.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` file created in the previous step. The file should look roughly the following way:
@@ -510,7 +508,7 @@ You now have a fully functional Greeter-dApp! However, it does not leverage any 
 
 ### Paying fees using testnet paymaster
 
-Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](./transactions/aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](./transactions/aa.md#testnet-paymaster) that is provided on all zkSync testnets. It allows users to pay fees in an ERC20 token with the exchange rate of ETH of 1:1, i.e. one unit of the token for one wei of ETH.
+Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](./aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](./aa.md#testnet-paymaster) that is provided on all zkSync testnets. It allows users to pay fees in an ERC20 token with the exchange rate of ETH of 1:1, i.e. one unit of the token for one wei of ETH.
 
 ::: tip Mainnet integration
 
@@ -520,7 +518,7 @@ Testnet paymaster is purely for demonstration of the feature and won't be availa
 
 The `getOverrides` method returns an empty object when users decide to pay with ether but, when users selects the ERC20 option, it should return the paymaster address and all the information required by it. This is how to do it:
 
-1. Retrieve the address of the testnet paymaster from the zkSycn provider:
+1. Retrieve the address of the testnet paymaster from the zkSync provider:
 
 ```javascript
 async getOverrides() {
@@ -560,8 +558,7 @@ async getOverrides() {
 }
 ```
 
-3. Now, what is left is to encode the paymasterInput following the [protocol requirements](./transactions/aa.md#testnet-paymaster) and return the needed overrides:
-
+3. Now, what is left is to encode the paymasterInput following the [protocol requirements](./aa.md#testnet-paymaster) and return the needed overrides:
 
 ```javascript
 async getOverrides() {

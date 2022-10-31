@@ -1,6 +1,6 @@
 module.exports = {
-  title: "zkSync: secure, scalable crypto payments", // adding title gives us a header with search box
-  description: "zkSync is a fully trustless user-centric zkRollup protocol for scaling payments and smart contracts on Ethereum.",
+  title: "zkSync — Accelerating the mass adoption of crypto for personal sovereignty", // adding title gives us a header with search box
+  description: "zkSync is a ZK rollup that represents the end-game for scaling Ethereum - one that scales its technology and values without degrading security or decentralization",
   dest: "dist",
   markdown: {
     toc: { includeLevel: [2, 3] },
@@ -20,10 +20,10 @@ module.exports = {
     ],
   ],
   themeConfig: {
-    repo: 'matter-labs/zksync-web-v2-docs',
+    repo: "matter-labs/zksync-web-v2-docs",
     editLinks: true,
-    docsDir: 'docs',
-    docsBranch: 'main',
+    docsDir: "docs",
+    docsBranch: "main",
     logo: "/LogotypeLight.svg",
     lastUpdated: "Last Updated",
     nav: [
@@ -43,6 +43,19 @@ module.exports = {
         text: "Contact",
         link: "/contact.html",
       },
+      {
+        text: "v2.0",
+        items: [
+          {
+            text: "v2.0",
+            link: "/dev/",
+          },
+          {
+            text: "v1.x",
+            link: "https://docs.zksync.io",
+          },
+        ],
+      },
     ],
     //displayAllHeaders: true,
     sidebar: {
@@ -50,32 +63,33 @@ module.exports = {
 
       "/dev": [
         {
-          title: "Overview",
+          title: "Introduction",
           path: "/dev/",
           collapsable: false, // optional, defaults to true
         },
         {
-          title: "Understanding zkSync",
+          title: "Getting started",
           path: "/dev/fundamentals",
           collapsable: false,
           children: [
             "/dev/fundamentals/rollups.md",
             "/dev/fundamentals/zkSync.md",
-            // "/dev/fundamentals/testnet.md",
+            "/dev/fundamentals/testnet.md",
+            "/dev/fundamentals/faq.md",
           ],
+
         },
         {
-          title: "Developer guides",
+          title: "Understanding zkSync",
           path: "/dev/developer-guides",
           collapsable: false,
           children: [
-            "/dev/developer-guides/hello-world.md",
-            "/dev/developer-guides/contracts/system-contracts.md",
-            "/dev/developer-guides/contracts/contracts.md",
-            "/dev/developer-guides/contracts/contract-verification.md",
             "/dev/developer-guides/transactions/transactions.md",
             "/dev/developer-guides/transactions/blocks.md",
-            "/dev/developer-guides/transactions/aa.md",
+            "/dev/developer-guides/contracts/system-contracts.md",
+            "/dev/developer-guides/aa.md",
+            "/dev/developer-guides/security.md",
+            "/dev/developer-guides/transactions/fee-model.md",
             "/dev/developer-guides/bridging/bridging-asset.md",
             "/dev/developer-guides/bridging/l1-l2-interop.md",
             "/dev/developer-guides/bridging/l1-l2.md",
@@ -83,15 +97,16 @@ module.exports = {
           ],
         },
         {
-          title: "Troubleshooting",
-          path: "/dev/troubleshooting",
+          title: "Building on zkSync",
+          path: "/dev/developer-guides",
           collapsable: false,
           children: [
-            "/dev/troubleshooting/important-links.md",
-            "/dev/troubleshooting/status.md",
-            "/dev/troubleshooting/faq/known-issues.md",
-            "/dev/docs-contribution/docs.md",
-            "/dev/docs-contribution/edit-doc.md",
+            "/dev/developer-guides/hello-world.md",
+            "/dev/developer-guides/contracts/contracts.md",
+            "/dev/developer-guides/contracts/contract-verification.md",
+            "/dev/developer-guides/building-on-zksync/events.md",
+            "/dev/developer-guides/building-on-zksync/rpc.md",
+            "/dev/developer-guides/building-on-zksync/videos.md",
           ],
         },
         {
@@ -100,7 +115,18 @@ module.exports = {
           collapsable: false,
           children: ["/dev/tutorials/cross-chain-tutorial.md", "/dev/tutorials/custom-aa-tutorial.md", "/dev/tutorials/custom-paymaster-tutorial.md"],
         },
-
+        {
+          title: "Troubleshooting",
+          path: "/dev/troubleshooting",
+          collapsable: false,
+          children: [
+            "/dev/troubleshooting/important-links.md",
+            "/dev/troubleshooting/status.md",
+            "/dev/troubleshooting/docs-contribution/docs.md",
+            "/dev/troubleshooting/docs-contribution/edit-doc.md",
+            "/dev/troubleshooting/known-issues.md",
+          ],
+        },
       ],
       "/api": [
         {
@@ -140,11 +166,39 @@ module.exports = {
           ],
         },
         {
+          title: "Python SDK", // required
+          path: "/api/getting-started", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/python/getting-started"],
+        },
+        {
+          title: "Java SDK", // required
+          path: "/api/getting-started", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/java/getting-started"],
+        },
+        {
+          title: "GO SDK", // required
+          path: "/api/getting-started", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/go/getting-started"],
+        },
+        {
           title: "Hardhat", // required
           path: "/api/hardhat", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1,
           children: ["/api/hardhat/getting-started", "/api/hardhat/reference", "/api/hardhat/testing", "/api/hardhat/compiling-libraries"],
+        },
+        {
+          title: "Block Explorer", // required
+          path: "/api/tools/block-explorer", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/tools/block-explorer/intro", "/api/tools/block-explorer/block-view", "/api/tools/block-explorer/contract-verification"],
         },
       ],
     },
