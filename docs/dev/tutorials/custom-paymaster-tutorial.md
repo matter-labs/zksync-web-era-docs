@@ -131,7 +131,7 @@ uint256 requiredETH = _transaction.ergsLimit * _transaction.maxFeePerErg;
 // Pulling all the tokens from the user
 IERC20(token).transferFrom(userAddress, thisAddress, 1);
 // The bootloader never returns any data, so it can safely be ignored here.
-(bool success, ) = payable(BOOTLOADER_ADDRESS).call{value: requiredETH}("");
+(bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{value: requiredETH}("");
 require(success, "Failed to transfer funds to the bootloader");
 ```
 
