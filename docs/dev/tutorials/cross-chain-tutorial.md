@@ -254,11 +254,13 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const artifact = await deployer.loadArtifact("Counter");
 
   // Deposit some funds to L2 to be able to perform deposits.
-  const depositAmount = ethers.utils.parseEther("0.001");
+  const deploymentFee = await deployer.estimateDeployFee(artifact, [
+    GOVERNANCE_ADDRESS,
+  ]);
   const depositHandle = await deployer.zkWallet.deposit({
     to: deployer.zkWallet.address,
     token: utils.ETH_ADDRESS,
-    amount: depositAmount,
+    amount: deploymentFee.mul(2),
   });
   // Wait until the deposit is processed on zkSync
   await depositHandle.wait();
@@ -317,9 +319,7 @@ async function main() {
 
   const counterContract = new Contract(COUNTER_ADDRESS, COUNTER_ABI, l2Provider);
 
-  const
-
-  console.log(`The counter value is ${(await counter.value()).toString()}`);
+  console.log(`The counter value is ${(await counterContract.value()).toString()}`);
 }
 
 main().catch((error) => {
