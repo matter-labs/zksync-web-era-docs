@@ -317,9 +317,7 @@ async function main() {
 
   const counterContract = new Contract(COUNTER_ADDRESS, COUNTER_ABI, l2Provider);
 
-  const
-
-  console.log(`The counter value is ${(await counter.value()).toString()}`);
+  console.log(`The counter value is ${(await counterContract.value()).toString()}`);
 }
 
 main().catch((error) => {
