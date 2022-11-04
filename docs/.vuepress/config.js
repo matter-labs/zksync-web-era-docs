@@ -71,13 +71,7 @@ module.exports = {
           title: "Getting started",
           path: "/dev/fundamentals",
           collapsable: false,
-          children: [
-            "/dev/fundamentals/rollups.md",
-            "/dev/fundamentals/zkSync.md",
-            "/dev/fundamentals/testnet.md",
-            "/dev/fundamentals/faq.md",
-          ],
-
+          children: ["/dev/fundamentals/rollups.md", "/dev/fundamentals/zkSync.md", "/dev/fundamentals/testnet.md", "/dev/fundamentals/faq.md"],
         },
         {
           title: "Understanding zkSync",
@@ -191,7 +185,7 @@ module.exports = {
           path: "/api/hardhat", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1,
-          children: ["/api/hardhat/getting-started", "/api/hardhat/reference", "/api/hardhat/testing", "/api/hardhat/compiling-libraries"],
+          children: ["/api/hardhat/getting-started", "/api/hardhat/plugins", "/api/hardhat/testing", "/api/hardhat/compiling-libraries"],
         },
         {
           title: "Block Explorer", // required
