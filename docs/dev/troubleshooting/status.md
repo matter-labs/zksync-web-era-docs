@@ -19,6 +19,7 @@ However, if a library contains at least one `public` or `external` method, it is
 - `SELFDESTRUCT` (it’s considered harmful and there are calls to deactivate it on L1).
 - `EXTCODECOPY` (it can be implemented if needed, but we skip it for now because zkEVM opcodes are not identical to EVM ones anyway).
 - `CALLCODE` (deprecated on Ethereum in favor of `DELEGATECALL`).
+- `CODECOPY` - (It does not return 0, but produces a compile error).
 ## Ignored by the compiler
 
 - `PC` always returns `0` (since solidity is 0.7.0, it is not accessible in Yul and Solidity).
