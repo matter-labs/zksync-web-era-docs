@@ -62,7 +62,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
     }
 
     function executeTransaction(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
-        executeTransaction(_transaction);
+        _executeTransaction(_transaction);
 	  }
 
     function _executeTransaction(Transaction calldata _transaction) internal {
