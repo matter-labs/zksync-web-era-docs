@@ -1,8 +1,8 @@
-# Reference
+# Plugins
 
-## `@matterlabs/hardhat-zksync-solc`
+## `hardhat-zksync-solc`
 
-This plugin is used to provide a convenient interface for compiling zkSync smart contracts.
+This plugin is used to provide a convenient interface for compiling Solidity smart contracts before deploying them to zkSync 2.0.
 
 ### Npm
 
@@ -24,16 +24,19 @@ This plugin most often will not be used directly in the code.
 
 ### Configuration
 
+This plugin is configured in the `hardhat.config.ts` file of your project. Here is an example
+
 ```typescript
 zksolc: {
-  version: "0.1.5",
-  compilerSource: "docker",
+  version: "1.2.0",
+  compilerSource: "binary",  // binary or docker
   settings: {
-    compilerPath: "zksolc",
+    compilerPath: "zksolc",  // ignored for compilerSource: "docker"
     experimental: {
-      dockerImage: "matterlabs/zksolc",
-      tag: "latest"
-    }
+      dockerImage: "matterlabs/zksolc", // required for compilerSource: "docker"
+      tag: "latest"   // required for compilerSource: "docker"
+    },
+    libraries{} // optional. References to non-inlinable libraries
   }
 }
 networks: {
@@ -44,30 +47,32 @@ networks: {
 ```
 
 - `version` is a field with the version of the `zksolc` compiler. Currently not used.
-- `compilerSource` is a field with the compiler source. It can be either `docker` or `binary`. In the former case, the `dockerImage` value with the name of the compiler docker image should also be provided. In the latter case, the compiler binary should be provided in `$PATH`.
-- `compilerPath` is a field with the path to the `zksolc` binary. If `compilerSource` is `docker`, this field is ignored. By default, the binary in `$PATH` is used.
+- `compilerSource` indicates the compiler source and can be either `docker` or `binary` (recommended). If there's not a compiler binary already installed, the plugin will automatically download it. If `docker` is used, you'd need to run Docker desktop in the background and provide both `dockerImage` and `tag` in the experimental section.
+- `compilerPath` is a field with the path to the `zksolc` binary. By default, the binary in `$PATH` is used. If `compilerSource` is `docker`, this field is ignored.
 - `dockerImage` and `tag` make up the name of the compiler docker image. If `compilerSource` is `binary`, these fields are ignored.
+- `libraries` if your contract uses non-inlinable libraries as dependencies, they have to be defined here. Learn more about [compiling libraries here](./compiling-libraries.md)
 - `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default.
-
 
 ### Commands
 
-`hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment. To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.
+`hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates the `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
 
-## `@matterlabs/hardhat-zksync-vyper`
+To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.
 
-This plugin is used to provide a convenient interface for compiling zkSync smart contracts using Vyper.
+## `hardhat-zksync-vyper`
+
+This plugin is used to provide a convenient interface for compiling Vyper smart contracts before deploying them to zkSync 2.0.
 
 ### Npm
 
 [@matterlabs/hardhat-zksync-vyper](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-vyper)
 
 This plugin is used in conjunction with [@nomiclabs/hardhat-vyper](https://www.npmjs.com/package/@nomiclabs/hardhat-vyper).
-To use it, you have to install and import both:
+To use it, you have to install and import both in the `hardhat.config.ts` file:
 
 ```javascript
-import '@nomiclabs/hardhat-vyper';
-import '@matterlabs/hardhat-zksync-vyper';
+import "@nomiclabs/hardhat-vyper";
+import "@matterlabs/hardhat-zksync-vyper";
 ```
 
 Add the latest version of this plugin to your project with the following command:
@@ -89,13 +94,15 @@ This plugin most often will not be used directly in the code.
 ```typescript
 zkvyper: {
   version: "0.1.0",
-  compilerSource: "docker",
+  compilerSource: "binary",  // binary or docker
   settings: {
-    compilerPath: "zkvyper",
+    compilerPath: "zkvyper",  // ignored for compilerSource: "docker"
     experimental: {
-      dockerImage: "matterlabs/zkvyper",
-      tag: "latest"
-    }
+      dockerImage: "matterlabs/zkvyper",  // required for compilerSource: "docker"
+      tag: "latest"  // required for compilerSource: "docker"
+    },
+    libraries{} // optional. References to non-inlinable libraries
+
   }
 }
 networks: {
@@ -106,19 +113,27 @@ networks: {
 ```
 
 - `version` is a field with the version of the `zkvyper` compiler. Currently not used.
-- `compilerSource` is a field with the compiler source. It can be either `docker` or `binary`. In the former case, the `dockerImage` value with the name of the compiler docker image should also be provided. In the latter case, the compiler binary should be provided in `$PATH`.
-- `compilerPath` is a field with the path to the `zkvyper` binary. If `compilerSource` is `docker`, this field is ignored. By default, the binary in `$PATH` is used.
+- `compilerSource` indicates the compiler source and can be either `docker` or `binary` (recommended). If there's not a compiler binary already installed, the plugin will automatically download it. If `docker` is used, you'd need to run Docker desktop in the background and provide both `dockerImage` and `tag` in the experimental section.
+- `compilerPath` is a field with the path to the `zkvyper` binary. By default, the binary in `$PATH` is used. If `compilerSource` is `docker`, this field is ignored.
 - `dockerImage` and `tag` make up the name of the compiler docker image. If `compilerSource` is `binary`, these fields are ignored.
-- `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default.
-
+- `libraries` if your contract uses non-inlinable libraries as dependencies, they have to be defined here. Learn more about [compiling libraries here](./compiling-libraries.md)
+- `zksync` network option indicates whether zkvyper is enabled on a certain network. `false` by default.
 
 ### Commands
 
-`hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment. To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.
+`hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
 
-## `@matterlabs/hardhat-zksync-deploy`
+To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.
 
-This plugin provides utilities for deploying smart contracts on zkSync with artifacts built by the `@matterlabs/hardhat-zksync-solc` plugin.
+## `hardhat-zksync-deploy`
+
+This plugin provides utilities for deploying smart contracts on zkSync with artifacts built by the `@matterlabs/hardhat-zksync-solc` or `@matterlabs/hardhat-zksync-vyper` plugins.
+
+::: warning
+
+Contracts must be compiled using the official `@matterlabs/hardhat-zksync-solc` or `@matterlabs/hardhat-zksync-vyper` plugins. Contracts compiled with other compilers will fail to deploy to zkSync using this plugin.
+
+:::
 
 ### Npm
 
@@ -136,13 +151,13 @@ yarn add -D @matterlabs/hardhat-zksync-deploy
 
 npm i -D @matterlabs/hardhat-zksync-deploy
 
-````
+```
 
 ### Exports
 
 #### `Deployer`
 
-The main export is the `Deployer` class. It is used to wrap `zksync-web3` Wallet instance and provide a convenient interface for deploying smart contracts based on the artifacts returned by the `@matterlabs/hardhat-zksync-solc` plugin.
+The main export of this plugin is the `Deployer` class. It is used to wrap a `zksync-web3` Wallet instance and provides a convenient interface to deploy smart contracts. Its main methods are:
 
 ```typescript
 class Deployer {
@@ -200,7 +215,7 @@ class Deployer {
     * @param overrides Optional object with additional deploy transaction parameters.
     * @param additionalFactoryDeps Additional contract bytecodes to be added to the factory dependencies list.
     * The fee amount is requested automatically from the zkSync server.
-    * 
+    *
     * @returns A contract object.
     */
   public async deploy(
@@ -218,14 +233,18 @@ class Deployer {
    * @returns Factory dependencies in the format expected by SDK.
    */
   async extractFactoryDeps(artifact: ZkSyncArtifact): Promise<string[]>
-````
+```
+
+To see an example script of how to use a `Deployer` to deploy a contract, check out [deployment section of the quickstart](./getting-started.md#write-and-deploy-a-contract).
 
 ### Configuration
 
-```
+Add the following properies in the `hardhat.config.ts` file:
+
+```json
 zkSyncDeploy: {
   zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
-  ethNetwork: "goerli"
+  ethNetwork: "goerli"  // Can also be the RPC URL of the network
 }
 ```
 
@@ -234,4 +253,10 @@ zkSyncDeploy: {
 
 ### Commands
 
-`hardhat deploy-zksync` -- runs through all the scripts in the `deploy` folder. To run a specific script, add the `--script` argument, e.g. `hardhat deploy-zksync --script 001_deploy.ts` will run script `./deploy/001_deploy.ts`. Note that only scripts in the `deploy` folder can be run by this command.
+`hardhat deploy-zksync` -- runs through all the scripts in the `deploy` folder. To run a specific script, add the `--script` argument, e.g. `hardhat deploy-zksync --script 001_deploy.ts` will run script `./deploy/001_deploy.ts`.
+
+::: tip
+
+Note that deployment scripts must be placed in the `deploy` folder!
+
+:::

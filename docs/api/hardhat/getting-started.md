@@ -2,28 +2,27 @@
 
 [Hardhat](https://hardhat.org) is an Ethereum development environment, designed for easy smart contract development in Solidity. One of its most prominent features is extendability: you can easily add new plugins to your hardhat project.
 
-zkSync has three plugins for hardhat:
+zkSync has three plugins for Hardhat:
 
-- `@matterlabs/hardhat-zksync-solc` for smart contract compilation using Solidity.
-- `@matterlabs/hardhat-zksync-vyper` for smart contract compilation using Vyper.
-- `@matterlabs/hardhat-zksync-deploy` for smart contract deployment.
+- [@matterlabs/hardhat-zksync-solc](./plugins.md#matterlabs-hardhat-zksync-solc) for smart contract compilation using Solidity.
+- [@matterlabs/hardhat-zksync-vyper](./plugins.md#matterlabs-hardhat-zksync-vyper) for smart contract compilation using Vyper.
+- [@matterlabs/hardhat-zksync-deploy](./plugins.md#matterlabs-hardhat-zksync-deploy) for smart contract deployment.
 
-To learn more about hardhat itself, check out their [documentation](https://hardhat.org/getting-started/).
+To learn more about Hardhat itself, check out [its official documentation](https://hardhat.org/getting-started/).
 
-This tutorial shows how to set up a zkSync Solidity project using a hardhat from scratch.
-If you are using Vyper, check out the [reference](./reference.md#matterlabs-hardhat-zksync-vyper) for our Vyper plugin or the [example](https://github.com/matter-labs/hardhat-zksync/tree/main/examples/vyper-example) in our GitHub repo!
+This tutorial shows how to set up a zkSync Solidity project using Hardhat from scratch.
+If you are using Vyper, check out the [Vyper plugin documentation](./plugins.md#matterlabs-hardhat-zksync-vyper) or [this example](https://github.com/matter-labs/hardhat-zksync/tree/main/examples/vyper-example) in GitHub!
 
 ## Prerequisites
 
 For this tutorial, the following programs must be installed:
 
 - `yarn` package manager. `npm` examples will be added soon.
-- `Docker` for compilation.
-- A wallet with sufficient Görli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts.
+- A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. We recommend using [our faucet from the zkSync portal](https://portal.zksync.io/faucet).
 
-## Initializing the project
+## Project setup
 
-1. Initialize the project and install the dependencies. Run the following commands in the terminal:
+1. To initialize the project and install the dependencies, run the following commands in the terminal:
 
 ```
 mkdir greeter-example
@@ -32,7 +31,9 @@ yarn init -y
 yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
-`typescript` and `ts-node` are optional - plugins will work fine in a vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
+The `typescript` and `ts-node` dependencies are optional - plugins will work fine in a vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
+
+## Configuration
 
 2. Create the `hardhat.config.ts` file and paste the following code within it:
 
@@ -43,15 +44,15 @@ require("@matterlabs/hardhat-zksync-solc");
 module.exports = {
   zksolc: {
     version: "1.2.0",
-    compilerSource: "docker",
+    compilerSource: "binary",
     settings: {
       optimizer: {
         enabled: true,
       },
       experimental: {
         dockerImage: "matterlabs/zksolc",
-        tag: "v1.2.0"
-      }
+        tag: "v1.2.0",
+      },
     },
   },
   zkSyncDeploy: {
@@ -69,9 +70,17 @@ module.exports = {
 };
 ```
 
-3. Create the `contracts` and `deploy` folders. The former is the place where all the contracts' `*.sol` files should be stored, and the latter is the place where all the scripts related to deploying the contract will be put.
+::: tip
 
-4. Create the `contracts/Greeter.sol` contract and insert the following code within it:
+To learn more about each specific property in the `hardhat.config.ts` file, check out the [plugins documentation](./plugins.md)
+
+:::
+
+## Write and deploy a contract
+
+3. Create the `contracts` and `deploy` folders. In the `contracts` folder we will store all the smart contract files. In the `deploy` folder we'll place all the scripts related to deploying the contracts.
+
+4. Create the `contracts/Greeter.sol` contract and paste the following code:
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
@@ -94,12 +103,15 @@ contract Greeter {
 }
 ```
 
-5. Compile the contracts with the following command: `yarn hardhat compile`.
+5. Run `yarn hardhat compile` which uses the `hardhat-zksync-solc` plugin to compile the contract. The `artifacts-zk` and `cache-zk` folders will be created in the root directory (instead of the regular Hardhat's `artifacts` and `cache`).
 
-An `artifacts-zk` and `cache-zk` folders were created in the root directory (instead of the regular hardhat's `artifacts` and `cache`).
-These are compilation artifacts, and should not be added to version control.
+::: tip
 
-6. Create the deployment script in the `deploy/deploy.ts`:
+Note that the `artifacts-zk` and `cache-zk` folders contain compilation artifacts and cache, and should not be added to version control, so it's a good practice to include them in the `.gitignore` file of your project.
+
+:::
+
+6. Create the deployment script in `deploy/deploy.ts` with the following code:
 
 ```typescript
 import { utils, Wallet } from "zksync-web3";
@@ -159,16 +171,20 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-7. After replacing the `WALLET-PRIVATE-KEY` text with the `0x`-prefixed private key of your Ethereum wallet, run the script using the following command:
+7. After replacing the `WALLET-PRIVATE-KEY` text with the `0x`-prefixed private key of your Ethereum wallet, run the script using the following command: `yarn hardhat deploy-zksync`. This script will:
 
-```
-yarn hardhat deploy-zksync
-```
+- Transfer 0.001 ETH from Goerli to zkSync.
+- Deploy the `Greeting` contract with the message "Hi there!".
+- Retrieve the message from the contract calling the `greet()` method.
+- Update the greet message in the contract with the `setGreeting()` method.
+- Retrieve the message from the contract again.
+
+**Congratulations! Your Hardhat project is now running on zkSync 🎉**
 
 ## Learn more
 
-- New to `zksync-web3` SDK? [Here](../js) is the documentation.
-- Want to dive deeper into zkSync `hardhat` plugins? Head straight to the [reference](./reference).
+- To learn more about the zkSync Hardhat plugins check out the [plugins documentation](./plugins).
+- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-web3 Javascript SDK documentation](../js) .
 
 ## Future releases
 

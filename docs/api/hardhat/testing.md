@@ -6,28 +6,28 @@ zkSync team provides a dockerized local setup for this purpose.
 
 ## Prerequisites
 
-It is required that you have `Docker` and `docker-compose` installed on your computer.
+It is required that you have `Docker` and `docker-compose` installed on your computer. Find the [installation guide here](https://docs.docker.com/get-docker/)
 
-Also, some familiarity with the zkSync hardhat plugin is assumed. If you are newly developing on zkSync with hardhat, a nice introduction is [here](./getting-started.md).
+This guide assumes that you're familiar with the zkSync Hardhat plugins. If you are new developing on zkSync with Hardhat, please check the [getting started section here](./getting-started.md).
 
 ## Installing the testing environment
 
-You can download the dockerized setup with the following command.
+Download the dockerized project with the following command:
 
 ```
 git clone https://github.com/matter-labs/local-setup.git
 ```
 
-## Bootstrapping zkSync
+## Start the local nodes
 
-To bootstrap zkSync locally, run the `start.sh` script:
+To run zkSync locally, run the `start.sh` script:
 
 ```
 cd local-setup
 ./start.sh
 ```
 
-This command will bootstrap three docker containers:
+This command will start three docker containers:
 
 - Postgres (used as the database for zkSync).
 - Local Geth node (used as L1 for zkSync).
@@ -35,9 +35,13 @@ This command will bootstrap three docker containers:
 
 By default, the HTTP JSON-RPC API will run on port `3050`, while WS API will run on port `3051`.
 
-_Note, that it is important that the first `start.sh` script invocation goes uninterrupted. If you face any issues after the bootstrapping process unexpectedly stopped, you should [reset](#resetting-the-zksync-state) the local zkSync state and try again._
+::: warning
 
-## Resetting the zkSync state
+Note, that it is important that the first `start.sh` script invocation goes uninterrupted. If you face any issues after the bootstrapping process unexpectedly stopped, you should [reset](#resetting-the-zksync-state) the local zkSync state and try again.
+
+:::
+
+## Reset the zkSync state
 
 To reset the zkSync state, run the `./clear.sh` script:
 
@@ -52,6 +56,7 @@ sudo ./clear.sh
 ```
 
 ## Rich wallets
+
 The local zkSync setup comes with some "rich" wallets with large amounts of ETH on both L1 and L2.
 
 The full list of the addresses of these accounts with the corresponding private keys can be found [here](https://github.com/matter-labs/local-setup/blob/main/rich-wallets.json).
@@ -60,14 +65,15 @@ The full list of the addresses of these accounts with the corresponding private 
 
 The initial version of the local node was shipped with several ERC-20 tokens deployed by default.
 
-It's no longer the case and if you need to interact with ERC-20 tokens, you should deploy them yourself.
+That's no longer the case and **if you need to interact with ERC-20 tokens, you should deploy them yourself.**
 
 If you'd like the local node to come with pre-deployed tokens again, please let us know on our [discord](https://discord.gg/px2aR7w), so we can prioritize accordingly.
 
 :::
 
-## Using custom database/L1
-To use a custom Postgres database or Layer 1, you should change the environment parameters in the docker-compose file:
+## Using custom database or Ethereum node
+
+To use a custom Postgres database or Layer 1 node, you should change the environment parameters in the docker-compose file:
 
 ```yml
 environment:
@@ -80,10 +86,13 @@ environment:
 
 ## Testing with `mocha` + `chai`
 
-Please note, that since the zkSync node URL is provided in the `hardhat.config.ts`, the best way to use different URLs for production deployment and local testing is to use environment variables. The standard way is to set the `NODE_ENV=test` environment variable before invoking the tests.
+Since the zkSync node URL is provided in the `hardhat.config.ts`, the best way to use different URLs for deployment and local testing is to use environment variables. The standard way is to set the `NODE_ENV=test` environment variable before invoking the tests.
 
-1. Create a new hardhat project and follow the contracts' compilation guide from the [getting started](./getting-started.md) page (steps 1 to 5 of the **Initializing the project** section).
-2. To add the test frameworks, run the following command:
+### Project setup
+
+1. Create a new Hardhat project following the [getting started guide](./getting-started.md) as a reference.
+
+2. To install the test libraries, run the following command:
 
 ```
 yarn add -D mocha chai @types/mocha @types/chai
@@ -97,41 +106,43 @@ yarn add -D mocha chai @types/mocha @types/chai
 }
 ```
 
-This will enable running tests in a hardhat environment with the `NODE_ENV` env variable set as a `test`.
+This will enable running tests in a Hardhat environment with the `NODE_ENV` env variable set as a `test`.
+
+### Configuration
 
 4. Modify `hardhat.config.ts` to use the local node for testing:
 
 ```typescript
-require('@matterlabs/hardhat-zksync-deploy');
-require('@matterlabs/hardhat-zksync-solc');
+require("@matterlabs/hardhat-zksync-deploy");
+require("@matterlabs/hardhat-zksync-solc");
 
 // changes endpoint depending on environment variable
 const zkSyncDeploy =
-  process.env.NODE_ENV == 'test'
+  process.env.NODE_ENV == "test"
     ? {
-        zkSyncNetwork: 'http://localhost:3050',
-        ethNetwork: 'http://localhost:8545',
+        zkSyncNetwork: "http://localhost:3050",
+        ethNetwork: "http://localhost:8545",
       }
     : {
-        zkSyncNetwork: 'https://zksync2-testnet.zksync.dev',
-        ethNetwork: 'goerli',
+        zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
+        ethNetwork: "goerli",
       };
 
 module.exports = {
   zksolc: {
-    version: '1.2.0',
-    compilerSource: 'binary',
+    version: "1.2.0",
+    compilerSource: "binary",
     settings: {
       experimental: {
-        dockerImage: 'matterlabs/zksolc',
-        tag: 'v1.2.0',
+        dockerImage: "matterlabs/zksolc",
+        tag: "v1.2.0",
       },
     },
   },
   // load endpoints
   zkSyncDeploy,
   solidity: {
-    version: '0.8.11',
+    version: "0.8.11",
   },
   networks: {
     hardhat: {
@@ -139,12 +150,13 @@ module.exports = {
     },
   },
 };
-
 ```
 
 Create a `test` folder, where the tests will reside.
 
-5. Now we can write our first test! Create a `test/main.test.ts` file with the following content:
+### Writing test files
+
+5. Now you can write your first test! Create a `test/main.test.ts` file with the following code:
 
 ```ts
 import { expect } from "chai";
@@ -179,11 +191,15 @@ describe("Greeter", function () {
 });
 ```
 
-You can now run the tests with the following command:
+This script deploys the `Greeter` contract created in the [getting started guide](./getting-started.md#write-and-deploy-a-contract) and test that it returns a correct message when calling the `greet()` method, and that the message can be updated with the `setGreeting()` method.
+
+You can now run the test file with the following command:
 
 ```
 yarn test
 ```
+
+**Congratulations! You've ran your first tests locally with zkSync 🎉**
 
 ## Full example
 
