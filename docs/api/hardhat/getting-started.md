@@ -4,9 +4,9 @@
 
 zkSync has three plugins for Hardhat:
 
-- [@matterlabs/hardhat-zksync-solc](./plugins.md#matterlabs-hardhat-zksync-solc) for smart contract compilation using Solidity.
-- [@matterlabs/hardhat-zksync-vyper](./plugins.md#matterlabs-hardhat-zksync-vyper) for smart contract compilation using Vyper.
-- [@matterlabs/hardhat-zksync-deploy](./plugins.md#matterlabs-hardhat-zksync-deploy) for smart contract deployment.
+- [@matterlabs/hardhat-zksync-solc](./plugins.md#matterlabs-hardhat-zksync-solc) - used to compile contracts written in Solidity.
+- [@matterlabs/hardhat-zksync-vyper](./plugins.md#matterlabs-hardhat-zksync-vyper) - used to compile contracts written in Vyper.
+- [@matterlabs/hardhat-zksync-deploy](./plugins.md#matterlabs-hardhat-zksync-deploy) - used to deploy smart contracts.
 
 To learn more about Hardhat itself, check out [its official documentation](https://hardhat.org/getting-started/).
 

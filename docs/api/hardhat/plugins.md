@@ -41,17 +41,17 @@ zksolc: {
 }
 networks: {
   hardhat: {
-    zksync: true
+    zksync: true  // enables zksync in hardhat local network
   }
 }
 ```
 
 - `version` is a field with the version of the `zksolc` compiler. Currently not used.
-- `compilerSource` indicates the compiler source and can be either `docker` or `binary` (recommended). If there's not a compiler binary already installed, the plugin will automatically download it. If `docker` is used, you'd need to run Docker desktop in the background and provide both `dockerImage` and `tag` in the experimental section.
+- `compilerSource` indicates the compiler source and can be either `docker` or `binary` (recommended). If there isnn't a compiler binary already installed, the plugin will automatically download it. If `docker` is used, you'd need to run Docker desktop in the background and provide both `dockerImage` and `tag` in the experimental section.
 - `compilerPath` is a field with the path to the `zksolc` binary. By default, the binary in `$PATH` is used. If `compilerSource` is `docker`, this field is ignored.
 - `dockerImage` and `tag` make up the name of the compiler docker image. If `compilerSource` is `binary`, these fields are ignored.
 - `libraries` if your contract uses non-inlinable libraries as dependencies, they have to be defined here. Learn more about [compiling libraries here](./compiling-libraries.md)
-- `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default.
+- `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default. Useful for multichain projects in which you can enable `zksync` only for specific networks.
 
 ### Commands
 
@@ -68,7 +68,7 @@ This plugin is used to provide a convenient interface for compiling Vyper smart 
 [@matterlabs/hardhat-zksync-vyper](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-vyper)
 
 This plugin is used in conjunction with [@nomiclabs/hardhat-vyper](https://www.npmjs.com/package/@nomiclabs/hardhat-vyper).
-To use it, you have to install and import both in the `hardhat.config.ts` file:
+To use it, you have to install and import both plugins in the `hardhat.config.ts` file:
 
 ```javascript
 import "@nomiclabs/hardhat-vyper";
@@ -107,17 +107,17 @@ zkvyper: {
 }
 networks: {
   hardhat: {
-    zksync: true
+    zksync: true  // enables zksync in hardhat local network
   }
 }
 ```
 
 - `version` is a field with the version of the `zkvyper` compiler. Currently not used.
-- `compilerSource` indicates the compiler source and can be either `docker` or `binary` (recommended). If there's not a compiler binary already installed, the plugin will automatically download it. If `docker` is used, you'd need to run Docker desktop in the background and provide both `dockerImage` and `tag` in the experimental section.
+- `compilerSource` indicates the compiler source and can be either `docker` or `binary` (recommended). If there isnn't a compiler binary already installed, the plugin will automatically download it. If `docker` is used, you'd need to run Docker desktop in the background and provide both `dockerImage` and `tag` in the experimental section.
 - `compilerPath` is a field with the path to the `zkvyper` binary. By default, the binary in `$PATH` is used. If `compilerSource` is `docker`, this field is ignored.
 - `dockerImage` and `tag` make up the name of the compiler docker image. If `compilerSource` is `binary`, these fields are ignored.
 - `libraries` if your contract uses non-inlinable libraries as dependencies, they have to be defined here. Learn more about [compiling libraries here](./compiling-libraries.md)
-- `zksync` network option indicates whether zkvyper is enabled on a certain network. `false` by default.
+- `zksync` network option indicates whether zkvyper is enabled on a certain network. `false` by default. Useful for multichain projects in which you can enable `zksync` only for specific networks.
 
 ### Commands
 

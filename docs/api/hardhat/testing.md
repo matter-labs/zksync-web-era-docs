@@ -61,11 +61,9 @@ The local zkSync setup comes with some "rich" wallets with large amounts of ETH 
 
 The full list of the addresses of these accounts with the corresponding private keys can be found [here](https://github.com/matter-labs/local-setup/blob/main/rich-wallets.json).
 
-::: tip ERC-20 tokens
+::: warning ERC20 tokens
 
-The initial version of the local node was shipped with several ERC-20 tokens deployed by default.
-
-That's no longer the case and **if you need to interact with ERC-20 tokens, you should deploy them yourself.**
+Rich wallets only have ETH. **If you need to test with ERC20 tokens, you should deploy them yourself.**
 
 If you'd like the local node to come with pre-deployed tokens again, please let us know on our [discord](https://discord.gg/px2aR7w), so we can prioritize accordingly.
 
