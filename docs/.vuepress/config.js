@@ -17,6 +17,10 @@ module.exports = {
         baseURL: "https://zksync.io", // base url for your canonical link, optional, default: ''
         stripExtension: false, // strip '.html' , optional, default: false
       },
+      "@vuepress/google-analytics",
+      {
+        "ga": "G-WB89JZ0NY4" // UA-00000000-0
+      },
     ],
   ],
   themeConfig: {
