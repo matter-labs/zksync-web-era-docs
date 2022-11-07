@@ -7,7 +7,7 @@ Welcome to zkSync 2.0 testnet! Our team would be very happy to see what you can 
 Note, that the system is still in active development, so:
 
 - **Breaking changes are possible in the future.**
-- **Some of the updates may require regenesis**, i.e. erasing all the balances, smart contracts, and restarting the blockchain. We will make sure to communicate all regenesis beforehand! Make sure to follow our [Discord](https://discord.gg/px2aR7w).
+- **Some of the updates may require regenesis**, i.e. erasing all the balances, and smart contracts, and restarting the blockchain. We will make sure to communicate all regenesis beforehand! Make sure to follow our [Discord](https://discord.gg/px2aR7w).
 
 :::
 
@@ -17,11 +17,11 @@ To get a first-hand impression of the zkSync 2.0 user experience:
 - Get some test tokens from the faucet, or deposit some from Ethereum's Görli testnet.
 - Make some transfers.
 
-The Portal is the central entry point into the zkSync 2.0 ecosystem for users and developers alike. It contains links to all relevant resources, such as block explorer or the catalog of featured dapps.
+The Portal is the central entry point into the zkSync 2.0 ecosystem for users and developers alike. It contains links to all relevant resources, such as [block explorer](https://explorer.zksync.io) or the catalog of featured dApps.
 
 ## Do I need experience with zkSync 1.x?
 
-Some experience with zkSync 1.x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are very different systems, and experience with the latter is not needed to build on zkSync 2.0.
+Some experience with zkSync 1. x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are very different systems, and experience with the latter is not needed to build on zkSync 2.0.
 
 ## What do I need to start building?
 
@@ -44,7 +44,7 @@ To connect Metamask to zkSync, add the zkSync alpha testnet network to the walle
 
 ![img](../../assets/images/connect-1.png)
 
-2. Click on "Add network".
+2. Click on "Add network manually".
 
 3. Fill in the details about zkSync alpha testnet network and click "Save":
 
@@ -52,4 +52,4 @@ To connect Metamask to zkSync, add the zkSync alpha testnet network to the walle
 - New RPC URL: `https://zksync2-testnet.zksync.dev`
 - Chain ID: `280`
 - Currency Symbol: `ETH`
-<!-- - Block Explorer URL: `https://testnet.explorer.zksync.io/` -->
+<!-- - Block Explorer URL: `https://explorer.zksync.io` -->

@@ -1,6 +1,6 @@
 # Quickstart
 
-In about 5 minutes this tutorial will show you how to deploy a smart contract to zkSync and build a dApp to interact with it using the zkSync development toolbox.
+In this quickstart guide, you will learn how to deploy a smart contract to zkSync and build a dApp to interact with it using the zkSync development toolbox.
 
 This is what we're going to build:
 
