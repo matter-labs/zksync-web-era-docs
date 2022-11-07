@@ -14,7 +14,7 @@ If a Solidity library can be inlined, i.e. it only contains `private` or `intern
 
 However, if a library contains at least one `public` or `external` method, it is no longer inlined in the Yul representation. These addresses need to be passed explicitly to our compiler. This is not currently supported by our hardhat plugin but will be added later.
 
-For support on older version of Solidity and Vyper, check [here](../developer-guides/contracts/contracts.md#solidityvyper-support)
+For support on an older version of Solidity and Vyper, check [here](../developer-guides/contracts/contracts.md#solidityvyper-support)
 
 ## Unsupported opcodes
 
