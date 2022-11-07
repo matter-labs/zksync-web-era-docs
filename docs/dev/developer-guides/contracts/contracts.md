@@ -22,7 +22,8 @@ Compiling Solidity to zkEVM bytecode requires a special compiler. For the time b
 
 Although, older versions of Solidity are supported, here are some of their limitations in zkSync:
 - Contract-local recursion is not supported.
-- Internal function pointers are not supported.
+- Internal function pointers are not supported. 
+
 
 Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are supported as precompiles. No actions are required from your side as all the calls to the precompiles are done by the compiler under the hood.
 
