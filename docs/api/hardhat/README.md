@@ -5,6 +5,6 @@
 ## Table of contents
 
 - [Getting started](./getting-started.md)
-- [Reference](./reference.md)
+- [Plugins & configuration](./plugins.md)
 - [Local testing](./testing.md)
 - [Compiling non-inlinable libraries](./compiling-libraries.md)
