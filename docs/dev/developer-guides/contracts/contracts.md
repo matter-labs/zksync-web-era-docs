@@ -24,7 +24,7 @@ Although, older versions of Solidity are supported, here are some of their limit
 - Contract-local recursion is not supported.
 - Internal function pointers are not supported. 
 
-For smart contract compilation using Solidity or Vyper, [check here for their plugin](https://github.com/matter-labs/hardhat-zksync).
+For smart contract compilation using Solidity or Vyper, [check the correspondent Hardhat plugins here](../../../api/hardhat/plugins.md).
 
 Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are supported as precompiles. No actions are required from your side as all the calls to the precompiles are done by the compiler under the hood.
 
