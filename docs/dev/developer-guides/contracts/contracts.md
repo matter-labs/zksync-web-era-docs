@@ -14,7 +14,7 @@ Summary:
 - **How deploying contracts works on zkSync.**
   To deploy a contract, a user calls the `create` function of the [ContractDeployer](./system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
-All the deployment process is handled inside our [hardhat](../../../api/hardhat) plugin.
+The [hardhat-zksync-deploy](../../../api/hardhat) plugin takes care of the deployment process. Here's a [guide on how to use it](../../../api/hardhat/getting-started.md).
 
 ## Solidity/Vyper support
 
