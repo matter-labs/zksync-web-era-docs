@@ -14,20 +14,14 @@ If a Solidity library can be inlined, i.e. it only contains `private` or `intern
 
 However, if a library contains at least one `public` or `external` method, it is no longer inlined in the Yul representation. These addresses need to be passed explicitly to our compiler. This is not currently supported by our hardhat plugin but will be added later.
 
+For support on an older version of Solidity and Vyper, check [here](../developer-guides/contracts/contracts.md#solidity-vyper-support)
+
 ## Unsupported opcodes
 
 - `SELFDESTRUCT` (it’s considered harmful and there are calls to deactivate it on L1).
 - `EXTCODECOPY` (it can be implemented if needed, but we skip it for now because zkEVM opcodes are not identical to EVM ones anyway).
 - `CALLCODE` (deprecated on Ethereum in favor of `DELEGATECALL`).
-
-## Temporarily simulated by constant values
-
-These opcodes will be supported by the time of the mainnet launch.
-
-- `block.gaslimit` always returns `2^32-1`.
-- `MSIZE` always returns `2^16`.
-- `DIFFICULTY` (`block.difficulty`) always returns `2500000000000000` (zkSync does not have proof of work consensus).
-
+- `CODECOPY` - (It does not return 0, but produces a compile error).
 ## Ignored by the compiler
 
 - `PC` always returns `0` (since solidity is 0.7.0, it is not accessible in Yul and Solidity).

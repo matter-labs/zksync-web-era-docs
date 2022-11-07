@@ -28,11 +28,6 @@ If you encounter such an error, please do the following:
 - If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](../../../api/hardhat/compiling-libraries.md).
 - If the same error persists, report the issue to our team. We will do our best to help you.
 
-## Why is Docker Desktop not running and why does Docker Desktop show not installed error?
-
-If you are running Windows you may get this error, as a result of incompatibility with our hardhat plugin.
-You can still compile the contract using Windows Subsystem for Linux (WSL 2).
-
 ## Why can't I use CREATE/CREATE2 opcodes with raw bytecode?
 
 zkSync does not support using CREATE/CREATE2 with raw bytecode. We highly recommend using the `new` operator to avoid any issues.

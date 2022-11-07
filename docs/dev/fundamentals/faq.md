@@ -72,9 +72,10 @@ zkSync is optimized to be EVM *compatible* not EVM *equivalent* for three primar
 
 Almost every smart contract written for EVM will be supported by zkSync 2.0 and will hold all key security invariants so that no additional security re-auditing will be required in most cases. A notable exception is the contracts that use the following EVM opcodes:
 
-- `SELFDESTRUCT` (it’s considered harmful and there are calls to deactivate it on L1).
-- `EXTCODECOPY` (it can be implemented if needed, but we skip it for now because zkEVM opcodes are not identical to EVM ones anyway).
-- `CALLCODE` (deprecated on Ethereum in favor of `DELEGATECALL`).
+- `SELFDESTRUCT` - (It’s considered harmful and there are calls to deactivate it on L1).
+- `EXTCODECOPY` - (It can be implemented if needed, but we skip it for now because zkEVM opcodes are not identical to EVM ones anyway).
+- `CALLCODE` - (deprecated on Ethereum in favor of `DELEGATECALL`).
+- `CODECOPY` - (It does not return 0, but produces a compile error).
 
 There are a few other distinctions, for example, gas metering will be different (as is the case for other L2s as well). Some EVM’s cryptographic precompiles (notably pairings and RSA) won’t be available in the very first release but will be implemented soon after the launch, with pairing being a priority to allow both Hyperchains and protocols like Aztec/Dark Forest to be deployed without modifications too.
 

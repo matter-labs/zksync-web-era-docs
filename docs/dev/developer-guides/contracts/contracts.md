@@ -14,11 +14,17 @@ Summary:
 - **How deploying contracts works on zkSync.**
   To deploy a contract, a user calls the `create` function of the [ContractDeployer](./system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
-All the deployment process is handled inside our [hardhat](../../../api/hardhat) plugin.
+The [hardhat-zksync-deploy](../../../api/hardhat) plugin takes care of the deployment process. Here's a [guide on how to use it](../../../api/hardhat/getting-started.md).
 
 ## Solidity/Vyper support
 
-Compiling Solidity to zkEVM bytecode requires a special compiler. For the time being Solidity `>=0.4.0` versions are supported, though it is still recommended to use `^0.8.0` as the most stable ones. Vyper `^0.3.3` is also supported.
+Compiling Solidity to zkEVM bytecode requires a special compiler. For the time being Solidity `>=0.4.10` versions are supported, though we strongly recommended using `^0.8.0` as the most stable one. Vyper `^0.3.3` is also supported.
+
+Although, older versions of Solidity are supported, here are some of their limitations in zkSync:
+- Contract-local recursion is not supported.
+- Internal function pointers are not supported. 
+
+For smart contract compilation using Solidity or Vyper, [check the correspondent Hardhat plugins here](../../../api/hardhat/plugins.md).
 
 Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are supported as precompiles. No actions are required from your side as all the calls to the precompiles are done by the compiler under the hood.
 
@@ -31,17 +37,17 @@ To gain a deterministic address, you should use `create2`. It is available for E
 
 ## Note on `factory deps`
 
-Under the hood, zkSync stores not bytecodes of contracts, but [specially formatted](#format-of-bytecode-hash) hashes of their bytecodes. You can see that even the [ContractDeployer](./system-contracts.md#contractdeployer) system contract accepts the bytecode hash of the deployed contract and not its bytecode. However, in order for contract deployment to succeed, the operator needs to know the bytecode. Exactly for this reason the `factory_deps` (i.e. factory dependencies) field for transactions is used: it contains the bytecodes that should be known to the operator in order for this transaction to succeed. Once the transaction succeeds, these bytecodes will be published on L1 and will be considered as "known" to the operator forever.
+Under the hood, zkSync stores not bytecodes of contracts, but [specially formatted](#format-of-bytecode-hash) hashes of their bytecodes. You can see that even the [ContractDeployer](./system-contracts.md#contractdeployer) system contract accepts the bytecode hash of the deployed contract and not its bytecode. However, for contract deployment to succeed, the operator needs to know the bytecode. Exactly for this reason the `factory_deps` (i.e. factory dependencies) field for transactions is used: it contains the bytecodes that should be known to the operator in order for this transaction to succeed. Once the transaction succeeds, these bytecodes will be published on L1 and will be considered as "known" to the operator forever.
 
 Some examples of usage are:
-- The obvious one, is when you deploy a contract, you need to provide its code in the `factory_deps` field.
+The obvious one is when you deploy a contract, you need to provide its code in the `factory_deps` field.
 - On zkSync, factories (i.e. contracts that can deploy other contracts) do not store bytecodes of their dependencies, i.e. contracts that they can deploy. They only store their hashes. That's why you need to include *all* the bytecodes of the dependencies in the `factory_deps` field.
 
-Both of these examples are already seemlessly done under the hood by our [hardhat plugin](../../../api/hardhat/getting-started.md).
+Both of these examples are already seamlessly done under the hood by our [hardhat plugin](../../../api/hardhat/getting-started.md).
 
 Note, that the factory deps do not necessarily have to be used by the transaction in any way. These are just markers that these bytecodes should be published on L1 with this transaction. If your contract contains a lot of various factory dependencies and they do not fit inside a single L1 block, you can split the list of factory dependencies between multiple transactions. 
 
-For example, let's say that you want to deploy a contract `A` that can also deploy contracts `B` and `C`. This means that you will have three factory dependencies for your deployment transaction: `A`,`B` and `C`. If the pubdata required to publish all of them is too large to fit into one block, you can send a dummy transaction with only factory dependencies `A` and `B` (assuming their combined length is small enough) and do the actual deploy with a second transaction while providing the bytecode of contract `C` as a factory dependency for it. Note, that if some contract *on its own* is larger than the allowed limit per block, this contract has to be split into smaller ones.
+For example, let's say that you want to deploy contract `A` which can also deploy contracts `B` and `C`. This means that you will have three factory dependencies for your deployment transaction: `A`,`B` and `C`. If the pubdata required to publish all of them is too large to fit into one block, you can send a dummy transaction with only factory dependencies `A` and `B` (assuming their combined length is small enough) and do the actual deploy with a second transaction while providing the bytecode of contract `C` as a factory dependency for it. Note, that if some contract *on its own* is larger than the allowed limit per block, this contract has to be split into smaller ones.
 
 ### L1->L2 communication
 
@@ -51,11 +57,11 @@ The [interface](https://github.com/matter-labs/v2-testnet-contracts/blob/d4a2869
 
 Each zkEVM bytecode must adhere to the following format:
 
-- It's length must be divisible by 32.
-- It's length in words (32-byte chunks) should be odd. In other words, `bytecodeLength % 64 == 32`.
+- Its length must be divisible by 32.
+- Its length in words (32-byte chunks) should be odd. In other words, `bytecodeLength % 64 == 32`.
 - It can not be longer than `2^16` 32-byte words, i.e. `2^21` bytes.
 
-The 32-byte hash of the bytecode of a zkSync contract is calculated the following way:
+The 32-byte hash of the bytecode of a zkSync contract is calculated in the following way:
 
 - The first 2 bytes denote the version of bytecode hash format and are currently equal to `[1,0]`.
 - The second 2 bytes denote the length of the bytecode in 32-byte words. 
