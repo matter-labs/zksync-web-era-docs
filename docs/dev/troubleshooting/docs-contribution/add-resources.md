@@ -1,6 +1,6 @@
 ## Adding content resources
 
-We cannot promise to cover all aspects of zkSync so we attempt to highlight some of the community's outstanding resources such as videos, tutorials, articles etc.
+We cannot promise to cover all aspects of zkSync so we will attempt to highlight some of the community's outstanding resources such as videos, tutorials, articles etc.
 
 If you believe that a content resource should be added to a page, be free to recommend its addition.
 
