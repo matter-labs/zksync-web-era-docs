@@ -12,3 +12,10 @@ As collaboration on contribution to zkSync documentation is such an integral par
     - If you want to discuss a larger problem or propose a major change to the zkSync documentation, you can raise an [issue on Github](https://github.com/matter-labs/zksync-web-v2-docs/issues).
 - Share views and know the latest discussions on our [Community Forum](https://community.zksync.io/).
 - Follow zkSync on Twitter to get the latest happenings on zkSync.
+
+## Ways to contribute
+
+- [Create or edit a page](./edit-doc.md) - Improve on the existing pages or create a new one.
+- [Pick an issue and work on it](https://github.com/matter-labs/zksync-web-v2-docs/issues) - Work on issues that's has been raised.
+- [Add a glossary term](./add-glossary.md) - Help us expand the zkSync glossary.
+- [Add relevant resources](./add-resources.md) - Help us add relevant resources, such as videos, tutorials or articles.
