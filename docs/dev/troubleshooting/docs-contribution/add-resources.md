@@ -11,4 +11,6 @@ All learning resources, recommended by the community will be evaluated based on 
 - Is the content resource protected by a payment wall?
 - Is the information trustworthy? Is it based on facts or opinions?
 - How reputable is the author? Do they cite their references?
-- Does the content resource provide anything new or different from what can be found on the documentation?
+- Does the content resource provide anything new or different from what can be found in the documentation?
+## Add your content resource
+If you would like to add a resource to any page in zkSync documentation and it meets the criteria above, create an [issue on GitHub](https://github.com/matter-labs/zksync-web-v2-docs/issues/new).
