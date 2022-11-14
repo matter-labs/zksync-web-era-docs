@@ -5,7 +5,7 @@ We cannot promise to cover all aspects of zkSync so we will attempt to highlight
 If you believe that a content resource should be added to a page, be free to recommend its addition.
 
 ## How we decide
-All learning resources, recommended by the community will be evaluated based on the following criteria:
+All learning resources recommended by the community will be evaluated based on the following criteria:
 
 - Is the content resource current?
 - Is the content resource protected by a payment wall?

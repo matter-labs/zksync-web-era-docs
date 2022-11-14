@@ -1,6 +1,8 @@
+<!-- Thanks for reporting an issue! Please fill out the blanks below. -->
+
 <!--- Provide a general summary of the issue in the Title above -->
 
-🧾 Expected Behaviour
+## 🧾 Expected Behaviour
 
 <!--- If you're describing a bug, tell us what should happen --><!--- If you're suggesting a change/improvement, tell us how it should work -->
 
@@ -10,15 +12,26 @@
 
 ## 🙋‍️ Possible Solution [optional]
 
-<!--- Not obligatory, but suggest a fix/reason for the bug, --><!--- or ideas how to implement the addition or change -->
+....
+
+<!--- Not obligatory, but suggest a fix/reason for the bug, --><!--- or ideas on how to implement the addition or change -->
 
 ## 📝 Steps to Reproduce (for bugs)
 
-<!--- Provide a link to a live example, or an unambiguous set of steps to --><!--- reproduce this bug. Include code to reproduce, if relevant -->1.2.3.4.
+....
 
-## 🖥 Context
+<!--- Provide a link to a live example or an unambiguous set of steps to --><!--- reproduce this bug. Include code to reproduce, if relevant -->1.2.3.4.
+
+## 🖥 Context: What were you expecting to happen?
+
+....
 
 <!--- How has this issue affected you? What are you trying to accomplish? --><!--- Providing context helps us come up with a solution that is most useful in the real world -->
+
+## ❌ Any logs, error output, etc?
+<!-- If it’s long, please paste to https://gist.github.com/ and insert the link here. -->
+
+> Link to your issue / project:
 
 ## 🔩 Your Environment
 
@@ -28,7 +41,10 @@
 * Browser Name and version:
 * Operating System and version (desktop or mobile):
 
-> Link to your issue / project:
-
-
 ## ✅ Acceptance criteria
+
+....
+
+## Any other comments?
+
+....
