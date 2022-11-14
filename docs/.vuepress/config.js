@@ -71,7 +71,11 @@ module.exports = {
           title: "Getting started",
           path: "/dev/fundamentals",
           collapsable: false,
-          children: ["/dev/fundamentals/rollups.md", "/dev/fundamentals/zkSync.md", "/dev/fundamentals/testnet.md", "/dev/fundamentals/faq.md"],
+          children: [
+            "/dev/fundamentals/rollups.md", 
+            "/dev/fundamentals/zkSync.md", 
+            "/dev/fundamentals/testnet.md", 
+            "/dev/fundamentals/faq.md"],
         },
         {
           title: "Understanding zkSync",
@@ -107,7 +111,10 @@ module.exports = {
           title: "Tutorials",
           path: "/dev/tutorials",
           collapsable: false,
-          children: ["/dev/tutorials/cross-chain-tutorial.md", "/dev/tutorials/custom-aa-tutorial.md", "/dev/tutorials/custom-paymaster-tutorial.md"],
+          children: [
+          "/dev/tutorials/cross-chain-tutorial.md", 
+          "/dev/tutorials/custom-aa-tutorial.md", 
+          "/dev/tutorials/custom-paymaster-tutorial.md"],
         },
         {
           title: "Troubleshooting",
@@ -118,6 +125,7 @@ module.exports = {
             "/dev/troubleshooting/status.md",
             "/dev/troubleshooting/docs-contribution/docs.md",
             "/dev/troubleshooting/docs-contribution/edit-doc.md",
+            "/dev/troubleshooting/docs-contribution/add-resources.md",
             "/dev/troubleshooting/known-issues.md",
           ],
         },
@@ -185,14 +193,21 @@ module.exports = {
           path: "/api/hardhat", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1,
-          children: ["/api/hardhat/getting-started", "/api/hardhat/plugins", "/api/hardhat/testing", "/api/hardhat/compiling-libraries"],
+          children: [
+            "/api/hardhat/getting-started", 
+            "/api/hardhat/plugins", 
+            "/api/hardhat/testing", 
+            "/api/hardhat/compiling-libraries"],
         },
         {
           title: "Block Explorer", // required
           path: "/api/tools/block-explorer", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
-          children: ["/api/tools/block-explorer/intro", "/api/tools/block-explorer/block-view", "/api/tools/block-explorer/contract-verification"],
+          children: [
+            "/api/tools/block-explorer/intro", 
+            "/api/tools/block-explorer/block-view", 
+            "/api/tools/block-explorer/contract-verification"],
         },
       ],
     },
