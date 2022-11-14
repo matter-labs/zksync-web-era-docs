@@ -49,3 +49,13 @@ Projects are advised not to use the L2 block hash as a source of randomness.
 - Gas limit: The current block gas limit, always returns `2^32-1`.
 - Coinbase:  The current block miner’s address, returns the [bootloader](../contracts/system-contracts.md#bootloader) address.
 - Difficulty: The current block difficulty, returns `2500000000000000` (zkSync does not have proof of work consensus).
+
+
+### Empty Blocks
+
+We currently have empty blocks being shown on our block explorer, please note it's not a block explorer issue, but this happens by design.
+
+Although this might be a short-term reality, it is important to consider the rationale behind this design.
+
+Each L1 batch (which comprises several L2 blocks) is executed in a single VM instance. The VM executes transactions one by one and then executes some code that has nothing to do with the last transaction but rather with the entire batch. Currently, the ETH collected from fees is transferred from the bootloader formal address to the block miner address. The issue is that this transfer emits an event (like any other transfer), hence, we included this event in an L2 block for it to be accessible via API. We could add it in the latest L2 block in the L1 batch, but imagine the following scenario: if some L2 block was closed, but its L1 batch was not, and the node hasn't received any new transactions in a while, then the L1 batch must be closed by the timeout. If we add the event to the most recent closed block, it will modify the block, resulting in a sort of re-organization. 
+To avoid this is why we built a purely fictional block containing the only event.
