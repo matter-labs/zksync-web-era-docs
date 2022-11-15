@@ -162,7 +162,7 @@ yarn hardhat deploy-zksync
 
 In the output, you should see the address the contract was deployed to.
 
-Congratulations! You have deployed a smart contract to zkSync! Now you can visit the [zkSync block explorer](https://explorer.zksync.io/) and search you contract address to confirm it was successfully deployed.
+Congratulations! You have deployed a smart contract to zkSync! Now you can visit the [zkSync block explorer](https://explorer.zksync.io/) and search your contract address to confirm it was successfully deployed.
 
 [This guide](../../api/tools/block-explorer/contract-verification.md) explains how to verify your smart contract using the zkSync block explorer.
 
@@ -211,7 +211,7 @@ async getGreeting() {
 },
 
 async getFee() {
-  // TOOD: return formatted fee
+  // TODO: return formatted fee
   return "";
 },
 
@@ -266,7 +266,7 @@ Run the following command on the greeter-tutorial-starter root folder to install
 yarn add ethers zksync-web3
 ```
 
-After that, import both libraries in the `script` part of the `App.vue` file (right before the contract constant). It should look like this:
+After that, import both libraries within the `script` tag of the `App.vue` file (right before the contract constants). It should look like this:
 
 ```javascript
 import {} from "zksync-web3";
@@ -282,7 +282,8 @@ const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contrac
 
 Open `./src/App.vue` and set the `GREETER_CONTRACT_ADDRESS` constant equal to the address where the greeter contract was deployed.
 
-To interact with the smart contract we just deployed to zkSync, we also need its ABI. ABI stands for Application Binary Interface and, in short, it's a file that describes all available names and types of the smart contract methods to interact with it.
+To interact with the smart contract we just deployed to zkSync, we also need its ABI. 
+*ABI* stands for Application Binary Interface and, in short, it's a file that describes all available names and types of the smart contract methods to interact with it.
 
 - Create the `./src/abi.json` file.
 - You can get the contract's ABI in the hardhat project folder from the previous section in the `./artifacts-zk/contracts/Greeter.sol/Greeter.json` file. You should copy the `abi` array and paste it into the `abi.json` file created in the previous step. The file should look roughly the following way:
@@ -340,18 +341,20 @@ const GREETER_CONTRACT_ABI = require("./abi.json");
 
 ### Working with provider
 
-1. Go to the `initializeProviderAndSigner` method in `./src/App.vue`. This method is called after the connection to Metamask is successful.
-
-In this method we should:
-
-- Initialize a `Web3Provider` and a `Signer` to interact with zkSync.
-- Initialize the `Contract` object to interact with the `Greeter` contract we just deployed.
-
-2. Import the necessary dependencies:
+1. Import the necessary dependencies:
 
 ```javascript
 import { Contract, Web3Provider, Provider } from "zksync-web3";
 ```
+
+2. Locate the `initializeProviderAndSigner` method in `./src/App.vue`. 
+
+*Note:* This method is called only after the connection to Metamask is successful.
+
+In this method we would do the following:
+
+- Initialize a `Web3Provider` and a `Signer` to interact with zkSync.
+- Initialize the `Contract` object to interact with the `Greeter` contract we just deployed.
 
 3. Initialise the provider, signer, and contract instances like this:
 
@@ -407,7 +410,7 @@ The chosen token to pay the fee can now be selected. However, no balances are up
 
 The easiest way to retrieve the user's balance is to use the `Signer.getBalance` method.
 
-1. Add the necessary dependencies:
+1. Add the necessary dependencies at the top of the script file:
 
 ```javascript
 // `ethers` is only used in this tutorial for its utility functions
