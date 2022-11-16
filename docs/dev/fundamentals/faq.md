@@ -134,17 +134,20 @@ While all zero knowledge rollup blockchains share the underlying technology of c
 
 At the moment, we support any Ethereum-based wallet. By default, the provided option on zkSync 2.0 portal is Metamask - besides connecting automatically, you can add zkSync network to your Metamask manually:
 
-**Testnet**
+## Testnet network details
 
-- Network Name: `zkSync alpha testnet`
-- RPC URL: `https://zksync2-mainnet.zksync.io`
-- Chain ID: `280`
+- Network Name: `zkSync alpha testnet`
+- New RPC URL: `https://zksync2-testnet.zksync.dev`
+- Chain ID: `280`
 - Currency Symbol: `ETH`
-<!-- - Block Explorer URL: `https://testnet.explorer.zksync.io/` -->
+- Block Explorer URL: `https://goerli.explorer.zksync.io/`
+## Mainnet network details
 
-**Mainnet**
-
-Connection details for mainnet will be shared soon.
+- Network Name: `zkSync mainnet`
+- New RPC URL: `https://zksync2-mainnet.zksync.io`
+- Chain ID: `324`
+- Currency Symbol: `ETH`
+- Block Explorer URL: `https://explorer.zksync.io/`
 
 ## How do I Request Funds for Testnet?
 
