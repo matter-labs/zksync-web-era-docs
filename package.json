@@ -42,6 +42,7 @@
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^8.0.2",
+    "@vuepress/plugin-back-to-top": "^1.9.7",
     "check-md": "^1.0.1",
     "commitlint": "^11.0.0",
     "cspell": "^4.1.5",
