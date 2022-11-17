@@ -3200,6 +3200,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vuepress/plugin-back-to-top@npm:^1.9.7":
+  version: 1.9.7
+  resolution: "@vuepress/plugin-back-to-top@npm:1.9.7"
+  dependencies:
+    "@vuepress/types": 1.9.7
+    lodash.debounce: ^4.0.8
+  checksum: a98de1181d365762454fb508ffd9a41791d81a2dd3a41b6a8e276e98052d7ae58f9657949fb315d080c95de21257e163db4846a4638c7c03c3c58f1055794052
+  languageName: node
+  linkType: hard
+
 "@vuepress/plugin-last-updated@npm:1.9.7":
   version: 1.9.7
   resolution: "@vuepress/plugin-last-updated@npm:1.9.7"
@@ -16339,6 +16349,7 @@ __metadata:
     "@semantic-release/changelog": ^6.0.1
     "@semantic-release/git": ^10.0.1
     "@semantic-release/github": ^8.0.2
+    "@vuepress/plugin-back-to-top": ^1.9.7
     "@vuepress/plugin-toc": next
     check-md: ^1.0.1
     commitlint: ^11.0.0

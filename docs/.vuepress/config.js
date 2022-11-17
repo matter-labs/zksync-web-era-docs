@@ -11,6 +11,7 @@ module.exports = {
   },
   plugins: [
     [
+      "@vuepress/back-to-top",
       "fulltext-search",
       "vuepress-plugin-canonical",
       {
