@@ -17,11 +17,11 @@ In simple and clear terms describe what the bug is.
 
 In simple and clear terms describe what you expected to happen.
 
-<!--- If you're describing a bug, tell us what should happen --><!--- If you're suggesting a change/improvement, tell us how it should work -->
+<!--- If you're describing an error, tell us what should happen --><!--- If you're suggesting a change/improvement, tell us how it should work -->
 
 **🙋‍️ Possible Solution [optional]**
 
-<!--- Not obligatory, but suggest a fix/reason for the bug, --><!--- or ideas how to implement the addition or change -->
+....
 
 Can you propose an ideal solution to the bug?
 
