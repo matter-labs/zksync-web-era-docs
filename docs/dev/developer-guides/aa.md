@@ -287,9 +287,9 @@ function approvalBased(
 )
 ```
 
-The EOA will ensure that the allowance of the `_token` towards the paymaster is set to at least `_minAllowance`. The paymaster is free to interpret the `_innerInput` however it wants to.
+The EOA will ensure that the allowance of the `_token` towards the paymaster is set to at least `_minAllowance`. The `_innerInput` param is an additional payload that can be sent to the paymaster to implement any logic (e.g. an additional signature or key that can be validated by the paymaster).
 
-If you are developing a paymaster, you _should not_ trust the transaction sender to honestly behave (e.g. provide the required allowance with the `approvalBased` flow). These flows serve mostly as instructions to EOAs and the requirements should always be double-checked by the paymaster.
+If you are developing a paymaster, you _should not_ trust the transaction sender to behave honestly (e.g. provide the required allowance with the `approvalBased` flow). These flows serve mostly as instructions to EOAs and the requirements should always be double-checked by the paymaster.
 
 #### Working with paymaster flows using `zksync-web3` SDK
 
@@ -299,7 +299,7 @@ The `zksync-web3` SDK provides [methods](../../api/js/utils.md#encoding-paymaste
 
 To ensure users experience paymasters on testnet, as well as keep supporting paying fees in ERC20 tokens, the Matter Labs team provides the testnet paymaster, that enables paying fees in ERC20 token at a 1:1 exchange rate with ETH (i.e. one unit of this token is equal to 1 wei of ETH).
 
-The paymaster supports only the [approval based](#approval-based-paymaster-flow) paymaster flow and requires that the `token` param is equal to the token being swapped and `minAllowance` to equal to least `tx.maxFeePerErg * tx.ergsLimit`.
+The paymaster supports only the [approval based](#approval-based-paymaster-flow) paymaster flow and requires that the `token` param is equal to the token being swapped and `minAllowance` to equal to least `tx.maxFeePerErg * tx.ergsLimit`. In addition, the testnet paymaster does not make use of the `_innerInput` parameter, so nothing should be provided (empty `bytes`).
 
 An example of how to use testnet paymaster can be seen in the [quickstart](./hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
 
