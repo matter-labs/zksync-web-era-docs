@@ -117,10 +117,6 @@ export default {
   z-index: 1;
 }
 
-.go-to-top:hover {
-  color: lighten($accentColor, 30%);
-}
-
 .search-box {
   order: 1;
   margin-right: 0;
