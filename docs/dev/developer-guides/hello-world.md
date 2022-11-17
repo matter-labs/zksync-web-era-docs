@@ -573,6 +573,7 @@ async getOverrides() {
         type: 'ApprovalBased',
         token: this.selectedToken.l2Address,
         minimalAllowance: fee,
+        // empty bytes as testnet paymaster does not use innerInput
         innerInput: new Uint8Array()
     });
 
