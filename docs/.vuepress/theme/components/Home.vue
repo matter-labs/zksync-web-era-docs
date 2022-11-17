@@ -104,6 +104,23 @@ export default {
 </script>
 
 <style lang="stylus">
+.go-to-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 2rem;
+  right: 1.5rem !important;
+  width: 1.5rem !important;
+  color: #fff !important;
+  background-color: #797afb !important;
+  border-radius: 10px !important;
+  padding: 10px;
+  z-index: 1;
+}
+
+.go-to-top:hover {
+  color: lighten($accentColor, 30%);
+}
+
 .search-box {
   order: 1;
   margin-right: 0;
