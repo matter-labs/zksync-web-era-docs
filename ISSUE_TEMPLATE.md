@@ -4,19 +4,19 @@
 
 ## 🧾 Expected Behaviour
 
-<!--- If you're describing a bug, tell us what should happen --><!--- If you're suggesting a change/improvement, tell us how it should work -->
+<!--- If you're describing an error, tell us what should happen --><!--- If you're suggesting a change/improvement, tell us how it should work -->
 
 🔨 Current Behaviour
 
-<!--- If describing a bug, tell us what happens instead of the expected behaviour --><!--- If suggesting a change/improvement, explain the difference from current behaviour -->
+<!--- If describing an error in your integration, tell us what happens instead of the expected behaviour --><!--- If suggesting a change/improvement, explain the difference from current behaviour -->
 
 ## 🙋‍️ Possible Solution [optional]
 
 ....
 
-<!--- Not obligatory, but suggest a fix/reason for the bug, --><!--- or ideas on how to implement the addition or change -->
+<!--- Not obligatory, but suggest a fix/reason for the error, --><!--- or ideas on how to implement the addition or change -->
 
-## 📝 Steps to Reproduce (for bugs)
+## 📝 Steps to Reproduce (for errors)
 
 ....
 

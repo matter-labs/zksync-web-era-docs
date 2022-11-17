@@ -8,3 +8,4 @@ Get brief explainers on your integration with zkSync.
 - [Status](./status.md)
 - [Known issues](./known-issues.md)
 - [Contribute to documentation](./docs-contribution/docs.md)
+- [Contribute to Awesome zkSync repo](./docs-contribution/community-resources.md)
