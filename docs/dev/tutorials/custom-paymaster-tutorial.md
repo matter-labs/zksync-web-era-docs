@@ -384,6 +384,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     token: TOKEN_ADDRESS,
     // set minimalAllowance as we defined in the paymaster contract
     minimalAllowance: ethers.BigNumber.from(1),
+    // empty bytes as testnet paymaster does not use innerInput
     innerInput: new Uint8Array(),
   });
 
