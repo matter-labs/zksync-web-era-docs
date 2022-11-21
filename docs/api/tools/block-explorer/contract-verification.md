@@ -64,7 +64,7 @@ We recommend using [Hardhat flatten](https://medium.com/coinmonks/flattening-sma
 
 > **Note:** The easiest way to get the constructor argument data is to print it to the console while deploying.
 
-For example, if using our [tutorial](../hello-world.md), you can find the line:
+For example, if using our [tutorial](../../../dev/developer-guides/hello-world.md), you can find the line:
 
 ```js
 const greeterContract = await deployer.deploy(artifact, [greeting]);
