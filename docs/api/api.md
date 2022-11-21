@@ -142,19 +142,18 @@ The tokens are returned in alphabetical order by their symbols, so a token's id 
   }
 ]
 ```
+### `zks_getL2ToL1LogProof`
 
-### `zks_getL2ToL1MsgProof`
+Given a transaction hash, and an index of the L2 to L1 log produced within the transaction, it returns the proof for the corresponding L2 to L1 log.
 
-Given a block, a sender, and a message, and an optional message log index in the block containing the L1->L2 message, returns the proof for the message sent via the L1Messenger system contract.
+The index of the log that can be obtained from the transaction receipt (it includes a list of every log produced by the transaction).
 
 ### Input parameters
 
 | Parameter | Type      | Description                                                                               |
 | --------- | --------- | ----------------------------------------------------------------------------------------- |
-| block     | `uint32`  | The number of the block where the message was emitted.                                    |
-| sender    | `address` | The sender of the message (i.e. the account that called the L1Messenger system contract). |
-| msg       | `uint256` | The keccak256 hash of the sent message.                                          |
-| l2_log_position       | `uint256 | null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/contracts/system-contracts.md#il1messenger) when submitting this message. If it is ommitted, the proof for the first message with such content will be returned.                                          |
+| tx_hash   | `bytes32` | Hash of the L2 transaction the L2 to L1 log was produced within.                                   |
+| l2_to_l1_log_index| `undefined` &#124; `number` | The Index of the L2 to L1 log in the transaction. |
 
 ### Output format
 
@@ -179,6 +178,38 @@ The `id` is the position of the leaf in the Merkle tree of L2->L1 messages for t
 You do not need to care about the intrinsics, since the returned `id` and `proof` can be used right away for interacting with the zkSync smart contract.
 
 A nice example of using this endpoint via our SDK can be found [here](../dev/developer-guides/bridging/l2-l1.md).
+
+
+::: tip
+
+The list of L2 to L1 logs produced by the transaction, which is included in the receipts, is a combination of logs produced by L1Messenger contract or other system contracts/bootloader. 
+
+There is a log produced by the bootloader for every L1 originated transaction that shows if the transaction has succeeded. 
+
+:::
+
+### `zks_getL2ToL1MsgProof`
+
+Given a block, a sender, a message, and an optional message log index in the block containing the L1->L2 message, it returns the proof for the message sent via the L1Messenger system contract.
+
+### Input parameters
+
+| Parameter | Type      | Description                                                                               |
+| --------- | --------- | ----------------------------------------------------------------------------------------- |
+| block     | `uint32`  | The number of the block where the message was emitted.                                    |
+| sender    | `address` | The sender of the message (i.e. the account that called the L1Messenger system contract). |
+| msg       | `bytes32` | The keccak256 hash of the sent message.                                          |
+| l2_log_position       | `uint256` &#124; `null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/contracts/system-contracts.md#il1messenger) when submitting this message. If it is ommitted, the proof for the first message with such content will be returned.                                          |
+
+### Output format
+
+The same as in [zks_getL2ToL1LogProof](#output-format-4).
+
+::: warning
+
+`zks_getL2ToL1MsgProof` endpoint will be deprecated because proofs for L2 to L1 messages can also be fetched from `zks_getL2ToL1LogProof`.
+
+:::
 
 ### `zks_getBridgeContracts`
  
