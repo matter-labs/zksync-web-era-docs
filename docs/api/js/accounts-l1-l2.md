@@ -161,7 +161,7 @@ The `claimFailedDeposit` method withdraws funds from the initiated deposit, whic
 If the deposit L2 transaction has failed, it sends an L1 transaction calling `claimFailedDeposit` method of the L1 bridge, which results in returning L1 tokens back to the depositor, otherwise throws the error.
 
 ```ts
-async claimFailedDeposit(depositHash: BytesLike)
+async claimFailedDeposit(depositHash: BytesLike): Promise<ethers.ContractTransaction>
 ```
 
 ### Input Parameters
