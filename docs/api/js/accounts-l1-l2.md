@@ -158,20 +158,17 @@ async getBaseCost(params: {
 ## Claim Failed Deposit
 
 The `claimFailedDeposit` method withdraws funds from the initiated deposit, which failed when finalizing on L2.  
-If the deposit L2 transaction has failed it sends an L1 transaction calling claimFailedDeposit method of the L1 bridge, which results in returning L1 tokens back to the depositor, otherwise throws the error.
+If the deposit L2 transaction has failed, it sends an L1 transaction calling `claimFailedDeposit` method of the L1 bridge, which results in returning L1 tokens back to the depositor, otherwise throws the error.
+
+```ts
+async claimFailedDeposit(depositHash: BytesLike)
+```
 
 ### Input Parameters
 
 | Parameter |       Type          | Description                                                                               |
 | --------- |       ------------  | ----------------------------------------------------------------------------------------- |
-| depositHash       | `bytes32`   | 2 transaction hash of the failed deposit.                                    |
-| _depositSender    | `address`   | The address of the deposit initiator. |
-| _l1Token          | `address`   | The address of the deposited L1 ERC20 token.  |
-| _l2TxHash         | `bytes32`   | The L2 transaction hash of the failed deposit finalization.    |
-| _l2BlockNumber    | `uint256`   | The L2 block number where the deposit finalization was processed.   |
-| _l2MessageIndex   | `uint256`   | The position in the L2 logs Merkle tree of the l2Log that was sent with the message.                    |
-| _l2TxNumberInBlock| `uint16`    | The L2 transaction number in a block, in which the log was sent. |
-| _merkleProof      | `bytes32[]` | The Merkle proof of the processing L1 -> L2 transaction with deposit finalization |
+| depositHash       | `bytes32`   |The  L2 transaction hash of the failed deposit.                                            |
 
 ### Requesting transaction execution
 
