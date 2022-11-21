@@ -7,7 +7,7 @@ Welcome to zkSync 2.0 testnet! Our team would be very happy to see what you can 
 Note, that the system is still in active development, so:
 
 - **Breaking changes are possible in the future.**
-- **Some of the updates may require regenesis**, i.e. erasing all the balances, and smart contracts, and restarting the blockchain. We will make sure to communicate all regenesis beforehand! Make sure to follow our [Discord](https://discord.gg/px2aR7w).
+- **Some of the updates may require regenesis**, i.e. erasing all the balances, and smart contracts, and restarting the blockchain. We will make sure to communicate all regenesis beforehand! Make sure to follow our [Discord](https://join.zksync.dev/).
 
 :::
 
