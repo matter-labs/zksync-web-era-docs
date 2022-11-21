@@ -38,7 +38,7 @@ That's why submitting transactions to the priority queue is no longer free.
 Users need to pay a certain fee to the operator for processing their transactions. It is really hard to calculate the accurate fee in a permissionless way. 
 Thus, the fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the users' transaction, while `txBaseCost` is the base cost for the transaction, which depends on its parameters (e.g. `ergs_limit` for `Execute` transaction).
 
-Thirdly, the operator can not commit to processing each and every transaction within `X` days. Again, this is needed to prevent spam attacks on the priority queue. We changed this rule to the following one:
+Thirdly, the operator can not commit to processing every transaction within `X` days. Again, this is needed to prevent spam attacks on the priority queue. We changed this rule to the following one:
 
 - The operator must do at least `X` amount of work (see below) on the priority queue or the priority queue should be empty.
 
