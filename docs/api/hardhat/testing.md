@@ -65,7 +65,7 @@ The full list of the addresses of these accounts with the corresponding private 
 
 Rich wallets only have ETH. **If you need to test with ERC20 tokens, you should deploy them yourself.**
 
-If you'd like the local node to come with pre-deployed tokens again, please let us know on our [discord](https://discord.gg/px2aR7w), so we can prioritize accordingly.
+If you'd like the local node to come with pre-deployed tokens again, please let us know on our [Discord](https://join.zksync.dev/), so we can prioritize accordingly.
 
 :::
 

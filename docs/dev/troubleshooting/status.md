@@ -4,7 +4,7 @@
 
 As we add new features, this page is constantly updated.
 
-If any of these block you, let us know on our [discord](https://discord.gg/px2aR7w), so we can prioritize accordingly.
+If any of these block you, let us know on our [Discord](https://join.zksync.dev/), so we can prioritize accordingly.
 
 :::
 

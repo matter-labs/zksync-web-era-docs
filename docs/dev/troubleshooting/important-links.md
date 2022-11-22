@@ -14,5 +14,5 @@
 
 ### Questions and support
 
-- [Discord](https://discord.gg/px2aR7w)
+- [Discord](https://join.zksync.dev/)
 - [Community Forum](https://community.zksync.io/)

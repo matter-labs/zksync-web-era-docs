@@ -51,7 +51,7 @@ Chat live with our team and other developers on the official zkSync [Discord](ht
 ## User community and support
 
 - [Telegram: user support group](https://t.me/zksync_support)
-- [zkSync Discord](https://discord.gg/px2aR7w).
+- [zkSync Discord](https://join.zksync.dev/)
 - Email user support: **support@zksync.io**
 - [Community Forum](https://community.zksync.io/)
 

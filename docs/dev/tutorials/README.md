@@ -11,4 +11,4 @@ Learn how to build dApps on the zkSync 2.0 protocol with the following step-by-s
 
 ### Tutorial requests
 
-If you want us to create a tutorial about a specific topic, please let us know on our [Discord server](https://discord.gg/px2aR7w).
+If you want us to create a tutorial about a specific topic, please let us know on our [Discord server](https://join.zksync.dev/).
