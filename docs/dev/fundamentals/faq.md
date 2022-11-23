@@ -134,17 +134,23 @@ While all zero knowledge rollup blockchains share the underlying technology of c
 
 At the moment, we support any Ethereum-based wallet. By default, the provided option on zkSync 2.0 portal is Metamask - besides connecting automatically, you can add zkSync network to your Metamask manually:
 
-**Testnet**
+**Testnet network info**
 
-- Network Name: `zkSync alpha testnet`
-- RPC URL: `https://zksync2-mainnet.zksync.io`
-- Chain ID: `280`
+- Network Name: `zkSync alpha testnet`
+- New RPC URL: `https://zksync2-testnet.zksync.dev`
+- Chain ID: `280`
 - Currency Symbol: `ETH`
-<!-- - Block Explorer URL: `https://testnet.explorer.zksync.io/` -->
+- Block Explorer URL: `https://goerli.explorer.zksync.io/`
+- WebSocket URL: `wss://zksync2-testnet.zksync.dev/ws`
 
-**Mainnet**
+**Mainnet network info**
 
-Connection details for mainnet will be shared soon.
+- Network Name: `zkSync mainnet`
+- New RPC URL: `https://zksync2-mainnet.zksync.io`
+- Chain ID: `324`
+- Currency Symbol: `ETH`
+- Block Explorer URL: `https://explorer.zksync.io/`
+- WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`
 
 ## How do I Request Funds for Testnet?
 
@@ -157,6 +163,10 @@ The transactions on zkSync 2.0 should not take more than 5 minutes.
 ## Where can I see the transactions I submitted?
 
 Our [Block Explorer](https://explorer.zksync.io) will show everything you may need about a transaction. 
+
+## What is the storage limit for smart contract on zkSync 2.0?
+
+The current limit is 3600000000 ergs.
 
 ## Can I withdraw my funds back to Ethereum?
 
