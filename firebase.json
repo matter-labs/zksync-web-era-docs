@@ -77,7 +77,7 @@
       ],
       "redirects": [
         {
-          "source": "/*",
+          "source": "/",
           "destination": "/dev",
           "type": 301
         }
