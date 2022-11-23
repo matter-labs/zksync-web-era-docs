@@ -164,6 +164,10 @@ The transactions on zkSync 2.0 should not take more than 5 minutes.
 
 Our [Block Explorer](https://explorer.zksync.io) will show everything you may need about a transaction. 
 
+## What is the storage limit for smart contract on zkSync 2.0?
+
+The current limit is 3600000000 ergs.
+
 ## Can I withdraw my funds back to Ethereum?
 
 Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The withdrawal transaction will take up to 1 hour, depending on the usage of the zkSync network.
