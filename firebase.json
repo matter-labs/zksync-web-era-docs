@@ -79,7 +79,7 @@
         {
           "source": "/",
           "destination": "/dev",
-          "type": 301
+          "type": 302
         }
       ]
     }
