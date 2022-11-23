@@ -160,7 +160,7 @@ Our [Block Explorer](https://explorer.zksync.io) will show everything you may ne
 
 ## Will an address be claimable by an adversary in zkSync 2.0?
 
-No! We have a different address generation schema that would not allow address to be claimed on L2 by an adversary. Even if you deploy same address and same private key it would still be different.
+No! We have a different address generation schema from other L2's, that would not allow addresses to be claimed on L2 by an adversary. Even if you deploy same address and same private key it would still be different.
 ## Can I withdraw my funds back to Ethereum?
 
 Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The withdrawal transaction will take up to 1 hour, depending on the usage of the zkSync network.
