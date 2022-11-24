@@ -36,6 +36,13 @@
             }
           ]
         }
+      ],
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "/dev",
+          "type": 302
+        }
       ]
     },
     {
