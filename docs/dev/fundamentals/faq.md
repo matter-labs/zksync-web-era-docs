@@ -157,6 +157,15 @@ At the moment, we support any Ethereum-based wallet. By default, the provided op
 To access the testnet funds ([Faucet](https://portal.zksync.io/faucet)), you can tweet about us and get tokens. Make sure that Twitter message contains your Ethereum address to which we’ll send funds and that it’s not your main Ethereum account. The faucet will not work with new Twitter accounts & accounts without avatar.
 
 Alternatively, you can use [our bridge](https://portal.zksync.io/bridge) to bridge ETH from Goerli to zkSync alpha testnet.
+
+## Why do i get wallet_requestPermissions error?
+
+This happens in when interacting with our [quickstart example](../developer-guides/hello-world.md#front-end-integration),
+when users does not click on Next or Cancel, but click outsite of the popup, and try to go back to the page.
+
+A quick fix to this is, refreshing the browser, which makes the next or cancel button clickable, another fix is manually opening the extension via MetaMask icon toolbar on your browser and click *Next* or *Cancel* to resolve it.
+
+Read more about **wallet_requestPermissions**, on the [metamask documentation](https://docs.metamask.io/guide/rpc-api.html#wallet-requestpermissions).
 ## How long does it take to complete a deposit transaction?
 
 The transactions on zkSync 2.0 should not take more than 5 minutes.
