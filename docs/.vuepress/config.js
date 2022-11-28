@@ -9,25 +9,9 @@ module.exports = {
     // Add support of footnotes (like [^1]) in markdown
     md.use(require("markdown-it-footnote"));
   },
-  plugins: {
-    redirect: {
-      redirectors: [
-        // customize your redirectors
-        {
-          base: '/zksync-v2/', // automatically redirect `/my-plugins/` to a subpage
-          storage: true, // save the result of the last visit to `localStorage` for the next redirect
-          alternative: [
-            // provide an alternate list
-            // if no page was matched, you will get a "404 not found"
-            '/developer-guides/', // equivalent to `/my-plugins/mathjax/`
-          ],
-        },
-      ],
-    },
-  },
   plugins: [
     [
-      "vuepress-plugin-redirect",
+      "@vuepress/html-redirect",
       "@vuepress/back-to-top",
       "fulltext-search",
       "vuepress-plugin-canonical",
