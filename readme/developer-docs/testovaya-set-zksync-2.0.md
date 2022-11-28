@@ -1,4 +1,4 @@
-# Тестовая сеть zkSync
+# Тестовая сеть zkSync 2.0
 
 Добро пожаловать в тестовую сеть (тестнет) zkSync 2.0 ! Наша команда будет очень рада увидеть то, что вы сможете построить на zkSync. Также мы рады любой обратной связи, которую вы могли бы предоставить!
 
@@ -42,7 +42,7 @@
 
 1.  Откройте Metamask и кликните по значку сети в центральной верхенй части интерфейса:&#x20;
 
-    <figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 2. Нажмите "Add network" (Добавить сеть)
 3. Заполните параметры для zkSync alpha testnet network и кликните "Save" (сохранить):
 

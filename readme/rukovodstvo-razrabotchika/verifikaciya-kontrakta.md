@@ -32,7 +32,7 @@
 
 Чтобы начать, кликните на вкладку **Tools** наверху, появится всплывающий список, там выберите **Smart Contract Verification,** после чего вы увидите следующий экран:
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Введите детали контракта <a href="#enter-contract-details" id="enter-contract-details"></a>
 
