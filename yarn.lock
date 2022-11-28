@@ -2385,17 +2385,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shigma/stringify-object@npm:^3.3.0":
-  version: 3.3.0
-  resolution: "@shigma/stringify-object@npm:3.3.0"
-  dependencies:
-    get-own-enumerable-property-symbols: ^3.0.0
-    is-obj: ^1.0.1
-    is-regexp: ^2.0.0
-  checksum: 5dacc0e543667006c445bb446bdef08c5012f0e41535ba22a54bead5ccebc385a948db87ebfcd167313af658b05ed764ddffbd78aa710e2a6ea6c3640055ba0e
-  languageName: node
-  linkType: hard
-
 "@sindresorhus/is@npm:^0.14.0":
   version: 0.14.0
   resolution: "@sindresorhus/is@npm:0.14.0"
@@ -7815,13 +7804,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-own-enumerable-property-symbols@npm:^3.0.0":
-  version: 3.0.2
-  resolution: "get-own-enumerable-property-symbols@npm:3.0.2"
-  checksum: 8f0331f14159f939830884799f937343c8c0a2c330506094bc12cbee3665d88337fe97a4ea35c002cc2bdba0f5d9975ad7ec3abb925015cdf2a93e76d4759ede
-  languageName: node
-  linkType: hard
-
 "get-stdin@npm:8.0.0, get-stdin@npm:^8.0.0, get-stdin@npm:~8.0.0":
   version: 8.0.0
   resolution: "get-stdin@npm:8.0.0"
@@ -9249,13 +9231,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-obj@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "is-obj@npm:1.0.1"
-  checksum: 3ccf0efdea12951e0b9c784e2b00e77e87b2f8bd30b42a498548a8afcc11b3287342a2030c308e473e93a7a19c9ea7854c99a8832a476591c727df2a9c79796c
-  languageName: node
-  linkType: hard
-
 "is-obj@npm:^2.0.0":
   version: 2.0.0
   resolution: "is-obj@npm:2.0.0"
@@ -9332,13 +9307,6 @@ __metadata:
     call-bind: ^1.0.2
     has-tostringtag: ^1.0.0
   checksum: 362399b33535bc8f386d96c45c9feb04cf7f8b41c182f54174c1a45c9abbbe5e31290bbad09a458583ff6bf3b2048672cdb1881b13289569a7c548370856a652
-  languageName: node
-  linkType: hard
-
-"is-regexp@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "is-regexp@npm:2.1.0"
-  checksum: 502f8e09faddc2e360350d3fa88dfb3af47b3c8e0bea1d0fe9903a1265cb199547cc11c99e9ee27cb010f678f6b48e52e92273860b68f6339e463e034f21859c
   languageName: node
   linkType: hard
 
@@ -15757,15 +15725,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vuepress-plugin-dehydrate@npm:1.1.5":
-  version: 1.1.5
-  resolution: "vuepress-plugin-dehydrate@npm:1.1.5"
-  dependencies:
-    "@vuepress/shared-utils": ^1.2.0
-  checksum: f2df4f979b961a8458b578dc566e8423e72a5ea6e61e094c60e36c4fda5cf6a1796f313ae723faeae4baba0de81395190d6d07a063cbcf63692b09bb3d150622
-  languageName: node
-  linkType: hard
-
 "vuepress-plugin-fulltext-search@npm:^2.1.0":
   version: 2.2.1
   resolution: "vuepress-plugin-fulltext-search@npm:2.2.1"
@@ -15776,16 +15735,6 @@ __metadata:
   peerDependencies:
     vuepress: ^1.4.0
   checksum: 74494c715470d58303abbedc0e38bae56b91378cb379ce23223644eba4c5e471da9d2dc5a6f01e8cd61f19994cbcba5c55f982abf9aaeb812c9552881c9502d0
-  languageName: node
-  linkType: hard
-
-"vuepress-plugin-redirect@npm:^1.2.5":
-  version: 1.2.5
-  resolution: "vuepress-plugin-redirect@npm:1.2.5"
-  dependencies:
-    "@shigma/stringify-object": ^3.3.0
-    vuepress-plugin-dehydrate: 1.1.5
-  checksum: d835368762340a4f3be79440fc45c66cab18422a83902c7dc1258446b447a56753a5e68a23bafbc641cdfdd943357869cf92bdfe01bf99c16765cf74e9570ed6
   languageName: node
   linkType: hard
 
@@ -16416,6 +16365,5 @@ __metadata:
     vuepress: ^1.8.2
     vuepress-plugin-canonical: ^1.0.0
     vuepress-plugin-fulltext-search: ^2.1.0
-    vuepress-plugin-redirect: ^1.2.5
   languageName: unknown
   linkType: soft
