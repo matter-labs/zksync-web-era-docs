@@ -42,7 +42,7 @@ To verify the contract, enter the following details;
 - Contract address: The address provided must match with the `0x` address generated during contract creation.
 - Contract name: The name must be identical to the name provided in the contract.
 - Optimization: This checks whether or not optimization was used while compiling the contract. If you enabled optimization during compilation, check **Yes** otherwise select **No**
-- Solidity compiler version(Solc): This specifies the exact version of the compiler used to compile a smart contract. Click on the dropdown to specify the compiler version used.
+- Solidity compiler version(Solc): This specifies the exact version of the compiler used to compile a smart contract. Click on the dropdown to specify the compiler version used. We encourage you to use version `0.8.16`.
 - zkSync compiler version(Zksolc): The zkSync compiler version used, the default is set to `v1.2.0`.
   
 <br>
@@ -73,7 +73,7 @@ const greeterContract = await deployer.deploy(artifact, [greeting]);
 if you add the next line as
 
 ```js
-console.log(greeterContract.interface.encodeDeploy([greeting]);
+console.log(greeterContract.interface.encodeDeploy([greeting]));
 ```
 
 then you will receive constructor argument data.
