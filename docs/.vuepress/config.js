@@ -10,14 +10,7 @@ module.exports = {
     md.use(require("markdown-it-footnote"));
   },
   plugins: [
-    [
-      'vuepress-plugin-canonical',
-      {
-        baseURL: 'https://v2-docs.zksync.io', // base url for your canonical link, optional, default: ''
-        stripExtension: false // strip '.html' , optional, default: false
-      }
-    ],
-      '@vuepress/back-to-top',
+      "@vuepress/back-to-top",
       ["flexsearch", {
         /*
           Plugin custom options
