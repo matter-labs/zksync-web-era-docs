@@ -68,7 +68,7 @@ zkSync is optimized to be EVM *compatible* not EVM *equivalent* for three primar
 
 1. Creating a generalized circuit for EVM equivalence down to the bytecode would be prohibitively expensive and time-consuming.
 2. Building on what we learned with zkSync 1.0, we were able to design a system optimised for performance and provability in ZK.
-3. The opcodes we’ve chosen NOT to support are deprecated by Ethereum itself, or rarely used. In the case a project needs then, modifications to work with zkSync are minimal and do not generate a need for a new security audit.
+3. The opcodes we’ve chosen NOT to support are deprecated by Ethereum itself, or rarely used. In the case a project needs them, modifications to work with zkSync are minimal and do not generate a need for a new security audit.
 
 Almost every smart contract written for EVM will be supported by zkSync 2.0 and will hold all key security invariants so that no additional security re-auditing will be required in most cases. A notable exception is the contracts that use the following EVM opcodes:
 
@@ -134,17 +134,23 @@ While all zero knowledge rollup blockchains share the underlying technology of c
 
 At the moment, we support any Ethereum-based wallet. By default, the provided option on zkSync 2.0 portal is Metamask - besides connecting automatically, you can add zkSync network to your Metamask manually:
 
-**Testnet**
+**Testnet network info**
 
-- Network Name: `zkSync alpha testnet`
-- RPC URL: `https://zksync2-mainnet.zksync.io`
-- Chain ID: `280`
+- Network Name: `zkSync alpha testnet`
+- New RPC URL: `https://zksync2-testnet.zksync.dev`
+- Chain ID: `280`
 - Currency Symbol: `ETH`
-<!-- - Block Explorer URL: `https://testnet.explorer.zksync.io/` -->
+- Block Explorer URL: `https://goerli.explorer.zksync.io/`
+- WebSocket URL: `wss://zksync2-testnet.zksync.dev/ws`
 
-**Mainnet**
+**Mainnet network info**
 
-Connection details for mainnet will be shared soon.
+- Network Name: `zkSync mainnet`
+- New RPC URL: `https://zksync2-mainnet.zksync.io`
+- Chain ID: `324`
+- Currency Symbol: `ETH`
+- Block Explorer URL: `https://explorer.zksync.io/`
+- WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`
 
 ## How do I Request Funds for Testnet?
 
@@ -158,9 +164,13 @@ The transactions on zkSync 2.0 should not take more than 5 minutes.
 
 Our [Block Explorer](https://explorer.zksync.io) will show everything you may need about a transaction. 
 
-## Will an address be claimable by an adversary in zkSync 2.0?
+## Can someone claim the address I have for my contract in other EVM networks in zkSync 2.0?
 
 No! We have a different address generation schema from other L2's, that would not allow addresses to be claimed on L2 by an adversary. Even if you deploy same address and same private key it would still be different.
+## What is the storage limit for smart contract on zkSync 2.0?
+
+The current limit is 3600000000 ergs.
+
 ## Can I withdraw my funds back to Ethereum?
 
 Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The withdrawal transaction will take up to 1 hour, depending on the usage of the zkSync network.

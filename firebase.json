@@ -36,6 +36,13 @@
             }
           ]
         }
+      ],
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "/dev",
+          "type": 302
+        }
       ]
     },
     {
@@ -73,6 +80,13 @@
               "value": "1; mode=block"
             }
           ]
+        }
+      ],
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "/dev",
+          "type": 302
         }
       ]
     }
