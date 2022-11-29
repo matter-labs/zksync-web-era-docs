@@ -6,6 +6,7 @@
     * [Введение в роллапы](readme/developer-docs/vvedenie-v-rollapy.md)
     * [Основы zkSync](readme/developer-docs/osnovy-zksync.md)
     * [Тестовая сеть zkSync 2.0](readme/developer-docs/testovaya-set-zksync-2.0.md)
+    * [FAQ](readme/developer-docs/faq.md)
   * [Тестнет](readme/testnet/README.md)
     * [Попробуйте!](readme/testnet/poprobuite.md)
     * [Подключение Metamask](readme/testnet/podklyuchenie-metamask.md)
