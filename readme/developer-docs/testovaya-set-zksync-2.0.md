@@ -42,7 +42,7 @@
 
 1.  Откройте Metamask и кликните по значку сети в центральной верхенй части интерфейса:
 
-    <figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 2. Нажмите "Add network" (Добавить сеть)
 3. Заполните параметры для zkSync alpha testnet network и кликните "Save" (сохранить):
 

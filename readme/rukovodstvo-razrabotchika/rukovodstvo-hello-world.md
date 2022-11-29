@@ -602,19 +602,19 @@ const allowedTokens = require("./erc20.json");
 
 1. Введите новое приветствие в поле для вводе и кликните на кнопку `Change greeting`:
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 2\. Так как параметры `paymasterParams` были предоставлены, отправляемая транзакция будет типа`EIP712` :
 
 \\
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 3\. Нажмите "Sign".
 
 После подтверждения транзакции страница обновится и можно будет увидеть обновленные баланс и приветствие:
 
-<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 #### Узнайте больше <a href="#learn-more" id="learn-more"></a>
 

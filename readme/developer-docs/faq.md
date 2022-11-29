@@ -4,7 +4,7 @@
 
 ### Что такое zkSync 2.0? <a href="#what-is-zksync-2-0" id="what-is-zksync-2-0"></a>
 
-zkSync 2.0 - это роллап с нулевым разглашением (ZK Rollup), который поддерживает общую совместимость с EVM (Ethereum Virtual Machine) блокчейна Эфириум. Основная выгода zkSync 2.0 в том, что разработчики, уже создавшие dApp для EVM, могут портировать их без особых усилий и получить значительное уменьшение в стомости и скорости транзакций, и при этом наследуя безопасность и децентрализацию Эфириума.
+zkSync 2.0 - это роллап с нулевым разглашением (ZK Rollup), который поддерживает общую совместимость с EVM (Ethereum Virtual Machine) блокчейна Эфириум. Основное преимущество zkSync 2.0 в том, что разработчики, уже создавшие dApp для EVM, могут портировать их без особых усилий и получить значительное уменьшение в стомости и скорости транзакций, при этом наследуя безопасность и децентрализацию Эфириума.
 
 ### Почему zkSync 2.0? <a href="#why-zksync-2-0" id="why-zksync-2-0"></a>
 
@@ -200,23 +200,23 @@ zkSync оптимизирован под EVM-_совместимость_, а н
 
 Далее мы направляемся к “Faucet” чтобы получить немного тестовых токенов $ETH, $LINK, $DAI, $WBTC и $USDC на наш адрес zkSync.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 Проверьте свой баланс на вкладке “Balances” после запроса.
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 **Шаг 4**
 
 Теперь перейдем к “Transfer”. Вставьте адрес другого кошелька и переведите на него немного токенов. Оплатите комиссию в DAI, если у вас нет ETH.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 **Step 5**
 
 Наконец, мы направляемся к “Withdraw” для вывода DAI с zkSync назад на Goerli. Оплатите комиссию в DAI, если у вас нет ETH.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 ### Что такое РеГенезис тестнета? <a href="#what-is-a-testnet-regenesis" id="what-is-a-testnet-regenesis"></a>
 
