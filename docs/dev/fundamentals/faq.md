@@ -13,7 +13,7 @@ zkSync 2.0 is a gigantic leap forward in Layer 2 technologies. It is a long-awai
 - **EVM Compatible** - zkSync is an EVM-compatible zero knowledge rollup that supports generalized EVM smart contracts. This means if you have EVM smart contracts it’s super easy to port your dApp to zkSync 2.0.
 - **Ethos Compatible** - we are very aligned with the ethos of decentralization and open source. All of our code will strive to be fully open-source and zkSync will be executing a roadmap that will fully decentralize the sequencer and proof generation, and we will be executing a roadmap of organizational subtractive management - that is, we will be decentralizing our organization as well.
 - **Certainty** - Unlike previous methods attempting to scale Ethereum which have in some cases offered weaker security guarantees than for L1 (e.g. sidechains, plasma, and optimistic) zkSync uses zero-knowledge proofs which offer *certainty* of security.
-- **Future Proof** - Ecosystem partners that adopt zkSync 2.0 now will enjoy all future improvements without the need to change their code, in particular coming from:
+- **Future Proof** - Ecosystem projects that adopt zkSync 2.0 now will enjoy all future improvements without the need to change their code, in particular coming from:
     1. The prover technology (hardware acceleration).
     2. The compiler (integration of LLVM-enabled modern programming languages).
     3. All innovations of zkSync 3.0 (Hyperchains and Hyperbridges).
@@ -44,7 +44,7 @@ Apart from the opcodes and gas metering disparity, zkVM strictly inherits the EV
 As a result, developers can fully rely on the censorship-resistance provided by L1 without having to introduce any changes related to the escape-hatch mechanism. This means that assets in a zkRollup account on zkSync will have exactly the same security guarantees as on L1.
 ### EVM Improvements
 
-While maintaining maximum compatibility, the zkEVM has significant improvements over the EVM that increase adoption and benefit our ecosystem partners.
+While maintaining maximum compatibility, the zkEVM has significant improvements over the EVM that increase adoption and benefit our ecosystem projects.
 
 - **Our compiler is based on LLVM**. LLVM-based compilers (Low-Level Virtual Machine) have become the default compiler for Mac OS X, iOS, FreeBSD, and Android systems and are among the most widely used because they:
     - Enable us to improve the efficiency over the original EVM bytecode because with LLVM we can take advantage of the many optimizations and tools available in this mature ecosystem.
@@ -81,14 +81,14 @@ There are a few other distinctions, for example, gas metering will be different 
 
 ### Security expectations
 
-zkSync 2.0’s data availability layer is Ethereum. All ecosystem partners that build on zkSync 2.0 will inherit the full security benefits of Ethereum.
+zkSync 2.0’s data availability layer is Ethereum. All ecosystem projects that build on zkSync 2.0 will inherit the full security benefits of Ethereum.
 
 This is obviously a critically important topic for us, and we’re currently in the midst of a major review of zkSync 2.0’s security (including external audits, security contests, and overhauling and extending our bug bounty program). 
 
 We’ll be expanding on the details here substantially very soon.
 ### Triggering Security audits
 
-While there are a few, rarely used opcodes that we do not support, we have not found any instances with our ecosystem partners where a breaking change was anything other than a simple refactoring of a few lines of code. None of our ecosystem partners who have ported to zkSync have reported that any change has caused a need for a security audit.
+While there are a few, rarely used opcodes that we do not support, we have not found any instances with our ecosystem projects where a breaking change was anything other than a simple refactoring of a few lines of code. None of our ecosystem projects who have ported to zkSync have reported that any change has caused a need for a security audit.
 
 ## What is Account Abstraction?
 
@@ -115,7 +115,7 @@ Optimistic rollups like Arbitrum and Optimism utilize the optimistic approach to
 Optimistic rollups suffer from the following key issues:
 
 - **Optimistic rollups are secured via game theory.** This method assumes all transactions are valid and then utilizes an after-the-fact game theory mechanism to pay participants to discover fraudulent or otherwise invalid (e.g. because of bugs) transactions. Game theory is never perfect and as with the game theory that broke with stablecoins and other systems, we just don’t think it can be relied on in the long term and at true scale to offer the security the ecosystem needs. *zkSync 2.0, on the other hand, relies on math, not game theory, to provide the absolute certainty of proof that every single transaction is provably valid and not fraudulent.*
-- **Optimistic methods take 7 days to settle**. Settlement time is becoming an increasingly important feature for ecosystem partners. As ecosystem partners’ needs mature, the need for as close to instant settlement will rise. With optimistic methods, this settlement problem will not go away. It's always going to be a 7-day settlement time because optimistic methods need 7 days for their after-the-fact game theory to conclude its challenge window. The only way around this is to bring in third parties that provide some liquidity - but then again this is a potential security risk in trusting the liquidity providers. *When zkSync 2.0 initially launches on Mainnet, it will provide settlement in hours but we are targeting  settlement within minutes after months of work - and as we improve settlement times to near zero - no partner needs to change any code*.
+- **Optimistic methods take 7 days to settle**. Settlement time is becoming an increasingly important feature for ecosystem projects. As ecosystem projects’ needs mature, the need for as close to instant settlement will rise. With optimistic methods, this settlement problem will not go away. It's always going to be a 7-day settlement time because optimistic methods need 7 days for their after-the-fact game theory to conclude its challenge window. The only way around this is to bring in third parties that provide some liquidity - but then again this is a potential security risk in trusting the liquidity providers. *When zkSync 2.0 initially launches on Mainnet, it will provide settlement in hours but we are targeting  settlement within minutes after months of work - and as we improve settlement times to near zero - no partner needs to change any code*.
 - **Optimistic rollups have no method of scaling beyond where they are now.** When optimistic methods first came out, they became popular because they scaled Ethereum - (e.g. they enabled the processing of 10x Ethereum transactions ****without degradation of security and decentralization). The problem is that while they can scale Ethereum by 10x now, they have no mechanism to go beyond 10x without degrading security and decentralization. *In contrast, zkSync 2.0 is based on zero-knowledge proofs which have important characteristics that optimistic methods do not - they can hyperscale.*
 
 ### zkSync 2.0 vs other zkRollups
