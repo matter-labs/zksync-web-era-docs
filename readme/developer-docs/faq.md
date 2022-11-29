@@ -1,6 +1,6 @@
 # FAQ
 
-Здесь вы можете найти ответы на наиболее частые вопросы о zkSync 2.0.
+Здесь вы можете найти ответы на наиболее часто задаваемые вопросы о zkSync 2.0.
 
 ### Что такое zkSync 2.0? <a href="#what-is-zksync-2-0" id="what-is-zksync-2-0"></a>
 
@@ -194,29 +194,29 @@ zkSync оптимизирован под EVM-_совместимость_, а н
 
 Сначала мы идем на “Bridge”, а затем делаем “Deposit” чтобы внести немного ETH на zkSync 2.0.
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 **Шаг 3**
 
 Далее мы направляемся к “Faucet” чтобы получить немного тестовых токенов $ETH, $LINK, $DAI, $WBTC и $USDC на наш адрес zkSync.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 Проверьте свой баланс на вкладке “Balances” после запроса.
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 **Шаг 4**
 
 Теперь перейдем к “Transfer”. Вставьте адрес другого кошелька и переведите на него немного токенов. Оплатите комиссию в DAI, если у вас нет ETH.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 **Step 5**
 
 Наконец, мы направляемся к “Withdraw” для вывода DAI с zkSync назад на Goerli. Оплатите комиссию в DAI, если у вас нет ETH.
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 ### Что такое РеГенезис тестнета? <a href="#what-is-a-testnet-regenesis" id="what-is-a-testnet-regenesis"></a>
 
