@@ -107,9 +107,117 @@ zkSync оптимизирован под EVM-_совместимость_, а н
 
 Оптимистические роллапы страдают от следующих ключевых проблем:
 
-* **Оптимистические роллапы полагаются на теорию игр в обеспечении безопасности.** Этот метод предполагает, что все транзакции валидны (действительны) и затем использует механизм пост-фактум-теории игр, чтобы выдать участникам сети награды за нахождение мошеннических или иных невалидных\недействительных (напр из-за багов) транзакций. Теория игр не работает идеально
-* **Optimistic rollups are secured via game theory.** This method assumes all transactions are valid and then utilizes an after-the-fact game theory mechanism to pay participants to discover fraudulent or otherwise invalid (e.g. because of bugs) transactions. Game theory is never perfect and as with the game theory that broke with stablecoins and other systems, we just don’t think it can be relied on in the long term and at true scale to offer the security the ecosystem needs. _zkSync 2.0, on the other hand, relies on math, not game theory, to provide the absolute certainty of proof that every single transaction is provably valid and not fraudulent._
-* **Optimistic methods take 7 days to settle**. Settlement time is becoming an increasingly important feature for ecosystem projects. As ecosystem projects’ needs mature, the need for as close to instant settlement will rise. With optimistic methods, this settlement problem will not go away. It's always going to be a 7-day settlement time because optimistic methods need 7 days for their after-the-fact game theory to conclude its challenge window. The only way around this is to bring in third parties that provide some liquidity - but then again this is a potential security risk in trusting the liquidity providers. _When zkSync 2.0 initially launches on Mainnet, it will provide settlement in hours but we are targeting settlement within minutes after months of work - and as we improve settlement times to near zero - no partner needs to change any code_.
-* **Optimistic rollups have no method of scaling beyond where they are now.** When optimistic methods first came out, they became popular because they scaled Ethereum - (e.g. they enabled the processing of 10x Ethereum transactions \*\*\*\*without degradation of security and decentralization). The problem is that while they can scale Ethereum by 10x now, they have no mechanism to go beyond 10x without degrading security and decentralization. _In contrast, zkSync 2.0 is based on zero-knowledge proofs which have important characteristics that optimistic methods do not - they can hyperscale._
+* **Оптимистические роллапы полагаются на теорию игр в обеспечении безопасности.** Этот метод предполагает, что все транзакции валидны (действительны) и затем использует механизм пост-фактум-теории игр, чтобы выдать участникам сети награды за нахождение мошеннических или иных невалидных\недействительных (напр из-за багов) транзакций. Теория игр не может работать идеально и, так как теория игр не сработала со стейблкоинами (Terra Luna) и другими системами, мы просто напросто не считаем, что на нее можно положиться в долгосрочной перспективе и на маштабном уровне для обеспечения требований безопасности экосистемы. _zkSync 2.0 же, с другой стороны, полагается не на теорию игр, а на математику для обеспечения абсолютной уверенности в том, что каждая транзакция доказуемо валидна и не является мошеннической._
+* **Оптимистические методы требуют 7 дней  для завершения расчетов транзакций.** Время расчета становится все более важным параметром для экосистемных проектов. С ростом  их потребностей запрос на быстрый расчет транзакций вырастет. При использовании оптимистических методов эта проблема никуда не денется. Всегда будет 7-дневный расчет, потому что оптимистическим методам требуется 7 дней проверки для закрытия окна сомнениия по пост-фактум-теории игр. Единственный путь обхода этой проблемы - это привлечение третьих лиц, которые предоставят ликвидность. Но, опять таки, доверие поставщикам ликвидности - это еще одна угроза безопасности. _Когда zkSync 2.0 запустится в основной сети (Mainnet), он будет иметь время расчета транзакций расчитываемое в часах. В будущем, после нескольких месяцев работы, мы нацелены на время расчета транзакций исчисляемое в минутах - при всем при этом экосистемным проектам не придется переписывать код._
+* &#x20;**У оптимистических роллапов нет методов масштабируемости за рамками текущих значений.** Когда появились первые оптимистические решения, они стали популярными, потому что они масштабировали Ethereum (например, они позволяли проводить х10 транзакций Эфириум _без деградации безопасности и децентрализации_). Проблема в том, что имея возможность масштабировать Эфириум в 10 раз сейчас, у них нет механизма выхода из этого лимита в х10 без компрометации безопасности и децентрализации. _В противовес, zkSync 2.0 основан на доказательствах с нулевым разглашением, которые имеют важные преимуещства, которых не имеют оптимистические методы - они могут гипермасштабироваться._
 
-#### [#](https://v2-docs.zksync.io/dev/fundamentals/faq.html#zksync-2-0-vs-other-zkrollups)zkSync 2.0 vs other zkRollups <a href="#zksync-2-0-vs-other-zkrollups" id="zksync-2-0-vs-other-zkrollups"></a>
+#### zkSync 2.0 vs другие zkРоллапы <a href="#zksync-2-0-vs-other-zkrollups" id="zksync-2-0-vs-other-zkrollups"></a>
+
+Хотя все блокчейны, основанные на технологии доказательств с нулевым разглашением разделяют фундаментальную технологию криптографических доказательств, все равн осреди них существует много важных разлиций.
+
+
+
+**zkSync против Starkware.**&#x20;
+
+Когда вы сравниваете zkSync со Starkware, главное, что вы увидите - это две различных стратегии, где zkSync оптимизируется под совместимость с экосистемой, технологией и этосом Ethereum, тогда как Starkware оптимизируется под теоретические выигрыши в производительности за счет компромисса в совместимости.
+
+* **EVM.** zkSync совместим с EVM  vs. Starknet НЕ совместим с EVM.
+* **Инструментарий**. zkSync совместим по инструментарию с EVM vs. Starknet НЕТ и требует того, чтобы люди изучали абсолютно новый инструментарий, построенный вокруг собственного языка программирования Cairo.
+* **Экосистема**. Экосистема zkSync естественным образом работает со всеми инструментами экосистемы Эфириум vs. Starkware пытается разогнать совершенно новую экосистему с новыми инструментами.
+* **Децентрализация**. zkSync "обнимает" децентрализацию, как на уровне технологий, так и на уровне организации vs. Starknet НЕ "обнимает" децентрализацию.
+* **Открытый исходный код.** Исходный код zkSync полностью открыт vs. код Starkware таковым НЕ является.
+
+### Какие кошельки поддерживаются? <a href="#which-wallets-are-supported" id="which-wallets-are-supported"></a>
+
+В данный момент мы поддерживаем любой Эфириум-кошелек. По умолчанию, основная опция на портале zkSync 2.0 - Metamask. Помимо автоматического подключения, вы можете добавить сеть zkSync в ваш Metamask вручную:
+
+**Testnet network info**
+
+* Network Name: `zkSync alpha testnet`
+* New RPC URL: `https://zksync2-testnet.zksync.dev`
+* Chain ID: `280`
+* Currency Symbol: `ETH`
+* Block Explorer URL: `https://goerli.explorer.zksync.io/`
+* WebSocket URL: `wss://zksync2-testnet.zksync.dev/ws`
+
+**Mainnet network info**
+
+* Network Name: `zkSync mainnet`
+* New RPC URL: `https://zksync2-mainnet.zksync.io`
+* Chain ID: `324`
+* Currency Symbol: `ETH`
+* Block Explorer URL: `https://explorer.zksync.io/`
+* WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`
+
+### Как запросить средства для  тестнета? <a href="#how-do-i-request-funds-for-testnet" id="how-do-i-request-funds-for-testnet"></a>
+
+Для доступа к средствам на тестнете вы можете использовать [Faucet(кран)](https://portal.zksync.io/faucet), отправив твит о нас, и получить немного токенов. Убедитесь, что сообщение в Twitter содержит ваш Ethereum адрес, на который мы отправим средства, и то, что это не ваш основном Эфириум аккаунт. Кран не сработает, если это новый Twitter-аккаунт и не имеет аватара.
+
+В качестве альтернативы вы может использовать [наш мост](https://portal.zksync.io/bridge) для переноса ETH с сети Goerli на zkSync 2.0 alpha testnet.
+
+### Как много вермени займет транзакция депозита? <a href="#how-long-does-it-take-to-complete-a-deposit-transaction" id="how-long-does-it-take-to-complete-a-deposit-transaction"></a>
+
+Транзакции на zkSync 2.0 не должны занимать более 5 минут.
+
+### Где я могу посмотреть свои отправленные транзакции? <a href="#where-can-i-see-the-transactions-i-submitted" id="where-can-i-see-the-transactions-i-submitted"></a>
+
+Наш [обозреватель блоков](https://explorer.zksync.io/) покажет вам все, что нужно касательно транзакций.&#x20;
+
+### Какой лимит хранилища для смарт-контрактов на zkSync 2.0? <a href="#what-is-the-storage-limit-for-smart-contract-on-zksync-2-0" id="what-is-the-storage-limit-for-smart-contract-on-zksync-2-0"></a>
+
+Текущий лимит составляет 3600000000 ergs.
+
+### Могу ли я вывести свои средства назад в Ethereum? <a href="#can-i-withdraw-my-funds-back-to-ethereum" id="can-i-withdraw-my-funds-back-to-ethereum"></a>
+
+Да, мост является двусторонним. Вы можете вывести свои средства назад в Ethereum. Процесс вывода займет до 1 часа, в зависимости от нагрузки на сеть zkSync.
+
+### Взаимодействие - пошаговое руководство <a href="#interacting-a-step-by-step-guide" id="interacting-a-step-by-step-guide"></a>
+
+Так как тестнет проводится в сети Goerli, в первую очередь вам понадобится немного Goerli ETH. Попробуйте один из следующих кранов:
+
+* [https://goerli-faucet.mudit.blog/](https://goerli-faucet.mudit.blog/)
+* [https://faucets.chain.link/goerli](https://faucets.chain.link/goerli)
+* [https://goerli-faucet.slock.it/](https://goerli-faucet.slock.it/)
+* [https://goerlifaucet.com/](https://goerlifaucet.com/)
+
+**Шаг 1**
+
+Отправляйтесь  на [https://portal.zksync.io/ ](https://portal.zksync.io/)и подключите свой кошелек. Вам автоматически будет предложено добавить сеть  “zkSync 2.0 testnet Goerli”.
+
+Вы также можете добавить сеть в Метамаск вручную:
+
+* Network Name: `zkSync alpha testnet`
+* RPC URL: `https://zksync2-testnet.zksync.dev`
+* Chain ID: `280`
+
+**Шаг 2 (Пропустите, если у вас нет Goerli ETH)**
+
+Сначала мы идем на “Bridge”, а затем делаем “Deposit” чтобы внести немного ETH на zkSync 2.0.
+
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+**Шаг 3**
+
+Далее мы направляемся к “Faucet” чтобы получить немного тестовых токенов $ETH, $LINK, $DAI, $WBTC и $USDC на наш адрес zkSync.
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+Проверьте свой баланс на вкладке “Balances” после запроса.
+
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+**Шаг 4**
+
+Теперь перейдем к “Transfer”. Вставьте адрес другого кошелька и переведите на него немного токенов. Оплатите комиссию в DAI, если у вас нет ETH.
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+**Step 5**
+
+Наконец, мы направляемся к “Withdraw” для вывода DAI с zkSync назад на Goerli. Оплатите комиссию в DAI, если у вас нет ETH.
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+### Что такое РеГенезис тестнета? <a href="#what-is-a-testnet-regenesis" id="what-is-a-testnet-regenesis"></a>
+
+Время от времени команда, работающая над zkSync будет инициировать регенезис в тестнете - рестарт блокчейна, которые принесет с собой обновления и обнулит состояние сети. Этого не будет происходить в основной сети, и маловероятно в тестнете после запуска основной сети.
