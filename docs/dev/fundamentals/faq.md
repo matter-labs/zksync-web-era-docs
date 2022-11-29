@@ -170,8 +170,7 @@ The current limit is 3600000000 ergs.
 
 ## What is Block Gas Limit on zkSync 2.0?
 
-The current value is currently set at roughly 2^32 gas.
-
+The current value is currently set at roughly 2^32 gas. <br>
 **Note**: This value is temporal and will be updated soon.
 ## Can I withdraw my funds back to Ethereum?
 
