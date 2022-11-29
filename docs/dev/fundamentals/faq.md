@@ -68,7 +68,7 @@ zkSync is optimized to be EVM *compatible* not EVM *equivalent* for three primar
 
 1. Creating a generalized circuit for EVM equivalence down to the bytecode would be prohibitively expensive and time-consuming.
 2. Building on what we learned with zkSync 1.0, we were able to design a system optimised for performance and provability in ZK.
-3. The opcodes we’ve chosen NOT to support are deprecated by Ethereum itself, or rarely used. In the case a project needs then, modifications to work with zkSync are minimal and do not generate a need for a new security audit.
+3. The opcodes we’ve chosen NOT to support are deprecated by Ethereum itself, or rarely used. In the case a project needs them, modifications to work with zkSync are minimal and do not generate a need for a new security audit.
 
 Almost every smart contract written for EVM will be supported by zkSync 2.0 and will hold all key security invariants so that no additional security re-auditing will be required in most cases. A notable exception is the contracts that use the following EVM opcodes:
 
