@@ -110,7 +110,7 @@ If you want to better understand what Account Abstraction on zkSync looks like, 
 
 ### **zkSync 2.0 vs Optimistic Rollups**
 
-Optimistic rollups like Arbitrum and Optimism utilize the optimistic approach to secure their network. At the time of their development, they represented an important incremental improvement over other available options. However, a widely held opinion ([including Vitalik Buterin's](https://coinculture.com/au/people/vitalik-buterin-zk-rollups-to-outperform-optimistic-rollups/)) is that optimistic methods represent yet another temporary solution and in the long run the only permanent and truly scalable solution will be blockchains based on Zero-Knowledge proofs.
+Optimistic rollups like Arbitrum and Optimism utilize the optimistic approach to secure their networks. At the time of their development, they represented an important incremental improvement over other available options. However, a widely held opinion ([including Vitalik Buterin's](https://coinculture.com/au/people/vitalik-buterin-zk-rollups-to-outperform-optimistic-rollups/)) is that optimistic methods represent yet another temporary solution and in the long run the only permanent and truly scalable solution will be blockchains based on Zero-Knowledge proofs.
 
 Optimistic rollups suffer from the following key issues:
 
