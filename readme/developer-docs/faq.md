@@ -95,3 +95,31 @@ zkSync оптимизирован под EVM-_совместимость_, а н
 
 ### Что такое Абстракция Аккаунта <a href="#what-is-account-abstraction" id="what-is-account-abstraction"></a>
 
+На самом высоком уровне Абстракция Аккаунта позволяет нам делать авторизацию _программируемой,_ что позволяет разнообразить кошельки и дизайны протоколов следующими юзкейсами:&#x20;
+
+* Реализация кошельков-смарт-контрактов, которая позволяет улучшить пользовательский опыт в хранении и восстановлении приватных ключей (например, [социальное восстановление](https://vitalik.ca/general/2021/01/11/recovery.html), мультиподпись).
+* Нативная возможность оплачивать газ в токенах, отличных от ETH.
+* Возможность аккаунтов менять публичные и приватные ключи.
+* Добавление некриптографических модификаций, где пользователи могут затребовать срок истечения для транзакции, подтверждать транзакции с небольшим отклонением по ордеру, и др.&#x20;
+* Разнообразие в системах верификации подписи помимо текущей ECDSA, включая алгоритмы безопасной пост-квантовой подписи (напр. Lamport, Winternitz).
+
+Другими словами, Абстракция Аккаунта привносит существенные улучшения в общий пользовательский опыт, а также расширяет пространство для проектирования приложений для разработчиков. Узнайте больше в [этом посте](https://www.argent.xyz/blog/wtf-is-account-abstraction/) от Argent.
+
+В zkSync 2.0 Абстракция Аккаунта реализована нативно, то есть, аккаунты могут инициировать транзакции, как EOA (Externally Owned Account - обычный адрес), но также могут иметь произвольную логику в реализации, как смарт-контракт.
+
+Если вы хотите лучше понять, как выглядит Абстракци Аккаунта в zkSync, то можете прочесть [этот раздел документации](https://v2-docs.zksync.io/dev/developer-guides/aa.html) или опробовать [наше руководство](https://v2-docs.zksync.io/dev/tutorials/custom-aa-tutorial.html).
+
+### zkSync 2.0 vs. Альтернативные решения <a href="#zksync-2-0-vs-alternatives" id="zksync-2-0-vs-alternatives"></a>
+
+#### **zkSync 2.0 vs Оптимистические Роллапы** <a href="#zksync-2-0-vs-optimistic-rollups" id="zksync-2-0-vs-optimistic-rollups"></a>
+
+Оптимистические роллапы, такие как Arbitrum & Optimism используют оптимистический подход в защите своих сетей. Во время их разработки они предложили важное постепенное улучшение по сравнению с другими доступными опциями. Однако, широко популярное мнение ([включая Виталика Бутерина](https://coinculture.com/au/people/vitalik-buterin-zk-rollups-to-outperform-optimistic-rollups/)) состоит в том, что оптимистические методы представляют из себя лишь очередное временное решение, и в долгосрочной перспективе единственными постоянным и по-настоящему масштабируемым решением будут блокчейны, основанные на ZK-доказательствах (доказательствах с нулевым разглашением).
+
+Оптимистические роллапы страдают от следующих ключевых проблем:
+
+* **Оптимистические роллапы полагаются на теорию игр в обеспечении безопасности.** Этот метод предполагает, что все транзакции валидны (действительны) и затем использует механизм пост-фактум-теории игр, чтобы выдать участникам сети награды за нахождение мошеннических или иных невалидных\недействительных (напр из-за багов) транзакций. Теория игр не работает идеально
+* **Optimistic rollups are secured via game theory.** This method assumes all transactions are valid and then utilizes an after-the-fact game theory mechanism to pay participants to discover fraudulent or otherwise invalid (e.g. because of bugs) transactions. Game theory is never perfect and as with the game theory that broke with stablecoins and other systems, we just don’t think it can be relied on in the long term and at true scale to offer the security the ecosystem needs. _zkSync 2.0, on the other hand, relies on math, not game theory, to provide the absolute certainty of proof that every single transaction is provably valid and not fraudulent._
+* **Optimistic methods take 7 days to settle**. Settlement time is becoming an increasingly important feature for ecosystem projects. As ecosystem projects’ needs mature, the need for as close to instant settlement will rise. With optimistic methods, this settlement problem will not go away. It's always going to be a 7-day settlement time because optimistic methods need 7 days for their after-the-fact game theory to conclude its challenge window. The only way around this is to bring in third parties that provide some liquidity - but then again this is a potential security risk in trusting the liquidity providers. _When zkSync 2.0 initially launches on Mainnet, it will provide settlement in hours but we are targeting settlement within minutes after months of work - and as we improve settlement times to near zero - no partner needs to change any code_.
+* **Optimistic rollups have no method of scaling beyond where they are now.** When optimistic methods first came out, they became popular because they scaled Ethereum - (e.g. they enabled the processing of 10x Ethereum transactions \*\*\*\*without degradation of security and decentralization). The problem is that while they can scale Ethereum by 10x now, they have no mechanism to go beyond 10x without degrading security and decentralization. _In contrast, zkSync 2.0 is based on zero-knowledge proofs which have important characteristics that optimistic methods do not - they can hyperscale._
+
+#### [#](https://v2-docs.zksync.io/dev/fundamentals/faq.html#zksync-2-0-vs-other-zkrollups)zkSync 2.0 vs other zkRollups <a href="#zksync-2-0-vs-other-zkrollups" id="zksync-2-0-vs-other-zkrollups"></a>
