@@ -11,18 +11,18 @@ module.exports = {
   },
   plugins: [
     [
+      "@vuepress/back-to-top",
       "flexsearch", {
         /*
           Plugin custom options
         */
         maxSuggestions: 10,    // how many search suggestions to show on the menu, the default is 10.
-        searchPaths: [],    // an array of paths to search in, keep it null to search all docs.
+        searchPaths: [null],    // an array of paths to search in, keep it null to search all docs.
         searchHotkeys: ['s'],    // Hot keys to activate the search input, the default is "s" but you can add more.
         searchResultLength: 60,    // the length of the suggestion result text by characters, the default is 60 characters.
         splitHighlightedWords: ' ',  // regex or string to split highlighted words by, keep it null to use flexsearch.split
         noExtraSpaceAfterHtmlTag: false,   // don't add extra spaces in highlighted results
       },
-      "@vuepress/back-to-top",
       "vuepress-plugin-canonical",
       {
         baseURL: "https://zksync.io", // base url for your canonical link, optional, default: ''
