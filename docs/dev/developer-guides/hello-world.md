@@ -503,6 +503,15 @@ async changeGreeting() {
 
 You now have a fully functional Greeter-dApp! However, it does not leverage any zkSync-specific features.
 
+::: warning
+
+What happens when you get a **wallet_requestPermissions** error?
+
+To fix this error, refresh your browser, another fix is opening the MetaMask extension on your browser and click *Next* or *Cancel* to resolve it.
+
+Read more about **wallet_requestPermissions**, on the [metamask documentation](https://docs.metamask.io/guide/rpc-api.html#wallet-requestpermissions).
+
+:::
 ### Paying fees using testnet paymaster
 
 Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](./aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](./aa.md#testnet-paymaster) that is provided on all zkSync testnets. It allows users to pay fees in an ERC20 token with the exchange rate of ETH of 1:1, i.e. one unit of the token for one wei of ETH.
