@@ -31,10 +31,11 @@
   },
   "dependencies": {
     "@vuepress/plugin-toc": "next",
+    "flexsearch": "^0.7.31",
     "markdown-it-footnote": "3.0.2",
     "vuepress": "^1.8.2",
     "vuepress-plugin-canonical": "^1.0.0",
-    "vuepress-plugin-fulltext-search": "^2.1.0"
+    "vuepress-plugin-flexsearch": "^0.3.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.0.0",
