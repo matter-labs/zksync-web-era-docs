@@ -3240,7 +3240,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vuepress/plugin-search@npm:1.9.7":
+"@vuepress/plugin-search@npm:1.9.7, @vuepress/plugin-search@npm:^1.8.2":
   version: 1.9.7
   resolution: "@vuepress/plugin-search@npm:1.9.7"
   dependencies:
@@ -6234,13 +6234,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"deepmerge@npm:^4.2.2":
-  version: 4.2.2
-  resolution: "deepmerge@npm:4.2.2"
-  checksum: a8c43a1ed8d6d1ed2b5bf569fa4c8eb9f0924034baf75d5d406e47e157a451075c4db353efea7b6bcc56ec48116a8ce72fccf867b6e078e7c561904b5897530b
-  languageName: node
-  linkType: hard
-
 "default-gateway@npm:^4.2.0":
   version: 4.2.0
   resolution: "default-gateway@npm:4.2.0"
@@ -8274,7 +8267,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"he@npm:1.2.x, he@npm:^1.1.0, he@npm:^1.2.0":
+"he@npm:1.2.x, he@npm:^1.1.0":
   version: 1.2.0
   resolution: "he@npm:1.2.0"
   bin:
@@ -8404,20 +8397,6 @@ __metadata:
   version: 3.1.0
   resolution: "html-tags@npm:3.1.0"
   checksum: 67587f2d4022390d7bc34b1313773ecb0b0e0c79fb331aa3e20023eb4c862c7188a1ff775d126fcd75f4e4f08f956666a1c57688c4d24d85a77f9d4b1a42f345
-  languageName: node
-  linkType: hard
-
-"html-to-text@npm:^7.0.0":
-  version: 7.1.1
-  resolution: "html-to-text@npm:7.1.1"
-  dependencies:
-    deepmerge: ^4.2.2
-    he: ^1.2.0
-    htmlparser2: ^6.1.0
-    minimist: ^1.2.5
-  bin:
-    html-to-text: bin/cli.js
-  checksum: 5b50c08f1b4897efba185c5ecc5eb087eaf69c6d93027c39681272ab0d9a92bdac1894bcb5cf26039e8226217aa0c690d1084393b10d9570202c14b381da1406
   languageName: node
   linkType: hard
 
@@ -15725,16 +15704,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vuepress-plugin-fulltext-search@npm:^2.1.0":
-  version: 2.2.1
-  resolution: "vuepress-plugin-fulltext-search@npm:2.2.1"
+"vuepress-plugin-flexsearch@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "vuepress-plugin-flexsearch@npm:0.3.0"
   dependencies:
+    "@vuepress/plugin-search": ^1.8.2
     flexsearch: ^0.6.32
-    html-to-text: ^7.0.0
-    lodash: ^4.17.19
-  peerDependencies:
-    vuepress: ^1.4.0
-  checksum: 74494c715470d58303abbedc0e38bae56b91378cb379ce23223644eba4c5e471da9d2dc5a6f01e8cd61f19994cbcba5c55f982abf9aaeb812c9552881c9502d0
+  checksum: 961a32430d6dc0dbbc38d6c77d0b6b95531090978d5445fa849971b757cd9a98af9683563cc9fb761d086bbd9780ae7429fc93cfb8ceb64c470820a19f4c803a
   languageName: node
   linkType: hard
 
@@ -16364,6 +16340,6 @@ __metadata:
     vue: 2.6.14
     vuepress: ^1.8.2
     vuepress-plugin-canonical: ^1.0.0
-    vuepress-plugin-fulltext-search: ^2.1.0
+    vuepress-plugin-flexsearch: ^0.3.0
   languageName: unknown
   linkType: soft
