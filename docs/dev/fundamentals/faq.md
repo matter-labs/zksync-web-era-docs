@@ -168,6 +168,10 @@ Our [Block Explorer](https://explorer.zksync.io) will show everything you may ne
 
 The current limit is 3600000000 ergs.
 
+## What is Block Gas Limit on zkSync 2.0?
+
+The current value is currently set at roughly 2^32 gas. <br>
+**Note**: This value is temporal and will be updated soon.
 ## Can I withdraw my funds back to Ethereum?
 
 Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The withdrawal transaction will take up to 1 hour, depending on the usage of the zkSync network.
