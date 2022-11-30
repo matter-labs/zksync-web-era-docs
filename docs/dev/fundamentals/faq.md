@@ -110,13 +110,13 @@ If you want to better understand what Account Abstraction on zkSync looks like, 
 
 ### **zkSync 2.0 vs Optimistic Rollups**
 
-Optimistic rollups like Arbitrum and Optimism utilize the optimistic approach to secure their network. At the time of their development, they represented an important incremental improvement over other available options. However, a widely held opinion ([including Vitalik Buterin's](https://coinculture.com/au/people/vitalik-buterin-zk-rollups-to-outperform-optimistic-rollups/)) is that optimistic methods represent yet another temporary solution and in the long run the only permanent and truly scalable solution will be blockchains based on Zero-Knowledge proofs.
+Optimistic rollups like Arbitrum and Optimism utilize the optimistic approach to secure their networks. At the time of their development, they represented an important incremental improvement over other available options. However, a widely held opinion ([including Vitalik Buterin's](https://coinculture.com/au/people/vitalik-buterin-zk-rollups-to-outperform-optimistic-rollups/)) is that optimistic methods represent yet another temporary solution and in the long run the only permanent and truly scalable solution will be blockchains based on Zero-Knowledge proofs.
 
 Optimistic rollups suffer from the following key issues:
 
 - **Optimistic rollups are secured via game theory.** This method assumes all transactions are valid and then utilizes an after-the-fact game theory mechanism to pay participants to discover fraudulent or otherwise invalid (e.g. because of bugs) transactions. Game theory is never perfect and as with the game theory that broke with stablecoins and other systems, we just don’t think it can be relied on in the long term and at true scale to offer the security the ecosystem needs. *zkSync 2.0, on the other hand, relies on math, not game theory, to provide the absolute certainty of proof that every single transaction is provably valid and not fraudulent.*
 - **Optimistic methods take 7 days to settle**. Settlement time is becoming an increasingly important feature for ecosystem projects. As ecosystem projects’ needs mature, the need for as close to instant settlement will rise. With optimistic methods, this settlement problem will not go away. It's always going to be a 7-day settlement time because optimistic methods need 7 days for their after-the-fact game theory to conclude its challenge window. The only way around this is to bring in third parties that provide some liquidity - but then again this is a potential security risk in trusting the liquidity providers. *When zkSync 2.0 initially launches on Mainnet, it will provide settlement in hours but we are targeting  settlement within minutes after months of work - and as we improve settlement times to near zero - no partner needs to change any code*.
-- **Optimistic rollups have no method of scaling beyond where they are now.** When optimistic methods first came out, they became popular because they scaled Ethereum - (e.g. they enabled the processing of 10x Ethereum transactions ****without degradation of security and decentralization). The problem is that while they can scale Ethereum by 10x now, they have no mechanism to go beyond 10x without degrading security and decentralization. *In contrast, zkSync 2.0 is based on zero-knowledge proofs which have important characteristics that optimistic methods do not - they can hyperscale.*
+- **Optimistic rollups have no method of scaling beyond where they are now.** When optimistic methods first came out, they became popular because they scaled Ethereum (e.g. they enabled the processing of 10x Ethereum transactions _without degradation of security and decentralization_). The problem is that while they can scale Ethereum by 10x now, they have no mechanism to go beyond 10x without degrading security and decentralization. *In contrast, zkSync 2.0 is based on zero-knowledge proofs which have important characteristics that optimistic methods do not - they can hyperscale.*
 
 ### zkSync 2.0 vs other zkRollups
 
@@ -178,6 +178,7 @@ As the testnet is running on Goerli network, you will need to get some Goerli ET
 - [https://goerli-faucet.mudit.blog/](https://goerli-faucet.mudit.blog/)
 - [https://faucets.chain.link/goerli](https://faucets.chain.link/goerli)
 - [https://goerli-faucet.slock.it/](https://goerli-faucet.slock.it/)
+- [https://goerlifaucet.com/](https://goerlifaucet.com/) 
 
 **Step 1**
 
