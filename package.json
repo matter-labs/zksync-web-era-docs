@@ -32,9 +32,7 @@
   "dependencies": {
     "@vuepress/plugin-toc": "next",
     "markdown-it-footnote": "3.0.2",
-    "vuepress": "^1.8.2",
-    "vuepress-plugin-canonical": "^1.0.0",
-    "vuepress-plugin-fulltext-search": "^2.1.0"
+    "vuepress": "^1.8.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.0.0",
@@ -52,7 +50,9 @@
     "markdownlint-cli": "^0.25.0",
     "prettier": "2.1.2",
     "semantic-release": "^18.0.1",
-    "vue": "2.6.14"
+    "vue": "2.6.14",
+    "vuepress-plugin-canonical": "^1.0.0",
+    "vuepress-plugin-flexsearch": "^0.3.0"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
