@@ -260,3 +260,43 @@ zkSyncDeploy: {
 Note that deployment scripts must be placed in the `deploy` folder!
 
 :::
+
+## `hardhat-zksync-chai-matchers`
+
+This plugin adds zkSync-specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts. It extends all the functionalities supported by the [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, with the idea to preserve the same behavior.
+
+### Npm
+
+Add the latest version of this plugin to your project with the following command:
+
+```
+# Yarn
+yarn add -D @matterlabs/hardhat-zksync-chai-matchers
+
+# Npm
+npm i -D @matterlabs/hardhat-zksync-chai-matchers
+```
+
+### Usage
+
+After installing it, add the plugin to your Hardhat config:
+
+```javascript
+import "@matterlabs/hardhat-zksync-chai-matchers";
+```
+
+Then you'll be able to use the matchers in your tests:
+
+```javascript
+await expect(() =>
+    sender.transfer({
+        to: receiver.address,
+        amount: 1000,
+    })
+).to.changeEtherBalance(sender.address, '-1000');
+
+await expect(token.transfer(receiver.address, 100)).to.not.changeTokenBalance(token, sender, 0);
+```
+
+Checkout the advantages of using chai matchers [here](https://hardhat.org/hardhat-chai-matchers/docs/overview#why-would-i-want-to-use-it?). Since the list of all supported chai matchers is same as with [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, check the [reference documentation](https://hardhat.org/hardhat-chai-matchers/docs/reference).
+
