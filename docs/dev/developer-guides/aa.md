@@ -164,7 +164,7 @@ In the future, we might even allow time-bound transactions, e.g. allow checking 
 
 As already mentioned above, each account should implement the [IAccount](#iaccount-interface) interface.
 
-An example of the implementation of the AA interface is the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/DefaultAA.sol#L16) of the EOA account.
+An example of the implementation of the AA interface is the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/DefaultAccount.sol#L17) of the EOA account.
 Note that this account, just like standard EOA accounts on Ethereum, successfully returns empty value whenever it is called by an external address, while this may not be the behaviour that you would like for your account.
 
 ### EIP1271
@@ -210,7 +210,7 @@ Currently, your transactions may pass through the API despite violating the requ
 ### Nonce holder contract
 
 For optimization purposes, both [tx nonce and the deployment nonce](./contracts/contracts.md#differences-in-create-behaviour) are put in one storage slot inside the [NonceHolder](./contracts/system-contracts.md#inonceholder) system contracts.
-In order to increment the nonce of your account, it is highly recommended to call the [incrementNonceIfEquals](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/INonceHolder.sol#L10) function and pass the value of the nonce provided in the transaction.
+In order to increment the nonce of your account, it is highly recommended to call the [incrementNonceIfEquals](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/INonceHolder.sol#L12) function and pass the value of the nonce provided in the transaction.
 
 This is one of the whitelisted calls, where the account logic is allowed to call outside smart contracts.
 

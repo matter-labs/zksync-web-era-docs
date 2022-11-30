@@ -29,7 +29,7 @@ This contract is used to send messages from zkSync to Ethereum. For each message
 
 ## INonceHolder
 
-[Interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/INonceHolder.sol#L5)
+[Interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/INonceHolder.sol#L13)
 
 This contract stores account nonces. The account nonces are stored in a single place for efficiency ([the tx nonce and the deployment nonce](./contracts.md#differences-in-create-behaviour) are stored in a single place) and also for the ease of the operator.
 

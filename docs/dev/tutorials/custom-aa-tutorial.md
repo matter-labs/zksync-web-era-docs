@@ -162,7 +162,7 @@ Using the `TransactionHelper` library:
 using TransactionHelper for Transaction;
 ```
 
-Also, note that since the non-view methods of the `NONCE_HOLDER_SYSTEM_CONTRACT` are required to be called with the `isSystem` flag on, the [systemCall](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/SystemContractsCaller.sol#L55) method of the `SystemContractsCaller` library should be used, so this library needs to be imported as well:
+Also, note that since the non-view methods of the `NONCE_HOLDER_SYSTEM_CONTRACT` are required to be called with the `isSystem` flag on, the [systemCall](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/SystemContractsCaller.sol#L77) method of the `SystemContractsCaller` library should be used, so this library needs to be imported as well:
 
 ```solidity
 import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.sol';
