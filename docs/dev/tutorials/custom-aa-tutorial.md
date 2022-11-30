@@ -468,7 +468,7 @@ contract AAFactory {
         address owner1,
         address owner2
     ) external returns (address accountAddress) {
-        bytes memory returnData = SystemContractsCaller.systemCallWithPropagatedRevert(
+        (bool success, bytes memory returnData) = SystemContractsCaller.systemCallWithReturnData(
             uint32(gasleft()),
             address(DEPLOYER_SYSTEM_CONTRACT),
             0,
@@ -477,6 +477,7 @@ contract AAFactory {
                 (salt, aaBytecodeHash, abi.encode(owner1, owner2))
             )
         );
+        require(success, "Deployment failed");
 
         (accountAddress, ) = abi.decode(returnData, (address, bytes));
     }
