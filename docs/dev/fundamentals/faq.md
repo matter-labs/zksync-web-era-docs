@@ -178,6 +178,7 @@ As the testnet is running on Goerli network, you will need to get some Goerli ET
 - [https://goerli-faucet.mudit.blog/](https://goerli-faucet.mudit.blog/)
 - [https://faucets.chain.link/goerli](https://faucets.chain.link/goerli)
 - [https://goerli-faucet.slock.it/](https://goerli-faucet.slock.it/)
+- [https://goerlifaucet.com/](https://goerlifaucet.com/) 
 
 **Step 1**
 
