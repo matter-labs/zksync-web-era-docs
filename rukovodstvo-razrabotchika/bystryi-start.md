@@ -21,7 +21,7 @@ Testnet paymaster создан исключительно в целях тест
 * Менеджер пакетов `yarn`. [Вот ссылка на инструкцию по установке](https://yarnpkg.com/getting-started/install) (`npm` примеры будут добавлены в скором времени.)
 * Кошелек с достаточным количеством Göerli `ETH` на L1, чтобы оплатить комиссию моста при отправке средств на zkSync и развертывание смарт-контрактов. ERC20 токены на zkSync обязательны, если вы хотите реализовать testnet paymaster. Мы рекомендуем использовать [кран с портала zkSync](https://portal.zksync.io/faucet).
 
-### Инициализация проекта и развертывание смарт контракта <a href="#initializing-the-project-deploying-a-smart-contract" id="initializing-the-project-deploying-a-smart-contract"></a>
+### Инициализация проекта и развертывание смарт-контракта <a href="#initializing-the-project-deploying-a-smart-contract" id="initializing-the-project-deploying-a-smart-contract"></a>
 
 1.  Инициализируйте проект и установите зависимости. Выполните следующие команды в терминале:
 
