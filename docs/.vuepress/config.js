@@ -11,13 +11,17 @@ module.exports = {
   },
   plugins: [
     [
-      "@vuepress/html-redirect",
       "@vuepress/back-to-top",
       "fulltext-search",
       "vuepress-plugin-canonical",
       {
         baseURL: "https://zksync.io", // base url for your canonical link, optional, default: ''
         stripExtension: false, // strip '.html' , optional, default: false
+      },
+      "vuepress-plugin-dehydrate",
+      {
+        noSSR: '404.html',
+        noScript: [],
       },
     ],
   ],

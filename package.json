@@ -33,7 +33,7 @@
     "@vuepress/plugin-toc": "next",
     "markdown-it-footnote": "3.0.2",
     "vuepress": "^1.8.2",
-    "vuepress-plugin-canonical": "^1.0.0",
+    "vuepress-plugin-dehydrate": "^1.1.5",
     "vuepress-plugin-fulltext-search": "^2.1.0"
   },
   "devDependencies": {
