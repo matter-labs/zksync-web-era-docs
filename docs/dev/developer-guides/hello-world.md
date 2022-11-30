@@ -507,7 +507,7 @@ You now have a fully functional Greeter-dApp! However, it does not leverage any 
 
 What happens when you get a **wallet_requestPermissions** error?
 
-To fix this error, refresh your browser, another fix is opening the MetaMask extension on your browser and click *Next* or *Cancel* to resolve it.
+To fix this error, refresh your browser, or open the MetaMask extension on your browser and click *Next* or *Cancel* to resolve it.
 
 Read more about **wallet_requestPermissions**, on the [metamask documentation](https://docs.metamask.io/guide/rpc-api.html#wallet-requestpermissions).
 
