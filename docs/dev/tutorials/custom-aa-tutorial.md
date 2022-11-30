@@ -88,7 +88,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 
     }
 
-	  receive() external payable {
+	receive() external payable {
         // If the bootloader called the `receive` function, it likely means
         // that something went wrong and the transaction should be aborted. The bootloader should
         // only interact through the `validateTransaction`/`executeTransaction` methods.
@@ -162,7 +162,7 @@ Using the `TransactionHelper` library:
 using TransactionHelper for Transaction;
 ```
 
-Also, note that since the non-view methods of the `NONCE_HOLDER_SYSTEM_CONTRACT` are required to be called with the `isSystem` flag on, the [systemCall](https://github.com/matter-labs/v2-testnet-contracts/blob/a3cd3c557208f2cd18e12c41840c5d3728d7f71b/l2/system-contracts/SystemContractsCaller.sol#L55) method of the `SystemContractsCaller` library should be used, so this library needs to be imported as well:
+Also, note that since the non-view methods of the `NONCE_HOLDER_SYSTEM_CONTRACT` are required to be called with the `isSystem` flag on, the [systemCall](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/SystemContractsCaller.sol#L55) method of the `SystemContractsCaller` library should be used, so this library needs to be imported as well:
 
 ```solidity
 import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.sol';
@@ -174,7 +174,7 @@ Now we can implement the `_validateTransaction` method:
 function _validateTransaction(bytes32 _suggestedSignedHash, Transaction calldata _transaction) internal {
     // Incrementing the nonce of the account.
     // Note, that reserved[0] by convention is currently equal to the nonce passed in the transaction
-    SystemContractsCaller.systemCall(
+    SystemContractsCaller.systemCallWithPropagatedRevert(
         uint32(gasleft()),
         address(NONCE_HOLDER_SYSTEM_CONTRACT),
         0,
@@ -248,7 +248,7 @@ function _executeTransaction(Transaction calldata _transaction) internal {
 
     if(to == address(DEPLOYER_SYSTEM_CONTRACT)) {
         // We allow calling ContractDeployer with any calldata
-        SystemContractsCaller.systemCall(
+        SystemContractsCaller.systemCallWithPropagatedRevert(
             uint32(gasleft()),
             to,
             uint128(_transaction.reserved[1]), // By convention, reserved[1] is `value`
@@ -323,7 +323,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
     ) internal {
         // Incrementing the nonce of the account.
         // Note, that reserved[0] by convention is currently equal to the nonce passed in the transaction
-        SystemContractsCaller.systemCall(
+        SystemContractsCaller.systemCallWithPropagatedRevert(
             uint32(gasleft()),
             address(NONCE_HOLDER_SYSTEM_CONTRACT),
             0,
@@ -364,7 +364,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 
         if (to == address(DEPLOYER_SYSTEM_CONTRACT)) {
             // We allow calling ContractDeployer with any calldata
-            SystemContractsCaller.systemCall(
+            SystemContractsCaller.systemCallWithPropagatedRevert(
                 uint32(gasleft()),
                 to,
                 uint128(_transaction.reserved[1]), // By convention, reserved[1] is `value`
@@ -468,7 +468,7 @@ contract AAFactory {
         address owner1,
         address owner2
     ) external returns (address accountAddress) {
-        bytes memory returnData = SystemContractsCaller.systemCall(
+        bytes memory returnData = SystemContractsCaller.systemCallWithPropagatedRevert(
             uint32(gasleft()),
             address(DEPLOYER_SYSTEM_CONTRACT),
             0,
