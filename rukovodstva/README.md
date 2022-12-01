@@ -6,7 +6,7 @@
 
 * [Быстрый старт](../rukovodstvo-razrabotchika/bystryi-start.md)
 * [Кроссчейн управление](krosschein-upravlenie/)
-* [Примеры абстракций аккаунта](abstrakciya-akkaunta.md)
+* [Примеры абстракций аккаунта](abstrakciya-akkaunta/)
 * [Создание кастомных paymasters](sozdanie-kastomnykh-paymasters.md)
 
 #### Запросы на новые руководства

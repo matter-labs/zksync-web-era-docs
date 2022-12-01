@@ -150,7 +150,7 @@ yarn hardhat run --network goerli ./scripts/deploy.ts
 
 Последняя команда выведет адрес развернутого смарт-контракта `governance`.
 
-### L2 counter
+### L2 счетчик
 
 Теперь, когда мы разобрались с контрактом `governance` на L1, давайте перейдем к развертыванию контракта `counter` на L2.
 
@@ -575,7 +575,7 @@ The counter value is 1
 
 Вы можете загрузить полный проект [тут](https://github.com/matter-labs/cross-chain-tutorial).
 
-### Узнайте больше
+### Узнать больше
 
 * Чтобы узнать больше о взаимодействии L1->L2 в zkSync, ознакомьтесь с документацией [тут](../../readme/rukovodstvo-razrabotchika/l2-greater-than-l1-kommunikaciya.md).
 * Чтобы узнать больше о `zksync-web3` SDK, ознакомьтесь с его документацией [тут](../../api-reference/javascript-web3-sdk/).
