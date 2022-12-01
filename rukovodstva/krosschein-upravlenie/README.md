@@ -76,7 +76,7 @@ contract Governance {
 
 Хотя это руководство не посвящено процессу развертывания контрактов на L1, мы дадим вам краткий обзор того, как это сделать.
 
-1. Для отправки deployment транзакции вам понадобится RPC node endpoint в тестовой сети Göerli. Вы можете [найти несколько провайдеров узлов здесь](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
+1. Для отправки транзакции развертывания вам понадобится конечная точка узла RPC (RPC node endpoint) в тестовой сети Göerli. Вы можете [найти несколько провайдеров узлов здесь](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
 2. Создайте файл`/L1-governance/goerli.json` и внесите следущие значения:
 
 ```json
@@ -88,7 +88,7 @@ contract Governance {
 
 &#x20;3\.  Добавьте секцию сети Göerli в файл`hardhat.config.ts` :
 
-```
+```typescript
 import { HardhatUserConfig, task } from "hardhat/config";
 import "@nomiclabs/hardhat-etherscan";
 import "@nomiclabs/hardhat-waffle";
@@ -110,9 +110,9 @@ const config: HardhatUserConfig = {
 }
 ```
 
-&#x20;4\. Создайте deployment скрипт `/L1-governance/scripts/deploy.ts` со следующим кодом:
+&#x20;4\. Создайте скрипт развертывания `/L1-governance/scripts/deploy.ts` со следующим кодом:
 
-```ts
+```typescript
 // We require the Hardhat Runtime Environment explicitly here. This is optional
 // but useful for running the script in a standalone fashion through `node <script>`.
 //
@@ -138,7 +138,7 @@ main().catch((error) => {
 });
 ```
 
-&#x20;5\.  Скомпилируйте контракт и запустите deployment скрипт с помощью:
+&#x20;5\.  Скомпилируйте контракт и запустите скрипт развертывания с помощью:
 
 ```
 # compile contract
@@ -148,11 +148,11 @@ yarn hardhat compile
 yarn hardhat run --network goerli ./scripts/deploy.ts
 ```
 
-Последняя команда выведет адрес развернутого `governance` смарт-контракта.
+Последняя команда выведет адрес развернутого смарт-контракта `governance`.
 
 ### L2 counter
 
-Now that we have the L1 governance contract addressed, let's proceed with deploying the counter contract on L2. Теперь, когда мы разобрались с контрактом `governance` на L1, давайте перейдем к развертыванию `counter` контракта на L2.
+Теперь, когда мы разобрались с контрактом `governance` на L1, давайте перейдем к развертыванию контракта `counter` на L2.
 
 1. Для инициализации проекта в папке`/L2-counter` выполните следующие команды:
 
@@ -199,11 +199,11 @@ module.exports = {
 
 Если ваша сеть по умолчанию не `hardhat`, убедитесь, что параметр `zksync: true` включен в ее конфиг.
 
-&#x20;3\.  Создайте папки `contracts` и `deploy` . Первая папка это место, где должны храниться все контракты  `*.sol` , а вторая - место, куда будут помещены все скрипты, связанные с развертыванием контракта.&#x20;
+&#x20;3\.  Создайте папки `contracts` и `deploy` . Первая папка - это место, где должны храниться все контракты  `*.sol` , а вторая - место, куда будут помещены все скрипты, связанные с развертыванием контракта.&#x20;
 
-&#x20;4\.  Создайте файл контракта `contracts/Counter.sol`. Этот контракт будет содержать адрес `governance` контракта, развернутого в L1 и счетчик. Функция для увеличения счетчика может быть вызвана только `governance` контрактом. Вот код:
+&#x20;4\.  Создайте файл контракта `contracts/Counter.sol`. Этот контракт будет содержать адрес контракта `governance`, развернутого в L1, и счетчик. Функция для увеличения счетчика может быть вызвана только контрактом `governance`. Вот код:
 
-```sol
+```solidity
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
@@ -273,7 +273,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-&#x20;7\.  Заменив `<WALLET-PRIVATE-KEY>` и `<GOVERNANCE-ADDRESS>` на приватный ключ кошелька Ethereum с префиксом `0x` с некоторым балансом ETH на Göerli и адрес `governance` контракта на L1 соответственно, запустите скрипт с помощью следующей команды:
+&#x20;7\.  Заменив `<WALLET-PRIVATE-KEY>` и `<GOVERNANCE-ADDRESS>` на приватный ключ кошелька Ethereum с префиксом `0x` с некоторым балансом ETH на Görli и адрес контракта `governance` на L1, соответственно, запустите скрипт с помощью следующей команды:
 
 ```
 yarn hardhat deploy-zksync
