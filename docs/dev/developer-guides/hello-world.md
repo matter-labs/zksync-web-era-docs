@@ -108,7 +108,7 @@ yarn hardhat compile
 6. Create the following deployment script in `deploy/deploy.ts`:
 
 ```typescript
-import { Wallet, Provider, utils } from "zksync-web3";
+import { Wallet, utils } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -118,7 +118,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
-  const provider = new Provider(hre.userConfig.zkSyncDeploy?.zkSyncNetwork);
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
 
   // Create deployer object and load the artifact of the contract you want to deploy.
