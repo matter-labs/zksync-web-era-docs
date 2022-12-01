@@ -4,7 +4,7 @@
 
 ### Перечень руководств по zkSync 2.0
 
-* [Быстрый старт](../razrabotka-na-zksync/bystryi-start.md)
+* [Быстрый старт](../rukovodstvo-razrabotchika/bystryi-start.md)
 * [Кроссчейн управление](krosschein-upravlenie/)
 * [Примеры абстракций аккаунта](abstrakciya-akkaunta.md)
 * [Создание кастомных paymasters](sozdanie-kastomnykh-paymasters.md)

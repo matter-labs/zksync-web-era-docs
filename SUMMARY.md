@@ -65,5 +65,5 @@
     * [Узнайте больше](https://app.gitbook.com/s/murhp2cgBIKXfRLqThaC/rukovodstva/krosschein-upravlenie#uznaite-bolshe)
   * [Абстракция аккаунта](rukovodstva/abstrakciya-akkaunta.md)
   * [Создание кастомных paymasters](rukovodstva/sozdanie-kastomnykh-paymasters.md)
-* [Разработка на zkSync](razrabotka-na-zksync/README.md)
-  * [Быстрый старт](razrabotka-na-zksync/bystryi-start.md)
+* [Разработка на zkSync](rukovodstvo-razrabotchika/README.md)
+  * [Быстрый старт](rukovodstvo-razrabotchika/bystryi-start.md)
