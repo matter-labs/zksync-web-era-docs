@@ -1,5 +1,8 @@
 # Bridging assets
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Introduction
 
 Bridging is implemented by having two contracts 

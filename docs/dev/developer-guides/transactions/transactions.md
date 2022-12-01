@@ -3,6 +3,9 @@
 Transactions in Ethereum are cryptographically signed instructions by an externally owned account (an account owned by a user and not by code). These instructions are stored in the blockchain and added to a block.
 The state of the Ethereum virtual machine (EVM) changes when a transaction is initiated. A transaction can be anything from sending ether to another account to invoking the functions of a smart contract.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Prerequisite
 
 We recommend you first read [accounts](https://ethereum.org/en/developers/docs/accounts/) to understand this page.
@@ -50,6 +53,6 @@ From the standpoint of zkSync, _finality_ occurs when the transaction (the SNARK
 
 When a user transmits a transaction, zkSync currently waits for the entire block to be filled, which means the finality time may be longer depending on the volume of transactions sent via zkSync. The finality time will reduce as the throughput increases.
 
-## What exactly are operators?
+### What exactly are operators?
 
 **Operators** are the actors who carry out essential ZK rollup functions. They are responsible for producing blocks, packaging transactions, conducting calculations, and submitting data to the main Ethereum chain for verification.

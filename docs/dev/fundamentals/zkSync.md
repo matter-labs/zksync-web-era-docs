@@ -1,5 +1,8 @@
 # zkSync basics
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Prerequisites
 
 If you are unfamiliar with rollups, you should cover the [rollups basics](./rollups.md) and read about ZK rollups and Optimistic rollups, before learning about zkSync.

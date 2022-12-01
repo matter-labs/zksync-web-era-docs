@@ -6,6 +6,9 @@ set of contracts that have special privileges and serve special purposes, e.g. d
 The code for the system contracts will not be public until it has gone through thorough testing. This section will only provide you with the 
 knowledge needed to build on zkSync.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level=[2,3]" />
+
 ## Interfaces
 
 The addresses and the interfaces of the system contracts can be found [here](https://github.com/matter-labs/v2-testnet-contracts/blob/8de367778f3b7ed7e47ee8233c46c7fe046a75a3/l2/system-contracts/Constants.sol).

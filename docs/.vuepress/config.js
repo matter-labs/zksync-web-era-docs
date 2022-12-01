@@ -11,10 +11,7 @@ module.exports = {
   },
   plugins: [
       "@vuepress/back-to-top",
-      {
-        baseURL: "https://zksync.io", // base url for your canonical link, optional, default: ''
-        stripExtension: false, // strip '.html' , optional, default: false
-      },
+      "vuepress-plugin-table-of-contents",
       "vuepress-plugin-dehydrate",
       {
         noSSR: '404.html',

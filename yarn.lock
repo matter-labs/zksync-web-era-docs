@@ -15725,6 +15725,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vuepress-plugin-table-of-contents@npm:^1.1.7":
+  version: 1.1.7
+  resolution: "vuepress-plugin-table-of-contents@npm:1.1.7"
+  checksum: c6faa989816386bb33f2e2a86cc0c3a68d5b311f99c8b6eaca327a545aaf5cff761912a7ff523c85fd121c21c67fbfb62ebd2f6bb160c446d29d26c225fa054e
+  languageName: node
+  linkType: hard
+
 "vuepress@npm:^1.8.2":
   version: 1.9.7
   resolution: "vuepress@npm:1.9.7"
@@ -16343,5 +16350,6 @@ __metadata:
     vuepress: ^1.8.2
     vuepress-plugin-dehydrate: ^1.1.5
     vuepress-plugin-flexsearch: ^0.3.0
+    vuepress-plugin-table-of-contents: ^1.1.7
   languageName: unknown
   linkType: soft
