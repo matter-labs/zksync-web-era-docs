@@ -8,7 +8,7 @@
 
 Прежде чем углубиться в данное руководство, крайне рекомендуется прочитать о [дизайне](../../readme/ponimanie-zksync-2.0/vazhno-podderzhka-abstrakcii-akkaunta.md) протокола абстракции аккаунта.
 
-Предполагается, что вы уже знакомы с развертыванием контрактов на zkSync. Если нет, пожалуйста обратитесь к первому разделу руководства [Hello World](../../readme/rukovodstvo-razrabotchika/rukovodstvo-hello-world.md). Также рекомендуется прочесть [введение ](../../readme/ponimanie-zksync-2.0/ponimanie-sistemnykh-kontraktov.md)в системные контракты.
+Предполагается, что вы уже знакомы с развертыванием контрактов на zkSync. Если нет, пожалуйста обратитесь к первому разделу руководства по. Также рекомендуется прочесть [введение ](../../readme/ponimanie-zksync-2.0/ponimanie-sistemnykh-kontraktov.md)в системные контракты.
 
 ### Установка зависимостей <a href="#installing-dependencies" id="installing-dependencies"></a>
 

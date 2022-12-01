@@ -9,6 +9,7 @@
     * [FAQ](readme/developer-docs/faq.md)
   * [Понимание zkSync](readme/ponimanie-zksync/README.md)
     * [Транзакции](readme/ponimanie-zksync/tranzakcii.md)
+    * [Блоки](readme/ponimanie-zksync/bloki.md)
   * [Тестнет](readme/testnet/README.md)
     * [Попробуйте!](readme/testnet/poprobuite.md)
     * [Подключение Metamask](readme/testnet/podklyuchenie-metamask.md)
