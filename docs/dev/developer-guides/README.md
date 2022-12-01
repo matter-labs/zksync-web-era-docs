@@ -1,4 +1,4 @@
-# Developer guides
+# Understanding zkSync
 
 Take a deeper dive into the zkSync ecosystem.
 
