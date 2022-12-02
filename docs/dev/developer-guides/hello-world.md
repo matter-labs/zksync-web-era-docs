@@ -99,13 +99,13 @@ contract Greeter {
 }
 ```
 
-5. Compile the contract with the following command:
+3. Compile the contract with the following command:
 
 ```
 yarn hardhat compile
 ```
 
-6. Create the following deployment script in `deploy/deploy.ts`:
+4. Create the following deployment script in `deploy/deploy.ts`:
 
 ```typescript
 import { Wallet, utils } from "zksync-web3";
@@ -153,7 +153,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-7. Replacing the `WALLET-PRIVATE-KEY` with the `0x`-prefixed private key of the Ethereum wallet you're using for development, and run the script using the following command to run the deployment script:
+5. Replacing the `WALLET-PRIVATE-KEY` with the `0x`-prefixed private key of the Ethereum wallet you're using for development, and run the script using the following command to run the deployment script:
 
 ```
 yarn hardhat deploy-zksync
