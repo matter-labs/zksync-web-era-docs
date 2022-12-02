@@ -184,7 +184,7 @@ Testnet paymaster создан исключительно в целях тест
 git clone https://github.com/matter-labs/greeter-tutorial-starter
 ```
 
-1. Запустите проект:
+&#x20; 2\.   Запустите проект:
 
 ```
 cd greeter-tutorial-starter
