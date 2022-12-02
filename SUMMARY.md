@@ -12,7 +12,7 @@
     * [Транзакции](readme/ponimanie-zksync/tranzakcii.md)
     * [Блоки](readme/ponimanie-zksync/bloki.md)
     * [Системные контракты](readme/ponimanie-zksync/sistemnye-kontrakty.md)
-    * [Поддержка абстракции аккаунта](readme/ponimanie-zksync/podderzhka-abstrakcii-akkaunta.md)
+    * [Поддержка абстракции аккаунта (АА)](readme/ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa.md)
   * [Тестнет](readme/testnet/README.md)
     * [Попробуйте!](readme/testnet/poprobuite.md)
     * [Подключение Metamask](readme/testnet/podklyuchenie-metamask.md)
