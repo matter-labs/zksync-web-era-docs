@@ -5,7 +5,7 @@ using css in index.styl, look for the .toc-label class.
 -->
 
 <template>
-<div class="toc-label">Table of Contents</div>
+<div class="toc-label">ON THIS PAGE</div>
 </template>
 
 <script>

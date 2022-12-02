@@ -7,7 +7,7 @@ The code for the system contracts will not be public until it has gone through t
 knowledge needed to build on zkSync.
 
 <TocHeader />
-<TOC class="table-of-contents" :include-level=[2,3]" />
+<TOC class="table-of-contents" :include-level="[2,3]" />
 
 ## Interfaces
 
