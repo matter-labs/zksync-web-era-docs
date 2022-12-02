@@ -11,6 +11,7 @@
   * [Понимание zkSync](readme/ponimanie-zksync/README.md)
     * [Транзакции](readme/ponimanie-zksync/tranzakcii.md)
     * [Блоки](readme/ponimanie-zksync/bloki.md)
+    * [Системные контракты](readme/ponimanie-zksync/sistemnye-kontrakty.md)
   * [Тестнет](readme/testnet/README.md)
     * [Попробуйте!](readme/testnet/poprobuite.md)
     * [Подключение Metamask](readme/testnet/podklyuchenie-metamask.md)
