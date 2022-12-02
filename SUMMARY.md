@@ -75,7 +75,7 @@
     * [Узнать больше](https://app.gitbook.com/s/murhp2cgBIKXfRLqThaC/rukovodstva/abstrakciya-akkaunta#learn-more)
   * [Создание кастомных paymasters](rukovodstva/sozdanie-kastomnykh-paymasters.md)
 * [Разработка на zkSync](rukovodstvo-razrabotchika/README.md)
-  * [Быстрый старт](razrabotka-na-zksync/bystryi-start/README.md)
+  * [Быстрый старт](rukovodstvo-razrabotchika/bystryi-start.md)
     * [Предварительные требования](https://app.gitbook.com/o/7yi2SXsipnanreWF09rl/s/murhp2cgBIKXfRLqThaC/\~/changes/LnFZyzqrINF66IPvOoOE/razrabotka-na-zksync/bystryi-start#prerequisites)
     * [Инициализация проекта и развертывание смарт-контракта](https://app.gitbook.com/o/7yi2SXsipnanreWF09rl/s/murhp2cgBIKXfRLqThaC/\~/changes/LnFZyzqrINF66IPvOoOE/razrabotka-na-zksync/bystryi-start#initializing-the-project-deploying-a-smart-contract)
     * [Интеграция фронтенда](https://app.gitbook.com/o/7yi2SXsipnanreWF09rl/s/murhp2cgBIKXfRLqThaC/\~/changes/LnFZyzqrINF66IPvOoOE/razrabotka-na-zksync/bystryi-start#front-end-integration)
