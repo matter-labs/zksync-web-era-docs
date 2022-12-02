@@ -11,6 +11,15 @@ module.exports = {
   },
   plugins: [
       "@vuepress/back-to-top",
+      {
+        baseURL: "https://zksync.io", // base url for your canonical link, optional, default: ''
+        stripExtension: false, // strip '.html' , optional, default: false
+      },
+      "vuepress-plugin-dehydrate",
+      {
+        noSSR: '404.html',
+        noScript: [],
+      },
       ["flexsearch", {
         /*
           Plugin custom options
@@ -22,7 +31,7 @@ module.exports = {
         splitHighlightedWords: ' ',  // regex or string to split highlighted words by, keep it null to use flexsearch.split
         noExtraSpaceAfterHtmlTag: false,   // don't add extra spaces in highlighted results
       }],
-  ],
+    ],
   themeConfig: {
     repo: "matter-labs/zksync-web-v2-docs",
     editLinks: true,

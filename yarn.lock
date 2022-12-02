@@ -15687,13 +15687,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vuepress-plugin-canonical@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "vuepress-plugin-canonical@npm:1.0.0"
-  checksum: 2c78d38befe2f47792eec9a81adff22a64b0d69e57bc6bc7b7fd27b1ef52003a5a4ad1a7087eaedc6a7c9ceefc58297ad9b13bf07b901f1c56e16601465876cb
-  languageName: node
-  linkType: hard
-
 "vuepress-plugin-container@npm:^2.0.2":
   version: 2.1.5
   resolution: "vuepress-plugin-container@npm:2.1.5"
@@ -15701,6 +15694,15 @@ __metadata:
     "@vuepress/shared-utils": ^1.2.0
     markdown-it-container: ^2.0.0
   checksum: 49a9e088ad7268fbf1a52cd152da2755c59bfa1e65f9c1c5f34c642847aae64f23f4f9727f244b30521a866496ae95dcfc6d4d62e4031469e02f96b4386bb165
+  languageName: node
+  linkType: hard
+
+"vuepress-plugin-dehydrate@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "vuepress-plugin-dehydrate@npm:1.1.5"
+  dependencies:
+    "@vuepress/shared-utils": ^1.2.0
+  checksum: f2df4f979b961a8458b578dc566e8423e72a5ea6e61e094c60e36c4fda5cf6a1796f313ae723faeae4baba0de81395190d6d07a063cbcf63692b09bb3d150622
   languageName: node
   linkType: hard
 
@@ -16339,7 +16341,7 @@ __metadata:
     semantic-release: ^18.0.1
     vue: 2.6.14
     vuepress: ^1.8.2
-    vuepress-plugin-canonical: ^1.0.0
+    vuepress-plugin-dehydrate: ^1.1.5
     vuepress-plugin-flexsearch: ^0.3.0
   languageName: unknown
   linkType: soft
