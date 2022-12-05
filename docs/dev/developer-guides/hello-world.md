@@ -96,16 +96,16 @@ contract Greeter {
 }
 ```
 
-5. Compile the contract with the following command:
+3. Compile the contract with the following command:
 
 ```
 yarn hardhat compile
 ```
 
-6. Create the following deployment script in `deploy/deploy.ts`:
+4. Create the following deployment script in `deploy/deploy.ts`:
 
 ```typescript
-import { Wallet, Provider, utils } from "zksync-web3";
+import { Wallet, utils } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -115,7 +115,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
-  const provider = new Provider(hre.userConfig.zkSyncDeploy?.zkSyncNetwork);
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
 
   // Create deployer object and load the artifact of the contract you want to deploy.
@@ -151,7 +150,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-7. Replacing the `WALLET-PRIVATE-KEY` with the `0x`-prefixed private key of the Ethereum wallet you're using for development, and run the script using the following command to run the deployment script:
+5. Replacing the `WALLET-PRIVATE-KEY` with the `0x`-prefixed private key of the Ethereum wallet you're using for development, and run the script using the following command to run the deployment script:
 
 ```
 yarn hardhat deploy-zksync
@@ -503,6 +502,15 @@ async changeGreeting() {
 
 You now have a fully functional Greeter-dApp! However, it does not leverage any zkSync-specific features.
 
+::: warning
+
+What happens when you get a **wallet_requestPermissions** error?
+
+To fix this error, refresh your browser, or open the MetaMask extension on your browser and click *Next* or *Cancel* to resolve it.
+
+Read more about **wallet_requestPermissions**, on the [metamask documentation](https://docs.metamask.io/guide/rpc-api.html#wallet-requestpermissions).
+
+:::
 ### Paying fees using testnet paymaster
 
 Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](./aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](./aa.md#testnet-paymaster) that is provided on all zkSync testnets. It allows users to pay fees in an ERC20 token with the exchange rate of ETH of 1:1, i.e. one unit of the token for one wei of ETH.
