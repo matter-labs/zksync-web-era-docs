@@ -51,7 +51,7 @@ For example, let's say that you want to deploy contract `A` which can also deplo
 
 ### L1->L2 communication
 
-The [interface](https://github.com/matter-labs/v2-testnet-contracts/blob/d4a2869ab6feadb396f357e55aa41d137adc0ab0/l1/contracts/zksync/interfaces/IMailbox.sol#L76) for submitting L1->L2 transactions accepts the list of all the factory dependencies required for this particular transaction. The logic for working with them is the same as for the L2 transactions. The only difference is that since the user has already published the full preimage for the bytecodes on L1, there is no need to publish these bytecodes again on L1.
+The [interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l1/contracts/zksync/interfaces/IMailbox.sol#L78) for submitting L1->L2 transactions accepts the list of all the factory dependencies required for this particular transaction. The logic for working with them is the same as for the L2 transactions. The only difference is that since the user has already published the full preimage for the bytecodes on L1, there is no need to publish these bytecodes again on L1.
 
 ### Format of bytecode hash
 
