@@ -9,7 +9,7 @@ zkSync takes security seriously and as such, we have a massive [bug bounty progr
 
 ## Scope
 
-Issues that can lead to substantial loss of money, critical bugs like a broken live-ness condition, blocking upgrade system, irreversible loss of funds, or enforced exodus mode.
+Issues that can lead to substantial loss of money, critical bugs like a broken liveness condition, blocking upgrade system, irreversible loss of funds, or enforced exodus mode.
 
 ## Assumptions
 
