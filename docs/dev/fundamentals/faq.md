@@ -166,7 +166,9 @@ Our [Block Explorer](https://explorer.zksync.io) will show everything you may ne
 
 ## Can someone claim the address I have for my contract in other EVM networks in zkSync 2.0?
 
-No! We have a different address generation schema from other L2's, that would not allow addresses to be claimed on L2 by an adversary. Even if you deploy same address and same private key it would still be different.
+No! The contract address derivation formula is different from L1. Even if you deploy from the same account with the same nonce, on L2 the contract address will not be the same as on L1. So it is totally safe to have 2 accounts with the same address on L1 and L2 and there is no need to worry which contracts you deploy and where since the addresses will differ anyway. 
+
+So the hack like we saw with Wintermute on Optimism is not possible
 ## What is the storage limit for smart contract on zkSync 2.0?
 
 The current limit is 3600000000 ergs.
