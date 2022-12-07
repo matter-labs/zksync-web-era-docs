@@ -15,6 +15,7 @@
     * [Поддержка абстракции аккаунта (АА)](readme/ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa.md)
     * [Модель безопасности](readme/ponimanie-zksync/model-bezopasnosti.md)
     * [Механизм комиссий](readme/ponimanie-zksync/mekhanizm-komissii.md)
+    * [Перенос средств (бриджинг)](readme/ponimanie-zksync/perenos-sredstv-bridzhing.md)
   * [Тестнет (outdated)](readme/testnet/README.md)
     * [Попробуйте!](readme/testnet/poprobuite.md)
     * [Подключение Metamask](readme/testnet/podklyuchenie-metamask.md)
