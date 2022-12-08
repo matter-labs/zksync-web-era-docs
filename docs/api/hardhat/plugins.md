@@ -28,7 +28,7 @@ This plugin is configured in the `hardhat.config.ts` file of your project. Here 
 
 ```typescript
 zksolc: {
-  version: "1.2.0",
+  version: "1.2.1",
   compilerSource: "binary",  // binary or docker
   settings: {
     compilerPath: "zksolc",  // ignored for compilerSource: "docker"
@@ -46,7 +46,7 @@ networks: {
 }
 ```
 
-- `version` is a field with the version of the `zksolc` compiler. Currently not used.
+- `version` is a field with the version of the `zksolc` compiler. Compiler versions can be found in [the following repository](https://github.com/matter-labs/zksolc-bin).
 - `compilerSource` indicates the compiler source and can be either `docker` or `binary` (recommended). If there isnn't a compiler binary already installed, the plugin will automatically download it. If `docker` is used, you'd need to run Docker desktop in the background and provide both `dockerImage` and `tag` in the experimental section.
 - `compilerPath` is a field with the path to the `zksolc` binary. By default, the binary in `$PATH` is used. If `compilerSource` is `docker`, this field is ignored.
 - `dockerImage` and `tag` make up the name of the compiler docker image. If `compilerSource` is `binary`, these fields are ignored.
