@@ -171,7 +171,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-7. After replacing the `WALLET-PRIVATE-KEY` text with the `0x`-prefixed private key of your Ethereum wallet, run the script using the following command: `yarn hardhat deploy-zksync`. This script will:
+7. After replacing the `WALLET-PRIVATE-KEY` text with the private key of your Ethereum wallet, run the script using the following command: `yarn hardhat deploy-zksync`. This script will:
 
 - Transfer 0.001 ETH from Goerli to zkSync.
 - Deploy the `Greeting` contract with the message "Hi there!".
