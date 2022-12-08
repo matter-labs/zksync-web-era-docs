@@ -28,7 +28,7 @@ Note that the `governance` project is a default Hardhat project because it'll be
 
 ## L1 governance
 
-To initialise the project inside the `/L1-governance` folder, run `npx hardhat`, select the option "Create a Typescript project", and leave the rest of the options with the given default valie.
+To initialise the project inside the `/L1-governance` folder, run `npx hardhat`, select the option "Create a Typescript project", and leave the rest of the options with the default value.
 
 To interact with the zkSync bridge contract using Solidity, you need to use the zkSync contract interface. There are two options to get it:
 
