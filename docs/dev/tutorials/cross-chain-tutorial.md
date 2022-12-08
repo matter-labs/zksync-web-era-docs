@@ -195,7 +195,7 @@ module.exports = {
 
 If your default network is not `hardhat`, make sure to include `zksync: true` in its config, too.
 
-3. Create the `contracts` and `deploy` folders, which will contain all thecontract `*.sol` files, and the scripts related to deploying the contract.
+3. Create the `contracts` and `deploy` folders, which will contain all the contract `*.sol` files, and the scripts related to deploying the contract.
 
 4. Create the `contracts/Counter.sol` contract file. This contract will have the address of the governance contract deployed in L1 and a counter that can be incremented. The function to increment the counter can only be invoked by the governance contract that we previously deployed in L1. Here is the code:
 
