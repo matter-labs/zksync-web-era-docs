@@ -151,13 +151,13 @@ module.exports = {
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
         },
-        {
-          title: "L1 contract interface",
-          path: "/api/contracts.md",
-          collapsable: false, // optional, defaults to true
-          sidebarDepth: 1, // optional, defaults to 1
-          //children: ["/api/contracts/l1-l2.md"],
-        },
+        // {
+        //   title: "L1 contract interface",
+        //   path: "/api/contracts.md",
+        //   collapsable: false, // optional, defaults to true
+        //   sidebarDepth: 1, // optional, defaults to 1
+        //   //children: ["/api/contracts/l1-l2.md"],
+        // },
         {
           title: "JavaScript SDK", // required
           path: "/api/js", // optional, which should be a absolute path.
@@ -212,7 +212,7 @@ module.exports = {
         },
         {
           title: "zkSync CLI", // required
-          path: "/api/zksync-cli/", // optional, which should be a absolute path.
+          path: "/api/tools/zksync-cli/", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 0, // optional, defaults to 1
         },
