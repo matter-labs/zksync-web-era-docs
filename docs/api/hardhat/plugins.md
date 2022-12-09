@@ -281,6 +281,7 @@ Note that deployment scripts must be placed in the `deploy` folder!
 ## `hardhat-zksync-chai-matchers`
 
 This plugin adds zkSync-specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts. It extends all the functionalities supported by the [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, with the idea to preserve the same behavior.
+Currently, it is used in combination with [local testing environment](https://v2-docs.zksync.io/api/hardhat/testing.html).
 
 ### Npm
 
@@ -288,9 +289,9 @@ Add the latest version of this plugin to your project with the following command
 
 ```
 # Yarn
-yarn add -D @matterlabs/hardhat-zksync-chai-matchers
+yarn add -D @matterlabs/hardhat-zksync-chai-matchers @nomicfoundation/hardhat-chai-matchers chai @nomiclabs/hardhat-ethers ethers
 
-# Npm
+# Npm (version 7 or later is recommended)
 npm i -D @matterlabs/hardhat-zksync-chai-matchers
 ```
 
@@ -357,6 +358,30 @@ await expect(
 ).to.changeTokenBalance(token, sender, -5);
 
 await expect(token.transfer(receiver.address, 5)).to.not.changeTokenBalance(token, sender, 0);
+```
+
+#### reverted
+
+Assert that a transaction reverted for any reason:
+
+```javascript
+await expect(contract.setAmount(100)).to.be.reverted;
+```
+
+#### revertedWithCustomError
+
+Assert that a transaction reverted with a specific custom error:
+
+```javascript
+await expect(contract.setAmount(100)).to.be.revertedWithCustomError(contract, 'InvalidAmount');
+```
+
+#### emit
+
+Assert that a transaction emits a specific event:
+
+```javascript
+await expect(contract.setAmount(100)).to.emit(token, 'AmountUpdated');
 ```
 
 Checkout the advantages of using chai matchers [here](https://hardhat.org/hardhat-chai-matchers/docs/overview#why-would-i-want-to-use-it?). Since the list of all supported chai matchers is same as with [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, check the [reference documentation](https://hardhat.org/hardhat-chai-matchers/docs/reference).
