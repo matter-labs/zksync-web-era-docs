@@ -302,18 +302,61 @@ After installing it, add the plugin to your Hardhat config:
 import "@matterlabs/hardhat-zksync-chai-matchers";
 ```
 
-Then you'll be able to use the matchers in your tests:
+Then you'll be able to use the matchers in your tests.
+
+#### changeEtherBalance
+
+Assert that the ether balance of an address changed by a specific amount:
 
 ```javascript
 await expect(() =>
     sender.transfer({
         to: receiver.address,
-        amount: 1000,
+        amount: 2000,
+    })
+).to.changeEtherBalance(sender.address, BigInt('-2000'));
+
+await expect(() =>
+    sender.sendTransaction({
+        to: receiver.address,
+        value: 1000,
     })
 ).to.changeEtherBalance(sender.address, '-1000');
+```
 
-await expect(token.transfer(receiver.address, 100)).to.not.changeTokenBalance(token, sender, 0);
+This matchers include additional options argument with functionalities for including fee and overriding transaction:
+
+```javascript
+overrides = {
+    type: 2,
+    maxFeePerGas: 1 * gasPrice,
+    maxPriorityFeePerGas: 1 * gasPrice,
+};
+
+await expect(() =>
+    sender.transfer({
+        to: receiver.address,
+        amount: 500,
+        overrides,
+    })
+).to.changeEtherBalance(sender, -(txGasFees + 500), {
+    balanceChangeOptions: {
+        includeFee: true,
+    },
+    overrides,
+});
+```
+
+#### changeTokenBalance
+
+Assert that an ERC20 token balance of an address changed by a specific amount:
+
+```javascript
+await expect(
+    sender.transfer({ to: receiver.address, amount: 5, token: token.address })
+).to.changeTokenBalance(token, sender, -5);
+
+await expect(token.transfer(receiver.address, 5)).to.not.changeTokenBalance(token, sender, 0);
 ```
 
 Checkout the advantages of using chai matchers [here](https://hardhat.org/hardhat-chai-matchers/docs/overview#why-would-i-want-to-use-it?). Since the list of all supported chai matchers is same as with [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, check the [reference documentation](https://hardhat.org/hardhat-chai-matchers/docs/reference).
-
