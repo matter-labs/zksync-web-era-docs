@@ -1,11 +1,5 @@
 # zkSync CLI
 
-::: warning
-
-zksync-cli is in alpha
-
-:::
-
 The zkSync CLI simplifies the process of developing applications and interacting with zkSync 2.0.
 
 The code is available [in the following repository](https://github.com/matter-labs/zksync-cli).
