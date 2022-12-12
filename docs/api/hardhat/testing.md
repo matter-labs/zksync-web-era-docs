@@ -139,16 +139,18 @@ module.exports = {
       },
     },
   },
+  // defaults to zkSync network
   defaultNetwork: "zkSyncTestnet",
 
-  solidity: {
-    version: "0.8.16",
-  },
   networks: {
     hardhat: {
       zksync: true,
     },
+    // load test network details
     zkSyncTestnet,
+  },
+  solidity: {
+    version: "0.8.16",
   },
 };
 ```
