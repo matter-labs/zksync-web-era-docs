@@ -270,6 +270,12 @@ networks: {
 
 `hardhat deploy-zksync` -- runs through all the scripts in the `deploy` folder.
 
+::: tip
+
+Note that deployment scripts must be placed in the `deploy` folder!
+
+:::
+
 - To run a specific script, add the `--script` argument, e.g. `hardhat deploy-zksync --script 001_deploy.ts` will run script `./deploy/001_deploy.ts`.
 - To run on a specific zkSync network, use standard hardhat `--network` argument, e.g. `--network zkTestnet` (the network with the name `zkTestnet` needs to be configured in the `hardhat.config.ts` file, with all required fields stated above), or specify `defaultNetwork` in `hardhat.config.ts` file.
 
@@ -277,11 +283,5 @@ networks: {
 
 If network argument `--network` or `defaultNetwork` configuration are not specified, local setup with `http://localhost:8545` (Ethereum RPC URL) and `http://localhost:3050` (zkSync RPC URL), will be used. In this case zkSync network doesn't need to be configured in `hardhat.config.ts` file.
 For more details about the dockerized local setup, check out [Local testing](https://v2-docs.zksync.io/api/hardhat/testing.html).
-
-:::
-
-::: tip
-
-Note that deployment scripts must be placed in the `deploy` folder!
 
 :::
