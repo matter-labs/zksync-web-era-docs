@@ -28,7 +28,7 @@ This plugin is configured in the `hardhat.config.ts` file of your project. Here 
 
 ```typescript
 zksolc: {
-  version: "1.2.0",
+  version: "1.2.1",
   compilerSource: "binary",  // binary or docker
   settings: {
     compilerPath: "zksolc",  // ignored for compilerSource: "docker"
@@ -46,12 +46,14 @@ networks: {
 }
 ```
 
-- `version` is a field with the version of the `zksolc` compiler. Currently not used.
+- `version` is a field with the version of the `zksolc` compiler. Compiler versions can be found in [the following repository](https://github.com/matter-labs/zksolc-bin).
 - `compilerSource` indicates the compiler source and can be either `docker` or `binary` (recommended). If there isnn't a compiler binary already installed, the plugin will automatically download it. If `docker` is used, you'd need to run Docker desktop in the background and provide both `dockerImage` and `tag` in the experimental section.
 - `compilerPath` is a field with the path to the `zksolc` binary. By default, the binary in `$PATH` is used. If `compilerSource` is `docker`, this field is ignored.
 - `dockerImage` and `tag` make up the name of the compiler docker image. If `compilerSource` is `binary`, these fields are ignored.
 - `libraries` if your contract uses non-inlinable libraries as dependencies, they have to be defined here. Learn more about [compiling libraries here](./compiling-libraries.md)
 - `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default. Useful for multichain projects in which you can enable `zksync` only for specific networks.
+
+
 
 ### Commands
 
@@ -239,9 +241,16 @@ To see an example script of how to use a `Deployer` to deploy a contract, check 
 
 ### Configuration
 
+::: warning API changes in v0.6.x
+
+Previous versions of this package required a different configuration in the `hardhat.config.ts` file. If you're using `v0.5.x` or previous, the network configuration must be indicated in an object named `zkSyncDeploy`,  including the properties `zkSyncNetwork` and `ethNetwork`. **We recommended users to update to the latest version of this package.**
+
+:::
+
 Specify the zkSync and Ethereum networks as part of the `hardhat.config.ts` file's `networks` configuration:
 
 ```typescript
+// defaultNetwork: "zkTestnet", // optional (if not set, use '--network zkTestnet')
 networks: {
   goerli: {
     url: "https://goerli.infura.io/v3/<API_KEY>" // URL of the Ethereum Web3 RPC
@@ -258,6 +267,8 @@ networks: {
 - `url` is a field with the URL of the zkSync node in case of the zkSync network (with `zksync` flag set to `true`), or the URL of the Ethereum node. This field is required for all zkSync and Ethereum networks used by this plugin.
 - `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `goerli`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
 - `zksync` is a flag to indicate if the network represents zkSync network configuration. This field needs to be set to `true` for all zkSync networks. `false` by default.
+
+
 
 ### Commands
 
