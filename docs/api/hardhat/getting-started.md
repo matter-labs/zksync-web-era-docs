@@ -55,14 +55,13 @@ module.exports = {
       },
     },
   },
-  zkSyncDeploy: {
-    zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
-    ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
-  },
+  defaultNetwork: "zkTestnet",
   networks: {
-    hardhat: {
-      zksync: true,
-    },
+    zkTestnet: {
+      url: "https://zksync2-testnet.zksync.dev", // URL of the zkSync network RPC
+      ethNetwork: "goerli", // Can also be the RPC URL of the Ethereum network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
+      zksync: true
+    }
   },
   solidity: {
     version: "0.8.16",
@@ -174,7 +173,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 7. After replacing the `WALLET-PRIVATE-KEY` text with the private key of your Ethereum wallet, run the script using the following command: `yarn hardhat deploy-zksync`. This script will:
 
 - Transfer 0.001 ETH from Goerli to zkSync.
-- Deploy the `Greeting` contract with the message "Hi there!".
+- Deploy the `Greeting` contract with the message "Hi there!" to [zkSync testnet](https://v2-docs.zksync.io/dev/fundamentals/testnet.html).
 - Retrieve the message from the contract calling the `greet()` method.
 - Update the greet message in the contract with the `setGreeting()` method.
 - Retrieve the message from the contract again.
