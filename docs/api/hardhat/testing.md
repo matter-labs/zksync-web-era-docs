@@ -114,16 +114,18 @@ This will enable running tests in a Hardhat environment with the `NODE_ENV` env 
 require("@matterlabs/hardhat-zksync-deploy");
 require("@matterlabs/hardhat-zksync-solc");
 
-// changes endpoint depending on environment variable
-const zkSyncDeploy =
+// dynamically changes endpoints for local tests
+const zkSyncTestnet =
   process.env.NODE_ENV == "test"
     ? {
-        zkSyncNetwork: "http://localhost:3050",
+        url: "http://localhost:3050",
         ethNetwork: "http://localhost:8545",
+        zksync: true,
       }
     : {
-        zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
+        url: "https://zksync2-testnet.zksync.dev",
         ethNetwork: "goerli",
+        zksync: true,
       };
 
 module.exports = {
@@ -133,19 +135,20 @@ module.exports = {
     settings: {
       experimental: {
         dockerImage: "matterlabs/zksolc",
-        tag: "v1.2.0",
+        tag: "v1.2.1",
       },
     },
   },
-  // load endpoints
-  zkSyncDeploy,
+  defaultNetwork: "zkSyncTestnet",
+
   solidity: {
-    version: "0.8.11",
+    version: "0.8.16",
   },
   networks: {
     hardhat: {
       zksync: true,
     },
+    zkSyncTestnet,
   },
 };
 ```

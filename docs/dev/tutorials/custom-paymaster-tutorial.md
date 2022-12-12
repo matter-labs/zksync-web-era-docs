@@ -349,7 +349,7 @@ function getToken(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
 }
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
+  const provider = new Provider("https://zksync2-testnet.zksync.dev");
   const emptyWallet = new Wallet(EMPTY_WALLET_PRIVATE_KEY, provider);
 
   // Obviously this step is not required, but it is here purely to demonstrate that indeed the wallet has no ether.
