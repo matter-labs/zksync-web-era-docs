@@ -53,6 +53,8 @@ networks: {
 - `libraries` if your contract uses non-inlinable libraries as dependencies, they have to be defined here. Learn more about [compiling libraries here](./compiling-libraries.md)
 - `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default. Useful for multichain projects in which you can enable `zksync` only for specific networks.
 
+
+
 ### Commands
 
 `hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates the `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
@@ -239,6 +241,12 @@ To see an example script of how to use a `Deployer` to deploy a contract, check 
 
 ### Configuration
 
+::: warning API changes in v0.6.x
+
+Previous versions of this package required a different configuration in the `hardhat.config.ts` file. If you're using `v0.5.x` or previous, the network configuration must be indicated in an object named `zkSyncDeploy`,  including the properties `zkSyncNetwork` and `ethNetwork`. **We recommended users to update to the latest version of this package.**
+
+:::
+
 Specify the zkSync and Ethereum networks as part of the `hardhat.config.ts` file's `networks` configuration:
 
 ```typescript
@@ -259,6 +267,8 @@ networks: {
 - `url` is a field with the URL of the zkSync node in case of the zkSync network (with `zksync` flag set to `true`), or the URL of the Ethereum node. This field is required for all zkSync and Ethereum networks used by this plugin.
 - `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `goerli`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
 - `zksync` is a flag to indicate if the network represents zkSync network configuration. This field needs to be set to `true` for all zkSync networks. `false` by default.
+
+
 
 ### Commands
 
