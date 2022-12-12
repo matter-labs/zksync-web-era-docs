@@ -44,10 +44,6 @@ module.exports = {
     version: "1.2.1",
     compilerSource: "binary",
     settings: {
-      experimental: {
-        dockerImage: "matterlabs/zksolc",
-        tag: "v1.2.0",
-      },
     },
   },
   defaultNetwork: "zkSyncTestnet",
