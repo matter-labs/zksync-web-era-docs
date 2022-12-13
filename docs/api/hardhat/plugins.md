@@ -28,7 +28,7 @@ This plugin is configured in the `hardhat.config.ts` file of your project. Here 
 
 ```typescript
 zksolc: {
-  version: "1.2.0",
+  version: "1.2.1",
   compilerSource: "binary",  // binary or docker
   settings: {
     compilerPath: "zksolc",  // ignored for compilerSource: "docker"
@@ -46,7 +46,7 @@ networks: {
 }
 ```
 
-- `version` is a field with the version of the `zksolc` compiler. Currently not used.
+- `version` is a field with the version of the `zksolc` compiler. Compiler versions can be found in [the following repository](https://github.com/matter-labs/zksolc-bin).
 - `compilerSource` indicates the compiler source and can be either `docker` or `binary` (recommended). If there isnn't a compiler binary already installed, the plugin will automatically download it. If `docker` is used, you'd need to run Docker desktop in the background and provide both `dockerImage` and `tag` in the experimental section.
 - `compilerPath` is a field with the path to the `zksolc` binary. By default, the binary in `$PATH` is used. If `compilerSource` is `docker`, this field is ignored.
 - `dockerImage` and `tag` make up the name of the compiler docker image. If `compilerSource` is `binary`, these fields are ignored.
@@ -239,22 +239,29 @@ To see an example script of how to use a `Deployer` to deploy a contract, check 
 
 ### Configuration
 
+::: warning API changes in v0.6.x
+
+Previous versions of this package required a different configuration in the `hardhat.config.ts` file. If you're using `v0.5.x` or previous, the network configuration must be indicated in an object named `zkSyncDeploy`, including the properties `zkSyncNetwork` and `ethNetwork`. **We recommended users to update to the latest version of this package.**
+
+:::
+
 Specify the zkSync and Ethereum networks as part of the `hardhat.config.ts` file's `networks` configuration:
 
 ```typescript
 networks: {
   goerli: {
-    url: "https://goerli.infura.io/v3/<API_KEY>" // URL of the Ethereum Web3 RPC
+    url: "https://goerli.infura.io/v3/<API_KEY>" // URL of the Ethereum Web3 RPC (optional)
   },
   zkTestnet: {
     url: "https://zksync2-testnet.zksync.dev", // URL of the zkSync network RPC
     ethNetwork: "goerli", // URL of the Ethereum Web3 RPC, or the identifier of the network (e.g. `mainnet` or `goerli`)
     zksync: true
   }
-}
+},
+// defaultNetwork: "zkTestnet", // optional (if not set, use '--network zkTestnet')
 ```
 
-- `zkTestnet` is an arbitrary zkSync network name.
+- `zkTestnet` is an arbitrary zkSync network name. You can select this as the default network using the `defaultNetwork` property.
 - `url` is a field with the URL of the zkSync node in case of the zkSync network (with `zksync` flag set to `true`), or the URL of the Ethereum node. This field is required for all zkSync and Ethereum networks used by this plugin.
 - `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `goerli`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
 - `zksync` is a flag to indicate if the network represents zkSync network configuration. This field needs to be set to `true` for all zkSync networks. `false` by default.
@@ -262,6 +269,13 @@ networks: {
 ### Commands
 
 `hardhat deploy-zksync` -- runs through all the scripts in the `deploy` folder.
+
+::: tip
+
+Note that deployment scripts must be placed in the `deploy` folder!
+
+:::
+
 - To run a specific script, add the `--script` argument, e.g. `hardhat deploy-zksync --script 001_deploy.ts` will run script `./deploy/001_deploy.ts`.
 - To run on a specific zkSync network, use standard hardhat `--network` argument, e.g. `--network zkTestnet` (the network with the name `zkTestnet` needs to be configured in the `hardhat.config.ts` file, with all required fields stated above), or specify `defaultNetwork` in `hardhat.config.ts` file.
 
@@ -269,12 +283,6 @@ networks: {
 
 If network argument `--network` or `defaultNetwork` configuration are not specified, local setup with `http://localhost:8545` (Ethereum RPC URL) and `http://localhost:3050` (zkSync RPC URL), will be used. In this case zkSync network doesn't need to be configured in `hardhat.config.ts` file.
 For more details about the dockerized local setup, check out [Local testing](https://v2-docs.zksync.io/api/hardhat/testing.html).
-
-:::
-
-::: tip
-
-Note that deployment scripts must be placed in the `deploy` folder!
 
 :::
 
