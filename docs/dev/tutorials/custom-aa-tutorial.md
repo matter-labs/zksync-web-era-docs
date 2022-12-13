@@ -30,6 +30,12 @@ yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/cont
 
 Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [quickstart tutorial](../developer-guides/hello-world.md).
 
+::: tip
+
+You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/zksync-cli/)
+
+:::
+
 ## Account abstraction
 
 Each account needs to implement the [IAccount](../developer-guides/aa.md#iaccount-interface) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
