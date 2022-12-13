@@ -570,7 +570,7 @@ const AA_FACTORY_ADDRESS = "<YOUR_FACTORY_ADDRESS>";
 
 // An example of a deploy script deploys and calls a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
+  const provider = new Provider("https://zksync2-testnet.zksync.dev");
   const wallet = new Wallet("<PRIVATE-KEY>").connect(provider);
   const factoryArtifact = await hre.artifacts.readArtifact("AAFactory");
 
@@ -688,7 +688,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 const AA_FACTORY_ADDRESS = "<YOUR_FACTORY_ADDRESS>";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
+  const provider = new Provider("https://zksync2-testnet.zksync.dev");
   const wallet = new Wallet("<YOUR_PRIVATE_KEY>").connect(provider);
   const factoryArtifact = await hre.artifacts.readArtifact("AAFactory");
 
