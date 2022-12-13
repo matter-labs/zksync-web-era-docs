@@ -12,9 +12,7 @@ This page will primarily serve as a quick reference for the interfaces and types
 ## `@matterlabs/zksync-contracts` reference
 
 - `@matterlabs/zksync-contracts/contracts/interfaces/IZkSync.sol` is the file where the zkSync L1 contract interface `IZkSync` is located. Particular interest is in the `IBridge` functionality. Its implementation can be found [here](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l1/contracts/zksync/interfaces/IZkSync.sol).
-  
-<!--> - `@matterlabs/zksync-contracts/libraries/Operations.sol` is the file where the `Operations` library with all the user types in the bridge is stored. Its implementation can be found [here](https://github.com/matter-labs/v2-testnet-contracts/blob/main/libraries/Operations.sol).
 
--->
+> - `@matterlabs/zksync-contracts/libraries/Operations.sol` is the file where the `Operations` library with all the user types in the bridge is stored. Its implementation can be found [here](https://github.com/matter-labs/v2-testnet-contracts/blob/main/libraries/Operations.sol).
 
 The code in the repository may contain some of the configuration constants. These are placeholder values taken from the development environment. You should use the library only for the interfaces and types it provides.
