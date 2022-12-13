@@ -283,6 +283,8 @@ Note that deployment scripts must be placed in the `deploy` folder!
 This plugin adds zkSync-specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts. It extends all the functionalities supported by the [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, with the idea to preserve the same behavior.
 Currently, it is used in combination with [local testing environment](https://v2-docs.zksync.io/api/hardhat/testing.html).
 
+> **_NOTE:_**  Since responses from transactions that revert are highly dependent on the RPC implementation, all [hardhat](https://hardhat.org/hardhat-chai-matchers/docs/overview) chai matchers that start with revert have been affected. In addition, the options argument from changeEtherBalance/changeEtherBalances has been extended with the overrides field in order to support zksync-web3 transfer method with overrides.
+
 ### Npm
 
 Add the latest version of this plugin to your project with the following command:
