@@ -288,10 +288,10 @@ For more details about the dockerized local setup, check out [Local testing](htt
 
 ## `hardhat-zksync-chai-matchers`
 
-This plugin adds zkSync-specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts. It extends all the functionalities supported by the [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, with the idea to preserve the same behavior.
+This plugin adds zkSync-specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts. It extends all the functionalities supported by the [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, with the idea to preserve the same behavior and interface.
 Currently, it is used in combination with [local testing environment](https://v2-docs.zksync.io/api/hardhat/testing.html).
 
-> **_NOTE:_**  Since responses from transactions that revert are highly dependent on the RPC implementation, all [hardhat](https://hardhat.org/hardhat-chai-matchers/docs/overview) chai matchers that start with revert have been affected. In addition, the options argument from changeEtherBalance/changeEtherBalances has been extended with the overrides field in order to support zksync-web3 transfer method with overrides.
+> **_NOTE:_**  Since responses from transactions that revert are highly dependent on the RPC implementation, all [hardhat](https://hardhat.org/hardhat-chai-matchers/docs/overview) chai matchers that start with revert have been affected (but without any changes to the chai matchers interface). In addition, the options argument from changeEtherBalance/changeEtherBalances has been extended with the overrides field in order to support zksync-web3 transfer method with overrides.
 
 ### Npm
 
@@ -385,13 +385,26 @@ Assert that a transaction reverted with a specific custom error:
 ```javascript
 await expect(contract.setAmount(100)).to.be.revertedWithCustomError(contract, 'InvalidAmount');
 ```
+<br/>
+
+And you can also use regular chai matchers like:
 
 #### emit
 
-Assert that a transaction emits a specific event:
-
 ```javascript
 await expect(contract.setAmount(100)).to.emit(contract, 'AmountUpdated');
+```
+
+#### properAddress
+
+```javascript
+expect("0x36615Cf349d7F6344891B1e7CA7C72883F5dc049").to.be.properAddress;
+```
+
+#### Comparisons of numbers
+
+```javascript
+expect(await contract.getAmount()).to.equal(100);
 ```
 
 Checkout the advantages of using chai matchers [here](https://hardhat.org/hardhat-chai-matchers/docs/overview#why-would-i-want-to-use-it?). Since the list of all supported chai matchers is same as with [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, check the [reference documentation](https://hardhat.org/hardhat-chai-matchers/docs/reference).
