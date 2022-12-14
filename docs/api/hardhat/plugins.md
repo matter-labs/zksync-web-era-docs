@@ -391,7 +391,7 @@ await expect(contract.setAmount(100)).to.be.revertedWithCustomError(contract, 'I
 Assert that a transaction emits a specific event:
 
 ```javascript
-await expect(contract.setAmount(100)).to.emit(token, 'AmountUpdated');
+await expect(contract.setAmount(100)).to.emit(contract, 'AmountUpdated');
 ```
 
 Checkout the advantages of using chai matchers [here](https://hardhat.org/hardhat-chai-matchers/docs/overview#why-would-i-want-to-use-it?). Since the list of all supported chai matchers is same as with [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, check the [reference documentation](https://hardhat.org/hardhat-chai-matchers/docs/reference).
