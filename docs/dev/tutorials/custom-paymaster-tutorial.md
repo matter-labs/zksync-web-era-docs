@@ -13,7 +13,7 @@ Let's see how we can use the paymaster feature to build a custom paymaster that 
 
 To better understand this page, we recommend you first read up on [account abstraction design](../developer-guides/aa.md) before diving into this tutorial.
 
-It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md). It is also recommended to read the [introduction](../developer-guides/contracts/system-contracts.md) to the system contracts.
+It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md). It is also recommended to read the [introduction to the system contracts](../developer-guides/contracts/system-contracts.md) .
 
 ## Installing dependencies
 
@@ -34,6 +34,12 @@ yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/cont
 
 Then create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [quickstart tutorial](../developer-guides/hello-world.md).
 
+::: tip
+
+You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/zksync-cli/)
+
+:::
+
 ## Design
 
 Our protocol will be a dummy protocol that allows anyone to swap a certain ERC20 token in exchange for paying fees for the transaction.
@@ -49,8 +55,6 @@ import { IPaymasterFlow } from '@matterlabs/zksync-contracts/l2/system-contracts
 import { TransactionHelper, Transaction } from '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
 
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
-
-import "@openzeppelin/contracts/interfaces/IERC20.sol";
 
 contract MyPaymaster is IPaymaster {
     uint256 constant PRICE_FOR_PAYING_FEES = 1;
@@ -152,13 +156,11 @@ That is why it is important to verify that the user provided all the allowed pre
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import { IPaymaster, ExecutionResult } from '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol';
-import { IPaymasterFlow } from '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol';
-import { TransactionHelper, Transaction } from '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
+import {IPaymaster, ExecutionResult} from "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol";
+import {IPaymasterFlow} from "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol";
+import {TransactionHelper, Transaction} from "@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol";
 
-import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
-
-import "@openzeppelin/contracts/interfaces/IERC20.sol";
+import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 
 contract MyPaymaster is IPaymaster {
     uint256 constant PRICE_FOR_PAYING_FEES = 1;
@@ -166,7 +168,10 @@ contract MyPaymaster is IPaymaster {
     address public allowedToken;
 
     modifier onlyBootloader() {
-        require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
+        require(
+            msg.sender == BOOTLOADER_FORMAL_ADDRESS,
+            "Only bootloader can call this method"
+        );
         // Continure execution if called from the bootloader.
         _;
     }
@@ -175,12 +180,25 @@ contract MyPaymaster is IPaymaster {
         allowedToken = _erc20;
     }
 
-    function validateAndPayForPaymasterTransaction(bytes32 _txHash, bytes32 _suggestedSignedHash, Transaction calldata _transaction) external payable override onlyBootloader returns (bytes memory context) {
-        require(_transaction.paymasterInput.length >= 4, "The standard paymaster input must be at least 4 bytes long");
+    function validateAndPayForPaymasterTransaction(
+        bytes32 _txHash,
+        bytes32 _suggestedSignedHash,
+        Transaction calldata _transaction
+    ) external payable override onlyBootloader returns (bytes memory context) {
+        require(
+            _transaction.paymasterInput.length >= 4,
+            "The standard paymaster input must be at least 4 bytes long"
+        );
 
-        bytes4 paymasterInputSelector = bytes4(_transaction.paymasterInput[0:4]);
+        bytes4 paymasterInputSelector = bytes4(
+            _transaction.paymasterInput[0:4]
+        );
         if (paymasterInputSelector == IPaymasterFlow.approvalBased.selector) {
-            (address token, uint256 minAllowance, bytes memory data) = abi.decode(_transaction.paymasterInput[4:], (address, uint256, bytes));
+            (address token, uint256 minAllowance, bytes memory data) = abi
+                .decode(
+                    _transaction.paymasterInput[4:],
+                    (address, uint256, bytes)
+                );
 
             require(token == allowedToken, "Invalid token");
             require(minAllowance >= 1, "Min allowance too low");
@@ -188,17 +206,26 @@ contract MyPaymaster is IPaymaster {
             address userAddress = address(uint160(_transaction.from));
             address thisAddress = address(this);
 
-            uint256 providedAllowance = IERC20(token).allowance(userAddress, thisAddress);
-            require(providedAllowance >= PRICE_FOR_PAYING_FEES, "The user did not provide enough allowance");
+            uint256 providedAllowance = IERC20(token).allowance(
+                userAddress,
+                thisAddress
+            );
+            require(
+                providedAllowance >= PRICE_FOR_PAYING_FEES,
+                "The user did not provide enough allowance"
+            );
 
             // Note, that while the minimal amount of ETH needed is tx.ergsPrice * tx.ergsLimit,
             // neither paymaster nor account are allowed to access this context variable.
-            uint256 requiredETH = _transaction.ergsLimit * _transaction.maxFeePerErg;
+            uint256 requiredETH = _transaction.ergsLimit *
+                _transaction.maxFeePerErg;
 
             // Pulling all the tokens from the user
             IERC20(token).transferFrom(userAddress, thisAddress, 1);
             // The bootloader never returns any data, so it can safely be ignored here.
-            (bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{value: requiredETH}("");
+            (bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{
+                value: requiredETH
+            }("");
             require(success, "Failed to transfer funds to the bootloader");
         } else {
             revert("Unsupported paymaster flow");
@@ -218,6 +245,7 @@ contract MyPaymaster is IPaymaster {
 
     receive() external payable {}
 }
+
 ```
 
 ## Deploying an ERC20 contract
@@ -352,7 +380,7 @@ function getToken(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
 }
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
+  const provider = new Provider("https://zksync2-testnet.zksync.dev");
   const emptyWallet = new Wallet(EMPTY_WALLET_PRIVATE_KEY, provider);
 
   // Obviously this step is not required, but it is here purely to demonstrate that indeed the wallet has no ether.

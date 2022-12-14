@@ -181,12 +181,15 @@ module.exports = {
     version: "1.2.1",
     compilerSource: "binary",
   },
-  zkSyncDeploy: {
-    zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
-    ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
-  },
+  defaultNetwork: "zkSyncTestnet",
+
   networks: {
     hardhat: {
+      zksync: true,
+    },
+    zkSyncTestnet: {
+      url: "https://zksync2-testnet.zksync.dev",
+      ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
       zksync: true,
     },
   },
@@ -199,6 +202,12 @@ module.exports = {
 If your default network is not `hardhat`, make sure to include `zksync: true` in its config, too.
 
 3. Create the `contracts` and `deploy` folders, which will contain all the contract `*.sol` files, and the scripts related to deploying the contract.
+
+::: tip
+
+You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/zksync-cli/)
+
+:::
 
 4. Create the `contracts/Counter.sol` contract file. This contract will have the address of the governance contract deployed in L1 and a counter that can be incremented. The function to increment the counter can only be invoked by the governance contract that we previously deployed in L1. Here is the code:
 
