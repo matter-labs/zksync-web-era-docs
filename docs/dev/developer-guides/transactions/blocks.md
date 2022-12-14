@@ -1,5 +1,8 @@
 # Blocks
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 A block is an ordered list of transactions. Each block (except for the Genesis block) points to the previous block it extends, thus creating a chain of blocks.
 
 ## Blocks in zkSync 2.0

@@ -1,5 +1,8 @@
 # Handling events
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Overview 
 Events are a mechanism to publish information to listeners outside the blockchain, given that smart contracts themselves can't read them.
 

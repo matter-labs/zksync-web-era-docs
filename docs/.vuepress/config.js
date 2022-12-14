@@ -10,7 +10,8 @@ module.exports = {
     md.use(require("markdown-it-footnote"));
   },
   plugins: [
-    "@vuepress/back-to-top",
+      "vuepress-plugin-table-of-contents",
+      "@vuepress/back-to-top",
     [
       "vuepress-plugin-dehydrate",
       {
