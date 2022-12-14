@@ -8,6 +8,9 @@ It is possible to continue using the SDK that is currently in use. Users will co
 
 However, zkSync has its specifics, which this section describes.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## EIP712
 
 To specify additional fields, like the custom signature for custom accounts or to choose the paymaster, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but they also have fields that contain additional L2-specific data (`paymaster`, etc).

@@ -1,5 +1,8 @@
 # Using the Block Explorer
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Overview
 The zkSync [block explorer](https://explorer.zksync.io/) is an easy-to-use interface blockchain tool, that displays real-time and historical blockchain snapshots. It can be used by users and developers to utilize both high-level data (such as contracts, transaction rates, and so on) and more detailed insights (e.g. block contents, transaction hashes, sending accounts, etc.).
 Consider it a window into the zkSync blockchain, letting you see what's going on there.

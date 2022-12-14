@@ -7,6 +7,9 @@ Solidity libraries can be divided into two categories:
 
 **Practically this means that libraries with public methods need to be deployed separately and their addresses passed as an argument when compiling the main contract.** Usage of the methods of this library will be replaced with calls to its address.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## OpenZeppelin utility libraries
 
 Please note, that the total majority of the OpenZeppelin utility libraries _are_ inlinable. That means that _there is no need to do any further actions to make them compile_.

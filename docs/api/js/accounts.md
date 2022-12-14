@@ -6,6 +6,9 @@
 - `EIP712Signer` class that is used to sign `EIP712`-typed zkSync transactions.
 - `Signer` and `L1Signer` classes, which should be used for browser integration.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## `Wallet`
 
 ### Creating wallet from a private key

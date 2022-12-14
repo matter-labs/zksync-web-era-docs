@@ -4,6 +4,9 @@ This section explores the methods which allow the [account](./accounts.md) class
 
 If you want to get some background on how L1->L2 interaction works on zkSync, go through the [introduction](../../dev/developer-guides/bridging/l1-l2-interop.md) and the [guide](../dev/../../dev/developer-guides/bridging/l1-l2.md).
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Supported classes
 
 The following account classes support sending transactions from L1 to L2:
