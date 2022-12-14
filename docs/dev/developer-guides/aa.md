@@ -1,5 +1,8 @@
 # Account abstraction support
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Introduction
 
 On Ethereum there are two types of accounts: [externally owned accounts (EOAs)](https://ethereum.org/en/developers/docs/accounts/#externally-owned-accounts-and-key-pairs) and [contracts accounts](https://ethereum.org/en/developers/docs/accounts/#contract-accounts).
@@ -18,7 +21,7 @@ zkSync 2.0 is one of the first EVM-compatible chains to adopt AA, so this testne
 
 :::
 
-### Prerequisites
+## Prerequisites
 
 To better understand this page, we recommend you take some time to first read a guide on [accounts](https://ethereum.org/en/developers/docs/accounts/).
 

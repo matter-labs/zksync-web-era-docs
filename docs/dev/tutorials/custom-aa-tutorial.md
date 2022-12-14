@@ -3,6 +3,9 @@
 Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../developer-guides/contracts/system-contracts.md#contractdeployer) system contract.
 In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Prerequisite
 
 It is highly recommended to read about the [design](../developer-guides/aa.md) of the account abstraction protocol before diving into this tutorial.
@@ -29,6 +32,12 @@ yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/cont
 ```
 
 Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [quickstart tutorial](../developer-guides/hello-world.md).
+
+::: tip
+
+You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/zksync-cli/)
+
+:::
 
 ## Account abstraction
 
@@ -453,8 +462,8 @@ The code will look the following way:
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
-import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.sol';
+import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
+import "@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.sol";
 
 contract AAFactory {
     bytes32 public aaBytecodeHash;
@@ -468,20 +477,22 @@ contract AAFactory {
         address owner1,
         address owner2
     ) external returns (address accountAddress) {
-        (bool success, bytes memory returnData) = SystemContractsCaller.systemCallWithReturnData(
-            uint32(gasleft()),
-            address(DEPLOYER_SYSTEM_CONTRACT),
-            0,
-            abi.encodeCall(
-                DEPLOYER_SYSTEM_CONTRACT.create2Account,
-                (salt, aaBytecodeHash, abi.encode(owner1, owner2))
-            )
-        );
+        (bool success, bytes memory returnData) = SystemContractsCaller
+            .systemCallWithReturndata(
+                uint32(gasleft()),
+                address(DEPLOYER_SYSTEM_CONTRACT),
+                uint128(0),
+                abi.encodeCall(
+                    DEPLOYER_SYSTEM_CONTRACT.create2Account,
+                    (salt, aaBytecodeHash, abi.encode(owner1, owner2))
+                )
+            );
         require(success, "Deployment failed");
 
         (accountAddress, ) = abi.decode(returnData, (address, bytes));
     }
 }
+
 ```
 
 Note, that on zkSync, the deployment is not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via `factoryDeps` field. Note, that the `_aaBytecodeHash` must be formed specially:
@@ -560,12 +571,12 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 // Put the address of your AA factory
-const AA_FACTORY_ADDRESS = "<YOUR_FACTORY_ADDRESS>";
+const AA_FACTORY_ADDRESS = "<FACTORY-ADDRESS>";
 
 // An example of a deploy script deploys and calls a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
-  const wallet = new Wallet("<PRIVATE-KEY>").connect(provider);
+  const provider = new Provider("https://zksync2-testnet.zksync.dev");
+  const wallet = new Wallet("<WALLET-PRIVATE-KEY>").connect(provider);
   const factoryArtifact = await hre.artifacts.readArtifact("AAFactory");
 
   const aaFactory = new ethers.Contract(AA_FACTORY_ADDRESS, factoryArtifact.abi, wallet);
@@ -679,11 +690,11 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 // Put the address of your AA factory
-const AA_FACTORY_ADDRESS = "<YOUR_FACTORY_ADDRESS>";
+const AA_FACTORY_ADDRESS = "<FACTORY-ADDRESS>";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
-  const wallet = new Wallet("<YOUR_PRIVATE_KEY>").connect(provider);
+  const provider = new Provider("https://zksync2-testnet.zksync.dev");
+  const wallet = new Wallet("<WALLET_PRIVATE_KEY>").connect(provider);
   const factoryArtifact = await hre.artifacts.readArtifact("AAFactory");
 
   const aaFactory = new ethers.Contract(AA_FACTORY_ADDRESS, factoryArtifact.abi, wallet);

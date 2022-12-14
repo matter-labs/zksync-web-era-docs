@@ -15,6 +15,9 @@ The testnet paymaster is just for testing. If you decide to build a project on m
 
 :::
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Prerequisites
 
 - `yarn` package manager. [Here is the installation guide](https://yarnpkg.com/getting-started/install)(`npm` examples will be added soon.)
@@ -41,21 +44,16 @@ require("@matterlabs/hardhat-zksync-solc");
 
 module.exports = {
   zksolc: {
-    version: "1.2.0",
+    version: "1.2.1",
     compilerSource: "binary",
-    settings: {
-      experimental: {
-        dockerImage: "matterlabs/zksolc",
-        tag: "v1.2.0",
-      },
-    },
+    settings: {},
   },
-  zkSyncDeploy: {
-    zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
-    ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
-  },
+  defaultNetwork: "zkSyncTestnet",
+
   networks: {
-    hardhat: {
+    zkSyncTestnet: {
+      url: "https://zksync2-testnet.zksync.dev",
+      ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
       zksync: true,
     },
   },
@@ -71,9 +69,9 @@ If the contract was already compiled, you should delete the `artifacts-zk` and `
 
 :::
 
-1. Create the `contracts` and `deploy` folders. The former is the place where we will store all the smart contracts' `*.sol` files, and the latter is the place where we will put all the scripts related to deploying the contracts.
+3. Create the `contracts` and `deploy` folders. The former is the place where we will store all the smart contracts' `*.sol` files, and the latter is the place where we will put all the scripts related to deploying the contracts.
 
-2. Create the `contracts/Greeter.sol` contract and paste the following code in it:
+4. Create the `contracts/Greeter.sol` contract and paste the following code in it:
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
@@ -96,13 +94,13 @@ contract Greeter {
 }
 ```
 
-3. Compile the contract with the following command:
+5. Compile the contract with the following command:
 
 ```
 yarn hardhat compile
 ```
 
-4. Create the following deployment script in `deploy/deploy.ts`:
+6. Create the following deployment script in `deploy/deploy.ts`:
 
 ```typescript
 import { Wallet, utils } from "zksync-web3";
@@ -150,7 +148,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-5. Replacing the `WALLET-PRIVATE-KEY` with the `0x`-prefixed private key of the Ethereum wallet you're using for development, and run the script using the following command to run the deployment script:
+7. Replacing the `WALLET-PRIVATE-KEY` with the private key of the Ethereum wallet you're using for development, and run the script using the following command to run the deployment script:
 
 ```
 yarn hardhat deploy-zksync
@@ -506,11 +504,12 @@ You now have a fully functional Greeter-dApp! However, it does not leverage any 
 
 What happens when you get a **wallet_requestPermissions** error?
 
-To fix this error, refresh your browser, or open the MetaMask extension on your browser and click *Next* or *Cancel* to resolve it.
+To fix this error, refresh your browser, or open the MetaMask extension on your browser and click _Next_ or _Cancel_ to resolve it.
 
 Read more about **wallet_requestPermissions**, on the [metamask documentation](https://docs.metamask.io/guide/rpc-api.html#wallet-requestpermissions).
 
 :::
+
 ### Paying fees using testnet paymaster
 
 Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](./aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](./aa.md#testnet-paymaster) that is provided on all zkSync testnets. It allows users to pay fees in an ERC20 token with the exchange rate of ETH of 1:1, i.e. one unit of the token for one wei of ETH.

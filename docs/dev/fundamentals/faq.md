@@ -2,6 +2,9 @@
 
 Here you will find some of the most common questions we receive about zkSync 2.0.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## What is zkSync 2.0?
 
 zkSync 2.0 is a Zero Knowledge (ZK) rollup that supports generalized EVM compatibility for the Ethereum blockchain. The primary benefit of zkSync 2.0 is that developers who have created EVM dApps can port to zkSync 2.0 effortlessly and realize significantly lower gas fees and more transactions per second while inheriting Ethereum's security and decentralization.
@@ -57,7 +60,7 @@ While maintaining maximum compatibility, the zkEVM has significant improvements 
     - Transaction batches (multicall) can be confirmed in one click (big UX problem on Ethereum today).
     - Learn more about [account abstraction support in zkSync 2.0](../developer-guides/aa.md).
 
-## EVM Compatibility
+### EVM Compatibility
 
 There is a lot of confusion amongst the community with regard to the impacts of being EVM Compatible versus EVM Equivalent. First, let’s define what is meant by the two.
 
@@ -79,7 +82,7 @@ Almost every smart contract written for EVM will be supported by zkSync 2.0 and 
 
 There are a few other distinctions, for example, gas metering will be different (as is the case for other L2s as well). Some EVM’s cryptographic precompiles (notably pairings and RSA) won’t be available in the very first release but will be implemented soon after the launch, with pairing being a priority to allow both Hyperchains and protocols like Aztec/Dark Forest to be deployed without modifications too.
 
-### Security expectations
+## Security expectations
 
 zkSync 2.0’s data availability layer is Ethereum. All ecosystem projects that build on zkSync 2.0 will inherit the full security benefits of Ethereum.
 
