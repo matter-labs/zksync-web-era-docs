@@ -1,6 +1,9 @@
 # Important links
 
-### Testnet network info
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
+## Testnet network info
 
 - Network Name: `zkSync alpha testnet`
 - New RPC URL: `https://zksync2-testnet.zksync.dev`
@@ -9,7 +12,7 @@
 - Block Explorer URL: `https://goerli.explorer.zksync.io/`
 - WebSocket URL: `wss://zksync2-testnet.zksync.dev/ws`
 
-### Mainnet network info
+## Mainnet network info
 
 - Network Name: `zkSync mainnet`
 - New RPC URL: `https://zksync2-mainnet.zksync.io`
@@ -18,7 +21,7 @@
 - Block Explorer URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`
 
-### Questions and support
+## Questions and support
 
 - [Discord](https://join.zksync.dev/)
 - [Community Forum](https://community.zksync.io/)

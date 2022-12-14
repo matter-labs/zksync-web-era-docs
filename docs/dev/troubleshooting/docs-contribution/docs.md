@@ -13,6 +13,9 @@ As collaboration on contribution to zkSync documentation is such an integral par
 - Share views and know the latest discussions on our [Community Forum](https://community.zksync.io/).
 - Follow zkSync on Twitter to get the latest happenings on zkSync.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Ways to contribute
 
 - [Create or edit a page](#edit-or-review-a-documentation-page) - Improve on the existing pages or create a new one.

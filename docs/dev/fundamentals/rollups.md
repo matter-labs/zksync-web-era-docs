@@ -1,5 +1,8 @@
 # Intro to rollups
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Introduction
 
 To better understand rollups we need to dive briefly into Ethereum and Layer 2 solutions.
@@ -12,11 +15,7 @@ Layer 2 solutions are designed as an extension to Ethereum, and offer various so
 the inherent network congestion on Ethereum. Covering all Layer 2 solutions is beyond the scope of this doc.
 We will go through a brief explainer on rollups in this section.
 
-## Optimistic rollups versus ZK rollups
-
-There are mainly two types of rollups, ZK rollups and Optimistic rollups.
-
-### What are rollups?
+## What are rollups?
 
 Rollups are a recent development intended to increase the scalability of Ethereum by performing calculations off-chain, rolling many
 transactions up into a single batch, and sending it to the main Ethereum chain in a single action.
@@ -28,6 +27,9 @@ This allows transactions to be processed without the overhead of all the data as
 Rollups significantly decrease associated transaction processing times and gas fees.
 
 The main difference between ZK and Optimistic rollups is in the way this batch of transactions becomes <em>final</em>.
+### Optimistic rollups versus ZK rollups
+
+There are mainly two types of rollups, ZK rollups and Optimistic rollups.
 
 ### What are ZK rollups?
 
@@ -45,7 +47,7 @@ challenge to the submitted state to Ethereum. If such a challenge is submitted, 
 state and transactions in questions are actually valid. This is a cumbersome process, and requires watchers to make sure that the Optimistic 
 rollup operator is honest at all times.
 
-### L1 and L2: what's the difference?
+## L1 and L2: what's the difference?
 The term **Layer 1** (or **L1**) is used to refer to the underlying primary chain, such as the Ethereum network or Bitcoin. Layer 1 
 blockchains determine protocol rules and transaction finality, and perform the base-level functions of applications built upon them.
 

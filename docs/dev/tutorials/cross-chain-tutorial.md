@@ -5,6 +5,9 @@ This tutorial serves as an example of how to implement L1 to L2 contract interac
 - A "counter" smart contract is deployed on zkSync, which stores a number that can be incremented by calling the `increment` method.
 - A "governance" smart contract is deployed on layer 1, which has the privilege to increment the counter on zkSync.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Preliminaries
 
 In this tutorial, it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md).

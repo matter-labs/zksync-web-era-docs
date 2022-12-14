@@ -16,7 +16,12 @@ return undefined;
 export let globalStore = {};
 
 let spaLoaded = false;
-export default ({ Vue, router, options, siteData }) => {
+export default ({ Vue, router }) => {
+    Vue.config.ignoredElements = [
+        // Use a `RegExp` to ignore all elements that start with "toc-"
+        // 2.5+ only
+        /^toc-/
+    ];
 router.beforeEach((to, from, next) => {
     // Checking the startup route for the SPA to see if it
     // exists in the SPA router objects.
