@@ -8,6 +8,9 @@ The blocks page is also accessible via the top menu.
 
 ![Access the block page](../../../assets/images/block-menu.png "Blocks menu")
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## View all blocks
 
 You can click on a block number to see all the details of that specific block. If you want to browse more blocks, click the [Blocks](https://explorer.zksync.io/blocks/) section of the navigation menu. Use the pagination to navigate to the next page.
