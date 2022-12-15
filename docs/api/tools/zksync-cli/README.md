@@ -19,7 +19,7 @@ You can also run this via NPX with `npx zksync-cli@latest [COMMAND]`
 
 ## Commands
 
-- `zksync-cli create [PROJECT_NAME]`: creates a new Hardhat project in a new folder with the given project name. If the project name is not provided, create the project in the current folder, although this requires the folder to be empty. The [template project can be found here](https://github.com/matter-labs/zksync-hardhat-template).
+- `zksync-cli create [PROJECT_NAME]`: It creates a new Hardhat project in a new folder with the given project name. If the project name is not provided, create the project in the current folder, although this requires the folder to be empty. The [template project can be found here](https://github.com/matter-labs/zksync-hardhat-template).
 
 - `zksync-cli deposit`: deposits funds from L1 (Goerli testnet) to zkSync 2.0 testnet. It will ask you to provide: the recipient wallet, the amount in ETH (eg 0.1) and the private key of the wallet you're sending the funds from.
 
