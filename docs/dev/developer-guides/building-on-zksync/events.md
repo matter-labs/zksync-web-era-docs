@@ -27,12 +27,12 @@ const ether = require("ethers");
 const contractABI = require("./ABI_JSON")
 
 const getEvent = async () => {
-const usdtAdress = "<YOUR ADDRESS>"
+const contractAddress = "<YOUR ADDRESS>"
 const provider = new ether.providers.WebSocketProvider(`wss://zksync2-testnet.zksync.dev/ws`)
 
-const contract = new ether.ethers.Contract(usdtAdress, contractABI, provider);
+const contract = new ether.ethers.Contract(contractAddress, contractABI, provider);
 
-await contract.getPastEvents("EVENT_NAME", (event) => {
+await contract.on("Transfer", (event) => {
     let info = {
         filter: { INDEXED_PARAMETER: VALUE },
         fromBlock: BLOCK_NUMBER,
@@ -52,7 +52,7 @@ where
 Provider — Your websocket provider through which you will retrieve the events data.
 Contract address — The contract address whose events you want to track.
 ABI — The ABI(Application Binary Interface) of the contract in JSON format.
-PAST_EVENT — any name you want to assign to print it at the end.
+Transfer — Any name you want to assign to print it at the end, for this sample, we used "Transfer".
 Event name — The name of the event as defined in the smart contract.
 Indexed parameter — The indexed parameter of the event.
 Value — The value of the indexed parameter.
