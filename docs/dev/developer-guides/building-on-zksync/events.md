@@ -14,7 +14,7 @@ At zkSync, events behave the same way as in Ethereum.
 ## Events filtering
 
 Filtering is used to query indexed data and provide lower-cost data storage when the data is not required to be accessed on-chain.
-While filtering, we advice to load events by block ranges (0-1999, 2000-3999, ...) and index the result on your end.
+While filtering, we advice to load events by block ranges (0-1999, 2000-3999, ...) and index the result on your end, else you will get an error that saying "block range should be less than or equal to 2000".
 
 These can be used in conjunction with the [Provider Events API](https://docs.ethers.io/v5/api/providers/provider/#Provider--event-methods) and with the [Contract Events API](https://docs.ethers.io/v5/api/contract/contract/#Contract--events).
 
@@ -35,8 +35,8 @@ const contract = new ether.ethers.Contract(contractAddress, contractABI, provide
 await contract.on("Transfer", (event) => {
     let info = {
         filter: { INDEXED_PARAMETER: VALUE },
-        fromBlock: BLOCK_NUMBER,
-        toBlock: BLOCK_NUMBER,
+        fromBlock: BLOCK_NUMBER, // e.g 15943000
+        toBlock: BLOCK_NUMBER, // e.g 15943100
         data: event,
     }
     console.log(JSON.stringify(info, null, 4))
