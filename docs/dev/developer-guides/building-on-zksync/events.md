@@ -25,11 +25,10 @@ To get the events, use the following template:
 ```js
 const ether = require("ethers");
 const contractABI = require("./ABI_JSON")
-require("dotenv").config()
 
 const getEvent = async () => {
 const usdtAdress = "<YOUR ADDRESS>"
-const provider = new ether.providers.WebSocketProvider(`wss://zksync2-testnet.zksync.dev/ws${process.env.WEBSOCKET_URL}`)
+const provider = new ether.providers.WebSocketProvider(`wss://zksync2-testnet.zksync.dev/ws`)
 
 const contract = new ether.ethers.Contract(usdtAdress, contractABI, provider);
 
