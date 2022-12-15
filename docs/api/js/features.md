@@ -10,6 +10,9 @@ These require us to extend standard Ethereum transactions with new custom fields
 
 This document will focus solely on how to pass these arguments to the SDK.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Overrides
 
 `ethers` has a notion of overrides. For any on-chain transaction, `ethers` finds the optimal `gasPrice`, `gasLimit`, `nonce`, and other important fields under the hood. But sometimes, you may have a need to explicitly provide these values (you want to set a smaller `gasPrice` for instance, or sign a transaction with future `nonce`).

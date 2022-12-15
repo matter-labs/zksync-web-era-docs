@@ -35,6 +35,9 @@ To get started click the **Tools** tab in the top header, a dropdown will pop up
 
 ![Smart Contract Verification page!](../../../assets/images/verify-contract.png "verify contract")
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ### Enter contract details
 
 To verify the contract, enter the following details;
