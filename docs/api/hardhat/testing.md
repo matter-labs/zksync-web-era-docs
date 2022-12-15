@@ -207,3 +207,7 @@ yarn test
 ## Full example
 
 The full example with tests can be found [here](https://github.com/matter-labs/tutorial-examples/tree/main/local-setup-testing)
+
+## Chai Matchers
+
+The zkSync team provides the [hardhat-zksync-chai-matchers](./plugins.md#hardhat-zksync-chai-matchers) plugin to make it easier to write and maintain tests for your projects, in addition to offering a local testing environment. This plugin includes a set of Chai matchers specifically designed for use with zkSync, which can help you write more comprehensive and understandable tests for your contracts. By using these matchers, you can ensure that your contracts are working as intended and reduce the likelihood of encountering bugs or other issues during development.
