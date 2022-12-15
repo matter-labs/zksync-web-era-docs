@@ -161,7 +161,7 @@ def transfer_to_self():
                                           ergs_price=0,
                                           ergs_limit=0,
                                           data=HexStr("0x"))
-    estimate_gas = zkSync_web3.zkSync.eth_estimate_gas(tx)
+    estimate_gas = int(zkSync_web3.zksync.eth_estimate_gas(tx))
     gas_price = zkSync_web3.zkSync.gas_price
 
     print(f"Fee for transaction is: {estimate_gas * gas_price}")
@@ -227,7 +227,7 @@ def transfer_erc20_token():
                                           ergs_price=0,
                                           ergs_limit=0,
                                           data=call_data)
-    estimate_gas = zkSync_web3.zkSync.eth_estimate_gas(tx)
+    estimate_gas = int(zkSync_web3.zksync.eth_estimate_gas(tx))
     gas_price = zkSync_web3.zkSync.gas_price
 
     print(f"Fee for transaction is: {estimate_gas * gas_price}")
@@ -297,7 +297,7 @@ def withdraw():
                                           ergs_limit=0,
                                           ergs_price=0,
                                           data=HexStr(call_data))
-    estimate_gas = zkSync_web3.zkSync.eth_estimate_gas(tx)
+    estimate_gas = int(zkSync_web3.zksync.eth_estimate_gas(tx))
     gas_price = zkSync_web3.zkSync.gas_price
 
     print(f"Fee for transaction is: {estimate_gas * gas_price}")
@@ -428,7 +428,7 @@ def deploy_contract_create():
                                      ergs_price=0,
                                      bytecode=counter_contract_bin)
 
-    estimate_gas = zkSync_web3.zkSync.eth_estimate_gas(tx)
+    estimate_gas = int(zkSync_web3.zksync.eth_estimate_gas(tx))
     gas_price = zkSync_web3.zkSync.gas_price
     print(f"Fee for transaction is: {estimate_gas * gas_price}")
 
@@ -544,7 +544,7 @@ def deploy_contract_create2():
                                       ergs_limit=0,
                                       bytecode=counter_contract_bin,
                                       salt=random_salt)
-    estimate_gas = zkSync_web3.zkSync.eth_estimate_gas(tx)
+    estimate_gas = int(zkSync_web3.zksync.eth_estimate_gas(tx))
     gas_price = zkSync_web3.zkSync.gas_price
     print(f"Fee for transaction is: {estimate_gas * gas_price}")
 
