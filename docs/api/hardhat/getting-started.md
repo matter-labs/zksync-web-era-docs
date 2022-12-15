@@ -14,6 +14,9 @@ To learn more about Hardhat itself, check out [its official documentation](https
 This tutorial shows how to set up a zkSync Solidity project using Hardhat from scratch.
 If you are using Vyper, check out the [Vyper plugin documentation](./plugins.md#matterlabs-hardhat-zksync-vyper) or [this example](https://github.com/matter-labs/hardhat-zksync/tree/main/examples/vyper-example) in GitHub!
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Prerequisites
 
 For this tutorial, the following programs must be installed:

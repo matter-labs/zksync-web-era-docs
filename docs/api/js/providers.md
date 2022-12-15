@@ -14,6 +14,9 @@ The `zksync-web3` library exports two types of providers:
 - `Provider` which inherits from `ethers`'s `JsonRpcProvider` and provides access to all of the zkSync JSON-RPC endpoints.
 - `Web3Provider` which extends the `Provider` class by making it more compatible with Web3 wallets. This is the type of wallet that should be used for browser integrations.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## `Provider`
 
 This is the most commonly used type of provider. It provides the same functionality as `ethers.providers.JsonRpcProvider`, but extends it with the zkSync-specific methods.
