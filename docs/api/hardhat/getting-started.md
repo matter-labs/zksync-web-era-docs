@@ -2,11 +2,12 @@
 
 [Hardhat](https://hardhat.org) is an Ethereum development environment, designed for easy smart contract development in Solidity. One of its most prominent features is extendability: you can easily add new plugins to your hardhat project.
 
-zkSync has three plugins for Hardhat:
+zkSync has has the following plugins for Hardhat:
 
-- [@matterlabs/hardhat-zksync-solc](./plugins.md#matterlabs-hardhat-zksync-solc) - used to compile contracts written in Solidity.
-- [@matterlabs/hardhat-zksync-vyper](./plugins.md#matterlabs-hardhat-zksync-vyper) - used to compile contracts written in Vyper.
-- [@matterlabs/hardhat-zksync-deploy](./plugins.md#matterlabs-hardhat-zksync-deploy) - used to deploy smart contracts.
+- [@matterlabs/hardhat-zksync-solc](./plugins.md#hardhat-zksync-solc) - used to compile contracts written in Solidity.
+- [@matterlabs/hardhat-zksync-vyper](./plugins.md#hardhat-zksync-vyper) - used to compile contracts written in Vyper.
+- [@matterlabs/hardhat-zksync-deploy](./plugins.md#hardhat-zksync-deploy) - used to deploy smart contracts.
+- [@matterlabs/hardhat-zksync-chai-matchers](./plugins.md#hardhat-zksync-chai-matchers) - adds zkSync-specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts.
 
 To learn more about Hardhat itself, check out [its official documentation](https://hardhat.org/getting-started/).
 
