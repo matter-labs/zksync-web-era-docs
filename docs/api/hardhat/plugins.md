@@ -160,7 +160,7 @@ npm i -D @matterlabs/hardhat-zksync-deploy
 
 #### `Deployer`
 
-The main export of this plugin is the `Deployer` class. It is used to wrap a `zksync-web3` Wallet instance and provides a convenient interface to deploy smart contracts. Its main methods are:
+The main export of this plugin is the `Deployer` class. It is used to wrap a `zksync-web3` Wallet instance and provides a convenient interface to deploy smart contracts and account abstractions. Its main methods are:
 
 ```typescript
 class Deployer {
@@ -168,16 +168,18 @@ class Deployer {
   /**
    * @param hre Hardhat runtime environment. This object is provided to scripts by hardhat itself.
    * @param zkWallet The wallet which will be used to deploy the contracts.
+   * @param deploymentType Optional deployment type that relates to the ContractDeployer system contract function to be called. Defaults to deploying regular smart contracts.
    */
-  constructor(hre: HardhatRuntimeEnvironment, zkWallet: zk.Wallet)
+  constructor(hre: HardhatRuntimeEnvironment, zkWallet: zk.Wallet, deploymentType?: zk.types.DeploymentType)
 
   /**
    * Created a `Deployer` object on ethers.Wallet object.
    *
    * @param hre Hardhat runtime environment. This object is provided to scripts by hardhat itself.
    * @param ethWallet The wallet which will be used to deploy the contracts.
+   * @param deploymentType Optional deployment type that relates to the ContractDeployer system contract function to be called. Defaults to deploying regular smart contracts.
    */
-  static fromEthWallet(hre: HardhatRuntimeEnvironment, ethWallet: ethers.Wallet)
+  static fromEthWallet(hre: HardhatRuntimeEnvironment, ethWallet: ethers.Wallet, deploymentType?: zk.types.DeploymentType)
 
   /**
    * Loads an artifact and verifies that it was compiled by `zksolc\.
