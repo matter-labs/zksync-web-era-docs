@@ -411,3 +411,36 @@ expect(await contract.getAmount()).to.equal(100);
 ```
 
 Checkout the advantages of using chai matchers [here](https://hardhat.org/hardhat-chai-matchers/docs/overview#why-would-i-want-to-use-it?). Since the list of all supported chai matchers is same as with [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, check the [reference documentation](https://hardhat.org/hardhat-chai-matchers/docs/reference).
+
+## `hardhat-abi-exporter`
+
+This plugin allows developers to generate the ABI files for given smart contracts easily. It saves them in a specified location, allowing developers to access and use the ABIs in their projects.
+
+> **_NOTE:_** The hardhat-abi-exporter plugin does not require modifications because there is no need to override tasks or subtasks. As a result, it can be used as is. For more information, you can check the plugin's [GitHub page](https://github.com/ItsNickBarry/hardhat-abi-exporter).
+
+### Npm
+
+Add the latest version of this plugin to your project with the following command:
+
+```
+# Yarn
+yarn add -D hardhat-abi-exporter
+
+# Npm
+npm i -D hardhat-abi-exporter
+```
+
+### Usage
+
+To use the hardhat-abi-exporter plugin, it must be installed and added to the Hardhat config along with the hardhat-zksync-solc plugin:
+
+```javascript
+import "@matterlabs/hardhat-zksync-solc";
+import "hardhat-abi-exporter"
+```
+
+> **_NOTE:_** The hardhat-abi-exporter and hardhat-zksync-solc plugin do not override the same compile tasks, so the order in which they are imported into the Hardhat configuration file doesn't matter. However, caution should be exercised when importing other plugins that do override the same tasks, as the order of import can affect the behavior of the plugins. To minimize the risk of errors or unexpected behavior, it is generally recommended to import dependencies before the plugins that depend on them.
+
+For further information on configuration and supported commands, you can refer to the plugin's [GitHub page](https://github.com/ItsNickBarry/hardhat-abi-exporter).
+
+
