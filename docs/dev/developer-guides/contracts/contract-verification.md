@@ -6,7 +6,7 @@ Now that you have learned how to deploy your contracts, you might be interested 
 To use the hardhat-zksync-verify plugin first add it to your project by running ```yarn add @matterlabs/hardhat-zksync-verify```
 After that, define your network configuration ("testnet" in this case):
 
-```
+```typescript
 networks: {
   testnet: {
     zksync: true,
@@ -20,12 +20,12 @@ By setting the `zksync` parameter to true when running verify task, you will be 
 
 ### Parameters
 
-To verify the contract, you need to provide the contract's address by using the ```--contractAddress``` parameter: </br>
-```yarn hardhat verify --network <network> --address <contract address>```
+To verify the contract, you need to provide the contract's address: </br>
+```yarn hardhat verify --network <network> <contract address>```
 
 With the ```--contract``` parameter you can also specify which contract from your local setup you want to verify by specifying its Fully qualified name. Fully qualified name structure looks like this: "contracts/AContract.sol:TheContract" </br>
 
-Example: ```yarn hardhat verify --network <network> --address <contract address> --contract <fully qualified  name>```
+Example: ```yarn hardhat verify --network <network> <contract address> --contract <fully qualified  name>```
 
 This parameter is optional. If not specified, the verify task will try to compare compiled bytecode of all the contracts in your local setup to the deployed bytecode of the contract you are trying to verify. If there is no match, it will report an error.
 
@@ -33,11 +33,12 @@ This parameter is optional. If not specified, the verify task will try to compar
 ### Constructor arguments
 
 Constructor arguments are an optional positional parameter you can add if your contract was deployed with the specific constructor arguments. For example: <br/>
-```yarn hardhat verify --network testnet --address 0x7cf08341524AAF292255F3ecD435f8EE1a910AbF "Hi there!"```
+```yarn hardhat verify --network testnet 0x7cf08341524AAF292255F3ecD435f8EE1a910AbF "Hi there!"```
 
 If your constructor takes a complex argument list, you can write a separate javascript module to export it. <br/>
 For example, create an `arguments.js` file with the following structure:
-```
+
+```typescript
 module.exports = [
   "a string argument",
   "0xabcdef",
@@ -52,8 +53,9 @@ module.exports = [
 Include it in the verify function call by adding a new parameter: `--constructor-args arguments.js `
 
 ## Verify smart contract programmatically
-If you need to run the verification task directly from your code, you can use the hardhat "verify:verify" task with the previously mentioned parameters:<br/>
-```
+If you need to run the verification task directly from your code, you can use the hardhat "verify:verify" task with the previously mentioned parameters with the difference in using `--address` parameter when specifying contarct's address:<br/>
+
+```typescript
 await hre.run("verify:verify", {
   address: contractAddress,
   contract: contractFullyQualifedName

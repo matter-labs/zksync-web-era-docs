@@ -8,6 +8,7 @@ zkSync has has the following plugins for Hardhat:
 - [@matterlabs/hardhat-zksync-vyper](./plugins.md#hardhat-zksync-vyper) - used to compile contracts written in Vyper.
 - [@matterlabs/hardhat-zksync-deploy](./plugins.md#hardhat-zksync-deploy) - used to deploy smart contracts.
 - [@matterlabs/hardhat-zksync-chai-matchers](./plugins.md#hardhat-zksync-chai-matchers) - adds zkSync-specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts.
+- [@matterlabs/hardhat-zksync-verify](./plugins.md#hardhat-zksync-verify) - used to verify smart contracts.
 
 To learn more about Hardhat itself, check out [its official documentation](https://hardhat.org/getting-started/).
 
