@@ -14,49 +14,48 @@ At zkSync, events behave the same way as in Ethereum.
 ## Events filtering
 
 Filtering is used to query indexed data and provide lower-cost data storage when the data is not required to be accessed on-chain.
-While filtering, we advice to load events by block ranges (0-1999, 2000-3999, ...) and index the result on your end, else you will get an error that says "block range should be less than or equal to 2000".
+While filtering, we advice to load events by block ranges (0-1999, 2000-3999, ...) and index the result on your end. Otherwise you will get an error that says "block range should be less than or equal to 2000".
 
 These can be used in conjunction with the [Provider Events API](https://docs.ethers.io/v5/api/providers/provider/#Provider--event-methods) and with the [Contract Events API](https://docs.ethers.io/v5/api/contract/contract/#Contract--events).
 
 ## Getting the events
 
-To get the events, use the following template:
+Here is an example to listen for smart contract events:
 
 ```js
-const ether = require("ethers");
+import * as ethers from "ethers";
 const contractABI = require("./ABI_JSON")
 
-const getEvent = async () => {
-const contractAddress = "<YOUR ADDRESS>"
-const provider = new ether.providers.WebSocketProvider(`wss://zksync2-testnet.zksync.dev/ws`)
+const listenEvents = async () => {
+  const contractAddress = "<CONTRACT_ADDRESS>"
+  const provider = new ether.providers.WebSocketProvider(`wss://zksync2-testnet.zksync.dev/ws`)
 
-const contract = new ether.ethers.Contract(contractAddress, contractABI, provider);
-
-await contract.on("Transfer", (event) => {
-    let info = {
+  const contract = new ethers.Contract(contractAddress, contractABI, provider);
+  
+  // starts listening to Transfer events on contract
+  contract.on("Transfer", (event) => {
+    // optional filter parameters
+    let options = {
         filter: { INDEXED_PARAMETER: VALUE },
         fromBlock: BLOCK_NUMBER, // e.g 15943000
         toBlock: BLOCK_NUMBER, // e.g 15943100
         data: event,
     }
-    console.log(JSON.stringify(info, null, 4))
-})
+    console.log(JSON.stringify(options, null, 4))
+  })
 }
 
-getEvent()
+listenEvents()
 
 ```
 
-where
 
-Provider — Your websocket provider through which you will retrieve the events data.
-Contract address — The contract address whose events you want to track.
-ABI — The ABI(Application Binary Interface) of the contract in JSON format.
-Transfer — Any name you want to assign to print it at the end, for this sample, we used "Transfer".
-Event name — The name of the event as defined in the smart contract.
-Indexed parameter — The indexed parameter of the event.
-Value — The value of the indexed parameter.
-Block number — The block number range for the events retrieval.
+- Provider: Your websocket provider through which you will retrieve the events data. Note that you need to use the websocket endpoint.
+- Contract address: The contract address whose events you want to track.
+- ABI: The ABI(Application Binary Interface) of the contract in JSON format.
+- Event name: The name of the event as defined in the smart contract. In this example we used the "Transfer" event from an ERC20 contract.
+- Indexed parameter (optional) : The indexed parameter of the event.
+- Block number (optional) The block number range for the events retrieval.
 
 **Note**: zkSync has a 10K log limit per response, however, if you receive a response with 10k events then there are more than 10k events in the block range, otherwise, there are less than 10k events. 
 
