@@ -1,5 +1,8 @@
 # The search bar
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Overview
 Our user-friendly search tool gives you easy access to data from multiple search points and provides a more intuitive understanding of what you are searching for.
 

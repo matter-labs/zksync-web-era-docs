@@ -16,6 +16,9 @@ Summary:
 
 The [hardhat-zksync-deploy](../../../api/hardhat) plugin takes care of the deployment process. Here's a [guide on how to use it](../../../api/hardhat/getting-started.md).
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Solidity/Vyper support
 
 Compiling Solidity to zkEVM bytecode requires a special compiler. For the time being Solidity `>=0.4.10` versions are supported, though we strongly recommended using `^0.8.0` as the most stable one. Vyper `^0.3.3` is also supported.

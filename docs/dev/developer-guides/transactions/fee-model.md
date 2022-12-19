@@ -9,7 +9,10 @@ Since the costs for publishing the calldata on L1 are very volatile, the number 
 
 **Please note that the public data is published only for state diffs.** If the same storage slot is updated 10 times in the same rollup block, only the final update will be published on Ethereum, thus only charging for public data once.
 
-### Why do we need a different fee model?
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
+## Why do we need a different fee model?
 
 - **Why `ergs` and not gas?**
 
@@ -19,7 +22,7 @@ We want to show the clear distinction between our fee model and the Ethereum one
 
 As part of the zk rollup security model, zkSync periodically publishes state diffs on Ethereum. The price of that is defined by Ethereum gas price and, as stated, is very volatile. This is why the operator can define the new price in `ergs` for publishing pubdata for each block. Users can provide a cap on the `ergs_per_pubdata` in the [EIP712](../../../api/api.md#eip712) transactions.
 
-### What does this mean to me?
+## What does this mean to me?
 
 Despite the differences, the fee model is quite similar to the one of Ethereum; the most costly operation is storage change. One of the advantages of zk rollups over optimistic rollups is that, instead of publishing all the transaction data, zk rollups can publish only state diffs, thus making fewer storage changes.
 

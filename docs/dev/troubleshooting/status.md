@@ -8,6 +8,9 @@ If any of these block you, let us know on our [Discord](https://join.zksync.dev/
 
 :::
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Using libraries in Solidity
 
 If a Solidity library can be inlined, i.e. it only contains `private` or `internal` methods, then this library can be used without any limitations.

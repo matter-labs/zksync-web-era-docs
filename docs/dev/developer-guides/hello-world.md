@@ -15,6 +15,9 @@ The testnet paymaster is just for testing. If you decide to build a project on m
 
 :::
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Prerequisites
 
 - `yarn` package manager. [Here is the installation guide](https://yarnpkg.com/getting-started/install)(`npm` examples will be added soon.)
@@ -43,19 +46,14 @@ module.exports = {
   zksolc: {
     version: "1.2.1",
     compilerSource: "binary",
-    settings: {
-      experimental: {
-        dockerImage: "matterlabs/zksolc",
-        tag: "v1.2.0",
-      },
-    },
+    settings: {},
   },
-  zkSyncDeploy: {
-    zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
-    ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
-  },
+  defaultNetwork: "zkSyncTestnet",
+
   networks: {
-    hardhat: {
+    zkSyncTestnet: {
+      url: "https://zksync2-testnet.zksync.dev",
+      ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
       zksync: true,
     },
   },
@@ -71,9 +69,9 @@ If the contract was already compiled, you should delete the `artifacts-zk` and `
 
 :::
 
-1. Create the `contracts` and `deploy` folders. The former is the place where we will store all the smart contracts' `*.sol` files, and the latter is the place where we will put all the scripts related to deploying the contracts.
+3. Create the `contracts` and `deploy` folders. The former is the place where we will store all the smart contracts' `*.sol` files, and the latter is the place where we will put all the scripts related to deploying the contracts.
 
-2. Create the `contracts/Greeter.sol` contract and paste the following code in it:
+4. Create the `contracts/Greeter.sol` contract and paste the following code in it:
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
@@ -96,13 +94,13 @@ contract Greeter {
 }
 ```
 
-3. Compile the contract with the following command:
+5. Compile the contract with the following command:
 
 ```
 yarn hardhat compile
 ```
 
-4. Create the following deployment script in `deploy/deploy.ts`:
+6. Create the following deployment script in `deploy/deploy.ts`:
 
 ```typescript
 import { Wallet, utils } from "zksync-web3";
@@ -150,7 +148,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-5. Replacing the `WALLET-PRIVATE-KEY` with the private key of the Ethereum wallet you're using for development, and run the script using the following command to run the deployment script:
+7. Replacing the `WALLET-PRIVATE-KEY` with the private key of the Ethereum wallet you're using for development, and run the script using the following command to run the deployment script:
 
 ```
 yarn hardhat deploy-zksync

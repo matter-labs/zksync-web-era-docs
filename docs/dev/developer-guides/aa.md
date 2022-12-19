@@ -1,5 +1,8 @@
 # Account abstraction support
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Introduction
 
 On Ethereum there are two types of accounts: [externally owned accounts (EOAs)](https://ethereum.org/en/developers/docs/accounts/#externally-owned-accounts-and-key-pairs) and [contracts accounts](https://ethereum.org/en/developers/docs/accounts/#contract-accounts).
@@ -18,7 +21,7 @@ zkSync 2.0 is one of the first EVM-compatible chains to adopt AA, so this testne
 
 :::
 
-### Prerequisites
+## Prerequisites
 
 To better understand this page, we recommend you take some time to first read a guide on [accounts](https://ethereum.org/en/developers/docs/accounts/).
 
@@ -57,8 +60,7 @@ it is recommended to only use the `incrementNonceIfEquals` method, which practic
 
 ### Standardizing transaction hashes
 
-In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](..
-/contracts/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA
+In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](../developer-guides/contracts/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA
 methods (in case the accounts may need this value for some reason). That's why all the methods of the `IAccount` and `IPaymaster` interfaces, which are described below,
 contain the hash of the transaction as well as the recommended signed digest (the digest that is signed by EOAs for this transaction).
 

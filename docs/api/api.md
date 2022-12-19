@@ -8,6 +8,9 @@ It is possible to continue using the SDK that is currently in use. Users will co
 
 However, zkSync has its specifics, which this section describes.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## EIP712
 
 To specify additional fields, like the custom signature for custom accounts or to choose the paymaster, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but they also have fields that contain additional L2-specific data (`paymaster`, etc).
@@ -242,6 +245,35 @@ None.
 
 ```json
 "0x7786255495348c08f82c09c82352019fade3bf29"
+```
+
+### `zks_getBlockDetails`
+
+Returns additional ZkSync-specific information about the L2 block.
+
+### Input parameters
+
+| Parameter | Type     | Description                                                                  |
+| --------- | -------- | ---------------------------------------------------------------------------- |
+| block     | `uint32` | The number of the block.                                                     |
+
+### Output format
+
+```json
+{
+  "commitTxHash": "0x2c8f18312c6b6c2e72df56dd5684e3c65fcdf5f6141763eafdcbbfc02c3a39b5",
+  "committedAt": "2022-12-12T08:41:50.774441Z",
+  "executeTxHash": "0xa12f3a9689101758acad280dd21a00cfc2644c125702ea301f46a33799cde9b9",
+  "executedAt": "2022-12-12T08:41:57.233941Z",
+  "l1TxCount": 5,
+  "l2TxCount": 0,
+  "number": 1,
+  "proveTxHash": "0x0fed6d8a7b02a26b5513edea10d8849342b56a13c0e48317556c78b34aeacd26",
+  "provenAt": "2022-12-12T08:41:57.219584Z",
+  "rootHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
+  "status": "verified",
+  "timestamp": 1670834504
+}
 ```
 
 

@@ -7,6 +7,9 @@ Solidity libraries can be divided into two categories:
 
 **Practically this means that libraries with public methods need to be deployed separately and their addresses passed as an argument when compiling the main contract.** Usage of the methods of this library will be replaced with calls to its address.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## OpenZeppelin utility libraries
 
 Please note, that the total majority of the OpenZeppelin utility libraries _are_ inlinable. That means that _there is no need to do any further actions to make them compile_.
@@ -79,13 +82,12 @@ module.exports = {
       },
     },
   },
-  zkSyncDeploy: {
-    zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
-    ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
-  },
+  defaultNetwork: "zkTestnet",
   networks: {
-    hardhat: {
-      zksync: true,
+    zkTestnet: {
+      url: "https://zksync2-testnet.zksync.dev", // URL of the zkSync network RPC
+      ethNetwork: "goerli", // Can also be the RPC URL of the Ethereum network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
+      zksync: true
     },
   },
   solidity: {

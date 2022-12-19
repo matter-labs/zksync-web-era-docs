@@ -45,3 +45,114 @@ iframe {
     background-color: darken(#fff, 5%);
     }
 }
+
+/******************************************************/
+/* START Native TOC adjustments */
+.table-of-contents{
+    position: fixed;
+    top:110px;
+    right: 5px;
+    font-size:small;
+    color:#797AFB ;
+    min-width:275px !important;
+    max-width:275px !important;
+    /* http://jsfiddle.net/RyanBrackett/b44Zn/ */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    -webkit-overflow-scrolling: touch;
+    height: 75%;
+}
+/* This is a .vuepress/theme/components/TocHeader.vue */
+.toc-label{
+  position: fixed;
+    top:90px;
+    right: 5px;
+    font-size:medium;
+    font-weight: 500;
+    color:gray;
+    min-width:275px !important;
+    max-width:275px !important;
+    margin-bottom:40px !important;
+}
+
+
+@media only screen and (max-width: 4000px) {
+    div.theme-default-content.content__default{
+      max-width:67% ;
+      margin-left:70px;
+    }
+}
+@media only screen and (max-width: 1600px) {
+    div.theme-default-content.content__default{
+      /* background-color: pink; */
+      max-width:65%;
+      margin-left:70px;
+    }
+}
+@media only screen and (max-width: 1500px) {
+    div.theme-default-content.content__default{
+      /*background-color: yellow;*/
+      max-width:65%;
+      margin-left:30px;
+    }
+}
+@media only screen and (max-width: 1450px) {
+    div.theme-default-content.content__default{
+      /*  background-color: gray; */
+      max-width:65%;
+      margin-left:10px;
+    }
+}
+@media only screen and (max-width: 1400px) {
+    div.theme-default-content.content__default{
+      /* background-color: lightgrey; */
+      max-width:65%;
+      margin-left:10px;
+    }
+}
+@media only screen and (max-width: 1350px) {
+    div.theme-default-content.content__default{
+      /* background-color: beige; */
+      max-width:65%;
+      margin-left:10px;
+    }
+}
+@media only screen and (max-width: 1300px) {
+    div.theme-default-content.content__default{
+      /* background-color: purple; */
+      max-width:60%;
+      margin-left:10px;
+    }
+
+}
+
+@media only screen and (max-width: 1200px) {
+    .table-of-contents, .toc-label{
+      display:none;
+    }
+    div.theme-default-content.content__default{
+      /* background-color: lightblue; */
+      margin-left:10px;
+      max-width:85%;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .table-of-contents, .toc-label{
+      display:none;
+    }
+    div.theme-default-content.content__default{
+      /*  background-color: lightgreen; */
+      margin-left:10px;
+      max-width:85%;
+    }
+}
+
+/* Mobile */
+@media only screen and (max-width: 500px) {
+    div.theme-default-content.content__default {
+        margin-left:0px;
+        max-width:88% !important;
+    }
+}
+
+/* END Native TOC adjustments */
+/************************************************/

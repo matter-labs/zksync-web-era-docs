@@ -2,16 +2,20 @@
 
 [Hardhat](https://hardhat.org) is an Ethereum development environment, designed for easy smart contract development in Solidity. One of its most prominent features is extendability: you can easily add new plugins to your hardhat project.
 
-zkSync has three plugins for Hardhat:
+zkSync has has the following plugins for Hardhat:
 
-- [@matterlabs/hardhat-zksync-solc](./plugins.md#matterlabs-hardhat-zksync-solc) - used to compile contracts written in Solidity.
-- [@matterlabs/hardhat-zksync-vyper](./plugins.md#matterlabs-hardhat-zksync-vyper) - used to compile contracts written in Vyper.
-- [@matterlabs/hardhat-zksync-deploy](./plugins.md#matterlabs-hardhat-zksync-deploy) - used to deploy smart contracts.
+- [@matterlabs/hardhat-zksync-solc](./plugins.md#hardhat-zksync-solc) - used to compile contracts written in Solidity.
+- [@matterlabs/hardhat-zksync-vyper](./plugins.md#hardhat-zksync-vyper) - used to compile contracts written in Vyper.
+- [@matterlabs/hardhat-zksync-deploy](./plugins.md#hardhat-zksync-deploy) - used to deploy smart contracts.
+- [@matterlabs/hardhat-zksync-chai-matchers](./plugins.md#hardhat-zksync-chai-matchers) - adds zkSync-specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts.
 
 To learn more about Hardhat itself, check out [its official documentation](https://hardhat.org/getting-started/).
 
 This tutorial shows how to set up a zkSync Solidity project using Hardhat from scratch.
 If you are using Vyper, check out the [Vyper plugin documentation](./plugins.md#matterlabs-hardhat-zksync-vyper) or [this example](https://github.com/matter-labs/hardhat-zksync/tree/main/examples/vyper-example) in GitHub!
+
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
 
 ## Prerequisites
 
@@ -55,14 +59,13 @@ module.exports = {
       },
     },
   },
-  zkSyncDeploy: {
-    zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
-    ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
-  },
+  defaultNetwork: "zkTestnet",
   networks: {
-    hardhat: {
-      zksync: true,
-    },
+    zkTestnet: {
+      url: "https://zksync2-testnet.zksync.dev", // URL of the zkSync network RPC
+      ethNetwork: "goerli", // Can also be the RPC URL of the Ethereum network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
+      zksync: true
+    }
   },
   solidity: {
     version: "0.8.16",
@@ -174,7 +177,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 7. After replacing the `WALLET-PRIVATE-KEY` text with the private key of your Ethereum wallet, run the script using the following command: `yarn hardhat deploy-zksync`. This script will:
 
 - Transfer 0.001 ETH from Goerli to zkSync.
-- Deploy the `Greeting` contract with the message "Hi there!".
+- Deploy the `Greeting` contract with the message "Hi there!" to [zkSync testnet](https://v2-docs.zksync.io/dev/fundamentals/testnet.html).
 - Retrieve the message from the contract calling the `greet()` method.
 - Update the greet message in the contract with the `setGreeting()` method.
 - Retrieve the message from the contract again.

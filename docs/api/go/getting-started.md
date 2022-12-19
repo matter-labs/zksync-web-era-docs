@@ -8,6 +8,9 @@ In this guide we will demonstrate how to:
 4. Deploy a smart contract.
 5. Interact with any smart contract.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## Prerequisite
 
 This guide assumes that you are familiar with the [Go](https://go.dev/doc/) programming language.
