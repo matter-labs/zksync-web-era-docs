@@ -31,7 +31,7 @@ yarn add -D @matterlabs/zksync-contracts
 
 Данная функция view возвращает количество ETH, необходимое для оплаты пользователем покрытия базовой стоимости транзакции
 
-```javascript
+```solidity
 function l2TransactionBaseCost(
     uint256 _gasPrice,
     uint256 _ergsLimit,
@@ -47,7 +47,7 @@ function l2TransactionBaseCost(
 
 Данная функция возвращает канонический хэш или запрашиваемую транзакцию, которая может использоваться для отслеживания исполнения данной транзакции на L2.
 
-```
+```solidity
 function requestL2Transaction(
     address _contractAddressL2,
     uint256 _l2Value,
