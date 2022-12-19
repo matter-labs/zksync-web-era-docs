@@ -3722,7 +3722,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vuepress/plugin-search@npm:1.9.7, @vuepress/plugin-search@npm:^1.8.2":
+"@vuepress/plugin-search@npm:1.9.7":
   version: 1.9.7
   resolution: "@vuepress/plugin-search@npm:1.9.7"
   dependencies:
@@ -8145,13 +8145,6 @@ __metadata:
   dependencies:
     semver-regex: ^3.1.2
   checksum: 2b4c749dc33e3fa73a457ca4df616ac13b4b32c53f6297bc862b0814d402a6cfec93a0d308d5502eeb47f2c125906e0f861bf01b756f08395640892186357711
-  languageName: node
-  linkType: hard
-
-"flexsearch@npm:^0.6.32":
-  version: 0.6.32
-  resolution: "flexsearch@npm:0.6.32"
-  checksum: a46f833365174ce279d55a7dfa150e450934e52c086a3759f17b90784a7018bcec524ca8e88dca24ffa6ef17f1130d56fbb84b49c19d6f58363dac0713bf1909
   languageName: node
   linkType: hard
 
@@ -16475,16 +16468,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vuepress-plugin-flexsearch@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "vuepress-plugin-flexsearch@npm:0.3.0"
-  dependencies:
-    "@vuepress/plugin-search": ^1.8.2
-    flexsearch: ^0.6.32
-  checksum: 961a32430d6dc0dbbc38d6c77d0b6b95531090978d5445fa849971b757cd9a98af9683563cc9fb761d086bbd9780ae7429fc93cfb8ceb64c470820a19f4c803a
-  languageName: node
-  linkType: hard
-
 "vuepress-plugin-smooth-scroll@npm:^0.0.3":
   version: 0.0.3
   resolution: "vuepress-plugin-smooth-scroll@npm:0.0.3"
@@ -17119,7 +17102,6 @@ __metadata:
     vue: 2.6.14
     vuepress: ^1.8.2
     vuepress-plugin-dehydrate: ^1.1.5
-    vuepress-plugin-flexsearch: ^0.3.0
     vuepress-plugin-table-of-contents: ^1.1.7
   languageName: unknown
   linkType: soft
