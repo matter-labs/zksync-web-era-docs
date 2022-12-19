@@ -36,7 +36,7 @@ const listenEvents = async () => {
   contract.on("Transfer", (event) => {
     // optional filter parameters
     let options = {
-        filter: { INDEXED_PARAMETER: VALUE },
+        filter: { INDEXED_PARAMETER: VALUE }, // e.g { from: '0x48c6c0923b514db081782271355e5745c49wd60' }
         fromBlock: START_BLOCK_NUMBER, // e.g 15943000
         toBlock: END_BLOCK_NUMBER, // e.g 15943100
         data: event,
@@ -54,8 +54,8 @@ listenEvents()
 - Contract address: The contract address whose events you want to track.
 - ABI: The ABI (Application Binary Interface) of the contract in JSON format.
 - Event name: The name of the event as defined in the smart contract. In this example we used the "Transfer" event from an ERC20 contract.
-- Indexed parameter (optional) : The indexed parameter of the event.
-- Block number (optional) The block number range for the events retrieval.
+- Indexed parameter : The indexed parameter of the event.
+- Block number: The block number range for the events retrieval, it involves the `START_BLOCK_NUMBER` and the `END_BLOCK_NUMBER`.
 
 **Note**: zkSync has a 10K log limit per response, however, if you receive a response with 10k events then there are more than 10k events in the block range, otherwise, there are less than 10k events. 
 
