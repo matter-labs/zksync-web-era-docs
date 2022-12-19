@@ -42,6 +42,7 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^8.0.2",
     "@vuepress/plugin-back-to-top": "^1.9.7",
+    "@vuepress/plugin-docsearch": "^2.0.0-alpha.1",
     "check-md": "^1.0.1",
     "commitlint": "^11.0.0",
     "cspell": "^4.1.5",
@@ -52,7 +53,6 @@
     "prettier": "2.1.2",
     "semantic-release": "^18.0.1",
     "vue": "2.6.14",
-    "vuepress-plugin-flexsearch": "^0.3.0",
     "vuepress-plugin-table-of-contents": "^1.1.7"
   },
   "scripts": {
