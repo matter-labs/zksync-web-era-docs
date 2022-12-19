@@ -14,7 +14,7 @@ At zkSync, events behave the same way as in Ethereum.
 ## Events filtering
 
 Filtering is used to query indexed data and provide lower-cost data storage when the data is not required to be accessed on-chain.
-While filtering, we advice to load events by block ranges (0-1999, 2000-3999, ...) and index the result on your end. Otherwise you will get an error that says "block range should be less than or equal to 2000".
+When filtering, you should load events by block ranges (0-1999, 2000-3999, ...) and index the result on your end. Otherwise you will get an error that says "block range should be less than or equal to 2000".
 
 These can be used in conjunction with the [Provider Events API](https://docs.ethers.io/v5/api/providers/provider/#Provider--event-methods) and with the [Contract Events API](https://docs.ethers.io/v5/api/contract/contract/#Contract--events).
 
@@ -37,8 +37,8 @@ const listenEvents = async () => {
     // optional filter parameters
     let options = {
         filter: { INDEXED_PARAMETER: VALUE },
-        fromBlock: BLOCK_NUMBER, // e.g 15943000
-        toBlock: BLOCK_NUMBER, // e.g 15943100
+        fromBlock: START_BLOCK_NUMBER, // e.g 15943000
+        toBlock: END_BLOCK_NUMBER, // e.g 15943100
         data: event,
     }
     console.log(JSON.stringify(options, null, 4))
@@ -52,7 +52,7 @@ listenEvents()
 
 - Provider: Your websocket provider through which you will retrieve the events data. Note that you need to use the websocket endpoint.
 - Contract address: The contract address whose events you want to track.
-- ABI: The ABI(Application Binary Interface) of the contract in JSON format.
+- ABI: The ABI (Application Binary Interface) of the contract in JSON format.
 - Event name: The name of the event as defined in the smart contract. In this example we used the "Transfer" event from an ERC20 contract.
 - Indexed parameter (optional) : The indexed parameter of the event.
 - Block number (optional) The block number range for the events retrieval.
