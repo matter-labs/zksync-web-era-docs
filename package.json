@@ -53,6 +53,7 @@
     "prettier": "2.1.2",
     "semantic-release": "^18.0.1",
     "vue": "2.6.14",
+    "vuepress-plugin-flexsearch": "^0.3.0",
     "vuepress-plugin-table-of-contents": "^1.1.7"
   },
   "scripts": {
