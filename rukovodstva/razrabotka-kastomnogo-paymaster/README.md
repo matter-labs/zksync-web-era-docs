@@ -434,6 +434,6 @@ Balance of the user after mint: 102
 
 ### Узнать больше
 
-* Узнать больше о коммуникации L1-> L2 на zkSync можно на этой [странице документации](../../readme/ponimanie-zksync-2.0/vzaimodeistvie-l1-l2.md#l1-l2-communication).
+* Узнать больше о коммуникации L1-> L2 на zkSync можно на этой [странице документации](broken-reference).
 * Узнать больше о `zksync-web3` SDK можно на этой странице [документации](https://v2-docs.zksync.io/api/js).
 * Узнать больше о hardhat плагинах zkSync можно на этой странице [документации](https://v2-docs.zksync.io/api/hardhat).

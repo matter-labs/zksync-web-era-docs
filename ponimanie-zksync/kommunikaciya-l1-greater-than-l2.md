@@ -1,6 +1,6 @@
-# L1 -> L2 коммуникация
+# Коммуникация L1 -> L2
 
-Этот раздел описывает интерфейс взаимодействия с zkSync со стороны L1. Предполагается, что вы уже знакомы с базовыми концепциями работы с приоритетной очередью. Если это вам в новинку, то вы можете ознакомиться с концептуальным введением [тут](../ponimanie-zksync-2.0/vzaimodeistvie-l1-l2.md). Если вы хотите погрузиться сразу в код, тогда можете прочесть [руководство ](rukovodstvo-kross-chein-upravlenie.md)по кросс-чейн управлению (cross-chain governance).
+Этот раздел описывает интерфейс взаимодействия с zkSync со стороны L1. Предполагается, что вы уже знакомы с базовыми концепциями работы с приоритетной очередью. Если это вам в новинку, то вы можете ознакомиться с концептуальным введением [тут](broken-reference). Если вы хотите погрузиться сразу в код, тогда можете прочесть [руководство ](broken-reference)по кросс-чейн управлению (cross-chain governance).
 
 ### Структура <a href="#structure" id="structure"></a>
 
@@ -31,7 +31,7 @@ yarn add -D @matterlabs/zksync-contracts
 
 Данная функция view возвращает количество ETH, необходимое для оплаты пользователем покрытия базовой стоимости транзакции
 
-```javascript
+```solidity
 function l2TransactionBaseCost(
     uint256 _gasPrice,
     uint256 _ergsLimit,
@@ -40,14 +40,14 @@ function l2TransactionBaseCost(
 ```
 
 * `_gasPrice` - параметр, включающий в себя цену газа.
-* `_ergsLimit` - параметр, включающий себя лимит ergs за вызов транзакции. Вы можете узнать больше про egrs и систему комиссий zkSync [здесь](../ponimanie-zksync-2.0/komissionnaya-model.md).
+* `_ergsLimit` - параметр, включающий себя лимит ergs за вызов транзакции. Вы можете узнать больше про egrs и систему комиссий zkSync [здесь](broken-reference).
 * `_calldataLength` - параметр, включающий в себя размер(длину) данных в байтах.
 
 #### Интерфейс <a href="#interface" id="interface"></a>
 
 Данная функция возвращает канонический хэш или запрашиваемую транзакцию, которая может использоваться для отслеживания исполнения данной транзакции на L2.
 
-```
+```solidity
 function requestL2Transaction(
     address _contractAddressL2,
     uint256 _l2Value,
@@ -60,10 +60,16 @@ function requestL2Transaction(
 * `_contractAddressL2` - параметр определяет адрес вызываемого контракта.
 * `_l2Value` - параметр определяет количество ETH, которое вы хотите передать на L2 вместе с вызовом. Это число будет использоваться как `msg.value` для транзакции.
 * `_calldata` - параметр включает в себя данные вызова транзакции. Она может быть закодирована тем же образом, как и на Эфириуме.
-* `_ergsLimit` - параметр включает в себя лимит ergs для вызываемой транзакции. Вы можете узнать больше об ergs и систему комиссий zkSync [тут](../ponimanie-zksync-2.0/komissionnaya-model.md).
+* `_ergsLimit` - параметр включает в себя лимит ergs для вызываемой транзакции. Вы можете узнать больше об ergs и систему комиссий zkSync [тут](broken-reference).
 * `_factoryDeps` - это лист байт-кодов. Он должен включать в себя байт-код развертываемого контракта, т.е. он может разверытвать другие контракты. Массив также должен содержать байт-коды контрактов, которые могут быть развернуты им.
 
 С вызовом данного метода должно быть передано некоторое количество ETH для покрытия базовой стоимости транзакции (включая `_l2Value`) + чаевые для оператора L2.
+
+{% hint style="success" %}
+**СОВЕТ**
+
+**Успешное** сообщение L1 -> L2 производит `L2Log c key = l2TxHash` и `value = bytes32(1)`, тогда как **неуспешное** сообщение L1 -> L2 производит `L2Log c key = l2TxHash` и `value = bytes32(0)`
+{% endhint %}
 
 #### Примеры: <a href="#examples" id="examples"></a>
 
@@ -73,30 +79,30 @@ function requestL2Transaction(
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-// Importing zkSync contract interface
+// Импорт интерфейса контракта zkSync
 import "@matterlabs/zksync-contracts/l1/contracts/zksync/interfaces/IZkSync.sol";
-// Importing `Operations` contract which has the `QueueType` type
+// Импорт контракта `Operations` который имеет тип `QueueType`
 import "@matterlabs/zksync-contracts/l1/contracts/zksync/Operations.sol";
 
 contract Example {
     function callZkSync(
-        // The address of the zkSync smart contract.
-        // It is not recommended to hardcode it during the alpha testnet as regenesis may happen.
+        // Адрес смарт-контракта zkSync
+        // Не рекомендуется его твердо прописывать в период альфа-тестнета, т.к. может быть регенезис
         address _zkSyncAddress
     ) external payable returns(bytes32 txHash) {
         IZkSync zksync = IZkSync(_zkSyncAddress);
         address someL2Contract = 0xdba0833e8c4b37cecc177a665e9207962e337299;
-        // calling L2 smart contract from L1 Example contract
+        // Вызов смарт-контракта на L2 со стороны контракта-образца на L1
         txHash = zksync.requestL2Transaction{value: msg.value}(
-            // The address of the L2 contract to call
+            // Адрес контракта для вызова на L2
             someL2Contract,
-            // We pass no ETH with the call
+            // Мы не передаем ETH с вызовом
             0,
-            // Encoding the calldata for the execute
+            // Кодируем calldata для исполнения
             abi.encodeWithSignature("someMethod()"),
             // Ergs limit
             10000,
-            // factory dependencies
+            // factory dependencies (зависимости фабрики)
             new bytes[](0)
         );
     }
@@ -109,7 +115,7 @@ contract Example {
 import { Wallet, Provider } from "zksync-web3";
 import { ethers, BigNumber } from "ethers";
 
-const TEST_PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
+const TEST_PRIVATE_KEY = "";
 
 const zkSyncProvider = new Provider("https://zksync2-testnet.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
@@ -117,7 +123,7 @@ const wallet = new Wallet(TEST_PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const gasPrice = await wallet.providerL1!.getGasPrice();
 
-// The calldata can be encoded the same way as for Ethereum
+// Calldata можно кодировать так же как в Эфириум
 const calldata = "0x...";
 const ergsLimit = BigNumber.from(1000);
 
@@ -129,7 +135,7 @@ const txCostPrice = await wallet.getBaseCost({
 
 console.log(`Executing the transaction will cost ${ethers.utils.formatEther(txCostPrice)} ETH`);
 
-// initiating L2 transfer via L1 execute from zksync wallet
+// инициация трансфера на L2 через L1 execute из кошелька zkSync
 const someL2Contract = "0x19a5bfcbe15f98aa073b9f81b58466521479df8d";
 const executeTx = await wallet.requestExecute({
   calldata,
@@ -142,5 +148,3 @@ const executeTx = await wallet.requestExecute({
 
 await executeTx.wait();
 ```
-
-#### &#x20;<a href="#getting-the-base-cost" id="getting-the-base-cost"></a>

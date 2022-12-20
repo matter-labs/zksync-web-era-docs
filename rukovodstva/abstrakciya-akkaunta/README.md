@@ -1,14 +1,14 @@
 # Абстракция аккаунта
 
-Теперь давайте научимся реализовывать кастомные аккаунты и взаимодействовать напрямую с системным контрактом [ContractDeployer](../../readme/ponimanie-zksync-2.0/ponimanie-sistemnykh-kontraktov.md#contractdeployer).
+Теперь давайте научимся реализовывать кастомные аккаунты и взаимодействовать напрямую с системным контрактом [ContractDeployer](broken-reference).
 
 В этом руководстве мы создадим фабрику (factory), которая развертывает аккаунты с мультиподписью типа "2-из-2ух".
 
 ### Подготовка <a href="#preliminaries" id="preliminaries"></a>
 
-Прежде чем углубиться в данное руководство, крайне рекомендуется прочитать о [дизайне](../../readme/ponimanie-zksync-2.0/vazhno-podderzhka-abstrakcii-akkaunta.md) протокола абстракции аккаунта.
+Прежде чем углубиться в данное руководство, крайне рекомендуется прочитать о [дизайне](broken-reference) протокола абстракции аккаунта.
 
-Предполагается, что вы уже знакомы с развертыванием контрактов на zkSync. Если нет, пожалуйста обратитесь к первому разделу руководства по. Также рекомендуется прочесть [введение ](../../readme/ponimanie-zksync-2.0/ponimanie-sistemnykh-kontraktov.md)в системные контракты.
+Предполагается, что вы уже знакомы с развертыванием контрактов на zkSync. Если нет, пожалуйста обратитесь к первому разделу руководства по. Также рекомендуется прочесть [введение ](broken-reference)в системные контракты.
 
 ### Установка зависимостей <a href="#installing-dependencies" id="installing-dependencies"></a>
 
@@ -27,7 +27,7 @@ yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zk
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Также создайте файл конфигурации `hardhat.config.ts` и директории `contracts` и `deploy` как в руководстве [Hello World](../../readme/rukovodstvo-razrabotchika/rukovodstvo-hello-world.md).
+Также создайте файл конфигурации `hardhat.config.ts` и директории `contracts` и `deploy` как в руководстве [Hello World](broken-reference).
 
 ### Абстракция аккаунта <a href="#account-abstraction" id="account-abstraction"></a>
 
@@ -96,7 +96,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 }
 ```
 
-Учтите, что только [bootloader](../../readme/ponimanie-zksync-2.0/ponimanie-sistemnykh-kontraktov.md#bootloader) должен быть допущен к вызову методов `validateTransaction`/`executeTransaction`/`payForTransaction`/`prePaymaster`. Поэтому для них используется модификатор `onlyBootloader` .
+Учтите, что только [bootloader](broken-reference) должен быть допущен к вызову методов `validateTransaction`/`executeTransaction`/`payForTransaction`/`prePaymaster`. Поэтому для них используется модификатор `onlyBootloader` .
 
 Метод `executeTransactionFromOutside` нужен для доступа внешним пользователям к инициации транзакции с данного аккаунта. Наиболее легкий способ реализовать его - сделать тоже самое, что бы сделали `validateTransaction` + `executeTransaction` .
 
@@ -142,11 +142,11 @@ function isValidSignature(bytes32 _hash, bytes calldata _signature) public overr
 
 #### Валидация транзакции <a href="#transaction-validation" id="transaction-validation"></a>
 
-Давайте реализуем процесс валидации. Он отвечает за валидацию подписи транзакции и увеличение значения nonce. Заметьте, что есть некоторые ограничения в том, что этому методу позволено выполнять. Вы можете подробнее узнать о них [тут](../../readme/ponimanie-zksync-2.0/vazhno-podderzhka-abstrakcii-akkaunta.md#limitations-of-the-verification-step).
+Давайте реализуем процесс валидации. Он отвечает за валидацию подписи транзакции и увеличение значения nonce. Заметьте, что есть некоторые ограничения в том, что этому методу позволено выполнять. Вы можете подробнее узнать о них [тут](broken-reference).
 
 Для увеличения nonce нужно использовать метод `incrementNonceIfEquals` системного контракта `NONCE_HOLDER_SYSTEM_CONTRACT` . Он берет Nonce транзакции и проверяет, совпадает ли текущий nonce с предоставленным. Если нет, то транзакция отменяется. В ином случае, nonce увеличивается.
 
-Хоть и требования выше позволяют аккаунтам изменять только свои слоты хранилища, доступ к вашему nonce в `NONCE_HOLDER_SYSTEM_CONTRACT` - это [разрешенный](../../readme/ponimanie-zksync-2.0/vazhno-podderzhka-abstrakcii-akkaunta.md#extending-the-set-of-slots-that-belong-to-a-user) случай, так как он ведет себя так же, как ваше хранилище, но просто случилось так, что он находится в другом контракте. Для вызова `NONCE_HOLDER_SYSTEM_CONTRACT` вам нужно добавить следующий импорт:
+Хоть и требования выше позволяют аккаунтам изменять только свои слоты хранилища, доступ к вашему nonce в `NONCE_HOLDER_SYSTEM_CONTRACT` - это [разрешенный](broken-reference) случай, так как он ведет себя так же, как ваше хранилище, но просто случилось так, что он находится в другом контракте. Для вызова `NONCE_HOLDER_SYSTEM_CONTRACT` вам нужно добавить следующий импорт:
 
 ```solidity
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
@@ -206,7 +206,7 @@ function payForTransaction(bytes32, bytes32, Transaction calldata _transaction) 
 
 #### Реализация `prePaymaster` <a href="#implementing-prepaymaster" id="implementing-prepaymaster"></a>
 
-Тогда как обычно протокол абстракции аккаунта позволяет исполнять произвольные действия при взаимодействии с paymaster'ами, есть несколько [общих паттернов](../../readme/ponimanie-zksync-2.0/vazhno-podderzhka-abstrakcii-akkaunta.md#built-in-paymaster-flows) со встроенной поддержкой из EOA-аккаунтов. Если только вы не хотите реализовать или запретить некоторые специфические возможные действия для вашего аккаунта, лучше держать его в соответствии с EOA. Библиотека `TransactionHelper` предоставляет метод `processPaymasterInput` , который делает именно это: проходит шаг `prePaymaster` так же, как и EOA.
+Тогда как обычно протокол абстракции аккаунта позволяет исполнять произвольные действия при взаимодействии с paymaster'ами, есть несколько [общих паттернов](broken-reference) со встроенной поддержкой из EOA-аккаунтов. Если только вы не хотите реализовать или запретить некоторые специфические возможные действия для вашего аккаунта, лучше держать его в соответствии с EOA. Библиотека `TransactionHelper` предоставляет метод `processPaymasterInput` , который делает именно это: проходит шаг `prePaymaster` так же, как и EOA.
 
 ```solidity
 function prePaymaster(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
@@ -780,6 +780,6 @@ The multisig's nonce after the first tx is 1
 
 ### Узнать больше <a href="#learn-more" id="learn-more"></a>
 
-* Узнать больше о коммуникации L1-> L2 на zkSync можно на этой [странице документации](../../readme/ponimanie-zksync-2.0/vzaimodeistvie-l1-l2.md#l1-l2-communication).
+* Узнать больше о коммуникации L1-> L2 на zkSync можно на этой [странице документации](broken-reference).
 * Узнать больше о `zksync-web3` SDK можно на этой странице [документации](https://v2-docs.zksync.io/api/js).
 * Узнать больше о hardhat плагинах zkSync можно на этой странице [документации](https://v2-docs.zksync.io/api/hardhat).

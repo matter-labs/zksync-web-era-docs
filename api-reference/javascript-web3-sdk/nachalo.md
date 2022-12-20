@@ -45,8 +45,6 @@ const ethProvider = ethers.getDefaultProvider("goerli");
 
 Для управления вашим аккаунтом zkSync используйте объект `zksync.Wallet`. Он может подписывать транзакции с помощью ключей, хранимых в `ethers.Wallet` и отправлять транзакции в сеть zkSync, используя `zksync.Provider`.
 
-
-
 ```typescript
 // Derive zksync.Wallet from ethereum private key.
 // zkSync's wallets support all of the methods of ethers' wallets.
@@ -56,7 +54,7 @@ const syncWallet = new zksync.Wallet(PRIVATE_KEY, syncProvider, ethProvider);
 
 ### Внесение средств <a href="#depositing-funds" id="depositing-funds"></a>
 
-Давайте внесем `1.0 ETH` на ваш аккаунт zkSync.&#x20;
+Давайте внесем `1.0 ETH` на ваш аккаунт zkSync.
 
 ```typescript
 const deposit = await syncWallet.deposit({
@@ -87,7 +85,7 @@ const committedEthBalance = await syncWallet.getBalance(zksync.utils.ETH_ADDRESS
 const finalizedEthBalance = await syncWallet.getBalance(ETH_ADDRESS, "finalized");
 ```
 
-Вы можете узнать больше об отправленных и финализированных блоках [тут](../../readme/ponimanie-zksync-2.0/podtverzhdeniya-i-finalnost.md).
+Вы можете узнать больше об отправленных и финализированных блоках [тут](broken-reference).
 
 ### Выполнение перевода <a href="#performing-a-transfer" id="performing-a-transfer"></a>
 

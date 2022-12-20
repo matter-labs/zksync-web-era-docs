@@ -284,7 +284,7 @@ yarn hardhat deploy-zksync
 {% hint style="success" %}
 **СОВЕТ**\
 ****\
-****Более подробную информацию о развертывании контрактов вы можете найти в [руководстве по быстрому старту](../../readme/rukovodstvo-razrabotchika/bystryi-start.md) или в документации по плагинам hardhat для zkSync.
+****Более подробную информацию о развертывании контрактов вы можете найти в [руководстве по быстрому старту](broken-reference) или в документации по плагинам hardhat для zkSync.
 {% endhint %}
 
 ### Считывание значения счетчика
@@ -577,6 +577,6 @@ The counter value is 1
 
 ### Узнать больше
 
-* Чтобы узнать больше о взаимодействии L1->L2 в zkSync, ознакомьтесь с документацией [тут](../../readme/rukovodstvo-razrabotchika/l2-greater-than-l1-kommunikaciya.md).
+* Чтобы узнать больше о взаимодействии L1->L2 в zkSync, ознакомьтесь с документацией [тут](broken-reference).
 * Чтобы узнать больше о `zksync-web3` SDK, ознакомьтесь с его документацией [тут](../../api-reference/javascript-web3-sdk/).
 * Чтобы узнать больше о `hardhat` плагинах zkSync , ознакомьтесь с их документацией [тут](https://v2-docs.zksync.io/api/hardhat).
