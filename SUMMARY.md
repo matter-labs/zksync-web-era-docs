@@ -108,3 +108,6 @@
     * [Фильтрация событий](https://app.gitbook.com/s/murhp2cgBIKXfRLqThaC/razrabotka-na-zksync/obrabotka-sobytii#events-filtering)
   * [JSON-RPC API](razrabotka-na-zksync/json-rpc-api.md)
   * [Видео ресурсы](razrabotka-na-zksync/video-resursy.md)
+* [Устранение неполадок](ustranenie-nepoladok/README.md)
+  * [Важные ссылки](ustranenie-nepoladok/vazhnye-ssylki.md)
+  * [Статус поддержки функций](ustranenie-nepoladok/status-podderzhki-funkcii.md)
