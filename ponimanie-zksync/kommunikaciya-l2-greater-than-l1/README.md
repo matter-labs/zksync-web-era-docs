@@ -1,18 +1,18 @@
 # Коммуникация L2 -> L1
 
-Этот раздел описывает интерфейс взаимодействия с Эфириумом со стороны L2. Подразумевается, что вы уже знакомы с базовыми концептами работы с коммуникацией      L2 -> L1. Если это для вас в новинку, то вы можете ознакомиться с концептуальным введением [тут](broken-reference).
+Этот раздел описывает интерфейс взаимодействия с Эфириумом со стороны L2. Подразумевается, что вы уже знакомы с базовыми концептами работы с коммуникацией      L2 -> L1. Если это для вас в новинку, то вы можете ознакомиться с концептуальным введением [тут](../interoperabelnost-l1-l2/).
 
 ### Структура <a href="#structure" id="structure"></a>
 
-В отличие от L1 -> L2 коммуникации, напрямую инициализировать транзакции с L2 на L1 нельзя. Тем не менее, вы можете отправлять сообщения произовольной длины с zkSync на Эфириум и затем обработать полученное сообщение на смарт-контракте на L1. Чтобы отправить сообщение со стороны L2, вам нужно вызвать метод `sendToL1` [системного контракта Messenger](https://v2-docs.zksync.io/dev/developer-guides/contracts/system-contracts.html#understanding-system-contracts##IL1Messenger). Он принимает только байты сообщения, которое отправляется на контракт zkSync на Эфириуме.&#x20;
+В отличие от L1 -> L2 коммуникации, напрямую инициализировать транзакции с L2 на L1 нельзя. Тем не менее, вы можете отправлять сообщения произовольной длины с zkSync на Эфириум и затем обработать полученное сообщение на смарт-контракте на L1. Чтобы отправить сообщение со стороны L2, вам нужно вызвать метод `sendToL1` [системного контракта Messenger](../sistemnye-kontrakty/#il1messenger). Он принимает только байты сообщения, которое отправляется на контракт zkSync на Эфириуме.&#x20;
 
 Со стороны L1, контракт zkSync предоставляет метод `proveL2MessageInclusion` для доказательства того, что сообщение было отправлено в сторону L1 и включено в блок zkSync.
 
 ### Отправка сообщения с L2 на L1 <a href="#sending-a-message-on-l2" id="sending-a-message-on-l2"></a>
 
-Sending messages from the L2 side requires users to call the `sendToL1` method from the [Messenger system contract](https://v2-docs.zksync.io/dev/developer-guides/contracts/system-contracts.html#understanding-system-contracts##IL1Messenger). This method accepts only the bytes of the message that is being sent to the zkSync smart contract on L1.
+Sending messages from the L2 side requires users to call the `sendToL1` method from the [Messenger system contract](../sistemnye-kontrakty/#il1messenger). This method accepts only the bytes of the message that is being sent to the zkSync smart contract on L1.
 
-Отправка соощений со стороны L2 требует от пользователя вызвать метод `sendToL1` [системного контракта Messenger](https://v2-docs.zksync.io/dev/developer-guides/contracts/system-contracts.html#understanding-system-contracts##IL1Messenger).
+Отправка соощений со стороны L2 требует от пользователя вызвать метод `sendToL1` [системного контракта Messenger](../sistemnye-kontrakty/#il1messenger).
 
 ```
 function sendToL1(bytes memory _message) external returns (bytes32 messageHash);
@@ -28,7 +28,7 @@ function sendToL1(bytes memory _message) external returns (bytes32 messageHash);
 
 Эта функция отправляет сообщения с L2 и возвращает хэш keccak256, произведенный от байтов сообщения. Хэш сообщения может быть использован позже для получения доказательства, что сообщение было отправлено в сторону L1. Его использование опционально и служит лишь для удобства.
 
-Больше информации о мессенджере можно найти в [разделе ](broken-reference)системных контрактов.
+Больше информации о мессенджере можно найти в [разделе ](../sistemnye-kontrakty/)о системных контрактах.
 
 #### Примеры: <a href="#examples" id="examples"></a>
 
