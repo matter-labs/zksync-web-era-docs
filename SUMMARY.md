@@ -113,3 +113,4 @@
   * [Статус поддержки функций](ustranenie-nepoladok/status-podderzhki-funkcii.md)
   * [Внесите свой вклад в документацию](ustranenie-nepoladok/vnesite-svoi-vklad-v-dokumentaciyu.md)
   * [Ресурсы сообщества](ustranenie-nepoladok/resursy-soobshestva.md)
+  * [Известные проблемы](ustranenie-nepoladok/izvestnye-problemy.md)
