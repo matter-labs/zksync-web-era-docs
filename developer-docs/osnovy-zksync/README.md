@@ -76,5 +76,5 @@ zkSync [ярко выделяется](https://blog.matter-labs.io/evaluating-et
 
 ### Как начать? <a href="#how-to-get-started" id="how-to-get-started"></a>
 
-* Начните с построения децентрализованного приложения (dApp) с помощью руководства [Быстрый старт](../../rukovodstvo-razrabotchika/bystryi-start.md).
-* Ознакомьтесь с информацией об RPC-узлах, кошельке и обозревателе блоков на странице [Важные ссылки](../../ustranenie-nepoladok/vazhnye-ssylki/).
+* Начните с построения децентрализованного приложения (dApp) в разделе [Быстрый старт](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html).
+* Ознакомьтесь с информацией о RPC-узлах, кошельке и обозревателе блоков на странице [Важные ссылки](https://v2-docs.zksync.io/dev/troubleshooting/important-links.html).
