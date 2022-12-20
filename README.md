@@ -2,23 +2,23 @@
 
 ## Документация zkSync <a href="#zksync-documentation" id="zksync-documentation"></a>
 
-Данная документация предназначина для того, чтобы помочь вам в разработке на zkSync. Она введет вас в концепты zkSync, опишет сетевой стэк zkSync,  а также некоторые сложные моменты для комплексных приложений и вариантов применения.
+Данная документация предназначина для того, чтобы помочь вам в разработке на zkSync. Она введет вас в концепты zkSync, опишет сетевой стэк zkSync, а также некоторые сложные моменты для комплексных приложений и вариантов применения.
 
-Учитывая, что эта документация с открытым исходным кодом, то вы вольны в предложении новых тем, добавлении нового контента и предоставлении примеров\образцов в тех местах, где сочтете нужным. Если вы не уверены, как это сделать, то [следуйте этим инструкциям](https://v2-docs.zksync.io/dev/troubleshooting/docs-contribution/docs.html#ways-to-contribute).
+Учитывая, что эта документация с открытым исходным кодом, то вы вольны в предложении новых тем, добавлении нового контента и предоставлении примеров\образцов в тех местах, где сочтете нужным. Если вы не уверены, как это сделать, то [следуйте этим инструкциям](ustranenie-nepoladok/vnesite-svoi-vklad-v-dokumentaciyu.md).
 
 ### Фундаментальные темы <a href="#fundamental-topics" id="fundamental-topics"></a>
 
 Если вы впервые знакомитесь с использованием zkSync, мы рекомендуем вам начать с ознакомления с документацией так же, как если бы вы читали книгу.
 
-* [Введение в роллапы](https://v2-docs.zksync.io/dev/fundamentals/rollups.html) - Краткое описание роллапов.
-* Обзор [zkSync ](https://v2-docs.zksync.io/dev/fundamentals/zkSync.html)- Быстрый обзор технологий zkSync.
-* [zkSync testnet](https://v2-docs.zksync.io/dev/fundamentals/testnet.html) - Краткое введение в тестнет zkSync.
+* [Введение в роллапы](readme/developer-docs/vvedenie-v-rollapy/) - Краткое описание роллапов.
+* Основы [zkSync ](developer-docs/osnovy-zksync/)- Быстрый обзор технологий zkSync.
+* Тестовая сеть [zkSync ](developer-docs/testovaya-set-zksync-2.0/)2.0- Краткое введение в тестнет zkSync.
 
 #### Гайды для разработчика <a href="#developer-guides" id="developer-guides"></a>
 
-* [Quickstart](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html) - Learn how to build a full dApp using the zkSync development toolbox.
-* [Contract deployment](https://v2-docs.zksync.io/dev/developer-guides/contracts/contracts.html) - A guide on how to deploy smart contracts on zkSync.
-  * [Contract verification](https://v2-docs.zksync.io/api/tools/block-explorer/contract-verification.html) - A guide on how to verify smart contracts with zkSync block explorer.
+* [Быстрый старт](rukovodstvo-razrabotchika/bystryi-start.md) - узнайте, как построить полноценный dApp, используя инструментарий разработки zkSyncLearn
+* [Развертывание контракта](razrabotka-na-zksync/razvertyvanie-kontrakta/) - руководство по развертыванию смарт-контрактов на zkSync.
+  * Верификация контракта - A guide on how to verify smart contracts with zkSync block explorer.
 * [System contracts](https://v2-docs.zksync.io/dev/developer-guides/contracts/system-contracts.html) - A brief overview of zkSync system contracts.
 * [Transactions](https://v2-docs.zksync.io/dev/developer-guides/transactions/transactions.html) - A guide on how zkSync handles transactions.
   * [Blocks](https://v2-docs.zksync.io/dev/developer-guides/transactions/blocks.html) - Learn how blocks work on zkSync.
