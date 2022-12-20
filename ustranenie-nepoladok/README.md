@@ -4,8 +4,8 @@
 
 ### &#x20;Содержание <a href="#table-of-contents" id="table-of-contents"></a>
 
-* [Important links](https://v2-docs.zksync.io/dev/troubleshooting/important-links.html)
-* [Status](https://v2-docs.zksync.io/dev/troubleshooting/status.html)
-* [Known issues](https://v2-docs.zksync.io/dev/troubleshooting/known-issues.html)
-* [Contribute to documentation](https://v2-docs.zksync.io/dev/troubleshooting/docs-contribution/docs.html)
-* [Contribute to Awesome zkSync repo](https://v2-docs.zksync.io/dev/troubleshooting/docs-contribution/community-resources.html)
+* [Важные ссылки](vazhnye-ssylki.md)
+* [Статус поддержки функций](status-podderzhki-funkcii.md)
+* [Внесите свой вклад в документацию](vnesite-svoi-vklad-v-dokumentaciyu.md)
+* [Ресурсы сообщества](resursy-soobshestva.md)
+* [Известные проблемы](izvestnye-problemy.md)
