@@ -411,3 +411,37 @@ expect(await contract.getAmount()).to.equal(100);
 ```
 
 Checkout the advantages of using chai matchers [here](https://hardhat.org/hardhat-chai-matchers/docs/overview#why-would-i-want-to-use-it?). Since the list of all supported chai matchers is same as with [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, check the [reference documentation](https://hardhat.org/hardhat-chai-matchers/docs/reference).
+
+## `hardhat-zksync-toolbox`
+
+The hardhat-zksync-toolbox plugin provides a convenient method for bundling and accessing a range of zkSync-related Hardhat plugins. This approach simplifies the process of utilizing these plugins and promotes ease of use.
+
+List of supported plugins:
+* [hardhat-zksync-compile](#hardhat-zksync-solc)
+* [hardhat-zksync-deploy](#hardhat-zksync-deploy) 
+* [hardhat-zksync-chai-matchers](#hardhat-zksync-chai-matchers) 
+* [hardhat-zksync-verify](#hardhat-zksync-verify)
+
+### Npm
+
+Add the latest version of this plugin to your project with the following command:
+
+```
+# Yarn
+yarn add -D @matterlabs/hardhat-zksync-toolbox @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-chai-matchers @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-verify hardhat ethers zksync-web3 chai @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan
+
+# Npm (version 7 or later is recommended)
+npm i -D @matterlabs/hardhat-zksync-toolbox
+```
+
+### Usage
+
+After installing it, add the plugin to your Hardhat config:
+
+```javascript
+import "@matterlabs/hardhat-zksync-toolbox";
+```
+
+With the hardhat-zksync-toolbox plugin installed and imported, you will have access to all of the supported plugins and will be able to use them as needed in your project.
+
+> **_NOTE:_**  To learn more about using any of the plugins that are supported by the hardhat-zksync-toolbox plugin, you can refer to their documentation above.
