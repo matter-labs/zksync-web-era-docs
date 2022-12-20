@@ -7,13 +7,12 @@
 * Смарт-контракт, который будет развернут на zkSync и содержит в себе приветственное сообщение
 * dApp, чтоб получить приветствие&#x20;
 * Пользователи будут в состоянии изменить приветственное сообщение смарт-контракта
-* По умолчанию, пользователи должны будут заплатить комиссию в Эфириуме, чтобы изменить приветсвие.\
-  Но мы так же объясним как создать testnet paymaster, что позволит пользователям платить комиссию в ERC20 токенах.
+* По умолчанию, пользователи должны будут заплатить комиссию в Эфириуме, чтобы изменить приветсвие. Но мы так же объясним [как реализовать testnet paymaster](bystryi-start.md#paying-fees-using-testnet-paymaster), который позволит пользователям платить комиссию в ERC20 токенах.
 
 {% hint style="success" %}
 **СОВЕТ**\
 \
-Testnet paymaster создан исключительно в целях тестировки. Если вы решите создать проект в мейннет, вам стоит прочитать документацию о [Paymaster](https://v2-docs.zksync.io/dev/developer-guides/aa.html#paymasters).
+Testnet paymaster создан исключительно в целях тестировки. Если вы решите создать проект в мейннет, вам стоит прочитать документацию о [Paymaster](../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/#paymasters).
 {% endhint %}
 
 ### Предварительные требования <a href="#prerequisites" id="prerequisites"></a>
@@ -52,7 +51,7 @@ Testnet paymaster создан исключительно в целях тест
       },
       zkSyncDeploy: {
         zkSyncNetwork: "https://zksync2-testnet.zksync.dev",
-        ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
+        ethNetwork: "goerli", // Так же может быть RPC URL сети (например `https://goerli.infura.io/v3/<API_KEY>`)
       },
       networks: {
         hardhat: {
@@ -115,42 +114,42 @@ Testnet paymaster создан исключительно в целях тест
     import { HardhatRuntimeEnvironment } from "hardhat/types";
     import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-    // An example of a deploy script that will deploy and call a simple contract.
+    // Пример скрипта развертывания, который развернет и вызовет простой смарт-контракт
     export default async function (hre: HardhatRuntimeEnvironment) {
       console.log(`Running deploy script for the Greeter contract`);
 
-      // Initialize the wallet.
+      // Инициализируйте кошелек
       const provider = new Provider(hre.userConfig.zkSyncDeploy?.zkSyncNetwork);
       const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
 
-      // Create deployer object and load the artifact of the contract you want to deploy.
+      // Создайте объект Deployer и загрузите артефакт контракта, который вы хотите развернуть
       const deployer = new Deployer(hre, wallet);
       const artifact = await deployer.loadArtifact("Greeter");
 
-      // Estimate contract deployment fee
+      // Оцените комиссию за развертывание контракта
       const greeting = "Hi there!";
       const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting]);
 
-      // Deposit funds to L2
+      // Внесите средства на L2
       const depositHandle = await deployer.zkWallet.deposit({
         to: deployer.zkWallet.address,
         token: utils.ETH_ADDRESS,
         amount: deploymentFee.mul(2),
       });
-      // Wait until the deposit is processed on zkSync
+      // Подождите, пока депозит обработается на zkSync
       await depositHandle.wait();
 
-      // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
-      // `greeting` is an argument for contract constructor.
+      // Разверните этот контракт. Возвращенный объект должен быть типа `Contract`, подобно тому же в `ethers`.
+      // `greeting` - это аргумент для конструктора контракта.
       const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
       console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
 
       const greeterContract = await deployer.deploy(artifact, [greeting]);
 
-      //obtain the Constructor Arguments
+      // Получите Constructor Arguments (аргументы конструктора)
       console.log("constructor args:" + greeterContract.interface.encodeDeploy([greeting]));
 
-      // Show the contract info.
+      // Отобразите информацию о контракте.
       const contractAddress = greeterContract.address;
       console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
     }
@@ -158,7 +157,7 @@ Testnet paymaster создан исключительно в целях тест
 
     \
 
-5.  Замените `WALLET-PRIVATE-KEY` приватным ключем с префиксом `0x` Эфириум кошелька, который вы используете для разработки, и выполните следующую команду, чтобы запустить скрипт для развертывания контракта:\
+5.  Замените `WALLET-PRIVATE-KEY` приватным ключом Эфириум кошелька с префиксом `0x`, который вы используете для разработки, и выполните следующую команду, чтобы запустить скрипт для развертывания контракта:\
 
 
     ```
@@ -168,17 +167,17 @@ Testnet paymaster создан исключительно в целях тест
     \
     В выводе данных вы должны увидеть адрес развернутого смарт-контракта.
 
-Поздравляем! Вы развернули смарт-контракт на zkSync! Посетите [обозреватель блоков zkSync](https://explorer.zksync.io/) и найдите адрес вашего контракта, чтоб убедиться, что он был успешно развернут.
+Поздравляем! Вы развернули смарт-контракт на zkSync! Посетите [обозреватель блоков zkSync](https://explorer.zksync.io/) и найдите адрес вашего контракта, чтобы убедиться, что он был успешно развернут.
 
-[Эта инструкция](https://v2-docs.zksync.io/api/tools/block-explorer/contract-verification.html) подробно объясняет как верифицировать смарт-контракт с помощью обозревателя блоков.
+[Эта инструкция](../razrabotka-na-zksync/verifikaciya-smart-kontrakta/) подробно объясняет как верифицировать смарт-контракт с помощью обозревателя блоков.
 
 ### Интеграция фронтенда <a href="#front-end-integration" id="front-end-integration"></a>
 
 #### Настройка проекта <a href="#setting-up-the-project" id="setting-up-the-project"></a>
 
-В этом руководстве, `Vue` будет выбран веб-фреймворком, но процесс будет схожим вне зависимости от выбранного вами фреймврока. Акцент на специфике работы `zksync-web3` SDK, мы предоставляем шаблон реализации фронтенда. Последний шаг - взаимодействие со смарт-контрактом zkSync.
+В этом руководстве `Vue` выбран в качестве веб-фреймворка, но процесс будет схожим вне зависимости от выбранного вами фреймврока. Чтобы акцентировать внимание на специфике работы `zksync-web3` SDK, мы предоставляем шаблон с готовой реализацией фронтенда. Последний шаг - взаимодействие со смарт-контрактом zkSync.
 
-1. Клонируйте:
+1. Клонируйте репозиторий:
 
 ```
 git clone https://github.com/matter-labs/greeter-tutorial-starter
@@ -194,39 +193,38 @@ yarn serve
 
 По умолчанию, страница будет запущена на `http://localhost:8080`. Откройте ссылку в браузере, чтоб увидеть страницу
 
-#### Подключаем Metamask & отправляем токены через мост на zkSync <a href="#connecting-to-metamask-bridging-tokens-to-zksync" id="connecting-to-metamask-bridging-tokens-to-zksync"></a>
+#### Подключение Metamask и отправка токенов через мост на zkSync <a href="#connecting-to-metamask-bridging-tokens-to-zksync" id="connecting-to-metamask-bridging-tokens-to-zksync"></a>
 
 Для взаимодействия с приложениями на zkSync, подключите кошелек Metamask к сети альфа тестнета zkSync и переведите средства на L2.
 
-* Следуйте [этой инструкции](https://v2-docs.zksync.io/dev/fundamentals/testnet.html#connecting-metamask) для подключения Metamask к zkSync.
+* Следуйте [этой инструкции](../developer-docs/testovaya-set-zksync-2.0/#podklyuchenie-metamask) для подключения Metamask к zkSync.
 * Используйте [наш портал](https://portal.zksync.io/) для перевода средств на zkSync.
 
 #### Структура проекта <a href="#project-structure" id="project-structure"></a>
 
 Весь код будет написан в `./src/App.vue`. Почти весь фронтенд код готов, осталось только заполнить TODO-поля для взаимодействия с контрактом, который вы развернули на zkSync:
 
-```javascript
-initializeProviderAndSigner() {
-  // TODO: initialize provider and signer based on `window.ethereum`
+<pre class="language-javascript"><code class="lang-javascript">initializeProviderAndSigner() {
+  // TODO: инициализировать <a data-footnote-ref href="#user-content-fn-1">provider</a> и <a data-footnote-ref href="#user-content-fn-2">signer</a> на основе `window.ethereum`
 },
 
 async getGreeting() {
-  // TODO: return the current greeting
+  // TODO: вернуть текущее приветствие
   return "";
 },
 
 async getFee() {
-  // TOOD: return formatted fee
+  // TODO: вернуть отформатированную комиссию
   return "";
 },
 
 async getBalance() {
-  // Return formatted balance
+  // Вернуть отформатированный баланс
   return "";
 },
 async getOverrides() {
   if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
-    // TODO: Return data for the paymaster
+    // TODO: Вернуть данные для paymaster'a
   }
 
   return {};
@@ -234,15 +232,15 @@ async getOverrides() {
 async changeGreeting() {
   this.txStatus = 1;
   try {
-    // TODO: Submit the transaction
+    // TODO: Отправить транзакцию
     this.txStatus = 2;
-    // TODO: Wait for transaction compilation
+    // TODO: Подождать, пок транзакция скомпилируется
     this.txStatus = 3;
-    // Update greeting
+    // Обновить приветствие
     this.greeting = await this.getGreeting();
     this.retreivingFee = true;
     this.retreivingBalance = true;
-    // Update balance and fee
+    // Обновить баланс и комиссию
     this.currentBalance = await this.getBalance();
     this.currentFee = await this.getFee();
   } catch (e) {
@@ -252,42 +250,42 @@ async changeGreeting() {
   this.retreivingFee = false;
   this.retreivingBalance = false;
 },
-```
+</code></pre>
 
 Вверху тэга `<script>` вы можете видеть элементы, которые должны быть заполнены адресом контракта `Greeter` и путем к его ABI. Мы видим их в следующией секции.
 
 ```javascript
 // eslint-disable-next-line
-const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract address here
+const GREETER_CONTRACT_ADDRESS = ""; // TODO: вставить сюда адрес контракта Greeter
 // eslint-disable-next-line
-const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contract ABI here
+const GREETER_CONTRACT_ABI = []; // TODO: вставить сюда путь к ABI для контракта Greeter
 ```
 
 #### Установка `zksync-web3` <a href="#installing-zksync-web3" id="installing-zksync-web3"></a>
 
-Выполните следующую команду в корневой папке greeter-tutorial-starter для установки `zksync-web3` иc `ethers`:
+Выполните следующую команду в корневой папке greeter-tutorial-starter для установки `zksync-web3` из `ethers`:
 
 ```
 yarn add ethers zksync-web3
 ```
 
-Импортируйте обе библиотеки в `script` части `App.vue` (прямо перед константой контракта). Должно выглядеть следующим образом:
+Импортируйте обе библиотеки в часть `script` файла `App.vue` (прямо перед константой контракта). Должно выглядеть следующим образом:
 
 ```javascript
 import {} from "zksync-web3";
 import {} from "ethers";
 
 // eslint-disable-next-line
-const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract address here
+const GREETER_CONTRACT_ADDRESS = ""; // TODO: вставить сюда адрес контракта Greeter
 // eslint-disable-next-line
-const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contract ABI here
+const GREETER_CONTRACT_ABI = []; // TODO: вставить сюда путь к ABI для контракта Greeter
 ```
 
 #### Получение ABI и адреса контракта <a href="#getting-the-abi-and-contract-address" id="getting-the-abi-and-contract-address"></a>
 
 Откройте `./src/App.vue` и установите константу `GREETER_CONTRACT_ADDRESS` равной адресу контракта, который вы развернули.
 
-Для взаимодействия с контрактом на zkSync, нам также нужен ABI. ABI это Бинарный Интерфейс Приложения (Application Binary Interface) и, если вкратце, это файл, который описывает все доступные имена и типы методов смарт-контракта, с которыми можно взаимодействовать.
+Для взаимодействия с контрактом на zkSync, нам также нужен ABI. ABI это Бинарный Интерфейс Приложения (Application Binary Interface) и, если вкратце, то это файл, который описывает все доступные имена и типы методов смарт-контракта, с которыми можно взаимодействовать.
 
 * Создайте файл `./src/abi.json`.
 * Вы можете получить ABI контракта в папке проекта hardhat из предыдущей секции, в файле `./artifacts-zk/contracts/Greeter.sol/Greeter.json`. Вы должны скопировать массив `abi` и вставить его в файл `abi.json` , созданный на предыдущем этапе. Файл должен выглядеть приблизительно следующим образом:
@@ -345,16 +343,16 @@ const GREETER_CONTRACT_ABI = require("./abi.json");
 
 #### Работа с провайдером <a href="#working-with-provider" id="working-with-provider"></a>
 
-1. Найдите функцию `initializeProviderAndSigner` в `./src/App.vue`. Эта функцию вызывается при успешном подключении к аккаунту Matemask.
+1. Найдите функцию `initializeProviderAndSigner` в `./src/App.vue`. Эта функция вызывается при успешном подключении к аккаунту Metamask.
 
 В этой функции мы должны:
 
 * Инициализировать `Web3Provider` и `Signer` для взаимодействия с zkSync.
 * Инициализировать объект `Contract` для взаимодействия с контрактом `Greeter`, который мы только что развернули.
 
-&#x20; 2\.   Импортируйте необходимые зависимости:
+&#x20; 2\. Импортируйте необходимые зависимости:
 
-```
+```javascript
 import { Contract, Web3Provider, Provider } from "zksync-web3";
 ```
 
@@ -363,7 +361,7 @@ import { Contract, Web3Provider, Provider } from "zksync-web3";
 ```javascript
 initializeProviderAndSigner() {
     this.provider = new Provider('https://zksync2-testnet.zksync.dev');
-    // Note that we still need to get the Metamask signer
+    // Помните, нам все еще нужен подписант Metamask
     this.signer = (new Web3Provider(window.ethereum)).getSigner();
     this.contract = new Contract(
         GREETER_CONTRACT_ADDRESS,
@@ -375,21 +373,21 @@ initializeProviderAndSigner() {
 
 #### Получение приветствия <a href="#retrieving-the-greeting" id="retrieving-the-greeting"></a>
 
-1. Заполните следующую функцию для получения приветствия:
+1. Заполните следующий метод для получения приветствия:
 
 ```javascript
 async getGreeting() {
-    // Smart contract calls work the same way as in `ethers`
+    // Вызовы смарт-контракта работают так же, как в `ethers`
     return await this.contract.greet();
 }
 ```
 
-Функция целиком выглядит следующим образом:
+Метод целиком выглядит следующим образом:
 
 ```javascript
 initializeProviderAndSigner() {
     this.provider = new Provider('https://zksync2-testnet.zksync.dev');
-    // Note that we still need to get the Metamask signer
+    // Помните, нам все еще нужен подписант Metamask
     this.signer = (new Web3Provider(window.ethereum)).getSigner();
     this.contract = new Contract(
         GREETER_CONTRACT_ADDRESS,
@@ -423,10 +421,10 @@ import { ethers } from "ethers";
 
 ```javascript
 async getBalance() {
-    // Getting the balance for the signer in the selected token
+    // Получение баланса для подписанта в выбранном токене
     const balanceInUnits = await this.signer.getBalance(this.selectedToken.l2Address);
-    // To display the number of tokens in the human-readable format, we need to format them,
-    // e.g. if balanceInUnits returns 500000000000000000 wei of ETH, we want to display 0.5 ETH the user
+    // Для отображения количества токенов в человеко-читаемом формате, нам нужно его отформатировать
+    // например, если balanceInUnits возвращает 500000000000000000 wei of ETH, то мы хотим отобразить 0.5 ETH для пользователя
     return ethers.utils.formatUnits(balanceInUnits, this.selectedToken.decimals);
 },
 ```
@@ -435,13 +433,13 @@ async getBalance() {
 
 ```javascript
 async getFee() {
-    // Getting the amount of gas (ergs) needed for one transaction
+    // Получение количества газа (ergs), необходимого для одной транзакции
     const feeInGas = await this.contract.estimateGas.setGreeting(this.newGreeting);
-    // Getting the gas price per one erg. For now, it is the same for all tokens.
+    // Получение цены в газе за 1 erg. Сейчас она одинакова для всех токенов.
     const gasPriceInUnits = await this.provider.getGasPrice();
 
-    // To display the number of tokens in the human-readable format, we need to format them,
-    // e.g. if feeInGas*gasPriceInUnits returns 500000000000000000 wei of ETH, we want to display 0.5 ETH the user
+    // Для отображения количества токенов в человеко-читаемом формате, нам нужно его отформатировать
+    // например, если feeInGas*gasPriceInUnits возвращает 500000000000000000 wei of ETH, то мы хотим отобразить  0.5 ETH для пользователя
     return ethers.utils.formatUnits(feeInGas.mul(gasPriceInUnits), this.selectedToken.decimals);
 },
 ```
@@ -449,7 +447,7 @@ async getFee() {
 {% hint style="success" %}
 **Оплата комиссий в токенах ERC20**
 
-zkSync 2.0 нативно не поддерживает оплату комиссий в токенах ERC20, так как функция абстракции аккаунта позволяет делать это. Пример использования testnet paymaster для этих целей будет представлен далее в этом руководстве. Однако, работая в mainnet, [вы должны сами](https://v2-docs.zksync.io/dev/tutorials/custom-paymaster-tutorial.html#prerequisite) предоставлять услуги paymaster'a, или использовать paymaster'a, предоставленного 3им лицом.
+zkSync 2.0 нативно не поддерживает оплату комиссий в токенах ERC20, так как функция абстракции аккаунта позволяет делать это. Пример использования testnet paymaster для этих целей будет представлен далее в этом руководстве. Однако, работая в mainnet, [вы должны сами](../rukovodstva/razrabotka-kastomnogo-paymaster/) предоставлять услуги paymaster'a, или использовать paymaster'a, предоставленного 3им лицом.
 {% endhint %}
 
 При открытии страницы и выборе токена для комиссий будут доступны баланс и ожидаемая комиссия за транзакцию.
@@ -462,11 +460,11 @@ zkSync 2.0 нативно не поддерживает оплату комис�
 
 #### Изменение приветствия
 
-1. Взаимодействие со смарт-контрактом работает абсолютно так же, как `ethers`, хотя, если вы хотите использовать спец-функции zkSync, вам может понадобиться внесение дополнительных параметров в overrides (переопределения)va:
+1. Взаимодействие со смарт-контрактом работает абсолютно так же, как в `ethers`, хотя, если вы хотите использовать спец-функции zkSync, вам может понадобиться внесение дополнительных параметров в overrides (переопределения):
 
 ```javascript
-// The example of paying fees using a paymaster will be shown in the 
-// section below.
+// Пример оплаты комиссий с помощью paymaster'a будет показан в следующей секции
+// .
 const txHandle = await this.contract.setGreeting(this.newGreeting, await this.getOverrides());
 ```
 
@@ -486,16 +484,16 @@ async changeGreeting() {
 
         this.txStatus = 2;
 
-        // Wait until the transaction is committed
+        // Ожидание финализации транзакции (Wait until the transaction is committed)
         await txHandle.wait();
         this.txStatus = 3;
 
-        // Update greeting
+        // Обновление приветствия
         this.greeting = await this.getGreeting();
 
         this.retreivingFee = true;
         this.retreivingBalance = true;
-        // Update balance and fee
+        // Обновление баланса и комиссии
         this.currentBalance = await this.getBalance();
         this.currentFee = await this.getFee();
     } catch (e) {
@@ -512,12 +510,12 @@ async changeGreeting() {
 
 #### Оплата комиссий с использованием testnet paymaster <a href="#paying-fees-using-testnet-paymaster" id="paying-fees-using-testnet-paymaster"></a>
 
-Хоть эфир и является единственным токеном, которым вы можете оплачивать комиссии, функция абстракции аккаунта позволяет вам интегрировать [paymaster](broken-reference)'ов, которые могут или полностью оплачивать комиссии за вас, или обменивать ваши токены на лету. В этом руководстве мы будет использовать [testnet paymaster](broken-reference)'a, который предоставляется на всех тестнетах zkSync. Он позволяет пользователям оплачивать комиссии в ERC20 токенах по курсу обмена 1:1 к эфиру, то есть одна единица токена за один wei ETH.
+Хоть ETH и является единственным токеном, которым вы можете оплачивать комиссии, функция абстракции аккаунта позволяет вам интегрировать [paymaster](../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/#paymasters)'ов, которые могут или полностью оплачивать комиссии за вас, или обменивать ваши токены на лету. В этом руководстве мы будет использовать [testnet paymaster](../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/#testnet-paymaster)'a, который предоставляется на всех тестнетах zkSync. Он позволяет пользователям оплачивать комиссии в ERC20 токенах по курсу обмена 1:1 к эфиру, то есть одна минимальная единица токена за один wei ETH.
 
 {% hint style="success" %}
 **Интеграция в Mainnet**
 
-Testnet paymaster работает исключительно в целях демонстрации возможностей и не будет доступен в mainnet. При интеграций в свой протокол в mainnet вам нужно следовать документации к paymaster, которого вы используете.
+Testnet paymaster работает исключительно в целях демонстрации возможностей и не будет доступен в mainnet. При интеграции в свой протокол в mainnet вам нужно следовать документации к paymaster, которого вы используете.
 {% endhint %}
 
 Адрес paymaster'a, наряду с требуемыми данными, должен быть предоставлен в метод `getOverrides`
@@ -562,7 +560,7 @@ async getOverrides() {
 }
 ```
 
-&#x20;  4\.   Теперь на осталось закодировать `paymasterInput` по [требованиям протокола](broken-reference) и вернуть нужные overrides (переопределения):
+&#x20;  4\.   Теперь нам осталось закодировать `paymasterInput` по [требованиям протокола](../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/#testnet-paymaster) и вернуть нужные overrides (переопределения):
 
 ```javascript
 async getOverrides() {
@@ -577,6 +575,7 @@ async getOverrides() {
         type: 'ApprovalBased',
         token: this.selectedToken.l2Address,
         minimalAllowance: fee,
+         // пустые байты, т.к. testnet paymaster не использует innerInput
         innerInput: new Uint8Array()
     });
     
@@ -630,3 +629,8 @@ const allowedTokens = require("./erc20.json");
 * Для дополнительной информации о `zksync-web3` SDK, посмотрите эту [документацию](https://v2-docs.zksync.io/api/js).
 * Для дополнительной информации о hardhat плагинах zkSync посмотрите эту [документацию](https://v2-docs.zksync.io/api/hardhat).
 
+
+
+[^1]: провайдер
+
+[^2]: подписант
