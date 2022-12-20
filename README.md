@@ -11,34 +11,34 @@
 Если вы впервые знакомитесь с использованием zkSync, мы рекомендуем вам начать с ознакомления с документацией так же, как если бы вы читали книгу.
 
 * [Введение в роллапы](readme/developer-docs/vvedenie-v-rollapy/) - Краткое описание роллапов.
-* Основы [zkSync ](developer-docs/osnovy-zksync/)- Быстрый обзор технологий zkSync.
-* Тестовая сеть [zkSync ](developer-docs/testovaya-set-zksync-2.0/)2.0- Краткое введение в тестнет zkSync.
+* [Основы zkSync](developer-docs/osnovy-zksync/) - Быстрый обзор технологий zkSync.
+* [Тестовая сеть zkSync 2.0](developer-docs/testovaya-set-zksync-2.0/)- Краткое введение в тестнет zkSync.
 
 #### Гайды для разработчика <a href="#developer-guides" id="developer-guides"></a>
 
 * [Быстрый старт](rukovodstvo-razrabotchika/bystryi-start.md) - узнайте, как построить полноценный dApp, используя инструментарий разработки zkSyncLearn
 * [Развертывание контракта](razrabotka-na-zksync/razvertyvanie-kontrakta/) - руководство по развертыванию смарт-контрактов на zkSync.
-  * Верификация контракта - A guide on how to verify smart contracts with zkSync block explorer.
-* [System contracts](https://v2-docs.zksync.io/dev/developer-guides/contracts/system-contracts.html) - A brief overview of zkSync system contracts.
-* [Transactions](https://v2-docs.zksync.io/dev/developer-guides/transactions/transactions.html) - A guide on how zkSync handles transactions.
-  * [Blocks](https://v2-docs.zksync.io/dev/developer-guides/transactions/blocks.html) - Learn how blocks work on zkSync.
-  * [Fee mechanism](https://v2-docs.zksync.io/dev/developer-guides/transactions/fee-model.html) - A quick overview of the zkSync fee structure.
-* [Account abstraction](https://v2-docs.zksync.io/dev/developer-guides/aa.html) - Learn about account abstraction.
-* [Bridging of funds](https://v2-docs.zksync.io/dev/developer-guides/bridging/bridging-asset.html) - A brief intro on token bridging.
-  * [L1 / L2 Interoperability](https://v2-docs.zksync.io/dev/developer-guides/bridging/l1-l2-interop.html) - A quick brief on data communication between L1 and L2.
-    * [L1 / L2 communication](https://v2-docs.zksync.io/dev/developer-guides/bridging/l1-l2.html) - Learn how to send data from Ethereum to zkSync.
-    * [L2 / L1 communication](https://v2-docs.zksync.io/dev/developer-guides/bridging/l2-l1.html) - Learn how to send data from zkSync to Ethereum.
-* [Important links](https://v2-docs.zksync.io/dev/troubleshooting/important-links.html) - Get a quick reference to important links.
-* [Status](https://v2-docs.zksync.io/dev/troubleshooting/status.html) - Get updates on things we are currently working on.
-* [Known Issues](https://v2-docs.zksync.io/dev/troubleshooting/known-issues.html) - Get answers to common issues you may find.
+  * [Верификация контракта](razrabotka-na-zksync/verifikaciya-smart-kontrakta/) - руководство по верификации смарт-контрактов через обозреватель блоков zkSync
+* [Системные контракты](ponimanie-zksync/sistemnye-kontrakty/) - Краткий обзор системных контрактов zkSync.
+* [Транзакции](ponimanie-zksync/tranzakcii/) - Руководство по тому, как zkSync обрататывает транзакции.
+  * [Блоки ](ponimanie-zksync/bloki/)- Узнайте, как работают блоки в zkSync.
+  * [Механизм комиссий](ponimanie-zksync/mekhanizm-komissii/) - Краткий экскурс по структуре комиссий в zkSync.
+* [Абстракция аккаунта](ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/) - Узнайте больше об абстракции аккаунта.
+* [Перенос средств](ponimanie-zksync/perenos-sredstv-bridzhing/) - Краткое введение в перенос (бриджинг) токенов.
+  * [Интероперабельность L1 / L2](ponimanie-zksync/interoperabelnost-l1-l2/) - Краткий брифинг по обменуданными между L1 и L2.
+    * [Коммуникация L1 -> L2](ponimanie-zksync/kommunikaciya-l1-greater-than-l2/) - Узнайте, как отправлять данные с Ethereum на zkSync.
+    * [Коммуникация L2 -> L1 ](ponimanie-zksync/kommunikaciya-l2-greater-than-l1/)- Узнайте, как отправлять данные с zkSync на Ethereum.
+* [Важные ссылки](ustranenie-nepoladok/vazhnye-ssylki/) - Быстрый доступ к важным ссылкам.
+* [Статус поддержки функций](ustranenie-nepoladok/status-podderzhki-funkcii/) - Будьте в курсе того, над чем мы сейчас работаем.
+* [Известные проблемы](ustranenie-nepoladok/izvestnye-problemy/) - Получите ответы на типичтные проблемы, с которыми вы могли столкнуться.
 
 #### Инструменты разработчика <a href="#developer-tools" id="developer-tools"></a>
 
-* [zkSync 2.0 Portal (opens new window)](https://portal.zksync.io/)- Explore Wallet, Bridge and Faucet features.
-* [Block explorer](https://v2-docs.zksync.io/api/tools/block-explorer/) - Search for real-time and historical information about blocks, transactions, addresses, and more on zkSync block explorer.
+* [zkSync 2.0 Portal ](https://portal.zksync.io/)- Исследуйте функции Кошелька, Моста и Крана.
+* [Обозреватель блоков](https://v2-docs.zksync.io/api/tools/block-explorer/) - Ищите актуальную и историческую информацию о блоках, транзакциях, адресах и др. в обозревателе блоков zkSync.
 
 #### Примеры и руководства <a href="#examples-and-tutorials" id="examples-and-tutorials"></a>
 
-* [Cross-chain governance](https://v2-docs.zksync.io/dev/tutorials/cross-chain-tutorial.html) - Learn how to use L1 to L2 contract interaction.
-* [Account abstraction](https://v2-docs.zksync.io/dev/tutorials/custom-aa-tutorial.html) - Learn how to deploy your custom accounts and interact zkSync system contracts.
-* [Building custom paymasters](https://v2-docs.zksync.io/dev/tutorials/custom-paymaster-tutorial.html) - Learn how to build a custom paymaster to allow users to pay fees in your token.
+* [Кроссчейн управление](rukovodstva/krosschein-upravlenie/) - Узнайте, как использовать L1 для взаимодействия с контрактом на L2.
+* [Абстракция аккаунта](rukovodstva/abstrakciya-akkaunta/) - Узнайте, как развертывать свои кастомные аккаунта и взаимодействовать с системными контрактами zkSync.
+* [Разработка кастомного paymaster](rukovodstva/razrabotka-kastomnogo-paymaster/) - Узнайте, как построить кастомного paymaster, чтобы позволить пользователям оплачивать комиссии в вашем токене.
