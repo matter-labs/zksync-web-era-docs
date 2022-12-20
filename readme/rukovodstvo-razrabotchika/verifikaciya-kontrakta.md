@@ -73,4 +73,4 @@ console.log(greeterContract.interface.encodeDeploy([greeting]);
 \
 Если все в порядке, вы увидите сообщение об успехе.\\
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>

@@ -111,3 +111,4 @@
 * [Устранение неполадок](ustranenie-nepoladok/README.md)
   * [Важные ссылки](ustranenie-nepoladok/vazhnye-ssylki.md)
   * [Статус поддержки функций](ustranenie-nepoladok/status-podderzhki-funkcii.md)
+  * [Внесите свой вклад в документацию](ustranenie-nepoladok/vnesite-svoi-vklad-v-dokumentaciyu.md)

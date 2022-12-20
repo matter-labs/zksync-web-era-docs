@@ -204,7 +204,7 @@ zkSync оптимизирован под EVM-_совместимость_, а н
 
 Проверьте свой баланс на вкладке “Balances” после запроса.
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (2).png" alt=""><figcaption></figcaption></figure>
 
 **Шаг 4**
 
@@ -216,7 +216,7 @@ zkSync оптимизирован под EVM-_совместимость_, а н
 
 Наконец, мы направляемся к “Withdraw” для вывода DAI с zkSync назад на Goerli. Оплатите комиссию в DAI, если у вас нет ETH.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Что такое РеГенезис тестнета? <a href="#what-is-a-testnet-regenesis" id="what-is-a-testnet-regenesis"></a>
 
