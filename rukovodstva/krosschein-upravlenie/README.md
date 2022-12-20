@@ -23,10 +23,10 @@
 {% hint style="success" %}
 **СОВЕТ**\
 ****\
-****Обратите внимание, что`governance -` это обычный проект Hardhat, поскольку он будет использоваться для развертывания контракта только в L1, в то время как проект counter включает все зависимости zkSync и специфическую конфигурацию, поскольку он будет развертывать контракт в L2.
+****Обратите внимание, что`governance -` это обычный проект Hardhat, поскольку он будет использоваться для развертывания контракта только в L1, в то время как проект `counter` включает все зависимости zkSync и специфическую конфигурацию, поскольку он будет развертывать контракт в L2.
 {% endhint %}
 
-### L1 управление
+### L1 governance
 
 Чтобы инициализировать проект внутри папки `/L1-governance` , запустите `npx hardhat init` и выберите опцию "Create a Typescript project".
 
@@ -72,6 +72,8 @@ contract Governance {
 
 Это очень простой `governance` контракт. Он устанавливает создателя контракта в качестве единственного управляющего и имеет функцию, которая может отправлять вызовы смарт-контракту zkSync.
 
+[Вы можете узнать больше о коммуникации L1 -> L2 из этого раздела руководства.](../../ponimanie-zksync/kommunikaciya-l1-greater-than-l2/)
+
 #### Развертывание контракта L1 governance
 
 Хотя это руководство не посвящено процессу развертывания контрактов на L1, мы дадим вам краткий обзор того, как это сделать.
@@ -81,12 +83,11 @@ contract Governance {
 
 ```json
 {
-  "nodeUrl": "", // your Goerli Ethereum node  URL.
-  "deployerPrivateKey": "" //private key of the wallet that will deploy the governance smart contract. It needs to have some ETH on Göerli.
-}
+  "nodeUrl": "", // URL вашего узла Görli Ethereum.
+  "deployerPrivateKey": "" // приватный ключ от кошелька, который будет развертывать смарт-контракт управления. На нем должно быть немного ETH на Görli
 ```
 
-&#x20;3\.  Добавьте секцию сети Göerli в файл`hardhat.config.ts` :
+&#x20;3\.  Добавьте секцию сети Görli в файл `hardhat.config.ts` :
 
 ```typescript
 import { HardhatUserConfig, task } from "hardhat/config";
@@ -94,14 +95,14 @@ import "@nomiclabs/hardhat-etherscan";
 import "@nomiclabs/hardhat-waffle";
 import "@typechain/hardhat";
 
-// import file with Goerli params
+// импортирум файл с параметрами Görli
 const goerli = require('./goerli.json');
 
 const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.4",
   networks: {
-    // Göerli network
+    // Görli network
     goerli: {
       url: goerli.nodeUrl,
       accounts: [goerli.deployerPrivateKey]
@@ -113,15 +114,15 @@ const config: HardhatUserConfig = {
 &#x20;4\. Создайте скрипт развертывания `/L1-governance/scripts/deploy.ts` со следующим кодом:
 
 ```typescript
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// When running the script with `npx hardhat run <script>` you'll find the Hardhat
-// Runtime Environment's members available in the global scope.
+// Мы явно требуем здесь Hardhat Runtime Environment. Он опционален,
+// но полезен для запуска скриптов в автономном режиме через `node <script>`
+// ..
+// При запуске скрипта через `npx hardhat run <script>` вы обнаружите, чтоWhen running the script with `npx hardhat run <script>` you'll find the Hardhat
+// члены(элементы?) Hardhat Runtime Environment доступны глобально. 
 import { ethers } from "hardhat";
 
 async function main() {
-  // We get the contract to deploy
+  // Мы получаем контракт для развертывания
   const Governance = await ethers.getContractFactory("Governance");
 
   const contract = await Governance.deploy();
@@ -130,8 +131,8 @@ async function main() {
   console.log(`Governance contract was successfully deployed at ${contract.address}`);
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
+// Мы рекомендуем этот паттерн, чтобы иметь возможность везде использовать
+// async/await и качественно обрабатывать ошибки.
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
@@ -150,7 +151,7 @@ yarn hardhat run --network goerli ./scripts/deploy.ts
 
 Последняя команда выведет адрес развернутого смарт-контракта `governance`.
 
-### L2 счетчик
+### L2 counter
 
 Теперь, когда мы разобрались с контрактом `governance` на L1, давайте перейдем к развертыванию контракта `counter` на L2.
 
@@ -201,6 +202,12 @@ module.exports = {
 
 &#x20;3\.  Создайте папки `contracts` и `deploy` . Первая папка - это место, где должны храниться все контракты  `*.sol` , а вторая - место, куда будут помещены все скрипты, связанные с развертыванием контракта.&#x20;
 
+{% hint style="success" %}
+**СОВЕТ**
+
+Вы можете использовать zkSync CLI для автоматического запуска проекта. [Узнайте больше о zkSync CLI здесь](https://v2-docs.zksync.io/api/tools/zksync-cli/).
+{% endhint %}
+
 &#x20;4\.  Создайте файл контракта `contracts/Counter.sol`. Этот контракт будет содержать адрес контракта `governance`, развернутого в L1, и счетчик. Функция для увеличения счетчика может быть вызвана только контрактом `governance`. Вот код:
 
 ```solidity
@@ -237,21 +244,20 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-// Insert the address of the governance contract
+// Вставляем адрес governance контракта
 const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
 
-// An example of a deploy script that will deploy and call a simple contract.
-export default async function (hre: HardhatRuntimeEnvironment) {
+// Пример скрипта развертывания, который развернет и вызовет простой контракт.
   console.log(`Running deploy script for the Counter contract`);
 
-  // Initialize the wallet.
+  // Инициализируем кошелек.
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
 
-  // Create deployer object and load the artifact of the contract you want to deploy.
+  // Создаем объект deployer и загружаем артефакт контракта, который мы хотим развернуть
   const deployer = new Deployer(hre, wallet);
   const artifact = await deployer.loadArtifact("Counter");
 
-  // Deposit some funds to L2 to be able to perform deposits.
+  // Вносим немного средств на L1 чтобы иметь возможность выполнять депозиты.
   const deploymentFee = await deployer.estimateDeployFee(artifact, [
     GOVERNANCE_ADDRESS,
   ]);
@@ -260,14 +266,16 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     token: utils.ETH_ADDRESS,
     amount: deploymentFee.mul(2),
   });
-  // Wait until the deposit is processed on zkSync
+  // Ждем, пока депозит обработается на zkSync.
   await depositHandle.wait();
 
-  // Deploy this contract. The returned object will be of a `Contract` type, similar to the ones in `ethers`.
-  // The address of the governance is an argument for contract constructor.
+  // Развертываем этот контракт. Возвращенный объект должен иметь тип,
+  // так же, как в `ethers` 
+  // Адрес контракта governance - аргумент для конструктора контракта.
+ 
   const counterContract = await deployer.deploy(artifact, [GOVERNANCE_ADDRESS]);
 
-  // Show the contract info.
+  // Выводим информацию о контракте.
   const contractAddress = counterContract.address;
   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 }
@@ -289,7 +297,7 @@ yarn hardhat deploy-zksync
 
 ### Считывание значения счетчика
 
-Когда оба контракта развернуты, мы можем создать небольшой скрипт для получения значения счетчика. Для простоты мы создадим этот скрипт в папке `/L2-counter`. Для того, чтобы руководство было общим, в нем не будут использоваться специфичные для `hardhat` функции.
+Когда оба контракта развернуты, мы можем создать небольшой скрипт для получения значения счетчика. Для простоты мы создадим этот скрипт в папке `/L2-counter`. Для того, чтобы руководство оставалось универсальным, в нем не будут использоваться специфичные для hardhat функции.
 
 #### Получение ABI контракта `counter`
 
@@ -303,13 +311,13 @@ yarn hardhat deploy-zksync
 ```typescript
 import { Contract, Provider, Wallet } from "zksync-web3";
 
-// The address of the counter smart contract
+// Адрес контракта counter
 const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
-// The ABI of the counter smart contract
+// ABI контракта counter
 const COUNTER_ABI = require("./counter.json");
 
 async function main() {
-  // Initializing the zkSync provider
+  // Инициализация RPC-провайдера zkSync
   const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
 
   const counterContract = new Contract(COUNTER_ADDRESS, COUNTER_ABI, l2Provider);
@@ -339,16 +347,16 @@ The counter value is 0
 
 ### Вызов контракта L2 из L1
 
-Теперь давайте вызовем `increment` метод из `Layer 1`.
+Теперь давайте вызовем метод  `increment` из Layer 1.
 
 1. Получите массив `ABI` для скомпилированного контракта `governance`, который находится в `/L1-governance/artifacts/contracts/Governance.sol/Governance.json`, и сохраните его в новом файле `/L2-counter/scripts/governance.json` (убедитесь, что вы создали его в папке `/L2-counter` !).
 2. Создайте файл `L2-counter/scripts/increment-counter.ts` и вставьте следующий шаблон для скрипта:
 
 ```typescript
-// Imports and constants will be put here
+// Здесь будут импорты и константы
 
 async function main() {
-  // The logic will be put here
+  // Здесь будет прописана логика
 }
 
 main().catch((error) => {
@@ -357,10 +365,10 @@ main().catch((error) => {
 });
 ```
 
-&#x20;3\.  Для взаимодействия со смарт-контрактом `governance` нам необходимо инициализировать провайдера Ethereum и соответствующий объект контракта `ethers`, поэтому нам нужен адрес, на который он был развернут:
+&#x20;3\.  Для взаимодействия со смарт-контрактом `governance` нам необходимо инициализировать провайдера Ethereum и соответствующий объект `Contract` из `ethers`, поэтому нам нужен адрес, на который он был развернут:
 
 ```typescript
-// Imports
+// Импорты
 import { BigNumber, Contract, ethers, Wallet } from "ethers";
 
 const GOVERNANCE_ABI = require("./governance.json");
@@ -369,11 +377,10 @@ const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
 
 ```typescript
 async function main() {
-  // Ethereum L1 provider
+  // RPC-провайдер Ethereum L1
   const l1Provider = ethers.providers.getDefaultProvider("goerli");
 
-  // Governor wallet, the same one as the one that deployed the
-  // governance contract
+  // Управляющий кошелек, тот же самый, который развертывал контракт governance
   const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>", l1Provider);
 
   const govcontract = new Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
@@ -385,52 +392,53 @@ async function main() {
 &#x20;4\.  Чтобы взаимодействовать с мостом zkSync, нам нужен его L1 адрес. Хотя в mainnet вы можете захотеть установить адрес смарт-контракта zkSync как переменную env или константу, стоит заметить, что вы можете получать адрес смарт-контракта динамически. Мы рекомендуем использовать этот подход, если вы работаете в тестовой сети, поскольку может произойти регенезис и адреса контрактов могут измениться.  &#x20;
 
 ```typescript
-// Imports
+// Импорты
 import { Provider, utils } from "zksync-web3";
 ```
 
 ```typescript
 async function main() {
-  // ... Previous steps
+  // ... предыдущие шаги
 
-  // Initializing the L2 privider
+  // Инициализация RPC-провайдера L2
   const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
-  // Getting the current address of the zkSync L1 bridge
+  // Получение текущего адреса моста zkSync на L1
   const zkSyncAddress = await l2Provider.getMainContractAddress();
-  // Getting the `Contract` object of the zkSync bridge
+  // Получение объекта `Contract` моста zkSync
   const zkSyncContract = new Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
 }
 ```
 
 &#x20;5\.  Для выполнения транзакций из L1 требуется некоторая плата от вызывающей стороны в пользу оператора  L2.
 
-Во-первых, эта плата зависит от длины `calldata` и `ergsLimit` . Если этот концепт  вам не знаком, то это практически то же самое, что и `gasLimit` в Ethereum. Подробнее о модели комиссий zkSync вы можете [прочитать здесь](https://v2-docs.zksync.io/dev/developer-guides/transactions/fee-model.html).
+Во-первых, эта плата зависит от длины `calldata` и `ergsLimit` . Если этот концепт вам не знаком, то это практически то же самое, что и `gasLimit` в Ethereum. Подробнее о модели комиссий zkSync вы можете [прочитать здесь](../../ponimanie-zksync/mekhanizm-komissii/).
 
 Во-вторых, плата зависит от цены на газ, который используется во время вызова транзакции. Поэтому, чтобы иметь предсказуемую плату за вызов, необходимо извлечь цену газа и использовать полученное значение.
 
 ```typescript
-// Imports
+// Импорты
 const COUNTER_ABI = require("./counter.json");
 ```
 
 ```typescript
 async function main() {
-  // ... Previous steps
+  // ... предыдущие шаги
 
-  // Encoding L1 transaction is the same way it is done on Ethereum.
+  // Кодировка транзакции L1 такая же, как и в Ethereum
   const counterInterface = new ethers.utils.Interface(COUNTER_ABI);
   const data = counterInterface.encodeFunctionData("increment", []);
 
-  // The price of L1 transaction requests depend on the gas price used in the call,
-  // so we should explicitly fetch the gas price before the call.
+  // Цена транзакции на L1 зависит от цены газа, используемого при вызове,
+  // так что нам нужно явно получить цену газа перед вызовом.
   const gasPrice = await l1Provider.getGasPrice();
 
-  // Here we define the constant for ergs limit.
-  // There is currently no way to get the exact ergsLimit required for an L1->L2 tx.
-  // You can read more on that in the tip below
+  // Здесь мы определяем константу для лимита ergs
+  // На данный момент нет способа получения точного значения ergsLimit, 
+  // необходимого для транзакции L1 -> L2.
+  // Вы почитать об этом в подсказке ниже
   const ergsLimit = BigNumber.from(100000);
 
-  // Getting the cost of the execution in Wei.
+  // Получение цены исполнения в Wei.
   const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length);
 }
 ```
@@ -440,45 +448,45 @@ async function main() {
 ****\
 ****Возможно, вы заметили отсутствие полей `ergs_per_pubdata` и`ergs_per_storage` в транзакциях L1->L2. Они безусловно важны для безопасности протокола и будут добавлены в ближайшее время. Пожалуйста, обратите внимание, что это будет критическим изменением для интерфейса контракта. \
 \
-Кроме того, в настоящее время нет простого способа оценить точное количество ergs, необходимых для выполнения транзакции L1->L2. На момент написания этой статьи транзакции могут быть обработаны, даже если предоставленное значение `ergsLimit` равно `0`. Это изменится в будущем.
+Кроме того, в настоящее время нет простого способа оценить точное количество ergs, необходимого для выполнения транзакции L1->L2. На момент написания этой статьи транзакции могут быть обработаны, даже если предоставленное значение `ergsLimit` равно `0`. Это изменится в будущем.
 {% endhint %}
 
 &#x20;6\.  Теперь можно вызвать `governance` контракт , который перенаправит вызов на zkSync:
 
 ```typescript
-// Imports
+// Импорты
 const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
 ```
 
 ```typescript
 async function main() {
-  // ... Previous steps
+  // ... предыдущие шаги
 
-  // Calling the L1 governance contract.
+  // Вызов контракта governance на L1.
   const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
-    // Passing the necessary ETH `value` to cover the fee for the operation
+    // Передаем необходимое `value` в ETH для покрытия комиссии за операцию.
     value: baseCost,
     gasPrice,
   });
 
-  // Waiting until the L1 transaction is complete.
+  // Ждем, пока транзакция на L1 завершится.
   await tx.wait();
 }
 ```
 
 Убедитесь, что вместо `<COUNTER-ADDRESS>` указан адрес L2 контракта `counter` .&#x20;
 
-&#x20;7\.  Вы можете отслеживать статус соответствующей транзакции L2. `zksync-web3`'s `Provider` имеет метод, который, учитывая объект L1 `ethers.TransactionResponse` транзакции, вызвавшей мост zkSync, возвращает соответствующий объект `TransactionResponse` транзакции в L2, который удобно может ждать обработки транзакции на L2.
+&#x20;7\.  Вы можете отслеживать статус соответствующей транзакции L2. `Provider` из `zksync-web3`имеет метод, который, учитывая объект `ethers.TransactionResponse` L1 транзакции, вызвавшей мост zkSync, возвращает соответствующий объект `TransactionResponse` транзакции в L2, который удобно может ждать обработки транзакции на L2.
 
 ```typescript
 async function main() {
-  // ... Previous steps
+  // ... предыдущие шаги
 
-  // Getting the TransactionResponse object for the L2 transaction corresponding to the
-  // execution call
+  // Получаем объект TransactionResponse для L2 транзакции,
+  // соответствующей вызову выполнения.
   const l2Response = await l2Provider.getL2TransactionFromPriorityOp(tx);
 
-  // The receipt of the L2 transaction corresponding to the call to the counter contract
+  // Получаем чек L2 транзакции, соответствующей вызову контракта counter
   const l2Receipt = await l2Response.wait();
   console.log(l2Receipt);
 }
@@ -498,53 +506,53 @@ const COUNTER_ABI = require("./counter.json");
 const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
 
 async function main() {
-  // Ethereum L1 provider
+  // RPC-провайдер Ethereum L1
   const l1Provider = ethers.providers.getDefaultProvider("goerli");
 
-  // Governor wallet
+  // Управляющий кошелек
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>", l1Provider);
 
   const govcontract = new Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
 
-  // Getting the current address of the zkSync L1 bridge
+  // Получение текущего адреса моста zkSync на L1
   const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
   const zkSyncAddress = await l2Provider.getMainContractAddress();
-  // Getting the `Contract` object of the zkSync bridge
+  // Получение объекта `Contract` моста zkSync.
   const zkSyncContract = new Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
 
-  // Encoding the tx data the same way it is done on Ethereum.
+  // Кодировка данных транзакции реализуется так же, как в Ethereum.
   const counterInterface = new ethers.utils.Interface(COUNTER_ABI);
   const data = counterInterface.encodeFunctionData("increment", []);
 
-  // The price of the L1 transaction requests depends on the gas price used in the call
+  // Цена за запрос транзакции на L1 зависит от цены газа, используемого при вызове
   const gasPrice = await l1Provider.getGasPrice();
 
-  // Here we define the constant for ergs limit.
+  // Здесь мы определяем константу для лимита ergs.
   const ergsLimit = BigNumber.from(100000);
-  // Getting the cost of the execution.
+  // Получаем цену исполнения.
   const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length);
 
-  // Calling the L1 governance contract.
+  // Вызываем контракт governance на L1.
   const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
-    // Passing the necessary ETH `value` to cover the fee for the operation
+    // Передаем необходимое `value`(количество) в ETH для покрытия комиссии за операцию.
     value: baseCost,
     gasPrice,
   });
 
-  // Waiting until the L1 tx is complete.
+  // Ждем, пока L1 транзакция завершится.
   await tx.wait();
 
-  // Getting the TransactionResponse object for the L2 transaction corresponding to the
-  // execution call
+  // Получаем объект TransactionResponse для L2 транзакции,
+  // соответствующей вызову выполнения.
   const l2Response = await l2Provider.getL2TransactionFromPriorityOp(tx);
 
-  // The receipt of the L2 transaction corresponding to the call to the Increment contract
+  // Получаем чек L2 транзакции, соответствующей вызову контракта counter
   const l2Receipt = await l2Response.wait();
   console.log(l2Receipt);
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
+// Мы рекомендуем использовать следующий паттерн, чтобы иметь возможность
+// везде использовать async/await и эффективно обрабатывать ошибки.
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
@@ -577,6 +585,6 @@ The counter value is 1
 
 ### Узнать больше
 
-* Чтобы узнать больше о взаимодействии L1->L2 в zkSync, ознакомьтесь с документацией [тут](broken-reference).
+* Чтобы узнать больше о взаимодействии L1->L2 в zkSync, ознакомьтесь с документацией [тут](../../ponimanie-zksync/kommunikaciya-l1-greater-than-l2/).
 * Чтобы узнать больше о `zksync-web3` SDK, ознакомьтесь с его документацией [тут](../../api-reference/javascript-web3-sdk/).
-* Чтобы узнать больше о `hardhat` плагинах zkSync , ознакомьтесь с их документацией [тут](https://v2-docs.zksync.io/api/hardhat).
+* Чтобы узнать больше о `hardhat` плагинах zkSync, ознакомьтесь с их документацией [тут](https://v2-docs.zksync.io/api/hardhat).
