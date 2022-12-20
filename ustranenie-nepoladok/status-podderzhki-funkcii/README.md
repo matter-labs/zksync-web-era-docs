@@ -23,7 +23,7 @@
 * `CALLCODE` (признан устаревшим на Ethereum в пользу `DELEGATECALL`).
 * `CODECOPY` - (он не возвращает 0, а создает ошибку компиляции).
 
-### Игнорируемые компилятором <a href="#ignored-by-the-compiler" id="ignored-by-the-compiler"></a>
+### Игнорируется компилятором <a href="#ignored-by-the-compiler" id="ignored-by-the-compiler"></a>
 
 * `PC` всегда возвращает `0` (недоступен в Yul и Solidity иначиная с 0.7.0).
 

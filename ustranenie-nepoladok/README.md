@@ -4,8 +4,8 @@
 
 ### &#x20;Содержание <a href="#table-of-contents" id="table-of-contents"></a>
 
-* [Важные ссылки](vazhnye-ssylki.md)
-* [Статус поддержки функций](status-podderzhki-funkcii.md)
-* [Внесите свой вклад в документацию](vnesite-svoi-vklad-v-dokumentaciyu.md)
-* [Ресурсы сообщества](resursy-soobshestva.md)
-* [Известные проблемы](izvestnye-problemy.md)
+* [Важные ссылки](vazhnye-ssylki/)
+* [Статус поддержки функций](status-podderzhki-funkcii/)
+* [Внесите свой вклад в документацию](vnesite-svoi-vklad-v-dokumentaciyu/)
+* [Ресурсы сообщества](resursy-soobshestva/)
+* [Известные проблемы](izvestnye-problemy/)

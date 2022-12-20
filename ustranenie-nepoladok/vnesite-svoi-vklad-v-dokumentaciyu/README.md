@@ -44,7 +44,7 @@
 2. Шаг 1 перенаправит вас на Github: либо создайте аккаунт на [Github](https://github.com/join), либо войдите в существующий.
 3.  Нажмите на иконку в виде ручки, чтобы сделать форк репозитория, и чтобы вы смогли начать вносить свой вклад в документацию.
 
-    <figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 4. Отредактируйте MD-файлы:
 
 * В нашей документации мы используем _markdown_, и вам нужно быть знакомым с _markdown_, чтобы вносить в нее вклад.
@@ -54,7 +54,7 @@
 
 &#x20; 6\.  После редактирования файлов, нажмите на `Create pull request` и подождите, пока наши проверяющие проверят ваш PR.
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 #### Обучающие ресурсы (на английском): <a href="#learning-improvement-resources" id="learning-improvement-resources"></a>
 
