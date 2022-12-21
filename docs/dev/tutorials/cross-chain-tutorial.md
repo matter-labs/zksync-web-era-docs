@@ -205,7 +205,7 @@ If your default network is not `hardhat`, make sure to include `zksync: true` in
 
 ::: tip
 
-You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/zksync-cli/)
+You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/)
 
 :::
 
@@ -366,7 +366,7 @@ main().catch((error) => {
 });
 ```
 
-4. To interact with the governance smart contract, we need to initialise an Ethereum provider and the corresponding `ethers` `Contract` object, so we need to have the address it was deployed to:
+3. To interact with the governance smart contract, we need to initialise an Ethereum provider and the corresponding `ethers` `Contract` object, so we need to have the address it was deployed to:
 
 ```ts
 // Imports
@@ -391,7 +391,7 @@ async function main() {
 
 Replace the `<GOVERNANCE-ADDRESS>` and `<WALLET-PRIVATE-KEY>` with the address of the L1 governance smart contract and the private key of the wallet that deployed the governance contract respectively.
 
-5. To interact with the zkSync bridge, we need its L1 address. While on mainnet you may want to set the address of the zkSync smart contract as an env variable or a constant, it is worth noticing that you can fetch the smart contract address dynamically. We recommended this approach if you're working on a testnet since regenesis may happen and contract addresses might change.
+4. To interact with the zkSync bridge, we need its L1 address. While on mainnet you may want to set the address of the zkSync smart contract as an env variable or a constant, it is worth noticing that you can fetch the smart contract address dynamically. We recommended this approach if you're working on a testnet since regenesis may happen and contract addresses might change.
 
 ```ts
 // Imports
@@ -402,7 +402,7 @@ import { Provider, utils } from "zksync-web3";
 async function main() {
   // ... Previous steps
 
-  // Initializing the L2 privider
+  // Initializing the L2 provider
   const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
   // Getting the current address of the zkSync L1 bridge
   const zkSyncAddress = await l2Provider.getMainContractAddress();
@@ -411,7 +411,7 @@ async function main() {
 }
 ```
 
-6. Executing transactions from L1 requires the caller to pay some fee to the L2 operator.
+5. Executing transactions from L1 requires the caller to pay some fee to the L2 operator.
 
 Firstly, this fee depends on the length of the calldata and the `ergsLimit`. If you are new to this concept then it is pretty much the same as the `gasLimit` on Ethereum. You can read more about [zkSync fee model here](../developer-guides/transactions/fee-model.md).
 
@@ -452,7 +452,7 @@ Also, there is currently no easy way to estimate the exact number of `ergs` requ
 
 :::
 
-7. Now it is possible to call the governance contract, that will redirect the call to zkSync:
+6. Now it is possible to call the governance contract, that will redirect the call to zkSync:
 
 ```ts
 // Imports
@@ -477,7 +477,7 @@ async function main() {
 
 Make sure to replace `<COUNTER-ADDRESS>` with the address of the L2 counter contract.
 
-8. You can track the status of the corresponding L2 transaction. `zksync-web3`'s `Provider` has a method that, given the L1 `ethers.TransactionResponse` object of a transaction that called the zkSync bridge, returns the correspondent `TransactionResponse` object of the transaction in L2, which can conveniently wait for the transaction to be processed on L2.
+7. You can track the status of the corresponding L2 transaction. `zksync-web3`'s `Provider` has a method that, given the L1 `ethers.TransactionResponse` object of a transaction that called the zkSync bridge, returns the correspondent `TransactionResponse` object of the transaction in L2, which can conveniently wait for the transaction to be processed on L2.
 
 ```ts
 async function main() {
@@ -545,7 +545,7 @@ async function main() {
   // Getting the TransactionResponse object for the L2 transaction corresponding to the execution call
   const l2Response = await l2Provider.getL2TransactionFromPriorityOp(tx);
 
-  // The receipt of the L2 transaction corresponding to the call to the Increment contract
+  // The receipt of the L2 transaction corresponding to the call to the counter contract's Increment method
   const l2Receipt = await l2Response.wait();
   console.log(l2Receipt);
 }
@@ -566,7 +566,7 @@ yarn ts-node ./scripts/increment-counter.ts
 
 In the output, you should see the full transaction receipt in L2. You can take the `transactionHash` and track it in the [zkSync explorer](https://explorer.zksync.io/).
 
-9. After that, you can verify that the transaction was indeed successful by running the `display-value` script again:
+8. After that, you can verify that the transaction was indeed successful by running the `display-value` script again:
 
 ```
 yarn ts-node ./scripts/display-value.ts
