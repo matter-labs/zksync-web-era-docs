@@ -34,10 +34,17 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Status](./troubleshooting/status.md) - Get updates on things we are currently working on.
 - [Known Issues](./troubleshooting/known-issues.md) - Get answers to common issues you may find.
 
-### Developer Tools
+### Tools and SDKs
 
 - [zkSync 2.0 Portal](https://portal.zksync.io) - Explore Wallet, Bridge and Faucet features.
 - [Block explorer](../api/tools/block-explorer/) - Search for real-time and historical information about blocks, transactions, addresses, and more on zkSync block explorer.
+- [Javascript SDK](../api/js/) - Get the neccessary javascript toolkits to build dAPPs on zkSync.
+- [Python SDK](../api/python/) - Explore all the python methods and functions required to build on zkSync.
+- [Go SDK](../api/go/) - Learn all that's reauired to build sophisticated dAPPs with our GO sdk.
+- [Java SDK](../api/java/) - Learn how our Java SDK can help you build great web3 applications.
+- [Hardhat Plugins](../api/hardhat/) - Use our hardhat zkSync plugins to build, test, and deploy your solidity or vyper based applications.
+- [zkSync CLI](../api/tools/zksync-cli/) - Simplify your development process with our zkSync CLI while interacting with zkSync.
+The zkSync CLI simplifies the process of developing applications and interacting with zkSync 2.0.
 
 ### Examples and tutorials
 
