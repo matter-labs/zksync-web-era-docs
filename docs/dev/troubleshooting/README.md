@@ -5,7 +5,7 @@ Get brief explainers on your integration with zkSync.
 ## Table of contents
 
 - [Important links](./important-links.md)
-- [Status](./status.md)
-- [Known issues](./known-issues.md)
+- [Feature support status](./status.md)
 - [Contribute to documentation](./docs-contribution/docs.md)
-- [Contribute to Awesome zkSync repo](./docs-contribution/community-resources.md)
+- [Community resources](./docs-contribution/community-resources.md)
+- [Known issues](./known-issues.md)
