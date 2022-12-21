@@ -1,14 +1,14 @@
 # Абстракция аккаунта
 
-Теперь давайте научимся реализовывать кастомные аккаунты и взаимодействовать напрямую с системным контрактом [ContractDeployer](broken-reference).
+Теперь давайте научимся реализовывать кастомные аккаунты и взаимодействовать напрямую с системным контрактом [ContractDeployer](../../ponimanie-zksync/sistemnye-kontrakty/#contractdeployer).
 
 В этом руководстве мы создадим фабрику (factory), которая развертывает аккаунты с мультиподписью типа "2-из-2ух".
 
 ### Подготовка <a href="#preliminaries" id="preliminaries"></a>
 
-Прежде чем углубиться в данное руководство, крайне рекомендуется прочитать о [дизайне](broken-reference) протокола абстракции аккаунта.
+Прежде чем углубиться в данное руководство, крайне рекомендуется прочитать о [дизайне](../../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/) протокола абстракции аккаунта.
 
-Предполагается, что вы уже знакомы с развертыванием контрактов на zkSync. Если нет, пожалуйста обратитесь к первому разделу руководства по. Также рекомендуется прочесть [введение ](broken-reference)в системные контракты.
+Предполагается, что вы уже знакомы с развертыванием контрактов на zkSync. Если нет, пожалуйста обратитесь к первому разделу руководства по [быстрому старту](../../rukovodstvo-razrabotchika/bystryi-start.md). Также рекомендуется прочесть [введение ](../../ponimanie-zksync/sistemnye-kontrakty/)в системные контракты.
 
 ### Установка зависимостей <a href="#installing-dependencies" id="installing-dependencies"></a>
 
@@ -27,7 +27,13 @@ yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zk
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Также создайте файл конфигурации `hardhat.config.ts` и директории `contracts` и `deploy` как в руководстве [Hello World](broken-reference).
+Также создайте файл конфигурации `hardhat.config.ts` и директории `contracts` и `deploy` как в руководстве [Быстрый старт.](../../rukovodstvo-razrabotchika/bystryi-start.md)
+
+{% hint style="success" %}
+СОВЕТ
+
+Вы можете использовать zkSync CLI для автоматического запуска проекта. Узнайте [больше о zkSync CLI здесь](https://v2-docs.zksync.io/api/tools/zksync-cli).
+{% endhint %}
 
 ### Абстракция аккаунта <a href="#account-abstraction" id="account-abstraction"></a>
 
@@ -48,7 +54,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 
     modifier onlyBootloader() {
         require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
-        // Continure execution if called from the bootloader.
+        // Продождить исполнение, есои вызов был от bootloader.
         _;
     }
 
@@ -88,15 +94,15 @@ contract TwoUserMultisig is IAccount, IERC1271 {
     }
 
 	  receive() external payable {
-        // If the bootloader called the `receive` function, it likely means
-        // that something went wrong and the transaction should be aborted. The bootloader should
-        // only interact through the `validateTransaction`/`executeTransaction` methods.
+        // Если bootloader вызвал функцию `receive`, вероятно, это значит,
+        // что что-то пошло не так и транзакция должна быть прекращена. Bootloader
+        // должен взаимодействовать только через методы  `validateTransaction`/`executeTransaction`.
         assert(msg.sender != BOOTLOADER_FORMAL_ADDRESS);
     }
 }
 ```
 
-Учтите, что только [bootloader](broken-reference) должен быть допущен к вызову методов `validateTransaction`/`executeTransaction`/`payForTransaction`/`prePaymaster`. Поэтому для них используется модификатор `onlyBootloader` .
+Учтите, что только [bootloader](../../ponimanie-zksync/sistemnye-kontrakty/#bootloader) должен быть допущен к вызову методов `validateTransaction`/`executeTransaction`/`payForTransaction`/`prePaymaster`. Поэтому для них используется модификатор `onlyBootloader` .
 
 Метод `executeTransactionFromOutside` нужен для доступа внешним пользователям к инициации транзакции с данного аккаунта. Наиболее легкий способ реализовать его - сделать тоже самое, что бы сделали `validateTransaction` + `executeTransaction` .
 
@@ -126,8 +132,9 @@ constructor(address _owner1, address _owner2) {
 
 ```solidity
 function isValidSignature(bytes32 _hash, bytes calldata _signature) public override view returns (bytes4) {
-    // The signature is the concatenation of the ECDSA signatures of the owners
-    // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long.
+    // Подпись - это связка ECDSA-подписей владельцев аккаунта.
+    // Каждая ECDSA-подпись имеет длину 65 байтов.
+    // Это означает, что общая подпись будет иметь длину 130 байтов.
     require(_signature.length == 130, 'Signature length is incorrect');
 
     address recoveredAddr1 = ECDSA.recover(_hash, _signature[0:65]);
@@ -142,11 +149,11 @@ function isValidSignature(bytes32 _hash, bytes calldata _signature) public overr
 
 #### Валидация транзакции <a href="#transaction-validation" id="transaction-validation"></a>
 
-Давайте реализуем процесс валидации. Он отвечает за валидацию подписи транзакции и увеличение значения nonce. Заметьте, что есть некоторые ограничения в том, что этому методу позволено выполнять. Вы можете подробнее узнать о них [тут](broken-reference).
+Давайте реализуем процесс валидации. Он отвечает за валидацию подписи транзакции и увеличение значения nonce. Заметьте, что есть некоторые ограничения в том, что этому методу позволено выполнять. Вы можете подробнее узнать о них [тут](../../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/#limitations-of-the-verification-step).
 
-Для увеличения nonce нужно использовать метод `incrementNonceIfEquals` системного контракта `NONCE_HOLDER_SYSTEM_CONTRACT` . Он берет Nonce транзакции и проверяет, совпадает ли текущий nonce с предоставленным. Если нет, то транзакция отменяется. В ином случае, nonce увеличивается.
+Для увеличения nonce нужно использовать метод `incrementNonceIfEquals` системного контракта `NONCE_HOLDER_SYSTEM_CONTRACT`. Он берет nonce транзакции и проверяет, совпадает ли текущий nonce с предоставленным. Если нет, то транзакция отменяется. В ином случае, nonce увеличивается.
 
-Хоть и требования выше позволяют аккаунтам изменять только свои слоты хранилища, доступ к вашему nonce в `NONCE_HOLDER_SYSTEM_CONTRACT` - это [разрешенный](broken-reference) случай, так как он ведет себя так же, как ваше хранилище, но просто случилось так, что он находится в другом контракте. Для вызова `NONCE_HOLDER_SYSTEM_CONTRACT` вам нужно добавить следующий импорт:
+Хоть и требования выше позволяют аккаунтам изменять только свои слоты хранилища, доступ к вашему nonce в `NONCE_HOLDER_SYSTEM_CONTRACT` - это [разрешенный](../../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/#extending-the-set-of-slots-that-belong-to-a-user) случай, так как он ведет себя так же, как ваше хранилище, но просто случилось так, что он находится в другом контракте. Для вызова `NONCE_HOLDER_SYSTEM_CONTRACT` вам нужно добавить следующий импорт:
 
 ```solidity
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
@@ -170,8 +177,9 @@ import '@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.s
 
 ```solidity
 function _validateTransaction(bytes32 _suggestedSignedHash, Transaction calldata _transaction) internal {
-    // Incrementing the nonce of the account.
-    // Note, that reserved[0] by convention is currently equal to the nonce passed in the transaction
+    // Увеличиваем значение nonce аккаунта.
+    // Заметьте, что reserved[0] на данный момент согласно конвенции равен nonce,
+    // переданному в транзакции
     SystemContractsCaller.systemCall(
         uint32(gasleft()),
         address(NONCE_HOLDER_SYSTEM_CONTRACT),
@@ -180,9 +188,9 @@ function _validateTransaction(bytes32 _suggestedSignedHash, Transaction calldata
     );
 
     bytes32 txHash;
-    // While the suggested signed hash is usually provided, it is generally
-    // not recommended to rely on it to be present, since in the future
-    // there may be tx types with no suggested signed hash.
+    // Хоть предлагаемый подписанный хэш обычно предоставляется, но обычно
+    // мы не рекомендуем полагаться на его присутствтие, так как в будущем
+    // могут появиться типы транзакций без предлагаемого подписанного хэша.
     if(_suggestedSignedHash == bytes32(0)) {
         txHash = _transaction.encodeHash();
     } else {
@@ -206,7 +214,7 @@ function payForTransaction(bytes32, bytes32, Transaction calldata _transaction) 
 
 #### Реализация `prePaymaster` <a href="#implementing-prepaymaster" id="implementing-prepaymaster"></a>
 
-Тогда как обычно протокол абстракции аккаунта позволяет исполнять произвольные действия при взаимодействии с paymaster'ами, есть несколько [общих паттернов](broken-reference) со встроенной поддержкой из EOA-аккаунтов. Если только вы не хотите реализовать или запретить некоторые специфические возможные действия для вашего аккаунта, лучше держать его в соответствии с EOA. Библиотека `TransactionHelper` предоставляет метод `processPaymasterInput` , который делает именно это: проходит шаг `prePaymaster` так же, как и EOA.
+Тогда как обычно протокол абстракции аккаунта позволяет исполнять произвольные действия при взаимодействии с paymaster'ами, есть несколько [общих паттернов](../../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/#built-in-paymaster-flows) со встроенной поддержкой из EOA-аккаунтов. Если только вы не хотите реализовать или запретить некоторые специфические возможные действия для вашего аккаунта, лучше держать его в соответствии с EOA. Библиотека `TransactionHelper` предоставляет метод `processPaymasterInput` , который делает именно это: проходит шаг `prePaymaster` так же, как и EOA.
 
 ```solidity
 function prePaymaster(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
@@ -221,7 +229,7 @@ function prePaymaster(bytes32, bytes32, Transaction calldata _transaction) exter
 ```solidity
 function _executeTransaction(Transaction calldata _transaction) internal {
     uint256 to = _transaction.to;
-    // By convention, the `reserved[1]` field is msg.value
+    // Согласно конвенции, поле `reserved[1]` является msg.value
     uint256 value = _transaction.reserved[1];
     bytes memory data = _transaction.data;
 
@@ -230,7 +238,7 @@ function _executeTransaction(Transaction calldata _transaction) internal {
         success := call(gas(), to, value, add(data, 0x20), mload(data), 0, 0)
     }
 
-    // Needed for the transaction to be correctly processed by the server.
+    // Транзакция должна быть корректно обработана сервером.
     require(success);
 }
 ```
@@ -244,11 +252,11 @@ function _executeTransaction(Transaction calldata _transaction) internal {
     bytes memory data = _transaction.data;
 
     if(to == address(DEPLOYER_SYSTEM_CONTRACT)) {
-        // We allow calling ContractDeployer with any calldata
+        // Позволяем вызывать ContractDeployer с любой calldata
         SystemContractsCaller.systemCall(
             uint32(gasleft()),
             to,
-            uint128(_transaction.reserved[1]), // By convention, reserved[1] is `value`
+            uint128(_transaction.reserved[1]), // Согласно конвенции, reserved[1] является `value`
             _transaction.data
         );
     } else {
@@ -274,19 +282,19 @@ import "@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol";
 
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 
-// Used for signature validation
+// Используется для валидации подписи
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
-// Access zkSync system contracts, in this case for nonce validation vs NONCE_HOLDER_SYSTEM_CONTRACT
+// Доступ к системным контракта zkSync, в данном случае для валидации nonce vs NONCE_HOLDER_SYSTEM_CONTRACT
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
-// to call non-view method of system contracts
+// для вызова non-view метода системных контрактов
 import "@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.sol";
 
 contract TwoUserMultisig is IAccount, IERC1271 {
-    // to get transaction hash
+    // получение хэша транзакции
     using TransactionHelper for Transaction;
 
-    // state variables for account owners
+    // назначаем переменные для владельцев аккаунта
     address public owner1;
     address public owner2;
 
@@ -297,7 +305,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
             msg.sender == BOOTLOADER_FORMAL_ADDRESS,
             "Only bootloader can call this method"
         );
-        // Continure execution if called from the bootloader.
+        // Продолжить исполнение, если вызов исходил от bootloader.
         _;
     }
 
@@ -318,8 +326,9 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         bytes32 _suggestedSignedHash,
         Transaction calldata _transaction
     ) internal {
-        // Incrementing the nonce of the account.
-        // Note, that reserved[0] by convention is currently equal to the nonce passed in the transaction
+        // Увеличиваем значение nonce аккаунта.
+        // Заметьте, что reserved[0] на данный момент согласно конвенции равен nonce,
+        // переданному в транзакции
         SystemContractsCaller.systemCall(
             uint32(gasleft()),
             address(NONCE_HOLDER_SYSTEM_CONTRACT),
@@ -331,9 +340,9 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         );
 
         bytes32 txHash;
-        // While the suggested signed hash is usually provided, it is generally
-        // not recommended to rely on it to be present, since in the future
-        // there may be tx types with no suggested signed hash.
+        // Хоть предлагаемый подписанный хэш обычно предоставляется, но обычно
+        // мы не рекомендуем полагаться на его присутствтие, так как в будущем
+        // могут появиться типы транзакций без предлагаемого подписанного хэша.
         if (_suggestedSignedHash == bytes32(0)) {
             txHash = _transaction.encodeHash();
         } else {
@@ -360,11 +369,11 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         bytes memory data = _transaction.data;
 
         if (to == address(DEPLOYER_SYSTEM_CONTRACT)) {
-            // We allow calling ContractDeployer with any calldata
+            // Позволяем вызывать ContractDeployer с любой calldata
             SystemContractsCaller.systemCall(
                 uint32(gasleft()),
                 to,
-                uint128(_transaction.reserved[1]), // By convention, reserved[1] is `value`
+                uint128(_transaction.reserved[1]), // Согласно конвенции, reserved[1] является `value`
                 _transaction.data
             );
         } else {
@@ -399,8 +408,9 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         override
         returns (bytes4)
     {
-        // The signature is the concatenation of the ECDSA signatures of the owners
-        // Each ECDSA signature is 65 bytes long. That means that the combined signature is 130 bytes long.
+        // Подпись является связкой ECDSA-подписей владельцев аккаунта.
+        // Каждая ECDSA-подпись имеет длину в 65 байтов.
+        // Это значит,что подпись целиком будет иметь длину 130 байтов
         require(_signature.length == 130, "Signature length is incorrect");
 
         address recoveredAddr1 = ECDSA.recover(_hash, _signature[0:65]);
@@ -430,9 +440,9 @@ contract TwoUserMultisig is IAccount, IERC1271 {
     }
 
     receive() external payable {
-        // If the bootloader called the `receive` function, it likely means
-        // that something went wrong and the transaction should be aborted. The bootloader should
-        // only interact through the `validateTransaction`/`executeTransaction` methods.
+        // Если bootloader вызвал функцию `receive`, вероятно, это значит,
+        // что что-то пошло не так и транзакция должна быть прекращена. Bootloader
+        // должен взаимодействовать только через методы  `validateTransaction`/`executeTransaction`.
         assert(msg.sender != BOOTLOADER_FORMAL_ADDRESS);
     }
 }
@@ -442,7 +452,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 
 ### Фабрика (factory) <a href="#the-factory" id="the-factory"></a>
 
-Теперь давайте создадим фабрику, которая может развертывать такие аккаунты. Заметьте, что если вы хотите развернуть АА (абстрагированный аккаунт), то нужно взаимодействовать напрямую с `DEPLOYER_SYSTEM_CONTRACT`. Для детерминированных адресов, мы будет использовать метод `create2Account`.
+Теперь давайте создадим фабрику, которая может развертывать такие аккаунты. Заметьте, что если вы хотите развернуть АА (абстрагированный аккаунт), то нужно взаимодействовать напрямую с `DEPLOYER_SYSTEM_CONTRACT`. Для детерминированных адресов, мы будем использовать метод `create2Account`.
 
 Код будет выглядеть так:
 
@@ -503,8 +513,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const factoryArtifact = await deployer.loadArtifact("AAFactory");
   const aaArtifact = await deployer.loadArtifact("TwoUserMultisig");
 
-  // Deposit some funds to L2 in order to be able to perform L2 transactions.
-  // You can remove the depositing step if the `wallet` has enough funds on zkSync
+  // Внесите немного средств на L2, чтобы иметь возможность проводить транзакции.
+  // Вы можете удалить часть когда с депозитом если на `wallet` есть достаточно средств в zkSync
   const depositAmount = ethers.utils.parseEther("0.001");
   const depositHandle = await deployer.zkWallet.deposit({
     to: deployer.zkWallet.address,
@@ -513,12 +523,12 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   });
   await depositHandle.wait();
 
-  // Getting the bytecodeHash of the account
+  // Получение bytecodeHash аккаунта
   const bytecodeHash = utils.hashBytecode(aaArtifact.bytecode);
 
   const factory = await deployer.deploy(factoryArtifact, [bytecodeHash], undefined, [
-    // Since the factory requires the code of the multisig to be available,
-    // we should pass it here as well.
+    // Т.к. для фабрики требуется, чтобы код multisig'a был доступен,
+    // то нам его тоже нужно передать.
     aaArtifact.bytecode,
   ]);
 
@@ -556,10 +566,10 @@ import { utils, Wallet, Provider, EIP712Signer, types } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
-// Put the address of your AA factory
+// Введите адрес вашей фабрики АА
 const AA_FACTORY_ADDRESS = "<YOUR_FACTORY_ADDRESS>";
 
-// An example of a deploy script deploys and calls a simple contract.
+// Пример скрипта развертывания, который развертывает и вызывает простой смарт-контракт.
 export default async function (hre: HardhatRuntimeEnvironment) {
   const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
   const wallet = new Wallet("<PRIVATE-KEY>").connect(provider);
@@ -567,17 +577,17 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   const aaFactory = new ethers.Contract(AA_FACTORY_ADDRESS, factoryArtifact.abi, wallet);
 
-  // The two owners of the multisig
+  // Два владельца мультисига.
   const owner1 = Wallet.createRandom();
   const owner2 = Wallet.createRandom();
 
-  // For the simplicity of the tutorial, we will use zero hash as salt
+  // Для простоты руководства, мы используем нулевой хэш в качестве salt
   const salt = ethers.constants.HashZero;
 
   const tx = await aaFactory.deployAccount(salt, owner1.address, owner2.address);
   await tx.wait();
 
-  // Getting the address of the deployed contract
+  // Получаем адрес развернутого контракта
   const abiCoder = new ethers.utils.AbiCoder();
   const multisigAddress = utils.create2Address(
     AA_FACTORY_ADDRESS,
@@ -589,7 +599,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-_Заметьте, что правила извлечения адреса на zkSync отличаются от Эфириума._ Вам всегда нужно использовать утилитарные методы `createAddress` и `create2Address` из `zksync-web3` SDK.
+_Заметьте, что правила извлечения адреса на zkSync отличаются от Ethereum._ Вам всегда нужно использовать утилитарные методы `createAddress` и `create2Address` из `zksync-web3` SDK.
 
 #### Инициация транзакции с этого аккаунта <a href="#starting-a-transaction-from-this-account" id="starting-a-transaction-from-this-account"></a>
 
@@ -599,7 +609,7 @@ _Заметьте, что правила извлечения адреса на 
 await(
   await wallet.sendTransaction({
     to: multisigAddress,
-    // You can increase the amount of ETH sent to the multisig
+    // Вы можете увеличить количество ETH, отправляемого на мультисиг
     value: ethers.utils.parseEther("0.003"),
   })
 ).wait();
@@ -626,7 +636,7 @@ aaTx = {
   nonce: await provider.getTransactionCount(multisigAddress),
   type: 113,
   customData: {
-    // Note, that we are using the `DEFAULT_ERGS_PER_PUBDATA_LIMIT`
+    // Заметьте, что мы используем `DEFAULT_ERGS_PER_PUBDATA_LIMIT`
     ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
   } as types.Eip712Meta,
   value: ethers.BigNumber.from(0),
@@ -645,8 +655,8 @@ aaTx = {
 const signedTxHash = EIP712Signer.getSignedDigest(aaTx);
 
 const signature = ethers.utils.concat([
-  // Note, that `signMessage` wouldn't work here, since we don't want
-  // the signed hash to be prefixed with `\x19Ethereum Signed Message:\n`
+  // Заметьте, что `signMessage` здесь не будет работать, так как мы не хотим,
+  // чтобы подписанный хэш имел префикс `\x19Ethereum Signed Message:\n`
   ethers.utils.joinSignature(owner1._signingKey().signDigest(signedTxHash)),
   ethers.utils.joinSignature(owner2._signingKey().signDigest(signedTxHash)),
 ]);
@@ -664,7 +674,7 @@ console.log(`The multisig's nonce before the first tx is ${await provider.getTra
 const sentTx = await provider.sendTransaction(utils.serialize(aaTx));
 await sentTx.wait();
 
-// Checking that the nonce for the account has increased
+// Удостоверимся, что nonce аккаунта увеличился
 console.log(`The multisig's nonce after the first tx is ${await provider.getTransactionCount(multisigAddress)}`);
 ```
 
@@ -675,7 +685,7 @@ import { utils, Wallet, Provider, EIP712Signer, types } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
-// Put the address of your AA factory
+// Вставляем адрес вашей фабрики АА
 const AA_FACTORY_ADDRESS = "<YOUR_FACTORY_ADDRESS>";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
@@ -685,17 +695,17 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   const aaFactory = new ethers.Contract(AA_FACTORY_ADDRESS, factoryArtifact.abi, wallet);
 
-  // The two owners of the multisig
+  // Два владельца мультисига
   const owner1 = Wallet.createRandom();
   const owner2 = Wallet.createRandom();
 
-  // For the simplicity of the tutorial, we will use zero hash as salt
+  // Для простоты руководства, мы используем нулевой хэш в качестве salt
   const salt = ethers.constants.HashZero;
 
   const tx = await aaFactory.deployAccount(salt, owner1.address, owner2.address);
   await tx.wait();
 
-  // Getting the address of the deployed contract
+  // Получаем адрес развернутого контракта
   const abiCoder = new ethers.utils.AbiCoder();
   const multisigAddress = utils.create2Address(
     AA_FACTORY_ADDRESS,
@@ -708,7 +718,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   await (
     await wallet.sendTransaction({
       to: multisigAddress,
-      // You can increase the amount of ETH sent to the multisig
+      // Можете увеличить количество ETH, отправляемого на мультисиг
       value: ethers.utils.parseEther("0.001"),
     })
   ).wait();
@@ -734,8 +744,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const signedTxHash = EIP712Signer.getSignedDigest(aaTx);
 
   const signature = ethers.utils.concat([
-    // Note, that `signMessage` wouldn't work here, since we don't want
-    // the signed hash to be prefixed with `\x19Ethereum Signed Message:\n`
+    // Заметьте, что `signMessage` здесь не будет работать, так как мы не хотим,
+    // чтобы подписанный хэш имел префикс `\x19Ethereum Signed Message:\n`
     ethers.utils.joinSignature(owner1._signingKey().signDigest(signedTxHash)),
     ethers.utils.joinSignature(owner2._signingKey().signDigest(signedTxHash)),
   ]);
@@ -749,7 +759,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const sentTx = await provider.sendTransaction(utils.serialize(aaTx));
   await sentTx.wait();
 
-  // Checking that the nonce for the account has increased
+  // Удостоверимся, что nonce аккаунта увеличился
   console.log(`The multisig's nonce after the first tx is ${await provider.getTransactionCount(multisigAddress)}`);
 }
 ```
@@ -776,10 +786,10 @@ The multisig's nonce after the first tx is 1
 
 ### Полный проект <a href="#complete-project" id="complete-project"></a>
 
-Вы можете скачать полный проект [тут.](https://github.com/matter-labs/custom-aa-tutorial)
+Вы можете загрузить полный проект [отсюда](https://github.com/matter-labs/custom-aa-tutorial).
 
 ### Узнать больше <a href="#learn-more" id="learn-more"></a>
 
-* Узнать больше о коммуникации L1-> L2 на zkSync можно на этой [странице документации](broken-reference).
+* Узнать больше о коммуникации L1-> L2 на zkSync можно на этой [странице документации](../../ponimanie-zksync/kommunikaciya-l1-greater-than-l2/).
 * Узнать больше о `zksync-web3` SDK можно на этой странице [документации](https://v2-docs.zksync.io/api/js).
 * Узнать больше о hardhat плагинах zkSync можно на этой странице [документации](https://v2-docs.zksync.io/api/hardhat).
