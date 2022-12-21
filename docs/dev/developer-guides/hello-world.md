@@ -205,7 +205,7 @@ async getGreeting() {
 },
 
 async getFee() {
-  // TOOD: return formatted fee
+  // TODO: return formatted fee
   return "";
 },
 
@@ -364,7 +364,7 @@ initializeProviderAndSigner() {
 
 ### Retrieving the greeting
 
-1. Fill in the method to retrieve the greeting from the smart contract:
+Fill in the method to retrieve the greeting from the smart contract:
 
 ```javascript
 async getGreeting() {
@@ -544,7 +544,7 @@ Note, that it is recommended to retrieve the testnet paymaster's address each ti
 import { Contract, Web3Provider, Provider, utils } from "zksync-web3";
 ```
 
-2. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token to ETH at a 1:1 rate, the amount is the same as the ETH amount:
+3. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token to ETH at a 1:1 rate, the amount is the same as the ETH amount:
 
 ```javascript
 async getOverrides() {
@@ -562,7 +562,7 @@ async getOverrides() {
 }
 ```
 
-3. Now, what is left is to encode the paymasterInput following the [protocol requirements](./aa.md#testnet-paymaster) and return the needed overrides:
+4. Now, what is left is to encode the paymasterInput following the [protocol requirements](./aa.md#testnet-paymaster) and return the needed overrides:
 
 ```javascript
 async getOverrides() {
@@ -596,7 +596,7 @@ async getOverrides() {
 }
 ```
 
-4. To use a list of ERC20 tokens, change the following line:
+5. To use a list of ERC20 tokens, change the following line:
 
 ```javascript
 const allowedTokens = require("./eth.json");
@@ -616,11 +616,11 @@ Now you should be able to update the greeting message.
 
 ![img](../../assets/images/start-3.png)
 
-1. Since the `paymasterParams` were supplied, the transaction will be an `EIP712` ([more on EIP712 here](https://eips.ethereum.org/EIPS/eip-712)):
+2. Since the `paymasterParams` were supplied, the transaction will be an `EIP712` ([more on EIP712 here](https://eips.ethereum.org/EIPS/eip-712)):
 
 ![img](../../assets/images/start-4.png)
 
-1. Click "Sign".
+3. Click "Sign".
 
 After the transaction is processed, the page updates the balances and the new greeting can be viewed:
 
