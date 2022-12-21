@@ -35,7 +35,7 @@ Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folde
 
 ::: tip
 
-You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/zksync-cli/)
+You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/)
 
 :::
 
@@ -58,7 +58,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 
     modifier onlyBootloader() {
         require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
-        // Continure execution if called from the bootloader.
+        // Continue execution if called from the bootloader.
         _;
     }
 
@@ -309,7 +309,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
             msg.sender == BOOTLOADER_FORMAL_ADDRESS,
             "Only bootloader can call this method"
         );
-        // Continure execution if called from the bootloader.
+        // Continue execution if called from the bootloader.
         _;
     }
 
