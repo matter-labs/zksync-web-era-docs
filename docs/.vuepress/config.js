@@ -19,28 +19,34 @@ module.exports = {
         noScript: [],
       }
     ],
-    [
-      "flexsearch",
-      {
-        /*
-          Plugin custom options
-        */
-        maxSuggestions: 10, // how many search suggestions to show on the menu, the default is 10.
-        searchPaths: null, // an array of paths to search in, keep it null to search all docs.
-        searchHotkeys: ["s"], // Hot keys to activate the search input, the default is "s" but you can add more.
-        searchResultLength: 60, // the length of the suggestion result text by characters, the default is 60 characters.
-        splitHighlightedWords: " ", // regex or string to split highlighted words by, keep it null to use flexsearch.split
-        noExtraSpaceAfterHtmlTag: false, // don't add extra spaces in highlighted results
-      },
-    ],
+    // [
+    //   "flexsearch",
+    //   {
+    //     /*
+    //       Plugin custom options
+    //     */
+    //     maxSuggestions: 10, // how many search suggestions to show on the menu, the default is 10.
+    //     searchPaths: null, // an array of paths to search in, keep it null to search all docs.
+    //     searchHotkeys: ["s"], // Hot keys to activate the search input, the default is "s" but you can add more.
+    //     searchResultLength: 60, // the length of the suggestion result text by characters, the default is 60 characters.
+    //     splitHighlightedWords: " ", // regex or string to split highlighted words by, keep it null to use flexsearch.split
+    //     noExtraSpaceAfterHtmlTag: false, // don't add extra spaces in highlighted results
+    //   },
+    // ],
   ],
   themeConfig: {
+    algolia: {
+      apiKey: 'LCWOUB1OFO',
+      indexName: '6c6d0d793fc59f3295143fd50027a372',
+      appId: 'v2-zksync',
+    },
     repo: "matter-labs/zksync-web-v2-docs",
     editLinks: true,
     docsDir: "docs",
     docsBranch: "main",
     logo: "/LogotypeLight.svg",
     lastUpdated: "Last Updated",
+    
     nav: [
       // {
       //   text: "User Docs",
@@ -176,7 +182,7 @@ module.exports = {
         },
         {
           title: "Python SDK", // required
-          path: "/api/python/getting-started", // optional, which should be a absolute path.
+          path: "/api/python/", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
           children: ["/api/python/getting-started"],
