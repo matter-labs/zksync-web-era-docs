@@ -51,6 +51,7 @@ module.exports = [
 
 ```
 Include it in the verify function call by adding a new parameter: `--constructor-args arguments.js `
+```yarn hardhat verify --network testnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF --constructor-args arguments.js"```
 
 ## Verify smart contract programmatically
 If you need to run the verification task directly from your code, you can use the hardhat "verify:verify" task with the previously mentioned parameters with the difference in using `--address` parameter when specifying contarct's address:<br/>

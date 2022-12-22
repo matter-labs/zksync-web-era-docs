@@ -461,7 +461,7 @@ networks: {
 - `ethNetwork` is a field with the URL of the Ethereum node. You can also provide the network name (e.g. `goerli`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
 - `url` is a field with the URL of the zkSync node in the case of the zkSync network (with `zksync` flag set to `true`), or the URL of the Ethereum node. This field is required for all zkSync and Ethereum networks used by this plugin.
 - `zksync` is a flag to indicate if the network represents zkSync network configuration. This field needs to be set to `true` for all zkSync networks. If you want to run a `hardhat-etherscan` verification, this field needs to be set to `false`. If set to `true`, the verification process will always try to run the verification process on the zkSync network.
-- `verifyURL` is a field that points to the verification endpoint for the specific zkSync network. This parameter is optional, and its default value is the testnet verification url (`https://zksync2-testnet-explorer.zksync.dev/contract_verification`). In a case of a need to use a different url, aside from changing the parameter, a user also has to add `import "./type-extensions.ts` command to the `index.ts` file in the verify plugin.
+- `verifyURL` is a field that points to the verification endpoint for the specific zkSync network. This parameter is optional, and its default value is the testnet verification url (`https://zksync2-testnet-explorer.zksync.dev/contract_verification`).
 
 
 If you want to verify a smart contract on the Ethereum in the same project, it is important to add `etherscan` field in the `hardhat.config.ts` file:
@@ -506,3 +506,13 @@ module.exports = [
 ```
 Include it in the verify function call by adding a new parameter: `--constructor-args arguments.js`:
 ```yarn hardhat verify --network testnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF --constructor-args arguments.js"```
+
+### Verify smart contract programmatically
+If you need to run the verification task directly from your code, you can use the hardhat "verify:verify" task with the previously mentioned parameters with the difference in using `--address` parameter when specifying contarct's address:<br/>
+
+```typescript
+await hre.run("verify:verify", {
+  address: contractAddress,
+  contract: contractFullyQualifedName
+});
+```
