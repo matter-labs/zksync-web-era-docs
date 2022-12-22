@@ -43,8 +43,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Go SDK](../api/go/) - Learn all that's reauired to build sophisticated dAPPs with our GO sdk.
 - [Java SDK](../api/java/) - Learn how our Java SDK can help you build great web3 applications.
 - [Hardhat Plugins](../api/hardhat/) - Use our hardhat zkSync plugins to build, test, and deploy your solidity or vyper based applications.
-- [zkSync CLI](../api/tools/zksync-cli/) - Simplify your development process with our zkSync CLI while interacting with zkSync.
-The zkSync CLI simplifies the process of developing applications and interacting with zkSync 2.0.
+- [zkSync CLI](../api/tools/zksync-cli/) - Simplifies the development process and allows you to interact with zkSync 2.0 from your terminal.
 
 ### Examples and tutorials
 
