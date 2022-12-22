@@ -30,7 +30,7 @@ yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/cont
 Также создайте файл конфигурации `hardhat.config.ts` и директории `contracts` и `deploy` как в руководстве [Быстрый старт.](../../rukovodstvo-razrabotchika/bystryi-start.md)
 
 {% hint style="success" %}
-СОВЕТ
+**СОВЕТ**
 
 Вы можете использовать zkSync CLI для автоматического запуска проекта. Узнайте [больше о zkSync CLI здесь](https://v2-docs.zksync.io/api/tools/zksync-cli).
 {% endhint %}

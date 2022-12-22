@@ -8,7 +8,7 @@
 
 ### Подготовка <a href="#preliminaries" id="preliminaries"></a>
 
-Для лучшего понимания данного руководства, рекомендуется сначала ознакомиться с [дизайном протокола абстракции аккаунта](../../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/).
+Для лучшего понимания данного руководства рекомендуется сначала ознакомиться с [дизайном протокола абстракции аккаунта](../../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/).
 
 Предполагается, что вы уже знакомы с развертыванием контрактов на zkSync. Если нет, пожалуйста обратитесь к первому разделу руководства [быстрый старт](../../rukovodstvo-razrabotchika/bystryi-start.md). Также рекомендуется ознакомиться с [введением в системные контракты](../../ponimanie-zksync/sistemnye-kontrakty/).
 
@@ -29,11 +29,17 @@ yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zk
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Создайте файл конфига `hardhat.config.ts` , директории `contracts` и `deploy` , как в руководстве [быстрый старт](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html).
+Создайте файл конфига `hardhat.config.ts` , директории `contracts` и `deploy` , как в руководстве [быстрый старт](../../rukovodstvo-razrabotchika/bystryi-start.md).
+
+{% hint style="success" %}
+**СОВЕТ**
+
+Вы можете использовать zkSync CLI для автоматического запуска проекта. Узнайте [больше о zkSync CLI здесь](https://v2-docs.zksync.io/api/tools/zksync-cli).
+{% endhint %}
 
 ### Дизайн
 
-Нашим протоколом будет пример протокола, который позволяет кому угодно обменивать конкретный ERC20 токен на оплату комиссий за транзакцию.
+Нашим примером будет протокол-болванка, который позволяет кому угодно обменивать конкретный ERC20 токен на оплату комиссий за транзакцию.
 
 Скелет paymaster выглядит следующим образом:
 
@@ -56,7 +62,7 @@ contract MyPaymaster is IPaymaster {
 
     modifier onlyBootloader() {
         require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
-        // Continure execution if called from the bootloader.
+        // Продолжить исполнение, если вызов идет от bootloader. 
         _;
     }
 
@@ -65,7 +71,7 @@ contract MyPaymaster is IPaymaster {
     }
 
     function validateAndPayForPaymasterTransaction(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader returns (bytes memory context) {
-        // Transaction validation logic goes here
+        // Здесь идет логика валидации транзакции
     }
 
     function postOp(
@@ -76,20 +82,20 @@ contract MyPaymaster is IPaymaster {
         ExecutionResult _txResult,
         uint256 _maxRefundedErgs
     ) external payable onlyBootloader {
-        // This contract does not support any refunding logic
+        // Данный контракт не поддерживает какую-либу логику возврата средств.
     }
 
     receive() external payable {}
 }
 ```
 
-Возьмите на заметку, что только у [bootloader](https://v2-docs.zksync.io/dev/developer-guides/contracts/system-contracts.html#bootloader) должен быть доступ к вызову методов `validateAndPayForPaymasterTransaction`/`postOp`. Именно поэтому для них используется модификатор `onlyBootloader` .
+Возьмите на заметку, что только у [bootloader](../../ponimanie-zksync/sistemnye-kontrakty/#bootloader) должен быть доступ к вызову методов `validateAndPayForPaymasterTransaction`/`postOp`. Именно поэтому для них используется модификатор `onlyBootloader` .
 
 #### Парсинг вводимых данных paymaster
 
 В этом руководстве мы хотим взять с пользователя одну единицу `allowedToken` в обмен на оплату его комиссий контрактом.
 
-Вводные данные, которые paymaster должен получить закодированы в `paymasterInput`. Как описывается [здесь](https://v2-docs.zksync.io/dev/developer-guides/aa.html#built-in-paymaster-flows), есть несколько стандартизированных путей кодировки взаимодействия пользователя с `paymasterInput`. Для того, чтобы списать средства пользователя, нам необходимо будет запросить, чтобы он предоставил достаточное число разрешение на трату (allowance) для контракта paymaster. Это то, где порядок исполнения `approvalBased` может нам помочь.
+Вводные данные, которые paymaster должен получить, закодированы в `paymasterInput`. Как описывается [здесь](../../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/#built-in-paymaster-flows), есть несколько стандартизированных путей кодировки взаимодействия пользователя с `paymasterInput`. Для того, чтобы списать средства пользователя, нам необходимо будет запросить, чтобы он предоставил достаточное разрешение на трату (allowance) для контракта paymaster. Это то, где `approvalBased` (основанный на разрешении на трату) порядок исполнения может нам помочь.
 
 Во-первых, нам нужно удостовериться, что `paymasterInput` был закодирован по порядку исполнения `approvalBased`:
 
@@ -124,29 +130,30 @@ require(providedAllowance >= PRICE_FOR_PAYING_FEES, "The user did not provide en
 Далее, мы наконец отправляем средства пользователю в обмен на 1 единицу данного токена:
 
 ```solidity
-// Note, that while the minimal amount of ETH needed is tx.ergsPrice * tx.ergsLimit,
-// neither paymaster nor account are allowed to access this context variable.
+// Заметьте, что несмотря на то, 
+// что минимальное необходимое количество ETH равно tx.ergsPrice * tx.ergsLimit,
+// ни paymaster, ни аккаунт не имеют доступа к этой контекстуальной переменной.
 uint256 requiredETH = _transaction.ergsLimit * _transaction.maxFeePerErg;
 
-// Pulling all the tokens from the user
+// Подтягиваем все токены пользователя
 IERC20(token).transferFrom(userAddress, thisAddress, 1);
-// The bootloader never returns any data, so it can safely be ignored here.
+// bootloader никогда не возвращет никаких данных, 
+//так что его можно здесь спокойно игнорировать 
 (bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{value: requiredETH}("");
 require(success, "Failed to transfer funds to the bootloader");
 ```
 
 {% hint style="success" %}
-**В первую очередь вы должны подтвердить удовлетворения всем требованиям**
+**В первую очередь вы должны подтвердить удовлетворение всем требованиям**
 
-[Правила](https://v2-docs.zksync.io/dev/developer-guides/aa.html#paymaster-validation-rules) замедления (троттлинга) paymaster'a гласят, что paymaster не будет замедлен в случае, если первым хранилищем, считанное значение которого отличалось от исполненного в API, был слот хранилища принадлежащий пользователю.&#x20;
+[Правила](../../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/#the-transaction-flow) замедления (троттлинга) paymaster'a гласят, что paymaster не будет замедлен в случае, если первым хранилищем, считанное значение которого отличалось от исполненного в API, был слот хранилища принадлежащий пользователю.&#x20;
 
 Поэтому важно убедиться, что пользователь предоставил все разрешения для транзакции _перед_ реализацией какой-либо логики. По этой причине мы _сначала_ проверяем, предоставил ли пользователь достаточное разрешение на трату, и только после этого мы выполняем `transferFrom`.
 {% endhint %}
 
 #### Полный код paymaster
 
-```solidity
-// SPDX-License-Identifier: MIT
+<pre class="language-solidity"><code class="lang-solidity">// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import { IPaymaster, ExecutionResult } from '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol';
@@ -164,8 +171,7 @@ contract MyPaymaster is IPaymaster {
 
     modifier onlyBootloader() {
         require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
-        // Continure execution if called from the bootloader.
-        _;
+        // Продложить исполнение, если вызов был от bootloader
     }
 
     constructor(address _erc20) {
@@ -188,14 +194,16 @@ contract MyPaymaster is IPaymaster {
             uint256 providedAllowance = IERC20(token).allowance(userAddress, thisAddress);
             require(providedAllowance >= PRICE_FOR_PAYING_FEES, "The user did not provide enough allowance");
 
-            // Note, that while the minimal amount of ETH needed is tx.ergsPrice * tx.ergsLimit,
-            // neither paymaster nor account are allowed to access this context variable.
+            // Заметьте, что несмотря на то, 
+<strong>            // что минимальное необходимое количество ETH равно tx.ergsPrice * tx.ergsLimit,
+</strong>            // ни paymaster, ни аккаунт не имеют доступа к этой контекстуальной переменной.
             uint256 requiredETH = _transaction.ergsLimit * _transaction.maxFeePerErg;
 
-            // Pulling all the tokens from the user
+            // Подтягиваем все токены пользователя
             IERC20(token).transferFrom(userAddress, thisAddress, 1);
-            // The bootloader never returns any data, so it can safely be ignored here.
-            (bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{value: requiredETH}("");
+           // bootloader никогда не возвращет никаких данных, 
+<strong>            //так что здесь его можно спокойно игнорировать 
+</strong>            (bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{value: requiredETH}("");
             require(success, "Failed to transfer funds to the bootloader");
         } else {
             revert("Unsupported paymaster flow");
@@ -210,12 +218,12 @@ contract MyPaymaster is IPaymaster {
         ExecutionResult _txResult,
         uint256 _maxRefundedErgs
     ) external payable onlyBootloader {
-        // This contract does not support any refunding logic
+        // Данный контракт не поддерживает никакой логики возврата средств
     }
 
     receive() external payable {}
 }
-```
+</code></pre>
 
 ### Развертывание контракта ERC20
 
@@ -263,28 +271,28 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  // The wallet that will deploy the token and the paymaster
-  // It is assumed that this wallet already has sufficient funds on zkSync
-  // ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
+  // Кошелек, который будет развертывать токен и paymaster'a
+  // Предполагается, что этот кошелек имеет достаточно средств на zkSync
+  // ⚠️ Никогда не передавайте приватные ключи в историю файлов, иначе ваш аккаунт может быть скомпрометирован.
   const wallet = new Wallet("<PRIVATE-KEY>");
-  // The wallet that will receive ERC20 tokens
+  // Кошелек, который получит токены ERC20.
   const emptyWallet = Wallet.createRandom();
   console.log(`Empty wallet's address: ${emptyWallet.address}`);
   console.log(`Empty wallet's private key: ${emptyWallet.privateKey}`);
 
   const deployer = new Deployer(hre, wallet);
 
-  // Deploying the ERC20 token
+  // Развертывание токена ERC20
   const erc20Artifact = await deployer.loadArtifact("MyERC20");
   const erc20 = await deployer.deploy(erc20Artifact, ["MyToken", "MyToken", 18]);
   console.log(`ERC20 address: ${erc20.address}`);
 
-  // Deploying the paymaster
+  // Развертывание paymaster
   const paymasterArtifact = await deployer.loadArtifact("MyPaymaster");
   const paymaster = await deployer.deploy(paymasterArtifact, [erc20.address]);
   console.log(`Paymaster address: ${paymaster.address}`);
 
-  // Supplying paymaster with ETH
+  // Передаем ETH paymaster'У
   await (
     await deployer.zkWallet.sendTransaction({
       to: paymaster.address,
@@ -292,8 +300,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     })
   ).wait();
 
-  // Supplying the ERC20 tokens to the empty wallet:
-  await // We will give the empty wallet 3 units of the token:
+  // Передаем токеныERC20 на пустой кошелек:
+  await // Мы передадим пустому кошельку 3 единицы токена:
   (await erc20.mint(emptyWallet.address, 3)).wait();
 
   console.log("Minted 3 tokens for the empty wallet");
@@ -302,7 +310,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-Помимо развертывания paymaster он также создает пустой кошелек и начисляет на него токены `MyERC20`, чтобы можно было использовать paymaster.
+Помимо развертывания paymaster, он также создает пустой кошелек и начисляет на него токены `MyERC20`, чтобы можно было использовать paymaster.
 
 Для развертывания токена ERC20 и paymaster'a вам нужно скомпилировать контракты и запустить скрипт:
 
@@ -333,14 +341,14 @@ import { Provider, utils, Wallet } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
-// Put the address of the deployed paymaster here
+// Вставьте сюда адрес развернуто гоpaymaster
 const PAYMASTER_ADDRESS = "<PAYMASTER_ADDRESS>";
 
-// Put the address of the ERC20 token here:
+// А сюда вставьте адрес токена ERC20:
 const TOKEN_ADDRESS = "<TOKEN_ADDRESS>";
 
-// Wallet private key
-// ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
+// Приватный ключ кошелька
+// ⚠️ Никогда не передавайте приватные ключи в историю файлов, иначе ваш аккаунт может быть скомпрометирован.
 const EMPTY_WALLET_PRIVATE_KEY = "<EMPTY_WALLET_PRIVATE_KEY>";
 
 function getToken(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
@@ -352,7 +360,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const provider = new Provider(hre.config.zkSyncDeploy.zkSyncNetwork);
   const emptyWallet = new Wallet(EMPTY_WALLET_PRIVATE_KEY, provider);
 
-  // Obviously this step is not required, but it is here purely to demonstrate that indeed the wallet has no ether.
+  // Очевидно, этот шаг необязателен, и он присутствует лишь для демонстрации того,
+  // что на кошельке на самом деле нет ETH.
   const ethBalance = await emptyWallet.getBalance();
   if (!ethBalance.eq(0)) {
     throw new Error("The wallet is not empty");
@@ -364,13 +373,13 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   const gasPrice = await provider.getGasPrice();
 
-  // Estimate gas fee for mint transaction
+  // Расчитаем комиссию за транзакцию mint
   const gasLimit = await erc20.estimateGas.mint(emptyWallet.address, 100, {
     customData: {
       ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
       paymasterParams: {
         paymaster: PAYMASTER_ADDRESS,
-        // empty input as our paymaster doesn't require additional data
+        // пустой ввод, т.к. нашему paymaster не нужный доп. данные 
         paymasterInput: "0x",
       },
     },
@@ -378,24 +387,24 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   const fee = gasPrice.mul(gasLimit.toString());
 
-  // Encoding the "ApprovalBased" paymaster flow's input
+  // Кодируем вводные данные для "ApprovalBased" порядка исполнения paymaster
   const paymasterParams = utils.getPaymasterParams(PAYMASTER_ADDRESS, {
     type: "ApprovalBased",
     token: TOKEN_ADDRESS,
-    // set minimalAllowance as we defined in the paymaster contract
+    // Устанавливаем minimalAllowance таким же, как мы определили в контракте paymaster
     minimalAllowance: ethers.BigNumber.from(1),
-    // empty bytes as testnet paymaster does not use innerInput
+    // пустные байты, т.к. testnet paymaster не использует innerInput
     innerInput: new Uint8Array(),
   });
 
   await (
     await erc20.mint(emptyWallet.address, 100, {
-      // Provide gas params manually
+      // Предоставьте параметры газа вручнуюProvide gas params manually
       maxFeePerGas: gasPrice,
       maxPriorityFeePerGas: gasPrice,
       gasLimit,
 
-      // paymaster info
+      // информация о paymaster
       customData: {
         paymasterParams,
         ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
@@ -430,10 +439,10 @@ Balance of the user after mint: 102
 
 ### Полный проект
 
-Вы можете скачать полный проект [здесь](https://github.com/matter-labs/custom-paymaster-tutorial).
+Вы можете загрузить полный проект [отсюда](https://github.com/matter-labs/custom-paymaster-tutorial).
 
 ### Узнать больше
 
-* Узнать больше о коммуникации L1-> L2 на zkSync можно на этой [странице документации](broken-reference).
+* Узнать больше о коммуникации L1-> L2 на zkSync можно на этой [странице документации](../../ponimanie-zksync/kommunikaciya-l1-greater-than-l2/).
 * Узнать больше о `zksync-web3` SDK можно на этой странице [документации](https://v2-docs.zksync.io/api/js).
 * Узнать больше о hardhat плагинах zkSync можно на этой странице [документации](https://v2-docs.zksync.io/api/hardhat).
