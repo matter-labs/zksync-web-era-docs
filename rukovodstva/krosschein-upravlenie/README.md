@@ -586,5 +586,5 @@ The counter value is 1
 ### Узнать больше
 
 * Чтобы узнать больше о взаимодействии L1->L2 в zkSync, ознакомьтесь с документацией [тут](../../ponimanie-zksync/kommunikaciya-l1-greater-than-l2/).
-* Чтобы узнать больше о `zksync-web3` SDK, ознакомьтесь с его документацией [тут](../../api-reference/javascript-web3-sdk/).
+* Чтобы узнать больше о `zksync-web3` SDK, ознакомьтесь с его документацией [тут](../../instrumenty-sdk/api-reference/javascript-web3-sdk/).
 * Чтобы узнать больше о `hardhat` плагинах zkSync, ознакомьтесь с их документацией [тут](https://v2-docs.zksync.io/api/hardhat).

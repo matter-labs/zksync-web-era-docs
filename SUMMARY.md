@@ -147,14 +147,14 @@
     * [Почему появляется ошибка компиляции unexpected end of JSON input ?](https://app.gitbook.com/s/murhp2cgBIKXfRLqThaC/ustranenie-nepoladok/izvestnye-problemy#why-is-there-an-unexpected-end-of-json-input-compilation-error)
     * [Почему я не могу использовать опкоды CREATE/CREATE2 через необработанный байткод?](https://app.gitbook.com/s/murhp2cgBIKXfRLqThaC/ustranenie-nepoladok/izvestnye-problemy#why-can-t-i-use-create-create2-opcodes-with-raw-bytecode)
     * [Почему не работает Hardhat'овский console.log?](https://app.gitbook.com/s/murhp2cgBIKXfRLqThaC/ustranenie-nepoladok/izvestnye-problemy#why-is-hardhat-s-console-log-not-working)
-* [API Reference](api-reference/README.md)
-  * [Обзор](api-reference/obzor.md)
-  * [Web3 API](api-reference/web3-api.md)
-  * [Интерфейс контрактов L1](api-reference/interfeis-kontraktov-l1.md)
-  * [JavaScript Web3 SDK](api-reference/javascript-web3-sdk/README.md)
-    * [Начало](api-reference/javascript-web3-sdk/nachalo.md)
-    * [Провайдеры](api-reference/javascript-web3-sdk/provaidery.md)
 
 ## 🛠 Инструменты / SDK
 
+* [API Reference](instrumenty-sdk/api-reference/README.md)
+  * [Обзор](instrumenty-sdk/api-reference/obzor.md)
+  * [Web3 API](instrumenty-sdk/api-reference/web3-api.md)
+  * [Интерфейс контрактов L1](instrumenty-sdk/api-reference/interfeis-kontraktov-l1.md)
+  * [JavaScript Web3 SDK](instrumenty-sdk/api-reference/javascript-web3-sdk/README.md)
+    * [Начало](instrumenty-sdk/api-reference/javascript-web3-sdk/nachalo.md)
+    * [Провайдеры](instrumenty-sdk/api-reference/javascript-web3-sdk/provaidery.md)
 * [Page 1](instrumenty-sdk/page-1.md)
