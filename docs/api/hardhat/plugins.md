@@ -39,7 +39,7 @@ zksolc: {
       dockerImage: "matterlabs/zksolc", // required for compilerSource: "docker"
       tag: "latest"   // required for compilerSource: "docker"
     },
-    libraries{} // optional. References to non-inlinable libraries
+    libraries:{} // optional. References to non-inlinable libraries
   }
 }
 networks: {

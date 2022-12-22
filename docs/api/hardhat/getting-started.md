@@ -53,11 +53,7 @@ module.exports = {
     settings: {
       optimizer: {
         enabled: true,
-      },
-      experimental: {
-        dockerImage: "matterlabs/zksolc",
-        tag: "v1.2.0",
-      },
+      }
     },
   },
   defaultNetwork: "zkTestnet",
