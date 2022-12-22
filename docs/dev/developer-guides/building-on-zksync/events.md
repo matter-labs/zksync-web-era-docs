@@ -57,6 +57,6 @@ listenEvents()
 - Indexed parameter : The indexed parameter of the event.
 - Block number: The block number range for the events retrieval, it involves the `START_BLOCK_NUMBER` and the `END_BLOCK_NUMBER`.
 
-**Note**: zkSync has a 10K log limit per response, however, if you receive a response with 10k events then there are more than 10k events in the block range, otherwise, there are less than 10k events. 
+**Note**: zkSync has a 10K log limit per response. This means that if you receive a response with 10k events, it will most likely contain additional events so it'd be a good idea to adjust the filters to retrieve the events in multiple batches.
 
 
