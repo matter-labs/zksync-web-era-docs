@@ -421,21 +421,19 @@ This plugin is used to verify contracts on the zkSync 2.0 network.
 
 [@matterlabs/hardhat-zksync-verify](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-verify)
 
-This plugin is used in conjunction with [@nomiclabs/hardhat-etherscan](https://www.npmjs.com/package/@nomiclabs/hardhat-etherscan) and it supports backward compatibility with that plugin.
-To verify contracts on zkSync, you have to install and import `@matterlabs/hardhat-zksync-verify` in the `hardhat.config.ts` file.
-
-```javascript
-import "@matterlabs/hardhat-zksync-verify";
-```
-
-Add the latest version of this plugin to your project with the following command:
+The plugin is used in conjunction with [@nomiclabs/hardhat-etherscan](https://www.npmjs.com/package/@nomiclabs/hardhat-etherscan) and it supports backward compatibility with that plugin.
+To use it, you have to install both plugins and then import `@matterlabs/hardhat-zksync-verify` in the hardhat.config.ts file.
 
 ``` typescript
 # Yarn
-yarn add -D @matterlabs/hardhat-zksync-verify
+yarn add -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
 
 # Npm
-npm i -D @matterlabs/hardhat-zksync-verify
+npm i -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
+```
+
+```javascript
+import "@matterlabs/hardhat-zksync-verify";
 ```
 
 ### Exports
