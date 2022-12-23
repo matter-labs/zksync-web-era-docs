@@ -150,9 +150,9 @@
 
 ## 🛠 Инструменты / SDK
 
+* [Обзор](instrumenty-sdk/obzor.md)
+* [Web3 API](instrumenty-sdk/web3-api.md)
 * [API Reference](instrumenty-sdk/api-reference/README.md)
-  * [Обзор](instrumenty-sdk/api-reference/obzor.md)
-  * [Web3 API](instrumenty-sdk/api-reference/web3-api.md)
   * [Интерфейс контрактов L1](instrumenty-sdk/api-reference/interfeis-kontraktov-l1.md)
   * [JavaScript Web3 SDK](instrumenty-sdk/api-reference/javascript-web3-sdk/README.md)
     * [Начало](instrumenty-sdk/api-reference/javascript-web3-sdk/nachalo.md)
