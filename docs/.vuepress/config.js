@@ -35,12 +35,18 @@ module.exports = {
     ],
   ],
   themeConfig: {
+    // algolia: {
+    //   apiKey: 'LCWOUB1OFO',
+    //   indexName: '6c6d0d793fc59f3295143fd50027a372',
+    //   appId: 'v2-zksync',
+    // },
     repo: "matter-labs/zksync-web-v2-docs",
     editLinks: true,
     docsDir: "docs",
     docsBranch: "main",
     logo: "/LogotypeLight.svg",
     lastUpdated: "Last Updated",
+    
     nav: [
       // {
       //   text: "User Docs",
@@ -176,7 +182,7 @@ module.exports = {
         },
         {
           title: "Python SDK", // required
-          path: "/api/python/getting-started", // optional, which should be a absolute path.
+          path: "/api/python/", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
           children: ["/api/python/getting-started"],
