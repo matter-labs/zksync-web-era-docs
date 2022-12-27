@@ -10,14 +10,14 @@ module.exports = {
     md.use(require("markdown-it-footnote"));
   },
   plugins: [
-      "vuepress-plugin-table-of-contents",
-      "@vuepress/back-to-top",
+    "vuepress-plugin-table-of-contents",
+    "@vuepress/back-to-top",
     [
       "vuepress-plugin-dehydrate",
       {
         noSSR: "404.html",
         noScript: [],
-      }
+      },
     ],
     [
       "flexsearch",
@@ -46,7 +46,7 @@ module.exports = {
     docsBranch: "main",
     logo: "/LogotypeLight.svg",
     lastUpdated: "Last Updated",
-    
+
     nav: [
       // {
       //   text: "User Docs",
@@ -118,6 +118,7 @@ module.exports = {
           children: [
             "/dev/developer-guides/hello-world.md",
             "/dev/developer-guides/contracts/contracts.md",
+            "/dev/developer-guides/contracts/contracts-deployment.md",
             "/dev/developer-guides/contracts/contract-verification.md",
             "/dev/developer-guides/building-on-zksync/events.md",
             "/dev/developer-guides/building-on-zksync/rpc.md",
