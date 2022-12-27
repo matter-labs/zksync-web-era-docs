@@ -118,7 +118,7 @@ module.exports = {
           children: [
             "/dev/developer-guides/hello-world.md",
             "/dev/developer-guides/contracts/contracts.md",
-            "/dev/developer-guides/contracts/contracts-deployment.md",
+            "/dev/developer-guides/contracts/contract-deployment.md",
             "/dev/developer-guides/contracts/contract-verification.md",
             "/dev/developer-guides/building-on-zksync/events.md",
             "/dev/developer-guides/building-on-zksync/rpc.md",
