@@ -25,30 +25,30 @@ To specify additional fields, like the custom signature for custom accounts or t
 "factory_deps": ["0x..."]
 ```
 
-- `ergsPerPubdata`: is a field that describes the maximal amount of ergs the user is willing to pay for a single byte of pubdata. 
-- `customSignature` is a field with a custom signature, in case the signer's account is not EOA. 
+- `ergsPerPubdata`: is a field that describes the maximal amount of ergs the user is willing to pay for a single byte of pubdata.
+- `customSignature` is a field with a custom signature, in case the signer's account is not EOA.
 - `paymasterParams` is a field with parameters for configuring the custom paymaster for the transaction. The address of the paymaster and the encoded input to call it are in the paymaster parameters.
-- `factory_deps` is a field that should be a non-empty array of `bytes` for deployment transactions. It should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
+- `factory_deps` is a field that should be a non-empty array of `bytes`. For deployment transactions it should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
 
 To let the server recognize EIP712 transactions, the `transaction_type` field is equal to `113` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
 
 Instead of signing the RLP-encoded transaction, the user signs the following typed EIP712 structure:
 
-| Field name              | Type      |
-| ----------------------- | --------- |
+| Field name              | Type        |
+| ----------------------- | ----------- |
 | txType                  | `uint256`   |
-| from                  | `uint256`   |
-| to                  | `uint256`   |
-| ergsLimit                  | `uint256`   |
-| ergsPerPubdataByteLimit                  | `uint256`   |
-| maxFeePerErg                      | `uint256 ` |
-| maxPriorityFeePerErg                   | `uint256` |
-| paymaster                    | `uint256`   |
-| nonce                | `uint256` |
-| value               | `uint256` |
-| data                | `bytes` |
-| factoryDeps | `bytes32[]` |
-| paymasterInput               | `bytes` |
+| from                    | `uint256`   |
+| to                      | `uint256`   |
+| ergsLimit               | `uint256`   |
+| ergsPerPubdataByteLimit | `uint256`   |
+| maxFeePerErg            | `uint256 `  |
+| maxPriorityFeePerErg    | `uint256`   |
+| paymaster               | `uint256`   |
+| nonce                   | `uint256`   |
+| value                   | `uint256`   |
+| data                    | `bytes`     |
+| factoryDeps             | `bytes32[]` |
+| paymasterInput          | `bytes`     |
 
 These fields are conveniently handled by our [SDK](./js/features.md).
 
@@ -58,7 +58,7 @@ All zkSync-specific methods are located in the `zks_` namespace. The API may als
 
 ::: warning
 
-Please note that Metamask does not support zks_ namespace's methods, we are working to support it in the future, alternatively, you can use the `Provider` class with the testnet RPC instead of relying on Metamask's injected provider.
+Please note that Metamask does not support zks\_ namespace's methods, we are working to support it in the future, alternatively, you can use the `Provider` class with the testnet RPC instead of relying on Metamask's injected provider.
 
 :::
 
@@ -145,6 +145,7 @@ The tokens are returned in alphabetical order by their symbols, so a token's id 
   }
 ]
 ```
+
 ### `zks_getL2ToL1LogProof`
 
 Given a transaction hash, and an index of the L2 to L1 log produced within the transaction, it returns the proof for the corresponding L2 to L1 log.
@@ -153,10 +154,10 @@ The index of the log that can be obtained from the transaction receipt (it inclu
 
 ### Input parameters
 
-| Parameter | Type      | Description                                                                               |
-| --------- | --------- | ----------------------------------------------------------------------------------------- |
-| tx_hash   | `bytes32` | Hash of the L2 transaction the L2 to L1 log was produced within.                                   |
-| l2_to_l1_log_index| `undefined` &#124; `number` | The Index of the L2 to L1 log in the transaction. |
+| Parameter          | Type                        | Description                                                      |
+| ------------------ | --------------------------- | ---------------------------------------------------------------- |
+| tx_hash            | `bytes32`                   | Hash of the L2 transaction the L2 to L1 log was produced within. |
+| l2_to_l1_log_index | `undefined` &#124; `number` | The Index of the L2 to L1 log in the transaction.                |
 
 ### Output format
 
@@ -176,18 +177,18 @@ Otherwise, the object of the following format is returned:
   "root": "0x6a420705824f0a3a7e541994bc15e14e6a8991cd4e4b2d35c66f6e7647760d97"
 }
 ```
+
 The `id` is the position of the leaf in the Merkle tree of L2->L1 messages for the block. The `proof` is the Merkle proof for the message, while the `root ` is the root of the Merkle tree of L2->L1 messages. Please note, that the Merkle tree uses _sha256_ for the trees.
 
 You do not need to care about the intrinsics, since the returned `id` and `proof` can be used right away for interacting with the zkSync smart contract.
 
 A nice example of using this endpoint via our SDK can be found [here](../dev/developer-guides/bridging/l2-l1.md).
 
-
 ::: tip
 
-The list of L2 to L1 logs produced by the transaction, which is included in the receipts, is a combination of logs produced by L1Messenger contract or other system contracts/bootloader. 
+The list of L2 to L1 logs produced by the transaction, which is included in the receipts, is a combination of logs produced by L1Messenger contract or other system contracts/bootloader.
 
-There is a log produced by the bootloader for every L1 originated transaction that shows if the transaction has succeeded. 
+There is a log produced by the bootloader for every L1 originated transaction that shows if the transaction has succeeded.
 
 :::
 
@@ -197,12 +198,12 @@ Given a block, a sender, a message, and an optional message log index in the blo
 
 ### Input parameters
 
-| Parameter | Type      | Description                                                                               |
-| --------- | --------- | ----------------------------------------------------------------------------------------- |
-| block     | `uint32`  | The number of the block where the message was emitted.                                    |
-| sender    | `address` | The sender of the message (i.e. the account that called the L1Messenger system contract). |
-| msg       | `bytes32` | The keccak256 hash of the sent message.                                          |
-| l2_log_position       | `uint256` &#124; `null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/contracts/system-contracts.md#il1messenger) when submitting this message. If it is ommitted, the proof for the first message with such content will be returned.                                          |
+| Parameter       | Type                    | Description                                                                                                                                                                                                                                                        |
+| --------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| block           | `uint32`                | The number of the block where the message was emitted.                                                                                                                                                                                                             |
+| sender          | `address`               | The sender of the message (i.e. the account that called the L1Messenger system contract).                                                                                                                                                                          |
+| msg             | `bytes32`               | The keccak256 hash of the sent message.                                                                                                                                                                                                                            |
+| l2_log_position | `uint256` &#124; `null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/contracts/system-contracts.md#il1messenger) when submitting this message. If it is ommitted, the proof for the first message with such content will be returned. |
 
 ### Output format
 
@@ -215,7 +216,7 @@ The same as in [zks_getL2ToL1LogProof](#output-format-4).
 :::
 
 ### `zks_getBridgeContracts`
- 
+
 Returns L1/L2 addresses of default bridges.
 
 ### Input parameters
@@ -253,9 +254,9 @@ Returns additional ZkSync-specific information about the L2 block.
 
 ### Input parameters
 
-| Parameter | Type     | Description                                                                  |
-| --------- | -------- | ---------------------------------------------------------------------------- |
-| block     | `uint32` | The number of the block.                                                     |
+| Parameter | Type     | Description              |
+| --------- | -------- | ------------------------ |
+| block     | `uint32` | The number of the block. |
 
 ### Output format
 
@@ -275,7 +276,6 @@ Returns additional ZkSync-specific information about the L2 block.
   "timestamp": 1670834504
 }
 ```
-
 
 <!-- TODO: uncomment once fixed --->
 <!-- ### `zks_getTokenPrice`
@@ -358,6 +358,6 @@ Don't want to document (at least for now):
 
 ## PubSub API
 
-zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/rpc/pubsub), except for the `syncing` subscription, as it doesn't have meaning for the zkSync network since technically our nodes are always synced.
+zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/rpc/pubsub), except for the `syncing` subscription, as it doesn't have meaning for the zkSync network since technically our nodes are always synced. You can learn more about how to use it to handle events in [this section of the docs](../dev/developer-guides/building-on-zksync/events.md).
 
 The WebSocket URL is `wss://zksync2-testnet.zksync.dev/ws`.
