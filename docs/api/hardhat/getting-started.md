@@ -53,7 +53,7 @@ module.exports = {
     settings: {
       optimizer: {
         enabled: true,
-      }
+      },
     },
   },
   defaultNetwork: "zkTestnet",
@@ -61,8 +61,8 @@ module.exports = {
     zkTestnet: {
       url: "https://zksync2-testnet.zksync.dev", // URL of the zkSync network RPC
       ethNetwork: "goerli", // Can also be the RPC URL of the Ethereum network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
-      zksync: true
-    }
+      zksync: true,
+    },
   },
   solidity: {
     version: "0.8.16",
@@ -179,7 +179,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 - Update the greet message in the contract with the `setGreeting()` method.
 - Retrieve the message from the contract again.
 
-**Congratulations! Your Hardhat project is now running on zkSync 🎉**
+**Congratulations! Your Hardhat project is now running on zkSync 2.0 testnet 🎉**
 
 ## Learn more
 
