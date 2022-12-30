@@ -43,17 +43,14 @@ The `typescript` and `ts-node` dependencies are optional - plugins will work fin
 2. Create the `hardhat.config.ts` file and paste the following code within it:
 
 ```typescript
-require("@matterlabs/hardhat-zksync-deploy");
-require("@matterlabs/hardhat-zksync-solc");
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.2.0",
+    version: "1.2.2",
     compilerSource: "binary",
-    settings: {
-      optimizer: {
-        enabled: true,
-      },
+    settings: {},
     },
   },
   defaultNetwork: "zkTestnet",
