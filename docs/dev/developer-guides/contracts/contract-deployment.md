@@ -1,23 +1,27 @@
 # Contract deployment
 
+## Overview
+
 To maintain the same security as in L1, the zkSync operator must publish on the Ethereum chain the contract code for each contract it deploys. However, if there are multiple contracts deployed with the same code, it will only publish it on Ethereum once. While deploying contracts for the first time may be relatively expensive, factories, which deploy contracts with the same code multiple times, can have huge savings compared to L1.
 
-All these specifics make the process of deploying smart contracts on zkEVM comply with the major rule: _The operator should know the code of the contract before it is deployed_. This means that deploying contracts is only possible via `EIP712` transactions with the `factory_deps` field containing the supplied bytecode. [Learn more about EIP712 transactions here](../../../api/api.md#eip712).
+All these specifics make the process of deploying smart contracts on zkEVM comply with the major rule: _The operator should know the code of the contract before it is deployed_. This means that deploying contracts is only possible via `EIP712` transactions with the `factory_deps` field containing the supplied bytecode.
+
+[Learn more about EIP712 transactions here](../../../api/api.md#eip712).
 
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
-## Deploying contracts on Ethereum vs zkSync
+## Ethereum / zkSync differences
 
-<!-- - **How deploying contracts works on Ethereum.** -->
+**How deploying contracts works on Ethereum.**
 
-**To deploy a contract on Ethereum**, a user sends a transaction to the zero address (`0x000...000`) with the `data` field of the transaction equal to the contract bytecode concatenated with the constructor parameters.
+To deploy a contract on Ethereum, a user sends a transaction to the zero address (`0x000...000`) with the `data` field of the transaction equal to the contract bytecode concatenated with the constructor parameters.
 
-<!-- - **How deploying contracts works on zkSync.** -->
+**How deploying contracts works on zkSync.**
 
-**To deploy a contract on zkSync 2.0**, a user calls the `create` function of the [ContractDeployer system contract](./system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
+To deploy a contract on zkSync 2.0, a user calls the `create` function of the [ContractDeployer system contract](./system-contracts.md#contractdeployer) providing the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the transaction (as it's an [EIP712 transaction](../../../api/api.md#eip712)). If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
-Although users can deploy their contracts programatically, we recommend using the [hardhat-zksync-deploy](../../../api/hardhat) plugin, which takes care of the deployment process. Here's a [guide on how to use it](../../../api/hardhat/getting-started.md).
+To simplify this process, we recommend using the [hardhat-zksync-deploy](../../../api/hardhat) plugin, which takes care of the deployment requirements, like generating the [bytecode hash](#format-of-bytecode-hash). Here's a [guide on how to use it](../../../api/hardhat/getting-started.md).
 
 ### Note on `factory deps`
 

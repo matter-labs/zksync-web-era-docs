@@ -1,6 +1,6 @@
 # Smart contract development
 
-Here is all the info you need to develop smart contracts for zkSync 2.0.
+zkSync 2.0 allows developers to build applications using the same set of tools and programming languages used to build on Ethereum.
 
 ## Solidity & Vyper support
 
@@ -23,3 +23,7 @@ Although you can write smart contracts in both Solidty and Vyper, compiling thes
 These are available as binaries but we recommend using them via [their correspondent Hardhat plugins](../../../api/hardhat/plugins.md). These plugins are easy to setup so developers can compile new projects or migrate existing ones to zkSync 2.0.
 
 Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are supported as precompiles. No actions are required from your side as all the calls to the precompiles are handled by the compiler under the hood.
+
+### Compile existing projects to zkSync
+
+To compile an existing project
