@@ -1,7 +1,5 @@
 # Contract deployment
 
-## Overview
-
 To maintain the same security as in L1, the zkSync operator must publish on the Ethereum chain the contract code for each contract it deploys. However, if there are multiple contracts deployed with the same code, it will only publish it on Ethereum once. While deploying contracts for the first time may be relatively expensive, factories, which deploy contracts with the same code multiple times, can have huge savings compared to L1.
 
 All these specifics make the process of deploying smart contracts on zkEVM comply with the major rule: _The operator should know the code of the contract before it is deployed_. This means that deploying contracts is only possible via `EIP712` transactions with the `factory_deps` field containing the supplied bytecode.
@@ -21,7 +19,9 @@ To deploy a contract on Ethereum, a user sends a transaction to the zero address
 
 To deploy a contract on zkSync 2.0, a user calls the `create` function of the [ContractDeployer system contract](./system-contracts.md#contractdeployer) providing the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the transaction (as it's an [EIP712 transaction](../../../api/api.md#eip712)). If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
-To simplify this process, we recommend using the [hardhat-zksync-deploy](../../../api/hardhat) plugin, which takes care of the deployment requirements, like generating the [bytecode hash](#format-of-bytecode-hash). Here's a [guide on how to use it](../../../api/hardhat/getting-started.md).
+We recommend using the [hardhat-zksync-deploy](../../../api/hardhat) plugin, to simplify the deployment process. It provides classes and methods to take care of all the deployment requirements, like generating the [bytecode hash of the contract](#format-of-bytecode-hash).
+
+Here's a [step-by-step guide on how to use it](../../../api/hardhat/getting-started.md).
 
 ### Note on `factory deps`
 
@@ -32,7 +32,7 @@ Some examples of usage are:
 - The obvious one is when you deploy a contract, you need to provide its code in the `factory_deps` field.
 - On zkSync, factories (i.e. contracts that can deploy other contracts) do not store bytecodes of their dependencies, i.e. contracts that they can deploy. They only store their hashes. That's why you need to include _all_ the bytecodes of the dependencies in the `factory_deps` field.
 
-Both of these examples are already seamlessly done under the hood by our [hardhat-zksync-plugin](../../../api/hardhat/getting-started.md).
+Both of these examples are already seamlessly done under the hood by our [hardhat-zksync-deploy](../../../api/hardhat/getting-started.md).
 
 Note, that the factory deps do not necessarily have to be used by the transaction in any way. These are just markers that these bytecodes should be published on L1 with this transaction. If your contract contains a lot of various factory dependencies and they do not fit inside a single L1 block, you can split the list of factory dependencies between multiple transactions.
 
@@ -58,8 +58,12 @@ For the ease of supporting account abstraction, for each account, we split the n
 
 This means that while for smart contracts the nonce on zkSync behaves the same way as on Ethereum, for EOAs calculating the address of the deployed contract is not as straightforward. On Ethereum, it can be safely calculated as `hash(RLP[address, nonce])`, while on zkSync it is recommended to wait until the contract is deployed and catch the `ContractDeployed` event emitted by [ContractDeployer](./system-contracts.md#contractdeployer) with the address of the newly deployed contract. All of this is done in the background by the SDK.
 
-To gain a deterministic address, you should use `create2`. It is available for EOAs as well, but it is not available in the SDK yet.
+To gain a deterministic address, you should use the `create2` method from [ContractDeployer](./system-contracts.md#contractdeployer). It is available for EOAs as well, but it is not available in the SDK yet.
 
-### L1->L2 communication on deployments
+## Deploying contracts from L1
 
-The [interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l1/contracts/zksync/interfaces/IMailbox.sol#L78) for submitting L1->L2 transactions accepts the list of all the factory dependencies required for this particular transaction. The logic for working with them is the same as for the L2 transactions. The only difference is that since the user has already published the full preimage for the bytecodes on L1, there is no need to publish these bytecodes again on L1.
+Deploying contracts on zkSync 2.0 is also possible via L1-L2 communication.
+
+The [interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l1/contracts/zksync/interfaces/IMailbox.sol#L78) for submitting L1->L2 transactions accepts the list of all the factory dependencies required for this particular transaction. The logic for working with them is the same as for the default L2 deployments. The only difference is that since the user has already published the full preimage for the bytecodes on L1, there is no need to publish these bytecodes again on L1.
+
+To learn more about L1-L2 communication on zkSync, visit [this section of the docs](../../developer-guides/bridging/l1-l2.md).

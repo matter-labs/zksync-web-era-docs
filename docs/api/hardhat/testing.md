@@ -114,8 +114,8 @@ This will enable running tests in a Hardhat environment with the `NODE_ENV` env 
 4. Modify `hardhat.config.ts` to use the local node for testing:
 
 ```typescript
-require("@matterlabs/hardhat-zksync-deploy");
-require("@matterlabs/hardhat-zksync-solc");
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-solc";
 
 // dynamically changes endpoints for local tests
 const zkSyncTestnet =
@@ -133,14 +133,9 @@ const zkSyncTestnet =
 
 module.exports = {
   zksolc: {
-    version: "1.2.1",
+    version: "1.2.2",
     compilerSource: "binary",
-    settings: {
-      experimental: {
-        dockerImage: "matterlabs/zksolc",
-        tag: "v1.2.1",
-      },
-    },
+    settings: {},
   },
   // defaults to zkSync network
   defaultNetwork: "zkSyncTestnet",
