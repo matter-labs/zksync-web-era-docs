@@ -9,7 +9,8 @@ The hardhat-zksync-toolbox plugin provides a convenient method for bundling and 
 
 List of supported plugins:
 
-- [hardhat-zksync-compile](#hardhat-zksync-solc)
+- [hardhat-zksync-solc](#hardhat-zksync-solc)
+- [hardhat-zksync-vyper](#hardhat-zksync-vyper)
 - [hardhat-zksync-deploy](#hardhat-zksync-deploy)
 - [hardhat-zksync-chai-matchers](#hardhat-zksync-chai-matchers)
 - [hardhat-zksync-verify](#hardhat-zksync-verify)
@@ -20,7 +21,7 @@ Add the latest version of this plugin to your project with the following command
 
 ```
 # Yarn
-yarn add -D @matterlabs/hardhat-zksync-toolbox @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-chai-matchers @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-verify hardhat ethers zksync-web3 @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan
+yarn add -D @matterlabs/hardhat-zksync-toolbox @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-vyper @matterlabs/hardhat-zksync-chai-matchers @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-verify hardhat ethers zksync-web3 @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan
 
 # Npm (version 7 or later is recommended)
 npm i -D @matterlabs/hardhat-zksync-toolbox
