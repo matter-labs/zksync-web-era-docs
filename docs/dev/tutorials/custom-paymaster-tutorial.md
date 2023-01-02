@@ -36,7 +36,7 @@ Then create the `hardhat.config.ts` config file, `contracts` and `deploy` folder
 
 ::: tip
 
-You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/zksync-cli/)
+You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/)
 
 :::
 
