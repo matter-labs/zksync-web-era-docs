@@ -12,7 +12,7 @@ The code is available [in the following repository](https://github.com/matter-la
 Install the zkSync CLI globally with the following command:
 
 ```
-npm i -g zksync-cli
+npm i -g zksync-cli@latest
 ```
 
 You can also run this via NPX with `npx zksync-cli@latest [COMMAND]`
