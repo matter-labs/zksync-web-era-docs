@@ -25,7 +25,7 @@ Here's a [step-by-step guide on how to use it](../../../api/hardhat/getting-star
 
 ### Note on `factory deps`
 
-Under the hood, zkSync stores not bytecodes of contracts, but [specially formatted](#format-of-bytecode-hash) hashes of their bytecodes. You can see that even the [ContractDeployer](./system-contracts.md#contractdeployer) system contract accepts the bytecode hash of the deployed contract and not its bytecode. However, for contract deployment to succeed, the operator needs to know the bytecode. Exactly for this reason the `factory_deps` (i.e. factory dependencies) field for transactions is used: it contains the bytecodes that should be known to the operator for this transaction to succeed. Once the transaction succeeds, these bytecodes will be published on L1 and will be considered "known" to the operator forever.
+Under the hood, zkSync stores not bytecodes of contracts, but [specially formatted hashes of their bytecodes](#format-of-bytecode-hash). You can see that even the [ContractDeployer](./system-contracts.md#contractdeployer) system contract accepts the bytecode hash of the deployed contract and not its bytecode. However, for contract deployment to succeed, the operator needs to know the bytecode. Exactly for this reason the `factory_deps` (i.e. factory dependencies) field for transactions is used: it contains the bytecodes that should be known to the operator for this transaction to succeed. Once the transaction succeeds, these bytecodes will be published on L1 and will be considered "known" to the operator forever.
 
 Some examples of usage are:
 
@@ -66,4 +66,4 @@ Deploying contracts on zkSync 2.0 is also possible via L1-L2 communication.
 
 The [interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l1/contracts/zksync/interfaces/IMailbox.sol#L78) for submitting L1->L2 transactions accepts the list of all the factory dependencies required for this particular transaction. The logic for working with them is the same as for the default L2 deployments. The only difference is that since the user has already published the full preimage for the bytecodes on L1, there is no need to publish these bytecodes again on L1.
 
-To learn more about L1-L2 communication on zkSync, visit [this section of the docs](../../developer-guides/bridging/l1-l2.md).
+To learn more about L1-L2 communication on zkSync 2.0, visit [this section of the docs](../../developer-guides/bridging/l1-l2.md).
