@@ -2,29 +2,53 @@ import { navbar } from "vuepress-theme-hope";
 
 export const enNavbar = navbar([
   "/",
-  { text: "Demo", icon: "discover", link: "/demo/" },
+  { 
+    text: "Developer Docs", 
+    link: "/dev/" 
+  },
+  { 
+    text: "Tools/SDKs", 
+    link: "/api/" 
+  },
+  { 
+    text: "Contact", 
+    link: "/contact.html" 
+  },
   {
-    text: "Guide",
-    icon: "creative",
-    prefix: "/guide/",
+    text: "Docs",
+    link: "/api/",
     children: [
       {
-        text: "Bar",
-        icon: "creative",
-        prefix: "bar/",
-        children: ["baz", { text: "...", icon: "more", link: "" }],
+        text: "v2.0",
+        icon: "play",
+        link: "/dev/",
       },
       {
-        text: "Foo",
-        icon: "config",
-        prefix: "foo/",
-        children: ["ray", { text: "...", icon: "more", link: "" }],
+        text: "v1.x",
+        icon: "play",
+        link: "https://docs.zksync.io",
       },
     ],
   },
   {
-    text: "V2 Docs",
-    icon: "note",
-    link: "https://vuepress-theme-hope.github.io/v2/",
+    text: "Community",
+    link: "/api/",
+    children: [
+      {
+        text: "Discord",
+        icon: "group",
+        link: "/dev/",
+      },
+      {
+        text: "Twitter",
+        icon: "leaf",
+        link: "/dev/",
+      },
+      {
+        text: "Medium",
+        icon: "wechat",
+        link: "https://docs.zksync.io",
+      },
+    ],
   },
 ]);

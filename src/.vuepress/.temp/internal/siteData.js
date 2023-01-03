@@ -1,4 +1,4 @@
-export const siteData = JSON.parse("{\"base\":\"/\",\"lang\":\"en-US\",\"title\":\"\",\"description\":\"\",\"head\":[],\"locales\":{\"/\":{\"lang\":\"en-US\",\"title\":\"Docs Demo\",\"description\":\"A docs demo for vuepress-theme-hope\"}}}")
+export const siteData = JSON.parse("{\"base\":\"/\",\"lang\":\"en-US\",\"title\":\"\",\"description\":\"\",\"head\":[],\"locales\":{\"/\":{\"lang\":\"en-US\",\"title\":\"\",\"description\":\"Accelerating the mass adoption of crypto for personal sovereignty\"}}}")
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()
