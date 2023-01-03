@@ -7,7 +7,7 @@
 <li>Deploy a smart contract.</li>
 <li>Interact with any smart contract.</li>
 </ol>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="prerequisite" tabindex="-1"><a class="header-anchor" href="#prerequisite" aria-hidden="true">#</a> Prerequisite</h2>
+<h2 id="prerequisite" tabindex="-1"><a class="header-anchor" href="#prerequisite" aria-hidden="true">#</a> Prerequisite</h2>
 <p>This guide assumes that you are familiar with the <a href="https://go.dev/doc/" target="_blank" rel="noopener noreferrer">Go<ExternalLinkIcon/></a> programming language.
 The Go version should be &gt;= 1.17, and Go modules are required.</p>
 <h2 id="installation" tabindex="-1"><a class="header-anchor" href="#installation" aria-hidden="true">#</a> Installation</h2>

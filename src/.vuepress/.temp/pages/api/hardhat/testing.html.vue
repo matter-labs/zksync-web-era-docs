@@ -1,7 +1,7 @@
 <template><div><h1 id="local-testing" tabindex="-1"><a class="header-anchor" href="#local-testing" aria-hidden="true">#</a> Local testing</h1>
 <p>Sometimes there is a need to test contracts in a local environment for network latency or fee reasons.</p>
 <p>zkSync team provides a dockerized local setup for this purpose.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="prerequisites" tabindex="-1"><a class="header-anchor" href="#prerequisites" aria-hidden="true">#</a> Prerequisites</h2>
+<h2 id="prerequisites" tabindex="-1"><a class="header-anchor" href="#prerequisites" aria-hidden="true">#</a> Prerequisites</h2>
 <p>It is required that you have <code v-pre>Docker</code> and <code v-pre>docker-compose</code> installed on your computer. Find the <a href="https://docs.docker.com/get-docker/" target="_blank" rel="noopener noreferrer">installation guide here<ExternalLinkIcon/></a></p>
 <p>This guide assumes that you're familiar with the zkSync Hardhat plugins. If you are new developing on zkSync with Hardhat, please check the <RouterLink to="/api/hardhat/getting-started.html">getting started section here</RouterLink>.</p>
 <h2 id="installing-the-testing-environment" tabindex="-1"><a class="header-anchor" href="#installing-the-testing-environment" aria-hidden="true">#</a> Installing the testing environment</h2>

@@ -15,9 +15,6 @@ The testnet paymaster is just for testing. If you decide to build a project on m
 
 :::
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## Prerequisites
 
 - `yarn` package manager. [Here is the installation guide](https://yarnpkg.com/getting-started/install)(`npm` examples will be added soon.)

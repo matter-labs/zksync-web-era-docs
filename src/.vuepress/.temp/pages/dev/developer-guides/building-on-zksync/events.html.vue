@@ -1,5 +1,5 @@
 <template><div><h1 id="handling-events" tabindex="-1"><a class="header-anchor" href="#handling-events" aria-hidden="true">#</a> Handling events</h1>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="overview" tabindex="-1"><a class="header-anchor" href="#overview" aria-hidden="true">#</a> Overview</h2>
+<h2 id="overview" tabindex="-1"><a class="header-anchor" href="#overview" aria-hidden="true">#</a> Overview</h2>
 <p>Events are a mechanism to publish information to listeners outside the blockchain, given that smart contracts themselves can't read them.</p>
 <p>Blockchains are public by design, and therefore make all information available to the public, and any actions can be discovered by carefully looking into the transactions. Events are a shortcut for making specific information easily available for external systems; they let dApps keep track of, and respond to what's happening to a smart contract. They can also be searched for because they are indexable. Therefore, you should emit an event anytime something occurs in your smart contract that some system outside the blockchain should be aware of so that the outside system may listen for such occurrences.
 Events are included in the transaction logs of the same block containing the original transaction.</p>

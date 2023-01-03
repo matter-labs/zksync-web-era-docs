@@ -1,8 +1,5 @@
 # Plugins
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## `hardhat-zksync-toolbox`
 
 The hardhat-zksync-toolbox plugin provides a convenient method for bundling and accessing a range of zkSync-related Hardhat plugins. This approach simplifies the process of utilizing these plugins and promotes ease of use.

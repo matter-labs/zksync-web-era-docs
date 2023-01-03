@@ -21,7 +21,7 @@ If the two sides match in every way, the contract is verified.</p>
 <h2 id="verifying-contracts-using-the-zksync-block-explorer" tabindex="-1"><a class="header-anchor" href="#verifying-contracts-using-the-zksync-block-explorer" aria-hidden="true">#</a> Verifying Contracts Using the zkSync Block Explorer</h2>
 <p>To get started click the <strong>Tools</strong> tab in the top header, a dropdown will pop up and select <strong>Smart Contract Verification</strong>,  after which you will be shown the following screen:</p>
 <figure><img src="@source/assets/images/verify-contract.png" alt="Smart Contract Verification page!" tabindex="0" loading="lazy"><figcaption>verify contract</figcaption></figure>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h3 id="enter-contract-details" tabindex="-1"><a class="header-anchor" href="#enter-contract-details" aria-hidden="true">#</a> Enter contract details</h3>
+<h3 id="enter-contract-details" tabindex="-1"><a class="header-anchor" href="#enter-contract-details" aria-hidden="true">#</a> Enter contract details</h3>
 <p>To verify the contract, enter the following details;</p>
 <ul>
 <li>Contract address: The address provided must match with the <code v-pre>0x</code> address generated during contract creation.</li>

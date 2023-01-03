@@ -7,7 +7,7 @@
 <li>Deploy a smart contract.</li>
 <li>Interact with any smart contract.</li>
 </ol>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="prerequisite" tabindex="-1"><a class="header-anchor" href="#prerequisite" aria-hidden="true">#</a> Prerequisite</h2>
+<h2 id="prerequisite" tabindex="-1"><a class="header-anchor" href="#prerequisite" aria-hidden="true">#</a> Prerequisite</h2>
 <p>This guide assumes that you are familiar with the basics of <a href="https://docs.oracle.com/en/java/" target="_blank" rel="noopener noreferrer">Java<ExternalLinkIcon/></a> programming language.</p>
 <h2 id="installation" tabindex="-1"><a class="header-anchor" href="#installation" aria-hidden="true">#</a> Installation</h2>
 <p>To install the zkSync Java SDK, just add the following dependency:</p>

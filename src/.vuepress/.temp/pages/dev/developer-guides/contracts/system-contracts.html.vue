@@ -3,7 +3,7 @@
 set of contracts that have special privileges and serve special purposes, e.g. deployment of contracts, making sure that the user pays only once for publishing contracts' calldata, etc.</p>
 <p>The code for the system contracts will not be public until it has gone through thorough testing. This section will only provide you with the
 knowledge needed to build on zkSync.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="interfaces" tabindex="-1"><a class="header-anchor" href="#interfaces" aria-hidden="true">#</a> Interfaces</h2>
+<h2 id="interfaces" tabindex="-1"><a class="header-anchor" href="#interfaces" aria-hidden="true">#</a> Interfaces</h2>
 <p>The addresses and the interfaces of the system contracts can be found <a href="https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/Constants.sol" target="_blank" rel="noopener noreferrer">here<ExternalLinkIcon/></a>.</p>
 <p>This section will describe the semantic meaning of some of the most popular system contracts.</p>
 <h2 id="contractdeployer" tabindex="-1"><a class="header-anchor" href="#contractdeployer" aria-hidden="true">#</a> ContractDeployer</h2>

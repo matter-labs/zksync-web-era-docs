@@ -6,9 +6,6 @@ Our SDKs enable you to build web3 applications, with capabilities such as:
 - Deploying and interacting with smart contracts
   We support a few languages (and are working on more) to make it easier for you to build different kinds of applications.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## API
 
 - [Web3 API](./api.md)

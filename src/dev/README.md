@@ -1,8 +1,5 @@
 # zkSync Documentation
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 This documentation is intended to assist you in developing on zkSync. 
 It introduces the concepts of zkSync, describes the zkSync network stack, and some advanced topics for complex applications and use cases.
 

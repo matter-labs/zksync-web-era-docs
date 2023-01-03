@@ -5,7 +5,7 @@
 <li><em>Non-inlinable</em>. The ones that have at least one <code v-pre>public</code> or <code v-pre>external</code> method. While they may be inlined by the Solidity compiler, they are not inlined when compiled to Yul representation. Since Yul is an intermediate step when compiling to zkEVM bytecode, this means that these libraries can not be inlined by the zkSync compiler.</li>
 </ul>
 <p><strong>Practically this means that libraries with public methods need to be deployed separately and their addresses passed as an argument when compiling the main contract.</strong> Usage of the methods of this library will be replaced with calls to its address.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="openzeppelin-utility-libraries" tabindex="-1"><a class="header-anchor" href="#openzeppelin-utility-libraries" aria-hidden="true">#</a> OpenZeppelin utility libraries</h2>
+<h2 id="openzeppelin-utility-libraries" tabindex="-1"><a class="header-anchor" href="#openzeppelin-utility-libraries" aria-hidden="true">#</a> OpenZeppelin utility libraries</h2>
 <p>Please note, that the total majority of the OpenZeppelin utility libraries <em>are</em> inlinable. That means that <em>there is no need to do any further actions to make them compile</em>.</p>
 <p>This section describes the compilation of non-inlinable libraries only.</p>
 <h2 id="example" tabindex="-1"><a class="header-anchor" href="#example" aria-hidden="true">#</a> Example</h2>

@@ -1,7 +1,7 @@
 <template><div><h1 id="accounts-l1-l2-transactions" tabindex="-1"><a class="header-anchor" href="#accounts-l1-l2-transactions" aria-hidden="true">#</a> Accounts: L1-&gt;L2 transactions</h1>
 <p>This section explores the methods which allow the <RouterLink to="/api/js/accounts.html">account</RouterLink> classes to send transactions from L1 to L2.</p>
 <p>If you want to get some background on how L1-&gt;L2 interaction works on zkSync, go through the <RouterLink to="/dev/developer-guides/bridging/l1-l2-interop.html">introduction</RouterLink> and the <RouterLink to="/dev/developer-guides/bridging/l1-l2.html">guide</RouterLink>.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="supported-classes" tabindex="-1"><a class="header-anchor" href="#supported-classes" aria-hidden="true">#</a> Supported classes</h2>
+<h2 id="supported-classes" tabindex="-1"><a class="header-anchor" href="#supported-classes" aria-hidden="true">#</a> Supported classes</h2>
 <p>The following account classes support sending transactions from L1 to L2:</p>
 <ul>
 <li><code v-pre>Wallet</code> (if connected to an L1 provider)</li>

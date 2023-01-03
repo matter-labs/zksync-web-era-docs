@@ -5,7 +5,7 @@
 <li><code v-pre>EIP712Signer</code> class that is used to sign <code v-pre>EIP712</code>-typed zkSync transactions.</li>
 <li><code v-pre>Signer</code> and <code v-pre>L1Signer</code> classes, which should be used for browser integration.</li>
 </ul>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="wallet" tabindex="-1"><a class="header-anchor" href="#wallet" aria-hidden="true">#</a> <code v-pre>Wallet</code></h2>
+<h2 id="wallet" tabindex="-1"><a class="header-anchor" href="#wallet" aria-hidden="true">#</a> <code v-pre>Wallet</code></h2>
 <h3 id="creating-wallet-from-a-private-key" tabindex="-1"><a class="header-anchor" href="#creating-wallet-from-a-private-key" aria-hidden="true">#</a> Creating wallet from a private key</h3>
 <p>Just like <code v-pre>ethers.Wallet</code>, the <code v-pre>Wallet</code> object from <code v-pre>zksync-web3</code> can be created from Ethereum private key.</p>
 <div class="language-typescript line-numbers-mode" data-ext="ts"><pre v-pre class="language-typescript"><code><span class="token function">constructor</span><span class="token punctuation">(</span>

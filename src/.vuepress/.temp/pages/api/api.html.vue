@@ -3,7 +3,7 @@
 <p>As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that <a href="#eip712">below</a>), <em>no changes to the codebase are needed.</em></p>
 <p>It is possible to continue using the SDK that is currently in use. Users will continue paying fees in ETH, and the UX will be identical to the one on Ethereum.</p>
 <p>However, zkSync has its specifics, which this section describes.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="eip712" tabindex="-1"><a class="header-anchor" href="#eip712" aria-hidden="true">#</a> EIP712</h2>
+<h2 id="eip712" tabindex="-1"><a class="header-anchor" href="#eip712" aria-hidden="true">#</a> EIP712</h2>
 <p>To specify additional fields, like the custom signature for custom accounts or to choose the paymaster, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but they also have fields that contain additional L2-specific data (<code v-pre>paymaster</code>, etc).</p>
 <div class="language-json line-numbers-mode" data-ext="json"><pre v-pre class="language-json"><code><span class="token property">"ergsPerPubdata"</span><span class="token operator">:</span> <span class="token string">"1212"</span><span class="token punctuation">,</span>
 <span class="token property">"customSignature"</span><span class="token operator">:</span> <span class="token string">"0x..."</span><span class="token punctuation">,</span>

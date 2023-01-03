@@ -11,7 +11,7 @@
 <li><code v-pre>Provider</code> which inherits from <code v-pre>ethers</code>'s <code v-pre>JsonRpcProvider</code> and provides access to all of the zkSync JSON-RPC endpoints.</li>
 <li><code v-pre>Web3Provider</code> which extends the <code v-pre>Provider</code> class by making it more compatible with Web3 wallets. This is the type of wallet that should be used for browser integrations.</li>
 </ul>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="provider" tabindex="-1"><a class="header-anchor" href="#provider" aria-hidden="true">#</a> <code v-pre>Provider</code></h2>
+<h2 id="provider" tabindex="-1"><a class="header-anchor" href="#provider" aria-hidden="true">#</a> <code v-pre>Provider</code></h2>
 <p>This is the most commonly used type of provider. It provides the same functionality as <code v-pre>ethers.providers.JsonRpcProvider</code>, but extends it with the zkSync-specific methods.</p>
 <h3 id="creating-provider" tabindex="-1"><a class="header-anchor" href="#creating-provider" aria-hidden="true">#</a> Creating provider</h3>
 <p>The constructor accepts the <code v-pre>url</code> to the operator node and the <code v-pre>network</code> name (optional).</p>

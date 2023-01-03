@@ -1,7 +1,7 @@
 <template><div><h2 id="community-resources" tabindex="-1"><a class="header-anchor" href="#community-resources" aria-hidden="true">#</a> Community resources</h2>
 <p>We cannot promise to cover all aspects of zkSync so we will attempt to highlight some of the community's outstanding resources such as videos, tutorials, articles etc.</p>
 <p>The <a href="https://github.com/0xJuancito/awesome-zksync" target="_blank" rel="noopener noreferrer">Awesome zkSync repo<ExternalLinkIcon/></a> is where community-based resources live.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="criteria-for-contributing" tabindex="-1"><a class="header-anchor" href="#criteria-for-contributing" aria-hidden="true">#</a> Criteria for contributing</h2>
+<h2 id="criteria-for-contributing" tabindex="-1"><a class="header-anchor" href="#criteria-for-contributing" aria-hidden="true">#</a> Criteria for contributing</h2>
 <p>To contribute to the Awesome zkSync repo, the following are some criteria to keep in mind:</p>
 <ul>
 <li>Is the content resource current?</li>

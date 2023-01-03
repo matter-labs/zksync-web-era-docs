@@ -11,7 +11,7 @@
 <p class="hint-container-title">Tips</p>
 <p>The testnet paymaster is just for testing. If you decide to build a project on mainnet, you should read the documentation about <RouterLink to="/dev/developer-guides/aa.html#paymasters">paymasters</RouterLink>.</p>
 </div>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="prerequisites" tabindex="-1"><a class="header-anchor" href="#prerequisites" aria-hidden="true">#</a> Prerequisites</h2>
+<h2 id="prerequisites" tabindex="-1"><a class="header-anchor" href="#prerequisites" aria-hidden="true">#</a> Prerequisites</h2>
 <ul>
 <li><code v-pre>yarn</code> package manager. <a href="https://yarnpkg.com/getting-started/install" target="_blank" rel="noopener noreferrer">Here is the installation guide<ExternalLinkIcon/></a>(<code v-pre>npm</code> examples will be added soon.)</li>
 <li>A wallet with sufficient Göerli <code v-pre>ETH</code> on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. ERC20 tokens on zkSync are required if you want to implement the testnet paymaster. We recommend using <a href="https://portal.zksync.io/faucet" target="_blank" rel="noopener noreferrer">the faucet from the zkSync portal<ExternalLinkIcon/></a>.</li>

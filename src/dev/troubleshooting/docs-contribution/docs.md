@@ -12,9 +12,6 @@ As collaboration on contribution to zkSync documentation is such an integral par
     - If you want to discuss a larger problem or propose a major change to the zkSync documentation, you can raise an [issue on Github](https://github.com/matter-labs/zksync-web-v2-docs/issues).
 - Follow [zkSync on Twitter](https://twitter.com/zksync) to get the latest happenings on zkSync.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## Ways to contribute
 
 - [Create or edit a page](#edit-or-review-a-documentation-page) - Improve on the existing pages or create a new one.

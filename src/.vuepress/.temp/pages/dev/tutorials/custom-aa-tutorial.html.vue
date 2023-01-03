@@ -1,7 +1,7 @@
 <template><div><h1 id="account-abstraction" tabindex="-1"><a class="header-anchor" href="#account-abstraction" aria-hidden="true">#</a> Account abstraction</h1>
 <p>Now, let's learn how to deploy your custom accounts and interact directly with the <RouterLink to="/dev/developer-guides/contracts/system-contracts.html#contractdeployer">ContractDeployer</RouterLink> system contract.
 In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="prerequisite" tabindex="-1"><a class="header-anchor" href="#prerequisite" aria-hidden="true">#</a> Prerequisite</h2>
+<h2 id="prerequisite" tabindex="-1"><a class="header-anchor" href="#prerequisite" aria-hidden="true">#</a> Prerequisite</h2>
 <p>It is highly recommended to read about the <RouterLink to="/dev/developer-guides/aa.html">design</RouterLink> of the account abstraction protocol before diving into this tutorial.</p>
 <p>It is assumed that you are already familiar with deploying smart contracts on zkSync.
 If not, please refer to the first section of the <RouterLink to="/dev/developer-guides/hello-world.html">quickstart tutorial</RouterLink>.

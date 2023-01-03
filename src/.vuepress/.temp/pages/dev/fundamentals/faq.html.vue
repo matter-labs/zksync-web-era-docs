@@ -1,6 +1,6 @@
 <template><div><h1 id="faq" tabindex="-1"><a class="header-anchor" href="#faq" aria-hidden="true">#</a> FAQ</h1>
 <p>Here you will find some of the most common questions we receive about zkSync 2.0.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="what-is-zksync-2-0" tabindex="-1"><a class="header-anchor" href="#what-is-zksync-2-0" aria-hidden="true">#</a> What is zkSync 2.0?</h2>
+<h2 id="what-is-zksync-2-0" tabindex="-1"><a class="header-anchor" href="#what-is-zksync-2-0" aria-hidden="true">#</a> What is zkSync 2.0?</h2>
 <p>zkSync 2.0 is a Zero Knowledge (ZK) rollup that supports generalized EVM compatibility for the Ethereum blockchain. The primary benefit of zkSync 2.0 is that developers who have created EVM dApps can port to zkSync 2.0 effortlessly and realize significantly lower gas fees and more transactions per second while inheriting Ethereum's security and decentralization.</p>
 <h2 id="why-zksync-2-0" tabindex="-1"><a class="header-anchor" href="#why-zksync-2-0" aria-hidden="true">#</a> Why zkSync 2.0?</h2>
 <p>zkSync 2.0 is a gigantic leap forward in Layer 2 technologies. It is a long-awaited improvement that offers many never before enjoyed benefits for Ethereum developers.</p>

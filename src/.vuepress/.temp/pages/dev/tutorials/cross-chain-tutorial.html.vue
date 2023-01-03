@@ -4,7 +4,7 @@
 <li>A &quot;counter&quot; smart contract is deployed on zkSync, which stores a number that can be incremented by calling the <code v-pre>increment</code> method.</li>
 <li>A &quot;governance&quot; smart contract is deployed on layer 1, which has the privilege to increment the counter on zkSync.</li>
 </ul>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="preliminaries" tabindex="-1"><a class="header-anchor" href="#preliminaries" aria-hidden="true">#</a> Preliminaries</h2>
+<h2 id="preliminaries" tabindex="-1"><a class="header-anchor" href="#preliminaries" aria-hidden="true">#</a> Preliminaries</h2>
 <p>In this tutorial, it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the <RouterLink to="/dev/developer-guides/hello-world.html">quickstart tutorial</RouterLink>.</p>
 <p>It is also assumed that you already have some experience working with Ethereum.</p>
 <h2 id="project-structure" tabindex="-1"><a class="header-anchor" href="#project-structure" aria-hidden="true">#</a> Project structure</h2>

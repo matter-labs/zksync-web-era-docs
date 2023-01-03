@@ -15,7 +15,7 @@
 <li>Make some transfers.</li>
 </ul>
 <p>The Portal is the central entry point into the zkSync 2.0 ecosystem for users and developers alike. It contains links to all relevant resources, such as <a href="https://explorer.zksync.io" target="_blank" rel="noopener noreferrer">block explorer<ExternalLinkIcon/></a> or the catalog of featured dApps.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="do-i-need-experience-with-zksync-1-x" tabindex="-1"><a class="header-anchor" href="#do-i-need-experience-with-zksync-1-x" aria-hidden="true">#</a> Do I need experience with zkSync 1.x?</h2>
+<h2 id="do-i-need-experience-with-zksync-1-x" tabindex="-1"><a class="header-anchor" href="#do-i-need-experience-with-zksync-1-x" aria-hidden="true">#</a> Do I need experience with zkSync 1.x?</h2>
 <p>Some experience with zkSync 1. x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are very different systems, and experience with the latter is not needed to build on zkSync 2.0.</p>
 <h2 id="what-do-i-need-to-start-building" tabindex="-1"><a class="header-anchor" href="#what-do-i-need-to-start-building" aria-hidden="true">#</a> What do I need to start building?</h2>
 <p>All the existing SDKs for Ethereum will work out of the box and your users will have the same experience as on Ethereum. If you want to enable advanced zkSync features, like account abstraction, the zkSync SDK should be used.</p>

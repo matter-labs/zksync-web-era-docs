@@ -1,5 +1,5 @@
 <template><div><h1 id="blocks" tabindex="-1"><a class="header-anchor" href="#blocks" aria-hidden="true">#</a> Blocks</h1>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><p>A block is an ordered list of transactions. Each block (except for the Genesis block) points to the previous block it extends, thus creating a chain of blocks.</p>
+<p>A block is an ordered list of transactions. Each block (except for the Genesis block) points to the previous block it extends, thus creating a chain of blocks.</p>
 <h2 id="blocks-in-zksync-2-0" tabindex="-1"><a class="header-anchor" href="#blocks-in-zksync-2-0" aria-hidden="true">#</a> Blocks in zkSync 2.0</h2>
 <p>In zkSync there are two notions of &quot;blocks&quot;: an L2 block and an L1 rollup block.</p>
 <p>L2 blocks, or just &quot;blocks&quot;, are simply the blocks created on L2, that is on the zkSync network. They are not included on the Ethereum chain. An L1 rollup block, which we call &quot;batch&quot;, is a set of

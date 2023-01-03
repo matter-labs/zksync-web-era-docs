@@ -1,7 +1,7 @@
 <template><div><h1 id="security-model" tabindex="-1"><a class="header-anchor" href="#security-model" aria-hidden="true">#</a> Security model</h1>
 <p>Given that zkSync is still in its early stages of development, there is a chance that our codebase contains undiscovered bugs that could lead to the loss of users' assets. As a result, we are constantly working to strengthen our security protocols to ensure that users and developers have a seamless onboarding experience when building on zkSync.
 zkSync smart contract codebase is currently being audited, but audits are not a guarantee of quality, and they are not a guarantee that a codebase has been thoroughly vetted for vulnerabilities. It's crucial to realize that zkSync usage exposes you to the possibility of defects in the zkSync codebase.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="bug-bounty-program" tabindex="-1"><a class="header-anchor" href="#bug-bounty-program" aria-hidden="true">#</a> Bug Bounty Program</h2>
+<h2 id="bug-bounty-program" tabindex="-1"><a class="header-anchor" href="#bug-bounty-program" aria-hidden="true">#</a> Bug Bounty Program</h2>
 <p>zkSync takes security seriously and as such, we have a massive <a href="https://immunefi.com/bounty/zksync/" target="_blank" rel="noopener noreferrer">bug bounty program<ExternalLinkIcon/></a>.</p>
 <h2 id="scope" tabindex="-1"><a class="header-anchor" href="#scope" aria-hidden="true">#</a> Scope</h2>
 <p>Issues that can lead to substantial loss of money, critical bugs like a broken liveness condition, blocking upgrade system, irreversible loss of funds, or enforced exodus mode.</p>

@@ -1,7 +1,7 @@
 <template><div><h1 id="transactions" tabindex="-1"><a class="header-anchor" href="#transactions" aria-hidden="true">#</a> Transactions</h1>
 <p>Transactions in Ethereum are cryptographically signed instructions by an externally owned account (an account owned by a user and not by code). These instructions are stored in the blockchain and added to a block.
 The state of the Ethereum virtual machine (EVM) changes when a transaction is initiated. A transaction can be anything from sending ether to another account to invoking the functions of a smart contract.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="prerequisite" tabindex="-1"><a class="header-anchor" href="#prerequisite" aria-hidden="true">#</a> Prerequisite</h2>
+<h2 id="prerequisite" tabindex="-1"><a class="header-anchor" href="#prerequisite" aria-hidden="true">#</a> Prerequisite</h2>
 <p>We recommend you first read <a href="https://ethereum.org/en/developers/docs/accounts/" target="_blank" rel="noopener noreferrer">accounts<ExternalLinkIcon/></a> to understand this page.</p>
 <h2 id="how-transactions-work" tabindex="-1"><a class="header-anchor" href="#how-transactions-work" aria-hidden="true">#</a> How transactions work</h2>
 <p>When a user initiates a transaction on Ethereum, some specific data is created:</p>

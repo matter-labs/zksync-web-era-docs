@@ -16,8 +16,6 @@ Summary:
 
 The [hardhat-zksync-deploy](../../../api/hardhat) plugin takes care of the deployment process. Here's a [guide on how to use it](../../../api/hardhat/getting-started.md).
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
 
 ## Solidity/Vyper support
 

@@ -1,7 +1,7 @@
 <template><div><h1 id="zksync-cli" tabindex="-1"><a class="header-anchor" href="#zksync-cli" aria-hidden="true">#</a> zkSync CLI</h1>
 <p>The zkSync CLI simplifies the process of developing applications and interacting with zkSync 2.0.</p>
 <p>The code is available <a href="https://github.com/matter-labs/zksync-cli" target="_blank" rel="noopener noreferrer">in the following repository<ExternalLinkIcon/></a>.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="installation" tabindex="-1"><a class="header-anchor" href="#installation" aria-hidden="true">#</a> Installation</h2>
+<h2 id="installation" tabindex="-1"><a class="header-anchor" href="#installation" aria-hidden="true">#</a> Installation</h2>
 <p>Install the zkSync CLI globally with the following command:</p>
 <div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>npm i -g zksync-cli@latest
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>You can also run this via NPX with <code v-pre>npx zksync-cli@latest [COMMAND]</code></p>

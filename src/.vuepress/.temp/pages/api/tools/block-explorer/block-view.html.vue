@@ -4,7 +4,7 @@
 View all blocks for a more complete overview of recent blocks, or click on a specific block number for details on that block.
 The blocks page is also accessible via the top menu.</p>
 <figure><img src="@source/assets/images/block-menu.png" alt="Access the block page" tabindex="0" loading="lazy"><figcaption>Blocks menu</figcaption></figure>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="view-all-blocks" tabindex="-1"><a class="header-anchor" href="#view-all-blocks" aria-hidden="true">#</a> View all blocks</h2>
+<h2 id="view-all-blocks" tabindex="-1"><a class="header-anchor" href="#view-all-blocks" aria-hidden="true">#</a> View all blocks</h2>
 <p>You can click on a block number to see all the details of that specific block. If you want to browse more blocks, click the <a href="https://explorer.zksync.io/blocks/" target="_blank" rel="noopener noreferrer">Blocks<ExternalLinkIcon/></a> section of the navigation menu. Use the pagination to navigate to the next page.</p>
 <p>However, if you have already left the homepage, you can always search for any block by typing in the block number.</p>
 <figure><img src="@source/assets/images/view-block.png" alt="Browse all blocks" tabindex="0" loading="lazy"><figcaption>Browse all blocks</figcaption></figure>

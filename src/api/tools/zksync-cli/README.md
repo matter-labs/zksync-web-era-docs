@@ -4,9 +4,6 @@ The zkSync CLI simplifies the process of developing applications and interacting
 
 The code is available [in the following repository](https://github.com/matter-labs/zksync-cli).
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## Installation
 
 Install the zkSync CLI globally with the following command:

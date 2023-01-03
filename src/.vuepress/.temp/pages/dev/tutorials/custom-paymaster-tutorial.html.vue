@@ -5,7 +5,7 @@
 <li>Create the ERC20 token contract and send some tokens to a brand new wallet.</li>
 <li>Finally we will send a <code v-pre>mint</code> transaction from the newly created wallet via the paymaster. Even though the transaction would normally require some ETH to pay for the gas fee, our paymaster will execute the transaction in exchange for 1 unit of the ERC20 token.</li>
 </ul>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="prerequisite" tabindex="-1"><a class="header-anchor" href="#prerequisite" aria-hidden="true">#</a> Prerequisite</h2>
+<h2 id="prerequisite" tabindex="-1"><a class="header-anchor" href="#prerequisite" aria-hidden="true">#</a> Prerequisite</h2>
 <p>To better understand this page, we recommend you first read up on <RouterLink to="/dev/developer-guides/aa.html">account abstraction design</RouterLink> before diving into this tutorial.</p>
 <p>It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the <RouterLink to="/dev/developer-guides/hello-world.html">quickstart tutorial</RouterLink>. It is also recommended to read the <RouterLink to="/dev/developer-guides/contracts/system-contracts.html">introduction to the system contracts</RouterLink> .</p>
 <h2 id="installing-dependencies" tabindex="-1"><a class="header-anchor" href="#installing-dependencies" aria-hidden="true">#</a> Installing dependencies</h2>

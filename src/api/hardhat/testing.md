@@ -4,9 +4,6 @@ Sometimes there is a need to test contracts in a local environment for network l
 
 zkSync team provides a dockerized local setup for this purpose.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## Prerequisites
 
 It is required that you have `Docker` and `docker-compose` installed on your computer. Find the [installation guide here](https://docs.docker.com/get-docker/)

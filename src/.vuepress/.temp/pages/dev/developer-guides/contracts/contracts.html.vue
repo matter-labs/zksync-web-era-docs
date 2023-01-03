@@ -14,7 +14,7 @@ To deploy a contract, a user calls the <code v-pre>create</code> function of the
 </li>
 </ul>
 <p>The <a href="../../../api/hardhat">hardhat-zksync-deploy</a> plugin takes care of the deployment process. Here's a <RouterLink to="/api/hardhat/getting-started.html">guide on how to use it</RouterLink>.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="solidity-vyper-support" tabindex="-1"><a class="header-anchor" href="#solidity-vyper-support" aria-hidden="true">#</a> Solidity/Vyper support</h2>
+<h2 id="solidity-vyper-support" tabindex="-1"><a class="header-anchor" href="#solidity-vyper-support" aria-hidden="true">#</a> Solidity/Vyper support</h2>
 <p>Compiling Solidity to zkEVM bytecode requires a special compiler. For the time being Solidity <code v-pre>&gt;=0.4.10</code> versions are supported, though we strongly recommended using <code v-pre>^0.8.0</code> as the most stable one. Vyper <code v-pre>^0.3.3</code> is also supported.</p>
 <p>Although, older versions of Solidity are supported, here are some of their limitations in zkSync:</p>
 <ul>

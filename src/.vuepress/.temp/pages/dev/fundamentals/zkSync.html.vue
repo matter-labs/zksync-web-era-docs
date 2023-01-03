@@ -1,5 +1,5 @@
 <template><div><h1 id="zksync-basics" tabindex="-1"><a class="header-anchor" href="#zksync-basics" aria-hidden="true">#</a> zkSync basics</h1>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="prerequisites" tabindex="-1"><a class="header-anchor" href="#prerequisites" aria-hidden="true">#</a> Prerequisites</h2>
+<h2 id="prerequisites" tabindex="-1"><a class="header-anchor" href="#prerequisites" aria-hidden="true">#</a> Prerequisites</h2>
 <p>If you are unfamiliar with rollups, you should cover the <RouterLink to="/dev/fundamentals/rollups.html">rollups basics</RouterLink> and read about ZK rollups and Optimistic rollups, before learning about zkSync.</p>
 <h2 id="introduction" tabindex="-1"><a class="header-anchor" href="#introduction" aria-hidden="true">#</a> Introduction</h2>
 <p><strong>zkSync</strong> is a <RouterLink to="/dev/fundamentals/rollups.html#what-are-zk-rollups">ZK rollup</RouterLink>, a trustless protocol that uses cryptographic validity proofs to provide

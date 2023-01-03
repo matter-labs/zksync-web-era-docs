@@ -1,5 +1,5 @@
 <template><div><h1 id="the-search-bar" tabindex="-1"><a class="header-anchor" href="#the-search-bar" aria-hidden="true">#</a> The search bar</h1>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="overview" tabindex="-1"><a class="header-anchor" href="#overview" aria-hidden="true">#</a> Overview</h2>
+<h2 id="overview" tabindex="-1"><a class="header-anchor" href="#overview" aria-hidden="true">#</a> Overview</h2>
 <p>Our user-friendly search tool gives you easy access to data from multiple search points and provides a more intuitive understanding of what you are searching for.</p>
 <figure><img src="@source/assets/images/search-bar.png" alt="Search Bar!" tabindex="0" loading="lazy"><figcaption>search bar</figcaption></figure>
 <p>The main search bar is where you can look up something specific right away. You can search by:

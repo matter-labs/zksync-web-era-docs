@@ -4,7 +4,7 @@
 <p>As we add new features, this page is constantly updated.</p>
 <p>If any of these blocks you, let us know on our <a href="https://join.zksync.dev/" target="_blank" rel="noopener noreferrer">Discord<ExternalLinkIcon/></a>, so we can prioritize accordingly.</p>
 </div>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="using-libraries-in-solidity" tabindex="-1"><a class="header-anchor" href="#using-libraries-in-solidity" aria-hidden="true">#</a> Using libraries in Solidity</h2>
+<h2 id="using-libraries-in-solidity" tabindex="-1"><a class="header-anchor" href="#using-libraries-in-solidity" aria-hidden="true">#</a> Using libraries in Solidity</h2>
 <p>If a Solidity library can be inlined, i.e. it only contains <code v-pre>private</code> or <code v-pre>internal</code> methods, then this library can be used without any limitations.</p>
 <p>However, if a library contains at least one <code v-pre>public</code> or <code v-pre>external</code> method, it is no longer inlined in the Yul representation. These addresses need to be passed explicitly to our compiler. This is not currently supported by our hardhat plugin but will be added later.</p>
 <p>For support on an older version of Solidity and Vyper, check <RouterLink to="/dev/developer-guides/contracts/contracts.html#solidity-vyper-support">here</RouterLink></p>

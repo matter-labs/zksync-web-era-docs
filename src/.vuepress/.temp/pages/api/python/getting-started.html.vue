@@ -8,7 +8,7 @@
 <li>Deploy a smart contract.</li>
 <li>Deploy a smart contract with create2.</li>
 </ol>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="prerequisite" tabindex="-1"><a class="header-anchor" href="#prerequisite" aria-hidden="true">#</a> Prerequisite</h2>
+<h2 id="prerequisite" tabindex="-1"><a class="header-anchor" href="#prerequisite" aria-hidden="true">#</a> Prerequisite</h2>
 <p>This guide assumes that you are familiar with <a href="https://docs.python.org/3/" target="_blank" rel="noopener noreferrer">Python<ExternalLinkIcon/></a> programming language.</p>
 <h2 id="installation" tabindex="-1"><a class="header-anchor" href="#installation" aria-hidden="true">#</a> Installation</h2>
 <p>To install the SDK with the <code v-pre>pip install</code> command, run the following:</p>

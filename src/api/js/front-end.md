@@ -2,8 +2,6 @@
 
 This section describes how to make the most of zkSync to provide the best UX.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
 
 ## Going to production rightaway
 

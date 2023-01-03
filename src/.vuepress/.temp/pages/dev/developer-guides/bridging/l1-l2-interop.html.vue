@@ -3,7 +3,7 @@
 <p>In addition, the L2 censorship resistance is derived from the underlying chain, so the ability to send messages from Ethereum to zkSync is an important part of the censorship-resistance mechanism called the <a href="#priority-queue">priority queue</a>.</p>
 <p>Sending transactions from Ethereum to zkSync is done via the zkSync smart contract. It allows the sender to request transactions directly from L1. Thereby allowing the permissionless passing of any data from Ethereum into zkSync.
 <RouterLink to="/dev/developer-guides/bridging/l1-l2.html">Read more</RouterLink> about messaging from L1 to L2.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="priority-queue" tabindex="-1"><a class="header-anchor" href="#priority-queue" aria-hidden="true">#</a> Priority queue</h2>
+<h2 id="priority-queue" tabindex="-1"><a class="header-anchor" href="#priority-queue" aria-hidden="true">#</a> Priority queue</h2>
 <p>The goal of the priority queue is to provide a censorship-resistant way to interact with zkSync in case the operator becomes malicious or unavailable.
 The way the priority queue works in zkSync 2.0 is very close to how it worked in the previous version of zkSync.
 For the full picture, we first present how the priority queue works on zkSync 1.x.

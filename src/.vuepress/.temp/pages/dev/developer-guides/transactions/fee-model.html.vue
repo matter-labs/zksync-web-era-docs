@@ -6,7 +6,7 @@
 <li><code v-pre>ergs_per_pubdata</code> — the price in <code v-pre>ergs</code> for publishing one byte of data to Ethereum.</li>
 </ul>
 <p><strong>Please note that the public data is published only for state diffs.</strong> If the same storage slot is updated 10 times in the same rollup block, only the final update will be published on Ethereum, thus only charging for public data once.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="why-do-we-need-a-different-fee-model" tabindex="-1"><a class="header-anchor" href="#why-do-we-need-a-different-fee-model" aria-hidden="true">#</a> Why do we need a different fee model?</h2>
+<h2 id="why-do-we-need-a-different-fee-model" tabindex="-1"><a class="header-anchor" href="#why-do-we-need-a-different-fee-model" aria-hidden="true">#</a> Why do we need a different fee model?</h2>
 <ul>
 <li><strong>Why <code v-pre>ergs</code> and not gas?</strong></li>
 </ul>

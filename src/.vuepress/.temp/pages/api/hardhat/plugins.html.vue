@@ -1,5 +1,5 @@
 <template><div><h1 id="plugins" tabindex="-1"><a class="header-anchor" href="#plugins" aria-hidden="true">#</a> Plugins</h1>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="hardhat-zksync-toolbox" tabindex="-1"><a class="header-anchor" href="#hardhat-zksync-toolbox" aria-hidden="true">#</a> <code v-pre>hardhat-zksync-toolbox</code></h2>
+<h2 id="hardhat-zksync-toolbox" tabindex="-1"><a class="header-anchor" href="#hardhat-zksync-toolbox" aria-hidden="true">#</a> <code v-pre>hardhat-zksync-toolbox</code></h2>
 <p>The hardhat-zksync-toolbox plugin provides a convenient method for bundling and accessing a range of zkSync-related Hardhat plugins. This approach simplifies the process of utilizing these plugins and promotes ease of use.</p>
 <p>List of supported plugins:</p>
 <ul>

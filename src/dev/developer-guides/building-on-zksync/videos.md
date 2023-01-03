@@ -1,7 +1,5 @@
 # Video resources
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
 
 ## zkSync 2.0 for Builders - Alex Gluchowski
 

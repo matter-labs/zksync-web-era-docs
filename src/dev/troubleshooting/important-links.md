@@ -1,8 +1,5 @@
 # Important links
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## Testnet network info
 
 - Network Name: `zkSync alpha testnet`

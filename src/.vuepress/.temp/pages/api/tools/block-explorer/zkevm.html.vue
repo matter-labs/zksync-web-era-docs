@@ -1,5 +1,5 @@
 <template><div><h2 id="using-zkevm-debugger" tabindex="-1"><a class="header-anchor" href="#using-zkevm-debugger" aria-hidden="true">#</a> Using zkEVM debugger</h2>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h3 id="overview" tabindex="-1"><a class="header-anchor" href="#overview" aria-hidden="true">#</a> Overview</h3>
+<h3 id="overview" tabindex="-1"><a class="header-anchor" href="#overview" aria-hidden="true">#</a> Overview</h3>
 <p>The disadvantage of contract execution is that it is difficult to determine what a transaction did. A transaction receipt has a status code that indicates whether or not the execution was successful, but there is no way to determine what data was updated or which external contracts were triggered. This is remedied by zkSync zkEVM debugger, which replays the execution of your smart contracts and captures data on exactly what the EVM did, allowing you to examine each instruction.</p>
 <p>The <a href="https://explorer.zksync.io/tools/debugger" target="_blank" rel="noopener noreferrer">debugger page<ExternalLinkIcon/></a> can be accessed from the top menu.</p>
 <figure><img src="@source/assets/images/zk-evm.png" alt="zkEVM!" tabindex="0" loading="lazy"><figcaption>zkEVM page</figcaption></figure>

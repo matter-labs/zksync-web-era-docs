@@ -1,5 +1,5 @@
 <template><div><h1 id="account-abstraction-support" tabindex="-1"><a class="header-anchor" href="#account-abstraction-support" aria-hidden="true">#</a> Account abstraction support</h1>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="introduction" tabindex="-1"><a class="header-anchor" href="#introduction" aria-hidden="true">#</a> Introduction</h2>
+<h2 id="introduction" tabindex="-1"><a class="header-anchor" href="#introduction" aria-hidden="true">#</a> Introduction</h2>
 <p>On Ethereum there are two types of accounts: <a href="https://ethereum.org/en/developers/docs/accounts/#externally-owned-accounts-and-key-pairs" target="_blank" rel="noopener noreferrer">externally owned accounts (EOAs)<ExternalLinkIcon/></a> and <a href="https://ethereum.org/en/developers/docs/accounts/#contract-accounts" target="_blank" rel="noopener noreferrer">contracts accounts<ExternalLinkIcon/></a>.
 The former type is the only one that can initiate transactions,
 while the latter is the only one that can implement arbitrary logic. For some use-cases, like smart-contract wallets or privacy protocols, this difference can create a lot of friction.

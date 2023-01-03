@@ -1,6 +1,6 @@
 <template><div><h1 id="known-issues" tabindex="-1"><a class="header-anchor" href="#known-issues" aria-hidden="true">#</a> Known issues</h1>
 <p>zkSync 2.0 is currently in the alpha stage, hence some things you are used to may not work. Please keep in mind that the system is still under ongoing development.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="why-are-metamask-native-contract-interactions-not-working" tabindex="-1"><a class="header-anchor" href="#why-are-metamask-native-contract-interactions-not-working" aria-hidden="true">#</a> Why are Metamask native contract interactions not working?</h2>
+<h2 id="why-are-metamask-native-contract-interactions-not-working" tabindex="-1"><a class="header-anchor" href="#why-are-metamask-native-contract-interactions-not-working" aria-hidden="true">#</a> Why are Metamask native contract interactions not working?</h2>
 <p>It is not currently possible to interact with zkSync smart contracts via Metamask with EIP-1559 transactions. zkSync does not support EIP1559 transactions.</p>
 <p><strong>Solution.</strong> Explicitly specify <code v-pre>{ type: 0 }</code> in transaction overrides to use Ethereum legacy transactions.</p>
 <h2 id="why-does-my-wallet-have-no-funds-and-my-contract-disappears" tabindex="-1"><a class="header-anchor" href="#why-does-my-wallet-have-no-funds-and-my-contract-disappears" aria-hidden="true">#</a> Why does my wallet have no funds and my contract disappears?</h2>

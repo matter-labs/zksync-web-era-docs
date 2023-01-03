@@ -12,7 +12,7 @@
 </li>
 <li>Follow <a href="https://twitter.com/zksync" target="_blank" rel="noopener noreferrer">zkSync on Twitter<ExternalLinkIcon/></a> to get the latest happenings on zkSync.</li>
 </ul>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="ways-to-contribute" tabindex="-1"><a class="header-anchor" href="#ways-to-contribute" aria-hidden="true">#</a> Ways to contribute</h2>
+<h2 id="ways-to-contribute" tabindex="-1"><a class="header-anchor" href="#ways-to-contribute" aria-hidden="true">#</a> Ways to contribute</h2>
 <ul>
 <li><a href="#edit-or-review-a-documentation-page">Create or edit a page</a> - Improve on the existing pages or create a new one.</li>
 <li><a href="https://github.com/matter-labs/zksync-web-v2-docs/issues" target="_blank" rel="noopener noreferrer">Pick an issue and work on it<ExternalLinkIcon/></a> - Work on issues that's has been raised.</li>

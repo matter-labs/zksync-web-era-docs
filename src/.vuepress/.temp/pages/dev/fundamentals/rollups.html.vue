@@ -1,5 +1,5 @@
 <template><div><h1 id="intro-to-rollups" tabindex="-1"><a class="header-anchor" href="#intro-to-rollups" aria-hidden="true">#</a> Intro to rollups</h1>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="introduction" tabindex="-1"><a class="header-anchor" href="#introduction" aria-hidden="true">#</a> Introduction</h2>
+<h2 id="introduction" tabindex="-1"><a class="header-anchor" href="#introduction" aria-hidden="true">#</a> Introduction</h2>
 <p>To better understand rollups we need to dive briefly into Ethereum and Layer 2 solutions.</p>
 <p>The Ethereum network is frequently congested, which results in slow transactions and increased gas prices.
 While this has remained so for a long time, an improved solution is needed: one that will not put limits on the throughput, but instead,

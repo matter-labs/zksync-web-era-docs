@@ -7,7 +7,7 @@
 </ul>
 <p>These require us to extend standard Ethereum transactions with new custom fields. Such extended transactions are called EIP712 transactions since <a href="https://eips.ethereum.org/EIPS/eip-712" target="_blank" rel="noopener noreferrer">EIP712<ExternalLinkIcon/></a> is used to sign them. You can look at the internal structure of the EIP712 transactions <RouterLink to="/api/api.html#eip712">here</RouterLink>.</p>
 <p>This document will focus solely on how to pass these arguments to the SDK.</p>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="overrides" tabindex="-1"><a class="header-anchor" href="#overrides" aria-hidden="true">#</a> Overrides</h2>
+<h2 id="overrides" tabindex="-1"><a class="header-anchor" href="#overrides" aria-hidden="true">#</a> Overrides</h2>
 <p><code v-pre>ethers</code> has a notion of overrides. For any on-chain transaction, <code v-pre>ethers</code> finds the optimal <code v-pre>gasPrice</code>, <code v-pre>gasLimit</code>, <code v-pre>nonce</code>, and other important fields under the hood. But sometimes, you may have a need to explicitly provide these values (you want to set a smaller <code v-pre>gasPrice</code> for instance, or sign a transaction with future <code v-pre>nonce</code>).</p>
 <p>In this case, you can provide an <code v-pre>Overrides</code> object as the last parameter. There you can supply fields like <code v-pre>gasPrice</code>, <code v-pre>gasLimit</code>, <code v-pre>nonce</code> etc.</p>
 <p>In order to make the SDK as flexible as possible, the library uses the overrides to supply zkSync-specific fields. To supply zkSync-specific fields, you need to pass the following override:</p>

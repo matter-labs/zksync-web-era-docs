@@ -8,8 +8,6 @@ import { utils } from "zksync-web3";
 
 Most of the utilities are used internally by the zkSync team. So this document will describe only those which should be helpful for you.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
 
 ## The "address" of ether
 

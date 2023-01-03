@@ -5,7 +5,7 @@
 <li>Deploying and interacting with smart contracts
 We support a few languages (and are working on more) to make it easier for you to build different kinds of applications.</li>
 </ul>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="api" tabindex="-1"><a class="header-anchor" href="#api" aria-hidden="true">#</a> API</h2>
+<h2 id="api" tabindex="-1"><a class="header-anchor" href="#api" aria-hidden="true">#</a> API</h2>
 <ul>
 <li><RouterLink to="/api/api.html">Web3 API</RouterLink></li>
 <li><RouterLink to="/api/contracts.html">L1 contract interface</RouterLink></li>

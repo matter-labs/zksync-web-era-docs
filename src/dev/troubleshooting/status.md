@@ -8,8 +8,6 @@ If any of these blocks you, let us know on our [Discord](https://join.zksync.dev
 
 :::
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
 
 ## Using libraries in Solidity
 

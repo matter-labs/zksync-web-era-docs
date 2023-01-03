@@ -1,5 +1,5 @@
 <template><div><h1 id="bridging-assets" tabindex="-1"><a class="header-anchor" href="#bridging-assets" aria-hidden="true">#</a> Bridging assets</h1>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="introduction" tabindex="-1"><a class="header-anchor" href="#introduction" aria-hidden="true">#</a> Introduction</h2>
+<h2 id="introduction" tabindex="-1"><a class="header-anchor" href="#introduction" aria-hidden="true">#</a> Introduction</h2>
 <p>Bridging is implemented by having two contracts
 (one deployed to L1, and the second deployed to L2)
 communicating with each other using <RouterLink to="/dev/developer-guides/bridging/l1-l2-interop.html">L1 &lt;-&gt; L2 interoperability</RouterLink>.</p>

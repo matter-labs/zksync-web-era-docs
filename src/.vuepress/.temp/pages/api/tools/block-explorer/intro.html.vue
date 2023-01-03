@@ -1,5 +1,5 @@
 <template><div><h1 id="using-the-block-explorer" tabindex="-1"><a class="header-anchor" href="#using-the-block-explorer" aria-hidden="true">#</a> Using the Block Explorer</h1>
-<TocHeader /><TOC class="table-of-contents" :include-level="[2,3]" /><h2 id="overview" tabindex="-1"><a class="header-anchor" href="#overview" aria-hidden="true">#</a> Overview</h2>
+<h2 id="overview" tabindex="-1"><a class="header-anchor" href="#overview" aria-hidden="true">#</a> Overview</h2>
 <p>The zkSync <a href="https://explorer.zksync.io/" target="_blank" rel="noopener noreferrer">block explorer<ExternalLinkIcon/></a> is an easy-to-use interface blockchain tool, that displays real-time and historical blockchain snapshots. It can be used by users and developers to utilize both high-level data (such as contracts, transaction rates, and so on) and more detailed insights (e.g. block contents, transaction hashes, sending accounts, etc.).
 Consider it a window into the zkSync blockchain, letting you see what's going on there.</p>
 <p>Our block explorer graphically displays block activity, allowing users to engage with the data more effectively. They may seek a specific block number and investigate it further by reading the address and transaction details that comprise a block.</p>
