@@ -15,8 +15,7 @@ export const enNavbar = navbar([
     link: "/contact.html" 
   },
   {
-    text: "Docs",
-    link: "/api/",
+    text: "v2.0",
     children: [
       {
         text: "v2.0",
@@ -26,27 +25,6 @@ export const enNavbar = navbar([
       {
         text: "v1.x",
         icon: "play",
-        link: "https://docs.zksync.io",
-      },
-    ],
-  },
-  {
-    text: "Community",
-    link: "/api/",
-    children: [
-      {
-        text: "Discord",
-        icon: "group",
-        link: "/dev/",
-      },
-      {
-        text: "Twitter",
-        icon: "leaf",
-        link: "/dev/",
-      },
-      {
-        text: "Medium",
-        icon: "wechat",
         link: "https://docs.zksync.io",
       },
     ],

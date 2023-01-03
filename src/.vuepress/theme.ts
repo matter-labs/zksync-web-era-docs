@@ -3,20 +3,20 @@ import { enNavbar, zhNavbar } from "./navbar/index.js";
 import { enSidebar, zhSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
-  hostname: "https://vuepress-theme-hope-docs-demo.netlify.app",
+  hostname: "https://v2-docs.zksync.io/",
 
   author: {
-    name: "Mr.Hope",
-    url: "https://mrhope.site",
+    name: "Matterlabs",
+    url: "https://github.com/matter-labs/zksync-web-v2-docs",
   },
 
   iconAssets: "iconfont",
 
   logo: "/logo.svg",
 
-  repo: "vuepress-theme-hope/vuepress-theme-hope",
+  repo: "matter-labs/zksync-web-v2-docs",
 
-  docsDir: "demo/theme-docs/src",
+  docsDir: "src/dev",
 
   pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime"],
 
@@ -28,32 +28,12 @@ export default hopeTheme({
       // sidebar
       sidebar: enSidebar,
 
-      footer: "Default footer",
+      footer: "Made with ❤️ by Matterlabs",
 
       displayFooter: true,
 
       metaLocales: {
         editLink: "Edit this page on GitHub",
-      },
-    },
-
-    /**
-     * Chinese locale config
-     */
-    "/zh/": {
-      // navbar
-      navbar: zhNavbar,
-
-      // sidebar
-      sidebar: zhSidebar,
-
-      footer: "默认页脚",
-
-      displayFooter: true,
-
-      // page meta
-      metaLocales: {
-        editLink: "在 GitHub 上编辑此页",
       },
     },
   },
@@ -88,8 +68,6 @@ export default hopeTheme({
       /**
        * Using Waline
        */
-      provider: "Waline",
-      serverURL: "https://vuepress-theme-hope-comment.vercel.app",
     },
 
     // Disable features you don’t want here
