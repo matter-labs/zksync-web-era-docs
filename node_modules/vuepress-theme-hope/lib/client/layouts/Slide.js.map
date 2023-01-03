@@ -1,0 +1,1 @@
+{"version":3,"file":"Slide.js","sourceRoot":"","sources":["../../../src/client/layouts/Slide.ts"],"names":[],"mappings":"AAAA,OAAO,SAAS,MAAM,sCAAsC,CAAC;AAE7D,eAAe,SAAS,CAAC","sourcesContent":["import SlidePage from \"vuepress-plugin-md-enhance/SlidePage\";\n\nexport default SlidePage;\n"]}

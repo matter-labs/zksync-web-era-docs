@@ -1,0 +1,1 @@
+{"version":3,"file":"info.js","sourceRoot":"","sources":["../../src/shared/info.ts"],"names":[],"mappings":"","sourcesContent":["/**\n * Type of page information\n *\n * 页面信息类型\n */\nexport type PageInfo =\n  | \"Author\"\n  | \"Category\"\n  | \"Date\"\n  | \"Original\"\n  | \"PageView\"\n  | \"Tag\"\n  | \"ReadingTime\"\n  | \"Word\";\n"]}

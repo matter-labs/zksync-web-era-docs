@@ -1,0 +1,28 @@
+/* layout */
+// navbar
+$navbar-height: 3.75rem !default;
+$navbar-horizontal-padding: 1.5rem !default;
+$navbar-vertical-padding: 0.7rem !default;
+$navbar-mobile-height: 3.25rem !default;
+$navbar-mobile-horizontal-padding: 1rem !default;
+$navbar-mobile-vertical-padding: 0.5rem !default;
+
+// sidebar
+$sidebar-width: 18rem !default;
+$sidebar-mobile-width: 16rem !default;
+
+// content
+$content-width: 740px !default;
+$home-page-width: 1160px !default;
+
+// font
+$font-family: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", STHeiti, "Microsoft YaHei", SimSun, sans-serif' !default;
+$font-family-fancy: 'Georgia Pro, Crimson, Georgia, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", STHeiti, "Microsoft YaHei", SimSun, sans-serif' !default;
+
+// code
+$font-family-code: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace' !default;
+$line-numbers-width: 2.5rem !default;
+
+// transition
+$color-transition: "0.3s ease" !default;
+$transform-transition: "0.3s ease" !default;

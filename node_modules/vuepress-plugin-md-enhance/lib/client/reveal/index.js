@@ -1,0 +1,2 @@
+const o=()=>import("reveal.js/plugin/highlight/highlight.esm.js"),t=()=>import("reveal.js/plugin/markdown/markdown.esm.js"),e=()=>import("reveal.js/plugin/math/math.esm.js"),r=()=>import("reveal.js/plugin/notes/notes.esm.js"),a=()=>import("reveal.js/dist/reveal.esm.js"),i=()=>import("reveal.js/plugin/search/search.esm.js"),c=()=>import("reveal.js/plugin/zoom/zoom.esm.js");export{a as reveal,o as revealHighlight,t as revealMarkdown,e as revealMath,r as revealNotes,i as revealSearch,c as revealZoom};
+//# sourceMappingURL=index.js.map

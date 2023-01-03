@@ -1,0 +1,79 @@
+input[type="checkbox"].task-list-item-checkbox {
+  position: relative;
+  width: 0;
+  margin-right: 1.5em;
+  cursor: pointer;
+
+  &::after {
+    content: " ";
+
+    position: absolute;
+    top: 0;
+
+    display: inline-block;
+
+    box-sizing: border-box;
+
+    width: 1em;
+    height: 1em;
+    padding-left: 0;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+
+    background: #fff;
+
+    text-align: center;
+
+    visibility: visible;
+
+    transition: background var(--color-transition),
+      border-color var(--color-transition);
+
+    @media print {
+      border-color: var(--c-text, #2c3e50);
+    }
+
+    #{hope-config.$dark-selector} & {
+      border-color: #666;
+      background: #333;
+    }
+  }
+
+  &:checked {
+    &::after {
+      content: "";
+      border-color: var(--c-brand, #3eaf7c);
+      background: var(--c-brand, #3eaf7c);
+
+      @media print {
+        border-color: var(--c-text, #2c3e50);
+        background: transparent;
+      }
+
+      #{hope-config.$dark-selector} & {
+        border-color: var(--c-brand, #3eaf7c);
+        background: var(--c-brand, #3eaf7c);
+      }
+    }
+
+    &::before {
+      content: "";
+
+      position: absolute;
+      top: 0.1em;
+      left: 0.4em;
+      z-index: 1;
+
+      width: 0.2em;
+      height: 0.5em;
+      border: solid var(--white);
+      border-width: 0 0.15em 0.15em 0;
+
+      transform: rotate(45deg);
+
+      @media print {
+        border-color: var(--c-text, #2c3e50);
+      }
+    }
+  }
+}

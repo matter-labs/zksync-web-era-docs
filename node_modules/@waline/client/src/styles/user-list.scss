@@ -1,0 +1,158 @@
+.wl-user-list {
+  padding: 0;
+  list-style: none;
+
+  .wl-user-item {
+    margin: 10px 0;
+
+    &:nth-child(1) .wl-user-badge {
+      background: var(--waline-rank-gold-bgcolor, #fa3939);
+      color: var(--waline-white);
+      font-weight: bold;
+    }
+
+    &:nth-child(2) .wl-user-badge {
+      background: var(--waline-rank-silver-bgcolor, #fb811c);
+      color: var(--waline-white);
+      font-weight: bold;
+    }
+
+    &:nth-child(3) .wl-user-badge {
+      background: var(--waline-rank-copper-bgcolor, #feb207);
+      color: var(--waline-white);
+    }
+  }
+
+  a,
+  a:hover,
+  a:visited {
+    color: var(--waline-color);
+    text-decoration: none;
+  }
+
+  .wl-user-avatar {
+    position: relative;
+
+    display: inline-block;
+
+    overflow: hidden;
+
+    margin-right: 10px;
+    border-radius: 4px;
+
+    line-height: 0;
+
+    > img {
+      width: var(--waline-user-avatar-size, 48px);
+      height: var(--waline-user-avatar-size, 48px);
+    }
+  }
+
+  .wl-user-badge {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    min-width: 0.7em;
+    height: 1.5em;
+    padding: 0 0.4em;
+    border-radius: 4px;
+
+    background: var(--waline-info-bgcolor);
+    color: var(--waline-info-color);
+
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 1.5em;
+    text-align: center;
+  }
+
+  .wl-user-meta {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .wl-badge {
+    display: inline-block;
+    vertical-align: text-top;
+
+    margin-left: 0.5em;
+    padding: 0 0.3em;
+    border: 1px solid var(--waline-badge-color);
+    border-radius: 4px;
+
+    color: var(--waline-badge-color);
+
+    font-size: var(--waline-badge-font-size);
+  }
+}
+
+.wl-user-wall {
+  padding: 0;
+  list-style: none;
+
+  .wl-user-item {
+    position: relative;
+    display: inline-block;
+    transition: transform ease-in-out 0.2s;
+
+    &::before,
+    &::after {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      z-index: 10;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transition: all 0.18s ease-out 0.18s;
+      transform: translate(-50%, 4px);
+      transform-origin: top;
+    }
+
+    &::before {
+      content: '';
+
+      width: 0;
+      height: 0;
+      border: 5px solid transparent;
+      border-top-color: rgb(16 16 16 / 95%);
+    }
+
+    &::after {
+      content: attr(aria-label);
+
+      margin-bottom: 10px;
+      padding: 0.5em 1em;
+      border-radius: 2px;
+
+      background: rgb(16 16 16 / 95%);
+      color: #fff;
+
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+
+      &::before,
+      &::after {
+        opacity: 1;
+        pointer-events: none;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    img {
+      width: var(--waline-user-avatar-size, 48px);
+      height: var(--waline-user-avatar-size, 48px);
+    }
+  }
+
+  .wl-user-badge,
+  .wl-user-meta {
+    display: none;
+  }
+}

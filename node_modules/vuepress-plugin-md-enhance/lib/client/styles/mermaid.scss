@@ -1,0 +1,32 @@
+.mermaid-wrapper {
+  overflow-x: auto;
+  padding: 0.6em 0.4em;
+  text-align: center;
+  transition: all 1s;
+
+  @media (max-width: hope-config.$mobile) {
+    margin: 0 -1.5rem;
+    padding: 0.6em 0;
+  }
+
+  &.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 4em;
+      height: 4em;
+      margin: 2.5em auto;
+      color: var(--c-brand, #3eaf7c);
+    }
+  }
+
+  .node rect,
+  .clusters rect,
+  rect.note,
+  .actor {
+    rx: 8;
+    ry: 8;
+  }
+}

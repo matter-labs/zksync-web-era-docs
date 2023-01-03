@@ -1,0 +1,1 @@
+{"version":3,"file":"typings.js","sourceRoot":"","sources":["../../../../../src/client/modules/info/utils/typings.ts"],"names":[],"mappings":"","sourcesContent":["export interface PageCategory {\n  /**\n   * Category name\n   *\n   * 分类名称\n   */\n  name: string;\n\n  /**\n   * Category path\n   *\n   * 分类路径\n   */\n  path?: string;\n}\n\nexport type PageTag = PageCategory;\n"]}

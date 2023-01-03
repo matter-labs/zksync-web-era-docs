@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../../../src/client/modules/outlook/components/icons/index.ts"],"names":[],"mappings":"AAAA,cAAc,mBAAmB,CAAC;AAClC,cAAc,qBAAqB,CAAC;AACpC,cAAc,kBAAkB,CAAC","sourcesContent":["export * from \"./darkmodeIcon.js\";\nexport * from \"./fullscreenIcon.js\";\nexport * from \"./outlookIcon.js\";\n"]}

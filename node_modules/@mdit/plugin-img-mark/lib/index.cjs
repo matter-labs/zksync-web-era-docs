@@ -1,0 +1,2 @@
+"use strict";const c=(a,{light:s=["gh-light-mode-only","light"],dark:l=["gh-dark-mode-only","dark"]}={})=>{const m=a.renderer.rules.image;a.renderer.rules.image=(d,o,n,g,i)=>{const e=d[o],t=e.attrGet("src");return t&&(s.some(r=>t.endsWith(`#${r}`))?(e.attrSet("data-mode","lightmode-only"),e.attrSet("src",t.replace(/#.*?$/,""))):l.some(r=>t.endsWith(`#${r}`))&&(e.attrSet("data-mode","darkmode-only"),e.attrSet("src",t.replace(/#.*?$/,"")))),m(d,o,n,g,i)}};exports.imgMark=c;
+//# sourceMappingURL=index.cjs.map

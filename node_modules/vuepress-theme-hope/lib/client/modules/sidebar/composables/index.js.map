@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../../src/client/modules/sidebar/composables/index.ts"],"names":[],"mappings":"AAAA,cAAc,aAAa,CAAC;AAC5B,cAAc,YAAY,CAAC;AAC3B,cAAc,YAAY,CAAC","sourcesContent":["export * from \"./render.js\";\nexport * from \"./setup.js\";\nexport * from \"./utils.js\";\n"]}

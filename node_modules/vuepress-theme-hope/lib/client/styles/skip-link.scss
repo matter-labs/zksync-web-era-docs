@@ -1,0 +1,27 @@
+.skip-link {
+  top: 0.25rem;
+  left: 0.25rem;
+  z-index: 999;
+
+  padding: 0.65rem 1.5rem;
+  border-radius: 0.5rem;
+
+  background: var(--bg-color);
+  color: var(--theme-color);
+  box-shadow: var(--card-shadow);
+
+  font-weight: bold;
+  font-size: 0.9em;
+  text-decoration: none;
+
+  @media print {
+    display: none;
+  }
+
+  &:focus {
+    clip: auto;
+    width: auto;
+    height: auto;
+    clip-path: none;
+  }
+}

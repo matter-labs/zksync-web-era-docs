@@ -1,0 +1,28 @@
+{
+    "js": {
+        "rangetouch.js": {
+            "src": "./src/js/rangetouch.js",
+            "dist": "./dist/",
+            "formats": ["es", "umd"],
+            "namespace": "RangeTouch"
+        },
+        "docs.js": {
+            "src": "./docs/src/js/docs.js",
+            "dist": "./docs/dist/",
+            "formats": ["iife"],
+            "namespace": "Docs"
+        }
+    },
+    "css": {
+        "docs.css": {
+            "src": "./docs/src/less/docs.less",
+            "dist": "./docs/dist/"
+        }
+    },
+    "sprite": {
+        "docs.svg": {
+            "src": "./docs/src/sprite/*.svg",
+            "dist": "./docs/dist"
+        }
+    }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress {{ version }}" />
+    <meta name="theme" content="VuePress Theme Hope" />
+    <!--vuepress-ssr-head-->
+    <style>
+      :root {
+        --bg-color: #fff;
+      }
+
+      html[data-theme="dark"] {
+        --bg-color: #1d2025;
+      }
+
+      html,
+      body {
+        background: var(--bg-color);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.querySelector("html").setAttribute("data-theme", "dark");
+      }
+    </script>
+    <!--vuepress-ssr-styles-->
+    <!--vuepress-ssr-resources-->
+  </head>
+  <body>
+    <div id="app"><!--vuepress-ssr-app--></div>
+    <!--vuepress-ssr-scripts-->
+  </body>
+</html>
