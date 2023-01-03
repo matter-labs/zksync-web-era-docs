@@ -3,6 +3,10 @@ import { navbar } from "vuepress-theme-hope";
 export const enNavbar = navbar([
   "/",
   { 
+    text: "Quickstart", 
+    link: "/dev/developer-guides/hello-world.html" 
+  },
+  { 
     text: "Developer Docs", 
     link: "/dev/" 
   },

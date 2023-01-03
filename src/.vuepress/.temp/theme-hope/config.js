@@ -14,8 +14,6 @@ import { setupSidebarItems } from "@theme-hope/modules/sidebar/composables/index
 
 import "/Users/beveloper/Desktop/projects/zksync-web-v2-docs/node_modules/vuepress-theme-hope/lib/client/styles/index.scss";
 
-import GlobalEncrypt from "@theme-hope/modules/encrypt/components/GlobalEncrypt";
-import LocalEncrypt from "@theme-hope/modules/encrypt/components/LocalEncrypt";
 import Slide from "/Users/beveloper/Desktop/projects/zksync-web-v2-docs/node_modules/vuepress-theme-hope/lib/client/layouts/Slide.js";
 
 
@@ -32,8 +30,6 @@ export default defineClientConfig({
     // inject global properties
     injectDarkMode(app);
 
-    app.component("GlobalEncrypt", GlobalEncrypt);
-    app.component("LocalEncrypt", LocalEncrypt);
     
   },
   setup: () => {

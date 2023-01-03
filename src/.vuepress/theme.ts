@@ -16,7 +16,7 @@ export default hopeTheme({
 
   repo: "matter-labs/zksync-web-v2-docs",
 
-  docsDir: "src/dev",
+  docsDir: "src",
 
   pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime"],
 
@@ -35,13 +35,6 @@ export default hopeTheme({
       metaLocales: {
         editLink: "Edit this page on GitHub",
       },
-    },
-  },
-
-  encrypt: {
-    config: {
-      "/demo/encrypt.html": ["1234"],
-      "/zh/demo/encrypt.html": ["1234"],
     },
   },
 

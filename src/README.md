@@ -1,34 +1,34 @@
 ---
 home: true
-title: Quickstart
+title: Home
 heroText: Welcome to zkSync
 
 features:
   - title: Quick start
     icon: markdown
-    details: Add align, sup/sub script, footnote, tasklist, tex, flowchart, diagram, mark and presentation support in markdown
-    link: https://vuepress-theme-hope.github.io/v2/guide/markdown/
+    details: Learn how to build a full dApp using the zkSync development toolbox.
+    link: https://v2-docs.zksync.io/dev/developer-guides/hello-world.html
 
   - title: Getting started
     icon: slides
-    details: Adding slide pages to display things you like
-    link: https://vuepress-theme-hope.github.io/v2/guide/layout/slides.html
+    details: Learn the basics of zkSync 
+    link: https://v2-docs.zksync.io/dev/fundamentals
 
   - title: Building on zkSync
     icon: layout
-    details: Adding breadcrumb, footer, improved navbar, improved page nav and etc.
-    link: https://vuepress-theme-hope.github.io/v2/guide/layout/
+    details: Learn the blocking blocks of zkSync
+    link: https://v2-docs.zksync.io/dev/developer-guides/building-on-zksync
 
   - title: Tutorials
     icon: comment
-    details: Start pageview statistics and comment support with Waline
-    link: https://vuepress-theme-hope.github.io/v2/guide/feature/comment.html
+    details: How-to guides and tutorials for developers and users
+    link: https://v2-docs.zksync.io/dev/tutorials
 
   - title: Troubleshooting
     icon: info
-    details: Add author, writing date, reading time, word count and other information to your article
-    link: https://vuepress-theme-hope.github.io/v2/guide/feature/page-info.html
+    details: Get informed on issues and to resolve them.
+    link: https://v2-docs.zksync.io/dev/troubleshooting
 
 copyright: false
-footer: Theme by <a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a> | MIT Licensed, Copyright © 2019-present Mr.Hope
+footer: Made with ❤️ by Matterlabs
 ---

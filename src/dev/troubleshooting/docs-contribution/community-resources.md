@@ -1,4 +1,4 @@
-## Community resources
+# Community resources
 
 We cannot promise to cover all aspects of zkSync so we will attempt to highlight some of the community's outstanding resources such as videos, tutorials, articles etc.
 

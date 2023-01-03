@@ -1,4 +1,4 @@
-<template><div><h2 id="community-resources" tabindex="-1"><a class="header-anchor" href="#community-resources" aria-hidden="true">#</a> Community resources</h2>
+<template><div><h1 id="community-resources" tabindex="-1"><a class="header-anchor" href="#community-resources" aria-hidden="true">#</a> Community resources</h1>
 <p>We cannot promise to cover all aspects of zkSync so we will attempt to highlight some of the community's outstanding resources such as videos, tutorials, articles etc.</p>
 <p>The <a href="https://github.com/0xJuancito/awesome-zksync" target="_blank" rel="noopener noreferrer">Awesome zkSync repo<ExternalLinkIcon/></a> is where community-based resources live.</p>
 <h2 id="criteria-for-contributing" tabindex="-1"><a class="header-anchor" href="#criteria-for-contributing" aria-hidden="true">#</a> Criteria for contributing</h2>
