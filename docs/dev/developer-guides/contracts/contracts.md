@@ -7,9 +7,9 @@ zkSync 2.0 allows developers to build projects using the same programming langua
 
 ## Solidity support
 
-You can write smart contracts for zkSync 2.0 in both Solidity and Vyper. For the time being Solidity `>=0.4.10` versions are supported, though **we strongly recommended using** `^0.8.0` as older versions contain known bugs.
+For the time being Solidity `>=0.4.10` versions are supported, though **we strongly recommended using** `^0.8.0` as older versions contain known bugs.
 
-Solidity versions `>=0.8` are compiled through Yul, whereas `<=0.7` are compiled via the EVM legacy assembly, which is a less friendly IR due to obfuscation of the control-flow and call graphs. For this reason, there are a few limitations in zkSync for contracts written in Solidity <=0.7:
+Solidity versions `>=0.8` are compiled through Yul, whereas `<=0.7` are compiled via the EVM legacy assembly, which is a less friendly IR due to obfuscation of the control-flow and call graphs. For this reason, there are a few limitations in zkSync for contracts written in Solidity `<=0.7`:
 
 - Contract-local recursion is not supported.
 - Internal function pointers are not supported.
