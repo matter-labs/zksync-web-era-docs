@@ -11,6 +11,10 @@ export const pagesData = {
   "v-587e1e66": () => import(/* webpackChunkName: "v-587e1e66" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/api.html.js").then(({ data }) => data),
   // path: /api/contracts.html
   "v-59ea39b4": () => import(/* webpackChunkName: "v-59ea39b4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/contracts.html.js").then(({ data }) => data),
+  // path: /dev/
+  "v-7445cd33": () => import(/* webpackChunkName: "v-7445cd33" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/index.html.js").then(({ data }) => data),
+  // path: /guide/
+  "v-fffb8e28": () => import(/* webpackChunkName: "v-fffb8e28" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/index.html.js").then(({ data }) => data),
   // path: /demo/
   "v-1473bf53": () => import(/* webpackChunkName: "v-1473bf53" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/demo/index.html.js").then(({ data }) => data),
   // path: /demo/disable.html
@@ -21,14 +25,6 @@ export const pagesData = {
   "v-438ffe52": () => import(/* webpackChunkName: "v-438ffe52" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/demo/markdown.html.js").then(({ data }) => data),
   // path: /demo/page.html
   "v-6e19edb7": () => import(/* webpackChunkName: "v-6e19edb7" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/demo/page.html.js").then(({ data }) => data),
-  // path: /dev/
-  "v-7445cd33": () => import(/* webpackChunkName: "v-7445cd33" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/index.html.js").then(({ data }) => data),
-  // path: /guide/
-  "v-fffb8e28": () => import(/* webpackChunkName: "v-fffb8e28" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/index.html.js").then(({ data }) => data),
-  // path: /zh/
-  "v-2d0ad528": () => import(/* webpackChunkName: "v-2d0ad528" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/zh/index.html.js").then(({ data }) => data),
-  // path: /zh/slides.html
-  "v-269ae70f": () => import(/* webpackChunkName: "v-269ae70f" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/zh/slides.html.js").then(({ data }) => data),
   // path: /api/go/
   "v-3a3f3db9": () => import(/* webpackChunkName: "v-3a3f3db9" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/go/index.html.js").then(({ data }) => data),
   // path: /api/go/getting-started.html
@@ -43,14 +39,14 @@ export const pagesData = {
   "v-f970a034": () => import(/* webpackChunkName: "v-f970a034" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/hardhat/plugins.html.js").then(({ data }) => data),
   // path: /api/hardhat/testing.html
   "v-1a39fb76": () => import(/* webpackChunkName: "v-1a39fb76" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/hardhat/testing.html.js").then(({ data }) => data),
-  // path: /api/python/
-  "v-59ad8f45": () => import(/* webpackChunkName: "v-59ad8f45" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/python/index.html.js").then(({ data }) => data),
-  // path: /api/python/getting-started.html
-  "v-c76ba0b4": () => import(/* webpackChunkName: "v-c76ba0b4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/python/getting-started.html.js").then(({ data }) => data),
   // path: /api/java/
   "v-b0e89982": () => import(/* webpackChunkName: "v-b0e89982" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/java/index.html.js").then(({ data }) => data),
   // path: /api/java/getting-started.html
   "v-f3cedac0": () => import(/* webpackChunkName: "v-f3cedac0" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/java/getting-started.html.js").then(({ data }) => data),
+  // path: /api/python/
+  "v-59ad8f45": () => import(/* webpackChunkName: "v-59ad8f45" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/python/index.html.js").then(({ data }) => data),
+  // path: /api/python/getting-started.html
+  "v-c76ba0b4": () => import(/* webpackChunkName: "v-c76ba0b4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/python/getting-started.html.js").then(({ data }) => data),
   // path: /api/js/
   "v-3a3f4978": () => import(/* webpackChunkName: "v-3a3f4978" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/js/index.html.js").then(({ data }) => data),
   // path: /api/js/accounts-l1-l2.html
@@ -71,14 +67,6 @@ export const pagesData = {
   "v-d0c9c110": () => import(/* webpackChunkName: "v-d0c9c110" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/js/types.html.js").then(({ data }) => data),
   // path: /api/js/utils.html
   "v-41b1ca40": () => import(/* webpackChunkName: "v-41b1ca40" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/js/utils.html.js").then(({ data }) => data),
-  // path: /dev/developer-guides/
-  "v-48a88b7c": () => import(/* webpackChunkName: "v-48a88b7c" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/index.html.js").then(({ data }) => data),
-  // path: /dev/developer-guides/aa.html
-  "v-57cf3f92": () => import(/* webpackChunkName: "v-57cf3f92" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/aa.html.js").then(({ data }) => data),
-  // path: /dev/developer-guides/hello-world.html
-  "v-1186fab8": () => import(/* webpackChunkName: "v-1186fab8" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/hello-world.html.js").then(({ data }) => data),
-  // path: /dev/developer-guides/security.html
-  "v-35a05ad2": () => import(/* webpackChunkName: "v-35a05ad2" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/security.html.js").then(({ data }) => data),
   // path: /dev/fundamentals/
   "v-0a7cac64": () => import(/* webpackChunkName: "v-0a7cac64" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/fundamentals/index.html.js").then(({ data }) => data),
   // path: /dev/fundamentals/faq.html
@@ -89,6 +77,14 @@ export const pagesData = {
   "v-8211ee88": () => import(/* webpackChunkName: "v-8211ee88" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/fundamentals/testnet.html.js").then(({ data }) => data),
   // path: /dev/fundamentals/zkSync.html
   "v-e8bc1f42": () => import(/* webpackChunkName: "v-e8bc1f42" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/fundamentals/zkSync.html.js").then(({ data }) => data),
+  // path: /dev/developer-guides/
+  "v-48a88b7c": () => import(/* webpackChunkName: "v-48a88b7c" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/index.html.js").then(({ data }) => data),
+  // path: /dev/developer-guides/aa.html
+  "v-57cf3f92": () => import(/* webpackChunkName: "v-57cf3f92" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/aa.html.js").then(({ data }) => data),
+  // path: /dev/developer-guides/hello-world.html
+  "v-1186fab8": () => import(/* webpackChunkName: "v-1186fab8" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/hello-world.html.js").then(({ data }) => data),
+  // path: /dev/developer-guides/security.html
+  "v-35a05ad2": () => import(/* webpackChunkName: "v-35a05ad2" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/security.html.js").then(({ data }) => data),
   // path: /dev/testnet/migration-to-testnet-paymaster.html
   "v-faf16966": () => import(/* webpackChunkName: "v-faf16966" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/testnet/migration-to-testnet-paymaster.html.js").then(({ data }) => data),
   // path: /dev/troubleshooting/
@@ -99,10 +95,6 @@ export const pagesData = {
   "v-03e4738d": () => import(/* webpackChunkName: "v-03e4738d" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/troubleshooting/known-issues.html.js").then(({ data }) => data),
   // path: /dev/troubleshooting/status.html
   "v-36728a42": () => import(/* webpackChunkName: "v-36728a42" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/troubleshooting/status.html.js").then(({ data }) => data),
-  // path: /guide/bar/
-  "v-5d5c2d30": () => import(/* webpackChunkName: "v-5d5c2d30" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/bar/index.html.js").then(({ data }) => data),
-  // path: /guide/bar/baz.html
-  "v-177e1f06": () => import(/* webpackChunkName: "v-177e1f06" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/bar/baz.html.js").then(({ data }) => data),
   // path: /dev/tutorials/
   "v-a4bdf926": () => import(/* webpackChunkName: "v-a4bdf926" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/tutorials/index.html.js").then(({ data }) => data),
   // path: /dev/tutorials/cross-chain-tutorial.html
@@ -111,6 +103,10 @@ export const pagesData = {
   "v-514a621d": () => import(/* webpackChunkName: "v-514a621d" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/tutorials/custom-aa-tutorial.html.js").then(({ data }) => data),
   // path: /dev/tutorials/custom-paymaster-tutorial.html
   "v-1054c109": () => import(/* webpackChunkName: "v-1054c109" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/tutorials/custom-paymaster-tutorial.html.js").then(({ data }) => data),
+  // path: /guide/bar/
+  "v-5d5c2d30": () => import(/* webpackChunkName: "v-5d5c2d30" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/bar/index.html.js").then(({ data }) => data),
+  // path: /guide/bar/baz.html
+  "v-177e1f06": () => import(/* webpackChunkName: "v-177e1f06" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/bar/baz.html.js").then(({ data }) => data),
   // path: /guide/foo/
   "v-5d5821d6": () => import(/* webpackChunkName: "v-5d5821d6" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/foo/index.html.js").then(({ data }) => data),
   // path: /guide/foo/ray.html
@@ -127,20 +123,6 @@ export const pagesData = {
   "v-62ced1a6": () => import(/* webpackChunkName: "v-62ced1a6" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/zh/demo/page.html.js").then(({ data }) => data),
   // path: /zh/guide/
   "v-47357bdb": () => import(/* webpackChunkName: "v-47357bdb" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/zh/guide/index.html.js").then(({ data }) => data),
-  // path: /api/tools/block-explorer/
-  "v-0f41a164": () => import(/* webpackChunkName: "v-0f41a164" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/index.html.js").then(({ data }) => data),
-  // path: /api/tools/block-explorer/block-view.html
-  "v-7ff2e9f4": () => import(/* webpackChunkName: "v-7ff2e9f4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/block-view.html.js").then(({ data }) => data),
-  // path: /api/tools/block-explorer/contract-verification.html
-  "v-18f3fd71": () => import(/* webpackChunkName: "v-18f3fd71" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/contract-verification.html.js").then(({ data }) => data),
-  // path: /api/tools/block-explorer/intro.html
-  "v-1f50388a": () => import(/* webpackChunkName: "v-1f50388a" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/intro.html.js").then(({ data }) => data),
-  // path: /api/tools/block-explorer/search.html
-  "v-38e1f823": () => import(/* webpackChunkName: "v-38e1f823" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/search.html.js").then(({ data }) => data),
-  // path: /api/tools/block-explorer/zkevm.html
-  "v-2668b47c": () => import(/* webpackChunkName: "v-2668b47c" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/zkevm.html.js").then(({ data }) => data),
-  // path: /api/tools/zksync-cli/
-  "v-ac7202a4": () => import(/* webpackChunkName: "v-ac7202a4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/zksync-cli/index.html.js").then(({ data }) => data),
   // path: /dev/developer-guides/bridging/bridging-asset.html
   "v-fa3b106e": () => import(/* webpackChunkName: "v-fa3b106e" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/bridging/bridging-asset.html.js").then(({ data }) => data),
   // path: /dev/developer-guides/bridging/l1-l2-interop.html
@@ -169,6 +151,20 @@ export const pagesData = {
   "v-4da8d86f": () => import(/* webpackChunkName: "v-4da8d86f" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/transactions/fee-model.html.js").then(({ data }) => data),
   // path: /dev/developer-guides/transactions/transactions.html
   "v-34a93da8": () => import(/* webpackChunkName: "v-34a93da8" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/transactions/transactions.html.js").then(({ data }) => data),
+  // path: /api/tools/block-explorer/
+  "v-0f41a164": () => import(/* webpackChunkName: "v-0f41a164" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/index.html.js").then(({ data }) => data),
+  // path: /api/tools/block-explorer/block-view.html
+  "v-7ff2e9f4": () => import(/* webpackChunkName: "v-7ff2e9f4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/block-view.html.js").then(({ data }) => data),
+  // path: /api/tools/block-explorer/contract-verification.html
+  "v-18f3fd71": () => import(/* webpackChunkName: "v-18f3fd71" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/contract-verification.html.js").then(({ data }) => data),
+  // path: /api/tools/block-explorer/intro.html
+  "v-1f50388a": () => import(/* webpackChunkName: "v-1f50388a" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/intro.html.js").then(({ data }) => data),
+  // path: /api/tools/block-explorer/search.html
+  "v-38e1f823": () => import(/* webpackChunkName: "v-38e1f823" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/search.html.js").then(({ data }) => data),
+  // path: /api/tools/block-explorer/zkevm.html
+  "v-2668b47c": () => import(/* webpackChunkName: "v-2668b47c" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/zkevm.html.js").then(({ data }) => data),
+  // path: /api/tools/zksync-cli/
+  "v-ac7202a4": () => import(/* webpackChunkName: "v-ac7202a4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/zksync-cli/index.html.js").then(({ data }) => data),
   // path: /dev/troubleshooting/docs-contribution/community-resources.html
   "v-ccfa04e6": () => import(/* webpackChunkName: "v-ccfa04e6" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/troubleshooting/docs-contribution/community-resources.html.js").then(({ data }) => data),
   // path: /dev/troubleshooting/docs-contribution/docs.html

@@ -1,8 +1,7 @@
 ---
 home: true
 title: Quickstart
-heroImage: /logo.svg
-heroText: zkSync
+heroText: Welcome to zkSync
 
 features:
   - title: Quick start

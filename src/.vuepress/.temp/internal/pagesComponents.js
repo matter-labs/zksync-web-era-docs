@@ -13,6 +13,10 @@ export const pagesComponents = {
   "v-587e1e66": defineAsyncComponent(() => import(/* webpackChunkName: "v-587e1e66" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/api.html.vue")),
   // path: /api/contracts.html
   "v-59ea39b4": defineAsyncComponent(() => import(/* webpackChunkName: "v-59ea39b4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/contracts.html.vue")),
+  // path: /dev/
+  "v-7445cd33": defineAsyncComponent(() => import(/* webpackChunkName: "v-7445cd33" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/index.html.vue")),
+  // path: /guide/
+  "v-fffb8e28": defineAsyncComponent(() => import(/* webpackChunkName: "v-fffb8e28" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/index.html.vue")),
   // path: /demo/
   "v-1473bf53": defineAsyncComponent(() => import(/* webpackChunkName: "v-1473bf53" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/demo/index.html.vue")),
   // path: /demo/disable.html
@@ -23,14 +27,6 @@ export const pagesComponents = {
   "v-438ffe52": defineAsyncComponent(() => import(/* webpackChunkName: "v-438ffe52" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/demo/markdown.html.vue")),
   // path: /demo/page.html
   "v-6e19edb7": defineAsyncComponent(() => import(/* webpackChunkName: "v-6e19edb7" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/demo/page.html.vue")),
-  // path: /dev/
-  "v-7445cd33": defineAsyncComponent(() => import(/* webpackChunkName: "v-7445cd33" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/index.html.vue")),
-  // path: /guide/
-  "v-fffb8e28": defineAsyncComponent(() => import(/* webpackChunkName: "v-fffb8e28" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/index.html.vue")),
-  // path: /zh/
-  "v-2d0ad528": defineAsyncComponent(() => import(/* webpackChunkName: "v-2d0ad528" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/zh/index.html.vue")),
-  // path: /zh/slides.html
-  "v-269ae70f": defineAsyncComponent(() => import(/* webpackChunkName: "v-269ae70f" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/zh/slides.html.vue")),
   // path: /api/go/
   "v-3a3f3db9": defineAsyncComponent(() => import(/* webpackChunkName: "v-3a3f3db9" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/go/index.html.vue")),
   // path: /api/go/getting-started.html
@@ -45,14 +41,14 @@ export const pagesComponents = {
   "v-f970a034": defineAsyncComponent(() => import(/* webpackChunkName: "v-f970a034" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/hardhat/plugins.html.vue")),
   // path: /api/hardhat/testing.html
   "v-1a39fb76": defineAsyncComponent(() => import(/* webpackChunkName: "v-1a39fb76" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/hardhat/testing.html.vue")),
-  // path: /api/python/
-  "v-59ad8f45": defineAsyncComponent(() => import(/* webpackChunkName: "v-59ad8f45" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/python/index.html.vue")),
-  // path: /api/python/getting-started.html
-  "v-c76ba0b4": defineAsyncComponent(() => import(/* webpackChunkName: "v-c76ba0b4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/python/getting-started.html.vue")),
   // path: /api/java/
   "v-b0e89982": defineAsyncComponent(() => import(/* webpackChunkName: "v-b0e89982" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/java/index.html.vue")),
   // path: /api/java/getting-started.html
   "v-f3cedac0": defineAsyncComponent(() => import(/* webpackChunkName: "v-f3cedac0" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/java/getting-started.html.vue")),
+  // path: /api/python/
+  "v-59ad8f45": defineAsyncComponent(() => import(/* webpackChunkName: "v-59ad8f45" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/python/index.html.vue")),
+  // path: /api/python/getting-started.html
+  "v-c76ba0b4": defineAsyncComponent(() => import(/* webpackChunkName: "v-c76ba0b4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/python/getting-started.html.vue")),
   // path: /api/js/
   "v-3a3f4978": defineAsyncComponent(() => import(/* webpackChunkName: "v-3a3f4978" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/js/index.html.vue")),
   // path: /api/js/accounts-l1-l2.html
@@ -73,14 +69,6 @@ export const pagesComponents = {
   "v-d0c9c110": defineAsyncComponent(() => import(/* webpackChunkName: "v-d0c9c110" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/js/types.html.vue")),
   // path: /api/js/utils.html
   "v-41b1ca40": defineAsyncComponent(() => import(/* webpackChunkName: "v-41b1ca40" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/js/utils.html.vue")),
-  // path: /dev/developer-guides/
-  "v-48a88b7c": defineAsyncComponent(() => import(/* webpackChunkName: "v-48a88b7c" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/index.html.vue")),
-  // path: /dev/developer-guides/aa.html
-  "v-57cf3f92": defineAsyncComponent(() => import(/* webpackChunkName: "v-57cf3f92" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/aa.html.vue")),
-  // path: /dev/developer-guides/hello-world.html
-  "v-1186fab8": defineAsyncComponent(() => import(/* webpackChunkName: "v-1186fab8" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/hello-world.html.vue")),
-  // path: /dev/developer-guides/security.html
-  "v-35a05ad2": defineAsyncComponent(() => import(/* webpackChunkName: "v-35a05ad2" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/security.html.vue")),
   // path: /dev/fundamentals/
   "v-0a7cac64": defineAsyncComponent(() => import(/* webpackChunkName: "v-0a7cac64" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/fundamentals/index.html.vue")),
   // path: /dev/fundamentals/faq.html
@@ -91,6 +79,14 @@ export const pagesComponents = {
   "v-8211ee88": defineAsyncComponent(() => import(/* webpackChunkName: "v-8211ee88" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/fundamentals/testnet.html.vue")),
   // path: /dev/fundamentals/zkSync.html
   "v-e8bc1f42": defineAsyncComponent(() => import(/* webpackChunkName: "v-e8bc1f42" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/fundamentals/zkSync.html.vue")),
+  // path: /dev/developer-guides/
+  "v-48a88b7c": defineAsyncComponent(() => import(/* webpackChunkName: "v-48a88b7c" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/index.html.vue")),
+  // path: /dev/developer-guides/aa.html
+  "v-57cf3f92": defineAsyncComponent(() => import(/* webpackChunkName: "v-57cf3f92" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/aa.html.vue")),
+  // path: /dev/developer-guides/hello-world.html
+  "v-1186fab8": defineAsyncComponent(() => import(/* webpackChunkName: "v-1186fab8" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/hello-world.html.vue")),
+  // path: /dev/developer-guides/security.html
+  "v-35a05ad2": defineAsyncComponent(() => import(/* webpackChunkName: "v-35a05ad2" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/security.html.vue")),
   // path: /dev/testnet/migration-to-testnet-paymaster.html
   "v-faf16966": defineAsyncComponent(() => import(/* webpackChunkName: "v-faf16966" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/testnet/migration-to-testnet-paymaster.html.vue")),
   // path: /dev/troubleshooting/
@@ -101,10 +97,6 @@ export const pagesComponents = {
   "v-03e4738d": defineAsyncComponent(() => import(/* webpackChunkName: "v-03e4738d" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/troubleshooting/known-issues.html.vue")),
   // path: /dev/troubleshooting/status.html
   "v-36728a42": defineAsyncComponent(() => import(/* webpackChunkName: "v-36728a42" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/troubleshooting/status.html.vue")),
-  // path: /guide/bar/
-  "v-5d5c2d30": defineAsyncComponent(() => import(/* webpackChunkName: "v-5d5c2d30" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/bar/index.html.vue")),
-  // path: /guide/bar/baz.html
-  "v-177e1f06": defineAsyncComponent(() => import(/* webpackChunkName: "v-177e1f06" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/bar/baz.html.vue")),
   // path: /dev/tutorials/
   "v-a4bdf926": defineAsyncComponent(() => import(/* webpackChunkName: "v-a4bdf926" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/tutorials/index.html.vue")),
   // path: /dev/tutorials/cross-chain-tutorial.html
@@ -113,6 +105,10 @@ export const pagesComponents = {
   "v-514a621d": defineAsyncComponent(() => import(/* webpackChunkName: "v-514a621d" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/tutorials/custom-aa-tutorial.html.vue")),
   // path: /dev/tutorials/custom-paymaster-tutorial.html
   "v-1054c109": defineAsyncComponent(() => import(/* webpackChunkName: "v-1054c109" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/tutorials/custom-paymaster-tutorial.html.vue")),
+  // path: /guide/bar/
+  "v-5d5c2d30": defineAsyncComponent(() => import(/* webpackChunkName: "v-5d5c2d30" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/bar/index.html.vue")),
+  // path: /guide/bar/baz.html
+  "v-177e1f06": defineAsyncComponent(() => import(/* webpackChunkName: "v-177e1f06" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/bar/baz.html.vue")),
   // path: /guide/foo/
   "v-5d5821d6": defineAsyncComponent(() => import(/* webpackChunkName: "v-5d5821d6" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/guide/foo/index.html.vue")),
   // path: /guide/foo/ray.html
@@ -129,20 +125,6 @@ export const pagesComponents = {
   "v-62ced1a6": defineAsyncComponent(() => import(/* webpackChunkName: "v-62ced1a6" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/zh/demo/page.html.vue")),
   // path: /zh/guide/
   "v-47357bdb": defineAsyncComponent(() => import(/* webpackChunkName: "v-47357bdb" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/zh/guide/index.html.vue")),
-  // path: /api/tools/block-explorer/
-  "v-0f41a164": defineAsyncComponent(() => import(/* webpackChunkName: "v-0f41a164" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/index.html.vue")),
-  // path: /api/tools/block-explorer/block-view.html
-  "v-7ff2e9f4": defineAsyncComponent(() => import(/* webpackChunkName: "v-7ff2e9f4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/block-view.html.vue")),
-  // path: /api/tools/block-explorer/contract-verification.html
-  "v-18f3fd71": defineAsyncComponent(() => import(/* webpackChunkName: "v-18f3fd71" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/contract-verification.html.vue")),
-  // path: /api/tools/block-explorer/intro.html
-  "v-1f50388a": defineAsyncComponent(() => import(/* webpackChunkName: "v-1f50388a" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/intro.html.vue")),
-  // path: /api/tools/block-explorer/search.html
-  "v-38e1f823": defineAsyncComponent(() => import(/* webpackChunkName: "v-38e1f823" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/search.html.vue")),
-  // path: /api/tools/block-explorer/zkevm.html
-  "v-2668b47c": defineAsyncComponent(() => import(/* webpackChunkName: "v-2668b47c" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/zkevm.html.vue")),
-  // path: /api/tools/zksync-cli/
-  "v-ac7202a4": defineAsyncComponent(() => import(/* webpackChunkName: "v-ac7202a4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/zksync-cli/index.html.vue")),
   // path: /dev/developer-guides/bridging/bridging-asset.html
   "v-fa3b106e": defineAsyncComponent(() => import(/* webpackChunkName: "v-fa3b106e" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/bridging/bridging-asset.html.vue")),
   // path: /dev/developer-guides/bridging/l1-l2-interop.html
@@ -171,6 +153,20 @@ export const pagesComponents = {
   "v-4da8d86f": defineAsyncComponent(() => import(/* webpackChunkName: "v-4da8d86f" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/transactions/fee-model.html.vue")),
   // path: /dev/developer-guides/transactions/transactions.html
   "v-34a93da8": defineAsyncComponent(() => import(/* webpackChunkName: "v-34a93da8" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/developer-guides/transactions/transactions.html.vue")),
+  // path: /api/tools/block-explorer/
+  "v-0f41a164": defineAsyncComponent(() => import(/* webpackChunkName: "v-0f41a164" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/index.html.vue")),
+  // path: /api/tools/block-explorer/block-view.html
+  "v-7ff2e9f4": defineAsyncComponent(() => import(/* webpackChunkName: "v-7ff2e9f4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/block-view.html.vue")),
+  // path: /api/tools/block-explorer/contract-verification.html
+  "v-18f3fd71": defineAsyncComponent(() => import(/* webpackChunkName: "v-18f3fd71" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/contract-verification.html.vue")),
+  // path: /api/tools/block-explorer/intro.html
+  "v-1f50388a": defineAsyncComponent(() => import(/* webpackChunkName: "v-1f50388a" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/intro.html.vue")),
+  // path: /api/tools/block-explorer/search.html
+  "v-38e1f823": defineAsyncComponent(() => import(/* webpackChunkName: "v-38e1f823" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/search.html.vue")),
+  // path: /api/tools/block-explorer/zkevm.html
+  "v-2668b47c": defineAsyncComponent(() => import(/* webpackChunkName: "v-2668b47c" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/block-explorer/zkevm.html.vue")),
+  // path: /api/tools/zksync-cli/
+  "v-ac7202a4": defineAsyncComponent(() => import(/* webpackChunkName: "v-ac7202a4" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/api/tools/zksync-cli/index.html.vue")),
   // path: /dev/troubleshooting/docs-contribution/community-resources.html
   "v-ccfa04e6": defineAsyncComponent(() => import(/* webpackChunkName: "v-ccfa04e6" */"/Users/beveloper/Desktop/projects/zksync-web-v2-docs/src/.vuepress/.temp/pages/dev/troubleshooting/docs-contribution/community-resources.html.vue")),
   // path: /dev/troubleshooting/docs-contribution/docs.html

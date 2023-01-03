@@ -9,7 +9,7 @@ export default defineUserConfig({
     "/": {
       lang: "en-US",
       title: "",
-      description: "Accelerating the mass adoption of crypto for personal sovereignty",
+      description: "zkSync is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet.",
     }
   },
 
@@ -20,6 +20,17 @@ export default defineUserConfig({
       appId: "LCWOUB1OFO",
       apiKey: "9a4932a3e119b24ef5f19a85c08d9c81",
       indexName: "v2-zksync",
+      locales: {
+        "/": {
+          placeholder: "Search docs",
+          translations: {
+            button: {
+              buttonText: "Search",
+              buttonAriaLabel: "Search docs",
+            },
+          },
+        },
+      },
     }),
   ],
 
