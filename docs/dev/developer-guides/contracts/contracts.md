@@ -17,27 +17,14 @@ Solidity versions `>=0.8` are compiled through Yul, whereas `<=0.7` are compiled
 
 ### Using libraries in Solidity
 
-If a Solidity library can be inlined (i.e. it only contains `private` or `internal` methods), it can be used without any additional configuration. However, if a library contains at least one `public` or `external` method, it needs to be passed explicitly to the compiler. You can learn more about [how to compile non-inlineable libraries in this section of the docs](../../../api/hardhat/compiling-libraries.md).
+The usage of libraries in Solidity is supported in zkSync 2.0 with the following considerations:
+
+- If a Solidity library can be inlined (i.e. it only contains `private` or `internal` methods), it can be used without any additional configuration.
+- However, if a library contains at least one `public` or `external` method, it's non-inlinable and its address needs to be passed explicitly to the compiler. You can learn more about [how to compile non-inlineable libraries in this section of the docs](../../../api/hardhat/compiling-libraries.md).
 
 ## Vyper support
 
 Currently only Vyper `^0.3.3` is supported.
-
-## EVM Compatibility
-
-Almost every smart contract written for EVM will be supported by zkSync 2.0 and will hold all key security invariants so that no additional security re-auditing will be required in most cases. A notable exception is the contracts that use the following EVM opcodes:
-
-- `SELFDESTRUCT` - it’s considered harmful and was deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).
-- `EXTCODECOPY` - it can be implemented if needed, but we skip it for now because zkEVM opcodes are not identical to EVM ones anyway.
-- `CALLCODE` - deprecated on Ethereum in favor of `DELEGATECALL`.
-- `CODECOPY` - acts like `CALLDATACOPY` in the deploy code, unsupported in the runtime code.
-- `PC` - since Solidity is 0.7.0, it is not accessible in Yul and Solidity.
-
-All unsupported opcodes produce an error on compilation.
-
-There are a few other distinctions, for example, gas metering will be different (as is the case for other L2s as well). Some EVM’s cryptographic precompiles (notably pairings and RSA) won’t be available in the very first release but will be implemented soon after the launch, with pairing being a priority to allow both Hyperchains and protocols like Aztec/Dark Forest to be deployed without modifications too.
-
-Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are supported as precompiles. No actions are required from your side as all the calls to the precompiles are done by the compilers under the hood.
 
 ## Compilers
 
@@ -46,7 +33,10 @@ Although you can write smart contracts in both Solidty and Vyper, compiling thes
 - [zksolc](https://github.com/matter-labs/zksolc-bin): Solidity compiler.
 - [zkvyper](https://github.com/matter-labs/zkvyper-bin): Vyper compiler.
 
-**Our compilers are based on LLVM**. LLVM-based compilers have become the industry standard because of their robustness, efficiency, and the large community around the world. They provide us some additional advantages: - Enable us to improve the efficiency over the original EVM bytecode because with LLVM we can take advantage of the many optimizations and tools available in this mature ecosystem. - Pave the way for us to add support for integrating codebases written in other programming languages with LLVM front-ends. By doing so, developers can build dApps and use blockchains in ways that are currently not possible.
+**Our compilers are based on LLVM**. LLVM-based compilers have become the industry standard because of their robustness, efficiency, and the large community around the world. They provide us some additional advantages:
+
+- Enable us to improve the efficiency over the original EVM bytecode because with LLVM we can take advantage of the many optimizations and tools available in this mature ecosystem.
+- Pave the way for us to add support for integrating codebases written in other programming languages with LLVM front-ends. By doing so, developers can build dApps and use blockchains in ways that are currently not possible.
 
 We recommend using these compilers via [their correspondent Hardhat plugins](../../../api/hardhat/plugins.md) (although they're also available as binaries). These plugins should be added to the Hardhat's config file and allow developers to compile new projects or migrate existing ones to zkSync 2.0.
 
@@ -56,7 +46,23 @@ Compilers are no longer released as Docker images and its usage is no longer rec
 
 :::
 
-Check out the documentation in the links below:
+**Learn more about how to install and configure these plugins in the links below:**
 
 - [hardhat-zksync-solc documentation](../../../api/hardhat/plugins.md#hardhat-zksync-solc)
 - [hardhat-zksync-vyper documentation](../../../api/hardhat/plugins.md#hardhat-zksync-vyper)
+
+## EVM compatibility
+
+Almost every smart contract written for EVM will be supported by zkSync 2.0 and will hold all key security invariants so that no additional security re-auditing will be required in most cases. A notable exception is the contracts that use the following EVM opcodes:
+
+- `SELFDESTRUCT`: it’s considered harmful and was deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).
+- `EXTCODECOPY` - we've skip it for now because zkEVM opcodes are not identical to EVM ones anyway but it can be implemented if needed.
+- `CALLCODE` - it was deprecated on Ethereum in favor of `DELEGATECALL`.
+- `CODECOPY` - it acts like `CALLDATACOPY` in the deploy code, unsupported in the runtime code.
+- `PC` - since Solidity is 0.7.0, it is not accessible in Yul and Solidity.
+
+All unsupported opcodes produce an error on compilation.
+
+There are a few other distinctions, for example, gas metering will be different (as is the case for other L2s as well). Some EVM’s cryptographic precompiles (notably pairings and RSA) won’t be available in the very first release but will be implemented soon after the launch, with pairing being a priority to allow both Hyperchains and protocols like Aztec/Dark Forest to be deployed without modifications too.
+
+Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are supported as precompiles. No actions are required from your side as all the calls to the precompiles are done by the compilers under the hood.
