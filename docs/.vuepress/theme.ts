@@ -16,7 +16,7 @@ export default hopeTheme({
 
   repo: "matter-labs/zksync-web-v2-docs",
 
-  docsDir: "src",
+  docsDir: "docs",
 
   pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime"],
 
