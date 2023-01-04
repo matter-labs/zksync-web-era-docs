@@ -11,17 +11,17 @@ features:
 
   - title: Getting started
     icon: slides
-    details: Learn the basics of zkSync 
+    details: Learn the basics of zkSync. 
     link: https://v2-docs.zksync.io/dev/fundamentals
 
   - title: Building on zkSync
     icon: layout
-    details: Learn the blocking blocks of zkSync
+    details: Learn the blocking blocks of zkSync.
     link: https://v2-docs.zksync.io/dev/developer-guides/building-on-zksync
 
   - title: Tutorials
     icon: comment
-    details: How-to guides and tutorials for developers and users
+    details: How-to guides and tutorials for developers and users.
     link: https://v2-docs.zksync.io/dev/tutorials
 
   - title: Troubleshooting
