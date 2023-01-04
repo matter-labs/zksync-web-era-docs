@@ -22,7 +22,7 @@ export default defineUserConfig({
       indexName: "v2-zksync",
       locales: {
         "/": {
-          placeholder: "Search docs",
+          placeholder: "Search the docs",
           translations: {
             button: {
               buttonText: "Search",
