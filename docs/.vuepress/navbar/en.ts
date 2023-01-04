@@ -33,4 +33,21 @@ export const enNavbar = navbar([
       },
     ],
   },
+  {
+    text: "Community",
+    children: [
+      {
+        text: "Discord",
+        link: "https://join.zksync.dev/",
+      },
+      {
+        text: "Twitter",
+        link: "https://twitter.com/zksync",
+      },
+      {
+        text: "Telegram",
+        link: "https://t.me/zksync_support"
+      }
+    ],
+  },
 ]);
