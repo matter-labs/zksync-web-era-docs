@@ -1,5 +1,47 @@
 dist/
 node_modules/
 
+# dependencies
+node_modules
+/.pnp
+.pnp.js
+/.yarn/cache/
+/.yarn/build-state.yml
+/.yarn/install-state.gz
+
+# testing
+/coverage
+
+# production
+build
+dist
+.idea
+lib
+.firebase/
+.vscode/
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*-debug.log*
+
+# cache
+.cache
+.brotli_cache/
+.gzip_cache/
+.assets_cache/
+.buildx-cache/
+.reports/
+/firebase-debug.log
+/report.txt
+/tokens.txt
+
+# unignore
+!.yarn/releases/*
+!.yarn/plugins/*
 .cache/
 .temp/
