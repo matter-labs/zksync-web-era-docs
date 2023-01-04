@@ -18,7 +18,7 @@ export default hopeTheme({
 
   docsDir: "docs",
 
-  pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime"],
+  pageInfo: ["Original", "Date", "Category", "Tag"],
 
   locales: {
     "/": {
