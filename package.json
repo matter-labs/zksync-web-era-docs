@@ -1,20 +1,74 @@
 {
   "name": "zksync-web-v2-docs",
   "version": "2.0.0",
-  "description": "zkSync: Accelerating the mass adoption of crypto for personal sovereignty",
+  "description": "zkSync Docs V2",
   "license": "MIT",
+  "author": "Matter Labs",
+  "homepage": "https://zksync.io",
   "type": "module",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/matter-labs/zksync-web-v2-docs/issues"
+  },
+  "check-md": {
+    "cwd": "./docs",
+    "defaultIndex": [
+      "README.md"
+    ],
+    "exitLevel": "warn",
+    "ignoreFootnotes": true
+  },
   "scripts": {
-    "docs:build": "vuepress build src",
-    "docs:clean-dev": "vuepress dev src --clean-cache",
-    "docs:dev": "vuepress dev src"
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "docs:clean-dev": "vuepress dev docs --clean-cache",
+    "lint:dead": "node ./replacer.js && check-md",
+    "lint:fmt": "prettier --check \"docs/**/*.md\"",
+    "lint:mdl": "markdownlint -c .markdownlint.json \"docs/**/*.md\"",
+    "lint:spell": "cspell docs/**/*.md",
+    "fix:fmt": "prettier --write \"docs/**/*.md\"",
+    "fix:mdl": "yarn lint:md --fix",
+    "ci": "yarn lint:dead; yarn lint:fmt;",
+    "ci:fix": "yarn fix:mdl; yarn fix:fmt",
+    "ci:build": "yarn ci && yarn docs:build",
+    "prepare": "husky install",
+    "semantic-release": "semantic-release",
+    "postinstall": "husky install"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@semantic-release/changelog": "^6.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.7",
     "@vuepress/client": "2.0.0-beta.60",
     "@vuepress/plugin-docsearch": "^2.0.0-beta.60",
+    "check-md": "^1.0.2",
+    "commitlint": "^17.3.0",
+    "cspell": "^6.18.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
+    "markdownlint": "^0.27.0",
+    "markdownlint-cli": "^0.32.2",
+    "prettier": "^2.8.1",
+    "semantic-release": "^19.0.5",
     "vue": "^3.2.45",
     "vuepress": "2.0.0-beta.60",
     "vuepress-theme-hope": "2.0.0-beta.146"
   },
-  "dependencies": {}
+  "lint-staged": {
+    "*.md": "yarn run ci:fix"
+  },
+  "packageManager": "yarn@3.1.1"
 }

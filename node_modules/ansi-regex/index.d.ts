@@ -1,10 +1,12 @@
-export interface Options {
-	/**
-	Match only the first ANSI escape.
+declare namespace ansiRegex {
+	interface Options {
+		/**
+		Match only the first ANSI escape.
 
-	@default false
-	*/
-	readonly onlyFirst: boolean;
+		@default false
+		*/
+		onlyFirst: boolean;
+	}
 }
 
 /**
@@ -12,7 +14,7 @@ Regular expression for matching ANSI escape codes.
 
 @example
 ```
-import ansiRegex from 'ansi-regex';
+import ansiRegex = require('ansi-regex');
 
 ansiRegex().test('\u001B[4mcake\u001B[0m');
 //=> true
@@ -30,4 +32,6 @@ ansiRegex().test('cake');
 //=> ['\u001B]8;;https://github.com\u0007', '\u001B]8;;\u0007']
 ```
 */
-export default function ansiRegex(options?: Options): RegExp;
+declare function ansiRegex(options?: ansiRegex.Options): RegExp;
+
+export = ansiRegex;

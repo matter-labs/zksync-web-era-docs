@@ -1,9 +1,4 @@
-import ansiRegex from 'ansi-regex';
+'use strict';
+const ansiRegex = require('ansi-regex');
 
-export default function stripAnsi(string) {
-	if (typeof string !== 'string') {
-		throw new TypeError(`Expected a \`string\`, got \`${typeof string}\``);
-	}
-
-	return string.replace(ansiRegex(), '');
-}
+module.exports = string => typeof string === 'string' ? string.replace(ansiRegex(), '') : string;
