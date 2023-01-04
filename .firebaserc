@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "aqwzx-zksync-v2-docs"
+  },
+  "targets": {
+    "aqwzx-zksync-v2-docs": {
+      "hosting": {
+        "prod": [
+          "aqwzx-zksync-v2-docs"
+        ],
+        "staging": [
+          "docs-v2-zksync"
+        ]
+      }
+    }
+  }
+}
