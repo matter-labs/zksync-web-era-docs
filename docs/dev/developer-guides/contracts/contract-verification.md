@@ -24,10 +24,10 @@ By setting the `zksync` parameter to true when running verify task, you will be 
 
 ### Parameters
 
-To verify the contract, you need to provide the contract's address: </br>
+To verify the contract, you need to provide the contract's address: <br/>
 `yarn hardhat verify --network <network> <contract address>`
 
-With the `--contract` parameter you can also specify which contract from your local setup you want to verify by specifying its Fully qualified name. Fully qualified name structure looks like this: "contracts/AContract.sol:TheContract" </br>
+With the `--contract` parameter you can also specify which contract from your local setup you want to verify by specifying its Fully qualified name. Fully qualified name structure looks like this: "contracts/AContract.sol:TheContract" <br/>
 
 Example: `yarn hardhat verify --network <network> <contract address> --contract <fully qualified name>`
 

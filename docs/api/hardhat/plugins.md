@@ -509,10 +509,10 @@ etherscan: {
 
 ### Commands
 
-`hardhat verify --network <network> <contract address>` - verifies the contract on the given network with the given contract's address. </br>
+`hardhat verify --network <network> <contract address>` - verifies the contract on the given network with the given contract's address. <br/>
 Note: When run like this, the verify task will try to compare compiled bytecode of all the contracts in your local setup to the deployed bytecode of the contract you are trying to verify. If there is no match, it will report an error.
 
-With the ```--contract``` parameter you can also specify which contract from your local setup you want to verify by specifying its Fully qualified name. Fully qualified name structure looks like this: "contracts/AContract.sol:TheContract" </br>
+With the ```--contract``` parameter you can also specify which contract from your local setup you want to verify by specifying its Fully qualified name. Fully qualified name structure looks like this: "contracts/AContract.sol:TheContract" <br/>
 
 Example: ``` yarn hardhat verify --network <network> <contract address> --contract <fully qualified  name>```
 
