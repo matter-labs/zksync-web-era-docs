@@ -5,3 +5,36 @@
 .site-name {
     font-weight: 700 !important;
 }
+div[class*=language-] > button.copy-code-button:not(.pure) {
+    background: #8687fb !important;
+}
+
+.footer-wrapper {
+    border: none !important;
+}
+
+#toc {
+    padding: 0 9rem !important;
+}
+
+hr{
+    display: none !important;
+}
+
+.nav-link {
+    //color: #2C3E50 !important;
+}
+
+a.title {
+    font-weight: 700 !important;
+}
+
+.logo {
+    height: 1.3rem !important;
+    padding: 0.89rem 0 !important;
+}
+.footer-wrapper {
+    // padding: 20px;
+    // min-height: 100%;
+    // margin: 0 auto -50px;
+}
