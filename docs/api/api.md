@@ -358,6 +358,13 @@ Don't want to document (at least for now):
 
 ## PubSub API
 
-zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/rpc/pubsub), except for the `syncing` subscription, as it doesn't have meaning for the zkSync network since technically our nodes are always synced. You can learn more about how to use it to handle events in [this section of the docs](../dev/developer-guides/building-on-zksync/events.md).
+
+zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/rpc/pubsub), except for the `syncing` subscription. This is because nodes on the zkSync network are technically always synchronized.
 
 The WebSocket URL is `wss://zksync2-testnet.zksync.dev/ws`.
+
+::: tip
+
+You can use the websocket endpoint to handle smart contract events, as detailed [in this section of the docs](../dev/developer-guides/building-on-zksync/events.md).
+
+:::
