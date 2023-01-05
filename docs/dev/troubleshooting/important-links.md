@@ -24,4 +24,3 @@
 ## Questions and support
 
 - [Discord](https://join.zksync.dev/)
-- [Community Forum](https://community.zksync.io/)
