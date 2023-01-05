@@ -55,11 +55,11 @@ Compilers are no longer released as Docker images and its usage is no longer rec
 
 Almost every smart contract written for EVM will be supported by zkSync 2.0 and will hold all key security invariants so that no additional security re-auditing will be required in most cases. A notable exception is the contracts that use the following EVM opcodes:
 
-- `SELFDESTRUCT`: it’s considered harmful and was deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).
-- `EXTCODECOPY` - we've skip it for now because zkEVM opcodes are not identical to EVM ones anyway but it can be implemented if needed.
-- `CALLCODE` - it was deprecated on Ethereum in favor of `DELEGATECALL`.
-- `CODECOPY` - it acts like `CALLDATACOPY` in the deploy code, unsupported in the runtime code.
-- `PC` - since Solidity is 0.7.0, it is not accessible in Yul and Solidity.
+- `SELFDESTRUCT` - Unsupported. It’s considered harmful and was deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).
+- `CALLCODE` - Unsupported. It was deprecated on Ethereum in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`.
+- `EXTCODECOPY` - Unsupported. We've skip it for now because zkEVM opcodes are not identical to EVM ones anyway but it can be implemented if needed.
+- `CODECOPY` - It's compiled into `CALLDATACOPY` by our compiler.
+- `PC` - Not accessible in Yul and Solidity `>=0.7.0`. Accessible in Solidity `0.6.0` although it produces a runtime error (no compilation error at this time).
 
 All unsupported opcodes produce an error on compilation.
 
