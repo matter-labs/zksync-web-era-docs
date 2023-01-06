@@ -10,14 +10,14 @@ module.exports = {
     md.use(require("markdown-it-footnote"));
   },
   plugins: [
-      "vuepress-plugin-table-of-contents",
-      "@vuepress/back-to-top",
+    "vuepress-plugin-table-of-contents",
+    "@vuepress/back-to-top",
     [
       "vuepress-plugin-dehydrate",
       {
         noSSR: "404.html",
         noScript: [],
-      }
+      },
     ],
     [
       "flexsearch",
@@ -35,12 +35,18 @@ module.exports = {
     ],
   ],
   themeConfig: {
+    // algolia: {
+    //   apiKey: 'LCWOUB1OFO',
+    //   indexName: '6c6d0d793fc59f3295143fd50027a372',
+    //   appId: 'v2-zksync',
+    // },
     repo: "matter-labs/zksync-web-v2-docs",
     editLinks: true,
     docsDir: "docs",
     docsBranch: "main",
     logo: "/LogotypeLight.svg",
     lastUpdated: "Last Updated",
+
     nav: [
       // {
       //   text: "User Docs",
@@ -112,6 +118,7 @@ module.exports = {
           children: [
             "/dev/developer-guides/hello-world.md",
             "/dev/developer-guides/contracts/contracts.md",
+            "/dev/developer-guides/contracts/contract-deployment.md",
             "/dev/developer-guides/contracts/contract-verification.md",
             "/dev/developer-guides/building-on-zksync/events.md",
             "/dev/developer-guides/building-on-zksync/rpc.md",
@@ -176,7 +183,7 @@ module.exports = {
         },
         {
           title: "Python SDK", // required
-          path: "/api/python/getting-started", // optional, which should be a absolute path.
+          path: "/api/python/", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
           children: ["/api/python/getting-started"],

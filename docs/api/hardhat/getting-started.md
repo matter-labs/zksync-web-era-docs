@@ -8,6 +8,7 @@ zkSync has has the following plugins for Hardhat:
 - [@matterlabs/hardhat-zksync-vyper](./plugins.md#hardhat-zksync-vyper) - used to compile contracts written in Vyper.
 - [@matterlabs/hardhat-zksync-deploy](./plugins.md#hardhat-zksync-deploy) - used to deploy smart contracts.
 - [@matterlabs/hardhat-zksync-chai-matchers](./plugins.md#hardhat-zksync-chai-matchers) - adds zkSync-specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts.
+- [@matterlabs/hardhat-zksync-verify](./plugins.md#hardhat-zksync-verify) - used to verify smart contracts.
 
 To learn more about Hardhat itself, check out [its official documentation](https://hardhat.org/getting-started/).
 
@@ -42,21 +43,14 @@ The `typescript` and `ts-node` dependencies are optional - plugins will work fin
 2. Create the `hardhat.config.ts` file and paste the following code within it:
 
 ```typescript
-require("@matterlabs/hardhat-zksync-deploy");
-require("@matterlabs/hardhat-zksync-solc");
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.2.0",
+    version: "1.2.2",
     compilerSource: "binary",
-    settings: {
-      optimizer: {
-        enabled: true,
-      },
-      experimental: {
-        dockerImage: "matterlabs/zksolc",
-        tag: "v1.2.0",
-      },
+    settings: {},
     },
   },
   defaultNetwork: "zkTestnet",
@@ -64,8 +58,8 @@ module.exports = {
     zkTestnet: {
       url: "https://zksync2-testnet.zksync.dev", // URL of the zkSync network RPC
       ethNetwork: "goerli", // Can also be the RPC URL of the Ethereum network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
-      zksync: true
-    }
+      zksync: true,
+    },
   },
   solidity: {
     version: "0.8.16",
@@ -182,7 +176,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 - Update the greet message in the contract with the `setGreeting()` method.
 - Retrieve the message from the contract again.
 
-**Congratulations! Your Hardhat project is now running on zkSync 🎉**
+**Congratulations! Your Hardhat project is now running on zkSync 2.0 testnet 🎉**
 
 ## Learn more
 
