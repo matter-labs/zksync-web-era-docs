@@ -60,21 +60,14 @@ To resolve the issue, you need to create _a separate project_, where only the li
 Let's say that the address of the deployed library is `0xF9702469Dfb84A9aC171E284F71615bd3D3f1EdC`. To pass this address to the compiler parameters, open the `harhdat.config.ts` file of the project where the `Main` contract is located and add the `libraries` section in the `zksolc` plugin properties:
 
 ```typescript
-require("@matterlabs/hardhat-zksync-deploy");
-require("@matterlabs/hardhat-zksync-solc");
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.2.0",
-    compilerSource: "docker",
+    version: "1.2.2",
+    compilerSource: "binary",
     settings: {
-      optimizer: {
-        enabled: true,
-      },
-      experimental: {
-        dockerImage: "matterlabs/zksolc",
-        tag: "v1.2.0",
-      },
       libraries: {
         "contracts/MiniMath.sol": {
           MiniMath: "0xF9702469Dfb84A9aC171E284F71615bd3D3f1EdC",
@@ -87,7 +80,7 @@ module.exports = {
     zkTestnet: {
       url: "https://zksync2-testnet.zksync.dev", // URL of the zkSync network RPC
       ethNetwork: "goerli", // Can also be the RPC URL of the Ethereum network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
-      zksync: true
+      zksync: true,
     },
   },
   solidity: {
