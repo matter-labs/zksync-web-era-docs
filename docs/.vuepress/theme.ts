@@ -33,7 +33,7 @@ export default hopeTheme({
       displayFooter: true,
 
       metaLocales: {
-        editLink: "Edit this page on GitHub",
+        editLink: "Edit this page",
       },
     },
   },
