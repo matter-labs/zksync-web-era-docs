@@ -1,32 +1,4 @@
-# Getting started
-
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
-## Adding dependencies
-
-To install zksync 2.0, run the command below in your terminal.
-
-```console
-pip install zksync2
-```
-
-## Connecting to zkSync
-
-Once you have all the necessary dependencies, connect to zkSync using the endpoint of the operator node.
-
-```python
-from zksync2.module.module_builder import ZkSyncBuilder
-...
-sdk = ZkSyncBuilder.build("https://zksync2-testnet.zksync.dev")
-```
-
-The SDK supports the mainnet, and goerli networks.
-
-## Working with contracts
-
-Once you instantiate the SDK, you can use it to access your zkSync contracts. You can use the SDK's contract getter functions like 
-
+## Examples
 
 ### Deposit funds
 This is an example of how to deposit assets from Ethereum account to zkSync account:
