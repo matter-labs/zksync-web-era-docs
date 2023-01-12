@@ -1,14 +1,8 @@
 // place your custom styles here
-body {
-    overflow-x: hidden !important;
-}
-.copyright {
-    display: none !important;
-}
 .site-name {
     font-weight: 700 !important;
-    padding-top: 90px !important;
-    font-size: 1.1rem !important;
+    font-size: 1.2rem !important;
+    margin-left: -10px !important;
 }
 div[class*=language-] > button.copy-code-button:not(.pure) {
     background: #8687fb !important;
@@ -26,22 +20,13 @@ hr{
     display: none !important;
 }
 
-.nav-link {
-    //color: #2C3E50 !important;
-}
-
 a.title {
     font-weight: 700 !important;
 }
 
 .logo {
-    height: 1.3rem !important;
-    padding: 0.60rem 0 !important;
-}
-.footer-wrapper {
-    // padding: 20px;
-    // min-height: 100%;
-    // margin: 0 auto -50px;
+    height: 1.2rem !important;
+    padding: 0.70rem 0 !important;
 }
 
 .edit-link .icon {

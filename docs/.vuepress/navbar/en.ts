@@ -6,13 +6,10 @@ export const enNavbar = navbar([
     text: "Quickstart", 
     link: "/dev/developer-guides/hello-world.html" 
   },
+  
   { 
     text: "Developer Docs", 
     link: "/dev/" 
-  },
-  { 
-    text: "Tools/SDKs", 
-    link: "/api/" 
   },
   { 
     text: "Contact", 

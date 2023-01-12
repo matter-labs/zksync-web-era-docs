@@ -28,7 +28,8 @@ export default hopeTheme({
       // sidebar
       sidebar: enSidebar,
 
-      footer: "Made with ❤️ by Matterlabs",
+      footer: "Made with ❤️ by <a href='https://matter-labs.io/'> Matterlabs</a>",
+      copyright: false,
 
       displayFooter: true,
 

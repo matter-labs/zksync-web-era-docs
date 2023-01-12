@@ -30,5 +30,5 @@ features:
     link: https://v2-docs.zksync.io/dev/troubleshooting
 
 copyright: false
-footer: Made with ❤️ by Matterlabs
+footer: Made with ❤️ by <a href='https://matter-labs.io/'> Matterlabs</a>
 ---
