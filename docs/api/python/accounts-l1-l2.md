@@ -102,7 +102,7 @@ The `_get_nonce` method which is an alias for [getTransactionCount](https://web3
 
 ```py
 
-def _get_nonce(self, account) -> transaction
+def _get_nonce(self, account) -> transaction_count
 
 ```
 

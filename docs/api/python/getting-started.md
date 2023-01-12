@@ -23,7 +23,7 @@ sdk = ZkSyncBuilder.build("https://zksync2-testnet.zksync.dev")
 
 The SDK supports the mainnet, and goerli networks.
 
-## Working with contracts
+## Examples
 
 Once you instantiate the SDK, you can use it to access your zkSync contracts. You can use the SDK's contract getter functions like; 
 
