@@ -40,7 +40,6 @@ lib
 /report.txt
 /tokens.txt
 
-# unignore
 !.yarn/releases/*
 !.yarn/plugins/*
 .cache/
