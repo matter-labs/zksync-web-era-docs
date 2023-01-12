@@ -9,7 +9,6 @@ Our SDKs enable you to build web3 applications, with capabilities such as:
 ## API
 
 - [Web3 API](./api.md)
-- [L1 contract interface](./contracts.md)
 
 ## SDKs
 

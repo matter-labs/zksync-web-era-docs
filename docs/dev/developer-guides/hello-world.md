@@ -36,12 +36,12 @@ Please note that Typescript is required by zkSync plugins.
 2. Create the `hardhat.config.ts` file and paste the following code there:
 
 ```typescript
-require("@matterlabs/hardhat-zksync-deploy");
-require("@matterlabs/hardhat-zksync-solc");
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.2.1",
+    version: "1.2.2",
     compilerSource: "binary",
     settings: {},
   },
