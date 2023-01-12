@@ -22,7 +22,12 @@ zksync_web3 = ZkSyncBuilder.build("ZKSYNC_NETWORK_URL")
 
 chain_id = zksync_web3.zksync.chain_id
 signer = PrivateKeyEthSigner(account, chain_id)
+
 ```
+
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ## sign_typed_data
 
 The signer is used to generate the signature of the provided transaction based on your account(your private key).
@@ -39,9 +44,9 @@ It's used to verify the provided transaction, whose signature is added to the fi
 
 **Parameters**
 
-|  Method | Parameters | Return value |Description |
-|---------|------------|--------------|------------|
-|verify_typed_data | signature, EIP712 structure, optional domain| bool | Returns **True** if the encoded transaction is signed with provided signature. |
+| Parameters | Return value |Description |
+|------------|--------------|------------|
+| signature, EIP712 structure, optional domain| bool | Returns **True** if the encoded transaction is signed with provided signature. |
 
 The signer class also has the following properties:
 

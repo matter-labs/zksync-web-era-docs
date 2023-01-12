@@ -8,6 +8,9 @@ The following are the contracts:
 * ERC20Contract & ERC20FunctionEncoder
 * ContractDeployer
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
 ### NonceHolder
 
 The `NonceHolder` system contract handles the deployment of nonce, it's useful for precomputing address of contract that is going to be deployed in the network.<br>

@@ -1,13 +1,13 @@
 ## Providers
 
-Providers are objects that wrap interactions with the zkSync node. If you are new to the concept of providers in `ethers`, you should check out their docs [here](https://docs.ethers.io/v5/api/providers).
+Providers are objects that wrap interactions with the zkSync node. If you are new to the concept of providers in `ethers`, you should check out their docs [here](https://web3py.readthedocs.io/en/v5/providers.html?highlight=providers).
 
 zkSync fully supports Ethereum Web3 API, so you can use the provider objects from ethers.js. However, zkSync API provides some additional JSON-RPC methods, which allow:
 
 - Easily track L1<->L2 transactions.
 - Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use cases may require tracking "finalized" transactions only.
 
-## __init__
+**__init__**
 
 Initialize the zkSync SDK.
 
@@ -33,6 +33,8 @@ def __init__(self,
 | zksync (optional)  | zkSync contract address                                 |
 | returns            | `Provider` object.                                      |
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
 
 ## `approve_deposits`
 Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync Ethereum smart contract, it returns the bridged erc20 token address.

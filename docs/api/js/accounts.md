@@ -380,7 +380,7 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 | Name                | Description                                                                                             |
 | ------------------- | ------------------------------------------------------------------------------------------------------- |
 | blockTag (optional) | The block the nonce should be got on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The the `Wallet` has.                                                                                   |
+| returns             | The amount of the token the `Wallet` has.                                                               |
 
 > Example
 

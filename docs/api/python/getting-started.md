@@ -25,7 +25,7 @@ The SDK supports the mainnet, and goerli networks.
 
 ## Working with contracts
 
-Once you instantiate the SDK, you can use it to access your zkSync contracts. You can use the SDK's contract getter functions like 
+Once you instantiate the SDK, you can use it to access your zkSync contracts. You can use the SDK's contract getter functions like; 
 
 
 ### Deposit funds
