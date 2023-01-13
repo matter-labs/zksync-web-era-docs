@@ -16,7 +16,7 @@
 
 #### Гайды для разработчика <a href="#developer-guides" id="developer-guides"></a>
 
-* [Быстрый старт](rukovodstvo-razrabotchika/bystryi-start.md) - узнайте, как построить полноценный dApp, используя инструментарий разработки zkSyncLearn
+* [Быстрый старт](rukovodstvo-razrabotchika/bystryi-start.md) - узнайте, как построить полноценный dApp, используя инструментарий разработки zkSync
 * [Развертывание контракта](razrabotka-na-zksync/razvertyvanie-kontrakta/) - руководство по развертыванию смарт-контрактов на zkSync.
   * [Верификация контракта](razrabotka-na-zksync/verifikaciya-smart-kontrakta/) - руководство по верификации смарт-контрактов через обозреватель блоков zkSync
 * [Системные контракты](ponimanie-zksync/sistemnye-kontrakty/) - Краткий обзор системных контрактов zkSync.
