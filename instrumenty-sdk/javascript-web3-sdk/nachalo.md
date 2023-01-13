@@ -6,9 +6,7 @@
 
 Для предоставления легкого доступа ко всем фичам zkSync 2.0 был создан `zksync-web3` JavaScript SDK, спроектированный таким образом, что его интерфейс очень похож на интерфейс [ethers](https://docs.ethers.io/v5/). По факту, `ethers` - это равная зависимость (peer dependency) нашей библиотеки, и большинство объектов, экспортируемых пакетом `zksync-web3` (e.g. `Wallet`, `Provider` etc.) наследуют соответствующие объекты `ethers` и переопределяют только те поля которые необходимо изменить.
 
-Библиотека собрана таким образом, что после замены `ethers` на `zksync-web3` большинство приложений-клиентов будет работать "их коробки".
-
-The library is made in such a way that after replacing `ethers` with `zksync-web3` most client apps will work out of box.
+Библиотека собрана таким образом, что после замены `ethers` на `zksync-web3` большинство клиентских приложений будет работать "их коробки".
 
 ### Добавление зависимостей <a href="#adding-dependencies" id="adding-dependencies"></a>
 
@@ -26,10 +24,10 @@ import * as ethers from "ethers";
 
 ### Подключение к zkSync <a href="#connecting-to-zksync" id="connecting-to-zksync"></a>
 
-Для взаимодействия с сетью zkSync пользователю необходимо знать конечную точку оператора узла.н
+Для взаимодействия с сетью zkSync пользователю необходимо знать конечную точку оператора узла (node endpoint).
 
 ```typescript
-// Currently, only one environment is supported.
+// На данный момент поддерживается только одно окружение
 const syncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
 ```
 

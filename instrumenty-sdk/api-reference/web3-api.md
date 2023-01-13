@@ -159,7 +159,7 @@ zkSync 2.0 полностью поддерживает стандарт [Ethereu
 
 Вам не нужно заботиться об интринсиках, так как возвращаемые идентификатор и доказательство могут быть сразу использованы для взаимодействия со смарт-контрактом zkSync.
 
-Хороший пример использования этой конечной точки через наш SDK можно найти [здесь](../ponimanie-zksync/kommunikaciya-l2-greater-than-l1/).
+Хороший пример использования этой конечной точки через наш SDK можно найти [здесь](../../ponimanie-zksync/kommunikaciya-l2-greater-than-l1/).
 
 {% hint style="success" %}
 **СОВЕТ**
@@ -211,7 +211,7 @@ zkSync 2.0 полностью поддерживает стандарт [Ethereu
 
 #### `zks_getTestnetPaymaster` <a href="#zks-gettestnetpaymaster" id="zks-gettestnetpaymaster"></a>
 
-Возвращает адрес [testnet paymaster](../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/#testnet-paymaster)'a: paymaster'a, доступного в тестнете и позволяющего оплачивать комиссии в токенах ERC-20.
+Возвращает адрес [testnet paymaster](../../ponimanie-zksync/podderzhka-abstrakcii-akkaunta-aa/#testnet-paymaster)'a: paymaster'a, доступного в тестнете и позволяющего оплачивать комиссии в токенах ERC-20.
 
 #### Вводные параметры <a href="#input-parameters-6" id="input-parameters-6"></a>
 
