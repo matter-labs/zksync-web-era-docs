@@ -155,6 +155,7 @@
 * [JavaScript Web3 SDK](instrumenty-sdk/javascript-web3-sdk/README.md)
   * [Начало](instrumenty-sdk/javascript-web3-sdk/nachalo.md)
   * [Провайдеры](instrumenty-sdk/javascript-web3-sdk/provaidery.md)
+  * [Page 1](instrumenty-sdk/javascript-web3-sdk/page-1.md)
 * [API Reference](instrumenty-sdk/api-reference/README.md)
   * [Интерфейс контрактов L1](instrumenty-sdk/api-reference/interfeis-kontraktov-l1.md)
-* [Page 1](instrumenty-sdk/page-1.md)
+* [Page 2](instrumenty-sdk/page-2.md)
