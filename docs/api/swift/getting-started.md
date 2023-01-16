@@ -13,32 +13,161 @@ This guide assumes that you are familiar with [Swift](https://www.swift.org/) pr
 
 ##  Installation
 
-To install the zkSync Swift SDK, just add the following pod to your dependencies:
-
-```
-ZkSync2
-
-```
-
-and then import it on any file you want to use it
+Use Xcode to add to the project **(File -> Swift Packages)** or add this to your _Package.swift_ file:
 
 ```swift
-import ZkSync2
+
+.package(url: "https://github.com/zksync-sdk/zksync2-swift")
+
 ```
+### CocoaPods
 
-## Ethereum signer
-
-::: warning
-
-⚠️ Never commit private keys to file tracking history, or your account could be compromised.
+Add web3.swift to your Podfile:
 
 ```swift
-import ZkSync2
 
-let chainId = BigUInt(123)
-
-let credentials = Credentials("0x<private_key>")
-
-let signer: EthSigner = PrivateKeyEthSigner(credentials, chainId: chainId)
+pod 'web3.swift'
 
 ```
+
+Then run the following command:
+
+```bash
+
+pod install
+
+```
+
+## Connecting to zkSync
+
+To interact with the zkSync network users need to know the endpoint of the operator node.
+
+Create an instance of `EthereumAccount`  with a `EthereumKeyStorage` provider. This provides a wrapper around your key for `web3.swift` to use. <br/>
+
+**NOTE:  We recommend you implement your own _KeyStorage_ provider, instead of relying on the provided `EthereumKeyLocalStorage` class.**
+
+```swift
+import web3
+
+// This is just an example. EthereumKeyLocalStorage should not be used in production code
+let keyStorage = EthereumKeyLocalStorage()
+let account = try? EthereumAccount.create(replacing: keyStorage, keystorePassword: "MY_PASSWORD")
+```
+
+Create an instance of `EthereumHttpClient` or `EthereumWebSocketClient`. This will then provide you access to a set of functions for interacting with the zkSync network.
+
+#### `EthereumHttpClient`
+
+```swift
+guard let clientUrl = URL(string: "https://zksync2-testnet.zksync.dev") else { return }
+let client = EthereumHttpClient(url: clientUrl)
+```
+
+OR
+
+#### `EthereumWebSocketClient`
+
+```swift
+guard let clientUrl = URL(string: "wss://zksync2-testnet.zksync.dev/ws") else { return }
+let client = EthereumWebSocketClient(url: clientUrl)
+```
+
+You can then interact with the client methods:
+
+## `approveDeposits`
+It returns the erc20 token address.
+
+```swift
+
+    func approveDeposits(with token: Token,
+                         limit: BigUInt?) throws -> Promise<TransactionSendingResult>
+```
+#### Parameters
+
+| Name               | Description                                                      |
+| ------------------ | -----------------------------------------------------------------|
+| token              | The Ethereum address of the token.                               |
+| limit(optional)    | The maximum amount to approve a zkSync contract.                 |
+
+
+## `transfer`
+
+The transfer method can transfer ERC20 tokens, and it returns the transaction receipt of the transfer.
+
+```swift 
+    /// Send transfer transaction. This is the regular transfer of ERC20 token.
+    /// - Parameters:
+    func transfer(with token: Token,
+                  amount: BigUInt,
+                  to address: String) throws -> Promise<TransactionSendingResult>
+
+```
+#### Parameter
+
+| Name               | Description                        |
+| ------------------ | -----------------------------------|
+| token              | The ERC20 token address.           |
+| amount             | The amount of tokens to transfer   |
+| address            | The Tokens receiver address.       |
+
+
+## `deposit`
+
+This method uses `EthereumProvider.approveDeposits()` to send deposit transactions to zkSync contracts and returns the transaction receipt of the deposit.
+
+```swift
+
+    func deposit(with token: Token,
+                 amount: BigUInt,
+                 to userAddress: String) throws -> Promise<TransactionSendingResult>
+
+```
+
+#### Parameter
+
+| Name               | Description                                                      |
+| ------------------ | -----------------------------------------------------------------|
+| token              | The address of the token to deposit.                             |
+| amount             | The amount of the token to be deposited.                         |
+| userAddress        | The address that will receive the deposited tokens on L2.        |
+
+
+## `withdraw`
+
+This method send withdrawals to the specified token address and returns the transaction receipt.
+
+```swift
+
+    func withdraw(with token: Token,
+                  amount: BigUInt,
+                  from userAddress: String) throws -> Promise<TransactionSendingResult>
+
+```
+
+#### Parameter
+
+| Name               | Description                                                      |
+| ------------------ | -----------------------------------------------------------------|
+| token              | The address of the token to withdraw.                            |
+| amount             | The amount of the token to withdraw.                             |
+| userAddress        | The L1 withdrawal receiver address in zkSync.                    |
+
+
+## `isDepositApproved`
+
+This method checks if the deposit is approved and returns a Boolean.
+
+```swift
+    func isDepositApproved(with token: Token,
+                           address: String,
+                           threshold: BigUInt?) throws -> Bool
+```
+
+#### Parameter
+
+| Name               | Description                                                            |
+| ------------------ | -----------------------------------------------------------------------|
+| token              | The address of the token deposited.                                    |
+| address            | The amount of the token deposited.                                     |
+| threshold          | The minimum threshold of approved tokens.                              |
+| returns            | Boolean value that denotes whether deposit was approved or not.        |
