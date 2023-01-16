@@ -8,9 +8,8 @@ zkSync fully supports Ethereum Web3 API, so you can use the provider objects fro
 - Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use cases may require tracking "finalized" transactions only.
 
 
-The zkSync swift SDK exports two types of providers:
+The zkSync swift SDK exports the `EthereumProvider` provider:
 
-- `ContractGasProvider` which 
 - `EthereumProvider` which inherits from `web3swift` `JsonRpcProvider` provides access to all of the zkSync JSON-RPC endpoints. 
 
 <TocHeader />
