@@ -3,6 +3,10 @@
 In this guide we will demonstrate how to:
 
 1. Connect to the zkSync network.
+2. Deposit assets from Ethereum into zkSync.
+3. Check balances.
+4. Transfer and withdraw funds (native and ERC20 tokens).
+5. Deploy a smart contract.
 
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
