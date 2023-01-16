@@ -16,21 +16,28 @@ In this guide we will demonstrate how to:
 This guide assumes that you are familiar with [Swift](https://www.swift.org/) programming language.
 
 ##  Installation
-
-Use Xcode to add to the project **(File -> Swift Packages)** or add this to your _Package.swift_ file:
-
-```swift
-
-.package(url: "https://github.com/zksync-sdk/zksync2-swift", from: "0.0.1")
-
-```
 ### CocoaPods
 
-Add web3.swift to your Podfile:
+[CocoaPods](http://cocoapods.org/) is a dependency manager for Cocoa projects. You can install it with the following command:
 
-```swift
+```bash
 
-pod 'web3.swift'
+sudo gem install cocoapods
+
+```
+
+To integrate zkSync swift SDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```bash
+
+platform :ios, '13.0'
+use_frameworks!
+
+install! 'cocoapods', :warn_for_unused_master_specs_repo => false
+
+target '<Your Target Name>' do
+  pod 'ZkSync2', '~> 0.0.1'
+end
 
 ```
 
