@@ -42,6 +42,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Python SDK](../api/python/) - Explore all the Python methods and functions required to build on zkSync 2.0.
 - [Go SDK](../api/go/) - Explore all the GO methods and functions required to build on zkSync 2.0.
 - [Java SDK](../api/java/) - Explore all the Java methods and functions required to build on zkSync 2.0.
+- [Swift SDK](../api/java/) - Explore all the Swift methods and functions required to build on zkSync 2.0.
 - [Hardhat Plugins](../api/hardhat/) - Use our Hardhat zkSync plugins to compile, test, deploy, and verify your Solidity or Vyper based applications.
 - [zkSync CLI](../api/tools/zksync-cli/) - Simplify your development process and interact with zkSync 2.0 from your terminal with zkSync CLI.
 

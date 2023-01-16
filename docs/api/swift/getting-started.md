@@ -17,7 +17,7 @@ Use Xcode to add to the project **(File -> Swift Packages)** or add this to your
 
 ```swift
 
-.package(url: "https://github.com/zksync-sdk/zksync2-swift")
+.package(url: "https://github.com/zksync-sdk/zksync2-swift", from: "0.0.1")
 
 ```
 ### CocoaPods
