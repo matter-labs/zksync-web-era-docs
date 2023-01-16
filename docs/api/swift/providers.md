@@ -21,7 +21,7 @@ This provides the same functionality as `web3swift.providers.JsonRpcProvider`, b
 
 ### Creating provider
 
-It accepts the `URL` to the operator node and the `network` name and the `keystoreManager`.
+It accepts the `URL` to the operator node and the `network` name and the `keystoreManager`.  
 
 #### Arguments
 
