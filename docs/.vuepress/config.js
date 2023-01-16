@@ -203,6 +203,13 @@ module.exports = {
           children: ["/api/go/getting-started"],
         },
         {
+          title: "Swift SDK", // required
+          path: "/api/swift/getting-started", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/swift/getting-started", "/api/swift/providers"],
+        },
+        {
           title: "Hardhat", // required
           path: "/api/hardhat", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
