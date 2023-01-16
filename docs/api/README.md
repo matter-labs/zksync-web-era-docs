@@ -19,6 +19,7 @@ Our SDKs enable you to build web3 applications, with capabilities such as:
 - [Python SDK](./python/getting-started.md)
 - [GO SDK](./go/getting-started.md)
 - [Java SDK](./java/getting-started.md)
+- [Swift SDK](./swift/getting-started.md)
 
 ## Tools
 
