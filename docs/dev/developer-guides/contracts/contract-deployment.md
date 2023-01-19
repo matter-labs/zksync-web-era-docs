@@ -24,6 +24,8 @@ We recommend using the [hardhat-zksync-deploy](../../../api/hardhat) plugin, to 
 Here's a [step-by-step guide on how to use it](../../../api/hardhat/getting-started.md).
 
 ### Note on `factory deps`
+A good question could be, *how does the validator know the preimage of the bytecode hashes to execute the code?* 
+Here comes the concept of factory dependencies(`factory_deps` for short)! Factory dependencies are a list of bytecode hashes whose preimages were shown on L1 (data is always available).
 
 Under the hood, zkSync does not store bytecodes of contracts, but [specially formatted hashes of the bytecodes](#format-of-bytecode-hash). You can see that even the [ContractDeployer](./system-contracts.md#contractdeployer) system contract accepts the bytecode hash of the deployed contract and not its bytecode. However, for contract deployment to succeed, the operator needs to know the bytecode. Exactly for this reason the `factory_deps` (i.e. factory dependencies) field for transactions is used: it contains the bytecodes that should be known to the operator for this transaction to succeed. Once the transaction succeeds, these bytecodes will be published on L1 and will be considered "known" to the operator forever.
 
