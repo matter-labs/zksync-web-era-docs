@@ -241,4 +241,4 @@ At last we go to “Withdraw” to withdraw some \$DAI from zkSync back to Goerl
 
 ## What is a testnet ReGenesis?
 
-Sometimes, the team working on zkSync will initiate a regenesis on testnet - a restart of the blockchain which will introduce upgrades and return the state to the initial point. This won't happen on mainnet, and it is unlikely to happen on testnet after mainnet launch.
+Sometimes, the team working on zkSync will initiate a regenesis on testnet - a restart of the blockchain which will introduce upgrades and return the state to the initial point.
