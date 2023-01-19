@@ -11,7 +11,7 @@ zkSync team provides a dockerized local setup for this purpose.
 
 It is required that you have `Docker` and `docker-compose` installed on your computer. Find the [installation guide here](https://docs.docker.com/get-docker/)
 
-This guide assumes that you're familiar with the zkSync Hardhat plugins. If you are new developing on zkSync with Hardhat, please check the [getting started section here](./getting-started.md).
+This guide assumes that you're familiar with the zkSync Hardhat plugins. If you are newly developing on zkSync with Hardhat, please check the [getting started section here](./getting-started.md).
 
 ## Installing the testing environment
 
@@ -20,6 +20,12 @@ Download the dockerized project with the following command:
 ```
 git clone https://github.com/matter-labs/local-setup.git
 ```
+**Local network info**
+
+- Network Name: `zkSync alpha testnet`
+- New RPC URL: `http://localhost:3050/`
+- Chain ID: `270`
+- Currency Symbol: `ETH`
 
 ## Start the local nodes
 
