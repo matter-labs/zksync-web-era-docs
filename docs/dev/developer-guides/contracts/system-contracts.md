@@ -50,13 +50,17 @@ The same applies to the [ContractDeployer](#contractdeployer) system contract. T
 
 ### Diamond
 
-Technically, this L1 smart contract acts as a connector between Ethereum (L1) and zkSync (L2). This contract checks the validity proof and data availability, handles L2 <-> L1 communication, finalizes L2 state transition, and more.
+Technically, this L1 smart contract acts as a connector between Ethereum (L1) and zkSync (L2). 
+This contract checks the validity proof and data availability, handles L2 <-> L1 communication, finalizes L2 state transition, and more.
 
-There are also important contracts deployed on the L2 that can also execute logic called *system contracts*. Using L2 <-> L1 communication can affect both the L1 and the L2.
+There are also important contracts deployed on the L2 that can also execute logic called *system contracts*. 
+Using L2 <-> L1 communication can affect both the L1 and the L2.
 
 ### DiamondProxy
 
-This contract uses the [EIP-2535](https://eips.ethereum.org/EIPS/eip-2535) diamond proxy pattern. It is an in-house implementation that is inspired by the [mudgen reference implementation](https://github.com/mudgen/Diamond). It has no external functions, only the fallback that delegates a call to one of the facets (target/implementation contract). 
+This contract uses the [EIP-2535](https://eips.ethereum.org/EIPS/eip-2535) diamond proxy pattern. 
+It is an in-house implementation that is inspired by the [mudgen reference implementation](https://github.com/mudgen/Diamond). 
+It has no external functions, only the fallback that delegates a call to one of the facets (target/implementation contract). 
 
 So even an upgrade system is a separate facet that can be replaced.
 
@@ -68,17 +72,18 @@ Privileged actors can freeze the **diamond** (not a specific facet!) and all fac
 
 ### DiamondInit
 
-It is a one-function contract that implements the logic of initializing a diamond proxy. It is called only once on the diamond constructor and is not saved in the diamond as a facet.
+It is a one-function contract that implements the logic of initializing a diamond proxy. 
+It is called only once on the diamond constructor and is not saved in the diamond as a facet.
 
 Implementation detail - function returns a magic value just like it is designed in [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271), but the magic value is 32 bytes in size.
 
 ### DiamondCutFacet
 
-These smart contracts manage the freezing/unfreezing and upgrades of the diamond proxy. That being said, the contract
-must never be frozen.
+These smart contracts manage the freezing/unfreezing and upgrades of the diamond proxy. 
+That being said, the contract must never be frozen.
 
-Currently, freezing and unfreezing are implemented as access control functions. It is fully controlled by the governor
-but can be changed later. The governor can call `emergencyFreezeDiamond` to freeze the diamond and `unfreezeDiamond` to restore it.
+Currently, freezing and unfreezing are implemented as access control functions. It is fully controlled by the governor but can be changed later. 
+The governor can call `emergencyFreezeDiamond` to freeze the diamond and `unfreezeDiamond` to restore it.
 
 Another purpose of `DiamondCutFacet` is to upgrade the facets. The upgrading is split into 2-3 phases:
 
@@ -89,65 +94,52 @@ Another purpose of `DiamondCutFacet` is to upgrade the facets. The upgrading is 
 The upgrade itself characterizes by three variables:
 
 - `facetCuts` - a set of changes to the facets (adding new facets, removing facets, and replacing them).
-- pair `(address _initAddress, bytes _calldata)` for initializing the upgrade by making a delegate call to
-`_initAddress` with `_calldata` inputs.
+- pair `(address _initAddress, bytes _calldata)` for initializing the upgrade by making a delegate call to `_initAddress` with `_calldata` inputs.
 
-NOTE: `proposeDiamondCut` - commits data associated with an upgrade but does not execute it. While the upgrade is
-associated with `facetCuts` and `(address _initAddress, bytes _calldata)` the upgrade will be committed to the
+NOTE: `proposeDiamondCut` - commits data associated with an upgrade but does not execute it. 
+While the upgrade is associated with `facetCuts` and `(address _initAddress, bytes _calldata)` the upgrade will be committed to the
 `facetCuts` and `_initAddress`. This is done on purpose, to leave some freedom to the governor to change calldata for
 the upgrade between proposing and executing it.
 
 ### GettersFacet
 
-Separate facet, whose only function is providing `view` and `pure` methods. It also implements
-[diamond loupe](https://eips.ethereum.org/EIPS/eip-2535#diamond-loupe) which makes managing facets easier.
+Separate facet, whose only function is providing `view` and `pure` methods. It also implements [diamond loupe](https://eips.ethereum.org/EIPS/eip-2535#diamond-loupe) which makes managing facets easier.
 
 ### GovernanceFacet
 
-Controls changing the privileged addresses such as governor and validators or one of the system parameters (L2
-bootloader bytecode hash, verifier address, verifier parameters, etc).
+Controls changing the privileged addresses such as governor and validators or one of the system parameters (L2 bootloader bytecode hash, verifier address, verifier parameters, etc).
 
 ### MailboxFacet
 
-The facet that handles L2 <-> L1 communication, an overview for which can be found in the
-[L1 / L2 Interoperability guide](../bridging/l1-l2-interop.md).
+The facet that handles L2 <-> L1 communication, an overview for which can be found in the [L1 / L2 Interoperability guide](../bridging/l1-l2-interop.md).
 
-The Mailbox only cares about transferring information from L2 to L1 and the other way but does not hold or transfer any
-assets (ETH, ERC20 tokens, or NFTs).
+The Mailbox only cares about transferring information from L2 to L1 and the other way but does not hold or transfer any assets (ETH, ERC20 tokens, or NFTs).
 
 L1 -> L2 communication is implemented as requesting an L2 transaction on L1 and executing it on L2. This means a user can call the function on the L1 contract to save the data about the transaction in some queue. Later on, a validator can process such transactions on L2 and mark them as processed on the L1 priority queue. 
 
-Currently, it is used only for sending information from L1 to L2 or implementing a multi-layer protocol, but it is planned to use a priority queue for the censor-resistance mechanism. Relevant functions for L1 -> L2 communication:
-`requestL2Transaction`/`l2TransactionBaseCost`/`serializeL2Transaction`.
+Currently, it is used only for sending information from L1 to L2 or implementing a multi-layer protocol, but it is planned to use a priority queue for the censor-resistance mechanism. Relevant functions for L1 -> L2 communication: `requestL2Transaction`/`l2TransactionBaseCost`/`serializeL2Transaction`.
 
 **NOTE**: For each executed transaction L1 -> L2, the system program necessarily sends an L2 -> L1 log.
 
 The semantics of such L2 -> L1 log are always:
 
-- sender = BOOTLOADER_ADDRESS
-- key = hash(L1ToL2Transaction)
-- value = status of the processing transaction (1 - success & 0 for fail)
-- isService = true (just a conventional value)
+- sender = BOOTLOADER_ADDRESS.
+- key = hash(L1ToL2Transaction).
+- value = status of the processing transaction (1 - success & 0 for fail).
+- isService = true (just a conventional value).
 - l2ShardId = 0 (means that L1 -> L2 transaction was processed in a rollup shard, other shards are not available yet
-anyway)
-- txNumberInBlock = number of transactions in the block
+anyway).
+- txNumberInBlock = number of transactions in the block.
 
-L2 -> L1 communication, in contrast to L1 -> L2 communication, is based only on transferring the information, and not on
-the transaction execution on L1.
+L2 -> L1 communication, in contrast to L1 -> L2 communication, is based only on transferring the information, and not on the transaction execution on L1.
 
-From the L2 side, there is a special zkEVM opcode that saves `l2ToL1Log` in the L2 block. A validator will send all
-`l2ToL1Logs` when sending an L2 block to the L1 (see `ExecutorFacet`). Later on, users will be able to both read their
-`l2ToL1logs` on L1 and *prove* that they sent it.
+From the L2 side, there is a special zkEVM opcode that saves `l2ToL1Log` in the L2 block. A validator will send all `l2ToL1Logs` when sending an L2 block to the L1 (see `ExecutorFacet`). Later on, users will be able to both read their `l2ToL1logs` on L1 and *prove* that they sent it.
 
-From the L1 side, for each L2 block, a Merkle root with such logs in leaves is calculated. Thus, a user can provide
-Merkle proof for each `l2ToL1Logs`.
+From the L1 side, for each L2 block, a Merkle root with such logs in leaves is calculated. Thus, a user can provide Merkle proof for each `l2ToL1Logs`.
 
-*NOTE*: The `l2ToL1Log` structure consists of fixed-size fields! Because of this, it is inconvenient to send a lot of
-data from L2 and to prove that they were sent on L1 using only `l2ToL1log`. To send a variable-length message we use
-this trick:
+*NOTE*: The `l2ToL1Log` structure consists of fixed-size fields! Because of this, it is inconvenient to send a lot of data from L2 and to prove that they were sent on L1 using only `l2ToL1log`. To send a variable-length message we use this trick:
 
-- One of the system contracts accepts an arbitrary-length message and sends a fixed-length message with parameters
-`senderAddress == this`, `marker == true`, `key == msg.sender`, `value == keccak256(message)`.
+- One of the system contracts accepts an arbitrary-length message and sends a fixed-length message with parameters `senderAddress == this`, `marker == true`, `key == msg.sender`, `value == keccak256(message)`.
 - The contract on L1 accepts all sent messages and if the message came from this system contract it requires that the
 preimage of `value` be provided.
 
@@ -163,12 +155,8 @@ The state transition is divided into three stages:
 
 When a block is committed, we process L2 -> L1 logs. Here are the invariants that are expected there:
 
-- The only one L2 -> L1 log from the `L2_SYSTEM_CONTEXT_ADDRESS`, with the `key == l2BlockTimestamp` and
-`value == l2BlockHash`.
-- Several (or none) logs from the `L2_KNOWN_CODE_STORAGE_ADDRESS` with the `key == bytecodeHash`, where bytecode is
-marked as a known factory dependency.
-- Several (or none) logs from the `L2_BOOTLOADER_ADDRESS` with the `key == canonicalTxHash` where `canonicalTxHash` is a
-hash of processed L1 -> L2 transaction.
-- Several (of none) logs from the `L2_TO_L1_MESSENGER` with the `key == hashedMessage` where `hashedMessage` is a hash
-of an arbitrary-length message that is sent from L2
+- The only one L2 -> L1 log from the `L2_SYSTEM_CONTEXT_ADDRESS`, with the `key == l2BlockTimestamp` and `value == l2BlockHash`.
+- Several (or none) logs from the `L2_KNOWN_CODE_STORAGE_ADDRESS` with the `key == bytecodeHash`, where bytecode is marked as a known factory dependency.
+- Several (or none) logs from the `L2_BOOTLOADER_ADDRESS` with the `key == canonicalTxHash` where `canonicalTxHash` is a hash of processed L1 -> L2 transaction.
+- Several (of none) logs from the `L2_TO_L1_MESSENGER` with the `key == hashedMessage` where `hashedMessage` is a hash of an arbitrary-length message that is sent from L2.
 - Several (or none) logs from other addresses with arbitrary parameters.
