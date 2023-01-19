@@ -35,11 +35,15 @@ module.exports = {
     ],
   ],
   themeConfig: {
-    // algolia: {
-    //   apiKey: 'LCWOUB1OFO',
-    //   indexName: '6c6d0d793fc59f3295143fd50027a372',
-    //   appId: 'v2-zksync',
-    // },
+    algolia: {
+      appId: "LCWOUB1OFO",
+      apiKey: "02c1c8f11c747321c9a5938492820d67",
+      indexName: "v2-zksync",
+      algoliaOptions: {
+        hitsPerPage: 10,
+        facetFilters: ""
+      }
+    },
     repo: "matter-labs/zksync-web-v2-docs",
     editLinks: true,
     docsDir: "docs",
