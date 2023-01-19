@@ -141,6 +141,13 @@ While all zero knowledge rollup blockchains share the underlying technology of c
 
 At the moment, we support any Ethereum-based wallet. By default, the provided option on zkSync 2.0 portal is Metamask - besides connecting automatically, you can add zkSync network to your Metamask manually:
 
+**Local network info**
+
+- Network Name: `zkSync alpha testnet`
+- New RPC URL: `http://localhost:3050/`
+- Chain ID: `270`
+- Currency Symbol: `ETH`
+
 **Testnet network info**
 
 - Network Name: `zkSync alpha testnet`
