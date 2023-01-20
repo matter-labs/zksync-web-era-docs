@@ -20,12 +20,7 @@ Download the dockerized project with the following command:
 ```
 git clone https://github.com/matter-labs/local-setup.git
 ```
-**Local network info**
 
-- Network Name: `zkSync alpha testnet`
-- New RPC URL: `http://localhost:3050/`
-- Chain ID: `270`
-- Currency Symbol: `ETH`
 
 ## Start the local nodes
 
@@ -49,6 +44,24 @@ By default, the HTTP JSON-RPC API will run on port `3050`, while WS API will run
 Note, that it is important that the first `start.sh` script invocation goes uninterrupted. If you face any issues after the bootstrapping process unexpectedly stopped, you should [reset](#resetting-the-zksync-state) the local zkSync state and try again.
 
 :::
+
+## Connect wallet to local nodes
+
+You can connect your wallet to both L1 and L2 nodes using the following details:
+
+**Local zkSync network**
+
+- Network Name: `zkSync alpha local`
+- New RPC URL: `http://localhost:3050/`
+- Chain ID: `270`
+- Currency Symbol: `ETH`
+
+**Local L1 network **
+
+- Network Name: `L1 local`
+- New RPC URL: `http://localhost:8545/`
+- Chain ID: `9`
+- Currency Symbol: `ETH`
 
 ## Reset the zkSync state
 
