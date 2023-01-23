@@ -1,9 +1,0 @@
-{
-    "name": "chart.js-helpers",
-    "private": true,
-    "description": "Helpers package. Exists to support bundlers without exports support such as webpack 4.",
-    "type": "module",
-    "main": "helpers.js",
-    "exports": "./helpers.js",
-    "types": "helpers.d.ts"
-}

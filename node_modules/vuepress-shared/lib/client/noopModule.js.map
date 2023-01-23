@@ -1,1 +1,0 @@
-{"version":3,"file":"noopModule.js","sources":["../../src/client/noopModule.ts"],"sourcesContent":["import { defineComponent } from \"vue\";\n\nexport default defineComponent({\n  name: \"EmptyComponent\",\n  setup: () => (): null => null,\n});\n"],"names":["noopModule","defineComponent"],"mappings":"sCAEA,IAAAA,EAAeC,EAAgB,CAC7B,KAAM,iBACN,MAAO,IAAM,IAAY,IAC3B,CAAC"}

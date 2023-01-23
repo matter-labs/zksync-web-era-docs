@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../../../src/client/modules/navbar/components/icons/index.ts"],"names":[],"mappings":"AAAA,cAAc,eAAe,CAAC;AAC9B,cAAc,kBAAkB,CAAC;AACjC,cAAc,eAAe,CAAC","sourcesContent":["export * from \"./i18nIcon.js\";\nexport * from \"./outlookIcon.js\";\nexport * from \"./repoIcon.js\";\n"]}
