@@ -8,8 +8,8 @@ export const enNavbar = navbar([
   },
   
   { 
-    text: "Developer Docs", 
-    link: "/dev/" 
+    text: "Tools and SDK", 
+    link: "/api/" 
   },
   { 
     text: "Contact", 

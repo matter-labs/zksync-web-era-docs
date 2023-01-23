@@ -32,3 +32,10 @@ a.title {
 .edit-link .icon {
     display: none !important;
 }
+
+/* Mobile */
+@media only screen and (max-width: 500px) {
+    div[class*=language-] > button.copy-code-button:not(.pure) {
+        background: #fbb586 !important;
+    }
+}
