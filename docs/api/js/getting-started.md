@@ -8,6 +8,22 @@ To provide easy access to all of the features of zkSync 2.0, the `zksync-web3` J
 
 The library is made in such a way that after replacing `ethers` with `zksync-web3` most client apps will work out of box.
 
+::: code-tabs
+
+@tab pnpm
+
+```bash
+pnpm create vuepress-theme-hope@next [dir]
+```
+
+@tab:active npm
+
+```bash
+npm init vuepress-theme-hope@next [dir]
+```
+
+:::
+
 ## Adding dependencies
 
 ```bash
