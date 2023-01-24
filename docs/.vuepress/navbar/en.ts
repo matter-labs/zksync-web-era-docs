@@ -8,7 +8,7 @@ export const enNavbar = navbar([
   },
   
   { 
-    text: "Tools & SDK", 
+    text: "Tools and SDK", 
     link: "/api/" 
   },
   { 

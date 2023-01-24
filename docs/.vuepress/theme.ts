@@ -40,6 +40,10 @@ export default hopeTheme({
   },
 
   plugins: {
+    copyCode: {
+      showInMobile: true,
+      duration: 0
+    },
     mdEnhance: {
       align: true,
       codetabs: true,
