@@ -1,8 +1,7 @@
-dist/
-node_modules/
-
 # dependencies
 node_modules
+dist/
+node_modules/
 /.pnp
 .pnp.js
 /.yarn/cache/
@@ -44,3 +43,4 @@ lib
 !.yarn/plugins/*
 .cache/
 .temp/
+.temp

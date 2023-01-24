@@ -34,8 +34,12 @@ a.title {
 }
 
 /* Mobile */
-@media only screen and (max-width: 500px) {
+@media screen and (max-width: 419px) {
     div[class*=language-] > button.copy-code-button:not(.pure) {
-        background: #fbb586 !important;
+        border-radius: 15px !important;
+        margin: 30px 0 -0.9rem 0 !important;
+    }
+    .copy-icon {
+        margin: 0 0 30px -0.1rem !important;
     }
 }
