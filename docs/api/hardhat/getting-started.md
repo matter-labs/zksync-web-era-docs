@@ -33,10 +33,16 @@ For this tutorial, the following programs must be installed:
 mkdir greeter-example
 cd greeter-example
 yarn init -y
-yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node @types/node ethers @ethersproject/hash @ethersproject/web zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
-The `typescript` and `ts-node` dependencies are optional - plugins will work fine in a vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
+The `typescript`, `ts-node` and `@types/node` dependencies are optional - plugins will work fine in a vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
+
+::: tip
+
+If using Yarn 2 and over, you may need to do some extra steps for `TypeScript` to work as expected in your editor. To learn more, check out [Yarn's official documentation](https://yarnpkg.com/getting-started/editor-sdks)
+
+:::
 
 ## Configuration
 
@@ -51,7 +57,6 @@ module.exports = {
     version: "1.2.2",
     compilerSource: "binary",
     settings: {},
-    },
   },
   defaultNetwork: "zkTestnet",
   networks: {

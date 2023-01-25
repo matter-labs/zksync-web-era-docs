@@ -11,7 +11,7 @@ zkSync team provides a dockerized local setup for this purpose.
 
 It is required that you have `Docker` and `docker-compose` installed on your computer. Find the [installation guide here](https://docs.docker.com/get-docker/)
 
-This guide assumes that you're familiar with the zkSync Hardhat plugins. If you are new developing on zkSync with Hardhat, please check the [getting started section here](./getting-started.md).
+This guide assumes that you're familiar with the zkSync Hardhat plugins. If you are newly developing on zkSync with Hardhat, please check the [getting started section here](./getting-started.md).
 
 ## Installing the testing environment
 
@@ -20,6 +20,7 @@ Download the dockerized project with the following command:
 ```
 git clone https://github.com/matter-labs/local-setup.git
 ```
+
 
 ## Start the local nodes
 
@@ -43,6 +44,25 @@ By default, the HTTP JSON-RPC API will run on port `3050`, while WS API will run
 Note, that it is important that the first `start.sh` script invocation goes uninterrupted. If you face any issues after the bootstrapping process unexpectedly stopped, you should [reset](#resetting-the-zksync-state) the local zkSync state and try again.
 
 :::
+
+## Connect wallet to local nodes
+
+You can connect your wallet to both L1 and L2 nodes using the following details:
+
+**Local L1 network**
+
+- Network Name: `L1 local`
+- New RPC URL: `http://localhost:8545/`
+- Chain ID: `9`
+- Currency Symbol: `ETH`
+
+**Local zkSync network**
+
+- Network Name: `L2 local zkSync`
+- New RPC URL: `http://localhost:3050/`
+- Chain ID: `270`
+- Currency Symbol: `ETH`
+
 
 ## Reset the zkSync state
 
