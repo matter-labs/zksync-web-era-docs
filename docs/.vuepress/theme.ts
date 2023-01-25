@@ -39,6 +39,12 @@ export default hopeTheme({
   },
 
   plugins: {
+    copyCode: {
+      pure: true,
+      delay: 800,
+      duration:1000,
+      showInMobile: true
+    },
     mdEnhance: {
       align: true,
       codetabs: true,
