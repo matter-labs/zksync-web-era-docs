@@ -8,7 +8,7 @@ export default defineUserConfig({
   locales: {
     "/": {
       lang: "en-US",
-      title: "zkSync",
+      title: "",
       description: "Get an overview of zkSync toolbox, integrations, and how to use them.",
     }
   },
