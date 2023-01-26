@@ -22,7 +22,7 @@ features:
   - title: Tools for developers
     icon: build
     details: Use zkSync CLI, explorer, hardhat plugins to build your apps.
-    link: ./api/tools
+    link: ./api/
 
   - title: Tutorials
     icon: back-stage
