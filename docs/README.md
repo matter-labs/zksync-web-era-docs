@@ -1,33 +1,39 @@
 ---
 home: true
 title: Home
-heroText: Welcome to zkSync
+heroText: zkSync Documentation
 
 features:
-  - title: Quick start
-    icon: markdown
-    details: Learn how to build a full dApp using the zkSync development toolbox.
-    link: https://v2-docs.zksync.io/dev/developer-guides/hello-world.html
+  - title:  About zkSync
+    icon: asynchronous
+    details: Learn everything that makes zkSync thick.
+    link: ./dev/fundamentals/zksync
 
   - title: Getting started
-    icon: slides
-    details: Learn the basics of zkSync. 
-    link: https://v2-docs.zksync.io/dev/fundamentals
+    icon: activity
+    details: A series of quick starts to get you off localhost.
+    link: ./dev/developer-guides/hello-world
 
-  - title: Building on zkSync
-    icon: layout
-    details: Learn the blocking blocks of zkSync.
-    link: https://v2-docs.zksync.io/dev/developer-guides/building-on-zksync
+  - title: SDK Reference
+    icon: c
+    details: References for your Javascript, Python, Go, Swift and Java SDKs.
+    link: ./api
+
+  - title: Tools for developers
+    icon: build
+    details: Use zkSync CLI, explorer, hardhat plugins to build your apps.
+    link: ./api/tools
 
   - title: Tutorials
-    icon: comment
+    icon: back-stage
     details: How-to guides and tutorials for developers and users.
-    link: https://v2-docs.zksync.io/dev/tutorials
+    link: ./dev/tutorials
 
-  - title: Troubleshooting
-    icon: info
-    details: Get informed on issues and to resolve them.
-    link: https://v2-docs.zksync.io/dev/troubleshooting
+  - title: Contribute
+    icon: api
+    details: Join our community on discord and telegram and get all the latest updates.
+    link: ./contact.html
+    
 
 copyright: false
 footer: Made with ❤️ by <a href='https://matter-labs.io/'> Matterlabs</a>

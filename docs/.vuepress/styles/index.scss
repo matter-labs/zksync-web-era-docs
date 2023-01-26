@@ -47,3 +47,104 @@ a.title {
         margin: 0 0 30px -0.1rem !important;
     }
 }
+p.description {
+    font-size: 16px !important;
+}
+
+h1#main-title {
+    font-size: 30px !important;
+}
+
+
+//Homepage Redesign
+$light-selector: 'html[data-theme="light"]';
+$dark-selector: 'html[data-theme="dark"]';
+
+$light-text: #fff;
+$dark-text: #2c3e50;
+$dark-background-color: #1d2536;
+$background-color: #fff;
+$border-color: #e5e7eb;
+
+[data-theme="dark"] a.title {
+    color: $light-text !important;
+}
+
+[data-theme="light"] a.title {
+    color: $dark-text !important;
+}
+
+[data-theme="dark"] h3 {
+    color: $light-text !important;
+}
+
+[data-theme="light"] h3{
+    color: $dark-text !important;
+}
+
+[data-theme="dark"] #main-title {
+    color: $light-text;
+}
+
+[data-theme="light"] #main-title {
+    color: $dark-text;
+}
+
+[data-theme="dark"] h1 {
+    color: $light-text !important;
+}
+
+[data-theme="light"] h1 {
+    color: $dark-text !important;
+}
+
+[data-theme="dark"] h2 {
+    color: $light-text !important;
+    border-bottom: none !important;
+}
+
+[data-theme="light"] h2{
+    color: $dark-text !important;
+    border-bottom: none !important;
+}
+
+[data-theme="dark"] h3 {
+    color: $light-text !important;
+}
+
+[data-theme="light"] h3{
+    color: $dark-text !important;
+}
+
+[data-theme="dark"] .feature {
+    border: 1px solid #393939;
+    border-radius: 8px;
+    background-color: #252934;
+}
+
+[data-theme="light"] .feature {
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    background-color: $background-color;
+}
+
+[data-theme="light"] .font-icon {
+    color: #6B7280 !important;
+}
+
+[data-theme="dark"] .font-icon {
+    color: #6B7280 !important;
+}
+
+.home.project .feature .font-icon {
+    height: 44px;
+    width: 44px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+span{
+    font-size: 16px;
+}
