@@ -190,7 +190,14 @@ module.exports = {
           path: "/api/python/", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
-          children: ["/api/python/getting-started"],
+          children: [
+            "/api/python/getting-started",
+            "/api/python/providers",
+            "/api/python/accounts",
+            "/api/python/accounts-l1-l2",
+            "/api/python/contract-interface",
+            "/api/python/types"
+          ],
         },
         {
           title: "Java SDK", // required
