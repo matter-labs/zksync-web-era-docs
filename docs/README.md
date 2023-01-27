@@ -20,7 +20,7 @@ features:
     link: ./api
 
   - title: Tools for developers
-    icon: build
+    icon: repair
     details: Use zkSync CLI, explorer, hardhat plugins to build your apps.
     link: ./api/
 
