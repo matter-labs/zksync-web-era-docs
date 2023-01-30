@@ -18,7 +18,7 @@ gained after years of working with Solidity scaling it with the Layer 2.
 
 ### Initial setup
 
-Frontend team chosen `yarn@berry` for packager, so don't forget to install `node` version **LTS@14** and after configure `yarn`
+The Frontend team chose the `yarn@berry` packager, so don't forget to install `node` version **LTS@14** after configuring `yarn`
 
 ```bash
 # configure yarn version: berry or specifically 3.1.1.
