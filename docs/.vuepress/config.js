@@ -133,7 +133,12 @@ module.exports = {
           title: "Tutorials",
           path: "/dev/tutorials",
           collapsable: false,
-          children: ["/dev/tutorials/cross-chain-tutorial.md", "/dev/tutorials/custom-aa-tutorial.md", "/dev/tutorials/custom-paymaster-tutorial.md"],
+          children: [
+            "/dev/tutorials/cross-chain-tutorial.md", 
+            "/dev/tutorials/custom-aa-tutorial.md", 
+            "/dev/tutorials/custom-paymaster-tutorial.md",
+            "/dev/tutorials/aa-daily-spend-limit.md"
+          ],
         },
         {
           title: "Troubleshooting",
