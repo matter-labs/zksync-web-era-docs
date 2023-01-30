@@ -225,7 +225,19 @@ module.exports = {
           path: "/api/hardhat", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1,
-          children: ["/api/hardhat/getting-started", "/api/hardhat/plugins", "/api/hardhat/testing", "/api/hardhat/compiling-libraries"],
+          children: 
+          [
+            "/api/hardhat/getting-started", 
+            "/api/hardhat/plugins", 
+            "/api/hardhat/testing",
+            "/api/hardhat/compiling-libraries",
+            "/api/hardhat/hardhat-zksync-solc", 
+            "/api/hardhat/hardhat-zksync-vyper", 
+            "/api/hardhat/hardhat-zksync-deploy", 
+            "/api/hardhat/hardhat-zksync-chai-matchers", 
+            "/api/hardhat/hardhat-zksync-verify", 
+            
+          ],
         },
         {
           title: "Block Explorer", // required
