@@ -12,8 +12,13 @@ div[class*=language-] > button.copy-code-button:not(.pure) {
     background: #8687fb !important;
 }
 
+.copyright {
+    display: none;
+}
+
 .footer-wrapper {
     border: none !important;
+    // margin-bottom: -3rem !important;
 }
 
 #toc {
@@ -44,6 +49,12 @@ p.description {
 h1#main-title {
     font-size: 30px !important;
 }
+
+.home.project .features {
+
+    border-top: none !important;
+}
+
 
 
 //Homepage Redesign
@@ -140,3 +151,20 @@ span{
 }
 
 
+[data-theme="dark"] .site-name {
+    color: $light-text !important;
+}
+
+[data-theme="light"] .site-name {
+    color: $dark-text !important;
+}
+
+[data-theme="light"] img[src*="/images/code-light.png"] {
+    // background-image: url("/images/code-dark.png");
+    content: url("/images/code-light.png");
+    
+}
+
+[data-theme="dark"] img[src*="/images/code-light.png"] {
+    content: url("/images/code-dark.png");
+}
