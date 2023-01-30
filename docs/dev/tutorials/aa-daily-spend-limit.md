@@ -1,8 +1,9 @@
-# Daily Spending Limit Tutorial
-
-## Introduction
+# Daily spend limit account
 
 In this tutorial, we'll create smart contract account with a daily spend limit thanks to the Account Abstraction support on zkSync.
+
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
 
 ## Prerequisite
 
@@ -570,6 +571,8 @@ Finally, we are ready to compile and deploy the contracts. So, before the deploy
 yarn hardhat compile
 ```
 
+### Deployment script
+
 Then, let's create a file `deploy-factory-account.ts` that deploys all the contracts we've made above and creates an account.
 
 ```typescript
@@ -594,20 +597,11 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // });
   // await depositHandle.wait();
 
-  const factory = await deployer.deploy(
-    factoryArtifact,
-    [utils.hashBytecode(aaArtifact.bytecode)],
-    undefined,
-    [aaArtifact.bytecode]
-  );
+  const factory = await deployer.deploy(factoryArtifact, [utils.hashBytecode(aaArtifact.bytecode)], undefined, [aaArtifact.bytecode]);
 
   console.log(`AA factory address: ${factory.address}`);
 
-  const aaFactory = new ethers.Contract(
-    factory.address,
-    factoryArtifact.abi,
-    wallet
-  );
+  const aaFactory = new ethers.Contract(factory.address, factoryArtifact.abi, wallet);
 
   const owner = Wallet.createRandom();
   console.log("Account owner pk: ", owner.privateKey);
@@ -619,12 +613,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   await tx.wait();
 
   const abiCoder = new ethers.utils.AbiCoder();
-  const accountAddress = utils.create2Address(
-    factory.address,
-    await aaFactory.aaBytecodeHash(),
-    salt,
-    abiCoder.encode(["address"], [owner.address])
-  );
+  const accountAddress = utils.create2Address(factory.address, await aaFactory.aaBytecodeHash(), salt, abiCoder.encode(["address"], [owner.address]));
 
   console.log(`Account deployed on address ${accountAddress}`);
 
@@ -662,14 +651,7 @@ First, create `setLimit.ts` in the `/deploy` folder and after pasting the exampl
 To enable the daily spending limit, we execute the `setSpendingLimit` function with two parameters: token address and amount limit. The token address is ETH_ADDRESS and the limit parameter is "0.005" in the example below. (can be any amount)
 
 ```typescript
-import {
-  utils,
-  Wallet,
-  Provider,
-  Contract,
-  EIP712Signer,
-  types,
-} from "zksync-web3";
+import { utils, Wallet, Provider, Contract, EIP712Signer, types } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
@@ -684,10 +666,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const accountArtifact = await hre.artifacts.readArtifact("Account");
   const account = new Contract(ACCOUNT_ADDRESS, accountArtifact.abi, wallet);
 
-  let setLimitTx = await account.populateTransaction.setSpendingLimit(
-    ETH_ADDRESS,
-    ethers.utils.parseEther("0.005")
-  );
+  let setLimitTx = await account.populateTransaction.setSpendingLimit(ETH_ADDRESS, ethers.utils.parseEther("0.005"));
 
   setLimitTx = {
     ...setLimitTx,
@@ -705,9 +684,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   setLimitTx.gasLimit = await provider.estimateGas(setLimitTx);
 
   const signedTxHash = EIP712Signer.getSignedDigest(setLimitTx);
-  const signature = ethers.utils.arrayify(
-    ethers.utils.joinSignature(owner._signingKey().signDigest(signedTxHash))
-  );
+  const signature = ethers.utils.arrayify(ethers.utils.joinSignature(owner._signingKey().signDigest(signedTxHash)));
 
   setLimitTx.customData = {
     ...setLimitTx.customData,
@@ -739,14 +716,7 @@ Enabled:  true
 Finally, we will see if the SpendLimit contract works and refuses any ETH transfer that exceeds the daily limit. Let's create `transferETH.ts` with the example code below.
 
 ```typescript
-import {
-  utils,
-  Wallet,
-  Provider,
-  Contract,
-  EIP712Signer,
-  types,
-} from "zksync-web3";
+import { utils, Wallet, Provider, Contract, EIP712Signer, types } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
@@ -773,9 +743,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     data: "0x",
   };
   const signedTxHash = EIP712Signer.getSignedDigest(ethTransferTx);
-  const signature = ethers.utils.arrayify(
-    ethers.utils.joinSignature(owner._signingKey().signDigest(signedTxHash))
-  );
+  const signature = ethers.utils.arrayify(ethers.utils.joinSignature(owner._signingKey().signDigest(signedTxHash)));
 
   ethTransferTx.customData = {
     ...ethTransferTx.customData,
@@ -787,9 +755,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const limit = await account.limits(ETH_ADDRESS);
 
   // L1 timestamp tends to be undefined in the latest blocks. So should find the latest L1 Batch first.
-  let l1BatchRange = await provider.getL1BatchBlockRange(
-    await provider.getL1BatchNumber()
-  );
+  let l1BatchRange = await provider.getL1BatchBlockRange(await provider.getL1BatchNumber());
   let l1TimeStamp = (await provider.getBlock(l1BatchRange[1])).l1BatchTimestamp;
 
   console.log("l1TimeStamp: ", l1TimeStamp);
@@ -797,13 +763,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // avoid unnecessary errors due to the delay in timestamp of L1 batch
   // first spending after enabling of limit is ignored
-  if (
-    l1TimeStamp > limit.resetTime.toNumber() ||
-    limit.limit == limit.available
-  ) {
-    const sentTx = await provider.sendTransaction(
-      utils.serialize(ethTransferTx)
-    );
+  if (l1TimeStamp > limit.resetTime.toNumber() || limit.limit == limit.available) {
+    const sentTx = await provider.sendTransaction(utils.serialize(ethTransferTx));
     await sentTx.wait();
 
     const limit = await account.limits(ETH_ADDRESS);
@@ -815,11 +776,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     return;
   } else {
     let wait = Math.round((limit.resetTime.toNumber() - l1TimeStamp) / 60);
-    console.log(
-      "Tx would fail due to approx ",
-      wait,
-      " mins difference in timestamp between resetTime and l1 batch"
-    );
+    console.log("Tx would fail due to approx ", wait, " mins difference in timestamp between resetTime and l1 batch");
   }
 }
 ```
