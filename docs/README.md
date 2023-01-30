@@ -1,6 +1,7 @@
 ---
 home: true
 title: Home
+heroImage: /images/code-light.png
 heroText: zkSync Documentation
 
 features:
