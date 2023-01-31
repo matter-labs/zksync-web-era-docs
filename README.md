@@ -10,9 +10,9 @@
 > Our zkEVM keeps EVM semantics, but is also ZK-friendly and takes on traditional CPU architectures.
 
 Constantly updated, [zkSync: Docs for 2.0](https://v2-docs.zksync.io/dev) offers the most complete knowledge about the upcoming **zkSync 2.0**.
-zkSync 2 release has built-in EVM-compatibility which makes it a single key to release EVM-compatible ZK rollup.
+zkSync 2 release has built-in EVM compatibility which makes it a single key to release EVM-compatible ZK rollup.
 We call it [zkEVM](https://zksync.io/zkevm): long-awaited way to preserve the battle-tested code and knowledge
-gained after years of working with Solidity scaling it with the Layer 2.
+gained after years of working with Solidity scaling it with Layer 2.
 
 ## Build and setup
 
