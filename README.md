@@ -17,8 +17,7 @@ gained after years of working with Solidity scaling it with the Layer 2.
 ## Build and setup
 
 ### Initial setup
-
-Frontend team chosen `yarn@berry` for packager, so don't forget to install `node` version **LTS@14** and after configure `yarn`
+Frontend team chose `yarn@berry` for packager, so don't forget to install `node` version **LTS@14** and after configure `yarn`
 
 ```bash
 # configure yarn version: berry or specifically 3.1.1.
@@ -36,8 +35,8 @@ $ yarn install --check-cache
 ### Main scripts
 
 ```bash
-# clear possible cache && install dependencies (clear install)
-$ sh cli-dev.sh ci
+# install dependencies
+$ yarn add
 
 # serve with hot reload at localhost:8080
 $ yarn docs:dev
