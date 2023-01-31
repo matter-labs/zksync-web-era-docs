@@ -834,3 +834,7 @@ You can download the complete project [here](https://github.com/porco-rosso-j/da
 - To learn more about L1->L2 interaction on zkSync, check out the [documentation](https://v2-docs.zksync.io/dev/developer-guides/bridging/l1-l2.html).
 - To learn more about the zksync-web3 SDK, check out its [documentation](https://v2-docs.zksync.io/api/js).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](https://v2-docs.zksync.io/api/hardhat).
+
+## Credits
+
+Written by [porco-rosso](https://github.com/porco-rosso-j) for the following [GitCoin bounty](https://gitcoin.co/issue/29669).
