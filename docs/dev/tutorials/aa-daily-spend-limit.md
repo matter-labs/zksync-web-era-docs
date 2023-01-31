@@ -837,4 +837,4 @@ You can download the complete project [here](https://github.com/porco-rosso-j/da
 
 ## Credits
 
-Written by [porco-rosso](https://github.com/porco-rosso-j) for the following [GitCoin bounty](https://gitcoin.co/issue/29669).
+Written by [porco-rosso](https://linktr.ee/porcorossoj) for the following [GitCoin bounty](https://gitcoin.co/issue/29669).
