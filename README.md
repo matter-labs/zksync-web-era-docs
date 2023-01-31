@@ -23,13 +23,6 @@ Frontend team chose `yarn@berry` for packager, so don't forget to install `node`
 # configure yarn version: berry or specifically 3.1.1.
 $ yarn set version berry
 
-# ...then assure no1deLinker is configured for node_modules
-$ yarn config set nodeLinker "node_modules"
-# you should see:
-# ➤ YN0000: Successfully set nodeLinker to 'node_modules'
-
-# the regular dependency installation (with re-validation of the local cache
-$ yarn install --check-cache
 ```
 
 ### Main scripts
