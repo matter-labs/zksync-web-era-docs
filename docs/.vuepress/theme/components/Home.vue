@@ -65,7 +65,7 @@
           <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
           <div style="position: absolute; left: -5000px;" aria-hidden="true">
             <input type="text" name="b_ef8545da9c594ae082297352d_fa715c9af0" tabindex="-1" value />
-          </div>     
+          </div>
        </div>
       </form>
       <p>Made with ❤️ by <a href="https://matter-labs.io">Matter Labs</a></p>
@@ -119,6 +119,7 @@ export default {
 
 .search-box {
   order: 1;
+  z-index: 1;
   margin-right: 0;
   margin-left: 1rem;
   position: fixed !important;
@@ -314,6 +315,23 @@ export default {
   }
 }
 
+@media (max-width: 1020px) {
+  .navbar {
+    .links {
+      .search-box {
+        position: fixed;
+        right: 0;
+        z-index: 1;
+        input {
+          width: 7rem;
+          &:focus {
+            width: 15rem;
+          }
+        }
+      }
+    }
+  }
+}
 @media (max-width: $MQNarrow) {
   .navbar {
     .links {
@@ -323,10 +341,18 @@ export default {
         position: fixed;
         right: 0;
         z-index: 1;
+        background: white;
+        padding-right 1rem;
+        margin-right 0;
+        input {
+          width: 0;
+        }
       }
     }
   }
 }
+
+
 
 @media (max-width: $MQMobile) {
 
@@ -342,6 +368,14 @@ export default {
   }
 
   .navbar {
+    .home-link {
+      display: flex;
+      align-items: center;
+      .logo {
+          height: 1.5rem;
+      }
+    }
+
     .links {
       .search-box {
         margin-right: 1rem !important;

@@ -69,14 +69,14 @@ module.exports = {
         link: "/contact.html",
       },
       {
-        text: "v2.0",
+        text: "zkSync Era (ex. v2.0)",
         items: [
           {
-            text: "v2.0",
+            text: "zkSync Era (ex. v2.0)",
             link: "/dev/",
           },
           {
-            text: "v1.x",
+            text: "zkSync Lite (ex. v1.x)",
             link: "https://docs.zksync.io",
           },
         ],
@@ -134,8 +134,8 @@ module.exports = {
           path: "/dev/tutorials",
           collapsable: false,
           children: [
-            "/dev/tutorials/cross-chain-tutorial.md", 
-            "/dev/tutorials/custom-aa-tutorial.md", 
+            "/dev/tutorials/cross-chain-tutorial.md",
+            "/dev/tutorials/custom-aa-tutorial.md",
             "/dev/tutorials/custom-paymaster-tutorial.md",
             "/dev/tutorials/aa-daily-spend-limit.md"
           ],
