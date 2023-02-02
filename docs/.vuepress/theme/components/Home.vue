@@ -315,23 +315,6 @@ export default {
   }
 }
 
-@media (max-width: 1020px) {
-  .navbar {
-    .links {
-      .search-box {
-        position: fixed;
-        right: 0;
-        z-index: 1;
-        input {
-          width: 7rem;
-          &:focus {
-            width: 15rem;
-          }
-        }
-      }
-    }
-  }
-}
 @media (max-width: $MQNarrow) {
   .navbar {
     .links {
@@ -341,9 +324,6 @@ export default {
         position: fixed;
         right: 0;
         z-index: 1;
-        input {
-          width: 0;
-        }
       }
     }
   }
