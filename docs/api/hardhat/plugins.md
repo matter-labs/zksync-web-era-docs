@@ -76,8 +76,8 @@ zksolc: {
       tag: "latest"   // required for compilerSource: "docker"
     },
     libraries:{}, // optional. References to non-inlinable libraries
-    isSystem: false, // optional. Whether to support compilation of zkSync-specific simulations
-    forceEvmla: false // optional. Force evmla when compiling
+    isSystem: false, // optional.  Enables Yul instructions available only for zkSync system contracts and libraries
+    forceEvmla: false // optional. Falls back to EVM legacy assembly if there is a bug with Yul
   }
 }
 networks: {
@@ -92,8 +92,8 @@ networks: {
 - `compilerPath` (optional) is a field with the path to the `zksolc` binary. By default, the binary in `$PATH` is used. If `compilerSource` is `docker`, this field is ignored.
 - `dockerImage` and `tag` make up the name of the compiler docker image. If `compilerSource` is `binary`, these fields are ignored.
 - `libraries` if your contract uses non-inlinable libraries as dependencies, they have to be defined here. Learn more about [compiling libraries here](./compiling-libraries.md)
-- `isSystem` represent whether to support compilation of zkSync-specific simulations
-- `forceEvmla` - force evmla when compiling
+- `isSystem` enables Yul instructions available only for zkSync system contracts and libraries
+- `forceEvmla` - falls back to EVM legacy assembly if there is a bug with Yul
 - `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default. Useful for multichain projects in which you can enable `zksync` only for specific networks.
 
 ::: warning
