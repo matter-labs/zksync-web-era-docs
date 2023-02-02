@@ -35,11 +35,15 @@ module.exports = {
     ],
   ],
   themeConfig: {
-    // algolia: {
-    //   apiKey: 'LCWOUB1OFO',
-    //   indexName: '6c6d0d793fc59f3295143fd50027a372',
-    //   appId: 'v2-zksync',
-    // },
+    algolia: {
+      appId: "LCWOUB1OFO",
+      apiKey: "02c1c8f11c747321c9a5938492820d67",
+      indexName: "v2-zksync",
+      algoliaOptions: {
+        hitsPerPage: 10,
+        facetFilters: ""
+      }
+    },
     repo: "matter-labs/zksync-web-v2-docs",
     editLinks: true,
     docsDir: "docs",
@@ -129,7 +133,12 @@ module.exports = {
           title: "Tutorials",
           path: "/dev/tutorials",
           collapsable: false,
-          children: ["/dev/tutorials/cross-chain-tutorial.md", "/dev/tutorials/custom-aa-tutorial.md", "/dev/tutorials/custom-paymaster-tutorial.md"],
+          children: [
+            "/dev/tutorials/cross-chain-tutorial.md", 
+            "/dev/tutorials/custom-aa-tutorial.md", 
+            "/dev/tutorials/custom-paymaster-tutorial.md",
+            "/dev/tutorials/aa-daily-spend-limit.md"
+          ],
         },
         {
           title: "Troubleshooting",
@@ -186,7 +195,14 @@ module.exports = {
           path: "/api/python/", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
-          children: ["/api/python/getting-started"],
+          children: [
+            "/api/python/getting-started",
+            "/api/python/providers",
+            "/api/python/accounts",
+            "/api/python/accounts-l1-l2",
+            "/api/python/contract-interface",
+            "/api/python/types"
+          ],
         },
         {
           title: "Java SDK", // required
@@ -201,6 +217,13 @@ module.exports = {
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1, // optional, defaults to 1
           children: ["/api/go/getting-started"],
+        },
+        {
+          title: "Swift SDK", // required
+          path: "/api/swift/getting-started", // optional, which should be a absolute path.
+          collapsable: false, // optional, defaults to true
+          sidebarDepth: 1, // optional, defaults to 1
+          children: ["/api/swift/getting-started", "/api/swift/providers"],
         },
         {
           title: "Hardhat", // required

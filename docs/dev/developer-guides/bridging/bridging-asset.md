@@ -21,7 +21,7 @@ Addresses of tokens on L2 will always differ from the same token L1 address.
 
 ## Default bridges
 
-You can get default bridges' addresses using the `zks_getBridgeContracts` endpoint or `getDefaultBridgeAddresses` method of `Provider` in our JS SDK (similar methods are available in the other SDKs).
+You can get default bridges' addresses using the `zks_getBridgeContracts` endpoint or `getDefaultBridgeAddresses` method of `Provider` in our [Javascript SDK](../../../api/js/) (similar methods are available in the other SDKs).
 
 ### Deposits (to L2)
 Users must call the `deposit` method on the L1 bridge contract, which will trigger the following actions:
@@ -31,6 +31,7 @@ Users must call the `deposit` method on the L1 bridge contract, which will trigg
 - Within the L2 transaction, tokens will be minted and sent to the specified address on L2.
     - If the token does not exist on zkSync yet, a new contract is deployed for it. Given the L2 token address is deterministic (based on the original L1 address, name and symbol), it doesn't matter who is the first person bridging it, the new L2 address will be the same.
 - For every executed L1 -> L2 transaction, there will be an L2 -> L1 log message confirming its execution.
+- Lastly, the `finalizeDeposit`method is called and it finalizes the deposit and mints funds on L2.
 
 ::: warning
 
@@ -46,7 +47,7 @@ Users must call the `withdraw` method on the L2 bridge contract, which will trig
 
 - L2 tokens will be burned.
 - An L2 -> L1 message with the information about the withdrawal will be sent.
-- After that, the withdrawal action will be available to be finalized by anyone in the L1 bridge (by proving the inclusion of the L2 -> L1 message, which is done when calling the `finlizeWithdraw` method on the L1 bridge contract).
+- After that, the withdrawal action will be available to be finalized by anyone in the L1 bridge (by proving the inclusion of the L2 -> L1 message, which is done when calling the `finalizeWithdraw` method on the L1 bridge contract).
 - After the method is called, the funds are unlocked from the L1 bridge and sent to the withdrawal recipient.
 
 ::: warning
