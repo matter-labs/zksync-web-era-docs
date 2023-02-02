@@ -67,7 +67,7 @@ This plugin is configured in the `hardhat.config.ts` file of your project. Here 
 
 ```typescript
 zksolc: {
-  version: "1.2.2",
+  version: "1.2.3",
   compilerSource: "binary",  // binary or docker
   settings: {
     compilerPath: "zksolc",  // ignored for compilerSource: "docker"
@@ -102,14 +102,15 @@ Compilers are no longer released as Docker images and its usage is no longer rec
 
 :::
 
-::: warning
+::: warning `forceEvmla` usage
 
 Setting the `forceEvmla` field to true can have the following negative impacts:
-- No recursion support
-- No internal function pointers support
-- Contract size or performance impact
 
-For solidity versions older than 0.8, it is forced by default when compiling.
+- No support for recursion.
+- No support for internal function pointers.
+- Contract size or performance impact.
+
+For solidity versions older than 0.8, this setting is enforced by default when compiling.
 
 :::
 
