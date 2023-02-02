@@ -341,9 +341,6 @@ export default {
         position: fixed;
         right: 0;
         z-index: 1;
-        background: white;
-        padding-right 1rem;
-        margin-right 0;
         input {
           width: 0;
         }

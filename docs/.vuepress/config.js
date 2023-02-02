@@ -69,7 +69,7 @@ module.exports = {
         link: "/contact.html",
       },
       {
-        text: "zkSync Era (ex. v2.0)",
+        text: "zkSync Era",
         items: [
           {
             text: "zkSync Era (ex. v2.0)",
