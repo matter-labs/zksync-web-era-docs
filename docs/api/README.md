@@ -24,5 +24,10 @@ Our SDKs enable you to build web3 applications, with capabilities such as:
 ## Tools
 
 - [Hardhat plugins](./hardhat)
+  - [hardhat-zksync-solc](./hardhat/hardhat-zksync-solc.md)
+  - [hardhat-zksync-vyper](./hardhat/hardhat-zksync-vyper.md)
+  - [hardhat-zksync-deploy](./hardhat/hardhat-zksync-deploy.md)
+  - [hardhat-zksync-chai-matchers](./hardhat/hardhat-zksync-chai-matchers.md)
+  - [hardhat-zksync-verify](./hardhat/hardhat-zksync-verify.md)
 - [Block Explorer](./tools/block-explorer/)
 - [zkSync CLI](./tools/zksync-cli/)
