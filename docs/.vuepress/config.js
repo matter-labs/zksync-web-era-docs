@@ -234,14 +234,13 @@ module.exports = {
           [
             "/api/hardhat/getting-started", 
             "/api/hardhat/plugins", 
-            "/api/hardhat/testing",
-            "/api/hardhat/compiling-libraries",
             "/api/hardhat/hardhat-zksync-solc", 
             "/api/hardhat/hardhat-zksync-vyper", 
             "/api/hardhat/hardhat-zksync-deploy", 
             "/api/hardhat/hardhat-zksync-chai-matchers", 
             "/api/hardhat/hardhat-zksync-verify", 
-            
+            "/api/hardhat/testing",
+            "/api/hardhat/compiling-libraries",
           ],
         },
         {
