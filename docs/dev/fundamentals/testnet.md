@@ -94,7 +94,7 @@ We first go to “Bridge” and then “Deposit” to deposit some \$ETH to zkSy
 
 ![image](../../assets/images/faq-1.png)
 
-**Step 3*
+**Step 3**
 
 Next, we go to “Faucet” to get some testnet $ETH, $LINK, $DAI, $WBTC and \$USDC into our zkSync address.
 
