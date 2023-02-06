@@ -26,6 +26,13 @@ To be able to work on a rollup, funds need to be locked on a smart contract on t
 This allows transactions to be processed without the overhead of all the data associated with performing a transaction on the main chain. 
 Rollups significantly decrease associated transaction processing times and gas fees.
 
+### Rollup Categories
+
+Currently, there are 2 types of rollups used majorly for scaling ethereum. 
+
+1. ZK Rollups (Zero-Knowledge Rollups) - eg: zksync, loopring etc
+2. Optimistic Rollups - eg: Optimism, Arbitrum etc 
+
 The main difference between ZK and Optimistic rollups is in the way this batch of transactions becomes <em>final</em>.
 ### Optimistic rollups versus ZK rollups
 
