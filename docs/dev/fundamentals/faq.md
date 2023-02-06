@@ -192,53 +192,6 @@ The current value is currently set at roughly 2^32 gas. <br>
 
 Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The withdrawal transaction will take up to 1 hour, depending on the usage of the zkSync network.
 
-## Interacting - A step-by-step Guide
-
-As the testnet is running on Goerli network, you will need to get some Goerli ETH first. Try any of the faucets below.
-
-- [https://goerli-faucet.mudit.blog/](https://goerli-faucet.mudit.blog/)
-- [https://faucets.chain.link/goerli](https://faucets.chain.link/goerli)
-- [https://goerli-faucet.slock.it/](https://goerli-faucet.slock.it/)
-- [https://goerlifaucet.com/](https://goerlifaucet.com/)
-
-**Step 1**
-
-Head to [https://portal.zksync.io/](https://portal.zksync.io/) and connect your wallet. You will automatically be asked to add the “zkSync 2.0 testnet Goerli” network.
-
-You may also add the network manually to your metamask.
-
-- Network Name: `zkSync alpha testnet`
-- RPC URL: `https://zksync2-testnet.zksync.dev`
-- Chain ID: `280`
-
-**Step 2 (Skip if you don’t have Goerli ETH)**
-
-We first go to “Bridge” then “Deposit” to deposit some \$ETH to zkSync 2.0.
-
-![image](../../assets/images/faq-1.png)
-
-**Step 3**
-
-Next we go to “Faucet” to get some testnet $ETH, $LINK, $DAI, $WBTC and \$USDC into our zkSync address.
-
-![image](../../assets/images/faq-2.png)
-
-Check your balance at “Balances” after claiming.
-
-![image](../../assets/images/faq-3.png)
-
-**Step 4**
-
-Now go to “Transfer”. Input the address of another wallet and transfer some tokens to it. Pay the fees in DAI if you don’t have ETH.
-
-![image](../../assets/images/faq-4.png)
-
-**Step 5**
-
-At last we go to “Withdraw” to withdraw some \$DAI from zkSync back to Goerli. Pay the fees in DAI if you don’t have ETH.
-
-![image](../../assets/images/faq-5.png)
-
 ## What is a testnet ReGenesis?
 
 Sometimes, the team working on zkSync will initiate a regenesis on testnet - a restart of the blockchain which will introduce upgrades and return the state to the initial point.
