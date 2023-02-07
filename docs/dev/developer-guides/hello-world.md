@@ -12,6 +12,12 @@ This is what we're going to build:
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
+::: warning
+
+Please note that in the new `0.13.0-beta.2` SDK we changed the API to rename ergs to gas, to avoid breaking changes in your integration, update all your project dependencies.
+
+:::
+
 ## Prerequisites
 
 - `yarn` or `NPM` package manager. We recommend `yarn` and it's what we used in the front-end project. [Here is the Yarn installation guide](https://yarnpkg.com/getting-started/install) in case you don't have it.

@@ -9,6 +9,12 @@ Let's see how we can use the paymaster feature to build a custom paymaster that 
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
+::: warning
+
+Please note that in the new `0.13.0-beta.2` SDK we changed the API to rename ergs to gas, to avoid breaking changes in your integration, update all your project dependencies.
+
+:::
+
 ## Prerequisite
 
 To better understand this page, we recommend you first read up on [account abstraction design](../developer-guides/aa.md) before diving into this tutorial.

@@ -6,6 +6,13 @@ In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
+
+::: warning
+
+Please note that in the new `0.13.0-beta.2` SDK we changed the API to rename ergs to gas, to avoid breaking changes in your integration, update all your project dependencies.
+
+:::
+
 ## Prerequisite
 
 It is highly recommended to read about the [design](../developer-guides/aa.md) of the account abstraction protocol before diving into this tutorial.
@@ -735,7 +742,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   aaTx = {
     ...aaTx,
     from: multisigAddress,
-    l2gasLimit: gasLimit,
+    l2gasLimit: l2gasLimit,
     gasPrice: gasPrice,
     chainId: (await provider.getNetwork()).chainId,
     nonce: await provider.getTransactionCount(multisigAddress),
