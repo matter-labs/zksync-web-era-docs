@@ -81,7 +81,7 @@ contract MyPaymaster is IPaymaster {
         bytes32 _txHash,
         bytes32 _suggestedSignedHash,
         ExecutionResult _txResult,
-        uint256 _maxRefundedErgs
+        uint256 _maxRefundedGas
     ) external payable onlyBootloader {
         // This contract does not support any refunding logic
     }
@@ -131,9 +131,9 @@ require(providedAllowance >= PRICE_FOR_PAYING_FEES, "The user did not provide en
 Then, we finally transfer the funds to the user in exchange for 1 unit of this token.
 
 ```solidity
-// Note, that while the minimal amount of ETH needed is tx.ergsPrice * tx.ergsLimit,
+// Note, that while the minimal amount of ETH needed is tx.gasPrice * tx.gasLimit,
 // neither paymaster nor account are allowed to access this context variable.
-uint256 requiredETH = _transaction.ergsLimit * _transaction.maxFeePerErg;
+uint256 requiredETH = _transaction.gasLimit * _transaction.maxFeePerGas;
 
 // Pulling all the tokens from the user
 IERC20(token).transferFrom(userAddress, thisAddress, 1);
@@ -215,10 +215,10 @@ contract MyPaymaster is IPaymaster {
                 "The user did not provide enough allowance"
             );
 
-            // Note, that while the minimal amount of ETH needed is tx.ergsPrice * tx.ergsLimit,
+            // Note, that while the minimal amount of ETH needed is tx.gasPrice * tx.gasLimit,
             // neither paymaster nor account are allowed to access this context variable.
-            uint256 requiredETH = _transaction.ergsLimit *
-                _transaction.maxFeePerErg;
+            uint256 requiredETH = _transaction.gasLimit *
+                _transaction.maxFeePerGas;
 
             // Pulling all the tokens from the user
             IERC20(token).transferFrom(userAddress, thisAddress, 1);
@@ -238,7 +238,7 @@ contract MyPaymaster is IPaymaster {
         bytes32 _txHash,
         bytes32 _suggestedSignedHash,
         ExecutionResult _txResult,
-        uint256 _maxRefundedErgs
+        uint256 _maxRefundedGas
     ) external payable onlyBootloader {
         // This contract does not support any refunding logic
     }
@@ -398,7 +398,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Estimate gas fee for mint transaction
   const gasLimit = await erc20.estimateGas.mint(emptyWallet.address, 100, {
     customData: {
-      ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+      gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
       paymasterParams: {
         paymaster: PAYMASTER_ADDRESS,
         // empty input as our paymaster doesn't require additional data
@@ -429,7 +429,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
       // paymaster info
       customData: {
         paymasterParams,
-        ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+        gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
       },
     })
   ).wait();

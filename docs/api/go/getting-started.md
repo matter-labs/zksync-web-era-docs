@@ -11,6 +11,12 @@ In this guide we will demonstrate how to:
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
+::: warning
+
+This section of the documentation has not been updated to reflect the latest system update.
+
+:::
+
 ## Prerequisite
 
 This guide assumes that you are familiar with the [Go](https://go.dev/doc/) programming language.

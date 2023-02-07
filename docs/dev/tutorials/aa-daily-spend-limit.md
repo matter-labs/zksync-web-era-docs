@@ -675,13 +675,13 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     nonce: await provider.getTransactionCount(ACCOUNT_ADDRESS),
     type: 113,
     customData: {
-      ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+      gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
     } as types.Eip712Meta,
     value: ethers.BigNumber.from(0),
   };
 
   setLimitTx.gasPrice = await provider.getGasPrice();
-  setLimitTx.gasLimit = await provider.estimateGas(setLimitTx);
+  setLimitTx.l2gasLimit = await provider.estimateGas(setLimitTx);
 
   const signedTxHash = EIP712Signer.getSignedDigest(setLimitTx);
   const signature = ethers.utils.arrayify(ethers.utils.joinSignature(owner._signingKey().signDigest(signedTxHash)));
@@ -735,11 +735,11 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     nonce: await provider.getTransactionCount(ACCOUNT_ADDRESS),
     type: 113,
     customData: {
-      ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+      gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
     } as types.Eip712Meta,
     value: ethers.utils.parseEther("0.0051"), // 0.0051 fails but 0.0049 succeeds
     gasPrice: await provider.getGasPrice(),
-    gasLimit: ethers.BigNumber.from(20000000), // constant 20M since estimateGas() causes an error, and this tx consumes more than 15M at most
+    l2gasLimit: ethers.BigNumber.from(20000000), // constant 20M since estimateGas() causes an error, and this tx consumes more than 15M at most
     data: "0x",
   };
   const signedTxHash = EIP712Signer.getSignedDigest(ethTransferTx);

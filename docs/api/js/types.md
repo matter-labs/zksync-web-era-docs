@@ -32,7 +32,7 @@ export type PaymasterParams = {
 };
 
 export type Eip712Meta = {
-    ergsPerPubdata?: BigNumberish;
+    gasPerPubdata?: BigNumberish;
     factoryDeps?: BytesLike[];
     customSignature?: BytesLike;
     paymasterParams?: PaymasterParams;

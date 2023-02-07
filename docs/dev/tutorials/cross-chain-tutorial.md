@@ -63,12 +63,12 @@ contract Governance {
         address zkSyncAddress,
         address contractAddr,
         bytes memory data,
-        uint64 ergsLimit
+        uint64 gasLimit
     ) external payable {
         require(msg.sender == governor, "Only governor is allowed");
 
         IZkSync zksync = IZkSync(zkSyncAddress);
-        zksync.requestL2Transaction{value: msg.value}(contractAddr, 0, data, ergsLimit, new bytes[](0));
+        zksync.requestL2Transaction{value: msg.value}(contractAddr, 0, data, gasLimit, new bytes[](0));
     }
 }
 ```
@@ -413,7 +413,7 @@ async function main() {
 
 5. Executing transactions from L1 requires the caller to pay some fee to the L2 operator.
 
-Firstly, this fee depends on the length of the calldata and the `ergsLimit`. If you are new to this concept then it is pretty much the same as the `gasLimit` on Ethereum. You can read more about [zkSync fee model here](../developer-guides/transactions/fee-model.md).
+Firstly, this fee depends on the length of the calldata and the `gasLimit`. If you are new to this concept then it is pretty much the same as the `l2gasLimit` on Ethereum. You can read more about [zkSync fee model here](../developer-guides/transactions/fee-model.md).
 
 Secondly, the fee depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched from the L1 provider.
 
@@ -434,21 +434,21 @@ async function main() {
   // so we should explicitly fetch the gas price before the call.
   const gasPrice = await l1Provider.getGasPrice();
 
-  // Here we define the constant for ergs limit.
-  // There is currently no way to get the exact ergsLimit required for an L1->L2 tx.
+  // Here we define the constant for gas limit.
+  // There is currently no way to get the exact gasLimit required for an L1->L2 tx.
   // You can read more on that in the tip below
-  const ergsLimit = BigNumber.from(100000);
+  const gasLimit = BigNumber.from(100000);
 
   // Getting the cost of the execution in Wei.
-  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length);
+  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, gasLimit, ethers.utils.hexlify(data).length);
 }
 ```
 
 ::: tip Fee model and fee estimation are WIP
 
-You may have noticed the lack of the `ergs_per_pubdata` and `ergs_per_storage` fields in the L1->L2 transactions. These are surely important for the security of the protocol and they will be added soon. Please note that this will be a breaking change for the contract interface.
+You may have noticed the lack of the `gas_per_pubdata` and `gas_per_storage` fields in the L1->L2 transactions. These are surely important for the security of the protocol and they will be added soon. Please note that this will be a breaking change for the contract interface.
 
-Also, there is currently no easy way to estimate the exact number of `ergs` required for the execution of an L1->L2 transaction. At the time of this writing, the transactions may be processed even if the supplied `ergsLimit` is `0`. This will change in the future.
+Also, there is currently no easy way to estimate the exact number of `gas` required for the execution of an L1->L2 transaction. At the time of this writing, the transactions may be processed even if the supplied `gasLimit` is `0`. This will change in the future.
 
 :::
 
@@ -464,7 +464,7 @@ async function main() {
   // ... Previous steps
 
   // Calling the L1 governance contract.
-  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
+  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, gasLimit, {
     // Passing the necessary ETH `value` to cover the fee for the operation
     value: baseCost,
     gasPrice,
@@ -527,13 +527,13 @@ async function main() {
   // The price of the L1 transaction requests depends on the gas price used in the call
   const gasPrice = await l1Provider.getGasPrice();
 
-  // Here we define the constant for ergs limit.
-  const ergsLimit = BigNumber.from(100000);
+  // Here we define the constant for gas limit.
+  const gasLimit = BigNumber.from(100000);
   // Getting the cost of the execution.
-  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length);
+  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, gasLimit, ethers.utils.hexlify(data).length);
 
   // Calling the L1 governance contract.
-  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
+  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, gasLimit, {
     // Passing the necessary ETH `value` to cover the fee for the operation
     value: baseCost,
     gasPrice,

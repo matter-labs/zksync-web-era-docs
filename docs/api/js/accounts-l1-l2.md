@@ -143,7 +143,7 @@ async finalizeWithdrawal(withdrawalHash: BytesLike, index: number = 0): Promise<
 
 ```ts
 async getBaseCost(params: {
-    ergsLimit: BigNumberish;
+    l2gasLimit: BigNumberish;
     calldataLength: number;
     gasPrice?: BigNumberish;
 }): Promise<BigNumber>
@@ -153,7 +153,7 @@ async getBaseCost(params: {
 
 | Name                        | Description                                                                                            |
 | --------------------------- | ------------------------------------------------------------------------------------------------------ |
-| params.ergsLimit            | The `ergsLimit` for the call.                                                                          |
+| params.l2gasLimit           | The `l2gasLimit` for the call.                                                                          |
 | params.calldataLength       | The length of the calldata in bytes.                                                                   |
 | params.gasPrice (optional)  | The gas price of the L1 transaction that will send the request for an execute call.                    |
 | returns                     | The base cost in ETH for requesting the contract call.                                                 |
@@ -179,7 +179,7 @@ async claimFailedDeposit(depositHash: BytesLike): Promise<ethers.ContractTransac
 async requestExecute(transaction: {
     contractAddress: Address;
     calldata: BytesLike;
-    ergsLimit: BigNumberish;
+    l2gasLimit: BigNumberish;
     factoryDeps?: ethers.BytesLike[];
     operatorTip?: BigNumberish;
     overrides?: ethers.CallOverrides;
@@ -192,7 +192,7 @@ async requestExecute(transaction: {
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | transaction.contractAddress        | The address of the L2 contract to call.                                                                                                                                                                                                                                                                                                                          |
 | transaction.calldata               | The calldata of the call transaction. It can be encoded the same way as in Ethereum.                                                                                                                                                                                                                                                                             |
-| transaction.ergsLimit              | The `ergsLimit` for the call.                                                                                                                                                                                                                                                                                                                                    |
+| transaction.l2gasLimit             | The `l2gasLimit` for the call.                                                                                                                                                                                                                                                                                                                                    |
 | transaction.factoryDeps            | Array of bytecodes of factory dependencies - only used for transactions that deploy contracts.                                                                                                                                                                                                                                                                   |
 | transaction.operatorTip (optional) | If the ETH `value` passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction. This value has no meaning for the `Deque` type of queue, but it will be used to prioritize the transactions that get into the `Heap` or `HeapBuffer` queues. |
 | overrides (optional)               | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice` etc.                                                                                                                                                                                                                                                                                  |
@@ -225,19 +225,19 @@ const abi = [
 ];
 const contractInterface = new ethers.utils.Interface(abi);
 const calldata = contractInterface.encodeFunctionData("increment", []);
-const ergsLimit = BigNumber.from(1000);
+const l2gasLimit = BigNumber.from(1000);
 
 const txCostPrice = await wallet.getBaseCost({
   gasPrice,
   calldataLength: ethers.utils.arrayify(calldata).length,
-  ergsLimit,
+  l2gasLimit,
 });
 
 console.log(`Executing the transaction will cost ${ethers.utils.formatEther(txCostPrice)} ETH`);
 
 const executeTx = await wallet.requestExecute({
   calldata,
-  ergsLimit,
+  l2gasLimit,
   contractAddress: "0x19a5bfcbe15f98aa073b9f81b58466521479df8d",
   overrides: {
     gasPrice,

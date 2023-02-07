@@ -3,6 +3,11 @@
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
+::: warning
+
+This section of the documentation has not been updated to reflect the latest system update.
+
+:::
 ## Adding dependencies
 
 To install zksync 2.0, run the command below in your terminal.

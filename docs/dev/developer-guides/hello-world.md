@@ -437,7 +437,7 @@ async getBalance() {
 
 ```javascript
 async getFee() {
-    // Getting the amount of gas (ergs) needed for one transaction
+    // Getting the amount of gas (gas) needed for one transaction
     const feeInGas = await this.contract.estimateGas.setGreeting(this.newGreeting);
     // Getting the gas price per one erg. For now, it is the same for all tokens.
     const gasPriceInUnits = await this.provider.getGasPrice();
@@ -565,7 +565,7 @@ async getOverrides() {
       this.newGreeting,
       {
         customData: {
-          ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+          gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
           paymasterParams: {
             paymaster: testnetPaymaster,
             // empty input as our paymaster doesn't require additional data
@@ -598,7 +598,7 @@ async getOverrides() {
       this.newGreeting,
       {
         customData: {
-          ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+          gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
           paymasterParams: {
             paymaster: testnetPaymaster,
             // empty input as our paymaster doesn't require additional data
@@ -623,7 +623,7 @@ async getOverrides() {
       maxPriorityFeePerGas: ethers.BigNumber.from(0),
       gasLimit,
       customData: {
-        ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+        gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
         paymasterParams,
       },
     };
