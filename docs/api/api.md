@@ -39,8 +39,8 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 | txType                  | `uint256`   |
 | from                    | `uint256`   |
 | to                      | `uint256`   |
-| l2gasLimit              | `uint256`   |
-| l2PerPubdataByteLimit   | `uint256`   |
+| gasLimit              | `uint256`   |
+| gasPerPubdataByteLimit   | `uint256`   |
 | maxFeePerGas            | `uint256 `  |
 | maxPriorityFeePerGas    | `uint256`   |
 | paymaster               | `uint256`   |
