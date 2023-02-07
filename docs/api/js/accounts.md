@@ -247,13 +247,13 @@ async transfer(tx: {
 
 #### Inputs and outputs
 
-| Name                 | Description                                                         |
-| -------------------- | ------------------------------------------------------------------- |
-| tx.to                | The address of the recipient.                                       |
-| tx.amount            | The amount of the token to transfer.                                |
-| token (optional)     | The address of the token. `ETH` by default.                         |
+| Name                 | Description                                             |
+| -------------------- | ------------------------------------------------------- |
+| tx.to                | The address of the recipient.                           |
+| tx.amount            | The amount of the token to transfer.                    |
+| token (optional)     | The address of the token. `ETH` by default.             |
 | overrides (optional) | Transaction overrides, such as `nonce`, `gasLimit` etc. |
-| returns              | A `TransactionResponse` object                                      |
+| returns              | A `TransactionResponse` object                          |
 
 > Example
 
@@ -288,14 +288,14 @@ async withdraw(transaction: {
 }): Promise<TransactionResponse>
 ```
 
-| Name                     | Description                                                         |
-| ------------------------ | ------------------------------------------------------------------- |
-| tx.to                    | The address of the recipient on L1.                                 |
-| tx.amount                | The amount of the token to transfer.                                |
-| token (optional)         | The address of the token. `ETH` by default.                         |
-| bridgeAddress (optional) | The address of the bridge contract to be used.                      |
+| Name                     | Description                                             |
+| ------------------------ | ------------------------------------------------------- |
+| tx.to                    | The address of the recipient on L1.                     |
+| tx.amount                | The amount of the token to transfer.                    |
+| token (optional)         | The address of the token. `ETH` by default.             |
+| bridgeAddress (optional) | The address of the bridge contract to be used.          |
 | overrides (optional)     | Transaction overrides, such as `nonce`, `gasLimit` etc. |
-| returns                  | A `TransactionResponse` object                                      |
+| returns                  | A `TransactionResponse` object                          |
 
 ### Retrieving the underlying L1 wallet
 
@@ -410,13 +410,13 @@ async transfer(tx: {
 
 #### Inputs and outputs
 
-| Name                 | Description                                                         |
-| -------------------- | ------------------------------------------------------------------- |
-| tx.to                | The address of the recipient.                                       |
-| tx.amount            | The amount of the token to transfer.                                |
-| token (optional)     | The address of the token. `ETH` by default.                         |
+| Name                 | Description                                             |
+| -------------------- | ------------------------------------------------------- |
+| tx.to                | The address of the recipient.                           |
+| tx.amount            | The amount of the token to transfer.                    |
+| token (optional)     | The address of the token. `ETH` by default.             |
 | overrides (optional) | Transaction overrides, such as `nonce`, `gasLimit` etc. |
-| returns              | An `ethers.ContractTransaction` object.                             |
+| returns              | An `ethers.ContractTransaction` object.                 |
 
 > Example
 

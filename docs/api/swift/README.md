@@ -4,8 +4,7 @@ While most of the existing SDKs should work out of the box, deploying smart cont
 
 To provide easy access to all of the features of zkSync 2.0, the `ZkSync2` Swift SDK was created.
 
-
 ## Table of contents
 
 - [Getting started](./getting-started.md)
-- [Providers](./providers.md) 
+- [Providers](./providers.md)

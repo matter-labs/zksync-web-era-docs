@@ -6,7 +6,6 @@ In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
-
 ::: warning
 
 Please note that in the new `0.13.0-beta.2` SDK the API layer operates with gas. The ergs concept is used by VM only.

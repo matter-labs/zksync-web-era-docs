@@ -34,21 +34,21 @@ To let the server recognize EIP712 transactions, the `transaction_type` field is
 
 Instead of signing the RLP-encoded transaction, the user signs the following typed EIP712 structure:
 
-| Field name              | Type        |
-| ----------------------- | ----------- |
-| txType                  | `uint256`   |
-| from                    | `uint256`   |
-| to                      | `uint256`   |
-| gasLimit              | `uint256`   |
-| gasPerPubdataByteLimit   | `uint256`   |
-| maxFeePerGas            | `uint256 `  |
-| maxPriorityFeePerGas    | `uint256`   |
-| paymaster               | `uint256`   |
-| nonce                   | `uint256`   |
-| value                   | `uint256`   |
-| data                    | `bytes`     |
-| factoryDeps             | `bytes32[]` |
-| paymasterInput          | `bytes`     |
+| Field name             | Type        |
+| ---------------------- | ----------- |
+| txType                 | `uint256`   |
+| from                   | `uint256`   |
+| to                     | `uint256`   |
+| gasLimit               | `uint256`   |
+| gasPerPubdataByteLimit | `uint256`   |
+| maxFeePerGas           | `uint256 `  |
+| maxPriorityFeePerGas   | `uint256`   |
+| paymaster              | `uint256`   |
+| nonce                  | `uint256`   |
+| value                  | `uint256`   |
+| data                   | `bytes`     |
+| factoryDeps            | `bytes32[]` |
+| paymasterInput         | `bytes`     |
 
 These fields are conveniently handled by our [SDK](./js/features.md).
 
@@ -356,7 +356,6 @@ Don't want to document (at least for now):
 -->
 
 ## PubSub API
-
 
 zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/rpc/pubsub), except for the `syncing` subscription. This is because nodes on the zkSync network are technically always synchronized.
 

@@ -8,6 +8,7 @@
 Please note that in the new `0.13.0-beta.2` SDK the API layer operates with gas. The ergs concept is used by VM only.
 
 :::
+
 ## Concept
 
 While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features, like account abstraction, requires providing additional fields to those that Ethereum transactions have by default.
@@ -92,6 +93,7 @@ const committedEthBalance = await syncWallet.getBalance(zksync.utils.ETH_ADDRESS
 // Retrieving the balance of an account in the last finalized block zkSync.md#confirmations-and-finality
 const finalizedEthBalance = await syncWallet.getBalance(zksync.utils.ETH_ADDRESS, "finalized");
 ```
+
 You can read more about what committed and finalized blocks are [here](../../dev/fundamentals/zkSync.md#confirmations-and-finality).
 
 ## Performing a transfer

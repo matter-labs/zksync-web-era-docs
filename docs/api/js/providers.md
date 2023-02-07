@@ -111,8 +111,8 @@ async getTestnetPaymasterAddress(): Promise<string|null>
 
 #### Inputs and outputs
 
-| Name    | Description                               |
-| ------- | ----------------------------------------- |
+| Name    | Description                                                        |
+| ------- | ------------------------------------------------------------------ |
 | returns | The address of the testnet paymaster or `null` if there isn't any. |
 
 > Example
