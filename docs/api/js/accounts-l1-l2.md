@@ -143,8 +143,8 @@ async finalizeWithdrawal(withdrawalHash: BytesLike, index: number = 0): Promise<
 
 ```ts
 async getBaseCost(params: {
-    l2gasLimit: BigNumberish;
-    calldataLength: number;
+    gasLimit: BigNumberish;
+    gasPerPubdataByte?: BigNumberish;
     gasPrice?: BigNumberish;
 }): Promise<BigNumber>
 ```
