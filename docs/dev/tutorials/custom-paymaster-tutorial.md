@@ -11,7 +11,7 @@ Let's see how we can use the paymaster feature to build a custom paymaster that 
 
 ::: warning
 
-Please note that in the new `0.13.0-beta.2` SDK we changed the API to rename ergs to gas, to avoid breaking changes in your integration, update all your project dependencies.
+Please note that in the new `0.13.0-beta.2` SDK the API layer operates with gas. The ergs consept is used by VM only.
 
 :::
 
