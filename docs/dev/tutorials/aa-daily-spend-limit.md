@@ -7,7 +7,7 @@ In this tutorial, we'll create smart contract account with a daily spend limit t
 
 ::: warning
 
-Please note that in the new `0.13.0-beta.2` SDK the API layer operates with gas. The ergs consept is used by VM only.
+Please note that in the new `0.13.0-beta.2` SDK the API layer operates with gas. The ergs concept is used by VM only.
 
 :::
 
