@@ -14,7 +14,7 @@ This is what we're going to build:
 
 ::: warning
 
-Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer operates with gas and the `ergs` concept is usedinternally by the VM only.
+Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM.
 
 :::
 
