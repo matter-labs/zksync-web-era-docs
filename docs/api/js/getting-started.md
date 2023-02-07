@@ -8,6 +8,7 @@
 Please note that in the new `0.13.0-beta.2` SDK we changed the API to rename ergs to gas, to avoid breaking changes in your integration, update all your project dependencies.
 
 :::
+
 ## Concept
 
 While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features, like account abstraction, requires providing additional fields to those that Ethereum transactions have by default.
