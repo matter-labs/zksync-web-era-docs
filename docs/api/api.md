@@ -22,7 +22,7 @@ To specify additional fields, like the custom signature for custom accounts or t
   "paymaster": "0x...",
   "paymasterInput": "0x..."
 },
-"factory_deps": ["0x..."]
+"factoryDeps": ["0x..."]
 ```
 
 - `gasPerPubdata`: is a field that describes the maximal amount of gas the user is willing to pay for a single byte of pubdata.
