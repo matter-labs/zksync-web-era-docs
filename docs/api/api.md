@@ -79,7 +79,7 @@ Returns the fee for the transaction. The token in which the fee is calculated is
   "gas_limit": 100000000,
   "max_fee_per_gas": 10000,
   "fee_token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-  "gas_per_storage_limit": 100,
+  "max_priority_fee_per_gas": 100,
   "gas_per_pubdata_limit": 10
 }
 ``` -->
