@@ -1,5 +1,11 @@
 # Fee mechanism
 
+::: warning
+
+This section of the documentation is no longer current and needs to be updated. We apologize for any inconvenience and assure you that a revised version will be available shortly.
+
+:::
+
 At zkSync, we aim to be compatible with Ethereum, meaning we aim to share similarities while minimizing huge differences, one such similarity is the gas fee model of zkSync.
 
 zkSync's version of `gas` is called `gas` just like Ethereum and represents not only the costs of computations but also the cost of publishing data on-chain and affecting storage. 

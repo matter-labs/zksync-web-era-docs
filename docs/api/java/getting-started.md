@@ -10,7 +10,7 @@ In this guide we will demonstrate how to:
 
 ::: warning
 
-This section of the documentation has not been updated to reflect the latest system update.
+⚠️ This section of the documentation is no longer current and needs to be updated to reflect the changes made to the system contract. We apologize for any inconvenience and assure you that a revised version will be available shortly.
 
 :::
 
@@ -835,9 +835,3 @@ public class Main {
 }
 
 ```
-
-::: warning
-
-⚠️ This section of the docs is still in progress and will be updated with more detailed information soon.
-
-:::
