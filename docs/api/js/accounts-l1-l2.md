@@ -179,13 +179,13 @@ async claimFailedDeposit(depositHash: BytesLike): Promise<ethers.ContractTransac
 async requestExecute(transaction: {
     contractAddress: Address;
     calldata: BytesLike;
- l2GasLimit: BigNumberish;
- l2Value?: BigNumberish;
- factoryDeps?: ethers.BytesLike[];
- operatorTip?: BigNumberish;
- gasPerPubdataByte?: BigNumberish;
- refundRecipient?: Address;
- overrides?: ethers.PayableOverrides;
+    l2GasLimit: BigNumberish;
+    l2Value?: BigNumberish;
+    factoryDeps?: ethers.BytesLike[];
+    operatorTip?: BigNumberish;
+    gasPerPubdataByte?: BigNumberish;
+    refundRecipient?: Address;
+    overrides?: ethers.PayableOverrides;
 }): Promise<PriorityOpResponse>
 ```
 
