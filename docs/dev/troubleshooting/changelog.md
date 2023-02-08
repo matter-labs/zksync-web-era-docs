@@ -2,7 +2,7 @@
 
 ## System update v1.3 (8th Feb 2023)
 
-This update included multiple changes in the system to prepare it for our “Fair Onboarding Alpha” milestone. These updates include:
+The recent update made several modifications to the system in preparation for the "Fair Onboarding Alpha" milestone. The modifications include:
 
 - a fee mechanism revamp that replaces `ergs` with `gas` to make it easier to understand (after all, we’re all part of the Ethereum ecosystem).
 - updates in the Account Abstraction support
