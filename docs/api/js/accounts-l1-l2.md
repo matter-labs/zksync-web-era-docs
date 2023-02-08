@@ -73,17 +73,17 @@ async deposit(transaction: {
 
 #### Inputs and outputs
 
-| Name                                    | Description                                                                                                                                                                                                                                                                                                                                                      |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| transaction.token                       | The address of the token to deposit.                                                                                                                                                                                                                                                                                                                             |
-| transaction.amount                      | The amount of the token to be deposited.                                                                                                                                                                                                                                                                                                                         |
-| transaction.to (optional)               | The address that will receive the deposited tokens on L2.                                                                                                                                                                                                                                                                                                        |                                       
+| Name                                    | Description      |
+| --------------------------------------- | ------- |
+| transaction.token                       | The address of the token to deposit  |                         
+| transaction.amount                      | The amount of the token to be deposited.           |
+| transaction.to (optional)               | The address that will receive the deposited tokens on L2. |                                        
 | transaction.operatorTip (optional)      | If the ETH `value` passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction. This value has no meaning for the `Deque` type of queue, but it will be used to prioritize the transactions that get into the `Heap` or `HeapBuffer` queues. |
-| transaction.bridgeAddress (optional)    | The address of the bridge contract to be used. Defaults to the default zkSync bridge (either `L1EthBridge` or `L1Erc20Bridge`).                                                                                                                                                                                                                                  |
-| transaction.approveERC20 (optional)     | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge an ERC20 token and didn't call the `approveERC20` function beforehand.                                                                                                                                                                               |
-| transaction.overrides (optional)        | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                                                                                                                                                                                                 |
-| transaction.approveOverrides (optional) | Ethereum transaction overrides of the approval transaction. May be used to pass `gasLimit`, `gasPrice`, etc.                                                                                                                                                                                                                                                     |
-| returns                                 | `PriorityOpResponse` object.                                                                                                                                                                                                                                                                                                                                     |
+| transaction.bridgeAddress (optional)    | The address of the bridge contract to be used. Defaults to the default zkSync bridge (either `L1EthBridge` or `L1Erc20Bridge`).      |
+| transaction.approveERC20 (optional)     | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge an ERC20 token and didn't call the `approveERC20` function beforehand.  |
+| transaction.overrides (optional)        | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.  |
+| transaction.approveOverrides (optional) | Ethereum transaction overrides of the approval transaction. May be used to pass `gasLimit`, `gasPrice`, etc. 
+| returns                                 | `PriorityOpResponse` object. |
 
 > Example
 
@@ -153,7 +153,7 @@ async getBaseCost(params: {
 
 | Name                        | Description                                                                                            |
 | --------------------------- | ------------------------------------------------------------------------------------------------------ |
-| params.l2gasLimit           | The `l2gasLimit` for the call.                                                                          |
+| params.l2gasLimit           | The gas limit of the resulting transaction on L2                                                       |
 | params.calldataLength       | The length of the calldata in bytes.                                                                   |
 | params.gasPrice (optional)  | The gas price of the L1 transaction that will send the request for an execute call.                    |
 | returns                     | The base cost in ETH for requesting the contract call.                                                 |
@@ -193,6 +193,7 @@ async requestExecute(transaction: {
 
 | Name                               | Description                                                                                                                                                                                                                                                                                                                                                      |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+<<<<<<< HEAD
 | transaction.contractAddress        | The address of the L2 contract to call.                                                                                                                                                                                                                                                                                                                          |
 | transaction.calldata               | The calldata of the call transaction. It can be encoded the same way as in Ethereum.                                                                                                                                                                                                                                                                             |
 | transaction.l2gasLimit             | The L2 gas limit for the call.                                                                                                                                                                                                                                                                                                                                    |
@@ -200,6 +201,25 @@ async requestExecute(transaction: {
 | transaction.operatorTip (optional) | If the ETH `value` passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction. This value has no meaning for the `Deque` type of queue, but it will be used to prioritize the transactions that get into the `Heap` or `HeapBuffer` queues. |
 | overrides (optional)               | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice` etc.                                                                                                                                                                                                                                                                                  |
 | returns                            | `PriorityOpResponse` object.                                                                                                                                                                                                                                                                                                                                     |
+=======
+| transaction.contractAddress        | The address of the L2 contract to call.                                |                                                                                                                                                                                                                                                                                     
+| transaction.calldata               | The calldata of the call transaction. It can be encoded the same way as in Ethereum.                         |
+
+| transaction.l2GasLimit             | The `l2GasLimit` for the call.  
+                                     |      
+
+| transaction.l2Value (optional)     | The `msg.value` of the call.                                                                                                                                                                                                           |
+| transaction.factoryDeps (optional) | Array of bytecodes of factory dependencies - only used for transactions that deploy contracts.                                                                                                                       
+| transaction.operatorTip (optional) | If the ETH `value` passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction. This value has no meaning for the `Deque` type of queue, but it will be used to prioritize the transactions that get into the `Heap` or `HeapBuffer` queues. 
+                                                                                                        |
+| overrides (optional)               | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice` etc.
+                                |
+| transaction.gasPerPubdataByte (optional)      |
+                              | 
+| transaction.refundRecipient(optional)         |  
+|--                                                                                                                                                         
+| returns                               | `PriorityOpResponse` object.                                                                                                                                                                                                                                                                                                                                     
+>>>>>>> main
 
 > Example
 
@@ -228,20 +248,34 @@ const abi = [
 ];
 const contractInterface = new ethers.utils.Interface(abi);
 const calldata = contractInterface.encodeFunctionData("increment", []);
+<<<<<<< HEAD
 const l2gasLimit = BigNumber.from(1000);
+=======
+const l2GasLimit = BigNumber.from(1000);
+>>>>>>> main
 
 const txCostPrice = await wallet.getBaseCost({
   gasPrice,
   calldataLength: ethers.utils.arrayify(calldata).length,
+<<<<<<< HEAD
   l2gasLimit,
+=======
+  l2GasLimit,
+>>>>>>> main
 });
 
 console.log(`Executing the transaction will cost ${ethers.utils.formatEther(txCostPrice)} ETH`);
 
 const executeTx = await wallet.requestExecute({
+<<<<<<< HEAD
   calldata,
   l2gasLimit,
+=======
+>>>>>>> main
   contractAddress: "0x19a5bfcbe15f98aa073b9f81b58466521479df8d",
+  calldata,
+  l2Value: 1,
+  l2GasLimit,
   overrides: {
     gasPrice,
     value: txCostPrice,

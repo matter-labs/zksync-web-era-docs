@@ -14,7 +14,7 @@ This is what we're going to build:
 
 ::: warning
 
-Please note that in the new `0.13.0-beta.2` SDK we changed the API to rename ergs to gas, to avoid breaking changes in your integration, update all your project dependencies.
+Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM.
 
 :::
 
@@ -34,16 +34,22 @@ cd greeter-example
 
 # For Yarn
 yarn init -y
-yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.0 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 
 # For NPM
 npm init -y
-npm i -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+npm i -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.0 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
 Please note that Typescript is required by zkSync plugins.
 
-2. Create the `hardhat.config.ts` file and paste the following code there:
+::: tip
+
+The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
+
+:::
+
+1. Create the `hardhat.config.ts` file and paste the following code there:
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
@@ -51,7 +57,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.2.2",
+    version: "1.3.1",
     compilerSource: "binary",
     settings: {},
   },
@@ -65,7 +71,7 @@ module.exports = {
     },
   },
   solidity: {
-    version: "0.8.16",
+    version: "0.8.17",
   },
 };
 ```
@@ -161,6 +167,12 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```sh
 yarn hardhat deploy-zksync
 ```
+
+::: tip Request-Rate Exceeded message
+
+This message is caused by using the default RPC endpoints provided by ethers. To avoid this, use your own Goerli RPC endpoint.You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
+
+:::
 
 In the output, you should see the address to which the contract was deployed.
 
@@ -273,10 +285,10 @@ Run the following command on the greeter-tutorial-starter root folder to install
 
 ```
 # For Yarn
-yarn add ethers zksync-web3
+yarn add ethers@^5.7.2 zksync-web3@^0.13.0
 
 # For NPM
-npm i ethers zksync-web3
+npm i ethers@^5.7.2 zksync-web3@^0.13.0
 ```
 
 After that, import both libraries in the `script` part of the `App.vue` file (right before the contract constant). It should look like this:
@@ -530,7 +542,7 @@ Even though ether is the only token you can pay fees with, the account abstracti
 
 ::: warning Paymasters on mainnet
 
-🚨 The testnet paymaster is purely for demonstration of this feature and won't be available on mainnet When integrating your protocol on mainnet, you should follow the documentation of the paymaster you will use or create your own.
+🚨 The testnet paymaster is purely for demostration of this feature and won't be available on mainnet. When integrating your protocol on mainnet, you should follow the documentation of the paymaster you will use or create your own.
 
 :::
 
@@ -567,6 +579,7 @@ async getOverrides() {
 
     const gasPrice = await this.provider.getGasPrice();
     // estimate gasLimit via paymaster
+<<<<<<< HEAD
     const gasLimit = await this.contract.estimateGas.setGreeting(
       this.newGreeting,
       {
@@ -580,6 +593,28 @@ async getOverrides() {
         },
       }
     );
+=======
+    const paramsForFeeEstimation = utils.getPaymasterParams(
+          testnetPaymaster,
+          {
+            type: "ApprovalBased",
+            minimalAllowance: ethers.BigNumber.from("1"),
+            token: this.selectedToken.l2Address,
+            innerInput: new Uint8Array(),
+          }
+        );
+
+        // estimate gasLimit via paymaster
+        const gasLimit = await this.contract.estimateGas.setGreeting(
+          this.newGreeting,
+          {
+            customData: {
+              gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+              paymasterParams: paramsForFeeEstimation,
+            },
+          }
+        );
+>>>>>>> main
     const fee = gasPrice.mul(gasLimit);
 
     // ..
@@ -600,16 +635,31 @@ async getOverrides() {
     const gasPrice = await this.provider.getGasPrice();
 
     // estimate gasLimit via paymaster
+    const paramsForFeeEstimation = utils.getPaymasterParams(
+      testnetPaymaster,
+      {
+        type: "ApprovalBased",
+        minimalAllowance: ethers.BigNumber.from("1"),
+        token: this.selectedToken.l2Address,
+        innerInput: new Uint8Array(),
+      }
+    );
+
+    // estimate gasLimit via paymaster
     const gasLimit = await this.contract.estimateGas.setGreeting(
       this.newGreeting,
       {
         customData: {
           gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+<<<<<<< HEAD
           paymasterParams: {
             paymaster: testnetPaymaster,
             // empty input as our paymaster doesn't require additional data
             paymasterInput: "0x",
           },
+=======
+          paymasterParams: paramsForFeeEstimation,
+>>>>>>> main
         },
       }
     );
