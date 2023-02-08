@@ -193,19 +193,10 @@ async requestExecute(transaction: {
 
 | Name                               | Description                                                                                                                                                                                                                                                                                                                                                      |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-<<<<<<< HEAD
-| transaction.contractAddress        | The address of the L2 contract to call.                                                                                                                                                                                                                                                                                                                          |
-| transaction.calldata               | The calldata of the call transaction. It can be encoded the same way as in Ethereum.                                                                                                                                                                                                                                                                             |
-| transaction.l2gasLimit             | The L2 gas limit for the call.                                                                                                                                                                                                                                                                                                                                    |
-| transaction.factoryDeps            | Array of bytecodes of factory dependencies - only used for transactions that deploy contracts.                                                                                                                                                                                                                                                                   |
-| transaction.operatorTip (optional) | If the ETH `value` passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction. This value has no meaning for the `Deque` type of queue, but it will be used to prioritize the transactions that get into the `Heap` or `HeapBuffer` queues. |
-| overrides (optional)               | Ethereum transaction overrides. May be used to pass `gasLimit`, `gasPrice` etc.                                                                                                                                                                                                                                                                                  |
-| returns                            | `PriorityOpResponse` object.                                                                                                                                                                                                                                                                                                                                     |
-=======
 | transaction.contractAddress        | The address of the L2 contract to call.                                |                                                                                                                                                                                                                                                                                     
 | transaction.calldata               | The calldata of the call transaction. It can be encoded the same way as in Ethereum.                         |
 
-| transaction.l2GasLimit             | The `l2GasLimit` for the call.  
+| transaction.l2GasLimit             | The gas limit of the resulting transaction on L2
                                      |      
 
 | transaction.l2Value (optional)     | The `msg.value` of the call.                                                                                                                                                                                                           |
@@ -219,7 +210,6 @@ async requestExecute(transaction: {
 | transaction.refundRecipient(optional)         |  
 |--                                                                                                                                                         
 | returns                               | `PriorityOpResponse` object.                                                                                                                                                                                                                                                                                                                                     
->>>>>>> main
 
 > Example
 
