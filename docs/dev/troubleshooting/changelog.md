@@ -1,6 +1,6 @@
 # Changelog
 
-## System update v1.3 (8th Feb 2023)
+## System update v1.3 (Feb 8th 2023)
 
 The recent update made several modifications to the system in preparation for the "Fair Onboarding Alpha" milestone. The modifications include:
 
