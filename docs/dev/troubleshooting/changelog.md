@@ -10,7 +10,7 @@ The recent update made several modifications to the system in preparation for th
 - breaking changes in our SDKs where methods and properties that contained `ergs` are renamed `gas`
 - and some API error messages now follow the Geth format (more updates coming soon).
 
-**These udpates were followed by a system regenesys.**
+**These updates were followed by a system regenesis.**
 
 ### How to update your project
 
