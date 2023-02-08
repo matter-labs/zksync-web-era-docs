@@ -13,7 +13,7 @@ In this guide we will demonstrate how to:
 
 ::: warning
 
-⚠️ This section of the documentation is no longer current and needs to be updated to reflect the changes made to the system contracts. We apologize for any inconvenience and assure you that a revised version will be available shortly.
+⚠️ The information in this section of the documentation is outdated and requires updating. We apologize for any inconvenience caused and assure you that a revised version will be made available soon.
 
 :::
 

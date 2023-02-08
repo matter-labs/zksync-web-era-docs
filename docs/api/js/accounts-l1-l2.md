@@ -153,7 +153,7 @@ async getBaseCost(params: {
 
 | Name                        | Description                                                                                            |
 | --------------------------- | ------------------------------------------------------------------------------------------------------ |
-| params.gasLimit             | The `gasLimit` for the call.                                                                          |
+| params.l2gasLimit           | The gas limit of the resulting transaction on L2                                                       |
 | params.calldataLength       | The length of the calldata in bytes.                                                                   |
 | params.gasPrice (optional)  | The gas price of the L1 transaction that will send the request for an execute call.                    |
 | returns                     | The base cost in ETH for requesting the contract call.                                                 |
@@ -196,7 +196,7 @@ async requestExecute(transaction: {
 | transaction.contractAddress        | The address of the L2 contract to call.                                |                                                                                                                                                                                                                                                                                     
 | transaction.calldata               | The calldata of the call transaction. It can be encoded the same way as in Ethereum.                         |
 
-| transaction.l2GasLimit             | The `l2GasLimit` for the call.  
+| transaction.l2GasLimit             | The gas limit of the resulting transaction on L2
                                      |      
 
 | transaction.l2Value (optional)     | The `msg.value` of the call.                                                                                                                                                                                                           |
@@ -238,17 +238,30 @@ const abi = [
 ];
 const contractInterface = new ethers.utils.Interface(abi);
 const calldata = contractInterface.encodeFunctionData("increment", []);
+<<<<<<< HEAD
+const l2gasLimit = BigNumber.from(1000);
+=======
 const l2GasLimit = BigNumber.from(1000);
+>>>>>>> main
 
 const txCostPrice = await wallet.getBaseCost({
   gasPrice,
   calldataLength: ethers.utils.arrayify(calldata).length,
+<<<<<<< HEAD
+  l2gasLimit,
+=======
   l2GasLimit,
+>>>>>>> main
 });
 
 console.log(`Executing the transaction will cost ${ethers.utils.formatEther(txCostPrice)} ETH`);
 
 const executeTx = await wallet.requestExecute({
+<<<<<<< HEAD
+  calldata,
+  l2gasLimit,
+=======
+>>>>>>> main
   contractAddress: "0x19a5bfcbe15f98aa073b9f81b58466521479df8d",
   calldata,
   l2Value: 1,
