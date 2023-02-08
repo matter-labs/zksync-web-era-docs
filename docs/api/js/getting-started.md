@@ -5,7 +5,7 @@
 
 ::: warning
 
-Please note, that in the new 0.13.0 SDK version, the API/Node layer operates with gas. The ergs concept is used by VM only.
+Please note that in the new `0.13.0` SDK the API layer operates with gas. The ergs concept is used by VM only.
 
 :::
 
