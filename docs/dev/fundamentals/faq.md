@@ -181,7 +181,7 @@ So the hack like we saw with Wintermute on Optimism is not possible
 
 ## What is the storage limit for smart contract on zkSync 2.0?
 
-The current limit is 3600000000 ergs.
+The current limit is 3600000000 gas.
 
 ## What is Block Gas Limit on zkSync 2.0?
 

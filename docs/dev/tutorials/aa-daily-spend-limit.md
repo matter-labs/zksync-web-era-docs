@@ -5,6 +5,14 @@ In this tutorial, we'll create smart contract account with a daily spend limit t
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
+::: warning
+
+Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM. 
+
+This tutorial will be updated shortly to reflect those changes.
+
+:::
+
 ## Prerequisite
 
 It is highly encouraged that you read [the basics of Account Abstraction on zkSync](https://v2-docs.zksync.io/dev/developer-guides/aa.html) and complete the [multisig account tutorial](https://v2-docs.zksync.io/dev/tutorials/custom-aa-tutorial.html) first.
@@ -21,8 +29,14 @@ First, let’s install all the dependencies that we'll need:
 mkdir custom-spendlimit-tutorial
 cd custom-spendlimit-tutorial
 yarn init -y
-yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.0 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+
+::: tip
+
+The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
+
+:::
 
 Additionally, please install a few packages that allow us to utilize the [zkSync smart contracts](https://v2-docs.zksync.io/dev/developer-guides/contracts/system-contracts.html).
 
@@ -675,13 +689,13 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     nonce: await provider.getTransactionCount(ACCOUNT_ADDRESS),
     type: 113,
     customData: {
-      ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+      gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
     } as types.Eip712Meta,
     value: ethers.BigNumber.from(0),
   };
 
   setLimitTx.gasPrice = await provider.getGasPrice();
-  setLimitTx.gasLimit = await provider.estimateGas(setLimitTx);
+  setLimitTx.l2gasLimit = await provider.estimateGas(setLimitTx);
 
   const signedTxHash = EIP712Signer.getSignedDigest(setLimitTx);
   const signature = ethers.utils.arrayify(ethers.utils.joinSignature(owner._signingKey().signDigest(signedTxHash)));
@@ -735,11 +749,11 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     nonce: await provider.getTransactionCount(ACCOUNT_ADDRESS),
     type: 113,
     customData: {
-      ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+      gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
     } as types.Eip712Meta,
     value: ethers.utils.parseEther("0.0051"), // 0.0051 fails but 0.0049 succeeds
     gasPrice: await provider.getGasPrice(),
-    gasLimit: ethers.BigNumber.from(20000000), // constant 20M since estimateGas() causes an error, and this tx consumes more than 15M at most
+    l2gasLimit: ethers.BigNumber.from(20000000), // constant 20M since estimateGas() causes an error, and this tx consumes more than 15M at most
     data: "0x",
   };
   const signedTxHash = EIP712Signer.getSignedDigest(ethTransferTx);

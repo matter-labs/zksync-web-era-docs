@@ -16,16 +16,16 @@ However, zkSync has its specifics, which this section describes.
 To specify additional fields, like the custom signature for custom accounts or to choose the paymaster, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but they also have fields that contain additional L2-specific data (`paymaster`, etc).
 
 ```json
-"ergsPerPubdata": "1212",
+"gasPerPubdata": "1212",
 "customSignature": "0x...",
 "paymasterParams": {
   "paymaster": "0x...",
   "paymasterInput": "0x..."
 },
-"factory_deps": ["0x..."]
+"factoryDeps": ["0x..."]
 ```
 
-- `ergsPerPubdata`: is a field that describes the maximal amount of ergs the user is willing to pay for a single byte of pubdata.
+- `gasPerPubdata`: is a field that describes the maximal amount of gas the user is willing to pay for a single byte of pubdata.
 - `customSignature` is a field with a custom signature, in case the signer's account is not EOA.
 - `paymasterParams` is a field with parameters for configuring the custom paymaster for the transaction. The address of the paymaster and the encoded input to call it are in the paymaster parameters.
 - `factory_deps` is a field that should be a non-empty array of `bytes`. For deployment transactions it should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
@@ -39,10 +39,10 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 | txType                  | `uint256`   |
 | from                    | `uint256`   |
 | to                      | `uint256`   |
-| ergsLimit               | `uint256`   |
-| ergsPerPubdataByteLimit | `uint256`   |
-| maxFeePerErg            | `uint256 `  |
-| maxPriorityFeePerErg    | `uint256`   |
+| gasLimit              | `uint256`   |
+| gasPerPubdataByteLimit   | `uint256`   |
+| maxFeePerGas            | `uint256 `  |
+| maxPriorityFeePerGas    | `uint256`   |
 | paymaster               | `uint256`   |
 | nonce                   | `uint256`   |
 | value                   | `uint256`   |
@@ -76,11 +76,10 @@ Returns the fee for the transaction. The token in which the fee is calculated is
 
 ```json
 {
-  "ergs_limit": 100000000,
-  "ergs_price_limit": 10000,
-  "fee_token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-  "ergs_per_storage_limit": 100,
-  "ergs_per_pubdata_limit": 10
+  "gas_limit": 100000000,
+  "max_fee_per_gas": 10000,
+  "max_priority_fee_per_gas": 100,
+  "gas_per_pubdata_limit": 10
 }
 ``` -->
 
