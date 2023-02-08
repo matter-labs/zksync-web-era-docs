@@ -29,7 +29,7 @@ This plugin is configured in the `hardhat.config.ts` file of your project. Here 
 
 ```typescript
 zksolc: {
-  version: "1.2.1",
+  version: "1.3.1",
   compilerSource: "binary",  // binary or docker
   settings: {
     compilerPath: "zksolc",  // ignored for compilerSource: "docker"

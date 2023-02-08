@@ -88,14 +88,14 @@ const paymasterParams = utils.getPaymasterParams(testnetPaymaster, {
   innerInput: new Uint8Array(),
 });
 const sentTx = await sender.sendTransaction({
-  ...tx,
-  maxFeePerGas: gasPrice,
-  maxPriorityFeePerGas: BigNumber.from(0),
-  gasLimit,
-  customData: {
-    gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
-    paymasterParams,
-  },
+    ...tx,
+    maxFeePerGas: gasPrice,
+    maxPriorityFeePerGas: BigNumber.from(0),
+    gasLimit,
+    customData: {
+        gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+        paymasterParams
+    }
 });
 ```
 

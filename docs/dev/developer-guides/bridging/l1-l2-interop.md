@@ -40,6 +40,7 @@ Firstly, all transactions need to be supported by the priority queue. Users may 
 Secondly, the priority queue needs to stay censorship-resistant. But imagine what will happen if users start sending a lot of transactions that take the entirety of the block gas limit? There needs to be a way to prevent spam attacks on the system.
 That's why submitting transactions to the priority queue is no longer free.
 Users need to pay a certain fee to the operator for processing their transactions. It is really hard to calculate the accurate fee in a permissionless way.
+
 Thus, the fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the users' transaction, while `txBaseCost` is the base cost for the transaction, which depends on its parameters (e.g. `gas_limit` for `Execute` transaction).
 
 Thirdly, the operator can not commit to processing every transaction within `X` days. Again, this is needed to prevent spam attacks on the priority queue. We changed this rule to the following one:

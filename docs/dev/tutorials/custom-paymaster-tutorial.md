@@ -11,7 +11,9 @@ Let's see how we can use the paymaster feature to build a custom paymaster that 
 
 ::: warning
 
-Please note that in the new `0.13.0-beta.2` SDK the API layer operates with gas. The ergs concept is used by VM only.
+Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM. 
+
+This tutorial will be updated shortly to reflect those changes.
 
 :::
 
@@ -29,8 +31,14 @@ We will use the zkSync hardhat plugin for developing this contract. Firstly, we 
 mkdir custom-paymaster-tutorial
 cd custom-paymaster-tutorial
 yarn init -y
-yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.0 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+
+::: tip
+
+The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
+
+:::
 
 Since we are working with zkSync contracts, we also need to install the package with the contracts and its peer dependencies:
 

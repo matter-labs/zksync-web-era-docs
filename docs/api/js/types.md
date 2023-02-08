@@ -32,10 +32,10 @@ export type PaymasterParams = {
 };
 
 export type Eip712Meta = {
-  gasPerPubdata?: BigNumberish;
-  factoryDeps?: BytesLike[];
-  customSignature?: BytesLike;
-  paymasterParams?: PaymasterParams;
+    gasPerPubdata?: BigNumberish;
+    factoryDeps?: BytesLike[];
+    customSignature?: BytesLike;
+    paymasterParams?: PaymasterParams;
 };
 
 // prettier-ignore

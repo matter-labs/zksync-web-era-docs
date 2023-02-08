@@ -2,13 +2,13 @@
 
 ::: warning
 
-This section of the documentation is no longer current and needs to be updated. We apologize for any inconvenience and assure you that a revised version will be available shortly.
+⚠️ The information in this section of the documentation is outdated and requires updating. We apologize for any inconvenience caused and assure you that a revised version will be made available soon.
 
 :::
 
 At zkSync, we aim to be compatible with Ethereum, meaning we aim to share similarities while minimizing huge differences, one such similarity is the gas fee model of zkSync.
 
-zkSync's version of `gas` is called `gas` just like Ethereum and represents not only the costs of computations but also the cost of publishing data on-chain and affecting storage.
+zkSync's version of `gas` is called `gas` just like Ethereum and represents not only the costs of computations but also the cost of publishing data on-chain and affecting storage. 
 
 Since the costs for publishing the calldata on L1 are very volatile, the number of `gas` needed for changing a storage slot is not constant. For each block, the operator defines the following dynamic parameters:
 
@@ -22,8 +22,8 @@ Since the costs for publishing the calldata on L1 are very volatile, the number 
 
 ## Fee model: zkSync vs Ethereum
 
-We want to show the clear distinction between our fee model and the Ethereum one.
-Also, unlike Ethereum, where most of the opcodes have very distinct gas prices, in zkSync the cost of the opcodes is different, hence zkEVM opcodes will likely have similar `gas` prices.
+We want to show the clear distinction between our fee model and the Ethereum one. 
+Also, unlike Ethereum, where most of the opcodes have very distinct gas prices, in zkSync the cost of the opcodes is different, hence zkEVM opcodes will likely have similar `gas` prices. 
 Generally, the execution itself (arithmetic operations, which do not involve storage updates) is very cheap. As in Ethereum, most of the cost is incurred for storage updates.
 
 ## What does this mean to me?
@@ -38,3 +38,6 @@ So the tips to make the most out of the zkSync fee system are the following:
 - **Reuse as many storage slots as possible.** Only the state diff is published on Ethereum.
 - **Users should share as many storage slots as possible.** If 100 users update a storage slot of your contract in a single block, the diff will be published only once. In the future, we will introduce reimbursement for the users, so that the costs for updating shared storage slots are split between the users.
 - **Reuse the contract code if possible.** On Ethereum, avoiding constructor parameters and putting them into constants reduces some of the gas costs upon contract deployment. On zkSync the opposite is true: deploying the same bytecode for contracts, while changing only constructor parameters can lead to substantial fee savings.
+
+
+
