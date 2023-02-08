@@ -6,7 +6,6 @@ In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
-
 ::: warning
 
 Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM. 

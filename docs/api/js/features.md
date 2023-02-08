@@ -82,10 +82,10 @@ const gasLimit = await greeter.estimateGas.setGreeting(greeting);
 const fee = gasPrice.mul(gasLimit);
 
 const paymasterParams = utils.getPaymasterParams(testnetPaymaster, {
-    type: 'ApprovalBased',
-    token,
-    minimalAllowance: fee,
-    innerInput: new Uint8Array()
+  type: "ApprovalBased",
+  token,
+  minimalAllowance: fee,
+  innerInput: new Uint8Array(),
 });
 const sentTx = await sender.sendTransaction({
     ...tx,

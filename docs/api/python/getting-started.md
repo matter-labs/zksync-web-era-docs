@@ -8,6 +8,7 @@
 ⚠️ The information in this section of the documentation is outdated and requires updating. We apologize for any inconvenience caused and assure you that a revised version will be made available soon.
 
 :::
+
 ## Adding dependencies
 
 To install zksync 2.0, run the command below in your terminal.
@@ -30,10 +31,10 @@ The SDK supports the mainnet, and goerli networks.
 
 ## Examples
 
-Once you instantiate the SDK, you can use it to access your zkSync contracts. You can use the SDK's contract getter functions like; 
-
+Once you instantiate the SDK, you can use it to access your zkSync contracts. You can use the SDK's contract getter functions like;
 
 ### Deposit funds
+
 This is an example of how to deposit assets from Ethereum account to zkSync account:
 
 ```python
@@ -70,7 +71,6 @@ if __name__ == "__main__":
     deposit()
 
 ```
-
 
 ### Check balance
 
@@ -201,6 +201,7 @@ if __name__ == "__main__":
 ```
 
 ### Withdraw funds (Native coins)
+
 This example show how to withdraw funds from zkSync.
 
 ```python
@@ -259,11 +260,13 @@ if __name__ == "__main__":
 ```
 
 ### Deploy a smart contract
+
 With zkSync, you can deploy a contract using the create method, by simply building the contract into a binary format and deploying it to the zkSync network.
 
 In the next steps, we will guide you through how it works.
 
 #### Step1: Create a contract
+
 Here is a simple contract:
 
 ```solidity
@@ -292,6 +295,7 @@ After compilation there must be 2 files with:
 - contract abi in json format
 
 #### Step 2: Deploy the contract
+
 To deploy the contract, contract ABI is needed for calling its methods in the standard web3 way.
 
 In some cases, you would need to get the contract address before deploying it.
@@ -409,8 +413,8 @@ if __name__ == "__main__":
 ```
 
 #### Deploy contract with method create2
-This example show how you can deploy contract using the create2 method.
 
+This example show how you can deploy contract using the create2 method.
 
 ```python
 import os
