@@ -199,7 +199,7 @@ async requestExecute(transaction: {
 | transaction.l2GasLimit             | The `l2GasLimit` for the call.  
                                      |      
 
-| transaction.l2Value (optional)     | The `l2Value` for the call.                                                                                                                                                                                                           |
+| transaction.l2Value (optional)     | The `msg.value` of the call.                                                                                                                                                                                                           |
 | transaction.factoryDeps (optional) | Array of bytecodes of factory dependencies - only used for transactions that deploy contracts.                                                                                                                       
 | transaction.operatorTip (optional) | If the ETH `value` passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction. This value has no meaning for the `Deque` type of queue, but it will be used to prioritize the transactions that get into the `Heap` or `HeapBuffer` queues. 
                                                                                                         |
