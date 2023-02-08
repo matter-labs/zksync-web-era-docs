@@ -7,7 +7,7 @@ zkSync fully supports Ethereum Web3 API, so you can use the provider objects fro
 - Easily track L1<->L2 transactions.
 - Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use cases may require tracking "finalized" transactions only.
 
-\***\*init\*\***
+**__init__**
 
 Initialize the zkSync SDK.
 
@@ -24,20 +24,19 @@ def __init__(self,
 
 **Arguements**
 
-| Name              | Description                                             |
-| ----------------- | ------------------------------------------------------- |
-| web3              | The provider instance to use for getting on-chain data. |
-| erc20_bridge      | The erc20 token address you want to bridge.             |
-| eth_bridge        | The eth token address you want to bridge                |
-| account           | Your wallet address used for transactions.              |
-| zksync (optional) | zkSync contract address                                 |
-| returns           | `Provider` object.                                      |
+| Name               | Description                                             |
+| ------------------ | ------------------------------------------------------- |
+| web3               | The provider instance to use for getting on-chain data. |
+| erc20_bridge       | The erc20 token address you want to bridge.                    |
+| eth_bridge         | The eth token address you want to bridge                        |
+| account            | Your wallet address used for transactions.              |
+| zksync (optional)  | zkSync contract address                                 |
+| returns            | `Provider` object.                                      |
 
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
 ## `approve_deposits`
-
 Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync Ethereum smart contract, it returns the bridged erc20 token address.
 
 ```py
@@ -45,16 +44,15 @@ Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync 
 def approve_deposits(self, token: Token, limit: Optional[int]) -> txn_receipt
 
 ```
-
 **Arguements**
 
-| Name            | Description                                       |
-| --------------- | ------------------------------------------------- |
-| token           | The Ethereum address of the token.                |
-| limit(optional) | The number of tokens to be returned from the API. |
+| Name               | Description                                                      |
+| ------------------ | -----------------------------------------------------------------|
+| token              | The Ethereum address of the token.                               |
+| limit(optional)    | The number of tokens to be returned from the API.                |
+
 
 ## `transfer`
-
 The transfer method, can transfer ETH or any ERC20 token within the same interface, and it returns the transaction receipt of the transfer.
 
 ```py
@@ -64,15 +62,15 @@ def transfer(self, token: Token, amount: Decimal, to: HexStr) -> txn_receipt
 
 **Arguements**
 
-| Name   | Description                                  |
-| ------ | -------------------------------------------- |
-| token  | The address of the token. ETH by default.    |
-| to     | The wallet address to transfer the tokens to |
-| amount | The amount of tokens to transfer             |
+| Name               | Description                                                      |
+| ------------------ | -----------------------------------------------------------------|
+| token              | The address of the token. ETH by default.                        |
+| to                 | The wallet address to transfer the tokens to                     |
+| amount             | The amount of tokens to transfer                                 |
 
 Transfer a specified amount of tokens from the connected wallet to a specified address.
 
-> Example
+> Example 
 
 ```py
 
@@ -110,9 +108,9 @@ def get_deposit_base_cost(self, gas_price: int = None) -> base_cost
 
 **Arguements**
 
-| Name      | Description                                                                         |
-| --------- | ----------------------------------------------------------------------------------- |
-| gas price | The gas price of the L1 transaction that will send the request for an execute call. |
+| Name               | Description                                                                         |
+| ------------------ | ------------------------------------------------------------------------------------|
+| gas price          | The gas price of the L1 transaction that will send the request for an execute call. |
 
 ## `deposit`
 
@@ -126,14 +124,14 @@ def deposit(self, token: Token, amount: int, user_address: HexStr) -> txn_receip
 
 **Arguements**
 
-| Name         | Description                                               |
-| ------------ | --------------------------------------------------------- |
-| token        | The address of the token to deposit.                      |
-| amount       | The amount of the token to be deposited.                  |
-| user_address | The address that will receive the deposited tokens on L2. |
+| Name               | Description                                                      |
+| ------------------ | -----------------------------------------------------------------|
+| token              | The address of the token to deposit.                             |
+| amount             | The amount of the token to be deposited.                         |
+| user_address       | The address that will receive the deposited tokens on L2.        |
+
 
 ## `is_deposit_approved`
-
 Returns the transaction receipt of the allowance set.
 
 ```py
@@ -144,8 +142,8 @@ def is_deposit_approved(self, token: Token, to: HexStr, threshold: int = DEFAULT
 
 **Arguements**
 
-| Name      | Description                                                             |
-| --------- | ----------------------------------------------------------------------- |
-| token     | The address of the token to deposit.                                    |
-| to        | The amount of the token to be deposited.                                |
-| threshold | The daily automatic payout of all balances above your configured payout |
+| Name               | Description                                                            |
+| ------------------ | -----------------------------------------------------------------------|
+| token              | The address of the token to deposit.                                   |
+| to                 | The amount of the token to be deposited.                               |
+| threshold          | The daily automatic payout of all balances above your configured payout|

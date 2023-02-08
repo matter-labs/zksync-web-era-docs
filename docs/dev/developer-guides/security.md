@@ -8,7 +8,7 @@ zkSync smart contract codebase is currently being audited, but audits are not a 
 
 ## Bug Bounty Program
 
-zkSync takes security seriously and as such, we have a massive [bug bounty program](https://immunefi.com/bounty/zksync/).
+zkSync takes security seriously and as such, we have a massive [bug bounty program](https://immunefi.com/bounty/zksync/). 
 
 ## Scope
 

@@ -579,6 +579,21 @@ async getOverrides() {
 
     const gasPrice = await this.provider.getGasPrice();
     // estimate gasLimit via paymaster
+<<<<<<< HEAD
+    const gasLimit = await this.contract.estimateGas.setGreeting(
+      this.newGreeting,
+      {
+        customData: {
+          gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+          paymasterParams: {
+            paymaster: testnetPaymaster,
+            // empty input as our paymaster doesn't require additional data
+            paymasterInput: "0x",
+          },
+        },
+      }
+    );
+=======
     const paramsForFeeEstimation = utils.getPaymasterParams(
           testnetPaymaster,
           {
@@ -599,6 +614,7 @@ async getOverrides() {
             },
           }
         );
+>>>>>>> main
     const fee = gasPrice.mul(gasLimit);
 
     // ..
@@ -635,7 +651,15 @@ async getOverrides() {
       {
         customData: {
           gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+<<<<<<< HEAD
+          paymasterParams: {
+            paymaster: testnetPaymaster,
+            // empty input as our paymaster doesn't require additional data
+            paymasterInput: "0x",
+          },
+=======
           paymasterParams: paramsForFeeEstimation,
+>>>>>>> main
         },
       }
     );
