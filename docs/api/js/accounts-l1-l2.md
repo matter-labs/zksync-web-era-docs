@@ -238,17 +238,30 @@ const abi = [
 ];
 const contractInterface = new ethers.utils.Interface(abi);
 const calldata = contractInterface.encodeFunctionData("increment", []);
+<<<<<<< HEAD
+const l2gasLimit = BigNumber.from(1000);
+=======
 const l2GasLimit = BigNumber.from(1000);
+>>>>>>> main
 
 const txCostPrice = await wallet.getBaseCost({
   gasPrice,
   calldataLength: ethers.utils.arrayify(calldata).length,
+<<<<<<< HEAD
+  l2gasLimit,
+=======
   l2GasLimit,
+>>>>>>> main
 });
 
 console.log(`Executing the transaction will cost ${ethers.utils.formatEther(txCostPrice)} ETH`);
 
 const executeTx = await wallet.requestExecute({
+<<<<<<< HEAD
+  calldata,
+  l2gasLimit,
+=======
+>>>>>>> main
   contractAddress: "0x19a5bfcbe15f98aa073b9f81b58466521479df8d",
   calldata,
   l2Value: 1,

@@ -357,6 +357,7 @@ Don't want to document (at least for now):
 
 ## PubSub API
 
+
 zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/rpc/pubsub), except for the `syncing` subscription. This is because nodes on the zkSync network are technically always synchronized.
 
 The WebSocket URL is `wss://zksync2-testnet.zksync.dev/ws`.

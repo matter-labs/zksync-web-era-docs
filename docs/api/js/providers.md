@@ -2,7 +2,7 @@
 
 Providers are objects that wrap interactions with the zkSync node. If you are new to the concept of providers in `ethers`, you should check out their docs [here](https://docs.ethers.io/v5/api/providers).
 
-zkSync fully supports Ethereum Web3 API, so you can use the provider objects from `ethers.js`. However, zkSync API provides some additional JSON-RPC methods, which allow:
+zkSync fully supports Ethereum Web3 API, so you can use the provider objects from ethers.js. However, zkSync API provides some additional JSON-RPC methods, which allow:
 
 - Easily track L1<->L2 transactions.
 - Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use-cases may require tracking "finalized" transactions only.
@@ -12,7 +12,7 @@ And much more! Generally, you can use providers from `ethers` for a quick start,
 The `zksync-web3` library exports two types of providers:
 
 - `Provider` which inherits from `ethers`'s `JsonRpcProvider` and provides access to all of the zkSync JSON-RPC endpoints.
-- `Web3Provider` which extends the `Provider` class by making it more compatible with Web3 wallets. *This is the type of wallet that should be used for browser integrations.*
+- `Web3Provider` which extends the `Provider` class by making it more compatible with Web3 wallets. This is the type of wallet that should be used for browser integrations.
 
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
@@ -23,7 +23,7 @@ This is the most commonly used type of provider. It provides the same functional
 
 ### Creating provider
 
-The constructor accepts the `url` to the operator node and the `network` name?.
+The constructor accepts the `url` to the operator node and the `network` name (optional).
 
 ```typescript
 constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish)
@@ -33,8 +33,8 @@ constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish
 
 | Name               | Description                      |
 | ------------------ | -------------------------------- |
-| url?     | URL of the zkSync operator node. |
-| network? | The description of the network.  |
+| url (optional)     | URL of the zkSync operator node. |
+| network (optional) | The description of the network.  |
 | returns            | `Provider` object.               |
 
 > Example
@@ -61,8 +61,8 @@ async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address):
 | Name                    | Description                                                                                                   |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------- |
 | address                 | The address of the user to check the balance.                                                                 |
-| blockTag?     | The block the balance should be checked on. *by default* the latest processed(`committed`) block is used.|
-| tokenAddress? | The address of the token. *by default* ETH is used. |
+| blockTag (optional)     | The block the balance should be checked on. `committed`, i.e. the latest processed one is the default option. |
+| tokenAddress (optional) | The address of the token. ETH by default.                                                                     |  |
 | returns                 | `BigNumber` object.                                                                                           |
 
 > Example
@@ -111,8 +111,8 @@ async getTestnetPaymasterAddress(): Promise<string|null>
 
 #### Inputs and outputs
 
-| Name    | Description                                                        |
-| ------- | ------------------------------------------------------------------ |
+| Name    | Description                               |
+| ------- | ----------------------------------------- |
 | returns | The address of the testnet paymaster or `null` if there isn't any. |
 
 > Example
@@ -129,8 +129,10 @@ console.log(await provider.getTestnetPaymasterAddress());
 
 ```typescript
 async getDefaultBridgeAddresses(): Promise<{
-    erc20L1: string;
-    erc20L2: string;
+    ethL1?: Address;
+    ethL2?: Address;
+    erc20L1?: Address;
+    erc20L2?: Address;
 }>
 ```
 
@@ -152,11 +154,11 @@ async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[
 
 #### Inputs and outputs
 
-| Name    | Description                                                                                     |
-| ------- | ------------------------------------------------------------------------------------------------|
-| start   | The token id from which to start returning the information about the tokens. Zero *by default*. |
-| limit   | The number of tokens to be returned from the API. 255 *by default*.                             |
-| returns | The array of `Token` objects sorted by their symbol.                                            |
+| Name    | Description                                                                                   |
+| ------- | --------------------------------------------------------------------------------------------- |
+| start   | The token id from which to start returning the information about the tokens. Zero by default. |
+| limit   | The number of tokens to be returned from the API. 255 by default.                             |
+| returns | The array of `Token` objects sorted by their symbol.                                          |
 
 > Example
 
@@ -204,14 +206,14 @@ Provided methods work only for tokens bridged using default zkSync bridges.
 
 ```typescript
 // takes L1 address, returns L2 address
-async l2TokenAddress(l1Token: Address): Promise<string>
+async l2TokenAddress(l1Token: Address): Promise<Address>
 // takes L2 address, returns L1 address
-async l1TokenAddress(l2Token: Address): Promise<string>
+async l1TokenAddress(l2Token: Address): Promise<Address>
 ```
 
 | Name    | Description                                      |
 | ------- | ------------------------------------------------ |
-| token   | The address of the token on the one layer.       |
+| token   | The address of the token.                        |
 | returns | The address of that token on the opposite layer. |
 
 ### `getTransactionStatus`
@@ -224,7 +226,7 @@ async getTransactionStatus(txHash: string): Promise<TransactionStatus>
 
 | Name    | Description                                                                                                                |
 | ------- | -------------------------------------------------------------------------------------------------------------------------- |
-| txHash   | zkSync transaction hash.                                                                                                  |
+| token   | The address of the token.                                                                                                  |
 | returns | The status of the transaction. You can find the description for `TransactionStatus` enum variants in the [types](./types). |
 
 > Example
@@ -247,7 +249,7 @@ async getTransaction(hash: string | Promise<string>): Promise<TransactionRespons
 
 | Name    | Description                                                                                |
 | ------- | ------------------------------------------------------------------------------------------ |
-| hash   |  zkSync transaction hash.                                                                  |
+| token   | The address of the token.                                                                  |
 | returns | `TransactionResponse` object, which allows for easy tracking the state of the transaction. |
 
 > Example
@@ -282,7 +284,7 @@ constructor(provider: ExternalProvider, network?: ethers.providers.Networkish)
 | Name               | Description                                                                                                            |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------- |
 | provider           | The `ethers.providers.ExternalProvider` class instance. For instance, in the case of Metamask it is `window.ethereum`. |
-| network? | The description of the network.                                                                                        |
+| network (optional) | The description of the network.                                                                                        |
 | returns            | `Provider` object.                                                                                                     |
 
 > Example

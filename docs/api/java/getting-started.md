@@ -18,11 +18,9 @@ In this guide we will demonstrate how to:
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
 ## Prerequisite
-
 This guide assumes that you are familiar with the basics of [Java](https://docs.oracle.com/en/java/) programming language.
 
-## Installation
-
+##  Installation
 To install the zkSync Java SDK, just add the following dependency:
 
 Maven `pom.xml`
@@ -50,7 +48,6 @@ dependencies {
 ```
 
 ## Instantiating the SDK
-
 To start using this SDK, you just need to pass in a provider configuration.
 
 ```java
@@ -95,7 +92,6 @@ public class Main {
 ```
 
 ## Creating a wallet
-
 To control your account in zksync, use the `zksync.crypto.signer.EthSigner`. It can sign transactions with keys and send transactions to the zksync network.
 
 ```java
@@ -117,6 +113,7 @@ public class Main {
 ## Transactions
 
 zksync2 supports Ethereum's `Legacy` and `EIP-1155` transactions except for deploying contracts.
+
 
 ```java
 
@@ -186,7 +183,7 @@ public class Main {
 
         String sentTransactionHash = zksync.ethSendRawTransaction(Numeric.toHexString(message)).send().getTransactionHash();
 
-        // You can check the transaction status
+        // You can check the transaction status 
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
@@ -364,7 +361,7 @@ public class Main {
 
 ### Interacting with smart contracts via ZkSyncWallet
 
-```java
+```java 
 
 import org.web3j.abi.datatypes.Function;
 import org.web3j.abi.datatypes.generated.Uint256;
@@ -672,7 +669,7 @@ public class Main {
 
         String sentTransactionHash = zksync.ethSendRawTransaction(Numeric.toHexString(message)).send().getTransactionHash();
 
-        // You can check the transaction status
+        // You can check the transaction status 
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
@@ -788,7 +785,6 @@ public class Main {
 ```
 
 ## Wallet
-
 Get the price of the execution of the transaction
 
 ```java
@@ -837,4 +833,5 @@ public class Main {
         Fee fee = feeProvider.getFee(forEstimate);
     }
 }
+
 ```

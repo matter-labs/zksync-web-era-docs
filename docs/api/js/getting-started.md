@@ -37,7 +37,7 @@ To interact with the zkSync network users need to know the endpoint of the opera
 
 ```typescript
 // Currently, only one environment is supported.
-const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
+const syncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
 ```
 
 **Note:** Currently, only `goerli` network is supported.
@@ -58,7 +58,7 @@ To control your account in zkSync, use the `zksync.Wallet` object. It can sign t
 // Derive zksync.Wallet from ethereum private key.
 // zkSync's wallets support all of the methods of ethers' wallets.
 // Also, both providers are optional and can be connected to later via `connect` and `connectToL1`.
-const zkSyncWallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethProvider);
+const syncWallet = new zksync.Wallet(PRIVATE_KEY, syncProvider, ethProvider);
 ```
 
 ## Depositing funds
@@ -66,13 +66,13 @@ const zkSyncWallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethProvider)
 Let's deposit `1.0 ETH` to our zkSync account.
 
 ```typescript
-const deposit = await zkSyncWallet.deposit({
+const deposit = await syncWallet.deposit({
   token: zksync.utils.ETH_ADDRESS,
   amount: ethers.utils.parseEther("1.0"),
 });
 ```
 
-**NOTE:** Each token inside zkSync has an address. If `ERC-20`      tokens are being bridged, you should supply the token's L1 address in the `deposit` function, or zero address (`0x0000000000000000000000000000000000000000`) if you want to deposit ETH. Note, that for the `ERC-20`      tokens the address of their corresponding L2 token will be different from the one on Ethereum.
+**NOTE:** Each token inside zkSync has an address. If ERC-20 tokens are being bridged, you should supply the token's L1 address in the `deposit` function, or zero address (`0x0000000000000000000000000000000000000000`) if you want to deposit ETH. Note, that for the ERC-20 tokens the address of their corresponding L2 token will be different from the one on Ethereum.
 
 After the transaction is submitted to the Ethereum node, its status can be tracked using the transaction handle:
 
@@ -87,13 +87,12 @@ const depositReceipt = await deposit.wait();
 ## Checking zkSync account balance
 
 ```typescript
-// Retreiving the current (committed) zkSync ETH balance of an account
-const committedEthBalance = await zkSyncWallet.getBalance(zksync.utils.ETH_ADDRESS);
+// Retreiving the current (committed) balance of an account
+const committedEthBalance = await syncWallet.getBalance(zksync.utils.ETH_ADDRESS);
 
-// Retrieving the ETH balance of an account in the last finalized zkSync block.
-const finalizedEthBalance = await zkSyncWallet.getBalance(zksync.utils.ETH_ADDRESS, "finalized");
+// Retrieving the balance of an account in the last finalized block zkSync.md#confirmations-and-finality
+const finalizedEthBalance = await syncWallet.getBalance(zksync.utils.ETH_ADDRESS, "finalized");
 ```
-
 You can read more about what committed and finalized blocks are [here](../../dev/fundamentals/zkSync.md#confirmations-and-finality).
 
 ## Performing a transfer
@@ -102,18 +101,18 @@ Now, let's create a second wallet and transfer some funds into it. Note that it 
 account, without preliminary registration!
 
 ```typescript
-const zkSyncWallet2 = new zksync.Wallet(PRIVATE_KEY2, zkSyncProvider, ethProvider);
+const syncWallet2 = new zksync.Wallet(PRIVATE_KEY2, syncProvider, ethProvider);
 ```
 
 Let's transfer `1 ETH` to another account:
 
-The `transfer` method is a helper method that enables transferring `ETH` or any `ERC-20` token within a single interface.
+The `transfer` method is a helper method that enables transferring `ETH` or any ERC20 token within a single interface.
 
 ```typescript
 const amount = ethers.utils.parseEther("1.0");
 
-const transfer = await zkSyncWallet.transfer({
-  to: zkSyncWallet2.address,
+const transfer = await syncWallet.transfer({
+  to: syncWallet2.address,
   token: zksync.utils.ETH_ADDRESS,
   amount,
 });
@@ -123,10 +122,10 @@ To track the status of this transaction:
 
 ```typescript
 // Await commitment
-const committedTxReceipt = await transfer.wait();
+const transferReceipt = await transfer.wait();
 
 // Await finalization on L1
-const finalizedTxReceipt = await transfer.waitFinalize();
+const transferReceipt = await transfer.waitFinalize();
 ```
 
 ## Withdrawing funds
@@ -137,13 +136,14 @@ the transaction, otherwise `PriorityMode` will be turned on. This ensures that t
 transaction. But in most cases, a call via L2 is sufficient.
 
 ```typescript
-const withdrawL2 = await zkSyncWallet.withdraw({
+const withdrawL2 = await syncWallet.withdraw({
   token: zksync.utils.ETH_ADDRESS,
   amount: ethers.utils.parseEther("0.5"),
 });
 ```
 
-Assets will be withdrawn to the target wallet(if  do not define  the `to` address in the `withdraw` method's argument - the sender address will be chosen as a destination) after the validity proof of the zkSync block with this transaction is enerated and verified by the mainnet contract.
+Assets will be withdrawn to the target wallet after the validity proof of the zkSync block with this transaction is
+generated and verified by the mainnet contract.
 
 It is possible to wait until the validity proof verification is complete:
 
