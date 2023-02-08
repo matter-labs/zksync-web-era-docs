@@ -5,10 +5,10 @@
 The recent update made several modifications to the system in preparation for the "Fair Onboarding Alpha" milestone. The modifications include:
 
 - a fee mechanism revamp that replaces `ergs` with `gas` to make it easier to understand (after all, we’re all part of the Ethereum ecosystem).
-- updates in the Account Abstraction support
-- changes in L1 and L2 system contract interfaces
-- breaking changes in our SDKs where methods and properties that contained `ergs` are renamed `gas`
-- and some API error messages now follow the Geth format (more updates coming soon).
+- updates in the Account Abstraction support;
+- changes in L1 and L2 system contract interfaces.
+- breaking changes in our SDKs where methods and properties that contained `ergs` are renamed `gas`.
+- API error messages now follow the Geth format (more updates coming soon).
 
 **These updates were followed by a system regenesis.**
 
