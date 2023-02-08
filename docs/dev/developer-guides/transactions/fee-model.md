@@ -2,7 +2,7 @@
 
 ::: warning
 
-⚠️ The information in this section of the documentation is outdated and requires updating. We apologize for any inconvenience caused and assure you that a revised version will be made available soon.
+This section of the documentation is no longer current and needs to be updated. We apologize for any inconvenience and assure you that a revised version will be available shortly.
 
 :::
 
