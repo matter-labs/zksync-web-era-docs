@@ -31,10 +31,16 @@ For this tutorial, the following programs must be installed:
 mkdir greeter-example
 cd greeter-example
 yarn init -y
-yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node @types/node ethers@^5.7.2 zksync-web3@^0.13.0 @ethersproject/hash @ethersproject/web hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
-The `typescript` and `ts-node` dependencies are optional - plugins will work fine in a vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
+The `typescript`, `ts-node` and `@types/node` dependencies are optional - plugins will work fine in a vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
+
+::: tip
+
+If using Yarn 2 and over, you may need to do some extra steps for `TypeScript` to work as expected in your editor. To learn more, check out [Yarn's official documentation](https://yarnpkg.com/getting-started/editor-sdks)
+
+:::
 
 ## Configuration
 
@@ -46,10 +52,9 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.2.2",
+    version: "1.3.1",
     compilerSource: "binary",
     settings: {},
-    },
   },
   defaultNetwork: "zkTestnet",
   networks: {
@@ -60,7 +65,7 @@ module.exports = {
     },
   },
   solidity: {
-    version: "0.8.16",
+    version: "0.8.17",
   },
 };
 ```
@@ -175,6 +180,12 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 - Retrieve the message from the contract again.
 
 **Congratulations! Your Hardhat project is now running on zkSync 2.0 testnet 🎉**
+
+::: tip Request-Rate Exceeded message
+
+This message is caused by using the default RPC endpoints provided by ethers. To avoid this, use your own Goerli RPC endpoint.You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
+
+:::
 
 ## Learn more
 

@@ -5,35 +5,51 @@ In this quickstart guide, you will learn how to deploy a smart contract to zkSyn
 This is what we're going to build:
 
 - A smart contract that stores a greeting message and is deployed on zkSync.
-- A dApp to retrieve the greeting.
+- A dApp to retrieve and update the greeting message.
 - Users will be able to change the greeting on the smart contract.
-- By default, users will have to pay transaction fees to change the greeting message in ether. However, we will also explain how to [implement the testnet paymaster](#paying-fees-using-testnet-paymaster) to allow users to pay fees with ERC20 tokens.
+- By default, users will pay transaction fees in ETH. However, we will also explain how to [implement the testnet paymaster](#paying-fees-using-testnet-paymaster) to allow users to pay transaction fees with ERC20 tokens.
 
-::: tip
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
 
-The testnet paymaster is just for testing. If you decide to build a project on mainnet, you should read the documentation about [paymasters](./aa.md#paymasters).
+::: warning
+
+Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM.
 
 :::
 
 ## Prerequisites
 
-- `yarn` package manager. [Here is the installation guide](https://yarnpkg.com/getting-started/install)(`npm` examples will be added soon.)
-- A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. ERC20 tokens on zkSync are required if you want to implement the testnet paymaster. We recommend using [the faucet from the zkSync portal](https://portal.zksync.io/faucet).
+- `yarn` or `NPM` package manager. We recommend `yarn` and it's what we used in the front-end project. [Here is the Yarn installation guide](https://yarnpkg.com/getting-started/install) in case you don't have it.
+- A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts.
+- ERC20 tokens on zkSync are required if you want to implement the testnet paymaster. We recommend using [the faucet from the zkSync portal](https://portal.zksync.io/faucet).
 
 ## Initializing the project & deploying a smart contract
 
 1. Initialize the project and install the dependencies. Run the following commands in your terminal:
 
-```
+```sh
 mkdir greeter-example
 cd greeter-example
+
+# For Yarn
 yarn init -y
-yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.0 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+
+# For NPM
+npm init -y
+npm i -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.0 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
 Please note that Typescript is required by zkSync plugins.
 
-2. Create the `hardhat.config.ts` file and paste the following code there:
+::: tip
+
+The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
+
+:::
+
+1. Create the `hardhat.config.ts` file and paste the following code there:
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
@@ -41,7 +57,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.2.2",
+    version: "1.3.1",
     compilerSource: "binary",
     settings: {},
   },
@@ -55,7 +71,7 @@ module.exports = {
     },
   },
   solidity: {
-    version: "0.8.16",
+    version: "0.8.17",
   },
 };
 ```
@@ -93,7 +109,7 @@ contract Greeter {
 
 5. Compile the contract with the following command:
 
-```
+```sh
 yarn hardhat compile
 ```
 
@@ -120,7 +136,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const greeting = "Hi there!";
   const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting]);
 
-  // Deposit funds to L2
+  // OPTIONAL: Deposit funds to L2
+  // Comment this block if you already have funds on zkSync.
   const depositHandle = await deployer.zkWallet.deposit({
     to: deployer.zkWallet.address,
     token: utils.ETH_ADDRESS,
@@ -147,13 +164,21 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 7. Replacing the `WALLET-PRIVATE-KEY` with the private key of the Ethereum wallet you're using for development, and run the script using the following command to run the deployment script:
 
-```
+```sh
 yarn hardhat deploy-zksync
 ```
 
+::: tip Request-Rate Exceeded message
+
+This message is caused by using the default RPC endpoints provided by ethers. To avoid this, use your own Goerli RPC endpoint.You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
+
+:::
+
 In the output, you should see the address to which the contract was deployed.
 
-Congratulations! You have deployed a smart contract to zkSync! Now you can visit the [zkSync block explorer](https://explorer.zksync.io/) and search your contract address to confirm it was successfully deployed.
+**Congratulations! You have deployed a smart contract to zkSync 2.0 testnet** 🎉
+
+Now you can visit the [zkSync block explorer](https://explorer.zksync.io/) and search your contract address to confirm it was successfully deployed.
 
 [This guide](../../api/tools/block-explorer/contract-verification.md) explains how to verify your smart contract using the zkSync block explorer.
 
@@ -161,20 +186,25 @@ Congratulations! You have deployed a smart contract to zkSync! Now you can visit
 
 ### Setting up the project
 
-In this tutorial, `Vue` will be used as the web framework of choice, but the process will be quite similar regardless of the framework used. To focus on the specifics of using the `zksync-web3` SDK, we're providing a template with all the front-end work done. The final step is to interact with zkSync smart contract.
+In this tutorial, `Vue` will be used as the web framework of choice, but the process will be quite similar regardless of the framework used. To focus on the specifics of using the `zksync-web3` SDK, we're providing a template with all the front-end work already done. The final step is to add the code to interact with the smart contract we just deployed.
 
 1. Clone it:
 
-```
+```sh
 git clone https://github.com/matter-labs/greeter-tutorial-starter
 ```
 
 2. Spin up the project:
 
-```
+```sh
 cd greeter-tutorial-starter
+# For Yarn
 yarn
 yarn serve
+
+# For NPM
+npm install
+npm run serve
 ```
 
 By default, the page should be running at `http://localhost:8080`. Open this URL in the browser to see the page.
@@ -184,8 +214,8 @@ By default, the page should be running at `http://localhost:8080`. Open this URL
 In order to interact with dApps built on zkSync, connect the Metamask wallet to the zkSync alpha testnet network and bridge some funds to L2.
 
 - Follow [this guide](../fundamentals/testnet.md#connecting-metamask) to connect Metamask to zkSync.
-
 - Use our [portal](https://portal.zksync.io) to bridge funds to zkSync.
+- Use the [faucet](https://portal.zksync.io/faucet) to get some test ERC20 tokens in your account.
 
 ### Project structure
 
@@ -246,7 +276,7 @@ At the top of the `<script>` tag, you may see the parts that should be filled wi
 // eslint-disable-next-line
 const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract address here
 // eslint-disable-next-line
-const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contract ABI here
+const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
 ```
 
 ### Installing `zksync-web3`
@@ -254,7 +284,11 @@ const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contrac
 Run the following command on the greeter-tutorial-starter root folder to install `zksync-web3` and `ethers`:
 
 ```
-yarn add ethers zksync-web3
+# For Yarn
+yarn add ethers@^5.7.2 zksync-web3@^0.13.0
+
+# For NPM
+npm i ethers@^5.7.2 zksync-web3@^0.13.0
 ```
 
 After that, import both libraries in the `script` part of the `App.vue` file (right before the contract constant). It should look like this:
@@ -266,7 +300,7 @@ import {} from "ethers";
 // eslint-disable-next-line
 const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract address here
 // eslint-disable-next-line
-const GREETER_CONTRACT_ABI = []; // TODO: insert the path to the Greeter contract ABI here
+const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
 ```
 
 ### Getting the ABI and contract address
@@ -320,7 +354,7 @@ To interact with the smart contract we just deployed to zkSync, we also need its
 ]
 ```
 
-Set the `GREETER_CONTRACT_ABI` to require the ABI file.
+Set the `GREETER_CONTRACT_ABI` to require the ABI file and set the Greeter contract address:
 
 ```js
 // eslint-disable-next-line
@@ -421,7 +455,7 @@ async getBalance() {
 
 ```javascript
 async getFee() {
-    // Getting the amount of gas (ergs) needed for one transaction
+    // Getting the amount of gas (gas) needed for one transaction
     const feeInGas = await this.contract.estimateGas.setGreeting(this.newGreeting);
     // Getting the gas price per one erg. For now, it is the same for all tokens.
     const gasPriceInUnits = await this.provider.getGasPrice();
@@ -431,13 +465,6 @@ async getFee() {
     return ethers.utils.formatUnits(feeInGas.mul(gasPriceInUnits), this.selectedToken.decimals);
 },
 ```
-
-::: tip Paying fees in ERC20
-
-zkSync v2 does not natively support paying fees in ERC20 tokens, but the account abstraction feature facilitates that. We will show you how to implement the testnet paymaster below, however, when working on mainnet, you should either provide the paymaster services [yourself](../tutorials/custom-paymaster-tutorial.md) or use a
-3rd party paymaster.
-
-:::
 
 When opening the page and selecting the token to pay the fee, the balance and the expected fee for the transaction will be available.
 
@@ -509,11 +536,13 @@ Read more about **wallet_requestPermissions**, on the [metamask documentation](h
 
 ### Paying fees using testnet paymaster
 
-Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](./aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](./aa.md#testnet-paymaster) that is provided on all zkSync testnets. It allows users to pay fees in an ERC20 token with the exchange rate of ETH of 1:1, i.e. one unit of the token for one wei of ETH.
+Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](./aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](./aa.md#testnet-paymaster) that is provided on all zkSync testnets.
 
-::: tip Mainnet integration
+**The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH. This means that transaction fees in tokens with fewer decimals than ETH will be bigger, for example, USDC which has only 6 decimals. This is a know behaviour of the testnet paymaster, which was built for demonstration purposes only.
 
-Testnet paymaster is purely for demonstration of the feature and won't be available on mainnet. When integrating your protocol on mainnet, you should follow the documentation of the paymaster you will use.
+::: warning Paymasters on mainnet
+
+🚨 The testnet paymaster is purely for demostration of this feature and won't be available on mainnet. When integrating your protocol on mainnet, you should follow the documentation of the paymaster you will use or create your own.
 
 :::
 
@@ -541,7 +570,7 @@ Note, that it is recommended to retrieve the testnet paymaster's address each ti
 import { Contract, Web3Provider, Provider, utils } from "zksync-web3";
 ```
 
-3. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token to ETH at a 1:1 rate, the amount is the same as the ETH amount:
+3. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token to ETH at a 1:1 rate, the amount is the same as the ETH amount in wei:
 
 ```javascript
 async getOverrides() {
@@ -549,7 +578,27 @@ async getOverrides() {
     const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
 
     const gasPrice = await this.provider.getGasPrice();
-    const gasLimit = await this.contract.estimateGas.setGreeting(this.newGreeting);
+    // estimate gasLimit via paymaster
+    const paramsForFeeEstimation = utils.getPaymasterParams(
+          testnetPaymaster,
+          {
+            type: "ApprovalBased",
+            minimalAllowance: ethers.BigNumber.from("1"),
+            token: this.selectedToken.l2Address,
+            innerInput: new Uint8Array(),
+          }
+        );
+
+        // estimate gasLimit via paymaster
+        const gasLimit = await this.contract.estimateGas.setGreeting(
+          this.newGreeting,
+          {
+            customData: {
+              gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+              paymasterParams: paramsForFeeEstimation,
+            },
+          }
+        );
     const fee = gasPrice.mul(gasLimit);
 
     // ..
@@ -564,33 +613,56 @@ async getOverrides() {
 ```javascript
 async getOverrides() {
   if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
-    const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
+    const testnetPaymaster =
+      await this.provider.getTestnetPaymasterAddress();
 
     const gasPrice = await this.provider.getGasPrice();
-    const gasLimit = await this.contract.estimateGas.setGreeting(this.newGreeting);
-    const fee = gasPrice.mul(gasLimit);
+
+    // estimate gasLimit via paymaster
+    const paramsForFeeEstimation = utils.getPaymasterParams(
+      testnetPaymaster,
+      {
+        type: "ApprovalBased",
+        minimalAllowance: ethers.BigNumber.from("1"),
+        token: this.selectedToken.l2Address,
+        innerInput: new Uint8Array(),
+      }
+    );
+
+    // estimate gasLimit via paymaster
+    const gasLimit = await this.contract.estimateGas.setGreeting(
+      this.newGreeting,
+      {
+        customData: {
+          gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+          paymasterParams: paramsForFeeEstimation,
+        },
+      }
+    );
+
+    const fee = gasPrice.mul(gasLimit.toString());
 
     const paymasterParams = utils.getPaymasterParams(testnetPaymaster, {
-        type: 'ApprovalBased',
-        token: this.selectedToken.l2Address,
-        minimalAllowance: fee,
-        // empty bytes as testnet paymaster does not use innerInput
-        innerInput: new Uint8Array()
+      type: "ApprovalBased",
+      token: this.selectedToken.l2Address,
+      minimalAllowance: fee,
+      // empty bytes as testnet paymaster does not use innerInput
+      innerInput: new Uint8Array(),
     });
 
     return {
-        maxFeePerGas: gasPrice,
-        maxPriorityFeePerGas: ethers.BigNumber.from(0),
-        gasLimit,
-        customData: {
-            ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
-            paymasterParams
-        }
+      maxFeePerGas: gasPrice,
+      maxPriorityFeePerGas: ethers.BigNumber.from(0),
+      gasLimit,
+      customData: {
+        gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+        paymasterParams,
+      },
     };
   }
 
   return {};
-}
+},
 ```
 
 5. To use a list of ERC20 tokens, change the following line:
@@ -605,23 +677,25 @@ to the following one:
 const allowedTokens = require("./erc20.json");
 ```
 
+The `erc20.json` file contains a few tokens like DAI, USDC and wBTC.
+
 ### Complete app
 
-Now you should be able to update the greeting message.
+Now you should be able to update the greeting message with ETH or any of the available tokens.
 
-1. Type the new greeting in the input box and click on the `Change greeting` button:
+1. Select one of the ERC20 tokens to see the estimated fee:
 
-![img](../../assets/images/start-3.png)
+![img](../../assets/images/start-6.jpeg)
 
-2. Since the `paymasterParams` were supplied, the transaction will be an `EIP712` ([more on EIP712 here](https://eips.ethereum.org/EIPS/eip-712)):
+2. Click on the `Change greeting` button to update the message. Since the `paymasterParams` were supplied, the transaction will be an `EIP712` ([more on EIP712 here](https://eips.ethereum.org/EIPS/eip-712)):
 
 ![img](../../assets/images/start-4.png)
 
-3. Click "Sign".
+3. Click "Sign" to send the transaction.
 
-After the transaction is processed, the page updates the balances and the new greeting can be viewed:
+After the transaction is processed, the page updates the balances and the new greeting can be viewed.
 
-![img](../../assets/images/start-5.png)
+**You've paid for this transaction with an ERC20 token using the testnet paymaster** 🎉
 
 ### Learn more
 

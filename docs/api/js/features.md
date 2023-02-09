@@ -22,7 +22,7 @@ In order to make the SDK as flexible as possible, the library uses the overrides
 ```typescript
 {
     customData: {
-        ergsPerPubdata?: BigNumberish;
+        gasPerPubdata?: BigNumberish;
         factoryDeps?: BytesLike[];
         customSignature?: BytesLike;
         paymasterParams?: {
@@ -35,12 +35,12 @@ In order to make the SDK as flexible as possible, the library uses the overrides
 
 Examples:
 
-Override to deploy a contract with bytecode `0xcde...12` and enforce that the operator will not charge more than `100` ergs per published bytes on layer 1:
+Override to deploy a contract with bytecode `0xcde...12` and enforce that the operator will not charge more than `100` gas per published bytes on layer 1:
 
 ```typescript
 {
     customData: {
-        ergsPerPubdata: "100",
+        gasPerPubdata: "100",
         factoryDeps: ["0xcde...12"],
     }
 }
@@ -91,7 +91,7 @@ const sentTx = await sender.sendTransaction({
     maxPriorityFeePerGas: BigNumber.from(0),
     gasLimit,
     customData: {
-        ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+        gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
         paymasterParams
     }
 });

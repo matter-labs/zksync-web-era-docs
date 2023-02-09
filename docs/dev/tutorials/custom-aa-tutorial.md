@@ -1,7 +1,19 @@
-# Account abstraction
+# Account abstraction multisig
 
 Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../developer-guides/contracts/system-contracts.md#contractdeployer) system contract.
 In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
+
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
+::: warning
+
+Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM. 
+
+This tutorial will be updated shortly to reflect those changes.
+
+:::
 
 ## Prerequisite
 
@@ -19,8 +31,14 @@ We will use the zkSync hardhat plugin for developing this contract. Firstly, we 
 mkdir custom-aa-tutorial
 cd custom-aa-tutorial
 yarn init -y
-yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.0 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+
+::: tip
+
+The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
+
+:::
 
 Since we are working with zkSync contracts, we also need to install the package with the contracts and its peer dependencies:
 
@@ -203,7 +221,7 @@ function _validateTransaction(bytes32 _suggestedSignedHash, Transaction calldata
 
 ### Paying fees for the transaction
 
-We should now implement the `payForTransaction` method. The `TransactionHelper` library already provides us with the `payToTheBootloader` method, that sends `_transaction.maxFeePerErg * _transaction.ergsLimit` ETH to the bootloader. So the implementation is rather straightforward:
+We should now implement the `payForTransaction` method. The `TransactionHelper` library already provides us with the `payToTheBootloader` method, that sends `_transaction.maxFeePerErg * _transaction.gasLimit` ETH to the bootloader. So the implementation is rather straightforward:
 
 ```solidity
 function payForTransaction(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader {
@@ -625,20 +643,20 @@ let aaTx = await aaFactory.populateTransaction.deployAccount(salt, Wallet.create
 Then, we need to fill all the transaction fields:
 
 ```ts
-const gasLimit = await provider.estimateGas(aaTx);
+const l2gasLimit = await provider.estimateGas(aaTx);
 const gasPrice = await provider.getGasPrice();
 
 aaTx = {
   ...aaTx,
   from: multisigAddress,
-  gasLimit: gasLimit,
+  l2gasLimit: l2gasLimit,
   gasPrice: gasPrice,
   chainId: (await provider.getNetwork()).chainId,
   nonce: await provider.getTransactionCount(multisigAddress),
   type: 113,
   customData: {
-    // Note, that we are using the `DEFAULT_ERGS_PER_PUBDATA_LIMIT`
-    ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+    // Note, that we are using the `DEFAULT_GAS_PER_PUBDATA_LIMIT`
+    gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
   } as types.Eip712Meta,
   value: ethers.BigNumber.from(0),
 };
@@ -646,7 +664,7 @@ aaTx = {
 
 ::: tip Note on gasLimit
 
-Currently, we expect the `gasLimit` to cover both the verification and the execution steps. Currently, the number of ergs that is returned by the `estimateGas` is `execution_ergs + 20000`, where `20000` is roughly equal to the overhead needed for the defaultAA to have both fee charged and the signature verified. In case your AA has a very expensive verification step, you should add some constant to the `gasLimit`.
+Currently, we expect the `l2gasLimit` to cover both the verification and the execution steps. Currently, the number of gas that is returned by the `estimateGas` is `execution_gas + 20000`, where `20000` is roughly equal to the overhead needed for the defaultAA to have both fee charged and the signature verified. In case your AA has a very expensive verification step, you should add some constant to the `l2gasLimit`.
 
 :::
 
@@ -726,19 +744,19 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   let aaTx = await aaFactory.populateTransaction.deployAccount(salt, Wallet.createRandom().address, Wallet.createRandom().address);
 
-  const gasLimit = await provider.estimateGas(aaTx);
+  const l2gasLimit = await provider.estimateGas(aaTx);
   const gasPrice = await provider.getGasPrice();
 
   aaTx = {
     ...aaTx,
     from: multisigAddress,
-    gasLimit: gasLimit,
+    l2gasLimit: l2gasLimit,
     gasPrice: gasPrice,
     chainId: (await provider.getNetwork()).chainId,
     nonce: await provider.getTransactionCount(multisigAddress),
     type: 113,
     customData: {
-      ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+      gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
     } as types.Eip712Meta,
     value: ethers.BigNumber.from(0),
   };
