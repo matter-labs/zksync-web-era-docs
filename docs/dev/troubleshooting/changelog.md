@@ -24,6 +24,7 @@ To update your project, follow these steps:
 - If your project uses zksync system contracts, make sure to update the `@matterlabs/zksync-contracts` package as well. There are changes in multiple contract interfaces.
 - Paymasters: The `ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT` in the transaction `customData` should be updated to `gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT`. Custom paymasters are required to return a magic value after a transaction validation on the `validateAndPayForPaymasterTransaction` method.
 - If your project uses Account Abstraction, keep in mind that the IAccount interface has changed. We’ve introduced account versioning to allow for future updates. Accounts are required to return a magic value after a transaction validation on the `validateTransaction` method.
+- If your smart contracts use any methods from the `SystemContractsCaller` library (like `systemCall`), you'd need to compile them with the `isSystem` flag set to `true` in the `settings` section of `zksolc` inside the `hardhat.config.ts` file.
 - As with any other regenesis, it will remove all balances and contracts so you’ll need to deposit funds and redeploy your contracts again.
 
 If after doing these changes you’re still facing issues, please [create a support ticket in the "dev-support-beta" channed in our Discord](https://join.zksync.dev/).
