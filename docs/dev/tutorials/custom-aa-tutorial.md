@@ -35,7 +35,7 @@ The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
 Since we are working with zkSync contracts, we also need to install the package with the contracts and its peer dependencies:
 
 ```
-yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
+yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
 Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [quickstart tutorial](../developer-guides/hello-world.md).
