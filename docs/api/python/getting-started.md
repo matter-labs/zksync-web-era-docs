@@ -12,6 +12,11 @@ In this guide we will demonstrate how to:
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
+::: warning
+
+⚠️ This section of the documentation is no longer current and needs to be updated to reflect the changes made to the system contract. We apologize for any inconvenience and assure you that a revised version will be available shortly.
+
+:::
 ## Adding dependencies
 
 To install zksync 2.0, run the command below in your terminal.

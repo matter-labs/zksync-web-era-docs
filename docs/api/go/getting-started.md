@@ -8,6 +8,15 @@ In this guide we will demonstrate how to:
 4. Deploy a smart contract.
 5. Interact with any smart contract.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
+::: warning
+
+⚠️ This section of the documentation is no longer current and needs to be updated to reflect the changes made to the system contracts. We apologize for any inconvenience and assure you that a revised version will be available shortly.
+
+:::
+
 ## Prerequisite
 
 This guide assumes that you are familiar with the [Go](https://go.dev/doc/) programming language.
@@ -209,9 +218,3 @@ func main() {
 }
 
 ```
-
-::: warning
-
-⚠️ This section of the docs is still in progress and will be updated with more detailed information soon.
-
-:::

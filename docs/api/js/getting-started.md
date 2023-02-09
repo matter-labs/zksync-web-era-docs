@@ -1,5 +1,14 @@
 # Getting started
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
+::: warning
+
+Please note that in the new `0.13.0` SDK the API layer operates with gas. The ergs concept is used by VM only.
+
+:::
+
 ## Concept
 
 While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features, like account abstraction, requires providing additional fields to those that Ethereum transactions have by default.

@@ -32,7 +32,7 @@ Batch time, in general, depends on the system activity - the more activity the s
 There are several criteria for sealing a batch, which we defer from explaining in detail here, as the system is still under testing and 
 these may change. 
 In general, a batch will get sealed when:
-1. The batch "capacity" is reached. Capacity includes L1 gas used, L2 ergs consumed and several other parameters. 
+1. The batch "capacity" is reached. The capacity includes L1 gas used, L2 gas consumed and several other parameters.
 2. The batch timeout has passed.
 
 After submitting transactions, users can check where in the process their transaction is as explained [here](../../fundamentals/zkSync.md#zksync-overview).

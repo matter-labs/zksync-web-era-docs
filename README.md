@@ -10,32 +10,27 @@
 > Our zkEVM keeps EVM semantics, but is also ZK-friendly and takes on traditional CPU architectures.
 
 Constantly updated, [zkSync: Docs for 2.0](https://v2-docs.zksync.io/dev) offers the most complete knowledge about the upcoming **zkSync 2.0**.
-zkSync 2 release has built-in EVM-compatibility which makes it a single key to release EVM-compatible ZK rollup.
+zkSync 2 release has built-in EVM compatibility which makes it a single key to release EVM-compatible ZK rollup.
 We call it [zkEVM](https://zksync.io/zkevm): long-awaited way to preserve the battle-tested code and knowledge
-gained after years of working with Solidity scaling it with the Layer 2.
+gained after years of working with Solidity scaling it with Layer 2.
 
 ## Build and setup
 
 ### Initial setup
 
-Frontend team chosen `yarn@berry` for packager, so don't forget to install `node` version **LTS@14** and after configure `yarn`
+The Frontend team chose the `yarn@berry` packager, so don't forget to install `node` version **LTS@14** after configuring `yarn`
 
 ```bash
 # configure yarn version: berry or specifically 3.1.1.
 $ yarn set version berry
-# ...then assure no1deLinker is configured for node_modules
-$ yarn config set nodeLinker "node_modules"
-# you should see:
-# ➤ YN0000: Successfully set nodeLinker to 'node_modules'
-# the regular dependency installation (with re-validation of the local cache
-$ yarn install --check-cache
 ```
 
 ### Main scripts
 
 ```bash
-# clear possible cache && install dependencies (clear install)
-$ sh cli-dev.sh ci
+# install dependencies
+$ yarn add
+
 # serve with hot reload at localhost:8080
 $ yarn docs:dev
 # static generation to dist
@@ -106,16 +101,10 @@ children: [
 #### Deploying altogether
 
 > will do:
-<<<<<<< HEAD
-* install node modules;
-* prepare, test and build documentation;
-* afterwards all contained into the `dist` folder will be deployed in form of the static website
-=======
 
 - install node modules;
 - prepare, test and build documentation;
 - afterwards all contained into the `dist` folder will be deployed in form of the static website
->>>>>>> main
 
 ```bash
 yarn zk-ci-prepare

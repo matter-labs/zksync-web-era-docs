@@ -41,8 +41,8 @@ module.exports = {
       indexName: "v2-zksync",
       algoliaOptions: {
         hitsPerPage: 10,
-        facetFilters: ""
-      }
+        facetFilters: "",
+      },
     },
     repo: "matter-labs/zksync-web-v2-docs",
     editLinks: true,
@@ -133,13 +133,19 @@ module.exports = {
           title: "Tutorials",
           path: "/dev/tutorials",
           collapsable: false,
-          children: ["/dev/tutorials/cross-chain-tutorial.md", "/dev/tutorials/custom-aa-tutorial.md", "/dev/tutorials/custom-paymaster-tutorial.md"],
+          children: [
+            "/dev/tutorials/cross-chain-tutorial.md",
+            "/dev/tutorials/custom-aa-tutorial.md",
+            "/dev/tutorials/custom-paymaster-tutorial.md",
+            "/dev/tutorials/aa-daily-spend-limit.md",
+          ],
         },
         {
           title: "Troubleshooting",
           path: "/dev/troubleshooting",
           collapsable: false,
           children: [
+            "/dev/troubleshooting/changelog.md",
             "/dev/troubleshooting/important-links.md",
             "/dev/troubleshooting/status.md",
             "/dev/troubleshooting/docs-contribution/docs.md",
@@ -196,7 +202,7 @@ module.exports = {
             "/api/python/accounts",
             "/api/python/accounts-l1-l2",
             "/api/python/contract-interface",
-            "/api/python/types"
+            "/api/python/types",
           ],
         },
         {
@@ -225,7 +231,17 @@ module.exports = {
           path: "/api/hardhat", // optional, which should be a absolute path.
           collapsable: false, // optional, defaults to true
           sidebarDepth: 1,
-          children: ["/api/hardhat/getting-started", "/api/hardhat/plugins", "/api/hardhat/testing", "/api/hardhat/compiling-libraries"],
+          children: [
+            "/api/hardhat/getting-started",
+            "/api/hardhat/plugins",
+            "/api/hardhat/hardhat-zksync-solc",
+            "/api/hardhat/hardhat-zksync-vyper",
+            "/api/hardhat/hardhat-zksync-deploy",
+            "/api/hardhat/hardhat-zksync-chai-matchers",
+            "/api/hardhat/hardhat-zksync-verify",
+            "/api/hardhat/testing",
+            "/api/hardhat/compiling-libraries",
+          ],
         },
         {
           title: "Block Explorer", // required

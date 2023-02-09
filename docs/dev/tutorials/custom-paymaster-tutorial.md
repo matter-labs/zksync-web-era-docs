@@ -6,6 +6,17 @@ Let's see how we can use the paymaster feature to build a custom paymaster that 
 - Create the ERC20 token contract and send some tokens to a brand new wallet.
 - Finally we will send a `mint` transaction from the newly created wallet via the paymaster. Even though the transaction would normally require some ETH to pay for the gas fee, our paymaster will execute the transaction in exchange for 1 unit of the ERC20 token.
 
+<TocHeader />
+<TOC class="table-of-contents" :include-level="[2,3]" />
+
+::: warning
+
+Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM. 
+
+This tutorial will be updated shortly to reflect those changes.
+
+:::
+
 ## Prerequisite
 
 To better understand this page, we recommend you first read up on [account abstraction design](../developer-guides/aa.md) before diving into this tutorial.
@@ -20,8 +31,14 @@ We will use the zkSync hardhat plugin for developing this contract. Firstly, we 
 mkdir custom-paymaster-tutorial
 cd custom-paymaster-tutorial
 yarn init -y
-yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.0 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+
+::: tip
+
+The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
+
+:::
 
 Since we are working with zkSync contracts, we also need to install the package with the contracts and its peer dependencies:
 
@@ -78,7 +95,7 @@ contract MyPaymaster is IPaymaster {
         bytes32 _txHash,
         bytes32 _suggestedSignedHash,
         ExecutionResult _txResult,
-        uint256 _maxRefundedErgs
+        uint256 _maxRefundedGas
     ) external payable onlyBootloader {
         // This contract does not support any refunding logic
     }
@@ -128,9 +145,9 @@ require(providedAllowance >= PRICE_FOR_PAYING_FEES, "The user did not provide en
 Then, we finally transfer the funds to the user in exchange for 1 unit of this token.
 
 ```solidity
-// Note, that while the minimal amount of ETH needed is tx.ergsPrice * tx.ergsLimit,
+// Note, that while the minimal amount of ETH needed is tx.gasPrice * tx.gasLimit,
 // neither paymaster nor account are allowed to access this context variable.
-uint256 requiredETH = _transaction.ergsLimit * _transaction.maxFeePerErg;
+uint256 requiredETH = _transaction.gasLimit * _transaction.maxFeePerGas;
 
 // Pulling all the tokens from the user
 IERC20(token).transferFrom(userAddress, thisAddress, 1);
@@ -212,10 +229,10 @@ contract MyPaymaster is IPaymaster {
                 "The user did not provide enough allowance"
             );
 
-            // Note, that while the minimal amount of ETH needed is tx.ergsPrice * tx.ergsLimit,
+            // Note, that while the minimal amount of ETH needed is tx.gasPrice * tx.gasLimit,
             // neither paymaster nor account are allowed to access this context variable.
-            uint256 requiredETH = _transaction.ergsLimit *
-                _transaction.maxFeePerErg;
+            uint256 requiredETH = _transaction.gasLimit *
+                _transaction.maxFeePerGas;
 
             // Pulling all the tokens from the user
             IERC20(token).transferFrom(userAddress, thisAddress, 1);
@@ -235,7 +252,7 @@ contract MyPaymaster is IPaymaster {
         bytes32 _txHash,
         bytes32 _suggestedSignedHash,
         ExecutionResult _txResult,
-        uint256 _maxRefundedErgs
+        uint256 _maxRefundedGas
     ) external payable onlyBootloader {
         // This contract does not support any refunding logic
     }
@@ -395,7 +412,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Estimate gas fee for mint transaction
   const gasLimit = await erc20.estimateGas.mint(emptyWallet.address, 100, {
     customData: {
-      ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+      gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
       paymasterParams: {
         paymaster: PAYMASTER_ADDRESS,
         // empty input as our paymaster doesn't require additional data
@@ -426,7 +443,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
       // paymaster info
       customData: {
         paymasterParams,
-        ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
+        gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
       },
     })
   ).wait();
