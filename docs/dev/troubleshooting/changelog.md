@@ -4,10 +4,12 @@
 
 The recent update made several modifications to the system in preparation for the "Fair Onboarding Alpha" milestone. The modifications include:
 
-- a fee mechanism revamp that replaces `ergs` with `gas` to make it easier to understand (after all, we’re all part of the Ethereum ecosystem).
-- updates in the Account Abstraction support;
-- changes in L1 and L2 system contract interfaces.
-- breaking changes in our SDKs where methods and properties that contained `ergs` are renamed `gas`.
+- Revamp in the fee mechanism:
+  - `ergs` have been replaced with `gas` to make it easier to understand (after all, we’re all part of the Ethereum ecosystem).
+  - Gas refunds: transactions are refunded for unused gas. You can see these refunds as token transfers [in the explorer](https://explorer.zksync.io/).
+- Updates in the Account Abstraction and Paymaster interfaces.
+- Changes in L1 and L2 system contract interfaces.
+- Breaking changes in our SDKs where methods and properties that contained `ergs` are renamed `gas`.
 - API error messages now follow the Geth format (more updates coming soon).
 
 **These updates were followed by a system regenesis.**
