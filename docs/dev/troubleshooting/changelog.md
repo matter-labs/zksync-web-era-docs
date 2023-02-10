@@ -1,8 +1,19 @@
 # Changelog
 
+## System update (Feb 10th 2023)
+
+Minor updated that simplifies the fee model to reduce overhead and fix some bugs. It requires an update on the `zksync-web3` package to `v0.13.1`.
+
+### How to update your project
+
+- Update `zksync-web3` to `v0.13.1`.
+- There are no changes in contract interfaces, so no code changes are required.
+- If your project does not use `zksync-web3` to submit transactions, you'd need to manually include the a fixed `gasLimitPerPubdata` of `50000` in the transaction overrides.
+
+
 ## System update v1.3 (Feb 8th 2023)
 
-The recent update made several modifications to the system in preparation for the "Fair Onboarding Alpha" milestone. The modifications include:
+This update made several modifications to the system in preparation for the "Fair Onboarding Alpha" milestone. The modifications include:
 
 - Revamp in the fee mechanism:
   - `ergs` have been replaced with `gas` to make it easier to understand (after all, we’re all part of the Ethereum ecosystem).
@@ -29,7 +40,7 @@ To update your project, follow these steps:
   - Custom paymasters are required to return a magic value after a transaction validation on the `validateAndPayForPaymasterTransaction` method. This value should be `ACCOUNT_VALIDATION_SUCCESS_MAGIC` (available on the `IAccount.sol` interface) if the validation is successful, or an empty value `bytes4(0)` if it fails.
 - If your project uses Account Abstraction, keep in mind that the `IAccount` interface has changed. 
   - The `prePaymaster` method has been renamed to`prepareForPaymaster`.
-  - We’ve introduced account versioning to allow for future updates. 
+  - Smart contract accounts now include versioning to allow for future updates. This should be included as a parameter when calling `create2Account` from AA Factory contracts.
   - Accounts are required to return a magic value after a transaction validation on the `validateTransaction` method. This value should be `ACCOUNT_VALIDATION_SUCCESS_MAGIC` (available on the `IAccount.sol` interface) if the validation is successful, or an empty value `bytes4(0)` if it fails.
 - If your smart contracts use any methods from the `SystemContractsCaller` library (like `systemCall`), you'd need to compile them with the `isSystem` flag set to `true` in the `settings` section of `zksolc` inside the `hardhat.config.ts` file.
 - zkSync system contracts have cycle dependencies and might cause issues flattening contracts with `hardhat flatten`. Use the [hardhat verify plugin](../../api/hardhat/hardhat-zksync-verify.md) instead.
