@@ -41,10 +41,35 @@ The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
 Additionally, please install a few packages that allow us to utilize the [zkSync smart contracts](https://v2-docs.zksync.io/dev/developer-guides/contracts/system-contracts.html).
 
 ```shell
-yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
+yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Lastly, create `hardhat.config.ts` config file and the `contracts` and `deploy` folders like in the [quickstart tutorial](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html).
+Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, similar to the [quickstart tutorial](../developer-guides/hello-world.md). In this project our contracts will interact with system contracts, to achieve that, we need to include the `isSystem: true` in the compiler settings:
+
+```
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-solc";
+module.exports = {
+  zksolc: {
+    version: "1.3.1",
+    compilerSource: "binary",
+      settings: {
+        isSystem: true,
+      },
+  },
+  defaultNetwork: "zkSyncTestnet",
+  networks: {
+    zkSyncTestnet: {
+      url: "https://zksync2-testnet.zksync.dev",
+      ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
+      zksync: true,
+    },
+  },
+  solidity: {
+    version: "0.8.17",
+  },
+};
+```
 
 ::: tip zksync-cli
 
@@ -116,7 +141,7 @@ First, add the mapping `limits` and struct `Limit` that serve as data storages f
 
 Note that the `limits` mapping uses the token address as its key. This means that users will be able to set limits for ETH or any ERC20 token.
 
-### Setting and Removing of the daily spending limit
+### Setting and Removing the daily spending limit
 
 Here is the implementation to set and remove the limit:
 
@@ -168,7 +193,7 @@ Here is the implementation to set and remove the limit:
 
 ```
 
-Both `setSpendingLimit` and `removeSpendingLimit` can only be called by account contracts that inherit this contract `SpendLimit`, which is ensured by the `onlyAccount` modifier. They call `_updateLimit` and passing the arguments to modify the storage data of the limit after the verification in `_isValidUpdate` succeeds.
+Both `setSpendingLimit` and `removeSpendingLimit` can only be called by account contracts that inherit this contract `SpendLimit`, which is ensured by the `onlyAccount` modifier. They call `_updateLimit` and pass the arguments to modify the storage data of the limit after the verification in `_isValidUpdate` succeeds.
 
 Specifically, `setSpendingLimit` sets a non-zero daily spending limit for a given token, and `removeSpendingLimit` disables the active daily spending limit by decreasing `limit` and `available` to 0 and setting `isEnabled` to false.
 
@@ -223,7 +248,7 @@ if (limit.limit != limit.available && timestamp > limit.resetTime) {
 
 ```
 
-Finally, the method checks if the account is able to spend a specified amount of the token. If the amount doesn't exceed the available amount, it decrements the `available` in the limit:
+Finally, the method checks if the account can spend a specified amount of the token. If the amount doesn't exceed the available amount, it decrements the `available` in the limit:
 
 ```solidity
 require(limit.available >= _amount, 'Exceed daily limit');
@@ -363,19 +388,19 @@ We will not explain in depth how these contract work as they're similar to the o
 Below are the full codes.
 
 #### Account.sol contract
+The account needs to implement the [IAccount](../developer-guides/aa.md#iaccount-interface) interface and inherits the SpendLimit contract we just created. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
 
-The account contract implements the IAccount interface and inherits the SpendLimit contract we just created:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol";
-import "@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol";
+import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
-import "@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.sol";
+import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
 import "./SpendLimit.sol";
 
 contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contract
@@ -391,7 +416,7 @@ contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contr
             msg.sender == BOOTLOADER_FORMAL_ADDRESS,
             "Only bootloader can call this method"
         );
-
+        // Continure execution if called from the bootloader.
         _;
     }
 
