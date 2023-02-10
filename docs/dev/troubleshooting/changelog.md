@@ -24,10 +24,10 @@ To update your project, follow these steps:
 - If your project uses zksync system contracts, make sure to update the `@matterlabs/zksync-contracts` package as well. There are changes in multiple contract interfaces.
 - Paymasters: 
   - The `ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT` in the transaction `customData` should be updated to `gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT`. 
-  - Custom paymasters are required to return a magic value after a transaction validation on the `validateAndPayForPaymasterTransaction` method. This value should be `ACCOUNT_VALIDATION_SUCCESS_MAGIC` (available on the `IAccount.sol` interface) if the validation is sucessful, or an empty value `bytes4(0)` if it fails.
+  - Custom paymasters are required to return a magic value after a transaction validation on the `validateAndPayForPaymasterTransaction` method. This value should be `ACCOUNT_VALIDATION_SUCCESS_MAGIC` (available on the `IAccount.sol` interface) if the validation is successful, or an empty value `bytes4(0)` if it fails.
 - If your project uses Account Abstraction, keep in mind that the `IAccount` interface has changed. 
   - We’ve introduced account versioning to allow for future updates. 
-  - Accounts are required to return a magic value after a transaction validation on the `validateTransaction` method. This value should be `ACCOUNT_VALIDATION_SUCCESS_MAGIC` (available on the `IAccount.sol` interface) if the validation is sucessful, or an empty value `bytes4(0)` if it fails.
+  - Accounts are required to return a magic value after a transaction validation on the `validateTransaction` method. This value should be `ACCOUNT_VALIDATION_SUCCESS_MAGIC` (available on the `IAccount.sol` interface) if the validation is successful, or an empty value `bytes4(0)` if it fails.
 - If your smart contracts use any methods from the `SystemContractsCaller` library (like `systemCall`), you'd need to compile them with the `isSystem` flag set to `true` in the `settings` section of `zksolc` inside the `hardhat.config.ts` file.
 - zkSync system contracts have cycle dependencies and might cause issues flattening contracts with `hardhat flatten`. Use the [hardhat verify plugin](../../api/hardhat/hardhat-zksync-verify.md) instead.
 - As with any other regenesis, it will remove all balances and contracts so you’ll need to deposit funds and redeploy your contracts again.
