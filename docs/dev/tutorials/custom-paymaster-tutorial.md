@@ -31,7 +31,7 @@ We will use the zkSync hardhat plugin for developing this contract. Firstly, we 
 mkdir custom-paymaster-tutorial
 cd custom-paymaster-tutorial
 yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.0 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
 ::: tip

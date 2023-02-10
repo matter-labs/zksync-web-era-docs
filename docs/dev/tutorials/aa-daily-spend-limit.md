@@ -29,7 +29,7 @@ First, let’s install all the dependencies that we'll need:
 mkdir custom-spendlimit-tutorial
 cd custom-spendlimit-tutorial
 yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.0 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
 ::: tip
