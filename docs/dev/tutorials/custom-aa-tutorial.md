@@ -733,7 +733,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 
 ## The factory
 
-Now, let's build a factory that can deploy these accounts. To deploy the smat contract account, we need to interact directly with the `DEPLOYER_SYSTEM_CONTRACT`. For deterministic addresses, we will call the `create2Account` method.
+Now, let's build a factory that can deploy these accounts. To deploy the smart contract account, we need to interact directly with the `DEPLOYER_SYSTEM_CONTRACT`. For deterministic addresses, we will call the `create2Account` method.
 
 The code will look the following way:
 

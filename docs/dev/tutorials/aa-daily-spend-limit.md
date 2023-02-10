@@ -530,9 +530,9 @@ contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contr
         require(success, "Failed to pay the fee to the operator");
     }
 
-    function prePaymaster(
-        bytes32,
-        bytes32,
+    function prepareForPaymaster(
+        bytes32, // _txHash
+        bytes32, // _suggestedSignedHash
         Transaction calldata _transaction
     ) external payable override onlyBootloader {
         _transaction.processPaymasterInput();
@@ -634,7 +634,17 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // });
   // await depositHandle.wait();
 
-  const factory = await deployer.deploy(factoryArtifact, [utils.hashBytecode(aaArtifact.bytecode)], undefined, [aaArtifact.bytecode]);
+  // Getting the bytecodeHash of the account
+  const bytecodeHash = utils.hashBytecode(aaArtifact.bytecode);
+
+ const factory = await deployer.deploy(
+    factoryArtifact,
+    [bytecodeHash],
+    undefined,
+    [
+      aaArtifact.bytecode,
+    ]
+  );
 
   console.log(`AA factory address: ${factory.address}`);
 
@@ -864,7 +874,7 @@ To keep this tutorial as simple as possible, we've used `block.timestamp` but we
 
 ## Complete Project
 
-You can download the complete project [here](https://github.com/porco-rosso-j/daily-spendlimit-tutorial). Additionally, the repository contains a test folder that can perform more detailed testing than this tutorial on zkSync local network.
+You can download the complete project [here](https://github.com/matter-labs/daily-spendlimit-tutorial). Additionally, the repository contains a test folder that can perform more detailed testing than this tutorial on zkSync local network.
 
 ## Learn more
 
