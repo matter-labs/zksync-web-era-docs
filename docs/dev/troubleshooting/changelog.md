@@ -7,7 +7,7 @@ Minor updated that simplifies the fee model to reduce overhead and fix some bugs
 ### How to update your project
 
 - Update `zksync-web3` to `v0.13.1`.
-- There are no changes in contract interfaces, so no code changes are required.
+- There are no changes in contract interfaces or APIs, so no code changes are required.
 - Projects that don't use `zksync-web3` but rely on `eth_signTypedData` to sign the transactions would need to manually include a fixed `gasLimitPerPubdata` of `50000` in the transaction overrides.
 
 
