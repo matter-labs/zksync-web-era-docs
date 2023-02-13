@@ -110,7 +110,7 @@ const wallet = unconnectedWallet.connect(provider).connectToL1(ethProvider);
 ### Getting the zkSync L1 smart contract
 
 ```typescript
-async Adapter.getMainContract(): Promise<IZkSync>
+async getMainContract(): Promise<IZkSync>
 ```
 
 #### Inputs and outputs
