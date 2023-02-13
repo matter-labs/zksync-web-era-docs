@@ -8,7 +8,7 @@ export default defineUserConfig({
   locales: {
     "/": {
       lang: "en-US",
-      title: "zkSync",
+      title: "",
       description: "zkSync is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet.",
     }
   },
