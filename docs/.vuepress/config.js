@@ -233,6 +233,7 @@ module.exports = {
           sidebarDepth: 1,
           children: [
             "/api/hardhat/getting-started",
+            "/api/hardhat/migrating-to-zksync",
             "/api/hardhat/plugins",
             "/api/hardhat/hardhat-zksync-solc",
             "/api/hardhat/hardhat-zksync-vyper",

@@ -1,6 +1,6 @@
-# Migrate existing project to zkSync
+# Migration guide
 
-Do you have a Hardhar project and you want to deploy in on zkSync? In this page you'll find all the steps you need to do to migrate an existing Hardat project to zkSync.
+Do you have a Hardhat project and you want to deploy it to zkSync? In this page you'll find all the steps you need to do to migrate an existing Hardhat project to zkSync.
 
 ## Overview
 
