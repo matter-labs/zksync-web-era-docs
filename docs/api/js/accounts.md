@@ -110,16 +110,14 @@ const wallet = unconnectedWallet.connect(provider).connectToL1(ethProvider);
 ### Getting the zkSync L1 smart contract
 
 ```typescript
-Adapter.getL1BridgeContracts(): Promise<{
-    erc20: IL1Bridge;
-}>
+async Adapter.getMainContract(): Promise<IZkSync>
 ```
 
 #### Inputs and outputs
 
 | Name    | Description                                      |
 | ------- | ------------------------------------------------ |
-| returns | `Contract` wrapper of the zkSync `IL1Bridge` contract `ethers` instance. |
+| returns | `Contract` wrapper of the zkSync smart contract. |
 
 > Example
 
@@ -131,8 +129,15 @@ const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev")
 const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
-const l1Contract = await zksync.Wallet.getL1BridgeContracts();
-console.log(l1Contract.address);
+const contract = await wallet.getMainContract();
+console.log(contract.address);
+```
+
+### Getting У
+```typescript
+(method) Adapter.getL1BridgeContracts(): Promise<{
+    erc20: IL1Bridge;
+}
 ```
 
 ### Getting token balance
@@ -459,7 +464,19 @@ const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 ```typescript
 async getMainContract(): Promise<Contract>
 ```
+### Getting bridge contracts
+ERC-20 bridge `Contract`: 
 
+```typescript
+async getL1BridgeContracts(): Promise<{
+    erc20: IL1Bridge;
+}>
+```
+:::note
+
+ there is no separate Ether bridge contract, [Main contract](./accounts.md#getting-the-zksync-l1-smart-contract) is used instead.
+
+ :::
 #### Inputs and outputs
 
 | Name    | Description                                      |

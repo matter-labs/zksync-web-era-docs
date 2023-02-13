@@ -23,7 +23,7 @@ This is the most commonly used type of provider. It provides the same functional
 
 ### Creating provider
 
-The constructor accepts the `url` to the operator node and the `network` name?.
+The constructor accepts the `url` to the operator node and the `network` name (optional).
 
 ```typescript
 constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish)

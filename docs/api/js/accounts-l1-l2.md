@@ -155,9 +155,9 @@ async getBaseCost(params: {
 | Name                       | Description                                                                        |
 | -------------------------- | ---------------------------------------------------------------------------------- |
 | params.gasLimit            | The `gasLimit` for the the L2 contract call.                                     |
-| params.gasPerPubdataByte   | Price per pubdata byte in gas on L2.                                                |
+| params.gasPerPubdataByte   | The L2 gas price for each published L1 calldata byte.                                                |
 | params.gasPrice? | The L1 gas price of the L1 transaction that will send the request for an execute call |
-| returns.                    | The base cost in ETH for requesting the L2 contract call.                           |
+| returns                    | The base cost in ETH for requesting the L2 contract call.                           |
 
 ## Claim Failed Deposit
 
@@ -194,13 +194,13 @@ async requestExecute(transaction: {
 
 | Name                                     | Description                                                                                                                                     |
 | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| transaction.contractAddress              | The L2 receiver address.                                                                                                                         |
+| transaction.contractAddress              | The L2 contract to be called.                                                                                                                         |
 | transaction.calldata                     | The input of the L2 transaction.                                                                                                                 |
 | transaction.l2GasLimit                   | Maximum amount of L2 gas that transaction can consume during execution on L2.                                                                    |
 | transaction.l2Value?           | `msg.value` of L2 transaction.                                                                                                                   |
 | transaction.factoryDeps?       | An array of L2 bytecodes that will be marked as known on L2.                                                                                     |
 | transaction.operatorTip?       | If the ETH value passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction. |                                                                                                                                         
-| transaction.gasPerPubdataByte?  | The maximum amount L2 gas that the operator may charge the user for.                                                                            |
+| transaction.gasPerPubdataByte?  | The L2 gas price for each published L1 calldata byte.                                           |
 | transaction.refundRecipient?   | The address on L2 that will receive the refund for the transaction. If the transaction fails, it will also be the address to receive `l2Value`. |
 | transaction.overrides                    | **Ethereum** transaction overrides. May be used to pass `gasLimit`, `gasPrice`, `value`, etc.                                                       |
 | returns                                  | `PriorityOpResponse` object.                                                                                                                    |
