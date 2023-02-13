@@ -44,7 +44,7 @@ yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/c
 
 Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, similar to the [quickstart tutorial](../developer-guides/hello-world.md). In this project our contracts will interact with system contracts, to achieve that, we need to include the `isSystem: true` in the compiler settings:
 
-```
+```typescript
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 module.exports = {
