@@ -76,7 +76,7 @@ module.exports = {
             link: "/dev/",
           },
           {
-            text: "zkSync Lite (ex. v1.x)",
+            text: "zkSync lite (ex. v1.x)",
             link: "https://docs.zksync.io",
           },
         ],
