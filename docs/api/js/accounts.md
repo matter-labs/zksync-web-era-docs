@@ -413,7 +413,7 @@ async transfer(tx: {
 | tx.to                | The address of the recipient.                           |
 | tx.amount            | The amount of the token to transfer.                    |
 | token?     | The address of the token. `ETH` by default.             |
-| overrides? | **zkSync** transaction overrides. May be used to pass l2 `gasLimit`, `gasPrice`, etc.    |
+| overrides? | **zkSync** transaction overrides. May be used to pass L2 `gasLimit`, `gasPrice`, etc.    |
 | returns              | An `ethers.ContractTransaction` object.                 |
 
 > Example
