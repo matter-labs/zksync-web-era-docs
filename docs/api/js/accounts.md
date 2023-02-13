@@ -302,7 +302,7 @@ async withdraw(transaction: {
 | tx.amount                | The amount of the token to transfer.                    |
 | token?         | The address of the token. `ETH` by default.             |
 | bridgeAddress? | The address of the bridge contract to be used.          |
-| overrides?     | **Ethereum** transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.    |
+| overrides?     | **zkSync** transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.    |
 | returns                  | A `TransactionResponse` object                          |
 
 ### Retrieving the underlying L1 wallet
