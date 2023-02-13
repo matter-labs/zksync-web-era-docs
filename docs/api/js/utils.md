@@ -14,9 +14,11 @@ Most of the utilities are used internally by the zkSync team. So this document w
 ## The "address" of ether
 
 While Ether is actually a token deployed on the address:
+
 ```typescript
 export const L2_ETH_TOKEN_ADDRESS = "0x000000000000000000000000000000000000800a";
 ```
+
 zkSync also allow a more friendly zero address alias in our SDK and API:
 
 ```typescript

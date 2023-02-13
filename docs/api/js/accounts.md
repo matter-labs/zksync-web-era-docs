@@ -133,13 +133,6 @@ const contract = await wallet.getMainContract();
 console.log(contract.address);
 ```
 
-### Getting У
-```typescript
-(method) Adapter.getL1BridgeContracts(): Promise<{
-    erc20: IL1Bridge;
-}
-```
-
 ### Getting token balance
 
 ```typescript
@@ -465,7 +458,7 @@ const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 async getMainContract(): Promise<Contract>
 ```
 ### Getting bridge contracts
-ERC-20 bridge `Contract`: 
+ERC-20 bridge `Contract` object: 
 
 ```typescript
 async getL1BridgeContracts(): Promise<{
