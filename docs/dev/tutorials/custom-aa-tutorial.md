@@ -8,7 +8,7 @@ In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 
 ::: warning
 
-Please note, that in the new `0.13.0` SDK version, the API/Node layer operates with gas. The ergs concept is used by VM only.
+Please note, that in the new `0.13.1` SDK version, the API/Node layer operates with gas. The ergs concept is used by VM only.
 
 :::
 
@@ -28,7 +28,7 @@ We will use the zkSync hardhat plugin for developing this contract. Firstly, we 
 mkdir custom-aa-tutorial
 cd custom-aa-tutorial
 yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.0 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
 ::: tip

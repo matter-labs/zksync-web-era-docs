@@ -19,7 +19,7 @@ This document will focus solely on how to pass these arguments to the SDK.
 
 In this case, you can provide an `Overrides` object as the last parameter. There you can supply fields like `gasPrice`, `gasLimit`, `nonce` etc.
 
-In order to make the SDK as flexible as possible, `zksync-web3` uses `customData` object in the overrides to supply zkSync-specific fields.To supply zkSync-specific fields, you need to pass the following override:
+In order to make the SDK as flexible as possible, `zksync-web3` uses `customData` object in the overrides to supply zkSync-specific fields. To supply zkSync-specific fields, you need to pass the following override:
 
 ```typescript
 {

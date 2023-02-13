@@ -43,19 +43,7 @@ export const IERC20 = new utils.Interface(require("../abi/IERC20.json"));
 Utility method that returns the correctly formed `paymasterParams` object for the common [paymaster flows](../../dev/developer-guides/aa.md#built-in-paymaster-flows).
 
 ```typescript
-export function getPaymasterParams(paymasterAddress: Address, paymasterInput: PaymasterInput): PaymasterParams {
-    if (paymasterInput.type == 'General') {
-        return {
-            paymaster: paymasterAddress,
-            paymasterInput: getGeneralPaymasterInput(paymasterInput)
-        };
-    } else {
-        return {
-            paymaster: paymasterAddress,
-            paymasterInput: getApprovalBasedPaymasterInput(paymasterInput)
-        };
-    }
-}
+export function getPaymasterParams(paymasterAddress: Address, paymasterInput: PaymasterInput): PaymasterParams
 ```
 
 The definition of the `PaymasterInput` can be found [here](./types.md).
@@ -67,7 +55,11 @@ Later on it will be possible to query the current recommended limit.
 ```typescript
 const GAS_PER_PUBDATA_BYTE = 17;
 
-export const DEFAULT_GAS_PER_PUBDATA_LIMIT = 800;
+// The large L2 gas per pubdata to sign. This gas is enough to ensure that
+// any reasonable limit will be accepted. Note, that the operator is NOT required to
+// use the honest value of gas per pubdata and it can use any value up to the one signed by the user.
+// In the future releases, we will provide a way to estimate the current gasPerPubdata.
+export const DEFAULT_GAS_PER_PUBDATA_LIMIT = 50000;
 
 export const RECOMMENDED_GAS_LIMIT = {
     DEPOSIT: 600_000,

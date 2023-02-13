@@ -39,7 +39,6 @@ export type Eip712Meta = {
     paymasterParams?: PaymasterParams;
 };
 
-// prettier-ignore
 export type BlockTag =
     | number
     | string // hex number
@@ -49,7 +48,6 @@ export type BlockTag =
     | 'earliest'
     | 'pending';
 
-// TODO (SMA-1585): Support create2 variants.
 export type DeploymentType = 'create' | 'createAccount';
 
 export interface Token {
