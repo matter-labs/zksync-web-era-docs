@@ -87,7 +87,7 @@ Wallet.connectToL1(provider: ethers.providers.Provider): Wallet
 | Name     | Description                                   |
 | -------- | --------------------------------------------- |
 | provider | An Ethereum node provider.                    |
-| returns  | A new Ethereum `Wallet` instance.             |
+| returns  | A new zkSync `Wallet` instance that is connected to L1 `provider` |
 
 > Example
 
