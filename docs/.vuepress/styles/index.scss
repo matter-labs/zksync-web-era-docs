@@ -19,6 +19,43 @@ div[class*=language-] > button.copy-code-button:not(.pure) {
     display: none;
 }
 
+.newsletter-input {
+    display: inline-block;
+    width: 18rem;
+    font-size: 1rem;
+    color: #8c8dfc;
+    background-color: #fff;
+    padding: 0.5rem 1rem;
+    margin: 0.1rem;
+    border-radius: 4px;
+    transition: background-color .1s ease;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+}
+
+.newsletter-button {
+    display: inline-block;
+    width: 10rem;
+    font-size: 1rem;
+    color: #8c8dfc;
+    background-color: #fff;
+    padding: 0.5rem 1.5rem;
+    margin: 0.2rem;
+    border-radius: 4px;
+    transition: background-color .1s ease;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+input[type="submit" i] {
+    appearance: auto;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+}
+
 .footer-wrapper {
     border: none !important;
     display: none !important;
@@ -86,6 +123,16 @@ $border-color: #e5e7eb;
 
 [data-theme="light"] a.title {
     color: $dark-text !important;
+}
+
+[data-theme="light"] img[src*="/logo.svg"] {
+    content: url("/zk-sync-era-dark.svg");
+    width: 6rem !important;
+}
+
+[data-theme="dark"] img[src*="/logo.svg"] {
+    content: url("/zk-sync-era-light.svg");
+    width: 6rem !important;
 }
 
 [data-theme="dark"] h3 {

@@ -36,12 +36,12 @@ export const enNavbar = navbar([
     text: "v2.0",
     children: [
       {
-        text: "v2.0",
+        text: "zkSync Era",
         icon: "play",
         link: "/dev/",
       },
       {
-        text: "v1.x",
+        text: "zkSync lite",
         icon: "play",
         link: "https://docs.zksync.io",
       },
