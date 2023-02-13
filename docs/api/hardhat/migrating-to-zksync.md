@@ -11,7 +11,7 @@ zkSync offers [multiple Hardhat plugins](./plugins.md) with different features b
 
 ## Install dependencies
 
-Although zkSync is compatible with Solidity and Vyper, the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the fist step will be to install the compiler and deployer hardhat plugins:
+Although zkSync is [compatible with Solidity and Vyper](../dev/../../dev/developer-guides/contracts/contracts.md), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the fist step will be to install the compiler and deployer hardhat plugins:
 
 ```sh
 # Yarn
