@@ -5,6 +5,7 @@
 ## Table of contents
 
 - [Getting started](./getting-started.md)
+- [Migrating existing project](./migrating-to-zksync.md)
 - [Plugins & configuration](./plugins.md)
 - [Local testing](./testing.md)
 - [Compiling non-inlinable libraries](./compiling-libraries.md)
