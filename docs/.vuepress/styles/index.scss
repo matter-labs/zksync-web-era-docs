@@ -1,4 +1,7 @@
 // place your custom styles here
+body {
+    overflow-x: hidden !important;
+}
 .site-name {
     font-weight: 700 !important;
     font-size: 1.2rem !important;
@@ -12,8 +15,13 @@ div[class*=language-] > button.copy-code-button:not(.pure) {
     background: #8687fb !important;
 }
 
+.copyright {
+    display: none;
+}
+
 .footer-wrapper {
     border: none !important;
+    display: none !important;
 }
 
 #toc {
@@ -35,4 +43,141 @@ a.title {
 
 .edit-link .icon {
     display: none !important;
+}
+
+/* Mobile */
+@media screen and (max-width: 419px) {
+    div[class*=language-] > button.copy-code-button:not(.pure) {
+        border-radius: 15px !important;
+        margin: 30px 0 -0.9rem 0 !important;
+    }
+    .copy-icon {
+        margin: 0 0 30px -0.1rem !important;
+    }
+}
+p.description {
+    font-size: 16px !important;
+}
+
+h1#main-title {
+    font-size: 30px !important;
+}
+
+.home.project .features {
+
+    border-top: none !important;
+}
+
+
+
+//Homepage Redesign
+$light-selector: 'html[data-theme="light"]';
+$dark-selector: 'html[data-theme="dark"]';
+
+$light-text: #fff;
+$dark-text: #2c3e50;
+$dark-background-color: #1d2536;
+$background-color: #fff;
+$border-color: #e5e7eb;
+
+[data-theme="dark"] a.title {
+    color: $light-text !important;
+}
+
+[data-theme="light"] a.title {
+    color: $dark-text !important;
+}
+
+[data-theme="dark"] h3 {
+    color: $light-text !important;
+}
+
+[data-theme="light"] h3{
+    color: $dark-text !important;
+}
+
+[data-theme="dark"] #main-title {
+    color: $light-text;
+}
+
+[data-theme="light"] #main-title {
+    color: $dark-text;
+}
+
+[data-theme="dark"] h1 {
+    color: $light-text !important;
+}
+
+[data-theme="light"] h1 {
+    color: $dark-text !important;
+}
+
+[data-theme="dark"] h2 {
+    color: $light-text !important;
+    border-bottom: none !important;
+}
+
+[data-theme="light"] h2{
+    color: $dark-text !important;
+    border-bottom: none !important;
+}
+
+[data-theme="dark"] h3 {
+    color: $light-text !important;
+}
+
+[data-theme="light"] h3{
+    color: $dark-text !important;
+}
+
+[data-theme="dark"] .feature {
+    border: 1px solid #393939;
+    border-radius: 8px;
+    background-color: #252934;
+}
+
+[data-theme="light"] .feature {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: $background-color;
+}
+
+[data-theme="light"] .font-icon {
+    color: #797afb !important;
+}
+
+[data-theme="dark"] .font-icon {
+    color: #797afb !important;
+}
+
+.home.project .feature .font-icon {
+    height: 44px;
+    width: 44px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+span{
+    font-size: 16px;
+}
+
+
+[data-theme="dark"] .site-name {
+    color: $light-text !important;
+}
+
+[data-theme="light"] .site-name {
+    color: $dark-text !important;
+}
+
+[data-theme="light"] img[src*="/images/code-light.png"] {
+    // background-image: url("/images/code-dark.png");
+    content: url("/images/code-light.png");
+    
+}
+
+[data-theme="dark"] img[src*="/images/code-light.png"] {
+    content: url("/images/code-dark.png");
 }
