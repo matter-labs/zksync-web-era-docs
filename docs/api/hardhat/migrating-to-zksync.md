@@ -115,13 +115,19 @@ To compile your contracts for zkSync, run:
 
 ```
 # Yarn
-yarn hardhat compile
+yarn hardhat compile --network zkSyncTestnet
 
 # NPM
-npm hardhat compile
+npm hardhat compile  --network zkSyncTestnet
 ```
 
-This will compile all contracts in the `contracts` folder and create the folders `artifacts-zk` and `cache-zk`.
+Passing the `--network` flag we make sure Hardhat will use the zksolc compiler. This command will compile all contracts in the `contracts` folder and create the folders `artifacts-zk` and `cache-zk`.
+
+::: tip 
+
+Non-default paths are not supported yet. Your contracts must be in the `/contracts` folder and the compiled artifacts will be in `artifacts-zk`. 
+
+:::
 
 If your contracts import any non-inlineable libraries, you'd need to configure them in the `hardhat.config.ts` file. Find more info and examples about [compiling libraries here](./compiling-libraries.md).
 
