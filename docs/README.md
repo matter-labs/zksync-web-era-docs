@@ -26,16 +26,16 @@ toc: false
 </div>
 <section>
   <div class="card-container">
-    <a href="/dev/fundamentals/zksync" class="card">
+    <a href="/dev/fundamentals/zkSync.html" class="card">
       <div class="content">
         <h3>About zkSync Era</h3>
         <p>Learn everything that makes zkSync thick. </p>
       </div>
     </a>
-    <a href="/dev/developer-guides/hello-world" class="card">
+    <a href="/dev/building-on-zksync/hello-world.html" class="card">
       <div class="content">
         <h3>Getting started</h3>
-        <p>A series of quick starts to get you off localhost.</p>
+        <p>A series of quick tips to get you off localhost.</p>
       </div>
     </a>
     <a href="/api" class="card">

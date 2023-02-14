@@ -376,3 +376,7 @@ span{
 [data-theme="light"]  p {
     color: $dark-text !important;
 }
+
+.navbar .nav-item > .nav-link:hover::after, .navbar .nav-item > .nav-link.active::after {
+    bottom: -14px;
+}
