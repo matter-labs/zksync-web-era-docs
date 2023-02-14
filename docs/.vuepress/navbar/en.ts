@@ -7,6 +7,11 @@ export const enNavbar = navbar([
   },
   
   { 
+    text: "Developer docs", 
+    link: "/dev/" 
+  },
+
+  { 
     text: "Tools and SDK", 
     link: "/api/" 
   },
