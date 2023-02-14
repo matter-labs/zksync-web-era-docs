@@ -9,6 +9,14 @@ Do you have a Hardhat project and you want to deploy it to zkSync? In this page 
 
 zkSync offers [multiple Hardhat plugins](./plugins.md) with different features but in this guide we'll focus on only the ones you'd need to do to migrate your project to zkSync.
 
+:::warning Non-default paths are not supported yet. 
+
+Contracts files must be included in the `contracts` folder and deployment scripts must be included in the `deploy` folder. 
+
+Support for custom paths will be included in the future.
+
+:::
+
 ## Install dependencies
 
 Although zkSync is [compatible with Solidity and Vyper](../dev/../../dev/developer-guides/contracts/contracts.md), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the fist step will be to install the compiler and deployer hardhat plugins:
@@ -118,22 +126,67 @@ To compile your contracts for zkSync, run:
 yarn hardhat compile --network zkSyncTestnet
 
 # NPM
-npm hardhat compile  --network zkSyncTestnet
+npx hardhat compile  --network zkSyncTestnet
 ```
 
-Passing the `--network` flag we make sure Hardhat will use the zksolc compiler. This command will compile all contracts in the `contracts` folder and create the folders `artifacts-zk` and `cache-zk`.
+Passing the `--network` flag we make sure Hardhat will use the zksolc compiler (or zkvyper). This command will compile all contracts in the `/contracts` folder and create the folders `artifacts-zk` and `cache-zk`.
 
-::: tip 
-
-Non-default paths are not supported yet. Your contracts must be in the `/contracts` folder and the compiled artifacts will be in `artifacts-zk`. 
-
-:::
 
 If your contracts import any non-inlineable libraries, you'd need to configure them in the `hardhat.config.ts` file. Find more info and examples about [compiling libraries here](./compiling-libraries.md).
 
 ## Deploy contracts
 
-To deploy your contracts you'd need to use the `Deployer` class from the `hardhat-zksync-deploy` hardhat plugin. This class takes care of all the specifics of [deploying contracts on zkSync](../dev/../../dev/developer-guides/contracts/contract-deployment.md). You can find an example deployment script in the [Getting started](./getting-started.md) page.
+::: tip Test ETH
+
+Obtain [test ETH from our faucet](https://portal.zksync.io/faucet) or just bridge GöerliETH using [the zkSync Portal](https://portal.zksync.io/bridge).
+
+:::
+
+To deploy your contracts you'd need to use the `Deployer` class from the `hardhat-zksync-deploy`  plugin. This class takes care of all the specifics of [deploying contracts on zkSync](../dev/../../dev/developer-guides/contracts/contract-deployment.md). 
+
+Here is a basic deployment script for a `Greeter` contract:
+
+
+```typescript
+import { utils, Wallet } from "zksync-web3";
+import * as ethers from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+
+// An example of a deploy script that will deploy and call a simple contract.
+export default async function (hre: HardhatRuntimeEnvironment) {
+  console.log(`Running deploy script`);
+
+  // Initialize the wallet.
+  const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
+
+  // Create deployer object and load the artifact of the contract we want to deploy.
+  const deployer = new Deployer(hre, wallet);
+  // Load contract
+  const artifact = await deployer.loadArtifact("Greeter");
+
+  // Deploy this contract. The returned object will be of a `Contract` type, 
+  // similar to the ones in `ethers`.
+  const greeting = "Hi there!";
+  // `greeting` is an argument for contract constructor.
+  const greeterContract = await deployer.deploy(artifact, [greeting]);
+
+  // Show the contract info.
+  console.log(`${artifact.contractName} was deployed to ${greeterContract.address}`);
+}
+
+```
+Include your deployment script in the `deploy` folder and execute it running:
+
+```
+# Yarn
+yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
+
+# NPM
+npx hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
+```
+
+If you don't include the `--script` option, all script files inside the `deploy` folder will be executed in alphabetical order.
 
 ## Frontend integration
 
@@ -146,7 +199,9 @@ import { utils, Provider, Contract, Wallet } from "zksync-web3";
 
 ```
 
-You'd also need to use the contract ABI from the `artifacts-zk` folder.
+You'd also need to use the contract ABI from the `artifacts-zk` folder to instantiate contracts.
+
+Apart from the same classes and methods provided by ethers, zksync-web3 includes additional methods for zksync-specific features. You can read more in the [`zksync-web3` documentation](../js/getting-started.md).
 
 ## Verify contracts
 
