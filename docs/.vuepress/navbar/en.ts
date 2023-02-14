@@ -1,14 +1,9 @@
 import { navbar } from "vuepress-theme-hope";
 
 export const enNavbar = navbar([
-  "/",
   { 
     text: "Home", 
     link: "/" 
-  },
-  { 
-    text: "Quickstart", 
-    link: "/dev/developer-guides/hello-world.html" 
   },
   { 
     text: "Developer Docs", 
@@ -24,16 +19,14 @@ export const enNavbar = navbar([
   },
 
   {
-    text: "v2.0",
+    text: "Versions",
     children: [
       {
         text: "zkSync Era",
-        icon: "play",
         link: "/dev/",
       },
       {
         text: "zkSync lite",
-        icon: "play",
         link: "https://docs.zksync.io",
       },
     ],
