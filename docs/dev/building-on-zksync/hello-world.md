@@ -176,7 +176,7 @@ This message is caused by using the default RPC endpoints provided by ethers. To
 
 In the output, you should see the address to which the contract was deployed.
 
-**Congratulations! You have deployed a smart contract to zkSync 2.0 testnet** 🎉
+**Congratulations! You have deployed a smart contract to zkSync Era testnet** 🎉
 
 Now you can visit the [zkSync block explorer](https://explorer.zksync.io/) and search your contract address to confirm it was successfully deployed.
 

@@ -283,7 +283,7 @@ module.exports = {
     //   collapsable: false
     // },
     // {
-    //   title: "Understanding zkSync 2.0",
+    //   title: "Understanding zkSync Era",
     //   path: "/dev/zksync-v2",
     //   collapsable: false,
     //   children: [

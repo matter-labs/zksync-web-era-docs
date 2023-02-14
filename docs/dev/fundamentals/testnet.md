@@ -1,6 +1,6 @@
 # zkSync testnet
 
-Welcome to zkSync 2.0 testnet! Our team would be very happy to see what you can build on zkSync. We are glad for any feedback you could provide!
+Welcome to zkSync Era testnet! Our team would be very happy to see what you can build on zkSync. We are glad for any feedback you could provide!
 
 ::: warning Alpha testnet
 
@@ -11,20 +11,20 @@ Note, that the system is still in active development, so:
 
 :::
 
-To get a first-hand impression of the zkSync 2.0 user experience:
+To get a first-hand impression of the zkSync Era user experience:
 
-- Go to the [zkSync 2.0 Portal](https://portal.zksync.io).
+- Go to the [zkSync Era Portal](https://portal.zksync.io).
 - Get some test tokens from the faucet, or deposit some from Ethereum's Görli testnet.
 - Make some transfers.
 
-The Portal is the central entry point into the zkSync 2.0 ecosystem for users and developers alike. It contains links to all relevant resources, such as [block explorer](https://explorer.zksync.io) or the catalog of featured dApps.
+The Portal is the central entry point into the zkSync Era ecosystem for users and developers alike. It contains links to all relevant resources, such as [block explorer](https://explorer.zksync.io) or the catalog of featured dApps.
 
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,4]" />
 
 ## Do I need experience with zkSync 1.x?
 
-Some experience with zkSync 1. x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync 2.0 and zkSync 1.x are very different systems, and experience with the latter is not needed to build on zkSync 2.0.
+Some experience with zkSync 1. x would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync Era and zkSync 1.x are very different systems, and experience with the latter is not needed to build on zkSync Era.
 
 ## What do I need to start building?
 
@@ -80,7 +80,7 @@ As the testnet is running on Goerli network, you will need to get some Goerli ET
 
 **Step 1**
 
-Head to [https://portal.zksync.io/](https://portal.zksync.io/) and connect your wallet. You will automatically be asked to add the “zkSync 2.0 testnet Goerli” network.
+Head to [https://portal.zksync.io/](https://portal.zksync.io/) and connect your wallet. You will automatically be asked to add the “zkSync Era testnet Goerli” network.
 
 You may also add the network manually to your metamask.
 
@@ -90,7 +90,7 @@ You may also add the network manually to your metamask.
 
 **Step 2 (Skip if you don’t have Goerli ETH)**
 
-We first go to “Bridge” and then “Deposit” to deposit some \$ETH to zkSync 2.0.
+We first go to “Bridge” and then “Deposit” to deposit some \$ETH to zkSync Era.
 
 ![image](../../assets/images/faq-1.png)
 

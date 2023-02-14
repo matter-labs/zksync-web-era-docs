@@ -1,6 +1,6 @@
 # Smart contract development
 
-zkSync 2.0 allows developers to build projects using the same programming languages and tools used to build on Ethereum.
+zkSync Era allows developers to build projects using the same programming languages and tools used to build on Ethereum.
 
 
 ## Solidity support
@@ -15,7 +15,7 @@ Solidity versions `>=0.8` are compiled through Yul, whereas `<=0.7` are compiled
 
 ### Using libraries in Solidity
 
-The usage of libraries in Solidity is supported in zkSync 2.0 with the following considerations:
+The usage of libraries in Solidity is supported in zkSync Era with the following considerations:
 
 - If a Solidity library can be inlined (i.e. it only contains `private` or `internal` methods), it can be used without any additional configuration.
 - However, if a library contains at least one `public` or `external` method, it's non-inlinable and its address needs to be passed explicitly to the compiler. You can learn more about [how to compile non-inlineable libraries in this section of the docs](../../../api/hardhat/compiling-libraries.md).
@@ -36,7 +36,7 @@ Although you can write smart contracts in both Solidty and Vyper, compiling thes
 - Enable us to improve the efficiency over the original EVM bytecode because with LLVM we can take advantage of the many optimizations and tools available in this mature ecosystem.
 - Pave the way for us to add support for integrating codebases written in other programming languages with LLVM front-ends. By doing so, developers can build dApps and use blockchains in ways that are currently not possible.
 
-We recommend using these compilers via [their correspondent Hardhat plugins](../../../api/hardhat/plugins.md) (although they're also available as binaries). These plugins should be added to the Hardhat's config file and allow developers to compile new projects or migrate existing ones to zkSync 2.0.
+We recommend using these compilers via [their correspondent Hardhat plugins](../../../api/hardhat/plugins.md) (although they're also available as binaries). These plugins should be added to the Hardhat's config file and allow developers to compile new projects or migrate existing ones to zkSync Era.
 
 ::: warning
 
@@ -51,7 +51,7 @@ Compilers are no longer released as Docker images and its usage is no longer rec
 
 ## EVM compatibility
 
-Almost every smart contract written for EVM will be supported by zkSync 2.0 and will hold all key security invariants so that no additional security re-auditing will be required in most cases. A notable exception is the contracts that use the following EVM opcodes:
+Almost every smart contract written for EVM will be supported by zkSync Era and will hold all key security invariants so that no additional security re-auditing will be required in most cases. A notable exception is the contracts that use the following EVM opcodes:
 
 - `SELFDESTRUCT` - It’s considered harmful and was deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).
 - `CALLCODE` - It was deprecated on Ethereum in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`.
@@ -67,7 +67,7 @@ Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256`
 
 ### Other considerations
 
-- **tx.origin usage:** `tx.origin` is a global variable in Solidity that returns the address of the account that sent the transaction. It's supported on zkSync 2.0, but if a custom account interacts with a contract that uses this, the transactions will fail. We also discourage its usage, as it can pose a threat to a phishing attack that can drain a contract of all funds.
+- **tx.origin usage:** `tx.origin` is a global variable in Solidity that returns the address of the account that sent the transaction. It's supported on zkSync Era, but if a custom account interacts with a contract that uses this, the transactions will fail. We also discourage its usage, as it can pose a threat to a phishing attack that can drain a contract of all funds.
 
-- **ecrecover usage:** If you are using 'ecrecover' to validate a signature of a user account, note that zkSync 2.0 comes with native account abstraction support. It is highly recommended not to rely on the fact that the account has an ECDSA private key attached to it, since they may be ruled by a multisig and use another signature scheme. Read more about [zkSync Account Abstraction support](https://v2-docs.zksync.io/dev/zksync-v2/aa.html#important-account-abstraction-support)
+- **ecrecover usage:** If you are using 'ecrecover' to validate a signature of a user account, note that zkSync Era comes with native account abstraction support. It is highly recommended not to rely on the fact that the account has an ECDSA private key attached to it, since they may be ruled by a multisig and use another signature scheme. Read more about [zkSync Account Abstraction support](https://v2-docs.zksync.io/dev/zksync-v2/aa.html#important-account-abstraction-support)
 

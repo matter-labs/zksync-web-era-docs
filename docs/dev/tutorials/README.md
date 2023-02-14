@@ -1,8 +1,8 @@
 # Tutorials
 
-Learn how to build dApps on the zkSync 2.0 protocol with the following step-by-step tutorials.
+Learn how to build dApps on the zkSync Era protocol with the following step-by-step tutorials.
 
-## List of zkSync 2.0 tutorials
+## List of zkSync Era tutorials
 
 - [Quickstart](../developer-guides/hello-world.md)
 - [Cross-chain governance](../tutorials/cross-chain-tutorial.md)

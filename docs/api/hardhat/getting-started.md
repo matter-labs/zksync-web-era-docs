@@ -179,7 +179,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 - Update the greet message in the contract with the `setGreeting()` method.
 - Retrieve the message from the contract again.
 
-**Congratulations! Your Hardhat project is now running on zkSync 2.0 testnet 🎉**
+**Congratulations! Your Hardhat project is now running on zkSync Era testnet 🎉**
 
 ::: tip Request-Rate Exceeded message
 

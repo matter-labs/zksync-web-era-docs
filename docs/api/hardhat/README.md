@@ -1,4 +1,4 @@
-# Hardhat plugins for zkSync 2.0
+# Hardhat plugins for zkSync Era
 
 [Hardhat](https://hardhat.org) is an Ethereum development environment designed for easy smart contract development in Solidity. One of its most prominent features is extendability, making it simple to add new plugins to a hardhat project.
 

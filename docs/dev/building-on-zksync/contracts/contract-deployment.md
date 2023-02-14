@@ -17,7 +17,7 @@ To deploy a contract on Ethereum, a user sends a transaction to the zero address
 
 **How deploying contracts works on zkSync.**
 
-To deploy a contract on zkSync 2.0, a user calls the `create` function of the [ContractDeployer system contract](./system-contracts.md#contractdeployer) providing the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the transaction (as it's an [EIP712 transaction](../../../api/api.md#eip712)). If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
+To deploy a contract on zkSync Era, a user calls the `create` function of the [ContractDeployer system contract](./system-contracts.md#contractdeployer) providing the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the transaction (as it's an [EIP712 transaction](../../../api/api.md#eip712)). If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
 We recommend using the [hardhat-zksync-deploy](../../../api/hardhat) plugin, to simplify the deployment process. It provides classes and methods to take care of all the deployment requirements, like generating the [bytecode hash of the contract](#format-of-bytecode-hash).
 
@@ -64,8 +64,8 @@ To gain a deterministic address, you should use the `create2` method from [Contr
 
 ## Deploying contracts from L1
 
-Deploying contracts on zkSync 2.0 is also possible via L1-L2 communication.
+Deploying contracts on zkSync Era is also possible via L1-L2 communication.
 
 The [interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l1/contracts/zksync/interfaces/IMailbox.sol#L78) for submitting L1->L2 transactions accepts the list of all the factory dependencies required for this particular transaction. The logic for working with them is the same as for the default L2 deployments. The only difference is that since the user has already published the full preimage for the bytecodes on L1, there is no need to publish these bytecodes again on L1.
 
-To learn more about L1-L2 communication on zkSync 2.0, visit [this section of the docs](../../developer-guides/bridging/l1-l2.md).
+To learn more about L1-L2 communication on zkSync Era, visit [this section of the docs](../../developer-guides/bridging/l1-l2.md).

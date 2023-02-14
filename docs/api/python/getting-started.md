@@ -19,7 +19,7 @@ In this guide we will demonstrate how to:
 :::
 ## Adding dependencies
 
-To install zksync 2.0, run the command below in your terminal.
+To install zkSync Era, run the command below in your terminal.
 
 ```console
 pip install zksync2

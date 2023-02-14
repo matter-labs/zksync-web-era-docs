@@ -1,7 +1,7 @@
 
 ## Contract interfaces
 
-There is a set of system contract that helps with the interaction with zkSync 2.0 network.<br>
+There is a set of system contract that helps with the interaction with zkSync Era network.<br>
 The following are the contracts:
 
 * NonceHolder

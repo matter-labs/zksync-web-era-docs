@@ -10,15 +10,15 @@ Sending transactions from Ethereum to zkSync is done via the zkSync smart contra
 ## Priority queue
 
 The goal of the priority queue is to provide a censorship-resistant way to interact with zkSync in case the operator becomes malicious or unavailable.
-The way the priority queue works in zkSync 2.0 is very close to how it worked in the previous version of zkSync.
+The way the priority queue works in zkSync Era is very close to how it worked in the previous version of zkSync.
 For the full picture, we first present how the priority queue works on zkSync 1.x.
-This gives the rationale for the new design of the priority queue for zkSync 2.0.
+This gives the rationale for the new design of the priority queue for zkSync Era.
 
 ### How it works in zkSync 1.x
 
 In the previous version of zkSync, we only had two operations that could be sent to zkSync from L1:
 - `Deposit` to bridge funds from Ethereum to zkSync. 
-- `FullExit` to bridges the funds back from Ethereum (this is essentially the same as `Withdraw` in zkSync 2.0). 
+- `FullExit` to bridges the funds back from Ethereum (this is essentially the same as `Withdraw` in zkSync Era). 
 
 If users wanted to deposit funds to or withdraw funds from zkSync, they would have to send a transaction request to the smart contract which will then get appended to the queue of priority transactions. The queue has the following rules:
 
@@ -29,7 +29,7 @@ The first rule is strictly enforced by the smart contract. The second rule may b
 
 ### What changes are needed?
 
-The process described above works well for a system with a small set of relatively light supported operations. zkSync 2.0 supports general smart contract computation, and thus some principles had to be changed in order to preserve the stability of the network.
+The process described above works well for a system with a small set of relatively light supported operations. zkSync Era supports general smart contract computation, and thus some principles had to be changed in order to preserve the stability of the network.
 
 Firstly, all transactions need to be supported by the priority queue. Users may have their funds locked on an L2 smart contract, and not on their own L2 account. Therefore before moving their funds to L1, they need to send an `Execute` transaction to the zkSync network to release the funds from that smart contract first.
 

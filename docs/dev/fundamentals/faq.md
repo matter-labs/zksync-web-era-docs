@@ -1,19 +1,19 @@
 # FAQ
 
-Here you will find some of the most common questions we receive about zkSync 2.0.
+Here you will find some of the most common questions we receive about zkSync Era.
 
-## What is zkSync 2.0?
+## What is zkSync Era?
 
-zkSync 2.0 is a Zero Knowledge (ZK) rollup that supports generalized EVM compatibility for the Ethereum blockchain. The primary benefit of zkSync 2.0 is that developers who have created EVM dApps can port to zkSync 2.0 effortlessly and realize significantly lower gas fees and more transactions per second while inheriting Ethereum's security and decentralization.
+zkSync Era is a Zero Knowledge (ZK) rollup that supports generalized EVM compatibility for the Ethereum blockchain. The primary benefit of zkSync Era is that developers who have created EVM dApps can port to zkSync Era effortlessly and realize significantly lower gas fees and more transactions per second while inheriting Ethereum's security and decentralization.
 
-## Why zkSync 2.0?
+## Why zkSync Era?
 
-zkSync 2.0 is a gigantic leap forward in Layer 2 technologies. It is a long-awaited improvement that offers many never before enjoyed benefits for Ethereum developers.
+zkSync Era is a gigantic leap forward in Layer 2 technologies. It is a long-awaited improvement that offers many never before enjoyed benefits for Ethereum developers.
 
-- **EVM Compatible** - zkSync is an EVM-compatible zero knowledge rollup that supports generalized EVM smart contracts. This means if you have EVM smart contracts it’s super easy to port your dApp to zkSync 2.0.
+- **EVM Compatible** - zkSync is an EVM-compatible zero knowledge rollup that supports generalized EVM smart contracts. This means if you have EVM smart contracts it’s super easy to port your dApp to zkSync Era.
 - **Ethos Compatible** - we are very aligned with the ethos of decentralization and open source. All of our code will strive to be fully open-source and zkSync will be executing a roadmap that will fully decentralize the sequencer and proof generation, and we will be executing a roadmap of organizational subtractive management - that is, we will be decentralizing our organization as well.
 - **Certainty** - Unlike previous methods attempting to scale Ethereum which have in some cases offered weaker security guarantees than for L1 (e.g. sidechains, plasma, and optimistic) zkSync uses zero-knowledge proofs which offer _certainty_ of security.
-- **Future Proof** - Ecosystem projects that adopt zkSync 2.0 now will enjoy all future improvements without the need to change their code, in particular coming from:
+- **Future Proof** - Ecosystem projects that adopt zkSync Era now will enjoy all future improvements without the need to change their code, in particular coming from:
   1. The prover technology (hardware acceleration).
   2. The compiler (integration of LLVM-enabled modern programming languages).
   3. All innovations of zkSync 3.0 (Hyperchains and Hyperbridges).
@@ -57,7 +57,7 @@ While maintaining maximum compatibility, the zkEVM has significant improvements 
   - Transaction fees can be paid in any token using [paymasters](../developer-guides/aa.md#paymasters).
   - Protocols can now subsidize gas for users from their smart contracts or even enable gasless transactions.
   - Transaction batches (multicall) can be confirmed in one click (big UX problem on Ethereum today).
-  - Learn more about [account abstraction support in zkSync 2.0](../developer-guides/aa.md).
+  - Learn more about [account abstraction support in zkSync Era](../developer-guides/aa.md).
 
 ### EVM Compatibility
 
@@ -72,7 +72,7 @@ zkSync is optimized to be EVM _compatible_ not EVM _equivalent_ for three primar
 2. Building on what we learned with zkSync 1.0, we were able to design a system optimised for performance and provability in ZK.
 3. The opcodes we’ve chosen NOT to support are deprecated by Ethereum itself, or rarely used. In the case a project needs them, modifications to work with zkSync are minimal and do not generate a need for a new security audit.
 
-Almost every smart contract written for EVM will be supported by zkSync 2.0 and will hold all key security invariants so that no additional security re-auditing will be required in most cases.
+Almost every smart contract written for EVM will be supported by zkSync Era and will hold all key security invariants so that no additional security re-auditing will be required in most cases.
 
 ::: warning Unsupported opcodes
 
@@ -84,9 +84,9 @@ There are a few other distinctions, for example, gas metering will be different 
 
 ## Security expectations
 
-zkSync 2.0’s data availability layer is Ethereum. All ecosystem projects that build on zkSync 2.0 will inherit the full security benefits of Ethereum.
+zkSync Era’s data availability layer is Ethereum. All ecosystem projects that build on zkSync Era will inherit the full security benefits of Ethereum.
 
-This is obviously a critically important topic for us, and we’re currently in the midst of a major review of zkSync 2.0’s security (including external audits, security contests, and overhauling and extending our bug bounty program).
+This is obviously a critically important topic for us, and we’re currently in the midst of a major review of zkSync Era’s security (including external audits, security contests, and overhauling and extending our bug bounty program).
 
 We’ll be expanding on the details here substantially very soon.
 
@@ -106,23 +106,23 @@ At a very high level, Account Abstraction allows us to make authorizations *pro
 
 In other words, Account Abstraction brings about major improvements to the overall user experience, and expands the application design space for developers. Learn more in [this blog post](https://www.argent.xyz/blog/wtf-is-account-abstraction/) by Argent.
 
-In zkSync 2.0 Account Abstraction is natively implemented, meaning accounts can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract.
+In zkSync Era Account Abstraction is natively implemented, meaning accounts can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract.
 
 If you want to better understand what Account Abstraction on zkSync looks like, you can read [this section of the docs](../developer-guides/aa.md), or try out our tutorial [here](../tutorials/custom-aa-tutorial.md).
 
-## zkSync 2.0 vs Alternatives
+## zkSync Era vs Alternatives
 
-### **zkSync 2.0 vs Optimistic Rollups**
+### **zkSync Era vs Optimistic Rollups**
 
 Optimistic rollups like Arbitrum and Optimism utilize the optimistic approach to secure their networks. At the time of their development, they represented an important incremental improvement over other available options. However, a widely held opinion ([including Vitalik Buterin's](https://coinculture.com/au/people/vitalik-buterin-zk-rollups-to-outperform-optimistic-rollups/)) is that optimistic methods represent yet another temporary solution and in the long run the only permanent and truly scalable solution will be blockchains based on Zero-Knowledge proofs.
 
 Optimistic rollups suffer from the following key issues:
 
-- **Optimistic rollups are secured via game theory.** This method assumes all transactions are valid and then utilizes an after-the-fact game theory mechanism to pay participants to discover fraudulent or otherwise invalid (e.g. because of bugs) transactions. Game theory is never perfect and as with the game theory that broke with stablecoins and other systems, we just don’t think it can be relied on in the long term and at true scale to offer the security the ecosystem needs. _zkSync 2.0, on the other hand, relies on math, not game theory, to provide the absolute certainty of proof that every single transaction is provably valid and not fraudulent._
-- **Optimistic methods take 7 days to settle**. Settlement time is becoming an increasingly important feature for ecosystem projects. As ecosystem projects’ needs mature, the need for as close to instant settlement will rise. With optimistic methods, this settlement problem will not go away. It's always going to be a 7-day settlement time because optimistic methods need 7 days for their after-the-fact game theory to conclude its challenge window. The only way around this is to bring in third parties that provide some liquidity - but then again this is a potential security risk in trusting the liquidity providers. _When zkSync 2.0 initially launches on Mainnet, it will provide settlement in hours but we are targeting settlement within minutes after months of work - and as we improve settlement times to near zero - no partner needs to change any code_.
-- **Optimistic rollups have no method of scaling beyond where they are now.** When optimistic methods first came out, they became popular because they scaled Ethereum (e.g. they enabled the processing of 10x Ethereum transactions _without degradation of security and decentralization_). The problem is that while they can scale Ethereum by 10x now, they have no mechanism to go beyond 10x without degrading security and decentralization. _In contrast, zkSync 2.0 is based on zero-knowledge proofs which have important characteristics that optimistic methods do not - they can hyperscale._
+- **Optimistic rollups are secured via game theory.** This method assumes all transactions are valid and then utilizes an after-the-fact game theory mechanism to pay participants to discover fraudulent or otherwise invalid (e.g. because of bugs) transactions. Game theory is never perfect and as with the game theory that broke with stablecoins and other systems, we just don’t think it can be relied on in the long term and at true scale to offer the security the ecosystem needs. _zkSync Era, on the other hand, relies on math, not game theory, to provide the absolute certainty of proof that every single transaction is provably valid and not fraudulent._
+- **Optimistic methods take 7 days to settle**. Settlement time is becoming an increasingly important feature for ecosystem projects. As ecosystem projects’ needs mature, the need for as close to instant settlement will rise. With optimistic methods, this settlement problem will not go away. It's always going to be a 7-day settlement time because optimistic methods need 7 days for their after-the-fact game theory to conclude its challenge window. The only way around this is to bring in third parties that provide some liquidity - but then again this is a potential security risk in trusting the liquidity providers. _When zkSync Era initially launches on Mainnet, it will provide settlement in hours but we are targeting settlement within minutes after months of work - and as we improve settlement times to near zero - no partner needs to change any code_.
+- **Optimistic rollups have no method of scaling beyond where they are now.** When optimistic methods first came out, they became popular because they scaled Ethereum (e.g. they enabled the processing of 10x Ethereum transactions _without degradation of security and decentralization_). The problem is that while they can scale Ethereum by 10x now, they have no mechanism to go beyond 10x without degrading security and decentralization. _In contrast, zkSync Era is based on zero-knowledge proofs which have important characteristics that optimistic methods do not - they can hyperscale._
 
-### zkSync 2.0 vs other zkRollups
+### zkSync Era vs other zkRollups
 
 While all zero knowledge rollup blockchains share the underlying technology of cryptographic proofs, there are many important differences.
 
@@ -136,7 +136,7 @@ While all zero knowledge rollup blockchains share the underlying technology of c
 
 ## Which Wallets are supported?
 
-At the moment, we support any Ethereum-based wallet. By default, the provided option on zkSync 2.0 portal is Metamask - besides connecting automatically, you can add zkSync network to your Metamask manually:
+At the moment, we support any Ethereum-based wallet. By default, the provided option on zkSync Era portal is Metamask - besides connecting automatically, you can add zkSync network to your Metamask manually:
 
 **Testnet network info**
 
@@ -164,23 +164,23 @@ Alternatively, you can use [our bridge](https://portal.zksync.io/bridge) to brid
 
 ## How long does it take to complete a deposit transaction?
 
-The transactions on zkSync 2.0 should not take more than 5 minutes.
+The transactions on zkSync Era should not take more than 5 minutes.
 
 ## Where can I see the transactions I submitted?
 
 Our [Block Explorer](https://explorer.zksync.io) will show everything you may need about a transaction.
 
-## Can someone claim the address I have for my contract in other EVM networks in zkSync 2.0?
+## Can someone claim the address I have for my contract in other EVM networks in zkSync Era?
 
 The contract address derivation formula is different from the regular EVM approach. Even if a contract is deployed from the same account address with the same nonce, the zkSync v2 contract address will not be the same as it is in another EVM network. This means, for example, that no one will be able to claim an existing Ethereum address of your protocol to try to trick users into interacting with a malicious version of it.
 
 So the hack like we saw with Wintermute on Optimism is not possible
 
-## What is the storage limit for smart contract on zkSync 2.0?
+## What is the storage limit for smart contract on zkSync Era?
 
 The current limit is 3600000000 gas.
 
-## What is Block Gas Limit on zkSync 2.0?
+## What is Block Gas Limit on zkSync Era?
 
 The current value is currently set at roughly 2^32 gas. <br>
 **Note**: This value is temporal and will be updated soon.
