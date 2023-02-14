@@ -1,6 +1,6 @@
 # Daily spend limit account
 
-In this tutorial, we'll create smart contract account with a daily spend limit thanks to the Account Abstraction support on zkSync.
+In this tutorial, we'll create a smart contract account with a daily spend limit thanks to the Account Abstraction support on zkSync.
 
 
 
@@ -172,7 +172,7 @@ Both `setSpendingLimit` and `removeSpendingLimit` can only be called by account 
 
 Specifically, `setSpendingLimit` sets a non-zero daily spending limit for a given token, and `removeSpendingLimit` disables the active daily spending limit by decreasing `limit` and `available` to 0 and setting `isEnabled` to false.
 
-`_isValidUpdate` returns false if the spending limit is not enabled and also throws an `Invalid Update` error if the user has spend some amount in the day (the available amount is different to the limit) or the function is called before 24 hours have passed since the last update. This ensures that users can't freely modify (increase or remove) the daily limit to spend more.
+`_isValidUpdate` returns false if the spending limit is not enabled and also throws an `Invalid Update` error if the user has spent some amount in the day (the available amount is different from the limit) or the function is called before 24 hours have passed since the last update. This ensures that users can't freely modify (increase or remove) the daily limit to spend more.
 
 ### Checking daily spending limit
 
@@ -235,7 +235,7 @@ Note: you might have noticed the comment `// L1 batch timestamp` above. The deta
 
 ### Full code
 
-Now, here is the complete code of the SpendLimit contract. But one thing to be noted is that the value of the ONE_DAY variable is set to `1 minutes` instead of `24 hours`. This is just for testing purposes (we don't want to wait a full day to see if it works!) so, please don't forget to change the value before for deploying the contract.
+Now, here is the complete code of the SpendLimit contract. But one thing to be noted is that the value of the ONE_DAY variable is set to `1 minutes` instead of `24 hours`. This is just for testing purposes (we don't want to wait a full day to see if it works!) so, please don't forget to change the value before deploying the contract.
 
 ```solidity
 
@@ -521,7 +521,7 @@ contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contr
 }
 ```
 
-The `_executeTransaction` method is where we'll use the methods from the `SpendLimit.sol` contrac. If the ETH transaction value is non-zero, the Account contract calls `_checkSpendingLimit` to verify the allowance for spending.
+The `_executeTransaction` method is where we'll use the methods from the `SpendLimit.sol` contract. If the ETH transaction value is non-zero, the Account contract calls `_checkSpendingLimit` to verify the allowance for spending.
 
 ```solidity
 

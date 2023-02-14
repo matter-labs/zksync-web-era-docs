@@ -19,15 +19,15 @@ In this guide we will demonstrate how to:
 This guide assumes that you are familiar with the [Go](https://go.dev/doc/) programming language.
 The Go version should be >= 1.17, and Go modules are required.
 
- 
 ## Installation
 
 To install the SDK with the `go get` command, run the following:
 
-```go 
+```go
 go get github.com/zksync-sdk/zksync2-go
 
 ```
+
 ## Instantiating the SDK
 
 To start using the SDK, you just need to pass in a provider configuration.
@@ -58,16 +58,17 @@ ethereumSigner, err = zksync2.NewEthSignerFromRawPrivateKey(pkBytes, 280)
 // also, init ZkSync Provider, specify ZkSync2 RPC URL (e.g. testnet)
 zkSyncProvider, err := zksync2.NewDefaultProvider("https://zksync2-testnet.zksync.dev")
 
-// then init Wallet, passing just created Ethereum Signer and ZkSync Provider   
+// then init Wallet, passing just created Ethereum Signer and ZkSync Provider
 wallet, err := zksync2.NewWallet(ethereumSigner, zkSyncProvider)
 
 // init default RPC client to Ethereum node (Goerli network in case of ZkSync2 testnet)
 ethRpc, err := rpc.Dial("https://goerli.infura.io/v3/<your_infura_node_id>")
 
-// and use it to create Ethereum Provider by Wallet 
+// and use it to create Ethereum Provider by Wallet
 ethereumProvider, err := w.CreateEthereumProvider(ethRpc)
 
 ```
+
 ## Deposit funds
 
 ```go
@@ -83,8 +84,8 @@ func main() {
 
     tx, err := ep.Deposit(
         zksync2.CreateETH(),
-        big.NewInt(1000000000000000), 
-        common.HexToAddress("<target_L2_address>"), 
+        big.NewInt(1000000000000000),
+        common.HexToAddress("<target_L2_address>"),
         nil,
     )
     if err != nil {
@@ -95,6 +96,7 @@ func main() {
 }
 
 ```
+
 ## Transfer
 
 ```go
@@ -108,9 +110,9 @@ import (
 func main() {
 
     hash, err := w.Transfer(
-        common.HexToAddress("<target_L2_address>"), 
+        common.HexToAddress("<target_L2_address>"),
         big.NewInt(1000000000000),
-        nil, 
+        nil,
         nil,
     )
     if err != nil {
@@ -121,9 +123,10 @@ func main() {
 }
 
 ```
+
 ## Withdraw
 
-```go 
+```go
 
 package main
 
@@ -135,9 +138,9 @@ import (
 func main() {
 
     hash, err := w.Withdraw(
-        common.HexToAddress("<target_L1_address>"), 
-        big.NewInt(1000000000000), 
-        nil, 
+        common.HexToAddress("<target_L1_address>"),
+        big.NewInt(1000000000000),
+        nil,
         nil,
     )
     if err != nil {
@@ -148,11 +151,12 @@ func main() {
 }
 
 ```
+
 ## Deploy a smart contract
 
 You can access the contract deployer interface as follows:
 
-``` go
+```go
 
     package main
 
@@ -171,9 +175,9 @@ func main() {
 
     // use helper to get (compute) address of deployed SC
     address, err := zksync2.ComputeL2Create2Address(
-        common.HexToAddress("<deployer_L2_address>"), 
-        bytecode, 
-        nil, 
+        common.HexToAddress("<deployer_L2_address>"),
+        bytecode,
+        nil,
         nil,
     )
     if err != nil {
