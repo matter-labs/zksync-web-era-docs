@@ -1,4 +1,4 @@
-# zkSync basics
+# zkSync Basics Era
 
 ## Prerequisites
 
