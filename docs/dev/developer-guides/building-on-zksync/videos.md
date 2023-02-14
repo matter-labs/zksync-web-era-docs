@@ -11,7 +11,7 @@ This talk covers everything you need to know about zkSync 2.0, and the user, and
 
 ## The zkEVM is Here - Steve Newcomb
 
-In this talk, Steve discusses how zkSync is going to be shipping the world's first zkEVM and how it's going to impact the blockchain space. 
+In this talk, Steve discusses how zkSync is going to be shipping the world's first zkEVM and how it's going to impact the blockchain space.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QkZUlqetTRA?start=600" title="The zkEVM is Here - Steve Newcomb" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
