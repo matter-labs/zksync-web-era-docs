@@ -3,6 +3,10 @@ import { navbar } from "vuepress-theme-hope";
 export const enNavbar = navbar([
   "/",
   { 
+    text: "Home", 
+    link: "/" 
+  },
+  { 
     text: "Quickstart", 
     link: "/dev/developer-guides/hello-world.html" 
   },
@@ -15,26 +19,10 @@ export const enNavbar = navbar([
     link: "/api/" 
   },
   { 
-    text: "Contact", 
+    text: "Contacts and Links", 
     link: "/contact.html" 
   },
-  {
-    text: "Community",
-    children: [
-      {
-        text: "Discord",
-        link: "https://join.zksync.dev/",
-      },
-      {
-        text: "Twitter",
-        link: "https://twitter.com/zksync",
-      },
-      {
-        text: "Telegram",
-        link: "https://t.me/zksync_support"
-      }
-    ],
-  },
+
   {
     text: "v2.0",
     children: [

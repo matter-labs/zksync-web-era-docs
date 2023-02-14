@@ -1,6 +1,7 @@
 // place your custom styles here
 body {
     overflow-x: hidden !important;
+    font-family: "Inter";
 }
 .site-name {
     font-weight: 700 !important;
@@ -210,6 +211,7 @@ span{
     font-size: 16px;
 }
 
+//Homepage css
 
 [data-theme="dark"] .site-name {
     color: $light-text !important;
@@ -227,4 +229,68 @@ span{
 
 [data-theme="dark"] img[src*="/images/code-light.png"] {
     content: url("/images/code-dark.png");
+}
+
+@media all and (max-width: 400px) {
+    .card-container {
+    flex-direction: column;
+    min-width: none;
+    }
+}
+
+.card-container {
+    display: flex;
+    min-width: 900px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    //flex-flow: row wrap;
+}
+.card-container:hover .card {
+    opacity: .7;
+    cursor: pointer;
+    filter: grayscale(1);
+}
+.card-container .card {
+    margin: 10px;
+    width: calc(100% / 3 - 20px);
+    float: left;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,.05);
+    background: #FFF;
+    -webkit-transition: .3s all ease;
+    transition: .15s all ease;
+}
+.card-container .card:hover {
+    box-shadow: 0 0 8px 3px rgba(0,0,0,.15);
+    transform: scale(1.025);
+    opacity: 1;
+    filter: grayscale(0);
+    transition: .35s all ease;
+}
+.card-container .card img {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.card-container .card .content {
+    border: 1px solid hsla(0,0%,100%,.07);
+    border-radius: 8px;
+    flex-grow: 1;
+    gap: 12px;
+    height: 94px;
+    padding: 20px;
+}
+.card-container .card h5 {
+    font-size: 16px;
+    font-weight: 550; 
+    color: #2c3e50;
+    padding: 0;
+    margin: 0 0 10px;
+}
+.card-container .card p {
+    color: #476582;
+    font-size: 16px;
+}
+
+.page-meta .meta-item .label {
+    display: none;
 }
