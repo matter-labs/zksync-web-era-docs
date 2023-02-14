@@ -52,19 +52,19 @@
    <a href="/api/tools/block-explorer" class="card">
       <div class="content">
         <h3>Block Explorer</h3>
-        <p>Interact with zkSync Era blockchain </p>
+        <p>Interact with zkSync Era blockchain. </p>
       </div>
    </a>
    <a href="https://portal.zksync.io/bridge" class="card">
       <div class="content">
         <h3>zkSync Era Portal</h3>
-        <p>Bridge, deposit and withdraw ERC20 tokens</p>
+        <p>Bridge, deposit and withdraw ERC20 tokens.</p>
       </div>
    </a>
       <a href="/api/tools/block-explorer/contract-verification" class="card">
          <div class="content">
             <h3>Contract verification</h3>
-            <p>Write, verify and deploy your smart contracts </p>
+            <p>Write, verify and deploy your smart contracts. </p>
          </div>
       </a>
   </div>
