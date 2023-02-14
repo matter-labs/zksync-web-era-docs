@@ -5,7 +5,7 @@ import theme from "./theme.js";
 export default defineUserConfig({
   dest: "dist",
 
-  base: "/docs/",
+  base: "/",
 
   head: [
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],

@@ -12,7 +12,7 @@ export default hopeTheme({
 
   iconAssets: "iconfont",
 
-  logo: "/logo.svg",
+  logo: "/zk-sync-era-line-light.svg",
 
   repo: "matter-labs/zksync-web-v2-docs",
 

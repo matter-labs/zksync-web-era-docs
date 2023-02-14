@@ -87,6 +87,14 @@ input[type="submit" i] {
     max-width: 70%;
     width: 400px;
     margin: 10px auto;
+
+    img {
+        width: 100%
+    }
+}
+
+[data-theme="dark"] img[src*="/logo.svg"] {
+    content: url("/zk-sync-era-light.svg") !important;
 }
 
 [data-theme="dark"] img[src*="code-light.png"] {
@@ -120,7 +128,7 @@ a.title {
 }
 
 .logo {
-    height: 1.2rem !important;
+    height: 1.8rem !important;
     padding: 0.70rem 0 !important;
 }
 
@@ -171,14 +179,12 @@ $border-color: #e5e7eb;
     color: $dark-text !important;
 }
 
-[data-theme="light"] img[src*="/logo.svg"] {
-    content: url("/zk-sync-era-dark.svg");
-    width: 6rem !important;
+[data-theme="light"] img[src*="/zk-sync-era-line-light.svg"] {
+    content: url("/zk-sync-era-line-dark.svg");
 }
 
-[data-theme="dark"] img[src*="/logo.svg"] {
-    content: url("/zk-sync-era-light.svg");
-    width: 6rem !important;
+[data-theme="dark"] img[src*="/zk-sync-era-line-light.svg"] {
+    content: url("/zk-sync-era-line-light.svg");
 }
 
 [data-theme="dark"] h3 {

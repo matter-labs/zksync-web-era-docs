@@ -7,11 +7,11 @@ toc: false
       <div class="landing">
          <div>
          <div class="hero-img">
-            <img  src="./docs/../assets/images/logo.svg" 
+            <img  src="/logo.svg" 
                   alt="zkSync ERA documentation"
             >
          </div>
-         <p class="intro-text">Welcome to zlSync Era docs! Here you will find guides, references and resources that will help you build with zkSync Era.</p>
+         <p class="intro-text">Welcome to zkSync Era docs! Here you will find guides, references and resources that will help you build with zkSync Era.</p>
          </div>
          <div class="col">
          <div class="about-img">
