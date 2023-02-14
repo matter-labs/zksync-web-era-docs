@@ -19,8 +19,6 @@ To get a first-hand impression of the zkSync Era user experience:
 
 The Portal is the central entry point into the zkSync Era ecosystem for users and developers alike. It contains links to all relevant resources, such as [block explorer](https://explorer.zksync.io) or the catalog of featured dApps.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,4]" />
 
 ## Do I need experience with zkSync 1.x?
 

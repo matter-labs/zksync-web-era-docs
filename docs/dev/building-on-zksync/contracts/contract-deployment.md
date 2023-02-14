@@ -6,8 +6,8 @@ All these specifics make the process of deploying smart contracts on zkEVM compl
 
 [Learn more about EIP712 transactions here](../../../api/api.md#eip712).
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ## Ethereum / zkSync differences
 

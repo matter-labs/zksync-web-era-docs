@@ -93,6 +93,12 @@ input[type="submit" i] {
     padding: 0 9rem !important;
 }
 
+@media screen and (max-width: 1600px) {
+    #toc {
+        padding: 0 4rem !important;
+    }
+}
+
 span.title {
     font-size: 14px !important;
 }
@@ -173,14 +179,6 @@ $border-color: #e5e7eb;
 
 [data-theme="light"] h3{
     color: $dark-text !important;
-}
-
-[data-theme="dark"] #main-title {
-    color: $light-text;
-}
-
-[data-theme="light"] #main-title {
-    color: $dark-text;
 }
 
 [data-theme="dark"] h1 {
@@ -287,10 +285,11 @@ span{
     width: calc(100% / 3 - 20px);
     float: left;
     //box-shadow: 0 0 2px 2px rgba(0,0,0,.05);
-    background: #FFF;
+    background: inherit;
     -webkit-transition: .3s all ease;
     transition: .15s all ease;
 }
+
 .card-container .card:hover {
     box-shadow: 0 0 8px 3px rgba(0,0,0,.15);
     transform: scale(1.025);

@@ -25,8 +25,8 @@ signer = PrivateKeyEthSigner(account, chain_id)
 
 ```
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ## sign_typed_data
 

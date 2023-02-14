@@ -8,8 +8,8 @@ The following are the contracts:
 * ERC20Contract & ERC20FunctionEncoder
 * ContractDeployer
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ### NonceHolder
 

@@ -6,8 +6,8 @@ Let's see how we can use the paymaster feature to build a custom paymaster that 
 - Create the ERC20 token contract and send some tokens to a brand new wallet.
 - Finally we will send a `mint` transaction from the newly created wallet via the paymaster. Even though the transaction would normally require some ETH to pay for the gas fee, our paymaster will execute the transaction in exchange for 1 unit of the ERC20 token.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ::: warning
 

@@ -6,7 +6,7 @@ export default hopeTheme({
   hostname: "https://v2-docs.zksync.io/",
 
   author: {
-    name: "Matterlabs",
+    name: "Matter Labs",
     url: "https://github.com/matter-labs/zksync-web-v2-docs",
   },
 

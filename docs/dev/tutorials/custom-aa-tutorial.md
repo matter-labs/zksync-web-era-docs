@@ -3,8 +3,8 @@
 Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../developer-guides/contracts/system-contracts.md#contractdeployer) system contract.
 In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 
 ## Prerequisite

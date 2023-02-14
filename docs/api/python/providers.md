@@ -33,8 +33,8 @@ def __init__(self,
 | zksync (optional)  | zkSync contract address                                 |
 | returns            | `Provider` object.                                      |
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ## `approve_deposits`
 Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync Ethereum smart contract, it returns the bridged erc20 token address.

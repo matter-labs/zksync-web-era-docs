@@ -1,7 +1,7 @@
 # Getting started
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ::: warning
 

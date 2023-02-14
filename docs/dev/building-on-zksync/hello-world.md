@@ -9,8 +9,8 @@ This is what we're going to build:
 - Users will be able to change the greeting on the smart contract.
 - By default, users will pay transaction fees in ETH. However, we will also explain how to [implement the testnet paymaster](#paying-fees-using-testnet-paymaster) to allow users to pay transaction fees with ERC20 tokens.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ::: warning
 
