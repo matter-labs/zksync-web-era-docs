@@ -32,6 +32,8 @@ export default hopeTheme({
       copyright: false,
 
       displayFooter: true,
+      lastUpdated:true,
+      contributors: true,
 
       metaLocales: {
         editLink: "Edit this page",
