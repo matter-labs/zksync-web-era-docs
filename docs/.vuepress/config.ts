@@ -5,6 +5,8 @@ import theme from "./theme.js";
 export default defineUserConfig({
   dest: "dist",
 
+  base: "/docs/",
+
   head: [
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true }],

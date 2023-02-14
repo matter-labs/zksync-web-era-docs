@@ -83,11 +83,6 @@ input[type="submit" i] {
     text-align: center;
 }
 
-.footer-wrapper {
-    border: none !important;
-    display: none !important;
-}
-
 .landing .hero-img {
     max-width: 70%;
     width: 400px;
@@ -374,8 +369,4 @@ span{
 
 [data-theme="light"]  p {
     color: $dark-text !important;
-}
-
-.page-meta .meta-item .label {
-    display: none;
 }

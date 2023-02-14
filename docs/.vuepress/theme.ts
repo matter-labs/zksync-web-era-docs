@@ -27,17 +27,16 @@ export default hopeTheme({
 
       // sidebar
       sidebar: enSidebar,
-
-      footer: "Made with ❤️ by <a href='https://matter-labs.io/'> Matterlabs</a>",
-      copyright: false,
-
-      displayFooter: true,
-
-      metaLocales: {
-        editLink: "Edit this page",
-      },
     },
   },
+
+  editLink: false,
+  lastUpdated: true,
+  contributors: true,
+  footer: "Made with ❤️ by <a href='https://matter-labs.io/'> Matter Labs</a>",
+  copyright: false,
+  displayFooter: true,
+
 
   plugins: {
     copyCode: {
