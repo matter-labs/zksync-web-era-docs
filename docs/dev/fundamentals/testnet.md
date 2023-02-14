@@ -1,4 +1,4 @@
-# zkSync testnet
+# Interact with zkSync Era
 
 Welcome to zkSync Era testnet! Our team would be very happy to see what you can build on zkSync. We are glad for any feedback you could provide!
 

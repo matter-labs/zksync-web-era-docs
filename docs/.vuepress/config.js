@@ -99,7 +99,7 @@ module.exports = {
           children: ["/dev/fundamentals/rollups.md", "/dev/fundamentals/zkSync.md", "/dev/fundamentals/testnet.md", "/dev/fundamentals/faq.md"],
         },
         {
-          title: "Understanding zkSync",
+          title: "Understanding zkSync Era",
           path: "/dev/developer-guides",
           collapsable: false,
           children: [

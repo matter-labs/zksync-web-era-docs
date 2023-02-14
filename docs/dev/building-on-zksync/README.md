@@ -4,9 +4,9 @@ A series of guides to get you off localhost.
 
 ## Table of contents
 
-- [Quickstart](../hello-world.md)
-- [Contract deployment](../contracts/contracts.md)
-- [Contract verification](../contracts/contract-verification.md)
+- [Quickstart](../building-on-zksync/hello-world.md)
+- [Contract deployment](../building-on-zksync/contracts/contracts.md)
+- [Contract verification](../building-on-zksync/contracts/contract-verification.md)
 - [Handling events](./events.md)
 - [JSON-RPC API](./rpc.md)
-- [Video resources](./videos.md)
+- [Video resources](../developer-guides/videos.md)

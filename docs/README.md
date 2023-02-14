@@ -20,7 +20,7 @@
   <div class="card-container">
     <a href="/dev/fundamentals/zksync" class="card">
       <div class="content">
-        <h3>About zkSync</h3>
+        <h3>About zkSync Era</h3>
         <p>Learn everything that makes zkSync thick. </p>
       </div>
     </a>

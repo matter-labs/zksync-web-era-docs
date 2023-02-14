@@ -15,10 +15,10 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 
 ### Developer guides
 
-- [Quickstart](./developer-guides/hello-world.md) - Learn how to build a full dApp using the zkSync development toolbox.
-- [Contract deployment](./developer-guides/contracts/contracts.md) - A guide on how to deploy smart contracts on zkSync.
+- [Quickstart](./building-on-zksync/hello-world.md) - Learn how to build a full dApp using the zkSync development toolbox.
+- [Contract deployment](./building-on-zksync/contracts/contracts.md) - A guide on how to deploy smart contracts on zkSync.
   - [Contract verification](../api/tools/block-explorer/contract-verification.md) - A guide on how to verify smart contracts with zkSync block explorer.
-- [System contracts](./developer-guides/contracts/system-contracts.md) - A brief overview of zkSync system contracts.
+- [System contracts](./developer-guides/system-contracts.md) - A brief overview of zkSync system contracts.
 - [Transactions](./developer-guides/transactions/transactions.md) - A guide on how zkSync handles transactions.
   - [Blocks](./developer-guides/transactions/blocks.md) - Learn how blocks work on zkSync.
   - [Fee mechanism](./developer-guides/transactions/fee-model.md) - A quick overview of the zkSync fee structure.
@@ -27,8 +27,9 @@ If this is your first time using zkSync, we recommend that you kick off at the b
   - [L1 / L2 Interoperability](./developer-guides/bridging/l1-l2-interop.md) - A quick brief on data communication between L1 and L2.
     - [L1 / L2 communication](./developer-guides/bridging/l1-l2.md) - Learn how to send data from Ethereum to zkSync.
     - [L2 / L1 communication](./developer-guides/bridging/l2-l1.md) - Learn how to send data from zkSync to Ethereum.
-- [Important links](./troubleshooting/important-links.md) - Get a quick reference to important links.
-- [Status](./troubleshooting/status.md) - Get updates on things we are currently working on.
+- [Changelogs](./troubleshooting/changelog.md) - Get updates, breaking changes and new features on zkSync Era.
+<!-- - [Important links](./troubleshooting/important-links.md) - Get a quick reference to important links. -->
+<!-- - [Status](./troubleshooting/status.md) - Get updates on things we are currently working on. -->
 - [Known Issues](./troubleshooting/known-issues.md) - Get answers to common issues you may find.
 
 ### Tools and SDKs

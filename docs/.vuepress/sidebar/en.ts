@@ -31,10 +31,11 @@ export const enSidebar = sidebar({
         "/dev/developer-guides/bridging/l1-l2-interop.md",
         "/dev/developer-guides/bridging/l1-l2.md",
         "/dev/developer-guides/bridging/l2-l1.md",
+        "/dev/developer-guides/videos.md",
       ],
     },
     {
-      text: "Building on zkSync",
+      text: "Building on zkSync Era",
       link: "/dev/building-on-zksync",
       children: [
         "/dev/building-on-zksync/hello-world.md",
@@ -42,7 +43,6 @@ export const enSidebar = sidebar({
         "/dev/building-on-zksync/contracts/contract-verification.md",
         "/dev/building-on-zksync/events.md",
         "/dev/building-on-zksync/rpc.md",
-        "/dev/building-on-zksync/videos.md",
       ],
     },
     {
@@ -58,8 +58,9 @@ export const enSidebar = sidebar({
       text: "Troubleshooting",
       link: "/dev/troubleshooting",
       children: [
-        "/dev/troubleshooting/important-links.md",
-        "/dev/troubleshooting/status.md",
+        // "/dev/troubleshooting/important-links.md",
+        "/dev/troubleshooting/changelog.md",
+        // "/dev/troubleshooting/status.md",
         "/dev/troubleshooting/docs-contribution/docs.md",
         "/dev/troubleshooting/docs-contribution/community-resources.md",
         "/dev/troubleshooting/known-issues.md",
