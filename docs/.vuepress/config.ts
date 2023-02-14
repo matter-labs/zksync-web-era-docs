@@ -5,6 +5,12 @@ import theme from "./theme.js";
 export default defineUserConfig({
   dest: "dist",
 
+  head: [
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true }],
+    ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap' }],
+  ],
+
   locales: {
     "/": {
       lang: "en-US",

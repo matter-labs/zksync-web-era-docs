@@ -1,9 +1,17 @@
-<div class="page-section">
-   <div class="container">
-      <div class="row">
-         <div class="col-lg">
-         <h1 >zkSync Era <br/> documentation</h1>
-         <p class="intro-text">Welcome to the docs! Here you will find guides, references and resources that will help you build with zkSync Era.</p>
+---
+toc: false
+---
+
+<div>
+   <div >
+      <div class="landing">
+         <div>
+         <div class="hero-img">
+            <img  src="./docs/../assets/images/logo.svg" 
+                  alt="zkSync ERA documentation"
+            >
+         </div>
+         <p class="intro-text">Welcome to zlSync Era docs! Here you will find guides, references and resources that will help you build with zkSync Era.</p>
          </div>
          <div class="col">
          <div class="about-img">
@@ -16,7 +24,7 @@
       </div>
    </div>
 </div>
-<section class=".info-section">
+<section>
   <div class="card-container">
     <a href="/dev/fundamentals/zksync" class="card">
       <div class="content">
@@ -43,28 +51,22 @@
 </div>
 <section>
   <div class="card-container">
-      <a href="/api/hardhat" class="card">
-         <div class="content">
-            <h3>Hardhat Plugins</h3>
-            <p>Explore Hardhat plugins in your Solidity and Vyper apps. </p>
-         </div>
-      </a>
-   <a href="/api/tools/block-explorer" class="card">
-      <div class="content">
-        <h3>Block Explorer</h3>
-        <p>Interact with zkSync Era blockchain. </p>
-      </div>
-   </a>
    <a href="https://portal.zksync.io/bridge" class="card">
       <div class="content">
         <h3>zkSync Era Portal</h3>
         <p>Bridge, deposit and withdraw ERC20 tokens.</p>
       </div>
    </a>
-      <a href="/api/tools/block-explorer/contract-verification" class="card">
+   <a href="/api/tools/block-explorer" class="card">
+      <div class="content">
+        <h3>Block Explorer</h3>
+        <p>Interact with zkSync Era blockchain. </p>
+      </div>
+   </a>
+   <a href="/api/hardhat" class="card">
          <div class="content">
-            <h3>Contract verification</h3>
-            <p>Write, verify and deploy your smart contracts. </p>
+            <h3>Hardhat Plugins</h3>
+            <p>Explore Hardhat plugins in your Solidity and Vyper apps. </p>
          </div>
       </a>
   </div>

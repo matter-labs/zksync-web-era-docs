@@ -21,7 +21,6 @@ div[class*=language-] > button.copy-code-button:not(.pure) {
 }
 
 
-
 [data-theme="dark"] .sidebar a{
     color: #FFFFFFCC !important;
 }
@@ -87,6 +86,20 @@ input[type="submit" i] {
 .footer-wrapper {
     border: none !important;
     display: none !important;
+}
+
+.landing .hero-img {
+    max-width: 70%;
+    width: 400px;
+    margin: 10px auto;
+}
+
+[data-theme="dark"] img[src*="code-light.png"] {
+    content: url("images/code-dark.png");
+}
+
+[data-theme="light"] img[src*="code-light.png"] {
+    content: url("images/code-light.png");
 }
 
 #toc {
@@ -262,32 +275,38 @@ span{
 
 @media all and (max-width: 400px) {
     .card-container {
-    flex-direction: column;
-    min-width: none;
+        flex-direction: column;
+        min-width: none;
     }
 }
 
 .card-container {
     display: flex;
     flex-direction: row;
-    min-width: 900px;
     flex-wrap: wrap;
     box-sizing: border-box;
     flex-flow: row wrap;
+
+    .card {
+        flex: 1;
+        margin: 10px;
+        display: flex;
+        min-width: 220px;
+        //box-shadow: 0 0 2px 2px rgba(0,0,0,.05);
+        background: inherit;
+        -webkit-transition: .3s all ease;
+        transition: .15s all ease;
+    
+        h3 {
+            font-size: 18px;
+            font-weight: 500; 
+        }
+    }
 }
-.card-container:hover .card {
+
+.card-container .card:hover {
     opacity: .7;
     cursor: pointer;
-    //filter: grayscale(1);
-}
-.card-container .card {
-    margin: 10px;
-    width: calc(100% / 3 - 20px);
-    float: left;
-    //box-shadow: 0 0 2px 2px rgba(0,0,0,.05);
-    background: inherit;
-    -webkit-transition: .3s all ease;
-    transition: .15s all ease;
 }
 
 .card-container .card:hover {
@@ -303,7 +322,6 @@ span{
     border-radius: 8px;
     flex-grow: 1;
     gap: 12px;
-    height: 100px;
     padding: 20px;
 }
 
@@ -348,12 +366,6 @@ span{
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     background-color: $background-color;
-}
-
-.card-container .card h3 {
-    font-size: 16px;
-    font-weight: 550; 
-    color: #2c3e50;
 }
 
 [data-theme="dark"]  p {

@@ -172,7 +172,7 @@ Our [Block Explorer](https://explorer.zksync.io) will show everything you may ne
 
 ## Can someone claim the address I have for my contract in other EVM networks in zkSync Era?
 
-The contract address derivation formula is different from the regular EVM approach. Even if a contract is deployed from the same account address with the same nonce, the zkSync v2 contract address will not be the same as it is in another EVM network. This means, for example, that no one will be able to claim an existing Ethereum address of your protocol to try to trick users into interacting with a malicious version of it.
+The contract address derivation formula is different from the regular EVM approach. Even if a contract is deployed from the same account address with the same nonce, the zkSync Era contract address will not be the same as it is in another EVM network. This means, for example, that no one will be able to claim an existing Ethereum address of your protocol to try to trick users into interacting with a malicious version of it.
 
 So the hack like we saw with Wintermute on Optimism is not possible
 

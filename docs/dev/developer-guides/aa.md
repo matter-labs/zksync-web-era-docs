@@ -130,7 +130,7 @@ The execution step is considered responsible for the actual execution of the tra
 ### Fees
 
 In EIP4337 you can see three types of gas limits: `verificationGas`, `executionGas`, `preVerificationGas`, that describe the gas limit for the different steps of the transaction inclusion in a block.
-zkSync 2 has only a single field, `gasLimit`, that covers the fee for all three. When submitting a transaction, make sure that `gasLimit` is enough to cover verification,
+zkSync Era has only a single field, `gasLimit`, that covers the fee for all three. When submitting a transaction, make sure that `gasLimit` is enough to cover verification,
 paying the fee (the ERC20 transfer mentioned above), and the actual execution itself.
 
 By default, calling `estimateGas` adds a constant to cover charging the fee and the signature verification for EOA accounts.

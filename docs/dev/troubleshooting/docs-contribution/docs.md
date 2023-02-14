@@ -1,6 +1,6 @@
 # Contribute to documentation
 
-zkSync documentation is open-sourced, it welcomes community contributions from individuals all around the world, including you.
+zkSync Era documentation is open-sourced, it welcomes community contributions from individuals all around the world, including you.
 
 Contributing to any large project necessitates collaboration among project members as well as the people and processes that make the experience productive and enjoyable.
 
