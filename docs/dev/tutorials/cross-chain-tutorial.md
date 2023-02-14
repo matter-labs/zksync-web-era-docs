@@ -89,7 +89,7 @@ You can [learn more about L1-L2 communication in this section of the docs](../de
 
 Although this tutorial does not focus on the process of deploying contracts on L1, we'll give you a quick overview on how to continue.
 
-1. You'll need an RPC node endpoint to the Göerli testnet to submit the deploymet transaction. You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
+1. You'll need an RPC node endpoint to the Göerli testnet to submit the deployment transaction. You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
 
 2. Create the file `/L1-governance/goerli.json` and fill in the following values:
 
@@ -309,7 +309,7 @@ You can find more specific details about deploying contracts in the [quickstart 
 
 ## Reading the counter value
 
-With both contracts deployed, we can create a small script to retrieve the value of the counter. For the sake of simplicity, we will create this scripts inside the `/L2-counter` folder. To keep the tutorial generic hardhat-specific features will not be used in it.
+With both contracts deployed, we can create a small script to retrieve the value of the counter. For the sake of simplicity, we will create this script inside the `/L2-counter` folder. To keep the tutorial generic hardhat-specific features will not be used in it.
 
 ### Getting the ABI of the counter contract
 

@@ -1,13 +1,15 @@
 # The search bar
 
 ## Overview
+
 Our user-friendly search tool gives you easy access to data from multiple search points and provides a more intuitive understanding of what you are searching for.
 
 ![Search Bar!](../../../assets/images/search-bar.png "search bar")
 
 The main search bar is where you can look up something specific right away. You can search by:
 ‍
-1. Block number: The number of the desired block for inspection. For example, enter `0` to see the contents of the chain’s genesis block. 
+
+1. Block number: The number of the desired block for inspection. For example, enter `0` to see the contents of the chain’s genesis block.
 2. Transaction hash/ID: The ID of a specific transaction. A transaction implies that byte code has been executed by the EVM. These include deployments of smart contracts and subsequent invocations.
 3. Wallet address: The wallet address of a sender or a receiver of a token.
 4. Contract address: The callable address of an Ethereum smart contract deployed on zkSync.

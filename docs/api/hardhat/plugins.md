@@ -35,4 +35,3 @@ import "@matterlabs/hardhat-zksync-toolbox";
 With the hardhat-zksync-toolbox plugin installed and imported, you will have access to all of the supported plugins and will be able to use them as needed in your project.
 
 > **_NOTE:_** To learn more about using any of the plugins that are supported by the hardhat-zksync-toolbox plugin, you can refer to their documentation above.
-

@@ -31,21 +31,21 @@ To let the server recognize EIP712 transactions, the `transaction_type` field is
 
 Instead of signing the RLP-encoded transaction, the user signs the following typed EIP712 structure:
 
-| Field name              | Type        |
-| ----------------------- | ----------- |
-| txType                  | `uint256`   |
-| from                    | `uint256`   |
-| to                      | `uint256`   |
-| gasLimit              | `uint256`   |
-| gasPerPubdataByteLimit   | `uint256`   |
-| maxFeePerGas            | `uint256 `  |
-| maxPriorityFeePerGas    | `uint256`   |
-| paymaster               | `uint256`   |
-| nonce                   | `uint256`   |
-| value                   | `uint256`   |
-| data                    | `bytes`     |
-| factoryDeps             | `bytes32[]` |
-| paymasterInput          | `bytes`     |
+| Field name             | Type        |
+| ---------------------- | ----------- |
+| txType                 | `uint256`   |
+| from                   | `uint256`   |
+| to                     | `uint256`   |
+| gasLimit               | `uint256`   |
+| gasPerPubdataByteLimit | `uint256`   |
+| maxFeePerGas           | `uint256 `  |
+| maxPriorityFeePerGas   | `uint256`   |
+| paymaster              | `uint256`   |
+| nonce                  | `uint256`   |
+| value                  | `uint256`   |
+| data                   | `bytes`     |
+| factoryDeps            | `bytes32[]` |
+| paymasterInput         | `bytes`     |
 
 These fields are conveniently handled by our [SDK](./js/features.md).
 
@@ -199,7 +199,7 @@ Given a block, a sender, a message, and an optional message log index in the blo
 | block           | `uint32`                | The number of the block where the message was emitted.                                                                                                                                                                                                             |
 | sender          | `address`               | The sender of the message (i.e. the account that called the L1Messenger system contract).                                                                                                                                                                          |
 | msg             | `bytes32`               | The keccak256 hash of the sent message.                                                                                                                                                                                                                            |
-| l2_log_position | `uint256` &#124; `null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/contracts/system-contracts.md#il1messenger) when submitting this message. If it is ommitted, the proof for the first message with such content will be returned. |
+| l2_log_position | `uint256` &#124; `null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/contracts/system-contracts.md#il1messenger) when submitting this message. If it is omitted, the proof for the first message with such content will be returned. |
 
 ### Output format
 
@@ -353,7 +353,6 @@ Don't want to document (at least for now):
 -->
 
 ## PubSub API
-
 
 zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/rpc/pubsub), except for the `syncing` subscription. This is because nodes on the zkSync network are technically always synchronized.
 

@@ -36,7 +36,6 @@ zkSync does not support using CREATE/CREATE2 with raw bytecode. We highly recomm
 
 zkSync does not support the Nomic Foundation's `console.log` contract. Due to different address derivation rules, even when deployed, the `console.log` library will likely have a different address from the one on Ethereum.
 
-
 <!---
 
 ## Metamask native transfers not working

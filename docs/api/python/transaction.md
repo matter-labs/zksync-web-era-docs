@@ -9,8 +9,8 @@ The EIP712 transaction type can be found in package: `zksync2.transaction.transa
 To convert ordinary transaction to `EIP712` type there are defined helper classes:
 
 - TxFunctionCall : Deploys the contract as a singed transaction.
-- TxCreateContract : 
-- TxCreate2Contract : 
+- TxCreateContract :
+- TxCreate2Contract :
 
 ## TxFunctionCall
 
