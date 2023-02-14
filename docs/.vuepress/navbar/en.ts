@@ -28,7 +28,7 @@ export const enNavbar = navbar([
         link: "/dev/",
       },
       {
-        text: "zkSync lite",
+        text: "zkSync Lite",
         link: "https://docs.zksync.io",
       },
     ],
