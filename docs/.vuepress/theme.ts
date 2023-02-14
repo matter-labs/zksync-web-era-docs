@@ -30,7 +30,7 @@ export default hopeTheme({
     },
   },
 
-  editLink: false,
+  editLink: true,
   lastUpdated: true,
   contributors: true,
   footer: "Made with ❤️ by <a href='https://matter-labs.io/'> Matter Labs</a>",

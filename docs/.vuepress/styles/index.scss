@@ -97,12 +97,12 @@ input[type="submit" i] {
     content: url("/zk-sync-era-light.svg") !important;
 }
 
-[data-theme="dark"] img[src*="code-light.png"] {
-    content: url("images/code-dark.png");
+[data-theme="dark"] img[src*="/images/code-light.png"] {
+    content: url("/images/code-dark.png");
 }
 
-[data-theme="light"] img[src*="code-light.png"] {
-    content: url("images/code-light.png");
+[data-theme="light"] img[src*="/images/code-light.png"] {
+    content: url("/images/code-light.png");
 }
 
 #toc {

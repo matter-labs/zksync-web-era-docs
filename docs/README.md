@@ -1,5 +1,9 @@
 ---
 toc: false
+editLink: false
+lastUpdated: false
+contributors: false
+
 ---
 
 <div>
@@ -16,7 +20,7 @@ toc: false
          <div class="col">
          <div class="about-img">
             <img  
-               src="./docs/../assets/images/code-light.png" 
+               src="/images/code-light.png" 
                alt="zkSync ERA documentation"
             >
          </div>
