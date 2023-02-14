@@ -23,7 +23,7 @@ export const enSidebar = sidebar({
       children: [
         "/dev/developer-guides/transactions/transactions.md",
         "/dev/developer-guides/transactions/blocks.md",
-        "/dev/developer-guides/contracts/system-contracts.md",
+        "/dev/developer-guides/system-contracts.md",
         "/dev/developer-guides/aa.md",
         "/dev/developer-guides/security.md",
         "/dev/developer-guides/transactions/fee-model.md",
@@ -35,14 +35,14 @@ export const enSidebar = sidebar({
     },
     {
       text: "Building on zkSync",
-      link: "/dev/developer-guides/building-on-zksync",
+      link: "/dev/building-on-zksync",
       children: [
-        "/dev/developer-guides/hello-world.md",
-        "/dev/developer-guides/contracts/contracts.md",
-        "/dev/developer-guides/contracts/contract-verification.md",
-        "/dev/developer-guides/building-on-zksync/events.md",
-        "/dev/developer-guides/building-on-zksync/rpc.md",
-        "/dev/developer-guides/building-on-zksync/videos.md",
+        "/dev/building-on-zksync/hello-world.md",
+        "/dev/building-on-zksync/contracts/contracts.md",
+        "/dev/building-on-zksync/contracts/contract-verification.md",
+        "/dev/building-on-zksync/events.md",
+        "/dev/building-on-zksync/rpc.md",
+        "/dev/building-on-zksync/videos.md",
       ],
     },
     {
