@@ -3,7 +3,7 @@
       <div class="row">
          <div class="col-lg">
          <h1 >zkSync Era <br/> documentation</h1>
-         <p>Welcome to the docs! Here you will find guides, references and resources that will help you build with zkSync Era.</p>
+         <p class="intro-text">Welcome to the docs! Here you will find guides, references and resources that will help you build with zkSync Era.</p>
          </div>
          <div class="col">
          <div class="about-img">
