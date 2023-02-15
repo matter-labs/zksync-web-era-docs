@@ -40,6 +40,7 @@ export const enSidebar = sidebar({
       children: [
         "/dev/building-on-zksync/hello-world.md",
         "/dev/building-on-zksync/contracts/contracts.md",
+        "/dev/building-on-zksync/contracts/contract-deployment.md",
         "/dev/building-on-zksync/contracts/contract-verification.md",
         "/dev/building-on-zksync/events.md",
         "/dev/building-on-zksync/rpc.md",
