@@ -1,4 +1,4 @@
-# Foundational topics
+# Getting started
 
 Learn the basics of zkSync and its ecosystem.
 

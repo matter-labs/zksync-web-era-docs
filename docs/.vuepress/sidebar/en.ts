@@ -18,20 +18,20 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Understanding zkSync",
+      text: "Understanding zkSync Era",
       link: "/dev/developer-guides",
       children: [
         "/dev/developer-guides/transactions/transactions.md",
         "/dev/developer-guides/transactions/blocks.md",
         "/dev/developer-guides/system-contracts.md",
         "/dev/developer-guides/aa.md",
-        "/dev/developer-guides/security.md",
         "/dev/developer-guides/transactions/fee-model.md",
         "/dev/developer-guides/bridging/bridging-asset.md",
         "/dev/developer-guides/bridging/l1-l2-interop.md",
         "/dev/developer-guides/bridging/l1-l2.md",
         "/dev/developer-guides/bridging/l2-l1.md",
         "/dev/developer-guides/videos.md",
+        // "/dev/developer-guides/security.md",
       ],
     },
     {
@@ -51,20 +51,20 @@ export const enSidebar = sidebar({
       children: [
         "/dev/tutorials/cross-chain-tutorial.md", 
         "/dev/tutorials/custom-aa-tutorial.md", 
+        "/dev/tutorials/aa-daily-spend-limit.md",
         "/dev/tutorials/custom-paymaster-tutorial.md",
-        "/dev/tutorials/aa-daily-spend-limit.md"
       ],
     },
     {
       text: "Troubleshooting",
       link: "/dev/troubleshooting",
       children: [
-        // "/dev/troubleshooting/important-links.md",
         "/dev/troubleshooting/changelog.md",
-        // "/dev/troubleshooting/status.md",
         "/dev/troubleshooting/docs-contribution/docs.md",
         "/dev/troubleshooting/docs-contribution/community-resources.md",
-        "/dev/troubleshooting/known-issues.md",
+        // "/dev/troubleshooting/known-issues.md",
+        // "/dev/troubleshooting/status.md",
+        // "/dev/troubleshooting/important-links.md",
       ],
     },
   ],
