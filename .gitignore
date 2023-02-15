@@ -46,3 +46,5 @@ lib
 .cache/
 .temp/
 .temp
+
+.DS_Store
