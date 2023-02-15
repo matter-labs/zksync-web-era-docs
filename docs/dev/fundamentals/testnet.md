@@ -33,7 +33,7 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 
 **Mainnet network info**
 
-- Network Name: `zkSync mainnet`
+- Network Name: `zkSync Era Mainnet`
 - New RPC URL: `https://zksync2-mainnet.zksync.io`
 - Chain ID: `324`
 - Currency Symbol: `ETH`

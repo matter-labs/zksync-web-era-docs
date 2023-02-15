@@ -54,7 +54,7 @@ Please note that for developer convenience, we usually treat the `Processed` and
 
 ### The State of zkSync
 
-The current version of zkSync 2.0 solves the needs of most applications on Ethereum, and with more features planned for release soon, zkSync 2.0 will provide developers with a design space to experiment with applications not possible on Ethereum today. With this release, we are supporting the following features:
+The current version of zkSync Era solves the needs of most applications on Ethereum, and with more features planned for release soon, zkSync Era will provide developers with a design space to experiment with applications not possible on Ethereum today. With this release, we are supporting the following features:
 
 - Native support of ECDSA signatures: Unlike the first version of zkSync and most of the ZK rollups, no special operation is required to register the user’s private key. Any account can be managed in L2 with the same private key that is used for L1.
 - Solidity 0.8.x support: Deploy your existing codebase with little to no changes required.

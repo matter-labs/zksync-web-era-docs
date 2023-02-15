@@ -1,8 +1,5 @@
 # Getting started
 
-
-
-
 ::: warning
 
 Please note, that in the new `0.13.1` SDK version, the API/Node layer operates with gas. The ergs concept is used by VM only.
@@ -94,7 +91,7 @@ const committedEthBalance = await zkSyncWallet.getBalance(zksync.utils.ETH_ADDRE
 const finalizedEthBalance = await zkSyncWallet.getBalance(zksync.utils.ETH_ADDRESS, "finalized");
 ```
 
-You can read more about what committed and finalized blocks are [here](../../dev/fundamentals/zkSync.md#confirmations-and-finality).
+You can read more about what committed and finalized blocks are [here](../../dev/developer-guides/transactions/blocks.md).
 
 ## Performing a transfer
 

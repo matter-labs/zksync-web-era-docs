@@ -11,7 +11,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 
 - [Intro to rollups](./fundamentals/rollups.md) - A brief overview of rollups.
 - [zkSync Era basics](./fundamentals/zkSync.md) - A quick overview of zkSync Era technologies.
-- [Interacting with zkSync Era](./fundamentals/testnet.md) - A brief intro into zkSync Era testnet.
+- [Interacting with zkSync Era](./fundamentals/testnet.md) - A brief intro into zkSync Era Testnet.
 - [FAQs](./fundamentals/faq.md) - Popular questions and answers about zkSync Era.
 
 ### Understanding zkSync Era

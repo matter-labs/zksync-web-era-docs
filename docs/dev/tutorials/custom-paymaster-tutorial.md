@@ -190,7 +190,7 @@ require(success, "Failed to transfer funds to the bootloader");
 
 ::: tip You should validate all the requirements first
 
-The [rules](../developer-guides/aa.md#paymaster-validation-rules) for the paymaster throttling say that the paymaster won't be throttled if the first storage read the value of which differed from the execution on the API was a storage slot that belonged to the user.
+The [rules](../developer-guides/aa.md#the-validation-step) for the paymaster throttling say that the paymaster won't be throttled if the first storage read the value of which differed from the execution on the API was a storage slot that belonged to the user.
 
 That is why it is important to verify that the user provided all the allowed prerequisites to the transaction _before_ performing any logic. This is the reason we _first_ check that the user provided enough allowance, and only then do we do `transferFrom`.
 

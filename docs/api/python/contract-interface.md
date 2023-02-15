@@ -44,7 +44,6 @@ More interested type include the `ERC20FunctionEncoder`. it's used to provide me
 Construction needs only Web3 object with appended zksync module(ZkSyncBuilder)
 
 It has only 1 single method: `python encode_method` with arguments of function name, and it's args
-Usage example you may find in [section](#examples) `Transfer funds (ERC20 tokens)`
 
 ### ContractDeployer
 

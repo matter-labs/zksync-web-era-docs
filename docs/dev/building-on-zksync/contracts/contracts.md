@@ -46,8 +46,8 @@ Compilers are no longer released as Docker images and its usage is no longer rec
 
 **Learn more about how to install and configure these plugins in the links below:**
 
-- [hardhat-zksync-solc documentation](../../../api/hardhat/hardhat-zksync-solc#html)
-- [hardhat-zksync-vyper documentation](../../../api/hardhat/hardhat-zksync-vyper.html)
+- [hardhat-zksync-solc documentation](../../../api/hardhat/hardhat-zksync-solc.md)
+- [hardhat-zksync-vyper documentation](../../../api/hardhat/hardhat-zksync-vyper.md)
 
 ## EVM compatibility
 
@@ -69,4 +69,4 @@ Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256`
 
 - **tx.origin usage:** `tx.origin` is a global variable in Solidity that returns the address of the account that sent the transaction. It's supported on zkSync Era, but if a custom account interacts with a contract that uses this, the transactions will fail. We also discourage its usage, as it can pose a threat to a phishing attack that can drain a contract of all funds.
 
-- **ecrecover usage:** If you are using 'ecrecover' to validate a signature of a user account, note that zkSync 2.0 comes with native account abstraction support. It is highly recommended not to rely on the fact that the account has an ECDSA private key attached to it, since they may be ruled by a multisig and use another signature scheme. Read more about [zkSync Account Abstraction support](../../developer-guides/aa.html#important-account-abstraction-support)
+- **ecrecover usage:** If you are using 'ecrecover' to validate a signature of a user account, note that zkSync Era comes with native account abstraction support. It is highly recommended not to rely on the fact that the account has an ECDSA private key attached to it, since they may be ruled by a multisig and use another signature scheme. Read more about [zkSync Account Abstraction support](../../developer-guides/aa.md)

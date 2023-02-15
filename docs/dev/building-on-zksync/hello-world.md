@@ -176,7 +176,7 @@ This message is caused by using the default RPC endpoints provided by ethers. To
 
 In the output, you should see the address to which the contract was deployed.
 
-**Congratulations! You have deployed a smart contract to zkSync Era testnet** 🎉
+**Congratulations! You have deployed a smart contract to zkSync Era Testnet** 🎉
 
 Now you can visit the [zkSync block explorer](https://explorer.zksync.io/) and search your contract address to confirm it was successfully deployed.
 
@@ -213,7 +213,7 @@ By default, the page should be running at `http://localhost:8080`. Open this URL
 
 In order to interact with dApps built on zkSync, connect the Metamask wallet to the zkSync alpha testnet network and bridge some funds to L2.
 
-- Follow [this guide](../fundamentals/testnet.md#connecting-metamask) to connect Metamask to zkSync.
+- Follow [this guide](../fundamentals/testnet.md#connecting-to-zksync-era-on-metamask) to connect Metamask to zkSync.
 - Use our [portal](https://portal.zksync.io) to bridge funds to zkSync.
 - Use the [faucet](https://portal.zksync.io/faucet) to get some test ERC20 tokens in your account.
 
@@ -536,7 +536,7 @@ Read more about **wallet_requestPermissions**, on the [metamask documentation](h
 
 ### Paying fees using testnet paymaster
 
-Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](../developer-guides/aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](../developer-guides/aa.md#testnet-paymaster) that is provided on all zkSync testnets.
+Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](../developer-guides/aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](../developer-guides/aa.md#testnet-paymaster) that is provided on all zkSync Era testnets.
 
 **The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH. This means that transaction fees in tokens with fewer decimals than ETH will be bigger, for example, USDC which has only 6 decimals. This is a know behaviour of the testnet paymaster, which was built for demonstration purposes only.
 

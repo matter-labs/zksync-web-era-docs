@@ -37,7 +37,7 @@ By default, the HTTP JSON-RPC API will run on port `3050`, while WS API will run
 
 ::: warning
 
-Note, that it is important that the first `start.sh` script invocation goes uninterrupted. If you face any issues after the bootstrapping process unexpectedly stopped, you should [reset](#resetting-the-zksync-state) the local zkSync state and try again.
+Note, that it is important that the first `start.sh` script invocation goes uninterrupted. If you face any issues after the bootstrapping process unexpectedly stopped, you should [reset](#reset-the-zksync-state) the local zkSync state and try again.
 
 :::
 

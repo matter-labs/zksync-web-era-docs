@@ -1,6 +1,6 @@
 # `hardhat-zksync-verify`
 
-This plugin is used to verify contracts on the zkSync 2.0 network.
+This plugin is used to verify contracts on the zkSync Era network.
 
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />

@@ -5,7 +5,7 @@
 Before going further into this section, please ensure you have read about
 [paymasters](../developer-guides/aa.md#paymasters).
 
-While the previous iterations of zkSync Era testnet natively supported paying fees in different tokens, it caused several compatibility issues with the Ethereum ecosystem. With the advent of the [paymasters](../developer-guides/aa.md#paymasters), this feature has become redundant as now anybody can deploy their paymaster smart contract that will swap ERC-20 tokens to ETH on the fly. You can read the tutorial on deploying custom paymasters [here](../tutorials/custom-paymaster-tutorial.md).
+While the previous iterations of zkSync Era Testnet natively supported paying fees in different tokens, it caused several compatibility issues with the Ethereum ecosystem. With the advent of the [paymasters](../developer-guides/aa.md#paymasters), this feature has become redundant as now anybody can deploy their paymaster smart contract that will swap ERC-20 tokens to ETH on the fly. You can read the tutorial on deploying custom paymasters [here](../tutorials/custom-paymaster-tutorial.md).
 
 For the sake of supporting the ecosystem, zkSync does not plan to deploy any paymaster on mainnet. However, with better DevEx in mind, we have deployed one on the testnet. The testnet paymaster enables paying fees in an ERC-20 compatible token at a 1:1 exchange rate. You can read the documentation [here](../developer-guides/aa.md#testnet-paymaster). In this section, we show a brief example on migration from the old way of paying fees with ERC20 tokens to the new ones.
 

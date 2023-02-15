@@ -140,7 +140,7 @@ At the moment, we support any Ethereum-based wallet. By default, the provided op
 
 **Testnet network info**
 
-- Network Name: `zkSync alpha testnet`
+- Network Name: `zkSync Era Testnet`
 - New RPC URL: `https://zksync2-testnet.zksync.dev`
 - Chain ID: `280`
 - Currency Symbol: `ETH`
@@ -149,7 +149,7 @@ At the moment, we support any Ethereum-based wallet. By default, the provided op
 
 **Mainnet network info**
 
-- Network Name: `zkSync mainnet`
+- Network Name: `zkSync Era Mainnet`
 - New RPC URL: `https://zksync2-mainnet.zksync.io`
 - Chain ID: `324`
 - Currency Symbol: `ETH`
@@ -160,7 +160,7 @@ At the moment, we support any Ethereum-based wallet. By default, the provided op
 
 To access the testnet funds you can use ([Faucet](https://portal.zksync.io/faucet)) by tweeting about us and get some tokens. Make sure that Twitter message contains your Ethereum address to which we’ll send funds and that it’s not your main Ethereum account. The faucet will not work with new Twitter accounts & accounts without avatar.
 
-Alternatively, you can use [our bridge](https://portal.zksync.io/bridge) to bridge ETH from Goerli to zkSync alpha testnet.
+Alternatively, you can use [our bridge](https://portal.zksync.io/bridge) to bridge ETH from Goerli to zkSync Era Testnet.
 
 ## How long does it take to complete a deposit transaction?
 

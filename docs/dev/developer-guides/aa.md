@@ -54,7 +54,7 @@ There needs to be a solution on the protocol level that is both cheap for users 
 
 The following protocol is used:
 
-- Before each transaction starts, the system queries the [NonceHolder](../developer-guides/system-contracts.md#inonceholder) to check whether the provided nonce has already been used or not.
+- Before each transaction starts, the system queries the [NonceHolder](../developer-guides/system-contracts.md#nonceholder) to check whether the provided nonce has already been used or not.
 - If the nonce has not been used yet, the transaction validation is run. The provided nonce is expected to be marked as "used" during this time.
 - After the validation, the system checks whether this nonce is now marked as used.
 
@@ -299,7 +299,7 @@ If you are developing a paymaster, you _should not_ trust the transaction sender
 
 #### Working with paymaster flows using `zksync-web3` SDK
 
-The `zksync-web3` SDK provides [methods](../../api/js/utils.md#encoding-paymaster-param) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
+The `zksync-web3` SDK provides [methods](../../api/js/utils.md#encoding-paymaster-params) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
 
 ### Testnet paymaster
 

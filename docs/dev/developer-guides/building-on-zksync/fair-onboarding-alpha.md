@@ -176,11 +176,11 @@ Make sure you’ve deposited funds on zkSync before following the instructions a
 
 You can find an examples of the config file and deployment scripts in the [Quickstart Guide](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html). If you have an existing project, you can follow the [Hardhat zkSync migration guide](https://v2-docs.zksync.io/api/hardhat/migrating-to-zksync.html).
 
-## zkSync mainnet details
+## zkSync Era Mainnet details
 
 You can add zkSync mainnet to your wallet using the details below:
 
-- Network Name: `zkSync mainnet`
+- Network Name: `zkSync Era Mainnet`
 - New RPC URL: `https://zksync2-mainnet.zksync.io`
 - Chain ID: `324`
 - Currency Symbol: `ETH`
@@ -192,7 +192,7 @@ You can add zkSync mainnet to your wallet using the details below:
 To register your project for Fair Onboarding fill out the form linked [here](https://forms.gle/wXjWiEeg16eMCWKJ8). You will need the following information:
 
 - Your project name and description
-- The address of your contracts on zkSync 2.0 testnet
+- The address of your contracts on zkSync Era Testnet
 - The L1 addresses you will use for bridging
 - A list of any tokens you intend to bridge during Fair Onboarding
 
