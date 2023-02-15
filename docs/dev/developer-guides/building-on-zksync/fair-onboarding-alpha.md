@@ -180,7 +180,7 @@ You can find an examples of the config file and deployment scripts in the [Quick
 
 You can add zkSync mainnet to your wallet using the details below:
 
-- Network Name: `zkSync Era mainnet`
+- Network Name: `zkSync mainnet`
 - New RPC URL: `https://zksync2-mainnet.zksync.io`
 - Chain ID: `324`
 - Currency Symbol: `ETH`
