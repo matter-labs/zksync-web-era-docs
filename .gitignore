@@ -3,6 +3,8 @@
 # dependencies
 node_modules
 /.pnp
+.temp/
+.temp
 .pnp.js
 /.yarn/cache/
 /.yarn/build-state.yml

@@ -20,8 +20,9 @@ This gives the rationale for the new design of the priority queue for zkSync 2.0
 ### How it works in zkSync 1.x
 
 In the previous version of zkSync, we only had two operations that could be sent to zkSync from L1:
-- `Deposit` to bridge funds from Ethereum to zkSync. 
-- `FullExit` to bridges the funds back from Ethereum (this is essentially the same as `Withdraw` in zkSync 2.0). 
+
+- `Deposit` to bridge funds from Ethereum to zkSync.
+- `FullExit` to bridges the funds back from Ethereum (this is essentially the same as `Withdraw` in zkSync 2.0).
 
 If users wanted to deposit funds to or withdraw funds from zkSync, they would have to send a transaction request to the smart contract which will then get appended to the queue of priority transactions. The queue has the following rules:
 
@@ -36,16 +37,16 @@ The process described above works well for a system with a small set of relative
 
 Firstly, all transactions need to be supported by the priority queue. Users may have their funds locked on an L2 smart contract, and not on their own L2 account. Therefore before moving their funds to L1, they need to send an `Execute` transaction to the zkSync network to release the funds from that smart contract first.
 
-Secondly, the priority queue needs to stay censorship-resistant. But imagine what will happen if users start sending a lot of transactions that take the entirety of the block ergs limit? There needs to be a way to prevent spam attacks on the system. 
-That's why submitting transactions to the priority queue is no longer free. 
-Users need to pay a certain fee to the operator for processing their transactions. It is really hard to calculate the accurate fee in a permissionless way. 
-Thus, the fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the users' transaction, while `txBaseCost` is the base cost for the transaction, which depends on its parameters (e.g. `ergs_limit` for `Execute` transaction).
+Secondly, the priority queue needs to stay censorship-resistant. But imagine what will happen if users start sending a lot of transactions that take the entirety of the block gas limit? There needs to be a way to prevent spam attacks on the system.
+That's why submitting transactions to the priority queue is no longer free.
+Users need to pay a certain fee to the operator for processing their transactions. It is really hard to calculate the accurate fee in a permissionless way.
+Thus, the fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the users' transaction, while `txBaseCost` is the base cost for the transaction, which depends on its parameters (e.g. `gas_limit` for `Execute` transaction).
 
 Thirdly, the operator can not commit to processing every transaction within `X` days. Again, this is needed to prevent spam attacks on the priority queue. We changed this rule to the following one:
 
 - The operator must do at least `X` amount of work (see below) on the priority queue or the priority queue should be empty.
 
-In other words, we require the operator to do its best instead of requiring a strict deadline. The measure of "the work" is still to be developed. Most likely it will be the number of `ergs` the priority operations used.
+In other words, we require the operator to do its best instead of requiring a strict deadline. The measure of "the work" is still to be developed. Most likely it will be the number of `gas` the priority operations used.
 
 In the future, we will also add the ability to "prioritize" L1->L2 transactions, allowing users to speed up the inclusion of their transactions in exchange for paying a higher fee to the operator.
 

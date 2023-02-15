@@ -15,34 +15,37 @@ This document will focus solely on how to pass these arguments to the SDK.
 
 ## Overrides
 
-`ethers` has a notion of overrides. For any on-chain transaction, `ethers` finds the optimal `gasPrice`, `gasLimit`, `nonce`, and other important fields under the hood. But sometimes, you may have a need to explicitly provide these values (you want to set a smaller `gasPrice` for instance, or sign a transaction with future `nonce`).
+`ethers.js` has a notion of overrides. For any on-chain transaction, `ethers.js` finds the optimal `gasPrice`, `gasLimit`, `nonce`, and other important fields under the hood. But sometimes, you may have a need to explicitly provide these values (you want to set a smaller `gasPrice` for instance, or sign a transaction with future `nonce`).
 
 In this case, you can provide an `Overrides` object as the last parameter. There you can supply fields like `gasPrice`, `gasLimit`, `nonce` etc.
 
-In order to make the SDK as flexible as possible, the library uses the overrides to supply zkSync-specific fields. To supply zkSync-specific fields, you need to pass the following override:
+In order to make the SDK as flexible as possible, `zksync-web3` uses `customData` object in the overrides to supply zkSync-specific fields. To supply zkSync-specific fields, you need to pass the following override:
 
 ```typescript
 {
-    customData: {
-        ergsPerPubdata?: BigNumberish;
-        factoryDeps?: BytesLike[];
-        customSignature?: BytesLike;
-        paymasterParams?: {
-            paymaster: Address;
-            paymasterInput: BytesLike;
-        };
+    overrides: {
+        customData: {
+            gasPerPubdata?: BigNumberish;
+            factoryDeps?: BytesLike[];
+            customSignature?: BytesLike;
+            paymasterParams?: {
+                paymaster: Address;
+                paymasterInput: BytesLike;
+            };
+        }
     }
 }
 ```
+Please note once again: everything that is inside `customData` in `overrides` is related to zkSync(L2 gas, etc).
 
 Examples:
 
-Override to deploy a contract with bytecode `0xcde...12` and enforce that the operator will not charge more than `100` ergs per published bytes on layer 1:
+Override to deploy a contract with bytecode `0xcde...12` and enforce that the operator will not charge more than `100` L2 gas per published bytes on Layer 1:
 
 ```typescript
 {
     customData: {
-        ergsPerPubdata: "100",
+        gasPerPubdata: "100", 
         factoryDeps: ["0xcde...12"],
     }
 }
@@ -82,20 +85,20 @@ const gasLimit = await greeter.estimateGas.setGreeting(greeting);
 const fee = gasPrice.mul(gasLimit);
 
 const paymasterParams = utils.getPaymasterParams(testnetPaymaster, {
-    type: 'ApprovalBased',
-    token,
-    minimalAllowance: fee,
-    innerInput: new Uint8Array()
+  type: "ApprovalBased",
+  token,
+  minimalAllowance: fee,
+  innerInput: new Uint8Array(),
 });
 const sentTx = await sender.sendTransaction({
-    ...tx,
-    maxFeePerGas: gasPrice,
-    maxPriorityFeePerGas: BigNumber.from(0),
-    gasLimit,
-    customData: {
-        ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT,
-        paymasterParams
-    }
+  ...tx,
+  maxFeePerGas: gasPrice,
+  maxPriorityFeePerGas: BigNumber.from(0),
+  gasLimit,
+  customData: {
+    gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+    paymasterParams,
+  },
 });
 ```
 

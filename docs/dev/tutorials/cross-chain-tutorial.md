@@ -8,6 +8,14 @@ This tutorial serves as an example of how to implement L1 to L2 contract interac
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
+::: warning
+
+Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM. 
+
+This tutorial will be updated shortly to reflect those changes.
+
+:::
+
 ## Preliminaries
 
 In this tutorial, it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md).
@@ -63,12 +71,12 @@ contract Governance {
         address zkSyncAddress,
         address contractAddr,
         bytes memory data,
-        uint64 ergsLimit
+        uint64 gasLimit
     ) external payable {
         require(msg.sender == governor, "Only governor is allowed");
 
         IZkSync zksync = IZkSync(zkSyncAddress);
-        zksync.requestL2Transaction{value: msg.value}(contractAddr, 0, data, ergsLimit, new bytes[](0));
+        zksync.requestL2Transaction{value: msg.value}(contractAddr, 0, data, gasLimit, new bytes[](0));
     }
 }
 ```
@@ -81,7 +89,7 @@ You can [learn more about L1-L2 communication in this section of the docs](../de
 
 Although this tutorial does not focus on the process of deploying contracts on L1, we'll give you a quick overview on how to continue.
 
-1. You'll need an RPC node endpoint to the Göerli testnet to submit the deploymet transaction. You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
+1. You'll need an RPC node endpoint to the Göerli testnet to submit the deployment transaction. You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
 
 2. Create the file `/L1-governance/goerli.json` and fill in the following values:
 
@@ -167,8 +175,14 @@ Now that we have the L1 governance contract addressed, let's proceed with the co
 ```
 yarn init -y
 # install all dependencies
-yarn add -D typescript ts-node ethers zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+
+::: tip
+
+The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
+
+:::
 
 2. Create the `hardhat.config.ts` file and paste the following code there:
 
@@ -178,7 +192,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.2.2",
+    version: "1.3.1",
     compilerSource: "binary",
   },
   defaultNetwork: "zkSyncTestnet",
@@ -295,7 +309,7 @@ You can find more specific details about deploying contracts in the [quickstart 
 
 ## Reading the counter value
 
-With both contracts deployed, we can create a small script to retrieve the value of the counter. For the sake of simplicity, we will create this scripts inside the `/L2-counter` folder. To keep the tutorial generic hardhat-specific features will not be used in it.
+With both contracts deployed, we can create a small script to retrieve the value of the counter. For the sake of simplicity, we will create this script inside the `/L2-counter` folder. To keep the tutorial generic hardhat-specific features will not be used in it.
 
 ### Getting the ABI of the counter contract
 
@@ -413,7 +427,7 @@ async function main() {
 
 5. Executing transactions from L1 requires the caller to pay some fee to the L2 operator.
 
-Firstly, this fee depends on the length of the calldata and the `ergsLimit`. If you are new to this concept then it is pretty much the same as the `gasLimit` on Ethereum. You can read more about [zkSync fee model here](../developer-guides/transactions/fee-model.md).
+Firstly, this fee depends on the length of the calldata and the `gasLimit`. If you are new to this concept then it is pretty much the same as the `l2gasLimit` on Ethereum. You can read more about [zkSync fee model here](../developer-guides/transactions/fee-model.md).
 
 Secondly, the fee depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched from the L1 provider.
 
@@ -434,21 +448,21 @@ async function main() {
   // so we should explicitly fetch the gas price before the call.
   const gasPrice = await l1Provider.getGasPrice();
 
-  // Here we define the constant for ergs limit.
-  // There is currently no way to get the exact ergsLimit required for an L1->L2 tx.
+  // Here we define the constant for gas limit.
+  // There is currently no way to get the exact gasLimit required for an L1->L2 tx.
   // You can read more on that in the tip below
-  const ergsLimit = BigNumber.from(100000);
+  const gasLimit = BigNumber.from(100000);
 
   // Getting the cost of the execution in Wei.
-  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length);
+  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, gasLimit, ethers.utils.hexlify(data).length);
 }
 ```
 
 ::: tip Fee model and fee estimation are WIP
 
-You may have noticed the lack of the `ergs_per_pubdata` and `ergs_per_storage` fields in the L1->L2 transactions. These are surely important for the security of the protocol and they will be added soon. Please note that this will be a breaking change for the contract interface.
+You may have noticed the lack of the `gas_per_pubdata` and `gas_per_storage` fields in the L1->L2 transactions. These are surely important for the security of the protocol and they will be added soon. Please note that this will be a breaking change for the contract interface.
 
-Also, there is currently no easy way to estimate the exact number of `ergs` required for the execution of an L1->L2 transaction. At the time of this writing, the transactions may be processed even if the supplied `ergsLimit` is `0`. This will change in the future.
+Also, there is currently no easy way to estimate the exact number of `gas` required for the execution of an L1->L2 transaction. At the time of this writing, the transactions may be processed even if the supplied `gasLimit` is `0`. This will change in the future.
 
 :::
 
@@ -464,7 +478,7 @@ async function main() {
   // ... Previous steps
 
   // Calling the L1 governance contract.
-  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
+  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, gasLimit, {
     // Passing the necessary ETH `value` to cover the fee for the operation
     value: baseCost,
     gasPrice,
@@ -527,13 +541,13 @@ async function main() {
   // The price of the L1 transaction requests depends on the gas price used in the call
   const gasPrice = await l1Provider.getGasPrice();
 
-  // Here we define the constant for ergs limit.
-  const ergsLimit = BigNumber.from(100000);
+  // Here we define the constant for gas limit.
+  const gasLimit = BigNumber.from(100000);
   // Getting the cost of the execution.
-  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, ergsLimit, ethers.utils.hexlify(data).length);
+  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, gasLimit, ethers.utils.hexlify(data).length);
 
   // Calling the L1 governance contract.
-  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, ergsLimit, {
+  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, gasLimit, {
     // Passing the necessary ETH `value` to cover the fee for the operation
     value: baseCost,
     gasPrice,

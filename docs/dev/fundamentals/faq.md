@@ -43,7 +43,7 @@ Its architecture is based on the following components:
 
 ### zkEVM vs EVM
 
-Apart from the opcodes and gas metering disparity, zkVM strictly inherits the EVM programming model and its invariants, including the ABI calling conventions. One important thing to emphasize is that the zkVM supports rollbacks and provably revertible transactions. It guarantees mutual protection: users can not stall the network with bombardment by revertible transactions, and the escape hatch (priority queue) protect the user’s ability to include any transactions into the blocks.
+Apart from the opcodes and gas metering disparity, zkVM strictly inherits the EVM programming model and its invariants, including the ABI calling conventions. One important thing to emphasize is that the zkVM supports rollbacks and provably revertible transactions. It guarantees mutual protection: users can not stall the network with bombardment by revertible transactions, and the escape hatch (priority queue) protects the user’s ability to include any transactions into the blocks.
 
 As a result, developers can fully rely on the censorship-resistance provided by L1 without having to introduce any changes related to the escape-hatch mechanism. This means that assets in a zkRollup account on zkSync will have exactly the same security guarantees as on L1.
 
@@ -181,7 +181,7 @@ So the hack like we saw with Wintermute on Optimism is not possible
 
 ## What is the storage limit for smart contract on zkSync 2.0?
 
-The current limit is 3600000000 ergs.
+The current limit is 3600000000 gas.
 
 ## What is Block Gas Limit on zkSync 2.0?
 
@@ -191,53 +191,6 @@ The current value is currently set at roughly 2^32 gas. <br>
 ## Can I withdraw my funds back to Ethereum?
 
 Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The withdrawal transaction will take up to 1 hour, depending on the usage of the zkSync network.
-
-## Interacting - A step-by-step Guide
-
-As the testnet is running on Goerli network, you will need to get some Goerli ETH first. Try any of the faucets below.
-
-- [https://goerli-faucet.mudit.blog/](https://goerli-faucet.mudit.blog/)
-- [https://faucets.chain.link/goerli](https://faucets.chain.link/goerli)
-- [https://goerli-faucet.slock.it/](https://goerli-faucet.slock.it/)
-- [https://goerlifaucet.com/](https://goerlifaucet.com/)
-
-**Step 1**
-
-Head to [https://portal.zksync.io/](https://portal.zksync.io/) and connect your wallet. You will automatically be asked to add the “zkSync 2.0 testnet Goerli” network.
-
-You may also add the network manually to your metamask.
-
-- Network Name: `zkSync alpha testnet`
-- RPC URL: `https://zksync2-testnet.zksync.dev`
-- Chain ID: `280`
-
-**Step 2 (Skip if you don’t have Goerli ETH)**
-
-We first go to “Bridge” then “Deposit” to deposit some \$ETH to zkSync 2.0.
-
-![image](../../assets/images/faq-1.png)
-
-**Step 3**
-
-Next we go to “Faucet” to get some testnet $ETH, $LINK, $DAI, $WBTC and \$USDC into our zkSync address.
-
-![image](../../assets/images/faq-2.png)
-
-Check your balance at “Balances” after claiming.
-
-![image](../../assets/images/faq-3.png)
-
-**Step 4**
-
-Now go to “Transfer”. Input the address of another wallet and transfer some tokens to it. Pay the fees in DAI if you don’t have ETH.
-
-![image](../../assets/images/faq-4.png)
-
-**Step 5**
-
-At last we go to “Withdraw” to withdraw some \$DAI from zkSync back to Goerli. Pay the fees in DAI if you don’t have ETH.
-
-![image](../../assets/images/faq-5.png)
 
 ## What is a testnet ReGenesis?
 
