@@ -4,12 +4,7 @@
     "target": "prod",
     "public": "dist",
     "ignore": [],
-    "rewrites": [
-        {
-        "source": "**",
-        "destination": "/index.html"
-        }
-    ],
+    "rewrites": [],
     "headers": [
         {
         "source": "**",
@@ -37,18 +32,19 @@
         ]
         }
     ],
-    "redirects": []
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "/docs/",
+        "type": "302"
+      }
+    ]
     },
     {
     "target": "staging",
     "public": "dist",
     "ignore": [],
-    "rewrites": [
-        {
-        "source": "**",
-        "destination": "/index.html"
-        }
-    ],
+    "rewrites": [],
     "headers": [
         {
         "source": "**",
@@ -76,7 +72,13 @@
         ]
         }
     ],
-    "redirects": []
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "/docs/",
+        "type": "302"
+      }
+    ]
     }
 ]
 }
