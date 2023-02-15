@@ -128,7 +128,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-To run this scripts, make sure your `hardhat.config.ts` file is configured for zkSync (find an example here). You can use `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project easily in case you don’t have one already.
+To run this scripts, make sure your `hardhat.config.ts` file is configured for zkSync ([find an example here](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html). You can use `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project easily in case you don’t have one already.
 
 Place the script files in the `deploy` folder and run:
 
@@ -234,7 +234,7 @@ We expect Fair Onboarding to last between 4 to 6 weeks.
 
 ### My project has been approved, how do I deploy?
 
-Follow the steps on above to deposit ETH to zkSync. Then proceed to our guide on deployment to launch your contracts.
+Make sure you complete the instructions above to deposit ETH to zkSync. Then proceed to [our guide on deployment](#how-to-deploy) to launch your contracts.
 
 ### I need an official version of an ERC20/stablecoin for my project, but it doesn’t seem to be deployed. What do I do?
 
