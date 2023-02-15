@@ -127,6 +127,7 @@ module.exports = {
             "/dev/developer-guides/building-on-zksync/events.md",
             "/dev/developer-guides/building-on-zksync/rpc.md",
             "/dev/developer-guides/building-on-zksync/videos.md",
+            "/dev/developer-guides/building-on-zksync/fair-onboarding-alpha.md",
           ],
         },
         {
