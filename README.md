@@ -9,7 +9,7 @@
 > zkEVM is a virtual machine that executes smart contracts in a way that is compatible with zero-knowledge-proof computation.
 > Our zkEVM keeps EVM semantics, but is also ZK-friendly and takes on traditional CPU architectures.
 
-Constantly updated, [zkSync: Docs for 2.0](https://v2-docs.zksync.io/dev) offers the most complete knowledge about the upcoming **zkSync Era**.
+Constantly updated, [zkSync Era Docs](https://era.zksync.io/docs) offers the most complete knowledge about the upcoming **zkSync Era**.
 zkSync Era release has built-in EVM compatibility which makes it a single key to release EVM-compatible ZK rollup.
 We call it [zkEVM](https://zksync.io/zkevm): long-awaited way to preserve the battle-tested code and knowledge
 gained after years of working with Solidity scaling it with Layer 2.

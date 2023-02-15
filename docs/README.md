@@ -30,19 +30,19 @@ contributors: false
 </div>
 <section>
   <div class="card-container">
-    <a href="/dev/fundamentals/zkSync.html" class="card">
+    <a href="./dev/fundamentals/zkSync.html" class="card">
       <div class="content">
         <h3>About zkSync Era</h3>
         <p>Learn everything that makes zkSync thick. </p>
       </div>
     </a>
-    <a href="/dev/building-on-zksync/hello-world.html" class="card">
+    <a href="./dev/building-on-zksync/hello-world.html" class="card">
       <div class="content">
         <h3>Getting started</h3>
         <p>A series of quick tips to get you off localhost.</p>
       </div>
     </a>
-    <a href="/api" class="card">
+    <a href="./api" class="card">
       <div class="content">
         <h3>SDK References</h3>
         <p>References for your favourite SDKs.</p>
@@ -61,13 +61,13 @@ contributors: false
         <p>Bridge, deposit and withdraw ERC20 tokens.</p>
       </div>
    </a>
-   <a href="/api/tools/block-explorer" class="card">
+   <a href="./api/tools/block-explorer" class="card">
       <div class="content">
         <h3>Block Explorer</h3>
         <p>Interact with zkSync Era blockchain. </p>
       </div>
    </a>
-   <a href="/api/hardhat" class="card">
+   <a href="./api/hardhat" class="card">
          <div class="content">
             <h3>Hardhat Plugins</h3>
             <p>Explore Hardhat plugins in your Solidity and Vyper apps. </p>

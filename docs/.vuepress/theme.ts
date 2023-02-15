@@ -3,7 +3,7 @@ import { enNavbar } from "./navbar/index.js";
 import { enSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
-  hostname: "https://v2-docs.zksync.io/",
+  hostname: "https://era.zksync.io",
 
   author: {
     name: "Matter Labs",

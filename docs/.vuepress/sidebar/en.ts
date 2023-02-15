@@ -51,7 +51,8 @@ export const enSidebar = sidebar({
       children: [
         "/dev/tutorials/cross-chain-tutorial.md", 
         "/dev/tutorials/custom-aa-tutorial.md", 
-        "/dev/tutorials/custom-paymaster-tutorial.md"
+        "/dev/tutorials/custom-paymaster-tutorial.md",
+        "/dev/tutorials/aa-daily-spend-limit.md"
       ],
     },
     {
