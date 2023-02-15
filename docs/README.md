@@ -17,14 +17,6 @@ contributors: false
          </div>
          <p class="intro-text">Welcome to zkSync Era docs! Here you will find guides, references and resources that will help you build with zkSync Era.</p>
          </div>
-         <div class="col">
-         <div class="about-img">
-            <img  
-               src="/images/code-light.png" 
-               alt="zkSync ERA documentation"
-            >
-         </div>
-         </div>
       </div>
    </div>
 </div>
@@ -50,8 +42,8 @@ contributors: false
     </a>
   </div>
 </section>
-<div class="explore-product-heading">
-   <span class="title-section"> Explore Products</span>
+<div class="cards-heading">
+   <span class="title-section">Explore Products</span>
 </div>
 <section>
   <div class="card-container">
@@ -71,6 +63,31 @@ contributors: false
          <div class="content">
             <h3>Hardhat Plugins</h3>
             <p>Explore Hardhat plugins in your Solidity and Vyper apps. </p>
+         </div>
+      </a>
+  </div>
+</section>
+<div class="cards-heading">
+   <span class="title-section">Tutorials</span>
+</div>
+<section>
+  <div class="card-container">
+   <a href="https://portal.zksync.io/bridge" class="card">
+      <div class="content">
+        <h3>Cross-chain vote</h3>
+        <p>Use L1-L2 communication to cast a vote from Ethereum to zkSync Era.</p>
+      </div>
+   </a>
+   <a href="./api/tools/block-explorer" class="card">
+      <div class="content">
+        <h3>Multisig with AA</h3>
+        <p>Learn how to create a smart account on zkSync Era.</p>
+      </div>
+   </a>
+   <a href="./api/hardhat" class="card">
+         <div class="content">
+            <h3>Custom Paymaster</h3>
+            <p>Build your own paymaster and delight users in your app.</p>
          </div>
       </a>
   </div>

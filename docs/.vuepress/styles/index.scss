@@ -12,6 +12,21 @@ div[class*=language-] > button.copy-code-button:not(.pure) {
     background: #8687fb !important;
 }
 
+.theme-container {
+    position: relative;
+    min-height: 100vh;
+}
+.page {
+    padding-bottom: 4rem;
+}
+
+.footer-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 .copy-icon {
     background: #8687fb !important;
 }
@@ -40,6 +55,11 @@ div[class*=language-] > button.copy-code-button:not(.pure) {
 [data-theme="dark"] li {
     color: #FFFFFFCC !important;
 }
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
 // [data-theme="dark"] li:active {
 //     color: #FFFFFF7A !important;
@@ -89,7 +109,8 @@ input[type="submit" i] {
     margin: 10px auto;
 
     img {
-        width: 100%
+        width: 100%;
+        margin-bottom: 20px;
     }
 }
 
@@ -297,7 +318,7 @@ span{
         background: inherit;
         -webkit-transition: .3s all ease;
         transition: .15s all ease;
-    
+        border-radius: 8px;
         h3 {
             font-size: 18px;
             font-weight: 500; 
@@ -306,44 +327,32 @@ span{
 }
 
 .card-container .card:hover {
-    opacity: .7;
-    cursor: pointer;
-}
-
-.card-container .card:hover {
     box-shadow: 0 0 8px 3px rgba(0,0,0,.15);
     transform: scale(1.025);
     opacity: 1;
     text-decoration: none !important;
-    //filter: grayscale(0);
     transition: .35s all ease;
+    opacity: .7;
+    cursor: pointer;
 }
+
 .card-container .card .content {
     border: 1px solid hsla(0,0%,100%,.07);
-    border-radius: 8px;
     flex-grow: 1;
     gap: 12px;
     padding: 20px;
 }
 
-.explore-product-heading {
-    margin-top: 70px !important;
-    margin-left: 10px !important;
-    margin-bottom: 20px !important;
-    
+.cards-heading {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #797afb;
 }
 
 .intro-text {
     font-size: 16px !important;
     font-weight: 500 !important;
-}
-
-[data-theme="dark"] .explore-product-heading {
-    color: $light-text !important;
-}
-
-[data-theme="light"] .explore-product-heading {
-    color: $dark-text !important;
+    margin-bottom: 20px;
 }
 
 .title-section {
