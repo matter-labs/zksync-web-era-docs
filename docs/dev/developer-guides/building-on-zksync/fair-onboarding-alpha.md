@@ -5,7 +5,7 @@ Fair Onboarding Alpha invites projects to deploy to mainnet ahead of the full pu
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
 
-## How Fair Onboarding Works
+## How Fair Onboarding works
 
 During Fair Onboarding Alpha, registered addresses can bridge tokens to zkSync to deploy and test their products/protocols.
 
@@ -217,7 +217,7 @@ Freezing the system allows Matter Labs to address security vulnerabilities witho
 
 ## FAQ
 
-### When does Fair Onboarding Alpha Start?
+### When does Fair Onboarding Alpha start?
 
 February 16th.
 
