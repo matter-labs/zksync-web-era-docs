@@ -42,7 +42,7 @@ The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
 
 Since we are working with zkSync contracts, we also need to install the package with the contracts and its peer dependencies:
 
-```
+```sh
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
@@ -64,11 +64,13 @@ The skeleton for the paymaster looks the following way:
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import { IPaymaster, ExecutionResult } from '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol';
-import { IPaymasterFlow } from '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol';
-import { TransactionHelper, Transaction } from '@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol';
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
+import {IPaymaster, ExecutionResult, PAYMASTER_VALIDATION_SUCCESS_MAGIC} from "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol";
+import {IPaymasterFlow} from "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol";
+import {TransactionHelper, Transaction} from "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
+
+import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 
 contract MyPaymaster is IPaymaster {
     uint256 constant PRICE_FOR_PAYING_FEES = 1;
@@ -77,7 +79,7 @@ contract MyPaymaster is IPaymaster {
 
     modifier onlyBootloader() {
         require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
-        // Continure execution if called from the bootloader.
+        // Continue execution if called from the bootloader.
         _;
     }
 
@@ -85,19 +87,23 @@ contract MyPaymaster is IPaymaster {
         allowedToken = _erc20;
     }
 
-    function validateAndPayForPaymasterTransaction(bytes32, bytes32, Transaction calldata _transaction) external payable override onlyBootloader returns (bytes memory context) {
-        // Transaction validation logic goes here
+    function validateAndPayForPaymasterTransaction(
+        bytes32,
+        bytes32,
+        Transaction calldata _transaction
+    ) external payable returns (bytes4 magic, bytes memory context) {
+        // TO BE IMPLEMENTED
     }
 
-    function postOp(
+    function postTransaction(
         bytes calldata _context,
         Transaction calldata _transaction,
-        bytes32 _txHash,
-        bytes32 _suggestedSignedHash,
+        bytes32,
+        bytes32,
         ExecutionResult _txResult,
         uint256 _maxRefundedGas
-    ) external payable onlyBootloader {
-        // This contract does not support any refunding logic
+    ) external payable override {
+        // Refunds are not supported yet.
     }
 
     receive() external payable {}
@@ -108,21 +114,26 @@ Note, that only the [bootloader](../developer-guides/contracts/system-contracts.
 
 ### Parsing the paymaster input
 
-In this tutorial, we want to charge the user one unit of the `allowedToken` in exchange for her fees being paid by the contract.
+In this tutorial, we want to charge the user one unit of the `allowedToken` in exchange for the transaction fees, which will be paid by the paymaster contract.
 
-The input that the paymaster should receive is encoded in the `paymasterInput`. As described [in the paymaster documentation](../developer-guides/aa.md#built-in-paymaster-flows), there are some standardized ways to encode user interactions with paymasterInput. To charge the user, we will require that she has provided enough allowance to the paymaster contract. This is what the `approvalBased` flow can help us with.
+The input that the paymaster should receive is encoded in the `paymasterInput`. As described [in the paymaster documentation](../developer-guides/aa.md#built-in-paymaster-flows), there are some standardized ways to encode user interactions with paymasterInput. To charge the user, we will require that she has provided enough allowance of the ERC20 token to the paymaster contract. This allowance is done in the `approvalBased` flow behind the scenes.
 
-Firstly, we'll need to check that the `paymasterInput` was encoded as in the `approvalBased` flow:
+Firstly, we'll need to check that the `paymasterInput` was encoded as in the `approvalBased` flow and that the token sent in `paymasterInput` is the one the paymaster accepts:
 
 ```solidity
-require(_transaction.paymasterInput.length >= 4, "The standard paymaster input must be at least 4 bytes long");
+magic = PAYMASTER_VALIDATION_SUCCESS_MAGIC;
+
+require(
+    _transaction.paymasterInput.length >= 4,
+    "The standard paymaster input must be at least 4 bytes long"
+);
 
 bytes4 paymasterInputSelector = bytes4(_transaction.paymasterInput[0:4]);
-if (paymasterInputSelector == IPaymasterFlow.approvalBased.selector) {
+if (paymasterInputSelector == IPaymasterFlow.approvalBased.selector)  {
     (address token, uint256 minAllowance, bytes memory data) = abi.decode(_transaction.paymasterInput[4:], (address, uint256, bytes));
 
+    // We verify that the user has provided enough allowance
     require(token == allowedToken, "Invalid token");
-    require(minAllowance >= 1, "Min allowance too low");
 
     //
     // ...
@@ -135,24 +146,45 @@ if (paymasterInputSelector == IPaymasterFlow.approvalBased.selector) {
 Then, we need to check that the user indeed provided enough allowance:
 
 ```solidity
+// We verify that the user has provided enough allowance
 address userAddress = address(uint160(_transaction.from));
+
 address thisAddress = address(this);
 
-uint256 providedAllowance = IERC20(token).allowance(userAddress, thisAddress);
-require(providedAllowance >= PRICE_FOR_PAYING_FEES, "The user did not provide enough allowance");
+uint256 providedAllowance = IERC20(token).allowance(
+    userAddress,
+    thisAddress
+);
+require(providedAllowance >= PRICE_FOR_PAYING_FEES, "Min allowance too low");
 ```
 
-Then, we finally transfer the funds to the user in exchange for 1 unit of this token.
+Finally, we will check how much the transaction fees will be, transfer the ERC20 tokens to the paymaster, and transfers the correspondent gas fee from the paymaster to the bootloader to cover the transaction fees.
 
 ```solidity
 // Note, that while the minimal amount of ETH needed is tx.gasPrice * tx.gasLimit,
 // neither paymaster nor account are allowed to access this context variable.
-uint256 requiredETH = _transaction.gasLimit * _transaction.maxFeePerGas;
+uint256 requiredETH = _transaction.gasLimit *
+    _transaction.maxFeePerGas;
 
-// Pulling all the tokens from the user
-IERC20(token).transferFrom(userAddress, thisAddress, 1);
-// The bootloader never returns any data, so it can safely be ignored here.
-(bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{value: requiredETH}("");
+
+try
+    IERC20(token).transferFrom(userAddress, thisAddress, amount)
+{} catch (bytes memory revertReason) {
+    // If the revert reason is empty or represented by just a function selector,
+    // we replace the error with a more user-friendly message
+    if (revertReason.length <= 4) {
+        revert("Failed to transferFrom from users' account");
+    } else {
+        assembly {
+            revert(add(0x20, revertReason), mload(revertReason))
+        }
+    }
+}
+
+// Transfer fees to the bootloader
+(bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{
+    value: requiredETH
+}("");
 require(success, "Failed to transfer funds to the bootloader");
 ```
 
@@ -170,9 +202,11 @@ That is why it is important to verify that the user provided all the allowed pre
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {IPaymaster, ExecutionResult} from "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
+import {IPaymaster, ExecutionResult, PAYMASTER_VALIDATION_SUCCESS_MAGIC} from "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol";
 import {IPaymasterFlow} from "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol";
-import {TransactionHelper, Transaction} from "@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol";
+import {TransactionHelper, Transaction} from "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 
@@ -195,10 +229,12 @@ contract MyPaymaster is IPaymaster {
     }
 
     function validateAndPayForPaymasterTransaction(
-        bytes32 _txHash,
-        bytes32 _suggestedSignedHash,
+        bytes32,
+        bytes32,
         Transaction calldata _transaction
-    ) external payable override onlyBootloader returns (bytes memory context) {
+    ) external payable returns (bytes4 magic, bytes memory context) {
+        // By default we consider the transaction as accepted.
+        magic = PAYMASTER_VALIDATION_SUCCESS_MAGIC;
         require(
             _transaction.paymasterInput.length >= 4,
             "The standard paymaster input must be at least 4 bytes long"
@@ -208,16 +244,19 @@ contract MyPaymaster is IPaymaster {
             _transaction.paymasterInput[0:4]
         );
         if (paymasterInputSelector == IPaymasterFlow.approvalBased.selector) {
-            (address token, uint256 minAllowance, bytes memory data) = abi
-                .decode(
-                    _transaction.paymasterInput[4:],
-                    (address, uint256, bytes)
-                );
+            // While the transaction data consists of address, uint256 and bytes data,
+            // the data is not needed for this paymaster
+            (address token, uint256 amount, bytes memory data) = abi.decode(
+                _transaction.paymasterInput[4:],
+                (address, uint256, bytes)
+            );
 
+            // Verify if token is the correct one
             require(token == allowedToken, "Invalid token");
-            require(minAllowance >= 1, "Min allowance too low");
 
+            // We verify that the user has provided enough allowance
             address userAddress = address(uint160(_transaction.from));
+
             address thisAddress = address(this);
 
             uint256 providedAllowance = IERC20(token).allowance(
@@ -226,7 +265,7 @@ contract MyPaymaster is IPaymaster {
             );
             require(
                 providedAllowance >= PRICE_FOR_PAYING_FEES,
-                "The user did not provide enough allowance"
+                "Min allowance too low"
             );
 
             // Note, that while the minimal amount of ETH needed is tx.gasPrice * tx.gasLimit,
@@ -234,8 +273,20 @@ contract MyPaymaster is IPaymaster {
             uint256 requiredETH = _transaction.gasLimit *
                 _transaction.maxFeePerGas;
 
-            // Pulling all the tokens from the user
-            IERC20(token).transferFrom(userAddress, thisAddress, 1);
+            try
+                IERC20(token).transferFrom(userAddress, thisAddress, amount)
+            {} catch (bytes memory revertReason) {
+                // If the revert reason is empty or represented by just a function selector,
+                // we replace the error with a more user-friendly message
+                if (revertReason.length <= 4) {
+                    revert("Failed to transferFrom from users' account");
+                } else {
+                    assembly {
+                        revert(add(0x20, revertReason), mload(revertReason))
+                    }
+                }
+            }
+
             // The bootloader never returns any data, so it can safely be ignored here.
             (bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{
                 value: requiredETH
@@ -246,25 +297,26 @@ contract MyPaymaster is IPaymaster {
         }
     }
 
-    function postOp(
+    function postTransaction(
         bytes calldata _context,
         Transaction calldata _transaction,
-        bytes32 _txHash,
-        bytes32 _suggestedSignedHash,
+        bytes32,
+        bytes32,
         ExecutionResult _txResult,
         uint256 _maxRefundedGas
-    ) external payable onlyBootloader {
-        // This contract does not support any refunding logic
+    ) external payable override {
+        // Refunds are not supported yet.
     }
 
     receive() external payable {}
 }
 
+
 ```
 
 ## Deploying an ERC20 contract
 
-To test our paymaster, we need an ERC20 token. We are now going to deploy one. For the sake of simplicity we will use a somewhat modified OpenZeppelin implementation of it:
+To test our paymaster, we need an ERC20 token so we are going to deploy one. For the sake of simplicity we will use a somewhat modified OpenZeppelin implementation of it:
 
 Create the `MyERC20.sol` file and put the following code in it:
 
@@ -295,6 +347,7 @@ contract MyERC20 is ERC20 {
         return _decimals;
     }
 }
+
 ```
 
 ## Deploying the paymaster
@@ -347,7 +400,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-Besides deploying the paymaster it also creates an empty wallet and gives some of the `MyERC20` tokens to it, so that it can use the paymaster.
+Besides deploying the paymaster it also creates an empty wallet and mints some of the `MyERC20` tokens to it, so that it can use the paymaster later on.
 
 To deploy the ERC20 token and the paymaster, you should compile the contracts and run the script:
 
@@ -387,12 +440,6 @@ const TOKEN_ADDRESS = "<TOKEN_ADDRESS>";
 // Wallet private key
 // ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
 const EMPTY_WALLET_PRIVATE_KEY = "<EMPTY_WALLET_PRIVATE_KEY>";
-
-function getToken(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
-  const artifact = hre.artifacts.readArtifactSync("MyERC20");
-  return new ethers.Contract(TOKEN_ADDRESS, artifact.abi, wallet);
-}
-
 export default async function (hre: HardhatRuntimeEnvironment) {
   const provider = new Provider("https://zksync2-testnet.zksync.dev");
   const emptyWallet = new Wallet(EMPTY_WALLET_PRIVATE_KEY, provider);
@@ -403,25 +450,15 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     throw new Error("The wallet is not empty");
   }
 
-  console.log(`Balance of the user before mint: ${await emptyWallet.getBalance(TOKEN_ADDRESS)}`);
+  console.log(
+    `Balance of the user before mint: ${await emptyWallet.getBalance(
+      TOKEN_ADDRESS
+    )}`
+  );
 
   const erc20 = getToken(hre, emptyWallet);
 
   const gasPrice = await provider.getGasPrice();
-
-  // Estimate gas fee for mint transaction
-  const gasLimit = await erc20.estimateGas.mint(emptyWallet.address, 100, {
-    customData: {
-      gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
-      paymasterParams: {
-        paymaster: PAYMASTER_ADDRESS,
-        // empty input as our paymaster doesn't require additional data
-        paymasterInput: "0x",
-      },
-    },
-  });
-
-  const fee = gasPrice.mul(gasLimit.toString());
 
   // Encoding the "ApprovalBased" paymaster flow's input
   const paymasterParams = utils.getPaymasterParams(PAYMASTER_ADDRESS, {
@@ -433,26 +470,43 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     innerInput: new Uint8Array(),
   });
 
+  // Estimate gas fee for mint transaction
+  const gasLimit = await erc20.estimateGas.mint(emptyWallet.address, 100, {
+    customData: {
+      gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+      paymasterParams: paymasterParams,
+    },
+  });
+
+  const fee = gasPrice.mul(gasLimit.toString());
+
   await (
     await erc20.mint(emptyWallet.address, 100, {
-      // Provide gas params manually
-      maxFeePerGas: gasPrice,
-      maxPriorityFeePerGas: gasPrice,
-      gasLimit,
-
       // paymaster info
       customData: {
-        paymasterParams,
+        paymasterParams: paymasterParams,
         gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
       },
     })
   ).wait();
 
-  console.log(`Balance of the user after mint: ${await emptyWallet.getBalance(TOKEN_ADDRESS)}`);
+  console.log(
+    `Balance of the user after mint: ${await emptyWallet.getBalance(
+      TOKEN_ADDRESS
+    )}`
+  );
 }
 ```
 
-After filling in the parameters `PAYMASTER_ADDRESS`, `TOKEN_ADDRESS` and `EMPTY_WALLET_PRIVATE_KEY` with the output provided in the previous step, run this script with the following command:
+After filling in the parameters `PAYMASTER_ADDRESS`, `TOKEN_ADDRESS` and `EMPTY_WALLET_PRIVATE_KEY` with the output provided in the previous step. 
+
+::: warning 
+
+Important! Make sure you're using the private key of the wallet created by the previous script as that wallet contains the ERC20 tokens!
+
+:::
+
+Run this script with the following command:
 
 ```
 yarn hardhat deploy-zksync --script use-paymaster.ts
