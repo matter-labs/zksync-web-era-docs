@@ -3,9 +3,9 @@ import docsearchPlugin from "@vuepress/plugin-docsearch";
 import theme from "./theme.js";
 
 export default defineUserConfig({
-  dest: "dist",
+  dest: "dist/docs",
 
-  base: "/",
+  base: "/docs/",
 
   head: [
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
