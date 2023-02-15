@@ -19,8 +19,6 @@ To get a first-hand impression of the zkSync Era user experience:
 
 The Portal is the central entry point into the zkSync Era ecosystem for users and developers alike. It contains links to all relevant resources, such as [block explorer](https://explorer.zksync.io) or the catalog of featured dApps.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,4]" />
 
 ## Do I need experience with zkSync 1.x?
 
@@ -34,7 +32,7 @@ The only other place where using zkSync SDK is required is during contract deplo
 
 ## Quickstart on zkSync
 
-Check out our step-by-step [quickstart guide](../developer-guides/hello-world.md), where you will learn:
+Check out our step-by-step [quickstart guide](../building-on-zksync/hello-world.md), where you will learn:
 
 - How to install zkSync hardhat plugin and deploy smart contracts with it.
 - How to build the front-end for your dApp using the `zksync-web3` library.

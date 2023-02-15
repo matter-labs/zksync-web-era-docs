@@ -2,9 +2,6 @@
 
 This plugin is used to provide a convenient interface for compiling Solidity smart contracts before deploying them to zkSync Era.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## Installation
 
 [@matterlabs/hardhat-zksync-solc](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-solc)

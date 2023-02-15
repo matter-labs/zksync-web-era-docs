@@ -40,7 +40,7 @@ Its architecture is based on the following components:
 
 ### zkEVM vs EVM
 
-Apart from the opcodes and gas metering disparity, zkVM strictly inherits the EVM programming model and its invariants, including the ABI calling conventions. One important thing to emphasize is that the zkVM supports rollbacks and provably revertible transactions. It guarantees mutual protection: users can not stall the network with bombardment by revertible transactions, and the escape hatch (priority queue) protect the user’s ability to include any transactions into the blocks.
+Apart from the opcodes and gas metering disparity, zkVM strictly inherits the EVM programming model and its invariants, including the ABI calling conventions. One important thing to emphasize is that the zkVM supports rollbacks and provably revertible transactions. It guarantees mutual protection: users can not stall the network with bombardment by revertible transactions, and the escape hatch (priority queue) protects the user’s ability to include any transactions into the blocks.
 
 As a result, developers can fully rely on the censorship-resistance provided by L1 without having to introduce any changes related to the escape-hatch mechanism. This means that assets in a zkRollup account on zkSync will have exactly the same security guarantees as on L1.
 
@@ -76,7 +76,7 @@ Almost every smart contract written for EVM will be supported by zkSync Era and 
 
 ::: warning Unsupported opcodes
 
-There are a few opcodes not supported by the zkEVM. Some of them have been deprecated or its use is minor but contracts that use them would need to be adapted. You can find more information about this in the [EVM compatibility section of the docs](../developer-guides/contracts/contracts.md#evm-compatibility).
+There are a few opcodes not supported by the zkEVM. Some of them have been deprecated or its use is minor but contracts that use them would need to be adapted. You can find more information about this in the [EVM compatibility section of the docs](../building-on-zksync/contracts/contracts.md#evm-compatibility).
 
 :::
 
@@ -172,7 +172,7 @@ Our [Block Explorer](https://explorer.zksync.io) will show everything you may ne
 
 ## Can someone claim the address I have for my contract in other EVM networks in zkSync Era?
 
-The contract address derivation formula is different from the regular EVM approach. Even if a contract is deployed from the same account address with the same nonce, the zkSync v2 contract address will not be the same as it is in another EVM network. This means, for example, that no one will be able to claim an existing Ethereum address of your protocol to try to trick users into interacting with a malicious version of it.
+The contract address derivation formula is different from the regular EVM approach. Even if a contract is deployed from the same account address with the same nonce, the zkSync Era contract address will not be the same as it is in another EVM network. This means, for example, that no one will be able to claim an existing Ethereum address of your protocol to try to trick users into interacting with a malicious version of it.
 
 So the hack like we saw with Wintermute on Optimism is not possible
 

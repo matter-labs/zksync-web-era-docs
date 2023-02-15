@@ -25,8 +25,8 @@ signer = PrivateKeyEthSigner(account, chain_id)
 
 ```
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ## sign_typed_data
 
@@ -34,9 +34,9 @@ The signer is used to generate the signature of the provided transaction based o
 
 **Parameters**
 
-|Parameters                        | Return value          |Description                                                                  |
-|----------------------------------|-----------------------|-----------------------------------------------------------------------------|
-| EIP712 Structure, optional domain| Web3 py SignedMessage | Builds `SignedMessage` based on the encoded in `EIP712` format Transaction. |
+| Parameters                        | Return value          | Description                                                                 |
+| --------------------------------- | --------------------- | --------------------------------------------------------------------------- |
+| EIP712 Structure, optional domain | Web3 py SignedMessage | Builds `SignedMessage` based on the encoded in `EIP712` format Transaction. |
 
 ## verify_typed_data
 
@@ -44,13 +44,13 @@ It's used to verify the provided transaction, whose signature is added to the fi
 
 **Parameters**
 
-| Parameters | Return value |Description |
-|------------|--------------|------------|
-| signature, EIP712 structure, optional domain| bool | Returns **True** if the encoded transaction is signed with provided signature. |
+| Parameters                                   | Return value | Description                                                                    |
+| -------------------------------------------- | ------------ | ------------------------------------------------------------------------------ |
+| signature, EIP712 structure, optional domain | bool         | Returns **True** if the encoded transaction is signed with provided signature. |
 
 The signer class also has the following properties:
 
-|  Attribute | Description |
-|------------|-------------|
-|address     | Account address|
-|domain      | Domain that is used to generate signature. It's depends on `chain_id` of network. |
+| Attribute | Description                                                                       |
+| --------- | --------------------------------------------------------------------------------- |
+| address   | Account address                                                                   |
+| domain    | Domain that is used to generate signature. It's depends on `chain_id` of network. |

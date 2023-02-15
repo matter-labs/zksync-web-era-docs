@@ -8,9 +8,6 @@ Contracts must be compiled using the official `@matterlabs/hardhat-zksync-solc` 
 
 :::
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## Installation
 
 [@matterlabs/hardhat-zksync-deploy](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-deploy)

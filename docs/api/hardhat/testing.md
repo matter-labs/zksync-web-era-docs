@@ -18,7 +18,6 @@ Download the dockerized project with the following command:
 git clone https://github.com/matter-labs/local-setup.git
 ```
 
-
 ## Start the local nodes
 
 To run zkSync locally, run the `start.sh` script:
@@ -59,7 +58,6 @@ You can connect your wallet to both L1 and L2 nodes using the following details:
 - New RPC URL: `http://localhost:3050/`
 - Chain ID: `270`
 - Currency Symbol: `ETH`
-
 
 ## Reset the zkSync state
 

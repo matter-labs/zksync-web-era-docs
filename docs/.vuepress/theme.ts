@@ -6,13 +6,13 @@ export default hopeTheme({
   hostname: "https://v2-docs.zksync.io/",
 
   author: {
-    name: "Matterlabs",
+    name: "Matter Labs",
     url: "https://github.com/matter-labs/zksync-web-v2-docs",
   },
 
   iconAssets: "iconfont",
 
-  logo: "/logo.svg",
+  logo: "/zk-sync-era-line-light.svg",
 
   repo: "matter-labs/zksync-web-v2-docs",
 
@@ -27,19 +27,16 @@ export default hopeTheme({
 
       // sidebar
       sidebar: enSidebar,
-
-      footer: "Made with ❤️ by <a href='https://matter-labs.io/'> Matterlabs</a>",
-      copyright: false,
-
-      displayFooter: true,
-      lastUpdated:true,
-      contributors: true,
-
-      metaLocales: {
-        editLink: "Edit this page",
-      },
     },
   },
+
+  editLink: true,
+  lastUpdated: true,
+  contributors: true,
+  footer: "Made with ❤️ by <a href='https://matter-labs.io/'> Matter Labs</a>",
+  copyright: false,
+  displayFooter: true,
+
 
   plugins: {
     copyCode: {

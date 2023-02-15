@@ -129,6 +129,7 @@ export const enSidebar = sidebar({
     {
       text: "zkSync CLI", // required
       link: "/api/tools/zksync-cli/", // optional, which should be a absolute path.
+      children: []    
     },
   ],
   //The legal related sidebar

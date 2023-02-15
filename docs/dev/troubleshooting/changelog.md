@@ -1,5 +1,20 @@
 # Changelog
 
+## Compilers updated (Feb 14th 2023)
+
+Version `1.3.2` of both `zksolc` and `zkvyper` has been released. Changes include:
+
+- The `send` and `transfer` methods now produce a compilation error instead of a warning.
+- The minimal supported solc version is now `0.4.10`, although it's still recomended to use `0.8.x`.
+- Multiple LLVM optimizations.
+
+### How to update your project
+
+This new version is optional, contracts compiled with `1.3.1` will still work. 
+
+- Update the compiler version in the `hardhat.config.ts` file to `1.3.2`.
+- Re-compile contracts.
+
 ## System update (Feb 10th 2023)
 
 Minor updated that simplifies the fee model to reduce overhead and fix some bugs. It requires an update on the `zksync-web3` package to `v0.13.1`.
@@ -49,4 +64,4 @@ To update your project, follow these steps:
 
 If after doing these changes you’re still facing issues, please [create a support ticket in the "dev-support-beta" channed in our Discord](https://join.zksync.dev/).
 
-The [Javascript SDK documentation](../../api/js/getting-started.md), [Quickstart](../developer-guides/hello-world.md) and [Account abstraction multisig](../tutorials/custom-aa-tutorial.md) tutorials have been updated but **some other sections of the docs are not updated yet.** We will release updates during the upcoming days. If you find any issues, please [contact us]((https://join.zksync.dev/)).
+The [Javascript SDK documentation](../../api/js/getting-started.md), [Quickstart](../building-on-zksync/hello-world.md) and [Account abstraction multisig](../tutorials/custom-aa-tutorial.md) tutorials have been updated but **some other sections of the docs are not updated yet.** We will release updates during the upcoming days. If you find any issues, please [contact us]((https://join.zksync.dev/)).

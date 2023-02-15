@@ -1,19 +1,24 @@
 # Account abstraction multisig
 
-Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../developer-guides/contracts/system-contracts.md#contractdeployer) system contract.
+Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../developer-guides/system-contracts.md#contractdeployer) system contract.
 In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
 
+
+
+::: warning
+
+Please note, that in the new `0.13.1` SDK version, the API/Node layer operates with gas. The ergs concept is used by VM only.
+
+:::
 
 ## Prerequisite
 
 It is highly recommended to read about the [design](../developer-guides/aa.md) of the account abstraction protocol before diving into this tutorial.
 
 It is assumed that you are already familiar with deploying smart contracts on zkSync.
-If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md).
-It is also recommended to read the [introduction](../developer-guides/contracts/system-contracts.md) to the system contracts.
+If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+It is also recommended to read the [introduction](../developer-guides/system-contracts.md) to the system contracts.
 
 ## Installing dependencies
 
@@ -23,7 +28,7 @@ We will use the zkSync hardhat plugin for developing this contract. Firstly, we 
 mkdir custom-aa-tutorial
 cd custom-aa-tutorial
 yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.0 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
 ::: tip
@@ -38,7 +43,7 @@ Since we are working with zkSync contracts, we also need to install the package 
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, similar to the [quickstart tutorial](../developer-guides/hello-world.md). As in this project our contracts will interact with system contracts, we need to include the `isSystem: true` in the compiler settings:
+Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, similar to the [quickstart tutorial](../building-on-zksync/hello-world.md). As in this project our contracts will interact with system contracts, we need to include the `isSystem: true` in the compiler settings:
 
 ```
 import "@matterlabs/hardhat-zksync-deploy";
@@ -248,7 +253,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 }
 ```
 
-Note, that only the [bootloader](../developer-guides/contracts/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prepareForPaymaster` methods.
+Note, that only the [bootloader](../developer-guides/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prepareForPaymaster` methods.
 That's why the `onlyBootloader` modifier is used for them.
 
 The `executeTransactionFromOutside` is needed to allow external users to initiate transactions from this account. The easiest way to implement it is to do the same as `validateTransaction` + `executeTransaction` would do.
@@ -333,7 +338,7 @@ Let's implement the validation process. It is responsible for validating the sig
 
 To increment the nonce, you should use the `incrementNonceIfEquals` method of the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether the nonce is the same as the provided one. If not, the transaction reverts. Otherwise, the nonce is increased.
 
-Even though the requirements above allows the accounts to touch only their storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../developer-guides/aa.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happened to be in another contract. To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, you should add the following import:
+Even though the requirements above allow the accounts to touch only their storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../developer-guides/aa.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happened to be in another contract. To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, you should add the following import:
 
 ```solidity
 // Access zkSync system contracts, in this case for nonce validation vs NONCE_HOLDER_SYSTEM_CONTRACT

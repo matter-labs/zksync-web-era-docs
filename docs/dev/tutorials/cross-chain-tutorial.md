@@ -5,8 +5,8 @@ This tutorial serves as an example of how to implement L1 to L2 contract interac
 - A "counter" smart contract is deployed on zkSync, which stores a number that can be incremented by calling the `increment` method.
 - A "governance" smart contract is deployed on layer 1, which has the privilege to increment the counter on zkSync.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ::: warning
 
@@ -18,7 +18,7 @@ This tutorial will be updated shortly to reflect those changes.
 
 ## Preliminaries
 
-In this tutorial, it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md).
+In this tutorial, it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 
 It is also assumed that you already have some experience working with Ethereum.
 
@@ -89,7 +89,7 @@ You can [learn more about L1-L2 communication in this section of the docs](../de
 
 Although this tutorial does not focus on the process of deploying contracts on L1, we'll give you a quick overview on how to continue.
 
-1. You'll need an RPC node endpoint to the Göerli testnet to submit the deploymet transaction. You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
+1. You'll need an RPC node endpoint to the Göerli testnet to submit the deployment transaction. You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
 
 2. Create the file `/L1-governance/goerli.json` and fill in the following values:
 
@@ -303,13 +303,13 @@ In the output, you should see the address to which the contract was deployed.
 
 ::: tip
 
-You can find more specific details about deploying contracts in the [quickstart tutorial](../developer-guides/hello-world.md) or the documentation for the [hardhat plugins](../../api/hardhat/getting-started.md) for zkSync.
+You can find more specific details about deploying contracts in the [quickstart tutorial](../building-on-zksync/hello-world.md) or the documentation for the [hardhat plugins](../../api/hardhat/getting-started.md) for zkSync.
 
 :::
 
 ## Reading the counter value
 
-With both contracts deployed, we can create a small script to retrieve the value of the counter. For the sake of simplicity, we will create this scripts inside the `/L2-counter` folder. To keep the tutorial generic hardhat-specific features will not be used in it.
+With both contracts deployed, we can create a small script to retrieve the value of the counter. For the sake of simplicity, we will create this script inside the `/L2-counter` folder. To keep the tutorial generic hardhat-specific features will not be used in it.
 
 ### Getting the ABI of the counter contract
 

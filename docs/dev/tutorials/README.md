@@ -4,7 +4,7 @@ Learn how to build dApps on the zkSync Era protocol with the following step-by-s
 
 ## List of zkSync Era tutorials
 
-- [Quickstart](../developer-guides/hello-world.md)
+- [Quickstart](../building-on-zksync/hello-world.md)
 - [Cross-chain governance](../tutorials/cross-chain-tutorial.md)
 - [Account abstraction example](../tutorials/custom-aa-tutorial.md)
 - [Building custom paymasters](../tutorials/custom-paymaster-tutorial.md)

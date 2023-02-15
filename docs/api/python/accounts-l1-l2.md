@@ -8,7 +8,7 @@ The zkSync Python SDK account is compatible with the `eth_account` package, and 
 
 > Example
 
-```python 
+```python
 
 from eth_account import Account
 from eth_account.signers.local import LocalAccount
@@ -16,10 +16,11 @@ from eth_account.signers.local import LocalAccount
 account: LocalAccount = Account.from_key("PRIVATE_KEY")
 
 ```
+
 The base property that is used directly with account is: `Account.address`.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ## Finalizing deposit
 
@@ -33,15 +34,15 @@ Deposits are executed in 2 steps - initiated on L2 and finalized on L1, it retur
 
 **Agruements**
 
-| Name               | Description                                                            |
-| ------------------ | -----------------------------------------------------------------------|
-| l1_sender          | The ERC20 sender address of the token to deposit.                      |
-| l2_receiver        | The address that will receive the deposited tokens on L2.              |
-| l1_token           | The address of the deposited L1 ERC20 token.                           |
-| amount             | The amount of the token to be deposited.                               |
-| data               | Returns the transaction receipt of the transaction                     |
+| Name        | Description                                               |
+| ----------- | --------------------------------------------------------- |
+| l1_sender   | The ERC20 sender address of the token to deposit.         |
+| l2_receiver | The address that will receive the deposited tokens on L2. |
+| l1_token    | The address of the deposited L1 ERC20 token.              |
+| amount      | The amount of the token to be deposited.                  |
+| data        | Returns the transaction receipt of the transaction        |
 
-> Example 
+> Example
 
 ```py
 
@@ -87,14 +88,14 @@ If the deposit L2 transaction has failed, it sends an L1 transaction calling `cl
 
 **Agruements**
 
-| Name               | Description                                                            |
-| ------------------ | -----------------------------------------------------------------------|
-| deposit_sender     | The address of the deposit initiator.                                  |
-| l2tx_hash          | The L2 transaction hash of the failed deposit finalization.            |
-| l1_token           | The address of the deposited L1 ERC20 token.                           |
-| l2_block_number    | The L2 block number where the deposit finalization was processed.      |
-| l2_msg_index       | The position in the L2 logs Merkle tree of the l2Log that was sent with the message.      |
-| merkle_proof       | The Merkle proof of the processing L1 -> L2 transaction with deposit finalization         |
+| Name            | Description                                                                          |
+| --------------- | ------------------------------------------------------------------------------------ |
+| deposit_sender  | The address of the deposit initiator.                                                |
+| l2tx_hash       | The L2 transaction hash of the failed deposit finalization.                          |
+| l1_token        | The address of the deposited L1 ERC20 token.                                         |
+| l2_block_number | The L2 block number where the deposit finalization was processed.                    |
+| l2_msg_index    | The position in the L2 logs Merkle tree of the l2Log that was sent with the message. |
+| merkle_proof    | The Merkle proof of the processing L1 -> L2 transaction with deposit finalization    |
 
 ## Getting a nonce
 
@@ -108,9 +109,10 @@ def _get_nonce(self, account) -> transaction_count
 
 **Agruements**
 
-| Name               | Description                                                            |
-| ------------------ | -----------------------------------------------------------------------|
-| account            | The address of a user                                                  |
+| Name    | Description           |
+| ------- | --------------------- |
+| account | The address of a user |
+
 ## Deposit
 
 Returns the transaction receipt of the deposit.
@@ -123,11 +125,11 @@ def deposit(self, l2_receiver: HexStr, l1_token: HexStr, amount: int) -> txn_rec
 
 **Agruements**
 
-| Name               | Description                                                            |
-| ------------------ | -----------------------------------------------------------------------|
-| l2_receiver        | The address that will receive the deposited tokens on L2.              |
-| l1_token           | The address of the deposited L1 ERC20 token.                           |
-| amount             | The amount of the token to be deposited.                               |
+| Name        | Description                                               |
+| ----------- | --------------------------------------------------------- |
+| l2_receiver | The address that will receive the deposited tokens on L2. |
+| l1_token    | The address of the deposited L1 ERC20 token.              |
+| amount      | The amount of the token to be deposited.                  |
 
 > Example
 
@@ -151,6 +153,7 @@ def deposit(self, l2_receiver: HexStr, l1_token: HexStr, amount: int):
         return txn_receipt
 
 ```
+
 ## Finalizing withdrawals.
 
 Withdrawals are executed in 2 steps - initiated on L2 and finalized on L1, this method returns the transaction receipt of the withdrawals.
@@ -164,14 +167,15 @@ def finalize_withdrawal(self,
                             merkle_proof: List[bytes]) -> txn_receipt
 
 ```
+
 **Agruements**
 
-| Name               | Description                                                                               |
-| ------------------ | ------------------------------------------------------------------------------------------|
-| l2_block_number    | The L2 block number where the deposit finalization was processed.                         |
-| l2_msg_index       | The position in the L2 logs Merkle tree of the l2Log that was sent with the message.      |
-| l2_msg_index       | The position in the L2 logs Merkle tree of the l2Log that was sent with the message.      |
-| merkle_proof       | The Merkle proof of the processing L1 -> L2 transaction with deposit finalization         |
+| Name            | Description                                                                          |
+| --------------- | ------------------------------------------------------------------------------------ |
+| l2_block_number | The L2 block number where the deposit finalization was processed.                    |
+| l2_msg_index    | The position in the L2 logs Merkle tree of the l2Log that was sent with the message. |
+| l2_msg_index    | The position in the L2 logs Merkle tree of the l2Log that was sent with the message. |
+| merkle_proof    | The Merkle proof of the processing L1 -> L2 transaction with deposit finalization    |
 
 > Example
 

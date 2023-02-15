@@ -1,4 +1,4 @@
-# zkSync v2.0 Documentation
+# zkSync Era Documentation
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/matter-labs/zksync-web-v2-docs?color=%234E529A&label=changelog)](CHANGELOG.md)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/matter-labs/zksync-wallet/blob/master/LICENSE-MIT) [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue)](https://github.com/matter-labs/zksync-wallet/blob/master/LICENSE-MIT)
@@ -10,7 +10,7 @@
 > Our zkEVM keeps EVM semantics, but is also ZK-friendly and takes on traditional CPU architectures.
 
 Constantly updated, [zkSync: Docs for 2.0](https://v2-docs.zksync.io/dev) offers the most complete knowledge about the upcoming **zkSync Era**.
-zkSync 2 release has built-in EVM compatibility which makes it a single key to release EVM-compatible ZK rollup.
+zkSync Era release has built-in EVM compatibility which makes it a single key to release EVM-compatible ZK rollup.
 We call it [zkEVM](https://zksync.io/zkevm): long-awaited way to preserve the battle-tested code and knowledge
 gained after years of working with Solidity scaling it with Layer 2.
 

@@ -8,8 +8,8 @@ In this guide we will demonstrate how to:
 4. Transfer and withdraw funds (native and ERC20 tokens).
 5. Deploy a smart contract.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ::: warning
 
@@ -21,7 +21,8 @@ In this guide we will demonstrate how to:
 
 This guide assumes that you are familiar with [Swift](https://www.swift.org/) programming language.
 
-##  Installation
+## Installation
+
 ### CocoaPods
 
 [CocoaPods](http://cocoapods.org/) is a dependency manager for Cocoa projects. You can install it with the following command:
@@ -59,9 +60,9 @@ pod install
 
 To interact with the zkSync network users need to know the endpoint of the operator node.
 
-Create an instance of `EthereumAccount`  with a `EthereumKeyStorage` provider. This provides a wrapper around your key for `web3.swift` to use. <br/>
+Create an instance of `EthereumAccount` with a `EthereumKeyStorage` provider. This provides a wrapper around your key for `web3.swift` to use. <br/>
 
-**NOTE:  We recommend you implement your own _KeyStorage_ provider, instead of relying on the provided `EthereumKeyLocalStorage` class.**
+**NOTE: We recommend you implement your own _KeyStorage_ provider, instead of relying on the provided `EthereumKeyLocalStorage` class.**
 
 ```swift
 import web3
@@ -92,6 +93,7 @@ let client = EthereumWebSocketClient(url: clientUrl)
 You can then interact with the client methods:
 
 ## `approveDeposits`
+
 It returns the erc20 token address.
 
 ```swift
@@ -99,19 +101,19 @@ It returns the erc20 token address.
     func approveDeposits(with token: Token,
                          limit: BigUInt?) throws -> Promise<TransactionSendingResult>
 ```
+
 #### Parameters
 
-| Name               | Description                                                      |
-| ------------------ | -----------------------------------------------------------------|
-| token              | The Ethereum address of the token.                               |
-| limit(optional)    | The maximum amount to approve a zkSync contract.                 |
-
+| Name            | Description                                      |
+| --------------- | ------------------------------------------------ |
+| token           | The Ethereum address of the token.               |
+| limit(optional) | The maximum amount to approve a zkSync contract. |
 
 ## `transfer`
 
 The transfer method can transfer ERC20 tokens, and it returns the transaction receipt of the transfer.
 
-```swift 
+```swift
     /// Send transfer transaction. This is the regular transfer of ERC20 token.
     /// - Parameters:
     func transfer(with token: Token,
@@ -119,14 +121,14 @@ The transfer method can transfer ERC20 tokens, and it returns the transaction re
                   to address: String) throws -> Promise<TransactionSendingResult>
 
 ```
+
 #### Parameter
 
-| Name               | Description                        |
-| ------------------ | -----------------------------------|
-| token              | The ERC20 token address.           |
-| amount             | The amount of tokens to transfer   |
-| address            | The Tokens receiver address.       |
-
+| Name    | Description                      |
+| ------- | -------------------------------- |
+| token   | The ERC20 token address.         |
+| amount  | The amount of tokens to transfer |
+| address | The Tokens receiver address.     |
 
 ## `deposit`
 
@@ -142,12 +144,11 @@ This method uses `EthereumProvider.approveDeposits()` to send deposit transactio
 
 #### Parameter
 
-| Name               | Description                                                      |
-| ------------------ | -----------------------------------------------------------------|
-| token              | The address of the token to deposit.                             |
-| amount             | The amount of the token to be deposited.                         |
-| userAddress        | The address that will receive the deposited tokens on L2.        |
-
+| Name        | Description                                               |
+| ----------- | --------------------------------------------------------- |
+| token       | The address of the token to deposit.                      |
+| amount      | The amount of the token to be deposited.                  |
+| userAddress | The address that will receive the deposited tokens on L2. |
 
 ## `withdraw`
 
@@ -163,12 +164,11 @@ This method send withdrawals to the specified token address and returns the tran
 
 #### Parameter
 
-| Name               | Description                                                      |
-| ------------------ | -----------------------------------------------------------------|
-| token              | The address of the token to withdraw.                            |
-| amount             | The amount of the token to withdraw.                             |
-| userAddress        | The L1 withdrawal receiver address in zkSync.                    |
-
+| Name        | Description                                   |
+| ----------- | --------------------------------------------- |
+| token       | The address of the token to withdraw.         |
+| amount      | The amount of the token to withdraw.          |
+| userAddress | The L1 withdrawal receiver address in zkSync. |
 
 ## `isDepositApproved`
 
@@ -182,9 +182,9 @@ This method checks if the deposit is approved and returns a Boolean.
 
 #### Parameter
 
-| Name               | Description                                                            |
-| ------------------ | -----------------------------------------------------------------------|
-| token              | The address of the token deposited.                                    |
-| address            | The amount of the token deposited.                                     |
-| threshold          | The minimum threshold of approved tokens.                              |
-| returns            | Boolean value that denotes whether deposit was approved or not.        |
+| Name      | Description                                                     |
+| --------- | --------------------------------------------------------------- |
+| token     | The address of the token deposited.                             |
+| address   | The amount of the token deposited.                              |
+| threshold | The minimum threshold of approved tokens.                       |
+| returns   | Boolean value that denotes whether deposit was approved or not. |

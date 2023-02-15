@@ -7,13 +7,12 @@ zkSync fully supports Ethereum Web3 API, so you can use the provider objects fro
 - Easily track L1<->L2 transactions.
 - Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use cases may require tracking "finalized" transactions only.
 
-
 The zkSync swift SDK exports the `EthereumProvider` provider:
 
-- `EthereumProvider` which inherits from `web3swift` `JsonRpcProvider` provides access to all of the zkSync JSON-RPC endpoints. 
+- `EthereumProvider` which inherits from `web3swift` `JsonRpcProvider` provides access to all of the zkSync JSON-RPC endpoints.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ## EthereumProvider
 
@@ -21,17 +20,16 @@ This provides the same functionality as `web3swift.providers.JsonRpcProvider`, b
 
 ### Creating provider
 
-It accepts the `URL` to the operator node and the `network` name and the `keystoreManager`.  
+It accepts the `URL` to the operator node and the `network` name and the `keystoreManager`.
 
 #### Arguments
 
-| Name               | Description                      |
-| ------------------ | -------------------------------- |
-| url (optional)     | URL of the zkSync operator node. |
-| network (optional) | The description of the network.  |
-| keystoreManager (optional)   | The public key certificates. |
-| returns            | `Provider` object.               |
-
+| Name                       | Description                      |
+| -------------------------- | -------------------------------- |
+| url (optional)             | URL of the zkSync operator node. |
+| network (optional)         | The description of the network.  |
+| keystoreManager (optional) | The public key certificates.     |
+| returns                    | `Provider` object.               |
 
 ```swift
 
@@ -47,6 +45,7 @@ func gasPrice() throws -> BigUInt {
     }
 
 ```
+
 ## Approve deposits
 
 ```swift
@@ -57,14 +56,14 @@ func approveDeposits(with token: Token,
               let spenderAddress = EthereumAddress(l1ERC20BridgeAddress) else {
             throw EthereumProviderError.invalidToken
         }
-        
+
         let tokenContract = ERC20(web3: web3,
                                   provider: web3.provider,
                                   address: tokenAddress)
-        
+
         let maxApproveAmount = BigUInt.two.power(256) - 1
         let amount = limit?.description ?? maxApproveAmount.description
-        
+
         do {
             let transaction = try tokenContract.approve(from: spenderAddress,
                                                         spender: spenderAddress,
@@ -76,6 +75,7 @@ func approveDeposits(with token: Token,
     }
 
 ```
+
 ## Transfer
 
 ```swift
@@ -92,7 +92,7 @@ func transfer(with token: Token,
                                                 amount: amount,
                                                 to: address)
             }
-            
+
             return transaction.sendPromise()
         } catch {
             return .init(error: error)
@@ -110,14 +110,14 @@ func transferEth(amount: BigUInt,
               let toAddress = EthereumAddress(address) else {
             throw EthereumProviderError.invalidAddress
         }
-        
+
         guard let transaction = web3.eth.sendETH(from: fromAddress,
                                                  to: toAddress,
                                                  amount: amount.description,
                                                  units: .wei) else {
             throw EthereumProviderError.internalError
         }
-        
+
         return transaction
     }
 
@@ -135,14 +135,14 @@ func transferERC20(token: Token,
               let erc20ContractAddress = EthereumAddress(token.l1Address) else {
             throw EthereumProviderError.invalidToken
         }
-        
+
         guard let transaction = web3.eth.sendERC20tokensWithKnownDecimals(tokenAddress: erc20ContractAddress,
                                                                           from: fromAddress,
                                                                           to: toAddress,
                                                                           amount: amount) else {
             throw EthereumProviderError.internalError
         }
-        
+
         return transaction
     }
 
@@ -157,26 +157,26 @@ func deposit(with token: Token,
         guard let userAddress = EthereumAddress(userAddress) else {
             return .init(error: EthereumProviderError.invalidAddress)
         }
-        
+
         if token.isETH {
             let depositInputs = [
                 ABI.Element.InOut(name: "_l2Receiver", type: .address),
                 ABI.Element.InOut(name: "_l1Token", type: .address),
                 ABI.Element.InOut(name: "_amount", type: .uint(bits: 256))
             ]
-            
+
             let depositFunction: ABI.Element = .function(ABI.Element.Function(name: "deposit",
                                                                               inputs: depositInputs,
                                                                               outputs: [],
                                                                               constant: false,
                                                                               payable: false))
-            
+
             let depositParameters: [AnyObject] = [
                 userAddress,
                 EthereumAddress.Default,
                 amount
             ] as [AnyObject]
-            
+
             guard let encodedFunction = depositFunction.encodeParameters(depositParameters) else {
                 fatalError("Encoded deposit function should be valid")
             }

@@ -37,13 +37,7 @@
         ]
         }
     ],
-    "redirects": [
-        {
-        "source": "/",
-        "destination": "/dev",
-        "type": 302
-        }
-    ]
+    "redirects": []
     },
     {
     "target": "staging",
@@ -82,13 +76,7 @@
         ]
         }
     ],
-    "redirects": [
-        {
-        "source": "/",
-        "destination": "/dev",
-        "type": 302
-        }
-    ]
+    "redirects": []
     }
 ]
 }

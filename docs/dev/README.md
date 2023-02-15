@@ -1,6 +1,6 @@
-# zkSync Documentation
+# zkSync Era Documentation
 
-This documentation is intended to assist you in developing on zkSync. 
+This documentation is intended to assist you in developing on zkSync.
 It introduces the concepts of zkSync, describes the zkSync network stack, and some advanced topics for complex applications and use cases.
 
 Given this documentation is open-sourced, feel free to suggest new topics, add new content, and provide examples wherever you believe they will be useful. If you're unsure how to proceed, [follow these instructions](./troubleshooting/docs-contribution/docs.md).
