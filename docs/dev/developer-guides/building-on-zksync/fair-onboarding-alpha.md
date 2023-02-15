@@ -129,15 +129,13 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-To run this scripts, make sure your `hardhat.config.ts` file is configured for zkSync (find an example here). You can use `zksync-cli create` to scaffold a new project easily in case you don’t have one already.
+To run this scripts, make sure your `hardhat.config.ts` file is configured for zkSync (find an example here). You can use `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project easily in case you don’t have one already.
 
 Place the script files in the `deploy` folder and run:
 
 ```sh
  yarn hardhat zksync-deploy --script SCRIPT_FILENAME.ts
 ```
-
-
 
 ### Custom Bridges
 
