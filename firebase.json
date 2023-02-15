@@ -40,7 +40,7 @@
         },
         {
           "regex": "/(?P<path>.+)",
-          "destination": "https://era.zksync.io/:path",
+          "destination": "https://era.zksync.io/docs/:path",
           "type": 302
         }
       ]
@@ -85,7 +85,7 @@
         },
         {
           "regex": "/(?P<path>.+)",
-          "destination": "https://era.zksync.io/:path",
+          "destination": "https://era.zksync.io/docs/:path",
           "type": 302
         }
       ]
