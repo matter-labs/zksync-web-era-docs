@@ -45,7 +45,6 @@ if (!WALLET_PRIV_KEY) {
   throw new Error("Wallet private key not configured in env file");
 }
 
-// An example of a deploy script that will deploy and call a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running script to deposit ETH in L2`);
 
@@ -99,7 +98,7 @@ if (!WALLET_PRIV_KEY) {
 }
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  console.log(`Running script to fund wallet in L2`);
+  console.log(`Running script to bridge ERC20 to L2`);
 
   // Initialize the wallet.
   const provider = new Provider(
