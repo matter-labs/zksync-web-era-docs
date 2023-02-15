@@ -221,11 +221,11 @@ Freezing the system allows Matter Labs to address security vulnerabilities witho
 
 ### When does Fair Onboarding Alpha Start?
 
-February 16.
+February 16th.
 
 ### How do I sign up?
 
-You can sign up for Fair Onboarding Alpha by filling out [this form](https://www.notion.so/00e11a364a584fbebb1e4742a1fa7a7b). We will aim to get back to you within a week.
+You can sign up for Fair Onboarding Alpha by filling out [this form](https://docs.google.com/forms/d/e/1FAIpQLSfdXAoQiHLu16ykEoOb762uvC1bAhdzOG-YDk6ju0YwPWf3Fw/viewform). We will aim to get back to you within a week.
 
 ### How do I add an ERC20 token to the Portal UI?
 
