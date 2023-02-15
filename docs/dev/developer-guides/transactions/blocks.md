@@ -64,5 +64,5 @@ Projects are advised not to use the L2 block hash as a source of randomness.
 - Timestamp: The current block's creation time in seconds that returns the timestamp of the L1 batch.
 - Block number: The unique sequential number for this block.
 - Gas limit: The current block gas limit, always returns `2^32-1`.
-- Coinbase: The current block miner’s address, returns the [bootloader](../contracts/system-contracts.md#bootloader) address.
+- Coinbase: The current block miner’s address, returns the [bootloader](../system-contracts.md#bootloader) address.
 - Difficulty: The current block difficulty, returns `2500000000000000` (zkSync does not have proof of work consensus).

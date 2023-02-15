@@ -6,7 +6,7 @@ Take a deeper dive into the zkSync ecosystem.
 
 - [Transactions](./transactions/transactions.md)
 - [Blocks](./transactions/blocks.md)
-- [System contracts](./contracts/system-contracts.md)
+- [System contracts](./system-contracts.md)
 - [Account abstraction](./aa.md)
 - [Security model](./security.md)
 - [Fee mechanism](./transactions/fee-model.md)

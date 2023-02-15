@@ -1,6 +1,6 @@
 # Account abstraction multisig
 
-Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../developer-guides/contracts/system-contracts.md#contractdeployer) system contract.
+Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../developer-guides/system-contracts.md#contractdeployer) system contract.
 In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 
 
@@ -17,8 +17,8 @@ Please note, that in the new `0.13.1` SDK version, the API/Node layer operates w
 It is highly recommended to read about the [design](../developer-guides/aa.md) of the account abstraction protocol before diving into this tutorial.
 
 It is assumed that you are already familiar with deploying smart contracts on zkSync.
-If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md).
-It is also recommended to read the [introduction](../developer-guides/contracts/system-contracts.md) to the system contracts.
+If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+It is also recommended to read the [introduction](../developer-guides/system-contracts.md) to the system contracts.
 
 ## Installing dependencies
 
@@ -43,7 +43,7 @@ Since we are working with zkSync contracts, we also need to install the package 
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, similar to the [quickstart tutorial](../developer-guides/hello-world.md). As in this project our contracts will interact with system contracts, we need to include the `isSystem: true` in the compiler settings:
+Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, similar to the [quickstart tutorial](../building-on-zksync/hello-world.md). As in this project our contracts will interact with system contracts, we need to include the `isSystem: true` in the compiler settings:
 
 ```
 import "@matterlabs/hardhat-zksync-deploy";
@@ -253,7 +253,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 }
 ```
 
-Note, that only the [bootloader](../developer-guides/contracts/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prepareForPaymaster` methods.
+Note, that only the [bootloader](../developer-guides/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prepareForPaymaster` methods.
 That's why the `onlyBootloader` modifier is used for them.
 
 The `executeTransactionFromOutside` is needed to allow external users to initiate transactions from this account. The easiest way to implement it is to do the same as `validateTransaction` + `executeTransaction` would do.

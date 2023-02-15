@@ -76,7 +76,7 @@ Almost every smart contract written for EVM will be supported by zkSync Era and 
 
 ::: warning Unsupported opcodes
 
-There are a few opcodes not supported by the zkEVM. Some of them have been deprecated or its use is minor but contracts that use them would need to be adapted. You can find more information about this in the [EVM compatibility section of the docs](../developer-guides/contracts/contracts.md#evm-compatibility).
+There are a few opcodes not supported by the zkEVM. Some of them have been deprecated or its use is minor but contracts that use them would need to be adapted. You can find more information about this in the [EVM compatibility section of the docs](../building-on-zksync/contracts/contracts.md#evm-compatibility).
 
 :::
 

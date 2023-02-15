@@ -100,4 +100,4 @@ const sentTx = await sender.sendTransaction({
 });
 ```
 
-You can also check out our [tutorial](../../dev/developer-guides/hello-world.md) on the full-fledged mini-dApp, where users can choose token to pay the fee.
+You can also check out our [tutorial](../../dev/building-on-zksync/hello-world.md) on the full-fledged mini-dApp, where users can choose token to pay the fee.

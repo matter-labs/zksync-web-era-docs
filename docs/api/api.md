@@ -199,7 +199,7 @@ Given a block, a sender, a message, and an optional message log index in the blo
 | block           | `uint32`                | The number of the block where the message was emitted.                                                                                                                                                                                                             |
 | sender          | `address`               | The sender of the message (i.e. the account that called the L1Messenger system contract).                                                                                                                                                                          |
 | msg             | `bytes32`               | The keccak256 hash of the sent message.                                                                                                                                                                                                                            |
-| l2_log_position | `uint256` &#124; `null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/contracts/system-contracts.md#il1messenger) when submitting this message. If it is omitted, the proof for the first message with such content will be returned. |
+| l2_log_position | `uint256` &#124; `null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/system-contracts.md#il1messenger) when submitting this message. If it is omitted, the proof for the first message with such content will be returned. |
 
 ### Output format
 
@@ -360,6 +360,6 @@ The WebSocket URL is `wss://zksync2-testnet.zksync.dev/ws`.
 
 ::: tip
 
-You can use the websocket endpoint to handle smart contract events, as detailed [in this section of the docs](../dev/developer-guides/building-on-zksync/events.md).
+You can use the websocket endpoint to handle smart contract events, as detailed [in this section of the docs](../dev/building-on-zksync/events.md).
 
 :::

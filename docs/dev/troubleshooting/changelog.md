@@ -64,4 +64,4 @@ To update your project, follow these steps:
 
 If after doing these changes you’re still facing issues, please [create a support ticket in the "dev-support-beta" channed in our Discord](https://join.zksync.dev/).
 
-The [Javascript SDK documentation](../../api/js/getting-started.md), [Quickstart](../developer-guides/hello-world.md) and [Account abstraction multisig](../tutorials/custom-aa-tutorial.md) tutorials have been updated but **some other sections of the docs are not updated yet.** We will release updates during the upcoming days. If you find any issues, please [contact us]((https://join.zksync.dev/)).
+The [Javascript SDK documentation](../../api/js/getting-started.md), [Quickstart](../building-on-zksync/hello-world.md) and [Account abstraction multisig](../tutorials/custom-aa-tutorial.md) tutorials have been updated but **some other sections of the docs are not updated yet.** We will release updates during the upcoming days. If you find any issues, please [contact us]((https://join.zksync.dev/)).
