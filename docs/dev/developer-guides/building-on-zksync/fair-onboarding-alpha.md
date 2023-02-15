@@ -137,11 +137,11 @@ Place the script files in the `deploy` folder and run:
  yarn hardhat zksync-deploy --script SCRIPT_FILENAME.ts
 ```
 
-### Custom Bridges
+### Custom bridges
 
 Registered addresses are free to bridge tokens to zkSync by building a custom bridge. Custom bridges are not currently supported in our UI. However if you are working on a custom bridge we would love to hear from you and discuss how we can offer support. You can find us at product@matterlabs.dev.
 
-## How to Deploy
+## How to deploy
 
 If you need a general refresher on deploying to zkSync we recommend first reading [this section](https://v2-docs.zksync.io/dev/developer-guides/contracts/contract-deployment.html) of our documentation — otherwise you may refer to our [Quickstart Guide](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html). 
 
@@ -188,7 +188,7 @@ You can add zkSync mainnet to your wallet using the details below:
 - Block Explorer URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`
 
-## How to Join
+## How to join
 
 To register your project for Fair Onboarding fill out the form linked [here](https://forms.gle/wXjWiEeg16eMCWKJ8). You will need the following information:
 
@@ -197,7 +197,7 @@ To register your project for Fair Onboarding fill out the form linked [here](htt
 - The L1 addresses you will use for bridging
 - A list of any tokens you intend to bridge during Fair Onboarding
 
-## Security Measures
+## Security measures
 
 We have spent over $3.5M on the range of audits with Tier 1 auditing firms, independent researchers, and public audits by the community. Matter Labs will also lock value in the system — starting with 10 ETH at the beginning of Fair Onboarding Alpha. To add further protection the following security measure will be in place:
 
