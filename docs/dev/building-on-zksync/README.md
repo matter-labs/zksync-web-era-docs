@@ -1,4 +1,4 @@
-# Building on zkSync
+# Building on zkSync Era
 
 A series of guides to get you off localhost.
 
