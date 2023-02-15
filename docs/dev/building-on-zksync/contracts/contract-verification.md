@@ -56,6 +56,16 @@ module.exports = [
 Include it in the verify function call by adding a new parameter: `--constructor-args arguments.js `
 `yarn hardhat verify --network testnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF --constructor-args arguments.js"`
 
+
+### Verification status check
+
+The verification process consists of two steps. First, a verification request is sent to confirm if the given parameters for your contract are correct. Then, we check the verification status of that request. Those steps are both run when you run the `verify` task, but you will be able to see your specific verification request ID.
+You can then use this ID to check the status of your verification request without running the whole process from the beginning.
+
+The following command checks the status of the verification request for the specific verification ID:
+
+`yarn hardhat verify-status --verification-id <your verification id>`
+
 ## Verify smart contract programmatically
 
 If you need to run the verification task directly from your code, you can use the hardhat "verify:verify" task with the previously mentioned parameters with the difference in using `--address` parameter when specifying contarct's address:<br/>
