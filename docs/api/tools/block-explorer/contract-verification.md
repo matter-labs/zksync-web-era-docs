@@ -1,4 +1,4 @@
-# Contract Verification
+# Contract verification
 
 ## What is contract verification?
 

@@ -18,7 +18,7 @@ Scalability can be improved in a number of ways, from increasing the efficiency 
 
 In other words, hyperscalability means breaking out of the blockchain trilemma:
 
-[Img](path-url)
+![Hyper-scalability!](../../assets/images/image1.png "Hyper-scalability")
 
 Theoretically, given enough hardware, it is possible to aggregate arbitrarily large blocks of transactions and produce a single succinct ZKP (more precisely: proof of computational integrity) for each such block. In practice, however, no single monolithic blockchain system will be able to meet infinite market demand. Here are some reasons why:
 
@@ -30,8 +30,7 @@ Theoretically, given enough hardware, it is possible to aggregate arbitrarily la
 Luckily, ZKPs offer a beautiful way to build a heterogeneous yet simultaneously a hyper-scalable blockchain system. This idea is known as [Fractal scaling](https://medium.com/starkware/fractal-scaling-from-l2-to-l3-7fe238ecfb4f). 
 Many different ZKP chains (in the zkSync world we call them Hyperchains) are run in parallel and get their block proofs aggregated into a single final block that will be settled on L1. Each of the Hyperchains will resemble the entire system (i.e. it can have an infinite number of other Hyperchains on top of it: L3, L4, and so on).
 
-[img](path-url)
-
+![Hyperchains!](../../assets/images/image2.png "Hyperchains")
 
 Fractal scaling is necessary but not sufficient to achieve hyperscaling. You need one additional component:
 

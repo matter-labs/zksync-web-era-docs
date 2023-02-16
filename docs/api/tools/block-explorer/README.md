@@ -4,7 +4,7 @@ With zkSync [block explorer](https://explorer.zksync.io/), you can retrieve comp
 
 ## Table of contents
 
-- [Overview](./intro.md)
+- [Use the Block Explorer](./intro.md)
 - [Browse blocks](./block-view.md)
 - [Search bar](./search.md)
 - [Contract verification](./contract-verification.md)

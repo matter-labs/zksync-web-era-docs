@@ -15,7 +15,6 @@ export const enSidebar = sidebar({
         "/dev/fundamentals/zkSync.md", 
         "/dev/fundamentals/testnet.md", 
         "/dev/fundamentals/hyperscaling.md",
-        "/dev/fundamentals/faq.md"
       ],
     },
     {
@@ -65,6 +64,7 @@ export const enSidebar = sidebar({
         "/dev/troubleshooting/changelog.md",
         "/dev/troubleshooting/docs-contribution/docs.md",
         "/dev/troubleshooting/docs-contribution/community-resources.md",
+        "/dev/troubleshooting/faq.md"
         // "/dev/troubleshooting/known-issues.md",
         // "/dev/troubleshooting/status.md",
         // "/dev/troubleshooting/important-links.md",
@@ -149,6 +149,7 @@ export const enSidebar = sidebar({
       children: [
         "/api/tools/block-explorer/intro", 
         "/api/tools/block-explorer/block-view", 
+        "/api/tools/block-explorer/search", 
         "/api/tools/block-explorer/contract-verification"
       ],
     },
