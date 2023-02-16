@@ -34,9 +34,19 @@
     ],
     "redirects": [
       {
+        "regex": "/docs/(?P<path>.+)",
+        "destination": "/docs/:path",
+        "type": 302
+      },
+      {
+        "regex": "/(?P<path>.+)",
+        "destination": "/docs/:path",
+        "type": 302
+      },
+      {
         "source": "/",
         "destination": "/docs/",
-        "type": "302"
+        "type": 302
       }
     ]
     },
@@ -74,9 +84,19 @@
     ],
     "redirects": [
       {
+        "regex": "/docs/(?P<path>.+)",
+        "destination": "/docs/:path",
+        "type": 302
+      },
+      {
+        "regex": "/(?P<path>.+)",
+        "destination": "/docs/:path",
+        "type": 302
+      },
+      {
         "source": "/",
         "destination": "/docs/",
-        "type": "302"
+        "type": 302
       }
     ]
     }
