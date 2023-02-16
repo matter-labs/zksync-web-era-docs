@@ -118,9 +118,9 @@ One prominent example of this is a combination of [zkRollup + zkPorter](https://
 
 ![Logical state partitions!](../../assets/images/image3.png "Logical state partitions")
 
-### MEV protection
+<!-- ### MEV protection
 
-We expect Hyperchain developers to experiment with different MEV-minimization approaches (see the [question about MEV in zkSync](https://docs.google.com/document/d/1Oq-grdnlY8RL8aoA1EAiRPlJSbH698BoTVK-5bX8nxc/edit#heading=h.5ygkd14evhl0)).
+We expect Hyperchain developers to experiment with different MEV-minimization approaches (see the [question about MEV in zkSync](https://docs.google.com/document/d/1Oq-grdnlY8RL8aoA1EAiRPlJSbH698BoTVK-5bX8nxc/edit#heading=h.5ygkd14evhl0)). -->
 
 ### Privacy
 
