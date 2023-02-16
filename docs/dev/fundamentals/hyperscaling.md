@@ -30,7 +30,7 @@ Theoretically, given enough hardware, it is possible to aggregate arbitrarily la
 Luckily, ZKPs offer a beautiful way to build a heterogeneous yet simultaneously a hyper-scalable blockchain system. This idea is known as [Fractal scaling](https://medium.com/starkware/fractal-scaling-from-l2-to-l3-7fe238ecfb4f). 
 Many different ZKP chains (in the zkSync world we call them Hyperchains) are run in parallel and get their block proofs aggregated into a single final block that will be settled on L1. Each of the Hyperchains will resemble the entire system (i.e. it can have an infinite number of other Hyperchains on top of it: L3, L4, and so on).
 
-![Hyperchains!](../../assets/images/image2.png "Hyperchains")
+![Hyperchains!](../../assets/images/image5.png "Hyperchains")
 
 Fractal scaling is necessary but not sufficient to achieve hyperscaling. You need one additional component:
 
@@ -47,7 +47,14 @@ To achieve zero cost overhead on the underlying chains, each Hyperchain must:
 - Implement native hyper-bridges that can actually burn and mint actual tokens and not their virtual representation (in contrast to the conventional bridges), storing mint claim commitments in the Hyperchain state.
 - Trust the implementations of hyper-bridges on all other Hyperchains – because if a single hyper-bridge is compromised, the malicious chain could mess with the token supply (thus all of the Hyperchains must implement the exact same circuits).
 
-(img)[path-url]
+**Fractal scaling**
+
+![Fractal scaling!](../../assets/images/image4.png "Fractal scaling")
+
+**Hyperscaling**
+
+![Hyperscaling!](../../assets/images/image2.png "Hyperscaling")
+
 
 
 With hyper-bridges you can transfer assets from one Hyperchain to another at the cost of a normal transfer, just like hyperlinks can take you from one web page to another at the cost of a single click (without the need to click separately through each layer of navigation).
@@ -109,7 +116,7 @@ Synchronicity is important as it enables atomic transactions between partitions,
 
 One prominent example of this is a combination of [zkRollup + zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf) (which will be part of the zkSync Basechain):
 
-(img)[path-url]
+![Logical state partitions!](../../assets/images/image3.png "Logical state partitions")
 
 ### MEV protection
 
