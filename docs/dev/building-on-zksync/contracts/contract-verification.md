@@ -7,7 +7,7 @@ Now that you have learned how to deploy your contracts, you might be interested 
 
 ## Verify smart contracts with the hardhat-zksync-verify plugin
 
-To use the hardhat-zksync-verify plugin first add it to your project by running `yarn add @matterlabs/hardhat-zksync-verify`. For more instructions about using this plugin, please refer to its documentaion [here](../../../api/hardhat/hardhat-zksync-verify.md).
+To use the hardhat-zksync-verify plugin first add it to your project by running `yarn add @matterlabs/hardhat-zksync-verify`. For more instructions about using this plugin, please refer to its documentation [here](../../../api/hardhat/hardhat-zksync-verify.md).
 
 Define your network configuration ("testnet" in this case):
 

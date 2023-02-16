@@ -261,7 +261,7 @@ Firstly, we need to implement the signature validation process.  In this tutoria
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 ```
 
-Since we are building a two-account multisig, let's pass its owners' addresses in the constructor and save them is stata variables:
+Since we are building a two-account multisig, let's pass its owners' addresses in the constructor and save their state variables:
 
 ```solidity
 // state variables for account owners
@@ -277,7 +277,7 @@ constructor(address _owner1, address _owner2) {
 
 To validate the signature we'll have to:
 
-- check if the lenght of the received signature is correct.
+- check if the length of the received signature is correct.
 - extract the two signatures from the received multisig using the helper method `extractECDSASignature`
 - check if both signatures are valid using the helper method `checkValidECDSASignatureFormat`.
 - extract the addresses from the transaction hash and each signature using the `ECDSA.recover` method.
@@ -347,7 +347,7 @@ import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContrac
 
 The `TransactionHelper` library (already imported above with `using TransactionHelper for Transaction;`) can be used to get the hash of the transaction that should be signed. You can also implement your own signature scheme and use a different commitment for the transaction to sign, but in this example we use the hash provided by this library.
 
-Finally, the `_validateTransaction` method has to return the constant `ACCOUNT_VALIDATION_SUCCESS_MAGIC` if the validation is sucessful, or an empty value `bytes4(0)` if it fails.
+Finally, the `_validateTransaction` method has to return the constant `ACCOUNT_VALIDATION_SUCCESS_MAGIC` if the validation is successful, or an empty value `bytes4(0)` if it fails.
 
 Here is the full implementation fo the `_validateTransaction` method:
 
@@ -505,7 +505,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
             msg.sender == BOOTLOADER_FORMAL_ADDRESS,
             "Only bootloader can call this method"
         );
-        // Continure execution if called from the bootloader.
+        // Continue execution if called from the bootloader.
         _;
     }
 
@@ -730,7 +730,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 
 ## The factory
 
-Now, let's build a factory that can deploy these accounts. To deploy the smat contract account, we need to interact directly with the `DEPLOYER_SYSTEM_CONTRACT`. For deterministic addresses, we will call the `create2Account` method.
+Now, let's build a factory that can deploy these accounts. To deploy the smart contract account, we need to interact directly with the `DEPLOYER_SYSTEM_CONTRACT`. For deterministic addresses, we will call the `create2Account` method.
 
 The code will look the following way:
 

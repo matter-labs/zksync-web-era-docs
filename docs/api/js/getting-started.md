@@ -84,7 +84,7 @@ const depositReceipt = await deposit.wait();
 ## Checking zkSync account balance
 
 ```typescript
-// Retreiving the current (committed) zkSync ETH balance of an account
+// Retrieving the current (committed) zkSync ETH balance of an account
 const committedEthBalance = await zkSyncWallet.getBalance(zksync.utils.ETH_ADDRESS);
 
 // Retrieving the ETH balance of an account in the last finalized zkSync block.
