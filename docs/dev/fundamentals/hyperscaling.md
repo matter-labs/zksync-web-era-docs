@@ -18,7 +18,7 @@ Scalability can be improved in a number of ways, from increasing the efficiency 
 
 In other words, hyperscalability means breaking out of the blockchain trilemma:
 
-![Hyper-scalability!](../../assets/images/image1.png "Hyper-scalability")
+![Hyper-scalability!](../../assets/images/Blockchain-trilemma-blue.png "Hyper-scalability")
 
 Theoretically, given enough hardware, it is possible to aggregate arbitrarily large blocks of transactions and produce a single succinct ZKP (more precisely: proof of computational integrity) for each such block. In practice, however, no single monolithic blockchain system will be able to meet infinite market demand. Here are some reasons why:
 
