@@ -77,6 +77,62 @@
         "source": "/",
         "destination": "/docs/",
         "type": "302"
+      },
+      {
+        "source": "/dev/developer-guides/contracts/system-contracts.html",
+        "destination": "/dev/building-on-zksync/contracts/system-contracts.html",
+        "type": "302"
+      },
+
+      {
+        "source": "/dev/developer-guides/contracts/system-contracts.html",
+        "destination": "/dev/building-on-zksync/contracts/system-contracts.html",
+        "type": "302"
+      },
+      {
+        "source": "/dev/zksync-v2/aa.html",
+        "destination": "/dev/developer-guides/aa.html",
+        "type": "302"
+      },
+      {
+        "source": "/dev/developer-guides/hello-world.html",
+        "destination": "/dev/building-on-zksync/hello-world.html",
+        "type": "302"
+      },
+      {
+        "source": "/dev/developer-guides/contracts/contract-verification.html",
+        "destination": "/dev/building-on-zksync/contracts/contract-verification.html",
+        "type": "302"
+      },
+      {
+        "source": "/dev/developer-guides/building-on-zksync/events.html",
+        "destination": "/dev/building-on-zksync/events.html",
+        "type": "302"
+      },
+      {
+        "source": "/dev/developer-guides/building-on-zksync/events.html",
+        "destination": "/dev/building-on-zksync/events.html",
+        "type": "302"
+      },
+      {
+        "source": "/dev/developer-guides/contracts/contracts.html",
+        "destination": "/dev/building-on-zksync/contracts/contracts.html",
+        "type": "302"
+      },
+      {
+        "source": "/dev/developer-guides/contracts/contract-deployment.html",
+        "destination": "/dev/building-on-zksync/contracts/contract-deployment.html",
+        "type": "302"
+      },
+      {
+        "source": "/dev/building-on-zksync/bridging/l1-l2-interop.html",
+        "destination": "/dev/developer-guides/bridging/l1-l2-interop.html",
+        "type": "302"
+      },
+      {
+        "source": "/dev/developer-guides/contracts/contract-deployment.html",
+        "destination": "/dev/building-on-zksync/contracts/contract-deployment.html",
+        "type": "302"
       }
     ]
     }
