@@ -6,7 +6,7 @@ As long as the code does not involve deploying new smart contracts (they can onl
 
 It is possible to continue using the SDK that is currently in use. Users will continue paying fees in ETH, and the UX will be identical to the one on Ethereum.
 
-However, zkSync has its specifics, which this section describes.
+However, zkSync Era has its specifics, which this section describes.
 
 ## EIP712
 
@@ -82,7 +82,7 @@ Returns the fee for the transaction. The token in which the fee is calculated is
 
 ### `zks_getMainContract`
 
-Returns the address of the zkSync contract.
+Returns the address of the zkSync Era contract.
 
 ### Input parameters
 
@@ -106,7 +106,7 @@ None.
 
 ### `zks_getConfirmedTokens`
 
-Given `from` and `limit` return information about the confirmed tokens with IDs in the interval `[from..from+limit-1]`. "Confirmed" is the wrong word here, since a confirmed token has already been bridged through the default zkSync bridge.
+Given `from` and `limit` return information about the confirmed tokens with IDs in the interval `[from..from+limit-1]`. "Confirmed" is the wrong word here, since a confirmed token has already been bridged through the default zkSync Era bridge.
 
 The tokens are returned in alphabetical order by their symbols, so a token's id is just its place in an array of tokens that has been sorted by symbols.
 
@@ -176,7 +176,7 @@ Otherwise, the object of the following format is returned:
 
 The `id` is the position of the leaf in the Merkle tree of L2->L1 messages for the block. The `proof` is the Merkle proof for the message, while the `root ` is the root of the Merkle tree of L2->L1 messages. Please note, that the Merkle tree uses _sha256_ for the trees.
 
-You do not need to care about the intrinsics, since the returned `id` and `proof` can be used right away for interacting with the zkSync smart contract.
+You do not need to care about the intrinsics, since the returned `id` and `proof` can be used right away for interacting with the zkSync  Era smart contract.
 
 A nice example of using this endpoint via our SDK can be found [here](../dev/developer-guides/bridging/l2-l1.md).
 

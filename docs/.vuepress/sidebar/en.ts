@@ -154,7 +154,7 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "zkSync CLI", // required
+      text: "zkSync Era CLI", // required
       link: "/api/tools/zksync-cli/", // optional, which should be a absolute path.
       children: []    
     },
