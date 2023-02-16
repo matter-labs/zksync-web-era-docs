@@ -1,8 +1,5 @@
 # Intro to rollups
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## Introduction
 
 To better understand rollups we need to dive briefly into Ethereum and Layer 2 solutions.

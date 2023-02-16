@@ -1,8 +1,5 @@
 # Getting started
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ::: warning
 
 Please note, that in the new `0.13.1` SDK version, the API/Node layer operates with gas. The ergs concept is used by VM only.
@@ -13,7 +10,7 @@ Please note, that in the new `0.13.1` SDK version, the API/Node layer operates w
 
 While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features, like account abstraction, requires providing additional fields to those that Ethereum transactions have by default.
 
-To provide easy access to all of the features of zkSync 2.0, the `zksync-web3` JavaScript SDK was created, which is made in a way that has an interface very similar to those of [ethers](https://docs.ethers.io/v5/). In fact, `ethers` is a peer dependency of our library and most of the objects exported by `zksync-web3` (e.g. `Wallet`, `Provider` etc.) inherit from the corresponding `ethers` objects and override only the fields that need to be changed.
+To provide easy access to all of the features of zkSync Era, the `zksync-web3` JavaScript SDK was created, which is made in a way that has an interface very similar to those of [ethers](https://docs.ethers.io/v5/). In fact, `ethers` is a peer dependency of our library and most of the objects exported by `zksync-web3` (e.g. `Wallet`, `Provider` etc.) inherit from the corresponding `ethers` objects and override only the fields that need to be changed.
 
 The library is made in such a way that after replacing `ethers` with `zksync-web3` most client apps will work out of box.
 
@@ -94,7 +91,7 @@ const committedEthBalance = await zkSyncWallet.getBalance(zksync.utils.ETH_ADDRE
 const finalizedEthBalance = await zkSyncWallet.getBalance(zksync.utils.ETH_ADDRESS, "finalized");
 ```
 
-You can read more about what committed and finalized blocks are [here](../../dev/fundamentals/zkSync.md#confirmations-and-finality).
+You can read more about what committed and finalized blocks are [here](../../dev/developer-guides/transactions/blocks.md).
 
 ## Performing a transfer
 

@@ -1,17 +1,24 @@
 # Getting started
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+In this guide we will demonstrate how to:
+
+1. Connect to the zkSync network.
+2. Deposit assets from Ethereum into zkSync.
+3. Check balances.
+4. Transfer and withdraw funds (native and ERC20 tokens).
+5. Deploy a smart contract.
+6. Deploy a smart contract with create2.
+
 
 ::: warning
 
-⚠️ This section of the documentation is no longer current and needs to be updated to reflect the changes made to the system contract. We apologize for any inconvenience and assure you that a revised version will be available shortly.
+This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../dev/troubleshooting/changelog.md)). A revised version will be available shortly.
 
 :::
 
 ## Adding dependencies
 
-To install zksync 2.0, run the command below in your terminal.
+To install zkSync Era, run the command below in your terminal.
 
 ```console
 pip install zksync2

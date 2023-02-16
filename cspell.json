@@ -1,13 +1,13 @@
 {
-  "language": "en",
-  "ignorePaths": [
+"language": "en",
+"ignorePaths": [
     "node_modules/**",
     ".github/**",
     ".firebase/**",
     ".yarn/**",
     "dist/**"
-  ],
-  "dictionaries": [
+],
+"dictionaries": [
     "typescript",
     "cpp",
     "npm",
@@ -30,13 +30,13 @@
     "fullstack",
     "softwareTerms",
     "zksync"
-  ],
-  "dictionaryDefinitions": [
+],
+"dictionaryDefinitions": [
     {
-      "name": "zksync",
-      "addWords": true,
-      "path": "./cspell-zksync.txt"
+    "name": "zksync",
+    "addWords": true,
+    "path": "./cspell-zksync.txt"
     }
-  ],
-  "allowCompoundWords": true
+],
+"allowCompoundWords": true
 }

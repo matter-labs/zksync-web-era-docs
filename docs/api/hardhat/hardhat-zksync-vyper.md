@@ -1,9 +1,9 @@
 # `hardhat-zksync-vyper`
 
-This plugin is used to provide a convenient interface for compiling Vyper smart contracts before deploying them to zkSync 2.0.
+This plugin is used to provide a convenient interface for compiling Vyper smart contracts before deploying them to zkSync Era.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ## Installation
 

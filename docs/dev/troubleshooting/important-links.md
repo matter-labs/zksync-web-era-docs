@@ -1,11 +1,8 @@
 # Important links
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## Testnet network info
 
-- Network Name: `zkSync alpha testnet`
+- Network Name: `zkSync Era Testnet`
 - New RPC URL: `https://zksync2-testnet.zksync.dev`
 - Chain ID: `280`
 - Currency Symbol: `ETH`
@@ -14,7 +11,7 @@
 
 ## Mainnet network info
 
-- Network Name: `zkSync mainnet`
+- Network Name: `zkSync Era Mainnet`
 - New RPC URL: `https://zksync2-mainnet.zksync.io`
 - Chain ID: `324`
 - Currency Symbol: `ETH`

@@ -1,4 +1,4 @@
-## Providers
+# Providers
 
 Providers are objects that wrap interactions with the zkSync node. If you are new to the concept of providers in `web3`, you should check out their docs [here](https://web3py.readthedocs.io/en/v5/providers.html?highlight=providers).
 
@@ -33,8 +33,8 @@ def __init__(self,
 | zksync (optional) | zkSync contract address                                 |
 | returns           | `Provider` object.                                      |
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ## `approve_deposits`
 

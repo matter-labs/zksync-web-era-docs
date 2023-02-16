@@ -1,4 +1,4 @@
-# zkSync features
+# zkSync Era features
 
 While zkSync is mostly Web3-compatible, it has some differences compared to Ethereum. The major of those are:
 
@@ -10,8 +10,6 @@ These require us to extend standard Ethereum transactions with new custom fields
 
 This document will focus solely on how to pass these arguments to the SDK.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
 
 ## Overrides
 
@@ -102,4 +100,4 @@ const sentTx = await sender.sendTransaction({
 });
 ```
 
-You can also check out our [tutorial](../../dev/developer-guides/hello-world.md) on the full-fledged mini-dApp, where users can choose token to pay the fee.
+You can also check out our [tutorial](../../dev/building-on-zksync/hello-world.md) on the full-fledged mini-dApp, where users can choose token to pay the fee.

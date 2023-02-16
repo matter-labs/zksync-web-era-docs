@@ -1,13 +1,13 @@
 # Tutorials
 
-Learn how to build dApps on the zkSync 2.0 protocol with the following step-by-step tutorials.
+Learn how to build dApps on the zkSync Era protocol with the following step-by-step tutorials.
 
-## List of zkSync 2.0 tutorials
+## List of zkSync Era tutorials
 
-- [Quickstart](../developer-guides/hello-world.md)
 - [Cross-chain governance](../tutorials/cross-chain-tutorial.md)
-- [Account abstraction example](../tutorials/custom-aa-tutorial.md)
-- [Building custom paymasters](../tutorials/custom-paymaster-tutorial.md)
+- [Account abstraction multisig](../tutorials/custom-aa-tutorial.md)
+- [Daily spend limit account](../tutorials/aa-daily-spend-limit.md)
+- [Building custom paymaster](../tutorials/custom-paymaster-tutorial.md)
 
 ### Tutorial requests
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
+import fs from 'fs'
 
 
 // It is a somewhat ugly hack. Unfortunately this is the only easy way for now 

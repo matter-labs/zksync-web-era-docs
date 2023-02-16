@@ -19,7 +19,7 @@ Support for custom paths will be included in the future.
 
 ## Install dependencies
 
-Although zkSync is [compatible with Solidity and Vyper](../dev/../../dev/developer-guides/contracts/contracts.md), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the fist step will be to install the compiler and deployer hardhat plugins:
+Although zkSync is [compatible with Solidity and Vyper](../../dev/building-on-zksync/contracts/contracts.md), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the fist step will be to install the compiler and deployer hardhat plugins:
 
 ```sh
 # Yarn
@@ -142,7 +142,7 @@ Obtain [test ETH from our faucet](https://portal.zksync.io/faucet) or just bridg
 
 :::
 
-To deploy your contracts you'd need to use the `Deployer` class from the `hardhat-zksync-deploy`  plugin. This class takes care of all the specifics of [deploying contracts on zkSync](../dev/../../dev/developer-guides/contracts/contract-deployment.md). 
+To deploy your contracts you'd need to use the `Deployer` class from the `hardhat-zksync-deploy`  plugin. This class takes care of all the specifics of [deploying contracts on zkSync](../../dev/building-on-zksync/contracts/contract-deployment.md). 
 
 Here is a basic deployment script for a `Greeter` contract:
 

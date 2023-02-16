@@ -8,12 +8,10 @@ In this guide we will demonstrate how to:
 4. Transfer and withdraw funds (native and ERC20 tokens).
 5. Deploy a smart contract.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
 
 ::: warning
 
-⚠️ This section of the documentation is no longer current and needs to be updated to reflect the changes made to the system contract. We apologize for any inconvenience and assure you that a revised version will be available shortly.
+This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../dev/troubleshooting/changelog.md)). A revised version will be available shortly.
 
 :::
 

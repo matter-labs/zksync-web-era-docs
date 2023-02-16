@@ -1,4 +1,4 @@
-# zkSync v2.0 Documentation
+# zkSync Era Documentation
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/matter-labs/zksync-web-v2-docs?color=%234E529A&label=changelog)](CHANGELOG.md)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/matter-labs/zksync-wallet/blob/master/LICENSE-MIT) [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue)](https://github.com/matter-labs/zksync-wallet/blob/master/LICENSE-MIT)
@@ -9,8 +9,8 @@
 > zkEVM is a virtual machine that executes smart contracts in a way that is compatible with zero-knowledge-proof computation.
 > Our zkEVM keeps EVM semantics, but is also ZK-friendly and takes on traditional CPU architectures.
 
-Constantly updated, [zkSync: Docs for 2.0](https://v2-docs.zksync.io/dev) offers the most complete knowledge about the upcoming **zkSync 2.0**.
-zkSync 2 release has built-in EVM compatibility which makes it a single key to release EVM-compatible ZK rollup.
+Constantly updated, [zkSync Era Docs](https://era.zksync.io/docs) offers the most complete knowledge about the upcoming **zkSync Era**.
+zkSync Era release has built-in EVM compatibility which makes it a single key to release EVM-compatible ZK rollup.
 We call it [zkEVM](https://zksync.io/zkevm): long-awaited way to preserve the battle-tested code and knowledge
 gained after years of working with Solidity scaling it with Layer 2.
 
@@ -23,7 +23,6 @@ The Frontend team chose the `yarn@berry` packager, so don't forget to install `n
 ```bash
 # configure yarn version: berry or specifically 3.1.1.
 $ yarn set version berry
-
 ```
 
 ### Main scripts
@@ -34,7 +33,6 @@ $ yarn add
 
 # serve with hot reload at localhost:8080
 $ yarn docs:dev
-
 # static generation to dist
 $ yarn docs:build
 ```
@@ -49,28 +47,20 @@ You can check it locally as follows:
 ```bash
 # check dead links
 $ yarn lint:dead
-
 # check spelling
 $ yarn lint:spell
-
 # check with markdownlint
 $ yarn lint:mdl
-
 # check with prettier
 $ yarn lint:fmt
-
 # fix with markdownlint
 $ yarn fix:mdl
-
 # fix with prettier
 $ yarn fix:fmt
-
 # run all checks
 $ yarn ci
-
 # run all fixes
 $ yarn ci:fix
-
 # build for production
 $ yarn ci:build
 ```

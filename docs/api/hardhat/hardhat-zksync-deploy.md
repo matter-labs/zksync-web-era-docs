@@ -8,9 +8,6 @@ Contracts must be compiled using the official `@matterlabs/hardhat-zksync-solc` 
 
 :::
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## Installation
 
 [@matterlabs/hardhat-zksync-deploy](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-deploy)
@@ -160,6 +157,6 @@ Note that deployment scripts must be placed in the `deploy` folder!
 ::: tip
 
 If network argument `--network` or `defaultNetwork` configuration are not specified, local setup with `http://localhost:8545` (Ethereum RPC URL) and `http://localhost:3050` (zkSync RPC URL), will be used. In this case zkSync network doesn't need to be configured in `hardhat.config.ts` file.
-For more details about the dockerized local setup, check out [Local testing](https://v2-docs.zksync.io/api/hardhat/testing.html).
+For more details about the dockerized local setup, check out [Local testing](./testing.md).
 
 :::

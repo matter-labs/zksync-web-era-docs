@@ -4,9 +4,6 @@ Sometimes there is a need to test contracts in a local environment for network l
 
 zkSync team provides a dockerized local setup for this purpose.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## Prerequisites
 
 It is required that you have `Docker` and `docker-compose` installed on your computer. Find the [installation guide here](https://docs.docker.com/get-docker/)
@@ -40,7 +37,7 @@ By default, the HTTP JSON-RPC API will run on port `3050`, while WS API will run
 
 ::: warning
 
-Note, that it is important that the first `start.sh` script invocation goes uninterrupted. If you face any issues after the bootstrapping process unexpectedly stopped, you should [reset](#resetting-the-zksync-state) the local zkSync state and try again.
+Note, that it is important that the first `start.sh` script invocation goes uninterrupted. If you face any issues after the bootstrapping process unexpectedly stopped, you should [reset](#reset-the-zksync-state) the local zkSync state and try again.
 
 :::
 
@@ -226,4 +223,4 @@ The full example with tests can be found [here](https://github.com/matter-labs/t
 
 ## Chai Matchers
 
-The zkSync team provides the [hardhat-zksync-chai-matchers](./plugins.md#hardhat-zksync-chai-matchers) plugin to make it easier to write and maintain tests for your projects, in addition to offering a local testing environment. This plugin includes a set of Chai matchers specifically designed for use with zkSync, which can help you write more comprehensive and understandable tests for your contracts. By using these matchers, you can ensure that your contracts are working as intended and reduce the likelihood of encountering bugs or other issues during development.
+The zkSync team provides the [hardhat-zksync-chai-matchers](./hardhat-zksync-chai-matchers) plugin to make it easier to write and maintain tests for your projects, in addition to offering a local testing environment. This plugin includes a set of Chai matchers specifically designed for use with zkSync, which can help you write more comprehensive and understandable tests for your contracts. By using these matchers, you can ensure that your contracts are working as intended and reduce the likelihood of encountering bugs or other issues during development.

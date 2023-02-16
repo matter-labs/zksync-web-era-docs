@@ -1,40 +1,40 @@
 {
-  "default": true,
-  "line_length": {
-    "line_length": 250,
-    "tables": false,
-    "code_blocks": false
-  },
-  "fenced-code-language": false,
-  "no-duplicate-header": false,
-  "first-header-h1": false,
-  "first-line-h1": false,
-  "no-inline-html": false,
-  "ol-prefix": false,
-  "MD026": {
-    "punctuation": ".,;:!。，；：！:"
-  },
-  "MD013": {
-    "indent": 2,
-    "headings": false,
-    "line_length": 250,
-    "tables": false,
-    "code_blocks": false
-  },
-  "MD003": {
-    "indent": 2,
-    "code_blocks": false,
-    "headings": false,
-    "line_length": 250,
-    "tables": false
-  },
-  "MD007": {
-    "indent": 2,
-    "code_blocks": false,
-    "headings": false,
-    "line_length": 250,
-    "tables": false
-  },
-  "no-hard-tabs": false,
-  "whitespace": false
+    "default": true,
+    "line_length": {
+        "line_length": 250,
+        "tables": false,
+        "code_blocks": false
+    },
+    "fenced-code-language": false,
+    "no-duplicate-header": false,
+    "first-header-h1": false,
+    "first-line-h1": false,
+    "no-inline-html": false,
+    "ol-prefix": false,
+    "MD026": {
+        "punctuation": ".,;:!。，；：！:"
+    },
+    "MD013": {
+        "indent": 2,
+        "headings": false,
+        "line_length": 250,
+        "tables": false,
+        "code_blocks": false
+    },
+    "MD003": {
+        "indent": 2,
+        "code_blocks": false,
+        "headings": false,
+        "line_length": 250,
+        "tables": false
+    },
+    "MD007": {
+        "indent": 2,
+        "code_blocks": false,
+        "headings": false,
+        "line_length": 250,
+        "tables": false
+    },
+    "no-hard-tabs": false,
+    "whitespace": false
 }
