@@ -7,16 +7,6 @@ Let's see how we can use the paymaster feature to build a custom paymaster that 
 - Finally we will send a `mint` transaction from the newly created wallet via the paymaster. Even though the transaction would normally require some ETH to pay for the gas fee, our paymaster will execute the transaction in exchange for 1 unit of the ERC20 token.
 
 
-
-
-::: warning
-
-Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM. 
-
-This tutorial will be updated shortly to reflect those changes.
-
-:::
-
 ## Prerequisite
 
 To better understand this page, we recommend you first read up on [account abstraction design](../developer-guides/aa.md) before diving into this tutorial.
