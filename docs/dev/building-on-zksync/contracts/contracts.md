@@ -26,7 +26,7 @@ Currently only Vyper `^0.3.3` is supported.
 
 ## Compilers
 
-Although you can write smart contracts in both Solidty and Vyper, compiling these contracts to our zkEVM bytecode requires special compilers:
+Although you can write smart contracts in both Solidity and Vyper, compiling these contracts to our zkEVM bytecode requires special compilers:
 
 - [zksolc](https://github.com/matter-labs/zksolc-bin): Solidity compiler.
 - [zkvyper](https://github.com/matter-labs/zkvyper-bin): Vyper compiler.
