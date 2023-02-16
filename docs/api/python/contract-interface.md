@@ -1,4 +1,4 @@
-## Contract interfaces
+# Contract interfaces
 
 There is a set of system contract that helps with the interaction with zkSync Era network.<br>
 The following are the contracts:

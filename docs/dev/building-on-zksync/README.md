@@ -9,4 +9,4 @@ A series of guides to get you off localhost.
 - [Contract verification](../building-on-zksync/contracts/contract-verification.md)
 - [Handling events](./events.md)
 - [JSON-RPC API](./rpc.md)
-- [Video resources](../developer-guides/videos.md)
+- [Video resources](../building-on-zksync/fair-onboarding-alpha.md)
