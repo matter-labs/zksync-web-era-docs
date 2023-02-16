@@ -133,7 +133,7 @@
         "source": "/dev/developer-guides/contracts/contract-deployment.html",
         "destination": "/dev/building-on-zksync/contracts/contract-deployment.html",
         "type": "301"
-      },
+      }
     ]
     }
 ]
