@@ -27,7 +27,7 @@ Merkle
 decentralised
 mainchain
 offchain
-proceesed
+processed
 zcli
 blockchains
 sidechain

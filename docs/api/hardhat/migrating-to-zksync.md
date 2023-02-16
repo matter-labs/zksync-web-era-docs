@@ -9,9 +9,9 @@ Do you have a Hardhat project and you want to deploy it to zkSync? In this page 
 
 zkSync offers [multiple Hardhat plugins](./plugins.md) with different features but in this guide we'll focus on only the ones you'd need to do to migrate your project to zkSync.
 
-:::warning Non-default paths are not supported yet. 
+:::warning Non-default paths are not supported yet.
 
-Contracts files must be included in the `contracts` folder and deployment scripts must be included in the `deploy` folder. 
+Contracts files must be included in the `contracts` folder and deployment scripts must be included in the `deploy` folder.
 
 Support for custom paths will be included in the future.
 
@@ -190,7 +190,7 @@ If you don't include the `--script` option, all script files inside the `deploy`
 
 ## Frontend integration
 
-You can interact with your contracts using the `zksync-web3` Javascript library. This SDK has been built on top of ethers and uses the same classes (`Provider`, `Contract`, `Wallet`) so in a lot of cases, you'd just need to import these clases from `zksync-web3`  instead of `ethers`:
+You can interact with your contracts using the `zksync-web3` Javascript library. This SDK has been built on top of ethers and uses the same classes (`Provider`, `Contract`, `Wallet`) so in a lot of cases, you'd just need to import these classes from `zksync-web3`  instead of `ethers`:
 
 ```typescript
 
@@ -208,7 +208,7 @@ Apart from the same classes and methods provided by ethers, zksync-web3 includes
 To verify your contracts you have two options:
 
 - Explorer: verify your contracts manually in the [zkSync explorer](../tools/block-explorer/contract-verification.md)
-- Plugin:verify your contracts programatically using the [Hardhat verify plugin](./hardhat-zksync-verify.md)
+- Plugin:verify your contracts programmatically using the [Hardhat verify plugin](./hardhat-zksync-verify.md)
 
 
 ---
