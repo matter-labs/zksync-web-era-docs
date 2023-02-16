@@ -17,7 +17,7 @@ Once bridged, there are no restrictions on how tokens can be used within the sys
 
 ### Bridge with Portal
 
-You can also bridge ETH or tokens with the UI provided by Matter Labs at [portal.zksync.io](http://portal.zksync.io). If a token you want to bridge if missing from the Portal drop down, you can request that we add it [here](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw). 
+You can also bridge ETH or tokens with the UI provided by Matter Labs at [portal.zksync.io](http://portal.zksync.io). If a token you want to bridge is missing from the Portal drop down, you can request that we add it [here](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw). 
 
 ### Bridge scripts
 
@@ -128,7 +128,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-To run this scripts, make sure your `hardhat.config.ts` file is configured for zkSync ([find an example here](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html). You can use `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project easily in case you don’t have one already.
+To run this script, make sure your `hardhat.config.ts` file is configured for zkSync ([find an example here](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html). You can use `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project easily in case you don’t have one already.
 
 Place the script files in the `deploy` folder and run:
 
@@ -174,7 +174,7 @@ Make sure you’ve deposited funds on zkSync before following the instructions a
 
 :::
 
-You can find an examples of the config file and deployment scripts in the [Quickstart Guide](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html). If you have an existing project, you can follow the [Hardhat zkSync migration guide](https://v2-docs.zksync.io/api/hardhat/migrating-to-zksync.html).
+You can find an example of the config file and deployment scripts in the [Quickstart Guide](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html). If you have an existing project, you can follow the [Hardhat zkSync migration guide](https://v2-docs.zksync.io/api/hardhat/migrating-to-zksync.html).
 
 ## zkSync Era Mainnet details
 
