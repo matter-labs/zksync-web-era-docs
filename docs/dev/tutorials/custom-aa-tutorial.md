@@ -4,14 +4,6 @@ Now, let's learn how to deploy your custom accounts and interact directly with t
 In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 
 
-
-
-::: warning
-
-Please note, that in the new `0.13.1` SDK version, the API/Node layer operates with gas. The ergs concept is used by VM only.
-
-:::
-
 ## Prerequisite
 
 It is highly recommended to read about the [design](../developer-guides/aa.md) of the account abstraction protocol before diving into this tutorial.

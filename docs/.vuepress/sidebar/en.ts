@@ -14,6 +14,7 @@ export const enSidebar = sidebar({
         "/dev/fundamentals/rollups.md", 
         "/dev/fundamentals/zkSync.md", 
         "/dev/fundamentals/testnet.md", 
+        "/dev/fundamentals/hyperscaling.md",
         "/dev/fundamentals/faq.md"
       ],
     },
@@ -44,6 +45,7 @@ export const enSidebar = sidebar({
         "/dev/building-on-zksync/contracts/contract-verification.md",
         "/dev/building-on-zksync/events.md",
         "/dev/building-on-zksync/rpc.md",
+        "/dev/building-on-zksync/fair-onboarding-alpha.md",
       ],
     },
     {
@@ -95,9 +97,16 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Python SDK", // required
-      link: "/api/python/", // optional, which should be a absolute path.
-      children: ["/api/python/getting-started"],
+      text: "Python SDK",
+      link: "/api/python", 
+      children: [
+        "/api/python/getting-started",
+        "/api/python/providers",
+        "/api/python/accounts",
+        "/api/python/accounts-l1-l2",
+        "/api/python/contract-interface",
+        "/api/python/types",
+      ],
     },
     {
       text: "Java SDK", // required
@@ -109,12 +118,27 @@ export const enSidebar = sidebar({
       link: "/api/go/getting-started", // optional, which should be a absolute path.
       children: ["/api/go/getting-started"],
     },
+
+    {
+      text: "Swift SDK", // required
+      link: "/api/swift/getting-started", // optional, which should be a absolute path.
+      children: [
+        "/api/swift/getting-started",
+        "/api/swift/providers",
+      ],
+    },
     {
       text: "Hardhat", // required
       link: "/api/hardhat", // optional, which should be a absolute path.
       children: [
         "/api/hardhat/getting-started", 
-        "/api/hardhat/plugins", 
+        "/api/hardhat/migrating-to-zksync",
+        "/api/hardhat/plugins",
+        "/api/hardhat/hardhat-zksync-solc",
+        "/api/hardhat/hardhat-zksync-vyper",
+        "/api/hardhat/hardhat-zksync-deploy",
+        "/api/hardhat/hardhat-zksync-chai-matchers",
+        "/api/hardhat/hardhat-zksync-verify", 
         "/api/hardhat/testing", 
         "/api/hardhat/compiling-libraries"
       ],

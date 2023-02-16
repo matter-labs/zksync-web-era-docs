@@ -1,4 +1,4 @@
-## Types
+# Types
 
 All the types which are used in the SDK are referenced here:
 

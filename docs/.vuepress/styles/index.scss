@@ -35,6 +35,11 @@ div[class*=language-] > button.copy-code-button:not(.pure) {
     display: none;
 }
 
+#toc .toc-link {
+    //overflow: visible !important;
+    text-overflow: clip !important;
+}
+
 
 [data-theme="dark"] .sidebar a{
     color: #FFFFFFCC !important;
@@ -128,6 +133,7 @@ input[type="submit" i] {
 
 #toc {
     padding: 0 9rem !important;
+    max-width: 30rem !important;
 }
 
 @media screen and (max-width: 1600px) {
