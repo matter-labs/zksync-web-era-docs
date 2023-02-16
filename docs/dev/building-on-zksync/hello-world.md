@@ -170,7 +170,7 @@ yarn hardhat deploy-zksync
 
 ::: tip Request-Rate Exceeded message
 
-This message is caused by using the default RPC endpoints provided by ethers. To avoid this, use your own Goerli RPC endpoint.You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
+This message is caused by using the default RPC endpoints provided by ethers. To avoid this, use your own Goerli RPC endpoint. You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
 
 :::
 
@@ -538,7 +538,7 @@ Read more about **wallet_requestPermissions**, on the [metamask documentation](h
 
 Even though ether is the only token you can pay fees with, the account abstraction feature allows you to integrate [paymasters](../developer-guides/aa.md#paymasters) that can either pay the fees entirely for you or swap your tokens on the fly. In this tutorial, we will use the [testnet paymaster](../developer-guides/aa.md#testnet-paymaster) that is provided on all zkSync Era testnets.
 
-**The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH. This means that transaction fees in tokens with fewer decimals than ETH will be bigger, for example, USDC which has only 6 decimals. This is a know behaviour of the testnet paymaster, which was built for demonstration purposes only.
+**The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH. This means that transaction fees in tokens with fewer decimals than ETH will be bigger, for example, USDC which has only 6 decimals. This is a known behaviour of the testnet paymaster, which was built for demonstration purposes only.
 
 ::: warning Paymasters on mainnet
 
