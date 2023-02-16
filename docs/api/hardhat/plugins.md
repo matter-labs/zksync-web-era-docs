@@ -1,4 +1,4 @@
-# zkSync toolbox
+# zkSync Era toolbox
 
 ## `hardhat-zksync-toolbox`
 

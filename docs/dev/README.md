@@ -12,6 +12,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Intro to rollups](./fundamentals/rollups.md) - A brief overview of rollups.
 - [zkSync Era basics](./fundamentals/zkSync.md) - A quick overview of zkSync Era technologies.
 - [Interacting with zkSync Era](./fundamentals/testnet.md) - A brief intro into zkSync Era Testnet.
+- [Hyperscaling](./fundamentals/hyperscaling.md) - Understand hyperchains in zkSync.
 
 ### Understanding zkSync Era
 
@@ -33,6 +34,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Verify contracts](./building-on-zksync/contracts/contract-verification.md) - A guide on how to verify smart contracts with zkSync block explorer.
 - [Handling events](./building-on-zksync/events.md) - Learn how to handle events in zkSync Era.
 - [JSON-RPC API](./building-on-zksync/rpc.md) - Learn how to use our custom JSON-RPC APIs that are similar to Ethereum.
+- [Fair Onboarding Alpha](./building-on-zksync/fair-onboarding-alpha.md) - Learn how zkSync Era Fair Onboarding Alpha works.
 
 ### Tutorials
 
@@ -45,16 +47,16 @@ token.
 ### Troubleshooting
 
 - [Changelogs](./troubleshooting/changelog.md) - Get updates, breaking changes and new features on zkSync Era.
-- [Known Issues](./troubleshooting/known-issues.md) - Get answers to common issues you may find.
 - [Contribute to documentation](./troubleshooting/docs-contribution/docs.md) - Learn the guideliness needed to be a contributor to the zkSync Era docs.
 - [FAQs](./troubleshooting/faq.md) - Popular questions and answers about zkSync Era.
+<!-- - [Known Issues](./troubleshooting/known-issues.md) - Get answers to common issues you may find. -->
 <!-- - [Important links](./troubleshooting/important-links.md) - Get a quick reference to important links. -->
 <!-- - [Status](./troubleshooting/status.md) - Get updates on things we are currently working on. -->
 
 ### Tools and SDKs
 
 - [zkSync Era Portal](https://portal.zksync.io) - Explore Wallet, Bridge and Faucet features.
-- [Block explorer](../api/tools/block-explorer/) - Search for real-time and historical information about blocks, transactions, addresses, and more on zkSync block explorer.
+- [Block Explorer](../api/tools/block-explorer/) - Search for real-time and historical information about blocks, transactions, addresses, and more on zkSync block explorer.
 - [Javascript SDK](../api/js/) - Extending the capabilities of Ethers, our Javascript SDK contains specific classes and methods required to build on zkSync Era.
 - [Python SDK](../api/python/) - Explore all the Python methods and functions required to build on zkSync Era.
 - [Go SDK](../api/go/) - Explore all the GO methods and functions required to build on zkSync Era.
