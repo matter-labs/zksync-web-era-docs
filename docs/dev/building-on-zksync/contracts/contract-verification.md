@@ -7,8 +7,9 @@ Now that you have learned how to deploy your contracts, you might be interested 
 
 ## Verify smart contracts with the hardhat-zksync-verify plugin
 
-To use the hardhat-zksync-verify plugin first add it to your project by running `yarn add @matterlabs/hardhat-zksync-verify`
-After that, define your network configuration ("testnet" in this case):
+To use the hardhat-zksync-verify plugin first add it to your project by running `yarn add @matterlabs/hardhat-zksync-verify`. For more instructions about using this plugin, please refer to its documentaion [here](../../../api/hardhat/hardhat-zksync-verify.md).
+
+Define your network configuration ("testnet" in this case):
 
 ```typescript
 networks: {
@@ -66,7 +67,7 @@ The following command checks the status of the verification request for the spec
 
 `yarn hardhat verify-status --verification-id <your verification id>`
 
-## Verify smart contract programmatically
+### Verify smart contract programmatically
 
 If you need to run the verification task directly from your code, you can use the hardhat "verify:verify" task with the previously mentioned parameters with the difference in using `--address` parameter when specifying contarct's address:<br/>
 
