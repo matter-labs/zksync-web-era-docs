@@ -8,12 +8,9 @@ In this guide we will demonstrate how to:
 4. Deploy a smart contract.
 5. Interact with any smart contract.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ::: warning
 
-⚠️ This section of the documentation is no longer current and needs to be updated to reflect the changes made to the system contracts. We apologize for any inconvenience and assure you that a revised version will be available shortly.
+This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../dev/troubleshooting/changelog.md)). A revised version will be available shortly.
 
 :::
 
@@ -52,7 +49,7 @@ import (
     "github.com/zksync-sdk/zksync2-go"
 )
 
-// first, init Ethereum Signer, from your mnemonic, and with the chain Id (in zkSync testnet case, 280)
+// first, init Ethereum Signer, from your mnemonic, and with the chain Id (in zkSync Era Testnet case, 280)
 ethereumSigner, err := zksync2.NewEthSignerFromMnemonic("<mnemonic words>", 280)
 
 // or from raw PrivateKey bytes
@@ -64,7 +61,7 @@ zkSyncProvider, err := zksync2.NewDefaultProvider("https://zksync2-testnet.zksyn
 // then init Wallet, passing just created Ethereum Signer and ZkSync Provider
 wallet, err := zksync2.NewWallet(ethereumSigner, zkSyncProvider)
 
-// init default RPC client to Ethereum node (Goerli network in case of ZkSync2 testnet)
+// init default RPC client to Ethereum node (Goerli network in case of ZkSync2 Era Testnet)
 ethRpc, err := rpc.Dial("https://goerli.infura.io/v3/<your_infura_node_id>")
 
 // and use it to create Ethereum Provider by Wallet

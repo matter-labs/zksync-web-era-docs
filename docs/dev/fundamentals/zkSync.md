@@ -1,7 +1,4 @@
-# zkSync basics
-
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+# zkSync Era basics
 
 ## Prerequisites
 
@@ -14,7 +11,7 @@ scalable and low-cost transactions on Ethereum.
 In zkSync, computation is performed off-chain and most data is stored off-chain as well. As all transactions are proven on the Ethereum
 mainchain, users enjoy the same security level as in Ethereum.
 
-zkSync 2.0 is made to look and feel like Ethereum, but with lower fees. Just like on Ethereum, smart contracts are written in Solidity/Vyper and can be called using the same clients as the other EVM-compatible chains.
+zkSync Era is made to look and feel like Ethereum, but with lower fees. Just like on Ethereum, smart contracts are written in Solidity/Vyper and can be called using the same clients as the other EVM-compatible chains.
 
 You don't need to register a separate private key before usage; zkSync supports existing Ethereum wallets out of the box.
 At this time, zkSync is solely run and operated by the zkSync team's servers and is therefore centralized. However, this will be transitioned to a decentralized system shortly.
@@ -57,7 +54,7 @@ Please note that for developer convenience, we usually treat the `Processed` and
 
 ### The State of zkSync
 
-The current version of zkSync 2.0 solves the needs of most applications on Ethereum, and with more features planned for release soon, zkSync 2.0 will provide developers with a design space to experiment with applications not possible on Ethereum today. With this release, we are supporting the following features:
+The current version of zkSync Era solves the needs of most applications on Ethereum, and with more features planned for release soon, zkSync Era will provide developers with a design space to experiment with applications not possible on Ethereum today. With this release, we are supporting the following features:
 
 - Native support of ECDSA signatures: Unlike the first version of zkSync and most of the ZK rollups, no special operation is required to register the user’s private key. Any account can be managed in L2 with the same private key that is used for L1.
 - Solidity 0.8.x support: Deploy your existing codebase with little to no changes required.
@@ -83,7 +80,7 @@ For example, users can go offline and still be able to withdraw their assets saf
 - Transaction fees are extremely low for the mainnet cost for ERC20 tokens and ETH transfers.
 - Payments to existing Ethereum addresses (including smart contracts) can be conveniently paid with the token being transferred.
 
-## Highlights of zkSync 2.0
+## Highlights of zkSync Era
 
 - Mainnet-like security with zero reliance on 3rd parties.
 - Permissionless EVM-compatible smart contracts.
@@ -93,5 +90,5 @@ For example, users can go offline and still be able to withdraw their assets saf
 
 ## How to get started?
 
-- Begin by building a dApp in the [quickstart section](../developer-guides/hello-world.md).
+- Begin by building a dApp in the [quickstart section](../building-on-zksync/hello-world.md).
 - See the info on RPC nodes, wallet, and block explorer on the [important links](../troubleshooting/important-links.md) page.

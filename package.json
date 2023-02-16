@@ -1,11 +1,11 @@
 {
   "name": "zksync-web-v2-docs",
+  "version": "2.0.0",
   "description": "zkSync Docs V2",
-  "private": true,
-  "version": "1.0.1",
   "license": "MIT",
   "author": "Matter Labs",
   "homepage": "https://zksync.io",
+  "type": "module",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -29,36 +29,10 @@
     "exitLevel": "warn",
     "ignoreFootnotes": true
   },
-  "dependencies": {
-    "@vuepress/plugin-toc": "next",
-    "markdown-it-footnote": "3.0.2",
-    "vuepress": "^1.8.2",
-    "vuepress-plugin-dehydrate": "^1.1.5"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^16.0.0",
-    "@commitlint/config-conventional": "^16.0.0",
-    "@semantic-release/changelog": "^6.0.1",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^8.0.2",
-    "@vuepress/plugin-back-to-top": "^1.9.7",
-    "@vuepress/plugin-docsearch": "^2.0.0-alpha.1",
-    "check-md": "^1.0.1",
-    "commitlint": "^11.0.0",
-    "cspell": "^4.1.5",
-    "husky": "^7.0.0",
-    "lint-staged": "^12.1.7",
-    "markdownlint": "^0.25.0",
-    "markdownlint-cli": "^0.25.0",
-    "prettier": "2.1.2",
-    "semantic-release": "^18.0.1",
-    "vue": "2.6.14",
-    "vuepress-plugin-flexsearch": "^0.3.0",
-    "vuepress-plugin-table-of-contents": "^1.1.7"
-  },
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
+    "docs:clean-dev": "vuepress dev docs --clean-cache",
     "lint:dead": "node ./replacer.js && check-md",
     "lint:fmt": "prettier --check \"docs/**/*.md\"",
     "lint:mdl": "markdownlint -c .markdownlint.json \"docs/**/*.md\"",
@@ -71,6 +45,27 @@
     "prepare": "husky install",
     "semantic-release": "semantic-release",
     "postinstall": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@semantic-release/changelog": "^6.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.7",
+    "@vuepress/client": "2.0.0-beta.60",
+    "@vuepress/plugin-docsearch": "^2.0.0-beta.60",
+    "check-md": "^1.0.2",
+    "commitlint": "^17.3.0",
+    "cspell": "^6.18.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
+    "markdownlint": "^0.27.0",
+    "markdownlint-cli": "^0.32.2",
+    "prettier": "^2.8.1",
+    "semantic-release": "^19.0.5",
+    "vue": "^3.2.45",
+    "vuepress": "2.0.0-beta.60",
+    "vuepress-theme-hope": "2.0.0-beta.146"
   },
   "lint-staged": {
     "*.md": "yarn run ci:fix"

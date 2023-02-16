@@ -2,8 +2,8 @@
 
 In this tutorial, we'll create a smart contract account with a daily spend limit thanks to the Account Abstraction support on zkSync.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ::: warning
 
@@ -15,13 +15,13 @@ This tutorial will be updated shortly to reflect those changes.
 
 ## Prerequisite
 
-It is highly encouraged that you read [the basics of Account Abstraction on zkSync](https://v2-docs.zksync.io/dev/developer-guides/aa.html) and complete the [multisig account tutorial](https://v2-docs.zksync.io/dev/tutorials/custom-aa-tutorial.html) first.
+It is highly encouraged that you read [the basics of Account Abstraction on zkSync](../developer-guides/aa.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) first.
 
 Apart from that we'll build this project with [Node.js](https://nodejs.org/en/download/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) so make sure you have installed them.
 
 ## Installing dependencies
 
-We will use the [zkSync Hardhat plugins](https://v2-docs.zksync.io/api/hardhat/) to build, deploy, and interact with the smart contracts of this project.
+We will use the [zkSync Hardhat plugins](../../api/hardhat/) to build, deploy, and interact with the smart contracts of this project.
 
 First, let’s install all the dependencies that we'll need:
 
@@ -38,17 +38,17 @@ The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
 
 :::
 
-Additionally, please install a few packages that allow us to utilize the [zkSync smart contracts](https://v2-docs.zksync.io/dev/developer-guides/contracts/system-contracts.html).
+Additionally, please install a few packages that allow us to utilize the [zkSync smart contracts](../developer-guides/system-contracts.md).
 
 ```shell
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Lastly, create `hardhat.config.ts` config file and the `contracts` and `deploy` folders like in the [quickstart tutorial](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html).
+Lastly, create `hardhat.config.ts` config file and the `contracts` and `deploy` folders like in the [quickstart tutorial](../building-on-zksync/hello-world.md).
 
 ::: tip zksync-cli
 
-You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](https://v2-docs.zksync.io/api/tools/zksync-cli/).
+You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/).
 
 :::
 
@@ -356,7 +356,7 @@ contract SpendLimit {
 
 That's pretty much for `SpendLimit.sol`. Now, we also need to create the account contract `Account.sol`, and the factory contract that deploys account contracts,`AAFactory.sol`.
 
-As noted earlier, those two contracts are mostly based on the implementations of [another tutorial about Account Abstraction](https://v2-docs.zksync.io/dev/tutorials/custom-aa-tutorial.html).
+As noted earlier, those two contracts are mostly based on the implementations of [another tutorial about Account Abstraction](./custom-aa-tutorial.md).
 
 We will not explain in depth how these contract work as they're similar to the ones used in the multisig account abstraction tutorial. The only difference is that our account will have a single signer instead of two.
 
@@ -532,7 +532,7 @@ if ( value > 0 ) {
 
 Since we want to set the spending limit of ETH in this example, the first argument in `_checkSpendingLimit` should be `address(ETH_TOKEN_SYSTEM_CONTRACT)`, which is imported from a system contract called `system-contracts/Constant.sol`.
 
-**Note1** : The formal ETH address on zkSync is `0x000000000000000000000000000000000000800a`, neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, which is what `zksync-web3` package([See](https://v2-docs.zksync.io/api/js/utils.html#the-address-of-ether)) provides as a more user-friendly alias.
+**Note1** : The formal ETH address on zkSync is `0x000000000000000000000000000000000000800a`, neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, which is what `zksync-web3` package ([See](../../api/js/utils.md#the-address-of-ether)) provides as a more user-friendly alias.
 
 **Note2** : SpendLimit is token-agnostic. Thus an extension is also possible: add a check for whether or not the execution is an ERC20 transfer by extracting the function selector in bytes from transaction calldata.
 
@@ -654,9 +654,9 @@ Account owner pk: 0x957aff65500eda28beb7130b7c1bc48f783556bb84fa6874d2204c1d66a0
 Account deployed on address 0x6b6B8ea196a6F27EFE408288a4FEeBE9A9e12005
 ```
 
-So, we are ready to try the functionality of the `SpendLimit` contract. For the test, now please open [zkSync2.0 testnet explorer](https://zksync2-testnet.zkscan.io/) and search for the deployed Account contract address to be able to track transactions and changes in the balance which we will see in the following sections.
+So, we are ready to try the functionality of the `SpendLimit` contract. For the test, now please open [zkSync Era Block Explorer](https://goerli.explorer.zksync.io/) and search for the deployed Account contract address to be able to track transactions and changes in the balance which we will see in the following sections.
 
-**TIP**: For contract verification, please refer to [this section of the documentation](https://v2-docs.zksync.io/dev/developer-guides/contracts/contract-verification.html).
+**TIP**: For contract verification, please refer to [this section of the documentation](../building-on-zksync/contracts/contract-verification.md).
 
 ## Set the daily spending limit
 
@@ -845,9 +845,9 @@ You can download the complete project [here](https://github.com/porco-rosso-j/da
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](https://v2-docs.zksync.io/dev/developer-guides/bridging/l1-l2.html).
-- To learn more about the zksync-web3 SDK, check out its [documentation](https://v2-docs.zksync.io/api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](https://v2-docs.zksync.io/api/hardhat).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2.md).
+- To learn more about the zksync-web3 SDK, check out its [documentation](../../api/js).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
 
 ## Credits
 

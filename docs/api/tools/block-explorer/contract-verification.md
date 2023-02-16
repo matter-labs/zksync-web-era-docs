@@ -1,4 +1,4 @@
-# Contract Verification
+# Contract verification
 
 ## What is contract verification?
 
@@ -33,9 +33,6 @@ To get started click the **Tools** tab in the top header, a dropdown will pop up
 
 ![Smart Contract Verification page!](../../../assets/images/verify-contract.png "verify contract")
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ### Enter contract details
 
 To verify the contract, enter the following details;
@@ -64,7 +61,7 @@ To verify the contract, enter the following details;
 
 > **Note:** The easiest way to get the constructor argument data is to print it to the console while deploying.
 
-For example, if using our [tutorial](../../../dev/developer-guides/hello-world.md), you can find the line:
+For example, if using our [tutorial](../../../dev/building-on-zksync/hello-world.md), you can find the line:
 
 ```js
 const greeterContract = await deployer.deploy(artifact, [greeting]);

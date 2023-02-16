@@ -2,7 +2,8 @@
 
 ::: warning
 
-This section of the documentation is no longer current and needs to be updated. We apologize for any inconvenience and assure you that a revised version will be available shortly.
+
+This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../troubleshooting/changelog.md)). A revised version will be available shortly.
 
 :::
 
@@ -17,8 +18,8 @@ Since the costs for publishing the calldata on L1 are very volatile, the number 
 
 **Please note that the public data is published only for state diffs.** If the same storage slot is updated 10 times in the same rollup block, only the final update will be published on Ethereum, thus only charging for public data once.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ## Fee model: zkSync vs Ethereum
 

@@ -8,8 +8,6 @@ If any of these blocks you, let us know on our [Discord](https://join.zksync.dev
 
 :::
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
 
 ## Using libraries in Solidity
 
@@ -17,7 +15,7 @@ If a Solidity library can be inlined, i.e. it only contains `private` or `intern
 
 However, if a library contains at least one `public` or `external` method, it is no longer inlined in the Yul representation. These addresses need to be passed explicitly to our compiler. This is not currently supported by our hardhat plugin but will be added later.
 
-For support on an older version of Solidity and Vyper, check [here](../developer-guides/contracts/contracts.md#solidity-vyper-support)
+For support on an older version of Solidity and Vyper, check [here](../building-on-zksync/contracts/contracts.md)
 
 ## Unsupported opcodes
 

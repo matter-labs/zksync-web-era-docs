@@ -1,6 +1,6 @@
 # `hardhat-zksync-verify`
 
-This plugin is used to verify contracts on the zkSync 2.0 network.
+This plugin is used to verify contracts on the zkSync Era network.
 
 <TocHeader />
 <TOC class="table-of-contents" :include-level="[2,3]" />
@@ -47,7 +47,7 @@ networks: {
 - `ethNetwork` is a field with the URL of the Ethereum node. You can also provide the network name (e.g. `goerli`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
 - `url` is a field with the URL of the zkSync node in the case of the zkSync network (with `zksync` flag set to `true`), or the URL of the Ethereum node. This field is required for all zkSync and Ethereum networks used by this plugin.
 - `zksync` is a flag to indicate if the network represents zkSync network configuration. This field needs to be set to `true` for all zkSync networks. If you want to run a `hardhat-etherscan` verification, this field needs to be set to `false`. If set to `true`, the verification process will always try to run the verification process on the zkSync network.
-- `verifyURL` is a field that points to the verification endpoint for the specific zkSync network. This parameter is optional, and its default value is the testnet verification url (`https://zksync2-testnet-explorer.zksync.dev/contract_verification`).
+- `verifyURL` is a field that points to the verification endpoint for the specific zkSync network. This parameter is optional, and its default value is the Testnet verification url (`https://zksync2-testnet-explorer.zksync.dev/contract_verification`). For Mainnet please use (`https://zksync2-mainnet-explorer.zksync.io/contract_verification`).
 
 If you want to verify a smart contract on the Ethereum in the same project, it is important to add `etherscan` field in the `hardhat.config.ts` file:
 
@@ -64,10 +64,10 @@ etherscan: {
 
 ### Commands
 
-`hardhat verify --network <network> <contract address>` - verifies the contract on the given network with the given contract's address. </br>
+`hardhat verify --network <network> <contract address>` - verifies the contract on the given network with the given contract's address. <br/>
 Note: When run like this, the verify task will try to compare compiled bytecode of all the contracts in your local setup to the deployed bytecode of the contract you are trying to verify. If there is no match, it will report an error.
 
-With the `--contract` parameter you can also specify which contract from your local setup you want to verify by specifying its Fully qualified name. Fully qualified name structure looks like this: "contracts/AContract.sol:TheContract" </br>
+With the `--contract` parameter you can also specify which contract from your local setup you want to verify by specifying its Fully qualified name. Fully qualified name structure looks like this: "contracts/AContract.sol:TheContract" <br/>
 
 Example: ` yarn hardhat verify --network <network> <contract address> --contract <fully qualified name>`
 

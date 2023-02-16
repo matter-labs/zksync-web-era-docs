@@ -6,22 +6,12 @@ Let's see how we can use the paymaster feature to build a custom paymaster that 
 - Create the ERC20 token contract and send some tokens to a brand new wallet.
 - Finally we will send a `mint` transaction from the newly created wallet via the paymaster. Even though the transaction would normally require some ETH to pay for the gas fee, our paymaster will execute the transaction in exchange for 1 unit of the ERC20 token.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
-::: warning
-
-Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM. 
-
-This tutorial will be updated shortly to reflect those changes.
-
-:::
 
 ## Prerequisite
 
 To better understand this page, we recommend you first read up on [account abstraction design](../developer-guides/aa.md) before diving into this tutorial.
 
-It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../developer-guides/hello-world.md). It is also recommended to read the [introduction to the system contracts](../developer-guides/contracts/system-contracts.md).
+It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md). It is also recommended to read the [introduction to the system contracts](../developer-guides/system-contracts.md).
 
 ## Installing dependencies
 
@@ -46,7 +36,7 @@ Since we are working with zkSync contracts, we also need to install the package 
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Then create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [quickstart tutorial](../developer-guides/hello-world.md).
+Then create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [quickstart tutorial](../building-on-zksync/hello-world.md).
 
 ::: tip
 
@@ -110,7 +100,7 @@ contract MyPaymaster is IPaymaster {
 }
 ```
 
-Note, that only the [bootloader](../developer-guides/contracts/system-contracts.md#bootloader) should be allowed to call the `validateAndPayForPaymasterTransaction`/`postOp` methods. That's why the `onlyBootloader` modifier is used for them.
+Note, that only the [bootloader](../developer-guides/system-contracts.md#bootloader) should be allowed to call the `validateAndPayForPaymasterTransaction`/`postOp` methods. That's why the `onlyBootloader` modifier is used for them.
 
 ### Parsing the paymaster input
 
@@ -190,7 +180,7 @@ require(success, "Failed to transfer funds to the bootloader");
 
 ::: tip You should validate all the requirements first
 
-The [rules](../developer-guides/aa.md#paymaster-validation-rules) for the paymaster throttling say that the paymaster won't be throttled if the first storage read the value of which differed from the execution on the API was a storage slot that belonged to the user.
+The [rules](../developer-guides/aa.md#the-validation-step) for the paymaster throttling say that the paymaster won't be throttled if the first storage read the value of which differed from the execution on the API was a storage slot that belonged to the user.
 
 That is why it is important to verify that the user provided all the allowed prerequisites to the transaction _before_ performing any logic. This is the reason we _first_ check that the user provided enough allowance, and only then do we do `transferFrom`.
 

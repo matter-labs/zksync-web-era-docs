@@ -1,7 +1,7 @@
 # Account abstraction support
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ::: warning
 
@@ -16,14 +16,14 @@ The former type is the only one that can initiate transactions,
 while the latter is the only one that can implement arbitrary logic. For some use-cases, like smart-contract wallets or privacy protocols, this difference can create a lot of friction.
 As a result, such applications require L1 relayers, e.g. an EOA to help facilitate transactions from a smart-contract wallet.
 
-Accounts in zkSync 2.0 can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature is called "account
+Accounts in zkSync Era can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature is called "account
 abstraction" and it aims to resolve the issues described above.
 
 ::: warning Unstable feature
 
-This is the test release of account abstraction (AA) on zkSync 2.0. We are very happy to hear your feedback! Please note: **breaking changes to the API/interfaces required for AA should be anticipated.**
+This is the test release of account abstraction (AA) on zkSync Era. We are very happy to hear your feedback! Please note: **breaking changes to the API/interfaces required for AA should be anticipated.**
 
-zkSync 2.0 is one of the first EVM-compatible chains to adopt AA, so this testnet is also used to see how "classical" projects from EVM chains can coexist with the account abstraction feature.
+zkSync Era is one of the first EVM-compatible chains to adopt AA, so this testnet is also used to see how "classical" projects from EVM chains can coexist with the account abstraction feature.
 
 :::
 
@@ -54,7 +54,7 @@ There needs to be a solution on the protocol level that is both cheap for users 
 
 The following protocol is used:
 
-- Before each transaction starts, the system queries the [NonceHolder](./contracts/system-contracts.md#inonceholder) to check whether the provided nonce has already been used or not.
+- Before each transaction starts, the system queries the [NonceHolder](../developer-guides/system-contracts.md#nonceholder) to check whether the provided nonce has already been used or not.
 - If the nonce has not been used yet, the transaction validation is run. The provided nonce is expected to be marked as "used" during this time.
 - After the validation, the system checks whether this nonce is now marked as used.
 
@@ -66,7 +66,7 @@ it is recommended to only use the `incrementNonceIfEquals` method, which practic
 
 ### Standardizing transaction hashes
 
-In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](../developer-guides/contracts/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA
+In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](../developer-guides/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA
 methods (in case the accounts may need this value for some reason). That's why all the methods of the `IAccount` and `IPaymaster` interfaces, which are described below,
 contain the hash of the transaction as well as the recommended signed digest (the digest that is signed by EOAs for this transaction).
 
@@ -76,7 +76,7 @@ Each account is recommended to implement the [IAccount](https://github.com/matte
 
 - `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) the method should revert. In case the call to this method succeeds, the implemented account logic is considered to accept the transaction, and the system will proceed with the transaction flow.
 - `executeTransaction` is mandatory and will be called by the system after the fee is charged from the user. This function should perform the execution of the transaction.
-- `payForTransaction` is optional and will be called by the system if the transaction has no paymaster, i.e. the account is willing to pay for the transaction. This method should be used to pay for the fees by the account. Note, that if your account will never pay any fees and will always rely on the [paymaster](#paymasters) feature, you don't have to implement this method. This method must send at least `tx.gasprice * tx.gasLimit` ETH to the [bootloader](./contracts/system-contracts.md#bootloader) address.
+- `payForTransaction` is optional and will be called by the system if the transaction has no paymaster, i.e. the account is willing to pay for the transaction. This method should be used to pay for the fees by the account. Note, that if your account will never pay any fees and will always rely on the [paymaster](#paymasters) feature, you don't have to implement this method. This method must send at least `tx.gasprice * tx.gasLimit` ETH to the [bootloader](./system-contracts.md#bootloader) address.
 - `prePaymaster` is optional and will be called by the system if the transaction has a paymaster, i.e. there is a different address that pays the transaction fees for the user. This method should be used to prepare for the interaction with the paymaster. One of the notable [examples](#approval-based-paymaster-flow) where it can be helpful is to approve the ERC-20 tokens for the paymaster.
 - `executeTransactionFromOutside`, technically, is not mandatory, but it is _highly encouraged_, since there needs to be some way, in case of priority mode (e.g. if the operator is unresponsive), to be able to start transactions from your account from ``outside'' (basically this is the fallback to the standard Ethereum approach, where an EOA starts transaction from your smart contract).
 
@@ -130,14 +130,14 @@ The execution step is considered responsible for the actual execution of the tra
 ### Fees
 
 In EIP4337 you can see three types of gas limits: `verificationGas`, `executionGas`, `preVerificationGas`, that describe the gas limit for the different steps of the transaction inclusion in a block.
-zkSync 2 has only a single field, `gasLimit`, that covers the fee for all three. When submitting a transaction, make sure that `gasLimit` is enough to cover verification,
+zkSync Era has only a single field, `gasLimit`, that covers the fee for all three. When submitting a transaction, make sure that `gasLimit` is enough to cover verification,
 paying the fee (the ERC20 transfer mentioned above), and the actual execution itself.
 
 By default, calling `estimateGas` adds a constant to cover charging the fee and the signature verification for EOA accounts.
 
 ## Using the `SystemContractsCaller` library
 
-For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](./contracts/system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall`/`systemCallWithPropagatedRevert`/`systemCallWithReturndata` methods of the [SystemContractsCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/SystemContractsCaller.sol) library should be used.
+For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](./system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall`/`systemCallWithPropagatedRevert`/`systemCallWithReturndata` methods of the [SystemContractsCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/SystemContractsCaller.sol) library should be used.
 
 Using this library is practically a must when developing custom accounts since this is the only way to call non-view methods of the `NonceHolder` system contract. Also, you will have to use this library if you want to allow users to deploy contracts of their own. You can use the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/DefaultAccount.sol) of the EOA account as a reference.
 
@@ -215,7 +215,7 @@ Currently, your transactions may pass through the API despite violating the requ
 
 ### Nonce holder contract
 
-For optimization purposes, both [tx nonce and the deployment nonce](./contracts/contracts.md#differences-in-create-behaviour) are put in one storage slot inside the [NonceHolder](./contracts/system-contracts.md#inonceholder) system contracts.
+For optimization purposes, both [tx nonce and the deployment nonce](../building-on-zksync/contracts/contract-deployment.md#differences-in-create-behaviour) are put in one storage slot inside the [NonceHolder](./system-contracts.md#nonceholder) system contracts.
 In order to increment the nonce of your account, it is highly recommended to call the [incrementNonceIfEquals](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/INonceHolder.sol#L12) function and pass the value of the nonce provided in the transaction.
 
 This is one of the whitelisted calls, where the account logic is allowed to call outside smart contracts.
@@ -299,7 +299,7 @@ If you are developing a paymaster, you _should not_ trust the transaction sender
 
 #### Working with paymaster flows using `zksync-web3` SDK
 
-The `zksync-web3` SDK provides [methods](../../api/js/utils.md#encoding-paymaster-param) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
+The `zksync-web3` SDK provides [methods](../../api/js/utils.md#encoding-paymaster-params) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
 
 ### Testnet paymaster
 
@@ -307,7 +307,7 @@ To ensure users experience paymasters on testnet, as well as keep supporting pay
 
 The paymaster supports only the [approval based](#approval-based-paymaster-flow) paymaster flow and requires that the `token` param is equal to the token being swapped and `minAllowance` to equal to least `tx.maxFeePerGas * tx.gasLimit`. In addition, the testnet paymaster does not make use of the `_innerInput` parameter, so nothing should be provided (empty `bytes`).
 
-An example of how to use testnet paymaster can be seen in the [quickstart](./hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
+An example of how to use testnet paymaster can be seen in the [quickstart](../building-on-zksync/hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
 
 ## `aa-signature-checker`
 

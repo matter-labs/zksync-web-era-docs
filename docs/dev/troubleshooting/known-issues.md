@@ -1,9 +1,6 @@
 # Known issues
 
-zkSync 2.0 is currently in the alpha stage, hence some things you are used to may not work. Please keep in mind that the system is still under ongoing development.
-
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+zkSync Era is currently in the alpha stage, hence some things you are used to may not work. Please keep in mind that the system is still under ongoing development.
 
 ## Why are Metamask native contract interactions not working?
 
@@ -28,7 +25,8 @@ This is an error that is usually thrown when compiling a large smart contract co
 If you encounter such an error, please do the following:
 
 - Update the `@matterlabs/hardhat-zksync-solc` library and try to re-compile the smart contracts afterwards.
-- If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](../../../api/hardhat/compiling-libraries.md).
+- If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](../../api/hardhat/compiling-libraries.md).
+- If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](../../api/).
 - If the same error persists, report the issue to our team. We will do our best to help you.
 
 ## Why can't I use CREATE/CREATE2 opcodes with raw bytecode?

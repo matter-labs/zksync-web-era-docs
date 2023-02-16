@@ -22,9 +22,12 @@ jobs:
         run: |
           yarn set version 3.1.1
           yarn install
-
       - name: "Generate rinkeby dist"
         run: yarn run docs:build
+
+      - name: "Copy 404"
+        run: |
+          cp ./dist/docs/404.html ./dist/404.html
 
       - name: "Deploy preview"
         uses: matter-labs/action-hosting-deploy@main

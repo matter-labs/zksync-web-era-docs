@@ -11,8 +11,8 @@ The zkSync swift SDK exports the `EthereumProvider` provider:
 
 - `EthereumProvider` which inherits from `web3swift` `JsonRpcProvider` provides access to all of the zkSync JSON-RPC endpoints.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ## EthereumProvider
 

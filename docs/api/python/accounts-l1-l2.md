@@ -19,8 +19,8 @@ account: LocalAccount = Account.from_key("PRIVATE_KEY")
 
 The base property that is used directly with account is: `Account.address`.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
+
+
 
 ## Finalizing deposit
 
