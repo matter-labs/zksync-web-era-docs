@@ -407,3 +407,6 @@ a.brand {
     text-align: left !important;
 }
 
+span.contributor:nth-child(n+5) {
+    display: none !important;
+}
