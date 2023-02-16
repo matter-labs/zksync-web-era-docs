@@ -155,7 +155,7 @@ if __name__ == "__main__":
 
 ### Transfer funds (ERC20 tokens)
 
-This example below shows how you can tranfer ERC20 tokens.
+This example below shows how you can transfer ERC20 tokens.
 
 ```python
 from zksync2.manage_contracts.erc20_contract import ERC20FunctionEncoder

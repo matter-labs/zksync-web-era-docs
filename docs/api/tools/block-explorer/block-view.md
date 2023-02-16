@@ -54,5 +54,5 @@ Transactions are served on a first-in-first-out basis, but in the future, we wil
 | From              | The account or smart contract, sending the transaction.                                                                                                                        |
 | To                | The account or smart contract, the transaction targeted.                                                                                                                       |
 | Fee               | The rate of fees associated with this transaction processing.                                                                                                                  |
-| Tokens transfered | Details about the tokens(both `to` and `from` addresses) involved in the transactions, it includes, details like the assets, balance in the wallet address, and token address. |
+| Tokens transferred | Details about the tokens(both `to` and `from` addresses) involved in the transactions, it includes, details like the assets, balance in the wallet address, and token address. |
 | Contract address  | The rate of fees collected by the network.                                                                                                                                     |
