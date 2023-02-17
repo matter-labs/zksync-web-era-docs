@@ -80,7 +80,7 @@
         },
         {
           "source": "/dev/developer-guides/contracts/system-contracts.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/system-contracts.html",
+          "destination": "/docs/dev/developer-guides/system-contracts.htmll",
           "type": "302"
         },
         {
