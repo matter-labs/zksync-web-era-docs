@@ -79,8 +79,8 @@
           "type": "302"
         },
         {
-          "source": "/dev/developer-guides/contracts/system-contracts.html",
-          "destination": "/dev/developer-guides/system-contracts.html",
+          "source": "/docs/dev/developer-guides/contracts/system-contracts.html",
+          "destination": "/docs/dev/developer-guides/system-contracts.html",
           "type": "302"
         },
         {
