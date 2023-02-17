@@ -128,7 +128,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-To run this script, make sure your `hardhat.config.ts` file is configured for zkSync ([find an example here](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html). You can use `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project easily in case you don’t have one already.
+To run this script, make sure your `hardhat.config.ts` file is configured for zkSync ([find an example here](https://era.zksync.io/docs/dev/building-on-zksync/hello-world.html). You can use `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project easily in case you don’t have one already.
 
 Place the script files in the `deploy` folder and run:
 
@@ -142,7 +142,7 @@ Registered addresses are free to bridge tokens to zkSync by building a custom br
 
 ## How to deploy
 
-If you need a general refresher on deploying to zkSync we recommend first reading [this section](https://v2-docs.zksync.io/dev/developer-guides/contracts/contract-deployment.html) of our documentation — otherwise you may refer to our [Quickstart Guide](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html). 
+If you need a general refresher on deploying to zkSync we recommend first reading [this section](https://era.zksync.io/docs/dev/building-on-zksync/contracts/contract-deployment.html) of our documentation — otherwise you may refer to our [Quickstart Guide](https://era.zksync.io/docs/dev/building-on-zksync/hello-world.html). 
 
 To deploy your contracts to mainnet you need to include it in the `networks` section of your `hardhat.config.ts` file:
 
