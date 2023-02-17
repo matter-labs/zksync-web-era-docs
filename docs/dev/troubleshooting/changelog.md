@@ -1,6 +1,24 @@
 # Changelog
 
-## Compilers updated (Feb 14th 2023)
+
+## Compiler & local-setup update (Feb 16th 2023)
+
+Version `1.3.3` of `zksolc` has been released and the zksync docker image of the  local-setup has been updated. Details:
+
+- Fixes a bug that detected ERC20 `transfer` calls as ETH `transfer` and produced a compilation error. 
+- Detection of `transfer` and `send` methods in smart contracts now returns a warning message (similar to `1.3.1`). The new warning message reminds developers that using these methods to transfer ETH can cause issues and suggest replacing them with `payable(address).call[value: <X>]("")`.
+- `transfer` can be used to transfer other tokens (e.g. ERC20) without any issues.
+- Improvements in the zksync node error messages returned on estimate gas requests.
+
+### How to update your project
+
+This new version is optional, contracts compiled with `1.3.x` will still work. 
+
+- Update the compiler version in the `hardhat.config.ts` file to `1.3.3`.
+- Re-compile contracts.
+- Update the docker images of the local-setup with `docker-compose pull` and restart the its state by running the `./clear.sh` script.
+
+## Compilers update (Feb 14th 2023)
 
 Version `1.3.2` of both `zksolc` and `zkvyper` has been released. Changes include:
 
