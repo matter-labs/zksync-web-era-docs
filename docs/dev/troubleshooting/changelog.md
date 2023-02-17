@@ -3,7 +3,7 @@
 
 ## Compiler & local-setup update (Feb 16th 2023)
 
-Version `1.3.3` of `zksolc` has been released and the zksync docker image of the  local-setup has been updated. Details:
+Version `1.3.3` of `zksolc` has been released and the zksync docker image of the local-setup has been updated. Details:
 
 - Fixes a bug that detected ERC20 `transfer` calls as ETH `transfer` and produced a compilation error. 
 - Detection of `transfer` and `send` methods in smart contracts now returns a warning message (similar to `1.3.1`). The new warning message reminds developers that using these methods to transfer ETH can cause issues and suggest replacing them with `payable(address).call[value: <X>]("")`.
