@@ -4,9 +4,7 @@ body {
     font-family: "Inter" !important;
 }
 .site-name {
-    font-weight: 700 !important;
-    font-size: 1.2rem !important;
-    margin-left: -10px !important;
+    display: none;
 }
 div[class*=language-] > button.copy-code-button:not(.pure) {
     background: #8687fb !important;
