@@ -20,20 +20,7 @@ Version `1.3.5` of `zksolc` has been released and the zksync docker image of the
 - Re-compile contracts.
 - Update the docker images of the local-setup with `docker-compose pull` and restart the its state by running the `./clear.sh` script.
 
-<!-- ## Compilers update (Feb 14th 2023)
 
-Version `1.3.2` of both `zksolc` and `zkvyper` has been released. Changes include:
-
-- The `send` and `transfer` methods now produce a compilation error instead of a warning.
-- The minimal supported solc version is now `0.4.10`, although it's still recomended to use `0.8.x`.
-- Multiple LLVM optimizations.
-
-### How to update your project
-
-This new version is optional, contracts compiled with `1.3.1` will still work. 
-
-- Update the compiler version in the `hardhat.config.ts` file to `1.3.2`.
-- Re-compile contracts. -->
 
 ## System update (Feb 10th 2023)
 
