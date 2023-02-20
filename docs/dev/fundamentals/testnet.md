@@ -29,7 +29,7 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 
 2. Click on "Add network manually".
 
-3. Fill in the details about zkSync alpha mainnet network and click "Save":
+3. Fill in the details about zkSync alpha mainnet or testnet network and click "Save":
 
 **Mainnet network info**
 
@@ -39,6 +39,16 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - Currency Symbol: `ETH`
 - Block Explorer URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`
+
+
+**Testnet network info**
+
+- Network Name: `zkSync Era Testnet`
+- New RPC URL: `https://zksync2-testnet.zksync.dev`
+- Chain ID: `280`
+- Currency Symbol: `ETH`
+- Block Explorer URL: `https://goerli.explorer.zksync.io/`
+- WebSocket URL: `wss://zksync2-testnet.zksync.dev/ws`
 
 ## zkSync Era Support
 
