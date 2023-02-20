@@ -29,7 +29,7 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 
 2. Click on "Add network manually".
 
-3. Fill in the details about zkSync alpha mainnet or testnet network and click "Save":
+3. Fill in the details about zkSync Era alpha mainnet or testnet network and click "Save":
 
 **Mainnet network info**
 
