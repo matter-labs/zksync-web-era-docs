@@ -75,5 +75,6 @@ If you need to run the verification task directly from your code, you can use th
 await hre.run("verify:verify", {
   address: contractAddress,
   contract: contractFullyQualifedName,
+  constructorArguments: [argument1, argument2, argument3]
 });
 ```
