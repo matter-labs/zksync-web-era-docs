@@ -32,5 +32,9 @@ export const enNavbar = navbar([
         link: "https://docs.zksync.io",
       },
     ],
-  }
+  },
+  { 
+    text: "🎉Deploy to the zkEVM Mainnet", 
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSfdXAoQiHLu16ykEoOb762uvC1bAhdzOG-YDk6ju0YwPWf3Fw/viewform" 
+  },
 ]);

@@ -6,6 +6,10 @@ contributors: false
 
 ---
 
+  <!-- <div class ="sticky">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdXAoQiHLu16ykEoOb762uvC1bAhdzOG-YDk6ju0YwPWf3Fw/viewform"> 🎉 zkSync Era is open for developers! Register your project here to deploy to the zkEVM Mainnet</a>
+  </div> -->
+
 <div>
    <div >
       <div class="landing">

@@ -189,6 +189,8 @@ $dark-text: #2c3e50;
 $dark-background-color: #1d2536;
 $background-color: #fff;
 $border-color: #e5e7eb;
+$header-padding-1: 0.75rem;
+$header-padding-2: 0.5rem;
 
 [data-theme="dark"] a.title {
     color: $light-text !important;
@@ -411,4 +413,22 @@ span.contributor:nth-child(n+5) {
 
 .newsletter-button {
     color: #1e69ff;
+}
+
+//Sticky header
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex; /* use flexbox for layout */
+    padding: 10px;
+    z-index: 999;
+    background-color: #fff;
+    align-items: center; /* center contents vertically */
+    justify-content: space-between; /* distribute contents evenly */
+
+    a {
+    text-decoration: none;
+    color: #1e69ff;
+    }
 }
