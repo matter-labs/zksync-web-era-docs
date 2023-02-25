@@ -2,7 +2,7 @@
     "name": "zkSync Era Documentation - The ultimate zkEVM.",
     "short_name": "zkSync Era Docs",
     "description": "zkSync Era Documentation - The ultimate zkEVM.",
-    "start_url": "/docs",
+    "start_url": "../",
     "id": "zkSyncEraDocs",
     "icons": [
         {
