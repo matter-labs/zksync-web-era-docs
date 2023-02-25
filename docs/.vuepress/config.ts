@@ -1,6 +1,7 @@
 import { defineUserConfig } from "vuepress";
 import docsearchPlugin from "@vuepress/plugin-docsearch";
 import theme from "./theme.js";
+import { pwaPlugin } from '@vuepress/plugin-pwa'
 
 export default defineUserConfig({
   dest: "dist/docs",
@@ -49,6 +50,7 @@ export default defineUserConfig({
   theme,
 
   plugins: [
+    pwaPlugin({}),
     docsearchPlugin({
       appId: "LCWOUB1OFO",
       apiKey: "9a4932a3e119b24ef5f19a85c08d9c81",

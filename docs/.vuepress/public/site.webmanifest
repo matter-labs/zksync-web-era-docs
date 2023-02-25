@@ -1,7 +1,9 @@
 {
-    "name": "Era The ultimate zkEVM.",
-    "short_name": "Era",
-    "description": "Era The ultimate zkEVM.",
+    "name": "zkSync Era Documentation - The ultimate zkEVM.",
+    "short_name": "zkSync Era Docs",
+    "description": "zkSync Era Documentation - The ultimate zkEVM.",
+    "start_url": "/",
+    "id": "zkSyncEraDocs",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
