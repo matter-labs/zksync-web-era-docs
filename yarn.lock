@@ -3791,21 +3791,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vuepress/plugin-pwa-popup@npm:next":
-  version: 2.0.0-beta.60
-  resolution: "@vuepress/plugin-pwa-popup@npm:2.0.0-beta.60"
-  dependencies:
-    "@vuepress/client": 2.0.0-beta.60
-    "@vuepress/core": 2.0.0-beta.60
-    "@vuepress/plugin-pwa": 2.0.0-beta.60
-    "@vuepress/shared": 2.0.0-beta.60
-    "@vuepress/utils": 2.0.0-beta.60
-    vue: ^3.2.45
-  checksum: 3e4c94d86471dbc4464ab597ab5b8cb2d36aebf4dc72da4b6786cd40cdf43f44c920849325d78e11ccf00b5c9c051e8443af97e72f01ad1bf7eb57f59d7eea9a
-  languageName: node
-  linkType: hard
-
-"@vuepress/plugin-pwa@npm:2.0.0-beta.60, @vuepress/plugin-pwa@npm:next":
+"@vuepress/plugin-pwa@npm:next":
   version: 2.0.0-beta.60
   resolution: "@vuepress/plugin-pwa@npm:2.0.0-beta.60"
   dependencies:
@@ -13187,7 +13173,6 @@ __metadata:
     "@vuepress/client": 2.0.0-beta.60
     "@vuepress/plugin-docsearch": ^2.0.0-beta.60
     "@vuepress/plugin-pwa": next
-    "@vuepress/plugin-pwa-popup": next
     check-md: ^1.0.2
     commitlint: ^17.3.0
     cspell: ^6.18.1
