@@ -2,16 +2,16 @@
     "name": "zkSync Era Documentation - The ultimate zkEVM.",
     "short_name": "zkSync Era Docs",
     "description": "zkSync Era Documentation - The ultimate zkEVM.",
-    "start_url": "/",
+    "start_url": "/docs",
     "id": "zkSyncEraDocs",
     "icons": [
         {
-            "src": "/android-chrome-192x192.png",
+            "src": "/docs/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/android-chrome-512x512.png",
+            "src": "/docs/android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
