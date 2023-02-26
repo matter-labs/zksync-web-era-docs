@@ -1,4 +1,15 @@
 // place your custom styles here
+:root {
+--pwa-popup-text-color: #2C3E50;
+--pwa-popup-bg-color: #ffffff;
+--pwa-popup-border-color: rgba(0,0,0,0.15);
+--pwa-popup-shadow: 0 4px 16px var(--pwa-popup-border-color);
+
+--pwa-popup-btn-text-color: white;
+--pwa-popup-btn-bg-color: #1e69ff;
+--pwa-popup-btn-hover-bg-color: #0759ff;
+}
+
 body {
     overflow-x: hidden !important;
     font-family: "Inter" !important;
