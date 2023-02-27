@@ -86,7 +86,7 @@ With the `--contract` parameter you can also specify which contract from your lo
 If your contract was deployed with the specific constructor arguments, you need to specify them when running the verify task. For example:
 
 ```sh
-yarn hardhat verify --network testnet 0x7cf08341524AAF292255F3ecD435f8EE1a910AbF "Hi there!
+yarn hardhat verify --network testnet 0x7cf08341524AAF292255F3ecD435f8EE1a910AbF "Hi there!"
 ```
 
 If your constructor takes a complex argument list, you can write a separate javascript module to export it. For example, create an `arguments.js` file with the following structure:
