@@ -21,14 +21,20 @@ Support for custom paths will be included in the future.
 
 Although zkSync is [compatible with Solidity and Vyper](../../dev/building-on-zksync/contracts/contracts.md), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the fist step will be to install the compiler and deployer hardhat plugins:
 
-```sh
-# Yarn
+::: code-tabs
+
+@tab:active YARN
+
+```bash
 yarn add -D @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-solc
-
-# Npm
-npm i -D @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-solc
-
 ```
+
+@tab NPM
+
+```bash
+npm i -D @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-solc
+```
+:::
 
 If you're using Vyper, replace `@matterlabs/hardhat-zksync-solc` with `@matterlabs/hardhat-zksync-vyper`
 
