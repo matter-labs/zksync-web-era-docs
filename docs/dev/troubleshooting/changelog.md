@@ -10,9 +10,18 @@ The following hardhat plugin has been released:
 
 ### How to update your project
 
+Update the following versions in your project:
+
+- Update `@matterlabs/hardhat-zksync-deploy` to `0.6.2`.
+- Update `@matterlabs/hardhat-zksync-verify` to `0.1.2`.
+- Update `@matterlabs/hardhat-zksync-chai-matchers` to `0.1.1`.
+
+:::tip
 The plugins are updated to work with the latest changes after regenesis (for example: to support the new version of the zksync-web3).
 
-Verify plugin was published as a public version where the verification ID is visible during the process and there is an additional task for the verification status check.
+Verify plugin was published as a **public version** where the verification ID is visible during the process.
+:::
+
 
 ## Compiler & local-setup update (Feb 20th 2023)
 
