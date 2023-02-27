@@ -8,13 +8,20 @@ This plugin is used to provide a convenient interface for compiling Solidity sma
 
 Add the latest version of this plugin to your project with the following command:
 
-```
-# Yarn
-yarn add -D @matterlabs/hardhat-zksync-solc
+::: code-tabs
 
-# Npm
+@tab:active YARN
+
+```bash
+yarn add -D @matterlabs/hardhat-zksync-solc
+```
+
+@tab NPM
+
+```bash
 npm i -D @matterlabs/hardhat-zksync-solc
 ```
+:::
 
 ### Exports
 

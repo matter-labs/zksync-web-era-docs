@@ -9,13 +9,21 @@ Currently, it is used in combination with [local testing environment](./testing.
 
 Add the latest version of this plugin to your project with the following command:
 
-```
-# Yarn
-yarn add -D @matterlabs/hardhat-zksync-chai-matchers @nomicfoundation/hardhat-chai-matchers chai @nomiclabs/hardhat-ethers ethers
+::: code-tabs
 
-# Npm (version 7 or later is recommended)
+@tab:active YARN
+
+```bash
+yarn add -D @matterlabs/hardhat-zksync-chai-matchers 
+@nomicfoundation/hardhat-chai-matchers chai @nomiclabs/hardhat-ethers ethers
+```
+
+@tab NPM
+
+```bash
 npm i -D @matterlabs/hardhat-zksync-chai-matchers
 ```
+:::
 
 ### Usage
 
