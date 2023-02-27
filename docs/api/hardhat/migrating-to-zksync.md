@@ -2,9 +2,6 @@
 
 Do you have a Hardhat project and you want to deploy it to zkSync? In this page you'll find all the steps you need to do to migrate an existing Hardhat project to zkSync.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## Overview
 
 zkSync offers [multiple Hardhat plugins](./plugins.md) with different features but in this guide we'll focus on only the ones you'd need to do to migrate your project to zkSync.

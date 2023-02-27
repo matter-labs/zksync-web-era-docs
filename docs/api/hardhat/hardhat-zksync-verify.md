@@ -2,9 +2,6 @@
 
 This plugin is used to verify contracts on the zkSync Era network.
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## Installation
 
 [@matterlabs/hardhat-zksync-verify](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-verify)

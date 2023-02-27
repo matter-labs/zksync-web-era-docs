@@ -2,9 +2,6 @@
 
 Fair Onboarding Alpha invites projects to deploy to mainnet ahead of the full public release. To register your project for participation fill out the form [here.](https://forms.gle/wXjWiEeg16eMCWKJ8)
 
-<TocHeader />
-<TOC class="table-of-contents" :include-level="[2,3]" />
-
 ## How Fair Onboarding works
 
 During Fair Onboarding Alpha, registered addresses can bridge tokens to zkSync to deploy and test their products/protocols.
