@@ -1,5 +1,18 @@
 # Changelog
 
+## Hardhat plugins update (Feb 24th 2023)
+
+The following hardhat plugin has been released:
+
+- Version `0.1.1` of `chai-matchers`.
+- Version `0.6.2` of `deploy`.
+- Version `0.1.2` of `verify`.
+
+### How to update your project
+
+The plugins are updated to work with the latest changes after regenesis (for example: to support the new version of the zksync-web3).
+
+Verify plugin was published as a public version where the verification ID is visible during the process and there is an additional task for the verification status check.
 
 ## Compiler & local-setup update (Feb 20th 2023)
 
