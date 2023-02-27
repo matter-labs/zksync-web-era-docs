@@ -11,14 +11,13 @@ Add the latest version of this plugin to your project with the following command
 
 ::: code-tabs
 
-@tab:active YARN
+@tab:active yarn
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-chai-matchers 
-@nomicfoundation/hardhat-chai-matchers chai @nomiclabs/hardhat-ethers ethers
+yarn add -D @matterlabs/hardhat-zksync-chai-matchers @nomicfoundation/hardhat-chai-matchers chai @nomiclabs/hardhat-ethers ethers
 ```
 
-@tab NPM
+@tab npm
 
 ```bash
 npm i -D @matterlabs/hardhat-zksync-chai-matchers

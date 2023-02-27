@@ -17,12 +17,22 @@ It is assumed that you are already familiar with deploying smart contracts on zk
 
 We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it:
 
-```
+::: code-tabs
+
+@tab:active folder
+
+```sh
 mkdir custom-paymaster-tutorial
 cd custom-paymaster-tutorial
+```
+
+@tab:active yarn
+
+```bash
 yarn init -y
 yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+:::
 
 ::: tip
 

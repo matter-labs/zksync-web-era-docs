@@ -28,18 +28,29 @@ Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The 
 
 1. Initialize the project and install the dependencies. Run the following commands in your terminal:
 
+::: code-tabs
+
+@tab:active mkdir
+
 ```sh
 mkdir greeter-example
 cd greeter-example
+```
 
-# For Yarn
+@tab yarn
+
+```bash
 yarn init -y
 yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+```
 
-# For NPM
+@tab npm
+
+```bash
 npm init -y
 npm i -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+:::
 
 Please note that Typescript is required by zkSync plugins.
 
@@ -196,16 +207,28 @@ git clone https://github.com/matter-labs/greeter-tutorial-starter
 
 2. Spin up the project:
 
+::: code-tabs
+
+@tab:active cd
+
 ```sh
 cd greeter-tutorial-starter
-# For Yarn
+```
+
+@tab yarn
+
+```bash
 yarn
 yarn serve
+```
 
-# For NPM
+@tab npm
+
+```bash
 npm install
 npm run serve
 ```
+:::
 
 By default, the page should be running at `http://localhost:8080`. Open this URL in the browser to see the page.
 
@@ -283,13 +306,20 @@ const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
 
 Run the following command on the greeter-tutorial-starter root folder to install `zksync-web3` and `ethers`:
 
-```
-# For Yarn
-yarn add ethers@^5.7.2 zksync-web3@^0.13.1
+::: code-tabs
 
-# For NPM
+@tab:active yarn
+
+```bash
+yarn add ethers@^5.7.2 zksync-web3@^0.13.1
+```
+
+@tab npm
+
+```bash
 npm i ethers@^5.7.2 zksync-web3@^0.13.1
 ```
+:::
 
 After that, import both libraries in the `script` part of the `App.vue` file (right before the contract constant). It should look like this:
 
@@ -542,7 +572,7 @@ Even though ether is the only token you can pay fees with, the account abstracti
 
 ::: warning Paymasters on mainnet
 
-🚨 The testnet paymaster is purely for demonstration of this feature and won't be available on mainnet. When integrating your protocol on mainnet, you should follow the documentation of the paymaster you will use or create your own.
+The testnet paymaster is purely for demonstration of this feature and won't be available on mainnet. When integrating your protocol on mainnet, you should follow the documentation of the paymaster you will use or create your own.
 
 :::
 

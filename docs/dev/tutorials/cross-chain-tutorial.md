@@ -155,14 +155,20 @@ main().catch((error) => {
 
 5. Compile the contract and run the deployment script with:
 
-```
-# compile contract
+::: code-tabs
+
+@tab:active Compile contract
+
+```bash
 yarn hardhat compile
-
-# deploy contract
-yarn hardhat run --network goerli ./scripts/deploy.ts
-
 ```
+
+@tab Deploy contract
+
+```bash
+yarn hardhat run --network goerli ./scripts/deploy.ts
+```
+:::
 
 The last command will print the deployed governance smart contract address in the terminal.
 

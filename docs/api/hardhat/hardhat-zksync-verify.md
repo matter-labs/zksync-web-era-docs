@@ -14,13 +14,13 @@ To use it, you have to install both plugins and then import `@matterlabs/hardhat
 
 ::: code-tabs
 
-@tab:active YARN
+@tab:active yarn
 
 ```bash
 yarn add -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
 ```
 
-@tab NPM
+@tab npm
 
 ```bash
 npm i -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan

@@ -16,12 +16,22 @@ It is also recommended to read the [introduction](../developer-guides/system-con
 
 We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it:
 
-```
+::: code-tabs
+
+@tab:active folder
+
+```sh
 mkdir custom-aa-tutorial
 cd custom-aa-tutorial
+```
+
+@tab yarn
+
+```bash
 yarn init -y
 yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+:::
 
 ::: tip
 
@@ -37,7 +47,7 @@ yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/c
 
 Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, similar to the [quickstart tutorial](../building-on-zksync/hello-world.md). As in this project our contracts will interact with system contracts, we need to include the `isSystem: true` in the compiler settings:
 
-```
+```ts
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 
