@@ -43,7 +43,7 @@ So the tips to make the most out of the zkSync fee system are the following:
 On Ethereum, there is a constant of 21000 gas that should cover all the intrinsic costs of processing a transaction: checking the signature and updating the nonce of the account. 
 
 On zkSync Era, it's quite different, because we support custom accounts that may take a slightly different (typically a bit higher) number of gas than EOAs. 
-We provide a good, robust way for anyone to estimate the cost of a transaction regardless of the type of account. 
+We provide a convenient way for anyone to estimate the cost of a transaction regardless of the type of account. 
 ### Changes in the `validateTransaction`
 
 Right now, the `validateTransaction` fails if the signature is not correct and returns `success=true` otherwise, while the `returndata` is discarded completely. We will migrate to a different approach, where the `validateTransaction` method to be considered successful must return some magic string. Any other `returndata` will be considered invalid and will be rejected by the system.  
