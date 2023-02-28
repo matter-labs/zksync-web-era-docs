@@ -30,16 +30,13 @@ Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The 
 
 ::: code-tabs
 
-@tab:active mkdir
-
-```sh
-mkdir greeter-example
-cd greeter-example
-```
-
-@tab yarn
+@tab:active yarn
 
 ```bash
+
+mkdir greeter-example
+cd greeter-example
+
 yarn init -y
 yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
@@ -47,6 +44,10 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matter
 @tab npm
 
 ```bash
+
+mkdir greeter-example
+cd greeter-example
+
 npm init -y
 npm i -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```

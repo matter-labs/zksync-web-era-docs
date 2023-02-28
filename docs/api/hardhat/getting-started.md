@@ -26,13 +26,20 @@ For this tutorial, the following programs must be installed:
 ## Project setup
 
 1. To initialize the project and install the dependencies, run the following commands in the terminal:
+::: code-tabs
 
-```
+@tab:active yarn
+
+```bash
+
 mkdir greeter-example
 cd greeter-example
+
 yarn init -y
 yarn add -D typescript ts-node @types/node ethers@^5.7.2 zksync-web3@^0.13.1 @ethersproject/hash @ethersproject/web hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+:::
+
 
 The `typescript`, `ts-node` and `@types/node` dependencies are optional - plugins will work fine in a vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
 
