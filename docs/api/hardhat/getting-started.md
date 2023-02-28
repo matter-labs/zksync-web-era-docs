@@ -83,7 +83,7 @@ To learn more about each specific property in the `hardhat.config.ts` file, chec
 4. Create the `contracts/Greeter.sol` contract and paste the following code:
 
 ```solidity
-//SPDX-License-Identifier: Unlicense
+//SPDX-License-Identifier: Unlicensed
 pragma solidity ^0.8.0;
 
 contract Greeter {
