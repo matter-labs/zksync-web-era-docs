@@ -14,17 +14,20 @@ Contracts must be compiled using the official `@matterlabs/hardhat-zksync-solc` 
 
 Add the latest version of this plugin to your project with the following command:
 
-```
+::: code-tabs
 
-# Yarn
+@tab:active yarn
 
+```bash
 yarn add -D @matterlabs/hardhat-zksync-deploy
-
-# Npm
-
-npm i -D @matterlabs/hardhat-zksync-deploy
-
 ```
+
+@tab npm
+
+```bash
+npm i -D @matterlabs/hardhat-zksync-deploy
+```
+:::
 
 ### Exports
 
