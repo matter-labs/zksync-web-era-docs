@@ -57,16 +57,16 @@ To avoid this is why we built a purely fictional block containing the event o
 Block hashes in zkSync are deterministic and are derived from the following formula: "keccak256(l2_block_number)".
 The reason for having a deterministic block hash is that these hashes are not provable (remember that L2 blocks are not submitted to L1).
 Projects are advised not to use the L2 block hash as a source of randomness.
-
-## block.number vs block.timestamp
-
-If they are retrieved via the `zksync-web3` API, mini blocks values are returned. It is a special construct on zkSync Era to make sure that the transactions are processed promptly. This approach is similar in other l2s, where each transaction belongs to a separate block, (which we call miniblocks), while these miniblocks are gathered together into batches that get sent to L1.
-
-In Solidity block.number/block.timestamp returns the number/timestamp of the L1 batch.
 ## Block Properties
+
+## block.number and block.timestamp
+
+Depending on where it's used, if `block.number` and `block.timestamp` is retrieved via the `zksync-web3` API, mini blocks values are returned. It is a special construct on zkSync Era to make sure that the transactions are processed promptly. This approach is similar in other L2s, where each transaction belongs to a separate block, (which we call mini blocks), while these mini blocks are gathered together into batches that get sent to L1.
+
+In Solidity, `block.number` and `block.timestamp` returns the number and timestamp of the L1 batch respectively.
 ### zksync-web3 API
 
-The following are the block properties returned when you use `getBlock` method via the **zksync-web3 API**.
+The following are the block properties returned when you use the `getBlock` method via the **zksync-web3** API.
 
 | Parameter     | Description                                                                                           |
 | ------------- | ------------------------------------------------------------------------------------------------------|
@@ -81,12 +81,12 @@ The following are the block properties returned when you use `getBlock` method v
 | transactions  | A list of all transactions included in the block.                                                     |
 | baseFeePerGas | The market price for gas                                                                              |
 
-### why do we return L2 blocks from API:
+### Why do we return L2 blocks from API?
 
-because this is how all SDKs (and thus Metamask/all other popular wallets) can perceive our transactions as processed. It is expected that a transaction is processed once it is included in some block. That's why we need to produce L2 blocks faster than L1 batches.
+On zkSync Era we return L2 blocks from API because this is how all platforms, which include SDKs, Metamask and all other popular wallets can perceive our transactions as processed. It is expected that a transaction is processed once it is included in some block. That's why we need to produce L2 blocks faster than L1 batches.
 ### Smart contract
 
-The following are the block properties returned 
+The following are the block properties returned: 
 
 | Parameter     | Description                                                                                           |
 | ------------- | ------------------------------------------------------------------------------------------------------|
@@ -101,7 +101,7 @@ The following are the block properties returned
 | transactions  | A list of all transactions included in the block.                                                     |
 | baseFeePerGas | The market price for gas                                                                              |
 
-### why do we return L1 batches inside EVM:
+### Why do we return L1 batches inside EVM:
 
-In the past, `block.number` was a part of the VM and provided once per batch and so we returned the number of the batch there.
-Now, it is possible to return the L2 block inside the contracts, but this value, just like L2 blocks, will be unprovable. We also likely won't have any meaningful value there (i.e., unlike Ethereum blocks that contain some kind of commitment to the state of the chain, these blocks won't have such commitment, because calculating the Merkle tree is too expensive to be done more often than once per batch)
+In the past,`block.number` was a part of the VM and was provided once per batch and so we returned the number of the batch there.
+Presently, we to return the L2 block inside the contracts, but this value, just like L2 blocks, will be unprovable. We also likely won't have any meaningful value there. Unlike Ethereum blocks that contain some kind of commitment to the state of the chain, on zkSync Era these blocks won't have such commitment, because calculating the Merkle tree is too expensive to be done more often than once per batch.
