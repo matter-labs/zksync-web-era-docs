@@ -22,7 +22,6 @@ For L1 batches, to retrieve the latest batch number, use zkSync API method `zks_
 Additionally, by querying on a block, you can see the batch number for the batch that includes the block.
 Within transaction receipts, the field `l1BatchNumber` is the batch number that includes the transaction.
 The field `l1BatchTxIndex` returns the transaction position among all of the batch transactions.
-
 ## Block processing time
 
 Transactions are processed immediately by the operator and added to blocks, which are then immediately generated. Once zkSync becomes
@@ -59,10 +58,50 @@ Block hashes in zkSync are deterministic and are derived from the following form
 The reason for having a deterministic block hash is that these hashes are not provable (remember that L2 blocks are not submitted to L1).
 Projects are advised not to use the L2 block hash as a source of randomness.
 
-### Block Properties
+## block.number vs block.timestamp
 
-- Timestamp: The current block's creation time in seconds that returns the timestamp of the L1 batch.
-- Block number: The unique sequential number for this block.
-- Gas limit: The current block gas limit, always returns `2^32-1`.
-- Coinbase: The current block miner’s address, returns the [bootloader](../system-contracts.md#bootloader) address.
-- Difficulty: The current block difficulty, returns `2500000000000000` (zkSync does not have proof of work consensus).
+If they are retrieved via the `zksync-web3` API, mini blocks values are returned. It is a special construct on zkSync Era to make sure that the transactions are processed promptly. This approach is similar in other l2s, where each transaction belongs to a separate block, (which we call miniblocks), while these miniblocks are gathered together into batches that get sent to L1.
+
+In Solidity block.number/block.timestamp returns the number/timestamp of the L1 batch.
+## Block Properties
+### zksync-web3 API
+
+The following are the block properties returned when you use `getBlock` method via the **zksync-web3 API**.
+
+| Parameter     | Description                                                                                           |
+| ------------- | ------------------------------------------------------------------------------------------------------|
+| hash          | The hash of the block.                                                                                |
+| parentHash    | It refers to the hash of the parent block in L1.                                                      |
+| number        | The unique sequential number for this block.                                                          |
+| timestamp     | The current block's creation time in seconds returns the timestamp of the L2 block time.              |
+| nonce         | The number of transactions sent from a given address                                                  |
+| difficulty    | The current block difficulty returns 2500000000000000 (zkSync does not have proof of work consensus). |
+| gasLimit      | The block gas limit, always returns `2^32-1`.                                                         |
+| gasUsed       | The actual amount of gas used in this block.                                                          |
+| transactions  | A list of all transactions included in the block.                                                     |
+| baseFeePerGas | The market price for gas                                                                              |
+
+### why do we return L2 blocks from API:
+
+because this is how all SDKs (and thus Metamask/all other popular wallets) can perceive our transactions as processed. It is expected that a transaction is processed once it is included in some block. That's why we need to produce L2 blocks faster than L1 batches.
+### Smart contract
+
+The following are the block properties returned 
+
+| Parameter     | Description                                                                                           |
+| ------------- | ------------------------------------------------------------------------------------------------------|
+| hash          | The hash of the block.                                                                                |
+| parentHash    | It refers to the hash of the parent block in L1.                                                      |
+| number        | The unique sequential number for this block.                                                          |
+| timestamp     | The current block's creation time in seconds that returns the timestamp of the L1 batch.              |
+| nonce         | The number of transactions sent from a given address                                                  |
+| difficulty    | The current block difficulty returns 2500000000000000 (zkSync does not have proof of work consensus). |
+| gasLimit      | The block gas limit, always returns `2^32-1`.                                                         |
+| gasUsed       | The actual amount of gas used in this block.                                                          |
+| transactions  | A list of all transactions included in the block.                                                     |
+| baseFeePerGas | The market price for gas                                                                              |
+
+### why do we return L1 batches inside EVM:
+
+In the past, `block.number` was a part of the VM and provided once per batch and so we returned the number of the batch there.
+Now, it is possible to return the L2 block inside the contracts, but this value, just like L2 blocks, will be unprovable. We also likely won't have any meaningful value there (i.e., unlike Ethereum blocks that contain some kind of commitment to the state of the chain, these blocks won't have such commitment, because calculating the Merkle tree is too expensive to be done more often than once per batch)
