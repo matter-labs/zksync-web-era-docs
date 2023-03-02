@@ -47,7 +47,7 @@ We provide a convenient way for anyone to estimate the cost of a transaction reg
 
 ### Changes in the `validateTransaction`
 
-Right now, the `validateTransaction` fails if the signature is not correct and returns `success=true` otherwise, while the `returndata` is discarded completely. We will migrate to a different approach, where the `validateTransaction` method to be considered successful must return some magic string. Any other `returndata` will be considered invalid and will be rejected by the system.  
+It used to be the case for `validateTransaction` to fail if the signature is not correct and return `success=true` otherwise, while the `returndata` is discarded completely. We have migrated to a different approach, where the `validateTransaction` method to be considered successful must return a magic string. Any other `returndata` will be considered invalid and will be rejected by the system.  
 
 Now, `validateTransaction` method of the AA (or the paymaster `validateAndPayForPaymasterTransaction` method), should always try to do the same amount of computation (and especially storage accesses) as it would have done if the transaction was indeed validated correctly. By default, the operator will provide a transaction structure that contains as much information as is available to the operator at the time of the fee estimation. As a substitute for the signature, an invalid 65-byte ECDSA signature will be used. The `DefaultAccount` (the one that is used by EOAs) will do as many operations as possible (including signature verification) and only return `bytes4(0)` instead of magic. If, for instance, the wallet is a custom account, with multiple signers, then it may want to simulate the validation of the signatures of all the provided signers.
 
