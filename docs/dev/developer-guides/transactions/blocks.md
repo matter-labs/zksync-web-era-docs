@@ -12,7 +12,7 @@ batch.
 
 ::: tip
 
-*"blocks"* in this context is referred to as L2 blocks.
+Further, on this page the word 'blocks' refers to L2 blocks.
 
 :::
 
