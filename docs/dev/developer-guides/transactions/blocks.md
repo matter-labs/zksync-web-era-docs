@@ -67,7 +67,7 @@ In Solidity, `block.number` and `block.timestamp` returns the number and timesta
 
 ### zksync-web3 API
 
-The following are the block properties returned when you use the `getBlock` method via the **zksync-web3** API.
+The following are the block properties returned when you use the `getBlock` method via the **zksync-web3** SDK.
 
 | Parameter     | Description                                                                                           |
 | ------------- | ------------------------------------------------------------------------------------------------------|
