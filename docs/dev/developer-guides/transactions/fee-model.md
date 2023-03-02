@@ -47,36 +47,18 @@ We provide a convenient way for anyone to estimate the cost of a transaction reg
 
 ### Changes in the `validateTransaction`
 
-It used to be the case for `validateTransaction` to fail if the signature is not correct and return `success=true` otherwise, while the `returndata` is discarded completely. We have migrated to a different approach, where the `validateTransaction` method to be considered successful must return a magic string. Any other `returndata` will be considered invalid and will be rejected by the system.  
+At present, the `validateTransaction` method fails if the signature is incorrect and returns `success=true` for a valid signature. The system entirely disregards the `returndata`. However, we are in the process of migrating to a new approach, where the success of the `validateTransaction` method depends on it returning a magic string. Any other `returndata` will be deemed invalid and rejected by the system.
 
-Now, `validateTransaction` method of the AA (or the paymaster `validateAndPayForPaymasterTransaction` method), should always try to do the same amount of computation (and especially storage accesses) as it would have done if the transaction was indeed validated correctly. By default, the operator will provide a transaction structure that contains as much information as is available to the operator at the time of the fee estimation. As a substitute for the signature, an invalid 65-byte ECDSA signature will be used. The `DefaultAccount` (the one that is used by EOAs) will do as many operations as possible (including signature verification) and only return `bytes4(0)` instead of magic. If, for instance, the wallet is a custom account, with multiple signers, then it may want to simulate the validation of the signatures of all the provided signers.
+### Notes on custom accounts
 
-So roughly the code of the validation step of each account will look the following way:
+Currently, the `validateTransaction` method of the AA (or the paymaster `validateAndPayForPaymasterTransaction` method) always tries to perform the same amount of computation (including storage accesses) regardless of whether the transaction is validated correctly. By default, the operator provides a transaction structure with the available information during fee estimation. To replace the signature, an invalid 65-byte ECDSA signature is utilized. The `DefaultAccount` (used by EOAs) executes as many operations as possible, including signature verification, and returns only bytes4(0) instead of magic. In the case of a custom account with multiple signers, the account may wish to simulate signature validation for all the provided signers.
 
-```solidity
- function validateTransaction(
-        bytes32, // _txHash
-        bytes32 _suggestedSignedHash,
-        Transaction calldata _transaction
-    ) external payable override ignoreNonBootloader returns (bytes4 magic) {
-        // ...
-        // normal validation logic
-        // ...
-         
-        // The execution before the following `if` statement should look as close as to the execution under incorrect 
-        // signature as possible
-        if(!validSignature) {
-           // Setting magic to 0 to make sure that the transaction will not be accepted on mainnet
-           magic = bytes4(0);  
-        } else {
-           magic = // setting to actual magic value which should be returned by the correct signature validation
-        }
-    }
-```
+The code of the validation step of each account can be found in the [DefaultAccount implementation](https://github.com/matter-labs/era-system-contracts/blob/5a6c728576de5db68ad577a09f34e7b85c374192/contracts/DefaultAccount.sol#L65)
+
 
 ### Notes on the transaction’s length
 
-zkSync Era sends state diffs onchain, and the cost for the transaction will still mildly depend on its length (because long transactions need to be stored in memory of the operator), also long transactions incur additional costs during interactions with an account. However, the signature (as well as its length) is not available at the time of fee estimation and so there is no correct way to precisely estimate the cost of the transaction. For now, we will compensate for it by multiplying the recommended cost of the transaction by **5%**. In the future, we will introduce the following:
+zkSync Era sends state diffs onchain, and the cost for the transaction will still mildly depend on its length (because long transactions need to be stored in memory of the operator), also long transactions incur additional costs during interactions with an account. However, the signature (as well as its length) is not available at the time of fee estimation and so there is no correct way to precisely estimate the cost of the transaction. For now, we will compensate for it by multiplying the recommended cost of the transaction by a few percents. In the future, we may introduce the following:
 
 - Each account will be able to implement a method called `fillPartialTransaction` that will fill the signature with the substituted value which will be used for fee estimation.
 
@@ -93,7 +75,7 @@ Just like geth, we will use binary search. However, there will be some notable d
 
 - Unlike geth, it is impossible to track out of gas errors on zkSync Era. The main reason is that the “actual” execution will happen inside the DefaultAccount system contract and due to the 63/64 rule when a high number of gas is provided, the call to the `execute` method of the DefaultAccount will NOT fail due to out of gas even though the subcall to the `transaction.to` contract did fail with an out of gas error.
 
-That means that while geth can distinguish between “empty error” and “out of gas”, we can’t. If during gas estimation we fail to find the necessary `gasLimit`, will return the following error _“can not estimate gas: the transaction either fails or requires more gas than allowed”_.
+That means that while geth can distinguish between “empty error” and “out of gas”, we can’t. If during gas estimation we fail to find the necessary `gasLimit`, the following error will be returned _“can not estimate gas: the transaction either fails or requires more gas than allowed”_.
 
 - During simulation, geth uses `tx.gasprice = 0` to make sure that the user can pay the fee even though the `tx.origin` in the simulation may not have any balance at all - This means that when `estimateGas` from an empty account is called, no `value` can be provided to such call as this account has zero balance to cover this value. 
 
