@@ -85,6 +85,7 @@ The following are the block properties returned when you use the `getBlock` meth
 ### Why do we return L2 blocks from API?
 
 On zkSync Era we return L2 blocks from API because this is how all platforms, which include SDKs, Metamask and all other popular wallets can perceive our transactions as processed. It is expected that a transaction is processed once it is included in some block. That's why we need to produce L2 blocks faster than L1 batches.
+
 ### Smart contract
 
 The following are the block properties returned: 
