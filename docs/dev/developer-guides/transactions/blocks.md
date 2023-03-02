@@ -64,6 +64,7 @@ Projects are advised not to use the L2 block hash as a source of randomness.
 Depending on where it's used, if `block.number` and `block.timestamp` is retrieved via the `zksync-web3` API, mini blocks values are returned. It is a special construct on zkSync Era to make sure that the transactions are processed promptly. This approach is similar in other L2s, where each transaction belongs to a separate block, (which we call mini blocks), while these mini blocks are gathered together into batches that get sent to L1.
 
 In Solidity, `block.number` and `block.timestamp` returns the number and timestamp of the L1 batch respectively.
+
 ### zksync-web3 API
 
 The following are the block properties returned when you use the `getBlock` method via the **zksync-web3** API.
