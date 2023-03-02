@@ -103,7 +103,7 @@ The following are the block properties returned:
 | transactions  | A list of all transactions included in the block.                                                     |
 | baseFeePerGas | The market price for gas                                                                              |
 
-### Why do we return L1 batches inside EVM:
+### Why do we return L1 batches inside EVM?
 
 In the past,`block.number` was a part of the VM and was provided once per batch and so we returned the number of the batch there.
-Presently, we to return the L2 block inside the contracts, but this value, just like L2 blocks, will be unprovable. We also likely won't have any meaningful value there. Unlike Ethereum blocks that contain some kind of commitment to the state of the chain, on zkSync Era these blocks won't have such commitment, because calculating the Merkle tree is too expensive to be done more often than once per batch.
+Presently, we return the L2 block inside the contracts, but this value, just like L2 blocks, will be unprovable. We also likely won't have any meaningful value there. Unlike Ethereum blocks that contain some kind of commitment to the state of the chain, on zkSync Era these blocks won't have such commitment, because calculating the Merkle tree is too expensive to be done more often than once per batch.
