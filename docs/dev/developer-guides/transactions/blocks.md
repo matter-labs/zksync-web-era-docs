@@ -80,7 +80,7 @@ The following are the block properties returned when you use the `getBlock` meth
 | parentHash    | It refers to the hash of the parent block in L2.                                                      |
 | number        | The unique sequential number for this block.                                                          |
 | timestamp     | The current block's creation time in seconds.                                                         |
-| nonce         | The number of transactions sent from a given address                                                  |
+| nonce         | A random number that's used as a base for an hash calculations.                                       |
 | difficulty    | The current block difficulty returns 2500000000000000 (zkSync does not have proof of work consensus). |
 | gasLimit      | The block gas limit, always returns `2^32-1`.                                                         |
 | gasUsed       | The actual amount of gas used in this block.                                                          |
