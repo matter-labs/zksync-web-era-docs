@@ -13,7 +13,7 @@ When a user initiates a transaction on Ethereum, some specific data is created:
 
 - Receiver: The recipient is the account's address to receive the transaction. The receiver can be a contract account or an externally owned account. Each transaction is aimed toward a specific recipient.
 - Nonce: This field displays the most recent transaction based on the account's counter, which maintains track of how many transactions it does. The network uses the transaction nonce to ensure that transactions are completed in the correct sequence.
-- Gas Price: Most transactions necessitate the payment of a fee to the transaction's author. This cost is computed per unit of gas. The unit is Wei, a smaller ether unit.
+- Gas Price: Most transactions necessitate the payment of a fee from the transaction's author. This cost is computed per unit of gas. The unit is Wei, a smaller ether unit.
 - Gas Limit: The transaction author specifies the number of gas units used for the transaction. This is the total amount of gas that could be consumed.
 - Value: The quantity of Wei or Ether that the sender account wishes to transmit to the recipient is represented by the value.
 - Data: If the transaction receiver is a smart contract, the data contains information for the contract's functions to be executed. This comprises data with varying lengths.
