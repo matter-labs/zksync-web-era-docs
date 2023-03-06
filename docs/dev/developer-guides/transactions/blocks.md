@@ -63,6 +63,7 @@ To avoid this is why we built a purely fictional block containing the event o
 Block hashes in zkSync are deterministic and are derived from the following formula: "keccak256(l2_block_number)".
 The reason for having a deterministic block hash is that these hashes are not provable (remember that L2 blocks are not submitted to L1).
 Projects are advised not to use the L2 block hash as a source of randomness.
+
 ## Block Properties
 
 ## block.number and block.timestamp
