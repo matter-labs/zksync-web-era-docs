@@ -57,7 +57,7 @@ The code of the validation step of each account can be found in the [DefaultAcco
 
 ### Notes on the transaction’s length
 
-zkSync Era sends state diffs onchain, and the cost for the transaction will still mildly depend on its length (because long transactions need to be stored in memory of the operator), also long transactions incur additional costs during interactions with an account. However, the signature (as well as its length) is not available at the time of fee estimation and so there is no correct way to precisely estimate the cost of the transaction. For now, we will compensate for it by multiplying the recommended cost of the transaction by a few percents. In the future, we may introduce the following:
+zkSync Era sends state diffs onchain, but the cost for the transaction will still mildly depend on its length (because long transactions need to be stored in memory of the operator), also long transactions incur additional costs during interactions with an account. However, the signature (as well as its length) is not available at the time of fee estimation and so there is no correct way to precisely estimate the cost of the transaction. For now, we will compensate for it by multiplying the recommended cost of the transaction by a few percents. In the future, we may introduce the following:
 
 - Each account will be able to implement a method called `fillPartialTransaction` that will fill the signature with the substituted value which will be used for fee estimation.
 
