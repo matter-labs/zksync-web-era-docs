@@ -68,7 +68,7 @@ Projects are advised not to use the L2 block hash as a source of randomness.
 
 ## block.number and block.timestamp
 
-Depending on where it's used, if `block.number` and `block.timestamp` is retrieved via the `zksync-web3` SDK, mini blocks values are returned. It is a special construct on zkSync Era to make sure that the transactions are processed promptly. This approach is similar in other L2s, where each transaction belongs to a separate block, (which we call mini blocks), while these mini blocks are gathered together into batches that get sent to L1.
+Depending on where it's used, if `block.number` and `block.timestamp` is retrieved via the `zksync-web3` SDK, miniblocks values are returned. It is a special construct on zkSync Era to make sure that the transactions are processed promptly. This approach is similar in other L2s, where each transaction belongs to a separate block, (which we call miniblocks), while these miniblocks are gathered together into batches that get sent to L1.
 
 In Solidity, `block.number` and `block.timestamp` returns the number and timestamp of the L1 batch respectively.
 
@@ -76,18 +76,18 @@ In Solidity, `block.number` and `block.timestamp` returns the number and timesta
 
 The following are the block properties returned when you use the `getBlock` method via the **zksync-web3** API.
 
-| Parameter     | Description                                                                                           |
-| ------------- | ------------------------------------------------------------------------------------------------------|
-| hash          | The hash of the block.                                                                                |
-| parentHash    | It refers to the hash of the parent block in L2.                                                      |
-| number        | the number of the current block                                                       |
-| timestamp     | The current block's creation time in seconds.                                                         |
-| nonce         | A random number that's used as a base for an hash calculations.                                       |
-| difficulty    | The current block difficulty returns 2500000000000000 (zkSync does not have proof of work consensus). |
-| gasLimit      | The block gas limit, always returns `2^32-1`.                                                         |
-| gasUsed       | The actual amount of gas used in this block.                                                          |
-| transactions  | A list of all transactions included in the block.                                                     |
-| baseFeePerGas | The EIP1559-like baseFee for this block.                                                              |
+| Parameter     | Description                                                                                                             |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------|
+| hash          | The hash of the block.                                                                                                  |
+| parentHash    | It refers to the hash of the parent block in L2.                                                                        |
+| number        | the number of the current block                                                                                         |
+| timestamp     | The current block's creation time in seconds.                                                                           |
+| nonce         | It's the most recent transaction based on the account's counter, which maintains track of how many transactions it does.|
+| difficulty    | The current block difficulty returns 2500000000000000 (zkSync does not have proof of work consensus).                   |
+| gasLimit      | The block gas limit, always returns `2^32-1`.                                                                           |
+| gasUsed       | The actual amount of gas used in this block.                                                                            |
+| transactions  | A list of all transactions included in the block.                                                                       |
+| baseFeePerGas | The EIP1559-like baseFee for this block.                                                                                |
 
 ### Why do we return L2 blocks from API?
 
@@ -96,4 +96,4 @@ On zkSync Era we return L2 blocks from API because this is how all platforms, wh
 ### Why do we return L1 batches inside EVM?
 
 In the past,`block.number` was a part of the VM and was provided once per batch and so we returned the number of the batch there.
-Presently, we return the L2 block inside the zkEVM, but this value, just like L2 blocks, will be unprovable. We also likely won't have any meaningful value there. Unlike Ethereum blocks that contain some kind of commitment to the state of the chain, on zkSync Era these blocks won't have such commitment, because calculating the Merkle tree is too expensive to be done more often than once per batch.
+Presently, we return the number of L1 batch inside the VM, but this value will be unprovable. We also likely won't have any meaningful value there. Unlike Ethereum blocks that contain some kind of commitment to the state of the chain, on zkSync Era these blocks won't have such commitment, because calculating the Merkle tree is too expensive to be done more often than once per batch.
