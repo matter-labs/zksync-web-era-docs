@@ -55,7 +55,6 @@ Currently, the `validateTransaction` method of the AA (or the paymaster `validat
 
 The code of the validation step of each account can be found in the [DefaultAccount implementation](https://github.com/matter-labs/era-system-contracts/blob/5a6c728576de5db68ad577a09f34e7b85c374192/contracts/DefaultAccount.sol#L65)
 
-
 ### Notes on the transaction’s length
 
 zkSync Era sends state diffs onchain, and the cost for the transaction will still mildly depend on its length (because long transactions need to be stored in memory of the operator), also long transactions incur additional costs during interactions with an account. However, the signature (as well as its length) is not available at the time of fee estimation and so there is no correct way to precisely estimate the cost of the transaction. For now, we will compensate for it by multiplying the recommended cost of the transaction by a few percents. In the future, we may introduce the following:
