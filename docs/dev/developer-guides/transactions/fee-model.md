@@ -65,7 +65,6 @@ zkSync Era sends state diffs onchain, and the cost for the transaction will stil
 
 Since the entire flow for tx validation + execution will be executed to get the transaction’s fee, the operator will manually put the necessary balance (if needed) for the account before the emulation is run to conduct the default account’s `payForTransaction` method.
 
-
 The `eth_estimateGas` method itself will use binary search to find the smallest gas value under which the transaction *succeeds*.
 
 ### Difference from geth
