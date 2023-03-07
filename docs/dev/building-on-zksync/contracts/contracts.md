@@ -55,7 +55,7 @@ Almost every smart contract written for EVM will be supported by zkSync Era and 
 
 - `SELFDESTRUCT` - It’s considered harmful and was deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).
 - `CALLCODE` - It was deprecated on Ethereum in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`.
-- `EXTCODECOPY` - We've skip it for now because zkEVM opcodes are not identical to EVM ones, but it can be implemented if needed.
+- `EXTCODECOPY` - We've skipped it for now because zkEVM opcodes are not identical to EVM ones, but it can be implemented if needed.
 - `CODECOPY` - It's replaced with `CALLDATACOPY` in the deploy code.
 - `PC` - Not accessible in Yul and Solidity `>=0.7.0`. Accessible in Solidity `0.6.0` although it produces a runtime error.
 
@@ -67,6 +67,6 @@ Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256`
 
 ### Other considerations
 
-- **tx.origin usage:** `tx.origin` is a global variable in Solidity that returns the address of the account that sent the transaction. It's supported on zkSync Era, but if a custom account interacts with a contract that uses this, the transactions will fail. We also discourage its usage, as it can pose a threat to a phishing attack that can drain a contract of all funds.
+- **tx.origin usage:** `tx.origin` is a global variable in Solidity that returns the address of the account that sent the transaction. It's supported on zkSync Era, but if a custom account interacts with a contract that uses this, the transactions will fail. We also discourage its usage, as it can pose a threat to a phishing attack that can drain a contract of all funds. Read more about [tx.origin phishing and other vulnerabilities](https://hackernoon.com/hacking-solidity-contracts-using-txorigin-for-authorization-are-vulnerable-to-phishing)
 
 - **ecrecover usage:** If you are using 'ecrecover' to validate a signature of a user account, note that zkSync Era comes with native account abstraction support. It is highly recommended not to rely on the fact that the account has an ECDSA private key attached to it, since they may be ruled by a multisig and use another signature scheme. Read more about [zkSync Account Abstraction support](../../developer-guides/aa.md)
