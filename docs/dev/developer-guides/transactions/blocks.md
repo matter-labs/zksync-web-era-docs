@@ -84,7 +84,7 @@ The following are the block properties returned when you use the `getBlock` meth
 | timestamp     | The current block's creation time in seconds.                                                                           |
 | nonce         | It's the most recent transaction based on the account's counter, which maintains track of how many transactions it does. null if pending. |
 | difficulty    | The current block difficulty returns 2500000000000000 (zkSync does not have proof of work consensus).                   |
-| gasLimit      | The block gas limit, always returns `2^32-1`.                                                                           |
+| gasLimit      | The maximum gas allowed in this block encoded as a hexadecimal, always returns `2^32-1`.                                                                |
 | gasUsed       | The actual amount of gas used in this block.                                                                            |
 | transactions  | A list of all transactions included in the block.                                                                       |
 | baseFeePerGas | The EIP1559-like baseFee for this block.                                                                                |
