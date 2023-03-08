@@ -524,7 +524,7 @@ async changeGreeting() {
 
 当你得到一个**钱包_请求权限**的错误时，会发生什么？
 
-要解决这个错误，请刷新浏览器，或在浏览器上打开MetaMask扩展，点击_Next_或_Cancel_来解决。
+要解决这个错误，请刷新浏览器，或在浏览器上打开MetaMask扩容，点击_Next_或_Cancel_来解决。
 
 阅读更多关于**wallet_requestPermissions**的信息，请访问[metamask文档](https://docs.metamask.io/guide/rpc-api.html#wallet-requestpermissions)。
 
@@ -542,7 +542,7 @@ async changeGreeting() {
 
 :::
 
-当用户决定用乙醚支付时，`getOverrides'方法返回一个空对象，但是，当用户选择ERC20选项时，它应该返回付款人地址和它所需要的所有信息。这就是如何做到这一点。
+当用户决定用Gas支付时，`getOverrides'方法返回一个空对象，但是，当用户选择ERC20选项时，它应该返回付款人地址和它所需要的所有信息。这就是如何做到这一点。
 
 1. 从zkSync提供商那里检索testnet支付系统的地址。
 

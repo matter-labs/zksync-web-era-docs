@@ -1,7 +1,7 @@
-# 帐户抽象多义性
+# 帐户抽象自定义
 
 现在，让我们来学习如何部署你的自定义账户，并与[ContractDeployer](.../developer-guides/system-contracts.md#contractdeployer)系统合约直接互动。
-在本教程中，我们建立一个工厂，部署2-of-2的多义词账户。
+在本教程中，我们建立一个工厂，部署2-of-2的自定义账户。
 
 ## 前提条件
 

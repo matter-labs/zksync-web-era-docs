@@ -15,7 +15,7 @@ contributors: false
                   alt="zkSync ERA documentation"
             >
          </div>
-         <p class="intro-text">欢迎来到 zkSync Era 文档! 在这里，你会找到指南、参考资料和资源，这将有助于你用zkSync Era进行构建</p>
+         <p class="intro-text">欢迎来到 zkSync Era 文档! 在这里，你会找到指南、参考资料和资源，这将有助于你用zkSync Era进行构建。</p>
          </div>
       </div>
    </div>

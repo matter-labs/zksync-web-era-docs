@@ -13,7 +13,7 @@
 
 ## EthereumProvider
 
-这提供了与`web3swift.providers.JsonRpcProvider`相同的功能，但用zkSync特定的方法对其进行了扩展。
+这提供了与`web3swift.providers.JsonRpcProvider`相同的功能，但用zkSync特定的方法对其进行了扩容。
 
 ### 创建提供者
 

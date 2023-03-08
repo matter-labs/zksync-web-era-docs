@@ -2,7 +2,7 @@
 
 `zksync-web3`输出四个可以在zkSync上签署交易的类。
 
-- `Wallet`类是`ethers.Wallet`的扩展，具有额外的zkSync功能。
+- `Wallet`类是`ethers.Wallet`的扩容，具有额外的zkSync功能。
 - `EIP712Signer`类，用于签署`EIP712`*类型*的zkSync交易。
 - `Signer`和`L1Signer`类，应该用于浏览器集成。
 

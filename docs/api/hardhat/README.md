@@ -1,6 +1,6 @@
 # Hardhat插件用于zkSync Era
 
-[Hardhat](https://hardhat.org)是一个Ethereum开发环境，旨在方便Solidity中的智能合约开发。它最突出的特点之一是可扩展性，使得向hardhat项目添加新插件变得简单。
+[Hardhat](https://hardhat.org)是一个Ethereum开发环境，旨在方便Solidity中的智能合约开发。它最突出的特点之一是可扩容性，使得向hardhat项目添加新插件变得简单。
 
 ##目录
 

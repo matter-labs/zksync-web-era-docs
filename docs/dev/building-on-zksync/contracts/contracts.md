@@ -12,7 +12,7 @@ zkSync Era允许开发者使用与在以太坊上构建的相同的编程语言�
 
 - 不支持内部函数指针。
 
-- 对合同大小和虚拟机周期数可能有影响。
+- 对合约大小和虚拟机周期数可能有影响。
   
   ### 在 Solidity 中使用库
   
@@ -76,6 +76,6 @@ zkSync Era允许开发者使用与在以太坊上构建的相同的编程语言�
   
   ### 其他注意事项
   
-  - **tx.origin用法：** `tx.origin`是Solidity的一个全局变量，用于返回发送交易的账户地址。它在 zkSync Era 上被支持，但是如果一个自定义的账户与使用这个的合约互动，交易将会失败。我们也不鼓励使用它，因为它可能会对网络钓鱼攻击构成威胁，使合同的所有资金流失。阅读更多关于 [tx.origin 钓鱼和其他漏洞](https://hackernoon.com/hacking-solidity-contracts-using-txorigin-for-authorization-are-vulnerable-to-phishing)
+  - **tx.origin的用法**： `tx.origin`是Solidity的一个全局变量，用于返回发送交易的账户地址。它在 zkSync Era 上被支持，但是如果一个自定义的账户与使用这个的合约互动，交易将会失败。我们也不鼓励使用它，因为它可能会对网络钓鱼攻击构成威胁，使合同的所有资金流失。阅读更多关于 [tx.origin 钓鱼和其他漏洞](https://hackernoon.com/hacking-solidity-contracts-using-txorigin-for-authorization-are-vulnerable-to-phishing)
   
-  - **ecrecover的用法：**如果你使用'ecrecover'来验证用户账户的签名，请注意，zkSync Era带有本地账户抽象支持。强烈建议不要依赖账户有ECDSA私钥附加的事实，因为他们可能被multisig统治并使用另一种签名方案。阅读更多关于 [zkSync账户抽象支持](.../.../developer-guides/aa.md)
+  - **ecrecover的用法**：如果你使用'ecrecover'来验证用户账户的签名，请注意，zkSync Era带有本地账户抽象支持。强烈建议不要依赖账户有ECDSA私钥附加的事实，因为他们可能被multisig统治并使用另一种签名方案。阅读更多关于 [zkSync账户抽象支持](.../.../developer-guides/aa.md)

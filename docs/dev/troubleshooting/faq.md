@@ -114,13 +114,13 @@ zkSync Era的数据可用性层是Ethereum。所有建立在zkSync Era上的生�
 
 ### **zkSync Era vs # Optimistic Rollups***
 
-像Arbitrum和Optimism这样的 Optimistic Rollups 利用Optimistic的方法来保障其网络安全。在他们开发的时候，他们代表了比其他可用选项更重要的渐进式改进。然而，一个广泛持有的观点（[包括Vitalik Buterin的观点](https://coinculture.com/au/people/vitalik-buterin-zk-rollups-to-outperform-optimistic-rollups/)）是，Optimistic 的方法代表了另一个临时的解决方案，从长远来看，唯一永久的和真正可扩展的解决方案将是基于零知识证明的区块链。
+像Arbitrum和Optimism这样的 Optimistic Rollups 利用Optimistic的方法来保障其网络安全。在他们开发的时候，他们代表了比其他可用选项更重要的渐进式改进。然而，一个广泛持有的观点（[包括Vitalik Buterin的观点](https://coinculture.com/au/people/vitalik-buterin-zk-rollups-to-outperform-optimistic-rollups/)）是，Optimistic 的方法代表了另一个临时的解决方案，从长远来看，唯一永久的和真正可扩容的解决方案将是基于零知识证明的区块链。
 
 Optimistic Rollups存在以下关键问题。
 
 - 这种方法假设所有交易都是有效的，然后利用事后的博弈论机制来支付参与者发现欺诈性或其他无效的（例如因为bug）交易。博弈论从来都不是完美的，就像稳定币和其他系统的博弈论一样，我们认为它不能被长期和真正的规模所依赖，以提供生态系统所需的安全性。另一方面，_zkSync Era依靠数学，而不是博弈论，提供绝对确定的证据，证明每一笔交易都是可证明的有效的，不是欺诈。
 - **Optimistic Rollups的方法需要7天时间来结算**。对于生态系统项目来说，结算时间正成为一个越来越重要的特征。随着生态系统项目需求的成熟，对尽可能接近即时结算的需求将上升。用乐观的方法，这个结算问题不会消失。它总是会有7天的结算时间，因为乐观的方法需要7天的时间来完成其事后博弈理论的挑战窗口。绕过这个问题的唯一方法是引入提供一些流动性的第三方 - 但这又是信任流动性提供者的潜在安全风险。_当zkSync时代最初在主网上推出时，它将在几个小时内提供结算，但经过几个月的工作，我们的目标是在几分钟内完成结算 - 随着我们将结算时间提高到接近零 - 没有合作伙伴需要改变任何代码_。
-- **Optimistic Rollups** 没有方法超越他们现在的位置。**当Optimistic的方法首次出现时，他们变得流行，因为他们可以扩展以太坊（例如，他们可以处理10倍的以太坊交易_而不降低安全性和分散性_）。问题是，虽然他们现在可以将以太坊扩展到10倍，但他们没有机制在不降低安全性和分散性的情况下超过10倍。相比之下，zkSync Era是基于零知识证明的，它具有 Optimistic 方法所不具备的重要特征--它们可以超大规模。
+- **Optimistic Rollups** 没有方法超越他们现在的位置。**当Optimistic的方法首次出现时，他们变得流行，因为他们可以扩容以太坊（例如，他们可以处理10倍的以太坊交易_而不降低安全性和分散性_）。问题是，虽然他们现在可以将以太坊扩展到10倍，但他们没有机制在不降低安全性和分散性的情况下超过10倍。相比之下，zkSync Era是基于零知识证明的，它具有 Optimistic 方法所不具备的重要特征--它们可以超大规模。
 
 ### zkSync Era与其他zkRollups相比
 

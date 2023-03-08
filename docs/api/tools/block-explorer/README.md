@@ -8,5 +8,3 @@
 - [浏览区块](./block-view.md)
 - [搜索栏](./search.md)
 - [合约验证](./contract-verification.md)
-
-

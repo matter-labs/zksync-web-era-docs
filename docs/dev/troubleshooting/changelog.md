@@ -83,4 +83,4 @@
 
 如果在做了这些改变之后，你仍然面临问题，请[在我们的Discord的 "dev-support-beta "频道中创建一个支持票](https://join.zksync.dev/)。
 
-[Javascript SDK文档](.../.../api/js/getting-started.md)、[快速入门](.../building-onzksync/hello-world.md)和[账户抽象多义性](.../tutorials/custom-aa-tutorial.md) 教程已经更新，但**文档的一些其他部分还没有更新。如果你发现任何问题，请[联系我们](https://join.zksync.dev/)。
+[Javascript SDK文档](.../.../api/js/getting-started.md)、[快速入门](.../building-onzksync/hello-world.md)和[账户抽象自定义](.../tutorials/custom-aa-tutorial.md) 教程已经更新，但**文档的一些其他部分还没有更新。如果你发现任何问题，请[联系我们](https://join.zksync.dev/)。
