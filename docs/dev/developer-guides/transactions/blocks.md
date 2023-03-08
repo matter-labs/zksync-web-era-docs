@@ -80,7 +80,7 @@ The following are the block properties returned when you use the `getBlock` meth
 | ------------- | ------------------------------------------------------------------------------------------------------------------------|
 | hash          | The hash of the block.                                                                                                  |
 | parentHash    | It refers to the hash of the parent block in L2.                                                                        |
-| number        | the number of the current block                                                                                         |
+| number        | the number of the current block. null if pending                                                                                         |
 | timestamp     | The current block's creation time in seconds.                                                                           |
 | nonce         | It's the most recent transaction based on the account's counter, which maintains track of how many transactions it does.|
 | difficulty    | The current block difficulty returns 2500000000000000 (zkSync does not have proof of work consensus).                   |
