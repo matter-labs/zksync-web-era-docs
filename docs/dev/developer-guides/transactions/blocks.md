@@ -78,7 +78,7 @@ The following are the block properties returned when you use the `getBlock` meth
 
 | Parameter     | Description                                                                                                             |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------|
-| hash          | The hash of the block.                                                                                                  |
+| hash          | The hash of the block. null if pending                                                                                                 |
 | parentHash    | It refers to the hash of the parent block in L2.                                                                        |
 | number        | the number of the current block. null if pending                                                                                         |
 | timestamp     | The current block's creation time in seconds.                                                                           |
