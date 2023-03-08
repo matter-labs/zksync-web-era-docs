@@ -1,6 +1,6 @@
 # 本地测试
 
-有时，由于网络延迟或费用的原因，需要在本地环境下测试合同。
+有时，由于网络延迟或费用的原因，需要在本地环境下测试合约。
 
 zkSync团队为这个目的提供了一个docker化的本地设置。
 
@@ -90,7 +90,6 @@ sudo ./clear.sh
 ## 使用自定义数据库或以太坊节点
 
 要使用自定义的Postgres数据库或第1层节点，你应该改变docker-compose文件中的环境参数。
-
 
 ```yml
 environment:
@@ -207,7 +206,7 @@ describe("Greeter", function () {
 });
 ```
 
-这个脚本部署了在[入门指南](./getting-started.md#write-and-deploy-a-contract)中创建的`Greeter`合同，并测试它在调用`greet()`方法时返回一个正确的消息，并且该消息可以用`setGreeting()`方法更新。
+这个脚本部署了在[入门指南](./getting-started.md#write-and-deploy-a-contract)中创建的`Greeter`合约，并测试它在调用`greet()`方法时返回一个正确的消息，并且该消息可以用`setGreeting()`方法更新。
 
 现在你可以用下面的命令运行这个测试文件。
 

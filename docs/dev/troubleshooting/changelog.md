@@ -14,8 +14,7 @@
 
 - 更新`@matterlabs/hardhat-zksync-verify`至`0.1.2`。
 - 更新`@matterlabs/hardhat-zksync-deploy`到`0.6.2`。
-- 更新 `@matterlabs/hardhat-zksync-chai-matchers` 到 `0.1.1`.
-
+- 更新 `@matterlabs/hardhat-zksync-chai-matchers` 到 `0.1.1`。
 
 ## 编译器和本地设置更新（2023年2月20日）
 
@@ -33,10 +32,8 @@
 ### 如何更新你的项目
 
 - 将`hardhat.config.ts`文件中的编译器版本更新为`1.3.5`。
-- 重新编译合同。
+- 重新编译合约。
 - 用`docker-compose pull`更新本地设置的docker镜像，并通过运行`./clear.sh`脚本重新启动其状态。
-
-
 
 ## 系统更新(2023年2月10日)
 
@@ -47,7 +44,6 @@
 - 更新`zksync-web3`到`v0.13.1`。
 - 合同接口和API没有变化，所以不需要修改代码。
 - 不使用`zksync-web3`而依靠`eth_signTypedData`来签署交易的项目，需要在交易覆盖中手动加入固定的`gasPerPubdataByteLimit`为`50000`。
-
 
 ## 系统更新 v1.3 (Feb 8th 2023)
 
@@ -82,10 +78,9 @@
   - 智能合约账户现在包括版本号，以便于未来的更新。当从AA工厂合约中调用`create2Account`时，应将其作为一个参数。
   - 账户需要在`validateTransaction`方法的交易验证后返回一个魔法值。如果验证成功，这个值应该是`ACCOUNT_VALIDATION_SUCCESS_MAGIC`（可在`IAccount.sol`接口上找到），如果验证失败，则是空值`bytes4(0)`。
 - 如果你的智能合约使用`SystemContractsCaller`库中的任何方法（如`systemCall`），你需要在`zksolc`文件中`hardhat.config.ts`的`settings`部分将`isSystem`标志设置为`true`来编译它们。
-- zkSync 系统合同有周期依赖，可能会导致用 `hardhat flatten` 平整合同的问题。使用[hardhat验证插件](././api/hardhat/hardhat-zksync-verify.md)来代替。
-- 就像其他再生一样，它将删除所有的余额和合同，所以你需要再次存入资金并重新部署你的合同。
+- zkSync 系统合约有周期依赖，可能会导致用 `hardhat flatten` 平整合约的问题。使用[hardhat验证插件](././api/hardhat/hardhat-zksync-verify.md)来代替。
+- 就像其他再生一样，它将删除所有的余额和合约，所以你需要再次存入资金并重新部署你的合约。
 
 如果在做了这些改变之后，你仍然面临问题，请[在我们的Discord的 "dev-support-beta "频道中创建一个支持票](https://join.zksync.dev/)。
 
 [Javascript SDK文档](.../.../api/js/getting-started.md)、[快速入门](.../building-onzksync/hello-world.md)和[账户抽象多义性](.../tutorials/custom-aa-tutorial.md) 教程已经更新，但**文档的一些其他部分还没有更新。如果你发现任何问题，请[联系我们](https://join.zksync.dev/)。
-

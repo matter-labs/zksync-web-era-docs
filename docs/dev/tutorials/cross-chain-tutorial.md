@@ -1,13 +1,9 @@
 # 跨链治理
 
-本教程作为一个例子，说明如何实现L1到L2的合同互动。本教程中实现了以下功能。
+本教程作为一个例子，说明如何实现L1到L2的合约互动。本教程中实现了以下功能。
 
 - 一个 "计数器 "智能合约被部署在zkSync上，它存储了一个数字，可以通过调用`increment`方法来增加。
 - 一个 "治理 "智能合约被部署在第1层，它有权限增加zkSync上的计数器。
-
-
-
-
 
 ::: warning
 
@@ -28,13 +24,13 @@
 由于我们将在L1和L2上部署合约，我们将把这个项目分成两个不同的文件夹。
 
 - `/L1-governance`：用于L1合约，和脚本。
-- `/L2-counter`：用于L2合同，以及脚本。
+- `/L2-counter`：用于L2合约，以及脚本。
 
 所以继续创建这些文件夹。
 
 ::: tip
 
-请注意，`governance`项目是一个默认的Hardhat项目，因为它将被用来在L1部署合同，而`counter`项目包括所有的zkSync依赖和特定配置，因为它将在L2部署合同。
+请注意，`governance`项目是一个默认的Hardhat项目，因为它将被用来在L1部署合约，而`counter`项目包括所有的zkSync依赖和特定配置，因为它将在L2部署合约。
 
 :::
 
@@ -53,7 +49,7 @@
 yarn add -D @matterlabs/zksync-contracts
 ```
 
-我们将在L1上部署的治理合同的代码如下。
+我们将在L1上部署的治理合约的代码如下。
 
 ```sol
 //SPDX-License-Identifier: Unlicense
@@ -88,7 +84,7 @@ contract Governance {
 
 ### 部署L1治理合同
 
-尽管本教程并不关注在L1上部署合同的过程，但我们会给你一个快速的概述，告诉你如何继续。
+尽管本教程并不关注在L1上部署合约的过程，但我们会给你一个快速的概述，告诉你如何继续。
 
 1. 你需要一个RPC节点端点到Göerli测试网，以提交部署事务。你可以[在这里找到多个节点提供者](https://github.com/arddluma/awesome-list-rpc-nodes-providers)。
 
@@ -154,7 +150,7 @@ main().catch((error) => {
 });
 ```
 
-5. 编译合同并运行部署脚本。
+5. 编译合约并运行部署脚本。
 
 ```
 # compile contract
@@ -162,14 +158,13 @@ yarn hardhat compile
 
 # deploy contract
 yarn hardhat run --network goerli ./scripts/deploy.ts
-
 ```
 
 最后一条命令将在终端打印已部署的治理智能合约地址。
 
 ## L2反面
 
-现在我们已经解决了L1的治理合同，让我们继续进行L2的反合同。
+现在我们已经解决了L1的治理合约，让我们继续进行L2的反合约。
 
 1. 为了初始化`/L2-counter`文件夹中的项目，运行以下命令。
 
@@ -296,7 +291,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 7. 在将`<WALLET-PRIVATE-KEY>`和`<GOVERNANCE-ADDRESS>`分别替换为Göerli上有一定ETH余额的Ethereum钱包的私钥和L1治理合约的地址后，使用以下命令运行该脚本。
 
-
 ```
 yarn hardhat deploy-zksync
 ```
@@ -324,7 +318,6 @@ yarn hardhat deploy-zksync
 3. 创建一个新的文件`/L2-counter/scripts/counter.json`并粘贴计数器合同的ABI。
 
 4. 4.创建`/L2-counter/scripts/display-value.ts`文件并粘贴以下代码。
-
 
 ```ts
 import { Contract, Provider, Wallet } from "zksync-web3";
@@ -496,7 +489,6 @@ async function main() {
 
 7. 你可以跟踪相应的L2事务的状态。`zksync-web3`的`Provider`有一个方法，给定调用zkSync桥的事务的L1`ethers.TransactionResponse`对象，返回L2中事务对应的`TransactionResponse`对象，可以方便地等待事务在L2上被处理。
 
-
 ```ts
 async function main() {
   // ... Previous steps
@@ -513,7 +505,6 @@ async function main() {
 ### 完整的代码
 
 以下是获取zkSync合同地址的完整代码，对交易数据进行编码，计算费用，将交易发送到L1，并跟踪L2中的对应交易。
-
 
 ```ts
 import { BigNumber, Contract, ethers, Wallet } from "ethers";

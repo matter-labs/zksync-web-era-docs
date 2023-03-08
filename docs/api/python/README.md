@@ -12,4 +12,3 @@
 - [账户：L1->L2交易](./accounts-l1-l2.md)
 - [合同接口](./contract-interface.md)
 - [类型](./types.md)
-

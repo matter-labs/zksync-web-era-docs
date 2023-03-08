@@ -7,9 +7,6 @@
 - ERC20Contract & ERC20FunctionEncoder
 - ContractDeployer
 
-
-
-
 ### NonceHolder
 
 NonceHolder "系统合约处理nonce的部署，它对于预先计算将被部署在网络中的合约地址很有用。
@@ -45,7 +42,6 @@ Methods:
 
 它只有一个方法：`python encode_method`，参数为函数名和它的args
 
-
 ### ContractDeployer
 
 ContractDeployer是一个实用的系统合同，以一个类型表示，涵盖以下功能。
@@ -70,7 +66,7 @@ deployer = ContractDeployer(zksync_web3)
 
 | Method                     | Parameters                                 | Return value | Description                                                                                                                                                                                                                                                   |
 | -------------------------- | ------------------------------------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| encode_create              | bytecode, optional `call_data` & `salt`    | HexStr       | Creates binary representation of a contract in an internal deploying format.<br/> bytecode - contract binary representation, `call_data` is used for `ctor` bytecode only, `salt` is used to generate unique identifier of deploying contract.                 |
-| encode_create2             | bytecode, optional `call_data` & `salt`    | HexStr       | Creates binary representation of contract in an internal deploying format.<br/> bytecode - contract binary representation, `call_data` is used for `ctor` bytecode only, `salt` is used to generate unique identifier of deploying contract.                   |
+| encode_create              | bytecode, optional `call_data` & `salt`    | HexStr       | Creates binary representation of a contract in an internal deploying format.<br/> bytecode - contract binary representation, `call_data` is used for `ctor` bytecode only, `salt` is used to generate unique identifier of deploying contract.                |
+| encode_create2             | bytecode, optional `call_data` & `salt`    | HexStr       | Creates binary representation of contract in an internal deploying format.<br/> bytecode - contract binary representation, `call_data` is used for `ctor` bytecode only, `salt` is used to generate unique identifier of deploying contract.                  |
 | compute_l2_create_address  | Address, Nonce                             | Address      | Accepts address of deployer and current deployed nonce and returns address of contract that is going to be deployed by the`encode_create` method.                                                                                                             |
 | compute_l2_create2_address | Address, bytecode, `ctor` bytecode, `salt` | Address      | Accepts address of the deployer, binary representation of contract, it's constructor in binary format and salt. By default constructor can be `b'0'` value. It returns the address of the contract that is going to be deployed by an`encode_create2` method. |

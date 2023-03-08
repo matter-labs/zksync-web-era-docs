@@ -6,17 +6,15 @@
 - 创建ERC20代币合约并发送一些代币到一个全新的钱包。
 - 最后我们将从新创建的钱包通过paymaster发送一个`mint`交易。尽管该交易通常需要一些ETH来支付汽油费，但我们的paymaster将执行该交易，以换取1单位的ERC20代币。
 
-
 ## 先决条件
 
 为了更好地理解这个页面，我们建议你在深入学习本教程之前先阅读一下[账户抽象设计](.../developer-guides/aa.md)。
 
-假设你已经熟悉在zkSync上部署智能合约。如果没有，请参考[快速入门教程]（.../building-onzksync/hello-world.md）的第一节。还建议阅读[系统合同介绍](.../developer-guides/system-contracts.md)。
+假设你已经熟悉在zkSync上部署智能合约。如果没有，请参考[快速入门教程]（.../building-onzksync/hello-world.md）的第一节。还建议阅读[系统合约介绍](.../developer-guides/system-contracts.md)。
 
 ## 安装依赖项
 
 我们将使用zkSync硬帽插件来开发这个合约。首先，我们应该为它安装所有的依赖项。
-
 
 ```
 mkdir custom-paymaster-tutorial
@@ -31,14 +29,13 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matter
 
 :::
 
-由于我们正在使用zkSync合同，我们还需要安装带有合同及其对等依赖的软件包。
+由于我们正在使用zkSync合约，我们还需要安装带有合同及其对等依赖的软件包。
 
-```sh
+```shag-0-1gr0ag-0-1gr0ereag-0-1gr0ere8lagag-1-1gr0ere8l-0-1gr0ere8lagag-1-1gr0ere8l-0-1gr0ere8lagag-1-1gr0ere8l-0-1gr0ere8lagag-1-1gr0ere8l-0-1gr0ere8lagag-1-1gr0ere8l-0-1gr0ere8lagag-1-1gr0ere8l-0-1gr0ere8lagag-1-1gr0ere8l-0-1gr0ere8lagag-1-1gr0ere8l-0-1gr0ere8lagag-1-1gr0ere8l-0-1gr0ere8l8lag-1-1gr0ere8lagag-1-1gr0ere8l-0-1gr0ereag-0-1gr0ere8lagag-1-1gr0ere8l-0-1gr0ere8l8lag-1-1gr0ere8lerag-1-1gr0ere8le8lag-1-1gag-0-1gr0ere8lr0ag-1-1gr0ere8lere8l
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
 然后创建`hardhat.config.ts`配置文件，`contracts`和`deploy`文件夹，就像[快速入门教程](.../building-on-zksync/hello-world.md)中那样。
-
 
 ::: tip
 
@@ -111,7 +108,6 @@ contract MyPaymaster is IPaymaster {
 付款人应该收到的输入被编码为`paymasterInput`。正如[在paymaster文档中](.../developer-guides/aa.md#built-in-paymaster-flows)所述，有一些标准化的方法来编码用户与paymasterInput的互动。为了向用户收费，我们将要求她向paymaster合同提供足够的ERC20代币的津贴。这个津贴是在幕后的 "approvalBased "流程中完成的。
 
 首先，我们需要检查 "paymasterInput "是否像 "approvalBased "流程中那样被编码，并且 "paymasterInput "中发送的代币是支付者接受的。
-
 
 ```solidity
 magic = PAYMASTER_VALIDATION_SUCCESS_MAGIC;
@@ -190,7 +186,6 @@ require(success, "Failed to transfer funds to the bootloader");
 :::
 
 ### paymaster的完整代码
-
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -304,8 +299,6 @@ contract MyPaymaster is IPaymaster {
 
     receive() external payable {}
 }
-
-
 ```
 
 ## 部署一个ERC20合约
@@ -341,13 +334,11 @@ contract MyERC20 is ERC20 {
         return _decimals;
     }
 }
-
 ```
 
 ## 部署支付系统
 
 为了部署ERC20代币和paymaster，我们需要创建一个部署脚本。创建`deploy`文件夹并在那里创建一个文件。`deploy-paymaster.ts`。把下面的部署脚本放在那里。
-
 
 ```ts
 import { utils, Wallet } from "zksync-web3";
@@ -397,7 +388,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 除了部署paymaster，它还创建了一个空钱包，并将一些`MyERC20'代币开采到其中，以便以后可以使用paymaster。
 
-为了部署ERC20代币和paymaster，你应该编译合同并运行该脚本。
+为了部署ERC20代币和paymaster，你应该编译合约并运行该脚本。
 
 ```
 yarn hardhat compile
@@ -406,7 +397,7 @@ yarn hardhat deploy-zksync --script deploy-paymaster.ts
 
 输出结果应该大致如下。
 
-```
+```ag-0-1gr0ere8lag-1-1gr0ere8l
 Empty wallet's address: 0xAd155D3069BB3c587E995916B320444056d8191F
 Empty wallet's private key: 0x236d735297617cc68f4ec8ceb40b351ca5be9fc585d446fa95dff02354ac04fb
 ERC20 address: 0x65C899B5fb8Eb9ae4da51D67E1fc417c7CB7e964

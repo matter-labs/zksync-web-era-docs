@@ -4,8 +4,8 @@
 
 zkSync为Hardhat提供了以下插件。
 
-- [@matterlabs/hardhat-zksync-solc](./hardhat-zksync-solc.md) - 用于编译用Solidity编写的合同。
-- [@matterlabs/hardhat-zksync-vyper](./hardhat-zksync-vyper.md) - 用于编译用Vyper编写的合同。
+- [@matterlabs/hardhat-zksync-solc](./hardhat-zksync-solc.md) - 用于编译用Solidity编写的合约。
+- [@matterlabs/hardhat-zksync-vyper](./hardhat-zksync-vyper.md) - 用于编译用Vyper编写的合约。
 - [@matterlabs/hardhat-zksync-deploy](./hardhat-zksync-deploy.md) - 用来部署智能合约。
 - [@matterlabs/hardhat-zksync-chai-matchers](./hardhat-zksync-chai-matchers.md) - 为测试智能合约的[Chai](https://www.chaijs.com/)断言库增加了zkSync的特定功能。
 - [@matterlabs/hardhat-zksync-verify](./hardhat-zksync-verify.md) - 用来验证智能合约。
@@ -14,7 +14,6 @@ zkSync为Hardhat提供了以下插件。
 
 本教程展示了如何使用Hardhat从头开始设置一个zkSync Solidity项目。
 如果你使用 Vyper，请查看 GitHub 中的 [Vyper 插件文档](./hardhat-zksync-vyper.md) 或 [这个例子](https://github.com/matter-labs/hardhat-zksync/tree/main/examples/vyper-example)
-
 
 ## 前提条件
 
@@ -171,14 +170,18 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 
 7. 将`WALLET-PRIVATE-KEY`文本替换为你的Ethereum钱包的私钥后，使用以下命令运行该脚本。`yarn hardhat deploy-zksync`。这个脚本将
-
+   
    - 从Goerli转移0.001个ETH到zkSync。
+   
    - 向[zkSync Era Testnet](.../.../dev/fundamentals/interacting.md)部署带有 "你好！"信息的`Greeting`合约。
+   
    - 从合同中检索信息，调用`greet()`方法。
+   
    - 用`setGreeting()`方法更新合同中的问候信息。
-   - 再次从合同中获取消息。
-
-   **恭喜你! 你的Hardhat项目现在已经在zkSync Era Testnet上运行了 🎉**。
+   
+   - 再次从合约中获取消息。
+     
+     **恭喜你! 你的Hardhat项目现在已经在zkSync Era Testnet上运行了 🎉**。
 
 ::: tip 请求-速率超标消息
 
@@ -195,6 +198,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 未来将发布的插件有两个主要改进点。
 
-- **与现有hardhat插件的兼容性。**与其他hardhat插件的兼容性是未来的计划，但还没有成为重点。
+- **与现有hardhat插件的兼容性。
+- **与其他hardhat插件的兼容性是未来的计划，但还没有成为重点。
 - **改进的跨平台支持**。
-

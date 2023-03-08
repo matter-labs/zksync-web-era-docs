@@ -25,7 +25,6 @@ Go的版本应该>=1.17，并且需要Go模块。
 
 ```go
 go get github.com/zksync-sdk/zksync2-go
-
 ```
 
 ## Instantiating the SDK
@@ -41,7 +40,6 @@ go get github.com/zksync-sdk/zksync2-go
 :::
 
 ```go
-
 package main
 
 import (
@@ -66,13 +64,11 @@ ethRpc, err := rpc.Dial("https://goerli.infura.io/v3/<your_infura_node_id>")
 
 // and use it to create Ethereum Provider by Wallet
 ethereumProvider, err := w.CreateEthereumProvider(ethRpc)
-
 ```
 
 ## Deposit funds
 
 ```go
-
 package main
 
 import (
@@ -94,7 +90,6 @@ func main() {
     fmt.Println("Tx hash", tx.Hash())
 
 }
-
 ```
 
 ## Transfer
@@ -121,13 +116,11 @@ func main() {
     fmt.Println("Tx hash", hash)
 
 }
-
 ```
 
 ## Withdraw
 
 ```go
-
 package main
 
 import (
@@ -149,7 +142,6 @@ func main() {
     fmt.Println("Tx hash", hash)
 
 }
-
 ```
 
 ## Deploy a smart contract
@@ -157,7 +149,6 @@ func main() {
 你可以通过以下方式访问合约部署界面。
 
 ```go
-
     package main
 
 import (
@@ -185,7 +176,6 @@ func main() {
     }
     fmt.Println("Deployed address", address.String())
 }
-
 ```
 
 ## Interact with smart contracts
@@ -195,7 +185,6 @@ func main() {
 编码calldata的例子。
 
 ```go
-
 package main
 
 import (
@@ -217,5 +206,4 @@ func main() {
     fmt.Println("Tx hash", hash)
 
 }
-
 ```

@@ -14,9 +14,6 @@
 
 :::
 
-
-
-
 ## 前提条件
 
 本指南假定你熟悉[Java](https://docs.oracle.com/en/java/)编程语言的基础知识。
@@ -38,7 +35,6 @@ Maven `pom.xml`。
     </dependency>
   </dependencies>
 </project>
-
 ```
 
 Gradle `build.gradle`
@@ -54,7 +50,6 @@ dependencies {
 要开始使用这个SDK，你只需要传入一个提供者的配置。
 
 ```java
-
 import io.zksync.protocol.zksync;
 import org.web3j.protocol.http.HttpService;
 
@@ -63,7 +58,6 @@ public class Main {
         zksync zksync = zksync.build(new HttpService("<http://127.0.0.1:3050>"));
     }
 }
-
 ```
 
 ## Ethereum signer
@@ -91,7 +85,6 @@ public class Main {
         EthSigner signer = new PrivateKeyEthSigner(credentials, chainId);
     }
 }
-
 ```
 
 ## Creating a wallet
@@ -111,7 +104,6 @@ public class Main {
         ZkSyncWallet wallet = new ZkSyncWallet(zksync, signer, Token.ETH);
     }
 }
-
 ```
 
 ## Transactions
@@ -119,7 +111,6 @@ public class Main {
 zksync2支持以太坊的`Legacy`和`EIP-1155`交易，但部署合约除外。
 
 ```java
-
 import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
@@ -190,13 +181,11 @@ public class Main {
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
-
 ```
 
 ### Deploy a smart contract
 
 ```java
-
 import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
@@ -271,13 +260,11 @@ public class Main {
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
-
 ```
 
 ### Deploy contract via ZkSyncWallet
 
 ```java
-
 import io.zksync.ZkSyncWallet;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.utils.Numeric;
@@ -289,13 +276,11 @@ public class Main {
         TransactionReceipt receipt = wallet.deploy(Numeric.hexStringToByteArray("0x<bytecode_of_the_contract>")).send();
     }
 }
-
 ```
 
 ### Interacting with smart contracts
 
 ```java
-
 import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
@@ -359,13 +344,11 @@ public class Main {
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
-
 ```
 
 ### Interacting with smart contracts via ZkSyncWallet
 
 ```java
-
 import org.web3j.abi.datatypes.Function;
 import org.web3j.abi.datatypes.generated.Uint256;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
@@ -388,13 +371,11 @@ public class Main {
         TransactionReceipt receipt = wallet.execute(contractAddress, contractFunction).send();
     }
 }
-
 ```
 
 ### Interacting with smart contracts via Web3j generic Contract
 
 ```java
-
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.protocol.zksync;
 import io.zksync.protocol.core.Token;
@@ -425,13 +406,11 @@ public class Main {
         BigInteger result = contract.get().send();
     }
 }
-
 ```
 
 ### Transfer funds
 
 ```java
-
 import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
@@ -495,13 +474,11 @@ public class Main {
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
-
 ```
 
 ### Transfer funds (ERC20 tokens)
 
 ```java
-
 import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
@@ -572,13 +549,11 @@ public class Main {
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
-
 ```
 
 ### Transfer funds via ZkSyncWallet
 
 ```java
-
 import io.zksync.protocol.core.Token;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 
@@ -600,13 +575,11 @@ public class Main {
         BigDecimal decimalBalance = Token.ETH.intoDecimal(balance);
     }
 }
-
 ```
 
 ### Withdraw funds
 
 ```java
-
 import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
@@ -676,13 +649,11 @@ public class Main {
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
-
 ```
 
 ### Withdraw funds (ERC20 tokens)
 
 ```java
-
 import io.zksync.abi.TransactionEncoder;
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Eip712Meta;
@@ -757,13 +728,11 @@ public class Main {
         TransactionReceipt receipt = zksync.ethGetTransactionReceipt(sentTransactionHash).send().getTransactionReceipt();
     }
 }
-
 ```
 
 ### Withdraw funds via ZkSyncWallet
 
 ```java
-
 import io.zksync.protocol.core.Token;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 
@@ -784,7 +753,6 @@ public class Main {
         TransactionReceipt receipt = wallet.withdraw("0x<receiver_address>", amount, token).send();
     }
 }
-
 ```
 
 ## Wallet
@@ -792,7 +760,6 @@ public class Main {
 获取执行交易的价格
 
 ```java
-
 import io.zksync.crypto.signer.EthSigner;
 import io.zksync.methods.request.Transaction;
 import io.zksync.protocol.zksync;
@@ -812,13 +779,11 @@ public class Main {
         BigInteger gasUsed = zksync.ethEstimateGas(forEstimate).send().getAmountUsed();
     }
 }
-
 ```
 
 ### Get fee via TransactionFeeProvider
 
 ```java
-
 import io.zksync.methods.request.Transaction;
 import io.zksync.protocol.zksync;
 import io.zksync.protocol.core.Token;
@@ -837,5 +802,4 @@ public class Main {
         Fee fee = feeProvider.getFee(forEstimate);
     }
 }
-
 ```

@@ -8,7 +8,7 @@ zkSync提供了[多个Hardhat插件](./plugins.md)，具有不同的功能，但
 
 :::warning 目前还不支持非默认的路径。
 
-合同文件必须包含在`contracts`文件夹中，部署脚本必须包含在`deploy`文件夹中。
+合约文件必须包含在`contracts`文件夹中，部署脚本必须包含在`deploy`文件夹中。
 
 对自定义路径的支持将在未来加入。
 
@@ -24,7 +24,6 @@ yarn add -D @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-solc
 
 # Npm
 npm i -D @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-solc
-
 ```
 
 如果你使用Vyper，请将`@matterlabs/hardhat-zksync-solc`替换为`@matterlabs/hardhat-zksync-vyper`。
@@ -57,6 +56,7 @@ const config: HardhatUserConfig = {
 
 };
 ```
+
 记得在任何其他网络中添加`zksync: false`。
 
 最后，你需要在`zksolc`或`zkvyper`属性中添加编译器选项。下面是一个 Solidity 项目的最小配置。
@@ -68,6 +68,7 @@ zksolc: {
   settings: {},
 },
 ```
+
 你可以在 [Solidity](./hardhat-zksync-solc.md) 或 [Vyper](./hardhat-zksync-vyper.md) 插件中找到提前设置。
 
 ### 完整的配置
@@ -142,7 +143,6 @@ npx hardhat compile  --network zkSyncTestnet
 
 下面是一个Greeter合同的基本部署脚本。
 
-
 ```typescript
 import { utils, Wallet } from "zksync-web3";
 import * as ethers from "ethers";
@@ -170,8 +170,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Show the contract info.
   console.log(`${artifact.contractName} was deployed to ${greeterContract.address}`);
 }
-
 ```
+
 在`deploy`文件夹中包含你的部署脚本，并在运行中执行它。
 
 ```
@@ -186,13 +186,11 @@ npx hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
 
 ## 前端集成
 
-你可以使用`zksync-web3` Javascript库与你的合同进行交互。这个SDK建立在ethers之上，使用相同的类（`Provider`, `Contract`, `Wallet`），所以在很多情况下，你只需要从`zksync-web3`导入这些类，而不是`ethers`。
+你可以使用`zksync-web3` Javascript库与你的合约进行交互。这个SDK建立在ethers之上，使用相同的类（`Provider`, `Contract`, `Wallet`），所以在很多情况下，你只需要从`zksync-web3`导入这些类，而不是`ethers`。
 
 ```typescript
-
 //import { utils, Provider, Contract, Wallet } from "ethers";
 import { utils, Provider, Contract, Wallet } from "zksync-web3";
-
 ```
 
 你还需要使用`artifacts-zk`文件夹中的合同ABI来实例化合同。
@@ -205,7 +203,6 @@ import { utils, Provider, Contract, Wallet } from "zksync-web3";
 
 - 探索器：在[zkSync探索器](.../tools/block-explorer/contract-verification.md)中手动验证你的合同
 - 插件：使用[Hardhat验证插件](./hardhat-zksync-verify.md)以编程方式验证你的合同。
-
 
 -
 

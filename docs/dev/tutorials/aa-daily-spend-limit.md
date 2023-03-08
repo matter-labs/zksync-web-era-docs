@@ -36,7 +36,6 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matter
 
 此外，请安装一些允许我们利用[zkSync智能合约]的软件包（.../developer-guides/system-contracts.md）。
 
-
 ```shell
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
@@ -118,7 +117,6 @@ contract SpendLimit {
 下面是设置和删除限额的实现。
 
 ```solidity
-
     /// this function enables a daily spending limit for specific tokens.
     function setSpendingLimit(address _token, uint _amount) public onlyAccount {
         require(_amount != 0, "Invalid amount");
@@ -162,7 +160,6 @@ contract SpendLimit {
         limit.resetTime = _resetTime;
         limit.isEnabled = _isEnabled;
     }
-
 ```
 
 `setSpendingLimit`和`removeSpendingLimit`都只能由继承这个契约`SpendLimit`的账户契约来调用，这由`onlyAccount`修改器来保证。他们调用`_updateLimit`并传递参数，在`_isValidUpdate`中验证成功后修改限额的存储数据。
@@ -176,7 +173,6 @@ contract SpendLimit {
 `_checkSpendingLimit`函数是在执行交易前由账户合同本身内部调用。
 
 ```solidity
-
     // this function is called by the account itself before execution.
     function _checkSpendingLimit(address _token, uint _amount) internal {
         Limit memory limit = limits[_token];
@@ -209,7 +205,6 @@ if(!limit.isEnabled) return;
 在检查消费金额之前，如果上次更新后已经过了一天，该方法会更新`resetTime`和`available`金额：时间戳> resetTime。如果该交易是启用限制后的第一次消费，它才会更新`resetTime'。这样，每日限额实际上从第一笔交易开始。
 
 ```solidity
-
 if (limit.limit != limit.available && timestamp > limit.resetTime) {
       limit.resetTime = timestamp + ONE_DAY;
       limit.available = limit.limit;
@@ -217,7 +212,6 @@ if (limit.limit != limit.available && timestamp > limit.resetTime) {
 } else if (limit.limit == limit.available) {
       limit.resetTime = timestamp + ONE_DAY;
 }
-
 ```
 
 最后，该方法检查账户是否能够花费指定数额的代币。如果该金额没有超过可用金额，它就会递减限额中的 "可用"。
@@ -232,10 +226,9 @@ limit.available -= _amount;
 
 ### 完整的代码
 
-现在，这里是SpendLimit合同的完整代码。但有一点需要注意的是，ONE_DAY变量的值被设置为`1分钟`而不是`24小时`。这只是为了测试的目的（我们不想等一整天才能看到它是否有效！），所以，请不要忘记在部署合同之前改变这个值。
+现在，这里是SpendLimit合同的完整代码。但有一点需要注意的是，ONE_DAY变量的值被设置为`1分钟`而不是`24小时`。这只是为了测试的目的（我们不想等一整天才能看到它是否有效！），所以，请不要忘记在部署合约之前改变这个值。
 
 ```solidity
-
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -346,7 +339,6 @@ contract SpendLimit {
     }
 
 }
-
 ```
 
 ### 账户和工厂合同
@@ -362,7 +354,6 @@ contract SpendLimit {
 #### Account.sol合约
 
 该账户合约实现了IAccount接口，并继承了我们刚刚创建的SpendLimit合约。
-
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -521,9 +512,7 @@ contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contr
 
 `_executeTransaction`方法是我们将使用`SpendLimit.sol`合约的方法。如果ETH交易值为非零，账户合约就会调用`_checkSpendingLimit`来验证支出的许可。
 
-
 ```solidity
-
 if ( value > 0 ) {
     _checkSpendingLimit(address(ETH_TOKEN_SYSTEM_CONTRACT), value);
 }
@@ -579,7 +568,6 @@ contract AAFactory {
 ### 编译
 
 最后，我们准备好编译和部署合约了。所以，在部署之前，让我们通过运行来编译合约。
-
 
 ```shell
 yarn hardhat compile
@@ -803,7 +791,6 @@ yarn hardhat deploy-zksync --script deploy/transferETH.ts
 
 虽然错误信息没有给我们任何具体的原因，但可以预见的是，交易被还原的情况如下。
 
-
 ```shell
 An unexpected error occurred:
 
@@ -832,7 +819,6 @@ Limit结构中的`available'值被递减，所以现在只有0.0001个ETH可用�
 
 为了使本教程尽可能简单，我们使用了`block.timestamp`，但我们不建议依靠它来进行精确的时间计算。
 
-
 :::
 
 ## 常见错误
@@ -854,4 +840,3 @@ Limit结构中的`available'值被递减，所以现在只有0.0001个ETH可用�
 ## 鸣谢
 
 由[porco-rosso](https://linktr.ee/porcorossoj)为以下[GitCoin赏金](https://gitcoin.co/issue/29669)撰写。
-

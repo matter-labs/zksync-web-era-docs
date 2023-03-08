@@ -8,10 +8,9 @@
 4. 转移和提取资金（本地和ERC20代币）。
 5. 部署智能合约。
 
-
 ::: warning
 
-文档的这一部分正在审查中，以反映对系统合同的修改（[见changelog](.../.../dev/troubleshooting/changelog.md)）。修订后的版本很快就会推出。
+文档的这一部分正在审查中，以反映对系统合约的修改（[见changelog](.../.../dev/troubleshooting/changelog.md)）。修订后的版本很快就会推出。
 
 :::
 
@@ -26,15 +25,12 @@
 [CocoaPods](http://cocoapods.org/)是一个用于Cocoa项目的依赖管理器。你可以用下面的命令来安装它。
 
 ```bash
-
 sudo gem install cocoapods
-
 ```
 
 要使用CocoaPods将zkSync swift SDK集成到你的Xcode项目中，请在你的`Podfile`中指定它。
 
 ```bash
-
 platform :ios, '13.0'
 use_frameworks!
 
@@ -43,21 +39,17 @@ install! 'cocoapods', :warn_for_unused_master_specs_repo => false
 target '<Your Target Name>' do
   pod 'ZkSync2', '~> 0.0.1'
 end
-
 ```
 
 然后运行以下命令。
 
 ```bash
-
 pod install
-
 ```
 
 ## 连接 zkSync
 
 为了与zkSync网络互动，用户需要知道运营商节点的端点。
-
 
 创建一个`EthereumAccount'的实例，有一个`EthereumKeyStorage'提供者。这为`web3.swift`使用你的密钥提供了一个封装器。<br/>
 
@@ -96,7 +88,6 @@ let client = EthereumWebSocketClient(url: clientUrl)
 它返回erc20令牌的地址。
 
 ```swift
-
     func approveDeposits(with token: Token,
                          limit: BigUInt?) throws -> Promise<TransactionSendingResult>
 ```
@@ -112,14 +103,12 @@ let client = EthereumWebSocketClient(url: clientUrl)
 
 转移方法可以转移ERC20代币，并且它返回转移的交易收据。
 
-
 ```swift
     /// Send transfer transaction. This is the regular transfer of ERC20 token.
     /// - Parameters:
     func transfer(with token: Token,
                   amount: BigUInt,
                   to address: String) throws -> Promise<TransactionSendingResult>
-
 ```
 
 #### Parameter
@@ -135,11 +124,9 @@ let client = EthereumWebSocketClient(url: clientUrl)
 该方法使用`EthereumProvider.approvedDeposits()`来发送存款交易到zkSync合约，并返回存款的交易收据。
 
 ```swift
-
     func deposit(with token: Token,
                  amount: BigUInt,
                  to userAddress: String) throws -> Promise<TransactionSendingResult>
-
 ```
 
 #### Parameter
@@ -155,11 +142,9 @@ let client = EthereumWebSocketClient(url: clientUrl)
 该方法向指定的代币地址发送提款并返回交易收据。
 
 ```swift
-
     func withdraw(with token: Token,
                   amount: BigUInt,
                   from userAddress: String) throws -> Promise<TransactionSendingResult>
-
 ```
 
 #### Parameter

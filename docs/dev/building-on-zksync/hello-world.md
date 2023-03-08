@@ -1,16 +1,13 @@
- # 快速入门
+# 快速入门
 
   在这个快速入门指南中，您将学习如何将智能合约部署到zkSync，并使用zkSync开发工具箱构建一个与之互动的dApp。
 
   这就是我们要建立的东西。
 
-  - 一个存储问候信息的智能合约，并部署在zkSync上。
-  - 一个dApp来检索和更新问候信息。
-  - 用户将能够在智能合约上改变问候语。
-  - 默认情况下，用户将以ETH支付交易费用。然而，我们也将解释如何[实现testnet paymaster](#paying-fees-using-testnet-paymaster)，让用户用ERC20代币支付交易费用。
-
-
-
+- 一个存储问候信息的智能合约，并部署在zkSync上。
+- 一个dApp来检索和更新问候信息。
+- 用户将能够在智能合约上改变问候语。
+- 默认情况下，用户将以ETH支付交易费用。然而，我们也将解释如何[实现testnet paymaster](#paying-fees-using-testnet-paymaster)，让用户用ERC20代币支付交易费用。
 
 ::: warning
 
@@ -78,7 +75,7 @@ module.exports = {
 
 ::: warning Tip
 
-如果合同已经被编译，你应该删除artifacts-zk和cache-zk文件夹，否则，除非你改变编译器版本，否则它不会重新编译。
+如果合约已经被编译，你应该删除artifacts-zk和cache-zk文件夹，否则，除非你改变编译器版本，否则它不会重新编译。
 
 :::
 
@@ -292,7 +289,6 @@ npm i ethers@^5.7.2 zksync-web3@^0.13.1
 
 之后，在`App.vue`文件的`script`部分导入这两个库（就在合同常量之前）。它应该看起来像这样。
 
-
 ```javascript
 import {} from "zksync-web3";
 import {} from "ethers";
@@ -370,11 +366,11 @@ const GREETER_CONTRACT_ABI = require("./abi.json");
 在这个方法中，我们应该。
 
 - 初始化一个`Web3Provider'和一个`Signer'以与zkSync交互。
-- 初始化`Contract`对象，与我们刚刚部署的`Greeter`合同进行交互。
 
+- 初始化`Contract`对象，与我们刚刚部署的`Greeter`合约进行交互。
 2. 导入必要的依赖性。
 
-```javascript
+```javascriptag-0-1gr0ere8lag-1-1gr0ere8lag-0-1gr0ere8lag-1-1gr0ere8lag-0-1gr0ere8lag-1-1gr0ere8lag-0-1gr0ere8lag-1-1gr0ere8l
 import { Contract, Web3Provider, Provider } from "zksync-web3";
 ```
 
@@ -405,7 +401,6 @@ async getGreeting() {
 ```
 
 完整的方法现在看起来如下。
-
 
 ```javascript
 initializeProviderAndSigner() {
@@ -442,7 +437,6 @@ import { ethers } from "ethers";
 
 2. 实现该方法本身。
 
-
 ```javascript
 async getBalance() {
     // Getting the balance for the signer in the selected token
@@ -454,7 +448,6 @@ async getBalance() {
 ```
 
 3. 估计费用。
-
 
 ```javascript
 async getFee() {
@@ -489,13 +482,11 @@ const txHandle = await this.contract.setGreeting(this.newGreeting, await this.ge
 
 2. 等待，直到事务被提交。
 
-
 ```javascript
 await txHandle.wait();
 ```
 
 完整的方法看起来如下。
-
 
 ```javascript
 async changeGreeting() {
@@ -528,7 +519,6 @@ async changeGreeting() {
 ```
 
 你现在有了一个功能齐全的Greeter-dApp! 然而，它并没有利用任何zkSync的特定功能。
-
 
 ::: warning
 
@@ -673,13 +663,11 @@ async getOverrides() {
 
 5. 要使用ERC20代币的列表，请修改以下一行。
 
-
 ```javascript
 const allowedTokens = require("./eth.json");
 ```
 
 到下面一个。
-
 
 ```javascript
 const allowedTokens = require("./erc20.json");
@@ -709,4 +697,3 @@ const allowedTokens = require("./erc20.json");
 
 - 要了解更多关于`zksync-web3`SDK的信息，请查看其[文档](.../.../api/js)。
 - 要了解更多关于zkSync hardhat插件的信息，请查看它们的[document](../../api/hardhat)。
-

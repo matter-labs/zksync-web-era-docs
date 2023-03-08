@@ -1,6 +1,6 @@
 # 贡献于文档
 
-zkSync时代的文档是开源的，它欢迎来自世界各地的个人，包括你的社区贡献。
+zkSync Era的文档是开源的，它欢迎来自世界各地的个人，包括你的社区贡献。
 
 对任何大型项目的贡献都需要项目成员之间的合作，以及使经验富有成效和愉快的人和过程。
 
@@ -44,10 +44,8 @@ zkSync时代的文档是开源的，它欢迎来自世界各地的个人，包�
 3. 点击钢笔图标，就可以分叉该版本，这样你就可以开始为文档做贡献了。
    ![fork-repo](https://user-images.githubusercontent.com/55744578/136702921-3105350a-a68a-4aa4-8c5d-fb24742652b2.jpg)
 4. 编辑MD文件。
-
 - 我们在文档中使用markdown，你需要知道markdown才能为文档做贡献。
 - 在fork-repo之后对文件进行编辑并预览你的修改。如果你还没有阅读我们的[内容风格指南](https://www.notion.so/matterlabs/Communication-Strategy-a4836bd6d2254268b60a489d82992d71)，请在开始这一步之前阅读。
-
 5. 写下你所做修改的简要描述，然后点击 "提出修改"。
 6. 编辑完文件后，点击 "创建拉动请求"，等待我们的审查员来审查你的PR。
    ![create-pull-request](https://user-images.githubusercontent.com/55744578/136703597-6644e43c-7c64-4cc0-bf8b-7fb8db9544cf.jpg)
@@ -56,4 +54,3 @@ zkSync时代的文档是开源的，它欢迎来自世界各地的个人，包�
 
 - [技术写作最佳实践](https://proedit.com/technical-writing-best-practices/)。
 - [每个作家都需要知道的9个技术写作技巧](https://www.instructionalsolutions.com/blog/technical-writing-tips)。
-

@@ -1,8 +1,7 @@
 # 帐户抽象多义性
 
-现在，让我们来学习如何部署你的自定义账户，并与[ContractDeployer](.../developer-guides/system-contracts.md#contractdeployer)系统合同直接互动。
+现在，让我们来学习如何部署你的自定义账户，并与[ContractDeployer](.../developer-guides/system-contracts.md#contractdeployer)系统合约直接互动。
 在本教程中，我们建立一个工厂，部署2-of-2的多义词账户。
-
 
 ## 前提条件
 
@@ -15,7 +14,6 @@
 ## 安装依赖项
 
 我们将使用zkSync硬帽插件来开发这个合同。首先，我们应该为它安装所有的依赖项。
-
 
 ```
 mkdir custom-aa-tutorial
@@ -30,9 +28,9 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matter
 
 :::
 
-由于我们正在使用zkSync合同，我们还需要安装带有合同及其同行依赖关系的软件包。
+由于我们正在使用zkSync合约，我们还需要安装带有合同及其同行依赖关系的软件包。
 
-```
+```ag-0-1gr0erag-0-1gr0ereag-0-1gr0ere8l8lag-1-1gr0ere8le8ag-1-1gr0ere8llag-1-1gr0ere8l
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
@@ -75,25 +73,23 @@ module.exports = {
 
 每个账户都需要实现[IAccount](./developer-guides/aa.md#iaccount-interface)接口。因为我们要建立一个有签名者的账户，所以我们也应该实现[EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12)。
 
-合同的骨架将看起来如下。
+合约的构成如下。
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+
+```
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
 
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 
-
 contract TwoUserMultisig is IAccount, IERC1271 {
     // to get transaction hash
     using TransactionHelper for Transaction;
 
-
     bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
-
+    
     modifier onlyBootloader() {
         require(
             msg.sender == BOOTLOADER_FORMAL_ADDRESS,
@@ -102,8 +98,8 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         // Continure execution if called from the bootloader.
         _;
     }
-
-
+    
+    
     function validateTransaction(
         bytes32,
         bytes32 _suggestedSignedHash,
@@ -111,14 +107,14 @@ contract TwoUserMultisig is IAccount, IERC1271 {
     ) external payable override onlyBootloader returns (bytes4 magic) {
         magic = _validateTransaction(_suggestedSignedHash, _transaction);
     }
-
+    
     function _validateTransaction(
         bytes32 _suggestedSignedHash,
         Transaction calldata _transaction
     ) internal returns (bytes4 magic) {
         // TO BE IMPLEMENTED
     }
-
+    
     function executeTransaction(
         bytes32,
         bytes32,
@@ -126,11 +122,11 @@ contract TwoUserMultisig is IAccount, IERC1271 {
     ) external payable override onlyBootloader {
         _executeTransaction(_transaction);
     }
-
+    
     function _executeTransaction(Transaction calldata _transaction) internal {
         // TO BE IMPLEMENTED
     }
-
+    
     function executeTransactionFromOutside(Transaction calldata _transaction)
         external
         payable
@@ -138,7 +134,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         _validateTransaction(bytes32(0), _transaction);
         _executeTransaction(_transaction);
     }
-
+    
     function isValidSignature(bytes32 _hash, bytes memory _signature)
         public
         view
@@ -147,7 +143,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
     {
         // TO BE IMPLEMENTED
     }
-
+    
     function payForTransaction(
         bytes32,
         bytes32,
@@ -155,7 +151,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
     ) external payable override onlyBootloader {
         // TO BE IMPLEMENTED
     }
-
+    
     function prepareForPaymaster(
         bytes32, // _txHash
         bytes32, // _suggestedSignedHash
@@ -163,30 +159,30 @@ contract TwoUserMultisig is IAccount, IERC1271 {
     ) external payable override onlyBootloader {
         // TO BE IMPLEMENTED
     }
-
+    
     // This function verifies that the ECDSA signature is both in correct format and non-malleable
     function checkValidECDSASignatureFormat(bytes memory _signature) internal pure returns (bool) {
         if(_signature.length != 65) {
             return false;
         }
-
+    
         uint8 v;
-		bytes32 r;
-		bytes32 s;
-		// Signature loading code
-		// we jump 32 (0x20) as the first slot of bytes contains the length
-		// we jump 65 (0x41) per signature
-		// for v we load 32 bytes ending with v (the first 31 come from s) then apply a mask
-		assembly {
-			r := mload(add(_signature, 0x20))
-			s := mload(add(_signature, 0x40))
-			v := and(mload(add(_signature, 0x41)), 0xff)
-		}
-		if(v != 27 && v != 28) {
+        bytes32 r;
+        bytes32 s;
+        // Signature loading code
+        // we jump 32 (0x20) as the first slot of bytes contains the length
+        // we jump 65 (0x41) per signature
+        // for v we load 32 bytes ending with v (the first 31 come from s) then apply a mask
+        assembly {
+            r := mload(add(_signature, 0x20))
+            s := mload(add(_signature, 0x40))
+            v := and(mload(add(_signature, 0x41)), 0xff)
+        }
+        if(v != 27 && v != 28) {
             return false;
         }
-
-		// EIP-2 still allows signature malleability for ecrecover(). Remove this possibility and make the signature
+    
+        // EIP-2 still allows signature malleability for ecrecover(). Remove this possibility and make the signature
         // unique. Appendix F in the Ethereum Yellow paper (https://ethereum.github.io/yellowpaper/paper.pdf), defines
         // the valid range for s in (301): 0 < s < secp256k1n ÷ 2 + 1, and for v in (302): v ∈ {27, 28}. Most
         // signatures from current libraries generate a unique signature with an s-value in the lower half order.
@@ -198,54 +194,55 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         if(uint256(s) > 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5D576E7357A4501DDFE92F46681B20A0) {
             return false;
         }
-
+    
         return true;
     }
     
     function extractECDSASignature(bytes memory _fullSignature) internal pure returns (bytes memory signature1, bytes memory signature2) {
         require(_fullSignature.length == 130, "Invalid length");
-
+    
         signature1 = new bytes(65);
         signature2 = new bytes(65);
-
+    
         // Copying the first signature. Note, that we need an offset of 0x20 
         // since it is where the length of the `_fullSignature` is stored
         assembly {
             let r := mload(add(_fullSignature, 0x20))
-			let s := mload(add(_fullSignature, 0x40))
-			let v := and(mload(add(_fullSignature, 0x41)), 0xff)
-
+            let s := mload(add(_fullSignature, 0x40))
+            let v := and(mload(add(_fullSignature, 0x41)), 0xff)
+    
             mstore(add(signature1, 0x20), r)
             mstore(add(signature1, 0x40), s)
             mstore8(add(signature1, 0x60), v)
         }
-
+    
         // Copying the second signature.
         assembly {
             let r := mload(add(_fullSignature, 0x61))
             let s := mload(add(_fullSignature, 0x81))
             let v := and(mload(add(_fullSignature, 0x82)), 0xff)
-
+    
             mstore(add(signature2, 0x20), r)
             mstore(add(signature2, 0x40), s)
             mstore8(add(signature2, 0x60), v)
         }
     }
-
+    
     fallback() external {
         // fallback of default account shouldn't be called by bootloader under no circumstances
         assert(msg.sender != BOOTLOADER_FORMAL_ADDRESS);
-
+    
         // If the contract is called directly, behave like an EOA
     }
-
+    
     receive() external payable {
         // If the contract is called directly, behave like an EOA.
         // Note, that is okay if the bootloader sends funds with no calldata as it may be used for refunds/operator payments
     }
-}
-```
 
+}
+
+```
 注意，只有[bootloader](.../developer-guides/system-contracts.md#bootloader)才允许调用`validateTransaction`/`executeTransaction`/`payForTransaction`/`prepareForPaymaster`方法。
 这就是为什么`onlyBootloader`修改器被用于它们。
 
@@ -256,7 +253,6 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 ### 签名验证
 
 首先，我们需要实现签名验证过程。 在本教程中，我们使用OpenZeppelin的`ECDSA`库进行签名验证，所以我们需要导入它。
-
 
 ```solidity
 // Used for signature validation
@@ -288,9 +284,7 @@ constructor(address _owner1, address _owner2) {
 
 下面是`isValidSignature`方法的完整实现。
 
-
 ```solidity
-
 function isValidSignature(bytes32 _hash, bytes memory _signature)
     public
     view
@@ -303,7 +297,7 @@ function isValidSignature(bytes32 _hash, bytes memory _signature)
         // Signature is invalid, but we need to proceed with the signature verification as usual
         // in order for the fee estimation to work correctly
         _signature = new bytes(130);
-        
+
         // Making sure that the signatures look like a valid ECDSA signature and are not rejected rightaway
         // while skipping the main verification process.
         _signature[64] = bytes1(uint8(27));
@@ -324,7 +318,6 @@ function isValidSignature(bytes32 _hash, bytes memory _signature)
         magic = bytes4(0);
     }
 }
-
 ```
 
 ### 交易验证
@@ -347,16 +340,13 @@ import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
 ```
 
-
 `TransactionHelper`库（上面已经导入了`using TransactionHelper for Transaction;`），可以用来获取应该被签名的交易的哈希值。你也可以实现你自己的签名方案，对要签名的事务使用不同的承诺，但在这个例子中，我们使用这个库提供的哈希值。
 
 最后，如果验证成功，`_validateTransaction`方法必须返回常量`ACCOUNT_VALIDATION_SUCCESS_MAGIC`，如果失败则返回空值`bytes4(0)`。
 
 下面是`_validateTransaction`方法的完整实现。
 
-
 ```solidity
-
 function _validateTransaction(
     bytes32 _suggestedSignedHash,
     Transaction calldata _transaction
@@ -416,9 +406,7 @@ function payForTransaction(
 
 TransactionHelper "库提供了 "processPaymasterInput"，它正是这样做的：处理paymaster参数与EOAs中的一样。
 
-
 ```solidity
-
 function prepareForPaymaster(
         bytes32, // _txHash
         bytes32, // _suggestedSignedHash
@@ -431,7 +419,6 @@ function prepareForPaymaster(
 ### 交易执行
 
 交易执行的最基本实现是非常直接的。我们提取交易数据并执行它。
-
 
 ```solidity
 function _executeTransaction(Transaction calldata _transaction) internal {
@@ -464,7 +451,7 @@ function _executeTransaction(Transaction calldata _transaction) internal {
 
         // Note, that the deployer contract can only be called
         // with a "systemCall" flag.
-        SystemContractsCaller.systemCallWithPropagatedRevert(gas, to, value, data);
+        SystemContractsCaller.systemCallWithPropagatedRevert(ag-0-1gr0ere8lgaag-1-1gr0ere8ls, to, value, data);
     } else {
         bool success;
         assembly {
@@ -612,7 +599,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
             // Signature is invalid anyway, but we need to proceed with the signature verification as usual
             // in order for the fee estimation to work correctly
             _signature = new bytes(130);
-            
+
             // Making sure that the signatures look like a valid ECDSA signature and are not rejected rightaway
             // while skipping the main verification process.
             _signature[64] = bytes1(uint8(27));
@@ -641,22 +628,22 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         }
 
         uint8 v;
-		bytes32 r;
-		bytes32 s;
-		// Signature loading code
-		// we jump 32 (0x20) as the first slot of bytes contains the length
-		// we jump 65 (0x41) per signature
-		// for v we load 32 bytes ending with v (the first 31 come from s) then apply a mask
-		assembly {
-			r := mload(add(_signature, 0x20))
-			s := mload(add(_signature, 0x40))
-			v := and(mload(add(_signature, 0x41)), 0xff)
-		}
-		if(v != 27 && v != 28) {
+        bytes32 r;
+        bytes32 s;
+        // Signature loading code
+        // we jump 32 (0x20) as the first slot of bytes contains the length
+        // we jump 65 (0x41) per signature
+        // for v we load 32 bytes ending with v (the first 31 come from s) then apply a mask
+        assembly {
+            r := mload(add(_signature, 0x20))
+            s := mload(add(_signature, 0x40))
+            v := and(mload(add(_signature, 0x41)), 0xff)
+        }
+        if(v != 27 && v != 28) {
             return false;
         }
 
-		// EIP-2 still allows signature malleability for ecrecover(). Remove this possibility and make the signature
+        // EIP-2 still allows signature malleability for ecrecover(). Remove this possibility and make the signature
         // unique. Appendix F in the Ethereum Yellow paper (https://ethereum.github.io/yellowpaper/paper.pdf), defines
         // the valid range for s in (301): 0 < s < secp256k1n ÷ 2 + 1, and for v in (302): v ∈ {27, 28}. Most
         // signatures from current libraries generate a unique signature with an s-value in the lower half order.
@@ -671,7 +658,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 
         return true;
     }
-    
+
     function extractECDSASignature(bytes memory _fullSignature) internal pure returns (bytes memory signature1, bytes memory signature2) {
         require(_fullSignature.length == 130, "Invalid length");
 
@@ -682,8 +669,8 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         // since it is where the length of the `_fullSignature` is stored
         assembly {
             let r := mload(add(_fullSignature, 0x20))
-			let s := mload(add(_fullSignature, 0x40))
-			let v := and(mload(add(_fullSignature, 0x41)), 0xff)
+            let s := mload(add(_fullSignature, 0x40))
+            let v := and(mload(add(_fullSignature, 0x41)), 0xff)
 
             mstore(add(signature1, 0x20), r)
             mstore(add(signature1, 0x40), s)
@@ -731,7 +718,6 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         // Note, that is okay if the bootloader sends funds with no calldata as it may be used for refunds/operator payments
     }
 }
-
 ```
 
 ## 工厂
@@ -774,7 +760,6 @@ contract AAFactory {
         (accountAddress) = abi.decode(returnData, (address));
     }
 }
-
 ```
 
 值得一提的是，在zkSync上，合约的部署不是通过字节码完成的，而是通过字节码哈希完成的。字节码本身是通过`factoryDeps`字段传递给操作者的。请注意，`_aaBytecodeHash'必须被特别形成。
@@ -948,7 +933,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 目前，我们希望`l2gasLimit`能够涵盖验证和执行步骤。目前，`estimateGas'返回的气体数量是`execution_gas + 20000'，其中`20000'大致等于默认AA收取费用和验证签名所需的开销。如果你的AA有一个非常昂贵的验证步骤，你应该在`l2gasLimit`中加入一些常数。
 
-
 :::
 
 然后，我们需要签署交易，并在交易的自定义数据中提供`aaParamas`。
@@ -989,7 +973,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 
 ### 完整的例子
-
 
 ```ts
 import { utils, Wallet, Provider, EIP712Signer, types } from 'zksync-web3';
@@ -1097,13 +1080,11 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 要运行该脚本，使用以下命令。
 
-
 ```
 yarn hardhat deploy-zksync --script deploy-multisig.ts
 ```
 
 输出结果应该大致如下。
-
 
 ```
 Multisig deployed on address 0xCEBc59558938bccb43A6C94769F87bBdb770E956
@@ -1126,4 +1107,3 @@ The multisig's nonce after the first tx is 1
 - 要了解更多关于zkSync上L1->L2的交互，请查看[文档](../developer-guides/bridging/l1-l2.md)。
 - 要了解更多关于`zksync-web3`SDK的信息，请查看其[文档](././api/js)。
 - 要了解更多关于zkSync hardhat插件的信息，请查看其[document](../../api/hardhat)。
-

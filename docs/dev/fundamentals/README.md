@@ -8,4 +8,3 @@
 - [zkSync Era基础知识](./zkSync.md)
 - [与zkSync Era互动](./interacting.md)
 - [Hyperscaling](./hyperscaling.md)
-

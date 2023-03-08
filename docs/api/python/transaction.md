@@ -8,7 +8,7 @@ EIP712交易类型可以在软件包中找到: `zksync2.transaction.transaction7
 
 为了将普通交易转换为 "EIP712 "类型，有一些定义的辅助类。
 
-- TxFunctionCall : 将合同作为一个签名的交易进行部署。
+- TxFunctionCall : 将合约作为一个签名的交易进行部署。
 - TxCreateContract :
 - TxCreate2Contract :
 
@@ -17,4 +17,3 @@ EIP712交易类型可以在软件包中找到: `zksync2.transaction.transaction7
 ## TxCreateContract
 
 ## TxCreate2Contract
-

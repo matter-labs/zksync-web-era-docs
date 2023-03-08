@@ -22,11 +22,7 @@ zksync_web3 = ZkSyncBuilder.build("ZKSYNC_NETWORK_URL")
 
 chain_id = zksync_web3.zksync.chain_id
 signer = PrivateKeyEthSigner(account, chain_id)
-
 ```
-
-
-
 
 ## sign_typed_data
 

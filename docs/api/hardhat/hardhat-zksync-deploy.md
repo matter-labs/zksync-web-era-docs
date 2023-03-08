@@ -4,7 +4,7 @@
 
 ::: warning
 
-合同必须使用官方的`@matterlabs/hardhat-zksync-solc`或`@matterlabs/hardhat-zksync-vyper`插件进行编译。用其他编译器编译的合同将无法使用此插件部署到zkSync。
+合同必须使用官方的`@matterlabs/hardhat-zksync-solc`或`@matterlabs/hardhat-zksync-vyper`插件进行编译。用其他编译器编译的合约将无法使用此插件部署到zkSync。
 
 :::
 
@@ -15,7 +15,6 @@
 用以下命令将该插件的最新版本添加到你的项目中。
 
 ```
-
 # Yarn
 
 yarn add -D @matterlabs/hardhat-zksync-deploy
@@ -23,7 +22,6 @@ yarn add -D @matterlabs/hardhat-zksync-deploy
 # Npm
 
 npm i -D @matterlabs/hardhat-zksync-deploy
-
 ```
 
 ### Exports
@@ -31,7 +29,6 @@ npm i -D @matterlabs/hardhat-zksync-deploy
 #### `Deployer`
 
 这个插件的主要出口是`Deployer`类。它被用来包装一个`zksync-web3'钱包实例，并提供一个方便的接口来部署智能合约和账户抽象。它的主要方法是。
-
 
 ```typescript
 class Deployer {

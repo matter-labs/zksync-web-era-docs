@@ -75,5 +75,4 @@ class BridgeAddresses:
 class PaymasterParams(dict):
     paymaster: HexStr
     paymaster_input: bytes
-
 ```

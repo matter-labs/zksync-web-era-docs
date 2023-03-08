@@ -29,4 +29,3 @@ npm i -g zksync-cli@latest
 ## 故障排除
 
 如果你发现任何问题，你可以[在GitHub上打开一个问题](https://github.com/matter-labs/zksync-cli/issues/new)或[在我们的 Discord](https://join.zksync.dev/)向我们报告。
-

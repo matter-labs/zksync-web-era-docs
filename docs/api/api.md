@@ -25,7 +25,7 @@ zkSync Era完全支持标准的[Ethereum JSON-RPC API](https://ethereum.org/en/d
 - gasPerPubdata": 是一个字段，描述用户愿意为一个字节的pubdata支付的最大气体量。
 - `customSignature`是一个带有自定义签名的字段，以防签名者的账户不是EOA。
 - `paymasterParams`是一个包含参数的字段，用于配置交易的自定义付款人。支付系统的地址和调用它的编码输入在支付系统参数中。
-- `factory_deps`是一个字段，应该是一个非空的`字节'数组。对于部署交易，它应该包含被部署合同的字节码。如果被部署的合同是一个工厂合同，即它可以部署其他合同，该数组还应该包含可以被它部署的合同的字节码。
+- `factory_deps`是一个字段，应该是一个非空的`字节'数组。对于部署交易，它应该包含被部署合约的字节码。如果被部署的合约是一个工厂合约，即它可以部署其他合约，该数组还应该包含可以被它部署的合约的字节码。
 
 为了让服务器识别EIP712交易，`transaction_type`字段等于`113`（不幸的是，数字`712`不能被用作`transaction_type`，因为类型必须是一个字节长）。
 
@@ -180,7 +180,6 @@ None.
 
 通过我们的SDK使用这个端点的一个很好的例子可以找到[这里]（.../dev/developer-guides/bridging/l2-l1.md）。
 
-
 ::: tip
 
 事务产生的L2到L1的日志列表，包含在收据中，是由L1Messenger合约或其他系统合约/bootloader产生的日志的组合。
@@ -195,11 +194,11 @@ None.
 
 ### Input parameters
 
-| Parameter       | Type                    | Description                                                                                                                                                                                                                                                        |
-| --------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| block           | `uint32`                | The number of the block where the message was emitted.                                                                                                                                                                                                             |
-| sender          | `address`               | The sender of the message (i.e. the account that called the L1Messenger system contract).                                                                                                                                                                          |
-| msg             | `bytes32`               | The keccak256 hash of the sent message.                                                                                                                                                                                                                            |
+| Parameter       | Type                    | Description                                                                                                                                                                                                                                            |
+| --------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| block           | `uint32`                | The number of the block where the message was emitted.                                                                                                                                                                                                 |
+| sender          | `address`               | The sender of the message (i.e. the account that called the L1Messenger system contract).                                                                                                                                                              |
+| msg             | `bytes32`               | The keccak256 hash of the sent message.                                                                                                                                                                                                                |
 | l2_log_position | `uint256` &#124; `null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/system-contracts.md#l1messenger) when submitting this message. If it is omitted, the proof for the first message with such content will be returned. |
 
 ### Output format
@@ -275,6 +274,7 @@ None.
 ```
 
 <!-- TODO: uncomment once fixed --->
+
 <!-- ### `zks_getTokenPrice`
 
 给定一个代币地址，返回它的价格（美元）。请注意，这是zkSync团队使用的价格，可能与当前的市场价格有一些不同。在测试网络上，代币价格可能与实际市场价格有很大差异。
@@ -363,4 +363,4 @@ WebSocket URL是`wss://zksync2-testnet.zksync.dev/ws`。
 
 你可以使用websocket端点来处理智能合约事件，如[本节文档](.../dev/building-on-zksync/events.md)所详述。
 
-:::
+:::合约

@@ -13,7 +13,7 @@ sidebar: false
 - [Telegram: zkSync announcements channel](https://t.me/zksync)
 
 <form
-action="//dev.us4.list-manage.com/subscribe/post?u=ef8545da9c594ae082297352d&amp;id=fa715c9af0"
+action="//dev.us4.list-manage.com/subscribe/post?u=ef8545da9c594ae082297352d&id=fa715c9af0"
 method="post"
 id="mc-embedded-subscribe-form"
 name="mc-embedded-subscribe-form"
@@ -45,7 +45,6 @@ novalidate
   </div>
 </form>
 
-
 ## 开发者社区
 
 在 [Discord](https://join.zksync.dev/)中与我们的团队和其他开发者进行沟通!
@@ -56,7 +55,7 @@ novalidate
 - [zkSync Discord](https://join.zksync.dev/)
 - 邮件: **support@zksync.io**
 
-##  合作伙伴，整合和新闻
+## 合作伙伴，整合和新闻
 
 请通过以下方式直接与我们联系 **hello@matter-labs.io**.
 

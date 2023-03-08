@@ -5,10 +5,9 @@
 1. 连接到zkSync网络。
 2. 将资产从以太坊存入zkSync。
 3. 检查余额。
-4. 4.转移和提取资金（本地和ERC20代币）。
-5. 5. 部署一个智能合约。
-6. 6.用create2部署一个智能合约。
-
+4. 转移和提取资金（本地和ERC20代币）。
+5. 部署一个智能合约。
+6. 用create2部署一个智能合约。
 
 ::: warning
 
@@ -44,7 +43,6 @@ sdk = ZkSyncBuilder.build("https://zksync2-testnet.zksync.dev")
 
 这是一个如何将资产从Ethereum账户存入zkSync账户的例子。
 
-
 ```python
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
@@ -77,7 +75,6 @@ def deposit():
 
 if __name__ == "__main__":
     deposit()
-
 ```
 
 ### 检查余额
@@ -101,7 +98,6 @@ def get_account_balance():
 
 if __name__ == "__main__":
     get_account_balance()
-
 ```
 
 ### 转移
@@ -273,11 +269,11 @@ if __name__ == "__main__":
 
 在接下来的步骤中，我们将引导你了解它是如何工作的。
 
-#### 第1步：创建一个合同
+#### 第1步：创建一个合约
 
-这里是一个简单的合同。
+这里是一个简单的合约。
 
-```solidity
+```solidityag-0-1gr0ere8lag-1-1gr0ere8l
 pragma solidity ^0.8.0;
 
 contract Counter {
@@ -298,7 +294,7 @@ contract Counter {
 :::
 
 - 编译后，必须有2个文件，其中有。
-
+  
   - 合同的二进制表示
   - json格式的合同ABI
 
@@ -529,5 +525,4 @@ def deploy_contract_create2():
 
 if __name__ == "__main__":
     deploy_contract_create2()
-
 ```

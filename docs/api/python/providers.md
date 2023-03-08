@@ -1,6 +1,6 @@
 # 提供者
 
-提供者是包裹与zkSync节点的交互的对象。如果你对 "web3 "中提供者的概念感到陌生，你应该看看他们的文档[这里](https://web3py.readthedocs.io/en/v5/providers.html?highlight=providers)。
+提供者是包含与zkSync节点的交互的对象。如果你对 "web3 "中提供者的概念感到陌生，你应该看看他们的文档[这里](https://web3py.readthedocs.io/en/v5/providers.html?highlight=providers)。
 
 zkSync完全支持Ethereum Web3 API，所以你可以使用web3.py的提供者对象。然而，zkSync API提供了一些额外的JSON-RPC方法，这些方法允许。
 
@@ -12,14 +12,12 @@ zkSync完全支持Ethereum Web3 API，所以你可以使用web3.py的提供者�
 初始化zkSync SDK。
 
 ```py
-
 def __init__(self,
                  web3: Web3,
                  erc20_bridge: L1Bridge,
                  eth_bridge: L1Bridge,
                  account: BaseAccount,
                  zksync: Optional[ZkSyncContract] = None):
-
 ```
 
 **Arguments**
@@ -33,16 +31,12 @@ def __init__(self,
 | zksync (optional) | zkSync contract address                                 |
 | returns           | `Provider` object.                                      |
 
-
-
 ## `approve_deposits`
 
 从以太坊桥接ERC20代币需要批准代币到zkSync以太坊智能合约，它返回桥接的erc20代币地址。
 
 ```py
-
 def approve_deposits(self, token: Token, limit: Optional[int]) -> txn_receipt
-
 ```
 
 **Arguments**
@@ -58,7 +52,6 @@ def approve_deposits(self, token: Token, limit: Optional[int]) -> txn_receipt
 
 ```py
 def transfer(self, token: Token, amount: Decimal, to: HexStr) -> txn_receipt
-
 ```
 
 **Arguments**
@@ -74,7 +67,6 @@ def transfer(self, token: Token, amount: Decimal, to: HexStr) -> txn_receipt
 > Example
 
 ```py
-
  def transfer(self, token: Token, amount: Decimal, to: HexStr):
         if token.is_eth(): # Checks if the token is a ETH token.
             tx = {
@@ -94,7 +86,6 @@ def transfer(self, token: Token, amount: Decimal, to: HexStr) -> txn_receipt
                                            account=self.account,
                                            gas_provider=self.l1_erc20_bridge.gas_provider)
             return token_contract.transfer(to, token.to_int(amount)) # Returns the transaction receipt of the transfer.
-
 ```
 
 ## `get_deposit_base_cost`
@@ -102,9 +93,7 @@ def transfer(self, token: Token, amount: Decimal, to: HexStr) -> txn_receipt
 返回请求合约调用的基本费用（ETH）。
 
 ```py
-
 def get_deposit_base_cost(self, gas_price: int = None) -> base_cost
-
 ```
 
 **Arguments**
@@ -118,9 +107,7 @@ def get_deposit_base_cost(self, gas_price: int = None) -> base_cost
 返回存款的交易收据。
 
 ```py
-
 def deposit(self, token: Token, amount: int, user_address: HexStr) -> txn_receipt
-
 ```
 
 **Arguments**
@@ -136,9 +123,7 @@ def deposit(self, token: Token, amount: int, user_address: HexStr) -> txn_receip
 返回津贴集的交易收据。
 
 ```py
-
 def is_deposit_approved(self, token: Token, to: HexStr, threshold: int = DEFAULT_THRESHOLD) -> txn_receipt
-
 ```
 
 **Arguments**

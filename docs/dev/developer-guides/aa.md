@@ -1,8 +1,5 @@
 # 支持账户抽象化
 
-
-
-
 :::warning
 
 请注意，在新的`0.13.0`SDK中，API层使用气体操作。ergs的概念只被VM使用。
@@ -36,7 +33,6 @@ zkSync Era是首批采用AA的EVM兼容链之一，所以这个测试网也被�
 zkSync上的账户抽象协议与[EIP4337](https://eips.ethereum.org/EIPS/eip-4337)非常相似，尽管我们的协议为了提高效率和更好的用户体验而有所不同。
 
 ### 保持非代码的唯一性
-
 
 ::: warning 预计会有变化
 
@@ -187,7 +183,6 @@ zkSync Era只有一个字段，`gasLimit'，涵盖了所有三个的费用。当
 
 下面是一个如何使用`zksync-web3`SDK来部署账户逻辑的例子。
 
-
 ```ts
 import { ContractFactory } from "zksync-web3";
 
@@ -225,7 +220,6 @@ await aa.deployed();
 ### 从一个账户发送交易
 
 目前，只支持EIP712交易。要从一个特定的账户提交交易，你应该提供交易的`from`字段作为发送者的地址，并在`customData`的`customSignature`字段中提供该账户的签名。
-
 
 ```ts
 import { utils } from "zksync-web3";
@@ -325,7 +319,6 @@ EOA将确保`_token'对paymaster的允许值至少被设置为`_minAllowance'。
 
 ### 将该库添加到你的项目中。
 
-
 ```
 yarn add @matterlabs/signature-checker
 ```
@@ -355,7 +348,6 @@ contract TestSignatureChecker {
 也**不建议**使用`ethers.js`库来验证用户的签名。
 
 我们的SDK在其`utils`中提供了两种方法来验证账户的签名。
-
 
 ```ts
 export async function isMessageSignatureCorrect(address: string, message: ethers.Bytes | string, signature: SignatureLike): Promise<boolean>;

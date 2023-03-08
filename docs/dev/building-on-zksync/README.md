@@ -1,4 +1,4 @@
-# 建立在zkSync时代
+# 建立在zkSync Era
 
 一系列的指南，让你离开localhost。
 

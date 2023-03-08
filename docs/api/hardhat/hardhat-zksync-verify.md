@@ -1,6 +1,6 @@
-# `hardhat-zksync-verify` 
+# `hardhat-zksync-verify`
 
-这个插件用于验证zkSync Era网络上的合同。
+这个插件用于验证zkSync Era网络上的合约。
 
 ## 安装
 
@@ -56,14 +56,12 @@ networks: {
 如果你想在同一个项目中验证Ethereum上的智能合约，必须在`hardhat.config.ts`文件中添加`etherscan`字段和API密钥。
 
 ```typescript
-
 networks: {
     ...
 },
 etherscan: {
   apiKey: //<Your API key for Etherscan>,
 },
-
 ```
 
 ### 命令
@@ -72,18 +70,18 @@ etherscan: {
 hardhat verify --network <network> <contract address>
 ```
 
-用给定合同的地址验证给定网络上的合同。 <br/>
-注意：当像这样运行时，验证任务将尝试比较你本地设置中所有合同的编译字节码和你试图验证的合同的部署字节码。如果不匹配，它将报告一个错误。
+用给定合约的地址验证给定网络上的合同。 <br/>
+注意：当像这样运行时，验证任务将尝试比较你本地设置中所有合同的编译字节码和你试图验证的合约的部署字节码。如果不匹配，它将报告一个错误。
 
-```sh
+```shag-0-1gr0ere8lag-1-1gr0ere8lag-0-1gr0eag-0-1gr0ere8lreag-1-1gr0ere8l8lag-1-1gr0ere8l
 yarn hardhat verify --network <network> <contract address> --contract <fully qualified name>
 ```
 
-通过`--合同`参数，你也可以指定你想验证的本地设置中的哪份合同，指定其完全合格的名称。完全合格的名称结构看起来像这样。"contract/AContract.sol:TheContract" <br/>
+通过`--合约`参数，你也可以指定你想验证的本地设置中的哪份合同，指定其完全合格的名称。完全合格的名称结构看起来像这样。"contract/AContract.sol:TheContract" <br/>
 
 #### 构造函数参数
 
-如果你的合同在部署时有特定的构造参数，你需要在运行验证任务时指定它们。比如说。
+如果你的合约在部署时有特定的构造参数，你需要在运行验证任务时指定它们。比如说。
 
 ```sh
 yarn hardhat verify --network testnet 0x7cf08341524AAF292255F3ecD435f8EE1a910AbF "Hi there!"
@@ -104,6 +102,7 @@ module.exports = [
 ```
 
 在验证函数调用中加入一个新的参数：`--constructor-args arguments.js`。
+
 ```sh
 yarn hardhat verify --network testnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF --constructor-args arguments.js
 ```
@@ -114,6 +113,7 @@ yarn hardhat verify --network testnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF
 然后你可以使用这个ID来检查你的验证请求的状态，而不用从头开始运行整个过程。
 
 下面的命令检查特定验证ID的验证请求的状态。
+
 ```sh
 yarn hardhat verify-status --verification-id <your verification id>
 ```

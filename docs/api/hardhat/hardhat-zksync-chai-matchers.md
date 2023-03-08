@@ -74,7 +74,6 @@ await expect(() =>
 
 断言一个地址的ERC20代币余额改变了一个特定的数额。
 
-
 ```javascript
 await expect(sender.transfer({ to: receiver.address, amount: 5, token: token.address })).to.changeTokenBalance(token, sender, -5);
 
@@ -91,7 +90,7 @@ await expect(contract.setAmount(100)).to.be.reverted;
 
 #### revertedWithCustomError
 
-断言一个事务因一个特定的自定义错误而被恢复。
+断言一个交易因一个特定的自定义错误而被恢复。
 
 ```javascript
 await expect(contract.setAmount(100)).to.be.revertedWithCustomError(contract, "InvalidAmount");

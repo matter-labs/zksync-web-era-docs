@@ -1,4 +1,4 @@
-# 了解zkSync时代
+# 了解zkSync Era
 
 深入了解zkSync的生态系统。
 
@@ -14,4 +14,5 @@
 - [L1 / L2通信](./bridging/l1-l2.md)
 - [L2 / L1通信](./bridging/l2-l1.md)
 - [视频资源](./videos.md)
-<!-- - [安全模式](./security.md) --->
+  
+  <!-- - [安全模式](./security.md) --->

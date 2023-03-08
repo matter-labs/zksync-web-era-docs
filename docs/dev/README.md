@@ -10,7 +10,7 @@
 如果这是你第一次使用zkSync，我们建议你从头开始，像看书一样慢慢阅读文档。
 
 - [Intro to rollups](./fundamentals/rollups.md) - 简单介绍一下rollups。
-- [zkSync时代基础知识](./fundamentals/zkSync.md) - 对zkSync时代技术的快速概述。
+- [zkSync Era基础知识](./fundamentals/zkSync.md) - 对zkSync Era技术的快速概述。
 - [Interacting with zkSync Era](./fundamentals/interacting.md) - 对zkSync Era Testnet的简要介绍。
 - [Hyperscaling](./fundamentals/hyperscaling.md) - 了解zkSync的超链。
 
@@ -25,33 +25,36 @@
 - [L1 / L2 Interoperability](./developer-guides/bridging/l1-l2-interop.md) - 关于L1和L2之间数据通信的简单介绍。
 - [L1 / L2通信](./developer-guides/bridging/l1-l2.md) - 了解如何从Ethereum向zkSync发送数据。
 - [L2 / L1通信](./developer-guides/bridging/l2-l1.md) - 学习如何从zkSync向以太坊发送数据。
-- [视频资源](./developer-guides/videos.md) - 观看开发者相关视频和zkSync时代。
+- [视频资源](./developer-guides/videos.md) - 观看开发者相关视频和zkSync Era。
 
-### 基于zkSync时代的构建
+### 基于zkSync Era的构建
 
 - [Quickstart](./building-on-zksync/hello-world.md) - 了解如何使用zkSync开发工具箱构建一个完整的dApp。
 - [智能合约部署](./building-on-zksync/contracts/contracts.md) - 关于如何在zkSync上部署智能合约的指南。
-- [验证合同](./building-on-zksync/contracts/contract-verification.md) - 关于如何用zkSync区块资源管理器验证智能合同的指南。
-- [处理事件](./building-on-zksync/events.md) - 了解如何在zkSync时代处理事件。
+- [验证合约](./building-on-zksync/contracts/contract-verification.md) - 关于如何用zkSync区块资源管理器验证智能合同的指南。
+- [处理事件](./building-on-zksync/events.md) - 了解如何在zkSync Era处理事件。
 - [JSON-RPC API](./building-on-zksync/rpc.md) - 了解如何使用我们类似于Ethereum的自定义JSON-RPC API。
-- [Fair Onboarding Alpha](./building-on-zksync/fair-onboarding-alpha.md) - 了解zkSync时代的Fair Onboarding Alpha如何工作。
+- [Fair Onboarding Alpha](./building-on-zksync/fair-onboarding-alpha.md) - 了解zkSync Era的Fair Onboarding Alpha如何工作。
 
 ### 教程
 
 - [Cross-chain governance](./tutorials/cross-chain-tutorial.md) - 了解如何使用L1到L2的合同互动。
-- [Account abstraction multisig](./tutorials/custom-aa-tutorial.md) - 了解如何部署您的自定义账户并与zkSync系统合同互动。
+- [Account abstraction multisig](./tutorials/custom-aa-tutorial.md) - 了解如何部署您的自定义账户并与zkSync系统合约互动。
 - [Daily Spending Limit](./tutorials/aa-daily-spend-limit.md) - 了解如何使用账户抽象在智能合约中创建每日花费限制。
-- 构建自定义支付大师](./tutorials/custom-paymaster-tutorial.md) - 了解如何构建一个自定义支付大师，让用户在你的 
-代币。
+- 构建自定义支付大师](./tutorials/custom-paymaster-tutorial.md) 
 
 ### 故障排除
 
 - [Changelogs](./troubleshooting/changelog.md) - 获取zkSync Era的更新、重大变化和新功能。
+
 - [贡献文档](./troubleshooting/docs-contribution/docs.md) - 了解成为zkSync Era文档贡献者所需的准则。
+
 - [FAQs](./troubleshooting/faq.md) - 关于zkSync Era的热门问题和答案。
-<! -- -- [已知问题](./troubleshooting/known-issues.md) - 获得你可能发现的常见问题的答案。-->
-<!-- - [重要链接](./troubleshooting/important-links.md) - 获得重要链接的快速参考。-->
-<!-- - [状态](./troubleshooting/status.md) - 获得我们目前正在进行的工作的更新。-->
+  <! -- -- [已知问题](./troubleshooting/known-issues.md) - 获得你可能发现的常见问题的答案。-->
+  
+  <!-- - [重要链接](./troubleshooting/important-links.md) - 获得重要链接的快速参考。-->
+  
+  <!-- - [状态](./troubleshooting/status.md) - 获得我们目前正在进行的工作的更新。-->
 
 ### 工具和SDKs
 
@@ -64,4 +67,3 @@
 - [Swift SDK](../api/java/) - 探索在zkSync Era上构建的所有Swift方法和功能。
 - [Hardhat Plugins](./api/hardhat/) - 使用我们的Hardhat zkSync插件来编译、测试、部署和验证您基于Solidity或Vyper的应用程序。
 - [zkSync CLI](./api/tools/zksync-cli/) - 通过zkSync CLI简化您的开发过程并从您的终端与zkSync Era互动。
-

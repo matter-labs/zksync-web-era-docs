@@ -28,4 +28,3 @@
   - [hardhat-zksync-verify](./hardhat/hardhat-zksync-verify.md)
 - [Block Explorer](./tools/block-explorer/)
 - [zkSync CLI](./tools/zksync-cli/)
-

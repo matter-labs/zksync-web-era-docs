@@ -1,4 +1,4 @@
-# 公平入驻阿尔法
+# 公平入驻Alpha
 
 Fair Onboarding Alpha邀请项目在全面公开发布之前部署到主网。要注册你的项目参与，请填写表格[这里。](https://forms.gle/wXjWiEeg16eMCWKJ8)
 
@@ -6,7 +6,7 @@ Fair Onboarding Alpha邀请项目在全面公开发布之前部署到主网。�
 
 在Fair Onboarding Alpha期间，注册地址可以将代币桥接到zkSync，以部署和测试其产品/协议。
 
-一旦桥接，对于如何在系统内使用令牌没有任何限制。例如，一个注册地址可以向一个非注册地址发送ETH，之后非注册地址可以不受限制地在zkSync内部使用它们（与任何智能合约互动）。话虽如此，但公平入职的明确目的是为了合同部署和测试 - 所以我们建议将交易保持在你的团队内。
+一旦桥接，对于如何在系统内使用令牌没有任何限制。例如，一个注册地址可以向一个非注册地址发送ETH，之后非注册地址可以不受限制地在zkSync内部使用它们（与任何智能合约互动）。话虽如此，但公平入职的明确目的是为了合约部署和测试 - 所以我们建议将交易保持在你的团队内。
 
 **注意:**虽然非注册地址可以接收代币，但只有注册地址可以调用`finaliseWithdrawal`，因此将资产送回L1。当公平入职结束，L1 <> L2通信变得无权限时，这种情况就会改变。
 
@@ -102,7 +102,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     // @ts-ignore
     MAINNET_RPC_ENDPOINT || hre.config.networks.zkSyncTestnet.ethNetwork
   );
-    
+
   const wallet = new Wallet(WALLET_PRIV_KEY, provider);
 
   // Create deployer object 
@@ -141,7 +141,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 如果你需要一个关于部署到zkSync的一般复习，我们建议首先阅读我们的文档的[本节](https://era.zksync.io/docs/dev/building-on-zksync/contracts/contract-deployment.html) - 否则你可以参考我们的[快速入门指南](https://era.zksync.io/docs/dev/building-on-zksync/hello-world.html)。
 
-要把你的合同部署到mainnet，你需要把它包含在你的`hardhat.config.ts`文件的`networks`部分。
+要把你的合约部署到mainnet，你需要把它包含在你的`hardhat.config.ts`文件的`networks`部分。
 
 ```jsx
 networks: {
@@ -189,13 +189,13 @@ networks: {
 要为公平入职注册你的项目，请填写链接的表格[这里](https://forms.gle/wXjWiEeg16eMCWKJ8)。你将需要以下信息。
 
 - 你的项目名称和描述
-- 你在zkSync Era Testnet上的合同地址
+- 你在zkSync Era Testnet上的合约地址
 - 你将用于桥接的L1地址
 - 你打算在公平入职期间桥接的任何代币的清单。
 
 ## 安全措施
 
-我们已经花费了超过350万美元，与一级审计公司、独立研究人员和社区的公共审计进行了一系列的审计。物质实验室还将在系统中锁定价值--在Fair Onboarding Alpha开始时以10ETH为起点。为了增加进一步的保护，将采取以下安全措施。
+我们已经花费了超过350万美元，与一级审计公司、独立研究人员和社区的公共审计进行了一系列的审计。MatterLabs 还将在系统中锁定价值--在Fair Onboarding Alpha开始时以10ETH为起点。为了增加进一步的保护，将采取以下安全措施。
 
 ### 提款和存款限额
 
@@ -213,7 +213,7 @@ networks: {
 
 ## 常见问题
 
-### 什么时候开始公平上岗Alpha？
+### 什么时候开始公平上线Alpha？
 
 2月16日。
 
@@ -231,7 +231,7 @@ networks: {
 
 ### 我的项目已被批准，我如何部署？
 
-请确保你完成上述说明，将ETH存入zkSync。然后进入[我们的部署指南](#how-to-eploy)来启动你的合同。
+请确保你完成上述说明，将ETH存入zkSync。然后进入[我们的部署指南](#how-to-eploy)来启动你的合约。
 
 ### 我的项目需要一个官方版本的ERC20/稳定币，但它似乎没有被部署。我应该怎么做？
 

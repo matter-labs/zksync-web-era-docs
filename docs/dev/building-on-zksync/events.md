@@ -14,13 +14,13 @@
 过滤用于查询索引数据，并在不需要在链上访问数据时提供低成本的数据存储。
 在过滤时，你应该按区块范围（0-1999，2000-3999，......）加载事件，并在你的终端对结果进行索引。否则你会得到一个错误，说 "块范围应小于或等于2000"。
 
-这些可以与[供应商事件API](https://docs.ethers.io/v5/api/providers/provider/#Provider--event-methods)和[合同事件API](https://docs.ethers.io/v5/api/contract/contract/#Contract--events)一起使用。
+这些可以与[供应商事件API](https://docs.ethers.io/v5/api/providers/provider/#Provider--event-methods)和[合约事件API](https://docs.ethers.io/v5/api/contract/contract/#Contract--events)一起使用。
 
 ## 获取事件
 
 下面是一个监听智能合约事件的例子。
 
-```  js
+```js
 import * as ethers from "ethers";
 const contractABI = require("./ABI_JSON");
 
@@ -47,11 +47,10 @@ listenEvents();
 ```
 
 - Provider:你的websocket提供者，你将通过它检索事件数据。注意，你需要使用websocket端点。
-- Contract address: 你想跟踪其事件的合同地址。
-- ABI: JSON格式的合同ABI（应用二进制接口）。
+- Contract address: 你想跟踪其事件的合约地址。
+- ABI: JSON格式的合约ABI（应用二进制接口）。
 - Event name：智能合约中定义的事件名称。在这个例子中，我们使用了ERC20合约的 "转移 "事件。
 - Indexed parameter：事件的索引参数。
 - Block number。检索事件的区块号码范围，它包括`START_BLOCK_NUMBER`和`END_BLOCK_NUMBER`。
 
 **注意**：zkSync对每个响应有10K的日志限制。这意味着，如果你收到一个有10K事件的响应，它很可能包含额外的事件，所以调整过滤器以分批检索事件是一个好主意。
-

@@ -48,10 +48,11 @@
 ![Compiler version!](../../../assets/images/compiler-version.png "compiler version")
 
 - 输入 Solidity 合同代码。从您的编辑器中复制代码并将其粘贴到文本区。
+  
   <br>
   **Note:** 如果您的 Solidity 代码利用了一个库或从另一个合同中继承了依赖关系，您可能需要将其扁平化。<br>
   我们建议使用[Hardhat flatten](https://medium.com/coinmonks/flattening-smart-contracts-using-hardhat-dffe7dbc7b3f)、[Truffle flattener](https://github.com/NomicFoundation/truffle-flattener)或[POA Solidity flattener](https://github.com/poanetwork/solidity-flattener)。
-  
+
 - 构造函数参数。如果合同要求构造函数参数，你应该在这里添加它们，但要以[ABI hex-encoded form](https://solidity.readthedocs.io/en/develop/abi-spec.html)。
 
 <br>
@@ -81,4 +82,3 @@ console.log(greeterContract.interface.encodeDeploy([greeting]));
 <br>
 
 ![Smart Contract Verified!](../../../assets/images/contract-verified.png "Contract Verified")
-

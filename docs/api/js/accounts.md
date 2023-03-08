@@ -21,12 +21,12 @@ constructor Wallet(
 
 #### 输入和输出
 
-| 名称 | 说明 |
-| --------------------- | ----------------------------------------------------------- |
-| privateKey | 以太坊账户的私钥。                   |
-| providerL2? | 一个zkSync节点提供者。需要与zkSync进行互动。|
-| providerL1? | 一个Ethereum节点提供者。需要与L1进行交互。 |
-| returns | 新的 "钱包 "对象。                     |
+| 名称          | 说明                           |
+| ----------- | ---------------------------- |
+| privateKey  | 以太坊账户的私钥。                    |
+| providerL2? | 一个zkSync节点提供者。需要与zkSync进行互动。 |
+| providerL1? | 一个Ethereum节点提供者。需要与L1进行交互。   |
+| returns     | 新的 "钱包 "对象。                  |
 
 > Example
 
@@ -55,10 +55,10 @@ Wallet.connect(provider: Provider): Wallet
 
 #### 输入和输出
 
-| 名称 | 说明 |
-| -------- | ------------------------------------------- |
-| provider | 一个zkSync节点提供者。                    |
-| returns | 一个新的zkSync "钱包 "实例。|
+| 名称       | 说明                  |
+| -------- | ------------------- |
+| provider | 一个zkSync节点提供者。      |
+| returns  | 一个新的zkSync "钱包 "实例。 |
 
 > Example
 
@@ -81,9 +81,9 @@ Wallet.connectToL1(provider: ethers.providers.Provider): Wallet
 
 #### Inputs and outputs
 
-| Name     | Description                                      |
-| -------- | ------------------------------------------------ |
-| provider | 一个Ethereum节点提供者。                         |
+| Name     | Description                      |
+| -------- | -------------------------------- |
+| provider | 一个Ethereum节点提供者。                 |
 | returns  | 一个新的zkSync "钱包 "实例，与L1 "供应商 "相连。 |
 
 > Example
@@ -112,8 +112,8 @@ async getMainContract(): Promise<IZkSync>
 
 #### 输入和输出
 
-| Name    | Description                  |
-| ------- | ---------------------------- |
+| Name    | Description       |
+| ------- | ----------------- |
 | returns | zkSync智能合约的合约封装器。 |
 
 > Example
@@ -138,11 +138,11 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 
 #### Inputs and outputs
 
-| Name                | Description                                                                                                   |
-| ------------------- | ------------------------------------------------------------------------------------------------------------- |
-| token?    | 代币的地址。默认为ETH.                                                         |
+| Name      | Description       |
+| --------- | ----------------- |
+| token?    | 代币的地址。默认为ETH.     |
 | blockTag? | 承诺，即最近处理的一个是默认选项。 |
-| returns             | 钱包拥有的代币的数量。                                                          |
+| returns   | 钱包拥有的代币的数量。       |
 
 > Example
 
@@ -173,11 +173,11 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 
 #### 输入和输出
 
-| Name                | Description                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------- |
-| token?    | 代币的地址。默认为ETH。                                      |
+| Name      | Description              |
+| --------- | ------------------------ |
+| token?    | 代币的地址。默认为ETH。            |
 | blockTag? | 余额应该被检查的区块。最近处理的那个是默认选项。 |
-| returns             | 钱包在以太坊上拥有的代币的数量。                       |
+| returns   | 钱包在以太坊上拥有的代币的数量。         |
 
 > Example
 
@@ -210,10 +210,10 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 
 #### Inputs and outputs
 
-| Name                | Description                                                                                             |
-| ------------------- | ------------------------------------------------------------------------------------------------------- |
+| Name      | Description       |
+| --------- | ----------------- |
 | blockTag? | 承诺的，即最新处理的，是默认选项。 |
-| returns             | 账户的nonce号码。                                                    |
+| returns   | 账户的nonce号码。       |
 
 > Example
 
@@ -245,13 +245,13 @@ async transfer(tx: {
 
 #### 输入和输出
 
-| Name                 | Description                                             |
-| -------------------- | ------------------------------------------------------- |
-| tx.to                | The address of the recipient.                           |
-| tx.amount            | The amount of the token to transfer.                    |
-| token?     | The address of the token. `ETH` by default.             |
-| overrides? | **zkSync** transaction overrides. May be used to pass l2 `gasLimit`, `gasPrice`,  `value`, etc.|
-| returns              | A `TransactionResponse` object                          |
+| Name       | Description                                                                                     |
+| ---------- | ----------------------------------------------------------------------------------------------- |
+| tx.to      | The address of the recipient.                                                                   |
+| tx.amount  | The amount of the token to transfer.                                                            |
+| token?     | The address of the token. `ETH` by default.                                                     |
+| overrides? | **zkSync** transaction overrides. May be used to pass l2 `gasLimit`, `gasPrice`,  `value`, etc. |
+| returns    | A `TransactionResponse` object                                                                  |
 
 > Example
 
@@ -286,14 +286,14 @@ async withdraw(transaction: {
 }): Promise<TransactionResponse>
 ```
 
-| Name                     | Description                                             |
-| ------------------------ | ------------------------------------------------------- |
-| tx.to                    | The address of the recipient on L1.                     |
-| tx.amount                | The amount of the token to transfer.                    |
-| token?         | The address of the token. `ETH` by default.             |
-| bridgeAddress? | The address of the bridge contract to be used.          |
-| overrides?     | **zkSync** transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.    |
-| returns                  | A `TransactionResponse` object                          |
+| Name           | Description                                                                        |
+| -------------- | ---------------------------------------------------------------------------------- |
+| tx.to          | The address of the recipient on L1.                                                |
+| tx.amount      | The amount of the token to transfer.                                               |
+| token?         | The address of the token. `ETH` by default.                                        |
+| bridgeAddress? | The address of the bridge contract to be used.                                     |
+| overrides?     | **zkSync** transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc. |
+| returns        | A `TransactionResponse` object                                                     |
 
 ### 检索底层的 L1 钱包
 
@@ -343,11 +343,11 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 
 #### Inputs and outputs
 
-| Name                | Description                                                                                                   |
-| ------------------- | ------------------------------------------------------------------------------------------------------------- |
-| token?    | 代币的地址。默认为ETH。                                                        |
+| Name      | Description       |
+| --------- | ----------------- |
+| token?    | 代币的地址。默认为ETH。     |
 | blockTag? | 承诺的，即最近处理的，是默认选项。 |
-| returns             | 签约人拥有的代币的数量。                                                         |
+| returns   | 签约人拥有的代币的数量。      |
 
 > Example
 
@@ -376,10 +376,10 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 
 #### Inputs and outputs
 
-| Name                | Description                                                                                             |
-| ------------------- | ------------------------------------------------------------------------------------------------------- |
+| Name      | Description                                                                                             |
+| --------- | ------------------------------------------------------------------------------------------------------- |
 | blockTag? | The block the nonce should be got on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The amount of the token the `Wallet` has.                                                               |
+| returns   | The amount of the token the `Wallet` has.                                                               |
 
 > Example
 
@@ -409,13 +409,13 @@ async transfer(tx: {
 
 #### 输入和输出
 
-| Name                 | Description                                             |
-| -------------------- | ------------------------------------------------------- |
-| tx.to                | The address of the recipient.                           |
-| tx.amount            | The amount of the token to transfer.                    |
-| token?     | The address of the token. `ETH` by default.             |
-| overrides? | **zkSync** transaction overrides. May be used to pass L2 `gasLimit`, `gasPrice`, etc.    |
-| returns              | An `ethers.ContractTransaction` object.                 |
+| Name       | Description                                                                           |
+| ---------- | ------------------------------------------------------------------------------------- |
+| tx.to      | The address of the recipient.                                                         |
+| tx.amount  | The amount of the token to transfer.                                                  |
+| token?     | The address of the token. `ETH` by default.                                           |
+| overrides? | **zkSync** transaction overrides. May be used to pass L2 `gasLimit`, `gasPrice`, etc. |
+| returns    | An `ethers.ContractTransaction` object.                                               |
 
 > Example
 
@@ -454,7 +454,9 @@ const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 ```typescript
 async getMainContract(): Promise<Contract>
 ```
+
 ### Getting bridge contracts
+
 ERC-20桥 `contract `对象。
 
 ```typescript
@@ -462,11 +464,13 @@ async getL1BridgeContracts(): Promise<{
     erc20: IL1Bridge;
 }>
 ```
+
 :::note
 
  没有单独的以太桥合约，而是使用主合约。
 
  :::
+
 #### Inputs and outputs
 
 | Name    | Description                                      |
@@ -495,12 +499,11 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 
 #### Inputs and outputs
 
-| 名称 | 说明 |
-| ------------------- | ------------------------------------------------------------------------------------------- |
-| token?    | 代币的地址。默认为ETH。                                                  |
-| blockTag? | 余额应该被检查的区块。最新处理的一个是默认选项。|
-| returns | `L1Signer'在Ethereum上拥有的代币的数量。                                    |
-
+| 名称        | 说明                            |
+| --------- | ----------------------------- |
+| token?    | 代币的地址。默认为ETH。                 |
+| blockTag? | 余额应该被检查的区块。最新处理的一个是默认选项。      |
+| returns   | `L1Signer'在Ethereum上拥有的代币的数量。 |
 
 > Example
 

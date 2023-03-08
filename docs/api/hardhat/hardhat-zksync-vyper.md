@@ -2,9 +2,6 @@
 
 这个插件用于在将Vyper智能合约部署到zkSync Era之前提供一个方便的接口来编译它们。
 
-
-
-
 ## 安装
 
 [@matterlabs/hardhat-zksync-vyper](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-vyper)
@@ -15,9 +12,7 @@
 ```javascript
 import "@nomiclabs/hardhat-vyper" 。
 import "@matterlabs/hardhat-zksync-vyper";
-
 ```
-
 
 用以下命令将该插件的最新版本添加到你的项目中。
 
@@ -74,4 +69,3 @@ networks: {
 `hardhat compile` -- 编译`contracts`目录下的所有智能合约，并创建`artifacts-zk`文件夹，其中包含所有编译工件，包括合约的工厂依赖，可用于合约部署。
 
 要了解什么是工厂依赖，请阅读[Web3 API](.../api.md)文档中的更多内容。
-

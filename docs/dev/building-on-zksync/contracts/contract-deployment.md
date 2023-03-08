@@ -6,9 +6,6 @@
 
 [在此了解更多关于EIP712交易的信息](../../../api/api.md#eip712).
 
-
-
-
 ## 以太坊/zkSync的差异
 
 **在以太坊上部署合约是如何进行的。**
@@ -63,11 +60,10 @@ zkSync合约的字节码的32字节哈希值是按照以下方式计算的。
 
 为了获得一个确定的地址，你应该使用[ContractDeployer](.../.../developer-guides/system-contracts.md#contractdeployer)的`create2`方法。它也适用于EOA，但在SDK中还不能使用。
 
-## 从L1部署合同
+## 从L1部署合约
 
 在zkSync Era上部署合同也可以通过L1-L2通信实现。
 
 用于提交L1->L2事务的[接口](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l1/contracts/zksync/interfaces/IMailbox.sol#L78)接受该特定事务所需的所有工厂依赖的列表。处理它们的逻辑与默认的L2部署是一样的。唯一的区别是，由于用户已经在L1上发布了字节码的完整预像，所以不需要在L1上再次发布这些字节码。
 
 要了解更多关于zkSync Era上的L1-L2通信，请访问[本节文档](.../.../developer-guides/bridging/l1-l2.md)
-

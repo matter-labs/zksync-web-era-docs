@@ -10,7 +10,7 @@ zkSync Era目前正处于公平的阿尔法登场阶段，这涉及到向某些�
 
 所有现有的以太坊的SDK将开箱工作，你的用户将有与以太坊上相同的体验。如果你想启用先进的zkSync功能，如账户抽象，应该使用zkSync SDK。
 
-其他唯一需要使用zkSync SDK的地方是在合同部署期间。这可以通过我们的硬帽插件轻松完成。
+其他唯一需要使用zkSync SDK的地方是在合约部署期间。这可以通过我们的硬帽插件轻松完成。
 
 ### 快速启动zkSync
 
@@ -40,7 +40,6 @@ zkSync Era目前正处于公平的阿尔法登场阶段，这涉及到向某些�
 - 区块资源管理器 URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`。
 
-
 **Testnet网络信息**
 
 - Network Name: `zkSync Era Testnet`
@@ -63,7 +62,6 @@ zkSync Era目前正处于公平的阿尔法登场阶段，这涉及到向某些�
 
 另外，你现在可以通过[email](mailto:support@zksync.io)联系我们的支持工程师，提出你的问题和疑虑。
 我们将积极监测问题，并努力尽快解决它们。
-
 
 <!-- **Testnet network info**
 
@@ -92,6 +90,7 @@ zkSync Era目前正处于公平的阿尔法登场阶段，这涉及到向某些�
 - Network Name: `zkSync mainnet`
 - New RPC URL: `https://zksync2-mainnet.zksync.io`
 - Chain ID: `324` -->
+
 <!-- 
 **Step 2 (如果你没有Goerli ETH，请跳过。)**
 

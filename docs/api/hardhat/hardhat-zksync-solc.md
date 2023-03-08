@@ -61,7 +61,6 @@ networks: {
 - `forceEvmla` - falls back to EVM legacy assembly if there is a bug with Yul
 - `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default. Useful for multichain projects in which you can enable `zksync` only for specific networks.
 
-
 ::: warning `forceEvmla` usage
 
 将 "forceEvmla "字段设置为 "true "会产生以下负面影响。
@@ -79,4 +78,3 @@ networks: {
 `hardhat compile` -- 编译`contracts`目录下的所有智能合约，并创建`artifacts-zk`文件夹，其中包含所有编译工件，包括合约的工厂依赖，可用于合约部署。
 
 要了解什么是工厂依赖，请阅读[Web3 API](.../api.md)文档中的更多内容。
-

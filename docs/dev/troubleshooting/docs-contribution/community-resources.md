@@ -1,6 +1,6 @@
 # 社区资源
 
-我们不能保证涵盖zkSync的所有方面，所以我们将尝试强调社区的一些优秀资源，如视频、教程、文章等。
+我们不能保证涵盖 zkSync 的所有方面，所以我们将尝试强调社区的一些优秀资源，如视频、教程、文章等。
 
 [Awesome zkSync repo](https://github.com/0xJuancito/awesome-zksync)是基于社区资源的地方。
 
@@ -17,4 +17,3 @@
 ## 做出你的贡献
 
 如果你发现一个与zkSync生态系统相关的内容资源，请自由推荐将其添加到_Awesome zkSync repo_，提出拉动请求。
-

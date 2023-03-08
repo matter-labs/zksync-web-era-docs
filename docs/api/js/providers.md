@@ -28,12 +28,11 @@ constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish
 
 #### 输入和输出
 
-| 名称     | 说明                    |
-| -------- | ----------------------- |
+| 名称       | 说明               |
+| -------- | ---------------- |
 | url?     | zkSync操作员节点的URL。 |
-| network? | 网络的描述。            |
-| returns  | `provider`对象。        |
-
+| network? | 网络的描述。           |
+| returns  | `provider`对象。    |
 
 > Example
 
@@ -54,14 +53,14 @@ Example:
 async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address): Promise<BigNumber>
 ```
 
- #### 输入和输出
+#### 输入和输出
 
- | 名称          | 说明                                                         |
- | ------------- | ------------------------------------------------------------ |
- | 地址          | 用户检查余额的地址。                                         |
- | blockTag?     | 检查余额的区块。*默认情况下，使用最新处理的(`committed`)块。 |
- | tokenAddress? | 代币的地址。*默认情况下，使用ETH。                           |
- | returns       | `BigNumber`对象。                                            |
+| 名称            | 说明                                    |
+| ------------- | ------------------------------------- |
+| 地址            | 用户检查余额的地址。                            |
+| blockTag?     | 检查余额的区块。*默认情况下，使用最新处理的(`committed`)块。 |
+| tokenAddress? | 代币的地址。*默认情况下，使用ETH。                   |
+| returns       | `BigNumber`对象。                        |
 
 ```typescript
 import { Provider } from "zksync-web3";
@@ -84,8 +83,8 @@ async getMainContractAddress(): Promise<string>
 
 #### 输入和输出
 
-| Name    | Description            |
-| ------- | ---------------------- |
+| Name    | Description    |
+| ------- | -------------- |
 | returns | zkSync智能合约的地址。 |
 
 > Example
@@ -108,8 +107,8 @@ async getTestnetPaymasterAddress(): Promise<string|null>
 
 #### 输入和输出
 
-| Name    | Description                                |
-| ------- | ------------------------------------------ |
+| Name    | Description              |
+| ------- | ------------------------ |
 | returns | 测试网支付系统的地址，如果没有则为`null`。 |
 
 > Example
@@ -133,8 +132,8 @@ async getDefaultBridgeAddresses(): Promise<{
 
 #### 输入和输出
 
-| Name    | Description                        |
-| ------- | ---------------------------------- |
+| Name    | Description            |
+| ------- | ---------------------- |
 | returns | L1和L2上默认的zkSync桥接合约的地址 |
 
 ### `getConfirmedTokens`.
@@ -149,12 +148,11 @@ async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[
 
 #### 输入和输出
 
-| 名称   | 说明                                              |
-| ------ | ------------------------------------------------- |
+| 名称     | 说明                               |
+| ------ | -------------------------------- |
 | start  | token id，从这个id开始返回token的信息。默认为零。 |
-| limit  | 从API返回的令牌数量。255 *默认*。                 |
-| rturns |                                                   |
-
+| limit  | 从API返回的令牌数量。255 *默认*。            |
+| rturns |                                  |
 
 > Example
 
@@ -222,7 +220,7 @@ async getTransactionStatus(txHash: string): Promise<TransactionStatus>
 
 | Name    | Description                                                                                                                |
 | ------- | -------------------------------------------------------------------------------------------------------------------------- |
-| txHash   | zkSync transaction hash.                                                                                                  |
+| txHash  | zkSync transaction hash.                                                                                                   |
 | returns | The status of the transaction. You can find the description for `TransactionStatus` enum variants in the [types](./types). |
 
 > Example
@@ -243,9 +241,9 @@ console.log(await provider.getTransactionStatus(TX_HASH));
 async getTransaction(hash: string | Promise<string>): Promise<TransactionResponse>
 ```
 
-| Name    | Description                                                                                |
-| ------- | ------------------------------------------------------------------------------------------ |
-| hash   |  zkSync transaction hash.                                                                  |
+| Name    | Description                           |
+| ------- | ------------------------------------- |
+| hash    | zkSync transaction hash.              |
 | returns | `TransactionResponse`对象，可以方便地跟踪交易的状态。 |
 
 > Example
@@ -277,12 +275,11 @@ constructor(provider: ExternalProvider, network?: ethers.providers.Networkish)
 
 #### 输入和输出
 
-| 名称 | 说明 |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| provider | `ethers.provider.ExternalProvider`类实例。例如，在Metamask的情况下，它是`window.ethereum`。|
-| 网络？| 网络的描述。                                                                                       |
-|returns|返回 `Provider`对象。                                                                                                    |
-
+| 名称       | 说明                                                                          |
+| -------- | --------------------------------------------------------------------------- |
+| provider | `ethers.provider.ExternalProvider`类实例。例如，在Metamask的情况下，它是`window.ethereum`。 |
+| 网络？      | 网络的描述。                                                                      |
+| returns  | 返回 `Provider`对象。                                                            |
 
 > Example
 

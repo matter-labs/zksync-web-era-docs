@@ -1,17 +1,15 @@
 # 提供者
 
 - 提供者是包裹与zkSync节点的交互的对象。如果你对`web3`中的提供者的概念感到陌生，你应该看看他们的文档[这里](https://openbase.com/swift/web3swift/documentation)。
-
+  
   zkSync完全支持Ethereum Web3 API，所以你可以使用web3swift的提供者对象。然而，zkSync API提供了一些额外的JSON-RPC方法，这些方法允许。
-
+  
   - 轻松地跟踪L1<->L2交易。
   - 交易的不同阶段的最终结果。默认情况下，我们的RPC会返回服务器处理的最后一个状态的信息，但有些用例可能只需要跟踪 "最终完成 "的交易。
-
+  
   zkSync swift SDK导出了`EthereumProvider`提供者。
-
+  
   - `EthereumProvider`继承自`web3swift``JsonRpcProvider`提供对所有zkSync JSON-RPC端点的访问。
-
-
 
 ## EthereumProvider
 
@@ -31,9 +29,7 @@
 | returns                    | `Provider` object.               |
 
 ```swift
-
  public init?(_ httpProviderURL: URL, network net: Networks?, keystoreManager manager: KeystoreManager? = nil)
-
 ```
 
 ## Get gas price
@@ -42,13 +38,11 @@
 func gasPrice() throws -> BigUInt {
         return try web3.eth.getGasPrice()
     }
-
 ```
 
 ## Approve deposits
 
 ```swift
-
 func approveDeposits(with token: Token,
                          limit: BigUInt?) throws -> Promise<TransactionSendingResult> {
         guard let tokenAddress = EthereumAddress(token.l1Address),
@@ -72,7 +66,6 @@ func approveDeposits(with token: Token,
             return .init(error: error)
         }
     }
-
 ```
 
 ## Transfer
@@ -97,7 +90,6 @@ func transfer(with token: Token,
             return .init(error: error)
         }
     }
-
 ```
 
 ## Transfer ETH
@@ -119,13 +111,11 @@ func transferEth(amount: BigUInt,
 
         return transaction
     }
-
 ```
 
 ## Transfer ERC20 tokens
 
 ```swift
-
 func transferERC20(token: Token,
                        amount: BigUInt,
                        to address: String) throws -> WriteTransaction {
@@ -144,7 +134,6 @@ func transferERC20(token: Token,
 
         return transaction
     }
-
 ```
 
 ## Deposits
@@ -179,5 +168,4 @@ func deposit(with token: Token,
             guard let encodedFunction = depositFunction.encodeParameters(depositParameters) else {
                 fatalError("Encoded deposit function should be valid")
             }
-
 ```
