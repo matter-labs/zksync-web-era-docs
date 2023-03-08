@@ -12,14 +12,14 @@ zkSync Era目前正处于公平的阿尔法登场阶段，这涉及到向某些�
 
 其他唯一需要使用zkSync SDK的地方是在合同部署期间。这可以通过我们的硬帽插件轻松完成。
 
-###快速启动zkSync
+### 快速启动zkSync
 
 查看我们的步骤[快速入门指南](.../building-on-zksync/hello-world.md)，在那里你会学到。
 
 - 如何安装zkSync硬帽插件并使用它部署智能合约。
 - 如何使用`zksync-web3`库为你的dApp构建前端。
 
-###连接到Metamask上的zkSync Era
+### 连接到Metamask上的zkSync Era
 
 为了将zkSync Era alpha主网网络添加到您的钱包，您需要输入以下详细信息。
 
@@ -33,9 +33,9 @@ zkSync Era目前正处于公平的阿尔法登场阶段，这涉及到向某些�
 
 **主网网络信息**
 
-- 网络名称。`zkSync Era Mainnet'.
+- 网络名称。`zkSync Era Mainnet`.
 - 新的RPC URL: `https://zksync2-mainnet.zksync.io `
-- 链ID: `324
+- 链ID: `324`
 - 货币符号: `ETH `
 - 区块资源管理器 URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`。
@@ -50,7 +50,7 @@ zkSync Era目前正处于公平的阿尔法登场阶段，这涉及到向某些�
 - Block Explorer URL: `https://goerli.explorer.zksync.io/`
 - WebSocket URL: `wss://zksync2-testnet.zksync.dev/ws`
 
-## zkSync时代支持
+## zkSync Era支持
 
 你可以在`💻🧪│dev-support-beta`里开一张支持票，或者在`🖥│dev-general`里问任何问题。
 

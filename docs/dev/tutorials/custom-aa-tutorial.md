@@ -6,10 +6,10 @@
 
 ## 前提条件
 
-在进入本教程之前，强烈建议阅读账户抽象协议的[design]（.../developer-guides/aa.md）。
+在进入本教程之前，强烈建议阅读账户抽象协议的[design](.../developer-guides/aa.md)。
 
 假设你已经熟悉在zkSync上部署智能合约。
-如果没有，请参考[快速入门教程]（.../building-onzksync/hello-world.md）的第一部分。
+如果没有，请参考[快速入门教程](.../building-onzksync/hello-world.md)的第一部分。
 还建议阅读系统合同的[介绍](../developer-guides/system-contracts.md)。
 
 ## 安装依赖项
@@ -263,7 +263,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 ```
 
-Since we are building a two-account multisig, let's pass its owners' addresses in the constructor and save their state variables:
+由于我们正在建立一个双账户多义词，让我们在构造函数中传递其所有者的地址并保存其状态变量。
 
 ```solidity
 // state variables for account owners
@@ -734,11 +734,11 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 
 ```
 
-## The factory
+## 工厂
 
-Now, let's build a factory that can deploy these accounts. To deploy the smart contract account, we need to interact directly with the `DEPLOYER_SYSTEM_CONTRACT`. For deterministic addresses, we will call the `create2Account` method.
+现在，让我们建立一个可以部署这些账户的工厂。为了部署智能合约账户，我们需要直接与`DEPLOYER_SYSTEM_CONTRACT`互动。对于确定性的地址，我们将调用`create2Account`方法。
 
-The code will look the following way:
+代码将看起来如下。
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -969,7 +969,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   };
 ```
 
-Now, we are ready to send the transaction:
+现在，我们准备发送交易。
 
 ```ts
   console.log(

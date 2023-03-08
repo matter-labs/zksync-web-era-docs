@@ -97,6 +97,6 @@ libraries: {
 },
 ```
 
-其中`'contract/MiniMath.sol'`是库的Solidity文件的位置，`MiniMath`是库的名称。
+其中`contract/MiniMath.sol`是库的Solidity文件的位置，`MiniMath`是库的名称。
 
 现在，运行 "yarn hardhat compile "应该能成功编译 "Main "合约。

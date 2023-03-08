@@ -295,11 +295,11 @@ async withdraw(transaction: {
 | overrides?     | **zkSync** transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.    |
 | returns                  | A `TransactionResponse` object                          |
 
-### Retrieving the underlying L1 wallet
+### 检索底层的 L1 钱包
 
-You can get an `ethers.Wallet` object with the same private key with `ethWallet()` method.
+你可以通过`ethWallet()`方法获得一个具有相同私钥的`ethers.Wallet`对象。
 
-#### Inputs and outputs
+#### 输入和输出
 
 | Name    | Description                                          |
 | ------- | ---------------------------------------------------- |
@@ -322,11 +322,11 @@ const ethWallet = wallet.ethWallet();
 
 ## `EIP712Signer`
 
-The methods of this class are mostly used internally. The examples of using this class are coming soon!
+这个类的方法主要在内部使用。使用这个类的例子很快就会出现!
 
 ## `Signer`
 
-This class is to be used in a browser environment. The easiest way to construct it is to use the `getSigner` method of the `Web3Provider`. This structure extends `ethers.providers.JsonRpcSigner` and so supports all the methods available for it.
+这个类将在浏览器环境中使用。构造它的最简单方法是使用`Web3Provider`的`getSigner`方法。这个结构扩展了`ethers.providers.JsonRpcSigner`，所以支持它的所有可用方法。
 
 ```typescript
 import { Web3Provider } from "zksync-web3";
@@ -335,7 +335,7 @@ const provider = new Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 ```
 
-### Getting token balance
+### 获得代币余额
 
 ```typescript
 async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<BigNumber>
@@ -345,9 +345,9 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 
 | Name                | Description                                                                                                   |
 | ------------------- | ------------------------------------------------------------------------------------------------------------- |
-| token?    | The address of the token. ETH by default.                                                                     |
-| blockTag? | The block the balance should be checked on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The amount of the token the `Signer` has.                                                                     |
+| token?    | 代币的地址。默认为ETH。                                                        |
+| blockTag? | 承诺的，即最近处理的，是默认选项。 |
+| returns             | 签约人拥有的代币的数量。                                                         |
 
 > Example
 
@@ -366,9 +366,9 @@ console.log(await signer.getBalance(USDC_L2_ADDRESS));
 console.log(await signer.getBalance());
 ```
 
-### Getting a nonce
+### 获得一个nonce
 
-The `Wallet` class also provides the `getNonce` method which is an alias for [getTransactionCount](https://docs.ethers.io/v5/api/signer/#Signer-getTransactionCount).
+Wallet "类也提供了 "getNonce "方法，它是[getTransactionCount](https://docs.ethers.io/v5/api/signer/#Signer-getTransactionCount)的一个别名。
 
 ```typescript
 async getNonce(blockTag?: BlockTag): Promise<number>
@@ -392,11 +392,11 @@ const signer = provider.getSigner();
 console.log(await signer.getNonce());
 ```
 
-### Transferring tokens inside zkSync
+### 在zkSync内部转移代币
 
-Please note that for now, unlike Ethereum, zkSync does not support native transfers, i.e. the `value` field of all transactions is equal to `0`. All the token transfers are done through ERC20 `transfer` function calls.
+请注意，目前，与Ethereum不同，zkSync不支持原生转移，即所有交易的值域都等于0。
 
-But for convenience, the `Wallet` class has `transfer` method, which can transfer any `ERC20` tokens.
+但是为了方便，钱包类有转移方法，可以转移任何ERC20代币。
 
 ```typescript
 async transfer(tx: {
@@ -407,7 +407,7 @@ async transfer(tx: {
 }): Promise<ethers.ContractTransaction>
 ```
 
-#### Inputs and outputs
+#### 输入和输出
 
 | Name                 | Description                                             |
 | -------------------- | ------------------------------------------------------- |
@@ -437,9 +437,9 @@ const transferHandle = signer.transfer({
 
 ## `L1Signer`
 
-This class is to be used in a browser environment to do zkSync-related operations on layer 1. This class extends `ethers.providers.JsonRpcSigner` and so supports all the methods available for it.
+该类将在浏览器环境中用于在第1层进行zkSync相关的操作。该类扩展了ethers.providers.JsonRpcSigner，因此支持它的所有可用方法。
 
-The easiest way to construct it is from an `Web3Provider` object.
+构造它的最简单的方法是来自Web3Provider对象。
 
 ```typescript
 import { Web3Provider, Provider, L1Signer } from "zksync-web3";
@@ -455,7 +455,7 @@ const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 async getMainContract(): Promise<Contract>
 ```
 ### Getting bridge contracts
-ERC-20 bridge `Contract` object: 
+ERC-20桥 `contract `对象。
 
 ```typescript
 async getL1BridgeContracts(): Promise<{
@@ -464,7 +464,7 @@ async getL1BridgeContracts(): Promise<{
 ```
 :::note
 
- there is no separate Ether bridge contract, [Main contract](./accounts.md#getting-the-zksync-l1-smart-contract) is used instead.
+ 没有单独的以太桥合约，而是使用主合约。
 
  :::
 #### Inputs and outputs

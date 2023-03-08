@@ -1,13 +1,13 @@
 # 系统合同
 
-为了使零知识电路尽可能的简单，并能进行简单的扩展，zkSync的一大块逻辑被移到了所谓的 "系统合同 "中--一组具有特殊权限和特殊目的的合同，例如，合同的部署，确保用户只为发布合同的calldata支付一次，等等。
+为了使零知识电路尽可能的简单，并能进行简单的扩展，zkSync的一大块逻辑被移到了所谓的 "系统合约"中---一组具有特殊权限和特殊目的的合同，例如，合同的部署，确保用户只为发布合同的calldata支付一次，等等。
 
 系统合同的代码在经过彻底测试之前不会公开。本节将只为你提供在zkSync基础上构建的知识。
 
 
 ## 接口
 
-系统合同的地址和接口可以在[这里]（https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/Constants.sol）找到。
+系统合同的地址和接口可以在[这里](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/Constants.sol)找到。
 
 本节将描述一些最流行的系统合约的语义。
 

@@ -15,9 +15,9 @@ zkSync时代[区块探索器](https://explorer.zksync.io/)是一个易于使用�
 我们准备了这份教程，以帮助用户和交易者利用区块资源管理器和优化理想的学习体验。我们将强调区块探索器中的具体接触点。
 
 1. [搜索栏](./search.md) - 通过钱包地址、交易哈希值、区块号码或合约地址进行搜索。
-2. 2.[浏览区块](./block-view.md) - 获取zkSync网络中包含的区块的所有细节。
-3. 3.[交易视图](./block-view.md#transactions) - 获取并分析链上发生的交易列表。
-4. 4.[智能合约验证](./contract-verification.md) - 用zkSync区块资源管理器验证智能合约。
+2. [浏览区块](./block-view.md) - 获取zkSync网络中包含的区块的所有细节。
+3. [交易视图](./block-view.md#transactions) - 获取并分析链上发生的交易列表。
+4. [智能合约验证](./contract-verification.md) - 用zkSync区块资源管理器验证智能合约。
 
 要开始，你可以在你的网络浏览器中打开[block explorer](https://explorer.zksync.io/)，并使用指南进行跟踪。
 让我们来看看区块资源管理器!

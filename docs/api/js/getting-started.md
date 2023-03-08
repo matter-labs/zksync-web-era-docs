@@ -1,4 +1,4 @@
-# 开始工作
+# 快速开始
 
 :::warning
 
@@ -37,7 +37,7 @@ import * as ethers from "ethers";
 const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
 ```
 
-**注意：**目前，只支持`goerli`网络。
+**注意:**目前，只支持`goerli`网络。
 
 有些操作需要访问Ethereum网络。`ethers`库应该被用来与
 以太坊。

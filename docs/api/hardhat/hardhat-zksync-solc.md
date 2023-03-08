@@ -1,4 +1,4 @@
-# `hardhat-zksync-solc
+# `hardhat-zksync-solc`
 
 这个插件用于在将Solidity智能合约部署到zkSync Era之前提供一个方便的接口来编译它们。
 

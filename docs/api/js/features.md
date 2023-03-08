@@ -1,4 +1,4 @@
-# zkSync时代的特点
+# zkSync Era的特点
 
 虽然zkSync大部分是兼容Web3的，但与Ethereum相比，它有一些区别。其中主要的是。
 
@@ -67,11 +67,11 @@
 
 虽然paymaster功能本身并没有对`paymasterInput`的值施加任何限制，但Matter Labs团队认可某些类型的[paymaster flow](.../.../dev/developer-guides/aa.md#built-in-paymaster-flows)是可以由EOAs处理的。
 
-zkSync SDK提供了一个实用方法，可以用来获取正确形成的`paymasterParams'对象。[getPaymasterParams]（./utils.md#encoding-paymaster-params）。
+zkSync SDK提供了一个实用方法，可以用来获取正确形成的`paymasterParams`对象。[getPaymasterParams](./utils.md#encoding-paymaster-params)。
 
 ## 在行动中看到
 
-如果你想调用一个名为`greeter'的ethers`Contract`对象的`setGreeting'方法，这将看起来如下，同时用[testnet paymaster]（././dev/developer-guides/aa.md#testnet-paymaster）支付费用。
+如果你想调用一个名为`greeter`的`ethersContract`对象的`setGreeting`方法，这将看起来如下，同时用[testnet paymaster](././dev/developer-guides/aa.md#testnet-paymaster)支付费用。
 
 ```javascript
 // The `setGreeting` method has a single parameter -- new greeting

@@ -44,7 +44,7 @@ export const IERC20 = new utils.Interface(require("../abi/IERC20.json"));
 export function getPaymasterParams(paymasterAddress: Address, paymasterInput: PaymasterInput): PaymasterParams
 ```
 
-`PaymasterInput'的定义可以在[这里](./types.md)找到。
+`PaymasterInput`的定义可以在[这里](./types.md)找到。
 
 ## 有用的气体常数
 

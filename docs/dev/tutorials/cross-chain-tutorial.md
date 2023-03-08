@@ -19,7 +19,7 @@
 
 ## 预先说明
 
-在本教程中，假定你已经熟悉在zkSync上部署智能合约。如果没有，请参考[快速入门教程]（.../building-on-zksync/hello-world.md）的第一节。
+在本教程中，假定你已经熟悉在zkSync上部署智能合约。如果没有，请参考[快速入门教程](.../building-on-zksync/hello-world.md)的第一节。
 
 此外，还假设你已经有一些使用Ethereum的经验。
 
@@ -90,7 +90,7 @@ contract Governance {
 
 尽管本教程并不关注在L1上部署合同的过程，但我们会给你一个快速的概述，告诉你如何继续。
 
-1. 你需要一个RPC节点端点到Göerli测试网，以提交部署事务。你可以[在这里找到多个节点提供者]（https://github.com/arddluma/awesome-list-rpc-nodes-providers）。
+1. 你需要一个RPC节点端点到Göerli测试网，以提交部署事务。你可以[在这里找到多个节点提供者](https://github.com/arddluma/awesome-list-rpc-nodes-providers)。
 
 2. 创建文件`/L1-governance/goerli.json`并填写以下数值。
 

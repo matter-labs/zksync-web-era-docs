@@ -1,4 +1,4 @@
-# zkSync时代文档
+# zkSync Era文档
 
 本文档旨在帮助您在zkSync上进行开发。
 它介绍了zkSync的概念，描述了zkSync网络堆栈，以及一些复杂应用和用例的高级主题。

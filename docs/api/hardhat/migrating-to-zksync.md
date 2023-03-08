@@ -6,7 +6,7 @@
 
 zkSync提供了[多个Hardhat插件](./plugins.md)，具有不同的功能，但在本指南中，我们将只关注你将项目迁移到zkSync所需的功能。
 
-警告 目前还不支持非默认的路径。
+:::warning 目前还不支持非默认的路径。
 
 合同文件必须包含在`contracts`文件夹中，部署脚本必须包含在`deploy`文件夹中。
 
@@ -203,7 +203,7 @@ import { utils, Provider, Contract, Wallet } from "zksync-web3";
 
 要验证你的合同，你有两个选择。
 
-- 探索器：在[zkSync探索器]中手动验证你的合同(.../tools/block-explorer/contract-verification.md)
+- 探索器：在[zkSync探索器](.../tools/block-explorer/contract-verification.md)中手动验证你的合同
 - 插件：使用[Hardhat验证插件](./hardhat-zksync-verify.md)以编程方式验证你的合同。
 
 

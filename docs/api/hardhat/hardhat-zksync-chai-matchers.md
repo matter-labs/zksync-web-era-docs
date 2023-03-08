@@ -1,4 +1,4 @@
-# `hardhat-zksync-chai-matchers'。
+# `hardhat-zksync-chai-matchers`
 
 这个插件为[Chai](https://www.chaijs.com/)断言库增加了zkSync的特定功能，用于测试智能合约。它扩展了[hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview)插件所支持的所有功能，其理念是保留相同的行为和接口。
 目前，它是与[本地测试环境](./testing.md)结合使用的。

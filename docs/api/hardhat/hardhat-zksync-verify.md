@@ -1,4 +1,4 @@
-# `hardhat-zksync-verify` ．
+# `hardhat-zksync-verify` 
 
 这个插件用于验证zkSync Era网络上的合同。
 

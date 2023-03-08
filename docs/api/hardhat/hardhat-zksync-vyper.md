@@ -1,4 +1,4 @@
-# `hardhat-zksync-vyper'。
+# `hardhat-zksync-vyper`
 
 这个插件用于在将Vyper智能合约部署到zkSync Era之前提供一个方便的接口来编译它们。
 
@@ -63,7 +63,7 @@ networks: {
 - `libraries`如果你的合同使用非可linable库作为依赖，必须在这里定义。了解更多关于[在这里编译库](./compiling-libraries.md)
 - `zksync`网络选项表示zkvyper是否在某个网络上被启用。默认为 "false"。对多链项目很有用，你可以只对特定的网络启用`zksync`。
 
-::警告
+:::warning
 
 编译器不再作为Docker镜像发布，不再推荐使用。使用`compilerSource: "binary"`在Hardhat配置文件中使用二进制文件来代替。
 

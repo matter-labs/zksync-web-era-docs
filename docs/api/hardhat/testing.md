@@ -35,7 +35,7 @@ cd local-setup
 
 默认情况下，HTTP JSON-RPC API将运行在端口`3050`，而WS API将运行在端口`3051`。
 
-::警告
+:::warning
 
 注意，重要的是第一次`start.sh`脚本的调用要不间断地进行。如果你在启动过程意外停止后面临任何问题，你应该[reset](#reset-thezksync-state)本地zkSync状态并再次尝试。
 
@@ -79,7 +79,7 @@ sudo ./clear.sh
 
 这些账户的地址与相应的私钥的完整列表可以在[这里]（https://github.com/matter-labs/local-setup/blob/main/rich-wallets.json）找到。
 
-警告ERC20代币
+:::warning ERC20代币
 
 富有的钱包只有ETH。**如果你需要用ERC20代币进行测试，你应该自己部署它们。
 

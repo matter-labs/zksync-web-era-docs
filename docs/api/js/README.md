@@ -4,7 +4,7 @@
 
 为了方便访问zkSync Era的所有功能，创建了`zksync-web3`JavaScript SDK，它是基于`ethers.js`库。本节作为其参考。
 
-##目录
+## 目录
 
 - [Getting started](./getting-started.md)
 - [providers](./providers.md)

@@ -155,11 +155,6 @@ async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[
 | limit  | 从API返回的令牌数量。255 *默认*。                 |
 | rturns |                                                   |
 
-|      |      |
-| ---- | ---- |
-|      |      |
-|      |      |
-|      |      |
 
 > Example
 
@@ -170,7 +165,7 @@ const provider = new Provider("https://zksync2-testnet.zksync.dev");
 console.log(await provider.getConfirmedTokens());
 ```
 
-### "getTokenPrice"。
+### `getTokenPrice`。
 
 :::warning 已废弃
 
@@ -217,7 +212,7 @@ async l1TokenAddress(l2Token: Address): Promise<string>
 | token   | The address of the token on the one layer.       |
 | returns | The address of that token on the opposite layer. |
 
-### `getTransactionStatus'（获取交易状态）。
+### `getTransactionStatus`（获取交易状态）。
 
 给定一个交易哈希值，返回该交易的状态。
 

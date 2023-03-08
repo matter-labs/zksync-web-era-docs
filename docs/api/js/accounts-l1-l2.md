@@ -1,11 +1,11 @@
-# 账户。L1->L2交易
+# 账户:L1->L2交易
 
 本节探讨了允许[account](./accounts.md)类从L1向L2发送交易的方法。
 
 如果你想了解一些关于L1->L2交互在zkSync上如何工作的背景，请查阅[introduction](././dev/developer-guides/bridging/l1-l2-interop.md)和[guide](././dev/developer-guides/bridging/l1-l2.md) 。
 
 
-##支持的类
+## 支持的类
 
 以下账户类别支持从L1向L2发送交易。
 
