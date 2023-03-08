@@ -1,10 +1,11 @@
-# Getting started
+# 开始学习
 
-Learn the basics of zkSync and its ecosystem.
+了解zkSync及其生态系统的基本知识。
 
-## Table of contents
+## 目录
 
-- [Intro to rollups](./rollups.md)
-- [zkSync Era basics](./zkSync.md)
-- [Interact with zkSync Era](./interacting.md)
+- [rollups介绍](./rollups.md)
+- [zkSync Era基础知识](./zkSync.md)
+- [与zkSync Era互动](./interacting.md)
 - [Hyperscaling](./hyperscaling.md)
+

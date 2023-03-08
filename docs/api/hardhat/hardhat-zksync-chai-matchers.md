@@ -1,13 +1,13 @@
-# `hardhat-zksync-chai-matchers`
+# `hardhat-zksync-chai-matchers'。
 
-This plugin adds zkSync-specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts. It extends all the functionalities supported by the [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, with the idea to preserve the same behavior and interface.
-Currently, it is used in combination with [local testing environment](./testing.md).
+这个插件为[Chai](https://www.chaijs.com/)断言库增加了zkSync的特定功能，用于测试智能合约。它扩展了[hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview)插件所支持的所有功能，其理念是保留相同的行为和接口。
+目前，它是与[本地测试环境](./testing.md)结合使用的。
 
-> **_NOTE:_** Since responses from transactions that revert are highly dependent on the RPC implementation, all [hardhat](https://hardhat.org/hardhat-chai-matchers/docs/overview) chai matchers that start with revert have been affected (but without any changes to the chai matchers interface). In addition, the options argument from changeEtherBalance/changeEtherBalances has been extended with the overrides field in order to support zksync-web3 transfer method with overrides.
+> **_NOTE:_** 由于恢复的事务的响应高度依赖于RPC的实现，所有[hardhat](https://hardhat.org/hardhat-chai-matchers/docs/overview)以revert开头的chai匹配器都受到了影响（但chai匹配器接口没有任何变化）。此外，来自changeEtherBalance/changeEtherBalances的options参数已经扩展了overrides字段，以便支持带有overrides的zksync-web3传输方法。
 
-## Installation
+## 安装
 
-Add the latest version of this plugin to your project with the following command:
+用以下命令将该插件的最新版本添加到你的项目中。
 
 ```
 # Yarn
@@ -19,7 +19,7 @@ npm i -D @matterlabs/hardhat-zksync-chai-matchers
 
 ### Usage
 
-After installing it, add the plugin to your Hardhat config:
+安装后，将该插件添加到你的Hardhat配置中。
 
 ```javascript
 import "@matterlabs/hardhat-zksync-chai-matchers";
@@ -29,7 +29,7 @@ Then you'll be able to use the matchers in your tests.
 
 #### changeEtherBalance
 
-Assert that the ether balance of an address changed by a specific amount:
+断言一个地址的余额改变了一个特定的数量。
 
 ```javascript
 await expect(() =>
@@ -47,7 +47,7 @@ await expect(() =>
 ).to.changeEtherBalance(sender.address, "-1000");
 ```
 
-This matchers include additional options argument with functionalities for including fee and overriding transaction:
+这种匹配器包括额外的选项参数，包括收费和覆盖交易的功能。
 
 ```javascript
 overrides = {
@@ -72,7 +72,8 @@ await expect(() =>
 
 #### changeTokenBalance
 
-Assert that an ERC20 token balance of an address changed by a specific amount:
+断言一个地址的ERC20代币余额改变了一个特定的数额。
+
 
 ```javascript
 await expect(sender.transfer({ to: receiver.address, amount: 5, token: token.address })).to.changeTokenBalance(token, sender, -5);
@@ -82,7 +83,7 @@ await expect(token.transfer(receiver.address, 5)).to.not.changeTokenBalance(toke
 
 #### reverted
 
-Assert that a transaction reverted for any reason:
+断言一项交易因任何原因而恢复。
 
 ```javascript
 await expect(contract.setAmount(100)).to.be.reverted;
@@ -90,7 +91,7 @@ await expect(contract.setAmount(100)).to.be.reverted;
 
 #### revertedWithCustomError
 
-Assert that a transaction reverted with a specific custom error:
+断言一个事务因一个特定的自定义错误而被恢复。
 
 ```javascript
 await expect(contract.setAmount(100)).to.be.revertedWithCustomError(contract, "InvalidAmount");
@@ -98,7 +99,7 @@ await expect(contract.setAmount(100)).to.be.revertedWithCustomError(contract, "I
 
 <br/>
 
-And you can also use regular chai matchers like:
+而你也可以使用常规的匹配器，如。
 
 #### emit
 
@@ -118,4 +119,4 @@ expect("0x36615Cf349d7F6344891B1e7CA7C72883F5dc049").to.be.properAddress;
 expect(await contract.getAmount()).to.equal(100);
 ```
 
-Checkout the advantages of using chai matchers [here](https://hardhat.org/hardhat-chai-matchers/docs/overview#why-would-i-want-to-use-it?). Since the list of all supported chai matchers is same as with [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, check the [reference documentation](https://hardhat.org/hardhat-chai-matchers/docs/reference).
+查看使用chai匹配器的优势[这里](https://hardhat.org/hardhat-chai-matchers/docs/overview#why-would-i-want-to-use-it?)。由于所有支持的chai匹配器的列表与[hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview)插件相同，请查看[参考文档](https://hardhat.org/hardhat-chai-matchers/docs/reference)。

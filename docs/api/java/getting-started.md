@@ -1,31 +1,31 @@
-# Getting started
+# 开始工作
 
-In this guide we will demonstrate how to:
+在本指南中，我们将演示如何。
 
-1. Connect to the zkSync network.
-2. Deposit assets from Ethereum into zkSync.
-3. Transfer and withdraw funds (native and ERC20 tokens).
-4. Deploy a smart contract.
-5. Interact with any smart contract.
+1. 连接到zkSync网络。
+2. 将资产从以太坊存入zkSync。
+3. 转移和提取资金（本地和ERC20代币）。
+4. 4.部署一个智能合约。
+5. 与任何智能合约进行互动。
 
-::: warning
+::警告
 
-This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../dev/troubleshooting/changelog.md)). A revised version will be available shortly.
+本节文档正在审查中，以反映对系统合约所做的修改（[见changelog](././dev/troubleshooting/changelog.md)）。修订后的版本很快就会推出。
 
 :::
 
 
 
 
-## Prerequisite
+## 前提条件
 
-This guide assumes that you are familiar with the basics of [Java](https://docs.oracle.com/en/java/) programming language.
+本指南假定你熟悉[Java](https://docs.oracle.com/en/java/)编程语言的基础知识。
 
-## Installation
+## 安装
 
-To install the zkSync Java SDK, just add the following dependency:
+要安装zkSync Java SDK，只需添加以下依赖项。
 
-Maven `pom.xml`
+Maven `pom.xml`。
 
 ```gradle
 <project>
@@ -49,9 +49,9 @@ dependencies {
 }
 ```
 
-## Instantiating the SDK
+##实例化SDK
 
-To start using this SDK, you just need to pass in a provider configuration.
+要开始使用这个SDK，你只需要传入一个提供者的配置。
 
 ```java
 
@@ -70,12 +70,12 @@ public class Main {
 
 ::: warning
 
-⚠️ Never commit private keys to file tracking history, or your account could be compromised.
+⚠️ 千万不要将私钥提交给文件追踪历史，否则你的账户可能会被泄露。
 
 :::
 
-Ethereum signer is necessary for sending both L1 and L2 transactions, given L2 transactions require an Ethereum signature as a part of a 2-factor authentication scheme.
-Ethereum signer is represented by the `PrivateKeyEthSigner` abstract class from `zksync.crypto.signer`.
+以太坊签名器对于发送L1和L2交易都是必要的，鉴于L2交易需要以太坊签名作为双因素认证方案的一部分。
+以太坊签名器由`zksync.crypto.signer`的`PrivateKeyEthSigner`抽象类表示。
 
 ```java
 import io.zksync.crypto.signer.EthSigner;
@@ -96,7 +96,7 @@ public class Main {
 
 ## Creating a wallet
 
-To control your account in zksync, use the `zksync.crypto.signer.EthSigner`. It can sign transactions with keys and send transactions to the zksync network.
+为了控制你在zksync的账户，使用`zksync.crypto.signer.EthSigner`。它可以用密钥签署交易并将交易发送到zksync网络。
 
 ```java
 import io.zksync.crypto.signer.EthSigner;
@@ -116,7 +116,7 @@ public class Main {
 
 ## Transactions
 
-zksync2 supports Ethereum's `Legacy` and `EIP-1155` transactions except for deploying contracts.
+zksync2支持以太坊的`Legacy`和`EIP-1155`交易，但部署合约除外。
 
 ```java
 
@@ -789,7 +789,7 @@ public class Main {
 
 ## Wallet
 
-Get the price of the execution of the transaction
+获取执行交易的价格
 
 ```java
 

@@ -7,7 +7,7 @@ export const enNavbar = navbar([
   },
   
   { 
-    text: "Developer docs", 
+    text: "开发文档", 
     link: "/dev/" 
   },
 
@@ -16,12 +16,12 @@ export const enNavbar = navbar([
     link: "/api/" 
   },
   { 
-    text: "Contacts and Links", 
+    text: "联系方式", 
     link: "/contact.html" 
   },
 
   {
-    text: "Versions",
+    text: "版本",
     children: [
       {
         text: "zkSync Era",

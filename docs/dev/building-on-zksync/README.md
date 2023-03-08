@@ -1,8 +1,8 @@
-# Building on zkSync Era
+# 建立在zkSync时代
 
-A series of guides to get you off localhost.
+一系列的指南，让你离开localhost。
 
-## Table of contents
+## 目录
 
 - [Quickstart](../building-on-zksync/hello-world.md)
 - [Smart contract development](../building-on-zksync/contracts/contracts.md)

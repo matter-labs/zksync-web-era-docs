@@ -1,23 +1,23 @@
-# zkSync Era features
+# zkSync时代的特点
 
-While zkSync is mostly Web3-compatible, it has some differences compared to Ethereum. The major of those are:
+虽然zkSync大部分是兼容Web3的，但与Ethereum相比，它有一些区别。其中主要的是。
 
-- Account abstraction support (accounts may have near-arbitrary validation logic, and also paymaster support is enabled).
-- Deployment transactions require the contracts' bytecode to be passed in a separate field.
-- The fee system is somewhat different.
+- 账户抽象支持（账户可以有近乎任意的验证逻辑，同时也启用了paymaster支持）。
+- 部署交易需要合同的字节码在一个单独的字段中传递。
+- 收费系统则有些不同。
 
-These require us to extend standard Ethereum transactions with new custom fields. Such extended transactions are called EIP712 transactions since [EIP712](https://eips.ethereum.org/EIPS/eip-712) is used to sign them. You can look at the internal structure of the EIP712 transactions [here](../api.md#eip712).
+这些需要我们用新的自定义字段来扩展标准的以太坊交易。这样的扩展交易被称为EIP712交易，因为[EIP712](https://eips.ethereum.org/EIPS/eip-712)被用来签署它们。你可以看一下EIP712交易的内部结构[这里](.../api.md#eip712)。
 
-This document will focus solely on how to pass these arguments to the SDK.
+本文档将只关注如何将这些参数传递给SDK。
 
 
 ## Overrides
 
-`ethers.js` has a notion of overrides. For any on-chain transaction, `ethers.js` finds the optimal `gasPrice`, `gasLimit`, `nonce`, and other important fields under the hood. But sometimes, you may have a need to explicitly provide these values (you want to set a smaller `gasPrice` for instance, or sign a transaction with future `nonce`).
+`ethers.js`有一个重写的概念。对于任何链上交易，`ethers.js`都能找到最佳的`gasPrice`、`gasLimit`、`nonce`和其他重要的字段。但有时，你可能需要明确地提供这些值（例如，你想设置一个较小的`gasPrice`，或签署一个具有未来`nonce`的交易）。
 
-In this case, you can provide an `Overrides` object as the last parameter. There you can supply fields like `gasPrice`, `gasLimit`, `nonce` etc.
+在这种情况下，你可以提供一个`Overrides`对象作为最后一个参数。在那里你可以提供诸如`gasPrice`、`gasLimit`、`nonce`等字段。
 
-In order to make the SDK as flexible as possible, `zksync-web3` uses `customData` object in the overrides to supply zkSync-specific fields. To supply zkSync-specific fields, you need to pass the following override:
+为了使SDK尽可能的灵活，`zksync-web3`在覆盖中使用`customData`对象来提供zkSync特定的字段。要提供zkSync特定的字段，你需要传递以下覆盖。
 
 ```typescript
 {
@@ -34,11 +34,11 @@ In order to make the SDK as flexible as possible, `zksync-web3` uses `customData
     }
 }
 ```
-Please note once again: everything that is inside `customData` in `overrides` is related to zkSync(L2 gas, etc).
+请再次注意：`overrides`中`customData`内的所有内容都与zkSync(L2 gas, etc)有关。
 
-Examples:
+例子。
 
-Override to deploy a contract with bytecode `0xcde...12` and enforce that the operator will not charge more than `100` L2 gas per published bytes on Layer 1:
+覆盖部署一个字节码为 "0xcde...12 "的合同，并强制要求运营商在第1层每发布一个字节不会收取超过 "100 "的二级气体。
 
 ```typescript
 {
@@ -49,7 +49,7 @@ Override to deploy a contract with bytecode `0xcde...12` and enforce that the op
 }
 ```
 
-Use custom signature `0x123456` for account, while using paymaster with address `0x8e1DC7E4Bb15927E76a854a92Bf8053761501fdC` and paymaster input `0x8c5a3445`:
+为账户使用自定义签名`0x123456`，同时使用地址为`0x8e1DC7E4Bb15927E76a854a92Bf8053761501fdC`的paymaster和paymaster输入`0x8c5a3445`。
 
 ```typescript
 {
@@ -63,15 +63,15 @@ Use custom signature `0x123456` for account, while using paymaster with address 
 }
 ```
 
-## Encoding paymaster params
+## 编码paymaster参数
 
-While the paymaster feature by itself does not impose any limitations on values of the `paymasterInput`, the Matter Labs team endorses certain types of [paymaster flows](../../dev/developer-guides/aa.md#built-in-paymaster-flows) that are processable by EOAs.
+虽然paymaster功能本身并没有对`paymasterInput`的值施加任何限制，但Matter Labs团队认可某些类型的[paymaster flow](.../.../dev/developer-guides/aa.md#built-in-paymaster-flows)是可以由EOAs处理的。
 
-zkSync SDK provides a utility method that can be used to get the correctly formed `paymasterParams` object: [getPaymasterParams](./utils.md#encoding-paymaster-params).
+zkSync SDK提供了一个实用方法，可以用来获取正确形成的`paymasterParams'对象。[getPaymasterParams]（./utils.md#encoding-paymaster-params）。
 
-## See in action
+## 在行动中看到
 
-If you want to call the method `setGreeting` of an ethers `Contract` object called `greeter`, this would look the following way, while paying fees with the [testnet paymaster](../../dev/developer-guides/aa.md#testnet-paymaster):
+如果你想调用一个名为`greeter'的ethers`Contract`对象的`setGreeting'方法，这将看起来如下，同时用[testnet paymaster]（././dev/developer-guides/aa.md#testnet-paymaster）支付费用。
 
 ```javascript
 // The `setGreeting` method has a single parameter -- new greeting
@@ -100,4 +100,4 @@ const sentTx = await sender.sendTransaction({
 });
 ```
 
-You can also check out our [tutorial](../../dev/building-on-zksync/hello-world.md) on the full-fledged mini-dApp, where users can choose token to pay the fee.
+你也可以看看我们的[教程](.../.../dev/building-onzksync/hello-world.md)关于成熟的mini-dApp，用户可以选择token来支付费用。

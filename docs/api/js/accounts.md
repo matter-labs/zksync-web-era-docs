@@ -1,16 +1,16 @@
-# Accounts: overview
+# 账户：概述
 
-`zksync-web3` exports four classes that can sign transactions on zkSync:
+`zksync-web3`输出四个可以在zkSync上签署交易的类。
 
-- `Wallet` class is an extension of the `ethers.Wallet` with additional zkSync features.
-- `EIP712Signer` class that is used to sign `EIP712`*-typed* zkSync transactions.
-- `Signer` and `L1Signer` classes, which should be used for browser integration.
+- `Wallet`类是`ethers.Wallet`的扩展，具有额外的zkSync功能。
+- `EIP712Signer`类，用于签署`EIP712`*类型*的zkSync交易。
+- `Signer`和`L1Signer`类，应该用于浏览器集成。
 
-## `Wallet`
+## `Wallet`.
 
-### Creating wallet from a private key
+### 从一个私钥创建钱包
 
-Just like `ethers.Wallet`, the `Wallet` object from `zksync-web3` can be created from Ethereum private key.
+就像`ethers.Wallet`一样，`zksync-web3`的`Wallet`对象可以由Ethereum私钥创建。
 
 ```typescript
 constructor Wallet(
@@ -19,14 +19,14 @@ constructor Wallet(
   providerL1?: ethers.providers.Provider): Wallet
 ```
 
-#### Inputs and outputs
+#### 输入和输出
 
-| Name                  | Description                                                 |
+| 名称 | 说明 |
 | --------------------- | ----------------------------------------------------------- |
-| privateKey            | The private key of the Ethereum account.                    |
-| providerL2? | A zkSync node provider. Needed for interaction with zkSync. |
-| providerL1? | An Ethereum node provider. Needed for interaction with L1.  |
-| returns               | The new `Wallet` object.                                    |
+| privateKey | 以太坊账户的私钥。                   |
+| providerL2? | 一个zkSync节点提供者。需要与zkSync进行互动。|
+| providerL1? | 一个Ethereum节点提供者。需要与L1进行交互。 |
+| returns | 新的 "钱包 "对象。                     |
 
 > Example
 
@@ -41,24 +41,24 @@ const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 ```
 
-### Other ways to create `Wallet` instances
+### 创建`钱包`实例的其他方法
 
-The `Wallet` class supports all the methods from `ethers.Wallet` for creating wallets, e.g. creating from mnemonic, creating from encrypted JSON, creating a random wallet, etc. All these methods take the same parameters as `ethers.Wallet`, so you should refer to its documentation on how to use them.
+`Wallet`类支持`ethers.Wallet`中所有用于创建钱包的方法，例如，从助记符创建，从加密的JSON创建，创建一个随机钱包，等等。所有这些方法的参数与`ethers.Wallet`相同，所以你应该参考它的文档来了解如何使用它们。
 
-### Connecting to the zkSync provider
+### 连接到zkSync提供者
 
-To interact with the zkSync network, the `Wallet` object should be connected to a `Provider` by either passing it to the constructor or with the `connect` method.
+为了与zkSync网络进行交互，`Wallet`对象应该连接到`Provider`，方法是将其传递给构造函数或使用`connect`方法。
 
 ```typescript
 Wallet.connect(provider: Provider): Wallet
 ```
 
-#### Inputs and outputs
+#### 输入和输出
 
-| Name     | Description                                 |
+| 名称 | 说明 |
 | -------- | ------------------------------------------- |
-| provider | A zkSync node provider.                     |
-| returns  | A new zkSync `Wallet` instance. |
+| provider | 一个zkSync节点提供者。                    |
+| returns | 一个新的zkSync "钱包 "实例。|
 
 > Example
 
@@ -71,9 +71,9 @@ const provider = new Provider("https://zksync2-testnet.zksync.dev");
 const wallet = unconnectedWallet.connect(provider);
 ```
 
-### Connecting to the Ethereum provider
+### 连接到Ethereum提供者
 
-To perform L1 operations, the `Wallet` object needs to be connected to an `ethers.providers.Provider` object.
+为了执行L1操作，`Wallet`对象需要连接到一个`ethers.providers.Provider`对象。
 
 ```typescript
 Wallet.connectToL1(provider: ethers.providers.Provider): Wallet
@@ -81,10 +81,10 @@ Wallet.connectToL1(provider: ethers.providers.Provider): Wallet
 
 #### Inputs and outputs
 
-| Name     | Description                                   |
-| -------- | --------------------------------------------- |
-| provider | An Ethereum node provider.                    |
-| returns  | A new zkSync `Wallet` instance that is connected to L1 `provider` |
+| Name     | Description                                      |
+| -------- | ------------------------------------------------ |
+| provider | 一个Ethereum节点提供者。                         |
+| returns  | 一个新的zkSync "钱包 "实例，与L1 "供应商 "相连。 |
 
 > Example
 
@@ -98,23 +98,23 @@ const ethProvider = ethers.getDefaultProvider("goerli");
 const wallet = unconnectedWallet.connectToL1(ethProvider);
 ```
 
-It is possible to chain `connect` and `connectToL1` methods:
+可以将 "connect "和 "connectToL1 "方法进行连锁。
 
 ```typescript
 const wallet = unconnectedWallet.connect(provider).connectToL1(ethProvider);
 ```
 
-### Getting the zkSync L1 smart contract
+### 获取zkSync L1智能合约
 
 ```typescript
 async getMainContract(): Promise<IZkSync>
 ```
 
-#### Inputs and outputs
+#### 输入和输出
 
-| Name    | Description                                      |
-| ------- | ------------------------------------------------ |
-| returns | `Contract` wrapper of the zkSync smart contract. |
+| Name    | Description                  |
+| ------- | ---------------------------- |
+| returns | zkSync智能合约的合约封装器。 |
 
 > Example
 
@@ -130,7 +130,7 @@ const contract = await wallet.getMainContract();
 console.log(contract.address);
 ```
 
-### Getting token balance
+### 获得代币余额
 
 ```typescript
 async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<BigNumber>
@@ -140,9 +140,9 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 
 | Name                | Description                                                                                                   |
 | ------------------- | ------------------------------------------------------------------------------------------------------------- |
-| token?    | The address of the token. ETH by default.                                                                     |
-| blockTag? | The block the balance should be checked on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The amount of the token the `Wallet` has.                                                                     |
+| token?    | 代币的地址。默认为ETH.                                                         |
+| blockTag? | 承诺，即最近处理的一个是默认选项。 |
+| returns             | 钱包拥有的代币的数量。                                                          |
 
 > Example
 
@@ -165,19 +165,19 @@ console.log(await wallet.getBalance(USDC_L2_ADDRESS));
 console.log(await wallet.getBalance());
 ```
 
-### Getting token balance on L1
+### 在L1上获得代币平衡
 
 ```typescript
 async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promise<BigNumber>
 ```
 
-#### Inputs and outputs
+#### 输入和输出
 
 | Name                | Description                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------------- |
-| token?    | The address of the token. ETH by default.                                                   |
-| blockTag? | The block the balance should be checked on. The latest processed one is the default option. |
-| returns             | The amount of the token the `Wallet` has on Ethereum.                                       |
+| token?    | 代币的地址。默认为ETH。                                      |
+| blockTag? | 余额应该被检查的区块。最近处理的那个是默认选项。 |
+| returns             | 钱包在以太坊上拥有的代币的数量。                       |
 
 > Example
 
@@ -200,9 +200,9 @@ console.log(await wallet.getBalanceL1(USDC_ADDRESS));
 console.log(await wallet.getBalanceL1());
 ```
 
-### Getting a nonce
+### 获得一个nonce
 
-`Wallet` also provides the `getNonce` method which is an alias for [getTransactionCount](https://docs.ethers.io/v5/api/signer/#Signer-getTransactionCount).
+Wallet "还提供了 "getNonce "方法，它是[getTransactionCount]()的一个别名。
 
 ```typescript
 async getNonce(blockTag?: BlockTag): Promise<number>
@@ -212,8 +212,8 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 
 | Name                | Description                                                                                             |
 | ------------------- | ------------------------------------------------------------------------------------------------------- |
-| blockTag? | The block the nonce should be got on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | Account's nonce number.                                                               |
+| blockTag? | 承诺的，即最新处理的，是默认选项。 |
+| returns             | 账户的nonce号码。                                                    |
 
 > Example
 
@@ -230,9 +230,9 @@ const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
 console.log(await wallet.getNonce());
 ```
 
-### Transferring tokens inside zkSync
+### 在zkSync内部传输令牌
 
-For convenience, the `Wallet` class has `transfer` method, which can transfer `ETH` or any `ERC20` token within the same interface.
+为了方便，"钱包 "类有 "转移 "方法，可以在同一界面内转移 "ETH "或任何 "ERC20 "令牌。
 
 ```typescript
 async transfer(tx: {
@@ -243,7 +243,7 @@ async transfer(tx: {
 }): Promise<TransactionResponse>
 ```
 
-#### Inputs and outputs
+#### 输入和输出
 
 | Name                 | Description                                             |
 | -------------------- | ------------------------------------------------------- |
@@ -495,11 +495,12 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 
 #### Inputs and outputs
 
-| Name                | Description                                                                                 |
+| 名称 | 说明 |
 | ------------------- | ------------------------------------------------------------------------------------------- |
-| token?    | The address of the token. ETH by default.                                                   |
-| blockTag? | The block the balance should be checked on. The latest processed one is the default option. |
-| returns             | The amount of the token the `L1Signer` has on Ethereum.                                     |
+| token?    | 代币的地址。默认为ETH。                                                  |
+| blockTag? | 余额应该被检查的区块。最新处理的一个是默认选项。|
+| returns | `L1Signer'在Ethereum上拥有的代币的数量。                                    |
+
 
 > Example
 

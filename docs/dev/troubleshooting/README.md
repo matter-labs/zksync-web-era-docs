@@ -1,10 +1,11 @@
-# Troubleshooting
+# 故障排除
 
-Get brief explainers on your integration with zkSync.
+获取关于您与zkSync整合的简要说明。
 
-## Table of contents
+## 目录
 
-- [Changelog](./changelog.md)
-- [Contribute to documentation](./docs-contribution/docs.md)
-- [Community resources](./docs-contribution/community-resources.md)
-- [FAQs](./faq.md)
+- [更新日志](./changelog.md)
+- [贡献文档](./docs-contribution/docs.md)
+- [社区资源](./docs-contribution/community-resources.md)
+- [常见问题](./faq.md)
+

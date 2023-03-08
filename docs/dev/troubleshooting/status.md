@@ -1,47 +1,48 @@
-# Feature support status
+# 功能支持状态
 
-::: tip Call for feedback
+:: :tip 征求反馈意见
 
-As we add new features, this page is constantly updated.
+随着我们增加新的功能，这个页面会不断地更新。
 
-If any of these blocks you, let us know on our [Discord](https://join.zksync.dev/), so we can prioritize accordingly.
+如果其中有任何阻挡你的情况，请在我们的[Discord](https://join.zksync.dev/)上告诉我们，这样我们就可以相应地安排优先次序。
 
 :::
 
 
-## Using libraries in Solidity
+## 在 Solidity 中使用库
 
-If a Solidity library can be inlined, i.e. it only contains `private` or `internal` methods, then this library can be used without any limitations.
+如果一个Solidity库可以被内联，即它只包含`private`或`internal`方法，那么这个库就可以不受任何限制地使用。
 
-However, if a library contains at least one `public` or `external` method, it is no longer inlined in the Yul representation. These addresses need to be passed explicitly to our compiler. This is not currently supported by our hardhat plugin but will be added later.
+然而，如果一个库至少包含一个`public`或`external`方法，它在Yul表示中就不再被内联。这些地址需要明确地传递给我们的编译器。我们的硬帽插件目前还不支持这一点，但以后会加入。
 
-For support on an older version of Solidity and Vyper, check [here](../building-on-zksync/contracts/contracts.md)
+对于Solidity和Vyper的旧版本的支持，请查看[这里](.../building-on-zksync/contracts/contracts.md)
 
-## Unsupported opcodes
+## 不支持的操作码
 
-- `SELFDESTRUCT` (it’s considered harmful and there are calls to deactivate it on L1).
-- `EXTCODECOPY` (it can be implemented if needed, but we skip it for now because zkEVM opcodes are not identical to EVM ones anyway).
-- `CALLCODE` (deprecated on Ethereum in favor of `DELEGATECALL`).
-- `CODECOPY` - (It does not return 0, but produces a compile error).
+- `SELFDESTRUCT` (它被认为是有害的，在L1上有调用来停用它)。
+- `EXTCODECOPY` (如果需要可以实现，但我们现在跳过它，因为zkEVM的操作码与EVM的不一样)。
+- `CALLCODE` (在Ethereum上已被废弃，改用`DELEGATECALL`)。
+- `CODECOPY` - (它不返回0，但产生一个编译错误)。
 
-## Ignored by the compiler
+## 被编译器忽略
 
-- `PC` always returns `0` (since solidity is 0.7.0, it is not accessible in Yul and Solidity).
+- `PC`总是返回`0`(因为solidity是0.7.0，所以在Yul和Solidity中不能访问)。
 
-## Precompiles
+## 预编译
 
-- zkSync natively supports `keccak256`, `sha256`, and `ecrecover` via precompiles.
+- zkSync通过预编译原生支持`keccak256`, `sha256`, 和`ecrecover`。
 
-## Currently supported features
+## 目前支持的功能
 
-- **Native support of ECDSA signatures.** Unlike the first version of zkSync and most zk rollups, no special operation is required to register the user's private key. Any account can be managed on L2 with the same private key that is used on L1.
-- **Solidity 0.8.x and Vyper support.** No need for change or re-audit of the codebase.
-- **Web3 API**. With small exceptions, our API is fully compatible with Ethereum. This enables seamless integration with existing indexers, explorers, etc.
-- **Hardhat plugin**. This allows easy testing and development of smart contracts on zkSync.
-- **L1 <-> L2 smart contract communication**.
+- **原生支持ECDSA签名。**与第一个版本的zkSync和大多数zk rollups不同，注册用户的私钥不需要特殊操作。任何账户都可以在L2上用L1上的相同私钥进行管理。
+- **支持Solidity 0.8.x和Vyper。**不需要改变或重新审核代码库。
+- **Web3 API**。除了小的例外，我们的API与Ethereum完全兼容。这使得我们能够与现有的索引器、探索器等无缝集成。
+- **Hardhat插件**。这使得zkSync上的智能合约的测试和开发变得容易。
+- **L1 <-> L2智能合约通信**。
 
-## Features to be released soon
+## 即将发布的功能
 
-- **More developer tooling.** Composability between various hardhat plugins with the zkSync plugin, easy local setup with Docker, etc. will be essential for the growth of the ecosystem.
-- **Support for older versions of Solidity.** We are actively working on supporting different versions of Solidity to enable seamless integration for the existing projects.
-- **zkPorter extension.** One of the biggest and most important features. It will let the users choose between high security & 20x fee reduction compared to Ethereum for zkRollup accounts and security much higher than that of a sidechain & near-constant transaction costs of a few USD cents for zkPorter accounts.
+- **更多的开发者工具。**各种硬帽插件与zkSync插件之间的兼容性，与Docker的简单本地设置，等等，将是生态系统发展的关键。
+- **对旧版本的Solidity的支持。**我们正在积极努力支持不同版本的Solidity，以实现现有项目的无缝集成。
+- **zkPorter扩展。**最大和最重要的功能之一。它将让用户在高安全性和比以太坊低20倍的费用中选择zkRollup账户，而在安全性远高于侧链的情况下选择zkPorter账户，其交易费用几乎为几美分。
+

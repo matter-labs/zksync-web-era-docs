@@ -1,22 +1,22 @@
-# Migration guide
+# 迁移指南
 
-Do you have a Hardhat project and you want to deploy it to zkSync? In this page you'll find all the steps you need to do to migrate an existing Hardhat project to zkSync.
+你有一个Hardhat项目，你想把它部署到zkSync？在这个页面，你会发现所有的步骤，你需要做的是将现有的Hardhat项目迁移到zkSync。
 
-## Overview
+## 概述
 
-zkSync offers [multiple Hardhat plugins](./plugins.md) with different features but in this guide we'll focus on only the ones you'd need to do to migrate your project to zkSync.
+zkSync提供了[多个Hardhat插件](./plugins.md)，具有不同的功能，但在本指南中，我们将只关注你将项目迁移到zkSync所需的功能。
 
-:::warning Non-default paths are not supported yet.
+警告 目前还不支持非默认的路径。
 
-Contracts files must be included in the `contracts` folder and deployment scripts must be included in the `deploy` folder.
+合同文件必须包含在`contracts`文件夹中，部署脚本必须包含在`deploy`文件夹中。
 
-Support for custom paths will be included in the future.
+对自定义路径的支持将在未来加入。
 
 :::
 
-## Install dependencies
+## 安装依赖项
 
-Although zkSync is [compatible with Solidity and Vyper](../../dev/building-on-zksync/contracts/contracts.md), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the fist step will be to install the compiler and deployer hardhat plugins:
+尽管zkSync[与Solidity和Vyper兼容]（.../.../dev/building-onzksync/contracts/contracts.md），但部署的字节码和部署过程与Ethereum或其他EVM区块链不同。因此，第一步将是安装编译器和部署器的硬帽插件。
 
 ```sh
 # Yarn
@@ -27,18 +27,18 @@ npm i -D @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-solc
 
 ```
 
-If you're using Vyper, replace `@matterlabs/hardhat-zksync-solc` with `@matterlabs/hardhat-zksync-vyper`
+如果你使用Vyper，请将`@matterlabs/hardhat-zksync-solc`替换为`@matterlabs/hardhat-zksync-vyper`。
 
-## Configuration changes
+## 配置变化
 
-In your `hardhat.config.ts` file import the installed dependencies:
+在你的`hardhat.config.ts`文件中导入已安装的依赖项。
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 ```
 
-Networks on zkSync require two different URL endpoints: one for the layer 1 (Ethereum or Goerli), and one for the layer 2 (zkSync). This is how you'd add the zkSync testnet to your list of networks in the `hardhat.config.ts`:
+zkSync上的网络需要两个不同的URL端点：一个用于第一层（Ethereum或Goerli），另一个用于第二层（zkSync）。这就是你如何在`hardhat.config.ts`中把zkSync testnet添加到你的网络列表中。
 
 ```typescript
 const config: HardhatUserConfig = {
@@ -57,9 +57,9 @@ const config: HardhatUserConfig = {
 
 };
 ```
-Remember to add `zksync: false` to any other networks.
+记得在任何其他网络中添加`zksync: false`。
 
-Finally, you'd need to add the compiler options inside a `zksolc` or `zkvyper` property. Here is the minimal configuration for a Solidity project:
+最后，你需要在`zksolc`或`zkvyper`属性中添加编译器选项。下面是一个 Solidity 项目的最小配置。
 
 ```typescript
 zksolc: {
@@ -68,11 +68,11 @@ zksolc: {
   settings: {},
 },
 ```
-You can find advance settings in the [Solidity](./hardhat-zksync-solc.md) or [Vyper](./hardhat-zksync-vyper.md) plugins.
+你可以在 [Solidity](./hardhat-zksync-solc.md) 或 [Vyper](./hardhat-zksync-vyper.md) 插件中找到提前设置。
 
-### Full configuration
+### 完整的配置
 
-Here is an example config file:
+下面是一个配置文件的例子。
 
 ```typescript
 import { HardhatUserConfig } from "hardhat/config";
@@ -114,9 +114,9 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-## Compile contracts
+## 编译合同
 
-To compile your contracts for zkSync, run:
+要为zkSync编译你的合同，请运行。
 
 ```
 # Yarn
@@ -126,22 +126,21 @@ yarn hardhat compile --network zkSyncTestnet
 npx hardhat compile  --network zkSyncTestnet
 ```
 
-Passing the `--network` flag we make sure Hardhat will use the zksolc compiler (or zkvyper). This command will compile all contracts in the `/contracts` folder and create the folders `artifacts-zk` and `cache-zk`.
+通过传递 --network 标志，我们确保 Hardhat 将使用 zksolc 编译器（或 zkvyper）。这个命令将编译 /contracts 文件夹中的所有合同，并创建 artifacts-zk 和 cache-zk 文件夹。
 
+如果你的合同导入了任何非内联的库，你需要在hardhat.config.ts文件中对其进行配置。在这里可以找到更多关于编译库的信息和例子。
 
-If your contracts import any non-inlineable libraries, you'd need to configure them in the `hardhat.config.ts` file. Find more info and examples about [compiling libraries here](./compiling-libraries.md).
+部署合同
 
-## Deploy contracts
+:::tip 测试ETH
 
-::: tip Test ETH
-
-Obtain [test ETH from our faucet](https://portal.zksync.io/faucet) or just bridge GöerliETH using [the zkSync Portal](https://portal.zksync.io/bridge).
+从我们的龙头获得测试ETH，或者直接使用zkSync门户桥接GöerliETH。
 
 :::
 
-To deploy your contracts you'd need to use the `Deployer` class from the `hardhat-zksync-deploy`  plugin. This class takes care of all the specifics of [deploying contracts on zkSync](../../dev/building-on-zksync/contracts/contract-deployment.md). 
+为了部署你的合约，你需要使用hardhat-zksync-deploy插件中的Deployer类。这个类负责处理在zkSync上部署合同的所有具体事宜。
 
-Here is a basic deployment script for a `Greeter` contract:
+下面是一个Greeter合同的基本部署脚本。
 
 
 ```typescript
@@ -173,7 +172,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 
 ```
-Include your deployment script in the `deploy` folder and execute it running:
+在`deploy`文件夹中包含你的部署脚本，并在运行中执行它。
 
 ```
 # Yarn
@@ -183,11 +182,11 @@ yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
 npx hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
 ```
 
-If you don't include the `--script` option, all script files inside the `deploy` folder will be executed in alphabetical order.
+如果你不包括`--script`选项，`deploy`文件夹内的所有脚本文件将按字母顺序执行。
 
-## Frontend integration
+## 前端集成
 
-You can interact with your contracts using the `zksync-web3` Javascript library. This SDK has been built on top of ethers and uses the same classes (`Provider`, `Contract`, `Wallet`) so in a lot of cases, you'd just need to import these classes from `zksync-web3`  instead of `ethers`:
+你可以使用`zksync-web3` Javascript库与你的合同进行交互。这个SDK建立在ethers之上，使用相同的类（`Provider`, `Contract`, `Wallet`），所以在很多情况下，你只需要从`zksync-web3`导入这些类，而不是`ethers`。
 
 ```typescript
 
@@ -196,18 +195,18 @@ import { utils, Provider, Contract, Wallet } from "zksync-web3";
 
 ```
 
-You'd also need to use the contract ABI from the `artifacts-zk` folder to instantiate contracts.
+你还需要使用`artifacts-zk`文件夹中的合同ABI来实例化合同。
 
-Apart from the same classes and methods provided by ethers, zksync-web3 includes additional methods for zksync-specific features. You can read more in the [`zksync-web3` documentation](../js/getting-started.md).
+除了以太坊提供的相同的类和方法外，zksync-web3还包括用于zksync特定功能的额外方法。你可以在[`zksync-web3`文档]（.../js/getting-started.md）中阅读更多内容。
 
-## Verify contracts
+## 验证合同
 
-To verify your contracts you have two options:
+要验证你的合同，你有两个选择。
 
-- Explorer: verify your contracts manually in the [zkSync explorer](../tools/block-explorer/contract-verification.md)
-- Plugin:verify your contracts programmatically using the [Hardhat verify plugin](./hardhat-zksync-verify.md)
+- 探索器：在[zkSync探索器]中手动验证你的合同(.../tools/block-explorer/contract-verification.md)
+- 插件：使用[Hardhat验证插件](./hardhat-zksync-verify.md)以编程方式验证你的合同。
 
 
----
+-
 
-If you have any problems migrating your project, [send us a message on Discord](https://join.zksync.dev/).
+如果你在迁移你的项目时有任何问题，[在Discord上给我们留言](https://join.zksync.dev/)。

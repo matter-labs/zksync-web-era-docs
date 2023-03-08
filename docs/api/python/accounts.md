@@ -1,13 +1,13 @@
-# Accounts: overview
+# 账户：概述
 
-The zkSync Python SDK, has a few methods to generate signature and verify messages.
+zkSync Python SDK，有一些方法来生成签名和验证信息。
 
-`sign_typed_data` : used to sign EIP712-typed zkSync transactions.
-`verify_typed_data` : used to verify the signed EIP712-typed zkSync transactions.
+`sign_typed_data`：用于签署EIP712类型的zkSync交易。
+`verify_typed_data`：用于验证签名的EIP712类型的zkSync事务。
 
-**construction**
+**构建**
 
-For constructing the instance it needs only `account` and `chain_id`.
+为了构建实例，它只需要`account`和`chain_id`。
 
 > Example:
 
@@ -30,7 +30,7 @@ signer = PrivateKeyEthSigner(account, chain_id)
 
 ## sign_typed_data
 
-The signer is used to generate the signature of the provided transaction based on your account(your private key).
+签名者用于根据你的账户（你的私钥）生成所提供交易的签名。
 
 **Parameters**
 
@@ -40,7 +40,7 @@ The signer is used to generate the signature of the provided transaction based o
 
 ## verify_typed_data
 
-It's used to verify the provided transaction, whose signature is added to the final `EIP712` transaction for its validation.
+它被用来验证所提供的交易，其签名被添加到最终的`EIP712`交易中进行验证。
 
 **Parameters**
 
@@ -48,7 +48,7 @@ It's used to verify the provided transaction, whose signature is added to the fi
 | -------------------------------------------- | ------------ | ------------------------------------------------------------------------------ |
 | signature, EIP712 structure, optional domain | bool         | Returns **True** if the encoded transaction is signed with provided signature. |
 
-The signer class also has the following properties:
+签名者类也有以下属性。
 
 | Attribute | Description                                                                       |
 | --------- | --------------------------------------------------------------------------------- |

@@ -1,25 +1,26 @@
-## Using zkEVM debugger
+## 使用zkEVM调试器
 
-### Overview
+### 概述
 
-The disadvantage of contract execution is that it is difficult to determine what a transaction did. A transaction receipt has a status code that indicates whether or not the execution was successful, but there is no way to determine what data was updated or which external contracts were triggered. This is remedied by zkSync zkEVM debugger, which replays the execution of your smart contracts and captures data on exactly what the EVM did, allowing you to examine each instruction.
+契约执行的缺点是很难确定一个事务做了什么。一个事务收据有一个状态代码，表明执行是否成功，但没有办法确定哪些数据被更新或哪些外部合同被触发。zkSync zkEVM调试器弥补了这一点，它可以复制你的智能合约的执行，并捕捉EVM到底做了什么的数据，让你检查每个指令。
 
-The [debugger page](https://explorer.zksync.io/tools/debugger) can be accessed from the top menu.
+可以从顶部菜单进入[调试器页面](https://explorer.zksync.io/tools/debugger)。
 
-![zkEVM!](../../../assets/images/zk-evm.png "zkEVM page")
+![zkEVM!](../../../assets/images/zk-evm.png "zkEVM页面")
 
-### Debugging steps
+### 调试步骤
 
-Here are the steps to follow to debug or trace a transaction:
+以下是调试或跟踪交易的步骤。
 
-1. Upload a JSON file: Click on the `Upload JSON file` button and you will see a modal window with a saving prompt, or simply drag-and-drop the file into the upload dialog. To know the specification of the type of file, please read the [EVM trace specification](https://eips.ethereum.org/EIPS/eip-3155).
-2. File upload: A loader screen is shown to indicate that the trace file is loading.
-3. At a successful upload the debugger state changes to an active state.
-4. To proceed to debug, click on the `Start` button.
+1. 上传一个JSON文件。点击 "Upload JSON file "按钮，你会看到一个带有保存提示的模式窗口，或者直接将文件拖放到上传对话框中。要了解文件类型的规范，请阅读[EVM跟踪规范](https://eips.ethereum.org/EIPS/eip-3155)。
+2. 文件上传。显示一个加载器屏幕，表示正在加载跟踪文件。
+3. 3.上传成功后，调试器状态变为活动状态。
+4. 要继续调试，请点击 "Start "按钮。
 
-These are some **keyboard shortcuts** to note when debugging.
+这些是调试时需要注意的一些**键盘快捷键。
 
-- `Cmd + K`: This opens the search bar.
-- `Arrows Left / Right`: This takes you to the next or previous instruction.
-- `Arrows Top / Bottom`: It takes you to the next previous function inside of this contract.
-- `Shift + Arrows`: It takes you to the next or previous contract
+- `Cmd + K`。这将打开搜索栏。
+- 箭头左/右"。这将使你进入下一条或上一条指令。
+- 箭头顶部/底部"。它将带您到本合同中的下一个上一个函数。
+- Shift + 箭头"。它将带你到下一个或上一个合同
+

@@ -1,142 +1,145 @@
-# FAQ
+# 常见问题
 
-Here you will find some of the most common questions we receive about zkSync Era.
+在这里你会发现一些我们收到的关于zkSync Era的最常见的问题。
 
-## What is zkSync Era?
+## 什么是zkSync Era？
 
-zkSync Era is a Zero Knowledge (ZK) rollup that supports generalized EVM compatibility for the Ethereum blockchain. The primary benefit of zkSync Era is that developers who have created EVM dApps can port to zkSync Era effortlessly and realize significantly lower gas fees and more transactions per second while inheriting Ethereum's security and decentralization.
+zkSync Era是一个零知识（ZK）的滚动，支持Ethereum区块链的通用EVM兼容性。zkSync Era的主要好处是，已经创建了EVM dApps的开发者可以毫不费力地移植到zkSync Era，并在继承Ethereum的安全性和去中心化的同时，实现显著降低气体费用和每秒更多交易。
 
-## Why zkSync Era?
+## 为什么选择zkSync Era？
 
-zkSync Era is a gigantic leap forward in Layer 2 technologies. It is a long-awaited improvement that offers many never before enjoyed benefits for Ethereum developers.
+zkSync Era是第2层技术的一个巨大飞跃。这是一个期待已久的改进，为以太坊开发者提供了许多从未享受过的好处。
 
-- **EVM Compatible** - zkSync is an EVM-compatible zero knowledge rollup that supports generalized EVM smart contracts. This means if you have EVM smart contracts it’s super easy to port your dApp to zkSync Era.
-- **Ethos Compatible** - we are very aligned with the ethos of decentralization and open source. All of our code will strive to be fully open-source and zkSync will be executing a roadmap that will fully decentralize the sequencer and proof generation, and we will be executing a roadmap of organizational subtractive management - that is, we will be decentralizing our organization as well.
-- **Certainty** - Unlike previous methods attempting to scale Ethereum which have in some cases offered weaker security guarantees than for L1 (e.g. sidechains, plasma, and optimistic) zkSync uses zero-knowledge proofs which offer _certainty_ of security.
-- **Future Proof** - Ecosystem projects that adopt zkSync Era now will enjoy all future improvements without the need to change their code, in particular coming from:
-  1. The prover technology (hardware acceleration).
-  2. The compiler (integration of LLVM-enabled modern programming languages).
-  3. All innovations of zkSync 3.0 (Hyperchains and Hyperbridges).
+- **EVM兼容** - zkSync是一个EVM兼容的零知识卷积，支持通用的EVM智能合约。这意味着如果你有EVM智能合约，那么将你的DApp移植到zkSync Era是超级容易的。
+- **Ethos兼容** - 我们非常赞同去中心化和开放源代码的精神。我们所有的代码将努力做到完全开源，zkSync将执行一个路线图，将排序器和证明生成完全去中心化，我们将执行一个组织减法管理的路线图，也就是说，我们也将去中心化我们的组织。
+- **确定性** - 与之前试图扩大以太坊规模的方法不同，这些方法在某些情况下提供了比L1更弱的安全保障（例如侧链、等离子体和乐观主义），ZkSync使用零知识证明，提供_确定性_的安全。
+- **未来证明** - 现在采用zkSync Era的生态系统项目将享受所有未来的改进，而不需要改变他们的代码，特别是来自于。
+  1. 证明人技术（硬件加速）。
+  2. 编译器（集成支持LLVM的现代编程语言）。
+  3. zkSync 3.0的所有创新（超链和超桥）。
 
-## What is the zkEVM?
+## 什么是zkEVM？
 
-zkEVM is the name of the architecture that enables zero-knowledge proof generation for the execution trace of smart contracts originally written for EVM.
+zkEVM是一个架构的名称，它能够为最初为EVM编写的智能合约的执行跟踪生成零知识证明。
 
-Its architecture is based on the following components:
+其架构是基于以下组件。
 
-- zkVM, a Turing-complete RISC-like virtual machine optimized for proving in a ZKP circuit. It has several different implementations:
-  - Executor: fast native execution on CPU.
-  - Witness generator: native executor to generate ZKP witness.
-  - Prover: the actual ZKP circuit implementation.
-- LLVM-based compiler with:
-  - Solidity frontend (more precisely: Yul frontend).
-  - Vyper frontend.
-  - zkVM backend.
-- Special-purpose circuits (heavily relying on PLONK’s custom gates and lookup tables) as “precompiles” for computationally intensive operations, such as:
-  - Non-algebraic hashes (Keccak, SHA256, Blake2).
-  - Storage access (Merkle paths).
-  - Elliptic curve pairing.
-- Recursive aggregation circuit (combines the proofs from the above-mentioned parts).
+- zkVM，一个为在ZKP电路中证明而优化的图灵完备的类RISC虚拟机。它有几种不同的实现方式。
+  - 执行器：在CPU上的快速本地执行。
+  - 证人生成器：生成ZKP证人的本地执行器。
+  - 证明者：实际的ZKP电路实现。
+- 基于LLVM的编译器。
+  - Solidity前台（更确切地说：Yul前台）。
+  - Vyper前台。
+  - zkVM后端。
+- 特殊用途的电路（严重依赖PLONK的自定义门和查找表）作为计算密集型操作的 "预编译"，例如。
+  - 非代数哈希（Keccak, SHA256, Blake2）。
+  - 存储访问（Merkle路径）。
+  - 椭圆曲线配对。
+- 递归聚合电路（结合上述部分的证明）。
 
 ### zkEVM vs EVM
 
-Apart from the opcodes and gas metering disparity, zkVM strictly inherits the EVM programming model and its invariants, including the ABI calling conventions. One important thing to emphasize is that the zkVM supports rollbacks and provably revertible transactions. It guarantees mutual protection: users can not stall the network with bombardment by revertible transactions, and the escape hatch (priority queue) protects the user’s ability to include any transactions into the blocks.
+除了操作码和气体计量的差异外，zkVM严格继承了EVM的编程模型及其不变性，包括ABI的调用约定。需要强调的一件事是，zkVM支持回滚和可证明的可逆事务。它保证了相互保护：用户不能用可逆事务的轰炸来拖延网络，而逃生舱口（优先级队列）则保护了用户将任何事务纳入区块的能力。
 
-As a result, developers can fully rely on the censorship-resistance provided by L1 without having to introduce any changes related to the escape-hatch mechanism. This means that assets in a zkRollup account on zkSync will have exactly the same security guarantees as on L1.
+因此，开发人员可以完全依赖L1提供的审查阻力，而不必引入与逃生舱口机制有关的任何变化。这意味着zkSync上zkRollup账户中的资产将拥有与L1上完全相同的安全保障。
 
-### EVM Improvements
 
-While maintaining maximum compatibility, the zkEVM has significant improvements over the EVM that increase adoption and benefit our ecosystem projects.
+### EVM的改进
 
-- **Our compiler is based on LLVM**. LLVM-based compilers (Low-Level Virtual Machine) have become the default compiler for Mac OS X, iOS, FreeBSD, and Android systems and are among the most widely used because they:
-  - Enable us to improve the efficiency over the original EVM bytecode because with LLVM we can take advantage of the many optimizations and tools available in this mature ecosystem.
-  - Pave the way for us to add support for integrating codebases written in other programming languages with LLVM frontend. By doing so, developers can build dApps and use blockchains in ways that are currently not possible.
-- **Account Abstraction is included in our zkEVM**. This is a long-anticipated feature in the Ethereum dev community which improves developer adoption and user experience in a number of ways:
-  - Native support for smart contracts wallets (like Argent), which is critical for onboarding mainstream users.
-  - Much better UX for multisigs.
-  - Transaction fees can be paid in any token using [paymasters](../developer-guides/aa.md#paymasters).
-  - Protocols can now subsidize gas for users from their smart contracts or even enable gasless transactions.
-  - Transaction batches (multicall) can be confirmed in one click (big UX problem on Ethereum today).
-  - Learn more about [account abstraction support in zkSync Era](../developer-guides/aa.md).
+在保持最大的兼容性的同时，zkEVM比EVM有显著的改进，增加了采用率并有利于我们的生态系统项目。
 
-### EVM Compatibility
+- **我们的编译器是基于LLVM的**。基于LLVM的编译器（Low-Level Virtual Machine）已经成为Mac OS X、iOS、FreeBSD和Android系统的默认编译器，并且是使用最广泛的编译器之一，因为它们。
+  - 使我们能够比原来的EVM字节码提高效率，因为通过LLVM，我们可以利用这个成熟的生态系统中的许多优化和工具。
+  - 为我们增加支持整合用其他编程语言编写的代码库与LLVM前端铺平道路。通过这样做，开发人员可以建立dApps，并以目前不可能的方式使用区块链。
+- **账户抽象包含在我们的zkEVM中**。这是Ethereum开发社区期待已久的功能，它以多种方式改善了开发者的采用和用户体验。
+  - 对智能合约钱包（如Argent）的原生支持，这对主流用户的入驻至关重要。
+  - 对多合约的用户体验好得多。
+  - 交易费用可以使用[paymasters]（.../developer-guides/aa.md#paymasters）以任何代币支付。
+  - 协议现在可以从他们的智能合约中为用户补贴气体，甚至可以实现无气体交易。
+  - 交易批次（multicall）可以一键确认（目前以太坊的大用户体验问题）。
+  - 了解更多关于[zkSync时代的账户抽象支持]（.../developer-guides/aa.md）。
 
-There is a lot of confusion amongst the community with regard to the impacts of being EVM Compatible versus EVM Equivalent. First, let’s define what is meant by the two.
+### EVM的兼容性
 
-- **EVM Equivalent** means that a given protocol supports every opcode of Ethereum’s EVM down to the bytecode. Thus, any EVM smart contract works with 100% assurance out of the box.
-- **EVM Compatible** means that a percentage of the opcodes of Ethereum’s EVM are supported; thus, a percentage of smart contracts work out of the box.
+关于EVM兼容与EVM等同的影响，在社区中存在很多困惑。首先，让我们定义一下这两者的含义。
 
-zkSync is optimized to be EVM _compatible_ not EVM _equivalent_ for three primary reasons:
+- EVM等效**意味着一个特定的协议支持以太坊EVM的每一个操作码，直到字节码。因此，任何EVM智能合约都可以100%保证开箱即用。
+- **EVM兼容**意味着支持Ethereum的EVM的一部分操作码；因此，一部分智能合约开箱即用。
 
-1. Creating a generalized circuit for EVM equivalence down to the bytecode would be prohibitively expensive and time-consuming.
-2. Building on what we learned with zkSync 1.0, we were able to design a system optimised for performance and provability in ZK.
-3. The opcodes we’ve chosen NOT to support are deprecated by Ethereum itself, or rarely used. In the case a project needs them, modifications to work with zkSync are minimal and do not generate a need for a new security audit.
+zkSync被优化为EVM _compatible_而不是EVM _equivalent_，有三个主要原因。
 
-Almost every smart contract written for EVM will be supported by zkSync Era and will hold all key security invariants so that no additional security re-auditing will be required in most cases.
+1. 1.为EVM的等价性创建一个通用的电路，直到字节码，这将是非常昂贵和费时的。
+2. 在我们从zkSync 1.0学到的基础上，我们能够设计一个针对性能和ZK可证明性进行优化的系统。
+3. 3.我们选择不支持的操作码已经被Ethereum本身废弃，或者很少使用。在项目需要它们的情况下，为了与zkSync一起工作而进行的修改是最小的，并且不会产生对新的安全审计的需求。
 
-::: warning Unsupported opcodes
+几乎所有为EVM编写的智能合约都会被zkSync Era所支持，并持有所有关键的安全不变性，因此在大多数情况下不需要额外的安全重新审计。
 
-There are a few opcodes not supported by the zkEVM. Some of them have been deprecated or its use is minor but contracts that use them would need to be adapted. You can find more information about this in the [EVM compatibility section of the docs](../building-on-zksync/contracts/contracts.md#evm-compatibility).
+::: warning 不支持的操作码
+
+有几个操作码不被zkEVM支持。其中一些已经被废弃，或者它的使用是次要的，但使用它们的合同将需要调整。你可以在文档的[EVM兼容性部分]（.../building-on-zksync/contracts/contracts.md#evm-compatibility）找到更多相关信息。
+
 
 :::
 
-There are a few other distinctions, for example, gas metering will be different (as is the case for other L2s as well). Some EVM’s cryptographic precompiles (notably pairings and RSA) won’t be available in the very first release but will be implemented soon after the launch, with pairing being a priority to allow both Hyperchains and protocols like Aztec/Dark Forest to be deployed without modifications too.
+还有一些其他的区别，例如，气体计量将是不同的（其他L2的情况也是如此）。一些EVM的加密预编译（特别是配对和RSA）不会在第一个版本中出现，但会在推出后很快实现，其中配对是一个优先事项，以允许超链和像Aztec/Dark Forest这样的协议在没有修改的情况下也可以部署。
 
-## Security expectations
+## 安全预期
 
-zkSync Era’s data availability layer is Ethereum. All ecosystem projects that build on zkSync Era will inherit the full security benefits of Ethereum.
+zkSync Era的数据可用性层是Ethereum。所有建立在zkSync Era上的生态系统项目将继承Ethereum的全部安全优势。
 
-This is obviously a critically important topic for us, and we’re currently in the midst of a major review of zkSync Era’s security (including external audits, security contests, and overhauling and extending our bug bounty program).
+这对我们来说显然是一个极其重要的话题，我们目前正在对zkSync Era的安全性进行重大审查（包括外部审计、安全竞赛，以及全面修改和扩展我们的漏洞赏金计划）。
 
-We’ll be expanding on the details here substantially very soon.
+我们将很快在这里实质性地扩展细节。
 
-### Triggering Security audits
+### 触发安全审计
 
-While there are a few, rarely used opcodes that we do not support, we have not found any instances with our ecosystem projects where a breaking change was anything other than a simple refactoring of a few lines of code. None of our ecosystem projects who have ported to zkSync have reported that any change has caused a need for a security audit.
+虽然有一些很少使用的操作码是我们不支持的，但我们还没有在我们的生态系统项目中发现任何破坏性改变的情况，而只是简单地重构了几行代码。我们的生态系统项目中，没有一个移植到zkSync的项目报告说，任何变化都会导致需要进行安全审计。
 
-## What is Account Abstraction?
+## 什么是账户抽象？
 
-At a very high level, Account Abstraction allows us to make authorizations *programmable*, enabling a greater diversity of wallet and protocol design with use cases including:
+在一个非常高的水平上，账户抽象允许我们使授权*可编程*，使钱包和协议设计更加多样化，使用情况包括。
 
-- The implementation of smart contract wallets that improve the user experience of private key storage and recovery (eg. [social recovery](https://vitalik.ca/general/2021/01/11/recovery.html), multisig).
-- The ability to natively pay gas fees in tokens other than ETH.
-- The ability for accounts to change public and private keys.
-- The addition of non-cryptographic modifications, where users can require transactions to have expiry times, confirm slightly out-of-order, and more.
-- Diversity in signature verification systems from the current ECDSA, including post-quantum safe signature algorithms (eg. Lamport, Winternitz).
+- 实施智能合约钱包，改善私钥存储和恢复的用户体验（例如，[社会恢复](https://vitalik.ca/general/2021/01/11/recovery.html), multisig）。
+- 以ETH以外的代币支付天然气费用的能力。
+- 账户改变公钥和私钥的能力。
+- 增加了非加密的修改，用户可以要求交易有过期时间，确认略微失误，等等。
+- 签名验证系统的多样性，从目前的ECDSA，包括后量子安全签名算法（例如，Lamport，Winternitz）。
 
-In other words, Account Abstraction brings about major improvements to the overall user experience, and expands the application design space for developers. Learn more in [this blog post](https://www.argent.xyz/blog/wtf-is-account-abstraction/) by Argent.
+换句话说，账户抽象给整个用户体验带来了重大改进，并为开发者扩大了应用设计空间。在Argent的[这篇博文](https://www.argent.xyz/blog/wtf-is-account-abstraction/)中了解更多。
 
-In zkSync Era Account Abstraction is natively implemented, meaning accounts can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract.
+在zkSync时代，账户抽象是原生实现的，这意味着账户可以发起交易，像EOA一样，但也可以在其中实现任意的逻辑，像智能合约一样。
 
-If you want to better understand what Account Abstraction on zkSync looks like, you can read [this section of the docs](../developer-guides/aa.md), or try out our tutorial [here](../tutorials/custom-aa-tutorial.md).
+如果你想更好地了解zkSync上的账户抽象是什么样的，你可以阅读[本节文档]（.../developer-guides/aa.md），或尝试我们的教程[这里]（.../tutorials/custom-aa-utorial.md）。
 
-## zkSync Era vs Alternatives
+## zkSync时代vs替代品
 
-### **zkSync Era vs Optimistic Rollups**
+### **zkSync Era vs 乐观的卷积系统***
 
-Optimistic rollups like Arbitrum and Optimism utilize the optimistic approach to secure their networks. At the time of their development, they represented an important incremental improvement over other available options. However, a widely held opinion ([including Vitalik Buterin's](https://coinculture.com/au/people/vitalik-buterin-zk-rollups-to-outperform-optimistic-rollups/)) is that optimistic methods represent yet another temporary solution and in the long run the only permanent and truly scalable solution will be blockchains based on Zero-Knowledge proofs.
+像Arbitrum和Optimism这样的乐观型滚动程序利用乐观的方法来保障其网络安全。在他们开发的时候，他们代表了比其他可用选项更重要的渐进式改进。然而，一个广泛持有的观点（[包括Vitalik Buterin的观点](https://coinculture.com/au/people/vitalik-buterin-zk-rollups-to-outperform-optimistic-rollups/)）是，乐观的方法代表了另一个临时的解决方案，从长远来看，唯一永久的和真正可扩展的解决方案将是基于零知识证明的区块链。
 
-Optimistic rollups suffer from the following key issues:
+乐观的卷积法存在以下关键问题。
 
-- **Optimistic rollups are secured via game theory.** This method assumes all transactions are valid and then utilizes an after-the-fact game theory mechanism to pay participants to discover fraudulent or otherwise invalid (e.g. because of bugs) transactions. Game theory is never perfect and as with the game theory that broke with stablecoins and other systems, we just don’t think it can be relied on in the long term and at true scale to offer the security the ecosystem needs. _zkSync Era, on the other hand, relies on math, not game theory, to provide the absolute certainty of proof that every single transaction is provably valid and not fraudulent._
-- **Optimistic methods take 7 days to settle**. Settlement time is becoming an increasingly important feature for ecosystem projects. As ecosystem projects’ needs mature, the need for as close to instant settlement will rise. With optimistic methods, this settlement problem will not go away. It's always going to be a 7-day settlement time because optimistic methods need 7 days for their after-the-fact game theory to conclude its challenge window. The only way around this is to bring in third parties that provide some liquidity - but then again this is a potential security risk in trusting the liquidity providers. _When zkSync Era initially launches on Mainnet, it will provide settlement in hours but we are targeting settlement within minutes after months of work - and as we improve settlement times to near zero - no partner needs to change any code_.
-- **Optimistic rollups have no method of scaling beyond where they are now.** When optimistic methods first came out, they became popular because they scaled Ethereum (e.g. they enabled the processing of 10x Ethereum transactions _without degradation of security and decentralization_). The problem is that while they can scale Ethereum by 10x now, they have no mechanism to go beyond 10x without degrading security and decentralization. _In contrast, zkSync Era is based on zero-knowledge proofs which have important characteristics that optimistic methods do not - they can hyperscale._
+- 这种方法假设所有交易都是有效的，然后利用事后的博弈论机制来支付参与者发现欺诈性或其他无效的（例如因为bug）交易。博弈论从来都不是完美的，就像稳定币和其他系统的博弈论一样，我们认为它不能被长期和真正的规模所依赖，以提供生态系统所需的安全性。另一方面，_zkSync Era依靠数学，而不是博弈论，提供绝对确定的证据，证明每一笔交易都是可证明的有效的，不是欺诈。
+- **乐观的方法需要7天时间来结算**。对于生态系统项目来说，结算时间正成为一个越来越重要的特征。随着生态系统项目需求的成熟，对尽可能接近即时结算的需求将上升。用乐观的方法，这个结算问题不会消失。它总是会有7天的结算时间，因为乐观的方法需要7天的时间来完成其事后博弈理论的挑战窗口。绕过这个问题的唯一方法是引入提供一些流动性的第三方 - 但这又是信任流动性提供者的潜在安全风险。_当zkSync时代最初在主网上推出时，它将在几个小时内提供结算，但经过几个月的工作，我们的目标是在几分钟内完成结算 - 随着我们将结算时间提高到接近零 - 没有合作伙伴需要改变任何代码_。
+- **乐观的滚动没有方法超越他们现在的位置。**当乐观的方法首次出现时，他们变得流行，因为他们可以扩展以太坊（例如，他们可以处理10倍的以太坊交易_而不降低安全性和分散性_）。问题是，虽然他们现在可以将以太坊扩展到10倍，但他们没有机制在不降低安全性和分散性的情况下超过10倍。相比之下，zkSync Era是基于零知识证明的，它具有乐观方法所不具备的重要特征--它们可以超大规模。
 
-### zkSync Era vs other zkRollups
+### zkSync Era与其他zkRollups相比
 
-While all zero knowledge rollup blockchains share the underlying technology of cryptographic proofs, there are many important differences.
+虽然所有的零知识卷积区块链都共享加密证明的基础技术，但有许多重要的区别。
 
-**zkSync versus Starkware.** When you compare zkSync to Starkware, mostly what you see is two divergent strategies whereby zkSync optimizes for being compatible with the Ethereum ecosystem, technology, and ethos, whereby Starkware optimizes for theoretical performance benefits at the cost of compatibility.
+**zkSync与Starkware.**当你比较zkSync和Starkware时，主要看到的是两种不同的策略，即zkSync优化与以太坊生态系统、技术和精神的兼容，而Starkware则以兼容性为代价优化理论上的性能优势。
 
-- **EVM.** zkSync is EVM compatible VS Starknet is NOT EVM compatible.
-- **Toolchain**. zkSync is toolchain compatible VS Starknet is NOT and requires people to learn a whole new toolchain centered around a custom language called Cairo.
-- **Ecosystem**. zkSync’s ecosystem naturally works with all of the toolsets of the Ethereum ecosystem VS Starkware is attempting to bootstrap an entirely new ecosystem with all new tools.
-- **Decentralization**. zkSync embraces decentralization, both at the technology level and the organizational level VS Starknet does NOT embrace decentralization.
-- **Open-source.** zkSync is fully open-source VS Starkware is NOT open-source.
+- **EVM.** zkSync兼容EVM，而Starknet不兼容EVM。
+- **工具链**。zkSync与工具链兼容，而Starknet不兼容，它要求人们学习一个全新的工具链，其核心是一种叫做Cairo的自定义语言。
+- **生态系统**。zkSync的生态系统自然地与以太坊生态系统的所有工具集一起工作，而Starkware则试图用所有新的工具启动一个全新的生态系统。
+- **去中心化**。zkSync拥抱去中心化，无论是在技术层面还是在组织层面，VS Starknet不拥抱去中心化。
+- **开源。** zkSync是完全开源的，而Starkware则不是开源的。
 
-## Which Wallets are supported?
+## 支持哪些钱包？
 
-At the moment, we support any Ethereum-based wallet. By default, the provided option on zkSync Era portal is Metamask - besides connecting automatically, you can add zkSync network to your Metamask manually:
+目前，我们支持任何基于Ethereum的钱包。默认情况下，zkSync Era门户网站上提供的选项是Metamask - 除了自动连接，你可以手动添加zkSync网络到你的Metamask。
+
 
 **Testnet network info**
 
@@ -156,39 +159,39 @@ At the moment, we support any Ethereum-based wallet. By default, the provided op
 - Block Explorer URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`
 
-## How do I Request Funds for Testnet?
+## 我如何为testnet申请资金？
 
-To access the testnet funds you can use ([Faucet](https://portal.zksync.io/faucet)) by tweeting about us and get some tokens. Make sure that Twitter message contains your Ethereum address to which we’ll send funds and that it’s not your main Ethereum account. The faucet will not work with new Twitter accounts & accounts without avatar.
+要获得testnet的资金，你可以使用（[Faucet](https://portal.zksync.io/faucet)）通过在推特上介绍我们，获得一些代币。请确保推特上的信息包含你的以太坊地址，我们将把资金发送到该地址，并且它不是你的主要以太坊账户。该龙头对新的Twitter账户和没有头像的账户将不起作用。
 
-Alternatively, you can use [our bridge](https://portal.zksync.io/bridge) to bridge ETH from Goerli to zkSync Era Testnet.
+另外，您可以使用[我们的桥梁](https://portal.zksync.io/bridge)将ETH从Goerli桥接到zkSync Era Testnet。
 
-## How long does it take to complete a deposit transaction?
+## 完成一笔存款交易需要多长时间？
 
-The transactions on zkSync Era should not take more than 5 minutes.
+zkSync Era上的交易不应超过5分钟。
 
-## Where can I see the transactions I submitted?
+## 我在哪里可以看到我提交的交易？
 
-Our [Block Explorer](https://explorer.zksync.io) will show everything you may need about a transaction.
+我们的[区块浏览器](https://explorer.zksync.io)将显示你可能需要的关于交易的一切。
 
-## Can someone claim the address I have for my contract in other EVM networks in zkSync Era?
+## 有人能在zkSync Era的其他EVM网络中索取我的合同地址吗？
 
-The contract address derivation formula is different from the regular EVM approach. Even if a contract is deployed from the same account address with the same nonce, the zkSync Era contract address will not be the same as it is in another EVM network. This means, for example, that no one will be able to claim an existing Ethereum address of your protocol to try to trick users into interacting with a malicious version of it.
+合同地址的推导公式与常规的EVM方法不同。即使合同从相同的账户地址部署了相同的nonce，zkSync Era的合同地址也不会和它在其他EVM网络中的地址相同。这意味着，例如，没有人能够声称你的协议的现有以太坊地址，试图欺骗用户与恶意版本的协议互动。
 
-So the hack like we saw with Wintermute on Optimism is not possible
+因此，像我们在Optimism上看到的Wintermute那样的黑客是不可能的
 
-## What is the storage limit for smart contract on zkSync Era?
+## zkSync时代的智能合约的存储限制是什么？
 
-The current limit is 3600000000 gas.
+目前的限制是3600000000气。
 
-## What is Block Gas Limit on zkSync Era?
+## 什么是zkSync时代的块状气体限制？
 
-The current value is currently set at roughly 2^32 gas. <br>
-**Note**: This value is temporal and will be updated soon.
+目前的值大约设置为2^32的气体. <br>
+**注意**。这个值是暂时的，不久将被更新。
 
-## Can I withdraw my funds back to Ethereum?
+## 我可以把我的资金撤回到以太坊吗？
 
-Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The withdrawal transaction will take up to 1 hour, depending on the usage of the zkSync network.
+是的，这个桥梁是双向的。你可以把你的资金撤回到以太坊。提款交易最多需要1小时，取决于zkSync网络的使用情况。
 
-## What is a testnet ReGenesis?
+## 什么是测试网ReGenesis？
 
-Sometimes, the team working on zkSync will initiate a regenesis on testnet - a restart of the blockchain which will introduce upgrades and return the state to the initial point.
+有时，从事zkSync工作的团队会在testnet上启动再生机制--重新启动区块链，这将引入升级并将状态恢复到初始点。

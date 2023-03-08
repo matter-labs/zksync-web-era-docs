@@ -1,24 +1,24 @@
-# Fair Onboarding Alpha
+# 公平入驻阿尔法
 
-Fair Onboarding Alpha invites projects to deploy to mainnet ahead of the full public release. To register your project for participation fill out the form [here.](https://forms.gle/wXjWiEeg16eMCWKJ8)
+Fair Onboarding Alpha邀请项目在全面公开发布之前部署到主网。要注册你的项目参与，请填写表格[这里。](https://forms.gle/wXjWiEeg16eMCWKJ8)
 
-## How Fair Onboarding works
+## 公平入驻如何运作
 
-During Fair Onboarding Alpha, registered addresses can bridge tokens to zkSync to deploy and test their products/protocols.
+在Fair Onboarding Alpha期间，注册地址可以将代币桥接到zkSync，以部署和测试其产品/协议。
 
-Once bridged, there are no restrictions on how tokens can be used within the system. For example, a registered address can send ETH to a non-registered address, after which the non-registered address can use them inside zkSync without restriction (interacting with any smart contract). With that said, the express purpose of Fair Onboarding is for contract deployment and testing — so we recommend keeping transactions within your team.
+一旦桥接，对于如何在系统内使用令牌没有任何限制。例如，一个注册地址可以向一个非注册地址发送ETH，之后非注册地址可以不受限制地在zkSync内部使用它们（与任何智能合约互动）。话虽如此，但公平入职的明确目的是为了合同部署和测试 - 所以我们建议将交易保持在你的团队内。
 
-**Note:** While non-registered addresses can receive tokens, only registered addresses can call `finaliseWithdrawal` therefore sending assets back to L1. This changes when Fair Onboarding ends and L1 <> L2 communication becomes permissionless. 
+**注意：**虽然非注册地址可以接收代币，但只有注册地址可以调用`finaliseWithdrawal`，因此将资产送回L1。当公平入职结束，L1 <> L2通信变得无权限时，这种情况就会改变。
 
-## How to bridge assets
+## 如何桥接资产
 
-### Bridge with Portal
+### 使用门户桥接
 
-You can also bridge ETH or tokens with the UI provided by Matter Labs at [portal.zksync.io](http://portal.zksync.io). If a token you want to bridge is missing from the Portal drop down, you can request that we add it [here](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw). 
+你也可以通过Matter Labs提供的用户界面[portal.zksync.io](http://portal.zksync.io)来桥接ETH或代币。如果你想桥接的代币在Portal的下拉菜单中没有，你可以要求我们添加它[这里](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw)。
 
-### Bridge scripts
+### 桥接脚本
 
-To deposit ETH you can use the `deposit` method of the `Deployer` class. Here is an example:
+要存入ETH，你可以使用`Deployer`类的`deposit`方法。下面是一个例子。
 
 ```tsx
 import { Wallet, Provider, utils } from "zksync-web3";
@@ -67,7 +67,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-To deposit ERC20 tokens you’d use the same method but additionally pass the `approveERC20: true` option:
+要存入ERC20代币，你可以使用相同的方法，但要额外传递 approveERC20: true 选项。
 
 ```tsx
 import { Wallet, Provider } from "zksync-web3";
@@ -125,23 +125,23 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-To run this script, make sure your `hardhat.config.ts` file is configured for zkSync ([find an example here](https://era.zksync.io/docs/dev/building-on-zksync/hello-world.html). You can use `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project easily in case you don’t have one already.
+要运行这个脚本，确保你的`hardhat.config.ts`文件是为zkSync配置的（[在这里找到一个例子](https://era.zksync.io/docs/dev/building-on-zksync/hello-world.html)。你可以使用`npx zksync-cli@latest create PROJECT_NAME`来轻松搭建一个新项目，以防你还没有一个项目。
 
-Place the script files in the `deploy` folder and run:
+将脚本文件放在`deploy`文件夹中并运行。
 
 ```sh
  yarn hardhat zksync-deploy --script SCRIPT_FILENAME.ts
 ```
 
-### Custom bridges
+### 自定义桥接
 
-Registered addresses are free to bridge tokens to zkSync by building a custom bridge. Custom bridges are not currently supported in our UI. However if you are working on a custom bridge we would love to hear from you and discuss how we can offer support. You can find us at product@matterlabs.dev.
+已注册的地址可以通过建立自定义桥接器将令牌与zkSync自由连接。我们的用户界面目前不支持自定义桥接。然而，如果你正在开发一个自定义桥，我们很乐意听到你的意见，并讨论我们如何提供支持。你可以在 product@matterlabs.dev 找到我们。
 
-## How to deploy
+## 如何部署
 
-If you need a general refresher on deploying to zkSync we recommend first reading [this section](https://era.zksync.io/docs/dev/building-on-zksync/contracts/contract-deployment.html) of our documentation — otherwise you may refer to our [Quickstart Guide](https://era.zksync.io/docs/dev/building-on-zksync/hello-world.html). 
+如果你需要一个关于部署到zkSync的一般复习，我们建议首先阅读我们的文档的[本节](https://era.zksync.io/docs/dev/building-on-zksync/contracts/contract-deployment.html) - 否则你可以参考我们的[快速入门指南](https://era.zksync.io/docs/dev/building-on-zksync/hello-world.html)。
 
-To deploy your contracts to mainnet you need to include it in the `networks` section of your `hardhat.config.ts` file:
+要把你的合同部署到mainnet，你需要把它包含在你的`hardhat.config.ts`文件的`networks`部分。
 
 ```jsx
 networks: {
@@ -161,78 +161,78 @@ networks: {
   },
 ```
 
-In addition, make sure your config file imports the `@matterlabs/hardhat-zksync-deploy` and `@matterlabs/hardhat-zksync-solc` plugins and that they’re configured correctly. 
+此外，确保你的配置文件导入了`@matterlabs/hardhat-zksync-deploy`和`@matterlabs/hardhat-zksync-solc`插件，并且它们被正确配置了。
 
-Once added, make sure your deployment scripts use the `Deployer` class from the `@matterlabs/hardhat-zksync-deploy` package. Run your deployment scripts with the `--network` flag (e.g. `yarn hardhat deploy-zksync --script deploy-greeter.ts --network zkSyncMainnet` . 
+一旦添加，确保你的部署脚本使用`@matterlabs/hardhat-zksync-deploy`包中的`Deployer`类。用`--network`标志运行你的部署脚本（例如：`yarn hardhat deploy-zksync --script deploy-greeter.ts --network zkSyncMainnet` 。
 
 ::: tip
 
-Make sure you’ve deposited funds on zkSync before following the instructions above.
+请确保您在遵循上述说明之前已经在zkSync上存入资金。
 
 :::
 
-You can find an example of the config file and deployment scripts in the [Quickstart Guide](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html). If you have an existing project, you can follow the [Hardhat zkSync migration guide](https://v2-docs.zksync.io/api/hardhat/migrating-to-zksync.html).
+你可以在[快速入门指南](https://v2-docs.zksync.io/dev/developer-guides/hello-world.html)中找到配置文件和部署脚本的例子。如果你有一个现有的项目，你可以按照[Hardhat zkSync迁移指南](https://v2-docs.zksync.io/api/hardhat/migrating-to-zksync.html)。
 
-## zkSync Era Mainnet details
+## zkSync Era主网细节
 
-You can add zkSync mainnet to your wallet using the details below:
+你可以使用下面的详细信息将zkSync主网添加到你的钱包。
 
-- Network Name: `zkSync Era Mainnet`
-- New RPC URL: `https://zksync2-mainnet.zksync.io`
-- Chain ID: `324`
-- Currency Symbol: `ETH`
-- Block Explorer URL: `https://explorer.zksync.io/`
-- WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`
+- 网络名称。 `zkSync Era Mainnet'.
+- 新的RPC URL: `https://zksync2-mainnet.zksync.io `
+- 链ID: `324 `
+- 货币符号: `ETH `
+- 区块资源管理器 URL: `https://explorer.zksync.io/`
+- WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`。
 
-## How to join
+## 如何加入
 
-To register your project for Fair Onboarding fill out the form linked [here](https://forms.gle/wXjWiEeg16eMCWKJ8). You will need the following information:
+要为公平入职注册你的项目，请填写链接的表格[这里](https://forms.gle/wXjWiEeg16eMCWKJ8)。你将需要以下信息。
 
-- Your project name and description
-- The address of your contracts on zkSync Era Testnet
-- The L1 addresses you will use for bridging
-- A list of any tokens you intend to bridge during Fair Onboarding
+- 你的项目名称和描述
+- 你在zkSync Era Testnet上的合同地址
+- 你将用于桥接的L1地址
+- 你打算在公平入职期间桥接的任何代币的清单。
 
-## Security measures
+## 安全措施
 
-We have spent over $3.5M on the range of audits with Tier 1 auditing firms, independent researchers, and public audits by the community. Matter Labs will also lock value in the system — starting with 10 ETH at the beginning of Fair Onboarding Alpha. To add further protection the following security measure will be in place:
+我们已经花费了超过350万美元，与一级审计公司、独立研究人员和社区的公共审计进行了一系列的审计。物质实验室还将在系统中锁定价值--在Fair Onboarding Alpha开始时以10ETH为起点。为了增加进一步的保护，将采取以下安全措施。
 
-### Withdrawal & Deposit Limits
+### 提款和存款限额
 
-- **Deposit Limit**: As a general security precaution (and to keep the focus of Fair Onboarding on deployment and testing) each registered address can deposit a total of **10 ETH**. We advise only bridging up to **3 ETH.** This should be more than enough for deploying contracts and executing test transactions. When Fair Onboarding ends this limitation will be lifted.
+- **存款限额**。作为一般的安全预防措施（并使Fair Onboarding的重点放在部署和测试上），每个注册地址总共可以存入**10 ETH**。我们建议最多只能桥接**3个ETH。**这对于部署合约和执行测试交易来说应该是绰绰有余。当公平入驻结束后，这一限制将被取消。
 
-- **Withdrawal Limit**: It is only possible to withdraw up to 10% of the total protocol balance of ETH per day. The purpose of this feature is to constrain the amount of value that can be withdrawn to L1 if an attacker finds vulnerabilities that allow unauthorised minting of tokens on L2. This feature will remain in place until the system reaches a sufficient level of maturity.
+- **提现限制**。每天最多只能提取协议中ETH总余额的10%。此功能的目的是在攻击者发现允许在L2上未经授权铸造代币的漏洞时，限制可以提取到L1的价值量。这个功能将一直保持到系统达到足够的成熟度。
 
-### Freezing
+### 冻结
 
-In keeping the safety of our users first, Matter Labs has the ability to freeze (and instantly upgrade) the system in the event of an emergency. When the system is frozen no activity on L1 or L2 is possible: transactions will not be processed and our API services will be shut down.
+为了保证我们用户的安全，Matter Labs有能力在紧急情况下冻结（并立即升级）系统。当系统被冻结时，L1或L2上的任何活动都是不可能的：交易将不被处理，我们的API服务将被关闭。
 
-Freezing the system allows Matter Labs to address security vulnerabilities without ongoing risk to user assets. This feature will remain in place after Fair Onboarding Alpha and will be removed as we progressively decentralise over time.
+冻结系统使Matter Labs能够解决安全漏洞，而不会对用户资产造成持续风险。这个功能将在Fair Onboarding Alpha之后继续存在，并将随着我们逐步去中心化而被移除。
 
-**Note:** Functions that are executed automatically (e.g. collateral liquidation) will not work when the system is frozen.
+**注意：**自动执行的功能（如抵押品清算）在系统冻结时将不工作。
 
-## FAQ
+## 常见问题
 
-### When does Fair Onboarding Alpha start?
+### 什么时候开始公平上岗Alpha？
 
-February 16th.
+2月16日。
 
-### How do I sign up?
+### 我如何注册？
 
-You can sign up for Fair Onboarding Alpha by filling out [this form](https://docs.google.com/forms/d/e/1FAIpQLSfdXAoQiHLu16ykEoOb762uvC1bAhdzOG-YDk6ju0YwPWf3Fw/viewform). We will aim to get back to you within a week.
+你可以通过填写[此表](https://docs.google.com/forms/d/e/1FAIpQLSfdXAoQiHLu16ykEoOb762uvC1bAhdzOG-YDk6ju0YwPWf3Fw/viewform)来报名参加Fair Onboarding Alpha。我们将在一周内给你答复。
 
-### How do I add an ERC20 token to the Portal UI?
+### 我如何将ERC20代币添加到门户用户界面？
 
-You can request additional tokens by filling out [this form](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw). After you have submitted the form we will reach out if there are any issues. Generally we will aim to fulfil these requests within a week.
+你可以通过填写[此表格](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw)来申请额外的代币。在你提交表格后，如果有任何问题，我们会主动联系你。一般来说，我们的目标是在一个星期内满足这些请求。
 
-### How long will Fair Onboarding last?
+### 公平入职将持续多长时间？
 
-We expect Fair Onboarding to last between 4 to 6 weeks.
+我们希望Fair Onboarding能持续4至6周。
 
-### My project has been approved, how do I deploy?
+### 我的项目已被批准，我如何部署？
 
-Make sure you complete the instructions above to deposit ETH to zkSync. Then proceed to [our guide on deployment](#how-to-deploy) to launch your contracts.
+请确保你完成上述说明，将ETH存入zkSync。然后进入[我们的部署指南](#how-to-eploy)来启动你的合同。
 
-### I need an official version of an ERC20/stablecoin for my project, but it doesn’t seem to be deployed. What do I do?
+### 我的项目需要一个官方版本的ERC20/稳定币，但它似乎没有被部署。我应该怎么做？
 
-We are working with partners / stablecoin providers to provide native integrations and official deployments on zkSync.
+我们正在与合作伙伴/稳定币供应商合作，在zkSync上提供本地集成和官方部署。 

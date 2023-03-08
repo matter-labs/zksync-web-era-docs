@@ -1,72 +1,73 @@
-# Contract deployment
+# 合约部署
 
-To maintain the same security as in L1, the zkSync operator must publish on the Ethereum chain the code for each contract it deploys. However, if there are multiple contracts deployed with the same code, it will only publish it on Ethereum once. While deploying contracts for the first time may be relatively expensive, factories, which deploy contracts with the same code multiple times, can have huge savings compared to L1.
+为了保持与L1相同的安全性，zkSync运营商必须在以太坊链上发布它所部署的每个合约的代码。然而，如果有多个合同部署了相同的代码，它将只在以太坊上发布一次。虽然第一次部署合约可能相对昂贵，但多次部署相同代码的合约的工厂，与L1相比，可以有很大的节省。
 
-All these specifics make the process of deploying smart contracts on zkEVM comply with the major rule: _The operator should know the code of the contract before it is deployed_. This means that deploying contracts is only possible via `EIP712` transactions with the `factory_deps` field containing the supplied bytecode.
+所有这些具体细节使zkEVM上部署智能合约的过程符合主要规则。_操作者在部署合约之前应该知道合约的代码_。这意味着，部署合约只能通过`EIP712`交易进行，`factory_deps`字段包含提供的字节码。
 
-[Learn more about EIP712 transactions here](../../../api/api.md#eip712).
-
-
+[在此了解更多关于EIP712交易的信息](../../../api/api.md#eip712).
 
 
-## Ethereum / zkSync differences
 
-**How deploying contracts works on Ethereum.**
 
-To deploy a contract on Ethereum, a user sends a transaction to the zero address (`0x000...000`) with the `data` field of the transaction equal to the contract bytecode concatenated with the constructor parameters.
+## 以太坊/zkSync的差异
 
-**How deploying contracts works on zkSync.**
+**在以太坊上部署合约是如何进行的。**
 
-To deploy a contract on zkSync Era, a user calls the `create` function of the [ContractDeployer system contract](../../developer-guides/system-contracts.md#contractdeployer) providing the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the transaction (as it's an [EIP712 transaction](../../../api/api.md#eip712)). If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
+为了在以太坊上部署一个合约，用户需要向零地址（0x000...000）发送一个交易，交易的数据字段等于合约字节码与构造函数参数的串联。
 
-We recommend using the [hardhat-zksync-deploy](../../../api/hardhat) plugin, to simplify the deployment process. It provides classes and methods to take care of all the deployment requirements, like generating the [bytecode hash of the contract](#format-of-bytecode-hash).
+**在zkSync上部署合约的方式。**
 
-Here's a [step-by-step guide on how to use it](../../../api/hardhat/getting-started.md).
+要在zkSync Era上部署合同，用户调用[ContractDeployer系统合同](.../.../developer-guides/system-contracts.md#contractdeployer)的`create`函数，提供要发布的合同的哈希值，以及构造器参数。合同字节码本身是在事务的`factory_deps`字段中提供的（因为它是一个[EIP712事务](.../.../api/api.md#eip712)）。如果合同是一个工厂（即它可以部署其他合同），这些合同的字节码也应该包括在`factory_deps`中。
 
-### Note on `factory deps`
+我们推荐使用[hardhat-zksync-deploy](./././api/hardhat)插件，以简化部署过程。它提供了类和方法来处理所有的部署要求，比如生成[合同的字节码哈希](#format-of-bytecode-hash)。
 
-A good question could be, _how does the validator know the preimage of the bytecode hashes to execute the code?_
-Here comes the concept of factory dependencies(`factory_deps` for short)! Factory dependencies are a list of bytecode hashes whose preimages were shown on L1 (data is always available).
+这里有一个[关于如何使用它的分步指南](.../.../.../api/hardhat/getting-started.md)。
 
-Under the hood, zkSync does not store bytecodes of contracts, but [specially formatted hashes of the bytecodes](#format-of-bytecode-hash). You can see that even the [ContractDeployer](../../developer-guides/system-contracts.md#contractdeployer) system contract accepts the bytecode hash of the deployed contract and not its bytecode. However, for contract deployment to succeed, the operator needs to know the bytecode. Exactly for this reason the `factory_deps` (i.e. factory dependencies) field for transactions is used: it contains the bytecodes that should be known to the operator for this transaction to succeed. Once the transaction succeeds, these bytecodes will be published on L1 and will be considered "known" to the operator forever.
+### 关于 "工厂部署 "的说明
 
-Some examples of usage are:
+一个好的问题是，验证器如何知道执行代码的字节码哈希值的预象？
+这里就出现了工厂依赖的概念(`factory_deps`简称)! 工厂依赖是一个字节码哈希值的列表，其预像在L1上显示（数据总是可用的）。
 
-- The obvious one is when you deploy a contract, you need to provide its code in the `factory_deps` field.
-- On zkSync, factories (i.e. contracts that can deploy other contracts) do not store bytecodes of their dependencies, i.e. contracts that they can deploy. They only store their hashes. That's why you need to include _all_ the bytecodes of the dependencies in the `factory_deps` field.
+在引擎盖下，zkSync并不存储合约的字节码，而是[特别格式化的字节码哈希](#format-of-bytecode-hash)。你可以看到，即使是[ContractDeployer](.../.../developer-guides/system-contracts.md#contractdeployer)系统合同也接受部署合同的字节码哈希值，而不是其字节码。然而，为了使合约部署成功，运营商需要知道字节码。正是由于这个原因，交易的`factory_deps`（即工厂依赖）字段被使用：它包含了操作员应该知道的字节码，以便这个交易成功。一旦交易成功，这些字节码将被公布在L1上，并被视为永远被操作者 "知道"。
 
-Both of these examples are already seamlessly done under the hood by our [hardhat-zksync-deploy](../../../api/hardhat/getting-started.md).
+一些用法的例子是。
 
-Note, that the factory deps do not necessarily have to be used by the transaction in any way. These are just markers that these bytecodes should be published on L1 with this transaction. If your contract contains a lot of various factory dependencies and they do not fit inside a single L1 block, you can split the list of factory dependencies between multiple transactions.
+- 显而易见的是，当你部署一个合同时，你需要在`factory_deps`字段中提供其代码。
+- 在zkSync上，工厂（即可以部署其他合同的合同）并不存储其依赖的字节码，即他们可以部署的合同。它们只存储它们的哈希值。这就是为什么你需要在 "factory_deps "字段中包含所有依赖的字节码。
 
-For example, let's say that you want to deploy contract `A` which can also deploy contracts `B` and `C`. This means that you will have three factory dependencies for your deployment transaction: `A`,`B` and `C`. If the pubdata required to publish all of them is too large to fit into one block, you can send a dummy transaction with only factory dependencies `A` and `B` (assuming their combined length is small enough) and do the actual deploy with a second transaction while providing the bytecode of contract `C` as a factory dependency for it. Note, that if some contract _on its own_ is larger than the allowed limit per block, this contract has to be split into smaller ones.
+这两个例子在我们的[hardhat-zksync-deploy](./././api/hardhat/getting-started.md)中已经无缝完成。
 
-### Format of bytecode hash
+请注意，工厂部署不一定要以任何方式被事务使用。这些只是标记，表明这些字节码应该和这个事务一起发布在L1上。如果你的合同包含很多不同的工厂依赖，而且它们不适合放在一个L1块中，你可以在多个事务之间分割工厂依赖的列表。
 
-Each zkEVM bytecode must adhere to the following format:
+例如，假设你想部署合同`A`，它也可以部署合同`B`和`C`。这意味着你的部署事务将有三个工厂依赖关系：`A`、`B`和`C`。如果发布所有合约所需的pubdata太大，无法装入一个区块，你可以发送一个只有工厂依赖的`A`和`B`的虚拟事务（假设它们的总长度足够小），用第二个事务进行实际部署，同时提供合约`C`的字节码作为它的工厂依赖。请注意，如果某个合同_本身大于每个区块允许的限制，这个合同就必须被分割成更小的合同。
 
-- Its length must be divisible by 32.
-- Its length in words (32-byte chunks) should be odd. In other words, `bytecodeLength % 64 == 32`.
-- It can not be longer than `2^16` 32-byte words, i.e. `2^21` bytes.
+### 字节码哈希的格式
 
-The 32-byte hash of the bytecode of a zkSync contract is calculated in the following way:
+每个zkEVM字节码必须遵守以下格式。
 
-- The first 2 bytes denote the version of bytecode hash format and are currently equal to `[1,0]`.
-- The second 2 bytes denote the length of the bytecode in 32-byte words.
-- The rest of the 28-byte (i.e. 28 low big-endian bytes) are equal to the last 28 bytes of the `sha256` hash of the contract's bytecode.
+- 其长度必须能被32整除。
+- 它的字长(32字节的块)应该是奇数。换句话说，`bytecodeLength % 64 == 32`。
+- 它不能长于`2^16`个32字节的字，即`2^21`个字节。
 
-### Differences in `CREATE` behaviour
+zkSync合约的字节码的32字节哈希值是按照以下方式计算的。
 
-For the ease of [supporting account abstraction](../../developer-guides/aa.md), for each account, we split the nonce into two parts: _the deployment nonce_ and _the transaction nonce_. The deployment nonce is the number of contracts the account has deployed with `CREATE` opcode, while the transaction nonce is used for replay attack protection for the transactions.
+- 前两个字节表示字节码哈希格式的版本，目前等于`[1,0]`。
+- 后2个字节表示字节码的长度，以32字节为单位。
+- 其余的28个字节(即28个低大数字节)等于合同字节码的`sha256`哈希值的最后28个字节。
 
-This means that while for smart contracts the nonce on zkSync behaves the same way as on Ethereum, for EOAs calculating the address of the deployed contract is not as straightforward. On Ethereum, it can be safely calculated as `hash(RLP[address, nonce])`, while on zkSync it is recommended to wait until the contract is deployed and catch the `ContractDeployed` event emitted by [ContractDeployer](../../developer-guides/system-contracts.md#contractdeployer) with the address of the newly deployed contract. All of this is done in the background by the SDK.
+### `CREATE`行为的差异
 
-To gain a deterministic address, you should use the `create2` method from [ContractDeployer](../../developer-guides/system-contracts.md#contractdeployer). It is available for EOAs as well, but it is not available in the SDK yet.
+为了便于[支持账户抽象](././developer-guides/aa.md)，对于每个账户，我们将nonce分成两部分。部署nonce_和交易nonce_。部署nonce是该账户用`CREATE'操作码部署的合约数量，而交易nonce则用于交易的重放攻击保护。
 
-## Deploying contracts from L1
+这意味着，虽然zkSync上的nonce与Ethereum上的行为方式相同，但对于EOA来说，计算部署合同的地址并不那么简单。在Ethereum上，它可以安全地计算为`hash(RLP[address, nonce])`，而在zkSync上，建议等待合同部署，并捕捉由[ContractDeployer](././developer-guides/system-contracts.md#contractdeployer)发出的`ContractDeployed`事件，以获得新部署合同的地址。所有这些都是由SDK在后台完成的。
 
-Deploying contracts on zkSync Era is also possible via L1-L2 communication.
+为了获得一个确定的地址，你应该使用[ContractDeployer](.../.../developer-guides/system-contracts.md#contractdeployer)的`create2`方法。它也适用于EOA，但在SDK中还不能使用。
 
-The [interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l1/contracts/zksync/interfaces/IMailbox.sol#L78) for submitting L1->L2 transactions accepts the list of all the factory dependencies required for this particular transaction. The logic for working with them is the same as for the default L2 deployments. The only difference is that since the user has already published the full preimage for the bytecodes on L1, there is no need to publish these bytecodes again on L1.
+## 从L1部署合同
 
-To learn more about L1-L2 communication on zkSync Era, visit [this section of the docs](../../developer-guides/bridging/l1-l2.md).
+在zkSync Era上部署合同也可以通过L1-L2通信实现。
+
+用于提交L1->L2事务的[接口](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l1/contracts/zksync/interfaces/IMailbox.sol#L78)接受该特定事务所需的所有工厂依赖的列表。处理它们的逻辑与默认的L2部署是一样的。唯一的区别是，由于用户已经在L1上发布了字节码的完整预像，所以不需要在L1上再次发布这些字节码。
+
+要了解更多关于zkSync Era上的L1-L2通信，请访问[本节文档](.../.../developer-guides/bridging/l1-l2.md)
+

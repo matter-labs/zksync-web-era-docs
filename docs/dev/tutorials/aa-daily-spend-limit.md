@@ -1,29 +1,25 @@
-# Daily spend limit account
+# 每日支出限额账户
 
-In this tutorial, we'll create a smart contract account with a daily spend limit thanks to the Account Abstraction support on zkSync.
+在本教程中，由于zkSync上的账户抽象支持，我们将创建一个具有每日消费限额的智能合约账户。
 
+:::warning
 
+请注意，在`zksync-web3 ^0.13.0`中引入了一些突破性变化。API层现在使用`gas`操作，`ergs`概念只在虚拟机内部使用。
 
-
-::: warning
-
-Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM. 
-
-This tutorial will be updated shortly to reflect those changes.
-
+本教程将很快被更新以反映这些变化。
 :::
 
-## Prerequisite
+## 前提条件
 
-It is highly encouraged that you read [the basics of Account Abstraction on zkSync](../developer-guides/aa.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) first.
+强烈建议你先阅读[the basics of Account Abstraction on zkSync](./developer-guides/aa.md)并完成[multisig account tutorial](./custom-aa-tutorial.md) 。
 
-Apart from that we'll build this project with [Node.js](https://nodejs.org/en/download/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) so make sure you have installed them.
+除此之外，我们将用[Node.js](https://nodejs.org/en/download/)和[Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)构建这个项目，所以请确保你已经安装了它们。
 
-## Installing dependencies
+## 安装依赖项
 
-We will use the [zkSync Hardhat plugins](../../api/hardhat/) to build, deploy, and interact with the smart contracts of this project.
+我们将使用[zkSync Hardhat plugins](././api/hardhat/)来构建、部署和与本项目的智能合约进行交互。
 
-First, let’s install all the dependencies that we'll need:
+首先，让我们安装所有我们需要的依赖项。
 
 ```shell
 mkdir custom-spendlimit-tutorial
@@ -34,38 +30,39 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matter
 
 ::: tip
 
-The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
+当前版本的`zksync-web3`使用`ethers v5.7.x`作为同行依赖。与`ethers v6.x.x`兼容的更新将很快发布。
 
 :::
 
-Additionally, please install a few packages that allow us to utilize the [zkSync smart contracts](../developer-guides/system-contracts.md).
+此外，请安装一些允许我们利用[zkSync智能合约]的软件包（.../developer-guides/system-contracts.md）。
+
 
 ```shell
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Lastly, create `hardhat.config.ts` config file and the `contracts` and `deploy` folders like in the [quickstart tutorial](../building-on-zksync/hello-world.md).
+最后，创建`hardhat.config.ts`配置文件以及`contracts`和`deploy`文件夹，如[快速入门教程](.../building-on-zksync/hello-world.md)。
 
 ::: tip zksync-cli
 
-You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/).
+你可以使用zkSync CLI来自动构建一个项目的支架。找到[关于zkSync CLI的更多信息](.../.../api/tools/zksync-cli/)。
 
 :::
 
-## Design
+## 设计
 
-Now, let’s dive into the design and implementation of the daily spending limit feature that helps prevent an account from spending more ETH than the limit set by its owner.
+现在，让我们深入了解一下每日支出限额功能的设计和实现，该功能有助于防止账户支出的ETH超过其所有者设定的限额。
 
-The `SpendLimit` contract is inherited from the `Account` contract as a module that has the following functionalities:
+`SpendLimit'合约继承自`Account'合约，是一个具有以下功能的模块。
 
-- Allow the account to enable/disable the daily spending limit in a token (ETH in this example).
-- Allow the account to change (increase/decrease or remove) the daily spending limit.
-- Reject token transfer if the daily spending limit has been exceeded.
-- Restore the available amount for spending after 24 hours.
+- 允许账户启用/禁用代币（本例中为ETH）中的每日支出限额。
+- 允许账户改变（增加/减少或删除）每日支出限额。
+- 如果超过了每日支出限额，拒绝代币转移。
+- 24小时后恢复可用于消费的金额。
 
-### Basic structure
+### 基本结构
 
-Below is the skeleton of the SpendLimit contract:
+下面是SpendLimit合约的骨架。
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -101,7 +98,7 @@ contract SpendLimit {
 }
 ```
 
-First, add the mapping `limits` and struct `Limit` that serve as data storages for the state of daily limits accounts enable. The roles of each variable in the struct are commented out below.
+首先，添加映射`limits`和结构`Limit`，作为账户启用每日限额状态的数据存储。结构中每个变量的作用都在下面注释。
 
 ```solidity
     struct Limit {
@@ -114,11 +111,11 @@ First, add the mapping `limits` and struct `Limit` that serve as data storages f
     mapping(address => Limit) public limits; // token address => Limit
 ```
 
-Note that the `limits` mapping uses the token address as its key. This means that users will be able to set limits for ETH or any ERC20 token.
+请注意，"limits "映射使用代币地址作为其关键。这意味着，用户将能够为ETH或任何ERC20代币设置限额。
 
-### Setting and Removing of the daily spending limit
+### 设置和删除每日支出限额
 
-Here is the implementation to set and remove the limit:
+下面是设置和删除限额的实现。
 
 ```solidity
 
@@ -168,15 +165,15 @@ Here is the implementation to set and remove the limit:
 
 ```
 
-Both `setSpendingLimit` and `removeSpendingLimit` can only be called by account contracts that inherit this contract `SpendLimit`, which is ensured by the `onlyAccount` modifier. They call `_updateLimit` and passing the arguments to modify the storage data of the limit after the verification in `_isValidUpdate` succeeds.
+`setSpendingLimit`和`removeSpendingLimit`都只能由继承这个契约`SpendLimit`的账户契约来调用，这由`onlyAccount`修改器来保证。他们调用`_updateLimit`并传递参数，在`_isValidUpdate`中验证成功后修改限额的存储数据。
 
-Specifically, `setSpendingLimit` sets a non-zero daily spending limit for a given token, and `removeSpendingLimit` disables the active daily spending limit by decreasing `limit` and `available` to 0 and setting `isEnabled` to false.
+具体来说，`setSpendingLimit`为一个给定的token设置一个非零的每日消费限额，`removeSpendingLimit`通过将`limit`和`available`减少到0并将`isEnabled`设置为false来禁用活动的每日消费限额。
 
-`_isValidUpdate` returns false if the spending limit is not enabled and also throws an `Invalid Update` error if the user has spent some amount in the day (the available amount is different from the limit) or the function is called before 24 hours have passed since the last update. This ensures that users can't freely modify (increase or remove) the daily limit to spend more.
+`_isValidUpdate`在消费限制没有启用的情况下返回false，如果用户在当天消费了一些金额（可用金额与限额不同），或者在上次更新后24小时之前调用该函数，也会抛出一个`无效更新'的错误。这就保证了用户不能随意修改（增加或删除）每日限额，以增加消费。
 
-### Checking daily spending limit
+### 检查每日支出限额
 
-The `_checkSpendingLimit` function is internally called by the account contract itself before executing the transaction.
+`_checkSpendingLimit`函数是在执行交易前由账户合同本身内部调用。
 
 ```solidity
 
@@ -203,13 +200,13 @@ The `_checkSpendingLimit` function is internally called by the account contract 
     }
 ```
 
-If the daily spending limit is disabled, the checking process immediately stops.
+如果禁用每日支出限额，检查过程立即停止。
 
 ```solidity
 if(!limit.isEnabled) return;
 ```
 
-Before checking the spending amount, this method renews the `resetTime` and `available` amount if a day has already passed since the last update: timestamp > resetTime. It only updates the `resetTime` if the transaction is the first spending after enabling the limit. This way the daily limit actually starts with the first transaction.
+在检查消费金额之前，如果上次更新后已经过了一天，该方法会更新`resetTime`和`available`金额：时间戳> resetTime。如果该交易是启用限制后的第一次消费，它才会更新`resetTime'。这样，每日限额实际上从第一笔交易开始。
 
 ```solidity
 
@@ -223,7 +220,7 @@ if (limit.limit != limit.available && timestamp > limit.resetTime) {
 
 ```
 
-Finally, the method checks if the account is able to spend a specified amount of the token. If the amount doesn't exceed the available amount, it decrements the `available` in the limit:
+最后，该方法检查账户是否能够花费指定数额的代币。如果该金额没有超过可用金额，它就会递减限额中的 "可用"。
 
 ```solidity
 require(limit.available >= _amount, 'Exceed daily limit');
@@ -231,11 +228,11 @@ require(limit.available >= _amount, 'Exceed daily limit');
 limit.available -= _amount;
 ```
 
-Note: you might have noticed the comment `// L1 batch timestamp` above. The details of this will be explained below.
+注意：你可能已经注意到上面的注释`// L1批处理时间戳`。这方面的细节将在下面解释。
 
-### Full code
+### 完整的代码
 
-Now, here is the complete code of the SpendLimit contract. But one thing to be noted is that the value of the ONE_DAY variable is set to `1 minutes` instead of `24 hours`. This is just for testing purposes (we don't want to wait a full day to see if it works!) so, please don't forget to change the value before deploying the contract.
+现在，这里是SpendLimit合同的完整代码。但有一点需要注意的是，ONE_DAY变量的值被设置为`1分钟`而不是`24小时`。这只是为了测试的目的（我们不想等一整天才能看到它是否有效！），所以，请不要忘记在部署合同之前改变这个值。
 
 ```solidity
 
@@ -352,19 +349,20 @@ contract SpendLimit {
 
 ```
 
-### Account & Factory contracts
+### 账户和工厂合同
 
-That's pretty much for `SpendLimit.sol`. Now, we also need to create the account contract `Account.sol`, and the factory contract that deploys account contracts,`AAFactory.sol`.
+这就是`SpendLimit.sol`的基本内容。现在，我们还需要创建账户合同`Account.sol`，和部署账户合同的工厂合同`AAFactory.sol`。
 
-As noted earlier, those two contracts are mostly based on the implementations of [another tutorial about Account Abstraction](./custom-aa-tutorial.md).
+如前所述，这两个合约主要是基于[另一个关于账户抽象的教程]（./custom-aa-tutorial.md）的实现。
 
-We will not explain in depth how these contract work as they're similar to the ones used in the multisig account abstraction tutorial. The only difference is that our account will have a single signer instead of two.
+我们将不深入解释这些合约是如何工作的，因为它们与多义词账户抽象教程中使用的合约类似。唯一的区别是，我们的账户将有一个而不是两个签名人。
 
-Below are the full codes.
+下面是完整的代码。
 
-#### Account.sol contract
+#### Account.sol合约
 
-The account contract implements the IAccount interface and inherits the SpendLimit contract we just created:
+该账户合约实现了IAccount接口，并继承了我们刚刚创建的SpendLimit合约。
+
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -521,7 +519,8 @@ contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contr
 }
 ```
 
-The `_executeTransaction` method is where we'll use the methods from the `SpendLimit.sol` contract. If the ETH transaction value is non-zero, the Account contract calls `_checkSpendingLimit` to verify the allowance for spending.
+`_executeTransaction`方法是我们将使用`SpendLimit.sol`合约的方法。如果ETH交易值为非零，账户合约就会调用`_checkSpendingLimit`来验证支出的许可。
+
 
 ```solidity
 
@@ -530,15 +529,15 @@ if ( value > 0 ) {
 }
 ```
 
-Since we want to set the spending limit of ETH in this example, the first argument in `_checkSpendingLimit` should be `address(ETH_TOKEN_SYSTEM_CONTRACT)`, which is imported from a system contract called `system-contracts/Constant.sol`.
+由于我们在这个例子中要设置ETH的消费限额，所以`_checkSpendingLimit`的第一个参数应该是`address(ETH_TOKEN_SYSTEM_CONTRACT)`，它是从一个叫`system-contracts/Constant.sol`的系统合约中导入的。
 
 **Note1** : The formal ETH address on zkSync is `0x000000000000000000000000000000000000800a`, neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, which is what `zksync-web3` package ([See](../../api/js/utils.md#the-address-of-ether)) provides as a more user-friendly alias.
 
-**Note2** : SpendLimit is token-agnostic. Thus an extension is also possible: add a check for whether or not the execution is an ERC20 transfer by extracting the function selector in bytes from transaction calldata.
+**Note2** : SpendLimit是与令牌无关的。因此，一个扩展也是可能的：通过从交易calldata中提取字节的功能选择器，增加一个检查执行是否是ERC20转移。
 
 #### AAFactory.sol contract
 
-The `AAFactory.sol` contract will be responsible of deploying instances of the `Account.sol` contract:
+`AAFactory.sol`合约将负责部署`Account.sol`合约的实例。
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -575,11 +574,12 @@ contract AAFactory {
 }
 ```
 
-## Deploying the smart contracts
+## 部署智能合约
 
-### Compile
+### 编译
 
-Finally, we are ready to compile and deploy the contracts. So, before the deployment, let's compile the contracts by running:
+最后，我们准备好编译和部署合约了。所以，在部署之前，让我们通过运行来编译合约。
+
 
 ```shell
 yarn hardhat compile
@@ -640,13 +640,13 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-After changing `<WALLET_PRIVATE_KEY>`, run:
+更改`<WALLET_PRIVATE_KEY>后，运行。
 
 ```shell
 yarn hardhat deploy-zksync --script deploy-factory-account.ts
 ```
 
-The output would look like the following:
+输出结果将如下。
 
 ```shell
 AA factory address: 0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627Ds
@@ -654,15 +654,15 @@ Account owner pk: 0x957aff65500eda28beb7130b7c1bc48f783556bb84fa6874d2204c1d66a0
 Account deployed on address 0x6b6B8ea196a6F27EFE408288a4FEeBE9A9e12005
 ```
 
-So, we are ready to try the functionality of the `SpendLimit` contract. For the test, now please open [zkSync Era Block Explorer](https://goerli.explorer.zksync.io/) and search for the deployed Account contract address to be able to track transactions and changes in the balance which we will see in the following sections.
+所以，我们已经准备好尝试 "SpendLimit "合约的功能。为了测试，现在请打开[zkSync Era Block Explorer](https://goerli.explorer.zksync.io/)，搜索已部署的账户合同地址，以便能够跟踪交易和余额的变化，我们将在以下部分看到。
 
-**TIP**: For contract verification, please refer to [this section of the documentation](../building-on-zksync/contracts/contract-verification.md).
+**TIP*: 关于合同验证，请参考[本节文档](./building-on-zksync/contracts/contract-verification.md)。
 
-## Set the daily spending limit
+## 设置每日支出限额
 
-First, create `setLimit.ts` in the `/deploy` folder and after pasting the example code below, replace the undefined account address and private key string values with the ones we got in the previous section.
+首先，在`/deploy`文件夹中创建`setLimit.ts`，粘贴下面的示例代码后，将未定义的账户地址和私钥字符串值替换为我们在上一节中得到的值。
 
-To enable the daily spending limit, we execute the `setSpendingLimit` function with two parameters: token address and amount limit. The token address is ETH_ADDRESS and the limit parameter is "0.005" in the example below. (can be any amount)
+为了启用每日支出限额，我们执行`setSpendingLimit`函数，有两个参数：代币地址和金额限制。代币地址是ETH_ADDRESS，限额参数是下面例子中的 "0.005"。(可以是任何金额)
 
 ```typescript
 import { utils, Wallet, Provider, Contract, EIP712Signer, types } from "zksync-web3";
@@ -716,7 +716,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-The expected output would mostly look like this:
+预期的输出多半会是这样的。
 
 ```shell
 limit:  5000000000000000
@@ -725,9 +725,9 @@ resetTime:  1672928333
 Enabled:  true
 ```
 
-## Perform ETH transfer
+## 执行ETH转账
 
-Finally, we will see if the SpendLimit contract works and refuses any ETH transfer that exceeds the daily limit. Let's create `transferETH.ts` with the example code below.
+最后，我们将看看SpendLimit合约是否有效，并拒绝任何超过每日限额的ETH转移。让我们用下面的示例代码创建`transferETH.ts`。
 
 ```typescript
 import { utils, Wallet, Provider, Contract, EIP712Signer, types } from "zksync-web3";
@@ -795,13 +795,14 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-To make a transfer, run the following:
+要进行转移，请运行以下程序。
 
 ```shell
 yarn hardhat deploy-zksync --script deploy/transferETH.ts
 ```
 
-Although the error message doesn't give us any concrete reason, it's anticipated that the transaction was reverted like the below:
+虽然错误信息没有给我们任何具体的原因，但可以预见的是，交易被还原的情况如下。
+
 
 ```shell
 An unexpected error occurred:
@@ -809,9 +810,9 @@ An unexpected error occurred:
 Error: transaction failed...
 ```
 
-After the error, we can rerun the code with a different ETH amount that doesn't exceed the limit, say "0.0049", to see if the `SpendLimit` contract doesn't refuse the amount lower than the limit.
+出错后，我们可以用一个不超过限额的不同ETH金额重新运行代码，比如 "0.0049"，看看`SpendLimit`合约是否不拒绝低于限额的金额。
 
-If the transaction succeeds, the output would be like the following:
+如果交易成功，输出会像下面这样。
 
 ```shell
 l1TimeStamp:  1673530137
@@ -821,34 +822,36 @@ available:  100000000000000
 New resetTime: 1673530575
 ```
 
-The value `available` in the Limit struct was decremented, so now only 0.0001 ETH is available for transfer.
+Limit结构中的`available'值被递减，所以现在只有0.0001个ETH可用于转账。
 
-Since the `ONE_DAY` is set to 1 minute for this test, another transfer with any amount less than the limit is supposed to succeed accordingly after a minute instead of 24 hours. However, the second transfer would fail, and we would have to wait until the next L1 batch is sealed (around ten minutes on testnet) to make a successful transaction instead. To understand the reason behind this, we should know about a constraint of using `block.timestamp`.
+由于`ONE_DAY`在这个测试中被设置为1分钟，所以任何金额小于限额的另一次转账应该在1分钟后而不是24小时后相应成功。然而，第二次转账会失败，我们不得不等待下一个L1批次的封存（在testnet上大约10分钟）来代替成功的交易。为了理解这背后的原因，我们应该知道使用`block.timestamp'的一个约束。
 
-::: warning block.timestamp returns L1 batch value
+::: warning block.timestamp返回L1批次值
 
-The `block.timestamp` returns the time of the latest L1 batch instead of the L2 block and it's only updated once a new batch is sealed ( 5-10 minutes on testnet). What this means is that basically, `block.timestamp` in smart contracts on zkSync is a delayed value.
+`block.timestamp`返回最新的L1区块的时间，而不是L2区块的时间，而且只有在新的区块被封存后才会更新（在testnet上为5-10分钟）。这意味着，基本上，zkSync上智能合约中的`block.timestamp`是一个延迟值。
 
-To keep this tutorial as simple as possible, we've used `block.timestamp` but we don't recommend relying on this for accurate time calculations.
+为了使本教程尽可能简单，我们使用了`block.timestamp`，但我们不建议依靠它来进行精确的时间计算。
+
 
 :::
 
-## Common Errors
+## 常见错误
 
-- Insufficient gasLimit: Transactions often fail due to insufficient gasLimit. Please increase the value manually when transactions fail without clear reasons.
-- Insufficient balance in account contract: transactions may fail due to the lack of balance in the deployed account contract. Please transfer funds to the account using Metamask or `wallet.sendTransaction()` method used in `deploy/deploy-factory-account.ts`.
-- Transactions submitted in a close range of time will have the same `block.timestamp` as they can be added to the same L1 batch and might cause the spend limit to not work as expected.
+- Insufficient gasLimit: 交易经常由于gasLimit不足而失败。当交易在没有明确原因的情况下失败时，请手动增加该值。
+- 账户合同中的余额不足：由于部署的账户合同中缺乏余额，交易可能失败。请使用Metamask或`deploy/deploy-factory-account.ts`中使用的`wallet.sendTransaction()`方法向账户转移资金。
+- 在接近的时间范围内提交的交易将具有相同的`block.timestamp`，因为它们可以被添加到同一个L1批次中，并可能导致支出限制不能像预期那样工作。
 
-## Complete Project
+## 完整的项目
 
-You can download the complete project [here](https://github.com/porco-rosso-j/daily-spendlimit-tutorial). Additionally, the repository contains a test folder that can perform more detailed testing than this tutorial on zkSync local network.
+你可以下载完整的项目[这里](https://github.com/porco-rosso-j/daily-spendlimit-tutorial)。此外，存储库包含一个测试文件夹，可以在zkSync本地网络上执行比本教程更详细的测试。
 
-## Learn more
+## 了解更多
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2.md).
-- To learn more about the zksync-web3 SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
+- 要了解更多关于zkSync上L1->L2的交互，请查看[文档](.../developer-guides/bridging/l1-l2.md)。
+- 要了解更多关于zksync-web3 SDK的信息，请查看其[document](././api/js)。
+- 要了解更多关于zkSync hardhat插件的信息，请查看其[document](../../api/hardhat)。
 
-## Credits
+## 鸣谢
 
-Written by [porco-rosso](https://linktr.ee/porcorossoj) for the following [GitCoin bounty](https://gitcoin.co/issue/29669).
+由[porco-rosso](https://linktr.ee/porcorossoj)为以下[GitCoin赏金](https://gitcoin.co/issue/29669)撰写。
+

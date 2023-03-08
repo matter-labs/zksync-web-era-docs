@@ -1,14 +1,14 @@
 ## Transactions (WIP)
 
-zkSync transactions is quite similar to the Web3 based transactions.<br>
-Transactions are defined in the package: `zksync2.module.request_type`<br>
+zkSync交易与基于Web3的交易非常相似。<br>
+交易被定义在软件包中: `zksync2.module.request_type`<br>
 
-For sending and signing transactions it's necessary to sign and encode it in `EIP712` structure.<br>
-The EIP712 transaction type can be found in package: `zksync2.transaction.transaction712`
+为了发送和签署交易，有必要在 "EIP712 "结构中签署和编码。.<br>
+EIP712交易类型可以在软件包中找到: `zksync2.transaction.transaction712`
 
-To convert ordinary transaction to `EIP712` type there are defined helper classes:
+为了将普通交易转换为 "EIP712 "类型，有一些定义的辅助类。
 
-- TxFunctionCall : Deploys the contract as a signed transaction.
+- TxFunctionCall : 将合同作为一个签名的交易进行部署。
 - TxCreateContract :
 - TxCreate2Contract :
 
@@ -17,3 +17,4 @@ To convert ordinary transaction to `EIP712` type there are defined helper classe
 ## TxCreateContract
 
 ## TxCreate2Contract
+

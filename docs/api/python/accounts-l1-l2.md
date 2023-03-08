@@ -1,10 +1,10 @@
-# Accounts: L1->L2 transactions
+# 账户。L1->L2交易
 
-This section explores the methods which allow the [account](./accounts.md) classes to send transactions from L1 to L2.
+本节探讨了允许[account](./accounts.md)类从L1向L2发送交易的方法。
 
-If you want to get some background on how L1->L2 interaction works on zkSync, go through the [introduction](../../dev/developer-guides/bridging/l1-l2-interop.md) and the [guide](../dev/../../dev/developer-guides/bridging/l1-l2.md).
+如果你想了解一些关于L1->L2交互在zkSync上如何工作的背景，请查阅[introduction](././dev/developer-guides/bridging/l1-l2-interop.md)和[guide](./dev/./dev/developer-guides/bridging/l1-l2.md) 。
 
-The zkSync Python SDK account is compatible with the `eth_account` package, and in most cases users can have their private key and get account instances by using it.
+zkSync Python SDK账户与`eth_account`包兼容，在大多数情况下，用户可以通过使用它拥有自己的私钥并获得账户实例。
 
 > Example
 
@@ -17,14 +17,15 @@ account: LocalAccount = Account.from_key("PRIVATE_KEY")
 
 ```
 
-The base property that is used directly with account is: `Account.address`.
+直接与帐户一起使用的基本属性是。`Account.address`。
 
 
 
 
 ## Finalizing deposit
 
-Deposits are executed in 2 steps - initiated on L2 and finalized on L1, it returns the finalized deposit receipt.
+存款分两步执行--在L2启动，在L1完成，它返回最终的存款收据。
+
 
 ```py
 
@@ -32,15 +33,15 @@ Deposits are executed in 2 steps - initiated on L2 and finalized on L1, it retur
 
 ```
 
-**Agruements**
+**应收款项**
 
-| Name        | Description                                               |
+| 名称 | 描述 |
 | ----------- | --------------------------------------------------------- |
-| l1_sender   | The ERC20 sender address of the token to deposit.         |
-| l2_receiver | The address that will receive the deposited tokens on L2. |
-| l1_token    | The address of the deposited L1 ERC20 token.              |
-| amount      | The amount of the token to be deposited.                  |
-| data        | Returns the transaction receipt of the transaction        |
+| l1_sender | 要存入代币的ERC20发送者地址。        |
+| l2_receiver | 将在L2上接收存放的代币的地址。|
+| l1_token | 存入的L1 ERC20代币的地址。             |
+| amount | 将要存入的代币的数量。                 |
+| data | 返回该交易的交易收据。
 
 > Example
 
@@ -70,10 +71,10 @@ Deposits are executed in 2 steps - initiated on L2 and finalized on L1, it retur
 
 ```
 
-## Claim Failed Deposit
+## 申领失败存款
 
-The `claimFailedDeposit` method withdraws funds from the initiated deposit, which failed when finalizing on L2.  
-If the deposit L2 transaction has failed, it sends an L1 transaction calling `claimFailedDeposit` method of the L1 bridge, which results in returning L1 tokens back to the depositor, otherwise throws the error.
+`claimFailedDeposit`方法从发起的存款中提取资金，该存款在L2上最终确定时失败。 
+如果存款的L2交易失败，它将发送一个L1交易，调用L1桥的`claimFailedDeposit`方法，结果是将L1代币返回给存款人，否则就会抛出错误。
 
 ```py
 
@@ -86,20 +87,20 @@ If the deposit L2 transaction has failed, it sends an L1 transaction calling `cl
 
 ```
 
-**Agruements**
+**应收款项**
 
-| Name            | Description                                                                          |
+| 名称 | 描述 |
 | --------------- | ------------------------------------------------------------------------------------ |
-| deposit_sender  | The address of the deposit initiator.                                                |
-| l2tx_hash       | The L2 transaction hash of the failed deposit finalization.                          |
-| l1_token        | The address of the deposited L1 ERC20 token.                                         |
-| l2_block_number | The L2 block number where the deposit finalization was processed.                    |
-| l2_msg_index    | The position in the L2 logs Merkle tree of the l2Log that was sent with the message. |
-| merkle_proof    | The Merkle proof of the processing L1 -> L2 transaction with deposit finalization    |
+| deposit_sender | 存款发起人的地址。                                               |
+| l2tx_hash | 存款失败后的二级交易哈希值。                         |
+| l1_token | 存入的L1 ERC20代币的地址。                                        |
+| l2_block_number | 处理存款最终结果的L2区块编号。                   |
+| l2_msg_index | 与消息一起发送的l2Log在二级日志Merkle树中的位置。|
+| merkle_proof | 处理L1->L2交易的Merkle证明，包括存款的最后处理。
 
-## Getting a nonce
+## 获取一个nonce
 
-The `_get_nonce` method which is an alias for [getTransactionCount](https://web3py.readthedocs.io/en/v5/web3.eth.html?highlight=web3.eth.get_transaction_count#web3.eth.Eth.get_transaction_count), it returns the number of transactions this account has ever sent.
+`_get_nonce`方法是[getTransactionCount](https://web3py.readthedocs.io/en/v5/web3.eth.html?highlight=web3.eth.get_transaction_count#web3.eth.Eth.get_transaction_count)的别名，它返回这个账户曾经发送过的交易数。
 
 ```py
 
@@ -107,15 +108,15 @@ def _get_nonce(self, account) -> transaction_count
 
 ```
 
-**Agruements**
+**参数**
 
-| Name    | Description           |
-| ------- | --------------------- |
-| account | The address of a user |
+| Name    | Description |
+| ------- | ----------- |
+| account | 用户的地址  |
 
-## Deposit
+## 存款
 
-Returns the transaction receipt of the deposit.
+返回存款的交易收据。
 
 ```py
 
@@ -123,13 +124,13 @@ def deposit(self, l2_receiver: HexStr, l1_token: HexStr, amount: int) -> txn_rec
 
 ```
 
-**Agruements**
+**应收款项**
 
-| Name        | Description                                               |
+| 名称 | 描述
 | ----------- | --------------------------------------------------------- |
-| l2_receiver | The address that will receive the deposited tokens on L2. |
-| l1_token    | The address of the deposited L1 ERC20 token.              |
-| amount      | The amount of the token to be deposited.                  |
+| l2_receiver | 将在L2上接收存放的代币的地址。
+| l1_token | 存放L1 ERC20代币的地址 | amount
+| 金额 | 要存入的代币的金额。                 |
 
 > Example
 
@@ -154,9 +155,9 @@ def deposit(self, l2_receiver: HexStr, l1_token: HexStr, amount: int):
 
 ```
 
-## Finalizing withdrawals.
+## 提款。
 
-Withdrawals are executed in 2 steps - initiated on L2 and finalized on L1, this method returns the transaction receipt of the withdrawals.
+提款分两步执行--在L2启动，在L1完成，此方法返回提款的交易收据。
 
 ```py
 
@@ -168,14 +169,14 @@ def finalize_withdrawal(self,
 
 ```
 
-**Agruements**
+**参数**
 
-| Name            | Description                                                                          |
+| 名称 | 描述
 | --------------- | ------------------------------------------------------------------------------------ |
-| l2_block_number | The L2 block number where the deposit finalization was processed.                    |
-| l2_msg_index    | The position in the L2 logs Merkle tree of the l2Log that was sent with the message. |
-| l2_msg_index    | The position in the L2 logs Merkle tree of the l2Log that was sent with the message. |
-| merkle_proof    | The Merkle proof of the processing L1 -> L2 transaction with deposit finalization    |
+| l2_block_number | 处理存款终结的二级区块编号。                   |
+| l2_msg_index | 与信息一起发送的l2Log在二级日志Merkle树中的位置。|
+| l2_msg_index | 与信息一起发送的l2Log在L2日志Merkle树中的位置。|
+|merkle_proof| 处理L1->L2交易的Merkle证明，有存款的最终确定。
 
 > Example
 

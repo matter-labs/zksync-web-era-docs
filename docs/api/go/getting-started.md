@@ -1,27 +1,27 @@
-# Getting started
+# 开始工作
 
-In this guide we will demonstrate how to:
+在本指南中，我们将演示如何。
 
-1. Connect to the zkSync network.
-2. Deposit assets from Ethereum into zkSync.
-3. Transfer and withdraw funds.
-4. Deploy a smart contract.
-5. Interact with any smart contract.
+1. 连接到zkSync网络。
+2. 将资产从以太坊存入zkSync。
+3. 转移和提取资金。
+4. 4. 部署一个智能合约。
+5. 与任何智能合约进行互动。
 
-::: warning
+:::warning
 
-This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../dev/troubleshooting/changelog.md)). A revised version will be available shortly.
+本节文档正在审查中，以反映对系统合约所做的修改（[见changelog](././dev/troubleshooting/changelog.md)）。修订后的版本很快就会推出。
 
 :::
 
-## Prerequisite
+## 前提条件
 
-This guide assumes that you are familiar with the [Go](https://go.dev/doc/) programming language.
-The Go version should be >= 1.17, and Go modules are required.
+本指南假定你熟悉[Go](https://go.dev/doc/)编程语言。
+Go的版本应该>=1.17，并且需要Go模块。
 
-## Installation
+## 安装
 
-To install the SDK with the `go get` command, run the following:
+使用`go get`命令来安装SDK，请运行以下命令。
 
 ```go
 go get github.com/zksync-sdk/zksync2-go
@@ -30,13 +30,13 @@ go get github.com/zksync-sdk/zksync2-go
 
 ## Instantiating the SDK
 
-To start using the SDK, you just need to pass in a provider configuration.
+要开始使用SDK，你只需要传入一个提供者的配置。
 
-Using `ZkSync Provider`, `EthereumProvider` and `Wallet`, you can perform all basic actions with ZkSync network.
+使用 "ZkSync Provider"、"Eth Provider "和 "wallet"，你可以用ZkSync网络执行所有基本操作。
 
 ::: warning
 
-⚠️ Never commit private keys to file tracking history, or your account could be compromised.
+⚠️ 切勿将私钥提交给文件追踪历史，否则你的账户可能会被泄露。
 
 :::
 
@@ -154,7 +154,7 @@ func main() {
 
 ## Deploy a smart contract
 
-You can access the contract deployer interface as follows:
+你可以通过以下方式访问合约部署界面。
 
 ```go
 
@@ -190,9 +190,9 @@ func main() {
 
 ## Interact with smart contracts
 
-In order to interact with smart contracts, the SDK needs to know the contract address, as well as its ABI. For that, you need to use ABI.Pack() [method](https://github.com/ethereum/go-ethereum/accounts/abi) to load the ABI of your contract, or encode the calldata to execute function and its parameters.
+为了与智能合约互动，SDK需要知道合约的地址，以及它的ABI。为此，你需要使用ABI.Pack() [方法](https://github.com/ethereum/go-ethereum/accounts/abi)来加载你的合约的ABI，或者对执行函数及其参数的calldata进行编码。
 
-Example encoding the calldata:
+编码calldata的例子。
 
 ```go
 

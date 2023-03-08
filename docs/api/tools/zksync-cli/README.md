@@ -1,31 +1,32 @@
 # zkSync CLI
 
-The zkSync CLI simplifies the process of developing applications and interacting with zkSync Era.
+zkSync CLI简化了开发应用程序和与zkSync Era交互的过程。
 
-The code is available [in the following repository](https://github.com/matter-labs/zksync-cli).
+该代码可[在以下资源库](https://github.com/matter-labs/zksync-cli)。
 
-## Installation
+## 安装
 
-Install the zkSync CLI globally with the following command:
+用以下命令全局安装zkSync CLI。
 
 ```
 npm i -g zksync-cli@latest
 ```
 
-You can also run this via NPX with `npx zksync-cli@latest [COMMAND]`
+你也可以通过NPX运行`npx zksync-cli@latest [COMMAND]`。
 
-## Commands
+## 命令
 
-- `zksync-cli create [PROJECT_NAME]`: creates a new Hardhat project in a new folder with the given project name. If the project name is not provided, it creates the project in the current folder, although this requires the folder to be empty. The [template project can be found here](https://github.com/matter-labs/zksync-hardhat-template).
+- `zksync-cli create [PROJECT_NAME]`: 在一个新的文件夹中创建一个新的Hardhat项目，并给出项目名称。如果没有提供项目名称，它会在当前文件夹中创建项目，尽管这需要该文件夹为空。可以在这里找到[模板项目](https://github.com/matter-labs/zksync-hardhat-template)。
 
-- `zksync-cli deposit`: deposits funds from L1 (Goerli testnet) to zkSync Era Testnet. It will ask you to provide: the recipient wallet, the amount in ETH (eg 0.1) and the private key of the wallet you're sending the funds from.
+- `zksync-cli deposit`：将资金从L1（Goerli testnet）存入zkSync Era Testnet。它将要求你提供：收件人钱包，ETH金额（例如0.1）和你要发送资金的钱包的私钥。
 
-- `zksync-cli withdraw`: withdraws funds from zkSync Era to L1 (Goerli testnet). It will ask you to provide: the recipient wallet, the amount in ETH (eg 0.1) and the private key of the wallet you're sending the funds from.
+- `zksync-cli withdraw`: 从zkSync Era提取资金到L1（Goerli测试网）。它将要求你提供：收件人钱包，ETH金额（例如0.1）和你要发送资金的钱包的私钥。
 
-> Both deposit and withdraw might take a couple of minutes to complete.
+> 存款和取款都可能需要几分钟的时间来完成。
 
-More commands will be added shortly but if you have any suggestions, feel free to [open an issue on GitHub](https://github.com/matter-labs/zksync-cli/issues/new).
+更多的命令将很快被添加，但如果你有任何建议，请随时[在GitHub上打开一个问题](https://github.com/matter-labs/zksync-cli/issues/new)。
 
-## Troubleshooting
+##故障排除
 
-If you find any issues, you can [open an issue on GitHub](https://github.com/matter-labs/zksync-cli/issues/new) or report it to us [in our Discord](https://join.zksync.dev/).
+如果你发现任何问题，你可以[在GitHub上打开一个问题](https://github.com/matter-labs/zksync-cli/issues/new)或[在我们的 Discord](https://join.zksync.dev/)向我们报告。
+

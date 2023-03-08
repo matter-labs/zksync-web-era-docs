@@ -1,13 +1,13 @@
-# `hardhat-zksync-verify`
+# `hardhat-zksync-verify` ．
 
-This plugin is used to verify contracts on the zkSync Era network.
+这个插件用于验证zkSync Era网络上的合同。
 
-## Installation
+## 安装
 
 [@matterlabs/hardhat-zksync-verify](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-verify)
 
-The plugin is used in conjunction with [@nomiclabs/hardhat-etherscan](https://www.npmjs.com/package/@nomiclabs/hardhat-etherscan) and it supports backward compatibility with that plugin.
-To use it, you have to install both plugins and then import `@matterlabs/hardhat-zksync-verify` in the hardhat.config.ts file.
+该插件与 [@nomiclabs/hardhat-etherscan](https://www.npmjs.com/package/@nomiclabs/hardhat-etherscan) 一起使用，它支持向后兼容该插件。
+要使用它，你必须安装这两个插件，然后在hardhat.config.ts文件中导入`@matterlabs/hardhat-zksync-verify`。
 
 ```typescript
 # Yarn
@@ -17,9 +17,9 @@ yarn add -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
 npm i -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
 ```
 
-### Configuration
+### 配置
 
-Import the plugin in the `hardhat.config.ts` file:
+在`hardhat.config.ts`文件中导入该插件。
 
 ```javascript
 import "@matterlabs/hardhat-zksync-verify";
@@ -43,17 +43,17 @@ networks: {
 // defaultNetwork: "zkTestnet", // optional (if not set, use '--network zkTestnet')
 ```
 
-Additional network properties:
+附加的网络属性。
 
-- `zkTestnet` is an arbitrary zkSync network name. You can select this as the default network using the `defaultNetwork` property.
-- `ethNetwork` is a field with the URL of the Ethereum node. You can also provide the network name (e.g. `goerli`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
-- `url` is a field with the URL of the zkSync node in the case of the zkSync network (with `zksync` flag set to `true`), or the URL of the Ethereum node. This field is required for all zkSync and Ethereum networks used by this plugin.
-- `zksync` is a flag to indicate if the network represents zkSync network configuration. This field needs to be set to `true` for all zkSync networks. If you want to run a `hardhat-etherscan` verification, this field needs to be set to `false`. If set to `true`, the verification process will always try to run the verification process on the zkSync network.
-- `verifyURL` is a field that points to the verification endpoint for the specific zkSync network. This parameter is optional, and its default value is the testnet verification url.
-  - Testnet: `https://zksync2-testnet-explorer.zksync.dev/contract_verification`
-  - Mainnet: `https://zksync2-mainnet-explorer.zksync.io/contract_verification`
+- `zkTestnet`是一个任意的zkSync网络名称。你可以使用`defaultNetwork`属性选择它作为默认网络。
+- `ethNetwork`是一个带有Ethereum节点的URL的字段。你也可以提供网络名称（例如：`goerli`）作为这个字段的值。在这种情况下，插件将使用适当的以太坊网络配置的URL（来自`networks`部分），如果没有提供配置，则使用该网络的默认`ethers`提供者。这个字段对于这个插件使用的所有zkSync网络都是必需的。
+- `url`是一个字段，在zkSync网络（`zksync`标志设置为`true`）的情况下，包含zkSync节点的URL，或者Ethereum节点的URL。本插件使用的所有zkSync和Ethereum网络都需要这个字段。
+- `zksync`是一个标志，表示该网络是否代表zkSync网络配置。对于所有zkSync网络，这个字段需要设置为`true`。如果你想运行`hardhat-etherscan`验证，这个字段需要设置为`false`。如果设置为`true`，验证过程将总是尝试在zkSync网络上运行验证过程。
+- `verifyURL`是一个指向特定zkSync网络的验证端点的字段。这个参数是可选的，其默认值是testnet验证网址。
+  - 测试网：`https://zksync2-testnet-explorer.zksync.dev/contract_verification`。
+  - 主网。`https://zksync2-mainnet-explorer.zksync.io/contract_verification`
 
-If you want to verify a smart contract on the Ethereum in the same project, it is important to add `etherscan` field and API key in the `hardhat.config.ts` file:
+如果你想在同一个项目中验证Ethereum上的智能合约，必须在`hardhat.config.ts`文件中添加`etherscan`字段和API密钥。
 
 ```typescript
 
@@ -66,30 +66,30 @@ etherscan: {
 
 ```
 
-### Commands
+### 命令
 
 ```sh
 hardhat verify --network <network> <contract address>
 ```
 
-Verifies the contract on the given network with the given contract's address. <br/>
-Note: When run like this, the verify task will try to compare compiled bytecode of all the contracts in your local setup to the deployed bytecode of the contract you are trying to verify. If there is no match, it will report an error.
+用给定合同的地址验证给定网络上的合同。 <br/>
+注意：当像这样运行时，验证任务将尝试比较你本地设置中所有合同的编译字节码和你试图验证的合同的部署字节码。如果不匹配，它将报告一个错误。
 
 ```sh
 yarn hardhat verify --network <network> <contract address> --contract <fully qualified name>
 ```
 
-With the `--contract` parameter you can also specify which contract from your local setup you want to verify by specifying its Fully qualified name. Fully qualified name structure looks like this: "contracts/AContract.sol:TheContract" <br/>
+通过`--合同`参数，你也可以指定你想验证的本地设置中的哪份合同，指定其完全合格的名称。完全合格的名称结构看起来像这样。"contract/AContract.sol:TheContract" <br/>
 
-#### Constructor arguments
+#### 构造函数参数
 
-If your contract was deployed with the specific constructor arguments, you need to specify them when running the verify task. For example:
+如果你的合同在部署时有特定的构造参数，你需要在运行验证任务时指定它们。比如说。
 
 ```sh
 yarn hardhat verify --network testnet 0x7cf08341524AAF292255F3ecD435f8EE1a910AbF "Hi there!"
 ```
 
-If your constructor takes a complex argument list, you can write a separate javascript module to export it. For example, create an `arguments.js` file with the following structure:
+如果你的构造函数需要一个复杂的参数列表，你可以写一个单独的javascript模块来导出它。例如，创建一个`arguments.js`文件，结构如下。
 
 ```typescript
 module.exports = [
@@ -103,24 +103,24 @@ module.exports = [
 ];
 ```
 
-Include it in the verify function call by adding a new parameter: `--constructor-args arguments.js`:
+在验证函数调用中加入一个新的参数：`--constructor-args arguments.js`。
 ```sh
 yarn hardhat verify --network testnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF --constructor-args arguments.js
 ```
 
-### Verification status check
+### 核查状态检查
 
-The verification process consists of two steps. First, a verification request is sent to confirm if the given parameters for your contract are correct. Then, we check the verification status of that request. Those steps are both run when you run the `verify` task, but you will be able to see your specific verification request ID.
-You can then use this ID to check the status of your verification request without running the whole process from the beginning.
+验证过程包括两个步骤。首先，发送一个验证请求，以确认你的合同的给定参数是否正确。然后，我们检查该请求的验证状态。这些步骤都是在你运行`验证`任务时运行的，但你将能够看到你的特定验证请求ID。
+然后你可以使用这个ID来检查你的验证请求的状态，而不用从头开始运行整个过程。
 
-The following command checks the status of the verification request for the specific verification ID:
+下面的命令检查特定验证ID的验证请求的状态。
 ```sh
 yarn hardhat verify-status --verification-id <your verification id>
 ```
 
-### Verify smart contract programmatically
+### 以编程方式验证智能合约
 
-If you need to run the verification task directly from your code, you can use the hardhat "verify:verify" task with the previously mentioned parameters with the difference in using `--address` parameter when specifying contarct's address:<br/>
+如果你需要直接从你的代码中运行验证任务，你可以使用硬帽 "verify:verify "任务和前面提到的参数，不同的是在指定contarct的地址时使用`--address`参数。<br/>
 
 ```typescript
 await hre.run("verify:verify", {

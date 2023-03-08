@@ -1,17 +1,17 @@
-# Understanding zkSync Era
+# 了解zkSync时代
 
-Take a deeper dive into the zkSync ecosystem.
+深入了解zkSync的生态系统。
 
-## Table of contents
+## 目录
 
 - [Transactions](./transactions/transactions.md)
-- [Blocks](./transactions/blocks.md)
-- [System contracts](./system-contracts.md)
-- [Account abstraction](./aa.md)
-- [Fee mechanism](./transactions/fee-model.md)
-- [Bridging assets](./bridging/bridging-asset.md)
-- [L1 / L2 Interoperability](./bridging/l1-l2-interop.md)
-- [L1 / L2 communication](./bridging/l1-l2.md)
-- [L2 / L1 communication](./bridging/l2-l1.md)
-- [Video resources](./videos.md)
-<!-- - [Security model](./security.md) -->
+- [区块](./transactions/blocks.md)
+- [系统合约](./system-contracts.md)
+- [账户抽象](./aa.md)
+- [收费机制](./transactions/fee-model.md)
+- [连接资产](./bridging/bridging-asset.md)
+- [L1 / L2 互操作性](./bridging/l1-l2-interop.md)
+- [L1 / L2通信](./bridging/l1-l2.md)
+- [L2 / L1通信](./bridging/l2-l1.md)
+- [视频资源](./videos.md)
+<!-- - [安全模式](./security.md) --->

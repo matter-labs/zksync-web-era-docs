@@ -1,10 +1,11 @@
 ---
 sidebar: false
+
 ---
 
-# Contact and media
+# 联系和媒体
 
-## Follow the news
+## 关注我们的新闻
 
 - [Twitter: zkSync](https://twitter.com/zksync)
 - [Twitter: Matter Labs](https://twitter.com/the_matter_labs)
@@ -41,24 +42,24 @@ novalidate
     <div style="position: absolute; left: -5000px;" aria-hidden="true">
     <input type="text" name="b_ef8545da9c594ae082297352d_fa715c9af0" tabindex="-1" value />
     </div>
-</div>
+  </div>
 </form>
 
-## Developer Community
 
-Chat live with our team and other developers on the official zkSync [Discord](https://join.zksync.dev/)!
+## 开发者社区
 
-## User community and support
+在 [Discord](https://join.zksync.dev/)中与我们的团队和其他开发者进行沟通!
+
+## 用户社区和支持
 
 - [Telegram: user support group](https://t.me/zksync_support)
 - [zkSync Discord](https://join.zksync.dev/)
-- Email user support: **support@zksync.io**
+- 邮件: **support@zksync.io**
 
-## Partnerships, integrations and press
+##  合作伙伴，整合和新闻
 
-Please reach out directly via **hello@matter-labs.io**.
+请通过以下方式直接与我们联系 **hello@matter-labs.io**.
 
-## Career opportunities
+## 就业机会
 
-We are always hiring! Please check out our
-[open positions](https://www.notion.so/matterlabs/Career-at-Matter-Labs-4a69ed0f7acb45c89f662cf12dbc2464).
+我们一直在招人! 请查看我们的[开放职位](https://www.notion.so/matterlabs/Career-at-Matter-Labs-4a69ed0f7acb45c89f662cf12dbc2464).

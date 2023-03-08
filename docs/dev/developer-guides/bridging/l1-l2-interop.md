@@ -1,72 +1,73 @@
-# L1 / L2 Interoperability
+# L1/L2互操作性
 
-While most of the execution will happen on L2, some use cases require interoperability with the L1 chain. The main use cases are building complex bridges, maintaining governance smart contracts on one chain that govern contracts on other chains, etc.
+虽然大部分的执行会发生在L2上，但有些用例需要与L1链互通。主要的用例是建立复杂的桥梁，在一条链上维护治理智能合约，治理其他链上的合约，等等。
 
-In addition, the L2 censorship resistance is derived from the underlying chain, so the ability to send messages from Ethereum to zkSync is an important part of the censorship-resistance mechanism called the [priority queue](#priority-queue).
+此外，L2的抗审查能力来自于底层链，所以从以太坊向zkSync发送消息的能力是称为[优先级队列](#priority-queue)的抗审查机制的重要组成部分。
 
-Sending transactions from Ethereum to zkSync is done via the zkSync smart contract. It allows the sender to request transactions directly from L1. Thereby allowing the permissionless passing of any data from Ethereum into zkSync.
-[Read more](../bridging/l1-l2.md) about messaging from L1 to L2.
+从以太坊向zkSync发送交易是通过zkSync智能合约完成的。它允许发送方直接从L1请求交易。因此，允许无权限地将任何数据从以太坊传递到zkSync。
+[阅读更多](.../bridging/l1-l2.md) 关于从L1到L2的消息传递。
 
-## Priority queue
+## 优先级队列
 
-The goal of the priority queue is to provide a censorship-resistant way to interact with zkSync in case the operator becomes malicious or unavailable.
-The way the priority queue works in zkSync Era is very close to how it worked in the previous version of zkSync.
-For the full picture, we first present how the priority queue works on zkSync Lite.
-This gives the rationale for the new design of the priority queue for zkSync Era.
+优先级队列的目标是提供一种抗审查的方式，以便在运营商变得恶意或不可用的情况下与zkSync互动。
+优先级队列在zkSync Era中的工作方式与它在以前的zkSync版本中的工作方式非常接近。
+为了了解全貌，我们首先介绍优先级队列在zkSync Lite上的工作方式。
+这就为zkSync Era的优先级队列的新设计提供了依据。
 
-### How it works in zkSync Lite
+### 它在zkSync Lite中是如何工作的
 
-In the previous version of zkSync, we only had two operations that could be sent to zkSync from L1:
+在以前的zkSync版本中，我们只有两个操作可以从L1发送到zkSync。
 
-- `Deposit` to bridge funds from Ethereum to zkSync.
-- `FullExit` to bridges the funds back from Ethereum (this is essentially the same as `Withdraw` in zkSync Era).
+- `Deposit`将资金从Ethereum转移到zkSync。
+- `FullExit`将资金从Ethereum桥接回来（这与zkSync Era中的`Withdraw`基本相同）。
 
-If users wanted to deposit funds to or withdraw funds from zkSync, they would have to send a transaction request to the smart contract which will then get appended to the queue of priority transactions. The queue has the following rules:
+如果用户想向zkSync存入资金或从zkSync提取资金，他们必须向智能合约发送一个交易请求，然后将被附加到优先交易队列中。该队列有以下规则。
 
-- All transactions are processed sequentially.
-- Each priority operation must be processed by the operator within `X` days since it was submitted to the contract.
+- 所有交易都是按顺序处理的。
+- 每个优先操作必须在提交给合约后的`X`天内由操作者处理。
 
-The first rule is strictly enforced by the smart contract. The second rule may be violated if the operator becomes malicious or unavailable. In case that happens, the system enters 'exodus mode', where no new blocks can be processed and users can withdraw their funds without cooperation from the operator.
+第一条规则是由智能合约严格执行的。如果操作员变得恶意或不可用，第二条规则可能会被违反。在这种情况下，系统会进入 "流亡模式"，没有新的区块可以被处理，用户可以在没有运营商的合作下提取他们的资金。
 
-### What changes are needed?
+### 需要什么改变？
 
-The process described above works well for a system with a small set of relatively light supported operations. zkSync Era supports general smart contract computation, and thus some principles had to be changed in order to preserve the stability of the network.
+上面描述的过程对于一个有一小部分相对较轻的支持操作的系统来说是很好的。 zkSync时代支持一般的智能合约计算，因此必须改变一些原则，以保持网络的稳定性。
 
-Firstly, all transactions need to be supported by the priority queue. Users may have their funds locked on an L2 smart contract, and not on their own L2 account. Therefore before moving their funds to L1, they need to send an `Execute` transaction to the zkSync network to release the funds from that smart contract first.
+首先，所有交易都需要得到优先队列的支持。用户的资金可能被锁定在L2智能合约上，而不是自己的L2账户上。因此，在将他们的资金转移到L1之前，他们需要向zkSync网络发送一个`执行'交易，以首先释放该智能合约的资金。
 
-Secondly, the priority queue needs to stay censorship-resistant. But imagine what will happen if users start sending a lot of transactions that take the entirety of the block gas limit? There needs to be a way to prevent spam attacks on the system.
-That's why submitting transactions to the priority queue is no longer free.
-Users need to pay a certain fee to the operator for processing their transactions. It is really hard to calculate the accurate fee in a permissionless way.
-Thus, the fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the users' transaction, while `txBaseCost` is the base cost for the transaction, which depends on its parameters (e.g. `gas_limit` for `Execute` transaction).
+其次，优先级队列需要保持抗审查。但想象一下，如果用户开始发送大量的交易，占用了整个区块气体的限制，会发生什么？需要有一种方法来防止对系统的垃圾邮件攻击。
+这就是为什么向优先队列提交交易不再是免费的。
+用户需要向运营商支付一定的费用来处理他们的交易。在无权限的情况下，确实很难计算出准确的费用。
+因此，一个交易的费用等于`txBaseCost * gasPrice`。`gasPrice`是用户交易的天然气价格，而`txBaseCost`是交易的基本费用，这取决于其参数（例如`Execute`交易的`gas_limit`）。
 
-Thirdly, the operator can not commit to processing every transaction within `X` days. Again, this is needed to prevent spam attacks on the priority queue. We changed this rule to the following one:
+第三，运营商不能承诺在`X`天内处理每笔交易。同样，这也是为了防止对优先级队列的垃圾邮件攻击。我们把这个规则改成了下面这个。
 
-- The operator must do at least `X` amount of work (see below) on the priority queue or the priority queue should be empty.
+- 操作员必须在优先级队列上做至少`X`量的工作（见下文），否则优先级队列应该是空的。
 
-In other words, we require the operator to do its best instead of requiring a strict deadline. The measure of "the work" is still to be developed. Most likely it will be the number of `gas` the priority operations used.
+换句话说，我们要求操作者尽力而为，而不是要求有严格的最后期限。衡量 "工作 "的标准仍有待开发。最有可能的是优先操作使用的 "气体 "数量。
 
-In the future, we will also add the ability to "prioritize" L1->L2 transactions, allowing users to speed up the inclusion of their transactions in exchange for paying a higher fee to the operator.
+在未来，我们还将增加 "优先处理 "L1->L2交易的能力，允许用户加速包含他们的交易，以换取向运营商支付更高的费用。
 
-## Priority mode
+## 优先模式
 
-If the operator fails to process the needed L1 transactions, the system enters in 'Priority mode'. In this mode, everyone can become an operator by staking tokens. The exact details of the priority mode are still under development and will be described in more detail closer to the mainnet launch.
+如果运营商未能处理所需的L1交易，系统将进入 "优先模式"。在这种模式下，每个人都可以通过押注代币成为运营商。优先模式的确切细节仍在开发中，并将在接近主网启动时进行更详细的描述。
 
-To reduce risks, the alpha mainnet will start with a mechanism to instantly stop and upgrade the network, which contradicts the purpose of the priority mode. Priority mode will be gradually introduced in the following releases.
+为了减少风险，阿尔法主网开始时将有一个即时停止和升级网络的机制，这与优先模式的目的相矛盾。优先模式将在以下版本中逐步引入。
 
-## L2 -> L1 messaging
+## L2 -> L1通信
 
-The [L2 -> L1 communication](./l2-l1.md), in contrast to L1 -> L2 communication, is based only on transferring the information, and not on the transaction execution on L1. It is a built-in feature, which is made up of two parts: sending a message from L2 and reading it on L1. The first is implemented as a call to an L2 system smart contract. And the second is implemented on the zkSync L1 smart contract as a getter function.
+与L1->L2通信相比，[L2->L1通信](./l2-l1.md)只基于信息的传输，而不是在L1上执行交易。它是一个内置功能，由两部分组成：从L2发送信息和在L1上读取信息。第一个被实现为对L2系统智能合约的调用。而第二个是在zkSync L1智能合约上实现的，作为一个getter函数。
 
-### Sending messages
+### 发送消息
 
-Each message sent from L2 to L1 contains the sender's address and the message itself. The length of the message can be arbitrarily large, but the longer the message, the more expensive it will be to send. The operator must include all messages for the corresponding merkle root (see next paragraph). Hence, all the messages are publicly available, and one does not have to rely on the operator to reveal them.
+每个从L2发送到L1的消息都包含发件人的地址和消息本身。消息的长度可以任意大，但消息越长，发送费用就越高。操作者必须包括相应Merkle根的所有消息（见下一段）。因此，所有的消息都是公开的，人们不必依靠操作者来揭示它们。
 
-### Reading messages
+### 读取消息
 
-Every message sent can be read on-chain. Moreover, it is possible to prove that a message has been sent in a specific L2 block. To make such proof as cheap as possible for both the user and the operator, we store all messages, for each L2 block, in a merkle tree. Accordingly, any L1 smart contract can consume the message sent by providing proof of inclusion in some L2 block. Proof can be generated based only on the data that the operator sent to the zkSync L1 smart contract. The proof can also be obtained via [the API](../../../api/api.md#zks-getl2tol1msgproof).
+发送的每条消息都可以在链上读取。此外，有可能证明一个消息是在一个特定的L2块中发送的。为了使这种证明对用户和运营商来说都尽可能便宜，我们把每个L2区块的所有消息都存储在一个merkle树中。因此，任何L1智能合约都可以通过提供包含在某个L2区块中的证明来消费所发送的消息。证明可以只根据运营商发送给zkSync L1智能合约的数据来生成。证明也可以通过[API](.../.../api/api.md#zks-getl2tol1msgproof)获得。
 
-### Summary on L2->L1 messaging
+### 关于L2->L1消息传递的总结
 
-- L2 -> L1 communication requires one transaction on L2 and one on L1.
-- Messages can be of arbitrary length.
-- All the data needed for proving message inclusion in an L2 block can always be restored from Ethereum. However, the easiest way is to request proof from the operator via API.
+- L2->L1通信需要在L2和L1上各进行一次交易。
+- 消息的长度可以是任意的。
+- 证明消息包含在L2区块中所需要的所有数据总是可以从Ethereum恢复。然而，最简单的方法是通过API向运营商请求证明。
+

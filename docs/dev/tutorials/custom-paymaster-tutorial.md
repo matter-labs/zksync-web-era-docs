@@ -1,21 +1,22 @@
-# Building custom paymaster
+# 构建自定义的paymaster
 
-Let's see how we can use the paymaster feature to build a custom paymaster that allows users to pay fees in our token. In this tutorial we will:
+让我们看看如何使用paymaster功能来建立一个自定义的paymaster，让用户在我们的token中支付费用。在本教程中，我们将。
 
-- Create a paymaster that will assume that a single unit of an ERC20 token is enough to cover any transaction fee.
-- Create the ERC20 token contract and send some tokens to a brand new wallet.
-- Finally we will send a `mint` transaction from the newly created wallet via the paymaster. Even though the transaction would normally require some ETH to pay for the gas fee, our paymaster will execute the transaction in exchange for 1 unit of the ERC20 token.
+- 创建一个paymaster，它将假设一个单位的ERC20代币足以支付任何交易费用。
+- 创建ERC20代币合约并发送一些代币到一个全新的钱包。
+- 最后我们将从新创建的钱包通过paymaster发送一个`mint`交易。尽管该交易通常需要一些ETH来支付汽油费，但我们的paymaster将执行该交易，以换取1单位的ERC20代币。
 
 
-## Prerequisite
+## 先决条件
 
-To better understand this page, we recommend you first read up on [account abstraction design](../developer-guides/aa.md) before diving into this tutorial.
+为了更好地理解这个页面，我们建议你在深入学习本教程之前先阅读一下[账户抽象设计](.../developer-guides/aa.md)。
 
-It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md). It is also recommended to read the [introduction to the system contracts](../developer-guides/system-contracts.md).
+假设你已经熟悉在zkSync上部署智能合约。如果没有，请参考[快速入门教程]（.../building-onzksync/hello-world.md）的第一节。还建议阅读[系统合同介绍](.../developer-guides/system-contracts.md)。
 
-## Installing dependencies
+## 安装依赖项
 
-We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it:
+我们将使用zkSync硬帽插件来开发这个合约。首先，我们应该为它安装所有的依赖项。
+
 
 ```
 mkdir custom-paymaster-tutorial
@@ -26,29 +27,30 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matter
 
 ::: tip
 
-The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
+当前版本的`zksync-web3`使用`ethers v5.7.x`作为同行依赖。与`ethers v6.x.x`兼容的更新将很快发布。
 
 :::
 
-Since we are working with zkSync contracts, we also need to install the package with the contracts and its peer dependencies:
+由于我们正在使用zkSync合同，我们还需要安装带有合同及其对等依赖的软件包。
 
 ```sh
 yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Then create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [quickstart tutorial](../building-on-zksync/hello-world.md).
+然后创建`hardhat.config.ts`配置文件，`contracts`和`deploy`文件夹，就像[快速入门教程](.../building-on-zksync/hello-world.md)中那样。
+
 
 ::: tip
 
-You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/)
+你可以使用zkSync CLI来自动构建一个项目的支架。查找[关于zkSync CLI的更多信息](.../.../api/tools/zksync-cli/)
 
 :::
 
-## Design
+## 设计
 
-Our protocol will be a dummy protocol that allows anyone to swap a certain ERC20 token in exchange for paying fees for the transaction.
+我们的协议将是一个假协议，允许任何人交换某个ERC20代币，以换取支付交易费用。
 
-The skeleton for the paymaster looks the following way:
+paymaster的框架看起来是这样的。
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -100,15 +102,16 @@ contract MyPaymaster is IPaymaster {
 }
 ```
 
-Note, that only the [bootloader](../developer-guides/system-contracts.md#bootloader) should be allowed to call the `validateAndPayForPaymasterTransaction`/`postOp` methods. That's why the `onlyBootloader` modifier is used for them.
+注意，只有[bootloader](.../developer-guides/system-contracts.md#bootloader)才允许调用`validateAndPayForPaymasterTransaction`/`postOp`方法。这就是为什么对它们使用`onlyBootloader`修改器。
 
-### Parsing the paymaster input
+### 解析paymaster的输入
 
-In this tutorial, we want to charge the user one unit of the `allowedToken` in exchange for the transaction fees, which will be paid by the paymaster contract.
+在本教程中，我们想向用户收取一个单位的`allowedToken`以换取交易费用，这将由paymaster合同支付。
 
-The input that the paymaster should receive is encoded in the `paymasterInput`. As described [in the paymaster documentation](../developer-guides/aa.md#built-in-paymaster-flows), there are some standardized ways to encode user interactions with paymasterInput. To charge the user, we will require that she has provided enough allowance of the ERC20 token to the paymaster contract. This allowance is done in the `approvalBased` flow behind the scenes.
+付款人应该收到的输入被编码为`paymasterInput`。正如[在paymaster文档中](.../developer-guides/aa.md#built-in-paymaster-flows)所述，有一些标准化的方法来编码用户与paymasterInput的互动。为了向用户收费，我们将要求她向paymaster合同提供足够的ERC20代币的津贴。这个津贴是在幕后的 "approvalBased "流程中完成的。
 
-Firstly, we'll need to check that the `paymasterInput` was encoded as in the `approvalBased` flow and that the token sent in `paymasterInput` is the one the paymaster accepts:
+首先，我们需要检查 "paymasterInput "是否像 "approvalBased "流程中那样被编码，并且 "paymasterInput "中发送的代币是支付者接受的。
+
 
 ```solidity
 magic = PAYMASTER_VALIDATION_SUCCESS_MAGIC;
@@ -133,7 +136,7 @@ if (paymasterInputSelector == IPaymasterFlow.approvalBased.selector)  {
 }
 ```
 
-Then, we need to check that the user indeed provided enough allowance:
+然后，我们需要检查用户是否确实提供了足够的津贴。
 
 ```solidity
 // We verify that the user has provided enough allowance
@@ -148,7 +151,7 @@ uint256 providedAllowance = IERC20(token).allowance(
 require(providedAllowance >= PRICE_FOR_PAYING_FEES, "Min allowance too low");
 ```
 
-Finally, we will check how much the transaction fees will be, transfer the ERC20 tokens to the paymaster, and transfers the correspondent gas fee from the paymaster to the bootloader to cover the transaction fees.
+最后，我们将检查交易费用是多少，将ERC20代币转移到paymaster，并将相应的气体费用从paymaster转移到bootloader以支付交易费用。
 
 ```solidity
 // Note, that while the minimal amount of ETH needed is tx.gasPrice * tx.gasLimit,
@@ -178,15 +181,16 @@ try
 require(success, "Failed to transfer funds to the bootloader");
 ```
 
-::: tip You should validate all the requirements first
+::: tip 你应该首先验证所有的要求
 
-The [rules](../developer-guides/aa.md#the-validation-step) for the paymaster throttling say that the paymaster won't be throttled if the first storage read the value of which differed from the execution on the API was a storage slot that belonged to the user.
+付费者节流的[规则](.../developer-guides/aa.md#the-validation-step)说，如果第一个与API上的执行不同的存储读取值是属于用户的存储槽，那么付费者就不会被节流了。
 
-That is why it is important to verify that the user provided all the allowed prerequisites to the transaction _before_ performing any logic. This is the reason we _first_ check that the user provided enough allowance, and only then do we do `transferFrom`.
+这就是为什么在执行任何逻辑之前，必须验证用户是否为交易提供了所有允许的前提条件_。这就是我们_首先_检查用户是否提供了足够的许可，然后才进行`transferFrom`的原因。
 
 :::
 
-### Full code of the paymaster
+### paymaster的完整代码
+
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -304,11 +308,11 @@ contract MyPaymaster is IPaymaster {
 
 ```
 
-## Deploying an ERC20 contract
+## 部署一个ERC20合约
 
-To test our paymaster, we need an ERC20 token so we are going to deploy one. For the sake of simplicity we will use a somewhat modified OpenZeppelin implementation of it:
+为了测试我们的支付系统，我们需要一个ERC20代币，所以我们要部署一个。为了简单起见，我们将使用一个稍加修改的OpenZeppelin实现它。
 
-Create the `MyERC20.sol` file and put the following code in it:
+创建 "MyERC20.sol "文件，并将以下代码放入其中。
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
@@ -340,9 +344,10 @@ contract MyERC20 is ERC20 {
 
 ```
 
-## Deploying the paymaster
+## 部署支付系统
 
-To deploy the ERC20 token and the paymaster, we need to create a deployment script. Create the `deploy` folder and create one file there: `deploy-paymaster.ts`. Put the following deployment script there:
+为了部署ERC20代币和paymaster，我们需要创建一个部署脚本。创建`deploy`文件夹并在那里创建一个文件。`deploy-paymaster.ts`。把下面的部署脚本放在那里。
+
 
 ```ts
 import { utils, Wallet } from "zksync-web3";
@@ -390,16 +395,16 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-Besides deploying the paymaster it also creates an empty wallet and mints some of the `MyERC20` tokens to it, so that it can use the paymaster later on.
+除了部署paymaster，它还创建了一个空钱包，并将一些`MyERC20'代币开采到其中，以便以后可以使用paymaster。
 
-To deploy the ERC20 token and the paymaster, you should compile the contracts and run the script:
+为了部署ERC20代币和paymaster，你应该编译合同并运行该脚本。
 
 ```
 yarn hardhat compile
 yarn hardhat deploy-zksync --script deploy-paymaster.ts
 ```
 
-The output should be roughly the following:
+输出结果应该大致如下。
 
 ```
 Empty wallet's address: 0xAd155D3069BB3c587E995916B320444056d8191F
@@ -410,11 +415,11 @@ Minted 3 tokens for the empty wallet
 Done!
 ```
 
-Note that the addresses and private keys will be different for each run.
+注意，每次运行的地址和私钥将是不同的。
 
-## Using the paymaster
+## 使用paymaster
 
-Create the `use-paymaster.ts` script in the `deploy` folder. You can see the example for interacting with the paymaster in the code snippet below:
+在`deploy`文件夹中创建`use-paymaster.ts`脚本。你可以在下面的代码段中看到与paymaster交互的例子。
 
 ```ts
 import { Provider, utils, Wallet } from "zksync-web3";
@@ -488,41 +493,41 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-After filling in the parameters `PAYMASTER_ADDRESS`, `TOKEN_ADDRESS` and `EMPTY_WALLET_PRIVATE_KEY` with the output provided in the previous step. 
+在填写完参数`PAYMASTER_ADDRESS'、`TOKEN_ADDRESS'和`EMPTY_WALLET_PRIVATE_KEY'与上一步提供的输出后。
 
 ::: warning 
 
-Important! Make sure you're using the private key of the wallet created by the previous script as that wallet contains the ERC20 tokens!
+重要的是! 确保你使用的是之前脚本所创建的钱包的私钥，因为该钱包包含ERC20代币
 
 :::
 
-Run this script with the following command:
+用以下命令运行这个脚本。
 
 ```
 yarn hardhat deploy-zksync --script use-paymaster.ts
 ```
 
-The output should be roughly the following:
+输出结果应该大致如下。
 
 ```
 Balance of the user before mint: 3
 Balance of the user after mint: 102
 ```
 
-The wallet had 3 tokens after running the deployment script and, after sending the transaction to `mint` 100 more tokens, the balance is 102 as 1 token was used to pay the transaction fee to the paymaster.
+运行部署脚本后，钱包里有3个代币，在向`mint`发送交易后，又有100个代币，余额为102，因为有1个代币被用来支付交易费用给支付者。
 
-## Common errors
+## 常见错误
 
-If the `use-paymaster.ts` script fails with the error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer funds to the bootloader`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use [zkSync Portal](https://portal.zksync.io/).
+如果`use-paymaster.ts`脚本失败，出现错误`提交交易失败。验证交易失败。原因是。验证重启。Paymaster验证错误。向bootloader转移资金失败`，请尝试向paymaster发送额外的ETH，以便它有足够的资金来支付交易。你可以使用[zkSync Portal]（https://portal.zksync.io/）。
 
-If the `use-paymaster.ts` script fails when minting new ERC20 tokens with the error `Error: transaction failed`, and the transactions appear with status "Failed" in the [zkSync explorer](https://explorer.zksync.io/), please reach out to us on [our Discord](https://join.zksync.dev/) or [contact page](https://zksync.io/contact.html). As a workaround, try including a specific `gasLimit` value in the transaction.
+如果`use-paymaster.ts`脚本在铸造新的ERC20代币时失败，出现`错误：交易失败`，并且交易在[zkSync explorer](https://explorer.zksync.io/)中出现状态 "失败"，请通过[我们的Discord](https://join.zksync.dev/)或[联系页面](https://zksync.io/contact.html)与我们接触。作为一个解决方法，尝试在交易中包括一个特定的`gasLimit`值。
 
-## Complete project
+## 完整的项目
 
-You can download the complete project [here](https://github.com/matter-labs/custom-paymaster-tutorial).
+你可以下载完整的项目[这里](https://github.com/matter-labs/custom-paymaster-tutorial)。
 
-## Learn more
+## 了解更多
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2.md).
-- To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
+- 要了解更多关于zkSync上L1->L2的交互，请查看[document](../developer-guides/bridging/l1-l2.md)。
+- 要了解更多关于`zksync-web3`SDK的信息，请查看其[文档](././api/js)。
+- 要了解更多关于zkSync hardhat插件的信息，请查看其[document](../../api/hardhat)。

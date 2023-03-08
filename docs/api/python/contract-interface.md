@@ -1,9 +1,9 @@
-# Contract interfaces
+# 合约接口
 
-There is a set of system contract that helps with the interaction with zkSync Era network.<br>
-The following are the contracts:
+有一套系统合约，有助于与zkSync Era网络的互动。
+以下是这些合约。
 
-- NonceHolder
+- 许可证持有人（NonceHolder
 - ERC20Contract & ERC20FunctionEncoder
 - ContractDeployer
 
@@ -12,9 +12,9 @@ The following are the contracts:
 
 ### NonceHolder
 
-The `NonceHolder` system contract handles the deployment of nonce, it's useful for precomputing address of contract that is going to be deployed in the network.<br>
+NonceHolder "系统合约处理nonce的部署，它对于预先计算将被部署在网络中的合约地址很有用。
 
-To construct it, you need the `account` and `Web3` object with the integrated zksync module.
+要构建它，你需要`account'和`Web3'对象与集成zksync模块。
 
 ```python
 from zksync2.manage_contracts.nonce_holder import NonceHolder
@@ -37,23 +37,24 @@ Methods:
 
 ### ERC20Contract
 
-This is system contract that is used internally as a part of the implementation methods of `EthereumProvider`<br>
+这是系统合约，在内部作为`EthereumProvider`的实现方法的一部分使用<br>。
 
-More interested type include the `ERC20FunctionEncoder`. it's used to provide method encoding in the case of sending non-native tokens inside the network.
+更感兴趣的类型包括`ERC20FunctionEncoder`。它用于在网络内发送非本地令牌的情况下提供方法编码。
 
-Construction needs only Web3 object with appended zksync module(ZkSyncBuilder)
+建设只需要Web3对象和附加的zksync模块（ZkSyncBuilder）。
 
-It has only 1 single method: `python encode_method` with arguments of function name, and it's args
+它只有一个方法：`python encode_method`，参数为函数名和它的args
+
 
 ### ContractDeployer
 
-ContractDeployer is a utility system contract, represented as a type to cover the following functionality:
+ContractDeployer是一个实用的系统合同，以一个类型表示，涵盖以下功能。
 
-- encode binary contract representation by `create` method for further deploying.
-- encode binary contract representation by `create2` method for further deploying.
-- Precompute contract address for `create` and `create2` methods.
+- 通过`create'方法对二进制合同表示进行编码，以便进一步部署。
+- 通过`create2`方法编码二进制合同表示，以便进一步部署。
+- 为`create`和`create2`方法预先计算合同地址。
 
-Construction: needs only web3 object with appended zksync module
+结构：只需要web3对象和附加的zksync模块。
 
 Example:
 

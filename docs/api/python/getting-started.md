@@ -1,32 +1,32 @@
-# Getting started
+# 快速开始
 
-In this guide we will demonstrate how to:
+在本指南中，我们将演示如何。
 
-1. Connect to the zkSync network.
-2. Deposit assets from Ethereum into zkSync.
-3. Check balances.
-4. Transfer and withdraw funds (native and ERC20 tokens).
-5. Deploy a smart contract.
-6. Deploy a smart contract with create2.
+1. 连接到zkSync网络。
+2. 将资产从以太坊存入zkSync。
+3. 检查余额。
+4. 4.转移和提取资金（本地和ERC20代币）。
+5. 5. 部署一个智能合约。
+6. 6.用create2部署一个智能合约。
 
 
 ::: warning
 
-This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../dev/troubleshooting/changelog.md)). A revised version will be available shortly.
+文件的这一部分正在审查中，以反映对系统合同的修改（[见changelog](.../.../dev/troubleshooting/changelog.md)）。修订后的版本很快就会推出。
 
 :::
 
-## Adding dependencies
+## 添加依赖性
 
-To install zkSync Era, run the command below in your terminal.
+要安装zkSync Era，请在终端运行以下命令。
 
 ```console
 pip install zksync2
 ```
 
-## Connecting to zkSync
+## 连接到zkSync
 
-Once you have all the necessary dependencies, connect to zkSync using the endpoint of the operator node.
+一旦你有了所有必要的依赖，使用操作员节点的端点连接到zkSync。
 
 ```python
 from zksync2.module.module_builder import ZkSyncBuilder
@@ -34,15 +34,16 @@ from zksync2.module.module_builder import ZkSyncBuilder
 sdk = ZkSyncBuilder.build("https://zksync2-testnet.zksync.dev")
 ```
 
-The SDK supports the mainnet, and goerli networks.
+该SDK支持主网和goerli网络。
 
-## Examples
+## 示例
 
-Once you instantiate the SDK, you can use it to access your zkSync contracts. You can use the SDK's contract getter functions like;
+一旦你实例化了SDK，你就可以用它来访问你的zkSync合同。你可以使用SDK的合同获取器功能，例如。
 
-### Deposit funds
+### 存入资金
 
-This is an example of how to deposit assets from Ethereum account to zkSync account:
+这是一个如何将资产从Ethereum账户存入zkSync账户的例子。
+
 
 ```python
 from web3 import Web3
@@ -79,9 +80,9 @@ if __name__ == "__main__":
 
 ```
 
-### Check balance
+### 检查余额
 
-Here's another example on how to check your balance.
+下面是另一个关于如何检查你的余额的例子。
 
 ```python
 from eth_account import Account
@@ -103,9 +104,9 @@ if __name__ == "__main__":
 
 ```
 
-### Transfer
+### 转移
 
-Here is an example on how to transfer funds on zkSync network.
+下面是一个关于如何在zkSync网络上转移资金的例子。
 
 ```python
 from eth_typing import HexStr
@@ -153,9 +154,9 @@ if __name__ == "__main__":
     transfer_to_self()
 ```
 
-### Transfer funds (ERC20 tokens)
+### 转移资金（ERC20代币）
 
-This example below shows how you can transfer ERC20 tokens.
+下面这个例子显示了你如何转移ERC20代币。
 
 ```python
 from zksync2.manage_contracts.erc20_contract import ERC20FunctionEncoder
@@ -207,9 +208,9 @@ if __name__ == "__main__":
     transfer_erc20_token()
 ```
 
-### Withdraw funds (Native coins)
+### 提取资金（本地币）
 
-This example show how to withdraw funds from zkSync.
+这个例子展示了如何从zkSync提取资金。
 
 ```python
 from decimal import Decimal
@@ -266,15 +267,15 @@ if __name__ == "__main__":
     withdraw()
 ```
 
-### Deploy a smart contract
+### 部署一个智能合约
 
-With zkSync, you can deploy a contract using the create method, by simply building the contract into a binary format and deploying it to the zkSync network.
+使用zkSync，您可以使用创建方法部署合同，只需将合同构建为二进制格式并将其部署到zkSync网络中。
 
-In the next steps, we will guide you through how it works.
+在接下来的步骤中，我们将引导你了解它是如何工作的。
 
-#### Step1: Create a contract
+#### 第1步：创建一个合同
 
-Here is a simple contract:
+这里是一个简单的合同。
 
 ```solidity
 pragma solidity ^0.8.0;
@@ -293,21 +294,21 @@ contract Counter {
 ```
 
 ::: tip
-It must be compiled by zkSync compiler only!
+它必须只由zkSync编译器来编译!
 :::
 
-After compilation there must be 2 files with:
+- 编译后，必须有2个文件，其中有。
 
-- contract binary representation
-- contract abi in json format
+  - 合同的二进制表示
+  - json格式的合同ABI
 
-#### Step 2: Deploy the contract
+#### 第2步：部署合同
 
-To deploy the contract, contract ABI is needed for calling its methods in the standard web3 way.
+为了部署合同，需要合同ABI来以标准的web3方式调用其方法。
 
-In some cases, you would need to get the contract address before deploying it.
+在某些情况下，你需要在部署前获得合同地址。
 
-Here's an example of how you would do it.
+下面是一个例子，说明你将如何做。
 
 ```python
 import json
@@ -419,9 +420,9 @@ if __name__ == "__main__":
     deploy_contract_create()
 ```
 
-#### Deploy contract with method create2
+#### 使用方法create2部署合同
 
-This example show how you can deploy contract using the create2 method.
+这个例子展示了如何使用create2方法部署合同。
 
 ```python
 import os

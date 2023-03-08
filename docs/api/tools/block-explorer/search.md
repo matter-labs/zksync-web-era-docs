@@ -1,19 +1,20 @@
 # The search bar
 
-## Overview
+## 概述
 
-Our user-friendly search tool gives you easy access to data from multiple search points and provides a more intuitive understanding of what you are searching for.
+我们的用户友好型搜索工具使你能够轻松地从多个搜索点获取数据，并对你所搜索的内容有一个更直观的了解。
 
-![Search Bar!](../../../assets/images/search-bar.png "search bar")
+![搜索栏！](../../../assets/images/search-bar.png "搜索栏")
 
-The main search bar is where you can look up something specific right away. You can search by:
+主搜索栏是你可以立即查找具体内容的地方。你可以通过以下方式搜索。
 ‍
 
-1. Block number: The number of the desired block for inspection. For example, enter `0` to see the contents of the chain’s genesis block.
-2. Transaction hash/ID: The ID of a specific transaction. A transaction implies that byte code has been executed by the EVM. These include deployments of smart contracts and subsequent invocations.
-3. Wallet address: The wallet address of a sender or a receiver of a token.
-4. Contract address: The callable address of an Ethereum smart contract deployed on zkSync.
+1. 区块编号。需要检查的区块的编号。例如，输入 "0 "可以看到链的创世块的内容。
+2. 2.交易哈希/ID：一个特定交易的ID。一个交易意味着字节代码已经被EVM执行。这些包括智能合约的部署和后续的调用。
+3. 钱包地址。代币的发送方或接收方的钱包地址。
+4. 4.合约地址。部署在zkSync上的Ethereum智能合约的可调用地址。
 
-One common use case that you can try on the block explorer is checking on the status of a transaction. This can be done by copying and pasting the transaction ID into the search bar. Users can also confirm whether the cryptocurrency they are waiting on has arrived yet by pasting their wallet address into the search bar, other use cases include searching for a contract address that has been deployed on zkSync.
+你可以在区块探索器上尝试的一个常见用例是检查交易的状态。这可以通过将交易ID复制并粘贴到搜索栏中来完成。用户还可以通过将他们的钱包地址粘贴到搜索栏来确认他们正在等待的加密货币是否已经到达，其他用例包括搜索已经部署在zkSync上的合同地址。
 
-In terms of transactions, the block explorer will display the address and its most recent transactions, as well as all transactions that have been carried out to and from that address. Within a block, there can be thousands of approved transactions. However, if you are interested in the exact order of a transaction in comparison to another (in the same block), you can utilize other indicators such as the transaction amount, and the payment’s timestamp to point you to the correct transactions.
+在交易方面，区块资源管理器将显示地址和其最近的交易，以及所有已经进行的交易，并从该地址进行交易。在一个区块内，可能有成千上万的批准交易。然而，如果你对一项交易与另一项交易（在同一区块内）的确切顺序感兴趣，你可以利用其他指标，如交易金额和付款的时间戳来指向正确的交易。
+

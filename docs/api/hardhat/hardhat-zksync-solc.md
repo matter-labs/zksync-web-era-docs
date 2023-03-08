@@ -1,12 +1,12 @@
-# `hardhat-zksync-solc`
+# `hardhat-zksync-solc
 
-This plugin is used to provide a convenient interface for compiling Solidity smart contracts before deploying them to zkSync Era.
+这个插件用于在将Solidity智能合约部署到zkSync Era之前提供一个方便的接口来编译它们。
 
-## Installation
+## 安装
 
 [@matterlabs/hardhat-zksync-solc](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-solc)
 
-Add the latest version of this plugin to your project with the following command:
+用以下命令将该插件的最新版本添加到你的项目中。
 
 ```
 # Yarn
@@ -18,11 +18,11 @@ npm i -D @matterlabs/hardhat-zksync-solc
 
 ### Exports
 
-This plugin most often will not be used directly in the code.
+这个插件大多数时候不会直接在代码中使用。
 
 ### Configuration
 
-This plugin is configured in the `hardhat.config.ts` file of your project. Here is an example
+这个插件是在你的项目的`hardhat.config.ts`文件中配置的。下面是一个例子
 
 ```typescript
 zksolc: {
@@ -48,7 +48,7 @@ networks: {
 
 ::: warning
 
-Compilers are no longer released as Docker images and its usage is no longer recommended. Use the `compilerSource: "binary"` in the Hardhat config file to use the binary instead.
+编译器不再作为Docker镜像发布，不再推荐使用。使用Hardhat配置文件中的 `compilerSource: "binary"`在Hardhat配置文件中使用二进制文件来代替。
 
 :::
 
@@ -64,18 +64,19 @@ Compilers are no longer released as Docker images and its usage is no longer rec
 
 ::: warning `forceEvmla` usage
 
-Setting the `forceEvmla` field to true can have the following negative impacts:
+将 "forceEvmla "字段设置为 "true "会产生以下负面影响。
 
-- No support for recursion.
-- No support for internal function pointers.
-- Contract size or performance impact.
+- 不支持递归。
+- 不支持内部函数指针。
+- 合同大小或性能影响。
 
-For solidity versions older than 0.8, this setting is enforced by default when compiling.
+对于0.8以前的solidity版本，该设置在编译时是默认执行的。
 
 :::
 
 ### Commands
 
-`hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates the `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
+`hardhat compile` -- 编译`contracts`目录下的所有智能合约，并创建`artifacts-zk`文件夹，其中包含所有编译工件，包括合约的工厂依赖，可用于合约部署。
 
-To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.
+要了解什么是工厂依赖，请阅读[Web3 API](.../api.md)文档中的更多内容。
+

@@ -1,26 +1,25 @@
-# Providers
+# 提供者
 
-Providers are objects that wrap interactions with the zkSync node. If you are new to the concept of providers in `web3`, you should check out their docs [here](https://openbase.com/swift/web3swift/documentation).
+- 提供者是包裹与zkSync节点的交互的对象。如果你对`web3`中的提供者的概念感到陌生，你应该看看他们的文档[这里](https://openbase.com/swift/web3swift/documentation)。
 
-zkSync fully supports Ethereum Web3 API, so you can use the provider objects from web3swift. However, zkSync API provides some additional JSON-RPC methods, which allow:
+  zkSync完全支持Ethereum Web3 API，所以你可以使用web3swift的提供者对象。然而，zkSync API提供了一些额外的JSON-RPC方法，这些方法允许。
 
-- Easily track L1<->L2 transactions.
-- Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use cases may require tracking "finalized" transactions only.
+  - 轻松地跟踪L1<->L2交易。
+  - 交易的不同阶段的最终结果。默认情况下，我们的RPC会返回服务器处理的最后一个状态的信息，但有些用例可能只需要跟踪 "最终完成 "的交易。
 
-The zkSync swift SDK exports the `EthereumProvider` provider:
+  zkSync swift SDK导出了`EthereumProvider`提供者。
 
-- `EthereumProvider` which inherits from `web3swift` `JsonRpcProvider` provides access to all of the zkSync JSON-RPC endpoints.
-
+  - `EthereumProvider`继承自`web3swift``JsonRpcProvider`提供对所有zkSync JSON-RPC端点的访问。
 
 
 
 ## EthereumProvider
 
-This provides the same functionality as `web3swift.providers.JsonRpcProvider`, but extends it with the zkSync-specific methods.
+这提供了与`web3swift.providers.JsonRpcProvider`相同的功能，但用zkSync特定的方法对其进行了扩展。
 
-### Creating provider
+### 创建提供者
 
-It accepts the `URL` to the operator node and the `network` name and the `keystoreManager`.
+它接受操作员节点的`URL`和`网络`名称以及`keystoreManager`。
 
 #### Arguments
 

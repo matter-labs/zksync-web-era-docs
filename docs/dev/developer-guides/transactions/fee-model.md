@@ -1,41 +1,42 @@
-# Fee mechanism
+# 费用机制
 
-::: warning
+:::warning
 
 
-This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../troubleshooting/changelog.md)). A revised version will be available shortly.
+本节文档正在审查中，以反映对系统合同的修改（[见changelog](.../../troubleshooting/changelog.md)）。修订后的版本很快就会推出。
 
 :::
 
-At zkSync, we aim to be compatible with Ethereum, meaning we aim to share similarities while minimizing huge differences, one such similarity is the gas fee model of zkSync.
+在zkSync，我们的目标是与以太坊兼容，这意味着我们旨在分享相似性，同时尽量减少巨大的差异，其中一个相似性是zkSync的气体费用模型。
 
-zkSync's version of `gas` is called `gas` just like Ethereum and represents not only the costs of computations but also the cost of publishing data on-chain and affecting storage.
+zkSync的 "gas "版本就像以太坊一样被称为 "gas"，它不仅代表了计算的成本，也代表了在链上发布数据和影响存储的成本。
 
-Since the costs for publishing the calldata on L1 are very volatile, the number of `gas` needed for changing a storage slot is not constant. For each block, the operator defines the following dynamic parameters:
+由于在L1上发布calldata的成本非常不稳定，改变一个存储槽所需的`gas`数量并不恒定。对于每个区块，操作员定义了以下动态参数。
 
-- `gas_price` — the table for the current base price in each token. The value of this parameter is used to determine the costs of VM execution in each token.
-- `gas_per_pubdata` — the price in `gas` for publishing one byte of data to Ethereum.
+- `gas_price` - 每个代币中当前基本价格的表格。这个参数的值用于确定每个令牌中虚拟机执行的成本。
+- `gas_per_pubdata` - 向以太坊发布一个字节的数据的`gas`价格。
 
-**Please note that the public data is published only for state diffs.** If the same storage slot is updated 10 times in the same rollup block, only the final update will be published on Ethereum, thus only charging for public data once.
-
-
+**请注意，公共数据只对状态差异进行发布。**如果同一个存储槽在同一个滚动块中被更新10次，只有最后的更新会被发布到以太坊上，因此只对公共数据收费一次。
 
 
-## Fee model: zkSync vs Ethereum
 
-We want to show the clear distinction between our fee model and the Ethereum one.
-Also, unlike Ethereum, where most of the opcodes have very distinct gas prices, in zkSync the cost of the opcodes is different, hence zkEVM opcodes will likely have similar `gas` prices.
-Generally, the execution itself (arithmetic operations, which do not involve storage updates) is very cheap. As in Ethereum, most of the cost is incurred for storage updates.
 
-## What does this mean to me?
+## 收费模式：ZkSync与Ethereum对比
 
-Despite the differences, the fee model is quite similar to the one of Ethereum; the most costly operation is the storage change. One of the advantages of zk rollups over-optimistic rollups is that, instead of publishing all the transaction data, zk rollups can publish only state diffs, thus making fewer storage changes.
+我们想表明我们的收费模式和以太坊的收费模式之间的明显区别。
+另外，与以太坊不同的是，在以太坊中，大多数操作码都有非常明显的气体价格，在zkSync中，操作码的成本是不同的，因此zkEVM操作码可能会有类似的 "气体 "价格。
+一般来说，执行本身（算术操作，不涉及存储更新）是非常便宜的。正如在以太坊中，大部分的成本是由存储更新产生的。
 
-As already stated, if the same storage slot is updated several times in a single block, only the last update will be published on Ethereum, and the cost of storage change will only be charged once; but it goes beyond simple storage slots. For example, a DEX and a `PairFactory` factory for different `Pair` pools. The contract bytecode of `Pair` needs to be published only when the first instance is deployed. After the code of the `Pair` was published once, the subsequent deployments will only involve changing one storage slot -- to set the contract code hash on the newly deployed `Pair`'s address.
+## 这对我意味着什么？
 
-So the tips to make the most out of the zkSync fee system are the following:
+尽管存在差异，但收费模式与以太坊的收费模式相当相似；最昂贵的操作是存储变化。zk rollups比optimistic rollups的优势之一是，zk rollups可以不发布所有交易数据，而只发布状态差异，从而减少存储变化。
 
-- **Update storage slots as little as possible.** The cost for execution is a lot smaller than the cost of storage updates.
-- **Reuse as many storage slots as possible.** Only the state diff is published on Ethereum.
-- **Users should share as many storage slots as possible.** If 100 users update a storage slot of your contract in a single block, the diff will be published only once. In the future, we will introduce reimbursement for the users, so that the costs for updating shared storage slots are split between the users.
-- **Reuse the contract code if possible.** On Ethereum, avoiding constructor parameters and putting them into constants reduces some of the gas costs upon contract deployment. On zkSync the opposite is true: deploying the same bytecode for contracts, while changing only constructor parameters can lead to substantial fee savings.
+正如已经说过的，如果同一个存储槽在一个区块中被多次更新，那么只有最后一次更新会被公布在以太坊上，而存储变化的成本只会被收取一次；但它超越了简单的存储槽。例如，一个DEX和一个`PairFactory`工厂用于不同的`Pair`池。`Pair`的合约字节码只需要在部署第一个实例时发布。在`Pair`的代码被发布一次后，后续的部署只需要改变一个存储槽--在新部署的`Pair`的地址上设置契约代码哈希。
+
+因此，充分利用zkSync收费系统的提示是以下几点。
+
+- **尽可能少地更新存储槽。**执行的成本比存储更新的成本小得多。
+- **尽可能多地重复使用存储槽。**只在以太坊上发布状态差异。
+- **用户应尽可能多地共享存储槽。**如果100个用户在一个区块中更新你的合约的存储槽，差异将只被发布一次。在未来，我们将为用户引入报销，这样更新共享存储槽的费用将在用户之间分摊。
+- **尽可能重复使用合约代码。**在以太坊上，避免构造器参数并将其放入常量，可以减少合约部署时的一些气体成本。在zkSync上，情况正好相反：为合约部署相同的字节码，而只改变构造函数参数，可以节省大量费用。
+

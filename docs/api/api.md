@@ -1,16 +1,16 @@
 # Web3 API
 
-zkSync Era fully supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/) and adds some L2-specific features.
+zkSync Era完全支持标准的[Ethereum JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/)，并增加了一些L2特有的功能。
 
-As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes to the codebase are needed._
+只要代码不涉及部署新的智能合约（它们只能使用EIP712交易部署，[下文]（#eip712）），_就不需要改变代码库。
 
-It is possible to continue using the SDK that is currently in use. Users will continue paying fees in ETH, and the UX will be identical to the one on Ethereum.
+可以继续使用目前正在使用的SDK。用户将继续以ETH支付费用，并且用户体验将与以太坊上的用户体验相同。
 
-However, zkSync Era has its specifics, which this section describes.
+然而，zkSync Era有其特殊性，本节介绍。
 
 ## EIP712
 
-To specify additional fields, like the custom signature for custom accounts or to choose the paymaster, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but they also have fields that contain additional L2-specific data (`paymaster`, etc).
+为了指定额外的字段，如自定义账户的自定义签名或选择支付方，应使用EIP712交易。这些交易具有与标准Ethereum交易相同的字段，但它们也有包含额外的L2特定数据的字段（`paymaster'，等等）。
 
 ```json
 "gasPerPubdata": "1212",
@@ -22,14 +22,14 @@ To specify additional fields, like the custom signature for custom accounts or t
 "factoryDeps": ["0x..."]
 ```
 
-- `gasPerPubdata`: is a field that describes the maximal amount of gas the user is willing to pay for a single byte of pubdata.
-- `customSignature` is a field with a custom signature, in case the signer's account is not EOA.
-- `paymasterParams` is a field with parameters for configuring the custom paymaster for the transaction. The address of the paymaster and the encoded input to call it are in the paymaster parameters.
-- `factory_deps` is a field that should be a non-empty array of `bytes`. For deployment transactions it should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
+- gasPerPubdata": 是一个字段，描述用户愿意为一个字节的pubdata支付的最大气体量。
+- `customSignature`是一个带有自定义签名的字段，以防签名者的账户不是EOA。
+- `paymasterParams`是一个包含参数的字段，用于配置交易的自定义付款人。支付系统的地址和调用它的编码输入在支付系统参数中。
+- `factory_deps`是一个字段，应该是一个非空的`字节'数组。对于部署交易，它应该包含被部署合同的字节码。如果被部署的合同是一个工厂合同，即它可以部署其他合同，该数组还应该包含可以被它部署的合同的字节码。
 
-To let the server recognize EIP712 transactions, the `transaction_type` field is equal to `113` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
+为了让服务器识别EIP712交易，`transaction_type`字段等于`113`（不幸的是，数字`712`不能被用作`transaction_type`，因为类型必须是一个字节长）。
 
-Instead of signing the RLP-encoded transaction, the user signs the following typed EIP712 structure:
+用户不签署RLP编码的交易，而是签署以下类型的EIP712结构。
 
 | Field name             | Type        |
 | ---------------------- | ----------- |
@@ -47,21 +47,21 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 | factoryDeps            | `bytes32[]` |
 | paymasterInput         | `bytes`     |
 
-These fields are conveniently handled by our [SDK](./js/features.md).
+这些字段由我们的[SDK](./js/features.md)方便地处理。
 
-## zkSync-specific JSON-RPC methods
+## zkSync特定的JSON-RPC方法
 
-All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods other than those provided here. These methods are to be used internally by the team and are very unstable.
+所有zkSync特定的方法都位于`zks_`命名空间中。API也可以提供这里提供的方法之外的其他方法。这些方法将由团队内部使用，并且非常不稳定。
 
 ::: warning
 
-Please note that Metamask does not support zks\_ namespace's methods, we are working to support it in the future, alternatively, you can use the `Provider` class with the testnet RPC instead of relying on Metamask's injected provider.
+请注意，Metamask不支持zks\_命名空间的方法，我们正在努力在未来支持它，另外，你可以使用testnet RPC的`Provider`类，而不是依赖Metamask的注入提供者。
 
 :::
 
-<!-- ### `zks_estimateFee`
+<!-- ### `zks_estimateFee`。
 
-Returns the fee for the transaction. The token in which the fee is calculated is returned based on the `fee_token` in the transaction provided.
+返回交易的费用。计算费用的令牌是根据提供的交易中的`fee_token'返回的。
 
 #### Input parameters
 
@@ -82,7 +82,7 @@ Returns the fee for the transaction. The token in which the fee is calculated is
 
 ### `zks_getMainContract`
 
-Returns the address of the zkSync Era contract.
+返回zkSync Era合约的地址。
 
 ### Input parameters
 
@@ -94,7 +94,7 @@ None.
 
 ### `zks_L1ChainId`
 
-Returns the chain id of the underlying L1.
+返回底层L1的链ID。
 
 ### Input parameters
 
@@ -106,9 +106,9 @@ None.
 
 ### `zks_getConfirmedTokens`
 
-Given `from` and `limit` return information about the confirmed tokens with IDs in the interval `[from..from+limit-1]`. "Confirmed" is the wrong word here, since a confirmed token has already been bridged through the default zkSync Era bridge.
+给定`from`和`limit`，返回ID在`[from...from+limit-1]`区间内的确认令牌的信息。"确认 "在这里是个错误的词，因为确认的令牌已经通过默认的zkSync Era桥接了。
 
-The tokens are returned in alphabetical order by their symbols, so a token's id is just its place in an array of tokens that has been sorted by symbols.
+代币是按照符号的字母顺序返回的，所以一个代币的id只是它在一个按照符号排序的代币数组中的位置。
 
 ### Input parameters
 
@@ -144,9 +144,9 @@ The tokens are returned in alphabetical order by their symbols, so a token's id 
 
 ### `zks_getL2ToL1LogProof`
 
-Given a transaction hash, and an index of the L2 to L1 log produced within the transaction, it returns the proof for the corresponding L2 to L1 log.
+给定一个交易哈希值，以及在该交易中产生的L2到L1日志的索引，它返回相应的L2到L1日志的证明。
 
-The index of the log that can be obtained from the transaction receipt (it includes a list of every log produced by the transaction).
+可以从交易收据中获得的日志索引（它包括交易产生的每个日志的列表）。
 
 ### Input parameters
 
@@ -157,9 +157,9 @@ The index of the log that can be obtained from the transaction receipt (it inclu
 
 ### Output format
 
-If there was no such message, the returned value is `null`.
+如果没有这样的消息，返回值为`null`。
 
-Otherwise, the object of the following format is returned:
+否则，将返回以下格式的对象。
 
 ```json
 {
@@ -174,23 +174,24 @@ Otherwise, the object of the following format is returned:
 }
 ```
 
-The `id` is the position of the leaf in the Merkle tree of L2->L1 messages for the block. The `proof` is the Merkle proof for the message, while the `root ` is the root of the Merkle tree of L2->L1 messages. Please note, that the Merkle tree uses _sha256_ for the trees.
+`id`是该区块在L2->L1消息的Merkle树中的叶子的位置。`proof`是该信息的Merkle证明，而`root`是L2->L1信息的Merkle树的根。请注意，Merkle树使用_sha256_的树。
 
-You do not need to care about the intrinsics, since the returned `id` and `proof` can be used right away for interacting with the zkSync Era smart contract.
+你不需要关心本征，因为返回的`id`和`proof`可以立即用于与zkSync Era智能合约的交互。
 
-A nice example of using this endpoint via our SDK can be found [here](../dev/developer-guides/bridging/l2-l1.md).
+通过我们的SDK使用这个端点的一个很好的例子可以找到[这里]（.../dev/developer-guides/bridging/l2-l1.md）。
+
 
 ::: tip
 
-The list of L2 to L1 logs produced by the transaction, which is included in the receipts, is a combination of logs produced by L1Messenger contract or other system contracts/bootloader.
+事务产生的L2到L1的日志列表，包含在收据中，是由L1Messenger合约或其他系统合约/bootloader产生的日志的组合。
 
-There is a log produced by the bootloader for every L1 originated transaction that shows if the transaction has succeeded.
+有一个由bootloader为每个L1起源的交易产生的日志，显示交易是否成功。
 
 :::
 
 ### `zks_getL2ToL1MsgProof`
 
-Given a block, a sender, a message, and an optional message log index in the block containing the L1->L2 message, it returns the proof for the message sent via the L1Messenger system contract.
+给定一个区块、一个发件人、一个消息和一个包含L1->L2消息的区块中的可选消息日志索引，它返回通过L1Messenger系统合同发送的消息的证明。
 
 ### Input parameters
 
@@ -203,17 +204,17 @@ Given a block, a sender, a message, and an optional message log index in the blo
 
 ### Output format
 
-The same as in [zks_getL2ToL1LogProof](#zks-getl2tol1logproof).
+与[zks_getL2ToL1LogProof](#zks-getl2tol1logproof)中相同。
 
 ::: warning
 
-`zks_getL2ToL1MsgProof` endpoint will be deprecated because proofs for L2 to L1 messages can also be fetched from `zks_getL2ToL1LogProof`.
+`zks_getL2ToL1MsgProof`端点将被废弃，因为L2到L1消息的证明也可以从`zks_getL2ToL1LogProof`获取。
 
 :::
 
 ### `zks_getBridgeContracts`
 
-Returns L1/L2 addresses of default bridges.
+返回默认网桥的L1/L2地址。
 
 ### Input parameters
 
@@ -232,7 +233,7 @@ None.
 
 ### `zks_getTestnetPaymaster`
 
-Returns the address of the [testnet paymaster](../dev/developer-guides/aa.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
+返回[testnet paymaster](.../dev/developer-guides/aa.md#testnet-paymaster)的地址：在testnets上可用的paymaster，可以用ERC-20兼容代币支付费用。
 
 ### Input parameters
 
@@ -246,7 +247,7 @@ None.
 
 ### `zks_getBlockDetails`
 
-Returns additional ZkSync-specific information about the L2 block.
+返回关于L2块的其他ZkSync特定信息。
 
 ### Input parameters
 
@@ -276,7 +277,7 @@ Returns additional ZkSync-specific information about the L2 block.
 <!-- TODO: uncomment once fixed --->
 <!-- ### `zks_getTokenPrice`
 
-Given a token address, returns its price in USD. Please note that that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
+给定一个代币地址，返回它的价格（美元）。请注意，这是zkSync团队使用的价格，可能与当前的市场价格有一些不同。在测试网络上，代币价格可能与实际市场价格有很大差异。
 
 ### Input parameters
 
@@ -334,7 +335,7 @@ fn get_eth_withdrawal_tx(&self, withdrawal_hash: H256) -> BoxFutureResult<Option
 
 
 
-Don't want to document (at least for now):
+不想记录（至少现在是这样）:
 
 ### `zks_getAccountTransactions`
 
@@ -354,12 +355,12 @@ Don't want to document (at least for now):
 
 ## PubSub API
 
-zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub), except for the `syncing` subscription. This is because nodes on the zkSync network are technically always synchronized.
+zkSync与[Geth的pubsub API](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub)完全兼容，除了`同步`的订阅。这是因为zkSync网络上的节点在技术上总是同步的。
 
-The WebSocket URL is `wss://zksync2-testnet.zksync.dev/ws`.
+WebSocket URL是`wss://zksync2-testnet.zksync.dev/ws`。
 
 ::: tip
 
-You can use the websocket endpoint to handle smart contract events, as detailed [in this section of the docs](../dev/building-on-zksync/events.md).
+你可以使用websocket端点来处理智能合约事件，如[本节文档](.../dev/building-on-zksync/events.md)所详述。
 
 :::

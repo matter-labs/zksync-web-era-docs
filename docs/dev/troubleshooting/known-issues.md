@@ -1,72 +1,72 @@
-# Known issues
+# 已知的问题
 
-zkSync Era is currently in the alpha stage, hence some things you are used to may not work. Please keep in mind that the system is still under ongoing development.
+zkSync Era目前处于阿尔法阶段，因此一些你习惯的东西可能无法工作。请记住，该系统仍在持续开发中。
 
-## Why are Metamask native contract interactions not working?
+## 为什么Metamask的原生合约互动不工作？
 
-It is not currently possible to interact with zkSync smart contracts via Metamask with EIP-1559 transactions. zkSync does not support EIP1559 transactions.
+目前不可能通过Metamask与zkSync智能合约进行EIP-1559交易的互动。
 
-**Solution.** Explicitly specify `{ type: 0 }` in transaction overrides to use Ethereum legacy transactions.
+**解决方案。**明确指定`{类型。0 }`在交易覆盖中，使用Ethereum传统交易。
 
-## Why does my wallet have no funds and my contract disappears?
+## 为什么我的钱包没有资金，我的合同消失了？
 
-We are expected to update our testnet continuously, so from time to time, we will need to do a re-genesis. This will cause the entire state to reset, and all deployed contracts will cease to exist.
+我们被期望不断地更新我们的测试网，所以不时地需要进行重新创世。这将导致整个状态重置，所有部署的合同将不复存在。
 
-**We will communicate re-genesis events before they happen!**
+**我们会在重新创世事件发生之前进行沟通！**。
 
-## Why does `wait()` get stuck for L1->L2 transactions?
+## 为什么`wait()`会在L1->L2事务中卡住？
 
-If the `wait()` takes much longer than expected, most likely the transaction has failed.
+如果`wait()`花费的时间比预期的长，很可能是交易失败了。
 
-## Why is there an `unexpected end of JSON input` compilation error?
+## 为什么会出现`非预期的JSON输入结束'的编译错误?
 
-This is an error that is usually thrown when compiling a large smart contract codebase.
+这是一个通常在编译大型智能合约代码库时抛出的错误。
 
-If you encounter such an error, please do the following:
+如果你遇到这样的错误，请做以下处理。
 
-- Update the `@matterlabs/hardhat-zksync-solc` library and try to re-compile the smart contracts afterwards.
-- If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](../../api/hardhat/compiling-libraries.md).
-- If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](../../api/).
-- If the same error persists, report the issue to our team. We will do our best to help you.
+- 更新`@matterlabs/hardhat-zksync-solc`库，之后尝试重新编译智能合约。
+- 如果在重新编译后，你得到了 "未找到库 "的错误，那么你应该按照[这里](.../.../api/hardhat/compiling-libraries.md)的指示来做。
+- 如果在重新编译后，你得到了 "Library not found "的错误，那么你应该按照[here](.../.../api/)中的说明进行。
+- 如果同样的错误持续存在，请向我们的团队报告这个问题。我们将尽最大努力帮助你。
 
-## Why can't I use CREATE/CREATE2 opcodes with raw bytecode?
+## 为什么我不能用原始字节码使用CREATE/CREATE2操作码？
 
-zkSync does not support using CREATE/CREATE2 with raw bytecode. We highly recommend using the `new` operator to avoid any issues.
+zkSync不支持用原始字节码使用CREATE/CREATE2。我们强烈建议使用`new`操作符来避免任何问题。
 
-## Why is Hardhat's `console.log` not working?
+## 为什么Hardhat的`console.log`不工作？
 
-zkSync does not support the Nomic Foundation's `console.log` contract. Due to different address derivation rules, even when deployed, the `console.log` library will likely have a different address from the one on Ethereum.
+zkSync不支持Nomic Foundation的`console.log`合约。由于不同的地址推导规则，即使部署后，`console.log`库的地址很可能与Ethereum上的不同。
 
 <!---
 
-## Metamask native transfers not working
+## Metamask本机传输不工作
 
-It is not currently possible to transfer ERC-20 tokens inside the Metamask interface.
+目前不可能在Metamask接口内转移ERC-20代币。
 
-**Solution.** For now, transfers inside zkSync you should be done via the [zkSync Wallet](https://portal.zksync.io) dApp.
+**解决方案。**目前，在zkSync内部的转移应该通过[zkSync Wallet](https://portal.zksync.io) dApp完成。
 
 
-## Transfers with the _entire_ token balance fail
+##用整个代币余额转账失败
 
-If you try to transfer the entire balance of a token, which is also the token you pay the fee with, the transaction fails. The reason is that we don’t deduct the fee before setting the amount to be transferred.
+如果你试图转移一个代币的全部余额，这也是你支付费用的代币，交易会失败。原因是我们在设置转账金额之前没有扣除费用。
 
-**Solution.** Keep aside a small amount to cover the fee.
+**解决方案。**留出一小部分金额来支付费用。
 
-## Errors before sending a transaction
+## 发送交易前的错误
 
-Similar to above, in cases where the fee should be deducted from the token amount, you may get an error if estimate_gas returns an error.
+与上面类似，在应该从代币金额中扣除费用的情况下，如果 estimate_gas 返回一个错误，你可能会得到一个错误。
 
-**Solution.** As above, make sure to keep aside a small amount to cover the fee.
+**解决方案。**如上所述，确保留出一小笔钱来支付费用。
 
-## My contract does not compile, due to an error with “cyclic dependencies”
+##我的合同不能编译，由于 "循环依赖 "的错误
 
-Unfortunately, some contracts have trouble compiling with our hardhat plugin. This is due to the contracts importing external dependencies. This happens to a small number of projects. We are currently working on resolving this issue.
+不幸的是，有些合同在编译我们的硬帽插件时遇到了麻烦。这是由于合同导入了外部依赖性。这发生在少数项目中。我们目前正在努力解决这个问题。
 
-## My transaction is not shown on the block explorer
+## 我的交易没有显示在区块资源管理器上
 
-Currently, the block explorer does not index the latest produced block. As long as a new block is not produced after the block that contains your transaction, it won't appear
-on the block explorer.
+目前，区块资源管理器没有对最新产生的区块进行索引。只要一个新的区块没有在包含你的交易的区块之后产生，它就不会出现在
+在区块资源管理器上。
 
-**Solution.** You can make a simple transfer (or any other transaction) to make the system produce a new block. The previous block would then appear, including your transaction.
-Note that if you know the tx id, you can use our wallet to see its status.
+**解决方案。**你可以进行简单的转账（或任何其他交易），使系统产生一个新的区块。然后之前的区块会出现，包括你的交易。
+注意，如果你知道tx id，你可以使用我们的钱包来查看它的状态。
 --->

@@ -1,47 +1,47 @@
-# Interact with zkSync Era
+# 与zkSync Era互动
 
-zkSync Era is currently is on the fair alpha onboarding stage, which involves opening our mainnet to certain teams to build and and make transactions on mainnet.
+zkSync Era目前正处于公平的阿尔法登场阶段，这涉及到向某些团队开放我们的主网，以便在主网上建立和进行交易。
 
-## Do I need experience with zkSync Lite?
+## 我需要有使用zkSync Lite的经验吗？
 
-Some experience with zkSync Lite would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync Era and zkSync Lite are very different systems, and experience with the latter is not needed to build on zkSync Era.
+对zkSync Lite的一些经验将有助于理解一些核心概念，例如最终性如何工作。从所有其他方面来看，zkSync Era和zkSync Lite是非常不同的系统，在zkSync Era的基础上不需要后者的经验。
 
-## What do I need to start building?
+## 我需要什么来开始构建？
 
-All the existing SDKs for Ethereum will work out of the box and your users will have the same experience as on Ethereum. If you want to enable advanced zkSync features, like account abstraction, the zkSync SDK should be used.
+所有现有的以太坊的SDK将开箱工作，你的用户将有与以太坊上相同的体验。如果你想启用先进的zkSync功能，如账户抽象，应该使用zkSync SDK。
 
-The only other place where using zkSync SDK is required is during contract deployment. This can be easily done through our hardhat plugin.
+其他唯一需要使用zkSync SDK的地方是在合同部署期间。这可以通过我们的硬帽插件轻松完成。
 
-### Quickstart on zkSync
+###快速启动zkSync
 
-Check out our step-by-step [quickstart guide](../building-on-zksync/hello-world.md), where you will learn:
+查看我们的步骤[快速入门指南](.../building-on-zksync/hello-world.md)，在那里你会学到。
 
-- How to install zkSync hardhat plugin and deploy smart contracts with it.
-- How to build the front-end for your dApp using the `zksync-web3` library.
+- 如何安装zkSync硬帽插件并使用它部署智能合约。
+- 如何使用`zksync-web3`库为你的dApp构建前端。
 
-### Connecting to zkSync Era on Metamask
+###连接到Metamask上的zkSync Era
 
-In order to add the zkSync Era alpha mainnet network to your wallet, you will need to enter the following details:
+为了将zkSync Era alpha主网网络添加到您的钱包，您需要输入以下详细信息。
 
-1. Open the Metamask wallet and click on the network in the top center:
+1. 打开Metamask的钱包，点击顶部中心的网络。
 
 ![img](../../assets/images/connect-1.png)
 
-2. Click on "Add network manually".
+2. 点击 "手动添加网络"。
 
-3. Fill in the details about zkSync Era alpha mainnet or testnet network and click "Save":
+3. 填写有关zkSync Era alpha主网或测试网的详细信息，然后点击 "保存"。
 
-**Mainnet network info**
+**主网网络信息**
 
-- Network Name: `zkSync Era Mainnet`
-- New RPC URL: `https://zksync2-mainnet.zksync.io`
-- Chain ID: `324`
-- Currency Symbol: `ETH`
-- Block Explorer URL: `https://explorer.zksync.io/`
-- WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`
+- 网络名称。`zkSync Era Mainnet'.
+- 新的RPC URL: `https://zksync2-mainnet.zksync.io `
+- 链ID: `324
+- 货币符号: `ETH `
+- 区块资源管理器 URL: `https://explorer.zksync.io/`
+- WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`。
 
 
-**Testnet network info**
+**Testnet网络信息**
 
 - Network Name: `zkSync Era Testnet`
 - New RPC URL: `https://zksync2-testnet.zksync.dev`
@@ -50,19 +50,20 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - Block Explorer URL: `https://goerli.explorer.zksync.io/`
 - WebSocket URL: `wss://zksync2-testnet.zksync.dev/ws`
 
-## zkSync Era Support
+## zkSync时代支持
 
-You can open a support ticket in `💻🧪│dev-support-beta` or ask any questions in `🖥│dev-general`
+你可以在`💻🧪│dev-support-beta`里开一张支持票，或者在`🖥│dev-general`里问任何问题。
 
-If you need help with anything related to the zkSync Era, you can raise a support ticket on the zkSync Era discord, or check out the [FAQs](../troubleshooting/faq.md) page to view the most common queries about the zkSync Era. Additionally, you can reach out to the support team available on the `#dev-support-beta`, or ask any questions in `#dev-general` channel on the zkSync Era Discord server. 
-Instructions for raising a support ticket are as follows:
+如果你需要与zkSync Era有关的任何帮助，你可以在zkSync Era discord上提出支持票，或者查看[FAQs](.../troubleshooting/faq.md)页面，查看关于zkSync Era的最常见的疑问。此外，你可以联系`#dev-support-beta`上的支持团队，或者在zkSync Era Discord服务器上的`#dev-general`频道中提出任何问题。
+提出支持票的说明如下。
 
-- Join the zkSync Era [our Discord](https://join.zksync.dev/) server.
-- Accept the invite sent.
-- Navigate to the `#dev-support-beta` channel.
+- 加入 zkSync Era [我们的 Discord](https://join.zksync.dev/) 服务器。
+- 接受发送的邀请。
+- 导航到`#dev-support-beta`频道。
 
-Alternatively, you can now contact our support engineers with your questions and concerns via [email](mailto:support@zksync.io). 
-We will actively monitor for issues and work to resolve them as soon as possible.
+另外，你现在可以通过[email](mailto:support@zksync.io)联系我们的支持工程师，提出你的问题和疑虑。
+我们将积极监测问题，并努力尽快解决它们。
+
 
 <!-- **Testnet network info**
 
@@ -73,10 +74,9 @@ We will actively monitor for issues and work to resolve them as soon as possible
 - Block Explorer URL: `https://goerli.explorer.zksync.io/`
 - WebSocket URL: `wss://zksync2-testnet.zksync.dev/ws` -->
 
+<!-- ## 使用zkSync门户网站存入和提取资金
 
-<!-- ## Deposit and withdraw funds using zkSync Portal
-
-As the testnet is running on Goerli network, you will need to get some Goerli ETH first. Try any of the faucets below.
+由于测试网是在Goerli网络上运行，你需要先获得一些Goerli ETH。试试下面的任何一个龙头。
 
 - [https://goerli-faucet.mudit.blog/](https://goerli-faucet.mudit.blog/)
 - [https://faucets.chain.link/goerli](https://faucets.chain.link/goerli)
@@ -85,38 +85,39 @@ As the testnet is running on Goerli network, you will need to get some Goerli ET
 
 **Step 1**
 
-Head to [https://portal.zksync.io/](https://portal.zksync.io/) and connect your wallet. You will automatically be asked to add the “zkSync Era testnet Goerli” network.
+前往[https://portal.zksync.io/](https://portal.zksync.io/)并连接你的钱包。你会自动被要求添加 "zkSync Era testnet Goerli "网络。
 
-You may also add the network manually to your metamask.
+你也可以手动添加网络到你的metamask中。
 
 - Network Name: `zkSync mainnet`
 - New RPC URL: `https://zksync2-mainnet.zksync.io`
 - Chain ID: `324` -->
 <!-- 
-**Step 2 (Skip if you don’t have Goerli ETH)**
+**Step 2 (如果你没有Goerli ETH，请跳过。)**
 
-We first go to “Bridge” and then “Deposit” to deposit some \$ETH to zkSync Era.
+我们首先进入 "桥梁"，然后 "存款"，将一些$ETH存入zkSync Era。
 
 ![image](../../assets/images/faq-1.png)
 
 **Step 3**
 
-Next, we go to “Faucet” to get some testnet $ETH, $LINK, $DAI, $WBTC and \$USDC into our zkSync address.
+接下来，我们去 "Faucet "获取一些测试网的$ETH、$LINK、$DAI、$WBTC和$USDC到我们的zkSync地址。
 
 ![image](../../assets/images/faq-2.png)
 
-Check your balance at “Balances” after claiming.
+申领后在 "余额 "处查看你的余额。
 
 ![image](../../assets/images/faq-3.png)
 
 **Step 4**
 
-Now go to “Transfer”. Input the address of another wallet and transfer some tokens to it. Pay the fees in DAI if you don’t have ETH.
+现在转到 "转移"。输入另一个钱包的地址，并转移一些代币到它。如果你没有ETH，就用DAI支付费用。
 
 ![image](../../assets/images/faq-4.png)
 
 **Step 5**
 
-At last we go to “Withdraw” to withdraw some \$DAI from zkSync back to Goerli. Pay the fees in ETH.
+最后我们去 "提款"，从zkSync提取一些\$DAI回到Goerli。用ETH支付费用。
+
 
 ![image](../../assets/images/faq-5.png) -->

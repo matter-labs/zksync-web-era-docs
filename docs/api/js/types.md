@@ -1,7 +1,9 @@
-# Types
+# 类型
 
-All the types which are used in the SDK are referenced here:
-<!-- TODO SMA-1725: prepare quality documentation for SDK types with proper description and explanation -->
+这里引用了SDK中使用的所有类型。
+
+<!-- TODO SMA-1725: 为SDK类型准备高质量的文档，并提供适当的描述和解释 -->
+
 ```typescript
 import { BytesLike, BigNumberish, providers, BigNumber } from 'ethers';
 import { BlockWithTransactions as EthersBlockWithTransactions } from '@ethersproject/abstract-provider';

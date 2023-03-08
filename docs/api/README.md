@@ -1,10 +1,10 @@
-# Overview
+# 概述
 
-Our SDKs enable you to build web3 applications, with capabilities such as:
+我们的SDK使您能够建立web3应用程序，具有以下功能。
 
-- Connecting to user's wallets
-- Deploying and interacting with smart contracts
-  We support a few languages (and are working on more) to make it easier for you to build different kinds of applications.
+- 连接到用户的钱包
+- 部署智能合约并与之互动
+  我们支持一些语言（并且正在开发更多的语言），使你更容易建立不同类型的应用程序。
 
 ## API
 
@@ -18,9 +18,9 @@ Our SDKs enable you to build web3 applications, with capabilities such as:
 - [Java SDK](./java/getting-started.md)
 - [Swift SDK](./swift/getting-started.md)
 
-## Tools
+## 工具
 
-- [Hardhat plugins](./hardhat)
+- [Hardhat插件](./hardhat)
   - [hardhat-zksync-solc](./hardhat/hardhat-zksync-solc.md)
   - [hardhat-zksync-vyper](./hardhat/hardhat-zksync-vyper.md)
   - [hardhat-zksync-deploy](./hardhat/hardhat-zksync-deploy.md)
@@ -28,3 +28,4 @@ Our SDKs enable you to build web3 applications, with capabilities such as:
   - [hardhat-zksync-verify](./hardhat/hardhat-zksync-verify.md)
 - [Block Explorer](./tools/block-explorer/)
 - [zkSync CLI](./tools/zksync-cli/)
+

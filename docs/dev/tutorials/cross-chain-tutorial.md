@@ -1,58 +1,59 @@
-# Cross-chain governance
+# 跨链治理
 
-This tutorial serves as an example of how to implement L1 to L2 contract interaction. The following functionality is implemented in this tutorial:
+本教程作为一个例子，说明如何实现L1到L2的合同互动。本教程中实现了以下功能。
 
-- A "counter" smart contract is deployed on zkSync, which stores a number that can be incremented by calling the `increment` method.
-- A "governance" smart contract is deployed on layer 1, which has the privilege to increment the counter on zkSync.
+- 一个 "计数器 "智能合约被部署在zkSync上，它存储了一个数字，可以通过调用`increment`方法来增加。
+- 一个 "治理 "智能合约被部署在第1层，它有权限增加zkSync上的计数器。
+
 
 
 
 
 ::: warning
 
-Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM. 
+请注意，在`zksync-web3 ^0.13.0`中引入了突破性变化。API层现在使用 "gas "操作，"ergs "概念只在虚拟机内部使用。
 
-This tutorial will be updated shortly to reflect those changes.
+本教程将很快被更新以反映这些变化。
 
 :::
 
-## Preliminaries
+## 预先说明
 
-In this tutorial, it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+在本教程中，假定你已经熟悉在zkSync上部署智能合约。如果没有，请参考[快速入门教程]（.../building-on-zksync/hello-world.md）的第一节。
 
-It is also assumed that you already have some experience working with Ethereum.
+此外，还假设你已经有一些使用Ethereum的经验。
 
-## Project structure
+## 项目结构
 
-As we will deploy contracts on both L1 and L2, we'll separate this project in two different folders:
+由于我们将在L1和L2上部署合约，我们将把这个项目分成两个不同的文件夹。
 
-- `/L1-governance`: for the L1 contract, and scripts.
-- `/L2-counter`: for the L2 contract, and scripts.
+- `/L1-governance`：用于L1合约，和脚本。
+- `/L2-counter`：用于L2合同，以及脚本。
 
-So go ahead and create these folders.
+所以继续创建这些文件夹。
 
 ::: tip
 
-Note that the `governance` project is a default Hardhat project because it'll be used to deploy a contract just in L1, while the `counter` project includes all the zkSync dependencies and specific configuration as it'll deploy the contract in L2.
+请注意，`governance`项目是一个默认的Hardhat项目，因为它将被用来在L1部署合同，而`counter`项目包括所有的zkSync依赖和特定配置，因为它将在L2部署合同。
 
 :::
 
-## L1 governance
+## L1治理
 
-To initialise the project inside the `/L1-governance` folder, run `npx hardhat`, select the option "Create a Typescript project", and leave the rest of the options with the default value.
+要初始化`/L1-governance`文件夹内的项目，运行`npx hardhat`，选择 "创建一个Typescript项目 "选项，其余选项保留默认值。
 
-To interact with the zkSync bridge contract using Solidity, you need to use the zkSync contract interface. There are two options to get it:
+要使用 Solidity 与 zkSync 桥接合同互动，你需要使用 zkSync 合同接口。有两个选项可以得到它。
 
-1. Importing it from the `@matterlabs/zksync-contracts` npm package. (preferred)
-2. Downloading it from the [contracts repo](https://github.com/matter-labs/v2-testnet-contracts).
+1. 从`@matterlabs/zksync-contracts`的npm包中导入它。(首选)
+2. 从[contracts repo]中下载（https://github.com/matter-labs/v2-testnet-contracts）。
 
-We'll go with option 1 and install the `@matterlabs/zksync-contracts` package by running the following command (just make sure you're inside the `/L1-governance` folder):
+我们将选择选项1，并通过运行以下命令安装`@matterlabs/zksync-contracts`包（只要确保你在`/L1-governance`文件夹内）。
 
 ```
 yarn add -D @matterlabs/zksync-contracts
 ```
 
-The code of the governance contract that we will deploy on L1 is the following:
+我们将在L1上部署的治理合同的代码如下。
 
 ```sol
 //SPDX-License-Identifier: Unlicense
@@ -81,17 +82,17 @@ contract Governance {
 }
 ```
 
-This is a very simple governance contract. It sets the creator of the contract as the single governor and has a function that can request transactions in L2 via the zkSync smart contract.
+这是一个非常简单的治理合约。它将合约的创建者设定为单一的治理者，并且有一个函数可以通过zkSync智能合约请求L2的交易。
 
-You can [learn more about L1-L2 communication in this section of the docs](../developer-guides/bridging/l1-l2.md).
+你可以[在本节文档中了解更多关于L1-L2通信的信息]（.../developer-guides/bridging/L1-l2.md）。
 
-### Deploy L1 governance contract
+### 部署L1治理合同
 
-Although this tutorial does not focus on the process of deploying contracts on L1, we'll give you a quick overview on how to continue.
+尽管本教程并不关注在L1上部署合同的过程，但我们会给你一个快速的概述，告诉你如何继续。
 
-1. You'll need an RPC node endpoint to the Göerli testnet to submit the deployment transaction. You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
+1. 你需要一个RPC节点端点到Göerli测试网，以提交部署事务。你可以[在这里找到多个节点提供者]（https://github.com/arddluma/awesome-list-rpc-nodes-providers）。
 
-2. Create the file `/L1-governance/goerli.json` and fill in the following values:
+2. 创建文件`/L1-governance/goerli.json`并填写以下数值。
 
 ```json
 {
@@ -100,7 +101,7 @@ Although this tutorial does not focus on the process of deploying contracts on L
 }
 ```
 
-3. Add the Göerli network section to the `hardhat.config.ts` file:
+3. 在`hardhat.config.ts`文件中添加Göerli网络部分。
 
 ```ts
 import { HardhatUserConfig, task } from "hardhat/config";
@@ -125,7 +126,7 @@ const config: HardhatUserConfig = {
 };
 ```
 
-4. Create the deployment script `/L1-governance/scripts/deploy.ts` with the following code:
+4. 用以下代码创建部署脚本`/L1-governance/scripts/deploy.ts`。
 
 ```ts
 // We require the Hardhat Runtime Environment explicitly here. This is optional
@@ -153,7 +154,7 @@ main().catch((error) => {
 });
 ```
 
-5. Compile the contract and run the deployment script with:
+5. 编译合同并运行部署脚本。
 
 ```
 # compile contract
@@ -164,13 +165,13 @@ yarn hardhat run --network goerli ./scripts/deploy.ts
 
 ```
 
-The last command will print the deployed governance smart contract address in the terminal.
+最后一条命令将在终端打印已部署的治理智能合约地址。
 
-## L2 counter
+## L2反面
 
-Now that we have the L1 governance contract addressed, let's proceed with the counter contract on L2.
+现在我们已经解决了L1的治理合同，让我们继续进行L2的反合同。
 
-1. To initialise the project in the `/L2-counter` folder run the following commands:
+1. 为了初始化`/L2-counter`文件夹中的项目，运行以下命令。
 
 ```
 yarn init -y
@@ -180,11 +181,11 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matter
 
 ::: tip
 
-The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
+当前版本的`zksync-web3`使用`ethers v5.7.x`作为同行依赖。与`ethers v6.x.x`兼容的更新将很快发布。
 
 :::
 
-2. Create the `hardhat.config.ts` file and paste the following code there:
+2. 创建`hardhat.config.ts`文件并在那里粘贴以下代码。
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
@@ -213,17 +214,17 @@ module.exports = {
 };
 ```
 
-If your default network is not `hardhat`, make sure to include `zksync: true` in its config, too.
+如果你的默认网络不是`hardhat'，确保在其配置中也包括`zksync: true'。
 
-3. Create the `contracts` and `deploy` folders, which will contain all the contract `*.sol` files, and the scripts related to deploying the contract.
+3. 创建`contracts`和`deploy`文件夹，其中将包含所有合同`*.sol`文件，以及与部署合同有关的脚本。
 
 ::: tip
 
-You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/)
+你可以使用zkSync CLI来自动构建一个项目的支架。查找[关于zkSync CLI的更多信息](.../.../api/tools/zksync-cli/)
 
 :::
 
-4. Create the `contracts/Counter.sol` contract file. This contract will have the address of the governance contract deployed in L1 and a counter that can be incremented. The function to increment the counter can only be invoked by the governance contract that we previously deployed in L1. Here is the code:
+4. 创建`contracts/Counter.sol`合同文件。这个合同将有部署在L1的治理合同的地址和一个可以递增的计数器。增加计数器的函数只能由我们之前部署在L1的治理合同调用。下面是代码。
 
 ```sol
 //SPDX-License-Identifier: Unlicense
@@ -245,13 +246,13 @@ contract Counter {
 }
 ```
 
-5. Compile the contract with the following command:
+5. 用以下命令编译合同。
 
 ```
 yarn hardhat compile
 ```
 
-6. Create the deployment script in the `deploy/deploy.ts`:
+6. 在`deploy/deploy.ts`中创建部署脚本。
 
 ```typescript
 import { utils, Wallet } from "zksync-web3";
@@ -293,35 +294,37 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-7. After replacing `<WALLET-PRIVATE-KEY>` and `<GOVERNANCE-ADDRESS>` with the private key of an Ethereum wallet with some ETH balance on Göerli, and the address of the L1 governance contract respectively, run the script using the following command:
+7. 在将`<WALLET-PRIVATE-KEY>`和`<GOVERNANCE-ADDRESS>`分别替换为Göerli上有一定ETH余额的Ethereum钱包的私钥和L1治理合约的地址后，使用以下命令运行该脚本。
+
 
 ```
 yarn hardhat deploy-zksync
 ```
 
-In the output, you should see the address to which the contract was deployed.
+在输出中，你应该看到合同被部署到的地址。
 
 ::: tip
 
-You can find more specific details about deploying contracts in the [quickstart tutorial](../building-on-zksync/hello-world.md) or the documentation for the [hardhat plugins](../../api/hardhat/getting-started.md) for zkSync.
+你可以在[quickstart tutorial](.../building-onzksync/hello-world.md)或zkSync的[hardhat plugins](.../.../api/hardhat/getting-started.md)的文档中找到关于部署合约的更具体细节。
 
 :::
 
-## Reading the counter value
+## 读取计数器的值
 
-With both contracts deployed, we can create a small script to retrieve the value of the counter. For the sake of simplicity, we will create this script inside the `/L2-counter` folder. To keep the tutorial generic hardhat-specific features will not be used in it.
+在部署了两个合同之后，我们可以创建一个小脚本来检索计数器的值。为了简单起见，我们将在`/L2-counter`文件夹下创建这个脚本。为了保持教程的通用性，其中将不使用特定的hardhat功能。
 
-### Getting the ABI of the counter contract
+### 获取计数器合约的ABI
 
-Here is how you can get the ABI of the counter contract:
+以下是如何获得计数器合约的ABI。
 
-1. Copy the `abi` array from the compilation artifact located at `/L2-counter/artifacts-zk/contracts/Counter.sol/Counter.json`.
+1. 从位于`/L2-counter/artifacts-zk/contracts/Counter.sol/Counter.json`的编译工件中复制`abi`阵列。
 
-2. Create the `scripts` folder inside the `/L2-counter` project folder.
+2. 在`/L2-counter`项目文件夹中创建`scripts`文件夹。
 
-3. Create a new file `/L2-counter/scripts/counter.json` and paste the ABI of the counter contract.
+3. 创建一个新的文件`/L2-counter/scripts/counter.json`并粘贴计数器合同的ABI。
 
-4. Create the `/L2-counter/scripts/display-value.ts` file and paste the following code there:
+4. 4.创建`/L2-counter/scripts/display-value.ts`文件并粘贴以下代码。
+
 
 ```ts
 import { Contract, Provider, Wallet } from "zksync-web3";
@@ -346,9 +349,9 @@ main().catch((error) => {
 });
 ```
 
-The code is relatively straightforward and is mostly equivalent to how it would work with `ethers`. It will just retrieve the counter value from the L2 contract.
+这段代码相对简单，主要等同于使用 "ethers "的工作方式。它将只是从L2合同中检索计数器的值。
 
-After replacing `<COUNTER-ADDRESS>` with the address of the deployed counter contract, run this script by running
+将`<COUNTER-ADDRESS>`替换为已部署的计数器合约的地址后，通过运行这个脚本来运行
 
 ```
 yarn ts-node ./scripts/display-value.ts
@@ -360,12 +363,12 @@ The output should be:
 The counter value is 0
 ```
 
-## Calling an L2 contract from L1
+## 从L1调用L2合同
 
-Now, let's call the `increment` method from Layer 1.
+现在，让我们从第一层调用`increment`方法。
 
-1. Get the ABI array of the compiled Governance contract, which is located in `/L1-governance/artifacts/contracts/Governance.sol/Governance.json`, and save it in a new file as `/L2-counter/scripts/governance.json` (make sure you create it in the `/L2-counter` folder!).
-2. Create the `L2-counter/scripts/increment-counter.ts` file and paste the following template for the script:
+1. 获取已编译的治理合同的ABI数组，它位于`/L1-governance/artifacts/contracts/Governance.sol/Governance.json`，并将其保存在一个新文件中，即`/L2-counter/scripts/governance.json`（确保你在`/L2-counter`文件夹中创建它！）。
+2. 创建`L2-counter/scripts/increment-counter.ts`文件，并为脚本粘贴以下模板。
 
 ```ts
 // Imports and constants will be put here
@@ -380,7 +383,7 @@ main().catch((error) => {
 });
 ```
 
-3. To interact with the governance smart contract, we need to initialise an Ethereum provider and the corresponding `ethers` `Contract` object, so we need to have the address it was deployed to:
+3. 为了与治理智能合约互动，我们需要初始化一个以太坊提供者和相应的`以太坊`合约`对象，所以我们需要有它的部署地址。
 
 ```ts
 // Imports
@@ -403,9 +406,9 @@ async function main() {
 }
 ```
 
-Replace the `<GOVERNANCE-ADDRESS>` and `<WALLET-PRIVATE-KEY>` with the address of the L1 governance smart contract and the private key of the wallet that deployed the governance contract respectively.
+将`<治理-地址>和`<钱包-私钥>分别替换为L1治理智能合约的地址和部署治理合约的钱包的私钥。
 
-4. To interact with the zkSync bridge, we need its L1 address. While on mainnet you may want to set the address of the zkSync smart contract as an env variable or a constant, it is worth noticing that you can fetch the smart contract address dynamically. We recommended this approach if you're working on a testnet since regenesis may happen and contract addresses might change.
+4. 为了与zkSync桥梁互动，我们需要其L1地址。虽然在mainnet上，你可能想把zkSync智能合约的地址设置为环境变量或常量，但值得注意的是，你可以动态地获取智能合约地址。如果你在测试网工作，我们推荐这种方法，因为再生可能发生，合同地址可能会改变。
 
 ```ts
 // Imports
@@ -425,11 +428,11 @@ async function main() {
 }
 ```
 
-5. Executing transactions from L1 requires the caller to pay some fee to the L2 operator.
+5. 从L1执行交易需要调用者向L2操作员支付一些费用。
 
-Firstly, this fee depends on the length of the calldata and the `gasLimit`. If you are new to this concept then it is pretty much the same as the `l2gasLimit` on Ethereum. You can read more about [zkSync fee model here](../developer-guides/transactions/fee-model.md).
+首先，这个费用取决于calldata的长度和`gasLimit`。如果你对这个概念感到陌生，那么它与以太坊上的`l2gasLimit`基本相同。你可以在这里阅读更多关于[zkSync收费模式]（.../developer-guides/transactions/fee-model.md）。
 
-Secondly, the fee depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched from the L1 provider.
+其次，费用取决于交易调用时使用的天然气价格。因此，为了有一个可预测的调用费用，应该从L1供应商那里获取气体价格。
 
 ```ts
 // Imports
@@ -458,15 +461,15 @@ async function main() {
 }
 ```
 
-::: tip Fee model and fee estimation are WIP
+::: tip 收费模式和收费估算是WIP
 
-You may have noticed the lack of the `gas_per_pubdata` and `gas_per_storage` fields in the L1->L2 transactions. These are surely important for the security of the protocol and they will be added soon. Please note that this will be a breaking change for the contract interface.
+你可能已经注意到在L1->L2交易中缺少`gas_per_pubdata`和`gas_per_storage`字段。这些对于协议的安全性肯定是很重要的，它们将很快被添加。请注意，这将是对合同接口的一个突破性改变。
 
-Also, there is currently no easy way to estimate the exact number of `gas` required for the execution of an L1->L2 transaction. At the time of this writing, the transactions may be processed even if the supplied `gasLimit` is `0`. This will change in the future.
+此外，目前还没有简单的方法来估计执行L1->L2交易所需的`气体'的确切数量。在写这篇文章的时候，即使提供的 "gasLimit "为 "0"，交易也可能被处理。这将在未来改变。
 
 :::
 
-6. Now it is possible to call the governance contract, that will redirect the call to zkSync:
+6. 现在可以调用治理合同，这将把调用重定向到zkSync。
 
 ```ts
 // Imports
@@ -489,9 +492,10 @@ async function main() {
 }
 ```
 
-Make sure to replace `<COUNTER-ADDRESS>` with the address of the L2 counter contract.
+确保将`<COUNTER-ADDRESS>`替换为二级计数器合同的地址。
 
-7. You can track the status of the corresponding L2 transaction. `zksync-web3`'s `Provider` has a method that, given the L1 `ethers.TransactionResponse` object of a transaction that called the zkSync bridge, returns the correspondent `TransactionResponse` object of the transaction in L2, which can conveniently wait for the transaction to be processed on L2.
+7. 你可以跟踪相应的L2事务的状态。`zksync-web3`的`Provider`有一个方法，给定调用zkSync桥的事务的L1`ethers.TransactionResponse`对象，返回L2中事务对应的`TransactionResponse`对象，可以方便地等待事务在L2上被处理。
+
 
 ```ts
 async function main() {
@@ -506,9 +510,10 @@ async function main() {
 }
 ```
 
-### Complete code
+### 完整的代码
 
-Here is the full code to get the zkSync contract address, encode the transaction data, calculate the fees, send the transaction to the L1 and track the correspondent transaction in L2:
+以下是获取zkSync合同地址的完整代码，对交易数据进行编码，计算费用，将交易发送到L1，并跟踪L2中的对应交易。
+
 
 ```ts
 import { BigNumber, Contract, ethers, Wallet } from "ethers";
@@ -572,32 +577,32 @@ main().catch((error) => {
 });
 ```
 
-You can run the script with the following command:
+你可以用以下命令运行该脚本。
 
 ```
 yarn ts-node ./scripts/increment-counter.ts
 ```
 
-In the output, you should see the full transaction receipt in L2. You can take the `transactionHash` and track it in the [zkSync explorer](https://explorer.zksync.io/).
+在输出中，你应该看到L2的完整交易收据。你可以在[zkSync explorer](https://explorer.zksync.io/)中获取`transactionHash'并跟踪它。
 
-8. After that, you can verify that the transaction was indeed successful by running the `display-value` script again:
+8. 之后，你可以通过再次运行`display-value`脚本来验证交易是否确实成功。
 
 ```
 yarn ts-node ./scripts/display-value.ts
 ```
 
-The counter in the L2 contract should have increased after the transaction so output should be:
+在交易之后，L2合约中的计数器应该增加，所以输出应该是。
 
 ```
 The counter value is 1
 ```
 
-## Complete project
+## 完整的项目
 
-You can download the complete project [here](https://github.com/matter-labs/cross-chain-tutorial).
+你可以下载完整的项目[这里](https://github.com/matter-labs/cross-chain-tutorial)。
 
-## Learn more
+## 了解更多
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2.md).
-- To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
+- 要了解更多关于zkSync上L1->L2的交互，请查看[文档](../developer-guides/bridging/l1-l2.md)。
+- 要了解更多关于`zksync-web3`SDK的信息，请查看其[文档](././api/js)。
+- 要了解更多关于zkSync hardhat插件的信息，请查看其[document](../../api/hardhat)。

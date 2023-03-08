@@ -1,19 +1,20 @@
-# Community resources
+# 社区资源
 
-We cannot promise to cover all aspects of zkSync so we will attempt to highlight some of the community's outstanding resources such as videos, tutorials, articles etc.
+我们不能保证涵盖zkSync的所有方面，所以我们将尝试强调社区的一些优秀资源，如视频、教程、文章等。
 
-The [Awesome zkSync repo](https://github.com/0xJuancito/awesome-zksync) is where community-based resources live.
+[Awesome zkSync repo](https://github.com/0xJuancito/awesome-zksync)是基于社区资源的地方。
 
-## Criteria for contributing
+## 贡献的标准
 
-To contribute to the Awesome zkSync repo, the following are some criteria to keep in mind:
+要为Awesome zkSync repo做贡献，以下是一些需要注意的标准。
 
-- Is the content resource current?
-- Is the content resource protected by a payment wall?
-- Is the information trustworthy? Is it based on facts or opinions?
-- How reputable is the author? Do they cite their references?
-- Does the content resource provide anything new or different from what can be found in the documentation?
+- 内容资源是最新的吗？
+- 内容资源是否受到支付墙的保护？
+- 信息是否值得信赖？它是基于事实还是意见？
+- 作者的声誉如何？他们是否引用了他们的参考资料？
+- 该内容资源是否提供了任何新的或不同于文档中的内容？
 
-## Making your contribution
+## 做出你的贡献
 
-If you find a content resource related to the zkSync ecosystem, be free to recommend its addition to the _Awesome zkSync repo_ by making a pull request.
+如果你发现一个与zkSync生态系统相关的内容资源，请自由推荐将其添加到_Awesome zkSync repo_，提出拉动请求。
+

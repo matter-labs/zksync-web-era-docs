@@ -15,7 +15,7 @@ contributors: false
                   alt="zkSync ERA documentation"
             >
          </div>
-         <p class="intro-text">Welcome to zkSync Era docs! Here you will find guides, references and resources that will help you build with zkSync Era.</p>
+         <p class="intro-text">欢迎来到 zkSync Era 文档! 在这里，你会找到指南、参考资料和资源，这将有助于你用zkSync Era进行构建。</p>
          </div>
       </div>
    </div>
@@ -24,70 +24,70 @@ contributors: false
   <div class="card-container">
     <a href="./dev/fundamentals/zkSync.html" class="card">
       <div class="content">
-        <h3>About zkSync Era</h3>
-        <p>Learn everything that makes zkSync thick. </p>
+        <h3>关于zkSync Era</h3>
+        <p>学习关于zkSync的一切. </p>
       </div>
     </a>
     <a href="./dev/building-on-zksync/hello-world.html" class="card">
       <div class="content">
-        <h3>Getting started</h3>
-        <p>A series of quick tips to get you off localhost.</p>
+        <h3>快速开始</h3>
+        <p>通过提示快速进入zksync.</p>
       </div>
     </a>
     <a href="./api/" class="card">
       <div class="content">
-        <h3>SDK References</h3>
-        <p>References for your favourite SDKs.</p>
+        <h3>SDK 文档</h3>
+        <p>你喜欢的SDK的参考资料。</p>
       </div>
     </a>
   </div>
 </section>
 <div class="cards-heading">
-   <span class="title-section">Explore Tools</span>
+   <span class="title-section">关于tools</span>
 </div>
 <section>
   <div class="card-container">
    <a href="https://portal.zksync.io/bridge" class="card">
       <div class="content">
-        <h3>zkSync Era Portal</h3>
-        <p>Bridge, deposit and withdraw ERC20 tokens.</p>
+        <h3>zkSync Era 门户入口</h3>
+        <p>桥，存入和提取ERC20代币</p>
       </div>
    </a>
    <a href="./api/tools/block-explorer/intro.html" class="card">
       <div class="content">
-        <h3>Block Explorer</h3>
-        <p>Interact with zkSync Era blockchain. </p>
+        <h3>区块浏览器</h3>
+        <p>使用zkSync Era区块链进行交互。 </p>
       </div>
    </a>
    <a href="./api/hardhat/getting-started.html" class="card">
          <div class="content">
-            <h3>Hardhat Plugins</h3>
-            <p>Explore Hardhat plugins in your Solidity and Vyper apps. </p>
+            <h3>Hardhat 插件</h3>
+            <p>在 Solidity 和 Vyper 程序中使用Hardhat 插件. </p>
          </div>
       </a>
   </div>
 </section>
 <div class="cards-heading">
-   <span class="title-section">Tutorials</span>
+   <span class="title-section">教程</span>
 </div>
 <section>
   <div class="card-container">
    <a href="./dev/tutorials/cross-chain-tutorial.html" class="card">
       <div class="content">
-        <h3>Cross-chain vote</h3>
-        <p>Use L1-L2 communication to cast a vote from Ethereum to zkSync Era.</p>
+        <h3>跨链投票</h3>
+        <p>使用L1-L2通信从Ethereum向zkSync Era投出一票。</p>
       </div>
    </a>
    <a href="./dev/tutorials/custom-aa-tutorial.html" class="card">
       <div class="content">
-        <h3>Multisig with AA</h3>
-        <p>Learn how to create a smart account on zkSync Era.</p>
+        <h3>使用AA的多重签名</h3>
+        <p>了解如何在zkSync Era上创建一个智能账户。</p>
       </div>
    </a>
    <a href="./dev/tutorials/custom-paymaster-tutorial.html" class="card">
          <div class="content">
-            <h3>Custom Paymaster</h3>
-            <p>Build your own paymaster and delight users in your app.</p>
+            <h3>自定义付款方式</h3>
+            <p>建立你自己的支付方式，让用户在你的应用程序中感到高兴。</p>
          </div>
       </a>
   </div>

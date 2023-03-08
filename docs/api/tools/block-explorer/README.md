@@ -1,10 +1,11 @@
-# Block Explorer
+# 区块资源管理器
 
-With zkSync Era [block explorer](https://explorer.zksync.io/), you can retrieve comprehensive insights or search for a particular piece of information like transactions, blocks, wallet or contract address on the zkSync network, verify your smart contracts.
+通过zkSync时代[区块资源管理器](https://explorer.zksync.io/)，您可以检索全面的见解或搜索特定的信息，如zkSync网络上的交易、区块、钱包或合约地址，验证您的智能合约。
 
-## Table of contents
+## 目录
 
-- [Use the Block Explorer](./intro.md)
-- [Browse blocks](./block-view.md)
-- [Search bar](./search.md)
-- [Contract verification](./contract-verification.md)
+- [使用区块浏览器](./intro.md)
+- [浏览区块](./block-view.md)
+- [搜索栏](./search.md)
+- [合约验证](./contract-verification.md)
+

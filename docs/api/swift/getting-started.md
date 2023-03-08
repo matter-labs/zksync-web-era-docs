@@ -1,29 +1,29 @@
-# Getting started
+# 开始工作
 
-In this guide we will demonstrate how to:
+在本指南中，我们将演示如何。
 
-1. Connect to the zkSync network.
-2. Deposit assets from Ethereum into zkSync.
-3. Check balances.
-4. Transfer and withdraw funds (native and ERC20 tokens).
-5. Deploy a smart contract.
+1. 连接到zkSync网络。
+2. 将资产从以太坊存入zkSync。
+3. 检查余额。
+4. 4.转移和提取资金（本地和ERC20代币）。
+5. 5. 部署智能合约。
 
 
 ::: warning
 
-This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../dev/troubleshooting/changelog.md)). A revised version will be available shortly.
+文档的这一部分正在审查中，以反映对系统合同的修改（[见changelog](.../.../dev/troubleshooting/changelog.md)）。修订后的版本很快就会推出。
 
 :::
 
-## Prerequisite
+## 前提条件
 
-This guide assumes that you are familiar with [Swift](https://www.swift.org/) programming language.
+本指南假定你熟悉[Swift](https://www.swift.org/)编程语言。
 
-## Installation
+## 安装
 
 ### CocoaPods
 
-[CocoaPods](http://cocoapods.org/) is a dependency manager for Cocoa projects. You can install it with the following command:
+[CocoaPods](http://cocoapods.org/)是一个用于Cocoa项目的依赖管理器。你可以用下面的命令来安装它。
 
 ```bash
 
@@ -31,7 +31,7 @@ sudo gem install cocoapods
 
 ```
 
-To integrate zkSync swift SDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
+要使用CocoaPods将zkSync swift SDK集成到你的Xcode项目中，请在你的`Podfile`中指定它。
 
 ```bash
 
@@ -46,7 +46,7 @@ end
 
 ```
 
-Then run the following command:
+然后运行以下命令。
 
 ```bash
 
@@ -54,13 +54,14 @@ pod install
 
 ```
 
-## Connecting to zkSync
+## 连接 zkSync
 
-To interact with the zkSync network users need to know the endpoint of the operator node.
+为了与zkSync网络互动，用户需要知道运营商节点的端点。
 
-Create an instance of `EthereumAccount` with a `EthereumKeyStorage` provider. This provides a wrapper around your key for `web3.swift` to use. <br/>
 
-**NOTE: We recommend you implement your own _KeyStorage_ provider, instead of relying on the provided `EthereumKeyLocalStorage` class.**
+创建一个`EthereumAccount'的实例，有一个`EthereumKeyStorage'提供者。这为`web3.swift`使用你的密钥提供了一个封装器。<br/>
+
+**NOTE: 我们建议你实现你自己的_KeyStorage_提供者，而不是依靠提供的`EthereumKeyLocalStorage`类。.**
 
 ```swift
 import web3
@@ -79,7 +80,7 @@ guard let clientUrl = URL(string: "https://zksync2-testnet.zksync.dev") else { r
 let client = EthereumHttpClient(url: clientUrl)
 ```
 
-OR
+或者
 
 #### `EthereumWebSocketClient`
 
@@ -88,11 +89,11 @@ guard let clientUrl = URL(string: "wss://zksync2-testnet.zksync.dev/ws") else { 
 let client = EthereumWebSocketClient(url: clientUrl)
 ```
 
-You can then interact with the client methods:
+然后，你可以与客户端方法进行互动。
 
 ## `approveDeposits`
 
-It returns the erc20 token address.
+它返回erc20令牌的地址。
 
 ```swift
 
@@ -109,7 +110,8 @@ It returns the erc20 token address.
 
 ## `transfer`
 
-The transfer method can transfer ERC20 tokens, and it returns the transaction receipt of the transfer.
+转移方法可以转移ERC20代币，并且它返回转移的交易收据。
+
 
 ```swift
     /// Send transfer transaction. This is the regular transfer of ERC20 token.
@@ -130,7 +132,7 @@ The transfer method can transfer ERC20 tokens, and it returns the transaction re
 
 ## `deposit`
 
-This method uses `EthereumProvider.approveDeposits()` to send deposit transactions to zkSync contracts and returns the transaction receipt of the deposit.
+该方法使用`EthereumProvider.approvedDeposits()`来发送存款交易到zkSync合约，并返回存款的交易收据。
 
 ```swift
 
@@ -150,7 +152,7 @@ This method uses `EthereumProvider.approveDeposits()` to send deposit transactio
 
 ## `withdraw`
 
-This method send withdrawals to the specified token address and returns the transaction receipt.
+该方法向指定的代币地址发送提款并返回交易收据。
 
 ```swift
 
@@ -170,7 +172,7 @@ This method send withdrawals to the specified token address and returns the tran
 
 ## `isDepositApproved`
 
-This method checks if the deposit is approved and returns a Boolean.
+该方法检查存款是否被批准，并返回一个布尔值。
 
 ```swift
     func isDepositApproved(with token: Token,

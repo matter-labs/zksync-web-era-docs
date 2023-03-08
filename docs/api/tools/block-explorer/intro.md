@@ -1,23 +1,24 @@
-# Using the Block Explorer
+# 使用区块浏览器
 
-## Overview
+## 概述
 
-The zkSync Era [block explorer](https://explorer.zksync.io/) is an easy-to-use interface blockchain tool, that displays real-time and historical blockchain snapshots. It can be used by users and developers to utilize both high-level data (such as contracts, transaction rates, and so on) and more detailed insights (e.g. block contents, transaction hashes, sending accounts, etc.).
-Consider it a window into the zkSync blockchain, letting you see what's going on there.
+zkSync时代[区块探索器](https://explorer.zksync.io/)是一个易于使用的区块链工具界面，可以显示实时和历史区块链快照。用户和开发者可以使用它来利用高级数据（如合同、交易率等）和更详细的见解（如区块内容、交易哈希值、发送账户等）。
+把它看作是进入zkSync区块链的一个窗口，让你看到那里正在发生什么。
 
-Our block explorer graphically displays block activity, allowing users to engage with the data more effectively. They may seek a specific block number and investigate it further by reading the address and transaction details that comprise a block.
+我们的区块探索器以图形方式显示区块活动，使用户能够更有效地参与数据。他们可以寻找一个特定的区块号码，并通过阅读构成区块的地址和交易细节来进一步调查它。
 
-## Who Should Make Use of a Block Explorer?
+## 谁应该使用区块浏览器？
 
-Users and developers can use block explorer to track the progress of their transactions. When a transaction is submitted, it automatically creates a transaction hash, which can be used to check the transaction details and whether it was successful or not.
-We have prepared this document to aid users and developers in utilizing the block explorer and optimizing the ideal learning experience.
+用户和开发者可以使用区块资源管理器来跟踪其交易的进展。当一个交易被提交时，它会自动创建一个交易哈希值，可以用来检查交易细节以及是否成功。
+我们编写这份文件是为了帮助用户和开发人员利用区块资源管理器，并优化理想的学习体验。
 
-We have prepared this tutorial to aid users and traders in utilizing the block explorer and optimizing the ideal learning experience. We will highlight specific touch points in the block explorer:
+我们准备了这份教程，以帮助用户和交易者利用区块资源管理器和优化理想的学习体验。我们将强调区块探索器中的具体接触点。
 
-1. [Search bar](./search.md) - Search by wallet address, transaction hash, block number or contract address.
-2. [Browse blocks](./block-view.md) - Get all the details about a block included in zkSync network.
-3. [Transaction view](./block-view.md#transactions) - Fetch and analyze the list of transactions that occurs on-chain.
-4. [Smart contract verification](./contract-verification.md) - Verify smart contracts with zkSync block explorer.
+1. [搜索栏](./search.md) - 通过钱包地址、交易哈希值、区块号码或合约地址进行搜索。
+2. 2.[浏览区块](./block-view.md) - 获取zkSync网络中包含的区块的所有细节。
+3. 3.[交易视图](./block-view.md#transactions) - 获取并分析链上发生的交易列表。
+4. 4.[智能合约验证](./contract-verification.md) - 用zkSync区块资源管理器验证智能合约。
 
-To start, you can open up [block explorer](https://explorer.zksync.io/) in your web browser and follow along using the guide.
-Let’s take a look at the block explorer!
+要开始，你可以在你的网络浏览器中打开[block explorer](https://explorer.zksync.io/)，并使用指南进行跟踪。
+让我们来看看区块资源管理器!
+

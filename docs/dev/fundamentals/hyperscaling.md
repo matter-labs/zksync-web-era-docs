@@ -1,51 +1,51 @@
-# Hyperscaling
+# 超规模
 
-Blockchain systems achieve incorruptible fairness by relying on the cornerstone principle “don’t trust, verify”. At the same time, for blockchains to remain decentralized, resource requirements for running the verifier nodes must be kept relatively low. Connecting these two ideas brings us to the widely accepted definition of scalability:
+区块链系统通过依靠基石原则 "不要相信，要验证 "来实现不可破坏的公平性。同时，为了使区块链保持去中心化，运行验证器节点的资源要求必须保持相对较低。将这两个想法联系起来，我们就可以看到广泛接受的可扩展性定义。
 
 :::tip
 
-Scaling = processing more transactions without degradation of security and decentralization.
+扩展性=在不降低安全性和去中心化的情况下处理更多的交易。
 
 :::
 
-Scalability can be improved in a number of ways, from increasing the efficiency of the verifier to introducing probabilistic trust assumptions (what optimistic rollups do). Most of these approaches offer a linear scalability boost, but one method stands out: succinct zero-knowledge proofs (ZKPs). They always incur roughly O(1) verification costs regardless of the number of transactions processed. This means that ZKP-based scaling — i.e. [validiums and (under certain conditions) zkRollups](https://twitter.com/vitalikbuterin/status/1267455602764251138) — can be hyper-scalable:
+可扩展性可以通过多种方式提高，从提高验证者的效率到引入概率性信任假设（乐观滚动所做的）。这些方法中的大多数提供了线性的可扩展性提升，但有一种方法很突出：简洁的零知识证明（ZKPs）。无论处理多少交易，它们总是产生大约O(1)的验证成本。这意味着基于ZKP的扩展--即[validiums和（在某些条件下）zkRollups](https://twitter.com/vitalikbuterin/status/1267455602764251138)--可以是超可扩展的。
 
 :::tip
 
- Hyperscaling = processing infinitely many transactions without degradation of security and decentralization.
+ 超级扩展=处理无限多的交易而不降低安全性和分散性。
 
  :::
 
-In other words, hyperscalability means breaking out of the blockchain trilemma:
+换句话说，超可扩展性意味着突破了区块链的三难困境。
 
-![Hyper-scalability!](../../assets/images/image1.png "Hyper-scalability")
+![超可扩展性！](../../assets/images/image1.png "超可扩展性")
 
-Theoretically, given enough hardware, it is possible to aggregate arbitrarily large blocks of transactions and produce a single succinct ZKP (more precisely: proof of computational integrity) for each such block. In practice, however, no single monolithic blockchain system will be able to meet infinite market demand. Here are some reasons why:
+理论上，鉴于足够的硬件，有可能聚集任意大的交易区块，并为每个这样的区块产生一个简洁的ZKP（更确切地说：计算完整性证明）。然而，在实践中，没有一个单一的区块链系统能够满足无限的市场需求。以下是一些原因。
 
-- Sequential transaction processing will always be a bottleneck. At least some transactions will need to interact with the same storage slots of the shared state, and no amount of parallelism can help.
-- Decentralized p2p networks and consensus mechanisms will have their own bottlenecks too.
-- Data availability will have a bottleneck, at least until advanced sharding is implemented at L1 level.
-- Users have different preferences on conflicting requirements: degree of decentralization vs. latency, privacy vs. transparency, generic composability vs. ultra-high security vs. ultra-low costs, and so on. No particular choice can be optimal for all use-cases.
+- 顺序交易处理将始终是一个瓶颈。至少有一些交易需要与共享状态的相同存储槽进行交互，无论多少并行性都无法帮助。
+- 去中心化的p2p网络和共识机制也会有自己的瓶颈。
+- 数据的可用性将有一个瓶颈，至少在高级分片在L1级别实现之前是如此。
+- 用户对相互冲突的要求有不同的偏好：去中心化的程度与延迟，隐私与透明，通用的可组合性与超高的安全性与超低的成本，等等。没有一个特定的选择可以对所有的使用情况都是最佳的。
 
-Luckily, ZKPs offer a beautiful way to build a heterogeneous yet simultaneously a hyper-scalable blockchain system. This idea is known as [Fractal scaling](https://medium.com/starkware/fractal-scaling-from-l2-to-l3-7fe238ecfb4f). 
-Many different ZKP chains (in the zkSync world we call them Hyperchains) are run in parallel and get their block proofs aggregated into a single final block that will be settled on L1. Each of the Hyperchains will resemble the entire system (i.e. it can have an infinite number of other Hyperchains on top of it: L3, L4, and so on).
+幸运的是，ZKPs提供了一种美丽的方式来建立一个异质但同时又是超可扩展的区块链系统。这个想法被称为[分形缩放](https://medium.com/starkware/fractal-scaling-from-l2-to-l3-7fe238ecfb4f)。
+许多不同的ZKP链（在zkSync世界中，我们称之为超链）被平行运行，并将其区块证明汇总到一个最终区块中，并在L1上结算。每个Hyperchains将类似于整个系统（即它可以在上面有无限多的其他Hyperchains。L3，L4，以此类推）。
 
-![Hyperchains!](../../assets/images/image5.png "Hyperchains")
+![超链！](../../assets/images/image5.png "超链")
 
-Fractal scaling is necessary but not sufficient to achieve hyperscaling. You need one additional component:
+分形缩放是必要的，但不是实现超尺度的充分条件。你需要一个额外的组件。
 
 :::tip
 
- Hyper-bridges = native bridges that enable transfers between any two Hyperchains without consuming resources on a third one.
+ 超桥 = 本机桥，可以在任何两个超链之间进行传输，而不消耗第三个超链的资源。
 
  :::
 
-Fractal scaling can always have native bridges connecting chains via underlying layers, but in this case eventually the Basechain will turn into a crossroad for most transfers and thus the central scalability bottleneck, defeating the very idea of parallel hyperscalability. As a result it won’t be possible to guarantee cheap direct transfers between users on any given two chains.
+分形扩展总是可以通过底层连接链的原生桥，但在这种情况下，基链最终会变成大多数传输的十字路口，从而成为中心可扩展性的瓶颈，违背了并行超扩展性的理念。因此，它不可能保证在任何给定的两条链上的用户之间进行廉价的直接传输。
 
-To achieve zero cost overhead on the underlying chains, each Hyperchain must:
+为了实现底层链的零成本开销，每个超链必须。
 
-- Implement native hyper-bridges that can actually burn and mint actual tokens and not their virtual representation (in contrast to the conventional bridges), storing mint claim commitments in the Hyperchain state.
-- Trust the implementations of hyper-bridges on all other Hyperchains – because if a single hyper-bridge is compromised, the malicious chain could mess with the token supply (thus all of the Hyperchains must implement the exact same circuits).
+- 实现原生的超桥，可以实际燃烧和铸造实际的代币，而不是它们的虚拟代表（与传统的桥相反），在超链的状态中存储铸造的索赔承诺。
+- 信任所有其他超链上的超桥的实现--因为如果一个超桥被破坏，恶意的链可能会扰乱代币供应（因此所有的超链必须实现完全相同的电路）。
 
 **Fractal scaling**
 
@@ -57,100 +57,101 @@ To achieve zero cost overhead on the underlying chains, each Hyperchain must:
 
 
 
-With hyper-bridges you can transfer assets from one Hyperchain to another at the cost of a normal transfer, just like hyperlinks can take you from one web page to another at the cost of a single click (without the need to click separately through each layer of navigation).
+通过超桥，你可以以正常的传输成本将资产从一个超链转移到另一个超链，就像超链接可以将你从一个网页带到另一个网页，只需一次点击即可（无需在每层导航中分别点击）。
 
-Smart contracts can use hyper-chains too, to trustlessly send assets and arbitrary messages to any Hyperchain with a guarantee of eventual delivery (as long as the target Hyperchain is live).
+智能合约也可以使用超链，以不信任的方式向任何超链发送资产和任意信息，并保证最终交付（只要目标超链是活的）。
 
-Communication via hyper-bridges is always asynchronous: in order to process a message on the receiving Hyperchain B, the sending Hyperchain A must finalize its state all the way down to the earliest Hyperchain that is common base for both A and B. In practice, the communication latency of hyper-bridging will be a matter of seconds: Hyperchains can finalize blocks every second (which is cheap, in contrast to L1), and hardware acceleration makes block proof generation really fast.
+通过超桥的通信总是异步的：为了在接收的超链B上处理一个消息，发送的超链A必须最终确定其状态，一直到最早的超链，也就是A和B的共同基础。超链可以每秒敲定区块（与L1相比，这很便宜），而硬件加速使区块证明的生成非常快。
 
-For a technical deep dive, take a look at the excellent [Slush paper](https://hackmd.io/@kalmanlajko/rkgg9GLG5) which explores the nuances of hyper-bridge implementation in great detail.
+关于技术上的深入研究，请看优秀的[Slush论文](https://hackmd.io/@kalmanlajko/rkgg9GLG5)，它非常详细地探讨了超桥实现的细微差别。
 
-## What are Hyperchains?
+## 什么是超链？
 
-Hyperchains are fractal-like instances of zkEVM running in parallel and with the common settlement on the L1 mainnet.
+超链是zkEVM的类似分形的实例，在L1主网上平行运行并有共同的结算。
 
-Hyperchains can be developed and permissionlessly deployed by anyone. However, to remain trusted and fully interoperable, each Hyperchain must be powered by the exact same zkEVM engine as the main zkSync L2 instance. All the ZKP circuits will thus remain 100% identical, letting Hyperchains fully inherit their security from L1, no matter who deployed them. This ensures zero additional trust/security assumptions.
+超链可以由任何人开发和无权限地部署。然而，为了保持信任和完全的互操作性，每个超链必须由与主zkSync L2实例完全相同的zkEVM引擎驱动。因此，所有的ZKP电路将保持100%的相同，让Hyperchain完全继承L1的安全性，无论谁部署它们。这确保了零额外的信任/安全假设。
 
-Hyperchains will be implemented following the modular approach – we will provide a Hyperchain SDK framework similar to those of Cosmos or Substrate, where developers can individually pick different components of their blockchains or implement their own ones (except the zkEVM core, for the reasons explained above). See the [question about Hyperchain parametrization](#how-can-hyperchains-be-parametrized) below for more details.
+超链将按照模块化方法实现--我们将提供一个类似于Cosmos或Substrate的超链SDK框架，开发者可以单独挑选他们区块链的不同组件或实现他们自己的组件（除了zkEVM核心，因为上面解释的原因）。更多细节请参见下面的[关于超链参数化的问题]（#how-can-hyperchains-be-parametrized）。
 
-## What is the Basechain?
+## 什么是基链？
 
-The Basechain is the main Hyperchain instance of zkSync Era (the L2 instance). It serves as the default computation layer for generic smart contracts and as a settlement layer for all other Hyperchains (L3 and above).
+Basechain是zkSync Era的主要超链实例（L2实例）。它作为通用智能合约的默认计算层，并作为所有其他超链（L3及以上）的结算层。
 
-The Basechain is not special in any particular way except that it settles its blocks directly on the L1.
+基地链除了直接在L1上结算其区块外，没有任何特殊之处。
 
-## How can Hyperchains be parametrized?
+## 超级链如何被参数化？
 
-Main customization options to be provided by our Hyperchain SDK are explained below. Developers are free to implement their own components and customizations, of course.
+我们的Hyperchain SDK提供的主要定制选项解释如下。当然，开发者可以自由实现他们自己的组件和定制。
 
-### Sequencing transactions
+### 序列交易
 
-- **Centralized sequencer** - In this mode, there will be a single centralized operator with a conventional REST API to accept transactions from users. The operator must be trusted to maintain liveness, not to abuse MEV, and not to allow reorgs of unfinalized transactions, so the operator’s reputation will play a big role. The biggest advantage of this option is that it can provide the lowest possible latency to confirm transactions (<100ms), which is critical for use-cases such as HFT. The Basechain will run in this mode until it is fully decentralized, so we will have battle-tested server code available for developers early on.
+- **集中式排序器** - 在这种模式下，将有一个具有传统REST API的集中式运营商接受用户的交易。运营商必须被信任，以保持有效性，不滥用MEV，并且不允许未完成的交易重新排序，所以运营商的声誉将发挥很大作用。这个选项的最大优势是它可以提供尽可能低的交易确认延迟（<100ms），这对HFT等使用情况至关重要。在完全去中心化之前，Basechain将以这种模式运行，因此我们将在早期为开发者提供经过战斗检验的服务器代码。
 
-- **Decentralized sequencer** - In this mode, a Hyperchain will coordinate on what transactions are included in a block using a consensus algorithm. It can be any algorithm, so developers can reuse existing implementations (e.g. Tendermint or HotStuff with permissionless dPoS). But we can also take advantage of the fact that finality checkpoints are guaranteed by the underlying L1, and implement an algorithm that is simpler and boasts higher performance. The Basechain will switch to this option as soon as the consensus implementation is ready, and will make its code available to the Hyperchain developers.
+- **去中心化的排序器** - 在这种模式下，超级链将协调使用共识算法的区块中包含哪些交易。它可以是任何算法，所以开发者可以重新使用现有的实现（例如Tendermint或HotStuff与无权限dPoS）。但我们也可以利用最终性检查点由底层L1保证这一事实，并实现一种更简单且拥有更高的性能的算法。一旦共识实现准备就绪，Basechain就会切换到这个选项，并将其代码提供给Hyperchain的开发者。
 
-- **Priority queue** - This simply means absence of any sequencer: all transactions can be submitted in batches via the priority queue from an underlying L2 or even L1 chain, taking advantage of their stronger censorship-resistance. It might be especially interesting for special-purpose governance protocols (e.g. on-chain voting). It’s worth noting that the priority queue will always be available as an escape-hatch mechanism (even if a centralized or decentralized sequencer is employed), to protect users against censorship by a malicious sequencer.
+- **优先级队列** - 这只是意味着没有任何排序器：所有交易可以通过优先级队列从底层的L2甚至L1链上分批提交，利用其更强的抗审查能力。这对于特殊目的的治理协议（如链上投票）可能特别有趣。值得注意的是，优先级队列将始终作为一种逃逸机制（即使采用集中式或分散式的排序器），以保护用户免受恶意排序器的审查。
 
-### Data availability
+### 数据可用性
 
-Each Hyperchain can manage its data availability (DA) policy using a smart contract interface. It can use one of the options described below or some more complex logic. For example, to combine zkPorter and validium, the DA will require both a quorum of the signatures from the guardians and a number of signatures from the data availability committee.
+每个超链可以使用智能合约接口管理其数据可用性（DA）政策。它可以使用下面描述的选项之一或一些更复杂的逻辑。例如，为了结合zkPorter和validium，DA将需要来自监护人的签名的法定人数和来自数据可用性委员会的一些签名。
 
-- **zkRollup** - This is our default recommendation policy: the values of every changed storage slot at the end of the block must be published as calldata on L1. Note that repeated changes (or back-and-forth changes that result in no net difference) are not posted. It means if a block contains 100 ETH/DAI swaps on the same DEX then pubdata costs will be partially amortized over all such swaps. A Hyperchain working in this mode strictly inherits full security and censorship-resistance properties from Ethereum. The implementation of zkRollup in output mode will be available from day 1. To propagate calldata to L1, it will be aggregated at the Basechain. Note that if Hyperchain’s ZK-proof is potentially large in size and/or computationally heavy to verify it only incurs L2 costs and not pubdata costs.
+- **zkRollup** - 这是我们默认的推荐策略：在区块结束时，每个改变的存储槽的值必须作为calldata发布在L1上。请注意，重复的变化（或导致没有净差异的来回变化）不会被公布。这意味着如果一个区块在同一个DEX上包含100个ETH/DAI交换，那么pubdata成本将在所有这些交换中被部分摊销。以这种模式工作的超链严格继承了以太坊的全部安全和抗审查属性。输出模式下的zkRollup的实现将从第一天开始。为了将calldata传播到L1，它将在Basechain进行聚合。请注意，如果Hyperchain的ZK-proof的规模可能很大和/或计算量很大，以验证它只产生L2成本而不是pubdata成本。
 
-- **zkPorter** - it's explained in detail in [this post](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf). We already have a working zkPorter guardian testnet. We expect zkPorter to be popular with users willing to take higher security risks in exchange for really cheap transactions, until Danksharding is implemented. Hyperchain developers will be able to either tap into the DA from zkSync main zkPorter implementation or bootstrap their own guardian network (which could be interesting for large existing online communities such as Reddit or Twitter).
+- **zkPorter** - 它在[本帖](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf)中有详细解释。我们已经有了一个工作的zkPorter监护人testnet。我们预计zkPorter将受到愿意承担更高的安全风险以换取真正的廉价交易的用户的欢迎，直到Danksharding实现。超链开发者将能够从zkSync主要的zkPorter实现中获取DA，或者引导他们自己的监护人网络（这对现有的大型在线社区如Reddit或Twitter可能很有趣）。
 
-- **Validium** - Being true to our [values](https://www.notion.so/matterlabs/Freedom-d36a797ff1aa47d2859f9e0c5ffbd0ab), we generally [discourage](https://blog.matter-labs.io/zkrollup-vs-validium-starkex-5614e38bc263) mainstream users from trusting validium-based solutions. However, there are use-cases where using validium is fully justified, e.g. enterprise chains that require both auditability and privacy (since the data availability in such cases is controlled by a central party, it is trivial to keep such a Hyperchain private by simply withholding data). Since validium is essentially a simpler case of a zkPorter, developers can easily deploy Hyperchains based on this policy.
+- **Validium** - 为了忠实于我们的[价值观](https://www.notion.so/matterlabs/Freedom-d36a797ff1aa47d2859f9e0c5ffbd0ab)，我们通常[不鼓励](https://blog.matter-labs.io/zkrollup-vs-validium-starkex-5614e38bc263)主流用户信任基于validium的解决方案。然而，在某些情况下，使用validium是完全合理的，例如，需要可审计性和隐私的企业链（因为在这种情况下，数据的可用性是由中央控制的，通过简单地扣留数据来保持这种超链的隐私是很容易的）。由于validium本质上是zkPorter的一个更简单的案例，开发者可以很容易地部署基于这个策略的超链。
 
-- **zkRollup (inputs only)** - This policy will require publishing full transaction inputs instead of final storage updates. Trustless state reconstruction and the DA costs in this case will be 100% identical to optimistic rollups (but with all the benefits of a zkRollup of course, including better security and faster exits). The implementation of this option is easily derived from the implementation of the normal zkRollup. It can be explored by application-specific chains where tx inputs are short but might lead to a lot of changes in data (for example, performing financial simulations).
+- **zkRollup (inputs only)** - 这个策略将需要发布完整的交易输入，而不是最终的存储更新。在这种情况下，无信任状态重建和DA成本将与乐观滚动100%相同（但当然有zkRollup的所有好处，包括更好的安全性和更快的退出）。这个选项的实现很容易从正常的zkRollup的实现中导出。它可以由特定的应用链来探索，其中tx输入很短，但可能导致数据的大量变化（例如，执行金融模拟）。
 
-- **zkRollup (self-hosted)** - An extremely interesting option! In this mode, users self-host the data for all the accounts they own. To enforce this, user confirmation signatures are required to make any changes – which means, you cannot send funds directly to another user. Instead, you will burn the funds and create a proof of this burn, which you can provide to your recipient via an off-chain channel. The recipient will then redeem them to their account. This might sound complicated, but it’s easy to construct a nice UI which will abstract away the UX, making it practically indistinguishable from sending and receiving funds on Ethereum (it will automatically redeem all received assets the moment the user intends to spend funds, requiring no extra clicks). But here comes a miracle: a self-hosted zkRollup can be happy with as little as 5 bytes per user interaction that includes a batch of arbitrary many transactions! This makes sharded Ethereum infinitely scalable for any practical purposes in the zkRollup mode (i.e. 100% secure and censorship-resistant). This is a way to onboard every single person on Earth to Ethereum with zero security compromise. A great thing about this approach is also that it’s fully compatible with our zkEVM implementation, but can nonetheless offer privacy to the users. The implementation is non-trivial, so we expect it to come last among all the other options. At the same time, it’s simpler and much more powerful than alternative approaches like Adamantium, which we will subsequently ignore.
+- **zkRollup (self-hosted)** - 一个极其有趣的选项！在这种模式下，用户自我托管。在这种模式下，用户自行托管他们拥有的所有账户的数据。为了执行这一点，需要用户确认签名才能进行任何更改--这意味着，你不能直接向另一个用户发送资金。相反，你将烧毁这些资金，并创建一个这种烧毁的证明，你可以通过链外渠道提供给你的收件人。然后收件人将把它们赎回到他们的账户。这可能听起来很复杂，但很容易构建一个漂亮的用户界面，这将抽象出用户体验，使其实际上与以太坊上的资金收发没有区别（它将在用户打算花费资金的时候自动赎回所有收到的资产，不需要额外的点击）。但是，奇迹来了：一个自我托管的zkRollup可以在每个用户互动中以低至5个字节的速度快乐地进行，其中包括一批任意多的交易！这使得分片式以太坊的交易量增加。这使得sharded Ethereum在zkRollup模式下可以无限扩展，达到任何实际目的（即100%安全和抗审查）。这是一种让地球上每一个人都加入以太坊的方法，而且安全方面没有任何纰漏。这种方法的一个好处是，它与我们的zkEVM实现完全兼容，但仍然可以为用户提供隐私。实现起来并不困难，所以我们希望它能在所有其他选项中排在最后。同时，它比Adamantium等替代方法更简单、更强大，我们随后将忽略这些方法。
 
-### Logical state partitions
+### 逻辑状态分区
 
-Each Hyperchain can have one or more logical partitions that are part of the same state but live in separate subtrees and enforce different data availability policies. From the user perspective, they would appear as separate Hyperchain instances (with their own chain ID, separate wallet connection, block explorer view, etc), which can however interoperate synchronously. 
+每个Hyperchain可以有一个或多个逻辑分区，它们是同一状态的一部分，但生活在不同的子树中，执行不同的数据可用性策略。从用户的角度来看，它们会显示为独立的超链实例（有自己的链ID，独立的钱包连接，区块资源管理器视图等），但它们可以同步互通。
 
-Synchronicity is important as it enables atomic transactions between partitions, unlocking several unique use-cases:
+同步性是很重要的，因为它可以实现分区之间的原子交易，解锁几个独特的用例。
 
-- Transparently reading the state of another partition.
-- Using flash loans between the partitions.
+- 透明地读取另一个分区的状态。
+- 在分区之间使用闪存贷款。
 
-One prominent example of this is a combination of [zkRollup + zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf) (which will be part of the zkSync Basechain):
+这方面的一个突出例子是[zkRollup + zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf)的组合（这将是zkSync基链的一部分）。
 
-![Logical state partitions!](../../assets/images/image3.png "Logical state partitions")
+![逻辑状态分区!](../../assets/images/image3.png "逻辑状态分区")
 
 <!-- ### MEV protection
 
-We expect Hyperchain developers to experiment with different MEV-minimization approaches (see the [question about MEV in zkSync](https://docs.google.com/document/d/1Oq-grdnlY8RL8aoA1EAiRPlJSbH698BoTVK-5bX8nxc/edit#heading=h.5ygkd14evhl0)). -->
+我们希望Hyperchain的开发者能够尝试不同的MEV最小化方法（见[关于zkSync中MEV的问题](https://docs.google.com/document/d/1Oq-grdnlY8RL8aoA1EAiRPlJSbH698BoTVK-5bX8nxc/edit#heading=h.5ygkd14evhl0)）。 -->
 
-### Privacy
+### 隐私
 
-Hyperchains can add privacy in a number of ways:
+超链可以通过多种方式增加隐私。
 
-1. Validium. For a Hyperchain running in the validium mode, privacy to the outer world is achieved out of the box as long as the operator keeps the block data secret. This might be an interesting option for enterprise users.
-2. Privacy protocols. To implement user-level privacy, a specialized L3 protocol is required. Projects such as Aztec or Tornado can be implemented either directly on the Basechain (taking advantage of account abstraction and cheap recursive ZKP verification on zkSync), or they can opt into standalone special-purpose Hyperchains for more flexibility.
+1. 有效性。对于在validium模式下运行的超链来说，只要操作者保持区块数据的秘密，就可以实现对外的隐私。这对企业用户来说可能是一个有趣的选择。
+2. 2.隐私协议。为了实现用户级隐私，需要一个专门的L3协议。像Aztec或Tornado这样的项目可以直接在Basechain上实现（利用账户抽象和zkSync上廉价的递归ZKP验证），或者它们可以选择进入独立的特殊用途的Hyperchain以获得更大的灵活性。
 
-## What does hyperscalability UX feel like?
+## 超可扩展性用户体验是什么感觉？
 
-Hyperchains will have unique hierarchical identifiers similar to the Internet domains:
+超链将有类似于互联网域名的独特的分层标识符。
 
-`zksync` <br/>
+`zksync` 
 
-`reddit.zksync` <br/>
+`reddit.zksync` 
 
 `ethereum.reddit.zksync`
 
-Accounts will have standard EVM addresses, augmented by the Hyperchain id:
+账户将有标准的EVM地址，并由Hyperchain的ID增加。
 
-`0x60250Fff03f8E8aed6a5B36Fa4F5a5F75fD5d25d @ zksync` <br/>
+`0x60250Fff03f8E8aed6a5B36Fa4F5a5F75fD5d25d @ zksync` 
 
 `0x31a7ca77c0bc7a26a5ee69ea3e65363ead6aa322 @ reddit.zksync`
 
-Of course, services like ENS / Unstoppable domains can always be used for shortcuts:
+当然，像ENS / Unstoppable domains这样的服务总是可以用来走捷径。
 
-`gluk64 @ reddit.zksync` <br/>
+`gluk64 @ reddit.zksync` 
 
 `gluk64.eth`
 
-Thus, sending digital assets to another user will feel just like sending an email (which arrives asynchronously in a few seconds), but now you can attach money to it.
+因此，向另一个用户发送数字资产的感觉就像发送电子邮件（在几秒钟内异步到达），但现在你可以在上面附加金钱。
 
-Similarly, interacting with contracts on different Hyperchains from the developer’s point of view will resemble calling REST API methods on the web. If a call is initiated by a smart contract, the result will be received via an asynchronous callback.
+同样，从开发者的角度来看，与不同超链上的合约互动将类似于在网络上调用REST API方法。如果调用是由智能合约发起的，那么结果将通过一个异步回调接收。
+

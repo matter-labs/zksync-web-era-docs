@@ -4,11 +4,11 @@ export const enSidebar = sidebar({
   //The sidebar for developer guides
   "/dev": [
     {
-      text: "Introduction",
+      text: "介绍",
       link: "/dev/",
     },
     {
-      text: "Getting started",
+      text: "快速开始",
       link: "/dev/fundamentals",
       children: [
         "/dev/fundamentals/rollups.md", 
@@ -18,7 +18,7 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Understanding zkSync Era",
+      text: "理解 zkSync Era",
       link: "/dev/developer-guides",
       children: [
         "/dev/developer-guides/transactions/transactions.md",
@@ -35,7 +35,7 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Building on zkSync Era",
+      text: "在 zkSync Era 上构建",
       link: "/dev/building-on-zksync",
       children: [
         "/dev/building-on-zksync/hello-world.md",
@@ -48,7 +48,7 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Tutorials",
+      text: "教程",
       link: "/dev/tutorials",
       children: [
         "/dev/tutorials/cross-chain-tutorial.md", 
@@ -58,7 +58,7 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Troubleshooting",
+      text: "错误排除",
       link: "/dev/troubleshooting",
       children: [
         "/dev/troubleshooting/changelog.md",
@@ -74,7 +74,7 @@ export const enSidebar = sidebar({
   //The sidebar for Tools and SDKs
   "/api": [
     {
-      text: "Overview", // required
+      text: "概述", // required
       link: "/api/", // optional, which should be a absolute path.
     },
     {

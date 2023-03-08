@@ -1,55 +1,55 @@
-# Utilities
+# 实用工具
 
-`zksync-web3` provides some useful utilities for zkSync builders. They can be imported the following way:
+`zksync-web3`为zkSync建设者提供了一些有用的工具。它们可以通过以下方式导入。
 
 ```typescript
 import { utils } from "zksync-web3";
 ```
 
-Most of the utilities are used internally by the zkSync team. So this document will describe only those which should be helpful for you.
+大多数实用程序是由zkSync团队内部使用的。所以本文件将只描述那些对你有帮助的工具。
 
+## 以太坊的 "地址"
 
-## The "address" of ether
-
-While Ether is actually a token deployed on the address:
+而以太坊实际上是部署在地址上的代币。
 
 ```typescript
 export const L2_ETH_TOKEN_ADDRESS = "0x000000000000000000000000000000000000800a";
 ```
 
-zkSync also allow a more friendly zero address alias in our SDK and API:
+zkSync还允许在我们的SDK和API中使用更友好的零地址别名。
 
 ```typescript
 export const ETH_ADDRESS = "0x0000000000000000000000000000000000000000";
 ```
 
-## ABI of zkSync smart contract
+## zkSync智能合约的ABI
 
 ```typescript
 export const ZKSYNC_MAIN_ABI = new utils.Interface(require("../abi/IZkSync.json"));
 ```
 
-## IERC20 interface
+## IERC20接口
 
-Convenient when interacting with native tokens on zkSync.
+在与zkSync上的本地令牌进行交互时很方便。
 
 ```typescript
 export const IERC20 = new utils.Interface(require("../abi/IERC20.json"));
 ```
 
-## Encoding paymaster params
+## 编码paymaster参数
 
-Utility method that returns the correctly formed `paymasterParams` object for the common [paymaster flows](../../dev/developer-guides/aa.md#built-in-paymaster-flows).
+实用方法，为普通[paymaster flows](.../.../dev/developer-guides/aa.md#built-in-paymaster-flows)返回正确形成的`paymasterParams`对象。
 
 ```typescript
 export function getPaymasterParams(paymasterAddress: Address, paymasterInput: PaymasterInput): PaymasterParams
 ```
 
-The definition of the `PaymasterInput` can be found [here](./types.md).
+`PaymasterInput'的定义可以在[这里](./types.md)找到。
 
-## Useful gas constants
-Currently, there is no method to accurately estimate the required `gasPerPubdataLimit`. That's why for now, it is highly recommended to provide the `DEFAULT_GAS_PER_PUBDATA_LIMIT`. Users are not charged more by providing it.
-Later on it will be possible to query the current recommended limit.
+## 有用的气体常数
+
+目前，没有任何方法可以准确估计所需的 "gasPerPubdataLimit"。这就是为什么目前强烈建议提供`DEFAULT_GAS_PER_PUBDATA_LIMIT'。用户不会因为提供它而被收取更多的费用。
+以后就可以查询当前推荐的限额了。
 
 ```typescript
 const GAS_PER_PUBDATA_BYTE = 17;

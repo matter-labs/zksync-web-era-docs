@@ -1,15 +1,15 @@
-# Providers
+# 提供者
 
-Providers are objects that wrap interactions with the zkSync node. If you are new to the concept of providers in `web3`, you should check out their docs [here](https://web3py.readthedocs.io/en/v5/providers.html?highlight=providers).
+提供者是包裹与zkSync节点的交互的对象。如果你对 "web3 "中提供者的概念感到陌生，你应该看看他们的文档[这里](https://web3py.readthedocs.io/en/v5/providers.html?highlight=providers)。
 
-zkSync fully supports Ethereum Web3 API, so you can use the provider objects from web3.py. However, zkSync API provides some additional JSON-RPC methods, which allow:
+zkSync完全支持Ethereum Web3 API，所以你可以使用web3.py的提供者对象。然而，zkSync API提供了一些额外的JSON-RPC方法，这些方法允许。
 
-- Easily track L1<->L2 transactions.
-- Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use cases may require tracking "finalized" transactions only.
+- 轻松地跟踪L1<->L2交易。
+- 交易的不同阶段的最终结果。默认情况下，我们的RPC返回服务器处理的最后一个状态的信息，但有些用例可能只需要跟踪 "最终完成 "的事务。
 
-\***\*init\*\***
+****\*init *****
 
-Initialize the zkSync SDK.
+初始化zkSync SDK。
 
 ```py
 
@@ -35,10 +35,9 @@ def __init__(self,
 
 
 
-
 ## `approve_deposits`
 
-Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync Ethereum smart contract, it returns the bridged erc20 token address.
+从以太坊桥接ERC20代币需要批准代币到zkSync以太坊智能合约，它返回桥接的erc20代币地址。
 
 ```py
 
@@ -55,7 +54,7 @@ def approve_deposits(self, token: Token, limit: Optional[int]) -> txn_receipt
 
 ## `transfer`
 
-The transfer method, can transfer ETH or any ERC20 token within the same interface, and it returns the transaction receipt of the transfer.
+转移方法，可以在同一接口内转移ETH或任何ERC20代币，并返回转移的交易收据。
 
 ```py
 def transfer(self, token: Token, amount: Decimal, to: HexStr) -> txn_receipt
@@ -70,7 +69,7 @@ def transfer(self, token: Token, amount: Decimal, to: HexStr) -> txn_receipt
 | to     | The wallet address to transfer the tokens to |
 | amount | The amount of tokens to transfer             |
 
-Transfer a specified amount of tokens from the connected wallet to a specified address.
+从连接的钱包转移指定数量的代币到一个指定的地址。
 
 > Example
 
@@ -100,7 +99,7 @@ Transfer a specified amount of tokens from the connected wallet to a specified a
 
 ## `get_deposit_base_cost`
 
-Returns the base cost in ETH for requesting the contract call.
+返回请求合约调用的基本费用（ETH）。
 
 ```py
 
@@ -116,7 +115,7 @@ def get_deposit_base_cost(self, gas_price: int = None) -> base_cost
 
 ## `deposit`
 
-Returns the transaction receipt of the deposit.
+返回存款的交易收据。
 
 ```py
 
@@ -134,7 +133,7 @@ def deposit(self, token: Token, amount: int, user_address: HexStr) -> txn_receip
 
 ## `is_deposit_approved`
 
-Returns the transaction receipt of the allowance set.
+返回津贴集的交易收据。
 
 ```py
 

@@ -1,10 +1,10 @@
-# zkSync Era toolbox
+# zkSync Era工具箱
 
-## `hardhat-zksync-toolbox`
+## hardhat-zksync-toolbox。
 
-The hardhat-zksync-toolbox plugin provides a convenient method for bundling and accessing a range of zkSync-related Hardhat plugins. This approach simplifies the process of utilizing these plugins and promotes ease of use.
+hardhat-zksync-toolbox插件为捆绑和访问一系列与zkSync相关的Hardhat插件提供了一种方便的方法。这种方法简化了利用这些插件的过程，促进了使用的便利性。
 
-List of supported plugins:
+支持的插件列表。
 
 - [hardhat-zksync-solc](./hardhat-zksync-solc.md)
 - [hardhat-zksync-vyper](./hardhat-zksync-vyper.md)
@@ -12,9 +12,9 @@ List of supported plugins:
 - [hardhat-zksync-chai-matchers](./hardhat-zksync-chai-matchers.md)
 - [hardhat-zksync-verify](./hardhat-zksync-verify.md)
 
-### Installation
+### 安装
 
-Add the latest version of this plugin to your project with the following command:
+用以下命令将此插件的最新版本添加到你的项目中。
 
 ```
 # Yarn
@@ -24,14 +24,14 @@ yarn add -D @matterlabs/hardhat-zksync-toolbox @matterlabs/hardhat-zksync-solc @
 npm i -D @matterlabs/hardhat-zksync-toolbox
 ```
 
-### Usage
+### 使用方法
 
-After installing it, add the plugin to your Hardhat config:
+安装后，将该插件添加到你的Hardhat配置中。
 
 ```javascript
 import "@matterlabs/hardhat-zksync-toolbox";
 ```
 
-With the hardhat-zksync-toolbox plugin installed and imported, you will have access to all of the supported plugins and will be able to use them as needed in your project.
+ 安装并导入hardhat-zksync-toolbox插件后，你将可以访问所有支持的插件，并能够在你的项目中根据需要使用它们。
 
-> **_NOTE:_** To learn more about using any of the plugins that are supported by the hardhat-zksync-toolbox plugin, you can refer to their documentation above.
+> 注意：要了解更多关于使用hardhat-zksync-toolbox插件所支持的任何插件，你可以参考上面的文档。

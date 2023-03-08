@@ -1,22 +1,22 @@
-# Compiling non-inlinable libraries
+# 编译不可连接的库
 
-Solidity libraries can be divided into two categories:
+Solidity 库可以被分为两类。
 
-- _Inlinable_. The ones that contain only `private` or `internal` methods. Since they can never be called from outside, the Solidity compiler inlines them, i.e. does not use external calls to access the library methods and uses the code of these libraries as part of the code that uses them.
-- _Non-inlinable_. The ones that have at least one `public` or `external` method. While they may be inlined by the Solidity compiler, they are not inlined when compiled to Yul representation. Since Yul is an intermediate step when compiling to zkEVM bytecode, this means that these libraries can not be inlined by the zkSync compiler.
+- _Inlinable_. 那些只包含 "私有 "或 "内部 "的方法。由于它们永远不能从外部调用，Solidity 编译器内联它们，即不使用外部调用来访问库的方法，并将这些库的代码作为使用它们的代码的一部分。
+- _Non-inlinable_. 那些至少有一个 "公共 "或 "外部 "方法的。虽然它们可能被 Solidity 编译器内联，但在编译为 Yul 表示时，它们不会被内联。由于Yul是编译为zkEVM字节码时的一个中间步骤，这意味着这些库不能被zkSync编译器内联。
 
-**Practically this means that libraries with public methods need to be deployed separately and their addresses passed as an argument when compiling the main contract.** Usage of the methods of this library will be replaced with calls to its address.
+**实际上，这意味着具有公共方法的库需要单独部署，并在编译主合同时将其地址作为参数传递。**使用该库的方法将被替换为对其地址的调用。
 
 
-## OpenZeppelin utility libraries
+## OpenZeppelin实用库
 
-Please note, that the total majority of the OpenZeppelin utility libraries _are_ inlinable. That means that _there is no need to do any further actions to make them compile_.
+请注意，大多数OpenZeppelin实用程序库都是可内联的。这意味着_不需要做任何进一步的操作来使它们被编译_。
 
-This section describes the compilation of non-inlinable libraries only.
+这一节只描述了不可内联的库的编译情况。
 
-## Example
+## 示例
 
-Let's say that we have a small library that calculates the square of a number:
+假设我们有一个计算数字平方的小库。
 
 ```solidity
 pragma solidity ^0.8.0;
@@ -28,7 +28,7 @@ library MiniMath {
 }
 ```
 
-And there is a smart contract that uses this library
+而有一个智能合约，使用了这个库
 
 ```solidity
 pragma solidity ^0.8.0;
@@ -45,17 +45,17 @@ contract Main {
 }
 ```
 
-If you try to create a project with these two files following the guidelines from the [getting started](./getting-started.md) guide, the `yarn hardhat compile` command will fail with the following error:
+如果你试图按照[getting started](./getting-started.md)指南中的指导方针用这两个文件创建一个项目，`yarn hardhat compile`命令会失败，并出现以下错误。
 
 ```
 Error in plugin @matterlabs/hardhat-zksync-solc: LLVM("Library `contracts/MiniMath.sol:MiniMath` not found")
 ```
 
-That error tells us that the address of the `MiniMath` library should be provided.
+这个错误告诉我们，应该提供`MiniMath`库的地址。
 
-To resolve the issue, you need to create _a separate project_, where only the library file will be located. After deploying _only_ the library to zkSync, you should get the address of the deployed library and pass it to the compiler settings. The process of deploying the library is the same as deploying a smart contract. You can learn how to deploy smart contracts on zkSync in the [getting started](./getting-started.md#write-and-deploy-a-contract) guide.
+为了解决这个问题，你需要创建一个单独的项目，其中只有库文件。在向zkSync部署_只有库之后，你应该获得部署的库的地址，并将其传递给编译器设置。部署库的过程与部署智能合约的过程是一样的。你可以在[入门](./getting-started.md#write-and-deploy-a-contract)指南中了解如何在zkSync上部署智能合约。
 
-Let's say that the address of the deployed library is `0xF9702469Dfb84A9aC171E284F71615bd3D3f1EdC`. To pass this address to the compiler parameters, open the `harhdat.config.ts` file of the project where the `Main` contract is located and add the `libraries` section in the `zksolc` plugin properties:
+假设部署库的地址是`0xF9702469Dfb84A9aC171E284F71615bd3D3f1EdC`。为了把这个地址传递给编译器参数，打开`Main`合约所在的项目的`harhdat.config.ts`文件，在`zksolc`插件属性中添加`libraries`部分。
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
@@ -87,7 +87,7 @@ module.exports = {
 };
 ```
 
-The address of the library is passed in the following lines:
+库的地址在以下几行中传递。
 
 ```typescript
 libraries: {
@@ -97,6 +97,6 @@ libraries: {
 },
 ```
 
-where `'contracts/MiniMath.sol'` is the location of the library's Solidity file and `MiniMath` is the name of the library.
+其中`'contract/MiniMath.sol'`是库的Solidity文件的位置，`MiniMath`是库的名称。
 
-Now, running `yarn hardhat compile` should successfully compile the `Main` contract.
+现在，运行 "yarn hardhat compile "应该能成功编译 "Main "合约。

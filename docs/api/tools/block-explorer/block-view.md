@@ -1,37 +1,37 @@
-# Browse blocks
+# 浏览区块
 
 ![Browse blocks!](../../../assets/images/block-tx.png "View blocks on zkSync")
 
-The block explorer home screen, by default, displays the 10 most recent blocks in the chain.
-View all blocks for a more complete overview of recent blocks, or click on a specific block number for details on that block.
-The blocks page is also accessible via the top menu.
+区块资源管理器的主屏幕，默认显示链上的10个最近的区块。
+查看所有区块，可以更全面地了解最近的区块，或者点击特定的区块编号，了解该区块的详细信息。
+区块页面也可以通过顶部菜单访问。
 
 ![Access the block page](../../../assets/images/block-menu.png "Blocks menu")
 
-## View all blocks
+## 查看所有区块
 
-You can click on a block number to see all the details of that specific block. If you want to browse more blocks, click the [Blocks](https://explorer.zksync.io/blocks/) section of the navigation menu. Use the pagination to navigate to the next page.
+你可以点击某个区块的编号，查看该特定区块的所有细节。如果你想浏览更多的区块，请点击导航菜单上的[区块](https://explorer.zksync.io/blocks/)部分。使用分页法导航到下一页。
 
-However, if you have already left the homepage, you can always search for any block by typing in the block number.
+然而，如果你已经离开了主页，你可以随时通过输入区块编号来搜索任何区块。
 
 ![Browse all blocks](../../../assets/images/view-block.png "Browse all blocks")
 
-There are two main sections inside a block:
+一个区块内有两个主要部分。
 
-1. The Block Header
+1. 区块标题
 
-- This shows brief information about this specific block, as well as a link to the previous block in the chain.
+- 这显示了关于这个特定区块的简要信息，以及与链中前一个区块的链接。
 
-2. Transactions
+2. 交易
 
-- Consists of lists of all the transactions that were included in this block.
+- 由包含在该区块中的所有交易的列表组成。
 
 ![Single block page!](../../../assets/images/single-block.png "View a single block")
 
-### Block headers
+### 区块标题
 
-The following table should help explain what you’ll see in a block.
-For more details on blocks, see the docs on [Blocks](../../../dev/developer-guides/transactions/blocks.md).
+下表应该有助于解释你在区块中会看到什么。
+关于区块的更多细节，请参见[区块](.../.../dev/developer-guides/transactions/blocks.md)的文档。
 
 | Value        | Description                                                                |
 | ------------ | -------------------------------------------------------------------------- |
@@ -41,18 +41,18 @@ For more details on blocks, see the docs on [Blocks](../../../dev/developer-guid
 | Root hash    | The Cryptographic hash of the block header.                                |
 | Status       | The status of the block, could be `sealed`, `finalized`, or `unfinalized`. |
 
-### Transactions
+### 交易
 
-This section lists all the transactions that are included in this block.
-Transactions are served on a first-in-first-out basis, but in the future, we will introduce a "priority heap", which will allow for sorting the transactions.
+这一部分列出了包含在这个区块中的所有交易。
+交易是以先入先出的方式进行的，但在未来，我们将引入一个 "优先级堆"，这将允许对交易进行排序。
 
 | Value             | Description                                                                                                                                                                    |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Block             | The amount of transactions in a block                                                                                                                                          |
-| Timestamp         | The block generation time in seconds since the Unix epoch.                                                                                                                     |
-| Hash              | The hash of the transaction serving as the transaction’s ID                                                                                                                    |
-| From              | The account or smart contract, sending the transaction.                                                                                                                        |
-| To                | The account or smart contract, the transaction targeted.                                                                                                                       |
-| Fee               | The rate of fees associated with this transaction processing.                                                                                                                  |
-| Tokens transferred | Details about the tokens(both `to` and `from` addresses) involved in the transactions, it includes, details like the assets, balance in the wallet address, and token address. |
-| Contract address  | The rate of fees collected by the network.                                                                                                                                     |
+| Block             | 一个区块中的交易量                                                                                                                                 |
+| Timestamp         | 从Unix epoch开始的区块生成时间，单位是秒。                                                                                           |
+| Hash              | 交易的哈希值，作为交易的ID。                                                                                                     |
+| From              | 账户或智能合约，发送交易。                                                                                                           |
+| To                | 账户或智能合约，交易对象。                                                                                                          |
+| Fee               | 与此交易处理相关的费用率。                                                                                                     |
+| Tokens transferred | 关于交易中涉及的代币（包括 "to "和 "from "地址）的详细信息，它包括资产、钱包地址的余额和代币地址等细节。 |
+| Contract address  | 网络收取的费用比率。                                                                                                                           |

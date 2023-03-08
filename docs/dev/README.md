@@ -1,68 +1,67 @@
-# zkSync Era Documentation
+# zkSync时代文档
 
-This documentation is intended to assist you in developing on zkSync.
-It introduces the concepts of zkSync, describes the zkSync network stack, and some advanced topics for complex applications and use cases.
+本文档旨在帮助您在zkSync上进行开发。
+它介绍了zkSync的概念，描述了zkSync网络堆栈，以及一些复杂应用和用例的高级主题。
 
-Given this documentation is open-sourced, feel free to suggest new topics, add new content, and provide examples wherever you believe they will be useful. If you're unsure how to proceed, [follow these instructions](./troubleshooting/docs-contribution/docs.md).
+鉴于该文档是开源的，请随时建议新的主题，添加新的内容，并在你认为有用的地方提供例子。如果你不确定如何进行，[按照这些指示](./troubleshooting/docs-contribution/docs.md)。
 
-## Fundamental topics
+## 基本主题
 
-If this is your first time using zkSync, we recommend that you kick off at the beginning and work your way through the documentation like you would with a book.
+如果这是你第一次使用zkSync，我们建议你从头开始，像看书一样慢慢阅读文档。
 
-- [Intro to rollups](./fundamentals/rollups.md) - A brief overview of rollups.
-- [zkSync Era basics](./fundamentals/zkSync.md) - A quick overview of zkSync Era technologies.
-- [Interacting with zkSync Era](./fundamentals/interacting.md) - A brief intro into zkSync Era Testnet.
-- [Hyperscaling](./fundamentals/hyperscaling.md) - Understand hyperchains in zkSync.
+- [Intro to rollups](./fundamentals/rollups.md) - 简单介绍一下rollups。
+- [zkSync时代基础知识](./fundamentals/zkSync.md) - 对zkSync时代技术的快速概述。
+- [Interacting with zkSync Era](./fundamentals/interacting.md) - 对zkSync Era Testnet的简要介绍。
+- [Hyperscaling](./fundamentals/hyperscaling.md) - 了解zkSync的超链。
 
-### Understanding zkSync Era
+### 了解zkSync Era
 
-- [Transactions](./developer-guides/transactions/transactions.md) - A guide on how zkSync handles transactions.
-- [Blocks](./developer-guides/transactions/blocks.md) - Learn how blocks work on zkSync.
-- [System contracts](./developer-guides/system-contracts.md) - A brief overview of zkSync system contracts.
-- [Account abstraction](./developer-guides/aa.md) - Learn about account abstraction.
-- [Fee mechanism](./developer-guides/transactions/fee-model.md) - A quick overview of the zkSync fee structure.
-- [Bridging of funds](./developer-guides/bridging/bridging-asset.md) - A brief intro on token bridging.
-- [L1 / L2 Interoperability](./developer-guides/bridging/l1-l2-interop.md) - A quick brief on data communication between L1 and L2.
-- [L1 / L2 communication](./developer-guides/bridging/l1-l2.md) - Learn how to send data from Ethereum to zkSync.
-- [L2 / L1 communication](./developer-guides/bridging/l2-l1.md) - Learn how to send data from zkSync to Ethereum.
-- [Video resources](./developer-guides/videos.md) - Watch developer related videos and zkSync Era.
+- [Transactions](./developer-guides/transactions/transactions.md) - 关于zkSync如何处理交易的指南。
+- [Blocks](./developer-guides/transactions/blocks.md) - 了解块如何在zkSync上工作。
+- [System contracts](./developer-guides/system-contracts.md) - 简要介绍zkSync系统合同。
+- [Account abstraction](./developer-guides/aa.md) - 了解账户的抽象性。
+- [收费机制](./developer-guides/transactions/fee-model.md) - 快速浏览zkSync的收费结构。
+- [资金桥接](./developer-guides/bridging/bridging-asset.md) - 关于代币桥接的简要介绍。
+- [L1 / L2 Interoperability](./developer-guides/bridging/l1-l2-interop.md) - 关于L1和L2之间数据通信的简单介绍。
+- [L1 / L2通信](./developer-guides/bridging/l1-l2.md) - 了解如何从Ethereum向zkSync发送数据。
+- [L2 / L1通信](./developer-guides/bridging/l2-l1.md) - 学习如何从zkSync向以太坊发送数据。
+- [视频资源](./developer-guides/videos.md) - 观看开发者相关视频和zkSync时代。
 
-### Building on zkSync Era
+### 基于zkSync时代的构建
 
-- [Quickstart](./building-on-zksync/hello-world.md) - Learn how to build a full dApp using the zkSync development toolbox.
-- [Smart contract deployment](./building-on-zksync/contracts/contracts.md) - A guide on how to deploy smart contracts on zkSync.
-- [Verify contracts](./building-on-zksync/contracts/contract-verification.md) - A guide on how to verify smart contracts with zkSync block explorer.
-- [Handling events](./building-on-zksync/events.md) - Learn how to handle events in zkSync Era.
-- [JSON-RPC API](./building-on-zksync/rpc.md) - Learn how to use our custom JSON-RPC APIs that are similar to Ethereum.
-- [Fair Onboarding Alpha](./building-on-zksync/fair-onboarding-alpha.md) - Learn how zkSync Era Fair Onboarding Alpha works.
+- [Quickstart](./building-on-zksync/hello-world.md) - 了解如何使用zkSync开发工具箱构建一个完整的dApp。
+- [智能合约部署](./building-on-zksync/contracts/contracts.md) - 关于如何在zkSync上部署智能合约的指南。
+- [验证合同](./building-on-zksync/contracts/contract-verification.md) - 关于如何用zkSync区块资源管理器验证智能合同的指南。
+- [处理事件](./building-on-zksync/events.md) - 了解如何在zkSync时代处理事件。
+- [JSON-RPC API](./building-on-zksync/rpc.md) - 了解如何使用我们类似于Ethereum的自定义JSON-RPC API。
+- [Fair Onboarding Alpha](./building-on-zksync/fair-onboarding-alpha.md) - 了解zkSync时代的Fair Onboarding Alpha如何工作。
 
-### Tutorials
+### 教程
 
-- [Cross-chain governance](./tutorials/cross-chain-tutorial.md) - Learn how to use L1 to L2 contract interaction.
-- [Account abstraction multisig](./tutorials/custom-aa-tutorial.md) - Learn how to deploy your custom accounts and interact zkSync system contracts.
-- [Daily Spending Limit](./tutorials/aa-daily-spend-limit.md) - Learn how to create a daily spend limit in your smart contract using Account Abstraction.
-- [Building custom paymasters](./tutorials/custom-paymaster-tutorial.md) - Learn how to build a custom paymaster to allow users to pay fees in your 
-token.
+- [Cross-chain governance](./tutorials/cross-chain-tutorial.md) - 了解如何使用L1到L2的合同互动。
+- [Account abstraction multisig](./tutorials/custom-aa-tutorial.md) - 了解如何部署您的自定义账户并与zkSync系统合同互动。
+- [Daily Spending Limit](./tutorials/aa-daily-spend-limit.md) - 了解如何使用账户抽象在智能合约中创建每日花费限制。
+- 构建自定义支付大师](./tutorials/custom-paymaster-tutorial.md) - 了解如何构建一个自定义支付大师，让用户在你的 
+代币。
 
-### Troubleshooting
+### 故障排除
 
-- [Changelogs](./troubleshooting/changelog.md) - Get updates, breaking changes and new features on zkSync Era.
-- [Contribute to documentation](./troubleshooting/docs-contribution/docs.md) - Learn the guidelines needed to be a contributor to the zkSync Era docs.
-- [FAQs](./troubleshooting/faq.md) - Popular questions and answers about zkSync Era.
-<!-- - [Known Issues](./troubleshooting/known-issues.md) - Get answers to common issues you may find. -->
-<!-- - [Important links](./troubleshooting/important-links.md) - Get a quick reference to important links. -->
-<!-- - [Status](./troubleshooting/status.md) - Get updates on things we are currently working on. -->
+- [Changelogs](./troubleshooting/changelog.md) - 获取zkSync Era的更新、重大变化和新功能。
+- [贡献文档](./troubleshooting/docs-contribution/docs.md) - 了解成为zkSync Era文档贡献者所需的准则。
+- [FAQs](./troubleshooting/faq.md) - 关于zkSync Era的热门问题和答案。
+<! -- -- [已知问题](./troubleshooting/known-issues.md) - 获得你可能发现的常见问题的答案。-->
+<!-- - [重要链接](./troubleshooting/important-links.md) - 获得重要链接的快速参考。-->
+<!-- - [状态](./troubleshooting/status.md) - 获得我们目前正在进行的工作的更新。-->
 
-### Tools and SDKs
+### 工具和SDKs
 
-- [zkSync Era Portal](https://portal.zksync.io) - Explore Wallet, Bridge and Faucet features.
-- [Block Explorer](../api/tools/block-explorer/) - Search for real-time and historical information about blocks, transactions, addresses, and more on zkSync block explorer.
-- [Javascript SDK](../api/js/) - Extending the capabilities of Ethers, our Javascript SDK contains specific classes and methods required to build on zkSync Era.
-- [Python SDK](../api/python/) - Explore all the Python methods and functions required to build on zkSync Era.
-- [Go SDK](../api/go/) - Explore all the GO methods and functions required to build on zkSync Era.
-- [Java SDK](../api/java/) - Explore all the Java methods and functions required to build on zkSync Era.
-- [Swift SDK](../api/java/) - Explore all the Swift methods and functions required to build on zkSync Era.
-- [Hardhat Plugins](../api/hardhat/) - Use our Hardhat zkSync plugins to compile, test, deploy, and verify your Solidity or Vyper based applications.
-- [zkSync CLI](../api/tools/zksync-cli/) - Simplify your development process and interact with zkSync Era from your terminal with zkSync CLI.
-
+- [zkSync Era Portal](https://portal.zksync.io) - 探索钱包、桥梁和龙头的功能。
+- [Block Explorer](../api/tools/block-explorer/) - 在zkSync block explorer上搜索关于区块、交易、地址等的实时和历史信息。
+- [Javascript SDK](./api/js/) - 扩展Ethers的功能，我们的Javascript SDK包含在zkSync Era上构建所需的特定类和方法。
+- [Python SDK](./api/python/) - 探索在zkSync Era上构建所需的所有Python方法和功能。
+- [Go SDK](../api/go/) - 探索在zkSync Era上构建的所有GO方法和功能。
+- [Java SDK](../api/java/) - 探索在zkSync Era上构建的所有Java方法和功能。
+- [Swift SDK](../api/java/) - 探索在zkSync Era上构建的所有Swift方法和功能。
+- [Hardhat Plugins](./api/hardhat/) - 使用我们的Hardhat zkSync插件来编译、测试、部署和验证您基于Solidity或Vyper的应用程序。
+- [zkSync CLI](./api/tools/zksync-cli/) - 通过zkSync CLI简化您的开发过程并从您的终端与zkSync Era互动。
 

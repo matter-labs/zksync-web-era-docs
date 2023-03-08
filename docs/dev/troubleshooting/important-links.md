@@ -1,4 +1,4 @@
-# Important links
+# 重要链接
 
 ## Testnet network info
 
@@ -18,6 +18,6 @@
 - Block Explorer URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`
 
-## Questions and support
+## 问题与支持
 
 - [Discord](https://join.zksync.dev/)

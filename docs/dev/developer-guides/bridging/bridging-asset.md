@@ -1,55 +1,56 @@
-# Bridging assets
+# 衔接资产
 
-## Introduction
+## 介绍
 
-Bridging is implemented by having two contracts
-(one deployed to L1, and the second deployed to L2)
-communicating with each other using [L1 <-> L2 interoperability](./l1-l2-interop.md).
+桥接是通过两个合同来实现的
+(一个部署在L1，另一个部署在L2)
+使用[L1 <-> L2 interoperability](./l1-l2-interop.md)相互通信。
 
-Developers are free to build their own bridge for any token.
-However, we provide our default bridges (one for ETH and one for ERC20 tokens), which can be used for basic bridging.
-
-::: warning
-
-Addresses of tokens on L2 will always differ from the same token L1 address.
-
-:::
-
-## Default bridges
-
-You can get default bridges' addresses using the `zks_getBridgeContracts` endpoint or `getDefaultBridgeAddresses` method of `Provider` in our [Javascript SDK](../../../api/js/) (similar methods are available in the other SDKs).
-
-### Deposits (to L2)
-
-Users must call the `deposit` method on the L1 bridge contract, which will trigger the following actions:
-
-- The user's L1 tokens will be sent to the L1 bridge and become locked there.
-- The L1 bridge initiates a transaction to the L2 bridge using L1 -> L2 communication.
-- Within the L2 transaction, tokens will be minted and sent to the specified address on L2.
-  - If the token does not exist on zkSync yet, a new contract is deployed for it. Given the L2 token address is deterministic (based on the original L1 address, name and symbol), it doesn't matter who is the first person bridging it, the new L2 address will be the same.
-- For every executed L1 -> L2 transaction, there will be an L2 -> L1 log message confirming its execution.
-- Lastly, the `finalizeDeposit`method is called and it finalizes the deposit and mints funds on L2.
+开发者可以自由地为任何令牌建立自己的桥梁。
+然而，我们提供了我们的默认桥接器（一个用于ETH，一个用于ERC20代币），可用于基本桥接。
 
 ::: warning
 
-If this transaction fails for any reason (for example, the provided fee is too low) the log message will state its failure.
-In this case, the inclusion of the log can be proven on the L1 bridge to return the deposited funds to the original sender by calling the method `claimFailedDeposit`.
+L2上的代币的地址将总是与同一代币L1地址不同。
 
 :::
 
-The log message described above is not yet fully supported by our SDK but is available on the L1 bridge contract.
+## 默认桥接
 
-### Withdrawals (to L1)
+你可以使用`zks_getBridgeContracts`端点或我们的[Javascript SDK](.../.../api/js/)中`Provider`的`getDefaultBridgeAddresses`方法获得默认桥的地址（其他SDK中也有类似方法）。
 
-Users must call the `withdraw` method on the L2 bridge contract, which will trigger the following actions:
+### 存款(到L2)
 
-- L2 tokens will be burned.
-- An L2 -> L1 message with the information about the withdrawal will be sent.
-- After that, the withdrawal action will be available to be finalized by anyone in the L1 bridge (by proving the inclusion of the L2 -> L1 message, which is done when calling the `finalizeWithdraw` method on the L1 bridge contract).
-- After the method is called, the funds are unlocked from the L1 bridge and sent to the withdrawal recipient.
+用户必须在L1桥梁合约上调用`deposit`方法，这将触发以下动作。
 
-::: warning
+- 用户的L1代币将被发送到L1桥，并在那里被锁定。
+- L1桥使用L1->L2通信向L2桥发起一个交易。
+- 在L2交易中，代币将被铸造并被发送到L2上的指定地址。
+  - 如果该代币在zkSync上还不存在，就会为其部署一个新的合约。鉴于L2代币地址是确定的（基于原始L1地址、名称和符号），谁是第一个桥接它的人并不重要，新的L2地址将是相同的。
+- 对于每一个执行的L1->L2事务，都会有一个L2->L1的日志信息来确认其执行。
+- 最后，`finalizeDeposit`方法被调用，它最终完成存款并在L2上铸造资金。
 
-On the testnet environment, we automatically finalize all withdrawals, i.e., for every withdrawal, we will take care of it by making an L1 transaction that proves the inclusion for each message.
+:::warning
+
+如果这个交易由于任何原因而失败（例如，提供的费用太低），日志信息将说明其失败。
+在这种情况下，可以在L1桥上证明日志的收录，通过调用`claimFailedDeposit`方法将存入的资金返还给原发件人。
 
 :::
+
+上面描述的日志信息还没有被我们的SDK完全支持，但在L1桥的合同上可以使用。
+
+### 提款(到L1)
+
+用户必须调用L2桥接合约上的`withdraw`方法，这将触发以下动作。
+
+- L2代币将被烧毁。
+- 将发送一条包含提款信息的L2->L1消息。
+- 之后，提款行动将可由 L1 桥中的任何人完成（通过证明包含 L2 -> L1 消息，这在调用 L1 桥合同上的 `finalizeWithdraw` 方法时完成）。
+- 在该方法被调用后，资金从L1桥中解锁并发送给提款接收人。
+
+:::warning
+
+在testnet环境下，我们会自动敲定所有的提款，也就是说，对于每一笔提款，我们都会通过做L1交易来处理，证明每条信息的包含。
+
+:::
+

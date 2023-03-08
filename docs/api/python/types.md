@@ -1,6 +1,6 @@
-# Types
+# 类型
 
-All the types which are used in the SDK are referenced here:
+所有在SDK中使用的类型都在这里被引用。
 
 ```py
 from dataclasses import dataclass
