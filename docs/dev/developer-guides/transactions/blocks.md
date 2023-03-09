@@ -95,5 +95,4 @@ On zkSync Era we return L2 blocks from API because this is how all platforms, wh
 
 ### Why do we return L1 batches inside EVM?
 
-In the past,`block.number` was a part of the VM and was provided once per batch and so we returned the number of the batch there.
 Presently, we return the number of L1 batch inside the VM, but this value will be unprovable. We also likely won't have any meaningful value there. Unlike Ethereum blocks that contain some kind of commitment to the state of the chain, on zkSync Era these blocks won't have such commitment, because calculating the Merkle tree is too expensive to be done more often than once per batch.
