@@ -39,3 +39,25 @@ So the tips to make the most out of the zkSync fee system are the following:
 - **Reuse as many storage slots as possible.** Only the state diff is published on Ethereum.
 - **Users should share as many storage slots as possible.** If 100 users update a storage slot of your contract in a single block, the diff will be published only once. In the future, we will introduce reimbursement for the users, so that the costs for updating shared storage slots are split between the users.
 - **Reuse the contract code if possible.** On Ethereum, avoiding constructor parameters and putting them into constants reduces some of the gas costs upon contract deployment. On zkSync the opposite is true: deploying the same bytecode for contracts, while changing only constructor parameters can lead to substantial fee savings.
+
+## Refunds
+
+zkSync Era fee model introduces some places where users may overpay for transactions.
+
+The scenarios where that happens are:
+
+- For the `pubdata` when L1 gas price is too low.
+- For the computation when L1 gas price is too high.
+
+To mitigate this, we provided refunds for users. For all of the refunds to be provable, the counter counts the number of gas spent on `pubdata` (or the number of pubdata bytes published). We will denote this number by $pubdataused$. 
+For now, this value can be provided by the operator.
+
+The fair price for a transaction is:
+
+$Fair Fee = E_f * tx.computational Ergs + EP; * pubdataused$
+
+We can derive $tx.computationalErgs = ergsspent - pubdataused * tx.ergsPricePerPubdata$, where $ergsspent$ is the number of ergs spent for the transaction (can be trivially fetched in Solidity).
+
+The fee that the user has spent is:
+
+$ActuallyFee == ergspent * Base$
