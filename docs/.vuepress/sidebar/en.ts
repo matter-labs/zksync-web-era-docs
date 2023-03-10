@@ -62,6 +62,7 @@ export const enSidebar = sidebar({
       link: "/dev/troubleshooting",
       children: [
         "/dev/troubleshooting/changelog.md",
+        "/dev/troubleshooting/audit-bug-bounty.md",
         "/dev/troubleshooting/docs-contribution/docs.md",
         "/dev/troubleshooting/docs-contribution/community-resources.md",
         "/dev/troubleshooting/faq.md"
