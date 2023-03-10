@@ -6,35 +6,26 @@ zkSync Era takes security seriously and as such, we have completed multiple audi
 
 We always ensure that all code deployed to production has been thoroughly tested before release. Our auditing and review processes begin well before any code is deployed. We conduct internal audits, followed by independent external audits from reputable auditors. If applicable, we also hold a public auditing contest and top it off with another independent external audit.
 
-Here is the list of completed audits:
+Here is the list of **completed audits**:
 
-[Layer 1 Smart Contracts](https://blog.openzeppelin.com/zksync-layer-1-audit/), OpenZeppelin, from 2022-09-05 to 2022-09-30
+- [Layer 1 Smart Contracts](https://blog.openzeppelin.com/zksync-layer-1-audit/), OpenZeppelin, from 2022-09-05 to 2022-09-30.
+- [Layer 1 Diff Audit (Upgrade Audit)](https://blog.openzeppelin.com/zksync-layer-1-diff-audit/), OpenZeppelin, from 2022-11-21 to 2022-11-25.
+- Layer 1 Diff Audit (Upgrade Audit), OpenZeppelin, from 2023-02-06 to 2023-02-17 (not published yet).
+- [Layer 1 Public Contest](https://code4rena.com/reports/2022-10-zksync/), Code4rena, from 2022-10-28 to 2022-11-09.
+- [Layer 1 Smart Contracts](https://github.com/Secure3Audit/Secure3Academy/blob/main/audit_reports/zkSync/zkSync_L1_final_Secure3_Audit_Report.pdf), Secure3, from 2022-10-22 to 2022-11-06.
+- [Layer 2 Bootloader](https://blog.openzeppelin.com/zksync-bootloader-audit-report/), OpenZeppelin, from 2022-11-28 to 2022-12-23.
+- Layer 2 Fee Model and Token Bridge, OpenZeppelin, from 2023-01-23 to 2023-02-17 (not published yet).
+- ZK Circuits, Halborn, from 2023-01-09 to 2023-03-08 (not published yet).
 
-[Layer 1 Diff Audit (Upgrade Audit)](https://blog.openzeppelin.com/zksync-layer-1-diff-audit/), OpenZeppelin, from 2022-11-21 to 2022-11-25
+We've also scheduled the following audits:
 
-Layer 1 Diff Audit (Upgrade Audit), OpenZeppelin, from 2023-02-06 to 2023-02-17, not published yet
+- Layer 2 System Contracts Public Contest, Code4rena, from 2023-03-10 to 2023-03-19.
+- Layer 1 and Layer 2 Smart Contracts, TBD.
+- ZK Circuits, TBD.
 
-[Layer 1 Public Contest](https://code4rena.com/reports/2022-10-zksync/), Code4rena, from 2022-10-28 to 2022-11-09
+## Bug Bounty Program
 
-[Layer 1 Smart Contracts](https://github.com/Secure3Audit/Secure3Academy/blob/main/audit_reports/zkSync/zkSync_L1_final_Secure3_Audit_Report.pdf), Secure3, from 2022-10-22 to 2022-11-06
-
-[Layer 2 Bootloader](https://blog.openzeppelin.com/zksync-bootloader-audit-report/), OpenZeppelin, from 2022-11-28 to 2022-12-23
-
-Layer 2 Fee Model and Token Bridge, OpenZeppelin, from 2023-01-23 to 2023-02-17, not published yet
-
-ZK Circuits, Halborn, from 2023-01-09 to 2023-03-08, not published yet
-
-List of scheduled audits:
-
-Layer 2 System Contracts Public Contest, Code4rena, from 2023-03-10 to 2023-03-19
-
-Layer 1 and Layer 2 Smart Contracts, TBD
-
-ZK Circuits, TBD
-
-## Bounty Program
-
-zkSync Era has a very detailed **[Bug bounty Program on Immunefi](link-goes-here)**. In the listing, you can find all the information relating to assets in scope, reporting, and the payout process.
+zkSync Era has a very detailed **[Bug bounty Program on Immunefi](link-goes-here)**. In the listing, you can find all the information related to assets in scope, reporting, and the payout process.
 
 ### Scope
 
