@@ -20,8 +20,8 @@ Here is the list of **completed audits**:
 We've also scheduled the following audits:
 
 - Layer 2 System Contracts Public Contest, Code4rena, from 2023-03-10 to 2023-03-19.
-- Layer 1 and Layer 2 Smart Contracts, TBD.
-- ZK Circuits, TBD.
+- Layer 1 and Layer 2 Smart Contracts, April 2023, more details to follow.
+- ZK Circuits, April 2023, more details to follow.
 
 ## Bug Bounty Program
 
