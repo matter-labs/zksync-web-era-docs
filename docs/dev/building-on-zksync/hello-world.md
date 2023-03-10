@@ -121,12 +121,18 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
+// Get private key from the environment variable
+const PRIVATE_KEY: string = process.env.ZKS_PRIVATE_KEY || "";
+if (!PRIVATE_KEY) {
+  throw new Error("Please set ZKS_PRIVATE_KEY in the environment variables.");
+}
+
 // An example of a deploy script that will deploy and call a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
-  const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
+  const wallet = new Wallet(PRIVATE_KEY);
 
   // Create deployer object and load the artifact of the contract you want to deploy.
   const deployer = new Deployer(hre, wallet);
@@ -160,9 +166,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const contractAddress = greeterContract.address;
   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 }
+
 ```
 
-7. Replacing the `WALLET-PRIVATE-KEY` with the private key of the Ethereum wallet you're using for development, and run the script using the following command to run the deployment script:
+7. Replacing the `PRIVATE_KEY` with the private key of the Ethereum wallet you're using for development. (You can set this key in your bash shell's environment running `export ZKS_PRIVATE_KEY='<YOUR-PRIVATE-KEY-HERE>'`) and run the script using the following command to run the deployment script:
 
 ```sh
 yarn hardhat deploy-zksync
