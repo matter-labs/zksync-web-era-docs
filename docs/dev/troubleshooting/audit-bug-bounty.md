@@ -25,7 +25,7 @@ We've also scheduled the following audits:
 
 ## Bug Bounty Program
 
-zkSync Era has a very detailed **[Bug bounty Program on Immunefi](link-goes-here)**. In the listing, you can find all the information related to assets in scope, reporting, and the payout process.
+zkSync Era has a very detailed **[Bug bounty Program on Immunefi](https://immunefi.com/bounty/zksyncera/)**. In the listing, you can find all the information related to assets in scope, reporting, and the payout process.
 
 ### Scope
 
@@ -44,4 +44,4 @@ The bug bounty program for zkSync Era aims to identify and resolve security vuln
 
 ### Unscoped Bug
 
-If you think you have found a critical or major bug that is not covered by our existing bug bounty, please report it to us via the Immunefi program regardless. We will seriously consider the impact of any issues and may award a bounty even for out of scope assets or impacts.
+If you think you have found a critical or major bug that is not covered by our existing bug bounty, please report it to us [via the Immunefi program](https://immunefi.com/bounty/zksyncera/) regardless. We will seriously consider the impact of any issues and may award a bounty even for out of scope assets or impacts.
