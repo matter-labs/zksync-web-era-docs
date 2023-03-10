@@ -26,7 +26,7 @@ zkSync Era是首批采用AA的EVM兼容链之一，所以这个测试网也被�
 
 ## 先决条件
 
-为了更好地理解这个页面，我们建议你花些时间先阅读一下[账户]（https://ethereum.org/en/developers/docs/accounts/）的指南。
+为了更好地理解这个页面，我们建议你花些时间先阅读一下[账户](https://ethereum.org/en/developers/docs/accounts/)的指南。
 
 ## 设计
 
@@ -109,9 +109,9 @@ EOA来说，nonces应该是按顺序增长的，而对于自定义账户来说�
 
 **步骤3** 系统检查交易的nonce是否已被标记为使用。
 
-**步骤4(no paymaster)**系统调用账户的`payForTransaction`方法。如果它没有恢复，则进入下一步。
+**步骤4**(no paymaster)系统调用账户的`payForTransaction`方法。如果它没有恢复，则进入下一步。
 
-**步骤4（paymaster）**系统调用发送者的`prePaymaster`方法。如果这个调用没有恢复，则调用付款人的`validateAndPayForPaymasterTransaction`方法。如果它也没有恢复，则继续进行下一个步骤。
+**步骤4**(paymaster)系统调用发送者的`prePaymaster`方法。如果这个调用没有恢复，则调用付款人的`validateAndPayForPaymasterTransaction`方法。如果它也没有恢复，则继续进行下一个步骤。
 
 **步骤5**系统验证bootloader是否已经收到至少`tx.gasPrice * tx.gasLimit`的ETH给bootloader。如果是这样的话，验证被认为是
 完成，我们可以进入下一步。
