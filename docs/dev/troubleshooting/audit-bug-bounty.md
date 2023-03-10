@@ -8,13 +8,16 @@ We always ensure that all code deployed to production has been thoroughly tested
 
 Here is the list of **completed audits**:
 
+- Layer 1 Smart Contracts, Internal Audit, from 2022-14-06 to 2022-08-17.
 - [Layer 1 Smart Contracts](https://blog.openzeppelin.com/zksync-layer-1-audit/), OpenZeppelin, from 2022-09-05 to 2022-09-30.
 - [Layer 1 Diff Audit (Upgrade Audit)](https://blog.openzeppelin.com/zksync-layer-1-diff-audit/), OpenZeppelin, from 2022-11-21 to 2022-11-25.
 - Layer 1 Diff Audit (Upgrade Audit), OpenZeppelin, from 2023-02-06 to 2023-02-17 (not published yet).
 - [Layer 1 Public Contest](https://code4rena.com/reports/2022-10-zksync/), Code4rena, from 2022-10-28 to 2022-11-09.
 - [Layer 1 Smart Contracts](https://github.com/Secure3Audit/Secure3Academy/blob/main/audit_reports/zkSync/zkSync_L1_final_Secure3_Audit_Report.pdf), Secure3, from 2022-10-22 to 2022-11-06.
+- Layer 2, Internal Audit, from 2022-08-17 to 2022-10-24.
 - [Layer 2 Bootloader](https://blog.openzeppelin.com/zksync-bootloader-audit-report/), OpenZeppelin, from 2022-11-28 to 2022-12-23.
 - Layer 2 Fee Model and Token Bridge, OpenZeppelin, from 2023-01-23 to 2023-02-17 (not published yet).
+- ZK Circuits, Internal Audit, from 2022-10-24 to 2022-11-18.
 - ZK Circuits, Halborn, from 2023-01-09 to 2023-03-08 (not published yet).
 
 We've also scheduled the following audits:
