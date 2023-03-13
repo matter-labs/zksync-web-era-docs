@@ -158,7 +158,7 @@ a.title {
 }
 
 .logo {
-    height: 1.8rem !important;
+    height: 1.5rem !important;
     padding: 0.70rem 0 !important;
 }
 
@@ -210,7 +210,7 @@ $border-color: #e5e7eb;
 }
 
 [data-theme="light"] img[src*="/zk-sync-era-line-light.svg"] {
-    content: url("/zk-sync-era-line-dark.svg");
+    content: url("/zk-sync-era-line-dark.png");
 }
 
 [data-theme="dark"] img[src*="/zk-sync-era-line-light.svg"] {
