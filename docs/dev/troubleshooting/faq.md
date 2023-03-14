@@ -192,3 +192,12 @@ Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The wi
 ## What is a testnet ReGenesis?
 
 Sometimes, the team working on zkSync will initiate a regenesis on testnet - a restart of the blockchain which will introduce upgrades and return the state to the initial point.
+
+## Why does zkSync Era not prove all batches on testnet?
+
+On zkSync Era testnet and mainnet, blocks are batched together and verified by the ZK prover. On mainnet, we prove all batches. On testnet we prove fewer batches to avoid wasting expensive GPU resources that we could use for mainnet development and security.
+
+Doing this is also much greener than proving every single batch on testnet.
+
+As we increase our prover performance and efficiency, we will enable proofs for all batches on testnet.
+
