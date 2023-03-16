@@ -2,6 +2,8 @@
 
 Here are some contract addresses that may be useful and/or of interest to those exploring the zkSync Era:
 
+## Mainnet contract addresses
+
 |                               | zkSync Era Mainnet                                                 | 
 | ----------------------------- | -------------------------------------------------------------------|
 | diamond_cut_facet_addr        | 0xC48d496459e1358D055a79173BEA41efb7449028                         | 
@@ -17,13 +19,30 @@ Here are some contract addresses that may be useful and/or of interest to those 
 | verifier_addr                 | 0x6A28B1bC6123fE525FF46d881Ff80871D0Eb3F02                         |
 | mailbox_facet_addr            | 0x2EA0CFB9C942058ee5A84411EF2E37C6DE5bfe5c                         |
 | l1_allow_list_addr            | 0x185e050EC1c22c45445a9AdEA99B12e1A1372eBA                         |
-| l1_erc20_bridge_proxy_addr    | 0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063                         |
-| l1_erc20_bridge_impl_addr     | 0x22bE40122BA952b81c50bcaa86F84418ff623391                         |
-| l2_erc20_bridge_addr          | 0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102                         |
 | l2_testnet_paymaster_addr     | 0x0265d9a5af8af5fe070933e5e549d8fef08e09f4                         |
 | vk_commitment_basic_circuits  | 0x0af0d77503b93a15fedd086638b7326cd3d169a2f388e568f41ea906c7a6eb93 |
 | vk_commitment_leaf            | 0x101e08b00193e529145ee09823378ef51a3bc8966504064f1f6ba3f1ba863210 |
 | vk_commitment_node            | 0x1186ec268d49f1905f8d9c1e9d39fc33e98c74f91d91a21b8f7ef78bd09a8db8 |
+
+### Token bridge contracts for mainnet
+
+:::warning
+
+_Do **not** transfer tokens or Ether to any of the addresses below; it will result in loss of funds._
+
+_Users should only interact with the token bridge contracts via [zkSync portal](https://portal.zksync.io/) or any other dapp._
+
+:::
+
+|                               | Contracts                                                          | 
+| ----------------------------- | -------------------------------------------------------------------|
+| l1_erc20_bridge_proxy_addr    | 0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063                         |
+| l1_erc20_bridge_impl_addr     | 0x22bE40122BA952b81c50bcaa86F84418ff623391                         |
+| l2_erc20_bridge_addr          | 0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102                         |
+
+
+
+## Testnet contract addresses
 
 
 |                               | zkSync Era Testnet                                                 | 
@@ -41,11 +60,16 @@ Here are some contract addresses that may be useful and/or of interest to those 
 | verifier_addr                 | 0xc8517230276e0df51377ecc07b528cd3ee083132                         |
 | mailbox_facet_addr            | 0xd80eF7aCBEC07dbf10Eb84452b40D0a8882ADfB5                         |
 | l1_allow_list_addr            | 0xCbA757b4f0527b535bE80720325064058FC4A306                         |
-| l1_erc20_bridge_proxy_addr    | 0x927DdFcc55164a59E0F33918D13a2D559bC10ce7                         |
-| l1_erc20_bridge_impl_addr     | 0xE3E53270f3674965F12F70117B16736232604e12                         |
-| l2_erc20_bridge_addr          | 0x00ff932A6d70E2B8f1Eb4919e1e09C1923E7e57b                         |
 | l2_testnet_paymaster_addr     | 0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63                         |
 | vk_commitment_basic_circuits  | 0x142a364ef2073132eaf07aa7f3d8495065be5b92a2dc14fda09b4216affed9c0 |
 | vk_commitment_leaf            | 0x101e08b00193e529145ee09823378ef51a3bc8966504064f1f6ba3f1ba863210 |
 | vk_commitment_node            | 0x1186ec268d49f1905f8d9c1e9d39fc33e98c74f91d91a21b8f7ef78bd09a8db8 |
 
+
+### Token bridge contracts for testnet
+
+|                               | Contracts                                                          | 
+| ----------------------------- | -------------------------------------------------------------------|
+| l1_erc20_bridge_proxy_addr    | 0x927DdFcc55164a59E0F33918D13a2D559bC10ce7                         |
+| l1_erc20_bridge_impl_addr     | 0xE3E53270f3674965F12F70117B16736232604e12                         |
+| l2_erc20_bridge_addr          | 0x00ff932A6d70E2B8f1Eb4919e1e09C1923E7e57b                         |

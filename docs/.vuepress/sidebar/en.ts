@@ -65,8 +65,8 @@ export const enSidebar = sidebar({
         "/dev/troubleshooting/audit-bug-bounty.md",
         "/dev/troubleshooting/docs-contribution/docs.md",
         "/dev/troubleshooting/docs-contribution/community-resources.md",
-        "/dev/troubleshooting/faq.md"
-        // "/dev/troubleshooting/known-issues.md",
+        "/dev/troubleshooting/faq.md",
+        "/dev/troubleshooting/usefull-address.md",
         // "/dev/troubleshooting/status.md",
         // "/dev/troubleshooting/important-links.md",
       ],
