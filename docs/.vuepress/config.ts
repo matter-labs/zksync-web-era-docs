@@ -53,7 +53,7 @@ export default defineUserConfig({
     pwaPlugin({}),
     docsearchPlugin({
       appId: "LCWOUB1OFO",
-      apiKey: "9a4932a3e119b24ef5f19a85c08d9c81",
+      apiKey: "be92fcc06a00f9c1f95a8120c54401f7",
       indexName: "v2-zksync",
       locales: {
         "/": {
