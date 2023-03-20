@@ -39,12 +39,22 @@ export const enSidebar = sidebar({
       link: "/dev/building-on-zksync",
       children: [
         "/dev/building-on-zksync/hello-world.md",
-        "/dev/building-on-zksync/contracts/contracts.md",
+        "/dev/building-on-zksync/contracts/contract-development.md",
         "/dev/building-on-zksync/contracts/contract-deployment.md",
         "/dev/building-on-zksync/contracts/contract-verification.md",
         "/dev/building-on-zksync/events.md",
         "/dev/building-on-zksync/rpc.md",
         "/dev/building-on-zksync/fair-onboarding-alpha.md",
+      ],
+    },
+    {
+      text: "Compiler Toolchain",
+      link: "/dev/compiler-toolchain",
+      children: [
+        "/dev/compiler-toolchain/overview.md",
+        "/dev/compiler-toolchain/solidity.md",
+        "/dev/compiler-toolchain/vyper.md",
+        "/dev/compiler-toolchain/llvm.md",
       ],
     },
     {
