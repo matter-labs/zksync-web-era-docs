@@ -350,7 +350,7 @@ Even though the requirements above allow the accounts to touch only their storag
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 ```
 
-Note that since the non-view methods of the `NONCE_HOLDER_SYSTEM_CONTRACT` are required to be called with the `isSystem` flag on, the [systemCallWithPropagatedRevert](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/SystemContractsCaller.sol#L77) method of the `SystemContractsCaller` library should be used, so this library needs to be imported as well:
+Note that since the non-view methods of the `NONCE_HOLDER_SYSTEM_CONTRACT` are required to be called with the `isSystem` flag on, the [systemCallWithPropagatedRevert](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/libraries/SystemContractsCaller.sol#L75) method of the `SystemContractsCaller` library should be used, so this library needs to be imported as well:
 
 ```solidity
 // to call non-view method of system contracts
@@ -362,7 +362,7 @@ The `TransactionHelper` library (already imported above with `using TransactionH
 
 Finally, the `_validateTransaction` method has to return the constant `ACCOUNT_VALIDATION_SUCCESS_MAGIC` if the validation is successful, or an empty value `bytes4(0)` if it fails.
 
-Here is the full implementation fo the `_validateTransaction` method:
+Here is the full implementation for the `_validateTransaction` method:
 
 ```solidity
 
