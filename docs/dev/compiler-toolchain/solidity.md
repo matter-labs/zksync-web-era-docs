@@ -28,7 +28,7 @@ Additional zkEVM data is supported by `zksolc`, but omitted when passed to `solc
 
 - `settings/optimizer/enabled`: enables the LLVM optimizer. Disabling only makes sense for prototyping and debugging
 - `settings/optimizer/mode`: sets the optimization mode. Available values: `0`, `1`, `2`, `3`, `s`, `z`. The default
-setting is `3`.
+setting is `3`. See [LLVM optimizer](./llvm.md#optimizer).
 
 Unsupported sections of the input JSON, ignored by `zksolc`:
 
@@ -118,7 +118,7 @@ the moment. Only `--asm` and `--bin` output flags are supported, so this mode ca
 
 - `-O`, `--optimization <level>`  
   Set the optimization parameter -O[0 | 1 | 2 | 3 | s | z].  
-  Use `3` for best performance and `z` for minimal size.  
+  Use `3` for best performance and `z` for minimal size. See [LLVM optimizer](./llvm.md#optimizer).  
 
 - `--solc <path>`  
   Specify the path to the `solc` executable. By default, the one in `${PATH}` is used.  
@@ -176,8 +176,8 @@ the moment. Only `--asm` and `--bin` output flags are supported, so this mode ca
 
 ## Limitations
 
-For the time being Solidity versions as old as `>=0.4.12`, though **we strongly recommend using** the latest supported
-revision of `0.8`, as older versions contain known bugs and have limitations dictated by the absence of IR with
+For the time being Solidity versions as old as `>=0.4.12` are supported, though **we strongly recommend using** the latest
+supported revision of `0.8`, as older versions contain known bugs and have limitations dictated by the absence of IR with
 sufficient level of abstraction over EVM.
 
 Projects written in Solidity `>=0.8` are compiled through the Yul pipeline, whereas those written in `<=0.7` are compiled

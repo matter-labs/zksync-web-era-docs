@@ -43,7 +43,7 @@ Other output formats are available via the `-f` option. Check out `vyper --help`
 
 - `-O`, `--optimization <level>`  
   Set the optimization parameter -O[0 | 1 | 2 | 3 | s | z].  
-  Use `3` for best performance and `z` for minimal size.
+  Use `3` for best performance and `z` for minimal size. See [LLVM optimizer](./llvm.md#optimizer).  
 
 - `--vyper <path>`  
   Specify the path to the `vyper` executable. By default, the one in `${PATH}` is used.  
