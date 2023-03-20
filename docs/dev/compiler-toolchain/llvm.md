@@ -13,8 +13,13 @@ numerous optimization passes and tools available in its mature ecosystem.
 In our toolchain, LLVM consumes the LLVM IR, applies extensive optimizations, and eventually passes the optimized IR
 to the zkEVM back-end code generator in order to produce the zkEVM text assembly output.
 
-By default, our IR compilers optimize for performance, which correlates with the number of VM cycles per transaction,
+## Optimizer
+
+All our compilers utilize the state-of-an-art LLVM optimizer.
+By default, they optimize for performance, which correlates with the number of VM cycles per transaction,
 thus affecting gas usage. The `z` option may reduce the contract size for large contracts, making deployment cheaper,
 but increasing the average transaction price.
+
+## Diving deeper
 
 To get more information about the LLVM framework, [see the official documentation](https://llvm.org/).
