@@ -6,22 +6,24 @@ We provide a customized and optimized compiler toolchain for development on zkSy
 
 ## EVM compatibility
 
-Almost every smart contract written for EVM will be supported by zkSync Era and will hold all key security invariants so
-that no additional security re-auditing will be required in most cases. A notable exception is the contracts that use
+zkSync Era supports almost every smart contract written for EVM and holds all key security invariants so
+that no additional security re-auditing is usually required. Notable exceptions are contracts using
 the following EVM opcodes:
 
-- `SELFDESTRUCT` - It’s considered harmful and was deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).
-- `CALLCODE` - It was deprecated on Ethereum in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`.
-- `EXTCODECOPY` - We've skipped it for now because zkEVM opcodes are not identical to EVM ones, but it can be implemented if needed.
-- `CODECOPY` - It's replaced with `CALLDATACOPY` in the deploy code.
-- `PC` - Not accessible in Yul and Solidity `>=0.7.0`. Accessible in Solidity `0.6` although it produces a runtime error.
+- `SELFDESTRUCT` - considered harmful and deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).
+- `CALLCODE` - deprecated in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`.
+- `EXTCODECOPY` - skipped at the time of writing because zkEVM opcodes are not identical in the EVM; can be implemented if needed.
+- `CODECOPY` - replaced with `CALLDATACOPY` in the deploy code.
+- `PC` - inaccessible in Yul and Solidity `>=0.7.0`; accessible in Solidity `0.6` although it produces a runtime error.
 
-**All these opcodes produce an error on compilation.**
+::: warning
+These opcodes produce an error on compilation.
+:::
 
-There are several other distinctions; for example, gas metering will be different (as is the case for other L2s as well).
-Some EVM cryptographic precompiles (notably pairings and RSA) won’t be available in the very first release but will be
-implemented soon after the launch, with pairing being a priority to allow both Hyperchains and protocols like
-Aztec/Dark Forest to be deployed without modifications too.
+There are several other distinctions, for example:
+
+* Gas metering is different (as is the case for other L2s).
+* Some EVM cryptographic precompiles (notably pairings and RSA) won’t be immediately available. However, pairing is prioritized to allow deployment of both Hyperchains and protocols like Aztec/Dark Forest without modifications.
 
 Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are supported as precompiles.
 No actions are required from your side as all the calls to the precompiles are done by the compilers under the hood.
