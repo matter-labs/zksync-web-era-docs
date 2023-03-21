@@ -4,7 +4,7 @@ Here are some contract addresses that may be useful and/or of interest to those 
 
 ## Mainnet contract addresses
 
-|                               | zkSync Era Mainnet                                                 | 
+|      Contract names           | zkSync Era Mainnet                                                 | 
 | ----------------------------- | -------------------------------------------------------------------|
 | diamond_cut_facet_addr        | [0xC48d496459e1358D055a79173BEA41efb7449028](https://etherscan.io/address/0xC48d496459e1358D055a79173BEA41efb7449028#code)| 
 | diamond_init_addr             | [0xb91d905A698c28b73C61aF60C63919b754FCF4DE](https://etherscan.io/address/0xb91d905A698c28b73C61aF60C63919b754FCF4DE#code)|
@@ -21,7 +21,7 @@ Here are some contract addresses that may be useful and/or of interest to those 
 
 ## Root and hashes
 
-|                               | zkSync Era Mainnet                                                 | 
+|       Contract names          | zkSync Era Mainnet                                                 | 
 | ----------------------------- | -------------------------------------------------------------------|
 | vk_commitment_basic_circuits  | 0x0af0d77503b93a15fedd086638b7326cd3d169a2f388e568f41ea906c7a6eb93 |
 | vk_commitment_leaf            | 0x101e08b00193e529145ee09823378ef51a3bc8966504064f1f6ba3f1ba863210 |
@@ -40,19 +40,19 @@ _Users should only interact with the token bridge contracts via [zkSync portal](
 
 :::
 
-|                               | Contracts                                                          | 
-| ----------------------------- | -------------------------------------------------------------------|
-| l1_erc20_bridge_proxy_addr    | [0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063](https://etherscan.io/address/0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063#code)                         |
-| l1_erc20_bridge_impl_addr     | [0x22bE40122BA952b81c50bcaa86F84418ff623391](https://etherscan.io/address/0x22bE40122BA952b81c50bcaa86F84418ff623391#code)                         |
-| l2_erc20_bridge_addr          | [0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102](https://etherscan.io/address/0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102#code)                         |
+|      Contract names           | Contracts                                                                                                                 | 
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------|
+| l1_erc20_bridge_proxy_addr    | [0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063](https://etherscan.io/address/0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063#code)|
+| l1_erc20_bridge_impl_addr     | [0x22bE40122BA952b81c50bcaa86F84418ff623391](https://etherscan.io/address/0x22bE40122BA952b81c50bcaa86F84418ff623391#code)|
+| l2_erc20_bridge_addr          | [0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102](https://etherscan.io/address/0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102#code)|
 
 
 
 ## Testnet contract addresses
 
 
-|                               | L1                                                                 | 
-| ----------------------------- | -------------------------------------------------------------------|
+|      Contract names           | L1                                                                                                                               | 
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------|
 | diamond_cut_facet_addr        | [0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d](https://goerli.etherscan.io/address/0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d#code)| 
 | diamond_init_addr             | [0x81aE464127286C26f21495d053AA19Eec708055F](https://goerli.etherscan.io/address/0x81aE464127286C26f21495d053AA19Eec708055F#code)|
 | diamond_proxy_addr            | [0x1908e2BF4a88F91E4eF0DC72f02b8Ea36BEa2319](https://goerli.etherscan.io/address/0x1908e2BF4a88F91E4eF0DC72f02b8Ea36BEa2319#code)|
@@ -79,10 +79,10 @@ _Users should only interact with the token bridge contracts via [zkSync portal](
 
 ### Token bridge contracts for testnet
 
-|                               | Contracts                                                          | 
-| ----------------------------- | -------------------------------------------------------------------|
-| l1_erc20_bridge_proxy_addr    | [0x927DdFcc55164a59E0F33918D13a2D559bC10ce7](https://goerli.etherscan.io/address/0x927DdFcc55164a59E0F33918D13a2D559bC10ce7#code)|
-| l1_erc20_bridge_impl_addr     | [0xE3E53270f3674965F12F70117B16736232604e12](https://goerli.etherscan.io/address/0xE3E53270f3674965F12F70117B16736232604e12#code)|
+|      Contract names           | Contracts                                                                                                                          | 
+| ----------------------------- | -----------------------------------------------------------------------------------------------------------------------------------|
+| l1_erc20_bridge_proxy_addr    | [0x927DdFcc55164a59E0F33918D13a2D559bC10ce7](https://goerli.etherscan.io/address/0x927DdFcc55164a59E0F33918D13a2D559bC10ce7#code)  |
+| l1_erc20_bridge_impl_addr     | [0xE3E53270f3674965F12F70117B16736232604e12](https://goerli.etherscan.io/address/0xE3E53270f3674965F12F70117B16736232604e12#code)  |
 | l2_erc20_bridge_addr          | [0x00ff932A6d70E2B8f1Eb4919e1e09C1923E7e57b](https://goerli.explorer.zksync.io/address/0x00ff932A6d70E2B8f1Eb4919e1e09C1923E7e57b) |
 
 
@@ -90,12 +90,9 @@ _Users should only interact with the token bridge contracts via [zkSync portal](
 
 ## Token request
 
-|                               | L1 token address                          | L2 token address                         |
+|            Name               | L1 token address                          | L2 token address                         |
 | ----------------------------- | ------------------------------------------|------------------------------------------|
-| l1_erc20_bridge_proxy_addr    | 0xa49d7499271ae71cd8ab9ac515e6694c755d400c|0x0e97C7a0F8B2C9885C8ac9fC6136e829CbC21d42|
-| l1_erc20_bridge_proxy_addr    | 0xffffffff2ba8f66d4e51811c5190992176930278|0xc2B13Bb90E33F1E191b8aA8F44Ce11534D5698E3|
-| l1_erc20_bridge_proxy_addr    | 0xbC396689893D065F41bc2C6EcbeE5e0085233447|0x42c1c56be243c250AB24D2ecdcC77F9cCAa59601|
-| l1_erc20_bridge_proxy_addr    | [0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48](https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48)|0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4|
-
-
-https://goerli.etherscan.io/address/0x1908e2BF4a88F91E4eF0DC72f02b8Ea36BEa2319#code
+| Mute    | [0xa49d7499271ae71cd8ab9ac515e6694c755d400c](https://etherscan.io/address/0xa49d7499271ae71cd8ab9ac515e6694c755d400c)|[0x0e97C7a0F8B2C9885C8ac9fC6136e829CbC21d42](https://explorer.zksync.io/address/0x0e97C7a0F8B2C9885C8ac9fC6136e829CbC21d42)|
+| Furucombo    | [0xffffffff2ba8f66d4e51811c5190992176930278](https://etherscan.io/address/0xffffffff2ba8f66d4e51811c5190992176930278)|0xc2B13Bb90E33F1E191b8aA8F44Ce11534D5698E3|
+| Perpetual    | [0xbC396689893D065F41bc2C6EcbeE5e0085233447](https://etherscan.io/address/0xbC396689893D065F41bc2C6EcbeE5e0085233447)|0x42c1c56be243c250AB24D2ecdcC77F9cCAa59601|
+|  Circle   | [0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48](https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48)|0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4|
