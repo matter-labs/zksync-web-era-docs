@@ -16,7 +16,7 @@ The hardhat plugin uses the combined JSON I/O mode, which is passed down to the 
 Additional zkEVM data is inserted into the output combined JSON by `zksolc`:
 
 - `zk_version`: the version of the `zksolc` itself
-- `contract/factory_deps`: bytecode hashes of contracts `CREATE`d in the current one.
+- `contract/factory_deps`: bytecode hashes of contracts created in the current contract with `CREATE`.
   Since Vyper does not support `CREATE` directly, only the forwarder can be present in this mapping.
   [More detail here](../building-on-zksync/contracts/contract-deployment.md#note-on-factory-deps).
 
