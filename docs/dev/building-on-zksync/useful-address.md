@@ -4,7 +4,7 @@ Here are some contract addresses that may be useful and/or of interest to those 
 
 ## Mainnet contract addresses
 
-|      Contract names           | zkSync Era Mainnet                                                 | 
+|      Contract Name            | Address                                                            | 
 | ----------------------------- | -------------------------------------------------------------------|
 | diamond_cut_facet_addr        | [0xC48d496459e1358D055a79173BEA41efb7449028](https://etherscan.io/address/0xC48d496459e1358D055a79173BEA41efb7449028#code)| 
 | diamond_init_addr             | [0xb91d905A698c28b73C61aF60C63919b754FCF4DE](https://etherscan.io/address/0xb91d905A698c28b73C61aF60C63919b754FCF4DE#code)|
@@ -21,7 +21,7 @@ Here are some contract addresses that may be useful and/or of interest to those 
 
 ## Root hashes
 
-|       Contract names          | zkSync Era Mainnet                                                 | 
+|       Contract Name           | Address                                                            | 
 | ----------------------------- | -------------------------------------------------------------------|
 | vk_commitment_basic_circuits  | 0x0af0d77503b93a15fedd086638b7326cd3d169a2f388e568f41ea906c7a6eb93 |
 | vk_commitment_leaf            | 0x101e08b00193e529145ee09823378ef51a3bc8966504064f1f6ba3f1ba863210 |
@@ -36,11 +36,12 @@ Here are some contract addresses that may be useful and/or of interest to those 
 
 _Do **not** transfer tokens or Ether to any of the addresses below; it will result in loss of funds._
 
-_Users should only interact with the token bridge contracts via [zkSync portal](https://portal.zksync.io/) or any other dapp._
+_Users should only interact with the token bridge contracts via [zkSync Bridge](https://bridge.zksync.io/) or any other dapp._ 
+
 
 :::
 
-|      Contract names           | Contracts                                                                                                                 | 
+|      Contract Name            | Address                                                                                                                 | 
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------|
 | l1_erc20_bridge_proxy_addr    | [0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063](https://etherscan.io/address/0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063#code)|
 | l1_erc20_bridge_impl_addr     | [0x22bE40122BA952b81c50bcaa86F84418ff623391](https://etherscan.io/address/0x22bE40122BA952b81c50bcaa86F84418ff623391#code)|
@@ -51,7 +52,7 @@ _Users should only interact with the token bridge contracts via [zkSync portal](
 ## Testnet contract addresses
 
 
-|      Contract names           | L1                                                                                                                               | 
+|      Contract Name            | L1 Address          | 
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------|
 | diamond_cut_facet_addr        | [0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d](https://goerli.etherscan.io/address/0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d#code)| 
 | diamond_init_addr             | [0x81aE464127286C26f21495d053AA19Eec708055F](https://goerli.etherscan.io/address/0x81aE464127286C26f21495d053AA19Eec708055F#code)|
@@ -68,7 +69,7 @@ _Users should only interact with the token bridge contracts via [zkSync portal](
 
 ## Root hashes
 
-|                               | zkSync Era Testnet                                                 | 
+|          Name                 | Hash                                                               | 
 | ----------------------------- | -------------------------------------------------------------------|
 | vk_commitment_basic_circuits  | 0x142a364ef2073132eaf07aa7f3d8495065be5b92a2dc14fda09b4216affed9c0 |
 | vk_commitment_leaf            | 0x101e08b00193e529145ee09823378ef51a3bc8966504064f1f6ba3f1ba863210 |
@@ -79,7 +80,7 @@ _Users should only interact with the token bridge contracts via [zkSync portal](
 
 ### Token bridge contracts for testnet
 
-|      Contract names           | Contracts                                                                                                                          | 
+|      Contract Name           | Address                                                                                                                          | 
 | ----------------------------- | -----------------------------------------------------------------------------------------------------------------------------------|
 | l1_erc20_bridge_proxy_addr    | [0x927DdFcc55164a59E0F33918D13a2D559bC10ce7](https://goerli.etherscan.io/address/0x927DdFcc55164a59E0F33918D13a2D559bC10ce7#code)  |
 | l1_erc20_bridge_impl_addr     | [0xE3E53270f3674965F12F70117B16736232604e12](https://goerli.etherscan.io/address/0xE3E53270f3674965F12F70117B16736232604e12#code)  |
@@ -88,7 +89,7 @@ _Users should only interact with the token bridge contracts via [zkSync portal](
 
 
 
-## Token request
+## Known tokens
 
 |            Name               | L1 token address                          | L2 token address                         |
 | ----------------------------- | ------------------------------------------|------------------------------------------|
