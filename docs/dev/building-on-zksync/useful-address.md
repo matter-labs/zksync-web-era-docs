@@ -19,7 +19,7 @@ Here are some contract addresses that may be useful and/or of interest to those 
 | l2_testnet_paymaster_addr     | [0x0265d9a5af8af5fe070933e5e549d8fef08e09f4](https://etherscan.io/address/0x0265d9a5af8af5fe070933e5e549d8fef08e09f4#code)|
 
 
-## Root and hashes
+## Root hashes
 
 |       Contract names          | zkSync Era Mainnet                                                 | 
 | ----------------------------- | -------------------------------------------------------------------|
@@ -66,7 +66,7 @@ _Users should only interact with the token bridge contracts via [zkSync portal](
 | l2_testnet_paymaster_addr     | [0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63](https://goerli.explorer.zksync.io/address/0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63#contract)|
 
 
-## Root and hashes
+## Root hashes
 
 |                               | zkSync Era Testnet                                                 | 
 | ----------------------------- | -------------------------------------------------------------------|
