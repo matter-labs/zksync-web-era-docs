@@ -20,7 +20,7 @@ Additional zkEVM data is inserted into the output combined JSON by `zksolc`:
   Since Vyper does not support `CREATE` directly, only the forwarder can be present in this mapping.
   [More detail here](../building-on-zksync/contracts/contract-deployment.md#note-on-factory-deps).
 
-Regardless of the requested output, only `combined_json`, `abi`, `method_identifiers`, `bytecode`, `bytecode_runtime`
+Regardless of the requested output, only the `combined_json`, `abi`, `method_identifiers`, `bytecode`, `bytecode_runtime`
 flags are supported, while the rest are ignored.
 
 Other output formats are available via the `-f` option. Check out `vyper --help` for more details.
