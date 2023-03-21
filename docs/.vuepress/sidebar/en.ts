@@ -42,6 +42,7 @@ export const enSidebar = sidebar({
         "/dev/building-on-zksync/contracts/contracts.md",
         "/dev/building-on-zksync/contracts/contract-deployment.md",
         "/dev/building-on-zksync/contracts/contract-verification.md",
+        "/dev/building-on-zksync/useful-address.md",
         "/dev/building-on-zksync/events.md",
         "/dev/building-on-zksync/rpc.md",
         "/dev/building-on-zksync/fair-onboarding-alpha.md",
@@ -62,7 +63,6 @@ export const enSidebar = sidebar({
       link: "/dev/troubleshooting",
       children: [
         "/dev/troubleshooting/changelog.md",
-        "/dev/troubleshooting/useful-address.md",
         "/dev/troubleshooting/audit-bug-bounty.md",
         "/dev/troubleshooting/docs-contribution/docs.md",
         "/dev/troubleshooting/docs-contribution/community-resources.md",
