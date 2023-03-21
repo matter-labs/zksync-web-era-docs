@@ -1,7 +1,7 @@
 # Smart contract development
 
-zkSync Era allows developers to build projects using the same programming languages and tools used to build on Ethereum.
-We provide our compiler toolchain customized and optimized for development on zkSync. For more information, see
+zkSync Era allows developers to build projects using the same programming languages and tools as required by Ethereum.
+We provide a customized and optimized compiler toolchain for development on zkSync. For more information, see
 [the toolchain documentation](../../compiler-toolchain/overview.md).
 
 ## EVM compatibility
