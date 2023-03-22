@@ -64,7 +64,7 @@ _Users should only interact with the token bridge contracts via [zkSync Bridge](
 | mailbox_facet_addr            | [0xd80eF7aCBEC07dbf10Eb84452b40D0a8882ADfB5](https://goerli.etherscan.io/address/0xd80eF7aCBEC07dbf10Eb84452b40D0a8882ADfB5#code)|
 | l1_allow_list_addr            | [0xCbA757b4f0527b535bE80720325064058FC4A306](https://goerli.etherscan.io/address/0xCbA757b4f0527b535bE80720325064058FC4A306#code)|
 | l2_testnet_paymaster_addr     | [0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63](https://goerli.explorer.zksync.io/address/0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63#contract)|
-| l2_mainnet_paymaster_addr     | [0x0265d9a5af8af5fe070933e5e549d8fef08e09f4](https://goerli.explorer.zksync.io/address/0x0265d9a5af8af5fe070933e5e549d8fef08e09f4)|
+| l2_testnet_paymaster_addr     | [0x0265d9a5af8af5fe070933e5e549d8fef08e09f4](https://goerli.explorer.zksync.io/address/0x0265d9a5af8af5fe070933e5e549d8fef08e09f4)|
 
 
 ## Root hashes
