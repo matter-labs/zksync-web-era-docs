@@ -6,14 +6,14 @@ which must be available in `$PATH`, or the path must be explicitly passed via th
 
 ## Usage
 
-Most of the time, using our compiler via the hardhat plugin is enough, and you do not have to dive deeper into its
+Most of the time, using our compiler via the Hardhat plugin is enough, and you do not have to dive deeper into its
 interface and I/O (input/output) methods. However, it can be crucial for integration, debugging, or contribution purposes.
 
 The CLI supports several I/O modes:
 
-1. Standard JSON
-2. Combined JSON
-3. Free-form output
+1. Standard JSON.
+2. Combined JSON.
+3. Free-form output.
 
 All three modes use the standard JSON `solc` interface internally. It helps to reduce the complexity of the `zksolc`
 interface and facilitate testing.
@@ -26,8 +26,8 @@ architecture.
 
 Additional zkEVM data is supported by `zksolc`, but omitted when passed to `solc`:
 
-- `settings/optimizer/enabled`: enables the LLVM optimizer. Disabling only makes sense for prototyping and debugging
-- `settings/optimizer/mode`: sets the optimization mode. Available values: `0`, `1`, `2`, `3`, `s`, `z`. The default
+- `settings/optimizer/enabled`: enables the LLVM optimizer. Disabling only makes sense for prototyping and debugging.
+- `settings/optimizer/mode`: sets the optimization mode. Available values: `0`, `1`, `2`, `3`, `s`, `z`. Default
 setting is `3`. See [LLVM optimizer](./llvm.md#optimizer).
 
 Unsupported sections of the input JSON, ignored by `zksolc`:
@@ -36,10 +36,10 @@ Unsupported sections of the input JSON, ignored by `zksolc`:
 - `sources/destructible`
 - `settings/stopAfter`
 - `settings/remappings`
-- `settings/optimizer/*`: the `solc` optimizer is always enabled and is not configurable
+- `settings/optimizer/*`: the `solc` optimizer is always enabled and is not configurable.
 - `settings/evmVersion`
 - `settings/debug`
-- `settings/metadata`: we request metadata with default settings for consistency
+- `settings/metadata`: we request metadata with default settings for consistency.
 - `settings/outputSelection/def`
 - `settings/modelChecker`
 
@@ -52,7 +52,7 @@ Additional zkEVM data inserted by `zksolc`:
 
 Unsupported sections of the output JSON, ignored by `zksolc`:
 
-- `contracts/<file>/<contract>/evm/bytecode`: replaced by the zkEVM object with only relevant data
+- `contracts/<file>/<contract>/evm/bytecode`: replaced by the zkEVM object with only relevant data.
 - `contracts/<file>/<contract>/ewasm`
 
 See the complete standard JSON data structures in [the zksolc repository](https://github.com/matter-labs/era-compiler-solidity/tree/main/src/solc/standard_json).
@@ -68,7 +68,7 @@ used for configuration.
 
 Additional zkEVM data, inserted by `zksolc`:
 
-- `zk_version`: the version of the `zksolc` itself
+- `zk_version`: the version of `zksolc`.
 - `contract/factory_deps`: bytecode hashes of contracts `CREATE`d in the current one. [More detail here](../building-on-zksync/contracts/contract-deployment.md#note-on-factory-deps).
 
 Unsupported combined JSON flags, rejected by `zksolc`:
@@ -81,12 +81,11 @@ Unsupported combined JSON flags, rejected by `zksolc`:
 - `srcmap`
 - `srcmap-runtime`
 
-See the complete combined JSON data structures in [the zksolc repository](https://github.com/matter-labs/era-compiler-solidity/tree/main/src/solc/combined_json)
+For more information, see the complete combined JSON data structures in [the zksolc repository](https://github.com/matter-labs/era-compiler-solidity/tree/main/src/solc/combined_json).
 
 #### Free-form output
 
-This output format is utilized in Yul and LLVM IR compilation modes. These modes only support compiling a single file at
-the moment. Only `--asm` and `--bin` output flags are supported, so this mode can be useful for debugging and prototyping.
+This output format is utilized in Yul and LLVM IR compilation modes. These modes currently only support compiling a single file. Only `--asm` and `--bin` output flags are supported, so this mode can be useful for debugging and prototyping.
 
 #### CLI reference
 
@@ -103,7 +102,7 @@ the moment. Only `--asm` and `--bin` output flags are supported, so this mode ca
   Passed to `solc` without changes.  
 
 - `--include-path <path>`  
-  Make an additional source directory available to the default import callback. Can be used multiple times. Can only be used if the base path has a non-empty value.  
+  Make an additional source directory available to the default import callback. Use multiple times if required. Only use if the base path has a non-empty value.  
   Passed to `solc` without changes.  
 
 - `--allow-paths <path1,path2,...>`  
@@ -122,7 +121,7 @@ the moment. Only `--asm` and `--bin` output flags are supported, so this mode ca
 
 - `--solc <path>`  
   Specify the path to the `solc` executable. By default, the one in `${PATH}` is used.  
-  Yul mode: `solc` is used for source code validation, as `zksolc` itself assumes that the input Yul is valid.  
+  Yul mode: `solc` is used for source code validation, as `zksolc` assumes that the input Yul is valid.  
   LLVM IR mode: `solc` is unused.  
 
 - `-l`, `--libraries <string>`  
@@ -135,7 +134,7 @@ the moment. Only `--asm` and `--bin` output flags are supported, so this mode ca
 
 - `--standard-json`  
   Switch to standard JSON input/output mode. Read from stdin, write the result to stdout.  
-  This is the default used by the hardhat plugin.  
+  This is the default used by the Hardhat plugin.  
 
 - `--yul`  
   Switch to the Yul mode.  
@@ -148,7 +147,7 @@ the moment. Only `--asm` and `--bin` output flags are supported, so this mode ca
   Cannot be used with the combined and standard JSON modes.  
 
 - `--force-evmla`  
-  Forcibly switch to the EVM legacy assembly pipeline.  
+  Force switch to the EVM legacy assembly pipeline.  
   It is useful for older revisions of `solc` 0.8, where Yul was considered highly experimental and contained more bugs than today.  
 
 - `--system-mode`  
@@ -176,7 +175,7 @@ the moment. Only `--asm` and `--bin` output flags are supported, so this mode ca
 
 ## Limitations
 
-For the time being Solidity versions as old as `>=0.4.12` are supported, though **we strongly recommend using** the latest
+At the current time, Solidity versions as old as `>=0.4.12` are supported, though **we strongly recommend using** the latest
 supported revision of `0.8`, as older versions contain known bugs and have limitations dictated by the absence of IR with
 sufficient level of abstraction over EVM.
 
@@ -195,5 +194,5 @@ The usage of libraries in Solidity is supported in zkSync Era with the following
 
 - If a Solidity library can be inlined (i.e. it only contains `private` or `internal` methods), it can be used without
 any additional configuration.
-- However, if a library contains at least one `public` or `external` method, it's non-inlinable and its address needs
+- However, if a library contains at least one `public` or `external` method, it cannot be inlined and its address needs
 to be passed explicitly to the compiler. You can learn more about [how to compile non-inlineable libraries in this section of the docs](../../api/hardhat/compiling-libraries.md).

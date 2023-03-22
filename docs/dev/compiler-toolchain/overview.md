@@ -45,14 +45,14 @@ and removing artifacts of unsupported ones.
 ## Assembler
 
 The assembler is [a Rust-written tool](https://github.com/matter-labs/era-zkevm-assembly) that compiles zkEVM assembly
-to zkEVM bytecode. This tool is not a part of our LLVM back-end, as it uses several cryptographic libraries which are
+to zkEVM bytecode. This tool is not a part of our LLVM back-end as it uses several cryptographic libraries which are
 easier to maintain outside of the framework.
 
 ## Hardhat Plugins
 
-We recommend using our IR compilers via [their correspondent Hardhat plugins](../../../api/hardhat/plugins.md).
+We recommend using our IR compilers via [their corresponding Hardhat plugins](../../../api/hardhat/plugins.md).
 These plugins should be added to the Hardhat's config file and allow developers to compile new projects or migrate
-existing ones to zkSync Era. If you prefer a more low-level approach, you may download our compiler binaries via the
+existing ones to zkSync Era. For a lower-level approach, download our compiler binaries via the
 links above and use their CLI interfaces.
 
 **Learn more about how to install and configure these plugins in the links below:**
