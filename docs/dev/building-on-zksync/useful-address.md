@@ -6,15 +6,15 @@ Here are some contract addresses that may be useful and/or of interest to those 
 
 |      Contract                 | Address                                                            | 
 | ----------------------------- | -------------------------------------------------------------------|
-| diamond_cut_facet_addr        | [0xC48d496459e1358D055a79173BEA41efb7449028](https://etherscan.io/address/0xC48d496459e1358D055a79173BEA41efb7449028#code)| 
-| diamond_init_addr             | [0xb91d905A698c28b73C61aF60C63919b754FCF4DE](https://etherscan.io/address/0xb91d905A698c28b73C61aF60C63919b754FCF4DE#code)|
-| diamond_proxy_addr            | [0x32400084c286cf3e17e7b677ea9583e60a000324](https://etherscan.io/address/0x32400084c286cf3e17e7b677ea9583e60a000324#code)|
-| diamond_upgrade_init_addr     | [0x2603b6a1E34B6cd42469C2473A1D5c4084a88700](https://etherscan.io/address/0x2603b6a1E34B6cd42469C2473A1D5c4084a88700#code)|
-| executor_facet_addr           | [0x98E900Eb2e5fdE9786f736e86d6BFBfDb3E4683b](https://etherscan.io/address/0x98E900Eb2e5fdE9786f736e86d6BFBfDb3E4683b#code)|
-| getters_facet_addr            | [0xc30af84A6aFF43D5fd06FEdA6bA20BdfeD539F6C](https://etherscan.io/address/0xc30af84A6aFF43D5fd06FEdA6bA20BdfeD539F6C#code)|
-| governance_facet_addr         | [0xa7E8a8F71c3cC43946601CC99997f8Cd6828a9B9](https://etherscan.io/address/0xa7E8a8F71c3cC43946601CC99997f8Cd6828a9B9#code)|
-| verifier_addr                 | [0x6A28B1bC6123fE525FF46d881Ff80871D0Eb3F02](https://etherscan.io/address/0x6A28B1bC6123fE525FF46d881Ff80871D0Eb3F02#code)|
-| mailbox_facet_addr            | [0x2EA0CFB9C942058ee5A84411EF2E37C6DE5bfe5c](https://etherscan.io/address/0x2EA0CFB9C942058ee5A84411EF2E37C6DE5bfe5c#code)|
+| DiamondCutFacet               | [0xC48d496459e1358D055a79173BEA41efb7449028](https://etherscan.io/address/0xC48d496459e1358D055a79173BEA41efb7449028#code)| 
+| DiamondInit                   | [0xb91d905A698c28b73C61aF60C63919b754FCF4DE](https://etherscan.io/address/0xb91d905A698c28b73C61aF60C63919b754FCF4DE#code)|
+| DiamondProxy                  | [0x32400084c286cf3e17e7b677ea9583e60a000324](https://etherscan.io/address/0x32400084c286cf3e17e7b677ea9583e60a000324#code)|
+| DiamondUpgrade                | [0x2603b6a1E34B6cd42469C2473A1D5c4084a88700](https://etherscan.io/address/0x2603b6a1E34B6cd42469C2473A1D5c4084a88700#code)|
+| ExecutorFacet                 | [0x98E900Eb2e5fdE9786f736e86d6BFBfDb3E4683b](https://etherscan.io/address/0x98E900Eb2e5fdE9786f736e86d6BFBfDb3E4683b#code)|
+| GettersFacet                  | [0xc30af84A6aFF43D5fd06FEdA6bA20BdfeD539F6C](https://etherscan.io/address/0xc30af84A6aFF43D5fd06FEdA6bA20BdfeD539F6C#code)|
+| GovernanceFacet               | [0xa7E8a8F71c3cC43946601CC99997f8Cd6828a9B9](https://etherscan.io/address/0xa7E8a8F71c3cC43946601CC99997f8Cd6828a9B9#code)|
+| Verifier                      | [0x6A28B1bC6123fE525FF46d881Ff80871D0Eb3F02](https://etherscan.io/address/0x6A28B1bC6123fE525FF46d881Ff80871D0Eb3F02#code)|
+| MailboxFacet                  | [0x2EA0CFB9C942058ee5A84411EF2E37C6DE5bfe5c](https://etherscan.io/address/0x2EA0CFB9C942058ee5A84411EF2E37C6DE5bfe5c#code)|
 | l1_allow_list_addr            | [0x185e050EC1c22c45445a9AdEA99B12e1A1372eBA](https://etherscan.io/address/0x185e050EC1c22c45445a9AdEA99B12e1A1372eBA#code)|
 
 
@@ -53,15 +53,15 @@ _Users should only interact with the token bridge contracts via [zkSync Bridge](
 
 |      Contract                 | Address                                                                                                                          | 
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------|
-| diamond_cut_facet_addr        | [0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d](https://goerli.etherscan.io/address/0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d#code)| 
-| diamond_init_addr             | [0x81aE464127286C26f21495d053AA19Eec708055F](https://goerli.etherscan.io/address/0x81aE464127286C26f21495d053AA19Eec708055F#code)|
-| diamond_proxy_addr            | [0x1908e2BF4a88F91E4eF0DC72f02b8Ea36BEa2319](https://goerli.etherscan.io/address/0x1908e2BF4a88F91E4eF0DC72f02b8Ea36BEa2319#code)|
-| diamond_upgrade_init_addr     | [0xFC88e9e4e11B1C083B40197500827E1894d55a83](https://goerli.etherscan.io/address/0xFC88e9e4e11B1C083B40197500827E1894d55a83#code)|
-| executor_facet_addr           | [0x9B276BD8D84901a8e57F980C05A6aD7Fee5c241d](https://goerli.etherscan.io/address/0x9B276BD8D84901a8e57F980C05A6aD7Fee5c241d#code)|
-| getters_facet_addr            | [0x71b3Ffda716Ef5df529FA89a8BBb8D16676fD47f](https://goerli.etherscan.io/address/0x71b3Ffda716Ef5df529FA89a8BBb8D16676fD47f#code)|
-| governance_facet_addr         | [0xc288177781D3555822edB31D323aEcB6cFD849c7](https://goerli.etherscan.io/address/0xc288177781D3555822edB31D323aEcB6cFD849c7#code)|
-| verifier_addr                 | [0xc8517230276e0df51377ecc07b528cd3ee083132](https://goerli.etherscan.io/address/0xc8517230276e0df51377ecc07b528cd3ee083132#code)|
-| mailbox_facet_addr            | [0xd80eF7aCBEC07dbf10Eb84452b40D0a8882ADfB5](https://goerli.etherscan.io/address/0xd80eF7aCBEC07dbf10Eb84452b40D0a8882ADfB5#code)|
+| DiamondCutFacet               | [0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d](https://goerli.etherscan.io/address/0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d#code)| 
+| DiamondInit                   | [0x81aE464127286C26f21495d053AA19Eec708055F](https://goerli.etherscan.io/address/0x81aE464127286C26f21495d053AA19Eec708055F#code)|
+| DiamondProxy                  | [0x1908e2BF4a88F91E4eF0DC72f02b8Ea36BEa2319](https://goerli.etherscan.io/address/0x1908e2BF4a88F91E4eF0DC72f02b8Ea36BEa2319#code)|
+| DiamondUpgrade                | [0xFC88e9e4e11B1C083B40197500827E1894d55a83](https://goerli.etherscan.io/address/0xFC88e9e4e11B1C083B40197500827E1894d55a83#code)|
+| ExecutorFacet                 | [0x9B276BD8D84901a8e57F980C05A6aD7Fee5c241d](https://goerli.etherscan.io/address/0x9B276BD8D84901a8e57F980C05A6aD7Fee5c241d#code)|
+| GettersFacet                  | [0x71b3Ffda716Ef5df529FA89a8BBb8D16676fD47f](https://goerli.etherscan.io/address/0x71b3Ffda716Ef5df529FA89a8BBb8D16676fD47f#code)|
+| GovernanceFacet               | [0xc288177781D3555822edB31D323aEcB6cFD849c7](https://goerli.etherscan.io/address/0xc288177781D3555822edB31D323aEcB6cFD849c7#code)|
+| Verifier                      | [0xc8517230276e0df51377ecc07b528cd3ee083132](https://goerli.etherscan.io/address/0xc8517230276e0df51377ecc07b528cd3ee083132#code)|
+| MailboxFacet                  | [0xd80eF7aCBEC07dbf10Eb84452b40D0a8882ADfB5](https://goerli.etherscan.io/address/0xd80eF7aCBEC07dbf10Eb84452b40D0a8882ADfB5#code)|
 | l1_allow_list_addr            | [0xCbA757b4f0527b535bE80720325064058FC4A306](https://goerli.etherscan.io/address/0xCbA757b4f0527b535bE80720325064058FC4A306#code)|
 | l2_testnet_paymaster_addr     | [0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63](https://goerli.explorer.zksync.io/address/0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63#contract)|
 
