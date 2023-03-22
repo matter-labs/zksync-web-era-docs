@@ -148,7 +148,7 @@ This output format is utilized in Yul and LLVM IR compilation modes. These modes
 
 - `--force-evmla`  
   Force switch to the EVM legacy assembly pipeline.  
-  It is useful for older revisions of `solc` 0.8, where Yul was considered highly experimental and contained more bugs than today.  
+  Useful for older revisions of `solc` 0.8, where Yul was considered highly experimental and contained more bugs than today.  
 
 - `--system-mode`  
   Enable the system contract compilation mode.  
