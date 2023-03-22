@@ -7,6 +7,6 @@ To introduce this time lock no changes were made in the audited smart contracts.
 This design has the following advantages:
 
 - Even if an attacker finds a critical bug in ZK circuits and also successfully compromises the servers running our sequencer, there is plenty of time to detect an exploit, investigate, and freeze the protocol via governance.
-- No changed introduced into the zkSync Era contracts, so even if the intermediate contract is compromised we revert back to the original state.
+- No changes were introduced into the zkSync Era contracts, so even if the intermediate contract is compromised we revert back to the original state.
 - Delayed execution affects not only the standard zkSync ETH and ERC20 bridges, but also any custom bridge built by a different team.
 - Implementing the logic in an external governor-controlled contract makes it easy to remove this limitation later.
