@@ -32,7 +32,7 @@ Other output formats are available via the `-f` option. Check out `vyper --help`
 
 - `<input_files>`  
   Specify the input file paths.  
-  Multiple Vyper files can be passed in the default Vyper mode.  
+  Multiple Vyper files can be passed in the default Vyper mode. 
   LLVM IR mode currently supports only a single file.
 
 - `-o`, `--output-dir <path>`  
