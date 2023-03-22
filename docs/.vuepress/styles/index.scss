@@ -123,8 +123,8 @@ input[type="submit" i] {
     }
 }
 
-[data-theme="dark"] img[src*="/logo.svg"] {
-    content: url("/zk-sync-era-light.svg") !important;
+[data-theme="dark"] img[src*="/era-dark.svg"] {
+    content: url("/era-light.svg") !important;
 }
 
 [data-theme="dark"] img[src*="/images/code-light.png"] {
