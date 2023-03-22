@@ -36,7 +36,7 @@ These IR compilers perform the following steps:
 2. Modify the input, save the relevant data, and pass the input down to the underlying high-level source code compiler - which is called as a child process.
 3. Receive the IRs and additional metadata from the underlying compiler and save the relevant data.
 4. Compile the IRs into LLVM IR, resolving dependencies and adding the zkEVM extra data to the output.
-5. Provide the output accordingly to the input method the IR compiler is called with.
+5. Provide the output matching the format of the input method the IR compiler is called with.
 
 Our IR compilers leverage I/O mechanisms that already exist in the high-level source code
 compilers. They may modify the input and output to some extent, and add data for features unique to zkEVM,
