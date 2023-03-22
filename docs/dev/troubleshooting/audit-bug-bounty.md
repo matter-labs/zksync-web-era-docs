@@ -17,12 +17,12 @@ Here is the list of **completed audits**:
 - Layer 2, Internal Audit, from 2022-08-17 to 2022-10-24.
 - [Layer 2 Bootloader](https://blog.openzeppelin.com/zksync-bootloader-audit-report/), OpenZeppelin, from 2022-11-28 to 2022-12-23.
 - Layer 2 Fee Model and Token Bridge, OpenZeppelin, from 2023-01-23 to 2023-02-17 (not published yet).
+- [Layer 2 System Contracts Public Contest](https://code4rena.com/contests/2023-03-zksync-era-system-contracts-contest), Code4rena, from 2023-03-10 to 2023-03-19.
 - ZK Circuits, Internal Audit, from 2022-10-24 to 2022-11-18.
 - ZK Circuits, Halborn, from 2023-01-09 to 2023-03-08 (not published yet).
 
 We've also scheduled the following audits:
 
-- Layer 2 System Contracts Public Contest, Code4rena, from 2023-03-10 to 2023-03-19.
 - Layer 1 and Layer 2 Smart Contracts, April 2023, more details to follow.
 - ZK Circuits, April 2023, more details to follow.
 
