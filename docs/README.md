@@ -15,7 +15,8 @@ contributors: false
                   alt="zkSync ERA documentation"
             >
          </div>
-         <p class="intro-text">Welcome to zkSync Era docs! Here you will find guides, references and resources that will help you build with zkSync Era.</p>
+         <p class="intro-text" style="text-align:center">Welcome to zkSync Era docs!
+         <br>Guides, references, and resources for building with zkSync Era.</p>
          </div>
       </div>
    </div>
@@ -25,19 +26,19 @@ contributors: false
     <a href="./dev/fundamentals/zkSync.html" class="card">
       <div class="content">
         <h3>About zkSync Era</h3>
-        <p>Learn everything that makes zkSync thick. </p>
+        <p>Learn more about our future-proof zkEVM. </p>
       </div>
     </a>
     <a href="./dev/building-on-zksync/hello-world.html" class="card">
       <div class="content">
         <h3>Getting started</h3>
-        <p>A series of quick tips to get you off localhost.</p>
+        <p>Build a smart contract app with zkSync Era.</p>
       </div>
     </a>
     <a href="./api/" class="card">
       <div class="content">
         <h3>SDK References</h3>
-        <p>References for your favourite SDKs.</p>
+        <p>References for your favorite web3 SDKs.</p>
       </div>
     </a>
   </div>
@@ -50,7 +51,7 @@ contributors: false
    <a href="https://portal.zksync.io/bridge" class="card">
       <div class="content">
         <h3>zkSync Era Portal</h3>
-        <p>Bridge, deposit and withdraw ERC20 tokens.</p>
+        <p>Bridge, deposit, and withdraw ERC20 tokens.</p>
       </div>
    </a>
    <a href="./api/tools/block-explorer/intro.html" class="card">
@@ -62,7 +63,7 @@ contributors: false
    <a href="./api/hardhat/getting-started.html" class="card">
          <div class="content">
             <h3>Hardhat Plugins</h3>
-            <p>Explore Hardhat plugins in your Solidity and Vyper apps. </p>
+            <p>Explore Hardhat plugins for your Solidity and Vyper apps. </p>
          </div>
       </a>
   </div>
@@ -87,7 +88,7 @@ contributors: false
    <a href="./dev/tutorials/custom-paymaster-tutorial.html" class="card">
          <div class="content">
             <h3>Custom Paymaster</h3>
-            <p>Build your own paymaster and delight users in your app.</p>
+            <p>Build your own paymaster and delight users with your app.</p>
          </div>
       </a>
   </div>
