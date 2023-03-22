@@ -1,6 +1,6 @@
 # Overview
 
-This documentation introduces an LLVM-based compiler toolchain for smart contract languages with Ethereum Virtual Machine
+This section introduces an LLVM-based compiler toolchain for smart contract languages with Ethereum Virtual Machine
 (EVM) support. The toolchain works on top of existing compilers and requires their output, which typically includes
 intermediate representations (IRs), abstract syntax trees (ASTs), and auxiliary contract metadata and documentation.
 At the moment, languages such as Solidity and Vyper are supported in this way.
