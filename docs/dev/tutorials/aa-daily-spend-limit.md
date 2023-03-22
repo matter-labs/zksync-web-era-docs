@@ -42,7 +42,7 @@ Additionally, please install a few packages that allow us to utilize the [zkSync
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, similar to the [quickstart tutorial](../developer-guides/hello-world.md). In this project our contracts will interact with system contracts, to achieve that, we need to include the `isSystem: true` in the compiler settings:
+Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, similar to the [quickstart tutorial](../building-on-zksync/hello-world.md). In this project our contracts will interact with system contracts, to achieve that, we need to include the `isSystem: true` in the compiler settings:
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";

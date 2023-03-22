@@ -28,7 +28,7 @@ The following are the block properties returned when you use the `getBlock` meth
 | difficulty    | The current block difficulty returns 2500000000000000 (zkSync does not have proof of work consensus).                   |
 | gasLimit      | The maximum gas allowed in this block encoded as a hexadecimal, always returns `2^32-1`.                                                                |
 | gasUsed       | The actual amount of gas used in this block.                                                                            |
-| transactions  | An array of transaction objects - please see [interface TransactionResponse](../types.md) for exact shape                                                                     |
+| transactions  | An array of transaction objects - please see [interface TransactionResponse](../../../api/js/providers.md#gettransaction) for exact shape                                                                     |
 | baseFeePerGas | The EIP1559-like baseFee for this block.                                                                                |
 
 
