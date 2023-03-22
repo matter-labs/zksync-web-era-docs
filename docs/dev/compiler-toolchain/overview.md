@@ -62,7 +62,7 @@ links above and use their CLI interfaces.
 
 ::: warning
 
-Compilers are no longer released as Docker images and their usage is not recommended.
+Using compilers running in Docker images - which are no longer released - is not recommended.
 Instead, use the `compilerSource: "binary"` in the Hardhat config file to use the compiler binary.
 
 :::
