@@ -45,7 +45,6 @@ export const enSidebar = sidebar({
         "/dev/building-on-zksync/useful-address.md",
         "/dev/building-on-zksync/events.md",
         "/dev/building-on-zksync/rpc.md",
-        "/dev/building-on-zksync/fair-onboarding-alpha.md",
       ],
     },
     {
