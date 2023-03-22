@@ -6,16 +6,16 @@ which must be available in `$PATH`, or the path must be explicitly passed via th
 
 ## Usage
 
-Most of the time, using our compiler via the hardhat plugin is enough, and you do not have to dive deeper into its
+Most of the time, using our compiler via the Hardhat plugin is enough, and you do not have to dive deeper into its
 interface and I/O (input/output) methods. However, it can be crucial for integration, debugging, or contribution purposes.
 
 #### Combined JSON
 
-The hardhat plugin uses the combined JSON I/O mode, which is passed down to the `vyper` compiler child process.
+The Hardhat plugin uses the combined JSON I/O mode, which is passed down to the `vyper` compiler child process.
 
 Additional zkEVM data is inserted into the output combined JSON by `zksolc`:
 
-- `zk_version`: the version of the `zksolc` itself
+- `zk_version`: the `zksolc` version.
 - `contract/factory_deps`: bytecode hashes of contracts created in the current contract with `CREATE`.
   Since Vyper does not support `CREATE` directly, only the forwarder can be present in this mapping.
   [More detail here](../building-on-zksync/contracts/contract-deployment.md#note-on-factory-deps).
