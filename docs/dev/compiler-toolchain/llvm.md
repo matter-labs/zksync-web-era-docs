@@ -15,8 +15,7 @@ to the zkEVM back-end code generator in order to produce the zkEVM text assembly
 
 All our compilers utilize the state-of-an-art LLVM optimizer.
 By default, they optimize for performance, which correlates with the number of VM cycles per transaction,
-thus affecting gas usage. The `z` option may reduce the contract size for large contracts, making deployment cheaper,
-but increasing the average transaction price.
+thus affecting gas usage. The `z` option may reduce the contract size for large contracts, making deployments cheaper while increasing the average transaction price.
 
 ## Diving deeper
 
