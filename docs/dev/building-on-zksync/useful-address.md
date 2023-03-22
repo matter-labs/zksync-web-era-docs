@@ -16,7 +16,6 @@ Here are some contract addresses that may be useful and/or of interest to those 
 | verifier_addr                 | [0x6A28B1bC6123fE525FF46d881Ff80871D0Eb3F02](https://etherscan.io/address/0x6A28B1bC6123fE525FF46d881Ff80871D0Eb3F02#code)|
 | mailbox_facet_addr            | [0x2EA0CFB9C942058ee5A84411EF2E37C6DE5bfe5c](https://etherscan.io/address/0x2EA0CFB9C942058ee5A84411EF2E37C6DE5bfe5c#code)|
 | l1_allow_list_addr            | [0x185e050EC1c22c45445a9AdEA99B12e1A1372eBA](https://etherscan.io/address/0x185e050EC1c22c45445a9AdEA99B12e1A1372eBA#code)|
-| l2_testnet_paymaster_addr     | [0x0265d9a5af8af5fe070933e5e549d8fef08e09f4](https://etherscan.io/address/0x0265d9a5af8af5fe070933e5e549d8fef08e09f4#code)|
 
 
 ## Root hashes
@@ -41,18 +40,18 @@ _Users should only interact with the token bridge contracts via [zkSync Bridge](
 
 :::
 
-|      Contract Name            | Address                                                                                                                 | 
+|      Contract Name            | Address                                                                                                                   | 
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------|
 | l1_erc20_bridge_proxy_addr    | [0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063](https://etherscan.io/address/0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063#code)|
 | l1_erc20_bridge_impl_addr     | [0x22bE40122BA952b81c50bcaa86F84418ff623391](https://etherscan.io/address/0x22bE40122BA952b81c50bcaa86F84418ff623391#code)|
-| l2_erc20_bridge_addr          | [0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102](https://etherscan.io/address/0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102#code)|
+| l2_erc20_bridge_addr          | [0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102](https://explorer.zksync.io/address/0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102)|
 
 
 
 ## Testnet contract addresses
 
 
-|      Contract Name            | L1 Address          | 
+|      Contract Name            | L1 Address                                                                                                                       | 
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------|
 | diamond_cut_facet_addr        | [0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d](https://goerli.etherscan.io/address/0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d#code)| 
 | diamond_init_addr             | [0x81aE464127286C26f21495d053AA19Eec708055F](https://goerli.etherscan.io/address/0x81aE464127286C26f21495d053AA19Eec708055F#code)|
@@ -64,7 +63,8 @@ _Users should only interact with the token bridge contracts via [zkSync Bridge](
 | verifier_addr                 | [0xc8517230276e0df51377ecc07b528cd3ee083132](https://goerli.etherscan.io/address/0xc8517230276e0df51377ecc07b528cd3ee083132#code)|
 | mailbox_facet_addr            | [0xd80eF7aCBEC07dbf10Eb84452b40D0a8882ADfB5](https://goerli.etherscan.io/address/0xd80eF7aCBEC07dbf10Eb84452b40D0a8882ADfB5#code)|
 | l1_allow_list_addr            | [0xCbA757b4f0527b535bE80720325064058FC4A306](https://goerli.etherscan.io/address/0xCbA757b4f0527b535bE80720325064058FC4A306#code)|
-| l2_testnet_paymaster_addr     | [0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63](https://goerli.explorer.zksync.io/address/0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63#contract)|
+| l2_testnet_paymaster_addr     | [0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63](https://goerli.explorer.zksync.io/address/0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63)|
+| l2_testnet_paymaster_addr     | [0x0265d9a5af8af5fe070933e5e549d8fef08e09f4](https://goerli.explorer.zksync.io/address/0x0265d9a5af8af5fe070933e5e549d8fef08e09f4)|
 
 
 ## Root hashes
