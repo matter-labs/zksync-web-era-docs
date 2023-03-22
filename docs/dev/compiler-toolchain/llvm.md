@@ -19,4 +19,4 @@ thus affecting gas usage. The `z` option may reduce the contract size for large 
 
 ## Diving deeper
 
-To get more information about the LLVM framework, [see the official documentation](https://llvm.org/).
+For more information on the LLVM framework, [see the official documentation](https://llvm.org/).
