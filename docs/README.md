@@ -11,7 +11,7 @@ contributors: false
       <div class="landing">
          <div>
          <div class="hero-img">
-            <img  src="/logo.svg" 
+            <img  src="/era-dark.svg" 
                   alt="zkSync ERA documentation"
             >
          </div>
