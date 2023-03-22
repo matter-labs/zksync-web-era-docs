@@ -51,7 +51,7 @@ easier to maintain outside of the framework.
 ## Hardhat Plugins
 
 We recommend using our IR compilers via [their corresponding Hardhat plugins](../../../api/hardhat/plugins.md).
-These plugins should be added to the Hardhat's config file and allow developers to compile new projects or migrate
+Add these plugins to the Hardhat's config file to compile new projects or migrate
 existing ones to zkSync Era. For a lower-level approach, download our compiler binaries via the
 links above and use their CLI interfaces.
 
