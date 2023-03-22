@@ -7,7 +7,7 @@ intermediate representations (IRs), abstract syntax trees (ASTs), and auxiliary 
 At the time of writing, we support Solidity and Vyper.
 :::
 
-The toolchain roughly consists of the following parts:
+The toolchain consists of the following:
 
 1. High-level source code compilers (`solc` and `vyper`)
 2. IR compilers, or LLVM front-ends (`zksolc` and `zkvyper`)
@@ -17,28 +17,28 @@ The toolchain roughly consists of the following parts:
 
 ## High-level Source Code Compilers
 
-The high-level source code compilers are the original upstream compilers that are called by the IR compilers as
-child processes to process their output. We use two such compilers at the moment of writing:
+High-level source code compilers are original upstream compilers called by IR compilers as
+child processes to process their output. We use two such compilers at the time of writing:
 
-- [solc](https://github.com/ethereum/solc-bin): the official Solidity compiler. [See the documentation](https://docs.soliditylang.org/en/latest/)
-- [vyper](https://github.com/vyperlang/vyper/releases): the official Vyper compiler [See the documentation](https://docs.vyperlang.org/en/latest/index.html)
+- [solc](https://github.com/ethereum/solc-bin): the official Solidity compiler. For more info, see [the documentation](https://docs.soliditylang.org/en/latest/).
+- [vyper](https://github.com/vyperlang/vyper/releases): the official Vyper compiler. For more info, see [the documentation](https://docs.vyperlang.org/en/latest/index.html).
 
 ## IR Compilers
 
 Our toolchain includes LLVM front-ends that process the output of high-level source code compilers:
 
-- [zksolc](https://github.com/matter-labs/zksolc-bin); calling `solc` as a child process. [See the documentation](./solidity.md)
-- [zkvyper](https://github.com/matter-labs/zkvyper-bin); calling `vyper` as a child process. [See the documentation](./vyper.md)
+- [zksolc](https://github.com/matter-labs/zksolc-bin); calling `solc` as a child process. For more info, see [the documentation](./solidity.md).
+- [zkvyper](https://github.com/matter-labs/zkvyper-bin); calling `vyper` as a child process. For more info, see [the documentation](./vyper.md).
 
 These IR compilers perform the following steps:
 
 1. Receive the input, which is usually a standard or combined JSON passed by the hardhat plugin via the standard input.
-2. Modify the input, save the relevant data, and pass the input down to the underlying high-level source code compiler, which is called as a child process.
-3. Receive the IRs and additional metadata from the underlying compiler, save the relevant data.
-4. Compile the IRs into LLVM IR, resolving dependencies and adding the zkEVM extra data to the output on the way.
+2. Modify the input, save the relevant data, and pass the input down to the underlying high-level source code compiler - which is called as a child process.
+3. Receive the IRs and additional metadata from the underlying compiler and save the relevant data.
+4. Compile the IRs into LLVM IR, resolving dependencies and adding the zkEVM extra data to the output.
 5. Provide the output accordingly to the input method the IR compiler is called with.
 
-You might have noticed that our IR compilers leverage I/O mechanisms that already exist in the high-level source code
+Our IR compilers leverage I/O mechanisms that already exist in the high-level source code
 compilers. The IR compilers may modify the input and output to some extent, adding data for features unique to zkEVM,
 and removing artifacts of unsupported ones.
 
