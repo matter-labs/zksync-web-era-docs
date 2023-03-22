@@ -578,28 +578,27 @@ async getOverrides() {
     const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
 
     const gasPrice = await this.provider.getGasPrice();
+
     // estimate gasLimit via paymaster
     const paramsForFeeEstimation = utils.getPaymasterParams(
-          testnetPaymaster,
-          {
-            type: "ApprovalBased",
-            minimalAllowance: ethers.BigNumber.from("1"),
-            token: this.selectedToken.l2Address,
-            innerInput: new Uint8Array(),
-          }
-        );
-
-        // estimate gasLimit via paymaster
-        const gasLimit = await this.contract.estimateGas.setGreeting(
-          this.newGreeting,
-          {
-            customData: {
-              gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
-              paymasterParams: paramsForFeeEstimation,
-            },
-          }
-        );
-    const fee = gasPrice.mul(gasLimit);
+      testnetPaymaster,
+      {
+        type: "ApprovalBased",
+        minimalAllowance: ethers.BigNumber.from("1"),
+        token: this.selectedToken.l2Address,
+        innerInput: new Uint8Array(),
+      }
+    );
+    const gasLimit = await this.contract.estimateGas.setGreeting(
+      this.newGreeting,
+      {
+        customData: {
+          gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+          paymasterParams: paramsForFeeEstimation,
+        },
+      }
+    );
+    const fee = gasPrice.mul(gasLimit.toString());
 
     // ..
   }
@@ -628,8 +627,6 @@ async getOverrides() {
         innerInput: new Uint8Array(),
       }
     );
-
-    // estimate gasLimit via paymaster
     const gasLimit = await this.contract.estimateGas.setGreeting(
       this.newGreeting,
       {
@@ -639,7 +636,6 @@ async getOverrides() {
         },
       }
     );
-
     const fee = gasPrice.mul(gasLimit.toString());
 
     const paymasterParams = utils.getPaymasterParams(testnetPaymaster, {
