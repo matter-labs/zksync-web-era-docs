@@ -8,6 +8,7 @@ Major updates accross the system including:
 - Protocol changes:
   - Smart contract bytecode packing.
   - Security fixes.
+  - Multiple bug fixes in circuits and prover.
   - Fee model adjusted for L1-L2 communication and proof generation. [Read more here](../developer-guides/bridging/l1-l2.md)
   - Performance improvements.
 - New version of JS SDK zksync-web3 `0.14.3`.
