@@ -47,7 +47,7 @@ We provide a convenient way for anyone to estimate the cost of a transaction reg
 
 ### Changes in the `validateTransaction`
 
-At present, the `validateTransaction` method fails if the signature is incorrect and returns `success=true` for a valid signature. The system entirely disregards the `returndata`. However, we migrated to a new approach, where the success of the `validateTransaction` method depends on it returning a magic string. Any other `returndata` will be deemed invalid and rejected by the system.
+The `validateTransaction` method fails if the signature is incorrect and returns `success=true` for a valid signature. The system entirely disregards the `returndata`. However, the success of the `validateTransaction` method depends on it returning a magic string. Any other `returndata` will be deemed invalid and rejected by the system.
 
 ### Notes on custom accounts
 
