@@ -1,62 +1,81 @@
 # Cross-chain governance
 
-This tutorial serves as an example of how to implement L1 to L2 contract interaction. The following functionality is implemented in this tutorial:
+This tutorial shows you how to implement communication between L1 and L2 using the following examples:
 
-- A "counter" smart contract is deployed on zkSync, which stores a number that can be incremented by calling the `increment` method.
-- A "governance" smart contract is deployed on layer 1, which has the privilege to increment the counter on zkSync.
+- A **counter** smart contract is deployed on zkSync layer 2. The contract stores a number that can be incremented by calling the `increment` method.
+- A **governance** smart contract is deployed on layer 1. This contract increments the number in the counter contract on zkSync.
 
+## Prerequisites
 
+- You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 
-
-::: warning
-
-Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM. 
-
-This tutorial will be updated shortly to reflect those changes.
-
-:::
-
-## Preliminaries
-
-In this tutorial, it is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
-
-It is also assumed that you already have some experience working with Ethereum.
+- You already have some experience working with Ethereum.
 
 ## Project structure
 
-As we will deploy contracts on both L1 and L2, we'll separate this project in two different folders:
+Open a terminal window, create a new folder for the project tutorial, e.g. `mkdir cross-chain-tutorial`, and `cd` into the folder.
 
-- `/L1-governance`: for the L1 contract, and scripts.
-- `/L2-counter`: for the L2 contract, and scripts.
+Now create separate folders to store contracts and scripts on L1 and L2.
 
-So go ahead and create these folders.
+```sh
+mkdir L1-governance 
+mkdir L2-counter
+```
 
-::: tip
-
-Note that the `governance` project is a default Hardhat project because it'll be used to deploy a contract just in L1, while the `counter` project includes all the zkSync dependencies and specific configuration as it'll deploy the contract in L2.
-
+::: note
+- The `L1-governance` code is a default Hardhat project used to deploy a contract on L1.
+- The `L2-counter` code includes all zkSync dependencies and configurations for L2.
 :::
 
 ## L1 governance
 
-To initialise the project inside the `/L1-governance` folder, run `npx hardhat`, select the option "Create a Typescript project", and leave the rest of the options with the default value.
+1. `cd` into `L1-governance`.
 
-To interact with the zkSync bridge contract using Solidity, you need to use the zkSync contract interface. There are two options to get it:
+2. Initialize the project:
 
-1. Importing it from the `@matterlabs/zksync-contracts` npm package. (preferred)
-2. Downloading it from the [contracts repo](https://github.com/matter-labs/v2-testnet-contracts).
-
-We'll go with option 1 and install the `@matterlabs/zksync-contracts` package by running the following command (just make sure you're inside the `/L1-governance` folder):
-
-```
-yarn add -D @matterlabs/zksync-contracts
+```sh
+npm init -y
 ```
 
-The code of the governance contract that we will deploy on L1 is the following:
+3. Install hardhat:
+
+```sh
+npm install --save-dev hardhat
+```
+
+4. Then run `npx hardhat` to set up the project.
+
+5. Select the option **Create a Typescript project** and accept the defaults for everything else.
+
+:::info
+To interact with the zkSync bridge contract using Solidity, you need the zkSync contract interface. There are two ways to get it:
+
+- Import it from the `@matterlabs/zksync-contracts` npm package (preferred).
+- Download it from the [contracts repo](https://github.com/matter-labs/v2-testnet-contracts).
+:::
+
+6. Install the following dependencies:
+
+```sh
+npm i solc@0.8.13 @typechain/hardhat @types/node ts-node typescript @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle ethereum-waffle ethers @openzeppelin/contracts @matterlabs/zksync-contracts dotenv
+```
+
+### L1 governance contract
+
+:::tip
+Make sure you're still in the `L1-governance` folder.
+:::
+
+The following Solidity code defines the Governance smart contract. 
+
+The constructor sets the contract creator as the single governor. The `callZkSync` function calls a transaction on L2 which can only be called by the governor.
+
+1. `cd` into the `contracts\` folder and remove any files already there, if any.
+
+2. Create a file called `Governance.sol` and copy/paste the code below into it.
 
 ```sol
-//SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.13;
 
 import "@matterlabs/zksync-contracts/l1/contracts/zksync/interfaces/IZkSync.sol";
 
@@ -81,26 +100,18 @@ contract Governance {
 }
 ```
 
-This is a very simple governance contract. It sets the creator of the contract as the single governor and has a function that can request transactions in L2 via the zkSync smart contract.
-
-You can [learn more about L1-L2 communication in this section of the docs](../developer-guides/bridging/l1-l2.md).
-
 ### Deploy L1 governance contract
 
-Although this tutorial does not focus on the process of deploying contracts on L1, we'll give you a quick overview on how to continue.
-
-1. You'll need an RPC node endpoint to the Göerli testnet to submit the deployment transaction. You can [find multiple node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
-
-2. Create the file `/L1-governance/goerli.json` and fill in the following values:
+1. Create the file `/L1-governance/goerli.json` and copy/paste the code below, filling in the relevant values. Find node provider urls [here](https://www.allthatnode.com/ethereum.dsrv).
 
 ```json
 {
-  "nodeUrl": "", // your Göerli Ethereum node  URL.
-  "deployerPrivateKey": "" //private key of the wallet that will deploy the governance smart contract. It needs to have some ETH on Göerli.
+  "nodeUrl": "<GOERLI NODE URL>", 
+  "deployerPrivateKey": "<YOUR PRIVATE KEY>" 
 }
 ```
 
-3. Add the Göerli network section to the `hardhat.config.ts` file:
+2. Replace the code in `hardhat.config.ts` with the following:
 
 ```ts
 import { HardhatUserConfig, task } from "hardhat/config";
@@ -113,7 +124,7 @@ const goerli = require("./goerli.json");
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.4",
+    version: "0.8.13",
     networks: {
       // Göerli network
       goerli: {
@@ -123,16 +134,13 @@ const config: HardhatUserConfig = {
     },
   },
 };
+
+export default config;
 ```
 
-4. Create the deployment script `/L1-governance/scripts/deploy.ts` with the following code:
+3. Navigate to the `scripts` folder and copy/paste the following code into the `deploy.ts` file (removing any previous code):
 
 ```ts
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// When running the script with `npx hardhat run <script>` you'll find the Hardhat
-// Runtime Environment's members available in the global scope.
 import { ethers } from "hardhat";
 
 async function main() {
@@ -153,18 +161,21 @@ main().catch((error) => {
 });
 ```
 
-5. Compile the contract and run the deployment script with:
+4. From the root, compile and deploy the contract:
 
-```
+```sh
 # compile contract
-yarn hardhat compile
+npx hardhat compile
 
 # deploy contract
-yarn hardhat run --network goerli ./scripts/deploy.ts
-
+npx hardhat run --network goerli ./scripts/deploy.ts
 ```
 
 The last command will print the deployed governance smart contract address in the terminal.
+
+:::danger
+No review past this point has happened yet KM.
+:::
 
 ## L2 counter
 
