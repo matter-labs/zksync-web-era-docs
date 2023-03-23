@@ -192,7 +192,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.3.1",
+    version: "1.3.6",
     compilerSource: "binary",
   },
   defaultNetwork: "zkSyncTestnet",

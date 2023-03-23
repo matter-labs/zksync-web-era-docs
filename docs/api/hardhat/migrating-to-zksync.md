@@ -63,12 +63,12 @@ Finally, you'd need to add the compiler options inside a `zksolc` or `zkvyper` p
 
 ```typescript
 zksolc: {
-  version: "1.3.1",
+  version: "1.3.6",
   compilerSource: "binary",
   settings: {},
 },
 ```
-You can find advance settings in the [Solidity](./hardhat-zksync-solc.md) or [Vyper](./hardhat-zksync-vyper.md) plugins.
+You can find advanced settings in the [Solidity](./hardhat-zksync-solc.md) or [Vyper](./hardhat-zksync-vyper.md) plugins.
 
 ### Full configuration
 
@@ -82,7 +82,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 const config: HardhatUserConfig = {
   zksolc: {
-    version: "1.3.1",
+    version: "1.3.6",
     compilerSource: "binary",
     settings: {},
   },
