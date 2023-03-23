@@ -1,15 +1,17 @@
 # Changelog
 
 
-## System update (Mar 23rd 2023)
+## Full launch system update (Mar 23rd 2023)
 
 Major updates accross the system including:
 
 - Protocol changes:
+  - Remove of allow list for L1<>L2 communication (zkSync Era is now at Full Launch).
+  - Implementation of [withdrawal delay](../troubleshooting/withdrawal-delay).
   - Smart contract bytecode packing.
   - Security fixes.
   - Multiple bug fixes in circuits and prover.
-  - Fee model adjusted for L1-L2 communication and proof generation. [Read more here](../developer-guides/bridging/l1-l2.md)
+  - Fee model adjusted for L1<>L2 communication and proof generation. [Read more here](../developer-guides/bridging/l1-l2.md)
   - Performance improvements.
 - New version of JS SDK zksync-web3 `0.14.3`.
 - New version of `zksync-cli` `0.1.4`.
