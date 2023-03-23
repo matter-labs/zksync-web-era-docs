@@ -1,5 +1,24 @@
 # Changelog
 
+
+## System update (Mar 23rd 2023)
+
+Major updates accross the system including:
+
+- Protocol changes:
+  - Smart contract bytecode packing.
+  - Security fixes.
+  - Fee model adjusted for L1-L2 communication and proof generation. [Read more here](../developer-guides/bridging/l1-l2.md)
+  - Performance improvements.
+- New version of JS SDK zksync-web3 `0.14.3`.
+- New version of `zksync-cli` `0.1.4`.
+
+### How to update your project
+
+- Update `zksync-web3` to `^0.14.3` in your `package.json` file and re-install dependencies.
+- Update `zksync-cli` with `npm i -g zksync-cli`.
+
+
 ## Hardhat plugins update (Feb 24th 2023)
 
 The following hardhat plugin have been released:
