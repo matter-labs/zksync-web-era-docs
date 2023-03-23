@@ -54,6 +54,7 @@
     "@semantic-release/github": "^8.0.7",
     "@vuepress/client": "2.0.0-beta.60",
     "@vuepress/plugin-docsearch": "^2.0.0-beta.60",
+    "@vuepress/plugin-pwa": "next",
     "check-md": "^1.0.2",
     "commitlint": "^17.3.0",
     "cspell": "^6.18.1",

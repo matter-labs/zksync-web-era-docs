@@ -1,4 +1,15 @@
 // place your custom styles here
+:root {
+--pwa-popup-text-color: #2C3E50;
+--pwa-popup-bg-color: #ffffff;
+--pwa-popup-border-color: rgba(0,0,0,0.15);
+--pwa-popup-shadow: 0 4px 16px var(--pwa-popup-border-color);
+
+--pwa-popup-btn-text-color: white;
+--pwa-popup-btn-bg-color: #1e69ff;
+--pwa-popup-btn-hover-bg-color: #0759ff;
+}
+
 body {
     overflow-x: hidden !important;
     font-family: "Inter" !important;
@@ -112,8 +123,8 @@ input[type="submit" i] {
     }
 }
 
-[data-theme="dark"] img[src*="/logo.svg"] {
-    content: url("/zk-sync-era-light.svg") !important;
+[data-theme="dark"] img[src*="/era-dark.svg"] {
+    content: url("/era-light.svg") !important;
 }
 
 [data-theme="dark"] img[src*="/images/code-light.png"] {
@@ -147,7 +158,7 @@ a.title {
 }
 
 .logo {
-    height: 1.8rem !important;
+    height: 1.5rem !important;
     padding: 0.70rem 0 !important;
 }
 
@@ -199,7 +210,7 @@ $border-color: #e5e7eb;
 }
 
 [data-theme="light"] img[src*="/zk-sync-era-line-light.svg"] {
-    content: url("/zk-sync-era-line-dark.svg");
+    content: url("/zk-sync-era-line-dark.png");
 }
 
 [data-theme="dark"] img[src*="/zk-sync-era-line-light.svg"] {

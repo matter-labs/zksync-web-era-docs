@@ -1,5 +1,21 @@
 # Changelog
 
+## Hardhat plugins update (Feb 24th 2023)
+
+The following hardhat plugin have been released:
+
+- `hardhat-zksync-verify` version `0.1.2`: now returns a verification id, which can be used to query the status of a smart contract verification. More info [here](https://era.zksync.io/docs/api/hardhat/hardhat-zksync-verify.html#verification-status-check)
+- `hardhat-zksync-deploy` version `0.6.2`: integrates with latest version of `zksync-web3`.
+- `hardhat-zksync-chai-matchers` version `0.1.1`: integrates with latest version of `zksync-web3`.
+
+### How to update your project
+
+Update the following versions in the `package.json` file of your project:
+
+- Update `@matterlabs/hardhat-zksync-verify` to `0.1.2`.
+- Update `@matterlabs/hardhat-zksync-deploy` to `0.6.2`.
+- Update `@matterlabs/hardhat-zksync-chai-matchers` to `0.1.1`.
+
 
 ## Compiler & local-setup update (Feb 20th 2023)
 
