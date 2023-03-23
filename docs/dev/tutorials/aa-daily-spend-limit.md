@@ -2,12 +2,9 @@
 
 In this tutorial, we'll create a smart contract account with a daily spend limit thanks to the Account Abstraction support on zkSync.
 
-
-
-
 ::: warning
 
-Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM. 
+This tutorial has not been updated to reflect the latest changes in the protocol and SDK. An updated version will be released soon.
 
 :::
 
@@ -27,7 +24,7 @@ First, let’s install all the dependencies that we'll need:
 mkdir custom-spendlimit-tutorial
 cd custom-spendlimit-tutorial
 yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
 ::: tip

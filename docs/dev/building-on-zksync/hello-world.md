@@ -34,11 +34,11 @@ cd greeter-example
 
 # For Yarn
 yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 
 # For NPM
 npm init -y
-npm i -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+npm i -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
 Please note that Typescript is required by zkSync plugins.
@@ -57,7 +57,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.3.1",
+    version: "1.3.5",
     compilerSource: "binary",
     settings: {},
   },
@@ -285,10 +285,10 @@ Run the following command on the greeter-tutorial-starter root folder to install
 
 ```
 # For Yarn
-yarn add ethers@^5.7.2 zksync-web3@^0.13.1
+yarn add ethers@^5.7.2 zksync-web3
 
 # For NPM
-npm i ethers@^5.7.2 zksync-web3@^0.13.1
+npm i ethers@^5.7.2 zksync-web3
 ```
 
 After that, import both libraries in the `script` part of the `App.vue` file (right before the contract constant). It should look like this:
