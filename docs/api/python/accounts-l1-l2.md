@@ -32,7 +32,7 @@ Deposits are executed in 2 steps - initiated on L2 and finalized on L1, it retur
 
 ```
 
-**Agruements**
+**Arguments**
 
 | Name        | Description                                               |
 | ----------- | --------------------------------------------------------- |
@@ -86,7 +86,7 @@ If the deposit L2 transaction has failed, it sends an L1 transaction calling `cl
 
 ```
 
-**Agruements**
+**Arguments**
 
 | Name            | Description                                                                          |
 | --------------- | ------------------------------------------------------------------------------------ |
@@ -107,7 +107,7 @@ def _get_nonce(self, account) -> transaction_count
 
 ```
 
-**Agruements**
+**Arguments**
 
 | Name    | Description           |
 | ------- | --------------------- |
@@ -123,7 +123,7 @@ def deposit(self, l2_receiver: HexStr, l1_token: HexStr, amount: int) -> txn_rec
 
 ```
 
-**Agruements**
+**Arguments**
 
 | Name        | Description                                               |
 | ----------- | --------------------------------------------------------- |
@@ -168,7 +168,7 @@ def finalize_withdrawal(self,
 
 ```
 
-**Agruements**
+**Arguments**
 
 | Name            | Description                                                                          |
 | --------------- | ------------------------------------------------------------------------------------ |
