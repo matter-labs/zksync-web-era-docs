@@ -285,10 +285,10 @@ Run the following command on the greeter-tutorial-starter root folder to install
 
 ```
 # For Yarn
-yarn add ethers@^5.7.2 zksync-web3@^0.14
+yarn add ethers@^5.7.2 zksync-web3
 
 # For NPM
-npm i ethers@^5.7.2 zksync-web3@^0.14
+npm i ethers@^5.7.2 zksync-web3
 ```
 
 After that, import both libraries in the `script` part of the `App.vue` file (right before the contract constant). It should look like this:
