@@ -542,7 +542,7 @@ Even though ether is the only token you can pay fees with, the account abstracti
 
 ::: warning Paymasters on mainnet
 
-🚨 The testnet paymaster is purely for demonstration of this feature and won't be available on mainnet. When integrating your protocol on mainnet, you should follow the documentation of the paymaster you will use or create your own.
+🚨 The testnet paymaster is purely for demostration of this feature and won't be available on mainnet. When integrating your protocol on mainnet, you should follow the documentation of the paymaster you will use or create your own.
 
 :::
 
