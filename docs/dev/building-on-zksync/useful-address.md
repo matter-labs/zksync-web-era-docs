@@ -15,6 +15,7 @@ Here are some contract addresses that may be useful and/or of interest to those 
 | GovernanceFacet               | [0x6df4A6D71622860dcc64C1FD9645d9a5BE96f088](https://etherscan.io/address/0x6df4A6D71622860dcc64C1FD9645d9a5BE96f088#code)|
 | Verifier                      | [0x473b1887D45D61EfD87731a1D8eC3590b93c565d](https://etherscan.io/address/0x473b1887D45D61EfD87731a1D8eC3590b93c565d#code)|
 | MailboxFacet                  | [0xc796A402E1B26eCd2cd38F23e05A2f904504ec89](https://etherscan.io/address/0xc796A402E1B26eCd2cd38F23e05A2f904504ec89#code)|
+| AllowList                   | [0x8ffd57A9B2dcc10327768b601468FA192adC5C86](https://etherscan.io/address/0x8ffd57A9B2dcc10327768b601468FA192adC5C86#code)|
 
 
 ### Mainnet token bridge contract addresses
