@@ -8,7 +8,7 @@ Here are some contract addresses that may be useful and/or of interest to those 
 | ----------------------------- | -------------------------------------------------------------------|
 | DiamondCutFacet               | [0x2a2d6010202B93E727b61a60dfC1d5CF2707c1CE](https://etherscan.io/address/0x2a2d6010202B93E727b61a60dfC1d5CF2707c1CE#code)| 
 | DiamondInit                   | [0xb91d905A698c28b73C61aF60C63919b754FCF4DE](https://etherscan.io/address/0xb91d905A698c28b73C61aF60C63919b754FCF4DE#code)|
-| DiamondProxy                  | [0x324000e0c256B806548b307aF600aFFF3D000324](https://etherscan.io/address/0x324000e0c256B806548b307aF600aFFF3D000324#code)|
+| DiamondProxy                  | [0x32400084c286cf3e17e7b677ea9583e60a000324](https://etherscan.io/address/0x32400084c286cf3e17e7b677ea9583e60a000324#code)|
 | DiamondUpgrade                | [0xf48b2a42712BFBBb95f4000AEe3873410DC0546F](https://etherscan.io/address/0xf48b2a42712BFBBb95f4000AEe3873410DC0546F#code)|
 | ExecutorFacet                 | [0x389a081BCf20e5803288183b929F08458F1d863D](https://etherscan.io/address/0x389a081BCf20e5803288183b929F08458F1d863D#code)|
 | GettersFacet                  | [0xF1fB730b7f8E8391B27B91f8f791e10E4a53CEcc](https://etherscan.io/address/0xF1fB730b7f8E8391B27B91f8f791e10E4a53CEcc#code)|
