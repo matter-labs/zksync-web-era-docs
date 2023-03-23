@@ -48,14 +48,14 @@ You can connect your wallet to both L1 and L2 nodes using the following details:
 **Local L1 network**
 
 - Network Name: `L1 local`
-- New RPC URL: `http://localhost:8545/`
+- RPC URL: `http://localhost:8545/`
 - Chain ID: `9`
 - Currency Symbol: `ETH`
 
 **Local zkSync network**
 
 - Network Name: `L2 local zkSync`
-- New RPC URL: `http://localhost:3050/`
+- RPC URL: `http://localhost:3050/`
 - Chain ID: `270`
 - Currency Symbol: `ETH`
 
