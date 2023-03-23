@@ -36,7 +36,7 @@ This contract stores account nonces. The account nonces are stored in a single p
 
 For greater extensibility and to lower the overhead, some parts of the protocol (e.g. account abstraction rules) were moved to an ephemeral contract called a _bootloader_. We call it ephemeral since formally it is never deployed and can not be called, but it has a formal [address](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/Constants.sol#L26) that is used on `msg.sender`, when it calls other contracts.
 
-For now, you do not have to know any details about it, but knowing that it exists is important when you develop using the account abstraction feature. You can always assume that the bootloader is not malicious and it is a part of the protocol. In the future, the code of the bootloader will be made public and any changes to it will also mean an upgrade to the protocol.
+We have open sourced the Bootloader codebase and we have a generous prize pool. Here you can check more: https://github.com/code-423n4/2023-03-zksync
 
 ## Protected access to some of the system contracts
 
