@@ -1,11 +1,10 @@
 # Account abstraction support
 
-
-
-
 ::: warning
 
-Please note that in the new `0.13.0` SDK the API layer operates with gas. The ergs concept is used by VM only.
+Please note that with system update released in Feb 2023, the ergs concept is only used by the VM and the SDK (version `0.13.0` and above) whilest the API layer operates with gas. 
+
+Find [more information in the changelog](../troubleshooting/changelog.md).
 
 :::
 
