@@ -20,7 +20,7 @@ We will use the zkSync hardhat plugin for developing this contract. Firstly, we 
 mkdir custom-aa-tutorial
 cd custom-aa-tutorial
 yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
 ::: tip
@@ -43,7 +43,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.3.1",
+    version: "1.3.5",
     compilerSource: "binary",
       settings: {
         isSystem: true,
@@ -780,6 +780,12 @@ You don't need to worry about it, since our SDK provides a built-in method to do
 
 ## Deploying the factory
 
+::: tip
+
+Make sure you deposit funds on zkSync using the [zkSync Portal](https://goerli.portal.zksync.io/bridge) before running your deployment scripts.
+
+:::
+
 To deploy a factory, we need to create a deployment script. Create the `deploy` folder and create one file there: `deploy-factory.ts`. Put the following deployment script there:
 
 ```ts
@@ -793,16 +799,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const deployer = new Deployer(hre, wallet);
   const factoryArtifact = await deployer.loadArtifact('AAFactory');
   const aaArtifact = await deployer.loadArtifact('TwoUserMultisig');
-
-  // Deposit some funds to L2 in order to be able to perform L2 transactions.
-  // You can remove the depositing step if the `wallet` has enough funds on zkSync
-  const depositAmount = ethers.utils.parseEther('0.001');
-  const depositHandle = await deployer.zkWallet.deposit({
-    to: deployer.zkWallet.address,
-    token: utils.ETH_ADDRESS,
-    amount: depositAmount,
-  });
-  await depositHandle.wait();
 
   // Getting the bytecodeHash of the account
   const bytecodeHash = utils.hashBytecode(aaArtifact.bytecode);
@@ -895,14 +891,14 @@ _Note, that zkSync has different address derivation rules from Ethereum_. You sh
 
 ### Starting a transaction from this account
 
-Before the deployed account can do any transactions, we need to add some ETH to it so it can pay transaction fees:
+Before the deployed account can submit any transactions, we need to deposit some ETH to it so it can pay transaction fees:
 
 ```ts
   await (
     await wallet.sendTransaction({
       to: multisigAddress,
       // You can increase the amount of ETH sent to the multisig
-      value: ethers.utils.parseEther('0.003'),
+      value: ethers.utils.parseEther('0.006'),
     })
   ).wait();
 ```
