@@ -2,9 +2,9 @@
 
 In this tutorial, we'll create a smart contract account with a daily spend limit thanks to the Account Abstraction support on zkSync.
 
-::: warning
+::: warning Update in progress
 
-This tutorial has not been updated to reflect the latest changes in the protocol and SDK. An updated version will be released soon.
+This tutorial has not been updated to reflect [the latest changes in the protocol and SDK](../troubleshooting/changelog.md). An updated version will be released soon.
 
 :::
 
