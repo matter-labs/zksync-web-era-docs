@@ -378,7 +378,7 @@ Now both contracts are deployed, we can create a script to retrieve the value of
 import { Contract, Provider, Wallet } from "zksync-web3";
 
 // The address of the counter smart contract
-const COUNTER_ADDRESS = "0x3c5A6AB2390F6217C78d2F6F403A9dFb7e7784FC";
+const COUNTER_ADDRESS = "<COUNTER CONTRACT ADDRESS>";
 // The ABI of the counter smart contract
 const COUNTER_ABI = require("./counter.json");
 
