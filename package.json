@@ -71,8 +71,5 @@
   "lint-staged": {
     "*.md": "yarn run ci:fix"
   },
-  "packageManager": "yarn@3.5.0",
-  "dependencies": {
-    "solc": "0.8.13"
-  }
+  "packageManager": "yarn@3.1.1"
 }
