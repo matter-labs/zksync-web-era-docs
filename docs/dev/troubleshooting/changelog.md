@@ -19,7 +19,7 @@ Major updates accross the system including:
 ### How to update your project
 
 - Update `zksync-web3` to `^0.14.3` in your `package.json` file and re-install dependencies.
-- Update `zksync-cli` with `npm i -g zksync-cli`.
+- Update `zksync-cli` with `npm update -g zksync-cli`.
 - L1->L2 transactions now require gas fees to be paid upfront. The fee can be estimated using the new method `zks_estimateGasL1ToL2`. [Read more here](../developer-guides/bridging/l1-l2.md).
 - Provide `_refundRecipient` when using `requestL2Transaction` indicating the address that will receive refunds. (Optional)
 
