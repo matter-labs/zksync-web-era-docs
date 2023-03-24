@@ -198,7 +198,7 @@ npm init -y
 2. Install the dependencies:
 
 ```sh
-npm i @typechain/hardhat @types/node ts-node typescript @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle ethereum-waffle ethers @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @nomicfoundation/hardhat-toolbox
+npm i @typechain/hardhat @types/node ts-node typescript @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle ethereum-waffle ethers @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @nomicfoundation/hardhat-toolbox zksync-web3
 ```
 
 3. Set up the Hardhat project configurations, selecting **Create a Typescript project** as before:
@@ -276,7 +276,9 @@ contract Counter {
 npx hardhat compile
 ```
 
-7. Create a folder `deploy`, and copy/paste the following code into `deploy/deploy.ts`, replacing `<GOVERNANCE-ADDRESS>` with the address of the Governance contract we just deployed, `<WALLET-PRIVATE-KEY>` with your private key:
+### L1 counter contract
+
+Create a folder `deploy`, and copy/paste the following code into `deploy/deploy.ts`, replacing `<GOVERNANCE-ADDRESS>` with the address of the Governance contract we just deployed, `<WALLET-PRIVATE-KEY>` with your private key:
 
 ```typescript
 import { utils, Wallet } from "zksync-web3";
@@ -318,45 +320,46 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-8. Now deploy the contract from the `L2-governance/` folder root to zkSync:
+### Deploy L2 counter contract
+
+Now deploy the contract from the `L2-governance/` folder root to zkSync:
 
 ```sh
-yarn hardhat deploy-zksync
+npx hardhat deploy-zksync
 ```
 
-In the output, you should see the address to which the contract was deployed.
+You should see output like this:
+
+```txt
+Running deploy script for the Counter contract
+Counter was deployed to 0x3c5A6AB2390F6217C78d2F6F403A9dFb7e7784FC
+```
 
 ::: tip
-You can find more specific details about deploying contracts in the [quickstart tutorial](../building-on-zksync/hello-world.md) or the documentation for the [hardhat plugins](../../api/hardhat/getting-started.md) for zkSync.
+For more information about deploying contracts, check out the [quickstart tutorial](../building-on-zksync/hello-world.md) or the documentation for the zkSync [hardhat plugins](../../api/hardhat/getting-started.md).
 :::
 
-## Reading the counter value
+## Read the counter value
 
-With both contracts deployed, we can create a small script to retrieve the value of the counter. For the sake of simplicity, we will create this script inside the `/L2-counter` folder. To keep the tutorial generic hardhat-specific features will not be used in it.
-
-### Getting the ABI of the counter contract
-
-Here is how you can get the ABI of the counter contract:
+Now both contracts are deployed, we can create a script to retrieve the value of the counter. 
 
 1. Copy the `abi` array from the compilation artifact located at `/L2-counter/artifacts-zk/contracts/Counter.sol/Counter.json`.
 
-2. Create the `scripts` folder inside the `/L2-counter` project folder.
+2. Create a new file `/L2-counter/scripts/counter.json` and paste in the `abi` array.
 
-3. Create a new file `/L2-counter/scripts/counter.json` and paste the ABI of the counter contract.
-
-4. Create the `/L2-counter/scripts/display-value.ts` file and paste the following code there:
+3. Create a `/L2-counter/scripts/display-value.ts` file and paste in the following code, adding the counter contract address:
 
 ```ts
 import { Contract, Provider, Wallet } from "zksync-web3";
 
 // The address of the counter smart contract
-const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
+const COUNTER_ADDRESS = "0x3c5A6AB2390F6217C78d2F6F403A9dFb7e7784FC";
 // The ABI of the counter smart contract
 const COUNTER_ABI = require("./counter.json");
 
 async function main() {
   // Initializing the zkSync provider
-  const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
+  const l2Provider = new Provider("https://testnet.era.zksync.dev");
 
   const counterContract = new Contract(COUNTER_ADDRESS, COUNTER_ABI, l2Provider);
 
@@ -369,99 +372,51 @@ main().catch((error) => {
 });
 ```
 
-The code is relatively straightforward and is mostly equivalent to how it would work with `ethers`. It will just retrieve the counter value from the L2 contract.
+4. Run the script:
 
-After replacing `<COUNTER-ADDRESS>` with the address of the deployed counter contract, run this script by running
-
-```
-yarn ts-node ./scripts/display-value.ts
+```sh
+npx ts-node ./scripts/display-value.ts
 ```
 
 The output should be:
 
-```
+```txt
 The counter value is 0
 ```
 
-## Calling an L2 contract from L1
+## Calling the L2 contract from L1
 
-Now, let's call the `increment` method from Layer 1.
+Now, let's call the `increment` method from layer 1. 
 
-1. Get the ABI array of the compiled Governance contract, which is located in `/L1-governance/artifacts/contracts/Governance.sol/Governance.json`, and save it in a new file as `/L2-counter/scripts/governance.json` (make sure you create it in the `/L2-counter` folder!).
-2. Create the `L2-counter/scripts/increment-counter.ts` file and paste the following template for the script:
+1. Copy the `abi` array from the compilation artifact located at `/L1-governance/artifacts/contracts/Governance.sol/Governance.json`.
 
-```ts
-// Imports and constants will be put here
+2. Paste it into a new file: `/L2-counter/scripts/governance.json`.
 
-async function main() {
-  // The logic will be put here
-}
-
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
-```
-
-3. To interact with the governance smart contract, we need to initialise an Ethereum provider and the corresponding `ethers` `Contract` object, so we need to have the address it was deployed to:
+3. Create the `L2-counter/scripts/increment-counter.ts` file and paste in the following code, replacing the details as before:
 
 ```ts
-// Imports
 import { BigNumber, Contract, ethers, Wallet } from "ethers";
-
+import { Provider, utils } from "zksync-web3";
+const COUNTER_ABI = require("./counter.json");
 const GOVERNANCE_ABI = require("./governance.json");
 const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
-```
+const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
 
-```ts
 async function main() {
   // Ethereum L1 provider
   const l1Provider = ethers.providers.getDefaultProvider("goerli");
 
-  // Governor wallet, the same one as the one that deployed the
-  // governance contract
+  // Governor wallet, the same one as the one that deployed the governance contract
   const wallet = new ethers.Wallet("<WALLET-PRIVATE-KEY>", l1Provider);
 
   const govcontract = new Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
-}
-```
-
-Replace the `<GOVERNANCE-ADDRESS>` and `<WALLET-PRIVATE-KEY>` with the address of the L1 governance smart contract and the private key of the wallet that deployed the governance contract respectively.
-
-4. To interact with the zkSync bridge, we need its L1 address. While on mainnet you may want to set the address of the zkSync smart contract as an env variable or a constant, it is worth noticing that you can fetch the smart contract address dynamically. We recommended this approach if you're working on a testnet since regenesis may happen and contract addresses might change.
-
-```ts
-// Imports
-import { Provider, utils } from "zksync-web3";
-```
-
-```ts
-async function main() {
-  // ... Previous steps
 
   // Initializing the L2 provider
-  const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
+  const l2Provider = new Provider("https://testnet.era.zksync.dev");
   // Getting the current address of the zkSync L1 bridge
   const zkSyncAddress = await l2Provider.getMainContractAddress();
   // Getting the `Contract` object of the zkSync bridge
   const zkSyncContract = new Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
-}
-```
-
-5. Executing transactions from L1 requires the caller to pay some fee to the L2 operator.
-
-Firstly, this fee depends on the length of the calldata and the `gasLimit`. If you are new to this concept then it is pretty much the same as the `l2gasLimit` on Ethereum. You can read more about [zkSync fee model here](../developer-guides/transactions/fee-model.md).
-
-Secondly, the fee depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched from the L1 provider.
-
-```ts
-// Imports
-const COUNTER_ABI = require("./counter.json");
-```
-
-```ts
-async function main() {
-  // ... Previous steps
 
   // Encoding L1 transaction is the same way it is done on Ethereum.
   const counterInterface = new ethers.utils.Interface(COUNTER_ABI);
@@ -478,39 +433,6 @@ async function main() {
 
   // Getting the cost of the execution in Wei.
   const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, gasLimit, ethers.utils.hexlify(data).length);
-}
-```
-
-6. Now it is possible to call the governance contract, that will redirect the call to zkSync:
-
-```ts
-// Imports
-const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
-```
-
-```ts
-async function main() {
-  // ... Previous steps
-
-  // Calling the L1 governance contract.
-  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, gasLimit, {
-    // Passing the necessary ETH `value` to cover the fee for the operation
-    value: baseCost,
-    gasPrice,
-  });
-
-  // Waiting until the L1 transaction is complete.
-  await tx.wait();
-}
-```
-
-Make sure to replace `<COUNTER-ADDRESS>` with the address of the L2 counter contract.
-
-7. You can track the status of the corresponding L2 transaction. `zksync-web3`'s `Provider` has a method that, given the L1 `ethers.TransactionResponse` object of a transaction that called the zkSync bridge, returns the correspondent `TransactionResponse` object of the transaction in L2, which can conveniently wait for the transaction to be processed on L2.
-
-```ts
-async function main() {
-  // ... Previous steps
 
   // Getting the TransactionResponse object for the L2 transaction corresponding to the execution call
   const l2Response = await l2Provider.getL2TransactionFromPriorityOp(tx);
@@ -519,86 +441,31 @@ async function main() {
   const l2Receipt = await l2Response.wait();
   console.log(l2Receipt);
 }
-```
 
-### Complete code
-
-Here is the full code to get the zkSync contract address, encode the transaction data, calculate the fees, send the transaction to the L1 and track the correspondent transaction in L2:
-
-```ts
-import { BigNumber, Contract, ethers, Wallet } from "ethers";
-import { Provider, utils } from "zksync-web3";
-
-const GOVERNANCE_ABI = require("./governance.json");
-const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
-const COUNTER_ABI = require("./counter.json");
-const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
-
-async function main() {
-  // Ethereum L1 provider
-  const l1Provider = ethers.providers.getDefaultProvider("goerli");
-
-  // Governor wallet
-  const wallet = new Wallet("<WALLET-PRIVATE-KEY>", l1Provider);
-
-  const govcontract = new Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
-
-  // Getting the current address of the zkSync L1 bridge
-  const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
-  const zkSyncAddress = await l2Provider.getMainContractAddress();
-  // Getting the `Contract` object of the zkSync bridge
-  const zkSyncContract = new Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
-
-  // Encoding the tx data the same way it is done on Ethereum.
-  const counterInterface = new ethers.utils.Interface(COUNTER_ABI);
-  const data = counterInterface.encodeFunctionData("increment", []);
-
-  // The price of the L1 transaction requests depends on the gas price used in the call
-  const gasPrice = await l1Provider.getGasPrice();
-
-  // Here we define the constant for gas limit.
-  const gasLimit = BigNumber.from(100000);
-  // Getting the cost of the execution.
-  const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, gasLimit, ethers.utils.hexlify(data).length);
-
-  // Calling the L1 governance contract.
-  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, gasLimit, {
-    // Passing the necessary ETH `value` to cover the fee for the operation
-    value: baseCost,
-    gasPrice,
-  });
-
-  // Waiting until the L1 tx is complete.
-  await tx.wait();
-
-  // Getting the TransactionResponse object for the L2 transaction corresponding to the execution call
-  const l2Response = await l2Provider.getL2TransactionFromPriorityOp(tx);
-
-  // The receipt of the L2 transaction corresponding to the call to the counter contract's Increment method
-  const l2Receipt = await l2Response.wait();
-  console.log(l2Receipt);
-}
-
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
+// We recommend always using this async/await pattern to properly handle errors.
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
 ```
 
-You can run the script with the following command:
+:::tip
+- Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `l2gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../developer-guides/transactions/fee-model.md).
+- The fee also depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched from the L1 provider.
+:::
 
-```
-yarn ts-node ./scripts/increment-counter.ts
+4. Run the script with the following command:
+
+```sh
+npx ts-node ./scripts/increment-counter.ts
 ```
 
 In the output, you should see the full transaction receipt in L2. You can take the `transactionHash` and track it in the [zkSync explorer](https://explorer.zksync.io/).
 
-8. After that, you can verify that the transaction was indeed successful by running the `display-value` script again:
+5. After that, you can verify that the transaction was indeed successful by running the `display-value` script again:
 
 ```
-yarn ts-node ./scripts/display-value.ts
+npx ts-node ./scripts/display-value.ts
 ```
 
 The counter in the L2 contract should have increased after the transaction so output should be:
