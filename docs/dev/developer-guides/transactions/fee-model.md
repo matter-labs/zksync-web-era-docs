@@ -71,7 +71,7 @@ The `eth_estimateGas` method itself will use binary search to find the smallest 
 
 Just like Geth, we will use binary search for gas estimation. However, there will be some notable differences in gas estimation from the behaviour of Geth:
 
-- Unlike geth, it is impossible to track out of gas errors on zkSync Era. The main reason is that the “actual” execution will happen inside the DefaultAccount system contract and due to the 63/64 rule when a high number of gas is provided, the call to the `execute` method of the DefaultAccount will NOT fail due to out of gas even though the subcall to the `transaction.to` contract did fail with an out of gas error.
+- Unlike Geth, it is impossible to track  *out of gas* errors on zkSync Era. The main reason is that the “actual” execution will happen inside the DefaultAccount system contract and due to the 63/64 rule when a high number of gas is provided, the call to the `execute` method of the DefaultAccount will NOT fail due to out of gas even though the subcall to the `transaction.to` contract did fail with an out of gas error.
 
 - During simulation, geth uses `tx.gasprice = 0` to make sure that the user can pay the fee even though the `tx.origin` in the simulation may not have any balance at all - This means that when `estimateGas` from an empty account is called, no `value` can be provided to such call as this account has zero balance to cover this value. 
 
