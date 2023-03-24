@@ -38,7 +38,7 @@ So the tips to make the most out of the zkSync fee system are the following:
 - **Reuse the contract code if possible.** On Ethereum, avoiding constructor parameters and putting them into constants reduces some of the gas costs upon contract deployment. On zkSync the opposite is true: deploying the same bytecode for contracts, while changing only constructor parameters can lead to substantial fee savings.
 
 
-## Gas estimation during transaction: For custom and paymaster accounts
+## Gas estimation during a transaction: For Paymaster and Custom Accounts
 
 On Ethereum, there is a constant of 21000 gas that should cover all the intrinsic costs of processing a transaction: checking the signature and updating the nonce of the account. 
 
@@ -47,17 +47,17 @@ We provide a convenient way for anyone to estimate the cost of a transaction reg
 
 ### Changes in the `validateTransaction`
 
-The `validateTransaction` method fails if the signature is incorrect and returns `success=true` for a valid signature. The system entirely disregards the `returndata`. However, the success of the `validateTransaction` method depends on it returning a magic string. Any other `returndata` will be deemed invalid and rejected by the system.
+The `validateTransaction` method is considered successful whenever it does not revert (i.e. returns `success = true`). And it returns the magic string. For invalid signatures, the method does not revert, but it returns invalid magic. However, the success of the `validateTransaction` method depends on it returning a magic string.
 
 ### Notes on custom accounts
 
 Currently, the `validateTransaction` method of the AA (or the paymaster `validateAndPayForPaymasterTransaction` method) always tries to perform the same amount of computation (including storage accesses) regardless of whether the transaction is validated correctly. By default, the operator provides a transaction structure with the available information during fee estimation. To replace the signature, an invalid 65-byte ECDSA signature is utilized. The `DefaultAccount` (used by EOAs), during fee estimation, executes as many operations, including signature verification, and returns only `bytes4(0)` instead of magic. In the case of a custom account with multiple signers, the account may wish to simulate signature validation for all the provided signers.
 
-The code of the validation step of each account can be found in the [DefaultAccount implementation](https://github.com/matter-labs/era-system-contracts/blob/5a6c728576de5db68ad577a09f34e7b85c374192/contracts/DefaultAccount.sol#L65)
+The code of the validation step of each account can be found in the [DefaultAccount implementation](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/DefaultAccount.sol)
 
 ### Notes on the transaction’s length
 
-zkSync Era sends state diffs onchain, but the cost for the transaction will still mildly depend on its length (because long transactions need to be stored in the memory of the operator), also long transactions incur additional costs during interactions with an account. However, the signature (as well as its length) is not available at the time of fee estimation and so there is no correct way to precisely estimate the cost of the transaction. For now, we will compensate for it by multiplying the recommended cost of the transaction by a few percent. In the future, we may introduce the following:
+zkSync Era sends state diffs onchain, but the cost for the transaction will still mildly depend on its length (because long transactions need to be stored in the memory of the operator). Also, long transactions incur additional costs during interactions with an account. However, the signature (as well as its length) is not available at the time of fee estimation and so there is no correct way to precisely estimate the cost of the transaction. For now, we will compensate for it by multiplying the recommended cost of the transaction by a few percent. In the future, we may introduce the following:
 
 - Each account will be able to implement a method called `fillPartialTransaction` that will fill the signature with the substituted value which will be used for fee estimation.
 
