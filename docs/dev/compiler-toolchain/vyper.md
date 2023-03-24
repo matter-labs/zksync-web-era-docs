@@ -53,9 +53,9 @@ Other output formats are available via the `-f` option. Check out `vyper --help`
   An extra output format string.  See `vyper --help` for available options.
 
 - `--llvm-ir`  
-  Switch to the LLVM IR mode.  
+  Switch to LLVM IR mode.  
   Only one input LLVM IR file is allowed.  
-  Cannot be used with the combined or standard JSON modes.
+  Cannot be used with combined or standard JSON modes.
 
 - `--debug-output-dir <path>`  
   Dump all IRs to files in the specified directory.  
@@ -63,7 +63,7 @@ Other output formats are available via the `-f` option. Check out `vyper --help`
 
 - `--llvm-verify-each`  
   Set the verify-each option in LLVM.  
-  Only for testing and debugging.
+  For testing and debugging.
 
 - `--llvm-debug-logging`  
   Set the debug-logging option in LLVM.  
