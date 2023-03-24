@@ -176,7 +176,7 @@ The last command will print the deployed governance smart contract address in th
 
 Now that we have the L1 governance contract addressed, let's proceed with the counter contract on L2.
 
-1. To initialise the project in the `/L2-counter` folder run the following commands:
+1. To initialize the project in the `/L2-counter` folder run the following commands:
 
 ```
 yarn init -y

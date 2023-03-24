@@ -30,12 +30,18 @@ Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The 
 
 ::: code-tabs
 
-@tab:active yarn
+@tab:active cd
 
 ```bash
 
 mkdir greeter-example
 cd greeter-example
+
+```
+
+@tab yarn
+
+```bash
 
 yarn init -y
 yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
@@ -43,6 +49,15 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/har
 npm init -y
 npm i -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+
+@tab npm
+
+```bash
+
+npm init -y
+npm i -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+```
+
 :::
 
 Please note that Typescript is required by zkSync plugins.
