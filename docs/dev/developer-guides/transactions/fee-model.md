@@ -75,6 +75,6 @@ Just like geth, we will use binary search. However, there will be some notable d
 
 - During simulation, geth uses `tx.gasprice = 0` to make sure that the user can pay the fee even though the `tx.origin` in the simulation may not have any balance at all - This means that when `estimateGas` from an empty account is called, no `value` can be provided to such call as this account has zero balance to cover this value. 
 
-We could do that, but that would mean that the `payForTransaction` of the Account Abstraction protocol would do nothing and thus be much cheaper than it will be during the actual transaction validation. Instead, the operator will increase the balance of the user’s account by `tx.maxFeePerErg * tx.ergsLimit`.
+We could do that, but that would mean that the `payForTransaction` of the Account Abstraction protocol would do nothing and thus be much cheaper than it will be during the actual transaction validation. Instead, the operator will increase the balance of the user’s account by `tx.maxFeePerGas * tx.gasLimit`.
 
 For DefaultAccount it will behave the same way as on geth (since the user will get rid of the new funds in the `payForTransaction` method), but for custom accounts, they may unexpectedly contain more balance than they will have onchain, which may affect their behavior.
