@@ -6,7 +6,7 @@ improved portability, and seamless integration with existing LLVM-based tools. F
 extensibility of LLVM make it easier to support new smart contract languages with LLVM front-ends.
 
 Additionally, LLVM improves efficiency compared to the original EVM pipeline, as we can take advantage of the
-numerous optimization passes and tools available in its mature ecosystem.
+numerous optimization passes, tools, and tests available in its mature ecosystem.
 
 In our toolchain, LLVM consumes the LLVM IR, applies extensive optimizations, and eventually passes the optimized IR
 to the zkEVM back-end code generator in order to produce the zkEVM text assembly output.
