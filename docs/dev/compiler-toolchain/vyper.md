@@ -11,7 +11,7 @@ interface and I/O (input/output) methods may aid integration or debugging.
 
 #### Combined JSON
 
-The Hardhat plugin uses the combined JSON I/O mode, which is passed down to the `vyper` compiler child process.
+The Hardhat plugin uses the combined JSON I/O mode, which is passed to the `vyper` compiler child process.
 
 Additional zkEVM data is inserted into the output combined JSON by `zksolc`:
 
@@ -47,10 +47,10 @@ Other output formats are available via the `-f` option. Check out `vyper --help`
 
 - `--vyper <path>`  
   Specify the path to the `vyper` executable. By default, the one in `${PATH}` is used.  
-  LLVM IR mode: `vyper` is unused.
+  In LLVM IR mode `vyper` is unused.
 
-- `-f`  
-  The extra output format string.
+- `-f <format>`  
+  An extra output format string.  See `vyper --help` for available options.
 
 - `--llvm-ir`  
   Switch to the LLVM IR mode.  
