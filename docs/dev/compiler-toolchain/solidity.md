@@ -1,13 +1,13 @@
 # Solidity
 
 The compiler we provide as a part of our toolchain is called [zksolc](https://github.com/matter-labs/zksolc-bin). It
-operates on IRs and metadata received from the underlying [solc](https://docs.soliditylang.org/en/latest/) compiler,
-which must be available in `$PATH`, or the path must be explicitly passed via the CLI (command-line interface).
+operates on IR and metadata received from the underlying [solc](https://docs.soliditylang.org/en/latest/) compiler,
+which must be available in `$PATH`, or its path must be explicitly passed via the CLI (command-line interface).
 
 ## Usage
 
-Most of the time, using our compiler via the Hardhat plugin is enough, and you do not have to dive deeper into its
-interface and I/O (input/output) methods. However, knowledge of these can be crucial for integration, debugging, or contribution purposes.
+Usually using our compiler via the Hardhat plugin will suffice. However, knowledge of its
+interface and I/O (input/output) methods may aid integration or debugging.
 
 The CLI supports several I/O modes:
 
@@ -15,19 +15,19 @@ The CLI supports several I/O modes:
 2. Combined JSON.
 3. Free-form output.
 
-All three modes use the standard JSON `solc` interface internally which helps to reduce the complexity of the `zksolc`
-interface and facilitate testing.
+All three modes use the standard JSON `solc` interface internally, which reduces the complexity of the `zksolc`
+interface and facilitates testing.
 
 #### Standard JSON
 
 The `zksolc` standard JSON I/O workflow closely follows that of the official `solc` compiler. However, `zksolc` does not
-support a significant part of the JSON workflow, specifically EVM configuration settings which have no representation in the zkEVM
+support EVM configuration settings which have no representation in the zkEVM
 architecture.
 
-Additional zkEVM data is supported by `zksolc`, but omitted when passed to `solc`:
+Additional zkEVM data is supported by `zksolc`, but is omitted when passed to `solc`:
 
-- `settings/optimizer/enabled`: enables the LLVM optimizer. Disabling only makes sense for prototyping and debugging.
-- `settings/optimizer/mode`: sets the optimization mode. Available values: `0`, `1`, `2`, `3`, `s`, `z`. Default
+- `settings/optimizer/enabled`: enables the LLVM optimizer. Disabling optimization only makes sense for prototyping and debugging.
+- `settings/optimizer/mode`: sets the optimization mode. Available values: `0`, `1`, `2`, `3`, `s`, `z`. The default
 setting is `3`. See [LLVM optimizer](./llvm.md#optimizer).
 
 Unsupported sections of the input JSON, ignored by `zksolc`:
@@ -60,10 +60,10 @@ See the complete standard JSON data structures in [the zksolc repository](https:
 #### Combined JSON
 
 The `zksolc` standard JSON I/O workflow closely follows that of the official `solc` compiler. However, `zksolc` does not
-support a significant part of the JSON workflow, specifically EVM configuration settings which have no representation in the zkEVM
+support EVM configuration settings which have no representation in the zkEVM
 architecture.
 
-The combined JSON is a mere output format, and there is no input combined JSON format. Instead, the CLI arguments are
+Combined JSON is only an output format; there is no combined JSON input format. Instead, CLI arguments are
 used for configuration.
 
 Additional zkEVM data, inserted by `zksolc`:
@@ -121,8 +121,8 @@ This output format is utilized in Yul and LLVM IR compilation modes. These modes
 
 - `--solc <path>`  
   Specify the path to the `solc` executable. By default, the one in `${PATH}` is used.  
-  Yul mode: `solc` is used for source code validation, as `zksolc` assumes that the input Yul is valid.  
-  LLVM IR mode: `solc` is unused.  
+  In Yul mode `solc` is used for source code validation, as `zksolc` assumes that the input Yul is valid.  
+  In LLVM IR mode `solc` is unused.  
 
 - `-l`, `--libraries <string>`  
   Specify addresses of deployable libraries. Syntax: `<libraryName>=<address> [, or whitespace] ...`.  
@@ -133,7 +133,7 @@ This output format is utilized in Yul and LLVM IR compilation modes. These modes
   Available arguments: `abi`, `hashes`, `metadata`, `devdoc`, `userdoc`, `storage-layout`, `ast`, `asm`, `bin`, `bin-runtime`.  
 
 - `--standard-json`  
-  Switch to standard JSON input/output mode. Read from stdin, write the result to stdout.  
+  Switch to standard JSON input/output mode. Read from `stdin`, write the result to `stdout`.  
   This is the default used by the Hardhat plugin.  
 
 - `--yul`  
@@ -142,18 +142,17 @@ This output format is utilized in Yul and LLVM IR compilation modes. These modes
   Cannot be used with the combined and standard JSON modes.  
 
 - `--llvm-ir`  
-  Switch to the LLVM IR mode.  
+  Switch to LLVM IR mode.  
   Only one input LLVM IR file is allowed.  
-  Cannot be used with the combined and standard JSON modes.  
+  Cannot be used with combined and standard JSON modes.  
 
 - `--force-evmla`  
-  Force switch to the EVM legacy assembly pipeline.  
-  Useful for older revisions of `solc` 0.8, where Yul was considered highly experimental and contained more bugs than today.  
+  Force use of the EVM legacy assembly pipeline.  
+  Useful for early versions of `solc` 0.8.x, where Yul was considered highly experimental and contained more bugs than today.  
 
 - `--system-mode`  
-  Enable the system contract compilation mode.  
-  In this mode, zkEVM extensions are enabled. For example, calls to addresses `0xFFFF` and below are substituted by special  
-  zkEVM instructions. In the Yul mode, the `verbatim_*` instruction family is available.  
+  Enable system contract compilation mode.  
+  In this mode, zkEVM extensions for system contracts are enabled. For example, calls to addresses `0xFFFF` and below are substituted by special zkEVM instructions. In Yul mode, the `verbatim_*` instruction family is available.  
 
 - `--asm`  
   Output zkEVM assembly of the contracts.  
@@ -162,12 +161,12 @@ This output format is utilized in Yul and LLVM IR compilation modes. These modes
   Output zkEVM bytecode of the contracts.  
 
 - `--debug-output-dir <path>`  
-  Dump all IRs to files in the specified directory.  
+  Dump all IR to files in the specified directory.  
   Only for testing and debugging.
 
 - `--llvm-verify-each`  
-  Set the verify-each option in LLVM.  
-  Only for testing and debugging.
+  Set the `-verify-each` option in LLVM.  
+  For testing and debugging.
 
 - `--llvm-debug-logging`  
   Set the debug-logging option in LLVM.  
@@ -175,18 +174,18 @@ This output format is utilized in Yul and LLVM IR compilation modes. These modes
 
 ## Limitations
 
-At the current time, Solidity versions as old as `>=0.4.12` are supported, though **we strongly recommend using** the latest
+Currently Solidity versions as old as `0.4.12` are supported, though **we strongly recommend using** the latest
 supported revision of `0.8`, as older versions contain known bugs and have limitations dictated by the absence of IR with
 sufficient level of abstraction over EVM.
 
-Projects written in Solidity `>=0.8` are compiled through the Yul pipeline, whereas those written in `<=0.7` are compiled
-via the EVM legacy assembly, which is a less friendly IR due to the obfuscation of control-flow and call graphs.
+Projects written in Solidity `>=0.8` are compiled by default through the Yul pipeline, whereas those written in `<=0.7` are compiled
+via EVM legacy assembly, which is a less friendly IR due to its obfuscation of control-flow and call graphs.
 For this reason, there are a few limitations
 in zkSync for contracts written in Solidity `<=0.7`:
 
 1. Recursion on the stack is not supported.
 2. Internal function pointers are not supported.
-3. Possible impact on the contract size and performance.
+3. Contract size and performance may be affected.
 
 ### Using libraries
 
@@ -195,4 +194,4 @@ The usage of libraries in Solidity is supported in zkSync Era with the following
 - If a Solidity library can be inlined (i.e. it only contains `private` or `internal` methods), it can be used without
 any additional configuration.
 - However, if a library contains at least one `public` or `external` method, it cannot be inlined and its address needs
-to be passed explicitly to the compiler. You can learn more about [how to compile non-inlineable libraries in this section of the docs](../../api/hardhat/compiling-libraries.md).
+to be passed explicitly to the compiler; see the [Compiling non-inlinable libraries](../../api/hardhat/compiling-libraries.md) documentation.
