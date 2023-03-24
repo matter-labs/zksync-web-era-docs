@@ -36,6 +36,9 @@ It is supported by zkSync Era, but if a custom account interacts with a contract
 We discourage its usage as it is vulnerable to phishing attacks that can drain a contract of all funds.
 Read more about [tx.origin phishing and other vulnerabilities](https://hackernoon.com/hacking-solidity-contracts-using-txorigin-for-authorization-are-vulnerable-to-phishing)
 
+- `block.timestamp` and `block.number`
+These variables behave differently from L1. Read more [about blocks in zkSync](../../developer-guides/transactions/blocks.md#blocks-in-zksync-era).
+
 - 'ecrecover' 
 Use zkSync Era's native account abstraction support for signature validation instead of this function. We recommend not relying on the fact that an account has an ECDSA private key, since the account may be governed by multisig and use another signature scheme.
 Read more about [zkSync Account Abstraction support](../../developer-guides/aa.md)
