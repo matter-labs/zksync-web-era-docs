@@ -1,6 +1,6 @@
 # Interact with zkSync Era
 
-zkSync Era is currently is on the fair alpha onboarding stage, which involves opening our mainnet to certain teams to build and and make transactions on mainnet.
+zkSync Era is currently on the fair alpha onboarding stage, which involves opening our mainnet to certain teams to build and and make transactions on mainnet.
 
 ## Do I need experience with zkSync Lite?
 
