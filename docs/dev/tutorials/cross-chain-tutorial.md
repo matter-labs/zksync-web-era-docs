@@ -474,9 +474,10 @@ The counter in the L2 contract should have increased after the transaction so ou
 The counter value is 1
 ```
 
+<!--
 ## Complete project
 
-You can download the complete project [here](https://github.com/matter-labs/cross-chain-tutorial).
+You can download the complete project [here](https://github.com/matter-labs/cross-chain-tutorial).-->
 
 ## Learn more
 
