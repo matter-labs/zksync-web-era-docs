@@ -458,14 +458,6 @@ async function main() {
 }
 ```
 
-::: tip Fee model and fee estimation are WIP
-
-You may have noticed the lack of the `gas_per_pubdata` and `gas_per_storage` fields in the L1->L2 transactions. These are surely important for the security of the protocol and they will be added soon. Please note that this will be a breaking change for the contract interface.
-
-Also, there is currently no easy way to estimate the exact number of `gas` required for the execution of an L1->L2 transaction. At the time of this writing, the transactions may be processed even if the supplied `gasLimit` is `0`. This will change in the future.
-
-:::
-
 6. Now it is possible to call the governance contract, that will redirect the call to zkSync:
 
 ```ts

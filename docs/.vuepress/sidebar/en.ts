@@ -44,7 +44,17 @@ export const enSidebar = sidebar({
         "/dev/building-on-zksync/contracts/contract-verification.md",
         "/dev/building-on-zksync/events.md",
         "/dev/building-on-zksync/rpc.md",
-        "/dev/building-on-zksync/fair-onboarding-alpha.md",
+        "/dev/building-on-zksync/useful-address.md",
+      ],
+    },
+    {
+      text: "Compiler Toolchain",
+      link: "/dev/compiler-toolchain",
+      children: [
+        "/dev/compiler-toolchain/overview.md",
+        "/dev/compiler-toolchain/solidity.md",
+        "/dev/compiler-toolchain/vyper.md",
+        "/dev/compiler-toolchain/llvm.md",
       ],
     },
     {
@@ -72,11 +82,11 @@ export const enSidebar = sidebar({
       link: "/dev/troubleshooting",
       children: [
         "/dev/troubleshooting/changelog.md",
+        "/dev/troubleshooting/withdrawal-delay.md",
         "/dev/troubleshooting/audit-bug-bounty.md",
         "/dev/troubleshooting/docs-contribution/docs.md",
         "/dev/troubleshooting/docs-contribution/community-resources.md",
-        "/dev/troubleshooting/faq.md"
-        // "/dev/troubleshooting/known-issues.md",
+        "/dev/troubleshooting/faq.md",
         // "/dev/troubleshooting/status.md",
         // "/dev/troubleshooting/important-links.md",
       ],

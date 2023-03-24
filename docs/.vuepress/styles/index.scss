@@ -123,8 +123,8 @@ input[type="submit" i] {
     }
 }
 
-[data-theme="dark"] img[src*="/logo.svg"] {
-    content: url("/zk-sync-era-light.svg") !important;
+[data-theme="dark"] img[src*="/era-dark.svg"] {
+    content: url("/era-light.svg") !important;
 }
 
 [data-theme="dark"] img[src*="/images/code-light.png"] {
@@ -153,6 +153,10 @@ hr{
     display: none !important;
 }
 
+tbody td a {
+    white-space: nowrap;
+}
+
 a.title {
     font-weight: 700 !important;
 }
@@ -162,8 +166,8 @@ a.title {
     padding: 0.70rem 0 !important;
 }
 
-.edit-link .icon {
-    //display: none !important;
+.external-link-icon {
+    padding-left: 4px;
 }
 
 /* Mobile */

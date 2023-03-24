@@ -1,13 +1,21 @@
 # Vyper
 
+<<<<<<< HEAD
 The compiler we provide as a part of our toolchain is called [zkvyper](https://github.com/matter-labs/zkvyper-bin). It
+=======
+The Vyper compiler we provide as part of our toolchain is called [zkvyper](https://github.com/matter-labs/zkvyper-bin). It
+>>>>>>> 9f8a9e6768f009dbbb4c254cdccc2e18312a7215
 operates on LLL IR and metadata received from the underlying [vyper](https://docs.vyperlang.org/en/latest/index.html) compiler,
 which must be available in `$PATH`, or the path must be explicitly passed via the CLI (command-line interface).
 
 ## Usage
 
 Most of the time, using our compiler via the Hardhat plugin is enough, and you do not have to dive deeper into its
+<<<<<<< HEAD
 interface and I/O (input/output) methods. However, it can be crucial for integration, debugging, or contribution purposes.
+=======
+interface and I/O (input/output) methods. However, knowledge of these can be crucial for integration, debugging, or contribution purposes.
+>>>>>>> 9f8a9e6768f009dbbb4c254cdccc2e18312a7215
 
 #### Combined JSON
 
@@ -32,7 +40,11 @@ Other output formats are available via the `-f` option. Check out `vyper --help`
 
 - `<input_files>`  
   Specify the input file paths.  
+<<<<<<< HEAD
   Multiple Vyper files can be passed in the default Vyper mode.  
+=======
+  Multiple Vyper files can be passed in the default Vyper mode. 
+>>>>>>> 9f8a9e6768f009dbbb4c254cdccc2e18312a7215
   LLVM IR mode currently supports only a single file.
 
 - `-o`, `--output-dir <path>`  

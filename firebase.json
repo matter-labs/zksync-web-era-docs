@@ -59,6 +59,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/dev/building-on-zksync/contracts/contracts.html",
+          "destination": "/docs/dev/building-on-zksync/contracts/contract-development.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/developer-guides/building-on-zksync/events.html",
           "destination": "/docs/dev/building-on-zksync/events.html",
           "type": "302"
@@ -151,6 +156,11 @@
         {
           "source": "/docs/dev/developer-guides/contracts/contract-verification.html",
           "destination": "/docs/dev/building-on-zksync/contracts/contract-verification.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/contracts/contracts.html",
+          "destination": "/docs/dev/building-on-zksync/contracts/contract-development.html",
           "type": "302"
         },
         {

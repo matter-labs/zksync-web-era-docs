@@ -7,7 +7,11 @@ which must be available in `$PATH`, or the path must be explicitly passed via th
 ## Usage
 
 Most of the time, using our compiler via the Hardhat plugin is enough, and you do not have to dive deeper into its
+<<<<<<< HEAD
 interface and I/O (input/output) methods. However, it can be crucial for integration, debugging, or contribution purposes.
+=======
+interface and I/O (input/output) methods. However, knowledge of these can be crucial for integration, debugging, or contribution purposes.
+>>>>>>> 9f8a9e6768f009dbbb4c254cdccc2e18312a7215
 
 The CLI supports several I/O modes:
 
@@ -15,13 +19,21 @@ The CLI supports several I/O modes:
 2. Combined JSON.
 3. Free-form output.
 
+<<<<<<< HEAD
 All three modes use the standard JSON `solc` interface internally. It helps to reduce the complexity of the `zksolc`
+=======
+All three modes use the standard JSON `solc` interface internally which helps to reduce the complexity of the `zksolc`
+>>>>>>> 9f8a9e6768f009dbbb4c254cdccc2e18312a7215
 interface and facilitate testing.
 
 #### Standard JSON
 
 The `zksolc` standard JSON I/O workflow closely follows that of the official `solc` compiler. However, `zksolc` does not
+<<<<<<< HEAD
 support a significant part of it, as it only makes sense for compiling for EVM, and has no representation in the zkEVM
+=======
+support a significant part of the JSON workflow, specifically EVM configuration settings which have no representation in the zkEVM
+>>>>>>> 9f8a9e6768f009dbbb4c254cdccc2e18312a7215
 architecture.
 
 Additional zkEVM data is supported by `zksolc`, but omitted when passed to `solc`:
@@ -45,10 +57,17 @@ Unsupported sections of the input JSON, ignored by `zksolc`:
 
 Additional zkEVM data inserted by `zksolc`:
 
+<<<<<<< HEAD
 - `long_version`: the full `solc` version output
 - `zk_version`: the version of the `zksolc` itself
 - `contract/hash`: the hash of the zkEVM bytecode
 - `contract/factory_dependencies`: bytecode hashes of contracts `CREATE`d in the current one. [More detail here](../building-on-zksync/contracts/contract-deployment.md#note-on-factory-deps)
+=======
+- `long_version`: the full `solc` version output.
+- `zk_version`: the `zksolc` version.
+- `contract/hash`: the hash of the zkEVM bytecode.
+- `contract/factory_dependencies`: bytecode hashes of contracts created in the current contract with `CREATE`. [More details here](../building-on-zksync/contracts/contract-deployment.md#note-on-factory-deps).
+>>>>>>> 9f8a9e6768f009dbbb4c254cdccc2e18312a7215
 
 Unsupported sections of the output JSON, ignored by `zksolc`:
 
@@ -59,8 +78,13 @@ See the complete standard JSON data structures in [the zksolc repository](https:
 
 #### Combined JSON
 
+<<<<<<< HEAD
 The `zksolc` combined JSON I/O workflow closely follows that of the official `solc` compiler. However, `zksolc` does not
 support a significant part of it, as it only makes sense for compiling for EVM, and has no representation in the zkEVM
+=======
+The `zksolc` standard JSON I/O workflow closely follows that of the official `solc` compiler. However, `zksolc` does not
+support a significant part of the JSON workflow, specifically EVM configuration settings which have no representation in the zkEVM
+>>>>>>> 9f8a9e6768f009dbbb4c254cdccc2e18312a7215
 architecture.
 
 The combined JSON is a mere output format, and there is no input combined JSON format. Instead, the CLI arguments are
@@ -69,7 +93,11 @@ used for configuration.
 Additional zkEVM data, inserted by `zksolc`:
 
 - `zk_version`: the version of `zksolc`.
+<<<<<<< HEAD
 - `contract/factory_deps`: bytecode hashes of contracts `CREATE`d in the current one. [More detail here](../building-on-zksync/contracts/contract-deployment.md#note-on-factory-deps).
+=======
+- `contract/factory_deps`: bytecode hashes of contracts created by the current contract with `CREATE`. [More details here](../building-on-zksync/contracts/contract-deployment.md#note-on-factory-deps).
+>>>>>>> 9f8a9e6768f009dbbb4c254cdccc2e18312a7215
 
 Unsupported combined JSON flags, rejected by `zksolc`:
 
@@ -106,7 +134,11 @@ This output format is utilized in Yul and LLVM IR compilation modes. These modes
   Passed to `solc` without changes.  
 
 - `--allow-paths <path1,path2,...>`  
+<<<<<<< HEAD
   Allow a given path for imports. A list of paths can be supplied by separating them with a comma.  
+=======
+  Allow a given path for imports. For multiple paths, separate with commas.  
+>>>>>>> 9f8a9e6768f009dbbb4c254cdccc2e18312a7215
   Passed to `solc` without changes.  
 
 - `-o`, `--output-dir <path>`  
@@ -148,7 +180,11 @@ This output format is utilized in Yul and LLVM IR compilation modes. These modes
 
 - `--force-evmla`  
   Force switch to the EVM legacy assembly pipeline.  
+<<<<<<< HEAD
   It is useful for older revisions of `solc` 0.8, where Yul was considered highly experimental and contained more bugs than today.  
+=======
+  Useful for older revisions of `solc` 0.8, where Yul was considered highly experimental and contained more bugs than today.  
+>>>>>>> 9f8a9e6768f009dbbb4c254cdccc2e18312a7215
 
 - `--system-mode`  
   Enable the system contract compilation mode.  

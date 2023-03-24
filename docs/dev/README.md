@@ -34,7 +34,13 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Verify contracts](./building-on-zksync/contracts/contract-verification.md) - A guide on how to verify smart contracts with zkSync block explorer.
 - [Handling events](./building-on-zksync/events.md) - Learn how to handle events in zkSync Era.
 - [JSON-RPC API](./building-on-zksync/rpc.md) - Learn how to use our custom JSON-RPC APIs that are similar to Ethereum.
-- [Fair Onboarding Alpha](./building-on-zksync/fair-onboarding-alpha.md) - Learn how zkSync Era Fair Onboarding Alpha works.
+
+### Compiler Toolchain
+
+- [Overview](compiler-toolchain/overview.md) - Learn about our compiler toolchain.
+- [Solidity](compiler-toolchain/solidity.md) - Learn about the Solidity support.
+- [Vyper](compiler-toolchain/vyper.md) - Learn about the Vyper support.
+- [LLVM Framework](compiler-toolchain/llvm.md) - Learn about the LLVM framework.
 
 ### Compiler Toolchain
 
