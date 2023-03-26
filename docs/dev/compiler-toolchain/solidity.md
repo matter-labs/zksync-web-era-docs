@@ -71,7 +71,7 @@ Additional zkEVM data inserted by `zksolc`:
 
 Unsupported sections of the output JSON, ignored by `zksolc`:
 
-- `contracts/<file>/<contract>/evm/bytecode`: replaced by the zkEVM object with only relevant data.
+- `contracts/<file>/<contract>/evm/bytecode`: replaced with a JSON object with zkEVM build data.
 - `contracts/<file>/<contract>/ewasm`
 
 See the complete standard JSON data structures in [the zksolc repository](https://github.com/matter-labs/era-compiler-solidity/tree/main/src/solc/standard_json).
