@@ -138,23 +138,24 @@ While all zero knowledge rollup blockchains share the underlying technology of c
 
 At the moment, we support any Ethereum-based wallet. By default, the provided option on zkSync Era portal is Metamask - besides connecting automatically, you can add zkSync network to your Metamask manually:
 
-**Testnet network info**
-
-- Network Name: `zkSync Era Testnet`
-- New RPC URL: `https://zksync2-testnet.zksync.dev`
-- Chain ID: `280`
-- Currency Symbol: `ETH`
-- Block Explorer URL: `https://goerli.explorer.zksync.io/`
-- WebSocket URL: `wss://zksync2-testnet.zksync.dev/ws`
-
 **Mainnet network info**
 
 - Network Name: `zkSync Era Mainnet`
-- New RPC URL: `https://zksync2-mainnet.zksync.io`
+- RPC URL: `https://mainnet.era.zksync.io`
 - Chain ID: `324`
 - Currency Symbol: `ETH`
 - Block Explorer URL: `https://explorer.zksync.io/`
-- WebSocket URL: `wss://zksync2-mainnet.zksync.io/ws`
+- WebSocket URL: `wss://mainnet.era.zksync.io/ws`
+
+
+**Testnet network info**
+
+- Network Name: `zkSync Era Testnet`
+- RPC URL: `https://testnet.era.zksync.dev`
+- Chain ID: `280`
+- Currency Symbol: `ETH`
+- Block Explorer URL: `https://goerli.explorer.zksync.io/`
+- WebSocket URL: `wss://testnet.era.zksync.dev/ws`
 
 ## How do I Request Funds for Testnet?
 
@@ -200,4 +201,3 @@ zkSync Era testnet is experiencing immense demand, but its permissionless nature
 This resource optimization not only supports a more efficient allocation of resources but also promotes a more environmentally-friendly process compared to proving every batch on the testnet.
 
 Moving forward, we aim to develop better mechanisms to prevent Sybil attacks on our infrastructure, with the ultimate goal of enabling the proof of all batches on the testnet.
-
