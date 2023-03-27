@@ -322,7 +322,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-2. Now deploy the contract from the `L2-governance/` folder root to zkSync:
+2. Now deploy the contract from the `L2-counter/` folder root to zkSync:
 
 ```sh
 npx hardhat deploy-zksync
@@ -384,7 +384,7 @@ The output should be:
 The counter value is 0
 ```
 
-## Calling the L2 contract from L1 -> currently updating this section
+## Call L2 contract from L1 -> currently updating this section
 
 Now, let's call the `increment` method from layer 1. 
 
