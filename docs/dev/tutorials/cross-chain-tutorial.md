@@ -40,7 +40,7 @@ npm init -y
 ```
 @tab yarn
 ```sh
-todo:
+yarn init -y
 ```
 :::
 
@@ -53,7 +53,7 @@ npm install --save-dev hardhat
 ```
 @tab yarn
 ```sh
-todo:
+yarn add --dev hardhat
 ```
 :::
 
@@ -81,7 +81,7 @@ npm i solc@0.8.13 @typechain/hardhat @types/node ts-node typescript @nomiclabs/h
 ```
 @tab yarn
 ```sh
-todo:
+yarn add solc@0.8.13 @typechain/hardhat @types/node ts-node typescript @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle ethereum-waffle ethers @openzeppelin/contracts @matterlabs/zksync-contracts
 ```
 :::
 
@@ -219,7 +219,7 @@ npm init -y
 ```
 @tab yarn
 ```sh
-todo:
+yarn init -y
 ```
 :::
 
@@ -232,7 +232,7 @@ npm i @typechain/hardhat @types/node ts-node typescript @nomiclabs/hardhat-ether
 ```
 @tab yarn
 ```sh
-todo:
+yarn add @typechain/hardhat @types/node ts-node typescript @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle ethereum-waffle ethers @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @nomicfoundation/hardhat-toolbox zksync-web3
 ```
 :::
 
