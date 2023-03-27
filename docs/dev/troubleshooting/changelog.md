@@ -1,5 +1,31 @@
 # Changelog
 
+
+## Full launch system update (Mar 23rd 2023)
+
+Major updates accross the system including:
+
+- Protocol changes:
+  - Removed allow list for L1<>L2 communication (zkSync Era is now at Full Launch open to all users).
+  - Implementation of [withdrawal delay](../troubleshooting/withdrawal-delay).
+  - Smart contract bytecode packing.
+  - Multiple bug fixes in circuits and prover.
+  - Fee model adjusted for L1<>L2 communication and proof generation.
+  - Security fixes.
+  - Performance improvements.
+- New version of JS SDK zksync-web3 `0.14.3`.
+- New version of `zksync-cli` `0.1.4`.
+- Released new docker images of the local setup for unit tests.
+
+### How to update your project
+
+- Update `zksync-web3` to `^0.14.3` in your `package.json` file and re-install dependencies.
+- Update `zksync-cli` with `npm update -g zksync-cli`.
+- Pull the latest docker images of the local setup by running the `./clear.sh` script. [More  about local setup](../../api/hardhat/testing.md).
+- L1->L2 transactions now require gas fees to be paid upfront. The fee can be estimated using the new method `zks_estimateGasL1ToL2`. [Read more here](../developer-guides/bridging/l1-l2.md).
+- Provide `_refundRecipient` when using `requestL2Transaction` indicating the address that will receive refunds. (Optional)
+
+
 ## Hardhat plugins update (Feb 24th 2023)
 
 The following hardhat plugin have been released:
