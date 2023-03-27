@@ -33,15 +33,29 @@ mkdir L2-counter
 
 2. Initialize the project:
 
+::: code-tabs
+@tab npm
 ```sh
 npm init -y
 ```
+@tab yarn
+```sh
+todo:
+```
+:::
 
 3. Install hardhat:
 
+::: code-tabs
+@tab npm
 ```sh
 npm install --save-dev hardhat
 ```
+@tab yarn
+```sh
+todo:
+```
+:::
 
 4. Run the following to set up the project:
 
@@ -60,9 +74,16 @@ To interact with the zkSync bridge contract using Solidity, you need the zkSync 
 
 5. Install the following dependencies:
 
+::: code-tabs
+@tab npm
 ```sh
 npm i solc@0.8.13 @typechain/hardhat @types/node ts-node typescript @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle ethereum-waffle ethers @openzeppelin/contracts @matterlabs/zksync-contracts
 ```
+@tab yarn
+```sh
+todo:
+```
+:::
 
 ### Create L1 governance contract
 
@@ -191,15 +212,29 @@ Now that we have an address for the L1 governance contract, we can build, deploy
 
 1. `cd` into `/L2-counter` and initialize the project:
 
+::: code-tabs
+@tab npm
 ```sh
 npm init -y
 ```
+@tab yarn
+```sh
+todo:
+```
+:::
 
 2. Install the dependencies:
 
+::: code-tabs
+@tab npm
 ```sh
 npm i @typechain/hardhat @types/node ts-node typescript @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle ethereum-waffle ethers @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @nomicfoundation/hardhat-toolbox zksync-web3
 ```
+@tab yarn
+```sh
+todo:
+```
+:::
 
 3. Set up the Hardhat project configurations, selecting **Create a Typescript project** as before:
 
