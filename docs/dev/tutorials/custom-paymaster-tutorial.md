@@ -427,6 +427,11 @@ const PAYMASTER_ADDRESS = "<PAYMASTER_ADDRESS>";
 // Put the address of the ERC20 token here:
 const TOKEN_ADDRESS = "<TOKEN_ADDRESS>";
 
+function getToken(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
+  const artifact = hre.artifacts.readArtifactSync("MyERC20");
+  return new ethers.Contract(TOKEN_ADDRESS, artifact.abi, wallet);
+}
+
 // Wallet private key
 // ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
 const EMPTY_WALLET_PRIVATE_KEY = "<EMPTY_WALLET_PRIVATE_KEY>";
