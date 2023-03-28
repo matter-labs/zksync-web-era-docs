@@ -1,11 +1,10 @@
 # Account abstraction support
 
-
-
-
 ::: warning
 
-Please note that in the new `0.13.0` SDK the API layer operates with gas. The ergs concept is used by VM only.
+Please note that with system update released in Feb 2023, the ergs concept is only used by the VM and the SDK (version `0.13.0` and above) whilest the API layer operates with gas. 
+
+Find [more information in the changelog](../troubleshooting/changelog.md).
 
 :::
 
@@ -92,7 +91,7 @@ Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/
 
 ### Reserved fields of the `Transaction` struct with special meaning
 
-Note that each of the methods above accept the [Transaction](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/TransactionHelper.sol#L15) struct.
+Note that each of the methods above accept the [Transaction](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/libraries/TransactionHelper.sol#L76) struct.
 While some of its fields are self-explanatory, there are also 6 `reserved` fields, the meaning of each is defined by the transaction's type. We decided to not give these fields names, since they might be unneeded in some future transaction types. For now, the convention is:
 
 - `reserved[0]` is the nonce.

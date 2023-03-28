@@ -76,7 +76,7 @@ ethereumProvider, err := w.CreateEthereumProvider(ethRpc)
 package main
 
 import (
-    "github.com/ethereum/go-ethereum/rpc"
+    "github.com/ethereum/go-ethereum/common"
     "github.com/zksync-sdk/zksync2-go"
 )
 
@@ -103,7 +103,7 @@ func main() {
 package main
 
 import (
-    "github.com/ethereum/go-ethereum/rpc"
+    "github.com/ethereum/go-ethereum/common"
     "github.com/zksync-sdk/zksync2-go"
 )
 
@@ -161,7 +161,7 @@ You can access the contract deployer interface as follows:
     package main
 
 import (
-    "github.com/ethereum/go-ethereum/rpc"
+    "github.com/ethereum/go-ethereum/common"
     "github.com/zksync-sdk/zksync2-go"
 )
 
@@ -199,7 +199,7 @@ Example encoding the calldata:
 package main
 
 import (
-    "github.com/ethereum/go-ethereum/rpc"
+    "github.com/ethereum/go-ethereum/common"
     "github.com/zksync-sdk/zksync2-go"
 )
 

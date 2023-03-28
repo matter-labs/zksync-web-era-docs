@@ -2,14 +2,9 @@
 
 In this tutorial, we'll create a smart contract account with a daily spend limit thanks to the Account Abstraction support on zkSync.
 
+::: warning Update in progress
 
-
-
-::: warning
-
-Please note that breaking changes were introduced in `zksync-web3 ^0.13.0`. The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM. 
-
-This tutorial will be updated shortly to reflect those changes.
+This tutorial has not been updated to reflect [the latest changes in the protocol and SDK](../troubleshooting/changelog.md). An updated version will be released soon.
 
 :::
 
@@ -29,7 +24,7 @@ First, let’s install all the dependencies that we'll need:
 mkdir custom-spendlimit-tutorial
 cd custom-spendlimit-tutorial
 yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
 ::: tip
@@ -41,10 +36,36 @@ The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
 Additionally, please install a few packages that allow us to utilize the [zkSync smart contracts](../developer-guides/system-contracts.md).
 
 ```shell
-yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
+yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Lastly, create `hardhat.config.ts` config file and the `contracts` and `deploy` folders like in the [quickstart tutorial](../building-on-zksync/hello-world.md).
+Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, similar to the [quickstart tutorial](../building-on-zksync/hello-world.md). In this project our contracts will interact with system contracts, to achieve that, we need to include the `isSystem: true` in the compiler settings:
+
+```typescript
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-solc";
+module.exports = {
+    zksolc: {
+        version: "1.3.5",
+        compilerSource: "binary",
+        settings: { 
+            isSystem: true,
+        },
+    },
+    defaultNetwork: "zkSyncTestnet",
+    networks: {
+        zkSyncTestnet: {
+        url: "https://zksync2-testnet.zksync.dev",
+        ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
+        zksync: true,
+        },
+    },
+    solidity: {
+        version: "0.8.17",
+    },
+};
+
+```
 
 ::: tip zksync-cli
 
@@ -116,7 +137,7 @@ First, add the mapping `limits` and struct `Limit` that serve as data storages f
 
 Note that the `limits` mapping uses the token address as its key. This means that users will be able to set limits for ETH or any ERC20 token.
 
-### Setting and Removing of the daily spending limit
+### Setting and Removing the daily spending limit
 
 Here is the implementation to set and remove the limit:
 
@@ -168,7 +189,7 @@ Here is the implementation to set and remove the limit:
 
 ```
 
-Both `setSpendingLimit` and `removeSpendingLimit` can only be called by account contracts that inherit this contract `SpendLimit`, which is ensured by the `onlyAccount` modifier. They call `_updateLimit` and passing the arguments to modify the storage data of the limit after the verification in `_isValidUpdate` succeeds.
+Both `setSpendingLimit` and `removeSpendingLimit` can only be called by account contracts that inherit this contract `SpendLimit`, which is ensured by the `onlyAccount` modifier. They call `_updateLimit` and pass the arguments to modify the storage data of the limit after the verification in `_isValidUpdate` succeeds.
 
 Specifically, `setSpendingLimit` sets a non-zero daily spending limit for a given token, and `removeSpendingLimit` disables the active daily spending limit by decreasing `limit` and `available` to 0 and setting `isEnabled` to false.
 
@@ -223,7 +244,7 @@ if (limit.limit != limit.available && timestamp > limit.resetTime) {
 
 ```
 
-Finally, the method checks if the account is able to spend a specified amount of the token. If the amount doesn't exceed the available amount, it decrements the `available` in the limit:
+Finally, the method checks if the account can spend a specified amount of the token. If the amount doesn't exceed the available amount, it decrements the `available` in the limit:
 
 ```solidity
 require(limit.available >= _amount, 'Exceed daily limit');
@@ -354,7 +375,7 @@ contract SpendLimit {
 
 ### Account & Factory contracts
 
-That's pretty much for `SpendLimit.sol`. Now, we also need to create the account contract `Account.sol`, and the factory contract that deploys account contracts,`AAFactory.sol`.
+That's pretty much for `SpendLimit.sol`. Now, we also need to create the account contract `Account.sol`, and the factory contract that deploys account contracts, in `AAFactory.sol`.
 
 As noted earlier, those two contracts are mostly based on the implementations of [another tutorial about Account Abstraction](./custom-aa-tutorial.md).
 
@@ -364,24 +385,28 @@ Below are the full codes.
 
 #### Account.sol contract
 
-The account contract implements the IAccount interface and inherits the SpendLimit contract we just created:
+The account needs to implement the [IAccount](../developer-guides/aa.md#iaccount-interface) interface and inherits the SpendLimit contract we just created. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
+
+The `checkValidECDSASignatureFormat` and `extractECDSASignature` are helper methods that we'll use in the `isValidSignature` implementation.
 
 ```solidity
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol";
-import "@matterlabs/zksync-contracts/l2/system-contracts/TransactionHelper.sol";
+import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
-import "@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.sol";
+import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
 import "./SpendLimit.sol";
 
 contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contract
-
+    // to get transaction hash
     using TransactionHelper for Transaction;
 
+    // state variables for account owner
     address public owner;
 
     bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
@@ -391,7 +416,7 @@ contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contr
             msg.sender == BOOTLOADER_FORMAL_ADDRESS,
             "Only bootloader can call this method"
         );
-
+        // Continure execution if called from the bootloader.
         _;
     }
 
@@ -403,26 +428,30 @@ contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contr
         bytes32,
         bytes32 _suggestedSignedHash,
         Transaction calldata _transaction
-    ) external payable override onlyBootloader {
-        _validateTransaction(_suggestedSignedHash, _transaction);
+    ) external payable override onlyBootloader returns (bytes4 magic) {
+        return _validateTransaction(_suggestedSignedHash, _transaction);
     }
 
     function _validateTransaction(
         bytes32 _suggestedSignedHash,
         Transaction calldata _transaction
-    ) internal {
-
-        SystemContractsCaller.systemCall(
+    ) internal returns (bytes4 magic) {
+    // Incrementing the nonce of the account.
+    // Note, that reserved[0] by convention is currently equal to the nonce passed in the transaction
+        SystemContractsCaller.systemCallWithPropagatedRevert(
             uint32(gasleft()),
             address(NONCE_HOLDER_SYSTEM_CONTRACT),
             0,
             abi.encodeCall(
                 INonceHolder.incrementMinNonceIfEquals,
-                (_transaction.reserved[0])
+                (_transaction.nonce)
             )
         );
 
         bytes32 txHash;
+        // While the suggested signed hash is usually provided, it is generally
+        // not recommended to rely on it to be present, since in the future
+        // there may be tx types with no suggested signed hash.
 
         if (_suggestedSignedHash == bytes32(0)) {
             txHash = _transaction.encodeHash();
@@ -430,10 +459,17 @@ contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contr
             txHash = _suggestedSignedHash;
         }
 
-        require(
-            isValidSignature(txHash, _transaction.signature) ==
-                EIP1271_SUCCESS_RETURN_VALUE
-        );
+        // The fact there is are enough balance for the account
+        // should be checked explicitly to prevent user paying for fee for a
+        // transaction that wouldn't be included on Ethereum.
+        uint256 totalRequiredBalance = _transaction.totalRequiredBalance();
+        require(totalRequiredBalance <= address(this).balance, "Not enough balance for fee + value");
+
+        if (isValidSignature(txHash, _transaction.signature) == EIP1271_SUCCESS_RETURN_VALUE) {
+            magic = ACCOUNT_VALIDATION_SUCCESS_MAGIC;
+        } else {
+            magic = bytes4(0);
+        }
     }
 
     function executeTransaction(
@@ -444,58 +480,122 @@ contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contr
         _executeTransaction(_transaction);
     }
 
-    function _executeTransaction(Transaction calldata _transaction) internal {
-        address to = address(uint160(_transaction.to));
-        uint256 value = _transaction.reserved[1];
-        bytes memory data = _transaction.data;
+function _executeTransaction(Transaction calldata _transaction) internal {
+    address to = address(uint160(_transaction.to));
+    uint128 value = Utils.safeCastToU128(_transaction.value);
+    bytes memory data = _transaction.data;
 
-        // Call SpendLimit contract to ensure that ETH `value` doesn't exceed the daily spending limit
-        if ( value > 0 ) {
-           _checkSpendingLimit(address(ETH_TOKEN_SYSTEM_CONTRACT), value);
-        }
+    if (to == address(DEPLOYER_SYSTEM_CONTRACT)) {
+        uint32 gas = Utils.safeCastToU32(gasleft());
 
-        if (to == address(DEPLOYER_SYSTEM_CONTRACT)) {
-            SystemContractsCaller.systemCall(
-                uint32(gasleft()),
-                to,
-                uint128(_transaction.reserved[1]),
-                _transaction.data
-            );
-        } else {
-            bool success;
-            assembly {
-                success := call(
-                    gas(),
-                    to,
-                    value,
-                    add(data, 0x20),
-                    mload(data),
-                    0,
-                    0
-                )
-            }
-            require(success);
+        // Note, that the deployer contract can only be called
+        // with a "systemCall" flag.
+        SystemContractsCaller.systemCallWithPropagatedRevert(gas, to, value, data);
+    } else {
+        bool success;
+        assembly {
+            success := call(gas(), to, value, add(data, 0x20), mload(data), 0, 0)
         }
+        require(success);
     }
+}
+
 
     function executeTransactionFromOutside(Transaction calldata _transaction)
         external
         payable
     {
         _validateTransaction(bytes32(0), _transaction);
-
         _executeTransaction(_transaction);
     }
 
-    function isValidSignature(bytes32 _hash, bytes calldata _signature)
+    function isValidSignature(bytes32 _hash, bytes memory _signature)
         public
         view
         override
-        returns (bytes4)
+        returns (bytes4 magic)
     {
+        magic = EIP1271_SUCCESS_RETURN_VALUE;
 
-        require(owner == ECDSA.recover(_hash, _signature));
-        return EIP1271_SUCCESS_RETURN_VALUE;
+        if (_signature.length != 130) {
+            // Signature is invalid anyway, but we need to proceed with the signature verification as usual
+            // in order for the fee estimation to work correctly
+            _signature = new bytes(130);
+            
+            // Making sure that the signatures look like a valid ECDSA signature and are not rejected rightaway
+            // while skipping the main verification process.
+            _signature[64] = bytes1(uint8(27));
+        }
+
+        (bytes memory signature) = extractECDSASignature(_signature);
+
+        if(!checkValidECDSASignatureFormat(signature)) {
+            magic = bytes4(0);
+        }
+
+        address recoveredAddr = ECDSA.recover(_hash, signature);
+
+        // Note, that we should abstain from using the require here in order to allow for fee estimation to work
+        if(recoveredAddr != owner) {
+            magic = bytes4(0);
+        }
+    }
+
+
+    // This function verifies that the ECDSA signature is both in correct format and non-malleable
+    function checkValidECDSASignatureFormat(bytes memory _signature) internal pure returns (bool) {
+        if(_signature.length != 65) {
+            return false;
+        }
+
+        uint8 v;
+		bytes32 r;
+		bytes32 s;
+		// Signature loading code
+		// we jump 32 (0x20) as the first slot of bytes contains the length
+		// we jump 65 (0x41) per signature
+		// for v we load 32 bytes ending with v (the first 31 come from s) then apply a mask
+		assembly {
+			r := mload(add(_signature, 0x20))
+			s := mload(add(_signature, 0x40))
+			v := and(mload(add(_signature, 0x41)), 0xff)
+		}
+		if(v != 27 && v != 28) {
+            return false;
+        }
+
+		// EIP-2 still allows signature malleability for ecrecover(). Remove this possibility and make the signature
+        // unique. Appendix F in the Ethereum Yellow paper (https://ethereum.github.io/yellowpaper/paper.pdf), defines
+        // the valid range for s in (301): 0 < s < secp256k1n ÷ 2 + 1, and for v in (302): v ∈ {27, 28}. Most
+        // signatures from current libraries generate a unique signature with an s-value in the lower half order.
+        //
+        // If your library generates malleable signatures, such as s-values in the upper range, calculate a new s-value
+        // with 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141 - s1 and flip v from 27 to 28 or
+        // vice versa. If your library also generates signatures with 0/1 for v instead 27/28, add 27 to v to accept
+        // these malleable signatures as well.
+        if(uint256(s) > 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5D576E7357A4501DDFE92F46681B20A0) {
+            return false;
+        }
+
+        return true;
+    }
+    
+    function extractECDSASignature(bytes memory _fullSignature) internal pure returns (bytes memory signature) {
+        require(_fullSignature.length == 130, "Invalid length");
+
+        signature = new bytes(65);
+
+        // Copying the first signature. Note, that we need an offset of 0x20 
+        // since it is where the length of the `_fullSignature` is stored
+        assembly {
+            let r := mload(add(_fullSignature, 0x20))
+			let s := mload(add(_fullSignature, 0x40))
+			let v := and(mload(add(_fullSignature, 0x41)), 0xff)
+
+            mstore(add(signature, 0x20), r)
+            mstore(add(signature, 0x40), s)
+            mstore8(add(signature, 0x60), v)
+        }
     }
 
     function payForTransaction(
@@ -507,9 +607,9 @@ contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contr
         require(success, "Failed to pay the fee to the operator");
     }
 
-    function prePaymaster(
-        bytes32,
-        bytes32,
+    function prepareForPaymaster(
+        bytes32, // _txHash
+        bytes32, // _suggestedSignedHash
         Transaction calldata _transaction
     ) external payable override onlyBootloader {
         _transaction.processPaymasterInput();
@@ -519,6 +619,8 @@ contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contr
         assert(msg.sender != BOOTLOADER_FORMAL_ADDRESS);
     }
 }
+
+
 ```
 
 The `_executeTransaction` method is where we'll use the methods from the `SpendLimit.sol` contract. If the ETH transaction value is non-zero, the Account contract calls `_checkSpendingLimit` to verify the allowance for spending.
@@ -545,7 +647,7 @@ The `AAFactory.sol` contract will be responsible of deploying instances of the `
 pragma solidity ^0.8.0;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
-import "@matterlabs/zksync-contracts/l2/system-contracts/SystemContractsCaller.sol";
+import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
 
 contract AAFactory {
     bytes32 public aaBytecodeHash;
@@ -565,14 +667,16 @@ contract AAFactory {
                 uint128(0),
                 abi.encodeCall(
                     DEPLOYER_SYSTEM_CONTRACT.create2Account,
-                    (salt, aaBytecodeHash, abi.encode(owner))
+                    (salt, aaBytecodeHash, abi.encode(owner), IContractDeployer.AccountAbstractionVersion.Version1)
                 )
             );
         require(success, "Deployment failed");
 
-        (accountAddress, ) = abi.decode(returnData, (address, bytes));
+        (accountAddress) = abi.decode(returnData, (address));
     }
 }
+
+
 ```
 
 ## Deploying the smart contracts
@@ -611,7 +715,17 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // });
   // await depositHandle.wait();
 
-  const factory = await deployer.deploy(factoryArtifact, [utils.hashBytecode(aaArtifact.bytecode)], undefined, [aaArtifact.bytecode]);
+  // Getting the bytecodeHash of the account
+  const bytecodeHash = utils.hashBytecode(aaArtifact.bytecode);
+
+ const factory = await deployer.deploy(
+    factoryArtifact,
+    [bytecodeHash],
+    undefined,
+    [
+      aaArtifact.bytecode,
+    ]
+  );
 
   console.log(`AA factory address: ${factory.address}`);
 
@@ -841,7 +955,7 @@ To keep this tutorial as simple as possible, we've used `block.timestamp` but we
 
 ## Complete Project
 
-You can download the complete project [here](https://github.com/porco-rosso-j/daily-spendlimit-tutorial). Additionally, the repository contains a test folder that can perform more detailed testing than this tutorial on zkSync local network.
+You can download the complete project [here](https://github.com/matter-labs/daily-spendlimit-tutorial). Additionally, the repository contains a test folder that can perform more detailed testing than this tutorial on zkSync local network.
 
 ## Learn more
 

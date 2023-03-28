@@ -123,8 +123,8 @@ input[type="submit" i] {
     }
 }
 
-[data-theme="dark"] img[src*="/logo.svg"] {
-    content: url("/zk-sync-era-light.svg") !important;
+[data-theme="dark"] img[src*="/era-dark.svg"] {
+    content: url("/era-light.svg") !important;
 }
 
 [data-theme="dark"] img[src*="/images/code-light.png"] {
@@ -153,17 +153,21 @@ hr{
     display: none !important;
 }
 
+tbody td a {
+    white-space: nowrap;
+}
+
 a.title {
     font-weight: 700 !important;
 }
 
 .logo {
-    height: 1.8rem !important;
+    height: 1.5rem !important;
     padding: 0.70rem 0 !important;
 }
 
-.edit-link .icon {
-    //display: none !important;
+.external-link-icon {
+    padding-left: 4px;
 }
 
 /* Mobile */
@@ -210,7 +214,7 @@ $border-color: #e5e7eb;
 }
 
 [data-theme="light"] img[src*="/zk-sync-era-line-light.svg"] {
-    content: url("/zk-sync-era-line-dark.svg");
+    content: url("/zk-sync-era-line-dark.png");
 }
 
 [data-theme="dark"] img[src*="/zk-sync-era-line-light.svg"] {

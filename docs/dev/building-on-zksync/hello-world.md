@@ -34,11 +34,11 @@ cd greeter-example
 
 # For Yarn
 yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 
 # For NPM
 npm init -y
-npm i -D typescript ts-node ethers@^5.7.2 zksync-web3@^0.13.1 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+npm i -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
 Please note that Typescript is required by zkSync plugins.
@@ -57,7 +57,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.3.1",
+    version: "1.3.5",
     compilerSource: "binary",
     settings: {},
   },
@@ -88,7 +88,7 @@ If the contract was already compiled, you should delete the `artifacts-zk` and `
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.17;
 
 contract Greeter {
     string private greeting;
@@ -209,13 +209,32 @@ npm run serve
 
 By default, the page should be running at `http://localhost:8080`. Open this URL in the browser to see the page.
 
-### Connecting to Metamask & bridging tokens to zkSync
 
-In order to interact with dApps built on zkSync, connect the Metamask wallet to the zkSync alpha testnet network and bridge some funds to L2.
+### Connecting Smart Accounts (e.g. Argent) to dApps
+
+zkSync Era natively supports two types of accounts:
+
+1. EOAs, e.g. MetaMask
+2. Smart accounts, e.g. Argent
+
+Enabling Smart accounts will allow you to onboard Argent users that already use the first version of zkSync.
+
+- Use [this library](https://era.zksync.io/docs/dev/developer-guides/aa.html#aa-signature-checker) to verify your Smart Account compatibility.
+- Follow [this guide](https://docs.argent.xyz/) to add Argent Login to you dApp.
+
+### Connecting EOAs (e.g. Metamask) to dApps
+
+In order to interact with dApps built on zkSync, connect the Metamask wallet to the zkSync alpha testnet network.
 
 - Follow [this guide](../fundamentals/interacting.md#connecting-to-zksync-era-on-metamask) to connect Metamask to zkSync.
+
+### Bridging some funds to L2
+
 - Use our [portal](https://portal.zksync.io) to bridge funds to zkSync.
 - Use the [faucet](https://portal.zksync.io/faucet) to get some test ERC20 tokens in your account.
+
+Be aware that Smart Accounts are Smart Contracts and that when bridging from Mainnet to a Smart Account (e.g. Argent) on zkSync Era, you must specify the address of your L2 wallet by clicking on "Deposit to another address on zkSync Era Mainnet".
+
 
 ### Project structure
 
@@ -285,10 +304,10 @@ Run the following command on the greeter-tutorial-starter root folder to install
 
 ```
 # For Yarn
-yarn add ethers@^5.7.2 zksync-web3@^0.13.1
+yarn add ethers@^5.7.2 zksync-web3
 
 # For NPM
-npm i ethers@^5.7.2 zksync-web3@^0.13.1
+npm i ethers@^5.7.2 zksync-web3
 ```
 
 After that, import both libraries in the `script` part of the `App.vue` file (right before the contract constant). It should look like this:

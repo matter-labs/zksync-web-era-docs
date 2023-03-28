@@ -34,7 +34,6 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Verify contracts](./building-on-zksync/contracts/contract-verification.md) - A guide on how to verify smart contracts with zkSync block explorer.
 - [Handling events](./building-on-zksync/events.md) - Learn how to handle events in zkSync Era.
 - [JSON-RPC API](./building-on-zksync/rpc.md) - Learn how to use our custom JSON-RPC APIs that are similar to Ethereum.
-- [Fair Onboarding Alpha](./building-on-zksync/fair-onboarding-alpha.md) - Learn how zkSync Era Fair Onboarding Alpha works.
 
 ### Tutorials
 
@@ -61,7 +60,7 @@ token.
 - [Python SDK](../api/python/) - Explore all the Python methods and functions required to build on zkSync Era.
 - [Go SDK](../api/go/) - Explore all the GO methods and functions required to build on zkSync Era.
 - [Java SDK](../api/java/) - Explore all the Java methods and functions required to build on zkSync Era.
-- [Swift SDK](../api/java/) - Explore all the Swift methods and functions required to build on zkSync Era.
+- [Swift SDK](../api/swift/) - Explore all the Swift methods and functions required to build on zkSync Era.
 - [Hardhat Plugins](../api/hardhat/) - Use our Hardhat zkSync plugins to compile, test, deploy, and verify your Solidity or Vyper based applications.
 - [zkSync CLI](../api/tools/zksync-cli/) - Simplify your development process and interact with zkSync Era from your terminal with zkSync CLI.
 
