@@ -41,10 +41,8 @@ lib
 /report.txt
 /tokens.txt
 
-!.yarn/releases/*
-!.yarn/plugins/*
+.yarn/releases/*
+.yarn/plugins/*
 .cache/
 .temp/
 .temp
-
-.DS_Store
