@@ -1,7 +1,5 @@
 # Interact with zkSync Era
 
-zkSync Era is currently is on the fair alpha onboarding stage, which involves opening our mainnet to certain teams to build and and make transactions on mainnet.
-
 ## Do I need experience with zkSync Lite?
 
 Some experience with zkSync Lite would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync Era and zkSync Lite are very different systems, and experience with the latter is not needed to build on zkSync Era.
