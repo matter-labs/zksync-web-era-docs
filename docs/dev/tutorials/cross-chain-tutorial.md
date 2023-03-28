@@ -11,6 +11,11 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 
 - You already have some experience working with Ethereum.
 
+:::warning
+- The `yarn` instructions only run on Node version 14.
+- Also, if you are using `yarn` with an M1 chip, you need to follow some extra steps. Please see the callout box in the L2 counter section for more information.
+:::
+
 ## Project structure
 
 Open a terminal window, create a new folder for the project tutorial, e.g. `mkdir cross-chain-tutorial`, and `cd` into the folder.
