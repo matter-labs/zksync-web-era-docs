@@ -11,7 +11,7 @@
 
 [zkSync Era Docs](https://era.zksync.io/docs) contain up-to-date information about **zkSync Era**.
 zkSync Era has built-in EVM compatibility which makes it a unified tool for releasing EVM-compatible ZK rollups.
-We call it [zkEVM](https://zksync.io/zkevm): web3 Layer 2 scaling functionality that preserves your battle-tested code and knowledge gained after years of working with Solidity.
+We call it [zkEVM](https://zksync.io/zkevm): web3, Layer 2, scaling functionality that preserves your battle-tested code and knowledge gained after years of working with Solidity.
 
 ## Build and setup
 
