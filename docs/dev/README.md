@@ -42,6 +42,13 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Vyper](compiler-toolchain/vyper.md) - Learn about the Vyper support.
 - [LLVM Framework](compiler-toolchain/llvm.md) - Learn about the LLVM framework.
 
+### Compiler Toolchain
+
+- [Overview](compiler-toolchain/overview.md) - Learn about our compiler toolchain.
+- [Solidity](compiler-toolchain/solidity.md) - Learn about the Solidity support.
+- [Vyper](compiler-toolchain/vyper.md) - Learn about the Vyper support.
+- [LLVM Framework](compiler-toolchain/llvm.md) - Learn about the LLVM framework.
+
 ### Tutorials
 
 - [Cross-chain governance](./tutorials/cross-chain-tutorial.md) - Learn how to use L1 to L2 contract interaction.
@@ -67,6 +74,6 @@ token.
 - [Python SDK](../api/python/) - Explore all the Python methods and functions required to build on zkSync Era.
 - [Go SDK](../api/go/) - Explore all the GO methods and functions required to build on zkSync Era.
 - [Java SDK](../api/java/) - Explore all the Java methods and functions required to build on zkSync Era.
-- [Swift SDK](../api/java/) - Explore all the Swift methods and functions required to build on zkSync Era.
+- [Swift SDK](../api/swift/) - Explore all the Swift methods and functions required to build on zkSync Era.
 - [Hardhat Plugins](../api/hardhat/) - Use our Hardhat zkSync plugins to compile, test, deploy, and verify your Solidity or Vyper based applications.
 - [zkSync CLI](../api/tools/zksync-cli/) - Simplify your development process and interact with zkSync Era from your terminal with zkSync CLI.

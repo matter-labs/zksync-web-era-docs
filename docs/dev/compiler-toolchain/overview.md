@@ -65,8 +65,6 @@ links above and use their CLI interfaces.
 - [hardhat-zksync-vyper documentation](../../../api/hardhat/hardhat-zksync-vyper.md)
 
 ::: warning
-
-Using compilers running in Docker images — which are no longer supported — is not recommended.
+Using no longer released compilers running in Docker images is not recommended.
 Instead, use the `compilerSource: "binary"` in the Hardhat config file to use the compiler binary.
-
 :::

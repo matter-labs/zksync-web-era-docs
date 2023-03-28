@@ -58,6 +58,16 @@ export const enSidebar = sidebar({
       ],
     },
     {
+      text: "Compiler Toolchain",
+      link: "/dev/compiler-toolchain",
+      children: [
+        "/dev/compiler-toolchain/overview.md",
+        "/dev/compiler-toolchain/solidity.md",
+        "/dev/compiler-toolchain/vyper.md",
+        "/dev/compiler-toolchain/llvm.md",
+      ],
+    },
+    {
       text: "Tutorials",
       link: "/dev/tutorials",
       children: [
