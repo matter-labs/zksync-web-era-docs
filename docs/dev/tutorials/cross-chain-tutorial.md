@@ -81,7 +81,7 @@ npm i solc@0.8.13 @typechain/hardhat @types/node ts-node typescript @nomiclabs/h
 ```
 @tab yarn
 ```sh
-yarn add solc@0.8.13 @typechain/hardhat @types/node ts-node typescript @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle ethereum-waffle ethers @openzeppelin/contracts @matterlabs/zksync-contracts
+yarn add -D @nomiclabs/hardhat-waffle  @openzeppelin/contracts @matterlabs/zksync-contracts
 ```
 :::
 
@@ -231,11 +231,11 @@ npm i @typechain/hardhat @types/node ts-node typescript @nomiclabs/hardhat-ether
 ```
 @tab yarn
 ```sh
-yarn add @typechain/hardhat @types/node ts-node typescript @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle ethereum-waffle ethers @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @nomicfoundation/hardhat-toolbox zksync-web3
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 :::
 
-3. Set up the Hardhat project configurations, selecting **Create a Typescript project** as before:
+3. DON'T RUN THIS: Set up the Hardhat project configurations, selecting **Create a Typescript project** as before:
 
 ```sh
 npx hardhat 
