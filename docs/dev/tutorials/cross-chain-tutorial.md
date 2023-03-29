@@ -8,8 +8,8 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 ## Prerequisites
 
 - You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
-
 - You already have some experience working with Ethereum.
+- You have a web3 wallet app which holds some Goerli test ETH and some zkSync test ETH.
 
 :::warning
 - The `yarn` instructions only run on Node version 14.
@@ -474,7 +474,7 @@ The output should be:
 The counter value is 0
 ```
 
-## Call L2 contract from L1 -> currently updating this section
+## Call L2 contract from L1 -> this section is currently being updated
 
 Now, let's call the `increment` method from layer 1. 
 
@@ -556,9 +556,16 @@ main().catch((error) => {
 
 4. Run the script with the following command:
 
+::: code-tabs
+@tab npm
 ```sh
 npx ts-node ./scripts/increment-counter.ts
 ```
+@tab yarn
+```sh
+yarn ts-node ./scripts/increment-counter.ts
+```
+:::
 
 In the output, you should see the full transaction receipt in L2. You can take the `transactionHash` and track it in the [zkSync explorer](https://explorer.zksync.io/).
 
