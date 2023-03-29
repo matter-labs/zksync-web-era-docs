@@ -346,7 +346,7 @@ yarn hardhat compile
 
 ### Deploy L2 counter contract
 
-1. Create a folder `deploy`, and copy/paste the following code into `deploy/deploy.ts`, replacing `<GOVERNANCE-ADDRESS>` with the address of the Governance contract we just deployed, and `<WALLET-PRIVATE-KEY>` with your private key:
+1. From the `L2-counter/` folder, create a folder `deploy`, and copy/paste the following code into `deploy/deploy.ts`, replacing `<GOVERNANCE-ADDRESS>` with the address of the Governance contract we just deployed, and `<WALLET-PRIVATE-KEY>` with your private key:
 
 ```typescript
 import { utils, Wallet } from "zksync-web3";
