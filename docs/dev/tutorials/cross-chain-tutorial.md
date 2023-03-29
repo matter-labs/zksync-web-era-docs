@@ -13,7 +13,7 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 
 :::warning
 - The `yarn` instructions only run on Node version 14.
-- Also, if you are using `yarn` with an M1 chip, you need to follow some extra steps. Please see the callout box in the L2 counter section for more information.
+- Use [`nvm`](https://github.com/nvm-sh/nvm) to switch to Node 14 with the command `nvm use 14`.
 :::
 
 ## Project structure
@@ -86,7 +86,7 @@ npm i solc@0.8.13 @typechain/hardhat @types/node ts-node typescript @nomiclabs/h
 ```
 @tab yarn
 ```sh
-yarn add -D @nomiclabs/hardhat-waffle  @openzeppelin/contracts @matterlabs/zksync-contracts
+yarn add -D @nomiclabs/hardhat-waffle @openzeppelin/contracts @matterlabs/zksync-contracts
 ```
 :::
 
@@ -136,7 +136,7 @@ data, gasLimit, gasPerPubdataByteLimit, new bytes[](0), msg.sender);
 
 ### Deploy L1 governance contract
 
-1. Create the file `/L1-governance/goerli.json` and copy/paste the code below, filling in the relevant values. Find node provider urls [here](https://chainlist.org/chain/5).
+1. Create the file `L1-Governance/goerli.json` and copy/paste the code below, filling in the relevant values. Find node provider urls [here](https://chainlist.org/chain/5).
 
 ```json
 {
@@ -196,6 +196,8 @@ main().catch((error) => {
 
 4. From the `L1-governance` folder root, compile and deploy the contract:
 
+::: code-tabs
+@tab npm
 ```sh
 # compile contract
 npx hardhat compile
@@ -203,6 +205,15 @@ npx hardhat compile
 # deploy contract
 npx hardhat run --network goerli ./scripts/deploy.ts
 ```
+@tab yarn
+```sh
+# compile contract
+yarn hardhat compile
+
+# deploy contract
+yarn hardhat run --network goerli ./scripts/deploy.ts
+```
+:::
 
 You should see output like this:
 
@@ -240,17 +251,26 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/har
 ```
 :::
 
-3. DON'T RUN THIS: Set up the Hardhat project configurations, selecting **Create a Typescript project** as before:
+3. Set up the Hardhat project configurations, selecting **Create a Typescript project** as before:
 
+::: code-tabs
+@tab npm
 ```sh
 npx hardhat 
 ```
-
-::: tip
-You can also use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/)
+@tab yarn
+```txt
+- Step 3 is only for the `npm` flow. 
+- Do not run `npx hardhat` if you are following the `yarn` flow.
+```
 :::
 
-4. Replace the code in `hardhat.config.ts` with the following:
+::: tip
+- With `npm` you can also use the zkSync CLI to scaffold a project automatically. 
+- Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/).
+:::
+
+4. Replace (create if necessary) `hardhat.config.ts` with the following, replacing `goerli` with the RPC URL as used in the `goerli.json` file in the L1 Governance section:
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
@@ -258,7 +278,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.3.1",
+    version: "1.3.6",
     compilerSource: "binary",
   },
   defaultNetwork: "zkSyncTestnet",
@@ -269,7 +289,7 @@ module.exports = {
     },
     zkSyncTestnet: {
       url: "https://testnet.era.zksync.dev",
-      ethNetwork: "goerli", // use RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
+      ethNetwork: "<GOERLI RPC URL>", 
       zksync: true,
     },
   },
@@ -283,11 +303,11 @@ module.exports = {
 If your default network is not `hardhat`, make sure to include `zksync: true` in its config, too.
 :::
 
-### Create L1 counter contract
+### Create L2 counter contract
 
-1. In the `contracts/` folder, remove any existing contracts and create a new file `Counter.sol`. 
+1. In the `contracts/` folder (create it if necessary), remove any existing contracts and create a new file `Counter.sol`. 
 
-This contract will have the address of the governance contract deployed previously on layer 1, and an incrementable counter which can only be invoked by the governance contract. 
+This contract contains the address of the governance contract deployed previously on layer 1, and an incrementable counter which can only be invoked by the governance contract. 
 
 2. Copy/paste the following code into the file:
 
@@ -311,15 +331,22 @@ contract Counter {
 }
 ```
 
-6. Compile the contract from the `L2-counter` root:
+3. Compile the contract from the `L2-counter` root:
 
+::: code-tabs
+@tab npm
 ```sh
 npx hardhat compile
 ```
+@tab yarn
+```sh
+yarn hardhat compile
+```
+:::
 
 ### Deploy L2 counter contract
 
-1. Create a folder `deploy`, and copy/paste the following code into `deploy/deploy.ts`, replacing `<GOVERNANCE-ADDRESS>` with the address of the Governance contract we just deployed, `<WALLET-PRIVATE-KEY>` with your private key:
+1. Create a folder `deploy`, and copy/paste the following code into `deploy/deploy.ts`, replacing `<GOVERNANCE-ADDRESS>` with the address of the Governance contract we just deployed, and `<WALLET-PRIVATE-KEY>` with your private key:
 
 ```typescript
 import { utils, Wallet } from "zksync-web3";
@@ -363,9 +390,16 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 2. Now deploy the contract from the `L2-counter/` folder root to zkSync:
 
+::: code-tabs
+@tab npm
 ```sh
 npx hardhat deploy-zksync
 ```
+@tab yarn
+```sh
+yarn hardhat deploy-zksync
+```
+:::
 
 You should see output like this:
 
@@ -373,6 +407,16 @@ You should see output like this:
 Running deploy script for the Counter contract
 Counter was deployed to 0x3c5A6AB2390F6217C78d2F6F403A9dFb7e7784FC
 ```
+
+:::warning
+At this point, if you have been following the `yarn` flow and you're on a Mac M1, you may have noticed `gyp` errors in the output. These may hinder your progress. If so, to bypass them, do the following from the `L2-counter` directory:
+* Remove `node_modules/`.
+* Open `package.json` and change the version of `matterlabs/hardhat-zksync-solc` to `^0.3.15-beta.2`.
+* Delete the `artifacts` and `caches` folders.
+* Run `yarn`.
+* Recreate and compile the `Counter.sol` contract as before, then continue with the deploy steps.
+:::
+
 
 ::: tip
 For more information about deploying contracts, check out the [quickstart tutorial](../building-on-zksync/hello-world.md) or the documentation for the zkSync [hardhat plugins](../../api/hardhat/getting-started.md).
@@ -413,9 +457,16 @@ main().catch((error) => {
 
 4. Run the script:
 
+::: code-tabs
+@tab npm
 ```sh
 npx ts-node ./scripts/display-value.ts
 ```
+@tab yarn
+```sh
+yarn ts-node ./scripts/display-value.ts
+```
+:::
 
 The output should be:
 
