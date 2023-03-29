@@ -12,7 +12,7 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 - You have a web3 wallet app which holds some Goerli test ETH and some zkSync test ETH.
 
 :::warning
-- The `yarn` instructions only run on Node version 14.
+- The `yarn` instructions run with Node version 14.
 - Use [`nvm`](https://github.com/nvm-sh/nvm) to switch to Node 14 with the command `nvm use 14`.
 :::
 
@@ -278,7 +278,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.3.6",
+    version: "1.3.5",
     compilerSource: "binary",
   },
   defaultNetwork: "zkSyncTestnet",
@@ -409,9 +409,11 @@ Counter was deployed to 0x3c5A6AB2390F6217C78d2F6F403A9dFb7e7784FC
 ```
 
 :::warning
-At this point, if you have been following the `yarn` flow and you're on a Mac M1, you may have noticed `gyp` errors in the output. These may hinder your progress. If so, to bypass them, do the following from the `L2-counter` directory:
+At this point, if you have been following the yarn flow and encounter the following error: `Error: Bytecode length in 32-byte words must be odd`, please do the following from the `L2-counter/` directory:
+
 * Remove `node_modules/`.
 * Open `package.json` and change the version of `matterlabs/hardhat-zksync-solc` to `^0.3.15-beta.2`.
+* Change the `zksolc` version to `"1.3.6"` in the `hardhat.config.ts` file.
 * Delete the `artifacts` and `caches` folders.
 * Run `yarn`.
 * Recreate and compile the `Counter.sol` contract as before, then continue with the deploy steps.
