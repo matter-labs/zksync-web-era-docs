@@ -26,17 +26,21 @@ This plugin is configured in the `hardhat.config.ts` file of your project. Here 
 
 ```typescript
 zksolc: {
-  version: "1.3.5",
+  version: "1.3.8",
   compilerSource: "binary",  // binary or docker (deprecated)
   settings: {
-    compilerPath: "zksolc",  // ignored for compilerSource: "docker"
+    compilerPath: "zksolc",  // optional. Ignored for compilerSource "docker". Can be used if compiler is located in a specific folder
     experimental: {
       dockerImage: "matterlabs/zksolc", // Deprecated: used for compilerSource: "docker"
       tag: "latest"   // Deprecated: used for compilerSource: "docker"
     },
     libraries:{}, // optional. References to non-inlinable libraries
     isSystem: false, // optional.  Enables Yul instructions available only for zkSync system contracts and libraries
-    forceEvmla: false // optional. Falls back to EVM legacy assembly if there is a bug with Yul
+    forceEvmla: false, // optional. Falls back to EVM legacy assembly if there is a bug with Yul
+    optimizer: {
+      enabled: true, // optional. True by default
+      mode: '3' // optional. 3 by default, z to optimize bytecode size
+    } 
   }
 }
 networks: {
@@ -58,7 +62,10 @@ Compilers are no longer released as Docker images and its usage is no longer rec
 - `dockerImage` and `tag` make up the name of the compiler docker image. If `compilerSource` is `binary`, these fields are ignored.
 - `libraries` if your contract uses non-inlinable libraries as dependencies, they have to be defined here. Learn more about [compiling libraries here](./compiling-libraries.md)
 - `isSystem` - required if contracts use enables Yul instructions available only for zkSync system contracts and libraries
-- `forceEvmla` - falls back to EVM legacy assembly if there is a bug with Yul
+- `forceEvmla` - falls back to EVM legacy assembly if there is a bug with Yul.
+- `optimizer` - Compiler optimizations:
+  - `enabled`: `true` (default) or `false`.
+  - `mode`: `3` (default) recommended for most projects. Mode `z` reduces bytecode size in large contracts that make heavy use of `keccak` and far calls.
 - `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default. Useful for multichain projects in which you can enable `zksync` only for specific networks.
 
 

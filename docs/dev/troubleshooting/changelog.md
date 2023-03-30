@@ -1,5 +1,25 @@
 # Changelog
 
+## Compilers and plugins (Mar 31st 2023)
+
+- zksolc has been updated to version `1.3.8`:
+  - Multiple optimizations and bug fixes.
+  - Included optimizer `mode` flag to reduce contract size in special cases.
+  - Support for Solidity output options.
+- zkvyper has been updated to version `1.3.4`: 
+  - Multiple optimizations and bug fixes.
+- New releases of multiple Hardhat plugins:
+  - hardhat-zksync-chai-matchers version `0.1.2`.
+  - hardhat-zksync-verify version `0.1.4`.
+  - hardhat-zksync-deploy version `0.6.3`.
+
+### How to update your project
+
+Compiler updates:
+  - For Solidity projects, update `zksolc` version to `1.3.4` in the `hardhat.config.ts` and update `@matterlabs/hardhat-zksync-solc` to `0.3.15`. Recompile and redeploy.
+  - For Solidity projects, update `zkvyper` version to `1.3.4` in the `hardhat.config.ts` and update `@matterlabs/hardhat-zksync-vyper` to `0.3.15`. Recompile and redeploy.
+Hardhat plugin updates:
+  - All plugins have been released as minor updates so you can update with `npm update PACKAGE_NAME` or `yarn upgrade PACKAGE_NAME`.
 
 ## Full launch system update (Mar 23rd 2023)
 
