@@ -46,8 +46,6 @@ cd greeter-example
 yarn init -y
 yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 
-npm init -y
-npm i -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
 @tab npm
@@ -593,7 +591,7 @@ Even though ether is the only token you can pay fees with, the account abstracti
 
 ::: warning Paymasters on mainnet
 
-The testnet paymaster is purely for demonstration of this feature and won't be available on mainnet. When integrating your protocol on mainnet, you should follow the documentation of the paymaster you will use or create your own.
+The testnet [paymaster](https://era.zksync.io/docs/dev/tutorials/custom-paymaster-tutorial.html#building-custom-paymaster) is purely for demonstration of this feature and won't be available on mainnet. When integrating your protocol on mainnet, you should follow the documentation of the paymaster you will use or create your own.
 
 :::
 
