@@ -9,7 +9,7 @@ This section of the documentation is under review to reflect the changes made to
 
 At zkSync, we aim to be compatible with Ethereum, meaning we aim to share similarities while minimizing huge differences, one such similarity is the gas fee model of zkSync.
 
-zkSync's version of `gas` is called `gas` just like Ethereum and represents not only the costs of computations but also the cost of publishing data on-chain and affecting storage.
+zkSync's version of `gas` represents not only the costs of computations but also the cost of publishing data on-chain and affecting storage.
 
 Since the costs for publishing the calldata on L1 are very volatile, the number of `gas` needed for changing a storage slot is not constant. For each block, the operator defines the following dynamic parameters:
 
@@ -74,7 +74,6 @@ Just like Geth, we will use binary search for gas estimation. However, there wil
 - Unlike Geth, it is impossible to track  *out of gas* errors on zkSync Era. The main reason is that the “actual” execution will happen inside the DefaultAccount system contract and due to the 63/64 rule when a high number of gas is provided, the call to the `execute` method of the DefaultAccount will NOT fail due to out of gas even though the subcall to the `transaction.to` contract did fail with an out of gas error.
 
 - During simulation, Geth uses `tx.gasprice = 0` to make sure that the user can pay the fee even though the `tx.origin` in the simulation may not have any balance at all. This means that when `estimateGas` from an empty account is called, no `value` can be provided to such call as this account has zero balance to cover this value. 
-
 We could do that, but that would mean that the `payForTransaction` of the Account Abstraction protocol would do nothing and thus be much cheaper than it will be during the actual transaction validation. Instead, the operator will increase the balance of the user’s account by `tx.maxFeePerGas * tx.gasLimit`.
 
 For DefaultAccount it will behave the same way as on geth (since the user will get rid of the new funds in the `payForTransaction` method), but for custom accounts, they may unexpectedly contain more balance than they will have onchain, which may affect their behavior.
