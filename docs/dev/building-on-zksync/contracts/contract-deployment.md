@@ -6,9 +6,6 @@ All these specifics make the process of deploying smart contracts on zkEVM compl
 
 [Learn more about EIP712 transactions here](../../../api/api.md#eip712).
 
-
-
-
 ## Ethereum / zkSync differences
 
 **How deploying contracts works on Ethereum.**
@@ -23,12 +20,12 @@ We recommend using the [hardhat-zksync-deploy](../../../api/hardhat) plugin, to 
 
 Here's a [step-by-step guide on how to use it](../../../api/hardhat/getting-started.md).
 
-### Note on `factory deps`
+### Note on `factory_deps`
 
 A good question could be, _how does the validator know the preimage of the bytecode hashes to execute the code?_
-Here comes the concept of factory dependencies(`factory_deps` for short)! Factory dependencies are a list of bytecode hashes whose preimages were shown on L1 (data is always available).
+Here comes the concept of factory dependencies (`factory_deps` for short)! Factory dependencies are a list of bytecode hashes whose preimages were shown on L1 (data is always available).
 
-Under the hood, zkSync does not store bytecodes of contracts, but [specially formatted hashes of the bytecodes](#format-of-bytecode-hash). You can see that even the [ContractDeployer](../../developer-guides/system-contracts.md#contractdeployer) system contract accepts the bytecode hash of the deployed contract and not its bytecode. However, for contract deployment to succeed, the operator needs to know the bytecode. Exactly for this reason the `factory_deps` (i.e. factory dependencies) field for transactions is used: it contains the bytecodes that should be known to the operator for this transaction to succeed. Once the transaction succeeds, these bytecodes will be published on L1 and will be considered "known" to the operator forever.
+Under the hood, zkSync does not store bytecodes of contracts, but [specially formatted hashes of the bytecodes](#format-of-bytecode-hash). You can see that the [ContractDeployer](../../developer-guides/system-contracts.md#contractdeployer) system contract accepts the bytecode hash of the deployed contract and not its bytecode. However, for contract deployment to succeed, the operator needs to know the bytecode. The `factory_deps` field of the transaction is used for this reason: it contains the bytecodes that should be known to the operator for this transaction to succeed. Once the transaction succeeds, these bytecodes are published on L1 and are considered "known" to the operator forever.
 
 Some examples of usage are:
 
@@ -61,7 +58,7 @@ For the ease of [supporting account abstraction](../../developer-guides/aa.md), 
 
 This means that while for smart contracts the nonce on zkSync behaves the same way as on Ethereum, for EOAs calculating the address of the deployed contract is not as straightforward. On Ethereum, it can be safely calculated as `hash(RLP[address, nonce])`, while on zkSync it is recommended to wait until the contract is deployed and catch the `ContractDeployed` event emitted by [ContractDeployer](../../developer-guides/system-contracts.md#contractdeployer) with the address of the newly deployed contract. All of this is done in the background by the SDK.
 
-To gain a deterministic address, you should use the `create2` method from [ContractDeployer](../../developer-guides/system-contracts.md#contractdeployer). It is available for EOAs as well, but it is not available in the SDK yet.
+To have a deterministic address, you should use the `create2` method from [ContractDeployer](../../developer-guides/system-contracts.md#contractdeployer). It is available for EOAs as well.
 
 ## Deploying contracts from L1
 
