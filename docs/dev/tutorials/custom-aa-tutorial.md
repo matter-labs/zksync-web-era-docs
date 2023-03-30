@@ -5,23 +5,36 @@ In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
 
 
 ## Prerequisite
+To better understand this page, we recommend you first read up on the following guides:
 
-It is highly recommended to read about the [design](../developer-guides/aa.md) of the account abstraction protocol before diving into this tutorial.
+- Read about the [design](../developer-guides/aa.md) of the account abstraction protocol.
+- Read the [introduction to the system contracts](../developer-guides/system-contracts.md).
+- Read about [smart contract deployment](../building-on-zksync/contracts/contract-deployment.md) on zkSyn Era.
+- Read the [gas estimation for transaction](../developer-guides/transactions/fee-model.md#gas-estimation-during-transaction-for-custom-and-paymaster-accounts) guide.
+- If you haven't, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 
-It is assumed that you are already familiar with deploying smart contracts on zkSync.
-If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
-It is also recommended to read the [introduction](../developer-guides/system-contracts.md) to the system contracts.
+
 
 ## Installing dependencies
 
 We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it:
 
-```
+::: code-tabs
+
+@tab:active folder
+
+```sh
 mkdir custom-aa-tutorial
 cd custom-aa-tutorial
+```
+
+@tab yarn
+
+```bash
 yarn init -y
 yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+:::
 
 ::: tip
 
@@ -37,7 +50,7 @@ yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/c
 
 Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, similar to the [quickstart tutorial](../building-on-zksync/hello-world.md). As in this project our contracts will interact with system contracts, we need to include the `isSystem: true` in the compiler settings:
 
-```
+```ts
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 
