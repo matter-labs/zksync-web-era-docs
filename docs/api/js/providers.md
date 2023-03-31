@@ -140,7 +140,9 @@ async getDefaultBridgeAddresses(): Promise<{
 
 ### `getConfirmedTokens`
 
-Given `start` and `limit` returns information (address, symbol, name, decimals) about the confirmed tokens with IDs in the interval `[start..start+limit-1]`. "Confirmed" is a misnomer here, since a confirmed token is one that has been bridged through the default zkSync bridge. This method will mostly be used by the zkSync team internally.
+Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `start` and `limit`.
+
+**Confirmed** in the function name means the function returns any token bridged to zkSync via the official bridge.
 
 The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically sorted array of tokens.
 
