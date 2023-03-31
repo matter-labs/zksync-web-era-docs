@@ -1,12 +1,5 @@
 # Fee mechanism
 
-::: warning
-
-
-This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../troubleshooting/changelog.md)). A revised version will be available shortly.
-
-:::
-
 At zkSync, we aim to be compatible with Ethereum, meaning we aim to share similarities while minimizing huge differences, one such similarity is the gas fee model of zkSync.
 
 zkSync's version of `gas` represents not only the costs of computations but also the cost of publishing data on-chain and affecting storage.
@@ -57,7 +50,7 @@ The code of the validation step of each account can be found in the [DefaultAcco
 
 ### Notes on the transaction’s length
 
-zkSync Era sends state diffs onchain, but the cost for the transaction will still mildly depend on its length (because long transactions need to be stored in the memory of the operator). Also, long transactions incur additional costs during interactions with an account. However, the signature (as well as its length) is not available at the time of fee estimation and so there is no correct way to precisely estimate the cost of the transaction. For now, we will compensate for it by multiplying the recommended cost of the transaction by a few percent. In the future, we may introduce the following:
+zkSync Era sends state diffs on-chain, but the cost for the transaction will still mildly depend on its length (because long transactions need to be stored in the memory of the operator). Also, long transactions incur additional costs during interactions with an account. However, the signature (as well as its length) is not available at the time of fee estimation and so there is no correct way to precisely estimate the cost of the transaction. For now, we will compensate for it by multiplying the recommended cost of the transaction by a few percent. In the future, we may introduce the following:
 
 - Each account will be able to implement a method called `fillPartialTransaction` that will fill the signature with the substituted value which will be used for fee estimation.
 
@@ -71,9 +64,9 @@ The `eth_estimateGas` method itself will use binary search to find the smallest 
 
 Just like Geth, we will use binary search for gas estimation. However, there will be some notable differences in gas estimation from the behaviour of Geth:
 
-- Unlike Geth, it is impossible to track  *out of gas* errors on zkSync Era. The main reason is that the “actual” execution will happen inside the DefaultAccount system contract and due to the 63/64 rule when a high number of gas is provided, the call to the `execute` method of the DefaultAccount will NOT fail due to out of gas even though the subcall to the `transaction.to` contract did fail with an out of gas error.
+- Unlike Geth, it is impossible to track *out of gas* errors on zkSync Era. The main reason is that the “actual” execution will happen inside the DefaultAccount system contract and due to the 63/64 rule when a high number of gas is provided, the call to the `execute` method of the DefaultAccount will NOT fail due to out of gas even though the subcall to the `transaction.to` contract did fail with an out of gas error.
 
-- During simulation, Geth uses `tx.gasprice = 0` to make sure that the user can pay the fee even though the `tx.origin` in the simulation may not have any balance at all. This means that when `estimateGas` from an empty account is called, no `value` can be provided to such call as this account has zero balance to cover this value. 
+- During the simulation, Geth uses `tx.gasprice = 0` to make sure that the user can pay the fee even though the `tx.origin` in the simulation may not have any balance at all. This means that when `estimateGas` from an empty account is called, no `value` can be provided to such call as this account has zero balance to cover this value. 
 We could do that, but that would mean that the `payForTransaction` of the Account Abstraction protocol would do nothing and thus be much cheaper than it will be during the actual transaction validation. Instead, the operator will increase the balance of the user’s account by `tx.maxFeePerGas * tx.gasLimit`.
 
-For DefaultAccount it will behave the same way as on geth (since the user will get rid of the new funds in the `payForTransaction` method), but for custom accounts, they may unexpectedly contain more balance than they will have onchain, which may affect their behavior.
+For DefaultAccount it will behave the same way as on Geth (since the user will get rid of the new funds in the `payForTransaction` method), but for custom accounts, they may unexpectedly contain more balance than they will have on-chain, which may affect their behavior.
