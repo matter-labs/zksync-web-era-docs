@@ -527,7 +527,7 @@ async function main() {
   // Getting the cost of the execution in Wei.
   const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, gasLimit, ethers.utils.hexlify(data).length);
 
-  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, gasLimit, {
+  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, gasLimit, utils.REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT, {
     // Passing the necessary ETH `value` to cover the fee for the operation
     value: baseCost,
     gasPrice,
