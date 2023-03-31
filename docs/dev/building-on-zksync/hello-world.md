@@ -93,7 +93,7 @@ module.exports = {
 };
 ```
 
-::: warning Tip
+::: warning
 
 If the contract was already compiled, you should delete the `artifacts-zk` and `cache-zk` folders, otherwise, it won't recompile unless you change the compiler version.
 
