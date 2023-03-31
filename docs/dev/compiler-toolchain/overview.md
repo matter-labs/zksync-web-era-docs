@@ -47,7 +47,7 @@ These IR compilers perform the following steps:
 6. Print the output matching the format of the input method the IR compiler is called with.
 
 Our IR compilers leverage I/O mechanisms which already exist in the high-level source code
-compilers. They may modify the input and output to some extent, and add data for features unique to zkEVM,
+compilers. They may modify the input and output to some extent, add data for features unique to zkEVM,
 and remove unsupported feature artifacts.
 
 ## Assembler
