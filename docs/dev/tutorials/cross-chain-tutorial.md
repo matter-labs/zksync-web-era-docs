@@ -82,7 +82,7 @@ To interact with the zkSync bridge contract using Solidity, you need the zkSync 
 ::: code-tabs
 @tab npm
 ```sh
-npm i solc@0.8.13 @typechain/hardhat @types/node ts-node typescript @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle ethereum-waffle ethers @openzeppelin/contracts @matterlabs/zksync-contracts
+npm i @nomiclabs/hardhat-waffle @openzeppelin/contracts @matterlabs/zksync-contracts
 ```
 @tab yarn
 ```sh
@@ -243,7 +243,7 @@ yarn init -y
 ::: code-tabs
 @tab npm
 ```sh
-npm i @typechain/hardhat @types/node ts-node typescript @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle ethereum-waffle ethers @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @nomicfoundation/hardhat-toolbox zksync-web3
+npm i typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 @tab yarn
 ```sh
@@ -478,6 +478,10 @@ The counter value is 0
 
 ## Call L2 contract from L1 -> this section is currently being updated
 
+:::warning
+The script below is currently being fixed. 
+:::
+
 Now, let's call the `increment` method from layer 1. 
 
 1. Copy the `abi` array from the compilation artifact located at:
@@ -527,7 +531,7 @@ async function main() {
   // Getting the cost of the execution in Wei.
   const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, gasLimit, ethers.utils.hexlify(data).length);
 
-  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, gasLimit, {
+  const tx = await govcontract.callZkSync(zkSyncAddress, COUNTER_ADDRESS, data, gasLimit, utils.REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT, {
     // Passing the necessary ETH `value` to cover the fee for the operation
     value: baseCost,
     gasPrice,
