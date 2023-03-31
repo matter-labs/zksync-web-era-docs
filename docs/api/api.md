@@ -106,7 +106,7 @@ None.
 
 ### `zks_getConfirmedTokens`
 
-Given `from` and `limit` return information about the confirmed tokens with IDs in the interval `[from..from+limit-1]`. "Confirmed" is a misnomer here, since a confirmed token is one that has been bridged through the default zkSync Era bridge. This method will mostly be used by the zkSync team internally.
+`from` and `limit` return information about the confirmed tokens with IDs in the interval `[from..from+limit-1]`. **Confirmed** is a misnomer here, since a confirmed token is one that has been bridged through the default zkSync Era bridge. This method will mostly be used by the zkSync team internally.
 
 The tokens are returned in alphabetical order by their symbols, so a token's id is just its place in an array of tokens that has been sorted by symbols.
 
