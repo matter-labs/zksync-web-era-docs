@@ -10,8 +10,8 @@ At the time of writing, we support Solidity and Vyper.
 The toolchain consists of the following:
 
 1. [High-level source code compilers](#high-level-source-code-compilers): `solc` and `vyper`.
-2. [IR compilers, or LLVM front-end](#ir-compilers): `zksolc` and `zkvyper`.
-3. [The LLVM framework](./llvm.md) with a zkEVM back-end which emits the zkEVM text assembly.
+2. [IR compilers, or LLVM front end](#ir-compilers): `zksolc` and `zkvyper`.
+3. [The LLVM framework](./llvm.md) with a zkEVM back end which emits the zkEVM text assembly.
 4. [The assembler](#assembler) which produces the zkEVM bytecode from the text assembly.
 5. [Hardhat plugins](#hardhat-plugins) which set up the environment.
 
@@ -27,7 +27,7 @@ child processes to process their output. We use two such compilers at the time o
 
 ## IR Compilers
 
-Our toolchain includes LLVM front-ends that process the output of high-level source code compilers:
+Our toolchain includes LLVM front ends that process the output of high-level source code compilers:
 
 - [zksolc](https://github.com/matter-labs/zksolc-bin); calling `solc` as a child process. For more info, see [the documentation](./solidity.md).
 - [zkvyper](https://github.com/matter-labs/zkvyper-bin); calling `vyper` as a child process. For more info, see [the documentation](./vyper.md).
@@ -47,7 +47,7 @@ and removing unsupported feature artifacts.
 ## Assembler
 
 The [assembler](https://github.com/matter-labs/era-zkevm-assembly), which is written in Rust, compiles zkEVM assembly
-to zkEVM bytecode. This tool is not a part of our LLVM back-end as it uses several cryptographic libraries which are
+to zkEVM bytecode. This tool is not a part of our LLVM back end as it uses several cryptographic libraries which are
 easier to maintain outside of the framework.
 
 ## Hardhat Plugins
