@@ -6,7 +6,7 @@ to design, implement, and optimize efficient language-specific features while be
 This ensures high-performance execution, improved portability, and seamless integration with existing LLVM-based tools.
 Furthermore, the modularity and extensibility of LLVM make it easier to support new smart contract languages with LLVM front ends.
 
-Additionally, LLVM improves efficiency compared to the original EVM pipeline, as we can take advantage of the
+Additionally, LLVM improves on the original EVM pipeline efficiency, as we can take advantage of the
 numerous optimization passes, tools, and tests available in its mature ecosystem.
 
 In our toolchain, LLVM consumes the LLVM IR, applies extensive optimizations, and eventually passes the optimized IR

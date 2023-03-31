@@ -1,12 +1,12 @@
 # Vyper
 
 The Vyper compiler we provide as part of our toolchain is called [zkvyper](https://github.com/matter-labs/zkvyper-bin). It
-operates on Vyper’s LLL IR and metadata received from the underlying [vyper](https://docs.vyperlang.org/en/latest/index.html) compiler,
+operates on Vyper’s LLL IR, and metadata received from the underlying [vyper](https://docs.vyperlang.org/en/latest/index.html) compiler,
 which must be available in `$PATH`, or its path must be explicitly passed via the CLI (command-line interface).
 
 ## Usage
 
-Usually using our compiler via the Hardhat plugin will suffice. However, knowledge of its interface and I/O (input/output)
+Using our compiler via the Hardhat plugin usually suffices. However, knowledge of its interface and I/O (input/output)
 methods are crucial for integration, debugging, or contribution purposes.
 
 #### Combined JSON

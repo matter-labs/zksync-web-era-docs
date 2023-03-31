@@ -6,7 +6,7 @@ which must be available in `$PATH`, or its path must be explicitly passed via th
 
 ## Usage
 
-Usually using our compiler via the Hardhat plugin will suffice. However, knowledge of its interface and I/O (input/output)
+Using our compiler via the Hardhat plugin usually suffices. However, knowledge of its interface and I/O (input/output)
 methods are crucial for integration, debugging, or contribution purposes.
 
 The CLI supports several I/O modes:
@@ -15,17 +15,17 @@ The CLI supports several I/O modes:
 2. Combined JSON.
 3. Free-form output.
 
-All three modes use the standard JSON `solc` interface internally, which reduces the complexity of the `zksolc`
+All three modes use the standard JSON `solc` interface internally. This reduces the complexity of the `zksolc`
 interface and facilitates testing.
 
 #### Standard JSON
 
 The `zksolc` standard JSON I/O workflow closely follows that of the official `solc` compiler. However, `zksolc` does not
-support some configuration settings which and only relevant to the EVM architecture.
+support some configuration settings which are only relevant to the EVM architecture.
 
-Additional zkEVM data is supported by `zksolc`, but is omitted when passed to `solc`:
+Additional zkEVM data is supported by `zksolc` but is omitted when passed to `solc`:
 
-- `settings/optimizer/enabled`: enables the LLVM optimizer. Disabling it only makes sense for prototyping and debugging.
+- `settings/optimizer/enabled`: enables the LLVM optimizer. You can disable it for prototyping and debugging.
 - `settings/optimizer/mode`: sets the optimization mode. Available values: `0`, `1`, `2`, `3`, `s`, `z`. The default
 setting is `3`. See [LLVM optimizer](./llvm.md#optimizer).
 
@@ -119,8 +119,8 @@ This output format is utilized in Yul and LLVM IR compilation modes. These modes
 
 - `--solc <path>`  
   Specify the path to the `solc` executable. By default, the one in `${PATH}` is used.  
-  In Yul mode `solc` is used for source code validation, as `zksolc` assumes that the input Yul is valid.  
-  In LLVM IR mode `solc` is unused.  
+  In Yul mode, `solc` is used for source code validation, as `zksolc` assumes that the input Yul is valid.  
+  In LLVM IR mode, `solc` is unused.  
 
 - `-l`, `--libraries <string>`  
   Specify addresses of deployable libraries. Syntax: `<libraryName>=<address> [, or whitespace] ...`.  
@@ -173,13 +173,13 @@ This output format is utilized in Yul and LLVM IR compilation modes. These modes
 
 ## Limitations
 
-Currently Solidity versions as old as `0.4.12` are supported, though **we strongly recommend using** the latest
+Currently, Solidity versions as old as `0.4.12` are supported, although **we strongly recommend using** the latest
 supported revision of `0.8`, as older versions contain known bugs and have limitations dictated by the absence of IR with
 sufficient level of abstraction over EVM.
 
 Projects written in Solidity `>=0.8` are compiled by default through the Yul pipeline, whereas those written in `<=0.7` are compiled
-via EVM legacy assembly, which is a less friendly IR due to its obfuscation of control-flow and call graphs.
-Because of this obfuscation, there are several limitations in zkSync for contracts written in Solidity `<=0.7`:
+via EVM legacy assembly which is a less friendly IR due to its obfuscation of control-flow and call graphs.
+Due to this obfuscation, there are several limitations in zkSync for contracts written in Solidity `<=0.7`:
 
 1. Recursion on the stack is not supported.
 2. Internal function pointers are not supported.
