@@ -1,7 +1,5 @@
 # Interact with zkSync Era
 
-zkSync Era is currently is on the fair alpha onboarding stage, which involves opening our mainnet to certain teams to build and and make transactions on mainnet.
-
 ## Do I need experience with zkSync Lite?
 
 Some experience with zkSync Lite would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync Era and zkSync Lite are very different systems, and experience with the latter is not needed to build on zkSync Era.
@@ -23,13 +21,15 @@ Check out our step-by-step [quickstart guide](../building-on-zksync/hello-world.
 
 In order to add the zkSync Era alpha mainnet network to your wallet, you will need to enter the following details:
 
-1. Open the Metamask wallet and click on the network in the top center:
+1. Sign into your Metamask wallet and click on the network in the top center:
 
 ![img](../../assets/images/connect-1.png)
 
-2. Click on "Add network manually".
+2. Click on **Add network**.
 
-3. Fill in the details about zkSync Era alpha mainnet or testnet network and click "Save":
+3. Scroll down to the bottom of the network list and click **Add network manually**.
+
+4. Fill in the zkSync Era mainnet or testnet network details:
 
 **Mainnet network info**
 
@@ -49,6 +49,8 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - Currency Symbol: `ETH`
 - Block Explorer URL: `https://goerli.explorer.zksync.io/`
 - WebSocket URL: `wss://testnet.era.zksync.dev/ws`
+
+5. Click "Save"
 
 ## zkSync Era Support
 

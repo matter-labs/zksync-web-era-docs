@@ -6,8 +6,8 @@ which must be available in `$PATH`, or its path must be explicitly passed via th
 
 ## Usage
 
-Usually using our compiler via the Hardhat plugin will suffice. However, knowledge of its
-interface and I/O (input/output) methods may aid integration or debugging.
+Usually using our compiler via the Hardhat plugin will suffice. However, knowledge of its interface and I/O (input/output)
+methods are crucial for integration, debugging, or contribution purposes.
 
 The CLI supports several I/O modes:
 
@@ -21,12 +21,11 @@ interface and facilitates testing.
 #### Standard JSON
 
 The `zksolc` standard JSON I/O workflow closely follows that of the official `solc` compiler. However, `zksolc` does not
-support EVM configuration settings which have no representation in the zkEVM
-architecture.
+support some configuration settings which and only relevant to the EVM architecture.
 
 Additional zkEVM data is supported by `zksolc`, but is omitted when passed to `solc`:
 
-- `settings/optimizer/enabled`: enables the LLVM optimizer. Disabling optimization only makes sense for prototyping and debugging.
+- `settings/optimizer/enabled`: enables the LLVM optimizer. Disabling it only makes sense for prototyping and debugging.
 - `settings/optimizer/mode`: sets the optimization mode. Available values: `0`, `1`, `2`, `3`, `s`, `z`. The default
 setting is `3`. See [LLVM optimizer](./llvm.md#optimizer).
 
@@ -60,8 +59,7 @@ See the complete standard JSON data structures in [the zksolc repository](https:
 #### Combined JSON
 
 The `zksolc` standard JSON I/O workflow closely follows that of the official `solc` compiler. However, `zksolc` does not
-support EVM configuration settings which have no representation in the zkEVM
-architecture.
+support some configuration settings which are only relevant to the EVM architecture.
 
 Combined JSON is only an output format; there is no combined JSON input format. Instead, CLI arguments are
 used for configuration.
@@ -152,7 +150,8 @@ This output format is utilized in Yul and LLVM IR compilation modes. These modes
 
 - `--system-mode`  
   Enable system contract compilation mode.  
-  In this mode, zkEVM extensions for system contracts are enabled. For example, calls to addresses `0xFFFF` and below are substituted by special zkEVM instructions. In Yul mode, the `verbatim_*` instruction family is available.  
+  In this mode, zkEVM extensions are enabled. For example, calls to addresses `0xFFFF` and below are substituted by special
+  zkEVM instructions. In the Yul mode, the `verbatim_*` and `throw` instructions become available.
 
 - `--asm`  
   Output zkEVM assembly of the contracts.  
@@ -161,12 +160,12 @@ This output format is utilized in Yul and LLVM IR compilation modes. These modes
   Output zkEVM bytecode of the contracts.  
 
 - `--debug-output-dir <path>`  
-  Dump all IR to files in the specified directory.  
+  Dump all IRs to files in the specified directory.  
   Only for testing and debugging.
 
 - `--llvm-verify-each`  
-  Set the `-verify-each` option in LLVM.  
-  For testing and debugging.
+  Set the verify-each option in LLVM.  
+  Only for testing and debugging.
 
 - `--llvm-debug-logging`  
   Set the debug-logging option in LLVM.  
@@ -180,8 +179,7 @@ sufficient level of abstraction over EVM.
 
 Projects written in Solidity `>=0.8` are compiled by default through the Yul pipeline, whereas those written in `<=0.7` are compiled
 via EVM legacy assembly, which is a less friendly IR due to its obfuscation of control-flow and call graphs.
-For this reason, there are a few limitations
-in zkSync for contracts written in Solidity `<=0.7`:
+Because of this obfuscation, there are several limitations in zkSync for contracts written in Solidity `<=0.7`:
 
 1. Recursion on the stack is not supported.
 2. Internal function pointers are not supported.
@@ -194,4 +192,4 @@ The usage of libraries in Solidity is supported in zkSync Era with the following
 - If a Solidity library can be inlined (i.e. it only contains `private` or `internal` methods), it can be used without
 any additional configuration.
 - However, if a library contains at least one `public` or `external` method, it cannot be inlined and its address needs
-to be passed explicitly to the compiler; see the [Compiling non-inlinable libraries](../../api/hardhat/compiling-libraries.md) documentation.
+to be passed explicitly to the compiler; see [compiling non-inlinable libraries](../../api/hardhat/compiling-libraries.md).

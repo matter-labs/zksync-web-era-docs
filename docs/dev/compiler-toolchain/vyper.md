@@ -6,12 +6,16 @@ which must be available in `$PATH`, or its path must be explicitly passed via th
 
 ## Usage
 
-Usually using our compiler via the Hardhat plugin will suffice. However, knowledge of its
-interface and I/O (input/output) methods may aid integration or debugging.
+Usually using our compiler via the Hardhat plugin will suffice. However, knowledge of its interface and I/O (input/output)
+methods are crucial for integration, debugging, or contribution purposes.
 
 #### Combined JSON
 
-The Hardhat plugin uses the combined JSON I/O mode, which is passed to the `vyper` compiler child process.
+The `zkvyper` standard JSON I/O workflow closely follows that of the official `vyper` compiler. However, `zkvyper` does not
+support some configuration settings which are only relevant to the EVM architecture.
+
+Combined JSON is only an output format; there is no combined JSON input format. Instead, CLI arguments are
+used for configuration.
 
 Additional zkEVM data is inserted into the output combined JSON by `zksolc`:
 
@@ -63,7 +67,7 @@ Other output formats are available via the `-f` option. Check out `vyper --help`
 
 - `--llvm-verify-each`  
   Set the verify-each option in LLVM.  
-  For testing and debugging.
+  Only for testing and debugging.
 
 - `--llvm-debug-logging`  
   Set the debug-logging option in LLVM.  

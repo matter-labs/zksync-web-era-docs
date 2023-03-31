@@ -11,7 +11,7 @@ The toolchain consists of the following:
 
 1. [High-level source code compilers](#high-level-source-code-compilers): `solc` and `vyper`.
 2. [IR compilers, front-ends to LLVM](#ir-compilers): `zksolc` and `zkvyper`.
-3. [The LLVM framework](./llvm.md) with a zkEVM back-end which emits zkEVM text assembly.
+3. [The LLVM framework](./llvm.md) with a zkEVM back end which emits zkEVM text assembly.
 4. [The assembler](#assembler) which produces the zkEVM bytecode from text assembly.
 5. [Hardhat plugins](#hardhat-plugins) which set up the environment.
 
@@ -19,28 +19,32 @@ The toolchain consists of the following:
 
 ## High-level Source Code Compilers
 
-The high-level source code is processed by third-party compilers called, in IR or assembly output mode, 
-by zkEVM IR compilers as
-child processes. We use two such compilers at the time of writing:
+High-level source code is processed by third-party compilers. These compilers do the following:
+
+1. Process and validate the high-level source code.
+2. Translate the source code into IR and metadata.
+3. Pass the IR and metadata to our IR compilers via the standard I/O streams.
+
+We use two high-level source code compilers at the time of writing:
 
 - [solc](https://github.com/ethereum/solc-bin): the official Solidity compiler. For more info, see [its documentation](https://docs.soliditylang.org/en/latest/).
 - [vyper](https://github.com/vyperlang/vyper/releases): the official Vyper compiler. For more info, see [its documentation](https://docs.vyperlang.org/en/latest/index.html).
 
 ## IR Compilers
 
-Our toolchain includes LLVM front-ends, written in Rust and calling forked LLVM C++ code, which process the output of high-level source code compilers:
+Our toolchain includes Rust-written LLVM front ends that process the output of high-level source code compilers:
 
-- [zksolc](https://github.com/matter-labs/zksolc-bin): calls `solc` as a child process. For more info, see [its documentation](./solidity.md).
-- [zkvyper](https://github.com/matter-labs/zkvyper-bin): calls `vyper` as a child process. For more info, see [its documentation](./vyper.md).
+- [zksolc](https://github.com/matter-labs/zksolc-bin): calling `solc` as a child process. For more info, see [its documentation](./solidity.md).
+- [zkvyper](https://github.com/matter-labs/zkvyper-bin): calling `vyper` as a child process. For more info, see [its documentation](./vyper.md).
 
 These IR compilers perform the following steps:
 
 1. Receive the input, which is usually standard or combined JSON passed by the Hardhat plugin via standard input.
-2. Modify the input, save the relevant data, and pass it to the corresponding high-level source code compiler, which is called as a child process.
-3. Receive the IR and additional metadata from the corresponding compiler and save the relevant data.
-4. Compile the IR into LLVM IR, resolving dependencies and adding extra zkEVM data to the output.
-5. Optimize the LLVM IR using the industry-standard LLVM optimization framework.
-6. Provide output matching the format of the input method the IR compiler is called with.
+2. Save the relevant data, modify the input with zkEVM settings and pass it to the underlying high-level source code compiler called as a child process.
+3. Receive the IR and metadata from the underlying compiler.
+4. Translate the IR into LLVM IR, resolving dependencies with the help of metadata on the way.
+5. Optimize the LLVM IR with the powerful LLVM framework optimizer and emit zkEVM text assembly.
+6. Print the output matching the format of the input method the IR compiler is called with.
 
 Our IR compilers leverage I/O mechanisms which already exist in the high-level source code
 compilers. They may modify the input and output to some extent, and add data for features unique to zkEVM,
@@ -49,22 +53,27 @@ and remove unsupported feature artifacts.
 ## Assembler
 
 The [assembler](https://github.com/matter-labs/era-zkevm-assembly), which is written in Rust, compiles zkEVM assembly
-to zkEVM bytecode. This tool is not a part of our LLVM back-end as it uses several cryptographic libraries which are
+to zkEVM bytecode. This tool is not a part of our LLVM back end as it uses several cryptographic libraries which are
 easier to maintain outside of the framework.
 
 ## Hardhat Plugins
 
 We recommend using our IR compilers via [their corresponding Hardhat plugins](../../../api/hardhat/plugins.md).
+<<<<<<< HEAD
 Add these plugins to Hardhat’s configuration file to compile new projects or migrate
 existing ones to zkSync Era. For a lower-level approach, download our compiler binaries via the
 links above and use their CLI interfaces.
 
-### Learn more about how to install and configure these plugins in the links below:
+### Installing and configuring plugins
+
+Add the plugins below to the Hardhat's config file to compile new projects or migrate
+existing ones to zkSync Era. For a lower-level approach, download our compiler binaries
+[links above](#ir-compilers) and use their CLI interfaces.
 
 - [hardhat-zksync-solc documentation](../../../api/hardhat/hardhat-zksync-solc.md)
 - [hardhat-zksync-vyper documentation](../../../api/hardhat/hardhat-zksync-vyper.md)
 
 ::: warning
-Using no longer released compilers running in Docker images is not recommended.
+Using compilers running in Docker images - which are no longer supported - is not recommended.
 Instead, use the `compilerSource: "binary"` in the Hardhat config file to use the compiler binary.
 :::
