@@ -1,5 +1,10 @@
 # Getting started
 
+:::warning
+* We are currently updating the Python SDK and you may encounter errors when trying things out.
+* Apologies for the inconvenience, we will update the documentation in due course.
+:::
+
 In this guide we will demonstrate how to:
 
 1. Connect to the zkSync network.
@@ -8,13 +13,6 @@ In this guide we will demonstrate how to:
 4. Transfer and withdraw funds (native and ERC20 tokens).
 5. Deploy a smart contract.
 6. Deploy a smart contract with create2.
-
-
-::: warning
-
-This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../dev/troubleshooting/changelog.md)). A revised version will be available shortly.
-
-:::
 
 ## Adding dependencies
 
