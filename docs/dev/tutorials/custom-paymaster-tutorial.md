@@ -14,7 +14,7 @@ To better understand this page, we recommend you first read up on the following 
 - Read about the [design](../developer-guides/aa.md) of the account abstraction protocol.
 - Read the [introduction to the system contracts](../developer-guides/system-contracts.md).
 - Read about [smart contract deployment](../building-on-zksync/contracts/contract-deployment.md) on zkSyn Era.
-- Read the [gas estimation for transaction](../developer-guides/transactions/fee-model.md#gas-estimation-during-transaction-for-custom-and-paymaster-accounts) guide.
+- Read the [gas estimation for transaction](../developer-guides/transactions/fee-model.md#gas-estimation-during-a-transaction-for-paymaster-and-custom-accounts) guide.
 - If you haven't, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 
 ## Installing dependencies
