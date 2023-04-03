@@ -1,8 +1,8 @@
 # Types
 
 :::warning
-* We are currently updating the Python SDK.
-* We will update the documentation to reflect the changes in due course.
+* We are currently updating the Python SDK and you may encounter errors when trying things out.
+* Apologies for the inconvenience, we will update the documentation in due course.
 :::
 
 All the types which are used in the SDK are referenced here:
