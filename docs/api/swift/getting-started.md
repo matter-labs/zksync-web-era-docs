@@ -73,7 +73,7 @@ Create an instance of `EthereumHttpClient` or `EthereumWebSocketClient`. This wi
 #### `EthereumHttpClient`
 
 ```swift
-guard let clientUrl = URL(string: "https://zksync2-testnet.zksync.dev") else { return }
+guard let clientUrl = URL(string: "https://testnet.era.zksync.dev") else { return }
 let client = EthereumHttpClient(url: clientUrl)
 ```
 
@@ -82,7 +82,7 @@ OR
 #### `EthereumWebSocketClient`
 
 ```swift
-guard let clientUrl = URL(string: "wss://zksync2-testnet.zksync.dev/ws") else { return }
+guard let clientUrl = URL(string: "wss://testnet.era.zksync.dev/ws") else { return }
 let client = EthereumWebSocketClient(url: clientUrl)
 ```
 
