@@ -1,23 +1,21 @@
 # Building custom paymaster
 
-Let's see how we can use the paymaster feature to build a custom paymaster that allows users to pay fees in our token. In this tutorial we will:
+This tutorial shows you how to build a custom paymaster that allows users to pay fees in any token. We will:
 
-- Create a paymaster that will assume that a single unit of an ERC20 token is enough to cover any transaction fee.
-- Create the ERC20 token contract and send some tokens to a brand new wallet.
-- Finally we will send a `mint` transaction from the newly created wallet via the paymaster. Even though the transaction would normally require some ETH to pay for the gas fee, our paymaster will execute the transaction in exchange for 1 unit of the ERC20 token.
+- Create a paymaster that assumes a single unit of an ERC20 token is enough to cover any transaction fee.
+- Create the ERC20 token contract and send some tokens to a new wallet.
+- Send a `mint` transaction from the newly created wallet via the paymaster. Even though the transaction normally requires some ETH to pay for the gas fee, our paymaster executes the transaction in exchange for 1 unit of the ERC20 token.
 
+## Prerequisites
 
-## Prerequisite
+- A [Node](https://nodejs.org/en/download) installation.
+- Some background knowledge on the concepts covered by the tutorial is helpful. For more information, have a look at the following docs:
+    - [Account abstraction protocol](../developer-guides/aa.md) .
+    - [Introduction to system contracts](../developer-guides/system-contracts.md).
+    - [Smart contract deployment](../building-on-zksync/contracts/contract-deployment.md) on zkSyn Era.
+    - [Gas estimation for transactions](../developer-guides/transactions/fee-model.md#gas-estimation-during-transaction-for-custom-and-paymaster-accounts) guide.
 
-To better understand this page, we recommend you first read up on the following guides:
-
-- Read about the [design](../developer-guides/aa.md) of the account abstraction protocol.
-- Read the [introduction to the system contracts](../developer-guides/system-contracts.md).
-- Read about [smart contract deployment](../building-on-zksync/contracts/contract-deployment.md) on zkSyn Era.
-- Read the [gas estimation for transaction](../developer-guides/transactions/fee-model.md#gas-estimation-during-a-transaction-for-paymaster-and-custom-accounts) guide.
-- If you haven't, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
-
-## Installing dependencies
+## Tutorial set up
 
 We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it:
 
