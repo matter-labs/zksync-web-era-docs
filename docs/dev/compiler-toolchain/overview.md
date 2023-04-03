@@ -52,15 +52,15 @@ easier to maintain outside of the framework.
 
 ## Hardhat Plugins
 
-We recommend using our IR compilers via [their corresponding Hardhat plugins](../../../api/hardhat/plugins.md).
+We recommend using our IR compilers via [their corresponding Hardhat plugins](../../api/hardhat/plugins.md).
 Add these plugins to the Hardhat's config file to compile new projects or migrate
 existing ones to zkSync Era. For a lower-level approach, download our compiler binaries via the
 links above and use their CLI interfaces.
 
 **Learn more about how to install and configure these plugins in the links below:**
 
-- [hardhat-zksync-solc documentation](../../../api/hardhat/hardhat-zksync-solc.md)
-- [hardhat-zksync-vyper documentation](../../../api/hardhat/hardhat-zksync-vyper.md)
+- [hardhat-zksync-solc documentation](../../api/hardhat/hardhat-zksync-solc.md)
+- [hardhat-zksync-vyper documentation](../../api/hardhat/hardhat-zksync-vyper.md)
 
 ::: warning
 Using compilers running in Docker images - which are no longer released - is not recommended.

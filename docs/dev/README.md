@@ -42,13 +42,6 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Vyper](compiler-toolchain/vyper.md) - Learn about the Vyper support.
 - [LLVM Framework](compiler-toolchain/llvm.md) - Learn about the LLVM framework.
 
-### Compiler Toolchain
-
-- [Overview](compiler-toolchain/overview.md) - Learn about our compiler toolchain.
-- [Solidity](compiler-toolchain/solidity.md) - Learn about the Solidity support.
-- [Vyper](compiler-toolchain/vyper.md) - Learn about the Vyper support.
-- [LLVM Framework](compiler-toolchain/llvm.md) - Learn about the LLVM framework.
-
 ### Tutorials
 
 - [Cross-chain governance](./tutorials/cross-chain-tutorial.md) - Learn how to use L1 to L2 contract interaction.
