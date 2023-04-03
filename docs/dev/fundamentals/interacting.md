@@ -66,16 +66,6 @@ Instructions for raising a support ticket are as follows:
 Alternatively, you can now contact our support engineers with your questions and concerns via [email](mailto:support@zksync.io). 
 We will actively monitor for issues and work to resolve them as soon as possible.
 
-<!-- **Testnet network info**
-
-- Network Name: `zkSync alpha testnet`
-- New RPC URL: `https://zksync2-testnet.zksync.dev`
-- Chain ID: `280`
-- Currency Symbol: `ETH`
-- Block Explorer URL: `https://goerli.explorer.zksync.io/`
-- WebSocket URL: `wss://zksync2-testnet.zksync.dev/ws` -->
-
-
 <!-- ## Deposit and withdraw funds using zkSync Portal
 
 As the testnet is running on Goerli network, you will need to get some Goerli ETH first. Try any of the faucets below.
