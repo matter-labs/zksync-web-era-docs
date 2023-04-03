@@ -141,7 +141,7 @@ const zkSyncTestnet =
         zksync: true,
       }
     : {
-        url: "https://zksync2-testnet.zksync.dev",
+        url: "https://testnet.era.zksync.dev",
         ethNetwork: "goerli",
         zksync: true,
       };

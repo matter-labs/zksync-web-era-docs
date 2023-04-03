@@ -66,7 +66,7 @@ module.exports = {
 
   networks: {
     zkSyncTestnet: {
-      url: "https://zksync2-testnet.zksync.dev",
+      url: "https://testnet.era.zksync.dev",
       ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
       zksync: true,
     },
@@ -864,7 +864,7 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types';
 const AA_FACTORY_ADDRESS = '<FACTORY-ADDRESS>';
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider('https://zksync2-testnet.zksync.dev');
+  const provider = new Provider('https://testnet.era.zksync.dev');
   const wallet = new Wallet('<WALLET-PRIVATE-KEY>').connect(provider);
   const factoryArtifact = await hre.artifacts.readArtifact('AAFactory');
 
@@ -1001,7 +1001,7 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types';
 const AA_FACTORY_ADDRESS = '<FACTORY-ADDRESS>';
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider('https://zksync2-testnet.zksync.dev');
+  const provider = new Provider('https://testnet.era.zksync.dev');
   const wallet = new Wallet('<WALLET-PRIVATE-KEY>').connect(provider);
   const factoryArtifact = await hre.artifacts.readArtifact('AAFactory');
 

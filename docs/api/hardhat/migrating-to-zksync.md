@@ -53,7 +53,7 @@ const config: HardhatUserConfig = {
       zksync: false,
     },
     zkSyncTestnet:{
-      url: "https://zksync2-testnet.zksync.dev",
+      url: "https://testnet.era.zksync.dev",
       ethNetwork: "goerli",  // or a Goerli RPC endpoint from Infura/Alchemy/Chainstack etc.
       zksync: true,
     }
@@ -106,7 +106,7 @@ const config: HardhatUserConfig = {
       zksync: false,
     },
     zkSyncTestnet: {
-      url: "https://zksync2-testnet.zksync.dev",
+      url: "https://testnet.era.zksync.dev",
       ethNetwork: "goerli",  // or a Goerli RPC endpoint from Infura/Alchemy/Chainstack etc.
       zksync: true,
     },
