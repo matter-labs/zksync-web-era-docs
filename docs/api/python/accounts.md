@@ -1,5 +1,10 @@
 # Accounts: overview
 
+:::warning
+* We are currently updating the Python SDK.
+* We will update the documentation to reflect the changes in due course.
+:::
+
 The zkSync Python SDK, has a few methods to generate signature and verify messages.
 
 `sign_typed_data` : used to sign EIP712-typed zkSync transactions.
