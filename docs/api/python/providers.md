@@ -1,5 +1,10 @@
 # Providers
 
+:::warning
+* We are currently updating the Python SDK and you may encounter errors when trying things out.
+* Apologies for the inconvenience, we will update the documentation in due course.
+:::
+
 Providers are objects that wrap interactions with the zkSync node. If you are new to the concept of providers in `web3`, you should check out their docs [here](https://web3py.readthedocs.io/en/v5/providers.html?highlight=providers).
 
 zkSync fully supports Ethereum Web3 API, so you can use the provider objects from web3.py. However, zkSync API provides some additional JSON-RPC methods, which allow:
@@ -7,9 +12,9 @@ zkSync fully supports Ethereum Web3 API, so you can use the provider objects fro
 - Easily track L1<->L2 transactions.
 - Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use cases may require tracking "finalized" transactions only.
 
-\***\*init\*\***
+## `__init__`
 
-Initialize the zkSync SDK.
+Initialize the zkSync SDK with the constructor.
 
 ```py
 
