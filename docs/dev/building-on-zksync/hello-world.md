@@ -82,7 +82,7 @@ module.exports = {
 
   networks: {
     zkSyncTestnet: {
-      url: "https://zksync2-testnet.zksync.dev",
+      url: "https://testnet.era.zksync.dev",
       ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
       zksync: true,
     },
@@ -431,7 +431,7 @@ import { Contract, Web3Provider, Provider } from "zksync-web3";
 
 ```javascript
 initializeProviderAndSigner() {
-    this.provider = new Provider('https://zksync2-testnet.zksync.dev');
+    this.provider = new Provider('https://testnet.era.zksync.dev');
     // Note that we still need to get the Metamask signer
     this.signer = (new Web3Provider(window.ethereum)).getSigner();
     this.contract = new Contract(
@@ -457,7 +457,7 @@ The full methods now look the following way:
 
 ```javascript
 initializeProviderAndSigner() {
-    this.provider = new Provider('https://zksync2-testnet.zksync.dev');
+    this.provider = new Provider('https://testnet.era.zksync.dev');
     // Note that we still need to get the Metamask signer
     this.signer = (new Web3Provider(window.ethereum)).getSigner();
     this.contract = new Contract(
