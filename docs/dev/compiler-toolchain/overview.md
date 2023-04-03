@@ -1,6 +1,6 @@
 # Overview
 
-This section introduces an LLVM-based compiler toolchain for smart contract languages with Ethereum Virtual Machine
+This section introduces the zkEVM LLVM-based compiler toolchain for smart contract languages with Ethereum Virtual Machine
 (EVM) support. The toolchain works on top of existing compilers and requires their output, which typically includes
 intermediate representations (IRs), abstract syntax trees (ASTs), and auxiliary contract metadata and documentation.
 ::: info
@@ -10,39 +10,45 @@ At the time of writing, we support Solidity and Vyper.
 The toolchain consists of the following:
 
 1. [High-level source code compilers](#high-level-source-code-compilers): `solc` and `vyper`.
-2. [IR compilers, or LLVM front end](#ir-compilers): `zksolc` and `zkvyper`.
-3. [The LLVM framework](./llvm.md) with a zkEVM back end which emits the zkEVM text assembly.
-4. [The assembler](#assembler) which produces the zkEVM bytecode from the text assembly.
+2. [IR compilers, front ends to LLVM](#ir-compilers): `zksolc` and `zkvyper`.
+3. [The LLVM framework](./llvm.md) with a zkEVM back end which emits zkEVM text assembly.
+4. [The assembler](#assembler) which produces the zkEVM bytecode from text assembly.
 5. [Hardhat plugins](#hardhat-plugins) which set up the environment.
 
 ![Compiler Toolchain Visualization](../../assets/images/compiler-toolchain.png "Compiler Toolchain")
 
 ## High-level Source Code Compilers
 
-High-level source code compilers are original upstream compilers called by IR compilers as
-child processes to process their output. We use two such compilers at the time of writing:
+High-level source code is processed by third-party compilers. These compilers do the following:
 
-- [solc](https://github.com/ethereum/solc-bin): the official Solidity compiler. For more info, see [the documentation](https://docs.soliditylang.org/en/latest/).
-- [vyper](https://github.com/vyperlang/vyper/releases): the official Vyper compiler. For more info, see [the documentation](https://docs.vyperlang.org/en/latest/index.html).
+1. Process and validate the high-level source code.
+2. Translate the source code into IR and metadata.
+3. Pass the IR and metadata to our IR compilers via the standard I/O streams.
+
+We are using two high-level source code compilers at the time of writing:
+
+- [solc](https://github.com/ethereum/solc-bin): the official Solidity compiler. For more info, see the latest [Solidity documentation](https://docs.soliditylang.org/en/latest/).
+- [vyper](https://github.com/vyperlang/vyper/releases): the official Vyper compiler. For more info, see the latest [Vyper documentation](https://docs.vyperlang.org/en/latest/index.html).
 
 ## IR Compilers
 
-Our toolchain includes LLVM front ends that process the output of high-level source code compilers:
+Our toolchain includes LLVM front ends, written in Rust, that process the output of high-level source code compilers:
 
-- [zksolc](https://github.com/matter-labs/zksolc-bin); calling `solc` as a child process. For more info, see [the documentation](./solidity.md).
-- [zkvyper](https://github.com/matter-labs/zkvyper-bin); calling `vyper` as a child process. For more info, see [the documentation](./vyper.md).
+- [zksolc](https://github.com/matter-labs/zksolc-bin) which calls `solc` as a child process. For more info, see the latest [zksolc documentation](./solidity.md).
+- [zkvyper](https://github.com/matter-labs/zkvyper-bin): which calls `vyper` as a child process. For more info, see the latest [zkvyper documentation](./vyper.md).
 
 These IR compilers perform the following steps:
 
-1. Receive the input, which is usually standard or combined JSON passed by the Hardhat plugin via the standard input.
-2. Modify the input, save the relevant data, and pass the input down to the underlying high-level source code compiler - which is called as a child process.
-3. Receive the IRs and additional metadata from the underlying compiler and save the relevant data.
-4. Compile the IRs into LLVM IR, resolving dependencies and adding the zkEVM extra data to the output.
-5. Provide the output matching the format of the input method the IR compiler is called with.
+1. Receive the input, which is usually standard or combined JSON passed by the Hardhat plugin via standard input.
+2. Save the relevant data, modify the input with zkEVM settings, and pass it to the underlying high-level source code compiler which is called as a child process.
+3. Receive the IR and metadata from the underlying compiler.
+4. Translate the IR into LLVM IR, resolving dependencies with the help of metadata.
+5. Optimize the LLVM IR with the powerful LLVM framework optimizer and emit zkEVM text assembly.
+6. Print the output matching the format of the input method the IR compiler is called with.
 
-Our IR compilers leverage I/O mechanisms that already exist in the high-level source code
-compilers. They may modify the input and output to some extent, and add data for features unique to zkEVM,
-and removing unsupported feature artifacts.
+Our IR compilers leverage I/O mechanisms which already exist in the high-level source code
+compilers. They may modify the input and output to some extent, add data for features unique to zkEVM,
+and remove unsupported feature artifacts.
 
 ## Assembler
 
@@ -57,12 +63,16 @@ Add these plugins to the Hardhat's config file to compile new projects or migrat
 existing ones to zkSync Era. For a lower-level approach, download our compiler binaries via the
 links above and use their CLI interfaces.
 
-**Learn more about how to install and configure these plugins in the links below:**
+### Installing and configuring plugins
+
+Add the plugins below to the Hardhat's config file to compile new projects or migrate
+existing ones to zkSync Era. For a lower-level approach, download our compiler binaries
+[links above](#ir-compilers) and use their CLI interfaces.
 
 - [hardhat-zksync-solc documentation](../../api/hardhat/hardhat-zksync-solc.md)
 - [hardhat-zksync-vyper documentation](../../api/hardhat/hardhat-zksync-vyper.md)
 
 ::: warning
-Using compilers running in Docker images - which are no longer released - is not recommended.
-Instead, use the `compilerSource: "binary"` in the Hardhat config file to use the compiler binary.
+- Using compilers running in Docker images is no longer supported.
+- Instead, use the `compilerSource: "binary"` in the Hardhat config file to use the compiler binary.
 :::

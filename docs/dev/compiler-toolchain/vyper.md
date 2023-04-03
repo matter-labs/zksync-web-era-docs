@@ -1,17 +1,21 @@
 # Vyper
 
 The Vyper compiler we provide as part of our toolchain is called [zkvyper](https://github.com/matter-labs/zkvyper-bin). It
-operates on LLL IR and metadata received from the underlying [vyper](https://docs.vyperlang.org/en/latest/index.html) compiler,
-which must be available in `$PATH`, or the path must be explicitly passed via the CLI (command-line interface).
+operates on Vyper’s LLL IR, and metadata received from the underlying [vyper](https://docs.vyperlang.org/en/latest/index.html) compiler,
+which must be available in `$PATH`, or its path must be explicitly passed via the CLI (command-line interface).
 
 ## Usage
 
-Most of the time, using our compiler via the Hardhat plugin is enough, and you do not have to dive deeper into its
-interface and I/O (input/output) methods. However, knowledge of these can be crucial for integration, debugging, or contribution purposes.
+Using our compiler via the Hardhat plugin usually suffices. However, knowledge of its interface and I/O (input/output)
+methods are crucial for integration, debugging, or contribution purposes.
 
 #### Combined JSON
 
-The Hardhat plugin uses the combined JSON I/O mode, which is passed down to the `vyper` compiler child process.
+The `zkvyper` standard JSON I/O workflow closely follows that of the official `vyper` compiler. However, `zkvyper` does not
+support some configuration settings which are only relevant to the EVM architecture.
+
+Combined JSON is only an output format; there is no combined JSON input format. Instead, CLI arguments are
+used for configuration.
 
 Additional zkEVM data is inserted into the output combined JSON by `zksolc`:
 
@@ -47,15 +51,15 @@ Other output formats are available via the `-f` option. Check out `vyper --help`
 
 - `--vyper <path>`  
   Specify the path to the `vyper` executable. By default, the one in `${PATH}` is used.  
-  LLVM IR mode: `vyper` is unused.
+  In LLVM IR mode `vyper` is unused.
 
-- `-f`  
-  The extra output format string.
+- `-f <format>`  
+  An extra output format string.  See `vyper --help` for available options.
 
 - `--llvm-ir`  
-  Switch to the LLVM IR mode.  
+  Switch to LLVM IR mode.  
   Only one input LLVM IR file is allowed.  
-  Cannot be used with the combined or standard JSON modes.
+  Cannot be used with combined or standard JSON modes.
 
 - `--debug-output-dir <path>`  
   Dump all IRs to files in the specified directory.  

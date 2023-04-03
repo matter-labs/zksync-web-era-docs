@@ -6,7 +6,7 @@ We provide a customized and optimized compiler toolchain for development on zkSy
 
 ## EVM compatibility
 
-zkSync Era supports almost every smart contract written for EVM and holds all key security invariants so
+zkSync Era supports almost every smart contract written for EVM and satisfies all key security invariants so
 that no additional security re-auditing is usually required. Notable exceptions are contracts using
 the following EVM opcodes:
 
@@ -20,7 +20,7 @@ the following EVM opcodes:
 These opcodes produce an error on compilation.
 :::
 
-There are several other distinctions, for example:
+There are several other differences, for example:
 
 * Gas metering is different (as is the case for other L2s).
 * Some EVM cryptographic precompiles (notably pairings and RSA) won’t be immediately available. However, pairing is prioritized to allow deployment of both Hyperchains and protocols like Aztec/Dark Forest without modifications.
