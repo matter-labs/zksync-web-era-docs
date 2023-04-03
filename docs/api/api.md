@@ -106,9 +106,11 @@ None.
 
 ### `zks_getConfirmedTokens`
 
-Given `from` and `limit` return information about the confirmed tokens with IDs in the interval `[from..from+limit-1]`. "Confirmed" is the wrong word here, since a confirmed token has already been bridged through the default zkSync Era bridge.
+Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `from` and `limit`.
 
-The tokens are returned in alphabetical order by their symbols, so a token's id is just its place in an array of tokens that has been sorted by symbols.
+**Confirmed** in the function name means the function returns any token bridged to zkSync via the official bridge.
+
+This function is mostly used by the zkSync team.
 
 ### Input parameters
 
@@ -122,20 +124,23 @@ The tokens are returned in alphabetical order by their symbols, so a token's id 
 ```json
 [
   {
-    "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
     "decimals": 18,
-    "name": "ETH",
+    "l1Address": "0x5c221e77624690fff6dd741493d735a17716c26b",
+    "l2Address": "0x3e7676937a7e96cfb7616f255b9ad9ff47363d4b",
+    "name": "DAI",
+    "symbol": "DAI"
+  },
+  {
+    "decimals": 18,
+    "l1Address": "0x0000000000000000000000000000000000000000",
+    "l2Address": "0x0000000000000000000000000000000000000000",
+    "name": "Ether",
     "symbol": "ETH"
   },
   {
-    "address": "0xd2255612f9b045e9c81244bb874abb413ca139a3",
-    "decimals": 18,
-    "name": "TrueUSD",
-    "symbol": "TUSD"
-  },
-  {
-    "address": "0xd35cceead182dcee0f148ebac9447da2c4d449c4",
     "decimals": 6,
+    "l1Address": "0xd35cceead182dcee0f148ebac9447da2c4d449c4",
+    "l2Address": "0x0faf6df7054946141266420b43783387a78d82a9",
     "name": "USD Coin (goerli)",
     "symbol": "USDC"
   }
