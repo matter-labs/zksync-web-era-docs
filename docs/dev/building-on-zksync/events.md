@@ -26,7 +26,7 @@ const contractABI = require("./ABI_JSON");
 
 const listenEvents = async () => {
   const contractAddress = "<CONTRACT_ADDRESS>";
-  const provider = new ether.providers.WebSocketProvider(`wss://zksync2-testnet.zksync.dev/ws`);
+  const provider = new ether.providers.WebSocketProvider(`wss://testnet.era.zksync.dev/ws`);
 
   const contract = new ethers.Contract(contractAddress, contractABI, provider);
 

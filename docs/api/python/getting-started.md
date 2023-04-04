@@ -1,5 +1,10 @@
 # Getting started
 
+:::warning
+* We are currently updating the Python SDK and you may encounter errors when trying things out.
+* Apologies for the inconvenience, we will update the documentation in due course.
+:::
+
 In this guide we will demonstrate how to:
 
 1. Connect to the zkSync network.
@@ -8,13 +13,6 @@ In this guide we will demonstrate how to:
 4. Transfer and withdraw funds (native and ERC20 tokens).
 5. Deploy a smart contract.
 6. Deploy a smart contract with create2.
-
-
-::: warning
-
-This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../dev/troubleshooting/changelog.md)). A revised version will be available shortly.
-
-:::
 
 ## Adding dependencies
 
@@ -31,7 +29,7 @@ Once you have all the necessary dependencies, connect to zkSync using the endpoi
 ```python
 from zksync2.module.module_builder import ZkSyncBuilder
 ...
-sdk = ZkSyncBuilder.build("https://zksync2-testnet.zksync.dev")
+sdk = ZkSyncBuilder.build("https://testnet.era.zksync.dev")
 ```
 
 The SDK supports the mainnet, and goerli networks.
@@ -57,7 +55,7 @@ from zksync2.provider.eth_provider import EthereumProvider
 
 def deposit():
     URL_TO_ETH_NETWORK = "https://goerli.infura.io/v3/25be7ab42c414680a5f89297f8a11a4d"
-    ZKSYNC_NETWORK_URL = "https://zksync2-testnet.zksync.dev"
+    ZKSYNC_NETWORK_URL = "https://testnet.era.zksync.dev"
 
     eth_web3 = Web3(Web3.HTTPProvider(URL_TO_ETH_NETWORK))
     eth_web3.middleware_onion.inject(geth_poa_middleware, layer=0)
@@ -91,7 +89,7 @@ from zksync2.core.types import EthBlockParams
 
 
 def get_account_balance():
-    ZKSYNC_NETWORK_URL: str = 'https://zksync2-testnet.zksync.dev'
+    ZKSYNC_NETWORK_URL: str = 'https://testnet.era.zksync.dev'
     account: LocalAccount = Account.from_key('YOUR_PRIVATE_KEY')
     zksync_web3 = ZkSyncBuilder.build(ZKSYNC_NETWORK_URL)
     zk_balance = zksync_web3.zksync.get_balance(account.address, EthBlockParams.LATEST.value)

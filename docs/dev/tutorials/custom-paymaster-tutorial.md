@@ -9,20 +9,34 @@ Let's see how we can use the paymaster feature to build a custom paymaster that 
 
 ## Prerequisite
 
-To better understand this page, we recommend you first read up on [account abstraction design](../developer-guides/aa.md) before diving into this tutorial.
+To better understand this page, we recommend you first read up on the following guides:
 
-It is assumed that you are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md). It is also recommended to read the [introduction to the system contracts](../developer-guides/system-contracts.md).
+- Read about the [design](../developer-guides/aa.md) of the account abstraction protocol.
+- Read the [introduction to the system contracts](../developer-guides/system-contracts.md).
+- Read about [smart contract deployment](../building-on-zksync/contracts/contract-deployment.md) on zkSyn Era.
+- Read the [gas estimation for transaction](../developer-guides/transactions/fee-model.md#gas-estimation-during-a-transaction-for-paymaster-and-custom-accounts) guide.
+- If you haven't, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 
 ## Installing dependencies
 
 We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it:
 
-```
+::: code-tabs
+
+@tab:active folder
+
+```sh
 mkdir custom-paymaster-tutorial
 cd custom-paymaster-tutorial
+```
+
+@tab:active yarn
+
+```bash
 yarn init -y
 yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+:::
 
 ::: tip
 
@@ -431,7 +445,7 @@ const TOKEN_ADDRESS = "<TOKEN_ADDRESS>";
 // ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
 const EMPTY_WALLET_PRIVATE_KEY = "<EMPTY_WALLET_PRIVATE_KEY>";
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider("https://zksync2-testnet.zksync.dev");
+  const provider = new Provider("https://testnet.era.zksync.dev");
   const emptyWallet = new Wallet(EMPTY_WALLET_PRIVATE_KEY, provider);
 
   // Obviously this step is not required, but it is here purely to demonstrate that indeed the wallet has no ether.

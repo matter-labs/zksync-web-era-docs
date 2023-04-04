@@ -30,7 +30,7 @@ To deploy a contract, a user calls the `create` function of the ContractDeployer
   - zkSync: To deploy a contract on zkSync, a user calls the `create` function of the [ContractDeployer](../system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments.
     The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions.
     If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
-    Read more on [contract deployment](../../building-on-zksync/contracts/contracts.md).
+    Read more on [contract deployment](../../building-on-zksync/contracts/contract-development.md).
 
 ::: tip
 zkSync supports Ethereum's "old" (pre-EIP2718) transaction types, the EIP1559 transaction type, and its EIP712 transactions. Transactions of this type can be used to access zkSync-specific features such as account abstraction. Furthermore, smart contracts can only be deployed with this sort of transaction.

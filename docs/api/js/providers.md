@@ -39,7 +39,7 @@ constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish
 ```typescript
 import { Provider } from "zksync-web3";
 
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 ```
 
 ### `getBalance`
@@ -67,7 +67,7 @@ async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address):
 ```typescript
 import { Provider } from "zksync-web3";
 
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 
 const USDC_L2_ADDRESS = "0x0faF6df7054946141266420b43783387A78d82A9";
 // Getting  USDC balance of account 0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5 at the latest processed block
@@ -94,7 +94,7 @@ async getMainContractAddress(): Promise<string>
 ```typescript
 import { Provider } from "zksync-web3";
 
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 
 console.log(await provider.getMainContractAddress());
 ```
@@ -118,7 +118,7 @@ async getTestnetPaymasterAddress(): Promise<string|null>
 ```typescript
 import { Provider } from "zksync-web3";
 
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 
 console.log(await provider.getTestnetPaymasterAddress());
 ```
@@ -140,7 +140,9 @@ async getDefaultBridgeAddresses(): Promise<{
 
 ### `getConfirmedTokens`
 
-Given `start` and `limit` returns information (address, symbol, name, decimals) about the confirmed tokens with IDs in the interval `[start..start+limit-1]`. "Confirmed" is a misnomer here, since a confirmed token is one that has been bridged through the default zkSync bridge. This method will mostly be used by the zkSync team internally.
+Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `start` and `limit`.
+
+**Confirmed** in the function name means the function returns any token bridged to zkSync via the official bridge.
 
 The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically sorted array of tokens.
 
@@ -160,7 +162,7 @@ async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 
 console.log(await provider.getConfirmedTokens());
 ```
@@ -188,7 +190,7 @@ async getTokenPrice(token: Address): Promise<string | null>
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 
 console.log(await provider.getTokenPrice(USDC_L2_ADDRESS));
 ```
@@ -229,7 +231,7 @@ async getTransactionStatus(txHash: string): Promise<TransactionStatus>
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 
 const TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
 console.log(await provider.getTransactionStatus(TX_HASH));
@@ -252,7 +254,7 @@ async getTransaction(hash: string | Promise<string>): Promise<TransactionRespons
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 
 const TX_HASH = "0x300baeb6804c2068ff796d95336c53ac671eef216e7ae9c17190660cdb1e2c17";
 const txHandle = await provider.getTransaction(TX_HASH);

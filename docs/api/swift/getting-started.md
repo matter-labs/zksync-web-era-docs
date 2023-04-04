@@ -1,5 +1,10 @@
 # Getting started
 
+:::warning
+* We are currently updating the Swift SDK and you may encounter errors when trying things out.
+* Apologies for the inconvenience, we will update the documentation in due course.
+:::
+
 In this guide we will demonstrate how to:
 
 1. Connect to the zkSync network.
@@ -7,13 +12,6 @@ In this guide we will demonstrate how to:
 3. Check balances.
 4. Transfer and withdraw funds (native and ERC20 tokens).
 5. Deploy a smart contract.
-
-
-::: warning
-
-This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../dev/troubleshooting/changelog.md)). A revised version will be available shortly.
-
-:::
 
 ## Prerequisite
 
@@ -75,7 +73,7 @@ Create an instance of `EthereumHttpClient` or `EthereumWebSocketClient`. This wi
 #### `EthereumHttpClient`
 
 ```swift
-guard let clientUrl = URL(string: "https://zksync2-testnet.zksync.dev") else { return }
+guard let clientUrl = URL(string: "https://testnet.era.zksync.dev") else { return }
 let client = EthereumHttpClient(url: clientUrl)
 ```
 
@@ -84,7 +82,7 @@ OR
 #### `EthereumWebSocketClient`
 
 ```swift
-guard let clientUrl = URL(string: "wss://zksync2-testnet.zksync.dev/ws") else { return }
+guard let clientUrl = URL(string: "wss://testnet.era.zksync.dev/ws") else { return }
 let client = EthereumWebSocketClient(url: clientUrl)
 ```
 

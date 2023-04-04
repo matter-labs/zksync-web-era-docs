@@ -14,17 +14,20 @@ Contracts must be compiled using the official `@matterlabs/hardhat-zksync-solc` 
 
 Add the latest version of this plugin to your project with the following command:
 
-```
+::: code-tabs
 
-# Yarn
+@tab:active yarn
 
+```bash
 yarn add -D @matterlabs/hardhat-zksync-deploy
-
-# Npm
-
-npm i -D @matterlabs/hardhat-zksync-deploy
-
 ```
+
+@tab npm
+
+```bash
+npm i -D @matterlabs/hardhat-zksync-deploy
+```
+:::
 
 ### Exports
 
@@ -128,7 +131,7 @@ networks: {
     url: "https://goerli.infura.io/v3/<API_KEY>" // URL of the Ethereum Web3 RPC (optional)
   },
   zkTestnet: {
-    url: "https://zksync2-testnet.zksync.dev", // URL of the zkSync network RPC
+    url: "https://testnet.era.zksync.dev", // URL of the zkSync network RPC
     ethNetwork: "goerli", // URL of the Ethereum Web3 RPC, or the identifier of the network (e.g. `mainnet` or `goerli`)
     zksync: true
   }

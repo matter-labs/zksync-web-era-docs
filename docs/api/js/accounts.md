@@ -13,7 +13,7 @@
 Just like `ethers.Wallet`, the `Wallet` object from `zksync-web3` can be created from Ethereum private key.
 
 ```typescript
-constructor Wallet(
+   constructor Wallet(
   privateKey: ethers.utils.BytesLike | ethers.utils.SigningKey,
   providerL2?: Provider,
   providerL1?: ethers.providers.Provider): Wallet
@@ -36,7 +36,7 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 ```
@@ -67,7 +67,7 @@ import { Wallet, Provider } from "zksync-web3";
 
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
 
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 const wallet = unconnectedWallet.connect(provider);
 ```
 
@@ -122,7 +122,7 @@ async getMainContract(): Promise<IZkSync>
 import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
-const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
@@ -152,7 +152,7 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
 
@@ -187,7 +187,7 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
 
@@ -223,7 +223,7 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
 // Note that we don't need ethereum provider to get the nonce
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
 
@@ -261,7 +261,7 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
@@ -313,7 +313,7 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
@@ -445,7 +445,7 @@ The easiest way to construct it is from an `Web3Provider` object.
 import { Web3Provider, Provider, L1Signer } from "zksync-web3";
 
 const provider = new ethers.Web3Provider(window.ethereum);
-const zksyncProvider = new Provider("https://zksync2-testnet.zksync.dev");
+const zksyncProvider = new Provider("https://testnet.era.zksync.dev");
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 ```
 
@@ -480,7 +480,7 @@ import { Web3Provider, Provider, L1Signer } from "zksync-web3";
 import { ethers } from "ethers";
 
 const provider = new ethers.Web3Provider(window.ethereum);
-const zksyncProvider = new Provider("https://zksync2-testnet.zksync.dev");
+const zksyncProvider = new Provider("https://testnet.era.zksync.dev");
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 
 const mainContract = await signer.getMainContract();
@@ -508,7 +508,7 @@ import { Web3Provider, Provider, L1Signer } from "zksync-web3";
 import { ethers } from "ethers";
 
 const provider = new ethers.Web3Provider(window.ethereum);
-const zksyncProvider = new Provider("https://zksync2-testnet.zksync.dev");
+const zksyncProvider = new Provider("https://testnet.era.zksync.dev");
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 
 const USDC_ADDRESS = "0xd35CCeEAD182dcee0F148EbaC9447DA2c4D449c4";

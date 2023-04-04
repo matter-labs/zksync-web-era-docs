@@ -16,16 +16,22 @@ Support for custom paths will be included in the future.
 
 ## Install dependencies
 
-Although zkSync is [compatible with Solidity and Vyper](../../dev/building-on-zksync/contracts/contracts.md), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the fist step will be to install the compiler and deployer hardhat plugins:
+Although zkSync is [compatible with Solidity and Vyper](../../dev/building-on-zksync/contracts/contract-development.md), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the first step is to install the compiler and deployer hardhat plugins:
 
-```sh
-# Yarn
+::: code-tabs
+
+@tab:active yarn
+
+```bash
 yarn add -D @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-solc
-
-# Npm
-npm i -D @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-solc
-
 ```
+
+@tab npm
+
+```bash
+npm i -D @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-solc
+```
+:::
 
 If you're using Vyper, replace `@matterlabs/hardhat-zksync-solc` with `@matterlabs/hardhat-zksync-vyper`
 
@@ -47,7 +53,7 @@ const config: HardhatUserConfig = {
       zksync: false,
     },
     zkSyncTestnet:{
-      url: "https://zksync2-testnet.zksync.dev",
+      url: "https://testnet.era.zksync.dev",
       ethNetwork: "goerli",  // or a Goerli RPC endpoint from Infura/Alchemy/Chainstack etc.
       zksync: true,
     }
@@ -100,7 +106,7 @@ const config: HardhatUserConfig = {
       zksync: false,
     },
     zkSyncTestnet: {
-      url: "https://zksync2-testnet.zksync.dev",
+      url: "https://testnet.era.zksync.dev",
       ethNetwork: "goerli",  // or a Goerli RPC endpoint from Infura/Alchemy/Chainstack etc.
       zksync: true,
     },
@@ -118,13 +124,20 @@ export default config;
 
 To compile your contracts for zkSync, run:
 
-```
-# Yarn
-yarn hardhat compile --network zkSyncTestnet
+::: code-tabs
 
-# NPM
+@tab:active yarn
+
+```bash
+yarn hardhat compile --network zkSyncTestnet
+```
+
+@tab npm
+
+```bash
 npx hardhat compile  --network zkSyncTestnet
 ```
+:::
 
 Passing the `--network` flag we make sure Hardhat will use the zksolc compiler (or zkvyper). This command will compile all contracts in the `/contracts` folder and create the folders `artifacts-zk` and `cache-zk`.
 
@@ -175,13 +188,20 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 Include your deployment script in the `deploy` folder and execute it running:
 
-```
-# Yarn
-yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
+::: code-tabs
 
-# NPM
+@tab:active yarn
+
+```bash
+yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
+```
+
+@tab npm
+
+```bash
 npx hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
 ```
+:::
 
 If you don't include the `--script` option, all script files inside the `deploy` folder will be executed in alphabetical order.
 
