@@ -17,7 +17,7 @@ Addresses of tokens on L2 will always differ from the same token L1 address.
 
 ## Add tokens to bridge
 
-To add your token to the bridge, fill and submit the [token request form](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw) and we will get your token added.
+To add your token to the bridge, fill and submit the [token request form](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw) and we will get your token added to the bridge.
 
 ## Default bridges
 
