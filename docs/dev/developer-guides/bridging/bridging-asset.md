@@ -15,13 +15,13 @@ Addresses of tokens on L2 will always differ from the same token L1 address.
 
 :::
 
-## Add tokens to bridge
-
-To add your token to the bridge, fill and submit the [token request form](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw) and we will get your token added to the bridge.
-
 ## Default bridges
 
 You can get default bridges' addresses using the `zks_getBridgeContracts` endpoint or `getDefaultBridgeAddresses` method of `Provider` in our [Javascript SDK](../../../api/js/) (similar methods are available in the other SDKs).
+
+### How to add tokens to the default bridge
+
+While our standard bridge can be used without requiring permission from a smart contract perspective, our bridge UI only displays tokens that are currently added to our SDK. If you would like to see a particular token added, you can submit a request by filling out the [token request form](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw). Our team will review your request, and get back to you if we have any outstanding questions before adding the token to our list.
 
 ### Deposits (to L2)
 
