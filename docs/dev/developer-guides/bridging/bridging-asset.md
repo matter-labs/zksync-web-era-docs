@@ -21,7 +21,9 @@ You can get default bridges' addresses using the `zks_getBridgeContracts` endpoi
 
 ### Add tokens to the bridge
 
-While our default bridge can be used without requiring permission from a smart contract perspective, our bridge UI only displays tokens that are currently added to our SDK. If you would like to see a particular token added, you can submit a request by filling out the [token request form](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw). Our team will review your request, and get back to you if we have any outstanding questions before adding the token to our list.
+While the zkSync standard bridge can be used without permission from a smart contract perspective, the UI only displays tokens that have been added to our SDK. 
+
+If you would like to add a token, submit a request by filling out the [token request form](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw). Our team will review your request, and get back to you if we have any outstanding questions before adding the token to our list.
 
 
 ### Deposits (to L2)
