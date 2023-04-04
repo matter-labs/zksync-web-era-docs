@@ -92,3 +92,5 @@ For example, users can go offline and still be able to withdraw their assets saf
 
 - Begin by building a dApp in the [quickstart section](../building-on-zksync/hello-world.md).
 - See the info on RPC nodes, wallet, and block explorer on the [important links](../troubleshooting/important-links.md) page.
+
+<Footer/>

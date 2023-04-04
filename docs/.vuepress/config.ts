@@ -2,6 +2,8 @@ import { defineUserConfig } from "vuepress";
 import docsearchPlugin from "@vuepress/plugin-docsearch";
 import theme from "./theme.js";
 import { pwaPlugin } from '@vuepress/plugin-pwa'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
 export default defineUserConfig({
   dest: "dist/docs",
@@ -50,6 +52,14 @@ export default defineUserConfig({
   theme,
 
   plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          // i am ignorning my custom '<container>' tag
+          isCustomElement: (tag) => ['Footer'].includes(tag)
+        }
+      }
+    }),
     pwaPlugin({}),
     docsearchPlugin({
       appId: "LCWOUB1OFO",
