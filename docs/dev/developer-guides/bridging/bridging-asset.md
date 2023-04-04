@@ -15,6 +15,10 @@ Addresses of tokens on L2 will always differ from the same token L1 address.
 
 :::
 
+## Add tokens to bridge
+
+To add your token to the bridge, fill and submit the [token request form](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw) and we will get your token added.
+
 ## Default bridges
 
 You can get default bridges' addresses using the `zks_getBridgeContracts` endpoint or `getDefaultBridgeAddresses` method of `Provider` in our [Javascript SDK](../../../api/js/) (similar methods are available in the other SDKs).
