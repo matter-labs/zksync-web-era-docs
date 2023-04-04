@@ -3,6 +3,7 @@
 This section introduces the zkEVM LLVM-based compiler toolchain for smart contract languages with Ethereum Virtual Machine
 (EVM) support. The toolchain works on top of existing compilers and requires their output, which typically includes
 intermediate representations (IRs), abstract syntax trees (ASTs), and auxiliary contract metadata and documentation.
+
 ::: info
 At the time of writing, we support Solidity and Vyper.
 :::
