@@ -13,7 +13,7 @@
   - Allowed to turn off the `vyper` optimizer.
   - Support for more Vyper output options.
   - The `@matterlabs/hardhat-zksync-vyper` plugin has been updated to support the latest version of the compiler.
-- New releases of multiple Hardhat plugins:
+- New releases of multiple Hardhat plugins with updated dependencies:
   - hardhat-zksync-chai-matchers version `0.1.2`.
   - hardhat-zksync-verify version `0.1.4`.
   - hardhat-zksync-deploy version `0.6.3`.
