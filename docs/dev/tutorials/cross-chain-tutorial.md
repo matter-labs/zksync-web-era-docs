@@ -10,9 +10,10 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 - You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You already have some experience working with Ethereum.
 - You have a web3 wallet app which holds some Goerli test ETH and some zkSync test ETH.
+- You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
-:::warning
-- The `yarn` instructions run with Node version 14.
+:::tip
+- The `yarn` instructions run with Node version 16.
 - Use [`nvm`](https://github.com/nvm-sh/nvm) to switch to Node 14 with the command `nvm use 14`.
 :::
 
@@ -260,8 +261,7 @@ npx hardhat
 ```
 @tab yarn
 ```txt
-- Step 3 is only for the `npm` flow. 
-- Do not run `npx hardhat` if you are following the `yarn` flow.
+npx hardhat 
 ```
 :::
 
@@ -278,7 +278,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.3.5",
+    version: "1.3.8",
     compilerSource: "binary",
   },
   defaultNetwork: "zkSyncTestnet",
@@ -305,7 +305,7 @@ If your default network is not `hardhat`, make sure to include `zksync: true` in
 
 ### Create L2 counter contract
 
-1. In the `contracts/` folder (create it if necessary), remove any existing contracts and create a new file `Counter.sol`. 
+1. In the `contracts/` folder, remove any existing contracts and create a new file `Counter.sol`. 
 
 This contract contains the address of the governance contract deployed previously on layer 1, and an incrementable counter which can only be invoked by the governance contract. 
 
@@ -409,7 +409,7 @@ Counter was deployed to 0x3c5A6AB2390F6217C78d2F6F403A9dFb7e7784FC
 ```
 
 :::warning
-At this point, if you have been following the yarn flow and encounter the following error: `Error: Bytecode length in 32-byte words must be odd`, please do the following from the `L2-counter/` directory:
+At this point, if you encounter the following error: `Error: Bytecode length in 32-byte words must be odd`, please do the following from the `L2-counter/` directory:
 
 * Remove `node_modules/`.
 * Open `package.json` and change the version of `matterlabs/hardhat-zksync-solc` to `^0.3.15-beta.2`.
