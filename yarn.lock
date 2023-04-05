@@ -3791,21 +3791,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vuepress/plugin-pwa@npm:next":
-  version: 2.0.0-beta.60
-  resolution: "@vuepress/plugin-pwa@npm:2.0.0-beta.60"
-  dependencies:
-    "@vuepress/client": 2.0.0-beta.60
-    "@vuepress/core": 2.0.0-beta.60
-    "@vuepress/utils": 2.0.0-beta.60
-    mitt: ^3.0.0
-    register-service-worker: ^1.7.2
-    vue: ^3.2.45
-    workbox-build: ^6.5.4
-  checksum: e1f921db8a6b3de9a14f2118b243c83f9f63476eba84e452bf4f704c44d2b95a200f65f2b4f44da8e1960a8bf128db2c3a312c3cb61915f192927c24bd5d96bb
-  languageName: node
-  linkType: hard
-
 "@vuepress/plugin-theme-data@npm:2.0.0-beta.60":
   version: 2.0.0-beta.60
   resolution: "@vuepress/plugin-theme-data@npm:2.0.0-beta.60"
@@ -13172,7 +13157,6 @@ __metadata:
     "@semantic-release/github": ^8.0.7
     "@vuepress/client": 2.0.0-beta.60
     "@vuepress/plugin-docsearch": ^2.0.0-beta.60
-    "@vuepress/plugin-pwa": next
     check-md: ^1.0.2
     commitlint: ^17.3.0
     cspell: ^6.18.1
