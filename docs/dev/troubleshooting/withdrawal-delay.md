@@ -19,7 +19,7 @@ The transfer of ETH or ERC-20 tokens from one address to another is referred to 
 
 ### Internal transactions
 
-Conversely, internal transactions are initiated by a smart contract or other internal code execution within the Ethereum network. Although these transactions can be prompted by a user action, they are not sent directly from one address to another but are instead part of the internal workings of a smart contract. Internal transactions may involve the transfer of ETH or ERC-20 tokens between different addresses within the contract. Withdrawals from the zkSync Era network are typically internal transactions managed by the [zkSync Era Diamond Proxy]((https://etherscan.io/address/0x32400084c286cf3e17e7b677ea9583e60a000324) ) contract. These transactions are documented in the **"Internal Transactions"** section of Etherscan due to their internal nature.
+Conversely, internal transactions are initiated by a smart contract or other internal code execution within the Ethereum network. Although these transactions can be prompted by a user action, they are not sent directly from one address to another but are instead part of the internal workings of a smart contract. Internal transactions may involve the transfer of ETH or ERC-20 tokens between different addresses within the contract. Withdrawals from the zkSync Era network are typically internal transactions managed by the [zkSync Era Diamond Proxy](https://etherscan.io/address/0x32400084c286cf3e17e7b677ea9583e60a000324) ) contract. These transactions are documented in the **"Internal Transactions"** section of Etherscan due to their internal nature.
 
 ### How to check your internal transactions
 
