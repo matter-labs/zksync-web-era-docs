@@ -11,15 +11,19 @@ This design has the following advantages:
 - Delayed execution affects not only the standard zkSync ETH and ERC20 bridges but also any custom bridge built by a different team.
 - Implementing the logic in an external governor-controlled contract makes it easy to remove this limitation later.
 
-## Types of transactions in etherscan
+## Why can't i find my transaction in the block explorer?
 
-### External transactions
+There could be several reasons why your withdrawal was completed, but you cannot see your tokens or the transaction on the block explorer in Etherscan. Some of these reasons include:
 
-The transfer of ETH or ERC-20 tokens from one address to another is referred to as an external transaction, which is the prevailing transaction type. Such transactions are classified as external when a user initiates a transfer from their wallet to another wallet, and they are subsequently documented in the **"Transactions"** section of Etherscan.
+1. Delay in Block Confirmation: It could be that the withdrawal transaction was successfully executed, but the confirmation process is still ongoing. It takes some time for a block to be confirmed, and until then, the transaction will not be visible on the block explorer.
+
+2. Transaction Reverted: Another reason why a withdrawal may not appear on the block explorer could be that the transaction was reverted. A transaction can be reverted when there is a conflict or a problem with the smart contract that executes the transaction. When this happens, the transaction is canceled, and users will not be able to see it on the block explorer.
+
+3. Wrong Address: Finally, the user may have sent their tokens to the wrong address. If this is the case, the tokens will not show up in their wallet, and they will not be able to see the transaction on the block explorer.
 
 ### Internal transactions
 
-Conversely, internal transactions are initiated by a smart contract or other internal code execution within the Ethereum network. Although these transactions can be prompted by a user action, they are not sent directly from one address to another but are instead part of the internal workings of a smart contract. Internal transactions may involve the transfer of ETH or ERC-20 tokens between different addresses within the contract. Withdrawals from the zkSync Era network are typically internal transactions managed by the [zkSync Era Diamond Proxy](https://etherscan.io/address/0x32400084c286cf3e17e7b677ea9583e60a000324) ) contract. These transactions are documented in the **"Internal Transactions"** section of Etherscan due to their internal nature.
+Internal transactions are initiated by a smart contract or other internal code execution within the Ethereum network. Although these transactions can be prompted by a user action, they are not sent directly from one address to another but are instead part of the internal workings of a smart contract. Internal transactions may involve the transfer of ETH or ERC-20 tokens between different addresses within the contract. Withdrawals from the zkSync Era network are typically internal transactions managed by the [zkSync Era Diamond Proxy](https://etherscan.io/address/0x32400084c286cf3e17e7b677ea9583e60a000324) contract. These transactions are recorded in the **"Internal Transactions"** section of Etherscan due to their internal nature.
 
 ### How to check your internal transactions
 
@@ -27,12 +31,28 @@ To check the internal transactions of an Ethereum wallet, follow these steps:
 
 1. Launch your web browser and visit [Etherscan.io](https://etherscan.io/).
 
-2. In the search bar located at the top of the page, enter the Ethereum wallet address you want to review internal transactions for.
+2. In the search bar at the top of the page, enter the Ethereum wallet address you used to withdraw the funds. This should be the address where you withdrew the funds, not the destination address.
 
-3. After accessing the wallet page, navigate to the **"Internal Transactions"** section by scrolling down and clicking on it. This section lists all the internal transactions associated with the wallet. Refer to the image below for more clarity.
+![Etherscan search bar](../../assets/images/ether-search.png "Search for transactions")
 
-![Etherscan](../../assets/images/etherscan-trx.png "Transaction in etherscan")
+3. Once you've entered your wallet address, press the "Enter" key to search for your wallet on Etherscan.
 
-4. Any withdrawal transactions from zkSync Era will appear as transactions from **"zkSync Era: Diamond Proxy"** to your wallet address.
+4. On the resulting page, scroll down to the **Internal Transactions** section. This section will display all of the internal transactions that have occurred within your wallet.
 
-5. To obtain more information about a specific transaction, including the block it was mined in, gas usage, and sender and recipient addresses, click on the **"Parent Tx Hash"** of the relevant transaction.
+Refer to the image below for more clarity.
+
+![Internal transaction](../../assets/images/internal-trx.png "Internal transaction in etherscan")
+
+5. Look for the internal transaction that corresponds to your withdrawal. You should see a transaction that shows the withdrawal amount being sent from the bridge.
+
+::: tip
+
+Any withdrawal transactions from zkSync Era will appear as transactions from **zkSync Era: Diamond Proxy** to your wallet address.
+
+:::
+
+6. Once you've located the transaction, you can click on the **Parent Tx Hash** to view more details about the transaction, including the block it was mined in, gas usage, and sender and recipient addresses.
+
+![Parent transaction hash](../../assets/images/parent-hash.png "Parent transaction hash in etherscan")
+
+That's it! You should now be able to find your withdrawal transaction in the **Internal Transactions** section on Etherscan. If for any reason you're still unable to see your transaction after withdrawal please contact [support](../fundamentals/interacting.md#zksync-era-support) and we will look into it.
