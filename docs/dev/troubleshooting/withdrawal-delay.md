@@ -13,17 +13,28 @@ This design has the following advantages:
 
 ## Why can't i find my transaction in the block explorer?
 
-There could be several reasons why your withdrawal was completed, but you cannot see your tokens or the transaction on the block explorer in Etherscan. Some of these reasons include:
+There could be several reasons why your withdrawal was completed, but you cannot see your tokens or the transaction on the block explorer. Some of these reasons include:
 
-1. Delay in Block Confirmation: It could be that the withdrawal transaction was successfully executed, but the confirmation process is still ongoing. It takes some time for a block to be confirmed, and until then, the transaction will not be visible on the block explorer.
+1. Delay in Block Confirmation: As previously indicated, a successfully executed withdrawal transaction may undergo an ongoing confirmation process, which requires a certain amount of time before the block containing the transaction is confirmed. Consequently, the transaction cannot be observed on the block explorer until the confirmation process is completed.
 
-2. Transaction Reverted: Another reason why a withdrawal may not appear on the block explorer could be that the transaction was reverted. A transaction can be reverted when there is a conflict or a problem with the smart contract that executes the transaction. When this happens, the transaction is canceled, and users will not be able to see it on the block explorer.
+2. Transaction Reverted: A withdrawal may fail to appear on the block explorer if the transaction is reverted due to a conflict or issue with the smart contract that executes the transaction. In such cases, the transaction is canceled, rendering it invisible to users on the block explorer.
 
-3. Wrong Address: Finally, the user may have sent their tokens to the wrong address. If this is the case, the tokens will not show up in their wallet, and they will not be able to see the transaction on the block explorer.
+3. Wrong Address: If a user mistakenly sends tokens to an incorrect address, the transaction will not be visible on the block explorer, and the tokens will not reflect in the user's wallet.
 
-### Internal transactions
+### Transactions in etherscan
 
-Internal transactions are initiated by a smart contract or other internal code execution within the Ethereum network. Although these transactions can be prompted by a user action, they are not sent directly from one address to another but are instead part of the internal workings of a smart contract. Internal transactions may involve the transfer of ETH or ERC-20 tokens between different addresses within the contract. Withdrawals from the zkSync Era network are typically internal transactions managed by the [zkSync Era Diamond Proxy](https://etherscan.io/address/0x32400084c286cf3e17e7b677ea9583e60a000324) contract. These transactions are recorded in the **"Internal Transactions"** section of Etherscan due to their internal nature.
+The **Transactions** section of Etherscan displays transactions that occur between two Ethereum addresses. It shows details such as the transaction hash, the block number, the timestamp, the sender and receiver addresses, the amount of Ether or tokens involved, and the transaction fee. These transactions are confirmed by the network and are typically sent from one external address to another.
+
+On the other hand, **Internal Transactions** are initiated by a smart contract or other internal code execution within the Ethereum network. Although these transactions can be prompted by a user action, they are not sent directly from one address to another but are instead part of the internal workings of a smart contract. Internal transactions may involve the transfer of ETH or ERC-20 tokens between different addresses within the contract. 
+
+::: tip
+
+Withdrawals from the zkSync Era network are typically internal transactions managed by the [zkSync Era Diamond Proxy](https://etherscan.io/address/0x32400084c286cf3e17e7b677ea9583e60a000324) contract. These transactions are recorded in the **"Internal Transactions"** section of Etherscan due to their internal nature.
+
+:::
+
+
+In summary, the **Transactions** section of Etherscan displays transactions between external addresses, while the **Internal Transactions** section displays transactions that occur within smart contracts.
 
 ### How to check your internal transactions
 
