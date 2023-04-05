@@ -408,18 +408,6 @@ Running deploy script for the Counter contract
 Counter was deployed to 0x3c5A6AB2390F6217C78d2F6F403A9dFb7e7784FC
 ```
 
-:::warning
-At this point, if you encounter the following error: `Error: Bytecode length in 32-byte words must be odd`, please do the following from the `L2-counter/` directory:
-
-* Remove `node_modules/`.
-* Open `package.json` and change the version of `matterlabs/hardhat-zksync-solc` to `^0.3.15-beta.2`.
-* Change the `zksolc` version to `"1.3.6"` in the `hardhat.config.ts` file.
-* Delete the `artifacts` and `caches` folders.
-* Run `yarn`.
-* Recreate and compile the `Counter.sol` contract as before, then continue with the deploy steps.
-:::
-
-
 ::: tip
 For more information about deploying contracts, check out the [quickstart tutorial](../building-on-zksync/hello-world.md) or the documentation for the zkSync [hardhat plugins](../../api/hardhat/getting-started.md).
 :::
