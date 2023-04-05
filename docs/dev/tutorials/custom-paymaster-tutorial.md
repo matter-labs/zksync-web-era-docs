@@ -60,7 +60,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.3.6",
+    version: "1.3.8",
     compilerSource: "binary",
     settings: {},
   },
@@ -527,7 +527,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const fee = gasPrice.mul(gasLimit.toString());
 
   await (
-    await erc20.mint(emptyWallet.address, 100, {
+    await erc20.connect(emptyWallet).mint(emptyWallet.address, 100, {
       // paymaster info
       customData: {
         paymasterParams: paymasterParams,
@@ -563,10 +563,9 @@ The wallet had 3 tokens after running the deployment script and, after sending t
 
 * If the `use-paymaster.ts` script fails with the error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer funds to the bootloader`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use [zkSync Portal](https://portal.zksync.io/).
 * If the `use-paymaster.ts` script fails when minting new ERC20 tokens with the error `Error: transaction failed`, and the transactions appear with status "Failed" in the [zkSync explorer](https://explorer.zksync.io/), please reach out to us on [our Discord](https://join.zksync.dev/) or [contact page](https://zksync.io/contact.html). As a workaround, try including a specific `gasLimit` value in the transaction.
-* For compiler errors, you could try toggling different versions of `zksolc` and `solc` in the Hardhat config.
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2.md).
-- To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
+- Learn more about [L1->L2 interaction on zkSync](../developer-guides/bridging/l1-l2.md).
+- Learn more about [the `zksync-web3` SDK](../../api/js).
+- Learn more about [the zkSync hardhat plugins](../../api/hardhat).
