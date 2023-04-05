@@ -1,6 +1,6 @@
 # Changelog
 
-## Compilers and plugins (Apr 4th 2023) - Updating for test
+## Compilers and plugins (Apr 4th 2023)
 
 - zksolc compiler has been updated to version `1.3.8`:
   - Multiple optimizations and bug fixes.
