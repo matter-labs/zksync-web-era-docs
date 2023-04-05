@@ -7,6 +7,7 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 
 ## Prerequisites
 
+- This tutorial was written with **Node 14**. you should also have [yarn installed.](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
 - You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You already have some experience working with Ethereum.
 - You have a web3 wallet app which holds some Goerli test ETH and some zkSync test ETH.
@@ -44,20 +45,7 @@ yarn init -y
 ```
 :::
 
-3. Install hardhat:
-
-::: code-tabs
-@tab npm
-```sh
-npm install --save-dev hardhat
-```
-@tab yarn
-```sh
-yarn add --dev hardhat
-```
-:::
-
-4. Run the following to set up the project:
+3. Run the following to set up the project:
 
 ```sh
 npx hardhat 
@@ -72,7 +60,7 @@ To interact with the zkSync bridge contract using Solidity, you need the zkSync 
 - Download it from the [contracts repo](https://github.com/matter-labs/v2-testnet-contracts).
 :::
 
-5. Install the following dependencies:
+4. Install the following dependencies:
 
 ::: code-tabs
 @tab npm
