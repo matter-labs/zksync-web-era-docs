@@ -12,11 +12,6 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 - You have a web3 wallet app which holds some Goerli test ETH and some zkSync test ETH.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
-:::tip
-- The `yarn` instructions run with Node version 16.
-- Use [`nvm`](https://github.com/nvm-sh/nvm) to switch to Node 14 with the command `nvm use 14`.
-:::
-
 ## Project structure
 
 Open a terminal window, create a new folder for the project tutorial, e.g. `mkdir cross-chain-tutorial`, and `cd` into the folder.
@@ -24,8 +19,7 @@ Open a terminal window, create a new folder for the project tutorial, e.g. `mkdi
 Now create separate folders to store contracts and scripts on L1 and L2.
 
 ```sh
-mkdir L1-governance 
-mkdir L2-counter
+mkdir L1-governance L2-counter
 ```
 
 ::: note
@@ -252,25 +246,12 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/har
 ```
 :::
 
-3. Set up the Hardhat project configurations, selecting **Create a Typescript project** as before:
-
-::: code-tabs
-@tab npm
-```sh
-npx hardhat 
-```
-@tab yarn
-```txt
-npx hardhat 
-```
-:::
-
 ::: tip
 - With `npm` you can also use the zkSync CLI to scaffold a project automatically. 
 - Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/).
 :::
 
-4. Replace (create if necessary) `hardhat.config.ts` with the following, replacing `goerli` with the RPC URL as used in the `goerli.json` file in the L1 Governance section:
+3. Create the `hardhat.config.ts` file in the root and add the following code, replacing `goerli` with the RPC URL as used in the `goerli.json` file in the L1 Governance section:
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
@@ -305,7 +286,7 @@ If your default network is not `hardhat`, make sure to include `zksync: true` in
 
 ### Create L2 counter contract
 
-1. In the `contracts/` folder, remove any existing contracts and create a new file `Counter.sol`. 
+1. Create a `contracts/` folder and create a new file `Counter.sol`. 
 
 This contract contains the address of the governance contract deployed previously on layer 1, and an incrementable counter which can only be invoked by the governance contract. 
 
@@ -416,11 +397,13 @@ For more information about deploying contracts, check out the [quickstart tutori
 
 Now both contracts are deployed, we can create a script to retrieve the value of the counter. 
 
-1. Copy the `abi` array from the compilation artifact located at `/L2-counter/artifacts-zk/contracts/Counter.sol/Counter.json`.
+1. Create the `scripts` directory under `L2-counter`.
 
-2. Create a new file `/L2-counter/scripts/counter.json` and paste in the `abi` array.
+2. Copy the `abi` array from the compilation artifact located at `/L2-counter/artifacts-zk/contracts/Counter.sol/Counter.json`.
 
-3. Create a `/L2-counter/scripts/display-value.ts` file and paste in the following code, adding the counter contract address:
+3. Create a new file `/L2-counter/scripts/counter.json` and paste in the `abi` array.
+
+4. Create a `/L2-counter/scripts/display-value.ts` file and paste in the following code, adding the counter contract address:
 
 ```ts
 import { Contract, Provider, Wallet } from "zksync-web3";
@@ -445,7 +428,7 @@ main().catch((error) => {
 });
 ```
 
-4. Run the script:
+5. Run the script:
 
 ::: code-tabs
 @tab npm
