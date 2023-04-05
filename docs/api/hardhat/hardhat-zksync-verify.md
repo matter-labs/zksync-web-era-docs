@@ -44,7 +44,7 @@ networks: {
     ethNetwork: "goerli", // URL of the Ethereum Web3 RPC, or the identifier of the network (e.g. `mainnet` or `goerli`)
     zksync: true,
     // Verification endpoint for Goerli
-    verifyURL: 'https://goerli.explorer.zksync.io/contracts/verify'
+    verifyURL: 'https://zksync2-testnet-explorer.zksync.dev/contract_verification'
   }
 },
 // defaultNetwork: "zkTestnet", // optional (if not set, use '--network zkTestnet')
@@ -57,8 +57,8 @@ Additional network properties:
 - `url` is a field with the URL of the zkSync node in the case of the zkSync network (with `zksync` flag set to `true`), or the URL of the Ethereum node. This field is required for all zkSync and Ethereum networks used by this plugin.
 - `zksync` is a flag to indicate if the network represents zkSync network configuration. This field needs to be set to `true` for all zkSync networks. If you want to run a `hardhat-etherscan` verification, this field needs to be set to `false`. If set to `true`, the verification process will always try to run the verification process on the zkSync network.
 - `verifyURL` is a field that points to the verification endpoint for the specific zkSync network. This parameter is optional, and its default value is the testnet verification url.
-  - Testnet: `https://goerli.explorer.zksync.io/contracts/verify`
-  - Mainnet: `https://explorer.zksync.io/contracts/verify`
+  - Testnet: `https://zksync2-testnet-explorer.zksync.dev/contract_verification`
+  - Mainnet: `https://zksync2-mainnet-explorer.zksync.io/contract_verification`
 
 If you want to verify a smart contract on the Ethereum in the same project, it is important to add `etherscan` field and API key in the `hardhat.config.ts` file:
 
