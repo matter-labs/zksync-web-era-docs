@@ -13,13 +13,13 @@ This design has the following advantages:
 
 ## Why can't I find my withdrawal on Etherscan?
 
-There are several reasons why your withdrawal may be successful but you cannot see your tokens, or the transaction, on etherscan. For example:
+There are several reasons why your withdrawal may be successful but you cannot see your tokens, or the transaction, on Etherscan. For example:
 
-1. **Delay in block confirmation**: as mentioned in the [withdrawal delay](#withdrawal-delay) section above, successful withdrawals may be subject to an ongoing confirmation process. Consequently, you won't be able to see your transaction on etherscan until the confirmation process completes.
+1. **Delay in block confirmation**: as mentioned in the [withdrawal delay](#withdrawal-delay) section above, successful withdrawals may be subject to an ongoing confirmation process. Consequently, you won't be able to see your transaction on Etherscan until the confirmation process completes.
 
-2. **Transaction reverted**: a withdrawal may fail to appear on etherscan if the transaction is reverted due to a conflict or issue with the smart contract that executed the transaction. In such cases, the transaction is canceled and it won't be included on etherscan.
+2. **Transaction reverted**: a withdrawal may fail to appear on Etherscan if the transaction is reverted due to a conflict or issue with the smart contract that executed the transaction. In such cases, the transaction is canceled and it won't be included on Etherscan.
 
-3. **Wrong address**: if a user mistakenly sends tokens to an incorrect address, the transaction will not be visible on etherscan, and the tokens will not arrive in the intended recipient's wallet.
+3. **Wrong address**: if a user mistakenly sends tokens to an incorrect address, the transaction will not be visible on Etherscan, and the tokens will not arrive in the intended recipient's wallet.
 
 ### Transactions in Etherscan
 
@@ -55,6 +55,6 @@ Withdrawal transactions from zkSync Era appear as transactions from **zkSync Era
 
 6. Once you've located the transaction, click on the **Parent Tx Hash** to view more details about the transaction, including the block number, gas used, and sender and recipient addresses.
 
-![Parent transaction hash](../../assets/images/parent-hash.png "Parent transaction hash in etherscan")
+![Parent transaction hash](../../assets/images/parent-hash.png "Parent transaction hash in Etherscan")
 
 If for any reason you're still unable to see your withdrawal transaction after following these steps, please contact [support](../fundamentals/interacting.md#zksync-era-support) and we will look into it.
