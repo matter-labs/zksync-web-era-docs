@@ -11,7 +11,7 @@ This design has the following advantages:
 - Delayed execution affects not only the standard zkSync ETH and ERC20 bridges but also any custom bridge built by a different team.
 - Implementing the logic in an external governor-controlled contract makes it easy to remove this limitation later.
 
-## Why can't I find my withdraw on Etherscan?
+## Why can't I find my withdrawal on Etherscan?
 
 There are several reasons why your withdrawal may be successful but you cannot see your tokens, or the transaction, on the block explorer. For example:
 
