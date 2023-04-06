@@ -215,7 +215,7 @@ const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
-const gasPrice = await wallet.providerL1!.getGasPrice();
+const gasPrice = await wallet.providerL1.getGasPrice();
 
 // The calldata can be encoded the same way as for Ethereum.
 // Here is an example on how to get the calldata from an ABI:
