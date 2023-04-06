@@ -6,7 +6,7 @@ This is what we're going to do:
 
 - Build and deploy a smart contract on zkSync that stores a greeting message.
 - Build a dApp that retrieves and updates the greeting message.
-- Allow users to change the greeting on the smart contract via the app.
+- Allow users to change the greeting message on the smart contract via the app.
 - Show you how to [implement the testnet paymaster](#paying-fees-using-testnet-paymaster) that allows users to pay transaction fees with ERC20 tokens instead of ETH.
 
 ::: warning
