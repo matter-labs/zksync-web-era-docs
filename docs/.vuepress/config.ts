@@ -51,7 +51,7 @@ export default defineUserConfig({
 
   plugins: [
     pwaPlugin({
-      update: "force"
+      update: "hint"
     }),
     docsearchPlugin({
       appId: "LCWOUB1OFO",
