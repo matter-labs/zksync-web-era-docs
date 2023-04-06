@@ -19,6 +19,7 @@ We have prepared this tutorial to aid users and traders in utilizing the block e
 3. [Browse batches](./batches-view.md) - Get all the details about a batches included in zkSync Era.
 4. [Transaction view](./block-view.md#transactions) - Fetch and analyze the list of transactions that occurs on-chain.
 5. [Smart contract verification](./contract-verification.md) - Verify smart contracts with zkSync Era block explorer.
+6. [Token list](./token-list.md) - Mainnet token list on zkSync Era block explorer.
 
 To start, you can open up [block explorer](https://explorer.zksync.io/) in your web browser and follow along using the guide.
 Let’s take a look at the block explorer!
