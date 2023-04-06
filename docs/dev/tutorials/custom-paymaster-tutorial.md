@@ -386,7 +386,7 @@ contract MyERC20 is ERC20 {
 
 ## Compile and deploy the contracts
 
-The script below deploys the ERC20 contract and the paymaster contract. It also creates an empty wallet and mints some `MyERC20` tokens for the paymaster to use at a later step.
+The script below deploys the ERC20 contract and the paymaster contract. It also creates an empty wallet and mints some `MyERC20` tokens for the paymaster to use at a later step. In addition, the script sends `0.03ETH` to the paymaster contract so it can pay the transaction fees we send later on.
 
 1. In the `deploy` folder, create the file `deploy-paymaster.ts` and copy/paste the following, replacing `<PRIVATE-KEY>` with your own:
 
