@@ -108,37 +108,6 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Python SDK",
-      link: "/api/python", 
-      children: [
-        "/api/python/getting-started",
-        "/api/python/providers",
-        "/api/python/accounts",
-        "/api/python/accounts-l1-l2",
-        "/api/python/contract-interface",
-        "/api/python/types",
-      ],
-    },
-    {
-      text: "Java SDK", // required
-      link: "/api/java/getting-started", // optional, which should be a absolute path.
-      children: ["/api/java/getting-started"],
-    },
-    {
-      text: "GO SDK", // required
-      link: "/api/go/getting-started", // optional, which should be a absolute path.
-      children: ["/api/go/getting-started"],
-    },
-
-    {
-      text: "Swift SDK", // required
-      link: "/api/swift/getting-started", // optional, which should be a absolute path.
-      children: [
-        "/api/swift/getting-started",
-        "/api/swift/providers",
-      ],
-    },
-    {
       text: "Hardhat", // required
       link: "/api/hardhat", // optional, which should be a absolute path.
       children: [
@@ -168,6 +137,37 @@ export const enSidebar = sidebar({
       text: "zkSync Era CLI", // required
       link: "/api/tools/zksync-cli/", // optional, which should be a absolute path.
       children: []    
+    },
+    {
+      text: "Python SDK",
+      link: "/api/python", 
+      children: [
+        "/api/python/getting-started",
+        "/api/python/providers",
+        "/api/python/accounts",
+        "/api/python/accounts-l1-l2",
+        "/api/python/contract-interface",
+        "/api/python/types",
+      ],
+    },
+    {
+      text: "Java SDK", // required
+      link: "/api/java/getting-started", // optional, which should be a absolute path.
+      children: ["/api/java/getting-started"],
+    },
+    {
+      text: "GO SDK", // required
+      link: "/api/go/getting-started", // optional, which should be a absolute path.
+      children: ["/api/go/getting-started"],
+    },
+
+    {
+      text: "Swift SDK", // required
+      link: "/api/swift/getting-started", // optional, which should be a absolute path.
+      children: [
+        "/api/swift/getting-started",
+        "/api/swift/providers",
+      ],
     },
   ],
   //The legal related sidebar
