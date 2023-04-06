@@ -19,7 +19,7 @@ There are several reasons why your withdrawal may be successful but you cannot s
 
 2. **Transaction reverted**: a withdrawal may fail to appear on the block explorer if the transaction is reverted due to a conflict or issue with the smart contract that executed the transaction. In such cases, the transaction is canceled and it won't be included on the block explorer.
 
-3. **Wrong address**: If a user mistakenly sends tokens to an incorrect address, the transaction will not be visible on the block explorer, and the tokens will not arrive in the intended recipient's wallet.
+3. **Wrong address**: if a user mistakenly sends tokens to an incorrect address, the transaction will not be visible on the block explorer, and the tokens will not arrive in the intended recipient's wallet.
 
 ### Transactions in Etherscan
 
@@ -35,9 +35,6 @@ In summary, the **Transactions** section in Etherscan displays transactions betw
 
 ### How to check your internal transactions
 
-To check the internal transactions of an Ethereum wallet, follow these steps:
-
-
 1. Launch your web browser and visit [Etherscan.io](https://etherscan.io/).
 
 2. In the search bar at the top of the page, enter the Ethereum wallet address you used to withdraw funds. This should be the address you withdrew funds from, not the destination address.
@@ -47,8 +44,6 @@ To check the internal transactions of an Ethereum wallet, follow these steps:
 3. Click **Enter**.
 
 4. Scroll down to the **Internal Transactions** section.
-
-Refer to the image below for more clarity.
 
 ![Internal transaction](../../assets/images/internal-trx.png "Internal transactions in Etherscan")
 
