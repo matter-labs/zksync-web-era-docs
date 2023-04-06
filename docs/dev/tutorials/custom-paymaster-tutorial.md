@@ -53,7 +53,7 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/har
 mkdir contracts deploy
 ```
 
-5. Create the file `hardhat.config.ts` and add the following, replacing the `ethNetwork` with an RPC URL:
+5. Create the file `hardhat.config.ts` and add the following:
 
 ```ts
 import "@matterlabs/hardhat-zksync-deploy";
@@ -81,7 +81,6 @@ module.exports = {
 ```
 
 ::: tip
-- Use [npx hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#quick-start) to scaffold a default Hardhat project.
 - Use the zkSync CLI to scaffold a zkSync project. Find out more info about [the zkSync CLI](../../api/tools/zksync-cli/).
 :::
 
@@ -231,7 +230,7 @@ The [validation steps](../developer-guides/aa.md#the-validation-step) ensure tha
 This is why it is important to verify transaction prerequisites _before_ performing any logic and why we _first_ check that the user provided enough allowance before calling `transferFrom`.
 :::
 
-## Create paymaster contract
+## Paymaster contract full code
 
 Create the `contracts/MyPaymaster.sol` file and copy/paste the following:
 
@@ -387,7 +386,7 @@ contract MyERC20 is ERC20 {
 
 ## Compile and deploy the contracts
 
-The script below deploys the ERC20 contract and the paymaster contract. It also creates an empty wallet and mints some `MyERC20` tokens to use for the paymaster to use at a later step.
+The script below deploys the ERC20 contract and the paymaster contract. It also creates an empty wallet and mints some `MyERC20` tokens for the paymaster to use at a later step.
 
 1. In the `deploy` folder, create the file `deploy-paymaster.ts` and copy/paste the following, replacing `<PRIVATE-KEY>` with your own:
 
