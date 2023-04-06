@@ -8,7 +8,7 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 
 ## Prerequisites
 
-- A [Node](https://nodejs.org/en/download) installation running Node 18.
+- A [Node.js](https://nodejs.org/en/download) installation running Node.js version 16.
 - Some familiarity with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - Some background knowledge on the concepts covered by the tutorial would be helpful too. Have a look at the following docs:
     - [Account abstraction protocol](../developer-guides/aa.md).
