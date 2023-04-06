@@ -1,6 +1,6 @@
 # Browse blocks
 
-![Browse blocks!](../../../assets/images/block-tx.png "View blocks on zkSync")
+![Browse blocks!](../../../assets/images/blocks.png "View blocks on zkSync")
 
 The block explorer home screen, by default, displays the 10 most recent blocks in the chain.
 View all blocks for a more complete overview of recent blocks, or click on a specific block number for details on that block.
@@ -24,7 +24,7 @@ There are two main sections inside a block:
 
 2. Transactions
 
-- Consists of lists of all the transactions that were included in this block.
+- Lists all the transactions that were included in this block.
 
 ![Single block page!](../../../assets/images/single-block.png "View a single block")
 

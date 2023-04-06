@@ -129,7 +129,9 @@ export const enSidebar = sidebar({
       children: [
         "/api/tools/block-explorer/intro", 
         "/api/tools/block-explorer/block-view", 
+        "/api/tools/block-explorer/batches-view", 
         "/api/tools/block-explorer/search", 
+        "/api/tools/block-explorer/token-list",
         "/api/tools/block-explorer/contract-verification"
       ],
     },
