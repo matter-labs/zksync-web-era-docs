@@ -13,13 +13,13 @@ This design has the following advantages:
 
 ## Why can't I find my withdrawal on Etherscan?
 
-There are several reasons why your withdrawal may be successful but you cannot see your tokens, or the transaction, on the block explorer. For example:
+There are several reasons why your withdrawal may be successful but you cannot see your tokens, or the transaction, on etherscan. For example:
 
-1. **Delay in block confirmation**: as mentioned in the [withdrawal delay](#withdrawal-delay) section above, successful withdrawals may be subject to an ongoing confirmation process. Consequently, you won't be able to see your transaction on the block explorer until the confirmation process completes.
+1. **Delay in block confirmation**: as mentioned in the [withdrawal delay](#withdrawal-delay) section above, successful withdrawals may be subject to an ongoing confirmation process. Consequently, you won't be able to see your transaction on etherscan until the confirmation process completes.
 
-2. **Transaction reverted**: a withdrawal may fail to appear on the block explorer if the transaction is reverted due to a conflict or issue with the smart contract that executed the transaction. In such cases, the transaction is canceled and it won't be included on the block explorer.
+2. **Transaction reverted**: a withdrawal may fail to appear on etherscan if the transaction is reverted due to a conflict or issue with the smart contract that executed the transaction. In such cases, the transaction is canceled and it won't be included on etherscan.
 
-3. **Wrong address**: if a user mistakenly sends tokens to an incorrect address, the transaction will not be visible on the block explorer, and the tokens will not arrive in the intended recipient's wallet.
+3. **Wrong address**: if a user mistakenly sends tokens to an incorrect address, the transaction will not be visible on etherscan, and the tokens will not arrive in the intended recipient's wallet.
 
 ### Transactions in Etherscan
 
