@@ -9,22 +9,14 @@ This is what we're going to do:
 - Allow users to change the greeting message on the smart contract via the app.
 - Show you how to [implement the testnet paymaster](#paying-fees-using-testnet-paymaster) that allows users to pay transaction fees with ERC20 tokens instead of ETH.
 
-::: warning
-- Breaking changes were introduced in `zksync-web3 ^0.13.0`. 
-- The API layer now operates with `gas` and the `ergs` concept is only used internally by the VM.
-:::
-
 ## Prerequisites
 
 - Download and install [Node](https://nodejs.org/en/download).
+- Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to v16.16.0 with command `nvm use 16`.
 - Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
 - A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync and deploying smart contracts.
 - ERC20 tokens on zkSync are required for the testnet paymaster. We recommend using [the faucet from the zkSync portal](https://portal.zksync.io/faucet).
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
-
-:::info
-This tutorial was recently tested running Node vv16.16.0.
-:::
 
 ## Build and deploy the Greeter contract
 
@@ -282,7 +274,7 @@ functions: {
 ...
 ```
 
-Beneath the `<script>` tag, there are placeholders for the address of your deployed `Greeter` contract and the path to its ABI.
+Beneath the `<script>` tag, there are placeholders for the address of your deployed `Greeter` contract: `GREETER_CONTRACT_ADDRESS`, and the path to its ABI: `GREETER_CONTRACT_ABI`.
 
 ```javascript
 <script>
