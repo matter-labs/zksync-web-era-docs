@@ -12,6 +12,10 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 - You have a web3 wallet app which holds some Goerli test ETH and some zkSync test ETH.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
+:::info
+This tutorial was recently tested using Node v16.16.0.
+:::
+
 ## Project structure
 
 Open a terminal window, create a new folder for the project tutorial, e.g. `mkdir cross-chain-tutorial`, and `cd` into the folder.
