@@ -122,7 +122,7 @@ contract Greeter {
 yarn hardhat compile
 ```
 
-4. Create the following deployment script in `deploy/deploy.ts`, replacing the private key placeholder with your own:
+4. Create the following deployment script in `deploy/deploy.ts`, replacing `<WALLET-PRIVATE-KEY>` with your own:
 
 ```typescript
 import { Wallet, utils } from "zksync-web3";
