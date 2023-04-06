@@ -23,7 +23,7 @@ This is what we're going to do:
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 :::info
-This tutorial was recently tested running Node vv16.16.0.
+This tutorial was recently tested running Node v16.16.0.
 :::
 
 ## Build and deploy the Greeter contract
