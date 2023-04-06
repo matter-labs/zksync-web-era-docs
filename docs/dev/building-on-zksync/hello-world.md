@@ -18,13 +18,6 @@ This is what we're going to do:
 - ERC20 tokens on zkSync are required for the testnet paymaster. We recommend using [the faucet from the zkSync portal](https://portal.zksync.io/faucet).
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
-<<<<<<< HEAD
-=======
-:::info
-This tutorial was recently tested running Node v16.16.0.
-:::
-
->>>>>>> 7f537b8ad548c6fe5eb3d1d6eb8194f797dec469
 ## Build and deploy the Greeter contract
 
 ### Initialize the project
