@@ -534,7 +534,7 @@ Read more about `wallet_requestPermissions`, in the [MetaMask documentation](htt
 
 ### Paying fees using testnet paymaster
 
-The zkSync account abstraction feature allows you to integrate [paymasters](../developer-guides/aa.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly. 
+The zkSync Era account abstraction feature allows you to integrate [paymasters](../developer-guides/aa.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly. 
 
 We will use the [testnet paymaster](../developer-guides/aa.md#testnet-paymaster) that is provided on all zkSync Era testnets.
 
