@@ -1,11 +1,5 @@
 # Differences with Ethereum
 
-zkSync Era allows developers to build projects using the same programming languages and tools as required by Ethereum.
-We provide a customized and optimized compiler toolchain for development on zkSync. For more information, see
-[the toolchain documentation](../../compiler-toolchain/overview.md).
-
-## EVM compatibility
-
 zkSync Era supports almost every smart contract written for EVM and satisfies all key security invariants so
 that no additional security re-auditing is usually required. Please keep in mind the following differences and recommended practices:
 
