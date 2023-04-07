@@ -2,6 +2,11 @@
 
 zkSync Era allows developers to build projects using the same programming languages and tools used to build on Ethereum.
 
+::: tip Differences with Ethereum
+
+Although most smart contracts work out of the box, we **strongly recommend developers to read about the [differences between Ethereum and zkSync Era](./differences-with-ethereum.md)**, and test their projects both locally using the [local setup](../../../api/hardhat/testing.md) and in testnet.
+
+:::
 
 ## Solidity support
 
@@ -31,20 +36,9 @@ Although you can write smart contracts in both Solidity and Vyper, compiling the
 - [zksolc](https://github.com/matter-labs/zksolc-bin): Solidity compiler.
 - [zkvyper](https://github.com/matter-labs/zkvyper-bin): Vyper compiler.
 
-**Our compilers are based on LLVM**. LLVM-based compilers have become the industry standard because of their robustness, efficiency, and the large community around the world. They provide us some additional advantages:
+**Our compilers are based on LLVM**. LLVM-based compilers have become the industry standard because of their robustness, efficiency, and the large community around the world. You can find more information about our compilers in the [Compiler toolchain section](../../compiler-toolchain/README.md).
 
-- Enable us to improve the efficiency over the original EVM bytecode because with LLVM we can take advantage of the many optimizations and tools available in this mature ecosystem.
-- Pave the way for us to add support for integrating codebases written in other programming languages with LLVM front-ends. By doing so, developers can build dApps and use blockchains in ways that are currently not possible.
-
-We recommend using these compilers via [their correspondent Hardhat plugins](../../../api/hardhat/plugins.md) (although they're also available as binaries). These plugins should be added to the Hardhat's config file and allow developers to compile new projects or migrate existing ones to zkSync Era.
-
-::: warning
-
-Compilers are no longer released as Docker images and its usage is no longer recommended. Use the `compilerSource: "binary"` in the Hardhat config file to use the binary instead.
-
-:::
-
-**Learn more about how to install and configure these plugins in the links below:**
+**Learn more about how to install and configure the compiler Hardhat plugins in the links below:**
 
 - [hardhat-zksync-solc documentation](../../../api/hardhat/hardhat-zksync-solc.md)
 - [hardhat-zksync-vyper documentation](../../../api/hardhat/hardhat-zksync-vyper.md)
