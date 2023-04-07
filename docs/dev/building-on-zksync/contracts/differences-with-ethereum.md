@@ -100,6 +100,12 @@ These variables behave differently from L1. Read more [about blocks in zkSync](.
 `codesize` has the same behavior as `calldatasize`, `codecopy` as `calldatacopy`.
 To make it works datasize of the current object is 0.
 
+### Using `return` in the deploy code will not function as intended
+Constructors on the zkSync Era return immutables arrays. If you attempt to use return, it will instead return the array of immutables in the auxiliary heap that was previously written there (using `setimmutable`) rather than the data you specified.
+
+### Yul Users Only: `datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `loadimmutable` may behave differently
+Please note that `datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `loadimmutable` may behave differently in most cases in Yul (not assembly blocks in Solidity). This is due to modifications made to make solc-generated Yul work with our system, particularly in regards to create and constructors.
+
 
 ## Opcode Differences
 
@@ -110,7 +116,7 @@ To make it works datasize of the current object is 0.
 | `SELFDESTRUCT`      | Considered harmful and deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049)       |
 | `CALLCODE`   | Deprecated in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`        |
 | `EXTCODECOPY` |  |
-| `CODECOPY` | Replaced with `CALLDATACOPY` |
+| `CODECOPY` | replaced only in the deploy code with  `CALLDATACOPY`. Forbidden in runtime code. |
 | `PC` | Inaccessible in Yul and Solidity `>=0.7.0`; accessible in Solidity `0.6` although it produces a runtime error. | 
 
 :::warning
@@ -157,7 +163,7 @@ For example, `gasPerPubdataByte` should be taken into account in development.
 
 Since the zkSync fee model is state diff based, each transaction comes with an `gasPerPubdataByte` constant, which is currently controlled by the operator (the EIP712 transaction’s users also sign an upper bound on this value, however, the operator is free to choose any value up to that upper bound). Note, that even if the value is chosen by the protocol, it will still fluctuate based on the L1 gas price, meaning that simply relying on gas is not enough.
 
-A notable example is a Gnosis Safe’s execTransaction method:
+A notable example is a Gnosis Safe’s `execTransaction` method:
 
 ```solidity
 // We require some gas to emit the events (at least 2500) after the execution and some to perform code until the execution (500)
