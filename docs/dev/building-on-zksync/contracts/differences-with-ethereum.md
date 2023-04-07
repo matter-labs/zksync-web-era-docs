@@ -153,6 +153,34 @@ zkSync Era has a somewhat distinctive gas logic compared to Ethereum. There are 
 
 Our fee model is being constantly improved and so it is highly recommended NOT to hardcode any constants since the fee model changes in the future might be breaking for this constant.
 
+For example, `gasPerPubdataByte` should be taken into account in development.
+
+Since the zkSync fee model is state diff based, each transaction comes with an `gasPerPubdataByte` constant, which is currently controlled by the operator (the EIP712 transaction’s users also sign an upper bound on this value, however, the operator is free to choose any value up to that upper bound). Note, that even if the value is chosen by the protocol, it will still fluctuate based on the L1 gas price, meaning that simply relying on gas is not enough.
+
+A notable example is a Gnosis Safe’s execTransaction method:
+
+```solidity
+// We require some gas to emit the events (at least 2500) after the execution and some to perform code until the execution (500)
+// We also include the 1/64 in the check that is not send along with a call to counteract potential shortings because of EIP-150
+require(gasleft() >= ((safeTxGas * 64) / 63).max(safeTxGas + 2500) + 500, "GS010");
+// Use scope here to limit variable lifetime and prevent `stack too deep` errors
+{
+    uint256 gasUsed = gasleft();
+    // If the gasPrice is 0 we assume that nearly all available gas can be used (it is always more than safeTxGas)
+    // We only substract 2500 (compared to the 3000 before) to ensure that the amount passed is still higher than safeTxGas
+    success = execute(to, value, data, operation, gasPrice == 0 ? (gasleft() - 2500) : safeTxGas);
+    gasUsed = gasUsed.sub(gasleft());
+   
+    // ...
+}
+```
+
+While the contract does enforce the correct `gasleft()`, it does not enforce the correct `gasPerPubdata` (since there was no such parameter on Ethereum), meaning that a malicious user could call this wallet when the `gasPerPubdata` is high and so make the transaction fail (by making it spend artificially more gas than required). 
+
+This is the case for all relayer-like logic ported directly from Ethereum and so if you see your code relying on logic like “the user should provide at X gas”, then the `gasPerPubdata` should be also taken into account on zkSync.  
+
+For now, zkSync operator will use honest values for ETH L1 price & `gasPerPubdata`, and so it should not be an issue if enough margin is added to the estimated gas. However, your contract should be updated in order to prepare for future decentralization of zkSync.
+
 ### Native Account Abstraction Over `ecrecover` for Validation
 
 Use zkSync Era's native account abstraction support for signature validation instead of this function. We recommend not relying on the fact that an account has an ECDSA private key, since the account may be governed by multisig and use another signature scheme. Read more about [zkSync Account Abstraction support](../../developer-guides/aa.md)
