@@ -1,7 +1,7 @@
 # Differences with Ethereum
 
 zkSync Era supports almost every smart contract written for EVM and satisfies all key security invariants so
-that no additional security re-auditing is usually required. Please keep in mind the following differences and recommended practices:
+that no additional security re-auditing is usually required. However, please keep in mind the following differences and recommended practices:
 
 ### It is better to use a proxy pattern at the early stage of the protocol
 
@@ -21,7 +21,7 @@ payable(X).send
 ```solidity
 payable(X).transfer
 ```
-Should be converted into:
+Should not be used. Instead, you convert them into:
 
 ```solidity
 (bool s, )= call{value: x}("")
@@ -35,6 +35,8 @@ zkSync Era has a somewhat distinctive gas logic compared to Ethereum. There are 
 - zkEVM has a different set of computational trade-offs compared to the standard computational model, which practically means that the price for opcodes is different from Ethereum. Also, zkEVM contains a different set of opcodes under the hood and so the “gas” metric of the same set of operations may be different on zkSync and on Ethereum.
 
 Our fee model is being constantly improved and so it is highly recommended NOT to hardcode any constants since the fee model changes in the future might be breaking for this constant.
+
+
 
 ### Non-standard `CREATE`/`CREATE2` behaviour
 
@@ -100,7 +102,12 @@ export function createAddress(sender: Address, senderNonce: BigNumberish) {
 
 ### tx.origin
 
-TODO
+A global variable in Solidity that returns the address of the account that sent the transaction.
+It is supported by zkSync Era, but if a custom account interacts with a contract that uses it, this variable will always return the 0x00..008001 address, which can cause unexpected behaviour.
+We discourage its usage as it is vulnerable to phishing attacks that can drain a contract of all funds.
+Read more about [tx.origin phishing and other vulnerabilities](https://hackernoon.com/hacking-solidity-contracts-using-txorigin-for-authorization-are-vulnerable-to-phishing)
+
+
 
 ### Native Account Abstraction Over `ecrecover` for Validation
 
@@ -179,12 +186,6 @@ Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256`
 No actions are required from your side as all the calls to the precompiles are done by the compilers under the hood.
 
 ### Other considerations
-
-- `tx.origin` 
-A global variable in Solidity that returns the address of the account that sent the transaction.
-It is supported by zkSync Era, but if a custom account interacts with a contract that uses it, the transactions will fail.
-We discourage its usage as it is vulnerable to phishing attacks that can drain a contract of all funds.
-Read more about [tx.origin phishing and other vulnerabilities](https://hackernoon.com/hacking-solidity-contracts-using-txorigin-for-authorization-are-vulnerable-to-phishing)
 
 - `block.timestamp` and `block.number`
 These variables behave differently from L1. Read more [about blocks in zkSync](../../developer-guides/transactions/blocks.md#blocks-in-zksync-era).
