@@ -38,7 +38,7 @@ zksolc: {
   settings: {
     compilerPath: "zksolc",  // optional. Ignored for compilerSource "docker". Can be used if compiler is located in a specific folder
     experimental: {
-      dockerImage: "matterlabs/zksolc", // Deprecated: used for compilerSource: "docker"
+      dockerImage: "matterlabs/zksolc", // Deprecated! use, compilerSource: "binary"
       tag: "latest"   // Deprecated: used for compilerSource: "docker"
     },
     libraries:{}, // optional. References to non-inlinable libraries
