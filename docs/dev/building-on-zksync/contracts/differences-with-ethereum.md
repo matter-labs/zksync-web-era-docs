@@ -1,9 +1,7 @@
 # Differences with Ethereum
 
 zkSync Era supports almost every smart contract written for EVM and satisfies all key security invariants so
-that no additional security re-auditing is usually required. However, please keep in mind the following differences and recommended practices:
-
-
+that no additional security re-auditing is usually required. However, please keep in mind the following differences and recommendedations:
 
 ## Differences
 
@@ -89,17 +87,19 @@ export function createAddress(sender: Address, senderNonce: BigNumberish) {
 }
 ```
 
-### `block.timestamp` and `block.number`
+### Differences in `block.timestamp` and `block.number`
 These variables behave differently from L1. Read more [about blocks in zkSync](../../developer-guides/transactions/blocks.md#blocks-in-zksync-era).
 
-### COINBASE DIFFICULTY BASEFEE
+### Differences in `COINBASE` `DIFFICULTY` `BASEFEE` 
+- `COINBASE` returns our Bootloader contract address, `0x0000000000000000000000000000000000008001` 
+- `DIFFICULTY` returns a constant value of `2500000000000000` 
+- `BASEFEE` is not a constant, but is defined by the fee model. Most of the time it is 0.25 gwei, but under very high L1 gas prices it may rise.
 
 ### Use of `codesize`/`codecopy` and `calldata` in the deploy code
-Calldata in the constructor is not empty as on the EVM, on zkEVM calldata contains constructor arguments.
-codesize has the same behavior as calldatasize, codecopy as calldatacopy
+`Calldata` in the constructor is not empty as on the EVM, on zkEVM calldata contains constructor arguments.
+`codesize` has the same behavior as `calldatasize`, `codecopy` as `calldatacopy`.
 To make it works datasize of the current object is 0.
 
-TODO
 
 ## Opcode Differences
 
@@ -109,7 +109,7 @@ TODO
 | ----------- | ----------- |
 | `SELFDESTRUCT`      | Considered harmful and deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049)       |
 | `CALLCODE`   | Deprecated in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`        |
-| `EXTCODECOPY` | TODO: ASK ABOUT THIS Skipped at the time of writing because zkEVM opcodes are not identical in the EVM; can be implemented if needed. |
+| `EXTCODECOPY` |  |
 | `CODECOPY` | Replaced with `CALLDATACOPY` |
 | `PC` | Inaccessible in Yul and Solidity `>=0.7.0`; accessible in Solidity `0.6` although it produces a runtime error. | 
 
