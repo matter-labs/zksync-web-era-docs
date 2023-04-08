@@ -36,7 +36,7 @@ Although you can write smart contracts in both Solidity and Vyper, compiling the
 - [zksolc](https://github.com/matter-labs/zksolc-bin): Solidity compiler.
 - [zkvyper](https://github.com/matter-labs/zkvyper-bin): Vyper compiler.
 
-**Our compilers are based on LLVM**. LLVM-based compilers have become the industry standard because of their robustness, efficiency, and the large community around the world. You can find more information about our compilers in the [Compiler toolchain section](../../compiler-toolchain/README.md).
+**Our compilers are based on LLVM**. LLVM-based compilers have become the industry standard because of their robustness, efficiency, and the large community around the world. You can find more information about our compilers in the [Compiler toolchain section](../../../api/compiler-toolchain/README.md).
 
 **Learn more about how to install and configure the compiler Hardhat plugins in the links below:**
 

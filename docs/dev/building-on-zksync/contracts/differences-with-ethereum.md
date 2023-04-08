@@ -1,25 +1,39 @@
 # Differences with Ethereum
 
-zkSync Era supports almost every smart contract written for EVM and satisfies all key security invariants so
-that no additional security re-auditing is usually required. However, please keep in mind the following differences and recommendedations:
+zkSync Era has the capability to accommodate virtually all EVM-based smart contracts, while ensuring compliance with all significant security invariants, thereby minimizing the need for additional security re-auditing. Nevertheless, it is essential to note the subsequent distinctions:
 
 ## Differences
 
-### Use `call` over `.send`/`.transfer`
+### Use `call` over `.send` or `.transfer`
 
-`payable(X).send`/`payable(X).transfer` will not work, because the 2300 gas stipend most often will not be enough to conduct a transfer. Besides different opcode pricing, the transfer might involve state changes, which may require big number of L2 gas spent on data availability.
+The utilization of `payable(X).send` or `payable(X).transfer` is not feasible, as the 2300 gas stipend is generally insufficient for conducting a transfer. Furthermore, owing to diverse opcode pricing, the transfer may necessitate state changes, resulting in a large number of L2 gas being expended on data availability.
 
-Instead, you should follow security best practices and use `call` instead. For example:
+To ensure adherence to security best practices, it is recommended to employ `call` instead. For instance:
+
+::: code-tabs
+
+@tab:active .send
 
 ```solidity
+payable(X).send
+```
+
+@tab .transfer
+
+```solidity
+payable(X).transfer
+```
+:::
+
+<!-- ```solidity
 payable(X).send
 ```
  or
 
 ```solidity
 payable(X).transfer
-```
-Should not be used. Instead, you convert them into:
+``` -->
+It is advised not to use the former, but rather to transform them into the following:
 
 ```solidity
 (bool s, )= call{value: x}("")
@@ -27,9 +41,11 @@ Should not be used. Instead, you convert them into:
 
 ### Non-standard `CREATE`/`CREATE2` behaviour
 
-On Ethereum, both `CREATE` and `CREATE2` accept the `initCode` of the contract with constructor parameters concatenated to it as its input. On zkSync, contract deployment is done via hashes, i.e. the operator receives the bytecodes themselves in the `factoryDeps` fields of the EIP712 transactions & the actual deployment is done by providing the contract’s hash to the `ContractDeployer` system contract.
+In Ethereum, the `initCode` of a contract with concatenated constructor parameters serves as the input for both `CREATE` and `CREATE2`.
+ In contrast, on the zkSync Era, contract deployment occurs through the use of hashes. The operator receives the bytecodes in the `factoryDeps` fields of the EIP712 transactions while the actual [deployment](./contract-deployment.md#format-of-bytecode-hash) process involves providing the contract's hash to the `ContractDeployer` system contract.
 
-With this in mind, the compiler interprets the arguments of `create` as slightly unfilled arguments calldata to the `ContractDeployer` (the rest is filled with the compiler internally). For this to work the `datasize`/ `dataoffset` Yul instructions were adapted to return a constant size and the bytecode hash instead of bytecode. This means that in order for `create`/`create2` to work, the compiler needs to know the bytecode of the deployed contract beforehand.
+
+Keeping this in mind, the compiler interprets the arguments of `create` as slightly unfilled arguments calldata to the `ContractDeployer`. The remaining arguments are filled by the compiler itself. To enable this, the Yul instructions `datasize` and `dataoffset` were adapted to return a constant size and bytecode hash rather than bytecode. Therefore, for the `create`/`create2` to work, the compiler needs to know the bytecode of the deployed contract beforehand.
 
 ```solidity
 
@@ -103,7 +119,9 @@ To make it works datasize of the current object is 0.
 ### Using `return` in the deploy code will not function as intended
 Constructors on the zkSync Era return immutables arrays. If you attempt to use return, it will instead return the array of immutables in the auxiliary heap that was previously written there (using `setimmutable`) rather than the data you specified.
 
-### Yul Users Only: `datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `loadimmutable` may behave differently
+### For Yul users
+
+`datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `loadimmutable` may behave differently.
 Please note that `datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `loadimmutable` may behave differently in most cases in Yul (not assembly blocks in Solidity). This is due to modifications made to make solc-generated Yul work with our system, particularly in regards to create and constructors.
 
 
@@ -111,14 +129,14 @@ Please note that `datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `load
 
 ### Removed Opcodes
 
-| Opcode      | Explanation |
-| ----------- | ----------- |
-| `SELFDESTRUCT`      | Considered harmful and deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049)       |
-| `CALLCODE`   | Deprecated in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`        |
-| `EXTCODECOPY` |  |
-| `CODECOPY` | replaced only in the deploy code with  `CALLDATACOPY`. Forbidden in runtime code. |
-| `CODESIZE` | Everything is the same as for `CODECOPY`, but will return 0 instead no-op. |
-| `PC` | Inaccessible in Yul and Solidity `>=0.7.0`; accessible in Solidity `0.6` although it produces a runtime error. | 
+| Opcode        | Explanation                                                                                                    |
+| ------------- | -------------------------------------------------------------------------------------------------------------- |
+| `SELFDESTRUCT`| Considered harmful and deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049)                       |
+| `CALLCODE`    | Deprecated in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`                   |
+<!-- | `EXTCODECOPY` |  | -->
+| `CODECOPY`    | replaced only in the deploy code with  `CALLDATACOPY`. Forbidden in runtime code.                              |
+| `CODESIZE`    | Everything is the same as for `CODECOPY`, but will return 0 instead no-op.                                     |
+| `PC`          | Inaccessible in Yul and Solidity `>=0.7.0`; accessible in Solidity `0.6` although it produces a runtime error. | 
 
 :::warning
 All these opcodes produce an error on compilation.
@@ -147,7 +165,7 @@ So, unlike EVM where the memory growth happens before the call itself, on zkEVM 
 
 ## Recommendations
 
-### It is better to use a proxy pattern at the early stage of the protocol
+### It is better to use a proxy pattern at the early stage of the protocol?
 
 zkSync Era is based on the special zk-friendly VM. That’s why we provide our compiler that compiles standard Solidity code to the zkEVM bytecode. While we have extensive test coverage to ensure EVM compatibility, some issues after the mainnet release may still be found & we will implement the patches for these in a timely manner. In order to apply a fix of a compiler bug, your smart contract will need to upgrade. That’s why we advise using the Proxy pattern for a few months after your first deployment on zkSync, even if you plan to migrate to the immutable contract later on (this could be done by migrating the governance to 0 address in the future).
 
@@ -158,11 +176,11 @@ zkSync Era has a somewhat distinctive gas logic compared to Ethereum. There are 
 - We have a state-diff-based data availability, which means that the price for the execution depends on the L1 gas price.
 - zkEVM has a different set of computational trade-offs compared to the standard computational model, which practically means that the price for opcodes is different from Ethereum. Also, zkEVM contains a different set of opcodes under the hood and so the “gas” metric of the same set of operations may be different on zkSync and on Ethereum.
 
-Our fee model is being constantly improved and so it is highly recommended NOT to hardcode any constants since the fee model changes in the future might be breaking for this constant.
+Our fee model is being constantly improved and so it is highly recommended **NOT** to hardcode any constants since the fee model changes in the future might be breaking for this constant.
 
 For example, `gasPerPubdataByte` should be taken into account in development.
 
-Since the zkSync fee model is state diff based, each transaction comes with an `gasPerPubdataByte` constant, which is currently controlled by the operator (the EIP712 transaction’s users also sign an upper bound on this value, however, the operator is free to choose any value up to that upper bound). Note, that even if the value is chosen by the protocol, it will still fluctuate based on the L1 gas price, meaning that simply relying on gas is not enough.
+Due to the state diff-based fee model of zkSync, every transaction includes a constant called `gasPerPubdataByte`. Presently, the operator has control over this value. However, in the EIP712 transaction’s, users also sign an upper bound on this value, but the operator is free to choose any value up to that upper bound. Note, that even if the value is chosen by the protocol, it will still fluctuate based on the L1 gas price. Therefore, relying solely on gas is inadequate.
 
 A notable example is a Gnosis Safe’s `execTransaction` method:
 
@@ -182,12 +200,11 @@ require(gasleft() >= ((safeTxGas * 64) / 63).max(safeTxGas + 2500) + 500, "GS010
 }
 ```
 
-While the contract does enforce the correct `gasleft()`, it does not enforce the correct `gasPerPubdata` (since there was no such parameter on Ethereum), meaning that a malicious user could call this wallet when the `gasPerPubdata` is high and so make the transaction fail (by making it spend artificially more gas than required). 
+While the contract does enforce the correct `gasleft()`, it does not enforce the correct `gasPerPubdata`, since there was no such parameter on Ethereum. Meaning that a malicious user could call this wallet when the `gasPerPubdata` is high and so make the transaction fail, hence making it spend artificially more gas than required. 
 
 This is the case for all relayer-like logic ported directly from Ethereum and so if you see your code relying on logic like “the user should provide at X gas”, then the `gasPerPubdata` should be also taken into account on zkSync.  
 
-For now, zkSync operator will use honest values for ETH L1 price & `gasPerPubdata`, and so it should not be an issue if enough margin is added to the estimated gas. However, your contract should be updated in order to prepare for future decentralization of zkSync.
-
+For now, zkSync Era operator will use honest values for ETH L1 price and `gasPerPubdata`, and so it should not be an issue if enough margin is added to the estimated gas. In order to prepare for the future decentralization of zkSync Era, it is imperative that you update your contract.
 ### Native Account Abstraction Over `ecrecover` for Validation
 
 Use zkSync Era's native account abstraction support for signature validation instead of this function. We recommend not relying on the fact that an account has an ECDSA private key, since the account may be governed by multisig and use another signature scheme. Read more about [zkSync Account Abstraction support](../../developer-guides/aa.md)

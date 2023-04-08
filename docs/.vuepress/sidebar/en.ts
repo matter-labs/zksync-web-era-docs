@@ -49,16 +49,6 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Compiler Toolchain",
-      link: "/dev/compiler-toolchain",
-      children: [
-        "/dev/compiler-toolchain/overview.md",
-        "/dev/compiler-toolchain/solidity.md",
-        "/dev/compiler-toolchain/vyper.md",
-        "/dev/compiler-toolchain/llvm.md",
-      ],
-    },
-    {
       text: "Tutorials",
       link: "/dev/tutorials",
       children: [
@@ -132,6 +122,16 @@ export const enSidebar = sidebar({
         "/api/tools/block-explorer/block-view", 
         "/api/tools/block-explorer/search", 
         "/api/tools/block-explorer/contract-verification"
+      ],
+    },
+    {
+      text: "Compiler Toolchain",
+      link: "/api/compiler-toolchain",
+      children: [
+        "/api/compiler-toolchain/overview.md",
+        "/api/compiler-toolchain/solidity.md",
+        "/api/compiler-toolchain/vyper.md",
+        "/api/compiler-toolchain/llvm.md",
       ],
     },
     {
