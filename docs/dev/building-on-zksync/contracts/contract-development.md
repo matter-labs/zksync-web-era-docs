@@ -1,44 +1,44 @@
 # Smart contract development
 
-zkSync Era allows developers to build projects using the same programming languages and tools as required by Ethereum.
-We provide a customized and optimized compiler toolchain for development on zkSync. For more information, see
-[the toolchain documentation](../../compiler-toolchain/overview.md).
+zkSync Era allows developers to build projects using the same programming languages and tools used to build on Ethereum.
 
-## EVM compatibility
+::: tip Differences with Ethereum
 
-zkSync Era supports almost every smart contract written for EVM and satisfies all key security invariants so
-that no additional security re-auditing is usually required. Notable exceptions are contracts using
-the following EVM opcodes:
+Although most smart contracts work out of the box, we **strongly recommend developers to read about the [differences between Ethereum and zkSync Era](./differences-with-ethereum.md)**, and test their projects both locally using the [local setup](../../../api/hardhat/testing.md) and in testnet.
 
-- `SELFDESTRUCT` - considered harmful and deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).
-- `CALLCODE` - deprecated in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`.
-- `EXTCODECOPY` - skipped at the time of writing because zkEVM opcodes are not identical in the EVM; can be implemented if needed.
-- `CODECOPY` - replaced with `CALLDATACOPY` in the deploy code.
-- `PC` - inaccessible in Yul and Solidity `>=0.7.0`; accessible in Solidity `0.6` although it produces a runtime error.
-
-::: warning
-These opcodes produce an error on compilation.
 :::
 
-There are several other differences, for example:
+## Solidity support
 
-* Gas metering is different (as is the case for other L2s).
-* Some EVM cryptographic precompiles (notably pairings and RSA) won’t be immediately available. However, pairing is prioritized to allow deployment of both Hyperchains and protocols like Aztec/Dark Forest without modifications.
+For the time being Solidity `>=0.4.10` versions are supported, though **we strongly recommended using** `^0.8.0` as older versions contain known bugs.
 
-Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are supported as precompiles.
-No actions are required from your side as all the calls to the precompiles are done by the compilers under the hood.
+Solidity versions `>=0.8` are compiled through Yul, whereas `<=0.7` are compiled via the EVM legacy assembly, which is a less friendly IR due to obfuscation of the control-flow and call graphs. For this reason, there are a few limitations in zkSync for contracts written in Solidity `<=0.7`:
 
-### Other considerations
+- Contract-local recursion is not supported.
+- Internal function pointers are not supported.
+- Possible impact on the contract size and VM cycles count.
 
-- `tx.origin` 
-A global variable in Solidity that returns the address of the account that sent the transaction.
-It is supported by zkSync Era, but if a custom account interacts with a contract that uses it, the transactions will fail.
-We discourage its usage as it is vulnerable to phishing attacks that can drain a contract of all funds.
-Read more about [tx.origin phishing and other vulnerabilities](https://hackernoon.com/hacking-solidity-contracts-using-txorigin-for-authorization-are-vulnerable-to-phishing)
+### Using libraries in Solidity
 
-- `block.timestamp` and `block.number`
-These variables behave differently from L1. Read more [about blocks in zkSync](../../developer-guides/transactions/blocks.md#blocks-in-zksync-era).
+The usage of libraries in Solidity is supported in zkSync Era with the following considerations:
 
-- 'ecrecover' 
-Use zkSync Era's native account abstraction support for signature validation instead of this function. We recommend not relying on the fact that an account has an ECDSA private key, since the account may be governed by multisig and use another signature scheme.
-Read more about [zkSync Account Abstraction support](../../developer-guides/aa.md)
+- If a Solidity library can be inlined (i.e. it only contains `private` or `internal` methods), it can be used without any additional configuration.
+- However, if a library contains at least one `public` or `external` method, it's non-inlinable and its address needs to be passed explicitly to the compiler. You can learn more about [how to compile non-inlineable libraries in this section of the docs](../../../api/hardhat/compiling-libraries.md).
+
+## Vyper support
+
+Currently only Vyper `^0.3.3` is supported.
+
+## Compilers
+
+Although you can write smart contracts in both Solidity and Vyper, compiling these contracts to our zkEVM bytecode requires special compilers:
+
+- [zksolc](https://github.com/matter-labs/zksolc-bin): Solidity compiler.
+- [zkvyper](https://github.com/matter-labs/zkvyper-bin): Vyper compiler.
+
+**Our compilers are based on LLVM**. LLVM-based compilers have become the industry standard because of their robustness, efficiency, and the large community around the world. You can find more information about our compilers in the [Compiler toolchain section](../../../api/compiler-toolchain/README.md).
+
+**Learn more about how to install and configure the compiler Hardhat plugins in the links below:**
+
+- [hardhat-zksync-solc documentation](../../../api/hardhat/hardhat-zksync-solc.md)
+- [hardhat-zksync-vyper documentation](../../../api/hardhat/hardhat-zksync-vyper.md)

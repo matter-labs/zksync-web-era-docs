@@ -23,17 +23,23 @@ contributors: false
 </div>
 <section>
   <div class="card-container">
-    <a href="./dev/fundamentals/zkSync.html" class="card">
+    <!-- <a href="./dev/fundamentals/zkSync.html" class="card">
       <div class="content">
         <h3>About zkSync Era</h3>
         <p>Learn more about our future-proof zkEVM. </p>
       </div>
-    </a>
+    </a> -->
     <a href="./dev/building-on-zksync/hello-world.html" class="card">
       <div class="content">
         <h3>Getting started</h3>
         <p>Build a smart contract app with zkSync Era.</p>
       </div>
+    </a>
+    <a href="./dev/building-on-zksync/contracts/differences-with-ethereum.html" class="card">
+         <div class="content">
+            <h3>Era vs Ethereum</h3>
+            <p>Differences between zkSync Era and Ethereum.</p>
+         </div>
     </a>
     <a href="./api/" class="card">
       <div class="content">
@@ -69,7 +75,7 @@ contributors: false
   </div>
 </section>
 <div class="cards-heading">
-   <span class="title-section">Tutorials</span>
+   <span class="title-section">Tutorials and Guides</span>
 </div>
 <section>
   <div class="card-container">
@@ -90,6 +96,6 @@ contributors: false
             <h3>Custom Paymaster</h3>
             <p>Build your own paymaster and delight users with your app.</p>
          </div>
-      </a>
+    </a>
   </div>
 </section>

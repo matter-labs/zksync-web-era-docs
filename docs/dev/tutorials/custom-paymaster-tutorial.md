@@ -14,7 +14,7 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
     - [Account abstraction protocol](../developer-guides/aa.md).
     - [Introduction to system contracts](../developer-guides/system-contracts.md).
     - [Smart contract deployment](../building-on-zksync/contracts/contract-deployment.md) on zkSyn Era.
-    - [Gas estimation for transactions](../developer-guides/transactions/fee-model.md#gas-estimation-during-transaction-for-custom-and-paymaster-accounts) guide.
+    - [Gas estimation for transactions](../developer-guides/transactions/fee-model.md#gas-estimation-during-a-transaction-for-paymaster-and-custom-accounts) guide.
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ## Project repo
