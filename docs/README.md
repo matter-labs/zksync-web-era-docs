@@ -38,7 +38,7 @@ contributors: false
     <a href="./dev/building-on-zksync/contracts/differences-with-ethereum.html" class="card">
          <div class="content">
             <h3>Differences with Ethereum</h3>
-            <p>Distinctions between Era and Ethereum</p>
+            <p>Distinctions between Era and Ethereum.</p>
          </div>
     </a>
     <a href="./api/" class="card">
