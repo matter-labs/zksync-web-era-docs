@@ -75,7 +75,7 @@ contributors: false
   </div>
 </section>
 <div class="cards-heading">
-   <span class="title-section">Tutorials and Guides</span>
+   <span class="title-section">Tutorials</span>
 </div>
 <section>
   <div class="card-container">
