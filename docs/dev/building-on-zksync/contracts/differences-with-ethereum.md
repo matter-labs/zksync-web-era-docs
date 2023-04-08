@@ -25,14 +25,6 @@ payable(X).transfer
 ```
 :::
 
-<!-- ```solidity
-payable(X).send
-```
- or
-
-```solidity
-payable(X).transfer
-``` -->
 It is advised not to use the former, but rather to transform them into the following:
 
 ```solidity
