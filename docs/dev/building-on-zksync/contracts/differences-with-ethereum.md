@@ -123,10 +123,10 @@ Please note that `datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `load
 
 | Opcode        | Explanation                                                                                                    |
 | ------------- | -------------------------------------------------------------------------------------------------------------- |
-| `SELFDESTRUCT`| Considered harmful and deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049)                       |
-| `CALLCODE`    | Deprecated in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`                   |
+| `SELFDESTRUCT`| Considered harmful and deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).                      |
+| `CALLCODE`    | Deprecated in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`.                  |
 <!-- | `EXTCODECOPY` |  | -->
-| `CODECOPY`    | replaced only in the deploy code with  `CALLDATACOPY`. Forbidden in runtime code.                              |
+| `CODECOPY`    | Replaced only in the deploy code with  `CALLDATACOPY`. Forbidden in runtime code.                              |
 | `CODESIZE`    | Everything is the same as for `CODECOPY`, but will return 0 instead no-op.                                     |
 | `PC`          | Inaccessible in Yul and Solidity `>=0.7.0`; accessible in Solidity `0.6` although it produces a runtime error. | 
 
