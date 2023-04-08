@@ -96,19 +96,23 @@ export function createAddress(sender: Address, senderNonce: BigNumberish) {
 ```
 
 ### Differences in `block.timestamp` and `block.number`
+
 These variables behave differently from L1. Read more [about blocks in zkSync](../../developer-guides/transactions/blocks.md#blocks-in-zksync-era).
 
 ### Differences in `COINBASE` `DIFFICULTY` `BASEFEE` 
+
 - `COINBASE` returns our Bootloader contract address, `0x0000000000000000000000000000000000008001` 
 - `DIFFICULTY` returns a constant value of `2500000000000000` 
 - `BASEFEE` is not a constant, but is defined by the fee model. Most of the time it is 0.25 gwei, but under very high L1 gas prices it may rise.
 
 ### Use of `codesize`/`codecopy` and `calldata` in the deploy code
+
 `Calldata` in the constructor is not empty as on the EVM, on zkEVM calldata contains constructor arguments.
 `codesize` has the same behavior as `calldatasize`, `codecopy` as `calldatacopy`.
 To make it works datasize of the current object is 0.
 
 ### Using `return` in the deploy code will not function as intended
+
 Constructors on the zkSync Era return immutables arrays. If you attempt to use return, it will instead return the array of immutables in the auxiliary heap that was previously written there (using `setimmutable`) rather than the data you specified.
 
 ### For Yul users
