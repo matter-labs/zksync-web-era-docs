@@ -32,7 +32,7 @@ _Users should only interact with the token bridge contracts via [zkSync Bridge](
 |      Contract                 | Address                                                                                                                   | 
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------|
 | L1ERC20BridgeProxy            | [0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063](https://etherscan.io/address/0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063#code)|
-| L1ERC20BridgeImpl             | [0x22bE40122BA952b81c50bcaa86F84418ff623391](https://etherscan.io/address/0x22bE40122BA952b81c50bcaa86F84418ff623391#code)|
+| L1ERC20BridgeImpl             | [0x7e5E66B01fe43293545eaB98ec4D31784A5Efa84](https://etherscan.io/address/0x7e5E66B01fe43293545eaB98ec4D31784A5Efa84#code)|
 | L2ERC20Bridge                 | [0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102](https://explorer.zksync.io/address/0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102)|
 
 
