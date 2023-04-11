@@ -10,7 +10,9 @@ On the block explorer home screen, you see the 10 latest batches by default. If 
 
 ## See all batches
 
-You can view the details of a specific batch by clicking on its batch number. To explore more batches, go to the "[Batches](https://explorer.zksync.io/batches/)" section in the navigation menu and use the pagination to navigate to the next page. 
+View the details of a specific batch by clicking on its batch number on the [Batches](https://explorer.zksync.io/batches/) page.
+
+To see more batches, use the pagination at the bottom to navigate through the pages. 
 
 If you've left the homepage, you can still search for a batch by typing in its batch number. 
 
