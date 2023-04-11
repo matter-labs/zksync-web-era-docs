@@ -1,10 +1,10 @@
 # Differences with Ethereum
 
-zkSync Era has the capability to accommodate virtually all EVM-based smart contracts, while ensuring compliance with all significant security invariants, thereby minimizing the need for additional security re-auditing. Nevertheless, it is essential to note the subsequent distinctions:
+zkSync Era can handle almost all smart contracts based on the Ethereum Virtual Machine (EVM) and maintains high security standards, reducing the need for repeated security audits. However, it's important to be aware of the following differences.
 
 ## Differences
 
-### Use `call` over `.send` or `.transfer`
+### Using `call` over `.send` or `.transfer`
 
 The utilization of `payable(X).send` or `payable(X).transfer` is not feasible, as the 2300 gas stipend is generally insufficient for conducting a transfer. Furthermore, owing to diverse opcode pricing, the transfer may necessitate state changes, resulting in a large number of L2 gas being expended on data availability.
 
@@ -129,7 +129,6 @@ Please note that `datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `load
 | ------------- | -------------------------------------------------------------------------------------------------------------- |
 | `SELFDESTRUCT`| Considered harmful and deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).                      |
 | `CALLCODE`    | Deprecated in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`.                  |
-<!-- | `EXTCODECOPY` |  | -->
 | `CODECOPY`    | Replaced only in the deploy code with  `CALLDATACOPY`. Forbidden in runtime code.                              |
 | `CODESIZE`    | Everything is the same as for `CODECOPY`, but will return 0 instead no-op.                                     |
 | `PC`          | Inaccessible in Yul and Solidity `>=0.7.0`; accessible in Solidity `0.6` although it produces a runtime error. | 
