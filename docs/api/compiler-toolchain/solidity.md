@@ -6,6 +6,8 @@ which must be available in `$PATH`, or its path must be explicitly passed via th
 
 ## Usage
 
+Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
+
 Using our compiler via the Hardhat plugin usually suffices. However, knowledge of its interface and I/O (input/output)
 methods are crucial for integration, debugging, or contribution purposes.
 
@@ -83,93 +85,8 @@ For more information, see the complete combined JSON data structures in [the zks
 
 ### Free-form output
 
-This output format is utilized in Yul and LLVM IR compilation modes. These modes currently only support compiling a single file. Only `--asm` and `--bin` output flags are supported, so this mode can be useful for debugging and prototyping.
-
-## CLI reference
-
-#### `--version`  
-  Print the version and exit.  
-
-#### `<input_files>`  
-  Specify the input file paths.  
-  Multiple Solidity files can be passed in the default Solidity mode.  
-  Yul and LLVM IR modes currently support only a single file.  
-
-#### `--base-path <path>`  
-  Set the given path as the root of the source tree instead of the root of the filesystem.  
-  Passed to `solc` without changes.  
-
-#### `--include-path <path>`  
-  Make an additional source directory available to the default import callback. Use multiple times if required. Only use if the base path has a non-empty value.  
-  Passed to `solc` without changes.  
-
-#### `--allow-paths <path1,path2,...>`  
-  Allow a given path for imports. For multiple paths, separate with commas.  
-  Passed to `solc` without changes.  
-
-#### `-o`, `--output-dir <path>`  
-  Create one file per component and contract/file at the specified directory, if given.  
-
-#### `--overwrite`  
-  Overwrite existing files (used together with -o).  
-
-#### `-O`, `--optimization <level>`  
-  Set the optimization parameter -O[0 | 1 | 2 | 3 | s | z].  
-  Use `3` for best performance and `z` for minimal size. See [LLVM optimizer](./llvm.md#optimizer).  
-
-#### `--solc <path>`  
-  Specify the path to the `solc` executable. By default, the one in `${PATH}` is used.  
-  In Yul mode, `solc` is used for source code validation, as `zksolc` assumes that the input Yul is valid.  
-  In LLVM IR mode, `solc` is unused.  
-
-#### `-l`, `--libraries <string>`  
-  Specify addresses of deployable libraries. Syntax: `<libraryName>=<address> [, or whitespace] ...`.  
-  Addresses are interpreted as hexadecimal strings prefixed with `0x`.  
-
-#### `--combined-json <options>`  
-  Output a single JSON document containing the specified information.  
-  Available arguments: `abi`, `hashes`, `metadata`, `devdoc`, `userdoc`, `storage-layout`, `ast`, `asm`, `bin`, `bin-runtime`.  
-
-#### `--standard-json`  
-  Switch to standard JSON input/output mode. Read from `stdin`, write the result to `stdout`.  
-  This is the default used by the Hardhat plugin.  
-
-#### `--yul`  
-  Switch to the Yul mode.  
-  Only one input Yul file is allowed.  
-  Cannot be used with the combined and standard JSON modes.  
-
-#### `--llvm-ir`  
-  Switch to LLVM IR mode.  
-  Only one input LLVM IR file is allowed.  
-  Cannot be used with combined and standard JSON modes.  
-
-#### `--force-evmla`  
-  Force use of the EVM legacy assembly pipeline.  
-  Useful for early versions of `solc` 0.8.x, where Yul was considered highly experimental and contained more bugs than today.  
-
-#### `--system-mode`  
-  Enable system contract compilation mode.  
-  In this mode, zkEVM extensions are enabled. For example, calls to addresses `0xFFFF` and below are substituted by special
-  zkEVM instructions. In the Yul mode, the `verbatim_*` and `throw` instructions become available.
-
-#### `--asm`  
-  Output zkEVM assembly of the contracts.  
-
-#### `--bin`  
-  Output zkEVM bytecode of the contracts.  
-
-#### `--debug-output-dir <path>`  
-  Dump all IRs to files in the specified directory.  
-  Only for testing and debugging.
-
-#### `--llvm-verify-each`  
-  Set the verify-each option in LLVM.  
-  Only for testing and debugging.
-
-#### `--llvm-debug-logging`  
-  Set the debug-logging option in LLVM.  
-  Only for testing and debugging.
+This output format is utilized in Yul and LLVM IR compilation modes. These modes currently only support compiling a single
+file. Only `--asm` and `--bin` output flags are supported, so this mode can be useful for debugging and prototyping.
 
 ## Limitations
 
