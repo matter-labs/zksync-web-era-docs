@@ -4,14 +4,13 @@ zkSync Era can handle almost all smart contracts based on the Ethereum Virtual M
 
 ## Differences
 
-### Using `call` over `.send` or `.transfer`
+### Use `call` over `.send`/`.transfer`
 
-The utilization of `payable(X).send` or `payable(X).transfer` is not feasible, as the 2300 gas stipend is generally insufficient for conducting a transfer. Furthermore, owing to diverse opcode pricing, the transfer may necessitate state changes, resulting in a large number of L2 gas being expended on data availability.
-
-To ensure adherence to security best practices, it is recommended to employ `call` instead. For instance:
+Avoid using `payable(X).send`/`payable(X).transfer` because the 2300 gas stipend may not be enough to conduct a transfer, especially if it involves state changes requiring a large amount of L2 gas spent on data availability. Instead, it is recommended to use `call`, which follows security best practices.
 
 ::: code-tabs
 
+For instance, instead of:
 @tab:active .send
 
 ```solidity
@@ -23,6 +22,8 @@ payable(X).send
 ```solidity
 payable(X).transfer
 ```
+
+You should use:
 :::
 
 It is advised not to use the former, but rather to transform them into the following:
@@ -31,22 +32,22 @@ It is advised not to use the former, but rather to transform them into the follo
 (bool s, )= call{value: x}("")
 ```
 
+This converts the .send/.transfer functionality to call while avoiding potential security risks.
+
 ### Non-standard `CREATE`/`CREATE2` behaviour
 
-In Ethereum, the `initCode` of a contract with concatenated constructor parameters serves as the input for both `CREATE` and `CREATE2`.
- In contrast, on the zkSync Era, contract deployment occurs through the use of hashes. The operator receives the bytecodes in the `factoryDeps` fields of the EIP712 transactions while the actual [deployment](./contract-deployment.md#format-of-bytecode-hash) process involves providing the contract's hash to the `ContractDeployer` system contract.
+On Ethereum, both `CREATE` and `CREATE2` accept the `initCode` of the contract with constructor parameters concatenated to it as its input. However, on zkSync, contract deployment is done via hashes, and the factoryDeps fields of the EIP712 transactions contain the bytecodes themselves. The actual deployment is done by providing the contract’s hash to the `ContractDeployer` system contract.
 
+To ensure that `create`/`create2` works correctly, the compiler must know the bytecode of the deployed contract beforehand. The compiler interprets the arguments of create as slightly unfilled arguments calldata to the ContractDeployer, and the datasize/ dataoffset Yul instructions were adapted to return a constant size and the bytecode hash instead of bytecode.
 
-Keeping this in mind, the compiler interprets the arguments of `create` as slightly unfilled arguments calldata to the `ContractDeployer`. The remaining arguments are filled by the compiler itself. To enable this, the Yul instructions `datasize` and `dataoffset` were adapted to return a constant size and bytecode hash rather than bytecode. Therefore, for the `create`/`create2` to work, the compiler needs to know the bytecode of the deployed contract beforehand.
+Consider the following code snippets:
 
 ```solidity
-
 MyContract a = new MyContract();
 MyContract a = new MyContract{salt: ...}();
-
 ```
 
-The following should also work as expected, but must be explicitly tested by the team in order to make sure that this is the case:
+The above snippets should work as expected. Additionally, the following snippet should also work, but it needs to be explicitly tested by the team to ensure it works as intended:
 
 ```solidity
 bytes memory bytecode = type(MyContract).creationCode;
@@ -55,19 +56,19 @@ assembly {
 } 
 ```
 
-The following code will not work, because the compiler will not be aware of the bytecode beforehand:
+However, the following code will not work because the compiler is not aware of the bytecode beforehand:
 
-```solidity
+solidity
+Copy code
 function myFactory(bytes memory bytecode) public {
    assembly {
       addr := create(0, add(bytecode, 0x20), mload(bytecode))
    }
 }
-```
 
-Unfortunately it is not possible to distinguish between the cases above in compile time. And so it *highly recommended* to include tests for your factory regarding deploying the child contracts. 
+Unfortunately, it is not possible to distinguish between the above cases in compile-time. Therefore, it is highly recommended to include tests for your factory regarding deploying the child contracts.
 
-Also, note that for zkEVM bytecode we contain the different address derivation from Ethereum. The exact formulas are available in our SDK:
+Note that for zkEVM bytecode, we use a different address derivation from Ethereum, and the exact formulas are available in our SDK:
 
 ```typescript
 export function create2Address(sender: Address, bytecodeHash: BytesLike, salt: BytesLike, input: BytesLike) {
@@ -97,29 +98,29 @@ export function createAddress(sender: Address, senderNonce: BigNumberish) {
 
 ### Differences in `block.timestamp` and `block.number`
 
-These variables behave differently from L1. Read more [about blocks in zkSync](../../developer-guides/transactions/blocks.md#blocks-in-zksync-era).
+You can find more information about blocks in zkSync, including the differences in block.timestamp and block.number, [in this link.](../../developer-guides/transactions/blocks.md#blocks-in-zksync-era).
 
 ### Differences in `COINBASE` `DIFFICULTY` `BASEFEE` 
+In zkSync, there are some differences in the behavior of certain variables compared to L1.
 
-- `COINBASE` returns our Bootloader contract address, `0x0000000000000000000000000000000000008001` 
-- `DIFFICULTY` returns a constant value of `2500000000000000` 
-- `BASEFEE` is not a constant, but is defined by the fee model. Most of the time it is 0.25 gwei, but under very high L1 gas prices it may rise.
+- The `COINBASE` variable in zkSync returns the address of the Bootloader contract, which is `0x0000000000000000000000000000000000008001`.
+
+- The `DIFFICULTY` variable returns a constant value of `2500000000000000`.
+
+- The `BASEFEE` variable is not a constant in zkSync and is instead defined by the fee model. Usually, it is set to 0.25 gwei, but it can increase under very high L1 gas prices.
 
 ### Use of `codesize`/`codecopy` and `calldata` in the deploy code
+On zkEVM, the behavior of `calldata` and `codesize`/`codecopy` instructions in the constructor is different compared to EVM. In zkEVM, `calldata` contains constructor arguments, while in EVM, `calldata` is empty during constructor execution.
 
-`Calldata` in the constructor is not empty as on the EVM, on zkEVM calldata contains constructor arguments.
-`codesize` has the same behavior as `calldatasize`, `codecopy` as `calldatacopy`.
-To make it works datasize of the current object is 0.
+In addition, `codesize` instruction behaves similarly to `calldatasize`, and `codecopy` instruction behaves similarly to `calldatacopy`. To make this work, the datasize of the current object needs to be set to 0.
 
 ### Using `return` in the deploy code will not function as intended
+On zkSync Era, constructors return immutable arrays and cannot be used to return other data types. If you try to use the `return` keyword in a constructor, it will return the array of immutables in the auxiliary heap that was previously written there using `setimmutable`, instead of the data you specified. Therefore, using `return` in the deploy code will not function as intended.
 
-Constructors on the zkSync Era return immutables arrays. If you attempt to use return, it will instead return the array of immutables in the auxiliary heap that was previously written there (using `setimmutable`) rather than the data you specified.
+### Yul Users Only: `datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `loadimmutable` may behave differently
+On zkSync Era, there may be differences in behavior when using certain Yul instructions such as `datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `loadimmutable`. These differences typically occur when using solc-generated Yul code with the system's create and constructors.
 
-### For Yul users
-
-`datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `loadimmutable` may behave differently.
-Please note that `datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `loadimmutable` may behave differently in most cases in Yul (not assembly blocks in Solidity). This is due to modifications made to make solc-generated Yul work with our system, particularly in regards to create and constructors.
-
+These modifications were made to ensure compatibility with the zkSync system, and they may not behave the same way as they would on the Ethereum network. It is important to keep this in mind when writing Yul code for the zkSync Era.
 
 ## Opcode Differences
 
