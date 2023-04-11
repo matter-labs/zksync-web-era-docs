@@ -2,7 +2,7 @@
 
 Batches contain multiple transactions that are processed together in one [block](../../../dev/developer-guides/transactions/blocks.md#blocks) before they're added to the main blockchain. 
 
-By putting several transactions into a single batch, we reduce the number of transactions that need to be processed and validated, this results in faster transaction processing times and lower fees for users interacting with zkSync Era.
+By putting multiple transactions in a single batch, we reduce the number of transactions that need to be processed and validated. This results in faster transaction processing times and lower fees for users interacting with zkSync Era.
 
 ![Browse batches!](../../../assets/images/batches.png "View batches on zkSync")
 
