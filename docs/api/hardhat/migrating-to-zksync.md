@@ -148,7 +148,7 @@ If your contracts import any non-inlineable libraries, you'd need to configure t
 
 ::: tip Test ETH
 
-Obtain [test ETH from our faucet](https://portal.zksync.io/faucet) or just bridge GöerliETH using [the zkSync Portal](https://portal.zksync.io/bridge).
+Obtain [test ETH from our faucet](https://goerli.portal.zksync.io/faucet) or just bridge GöerliETH using [the zkSync Portal](https://goerli.portal.zksync.io/bridge).
 
 :::
 
