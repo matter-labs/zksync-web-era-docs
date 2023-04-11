@@ -6,7 +6,7 @@ By putting multiple transactions in a single batch, we reduce the number of tran
 
 ![Browse batches!](../../../assets/images/batches.png "View batches on zkSync")
 
-On the block explorer home screen, you'll see the 10 most recent batches by default. If you want to see all the recent batches or get details on a specific batch, you can go to the batches page, which is also accessible from the top menu.
+On the block explorer home screen, you see the 10 latest batches by default. If you want to see all recent batches, or the details of a specific batch, go to the batches page which is accessible from the top menu.
 
 ## See all batches
 
