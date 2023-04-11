@@ -24,7 +24,7 @@ Batches are similar to blocks and have properties like block headers and transac
 
 2. Transactions
 
-- Lists of all the transactions that were included in this batch.
+- A list of all the transactions included in the batch.
 
 ![Batches transactions!](../../../assets/images/batches-trx.png "View batches transactions")
 
