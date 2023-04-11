@@ -21,7 +21,7 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 For this tutorial, the following programs must be installed:
 
 - `yarn` package manager. `npm` examples will be added soon.
-- A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. We recommend using [our faucet from the zkSync portal](https://portal.zksync.io/faucet).
+- A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. We recommend using [our faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
 
 ## Project setup
 

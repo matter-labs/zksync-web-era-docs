@@ -159,9 +159,9 @@ At the moment, we support any Ethereum-based wallet. By default, the provided op
 
 ## How do I Request Funds for Testnet?
 
-To access the testnet funds you can use ([Faucet](https://portal.zksync.io/faucet)) by tweeting about us and get some tokens. Make sure that Twitter message contains your Ethereum address to which we’ll send funds and that it’s not your main Ethereum account. The faucet will not work with new Twitter accounts & accounts without avatar.
+To access the testnet funds you can use ([Faucet](https://goerli.portal.zksync.io/faucet)) by tweeting about us and get some tokens. Make sure that Twitter message contains your Ethereum address to which we’ll send funds and that it’s not your main Ethereum account. The faucet will not work with new Twitter accounts & accounts without avatar.
 
-Alternatively, you can use [our bridge](https://portal.zksync.io/bridge) to bridge ETH from Goerli to zkSync Era Testnet.
+Alternatively, you can use [our bridge](https://goerli.portal.zksync.io/bridge) to bridge ETH from Goerli to zkSync Era Testnet.
 
 ## How long does it take to complete a deposit transaction?
 
