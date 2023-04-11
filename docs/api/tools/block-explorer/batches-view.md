@@ -14,7 +14,7 @@ View the details of a specific batch by clicking on its batch number on the [Bat
 
 To see more batches, use the pagination at the bottom to navigate through the pages. 
 
-If you've left the homepage, you can still search for a batch by typing in its batch number. 
+Use the search function on the explorer dashboard to search for a batch by its batch number. 
 
 Batches are similar to blocks and have properties like block headers and transactions.
 
