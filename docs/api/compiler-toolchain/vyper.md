@@ -24,7 +24,7 @@ Additional zkEVM data is inserted into the output combined JSON by `zksolc`:
 - `zk_version`: the `zksolc` version.
 - `contract/factory_deps`: bytecode hashes of contracts created in the current contract with `CREATE`.
   Since Vyper does not support `CREATE` directly, only the forwarder can be present in this mapping.
-  [More detail here](../building-on-zksync/contracts/contract-deployment.md#note-on-factory-deps).
+   [More detail here](../../dev/building-on-zksync/contracts/contract-deployment.md#note-on-factorydeps).
 
 Regardless of the requested output, only the `combined_json`, `abi`, `method_identifiers`, `bytecode`, `bytecode_runtime`
 flags are supported, while the rest are ignored.

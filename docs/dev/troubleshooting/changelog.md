@@ -26,13 +26,13 @@ Compiler updates:
 Hardhat plugin updates:
   - All plugins have been released as minor updates so you can update with `npm update PACKAGE_NAME` or `yarn upgrade PACKAGE_NAME`.
 
-## Full launch system update (Mar 23rd 2023)
+## Full launch system update (Mar 23rd, 2023)
 
-Major updates accross the system including:
+Major updates across the system include:
 
 - Protocol changes:
-  - Removed allow list for L1<>L2 communication (zkSync Era is now at Full Launch open to all users).
-  - Implementation of [withdrawal delay](../troubleshooting/withdrawal-delay).
+  - Removed allow list for L1<>L2 communication (zkSync Era is now at Full Launch and open to all users).
+  - Implementation of [withdrawal delay](../troubleshooting/withdrawal-delay.md).
   - Smart contract bytecode packing.
   - Multiple bug fixes in circuits and prover.
   - Fee model adjusted for L1<>L2 communication and proof generation.
@@ -46,14 +46,14 @@ Major updates accross the system including:
 
 - Update `zksync-web3` to `^0.14.3` in your `package.json` file and re-install dependencies.
 - Update `zksync-cli` with `npm update -g zksync-cli`.
-- Pull the latest docker images of the local setup by running the `./clear.sh` script. [More  about local setup](../../api/hardhat/testing.md).
+- Pull the latest docker images of the local setup by running the `./clear.sh` script. [More about local setup](../../api/hardhat/testing.md).
 - L1->L2 transactions now require gas fees to be paid upfront. The fee can be estimated using the new method `zks_estimateGasL1ToL2`. [Read more here](../developer-guides/bridging/l1-l2.md).
 - Provide `_refundRecipient` when using `requestL2Transaction` indicating the address that will receive refunds. (Optional)
 
 
-## Hardhat plugins update (Feb 24th 2023)
+## Hardhat plugins update (Feb 24th, 2023)
 
-The following hardhat plugin have been released:
+The following hardhat plugin has been released:
 
 - `hardhat-zksync-verify` version `0.1.2`: now returns a verification id, which can be used to query the status of a smart contract verification. More info [here](https://era.zksync.io/docs/api/hardhat/hardhat-zksync-verify.html#verification-status-check)
 - `hardhat-zksync-deploy` version `0.6.2`: integrates with latest version of `zksync-web3`.
@@ -70,22 +70,22 @@ Update the following versions in the `package.json` file of your project:
 
 ## Compiler & local-setup update (Feb 20th 2023)
 
-Version `1.3.5` of `zksolc` has been released and the zksync docker image of the local-setup has been updated. Details:
+Version `1.3.5` of `zksolc` has been released and the zkSync docker image of the local setup has been updated. Details:
 
 - **Compiler:**
   - Adds support for Solidity `0.8.18`.
-  - Fixes a broken optimization flag that increased bytecode size of compiled contracts.
+  - Fixes a broken optimization flag that increased the bytecode size of compiled contracts.
   - Fixes a bug that detected ERC20 `transfer` calls as ETH `transfer` and produced a compilation error. 
-  - Detection of `transfer` and `send` methods in smart contracts now returns a warning message (similar to `v1.3.1`). The new warning message reminds developers that using these methods to transfer ETH can cause issues and suggest replacing them with `payable(address).call[value: <X>]("")`.
+  - Detection of `transfer` and `send` methods in smart contracts now returns a warning message (similar to `v1.3.1`). The new warning message reminds developers that using these methods to transfer ETH can cause issues and suggest replacing them with [`payable(address).call[value: <X>]("")`](../building-on-zksync/contracts/differences-with-ethereum.md#use-call-over-sendtransfer).
   - `transfer` can be used to transfer other tokens (e.g. ERC20) without any issues, although this might be still highlighted by the compiler.
 - **Local setup docker image:**
-  - Improvements in the zksync node error messages returned on estimate gas requests.
+  - Improvements in the zkSync node error messages returned on estimate gas requests.
 
 ### How to update your project
 
 - Update the compiler version in the `hardhat.config.ts` file to `1.3.5`.
 - Re-compile contracts.
-- Update the docker images of the local-setup with `docker-compose pull` and restart the its state by running the `./clear.sh` script.
+- Update the docker images of the local setup with `docker-compose` pull` and restart its state by running the `./clear.sh` script.
 
 
 
