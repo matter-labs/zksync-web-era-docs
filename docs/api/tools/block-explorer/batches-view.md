@@ -1,6 +1,6 @@
 # Browse batches
 
-Batches are like groups of transactions that are processed together in one [block](../../../dev/developer-guides/transactions/blocks.md#blocks) before they're added to the main blockchain. It increases the transaction throughput of zkSync Era and reduces its transaction fees.
+Batches contain multiple transactions that are processed together in one [block](../../../dev/developer-guides/transactions/blocks.md#blocks) before they're added to the main blockchain. 
 
 By putting several transactions into a single batch, we reduce the number of transactions that need to be processed and validated, this results in faster transaction processing times and lower fees for users interacting with zkSync Era.
 
