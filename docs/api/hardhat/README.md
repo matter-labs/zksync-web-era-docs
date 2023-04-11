@@ -12,5 +12,6 @@
     - [hardhat-zksync-deploy](./hardhat-zksync-deploy.md)
     - [hardhat-zksync-chai-matchers](./hardhat-zksync-chai-matchers.md)
     - [hardhat-zksync-verify](./hardhat-zksync-verify.md)
+- [Other plugins](./other-plugins.md)
 - [Local testing](./testing.md)
 - [Compiling non-inlinable libraries](./compiling-libraries.md)
