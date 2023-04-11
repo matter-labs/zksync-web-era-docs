@@ -1,22 +1,20 @@
 # Browse batches
 
-Batches are groups of transactions that are processed and validated together in a single [block](../../../dev/developer-guides/transactions/blocks.md#blocks), before being added to the main blockchain. It increases the throughput of zkSync Era and reduce its transaction fees.
+Batches are like groups of transactions that are processed together in one [block](../../../dev/developer-guides/transactions/blocks.md#blocks) before they're added to the main blockchain. It increases the transaction throughput of zkSync Era and reduces its transaction fees.
 
-By grouping multiple transactions into a single batch, we significantly reduce the number of transactions that need to be processed and validated, this results in faster transaction processing times and lower fees for users interacting with zkSync Era.
+By putting several transactions into a single batch, we reduce the number of transactions that need to be processed and validated, this results in faster transaction processing times and lower fees for users interacting with zkSync Era.
 
 ![Browse batches!](../../../assets/images/batches.png "View batches on zkSync")
 
-The block explorer home screen, by default, displays the 10 most recent batches in the chain.
-View all batches for a more complete overview of recent batch, or click on a specific batch number for details on that batch.
-The batches page is also accessible via the top menu.
+On the block explorer home screen, you'll see the 10 most recent batches by default. If you want to see all the recent batches or get details on a specific batch, you can go to the batches page, which is also accessible from the top menu.
 
-## View all batches
+## See all batches
 
-You can click on a batch number to see all the details of that specific batch. If you want to browse more batches, click the [Batches](https://explorer.zksync.io/batches/) section of the navigation menu. Use the pagination to navigate to the next page.
+You can view the details of a specific batch by clicking on its batch number. To explore more batches, go to the "[Batches](https://explorer.zksync.io/batches/)" section in the navigation menu and use the pagination to navigate to the next page. 
 
-However, if you have already left the homepage, you can always search for any batch by typing in the batch number.
+If you've left the homepage, you can still search for a batch by typing in its batch number. 
 
-Batches have almost same properties as blocks, like block headers and transactions.
+Batches are similar to blocks and have properties like block headers and transactions.
 
 1. The block header
 

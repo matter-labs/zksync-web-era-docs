@@ -2,40 +2,34 @@
 
 ![Browse blocks!](../../../assets/images/blocks.png "View blocks on zkSync")
 
-The block explorer home screen, by default, displays the 10 most recent blocks in the chain.
-View all blocks for a more complete overview of recent blocks, or click on a specific block number for details on that block.
-The blocks page is also accessible via the top menu.
+The block explorer home screen shows the 10 most recent blocks by default. To see a more complete overview of recent blocks, you can view all blocks. You can also click on a specific block number to see details about that particular block.
+You can access the blocks page from the top menu as well.
 
 ![Access the block page](../../../assets/images/block-menu.png "Blocks menu")
 
-## View all blocks
+## See all blocks
 
-You can click on a block number to see all the details of that specific block. If you want to browse more blocks, click the [Blocks](https://explorer.zksync.io/blocks/) section of the navigation menu. Use the pagination to navigate to the next page.
+To see details of a specific block, just click on its block number. If you want to view more blocks, go to the [Blocks](https://explorer.zksync.io/blocks/) section in the navigation menu and use pagination to navigate to the next page.
 
-However, if you have already left the homepage, you can always search for any block by typing in the block number.
+If you are not on the homepage, you can still search for a block by typing in its block number. A block has two main sections.
 
 ![Browse all blocks](../../../assets/images/view-block.png "Browse all blocks")
 
-There are two main sections inside a block:
+A block has two main parts:
 
-1. The Block Header
+1. Block Header: It provides a summary of the block's information, along with a link to the previous block in the chain.
 
-- This shows brief information about this specific block, as well as a link to the previous block in the chain.
-
-2. Transactions
-
-- Lists all the transactions that were included in this block.
+2. Transactions: It lists all the transactions that were included in the block.
 
 ![Single block page!](../../../assets/images/single-block.png "View a single block")
 
 ### Block headers
 
-The following table should help explain what you’ll see in a block.
-For more details on blocks, see the docs on [Blocks](../../../dev/developer-guides/transactions/blocks.md).
+This table will help you understand what you'll see in a block. To learn more about blocks, check out the documentation on [Blocks](../../../dev/developer-guides/transactions/blocks.md).
 
 | Value        | Description                                                                |
 | ------------ | -------------------------------------------------------------------------- |
-| Block number | The number of the current block. null if pending. [More info on block.number](../../../dev/developer-guides/transactions/blocks.md#block-number-and-timestamp-considerations)    |
+| Block number | The number of the current block. `null` if pending. [More info on block.number](../../../dev/developer-guides/transactions/blocks.md#block-number-and-timestamp-considerations)    |
 | Block size   | The size of the block.                                                     |
 | Timestamp    | The UNIX timestamp for when the block was collated. [More info on block.timestamp](../../../dev/developer-guides/transactions/blocks.md#block-number-and-timestamp-considerations)|
 | Root hash    | The Cryptographic hash of the block header.                                |
@@ -43,8 +37,7 @@ For more details on blocks, see the docs on [Blocks](../../../dev/developer-guid
 
 ### Transactions
 
-This section lists all the transactions that are included in this block.
-Transactions are served on a first-in-first-out basis, but in the future, we will introduce a "priority heap", which will allow for sorting the transactions.
+In this part, you can find a list of all the transactions included in this block. Transactions are processed in the order they are received, but we plan to introduce a "priority heap" in the future to sort transactions differently.
 
 | Value             | Description                                                                                                                                              |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
