@@ -23,7 +23,7 @@ payable(X).send
 payable(X).transfer
 ```
 
-You should use:
+Use:
 :::
 
 It is advised not to use the former, but rather to transform them into the following:
