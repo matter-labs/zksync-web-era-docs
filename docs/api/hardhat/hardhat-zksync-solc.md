@@ -59,7 +59,8 @@ networks: {
 
 ::: warning
 
-Compilers are no longer released as Docker images and its usage is no longer recommended. Use the `compilerSource: "binary"` in the Hardhat config file to use the binary instead.
+- Compilers are no longer released as Docker images and its usage is no longer recommended. 
+- Use the `compilerSource: "binary"` in the `hardhat.config.ts` file to use the binary instead.
 
 :::
 
