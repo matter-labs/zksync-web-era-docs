@@ -97,7 +97,7 @@ export function createAddress(sender: Address, senderNonce: BigNumberish) {
 
 ### Differences in `block.timestamp` and `block.number`
 
-You can find more information about blocks in zkSync, including the differences in block.timestamp and block.number, [in this link.](../../developer-guides/transactions/blocks.md#blocks-in-zksync-era).
+You can find more information about blocks in zkSync, including the differences in `block.timestamp` and `block.number`, [in this link.](../../developer-guides/transactions/blocks.md#blocks-in-zksync-era).
 
 ### Differences in `COINBASE` `DIFFICULTY` `BASEFEE` 
 In zkSync, there are some differences in the behavior of certain variables compared to L1.
