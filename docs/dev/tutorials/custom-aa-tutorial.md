@@ -864,7 +864,7 @@ Note that the address will be different for each run.
 Now, let's deploy an account and use it to initiate a new transaction. 
 
 :::warning
-This section assumes you have an EOA account with sufficient funds on zkSync.
+This section assumes you have an EOA account with sufficient funds on zkSync Era.
 :::
 
 1. In the `deploy` folder, create a file called `deploy-multisig.ts`.
