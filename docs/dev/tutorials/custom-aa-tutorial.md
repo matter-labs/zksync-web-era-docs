@@ -360,7 +360,7 @@ import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
     ```
 :::
 
-Use the `TransactionHelper` library (already imported above with `using TransactionHelper for Transaction;`) to get the hash of the transaction that should be signed. You can also implement your own signature scheme and use a different commitment for signing the transaction, but in this example we use the hash provided by this library.
+Use the `TransactionHelper` library, as imported above with `using TransactionHelper for Transaction;` to get the transaction hash that should be signed. You can also implement your own signature scheme and use a different commitment for signing the transaction, but in this example, we use the hash provided by this library.
 
 Finally, the `_validateTransaction` function has to return the constant `ACCOUNT_VALIDATION_SUCCESS_MAGIC` if the validation is successful, or an empty value `bytes4(0)` if it fails.
 
