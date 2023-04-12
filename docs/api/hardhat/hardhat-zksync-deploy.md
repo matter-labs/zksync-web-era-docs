@@ -152,12 +152,12 @@ networks: {
 
 - `zkTestnet` is an arbitrary zkSync Era network name. You can select this as the default network using the `defaultNetwork` property.
 - `url` is a field with the URL of the zkSync Era node in case of the zkSync Era network (with `zksync` flag set to `true`), or the URL of the Ethereum node. This field is required for all zkSync Era and Ethereum networks used by this plugin.
-- `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `goerli`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default. `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
+- `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `goerli`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
 - `zksync` is a flag to indicate if the network represents zkSync Era network configuration. This field needs to be set to `true` for all zkSync Era networks, else it's `false` by default.
 
 ### Commands
 
-`hardhat deploy-zksync` -- runs through all the scripts in the `deploy` folder.
+`npx hardhat deploy-zksync` -- runs through all the scripts in the `deploy` folder.
 
 ::: tip
 The deployment scripts must be placed in the `deploy` folder.
