@@ -55,7 +55,7 @@ module.exports = {
     defaultNetwork: "zkSyncTestnet",
     networks: {
         zkSyncTestnet: {
-        url: "https://zksync2-testnet.zksync.dev",
+        url: "https://testnet.era.zksync.dev",
         ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
         zksync: true,
         },
@@ -700,7 +700,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider("https://zksync2-testnet.zksync.dev");
+  const provider = new Provider("https://testnet.era.zksync.dev");
   const wallet = new Wallet("<WALLET_PRIVATE_KEY>", provider);
   const deployer = new Deployer(hre, wallet);
   const factoryArtifact = await deployer.loadArtifact("AAFactory");
@@ -787,7 +787,7 @@ const ETH_ADDRESS = "0x000000000000000000000000000000000000800A";
 const ACCOUNT_ADDRESS = "<ACCOUNT_ADDRESS>";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider("https://zksync2-testnet.zksync.dev");
+  const provider = new Provider("https://testnet.era.zksync.dev");
   const wallet = new Wallet("<WALLET_PRIVATE_KEY>", provider);
   const owner = new Wallet("<OWNER_PRIVATE_KEY>", provider);
 
@@ -852,7 +852,7 @@ const ETH_ADDRESS = "0x000000000000000000000000000000000000800A";
 const ACCOUNT_ADDRESS = "<ACCOUNT_ADDRESS>";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider("https://zksync2-testnet.zksync.dev");
+  const provider = new Provider("https://testnet.era.zksync.dev");
   const wallet = new Wallet("<WALLET_PRIVATE_KEY>", provider);
   const owner = new Wallet("<OWNER_PRIVATE_KEY>", provider);
 

@@ -2,7 +2,7 @@
 
 [Hardhat](https://hardhat.org) is an Ethereum development environment, designed for easy smart contract development in Solidity. One of its most prominent features is extendability: you can easily add new plugins to your hardhat project.
 
-zkSync has has the following plugins for Hardhat:
+zkSync has the following plugins for Hardhat:
 
 - [@matterlabs/hardhat-zksync-solc](./hardhat-zksync-solc.md) - used to compile contracts written in Solidity.
 - [@matterlabs/hardhat-zksync-vyper](./hardhat-zksync-vyper.md) - used to compile contracts written in Vyper.
@@ -21,18 +21,25 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 For this tutorial, the following programs must be installed:
 
 - `yarn` package manager. `npm` examples will be added soon.
-- A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. We recommend using [our faucet from the zkSync portal](https://portal.zksync.io/faucet).
+- A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. We recommend using [our faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
 
 ## Project setup
 
 1. To initialize the project and install the dependencies, run the following commands in the terminal:
+::: code-tabs
 
-```
+@tab:active yarn
+
+```bash
+
 mkdir greeter-example
 cd greeter-example
+
 yarn init -y
 yarn add -D typescript ts-node @types/node ethers@^5.7.2 zksync-web3 @ethersproject/hash @ethersproject/web hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
+:::
+
 
 The `typescript`, `ts-node` and `@types/node` dependencies are optional - plugins will work fine in a vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
 
@@ -59,7 +66,7 @@ module.exports = {
   defaultNetwork: "zkTestnet",
   networks: {
     zkTestnet: {
-      url: "https://zksync2-testnet.zksync.dev", // URL of the zkSync network RPC
+      url: "https://testnet.era.zksync.dev", // URL of the zkSync network RPC
       ethNetwork: "goerli", // Can also be the RPC URL of the Ethereum network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
       zksync: true,
     },

@@ -73,6 +73,7 @@ zkSync [stands out remarkably](https://blog.matter-labs.io/evaluating-ethereum-l
 Thanks to the combination of cutting-edge cryptography and on-chain data availability, ZK rollups (the core network of zkSync) are the only L2 scaling solution that doesn't
 require any operational activity to keep the funds safe.
 For example, users can go offline and still be able to withdraw their assets safely when they come back, even if the ZK rollup validators are no longer around.
+For a comprehensive distinction between zkSync Era and Ethereum, read this [guide](../building-on-zksync/contracts/differences-with-ethereum.md).
 
 ## zkSync characteristics
 

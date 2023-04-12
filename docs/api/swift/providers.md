@@ -1,5 +1,10 @@
 # Providers
 
+:::warning
+* We are currently updating the Swift SDK and you may encounter errors when trying things out.
+* Apologies for the inconvenience, we will update the documentation in due course.
+:::
+
 Providers are objects that wrap interactions with the zkSync node. If you are new to the concept of providers in `web3`, you should check out their docs [here](https://openbase.com/swift/web3swift/documentation).
 
 zkSync fully supports Ethereum Web3 API, so you can use the provider objects from web3swift. However, zkSync API provides some additional JSON-RPC methods, which allow:
@@ -10,9 +15,6 @@ zkSync fully supports Ethereum Web3 API, so you can use the provider objects fro
 The zkSync swift SDK exports the `EthereumProvider` provider:
 
 - `EthereumProvider` which inherits from `web3swift` `JsonRpcProvider` provides access to all of the zkSync JSON-RPC endpoints.
-
-
-
 
 ## EthereumProvider
 
