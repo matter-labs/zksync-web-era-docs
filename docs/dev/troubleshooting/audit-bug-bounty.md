@@ -19,7 +19,7 @@ Here is the list of **completed audits**:
 - [Layer 2 Fee Model and Token Bridge](https://blog.openzeppelin.com/zksync-fee-model-and-token-bridge-audit/), OpenZeppelin, from 2023-01-23 to 2023-02-17.
 - [Layer 2 System Contracts Public Contest](https://code4rena.com/contests/2023-03-zksync-era-system-contracts-contest), Code4rena, from 2023-03-10 to 2023-03-19.
 - ZK Circuits, Internal Audit, from 2022-10-24 to 2022-11-18.
-- ZK Circuits, Halborn, from 2023-01-09 to 2023-03-08 (not published yet).
+- [ZK Circuits](https://github.com/HalbornSecurity/PublicReports/blob/master/ZK%20Audits/MatterLabs_zkSync_Era_Circuits_Zero_Knowledge_Security_Audit_Report_Halborn_Final..pdf), Halborn, from 2023-01-09 to 2023-03-08.
 
 We've also scheduled the following audits:
 
