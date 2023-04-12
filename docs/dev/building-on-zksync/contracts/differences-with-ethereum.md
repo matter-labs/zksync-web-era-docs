@@ -4,7 +4,7 @@ zkSync Era can handle almost all smart contracts based on the Ethereum Virtual M
 
 ## Differences
 
-### Use `call` over `.send`/`.transfer`
+### Use `call` over `send`/`transfer`
 
 Avoid using `payable(X).send`/`payable(X).transfer` because the 2300 gas stipend may not be enough to send a transfer, especially if it involves state changes that require a large amount of L2 gas for data. Instead, we recommend using `call`.
 
