@@ -111,7 +111,7 @@ In zkSync, there are some differences in the behavior of certain variables compa
 ### Use of `codesize`/`codecopy` and `calldata` in the deploy code
 On zkEVM, the behavior of `calldata` and `codesize`/`codecopy` instructions in the constructor is different compared to EVM. In zkEVM, `calldata` contains constructor arguments, while in EVM, `calldata` is empty during constructor execution.
 
-In addition, `codesize` instruction behaves similarly to `calldatasize`, and `codecopy` instruction behaves similarly to `calldatacopy`. To make this work, the datasize of the current object needs to be set to 0.
+In addition, `codesize` instruction behaves similarly to `calldatasize`, and `codecopy` instruction behaves similarly to `calldatacopy`. To make `codesize` and `codecopy` work, the datasize of the current object needs to be set to 0.
 
 ### Using `return` in the deploy code will not function as intended
 On zkSync Era, constructors return immutable arrays and cannot be used to return other data types. If you try to use the `return` keyword in a constructor, it will return the array of immutables in the auxiliary heap that was previously written there using `setimmutable`, instead of the data you specified. Therefore, using `return` in the deploy code will not function as intended.
