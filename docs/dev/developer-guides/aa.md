@@ -2,7 +2,7 @@
 
 ::: warning
 - Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`. 
-- For more information, read the [changelog](../troubleshooting/changelog.md).
+- For more information, read the [changelog](../troubleshooting/changelog.md#hardhat-plugins-update-feb-24th-2023).
 :::
 
 ## Introduction
