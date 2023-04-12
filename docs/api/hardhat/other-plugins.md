@@ -1,6 +1,6 @@
 # Other plugins
 
-The following plugins created by the community and tested with zkSync Era.
+The following plugins were created by the community and tested on zkSync Era. Feel free to suggest new plugins by [creating a PR for this page](https://github.com/matter-labs/zksync-web-v2-docs/edit/main/docs/api/hardhat/other-plugins.md).
 
 ## Supported plugins
 
@@ -12,7 +12,7 @@ Here is [a template project configured with all plugins mentioned below](https:/
 
 ### hardhat-deploy
 
-Multiple tasks for advance deployments. 
+Multiple tasks for advance deployments.
 
 This plugin was [updated to support zkSync Era](https://github.com/wighawag/hardhat-deploy/pull/437) on version `0.11.26`.
 
