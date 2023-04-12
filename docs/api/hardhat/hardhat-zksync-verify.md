@@ -9,13 +9,20 @@ This plugin is used to verify contracts on the zkSync Era network.
 The plugin is used in conjunction with [@nomiclabs/hardhat-etherscan](https://www.npmjs.com/package/@nomiclabs/hardhat-etherscan) and it supports backward compatibility with that plugin.
 To use it, you have to install both plugins and then import `@matterlabs/hardhat-zksync-verify` in the hardhat.config.ts file.
 
-```typescript
-# Yarn
-yarn add -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
+::: code-tabs
 
-# Npm
+@tab:active yarn
+
+```bash
+yarn add -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
+```
+
+@tab npm
+
+```bash
 npm i -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
 ```
+:::
 
 ### Configuration
 
@@ -33,7 +40,7 @@ networks: {
     url: "https://goerli.infura.io/v3/<API_KEY>" // URL of the Ethereum Web3 RPC (optional)
   },
   zkTestnet: {
-    url: "https://zksync2-testnet.zksync.dev", // URL of the zkSync network RPC
+    url: "https://testnet.era.zksync.dev", // URL of the zkSync network RPC
     ethNetwork: "goerli", // URL of the Ethereum Web3 RPC, or the identifier of the network (e.g. `mainnet` or `goerli`)
     zksync: true,
     // Verification endpoint for Goerli

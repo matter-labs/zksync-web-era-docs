@@ -1,7 +1,5 @@
 # Interact with zkSync Era
 
-zkSync Era is currently is on the fair alpha onboarding stage, which involves opening our mainnet to certain teams to build and and make transactions on mainnet.
-
 ## Do I need experience with zkSync Lite?
 
 Some experience with zkSync Lite would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync Era and zkSync Lite are very different systems, and experience with the latter is not needed to build on zkSync Era.
@@ -23,13 +21,15 @@ Check out our step-by-step [quickstart guide](../building-on-zksync/hello-world.
 
 In order to add the zkSync Era alpha mainnet network to your wallet, you will need to enter the following details:
 
-1. Open the Metamask wallet and click on the network in the top center:
+1. Sign into your Metamask wallet and click on the network in the top center:
 
 ![img](../../assets/images/connect-1.png)
 
-2. Click on "Add network manually".
+2. Click on **Add network**.
 
-3. Fill in the details about zkSync Era alpha mainnet or testnet network and click "Save":
+3. Scroll down to the bottom of the network list and click **Add network manually**.
+
+4. Fill in the zkSync Era mainnet or testnet network details:
 
 **Mainnet network info**
 
@@ -50,6 +50,8 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - Block Explorer URL: `https://goerli.explorer.zksync.io/`
 - WebSocket URL: `wss://testnet.era.zksync.dev/ws`
 
+5. Click "Save"
+
 ## zkSync Era Support
 
 You can open a support ticket in `💻🧪│dev-support-beta` or ask any questions in `🖥│dev-general`
@@ -64,16 +66,6 @@ Instructions for raising a support ticket are as follows:
 Alternatively, you can now contact our support engineers with your questions and concerns via [email](mailto:support@zksync.io). 
 We will actively monitor for issues and work to resolve them as soon as possible.
 
-<!-- **Testnet network info**
-
-- Network Name: `zkSync alpha testnet`
-- New RPC URL: `https://zksync2-testnet.zksync.dev`
-- Chain ID: `280`
-- Currency Symbol: `ETH`
-- Block Explorer URL: `https://goerli.explorer.zksync.io/`
-- WebSocket URL: `wss://zksync2-testnet.zksync.dev/ws` -->
-
-
 <!-- ## Deposit and withdraw funds using zkSync Portal
 
 As the testnet is running on Goerli network, you will need to get some Goerli ETH first. Try any of the faucets below.
@@ -85,7 +77,7 @@ As the testnet is running on Goerli network, you will need to get some Goerli ET
 
 **Step 1**
 
-Head to [https://portal.zksync.io/](https://portal.zksync.io/) and connect your wallet. You will automatically be asked to add the “zkSync Era testnet Goerli” network.
+Head to [https://goerli.portal.zksync.io/](https://goerli.portal.zksync.io/) and connect your wallet. You will automatically be asked to add the “zkSync Era testnet Goerli” network.
 
 You may also add the network manually to your metamask.
 

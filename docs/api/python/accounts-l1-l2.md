@@ -1,5 +1,10 @@
 # Accounts: L1->L2 transactions
 
+:::warning
+* We are currently updating the Python SDK and you may encounter errors when trying things out.
+* Apologies for the inconvenience, we will update the documentation in due course.
+:::
+
 This section explores the methods which allow the [account](./accounts.md) classes to send transactions from L1 to L2.
 
 If you want to get some background on how L1->L2 interaction works on zkSync, go through the [introduction](../../dev/developer-guides/bridging/l1-l2-interop.md) and the [guide](../dev/../../dev/developer-guides/bridging/l1-l2.md).

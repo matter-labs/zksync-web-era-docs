@@ -1,5 +1,10 @@
 # Getting started
 
+:::warning
+* We are currently updating the Golang SDK and you may encounter errors when trying things out.
+* Apologies for the inconvenience, we will update the documentation in due course.
+:::
+
 In this guide we will demonstrate how to:
 
 1. Connect to the zkSync network.
@@ -7,12 +12,6 @@ In this guide we will demonstrate how to:
 3. Transfer and withdraw funds.
 4. Deploy a smart contract.
 5. Interact with any smart contract.
-
-::: warning
-
-This section of the documentation is under review to reflect the changes made to the system contracts ([see changelog](../../dev/troubleshooting/changelog.md)). A revised version will be available shortly.
-
-:::
 
 ## Prerequisite
 
@@ -56,7 +55,7 @@ ethereumSigner, err := zksync2.NewEthSignerFromMnemonic("<mnemonic words>", 280)
 ethereumSigner, err = zksync2.NewEthSignerFromRawPrivateKey(pkBytes, 280)
 
 // also, init ZkSync Provider, specify ZkSync2 RPC URL (e.g. testnet)
-zkSyncProvider, err := zksync2.NewDefaultProvider("https://zksync2-testnet.zksync.dev")
+zkSyncProvider, err := zksync2.NewDefaultProvider("https://testnet.era.zksync.dev")
 
 // then init Wallet, passing just created Ethereum Signer and ZkSync Provider
 wallet, err := zksync2.NewWallet(ethereumSigner, zkSyncProvider)
