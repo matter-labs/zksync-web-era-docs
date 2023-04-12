@@ -1,7 +1,7 @@
 # Account abstraction support
 
 ::: warning
-- Please note that with system update released in Feb 2023, the ergs concept is only used by the VM and the SDK (version `0.13.0` and above) whilest the API layer operates with gas. 
+- Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`. 
 - For more information, read the [changelog](../troubleshooting/changelog.md).
 :::
 
@@ -16,8 +16,8 @@ Accounts in zkSync Era can initiate transactions, like an EOA, but can also have
 abstraction" and it aims to resolve the issues described above.
 
 ::: warning
-- zkSync Era is one of the first EVM-compatible chains to adopt AA, so we are using the testnet to see how *classical* projects from EVM chains coexist with the account abstraction feature.
-- Due to this, you may expect some **breaking changes to the API/interfaces required for AA.**
+- zkSync Era is one of the first EVM-compatible chains to adopt account abstraction. We are using the testnet to see how other projects on EVM chains coexist with account abstraction.
+- Due to this, you may expect some **breaking changes to the API/interfaces required for account abstraction.**
 :::
 
 ## Prerequisites
@@ -31,7 +31,7 @@ The account abstraction protocol on zkSync is very similar to [EIP4337](https://
 ### Keeping nonces unique
 
 ::: warning
-- The current model does not allow custom wallets to send multiple transactions at the same time, while keeping a deterministic ordering. 
+- The current model does not allow custom wallets to send multiple transactions at the same time and maintain deterministic ordering. 
 - For EOAs, nonces are expected to grow sequentially; while for custom accounts the order of transactions cannot be guaranteed.
 - In the future, we plan to switch to a model where accounts can choose between sequential or arbitrary nonce-ordering.
 :::
@@ -187,7 +187,7 @@ await aa.deployed();
 ### Limitations of the verification step
 
 ::: warning
-- The verification rules are not yet fully enforced . 
+- The verification rules are not yet fully enforced. 
 - Even if your custom account works at the moment, it could stop working in the future if it does not follow the rules below.
 :::
 
@@ -238,7 +238,7 @@ If users want to interact with a paymaster, they should provide the non-zero `pa
 ### Paymaster verification rules
 
 ::: warning
-- The verification rules are not yet fully enforced . 
+- The verification rules are not yet fully enforced. 
 - Even if your paymaster works at the moment, it could stop working in the future if it does not follow the rules below.
 :::
 
