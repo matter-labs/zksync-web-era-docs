@@ -336,7 +336,7 @@ function isValidSignature(bytes32 _hash, bytes memory _signature)
 The transaction validation process is responsible for validating the signature of the transaction and incrementing the nonce. 
 
 :::info
-- There are [some limitations](../developer-guides/aa.md#limitations-of-the-verification-step) on this function.
+- There are some [limitations](../developer-guides/aa.md#limitations-of-the-verification-step) on this function.
 :::
 
 To increment the nonce, use the `incrementNonceIfEquals` function from the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether it is the same as the provided one. If not, the transaction reverts; otherwise, the nonce increases.
