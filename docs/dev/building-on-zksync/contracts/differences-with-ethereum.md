@@ -59,7 +59,6 @@ assembly {
 However, the following code will not work because the compiler is not aware of the bytecode beforehand:
 
 ```solidity
-Copy code
 function myFactory(bytes memory bytecode) public {
    assembly {
       addr := create(0, add(bytecode, 0x20), mload(bytecode))
