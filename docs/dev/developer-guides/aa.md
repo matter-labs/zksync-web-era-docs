@@ -12,8 +12,7 @@ The former type is the only one that can initiate transactions,
 while the latter is the only one that can implement arbitrary logic. For some use-cases, like smart-contract wallets or privacy protocols, this difference can create a lot of friction.
 As a result, such applications require L1 relayers, e.g. an EOA to help facilitate transactions from a smart-contract wallet.
 
-Accounts in zkSync Era can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature is called "account
-abstraction" and it aims to resolve the issues described above.
+Accounts in zkSync Era can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature, called "account abstraction" (AA), aims to resolve the issues described above.
 
 ::: warning
 - zkSync Era is one of the first EVM-compatible chains to adopt account abstraction. We are using the testnet to see how other projects on EVM chains coexist with account abstraction.
