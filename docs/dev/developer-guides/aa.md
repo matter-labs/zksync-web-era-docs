@@ -15,8 +15,8 @@ As a result, such applications require L1 relayers, e.g. an EOA to help facilita
 Accounts in zkSync Era can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature, called "account abstraction" (AA), aims to resolve the issues described above.
 
 ::: warning
-- zkSync Era is one of the first EVM-compatible chains to adopt account abstraction. We are using the testnet to see how other projects on EVM chains coexist with account abstraction.
-- Due to this, you may expect some **breaking changes to the API/interfaces required for account abstraction.**
+- zkSync Era is the first EVM-compatible chain to implement native account abstraction. We are evaluating how well the implementation works with EVM projects on testnet and mainnet. No incompatibilities have been found so far.
+- However, there may be **breaking changes to the API/interfaces required for account abstraction.**
 :::
 
 ## Prerequisites
