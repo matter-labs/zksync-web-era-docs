@@ -58,7 +58,7 @@ assembly {
 
 However, the following code will not work because the compiler is not aware of the bytecode beforehand:
 
-solidity
+```solidity
 Copy code
 function myFactory(bytes memory bytecode) public {
    assembly {
