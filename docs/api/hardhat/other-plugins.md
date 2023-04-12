@@ -18,7 +18,7 @@ This plugin was [updated to support zkSync Era](https://github.com/wighawag/hard
 
 [More information](https://www.npmjs.com/package/hardhat-deploy)
 
-### @typechain/hardhat
+### typechain/hardhat
 
 Automatically generate TypeScript bindings for smart contracts.
 
@@ -40,7 +40,7 @@ Different options to export smart contract ABIs.
 
 ## Unsupported plugins
 
-### @openzeppelin/hardhat-upgrades
+### openzeppelin/hardhat-upgrades
 
 This plugin is currently not supported as it overrides tasks of the compiler and it's not compatile with the zkSync Era compiler. 
 
