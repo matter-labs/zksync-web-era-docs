@@ -2,8 +2,8 @@
 
 This tutorial shows you how to implement communication between L1 and L2 with the following example:
 
-- A **governance** smart contract is deployed on layer 1. This contract has a function that can request a transaction on zkSync layer 2.
-- A **counter** smart contract is deployed on zkSync layer 2. The contract stores a number that can be incremented by calling the `increment` method. The goverance contract on layer 1 calls this function.
+- A **Governance** Solidity smart contract is deployed on layer 1. This contract has a function that sends a transaction to zkSync layer 2.
+- A **Counter** Solidity smart contract is deployed on zkSync layer 2. This contract stores a number that is incremented by calling the `increment` method. The `Governance` contract on layer 1 calls this function.
 
 ## Prerequisites
 
@@ -11,10 +11,6 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 - You already have some experience working with Ethereum.
 - You have a web3 wallet app which holds some Goerli test ETH and some zkSync test ETH.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
-
-:::info
-This tutorial was recently tested using Node v16.16.0.
-:::
 
 ## Project structure
 
@@ -255,7 +251,7 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/har
 - Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/).
 :::
 
-3. Create the `hardhat.config.ts` file in the root and add the following code, replacing `goerli` with the RPC URL as used in the `goerli.json` file in the L1 Governance section:
+3. Create the `hardhat.config.ts` file in the root and add the following code:
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
@@ -274,7 +270,7 @@ module.exports = {
     },
     zkSyncTestnet: {
       url: "https://testnet.era.zksync.dev",
-      ethNetwork: "<GOERLI RPC URL>", 
+      ethNetwork: "goerli", 
       zksync: true,
     },
   },
@@ -285,12 +281,12 @@ module.exports = {
 ```
 
 ::: info
-If your default network is not `hardhat`, make sure to include `zksync: true` in its config, too.
+If your default network is not `hardhat`, make sure to include `zksync: true` in the config.
 :::
 
 ### Create L2 counter contract
 
-1. Create a `contracts/` folder and create a new file `Counter.sol`. 
+1. In the `L2-counter` folder, create a `contracts/` directory, `cd` into it, and create a new file `Counter.sol`. 
 
 This contract contains the address of the governance contract deployed previously on layer 1, and an incrementable counter which can only be invoked by the governance contract. 
 
@@ -365,7 +361,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Deploy this contract. The returned object will be of a `Contract` type, similar to the ones in `ethers`.
   // The address of the governance is an argument for contract constructor.
-  const counterContract = await deployer.deploy(artifact, [GOVERNANCE_ADDRESS]);
+  const counterContract = await deployer.deploy(artifact, [applyL1ToL2Alias (GOVERNANCE_ADDRESS)]);
 
   // Show the contract info.
   const contractAddress = counterContract.address;
