@@ -38,7 +38,7 @@ This converts the `send`/`transfer` functionality to `call` and [avoids potentia
 
 On Ethereum, both `CREATE` and `CREATE2` accept the `initCode` of the contract plus concatenated constructor parameters as input. However, on zkSync, contract deployment is done via hashes, and the `factoryDeps` field of EIP712 transactions contain the bytecode. The actual deployment is done by providing the contract’s hash to the `ContractDeployer` system contract.
 
-To ensure that `create`/`create2` works correctly, the compiler must know the bytecode of the deployed contract beforehand. The compiler interprets the arguments of create as slightly unfilled arguments calldata to the ContractDeployer, and the datasize/ dataoffset Yul instructions were adapted to return a constant size and the bytecode hash instead of bytecode.
+To ensure that `create`/`create2` works correctly, the compiler must know the bytecode of the deployed contract beforehand. The compiler interprets the `calldata` arguments as incomplete to  `ContractDeployer` (the rest is filled with the compiler internally). The `datasize`/ `dataoffset` Yul instructions were adapted to return a constant size and the bytecode hash instead of bytecode.
 
 Consider the following code snippets:
 
