@@ -797,7 +797,7 @@ contract AAFactory {
 }
 ```
 
-It's worth remembering that, on zkSync, contract deployments are not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via the `factoryDeps` field. Note that the `_aaBytecodeHash` must be formed in the following manner:
+It's worth remembering that, on zkSync Era, [contract deployments](../building-on-zksync/contracts/contract-deployment.md)  are not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via the `factoryDeps` field. Note that the `_aaBytecodeHash` must be formed in the following manner:
 
 - Firstly, it is hashed with sha256.
 - Then, the first two bytes are replaced with the length of the bytecode in 32-byte words.
