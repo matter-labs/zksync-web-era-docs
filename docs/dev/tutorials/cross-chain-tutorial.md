@@ -255,7 +255,7 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/har
 - Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/).
 :::
 
-3. Create the `hardhat.config.ts` file in the root and add the following code:
+3. Create the `hardhat.config.ts` file in the root and add the following code, adding a functioning RPC URL:
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
@@ -468,15 +468,15 @@ import { BigNumber, Contract, ethers, Wallet } from "ethers";
 import { Provider, utils } from "zksync-web3";
 const COUNTER_ABI = require("./counter.json");
 const GOVERNANCE_ABI = require("./governance.json");
-const GOVERNANCE_ADDRESS = "<GOVERNANCE ADDRESS>";
-const COUNTER_ADDRESS = "<COUNTER ADDRESS>";
+const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
+const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
 
 async function main() {
 
   // Enter your Ethereum L1 provider RPC URL.
   const l1Provider = new ethers.providers.JsonRpcProvider("<RPC URL>");
   // Set up the Governor wallet to be the same as the one that deployed the governance contract.
-  const wallet = new ethers.Wallet("<YOUR PRIVATE KEY>", l1Provider);
+  const wallet = new ethers.Wallet("<YOUR-PRIVATE-KEY>", l1Provider);
   // Set a constant that accesses the Layer 1 contract.
   const govcontract = new Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
 
