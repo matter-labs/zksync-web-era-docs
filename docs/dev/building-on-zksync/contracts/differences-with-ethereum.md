@@ -102,7 +102,7 @@ You can find more information about blocks in zkSync, including the differences 
 ### Differences in `COINBASE` `DIFFICULTY` `BASEFEE` 
 In zkSync, there are some differences in the behavior of certain variables compared to L1.
 
-- The `COINBASE` variable in zkSync returns the address of the Bootloader contract, which is `0x0000000000000000000000000000000000008001`.
+- The `COINBASE` variable in zkSync returns the address of the `Bootloader` contract, which is `0x0000000000000000000000000000000000008001`.
 
 - The `DIFFICULTY` variable returns a constant value of `2500000000000000`.
 
