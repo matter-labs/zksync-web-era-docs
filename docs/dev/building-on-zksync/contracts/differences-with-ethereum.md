@@ -65,7 +65,7 @@ function myFactory(bytes memory bytecode) public {
    }
 }
 
-Unfortunately, it is not possible to distinguish between the above cases in compile-time. Therefore, it is highly recommended to include tests for your factory regarding deploying the child contracts.
+Unfortunately, it is not possible to distinguish between the above cases at compile-time. Therefore, it is highly recommended to include tests for your factory that deploys child contracts.
 
 Note that for zkEVM bytecode, we use a different address derivation from Ethereum, and the exact formulas are available in our SDK:
 
