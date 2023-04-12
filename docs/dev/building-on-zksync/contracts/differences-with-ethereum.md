@@ -32,7 +32,7 @@ It is advised not to use the former, but rather to transform them into the follo
 (bool s, )= call{value: x}("")
 ```
 
-This converts the `send`/`transfer` functionality to `call` and avoids potential security risks.
+This converts the `send`/`transfer` functionality to `call` and [avoids potential security risks outlined here.](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/)
 
 ### Non-standard `CREATE`/`CREATE2` behaviour
 
