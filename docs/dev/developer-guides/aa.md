@@ -16,7 +16,7 @@ Accounts in zkSync Era can initiate transactions, like an EOA, but can also have
 
 ::: warning
 - zkSync Era is the first EVM-compatible chain to implement native account abstraction. We are evaluating how well the implementation works with EVM projects on testnet and mainnet. No incompatibilities have been found so far.
-- However, there may be **breaking changes to the API/interfaces required for account abstraction.**
+- Due to the early stage nature of the feature, you may see some breaking changes to the account abstraction API/interfaces. However, given that accounts are versioned in zkSync Era, older accounts will still work even after breaking changes are released.
 :::
 
 ## Prerequisites
