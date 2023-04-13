@@ -12,7 +12,7 @@ Here is [a template project configured with all plugins mentioned below](https:/
 
 ### hardhat-deploy
 
-Multiple tasks for advance deployments.
+Multiple tasks for advanced deployments.
 
 This plugin was [updated to support zkSync Era](https://github.com/wighawag/hardhat-deploy/pull/437) on version `0.11.26`.
 
