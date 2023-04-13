@@ -85,7 +85,7 @@ To know more about the individual properties in the `hardhat.config.ts` file, yo
 
 ## Write and deploy a contract
 
-3. Create two folders: `contracts` for storing smart contract files, and `deploy` for keeping scripts related to deploying the contracts.
+3. Create two folders: `contracts` for smart contract files, and `deploy` for scripts related to deploying the contracts.
 
 4. Create a new contract file called `Greeter.sol` in the `contracts` folder, and copy/paste the following code into it:
 
