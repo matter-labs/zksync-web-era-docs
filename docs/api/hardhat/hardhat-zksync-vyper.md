@@ -75,7 +75,6 @@ Compilers are no longer released as Docker images and its usage is no longer rec
 
 To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.
 
-
 ## How to configure multiple compilation targets
 
 To configure the `hardhat.config.ts` file to target both zkSync Era and other networks, do the following:
