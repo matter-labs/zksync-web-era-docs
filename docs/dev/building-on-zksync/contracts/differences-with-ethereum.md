@@ -157,7 +157,6 @@ For `call`, you can specify a memory slice to write the returndata to (the `out`
 On EVM if `outsize != 0` the allocated memory will grow to `out + outsize` (rounded up to the words) regardless of the `returndatasize`. On zkEVM, `returndatacopy`, similarly to `calldatacopy`, is implemented as a cycle iterating over `returndata` with a few additional checks specific to `returndata` (i.e. panic if `offset + len > returndatasize` to simulate the same behaviour as on EVM).
 
 So, unlike EVM where the memory growth happens before the call itself, on zkEVM the necessary copying of the returndata will happen only after the call has ended, leading to a difference in `msize()` and sometimes zkEVM not panicking where the EVM would panic due to the difference in memory growth.
-
 ## Recommendations
 
 ### It is better to use a proxy pattern at the early stage of the protocol?
