@@ -92,4 +92,18 @@ For Solidity versions older than 0.8, only this compilation mode is available an
 
 `hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates the `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
 
+<<<<<<< HEAD
 To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.
+=======
+To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.
+
+## Why is there an `unexpected end of JSON input` compilation error?
+
+This is an error that is usually thrown when compiling a large smart contract codebase.
+
+If you encounter such an error, please do the following:
+
+- Update the `@matterlabs/hardhat-zksync-solc` library and try to re-compile the smart contracts afterwards.
+- If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](./compiling-libraries.md).
+- If the same error persists, [report the issue](../../dev/fundamentals/interacting.md#zksync-era-support) to our team. We will do our best to help you.
+>>>>>>> main
