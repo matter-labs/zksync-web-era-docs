@@ -150,7 +150,7 @@ Obtain [test ETH from our faucet](https://goerli.portal.zksync.io/faucet) or jus
 
 :::
 
-To deploy your contracts you will need to use the `Deployer` class from the `hardhat-zksync-deploy`  plugin. This class takes care of all the specifics of [deploying contracts on zkSync](../../dev/building-on-zksync/contracts/contract-deployment.md). 
+To deploy your contracts you need to use the `Deployer` class from the `hardhat-zksync-deploy`  plugin. This class takes care of all the specifics of [deploying contracts on zkSync](../../dev/building-on-zksync/contracts/contract-deployment.md). 
 
 Here is a basic deployment script for a `Greeter` contract:
 
