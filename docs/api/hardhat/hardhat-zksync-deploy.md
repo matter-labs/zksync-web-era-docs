@@ -163,3 +163,7 @@ If network argument `--network` or `defaultNetwork` configuration are not specif
 For more details about the dockerized local setup, check out [Local testing](./testing.md).
 
 :::
+
+### Why is Hardhat's `console.log` not working?
+
+zkSync Era does not support the Nomic Foundation's `console.log` contract. Due to different address derivation rules, even when deployed, the `console.log` library will likely have a different address from the one on Ethereum.
