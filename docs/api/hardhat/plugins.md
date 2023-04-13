@@ -12,7 +12,11 @@ List of official plugins:
 - [hardhat-zksync-chai-matchers](./hardhat-zksync-chai-matchers.md)
 - [hardhat-zksync-verify](./hardhat-zksync-verify.md)
 
+::: tip Popular Hardhat plugins
+
 Apart from the official plugins, we've compiled a [list of other popular plugins](./other-plugins.md).
+
+:::
 
 ### Installation
 
