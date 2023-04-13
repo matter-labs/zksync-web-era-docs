@@ -1,6 +1,6 @@
 # Migration guide
 
-This guide shows you how to migrate an existing hardhat project to zkSync Era.
+This guide shows you how to migrate an existing Hardhat project to zkSync Era.
 ## Overview
 
 zkSync Era offers [multiple hardhat plugins](./plugins.md) with different features but in this guide, we are focused on only the required few needed to migrate your project to zkSync Era.
