@@ -10,12 +10,7 @@ export const enSidebar = sidebar({
     {
       text: "Getting started",
       link: "/dev/fundamentals",
-      children: [
-        "/dev/fundamentals/rollups.md", 
-        "/dev/fundamentals/zkSync.md", 
-        "/dev/fundamentals/interacting.md", 
-        "/dev/fundamentals/hyperscaling.md",
-      ],
+      children: ["/dev/fundamentals/rollups.md", "/dev/fundamentals/zkSync.md", "/dev/fundamentals/interacting.md", "/dev/fundamentals/hyperscaling.md"],
     },
     {
       text: "Understanding zkSync Era",
@@ -52,8 +47,8 @@ export const enSidebar = sidebar({
       text: "Tutorials",
       link: "/dev/tutorials",
       children: [
-        "/dev/tutorials/cross-chain-tutorial.md", 
-        "/dev/tutorials/custom-aa-tutorial.md", 
+        "/dev/tutorials/cross-chain-tutorial.md",
+        "/dev/tutorials/custom-aa-tutorial.md",
         "/dev/tutorials/aa-daily-spend-limit.md",
         "/dev/tutorials/custom-paymaster-tutorial.md",
       ],
@@ -102,46 +97,37 @@ export const enSidebar = sidebar({
       text: "Hardhat", // required
       link: "/api/hardhat", // optional, which should be a absolute path.
       children: [
-        "/api/hardhat/getting-started", 
+        "/api/hardhat/getting-started",
         "/api/hardhat/migrating-to-zksync",
         "/api/hardhat/plugins",
         "/api/hardhat/hardhat-zksync-solc",
         "/api/hardhat/hardhat-zksync-vyper",
         "/api/hardhat/hardhat-zksync-deploy",
         "/api/hardhat/hardhat-zksync-chai-matchers",
-        "/api/hardhat/hardhat-zksync-verify", 
-        "/api/hardhat/testing", 
-        "/api/hardhat/compiling-libraries"
+        "/api/hardhat/hardhat-zksync-verify",
+        "/api/hardhat/other-plugins",
+        "/api/hardhat/testing",
+        "/api/hardhat/compiling-libraries",
       ],
     },
     {
       text: "Block Explorer", // required
       link: "/api/tools/block-explorer", // optional, which should be a absolute path.
-      children: [
-        "/api/tools/block-explorer/intro", 
-        "/api/tools/block-explorer/block-view", 
-        "/api/tools/block-explorer/search", 
-        "/api/tools/block-explorer/contract-verification"
-      ],
+      children: ["/api/tools/block-explorer/intro", "/api/tools/block-explorer/block-view", "/api/tools/block-explorer/search", "/api/tools/block-explorer/contract-verification"],
     },
     {
       text: "Compiler Toolchain",
       link: "/api/compiler-toolchain",
-      children: [
-        "/api/compiler-toolchain/overview.md",
-        "/api/compiler-toolchain/solidity.md",
-        "/api/compiler-toolchain/vyper.md",
-        "/api/compiler-toolchain/llvm.md",
-      ],
+      children: ["/api/compiler-toolchain/overview.md", "/api/compiler-toolchain/solidity.md", "/api/compiler-toolchain/vyper.md", "/api/compiler-toolchain/llvm.md"],
     },
     {
       text: "zkSync Era CLI", // required
       link: "/api/tools/zksync-cli/", // optional, which should be a absolute path.
-      children: []    
+      children: [],
     },
     {
       text: "Python SDK",
-      link: "/api/python", 
+      link: "/api/python",
       children: [
         "/api/python/getting-started",
         "/api/python/providers",
@@ -165,10 +151,7 @@ export const enSidebar = sidebar({
     {
       text: "Swift SDK", // required
       link: "/api/swift/getting-started", // optional, which should be a absolute path.
-      children: [
-        "/api/swift/getting-started",
-        "/api/swift/providers",
-      ],
+      children: ["/api/swift/getting-started", "/api/swift/providers"],
     },
   ],
   //The legal related sidebar
