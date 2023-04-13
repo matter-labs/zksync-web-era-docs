@@ -79,14 +79,14 @@ etherscan: {
 ### Commands
 
 ```sh
-npx hardhat verify --network <network> <contract address>
+yarn hardhat verify --network <network> <contract address>
 ```
 
 This command verifies the contract on the given network with the given contract's address. <br/>
 When executed in this manner, the verification task attempts to compare the compiled bytecode of all the contracts in your local environment with the deployed bytecode of the contract you are seeking to verify. If there is no match, it reports an error.
 
 ```sh
-npx hardhat verify --network <network> <contract address> --contract <fully qualified name>
+yarn hardhat verify --network <network> <contract address> --contract <fully qualified name>
 ```
 
 With the `--contract` parameter you can also specify which contract from your local setup you want to verify by specifying its Fully qualified name. Fully qualified name structure looks like this: "contracts/AContract.sol:TheContract" <br/>
@@ -96,7 +96,7 @@ With the `--contract` parameter you can also specify which contract from your lo
 If your contract was deployed with the specific constructor arguments, you need to specify them when running the verify task. For example:
 
 ```sh
-npx hardhat verify --network testnet 0x7cf08341524AAF292255F3ecD435f8EE1a910AbF "Hi there!"
+yarn hardhat verify --network testnet 0x7cf08341524AAF292255F3ecD435f8EE1a910AbF "Hi there!"
 ```
 
 If your constructor takes a complex argument list, you can write a separate javascript module to export it. For example, create an `arguments.js` file with the following structure:
@@ -115,7 +115,7 @@ module.exports = [
 
 Include it in the verify function call by adding a new parameter: `--constructor-args arguments.js`:
 ```sh
-npx hardhat verify --network testnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF --constructor-args arguments.js
+yarn hardhat verify --network testnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF --constructor-args arguments.js
 ```
 
 ### Verification status check
@@ -128,7 +128,7 @@ You can then use this ID to check the status of your verification request withou
 
 The following command checks the status of the verification request for the specific verification ID:
 ```sh
-npx hardhat verify-status --verification-id <your verification id>
+yarn hardhat verify-status --verification-id <your verification id>
 ```
 
 ### Verify smart contract programmatically

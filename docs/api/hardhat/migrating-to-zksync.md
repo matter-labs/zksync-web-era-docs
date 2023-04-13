@@ -133,7 +133,7 @@ yarn hardhat compile --network zkSyncTestnet
 @tab npm
 
 ```bash
-npx hardhat compile  --network zkSyncTestnet
+yarn hardhat compile  --network zkSyncTestnet
 ```
 :::
 
@@ -196,7 +196,7 @@ yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
 @tab npm
 
 ```bash
-npx hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
+yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
 ```
 :::
 

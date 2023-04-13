@@ -78,6 +78,6 @@ networks: {
 
 ### Commands
 
-`npx hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
+`yarn hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
 
 To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.

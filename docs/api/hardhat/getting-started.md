@@ -27,25 +27,18 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 
 1. To initialize the project and install the dependencies, run the following commands in the terminal:
 
-::: code-tabs
-
-@tab:active folder
-
 ```sh
 mkdir greeter-example
 cd greeter-example
 
 ```
 
-@tab install dependencies
-
 ```sh
 yarn init -y
 yarn add -D typescript ts-node @types/node ethers@^5.7.2 zksync-web3 @ethersproject/hash @ethersproject/web hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
-:::
 
-You don't have to install `typeScript`, `ts-node`, and `@types/node` dependencies if you are using vanilla JavaScript. However, it's worth mentioning that this tutorial does use TypeScript.
+The `typescript`, `ts-node` and `@types/node` dependencies are optional - plugins will work fine in a vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
 
 ::: tip
 If you are using Yarn 2 or later, there may be additional steps to ensure that `TypeScript` works correctly in your editor. For more information, check out [Yarn's official documentation](https://yarnpkg.com/getting-started/editor-sdks).
@@ -80,7 +73,7 @@ module.exports = {
 ```
 
 ::: tip
-To know more about the individual properties in the `hardhat.config.ts` file, you can refer to the [plugins documentation](./plugins.md).
+To learn more about each specific property in the `hardhat.config.ts` file, check out the [plugins documentation](./plugins.md)
 :::
 
 ## Write and deploy a contract
@@ -110,11 +103,11 @@ contract Greeter {
 }
 ```
 
-5. To compile the contract, use the command `yarn hardhat compile` with the `hardhat-zksync-solc` plugin. This will create `artifacts-zk` and `cache-zk` folders in the root directory, instead of the usual artifacts and cache folders used by Hardhat.
+5. Run `yarn hardhat compile` which uses the `hardhat-zksync-solc` plugin to compile the contract. The `artifacts-zk` and `cache-zk` folders will be created in the root directory (instead of the regular Hardhat's `artifacts` and `cache`).
 
 ::: tip
 
-Remember to remove the folders named `artifacts-zk` and `cache-zk` from version control in your project. These folders contain compilation artifacts and cache, and it's best to add them to the `.gitignore` file to avoid them being added to your version control.
+Note that the `artifacts-zk` and `cache-zk` folders contain compilation artifacts and cache, and should not be added to version control, so it's a good practice to include them in the `.gitignore` file of your project.
 
 :::
 
@@ -212,7 +205,7 @@ Contract greets us with Hey guys!
 ## Learn more
 
 - To learn more about the zkSync Hardhat plugins check out the [plugins documentation](./plugins).
-- To learn more about `zksync-web3` SDK, check out its [documentation](../js/).
+- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-web3 Javascript SDK documentation](../js) .
 ## Future releases
 
 There are two major points of improvement for the plugins which will be released in the future:

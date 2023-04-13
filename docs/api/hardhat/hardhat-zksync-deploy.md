@@ -1,6 +1,6 @@
 # `hardhat-zksync-deploy`
 
-This plugin provides utilities for deploying smart contracts on zkSync Era with artifacts built by the official `@matterlabs/hardhat-zksync-solc` plugins.
+This plugin provides utilities for deploying smart contracts on zkSync Era with artifacts built by the `@matterlabs/hardhat-zksync-solc` or `@matterlabs/hardhat-zksync-vyper` plugins.
 
 ::: warning
 - Contracts must be compiled using the official `@matterlabs/hardhat-zksync-solc` plugin. 
@@ -19,7 +19,7 @@ To use the `hardhat-zksync-deploy` in your project, we recommend that:
 
 [@matterlabs/hardhat-zksync-deploy](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-deploy)
 
-To use this plugin, install the dependencies, by running the following commands in the terminal:
+Add the latest version of this plugin to your project with the following command:
 
 ::: code-tabs
 
@@ -79,7 +79,7 @@ class Deployer {
   ): Promise<ZkSyncArtifact>
 
   /**
-   * Estimates the price of calling a deploy transaction in a fee token.
+   * Estimates the price of calling a deploy transaction in a certain fee token.
    *
    * @param artifact The previously loaded artifact object.
    * @param constructorArguments The list of arguments to be passed to the contract constructor.
@@ -154,7 +154,7 @@ networks: {
 
 ### Commands
 
-`npx hardhat deploy-zksync` -- runs through all the scripts in the `deploy` folder.
+`yarn hardhat deploy-zksync` -- runs through all the scripts in the `deploy` folder.
 
 ::: tip
 The deployment scripts must be placed in the `deploy` folder.
