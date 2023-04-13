@@ -217,4 +217,4 @@ Contract greets us with Hey guys!
 
 There are two major points of improvement for the plugins which will be released in the future:
 
-- **Composability with the existing hardhat plugins.** Compatibility with other hardhat plugins is planned for the future.
+- **Compatibility with existing hardhat plugins.** Compatibility with other hardhat plugins is planned for the future.
