@@ -59,7 +59,9 @@ This plugin is currently not supported as it overrides compiler tasks and is inc
 
 ### nomicfoundation/hardhat-network-helpers
 
-The hardhat network is not recommended to test contracts that will be deployed on zkSync Era. We recommend using the [local setup to test your contracts](testing.md) as it will give you the same results as our testnet/mainnet.
+This plugin adds new methods that interact with the Hardhat network used for testing.
+
+However, we do not recommend using the Hardhat network for testing contracts that will be deployed on zkSync Era. We recommend instead using the [local setup to test your contracts](testing.md) as it will give you the same results as our testnet/mainnet.
 
 This plugin is not compatible with the zkSync Era local setup for testing.
 
