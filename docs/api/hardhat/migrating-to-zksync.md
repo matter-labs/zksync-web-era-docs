@@ -215,7 +215,7 @@ import { utils, Provider, Contract, Wallet } from "zksync-web3";
 
 ```
 
-You will also need to use the `contract ABI` from the `artifacts-zk` folder to instantiate contracts.
+You also need to use the `contract ABI` from the `artifacts-zk` folder to instantiate contracts.
 
 Apart from the same classes and methods provided by ethers, zksync-web3 includes additional methods for zksync-specific features. You can read more in the [`zksync-web3` documentation](../js/getting-started.md).
 
