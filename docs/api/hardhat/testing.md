@@ -215,7 +215,7 @@ You can now run the test file with the following command:
 yarn test
 ```
 
-**Congratulations! You have ran your first tests locally with zkSync Era 🎉**
+**Congratulations! You just ran your first tests locally with zkSync Era 🎉**
 
 ## Full example
 
