@@ -71,7 +71,7 @@ module.exports = {
     },
   },
   solidity: {
-    version: "0.8.17",
+    version: "0.8.13",
   },
 };
 ```
@@ -88,7 +88,7 @@ To learn more about each specific property in the `hardhat.config.ts` file, chec
 
 ```solidity
 //SPDX-License-Identifier: Unlicensed
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.13;
 
 contract Greeter {
     string private greeting;

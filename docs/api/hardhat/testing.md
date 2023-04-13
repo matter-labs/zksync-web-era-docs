@@ -163,7 +163,7 @@ module.exports = {
     zkSyncTestnet,
   },
   solidity: {
-    version: "0.8.16",
+    version: "0.8.13",
   },
 };
 ```
