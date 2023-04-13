@@ -29,7 +29,12 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 :::
 ## Setup
 
-1. To initialize the project and install the dependencies, run the following commands in the terminal:
+To initialize the project and install the dependencies, run the following commands in the terminal:
+::: code-tabs
+
+@tab:active yarn
+
+```bash
 
 ```sh
 mkdir greeter-example
@@ -50,7 +55,7 @@ If you are using Yarn 2 or later, there may be additional steps to ensure that `
 
 ## Configuration
 
-2. Create the `hardhat.config.ts` file in the project root and add the following code:
+Create the `hardhat.config.ts` file and paste the following code within it:
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
@@ -76,15 +81,39 @@ module.exports = {
 };
 ```
 
+
+### How to configure multiple compilation targets
+
+To configure the `hardhat.config.ts` file to target both zkSync Era and other networks, do the following:
+
+1. In your `hardhat.config.ts`, configure the zkSync Era network with `zksync: true`.
+2. Configure all other networks with `zksync: false`.
+3. Run the compilation script with the network flag: `yarn hardhat compile --network zkSyncTestnet` for zkSync Era network or `yarn hardhat compile --network goerli` for other networks, e.g goerli.
+
+```typescript
+networks: {
+        goerli: {
+          url: "https://goerli.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL.
+          zksync: false, // Set to false to target other networks.
+        },
+        zkSyncTestnet: {
+          url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
+          ethNetwork: "goerli", // The identifier of the network (e.g. `mainnet` or `goerli`)
+        zksync: true, // Set to true to target zkSync Era.
+        }
+    },
+
+```
+
 ::: tip
 To learn more about each specific property in the `hardhat.config.ts` file, check out the [plugins documentation](./plugins.md)
 :::
 
 ## Write and deploy a contract
 
-3. Create two folders: `contracts` for smart contract files, and `deploy` for scripts related to deploying the contracts.
+1. Create the `contracts` and `deploy` folders. In the `contracts` folder we will store all the smart contract files. In the `deploy` folder we'll place all the scripts related to deploying the contracts.
 
-4. Create a new contract file called `Greeter.sol` in the `contracts` folder, and copy/paste the following code into it:
+2. Create the `contracts/Greeter.sol` contract and paste the following code:
 
 ```solidity
 //SPDX-License-Identifier: Unlicensed
@@ -107,7 +136,7 @@ contract Greeter {
 }
 ```
 
-5. Run `yarn hardhat compile` which uses the `hardhat-zksync-solc` plugin to compile the contract. The `artifacts-zk` and `cache-zk` folders will be created in the root directory (instead of the regular Hardhat's `artifacts` and `cache`).
+3. Run `yarn hardhat compile` which uses the `hardhat-zksync-solc` plugin to compile the contract. The `artifacts-zk` and `cache-zk` folders will be created in the root directory (instead of the regular Hardhat's `artifacts` and `cache`).
 
 ::: tip
 
@@ -115,7 +144,7 @@ Note that the `artifacts-zk` and `cache-zk` folders contain compilation artifact
 
 :::
 
-6. Create a deployment script called `deploy.ts`, in the `deploy` folder, and copy/paste the following code into it, replacing `<WALLET-PRIVATE-KEY>` with your private key:
+4. Create a deployment script called `deploy.ts`, in the `deploy` folder, and copy/paste the following code into it, replacing `<WALLET-PRIVATE-KEY>` with your private key:
 
 ```typescript
 import { utils, Wallet } from "zksync-web3";
@@ -175,7 +204,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-7. Deploy the contract.
+5. Deploy the contract.
 
 ```sh
 yarn hardhat deploy-zksync
