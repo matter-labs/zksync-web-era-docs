@@ -2,7 +2,7 @@
 
 [Hardhat](https://hardhat.org) is an Ethereum development environment, designed for easy smart contract development in Solidity. One of its most prominent features is extendability: you can easily add new plugins to your hardhat project.
 
-zkSync has the following plugins for Hardhat:
+zkSync Era has the following plugins for Hardhat:
 
 - [@matterlabs/hardhat-zksync-solc](./hardhat-zksync-solc.md) - used to compile contracts written in Solidity.
 - [@matterlabs/hardhat-zksync-vyper](./hardhat-zksync-vyper.md) - used to compile contracts written in Vyper.
@@ -23,6 +23,10 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 - You have a wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. We recommend using [our faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
+::: warning
+- Contracts must be compiled using the official plugins. 
+- Contracts compiled with other compilers will fail to deploy to zkSync Era using this plugin.
+:::
 ## Setup
 
 1. To initialize the project and install the dependencies, run the following commands in the terminal:

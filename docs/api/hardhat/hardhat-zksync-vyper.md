@@ -1,13 +1,6 @@
 # `hardhat-zksync-vyper`
 
 This plugin is used to provide a convenient interface for compiling Vyper smart contracts before deploying them to zkSync Era.
-
-::: warning
-
-- Contracts must be compiled using the official `@matterlabs/hardhat-zksync-vyper` plugin. 
-- Contracts compiled with other compilers will fail to deploy to zkSync Era using this plugin.
-:::
-
 ## Installation
 
 [@matterlabs/hardhat-zksync-vyper](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-vyper)

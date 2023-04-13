@@ -2,11 +2,6 @@
 
 This plugin is used to verify contracts on the zkSync Era network.
 
-::: warning
-- Contracts must be compiled using the official `@matterlabs/hardhat-zksync-solc` plugin. 
-- Contracts compiled with other compilers will fail to deploy to zkSync Era using this plugin.
-:::
-
 ## Setup
 
 The [@matterlabs/hardhat-zksync-verify](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-verify) plugin is used in conjunction with [@nomiclabs/hardhat-etherscan](https://www.npmjs.com/package/@nomiclabs/hardhat-etherscan) and it supports backward compatibility.
