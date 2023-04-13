@@ -52,7 +52,10 @@ In addition, make sure to read about [local testing ](./testing.md).
 
 This plugin is currently not supported as it overrides compiler tasks and is incompatible with the zkSync Era compiler. 
 
-Note that proxy contracts are supported on zkSync Era, only this plugin is not supported currently but you can write proxies manually.
+:::tip
+- Proxy contracts are supported on zkSync Era and you can write proxies manually.
+- Only this plugin is not currently supported. 
+:::
 
 ### nomicfoundation/hardhat-network-helpers
 
