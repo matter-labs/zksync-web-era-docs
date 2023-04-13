@@ -3,7 +3,7 @@
 This guide shows you how to migrate an existing Hardhat project to zkSync Era.
 ## Overview
 
-zkSync Era offers [multiple hardhat plugins](./plugins.md) with different features but in this guide, we are focused on only the required few needed to migrate your project to zkSync Era.
+zkSync Era offers [multiple Hardhat plugins](./plugins.md) with different features. This guide details the one you need to migrate your project to zkSync Era.
 
 ::: warning Non-default paths are not supported yet
 - Contract files must be included in the `contracts` folder and deployment scripts must be included in the `deploy` folder.
