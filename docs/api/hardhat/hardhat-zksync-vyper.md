@@ -80,7 +80,7 @@ To understand what the factory dependencies are, read more about them in the [We
 To configure the `hardhat.config.ts` file to target both zkSync Era and other networks, do the following:
 
 1. In your `hardhat.config.ts`, configure the zkSync Era network with `zksync: true`.
-2. Configure the other networks with `zksync: false`.
+2. Configure all other networks with `zksync: false`.
 3. Run the compilation script with the network flag: `yarn hardhat compile --network zkSyncTestnet` for zkSync Era network or `yarn hardhat compile --network goerli` for other networks.
 
 ```typescript
