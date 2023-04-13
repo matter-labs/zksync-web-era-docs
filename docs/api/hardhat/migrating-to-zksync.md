@@ -40,7 +40,7 @@ import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 ```
 
-Networks on zkSync Era require two different URL endpoints: one for layer 1 (Ethereum or Goerli), and one for layer 2 (zkSync). This is how you would add the zkSync Era testnet to your list of networks in the `hardhat.config.ts`:
+Networks on zkSync Era require two different URL endpoints: one for layer 1 (Ethereum or Goerli), and one for layer 2 (zkSync). This is how you add the zkSync Era testnet to your list of networks in the `hardhat.config.ts`:
 
 ```typescript
 const config: HardhatUserConfig = {
