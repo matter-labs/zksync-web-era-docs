@@ -63,7 +63,7 @@ const config: HardhatUserConfig = {
 Remember to add `zksync: false` to any other networks.
 :::
 
-Finally, you will need to add the compiler options inside a `zksolc` or `zkvyper` property. Here is the minimal configuration for a Solidity project:
+Finally, add the compiler options inside a `zksolc` or `zkvyper` property. Here is the minimal configuration for a Solidity project:
 
 ```typescript
 zksolc: {
