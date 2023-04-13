@@ -4,20 +4,9 @@ The Vyper compiler we provide as part of our toolchain is called [zkvyper](https
 operates on Vyper’s LLL IR, and metadata received from the underlying [vyper](https://docs.vyperlang.org/en/latest/index.html) compiler,
 which must be available in `$PATH`, or its path must be explicitly passed via the CLI (command-line interface).
 
-## System requirements
-
-Supported platforms:
-
-- Linux: x86_64
-- MacOS 11+: x86_64, arm64 (M1, M2)
-- Windows: x86_64 - Only Windows 10 has been tested so far, but other versions should be OK.
-  
-We recommend at least 4 GB of RAM available for the build process.
-
-
 ## Usage
 
-Make sure your machine satisfies the [system requirements](#system-requirements).
+Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-vyper/tree/main#system-requirements).
 
 Using our compiler via the Hardhat plugin usually suffices. However, knowledge of its interface and I/O (input/output)
 methods are crucial for integration, debugging, or contribution purposes.
