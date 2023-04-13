@@ -72,7 +72,7 @@ zksolc: {
   settings: {},
 },
 ```
-You can find more detailed config options in the [Solidity](./hardhat-zksync-solc.md) or [Vyper](./hardhat-zksync-vyper.md) plugins.
+For more advanced settings, check out the [Solidity](./hardhat-zksync-solc.md) or [Vyper](./hardhat-zksync-vyper.md) plugins.
 
 ### Full configuration
 
