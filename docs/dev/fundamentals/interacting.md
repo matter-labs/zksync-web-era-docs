@@ -77,7 +77,7 @@ As the testnet is running on Goerli network, you will need to get some Goerli ET
 
 **Step 1**
 
-Head to [https://portal.zksync.io/](https://portal.zksync.io/) and connect your wallet. You will automatically be asked to add the “zkSync Era testnet Goerli” network.
+Head to [https://goerli.portal.zksync.io/](https://goerli.portal.zksync.io/) and connect your wallet. You will automatically be asked to add the “zkSync Era testnet Goerli” network.
 
 You may also add the network manually to your metamask.
 

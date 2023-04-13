@@ -15,7 +15,7 @@ This is what we're going to do:
 - Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to v16.16.0 with command `nvm use 16`.
 - Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
 - A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync and deploying smart contracts.
-- ERC20 tokens on zkSync are required for the testnet paymaster. We recommend using [the faucet from the zkSync portal](https://portal.zksync.io/faucet).
+- ERC20 tokens on zkSync are required for the testnet paymaster. We recommend using [the faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ## Build and deploy the Greeter contract
@@ -231,8 +231,8 @@ In order to interact with dApps built on zkSync, connect the MetaMask wallet to 
 
 ### Bridge funds to L2
 
-- Use our [portal](https://portal.zksync.io) to bridge funds to zkSync.
-- Use the [faucet](https://portal.zksync.io/faucet) to get some test ERC20 tokens in your account.
+- Use our [portal](https://goerli.portal.zksync.io) to bridge funds to zkSync.
+- Use the [faucet](https://goerli.portal.zksync.io/faucet) to get some test ERC20 tokens in your account.
 
 :::warning
 When bridging from mainnet to a smart account (e.g. Argent) on zkSync Era, you must specify the address of your L2 wallet by clicking on **Deposit to another address on zkSync Era Mainnet**.
