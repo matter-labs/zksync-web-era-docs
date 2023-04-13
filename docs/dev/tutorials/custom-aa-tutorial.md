@@ -336,7 +336,7 @@ function isValidSignature(bytes32 _hash, bytes memory _signature)
 The transaction validation process is responsible for validating the signature of the transaction and incrementing the nonce. 
 
 :::info
-- There are [some limitations](../developer-guides/aa.md#limitations-of-the-verification-step) on this function.
+- There are some [limitations](../developer-guides/aa.md#limitations-of-the-verification-step) on this function.
 :::
 
 To increment the nonce, use the `incrementNonceIfEquals` function from the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether it is the same as the provided one. If not, the transaction reverts; otherwise, the nonce increases.
@@ -360,7 +360,7 @@ import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
     ```
 :::
 
-Use the `TransactionHelper` library (already imported above with `using TransactionHelper for Transaction;`) to get the hash of the transaction that should be signed. You can also implement your own signature scheme and use a different commitment for signing the transaction, but in this example we use the hash provided by this library.
+Use the `TransactionHelper` library, as imported above with `using TransactionHelper for Transaction;` to get the transaction hash that should be signed. You can also implement your own signature scheme and use a different commitment for signing the transaction, but in this example, we use the hash provided by this library.
 
 Finally, the `_validateTransaction` function has to return the constant `ACCOUNT_VALIDATION_SUCCESS_MAGIC` if the validation is successful, or an empty value `bytes4(0)` if it fails.
 
@@ -797,7 +797,7 @@ contract AAFactory {
 }
 ```
 
-It's worth remembering that, on zkSync, contract deployments are not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via the `factoryDeps` field. Note that the `_aaBytecodeHash` must be formed in the following manner:
+It's worth remembering that, on zkSync Era, [contract deployments](../building-on-zksync/contracts/contract-deployment.md)  are not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via the `factoryDeps` field. Note that the `_aaBytecodeHash` must be formed in the following manner:
 
 - Firstly, it is hashed with sha256.
 - Then, the first two bytes are replaced with the length of the bytecode in 32-byte words.
@@ -807,7 +807,7 @@ This functionality is built into the SDK.
 ## Deploy the factory
 
 ::: tip
-Make sure you deposit funds on zkSync using the [zkSync Portal](https://goerli.portal.zksync.io/bridge) before running the deployment script.
+Make sure you deposit funds on zkSync Era using the [zkSync Portal](https://goerli.portal.zksync.io/bridge) before running the deployment script.
 :::
 
 1. In the `deploy` folder, create the file `deploy-factory.ts` and copy/paste the following code, replacing `<WALLET_PRIVATE_KET>` with your private key.
@@ -864,7 +864,7 @@ Note that the address will be different for each run.
 Now, let's deploy an account and use it to initiate a new transaction. 
 
 :::warning
-This section assumes you have an EOA account with sufficient funds on zkSync.
+This section assumes you have an EOA account with sufficient funds on zkSync Era.
 :::
 
 1. In the `deploy` folder, create a file called `deploy-multisig.ts`.
