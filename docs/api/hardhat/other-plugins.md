@@ -50,7 +50,7 @@ In addition, make sure to read about [local testing ](./testing.md).
 
 ### openzeppelin/hardhat-upgrades
 
-This plugin is currently not supported as it overrides tasks of the compiler and it's not compatile with the zkSync Era compiler. 
+This plugin is currently not supported as it overrides compiler tasks and is incompatible with the zkSync Era compiler. 
 
 Note that proxy contracts are supported on zkSync Era, only this plugin is not supported currently but you can write proxies manually.
 
