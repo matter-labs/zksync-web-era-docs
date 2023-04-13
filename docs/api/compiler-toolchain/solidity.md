@@ -8,7 +8,6 @@ which must be available in `$PATH`, or its path must be explicitly passed via th
 
 Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 
-
 Using our compiler via the Hardhat plugin usually suffices. However, knowledge of its interface and I/O (input/output)
 methods are crucial for integration, debugging, or contribution purposes.
 
