@@ -140,7 +140,7 @@ npx hardhat compile  --network zkSyncTestnet
 Passing the `--network` flag we make sure Hardhat will use the zksolc compiler (or zkvyper). This command will compile all contracts in the `/contracts` folder and create the folders `artifacts-zk` and `cache-zk`.
 
 
-If your contracts import any non-inlineable libraries, you will need to configure them in the `hardhat.config.ts` file. Find more info and examples about [compiling libraries here](./compiling-libraries.md).
+If your contracts import any non-inlineable libraries, you need to configure them in the `hardhat.config.ts` file. Find more info and examples about [compiling libraries here](./compiling-libraries.md).
 
 ## Deploy contracts
 
