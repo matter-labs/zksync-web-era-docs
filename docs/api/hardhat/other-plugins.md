@@ -63,7 +63,7 @@ This plugin adds new methods that interact with the Hardhat network used for tes
 
 However, we do not recommend using the Hardhat network for testing contracts that will be deployed on zkSync Era. We recommend instead using the [local setup to test your contracts](testing.md) as it will give you the same results as our testnet/mainnet.
 
-This plugin is not compatible with the zkSync Era local setup for testing.
+The additional methods provided by this plugin are not compatible with the zkSync Era local setup.
 
 
  
