@@ -53,7 +53,7 @@ If you are using Yarn 2 or later, there may be additional steps to ensure that `
 
 ## Configuration
 
-2. Create the `hardhat.config.ts` file in the root and add the following code:
+2. Create the `hardhat.config.ts` file in the project root and add the following code:
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
