@@ -126,8 +126,6 @@ To see an example script of how to use a `Deployer` class to deploy a contract, 
 
 ::: warning API changes in v0.6.x
 
-- Previous versions of this package required a different configuration in the `hardhat.config.ts` file. 
-- If you're using `v0.5.x` or previous, the network configuration must be indicated in an object called `zkSyncDeploy`, including the properties `zkSyncNetwork` and `ethNetwork`. 
 - We advised developers to upgrade to the most recent version of this package.
 
 :::
