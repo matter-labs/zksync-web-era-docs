@@ -160,8 +160,8 @@ networks: {
 The deployment scripts must be placed in the `deploy` folder.
 :::
 
-- To run a specific script, add the `--script` argument, e.g. `hardhat deploy-zksync --script 001_deploy.ts`. This will run script `./deploy/001_deploy.ts`.
-- To run on a specific zkSync Era network, use standard hardhat `--network` argument, e.g. `--network zkTestnet`, the network with the name `zkTestnet` needs to be configured in the `hardhat.config.ts` file, with all required fields stated above, or specify `defaultNetwork` in `hardhat.config.ts` file.
+- To run a specific script, add the `--script` argument, e.g. `hardhat deploy-zksync --script 001_deploy.ts`. This runs script `./deploy/001_deploy.ts`.
+- To run on a specific zkSync Era network, use the standard Hardhat `--network` argument, e.g. `--network zkTestnet`. The network with the name `zkTestnet` needs to be configured in the `hardhat.config.ts` file, with all required fields stated above, or specify `defaultNetwork` in `hardhat.config.ts` file.
 
 ::: tip
 
