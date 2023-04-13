@@ -2,11 +2,6 @@
 
 This plugin provides utilities for deploying smart contracts on zkSync Era with artifacts built by the `@matterlabs/hardhat-zksync-solc` or `@matterlabs/hardhat-zksync-vyper` plugins.
 
-::: warning
-- Contracts must be compiled using the official `@matterlabs/hardhat-zksync-solc` plugin. 
-- Contracts compiled with other compilers will fail to deploy to zkSync Era using this plugin.
-:::
-
 ## Prerequisite
 
 To use the `hardhat-zksync-deploy` in your project, we recommend that:
@@ -168,7 +163,3 @@ The deployment scripts must be placed in the `deploy` folder.
 If network argument `--network` or `defaultNetwork` configuration are not specified, local setup with `http://localhost:8545` (Ethereum RPC URL) and `http://localhost:3050` (zkSync Era RPC URL), will be used. In this case zkSync Era network will not need to be configured in `hardhat.config.ts` file.
 For more details about a dockerized local setup, check out [Local testing](./testing.md).
 :::
-
-### Why is Hardhat's `console.log` not working?
-
-zkSync Era does not support the Nomic Foundation's `console.log` contract. Due to different address derivation rules, even when deployed, the `console.log` library will likely have a different address from the one on Ethereum.
