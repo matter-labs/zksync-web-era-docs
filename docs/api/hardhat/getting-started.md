@@ -48,7 +48,7 @@ yarn add -D typescript ts-node @types/node ethers@^5.7.2 zksync-web3 @ethersproj
 You don't have to install `typeScript`, `ts-node`, and `@types/node` dependencies if you are using vanilla JavaScript. However, it's worth mentioning that this tutorial does use TypeScript.
 
 ::: tip
-If you are using Yarn 2 or a newer version, there may be additional steps you need to take to ensure that `TypeScript` works correctly in your code editor. You can find more information in [Yarn's official documentation](https://yarnpkg.com/getting-started/editor-sdks).
+If you are using Yarn 2 or later, there may be additional steps to ensure that `TypeScript` works correctly in your editor. For more information, check out [Yarn's official documentation](https://yarnpkg.com/getting-started/editor-sdks).
 :::
 
 ## Configuration
