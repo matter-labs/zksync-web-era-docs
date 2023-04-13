@@ -346,7 +346,7 @@ Even though the requirements above mean the accounts only touch their own storag
 To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, we add the following import:
 
 ```solidity
-// Access zkSync system contracts, in this case for nonce validation vs NONCE_HOLDER_SYSTEM_CONTRACT
+// Access zkSync system contracts for nonce validation via NONCE_HOLDER_SYSTEM_CONTRACT
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 ```
 
@@ -506,7 +506,7 @@ import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 // Used for signature validation
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
-// Access zkSync system contracts, in this case for nonce validation vs NONCE_HOLDER_SYSTEM_CONTRACT
+// Access zkSync system contracts for nonce validation via NONCE_HOLDER_SYSTEM_CONTRACT
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 // to call non-view function of system contracts
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
