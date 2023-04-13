@@ -96,6 +96,10 @@ To understand what the factory dependencies are, read more about them in the [We
 
 ## How to configure multiple compilation targets
 
+::: tip
+The instructions here can also be applied to compiling [Vyper](./hardhat-zksync-vyper.md) smart contracts.
+:::
+
 To configure the `hardhat.config.ts` file to target both zkSync Era and other networks, do the following:
 
 1. In your `hardhat.config.ts`, configure the zkSync Era network with `zksync: true`.
