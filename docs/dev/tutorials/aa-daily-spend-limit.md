@@ -1,52 +1,55 @@
-# Daily spend limit account
+# Daily spending limit account
 
-In this tutorial, we'll create a smart contract account with a daily spend limit thanks to the Account Abstraction support on zkSync.
+This tutorial shows you how to create a smart contract account with a daily spending limit using the zkSync Era account abstraction support.
 
-::: warning Update in progress
+The daily limit feature prevents an account from spending more ETH than the limit set by its owner.
 
-This tutorial has not been updated to reflect [the latest changes in the protocol and SDK](../troubleshooting/changelog.md). An updated version will be released soon.
+## Prerequisites
 
-:::
+- [Node.js](https://nodejs.org/en/download/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed on your machine.
+- If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+- You have a web3 wallet app which holds some Goerli test ETH and some zkSync Era test ETH.
+- You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
+- We encourage you to read [the basics of account abstraction on zkSync Era](../developer-guides/aa.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
 
-## Prerequisite
+## Project set up
 
-It is highly encouraged that you read [the basics of Account Abstraction on zkSync](../developer-guides/aa.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) first.
+We will use the [zkSync Era Hardhat plugins](../../api/hardhat/) to build, deploy, and interact with the smart contracts in this project.
 
-Apart from that we'll build this project with [Node.js](https://nodejs.org/en/download/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) so make sure you have installed them.
+1. Create a project folder and `cd` into it.
 
-## Installing dependencies
-
-We will use the [zkSync Hardhat plugins](../../api/hardhat/) to build, deploy, and interact with the smart contracts of this project.
-
-First, let’s install all the dependencies that we'll need:
-
-```shell
+```sh
 mkdir custom-spendlimit-tutorial
 cd custom-spendlimit-tutorial
+```
+
+2. Initialize the project and add the dependencies.
+
+```sh
 yarn init -y
 yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 
 ::: tip
-
 The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
-
 :::
 
-Additionally, please install a few packages that allow us to utilize the [zkSync smart contracts](../developer-guides/system-contracts.md).
+3. Add additional packages that use [zkSync Era smart contracts](../developer-guides/system-contracts.md).
 
-```shell
+```sh
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
-Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, similar to the [quickstart tutorial](../building-on-zksync/hello-world.md). In this project our contracts will interact with system contracts, to achieve that, we need to include the `isSystem: true` in the compiler settings:
+4. Create the `contracts` and `deploy` folders, and the configuration file, `hardhat.config.ts`, containing the code below.
+
+In this project our contracts interact with system contracts, so we need to include the `isSystem: true` in the compiler settings.
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 module.exports = {
     zksolc: {
-        version: "1.3.5",
+        version: "1.3.8",
         compilerSource: "binary",
         settings: { 
             isSystem: true,
@@ -61,36 +64,34 @@ module.exports = {
         },
     },
     solidity: {
-        version: "0.8.17",
+        version: "0.8.13",
     },
 };
-
 ```
 
 ::: tip zksync-cli
-
-You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/).
-
+- Use the zkSync Era CLI to scaffold a project automatically. 
+- Find [more info about the zkSync Era CLI here](../../api/tools/zksync-cli/).
 :::
 
 ## Design
 
-Now, let’s dive into the design and implementation of the daily spending limit feature that helps prevent an account from spending more ETH than the limit set by its owner.
+Now let’s dive into the design and implementation of the daily spending limit feature.
 
-The `SpendLimit` contract is inherited from the `Account` contract as a module that has the following functionalities:
+The `SpendLimit` contract inherits from the `Account` contract as a module that does the following:
 
-- Allow the account to enable/disable the daily spending limit in a token (ETH in this example).
-- Allow the account to change (increase/decrease or remove) the daily spending limit.
-- Reject token transfer if the daily spending limit has been exceeded.
-- Restore the available amount for spending after 24 hours.
+- Allows the account to enable/disable the daily spending limit in a token (ETH in this example).
+- Allows the account to change (increase/decrease or remove) the daily spending limit.
+- Rejects token transfer if the daily spending limit has been exceeded.
+- Restores the available amount for spending after 24 hours.
 
 ### Basic structure
 
-Below is the skeleton of the SpendLimit contract:
+Below you'll find the `SpendLimit` skeleton contract.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.13;
 
 contract SpendLimit {
 
@@ -122,7 +123,9 @@ contract SpendLimit {
 }
 ```
 
-First, add the mapping `limits` and struct `Limit` that serve as data storages for the state of daily limits accounts enable. The roles of each variable in the struct are commented out below.
+The mapping `limits` and struct `Limit` below serve as data storage for the state of daily limits accounts enable. 
+
+The roles of each variable in the struct are detailed in the comments.
 
 ```solidity
     struct Limit {
@@ -135,11 +138,11 @@ First, add the mapping `limits` and struct `Limit` that serve as data storages f
     mapping(address => Limit) public limits; // token address => Limit
 ```
 
-Note that the `limits` mapping uses the token address as its key. This means that users will be able to set limits for ETH or any ERC20 token.
+Note that the `limits` mapping uses the token address as its key. This means that users can set limits for ETH and any other ERC20 token.
 
-### Setting and Removing the daily spending limit
+### Setting and removing the daily spending limit
 
-Here is the implementation to set and remove the limit:
+The code below sets and removes the limit.
 
 ```solidity
 
@@ -189,7 +192,7 @@ Here is the implementation to set and remove the limit:
 
 ```
 
-Both `setSpendingLimit` and `removeSpendingLimit` can only be called by account contracts that inherit this contract `SpendLimit`, which is ensured by the `onlyAccount` modifier. They call `_updateLimit` and pass the arguments to modify the storage data of the limit after the verification in `_isValidUpdate` succeeds.
+Both `setSpendingLimit` and `removeSpendingLimit` can only be called by account contracts that inherit the contract `SpendLimit`. This is ensured by the `onlyAccount` modifier. They call `_updateLimit` and pass the arguments to modify the storage data of the limit after the verification in `_isValidUpdate` succeeds.
 
 Specifically, `setSpendingLimit` sets a non-zero daily spending limit for a given token, and `removeSpendingLimit` disables the active daily spending limit by decreasing `limit` and `available` to 0 and setting `isEnabled` to false.
 
@@ -197,11 +200,11 @@ Specifically, `setSpendingLimit` sets a non-zero daily spending limit for a give
 
 ### Checking daily spending limit
 
-The `_checkSpendingLimit` function is internally called by the account contract itself before executing the transaction.
+The `_checkSpendingLimit` function is internally called by the account contract before executing the transaction.
 
 ```solidity
 
-    // this function is called by the account itself before execution.
+    // this function is called by the account before execution.
     function _checkSpendingLimit(address _token, uint _amount) internal {
         Limit memory limit = limits[_token];
 
@@ -230,7 +233,7 @@ If the daily spending limit is disabled, the checking process immediately stops.
 if(!limit.isEnabled) return;
 ```
 
-Before checking the spending amount, this method renews the `resetTime` and `available` amount if a day has already passed since the last update: timestamp > resetTime. It only updates the `resetTime` if the transaction is the first spending after enabling the limit. This way the daily limit actually starts with the first transaction.
+Before checking the spending amount, this method renews the `resetTime` and `available` amount if a day has already passed since the last update: `timestamp > resetTime`. It only updates the `resetTime` if the transaction is the first spending after enabling the limit. This way the daily limit actually starts with the first transaction.
 
 ```solidity
 
@@ -252,16 +255,27 @@ require(limit.available >= _amount, 'Exceed daily limit');
 limit.available -= _amount;
 ```
 
-Note: you might have noticed the comment `// L1 batch timestamp` above. The details of this will be explained below.
+:::tip
+- The  `// L1 batch timestamp` comment will be explained below.
+:::
 
-### Full code
+### Full code for the `SpendLimit` contract
 
-Now, here is the complete code of the SpendLimit contract. But one thing to be noted is that the value of the ONE_DAY variable is set to `1 minutes` instead of `24 hours`. This is just for testing purposes (we don't want to wait a full day to see if it works!) so, please don't forget to change the value before deploying the contract.
+1. Create a new folder `contracts`.
+
+2. Add a file to the `contracts` folder called `SpendLimit.sol`
+
+3. Copy/paste the complete code below. 
+
+:::warning
+- The value of the `ONE_DAY` variable is set to `1 minutes` instead of `24 hours`. 
+- This is just for testing purposes (we don't want to wait a full day to see if it works!).
+- Don't forget to change the value before deploying the contract.
+:::
 
 ```solidity
-
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.13;
 
 contract SpendLimit {
 
@@ -299,7 +313,7 @@ contract SpendLimit {
         uint resetTime;
         uint timestamp = block.timestamp; // L1 batch timestamp
 
-        if (_isValidUpdate(_token)) {
+        if (isValidUpdate(_token)) {
             resetTime = timestamp + ONE_DAY;
         } else {
             resetTime = timestamp;
@@ -368,31 +382,26 @@ contract SpendLimit {
         limit.available -= _amount;
         limits[_token] = limit;
     }
-
 }
-
 ```
 
-### Account & Factory contracts
+### `Account` and `AAFactory` contracts
 
-That's pretty much for `SpendLimit.sol`. Now, we also need to create the account contract `Account.sol`, and the factory contract that deploys account contracts, in `AAFactory.sol`.
+Let's create the account contract `Account.sol`, and the factory contract that deploys account contracts, in `AAFactory.sol`. As noted earlier, those two contracts are based on the implementations of [the multisig account abstraction tutorial](./custom-aa-tutorial.md). The main difference is that our account has a single signer.
 
-As noted earlier, those two contracts are mostly based on the implementations of [another tutorial about Account Abstraction](./custom-aa-tutorial.md).
+#### `Account.sol`
 
-We will not explain in depth how these contract work as they're similar to the ones used in the multisig account abstraction tutorial. The only difference is that our account will have a single signer instead of two.
+1. Create a file `Account.sol` in the `contracts` folder.
 
-Below are the full codes.
+2. Copy/paste the code below.
 
-#### Account.sol contract
-
-The account needs to implement the [IAccount](../developer-guides/aa.md#iaccount-interface) interface and inherits the SpendLimit contract we just created. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
+The account needs to implement the [IAccount](../developer-guides/aa.md#iaccount-interface) interface and inherits the `SpendLimit` contract we just created. Since we are building an account with signers, we should also implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
 The `checkValidECDSASignatureFormat` and `extractECDSASignature` are helper methods that we'll use in the `isValidSignature` implementation.
 
 ```solidity
-
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.13;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
@@ -619,11 +628,9 @@ function _executeTransaction(Transaction calldata _transaction) internal {
         assert(msg.sender != BOOTLOADER_FORMAL_ADDRESS);
     }
 }
-
-
 ```
 
-The `_executeTransaction` method is where we'll use the methods from the `SpendLimit.sol` contract. If the ETH transaction value is non-zero, the Account contract calls `_checkSpendingLimit` to verify the allowance for spending.
+The `_executeTransaction` method is where we use the methods from the `SpendLimit.sol` contract. If the ETH transaction value is non-zero, the Account contract calls `_checkSpendingLimit` to verify the allowance for spending.
 
 ```solidity
 
@@ -634,17 +641,23 @@ if ( value > 0 ) {
 
 Since we want to set the spending limit of ETH in this example, the first argument in `_checkSpendingLimit` should be `address(ETH_TOKEN_SYSTEM_CONTRACT)`, which is imported from a system contract called `system-contracts/Constant.sol`.
 
-**Note1** : The formal ETH address on zkSync is `0x000000000000000000000000000000000000800a`, neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, which is what `zksync-web3` package ([See](../../api/js/utils.md#the-address-of-ether)) provides as a more user-friendly alias.
+:::warning **Note1**
+The formal ETH address on zkSync Era is `0x000000000000000000000000000000000000800a`. Neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, which is what `zksync-web3` package ([See](../../api/js/utils.md#the-address-of-ether)) provides a more user-friendly alias.
+:::
 
-**Note2** : SpendLimit is token-agnostic. Thus an extension is also possible: add a check for whether or not the execution is an ERC20 transfer by extracting the function selector in bytes from transaction calldata.
+:::warning **Note2**
+`SpendLimit` is token-agnostic. Thus an extension is also possible: add a check for whether or not the execution is an ERC20 transfer by extracting the function selector in bytes from transaction calldata.
+:::
 
-#### AAFactory.sol contract
+#### `AAFactory.sol`
 
-The `AAFactory.sol` contract will be responsible of deploying instances of the `Account.sol` contract:
+The `AAFactory.sol` contract is responsible for deploying instances of the `Account.sol` contract.
+
+1. Create the `AAFactory.sol` file in the `contracts` folder and copy/paste the code below.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.13;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
@@ -675,23 +688,21 @@ contract AAFactory {
         (accountAddress) = abi.decode(returnData, (address));
     }
 }
-
-
 ```
 
-## Deploying the smart contracts
+## Compile and deploy the smart contracts
 
-### Compile
+1. Compile the contracts from the project root.
 
-Finally, we are ready to compile and deploy the contracts. So, before the deployment, let's compile the contracts by running:
-
-```shell
+```sh
 yarn hardhat compile
 ```
 
-### Deployment script
+2. Create a new folder `deploy`.
 
-Then, let's create a file `deploy-factory-account.ts` that deploys all the contracts we've made above and creates an account.
+3. Create a file `deploy/deploy-factory-account.ts` and copy/paste the code below, replacing `<WALLET_PRIVATE_KEY>` with your own.
+
+The script deploys the compiled contracts and creates an account.
 
 ```typescript
 import { utils, Wallet, Provider } from "zksync-web3";
@@ -706,7 +717,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const factoryArtifact = await deployer.loadArtifact("AAFactory");
   const aaArtifact = await deployer.loadArtifact("Account");
 
-  // Bridge funds if wallet on zkSync doesn't have enough funds.
+  // Bridge funds if wallet on zkSync Era doesn't have enough funds.
   // const depositAmount = ethers.utils.parseEther('0.1');
   // const depositHandle = await deployer.zkWallet.deposit({
   //   to: deployer.zkWallet.address,
@@ -754,29 +765,35 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-After changing `<WALLET_PRIVATE_KEY>`, run:
+4. Run the script.
 
-```shell
+```sh
 yarn hardhat deploy-zksync --script deploy-factory-account.ts
 ```
 
-The output would look like the following:
+You should see something like this:
 
-```shell
+```txt
 AA factory address: 0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627Ds
 Account owner pk: 0x957aff65500eda28beb7130b7c1bc48f783556bb84fa6874d2204c1d66a0ddc7
 Account deployed on address 0x6b6B8ea196a6F27EFE408288a4FEeBE9A9e12005
 ```
 
-So, we are ready to try the functionality of the `SpendLimit` contract. For the test, now please open [zkSync Era Block Explorer](https://goerli.explorer.zksync.io/) and search for the deployed Account contract address to be able to track transactions and changes in the balance which we will see in the following sections.
+## Testing the `SpendLimit` contract - STUCK ON THE SCRIPT HERE
 
-**TIP**: For contract verification, please refer to [this section of the documentation](../building-on-zksync/contracts/contract-verification.md).
+Open up the [zkSync Era block explorer](https://goerli.explorer.zksync.io/) and search for the deployed Account contract address in order to track transactions and changes in the balance.
+
+:::tip
+- For contract verification, please refer to [this section of the documentation](../building-on-zksync/contracts/contract-verification.md).
+:::
 
 ## Set the daily spending limit
 
-First, create `setLimit.ts` in the `/deploy` folder and after pasting the example code below, replace the undefined account address and private key string values with the ones we got in the previous section.
+1. Create the file `setLimit.ts` in the `deploy` folder and copy/paste the example code below.
 
-To enable the daily spending limit, we execute the `setSpendingLimit` function with two parameters: token address and amount limit. The token address is ETH_ADDRESS and the limit parameter is "0.005" in the example below. (can be any amount)
+2. Replace `<ACCOUNT_ADDRESS>`, `<WALLET_PRIVATE_KEY>` and `<OWNER_PRIVATE_KEY>` with the output from the previous section.
+
+To enable the daily spending limit, we execute the `setSpendingLimit` function with two parameters: token address and limit amount. The token address is `ETH_ADDRESS` and the limit parameter is `0.005` in the example below (and can be any amount).
 
 ```typescript
 import { utils, Wallet, Provider, Contract, EIP712Signer, types } from "zksync-web3";
@@ -830,9 +847,15 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-The expected output would mostly look like this:
+4. Run the script.
 
-```shell
+```sh
+yarn hardhat deploy-zksync --script setLimit.ts
+```
+
+You should see something like this:
+
+```sh
 limit:  5000000000000000
 available:  5000000000000000
 resetTime:  1672928333
@@ -941,7 +964,7 @@ Since the `ONE_DAY` is set to 1 minute for this test, another transfer with any 
 
 ::: warning block.timestamp returns L1 batch value
 
-The `block.timestamp` returns the time of the latest L1 batch instead of the L2 block and it's only updated once a new batch is sealed ( 5-10 minutes on testnet). What this means is that basically, `block.timestamp` in smart contracts on zkSync is a delayed value.
+The `block.timestamp` returns the time of the latest L1 batch instead of the L2 block and it's only updated once a new batch is sealed ( 5-10 minutes on testnet). What this means is that basically, `block.timestamp` in smart contracts on zkSync Era is a delayed value.
 
 To keep this tutorial as simple as possible, we've used `block.timestamp` but we don't recommend relying on this for accurate time calculations.
 
@@ -955,13 +978,13 @@ To keep this tutorial as simple as possible, we've used `block.timestamp` but we
 
 ## Complete Project
 
-You can download the complete project [here](https://github.com/matter-labs/daily-spendlimit-tutorial). Additionally, the repository contains a test folder that can perform more detailed testing than this tutorial on zkSync local network.
+You can download the complete project [here](https://github.com/matter-labs/daily-spendlimit-tutorial). Additionally, the repository contains a test folder that can perform more detailed testing than this tutorial on zkSync Era local network.
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2.md).
+- To learn more about L1->L2 interaction on zkSync Era, check out the [documentation](../developer-guides/bridging/l1-l2.md).
 - To learn more about the zksync-web3 SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
+- To learn more about the zkSync Era Hardhat plugins, check out their [documentation](../../api/hardhat).
 
 ## Credits
 
