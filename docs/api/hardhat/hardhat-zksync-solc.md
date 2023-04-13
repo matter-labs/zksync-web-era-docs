@@ -93,3 +93,26 @@ For Solidity versions older than 0.8, only this compilation mode is available an
 `hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates the `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
 
 To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.
+
+## How to configure multiple compilation targets
+
+To configure the `hardhat.config.ts` file to target both zkSync Era and other networks, do the following:
+
+1. In your `hardhat.config.ts`, configure the zkSync Era network with `zksync: true`.
+2. Configure the other networks with `zksync: false`.
+3. Run the compilation script with the network flag: `yarn hardhat compile --network zkSyncTestnet` for zkSync Era network or `yarn hardhat compile --network goerli` for other networks, e.g goerli.
+
+```typescript
+networks: {
+        goerli: {
+          url: "https://goerli.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL.
+          zksync: false, // Set to false to target other networks.
+        },
+        zkSyncTestnet: {
+          url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
+          ethNetwork: "goerli", // The identifier of the network (e.g. `mainnet` or `goerli`)
+        zksync: true, // Set to true to target zkSync Era.
+        }
+    },
+
+```
