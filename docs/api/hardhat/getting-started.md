@@ -24,7 +24,7 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ::: warning
-- Contracts must be compiled using the official plugins. 
+- Contracts must be compiled using the official zkSync Era plugins. 
 - Contracts compiled with other compilers will fail to deploy to zkSync Era using this plugin.
 :::
 ## Setup
