@@ -126,7 +126,7 @@ To see an example script of how to use a `Deployer` class to deploy a contract, 
 
 ::: warning API changes in v0.6.x
 
-- We advised developers to upgrade to the most recent version of this package.
+- We advise developers to upgrade to the most recent version of this package.
 
 :::
 
