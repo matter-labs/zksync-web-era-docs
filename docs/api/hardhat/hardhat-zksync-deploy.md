@@ -10,7 +10,7 @@ This plugin provides utilities for deploying smart contracts on zkSync Era with 
 ## Prerequisite
 
 To use the `hardhat-zksync-deploy` in your project, we recommend that:
-  - You have `yarn` package manager installed or `npm` package manager.
+  - You have a Node installation and `yarn` package manager.
   - You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../../dev/building-on-zksync/hello-world.md).
   - You already have some experience working with Ethereum.
   - You have a wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. We recommend using [our faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
