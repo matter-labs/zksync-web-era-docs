@@ -83,7 +83,7 @@ npx hardhat verify --network <network> <contract address>
 ```
 
 This command verifies the contract on the given network with the given contract's address. <br/>
-When executed in this manner, the verification task will attempt to compare the compiled bytecode of all the contracts in your local environment with the deployed bytecode of the contract you are seeking to verify. If there is no match, it will report an error.
+When executed in this manner, the verification task attempts to compare the compiled bytecode of all the contracts in your local environment with the deployed bytecode of the contract you are seeking to verify. If there is no match, it reports an error.
 
 ```sh
 npx hardhat verify --network <network> <contract address> --contract <fully qualified name>
