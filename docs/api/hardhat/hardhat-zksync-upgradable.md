@@ -129,7 +129,6 @@ After that, load the `Box` artifact and call the `deployProxy` method from the `
   await hre.zkUpgrades.deployProxy(deployer.zkWallet, contract, [42], { initializer: 'store' });
 ```
 
-And that is it! <br/>
 The `deployProxy` method will deploy your implementation contract on the zkSync network, deploy the proxy admin contract, and finally, deploy the transparent proxy.
 
 Here is one example of the whole deploy proxy script:
