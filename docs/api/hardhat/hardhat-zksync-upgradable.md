@@ -334,7 +334,6 @@ contract BoxV2 is Initializable{
         return string(bstr);
     }
 }
-
 ```
 
 ## Upgrade transparent proxy
