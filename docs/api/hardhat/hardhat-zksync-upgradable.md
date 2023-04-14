@@ -351,8 +351,7 @@ To upgrade the implementation of the transparent upgradeable contract, use the `
 
 ## Upgrade beacon proxy
 
-Beacon proxy implementation can be upgraded using a similarly structured method from the `zkUpgrades` called `upgradeBeacon`.
-Here is an example:
+Beacon proxy implementation can be upgraded using a similarly structured method from the `zkUpgrades` called `upgradeBeacon`. For example:
 
 ```typescript
 
