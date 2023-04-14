@@ -68,7 +68,7 @@ export default config;
 
 # Deploying Proxies
 
-The plugin supports two types of proxies: Transparent upgradable proxies and beacon proxies.
+The plugin supports two types of proxy: Transparent upgradable proxies and beacon proxies.
 
 Upgradability methods are all part of the `zkUpgrades` property in the HardhatRuntimeEnvironment and you only need to interact with it in order to deploy or upgrade your contracts.
 
