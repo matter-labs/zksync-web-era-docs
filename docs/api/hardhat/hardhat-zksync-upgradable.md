@@ -291,7 +291,6 @@ pragma solidity ^0.8.16;
 
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
-
 contract BoxV2 is Initializable{
     uint256 private value;
 
