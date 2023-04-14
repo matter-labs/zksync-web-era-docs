@@ -346,6 +346,7 @@ To upgrade the implementation of the transparent upgradeable contract, use the `
   await hre.zkUpgrades.upgradeProxy(deployer.zkWallet, <PROXY_ADDRESS>, BoxV2);
 
 ```
+
 `upgradeProxy` receives 3 arguments:
 - A (zk) wallet
 - The address of the previously deployed box proxy
