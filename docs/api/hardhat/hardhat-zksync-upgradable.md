@@ -281,7 +281,7 @@ In order for a smart contract implementation to be upgradable, it has to follow 
 
 ## Upgradable examples
 
-The following examples will use the BoxV2 contract as a new implementation for the Box proxy.
+The following examples use the `BoxV2` contract as a new implementation for the `Box` proxy.
 
 ```typescript
 // SPDX-License-Identifier: MIT
