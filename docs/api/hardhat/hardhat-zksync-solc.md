@@ -56,7 +56,7 @@ module.exports = {
   defaultNetwork: "zkTestnet",
   networks: {
     goerli: {
-      url: "https://goerli.infura.io/v3/377108cfa8bb46aab18814342f6965ba", // The Ethereum Web3 RPC URL (optional).
+      url: "https://goerli.infura.io/v3/<API_KEY>", // The Ethereum Web3 RPC URL (optional).
       zksync: false, // Set to false to target other networks.
     },
     zkTestnet: {
