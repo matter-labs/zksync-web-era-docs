@@ -32,34 +32,51 @@ This plugin most often will not be used directly in the code.
 This plugin is configured in the `hardhat.config.ts` file of your project. Here is an example
 
 ```typescript
-zksolc: {
-  version: "1.3.8",
-  compilerSource: "binary",  // binary or docker (deprecated)
-  settings: {
-    compilerPath: "zksolc",  // optional. Ignored for compilerSource "docker". Can be used if compiler is located in a specific folder
-    experimental: {
-      dockerImage: "matterlabs/zksolc", // Deprecated! use, compilerSource: "binary"
-      tag: "latest"   // Deprecated: used for compilerSource: "docker"
+import "@matterlabs/hardhat-zksync-solc";
+
+module.exports = {
+  zksolc: {
+      version: "1.3.8",
+      compilerSource: "binary",
+      settings: {
+        //compilerPath: "zksolc",  // optional. Ignored for compilerSource "docker". Can be used if compiler is located in a specific folder
+        experimental: {
+          dockerImage: "matterlabs/zksolc", // Deprecated! use, compilerSource: "binary"
+          tag: "latest"   // Deprecated: used for compilerSource: "docker"
+        },
+        libraries:{}, // optional. References to non-inlinable libraries
+        isSystem: false, // optional.  Enables Yul instructions available only for zkSync system contracts and libraries
+        forceEvmla: false, // optional. Falls back to EVM legacy assembly if there is a bug with Yul
+        optimizer: {
+          enabled: true, // optional. True by default
+          mode: '3' // optional. 3 by default, z to optimize bytecode size
+        } 
+      }
+  },
+  defaultNetwork: "zkTestnet",
+  networks: {
+    goerli: {
+      url: "https://goerli.infura.io/v3/<API_KEY>", // The Ethereum Web3 RPC URL (optional).
+      zksync: false, // Set to false to target other networks.
     },
-    libraries:{}, // optional. References to non-inlinable libraries
-    isSystem: false, // optional.  Enables Yul instructions available only for zkSync system contracts and libraries
-    forceEvmla: false, // optional. Falls back to EVM legacy assembly if there is a bug with Yul
-    optimizer: {
-      enabled: true, // optional. True by default
-      mode: '3' // optional. 3 by default, z to optimize bytecode size
-    } 
-  }
+    zkTestnet: {
+      url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
+      ethNetwork: "goerli", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `goerli`)
+    zksync: true,
+    }
+  },
+  // defaultNetwork: "zkTestnet", // optional (if not set, use '--network zkTestnet')
+  solidity: {
+      version: "0.8.13",
+  },
 }
-networks: {
-  hardhat: {
-    zksync: true  // enables zksync in hardhat local network
-  }
-}
+
 ```
 
 ::: warning
 
-Compilers are no longer released as Docker images and its usage is no longer recommended. Use the `compilerSource: "binary"` in the Hardhat config file to use the binary instead.
+- Compilers are no longer released as Docker images and its usage is no longer recommended. 
+- Use the `compilerSource: "binary"` in the `hardhat.config.ts` file to use the binary instead.
 
 :::
 
@@ -90,6 +107,16 @@ For Solidity versions older than 0.8, only this compilation mode is available an
 
 ### Commands
 
-`hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates the `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
+`yarn hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates the `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
 
 To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.
+
+## Why is there an `unexpected end of JSON input` compilation error?
+
+This is an error that is usually thrown when compiling a large smart contract codebase.
+
+If you encounter such an error, please do the following:
+
+- Update the `@matterlabs/hardhat-zksync-solc` library and try to re-compile the smart contracts afterwards.
+- If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](./compiling-libraries.md).
+- If the same error persists, [report the issue](../../dev/fundamentals/interacting.md#zksync-era-support) to our team. We will do our best to help you.

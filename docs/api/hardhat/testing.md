@@ -20,7 +20,7 @@ git clone https://github.com/matter-labs/local-setup.git
 
 ## Start the local nodes
 
-To run zkSync locally, run the `start.sh` script:
+To run zkSync Era locally, run the `start.sh` script:
 
 ```
 cd local-setup
@@ -87,7 +87,7 @@ If you'd like the local node to come with pre-deployed tokens again, please let 
 
 :::
 
-## Using custom database or Ethereum node
+## Use custom database or Ethereum node
 
 To use a custom Postgres database or Layer 1 node, you should change the environment parameters in the docker-compose file:
 
@@ -148,7 +148,7 @@ const zkSyncTestnet =
 
 module.exports = {
   zksolc: {
-    version: "1.3.5",
+    version: "1.3.8",
     compilerSource: "binary",
     settings: {},
   },
@@ -163,7 +163,7 @@ module.exports = {
     zkSyncTestnet,
   },
   solidity: {
-    version: "0.8.16",
+    version: "0.8.13",
   },
 };
 ```
@@ -215,7 +215,7 @@ You can now run the test file with the following command:
 yarn test
 ```
 
-**Congratulations! You've ran your first tests locally with zkSync 🎉**
+**Congratulations! You just ran your first tests locally with zkSync Era 🎉**
 
 ## Full example
 
@@ -223,4 +223,4 @@ The full example with tests can be found [here](https://github.com/matter-labs/t
 
 ## Chai Matchers
 
-The zkSync team provides the [hardhat-zksync-chai-matchers](./hardhat-zksync-chai-matchers) plugin to make it easier to write and maintain tests for your projects, in addition to offering a local testing environment. This plugin includes a set of Chai matchers specifically designed for use with zkSync, which can help you write more comprehensive and understandable tests for your contracts. By using these matchers, you can ensure that your contracts are working as intended and reduce the likelihood of encountering bugs or other issues during development.
+The zkSync Era team provides the [hardhat-zksync-chai-matchers](./hardhat-zksync-chai-matchers) plugin to make it easier to write and maintain tests for your projects, in addition to offering a local testing environment. This plugin includes a set of Chai matchers specifically designed for use with zkSync Era, which can help you write more comprehensive and understandable tests for your contracts. By using these matchers, you can ensure that your contracts are working as intended and reduce the likelihood of encountering bugs or other issues during development.
