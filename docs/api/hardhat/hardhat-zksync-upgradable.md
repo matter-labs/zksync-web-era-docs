@@ -214,7 +214,7 @@ To use beacon upgradables, start with creating a Deployer for the zkSync network
 
 ```
 
-After that, you first need to deploy the beacon contract using `deployBeacon` method from the `zkUpgrades`
+2. Deploy the beacon contract using `deployBeacon` method from the `zkUpgrades`
 
 ```typescript
   await hre.zkUpgrades.deployBeacon(deployer.zkWallet, boxContract);
