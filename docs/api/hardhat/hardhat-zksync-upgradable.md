@@ -358,7 +358,6 @@ Beacon proxy implementation can be upgraded using a similarly structured method 
 ```typescript
   const boxV2Implementation = await deployer.loadArtifact('BoxV2');
   await hre.zkUpgrades.upgradeBeacon(deployer.zkWallet, <BEACON_PROXY_ADDRESS>, boxV2Implementation);
-
 ```
 
 The example below shows how to deploy and upgrade a smart contract using beacon proxy:
