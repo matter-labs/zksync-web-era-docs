@@ -113,7 +113,6 @@ Transparent upgradable proxies provide a way to upgrade a smart contract without
 To deploy a simple upgradable contract on zkSync Era local setup, first create a test wallet and add it to the new Deployer.
 
 ```typescript
-
   const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
   const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
 
