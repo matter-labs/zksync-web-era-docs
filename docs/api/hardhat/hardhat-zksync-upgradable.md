@@ -70,7 +70,7 @@ export default config;
 
 The plugin supports two types of proxy: Transparent upgradable proxies and beacon proxies.
 
-Upgradability methods are all part of the `zkUpgrades` property in the HardhatRuntimeEnvironment and you only need to interact with it in order to deploy or upgrade your contracts.
+Upgradability methods are all part of the `zkUpgrades` property in the `HardhatRuntimeEnvironment` and you only need to interact with it in order to deploy or upgrade your contracts.
 
 
 For the following examples, we use the simple `Box` smart contract:
