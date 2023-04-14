@@ -281,9 +281,10 @@ The upgradable plugin saves this information in the manifest file. This file wil
 
 In order for a smart contract implementation to be upgradable, it has to follow specific [rules](https://docs.openzeppelin.com/upgrades-plugins/1.x/writing-upgradeable).
 
-> **__WARNING__** for the current version of the hardhat-zksync-upgradable plugin is that it does <b>NOT</b> yet support all the validation checks.
-> This means that users have the responsibility to check if the new implementation they want to upgrade follows the predefined standards.
-> We are working on implementing those checks within the plugin itself, and the plan for subsequent releases is to support them natively.
+:::warning
+- The current version of the `hardhat-zksync-upgradable` plugin does **NOT** support all the validation checks.
+- This means that it is the users responsibility to check if the new implementation they want to upgrade follows the predefined standards.
+- At the time of writing, we are working on implementing those checks within the plugin itself, and the plan for subsequent releases is to support them natively.
 
 ## Upgradable examples
 
