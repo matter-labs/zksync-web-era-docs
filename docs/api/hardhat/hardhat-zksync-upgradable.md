@@ -175,7 +175,6 @@ defaultNetwork: 'zkSyncNetwork',
             url: 'http://localhost:8545',
         },
     },
-
 ```
 
 Since the provider instatiation is already handled in the creation of the Deployer class based on your hardhat configuration, we can simply pass the `deployer.zkWallet` and be sure that the correct provider is already set.
