@@ -198,7 +198,11 @@ On the other hand, if you need to explicitly set the provider, do that with the 
 
 ## Beacon proxies
 
-Beacon proxies are a more advanced form of proxy that uses an intermediate contract (called the Beacon contract) to delegate calls to a specific implementation contract. Beacon proxies enable a more advanced upgrade pattern, where multiple implementation contracts can be deployed and "hot-swapped" on the fly without any disruption to the contract's operation. This allows for more advanced upgrade patterns, such as adding or removing functionality while minimizing downtime.
+Beacon proxies are a more advanced form of proxy that use an intermediate contract (called the Beacon contract) to delegate calls to a specific implementation contract. 
+
+Beacon proxies enable a more advanced upgrade pattern, where multiple implementation contracts can be deployed and "hot-swapped" on the fly with no disruption to the contract's operation. 
+
+This allows for more advanced upgrade patterns, such as adding or removing functionality while minimizing downtime.
 
 
 To use beacon upgradables, start with creating a Deployer for the zkSync network and load the Box artifact:
