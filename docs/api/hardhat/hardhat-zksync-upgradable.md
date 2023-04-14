@@ -106,7 +106,6 @@ contract Box is Initializable{
     event ValueChanged(uint256 newValue);
 
 }
-
 ```
 
 
