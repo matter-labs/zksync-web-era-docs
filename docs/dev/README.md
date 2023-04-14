@@ -49,9 +49,6 @@ token.
 - [Changelogs](./troubleshooting/changelog.md) - Get updates, breaking changes and new features on zkSync Era.
 - [Contribute to documentation](./troubleshooting/docs-contribution/docs.md) - Learn the guidelines needed to be a contributor to the zkSync Era docs.
 - [FAQs](./troubleshooting/faq.md) - Popular questions and answers about zkSync Era.
-<!-- - [Known Issues](./troubleshooting/known-issues.md) - Get answers to common issues you may find. -->
-<!-- - [Important links](./troubleshooting/important-links.md) - Get a quick reference to important links. -->
-<!-- - [Status](./troubleshooting/status.md) - Get updates on things we are currently working on. -->
 
 ### Tools and SDKs
 
