@@ -342,7 +342,6 @@ To upgrade the implementation of the transparent upgradeable contract, use the `
 ```typescript
   const BoxV2 = await deployer.loadArtifact('BoxV2');
   await hre.zkUpgrades.upgradeProxy(deployer.zkWallet, <PROXY_ADDRESS>, BoxV2);
-
 ```
 
 `upgradeProxy` receives 3 arguments:
