@@ -182,7 +182,6 @@ Since the provider was instantiated on creating the `Deployer` class, based on y
 On the other hand, if you need to explicitly set the provider, do that with the code below:
 
 ```typescript
-
   import { Provider } from "zksync-web3";
 
   const provider = new Provider("https://testnet.era.zksync.dev");
