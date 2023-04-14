@@ -262,7 +262,6 @@ main();
 
 ```
 
-
 ## Implementation addresses check
 
 Once you deploy the proxy contract, all interactions with your implementation contract go through it. If you invoke the deployProxy function multiple times for a single implementation contract, several proxies will be created, but the implementation contract will remain the same for all of them. This means we can optimize the process to check for the existing implementation addresses before deploying a new proxy, instead of deploying a new implementation contract every time.
