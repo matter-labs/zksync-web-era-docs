@@ -337,7 +337,6 @@ contract BoxV2 is Initializable{
 
 ## Upgrade transparent proxy
 
-
 To upgrade the implementation of the transparent upgradeable contract, use the `upgradeProxy` method from the `zkUpgrades`.
 
 ```typescript
