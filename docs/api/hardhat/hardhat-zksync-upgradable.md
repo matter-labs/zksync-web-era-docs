@@ -177,7 +177,7 @@ defaultNetwork: 'zkSyncNetwork',
     },
 ```
 
-Since the provider instatiation is already handled in the creation of the Deployer class based on your hardhat configuration, we can simply pass the `deployer.zkWallet` and be sure that the correct provider is already set.
+Since the provider was instantiated on creating the `Deployer` class, based on your Hardhat configuration, we only have to pass the `deployer.zkWallet` and be sure that the correct provider is already set.
 
 On the other hand, if you need to explicitly set the provider, do that with the code below:
 
