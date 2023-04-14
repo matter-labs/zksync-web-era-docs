@@ -362,7 +362,6 @@ Beacon proxy implementation can be upgraded using a similarly structured method 
 
 The example below deploys and upgrades a smart contract using a beacon proxy:
 
-
 ```typescript
 
 import { Deployer } from '@matterlabs/hardhat-zksync-deploy';
