@@ -75,7 +75,7 @@ Upgradability methods are all part of the `zkUpgrades` property in the HardhatRu
 
 Let's see how you can use proxies in more detail:
 
-For the following examples, we will use the simple "Box" smart contract:
+For the following examples, we use the simple `Box` smart contract:
 
 ```typescript
 // SPDX-License-Identifier: MIT
