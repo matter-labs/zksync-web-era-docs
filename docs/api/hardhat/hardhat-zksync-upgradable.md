@@ -224,7 +224,7 @@ After that, you first need to deploy the beacon contract using `deployBeacon` me
   await hre.zkUpgrades.deployBeacon(deployer.zkWallet, boxContract);
 ```
 
-In the end, use the `deployBeaconProxy` method which receives the zk wallet, beacon contract and the implementation (Box) contract with its arguments.
+3. Use the `deployBeaconProxy` method which receives the zkSync Era wallet, beacon contract, and the implementation (Box) contract with its arguments.
 
 ```typescript
   const box = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, beacon, boxContract, [42]);
