@@ -235,7 +235,6 @@ After that, your beacon proxy contract is deployed on the network, and you can i
 The whole deploy beacon script:
 
 ```typescript
-
 import { Deployer } from '@matterlabs/hardhat-zksync-deploy';
 import { Wallet } from 'zksync-web3';
 
