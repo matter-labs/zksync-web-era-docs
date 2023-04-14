@@ -345,9 +345,9 @@ To upgrade the implementation of the transparent upgradeable contract, use the `
 ```
 
 `upgradeProxy` receives 3 arguments:
-- A (zk) wallet
-- The address of the previously deployed box proxy
-- The artifact containing the new, Box2 implementation
+- A zkSync Era wallet.
+- The address of the previously deployed box proxy.
+- The artifact containing the new `Box2` implementation.
 
 
 ## Upgrade beacon proxy
