@@ -159,7 +159,11 @@ async function main() {
 main();
 ```
 
-> **_IMPORTANT NOTE:_** `deployProxy` method (and other deploy/upgrade methods from the zkUpgrades) needs the know which wallet to use to deploy smart contracts. For this reason, the wallet needs to have a configured provider that connects it to the specific zkSync network. This provider is configured in the hardhat config file, by stating the RPC url of the network to connect to.
+### Hardhat config
+
+The `deployProxy` method (and other deploy/upgrade methods from the zkUpgrades) needs to know which wallet to use to deploy smart contracts. For this reason, the wallet needs to have a configured provider that connects it to the specific zkSync Era network.
+
+The provider is configured in the hardhat config file with the RPC URL of the network, see the example below.
 
 ```typescript
 defaultNetwork: 'zkSyncNetwork',
