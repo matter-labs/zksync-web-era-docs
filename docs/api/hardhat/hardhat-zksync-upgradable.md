@@ -134,7 +134,6 @@ The `deployProxy` method will deploy your implementation contract on the zkSync 
 ### Full deploy proxy script
 
 ```typescript
-
 import { Deployer } from '@matterlabs/hardhat-zksync-deploy';
 import { Wallet } from 'zksync-web3';
 
