@@ -202,7 +202,6 @@ Beacon proxies enable a more advanced upgrade pattern, where multiple implementa
 
 This allows for more advanced upgrade patterns, such as adding or removing functionality while minimizing downtime.
 
-
 To use beacon upgradables, start with creating a Deployer for the zkSync network and load the Box artifact:
 
 ```typescript
