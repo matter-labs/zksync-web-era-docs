@@ -73,7 +73,6 @@ The plugin supports two types of proxies: Transparent upgradable proxies and bea
 
 Upgradability methods are all part of the `zkUpgrades` property in the HardhatRuntimeEnvironment and you only need to interact with it in order to deploy or upgrade your contracts.
 
-Let's see how you can use proxies in more detail:
 
 For the following examples, we use the simple `Box` smart contract:
 
