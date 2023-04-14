@@ -204,7 +204,6 @@ This allows for more advanced upgrade patterns, such as adding or removing funct
 To use beacon upgradables, start with creating a Deployer for the zkSync network and load the Box artifact:
 
 ```typescript
-
   const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
   const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
 
