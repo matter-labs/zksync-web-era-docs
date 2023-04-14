@@ -340,7 +340,6 @@ contract BoxV2 is Initializable{
 To upgrade the implementation of the transparent upgradeable contract, use the `upgradeProxy` method from the `zkUpgrades`.
 
 ```typescript
-
   const BoxV2 = await deployer.loadArtifact('BoxV2');
   await hre.zkUpgrades.upgradeProxy(deployer.zkWallet, <PROXY_ADDRESS>, BoxV2);
 
