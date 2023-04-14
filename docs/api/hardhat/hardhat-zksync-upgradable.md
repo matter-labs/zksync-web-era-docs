@@ -226,7 +226,7 @@ This allows for more advanced upgrade patterns, such as adding or removing funct
 After that, your beacon proxy contract is deployed on the network, and you can interact with it.
 
 
-The whole deploy beacon script:
+### Full code for deploy beacon
 
 ```typescript
 import { Deployer } from '@matterlabs/hardhat-zksync-deploy';
