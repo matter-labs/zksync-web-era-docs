@@ -122,7 +122,7 @@ To deploy a simple upgradable contract on the zkSync local setup, first create a
   const deployer = new Deployer(hre, zkWallet);
 ```
 
-After that, simply load the Box artifact and call the `deployProxy` method from the `zkUpgrades` hre property.
+After that, load the `Box` artifact and call the `deployProxy` method from the `zkUpgrades` hre property.
 
 ```typescript
   const contract = await deployer.loadArtifact(contractName);
