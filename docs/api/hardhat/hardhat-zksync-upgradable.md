@@ -192,7 +192,6 @@ On the other hand, if you need to explicitly set the provider, do that with the 
 
   const deployer = new Deployer(hre, zkWallet);
   ...
-
 ```
 
 ## Beacon proxies
