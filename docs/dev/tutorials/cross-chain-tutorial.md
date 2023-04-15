@@ -410,7 +410,7 @@ Now both contracts are deployed, we can create a script to retrieve the value of
 4. Create a `/L2-counter/scripts/display-value.ts` file and paste in the following code, adding the counter contract address:
 
 ```ts
-import { Contract, Provider, Wallet } from "zksync-web3";
+import { Contract, Provider } from "zksync-web3";
 
 // The address of the counter smart contract
 const COUNTER_ADDRESS = "<COUNTER CONTRACT ADDRESS>";
