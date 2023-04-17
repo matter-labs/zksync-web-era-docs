@@ -1,31 +1,33 @@
 # Migration guide
 
-Do you have a Hardhat project and you want to deploy it to zkSync? In this page you'll find all the steps you need to do to migrate an existing Hardhat project to zkSync.
-
+This guide shows you how to migrate an existing Hardhat project to zkSync Era.
 ## Overview
 
-zkSync offers [multiple Hardhat plugins](./plugins.md) with different features but in this guide we'll focus on only the ones you'd need to do to migrate your project to zkSync.
+zkSync Era offers [multiple Hardhat plugins](./plugins.md) with different features. This guide details the one you need to migrate your project to zkSync Era.
 
-:::warning Non-default paths are not supported yet.
-
-Contracts files must be included in the `contracts` folder and deployment scripts must be included in the `deploy` folder.
-
-Support for custom paths will be included in the future.
-
+::: warning Non-default paths are not supported yet
+- Contract files must be included in the `contracts` folder and deployment scripts must be included in the `deploy` folder.
+- Support for custom paths will be included in the future.
 :::
 
 ## Install dependencies
 
-Although zkSync is [compatible with Solidity and Vyper](../../dev/building-on-zksync/contracts/contracts.md), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the fist step will be to install the compiler and deployer hardhat plugins:
+Although zkSync Era is [compatible with Solidity and Vyper](../../dev/building-on-zksync/contracts/contract-development.md), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the first step is to install the compiler and deployer Hardhat plugins:
 
-```sh
-# Yarn
+::: code-tabs
+
+@tab:active yarn
+
+```bash
 yarn add -D @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-solc
-
-# Npm
-npm i -D @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-solc
-
 ```
+
+@tab npm
+
+```bash
+npm i -D @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-solc
+```
+:::
 
 If you're using Vyper, replace `@matterlabs/hardhat-zksync-solc` with `@matterlabs/hardhat-zksync-vyper`
 
@@ -38,7 +40,7 @@ import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 ```
 
-Networks on zkSync require two different URL endpoints: one for the layer 1 (Ethereum or Goerli), and one for the layer 2 (zkSync). This is how you'd add the zkSync testnet to your list of networks in the `hardhat.config.ts`:
+Networks on zkSync Era require two different URL endpoints: one for layer 1 (Ethereum or Goerli), and one for layer 2 (zkSync). This is how you add the zkSync Era testnet to your list of networks in the `hardhat.config.ts`:
 
 ```typescript
 const config: HardhatUserConfig = {
@@ -47,7 +49,7 @@ const config: HardhatUserConfig = {
       zksync: false,
     },
     zkSyncTestnet:{
-      url: "https://zksync2-testnet.zksync.dev",
+      url: "https://testnet.era.zksync.dev",
       ethNetwork: "goerli",  // or a Goerli RPC endpoint from Infura/Alchemy/Chainstack etc.
       zksync: true,
     }
@@ -57,18 +59,20 @@ const config: HardhatUserConfig = {
 
 };
 ```
+::: tip
 Remember to add `zksync: false` to any other networks.
+:::
 
-Finally, you'd need to add the compiler options inside a `zksolc` or `zkvyper` property. Here is the minimal configuration for a Solidity project:
+Finally, add the compiler options inside a `zksolc` or `zkvyper` property. Here is the minimal configuration for a Solidity project:
 
 ```typescript
 zksolc: {
-  version: "1.3.5",
+  version: "1.3.8",
   compilerSource: "binary",
   settings: {},
 },
 ```
-You can find advance settings in the [Solidity](./hardhat-zksync-solc.md) or [Vyper](./hardhat-zksync-vyper.md) plugins.
+For more advanced settings, check out the [Solidity](./hardhat-zksync-solc.md) or [Vyper](./hardhat-zksync-vyper.md) plugins.
 
 ### Full configuration
 
@@ -82,7 +86,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 const config: HardhatUserConfig = {
   zksolc: {
-    version: "1.3.5",
+    version: "1.3.8",
     compilerSource: "binary",
     settings: {},
   },
@@ -100,13 +104,13 @@ const config: HardhatUserConfig = {
       zksync: false,
     },
     zkSyncTestnet: {
-      url: "https://zksync2-testnet.zksync.dev",
+      url: "https://testnet.era.zksync.dev",
       ethNetwork: "goerli",  // or a Goerli RPC endpoint from Infura/Alchemy/Chainstack etc.
       zksync: true,
     },
   },
   solidity: {
-    version: "0.8.17",
+    version: "0.8.13",
   },
   // OTHER SETTINGS...
 };
@@ -116,33 +120,39 @@ export default config;
 
 ## Compile contracts
 
-To compile your contracts for zkSync, run:
+To compile your contracts for zkSync Era, run:
 
-```
-# Yarn
+::: code-tabs
+
+@tab:active yarn
+
+```bash
 yarn hardhat compile --network zkSyncTestnet
-
-# NPM
-npx hardhat compile  --network zkSyncTestnet
 ```
+
+@tab npm
+
+```bash
+yarn hardhat compile  --network zkSyncTestnet
+```
+:::
 
 Passing the `--network` flag we make sure Hardhat will use the zksolc compiler (or zkvyper). This command will compile all contracts in the `/contracts` folder and create the folders `artifacts-zk` and `cache-zk`.
 
 
-If your contracts import any non-inlineable libraries, you'd need to configure them in the `hardhat.config.ts` file. Find more info and examples about [compiling libraries here](./compiling-libraries.md).
+If your contracts import any non-inlineable libraries, you need to configure them in the `hardhat.config.ts` file. Find more info and examples about [compiling libraries here](./compiling-libraries.md).
 
 ## Deploy contracts
 
 ::: tip Test ETH
 
-Obtain [test ETH from our faucet](https://portal.zksync.io/faucet) or just bridge GöerliETH using [the zkSync Portal](https://portal.zksync.io/bridge).
+Obtain [test ETH from our faucet](https://goerli.portal.zksync.io/faucet) or just bridge GöerliETH using [the zkSync Portal](https://goerli.portal.zksync.io/bridge).
 
 :::
 
-To deploy your contracts you'd need to use the `Deployer` class from the `hardhat-zksync-deploy`  plugin. This class takes care of all the specifics of [deploying contracts on zkSync](../../dev/building-on-zksync/contracts/contract-deployment.md). 
+To deploy your contracts you need to use the `Deployer` class from the `hardhat-zksync-deploy`  plugin. This class takes care of all the specifics of [deploying contracts on zkSync](../../dev/building-on-zksync/contracts/contract-deployment.md). 
 
 Here is a basic deployment script for a `Greeter` contract:
-
 
 ```typescript
 import { utils, Wallet } from "zksync-web3";
@@ -175,19 +185,28 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 Include your deployment script in the `deploy` folder and execute it running:
 
-```
-# Yarn
-yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
+::: code-tabs
 
-# NPM
-npx hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
+@tab:active yarn
+
+```bash
+yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
 ```
+
+@tab npm
+
+```bash
+yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
+```
+:::
 
 If you don't include the `--script` option, all script files inside the `deploy` folder will be executed in alphabetical order.
 
+Check out a detailed [approach](./hardhat-zksync-deploy.md) on how to use `hardhat-zksync-deploy` plugin.
+
 ## Frontend integration
 
-You can interact with your contracts using the `zksync-web3` Javascript library. This SDK has been built on top of ethers and uses the same classes (`Provider`, `Contract`, `Wallet`) so in a lot of cases, you'd just need to import these classes from `zksync-web3`  instead of `ethers`:
+You can interact with your contracts using the `zksync-web3` Javascript library. This SDK has been built on top of ethers and uses the same classes (`Provider`, `Contract`, `Wallet`) so in a lot of cases, you just need to import these classes from `zksync-web3`  instead of `ethers`:
 
 ```typescript
 
@@ -196,7 +215,7 @@ import { utils, Provider, Contract, Wallet } from "zksync-web3";
 
 ```
 
-You'd also need to use the contract ABI from the `artifacts-zk` folder to instantiate contracts.
+You also need to use the `contract ABI` from the `artifacts-zk` folder to instantiate contracts.
 
 Apart from the same classes and methods provided by ethers, zksync-web3 includes additional methods for zksync-specific features. You can read more in the [`zksync-web3` documentation](../js/getting-started.md).
 
@@ -205,9 +224,6 @@ Apart from the same classes and methods provided by ethers, zksync-web3 includes
 To verify your contracts you have two options:
 
 - Explorer: verify your contracts manually in the [zkSync explorer](../tools/block-explorer/contract-verification.md)
-- Plugin:verify your contracts programmatically using the [Hardhat verify plugin](./hardhat-zksync-verify.md)
-
-
----
+- Plugin: verify your contracts programmatically using the [Hardhat verify plugin](./hardhat-zksync-verify.md)
 
 If you have any problems migrating your project, [send us a message on Discord](https://join.zksync.dev/).
