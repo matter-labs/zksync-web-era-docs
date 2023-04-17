@@ -93,7 +93,7 @@ To configure the `hardhat.config.ts` file to target both zkSync Era and other ne
 ```typescript
 networks: {
         goerli: {
-          url: "https://goerli.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL.
+          url: "https://goerli.infura.io/v3/<API_KEY>", // The Ethereum Web3 RPC URL.
           zksync: false, // Set to false to target other networks.
         },
         zkSyncTestnet: {
