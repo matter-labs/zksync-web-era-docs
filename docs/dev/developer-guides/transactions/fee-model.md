@@ -6,7 +6,7 @@ zkSync's version of `gas` represents not only the costs of computations but also
 
 Since the costs for publishing the calldata on L1 are very volatile, the number of `gas` needed for changing a storage slot is not constant. For each block, the operator defines the following dynamic parameters:
 
-- `gas_price` — the table for the current base price in each token. The value of this parameter is used to determine the costs of VM execution in each token.
+- `gas_price` — the table for the current base price in each token. The value of this parameter is used to determine the costs of VM execution in each token.
 - `gas_per_pubdata` — the price in `gas` for publishing one byte of data to Ethereum.
 
 **Please note that the public data is published only for state diffs.** If the same storage slot is updated 10 times in the same rollup block, only the final update will be published on Ethereum, thus only charging for public data once.
