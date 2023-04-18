@@ -154,13 +154,6 @@ If you have your `hardhat.config.ts` file, configure, place the script files in 
  yarn hardhat zksync-deploy --script SCRIPT_FILENAME.ts
 ```
 
-::: warning
-
-If this transaction fails for any reason (for example, the provided fee is too low) the log message will state its failure.
-In this case, the inclusion of the log can be proven on the L1 bridge to return the deposited funds to the original sender by calling the method [`claimFailedDeposit`](../../../api/js/accounts-l1-l2.md#claim-failed-deposit).
-
-:::
-
 The log message described above is not yet fully supported by our SDK but is available on the L1 bridge contract.
 
 ### Withdrawals (to L1)
