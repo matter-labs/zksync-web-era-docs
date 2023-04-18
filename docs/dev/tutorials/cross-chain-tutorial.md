@@ -35,33 +35,7 @@ mkdir L1-governance L2-counter
 
 1. `cd` into `L1-governance`.
 
-2. Initialize the project:
-
-::: code-tabs
-@tab npm
-```sh
-npm init -y
-```
-@tab yarn
-```sh
-yarn init -y
-```
-:::
-
-3. Install hardhat:
-
-::: code-tabs
-@tab npm
-```sh
-npm install --save-dev hardhat
-```
-@tab yarn
-```sh
-yarn add --dev hardhat
-```
-:::
-
-4. Run the following to set up the project:
+2. Run the following to initialise and set up the L1 project:
 
 ```sh
 npx hardhat 
@@ -76,16 +50,16 @@ To interact with the zkSync bridge contract using Solidity, you need the zkSync 
 - Download it from the [contracts repo](https://github.com/matter-labs/v2-testnet-contracts).
 :::
 
-5. Install the following dependencies:
+3. Install the following dependencies:
 
 ::: code-tabs
 @tab npm
 ```sh
-npm i @nomiclabs/hardhat-waffle @openzeppelin/contracts @matterlabs/zksync-contracts
+npm i -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts @nomiclabs/hardhat-ethers @nomiclabs/hardhat-waffle ethereum-waffle
 ```
 @tab yarn
 ```sh
-yarn add -D @nomiclabs/hardhat-waffle @openzeppelin/contracts @matterlabs/zksync-contracts
+yarn add -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts @nomiclabs/hardhat-ethers @nomiclabs/hardhat-waffle ethereum-waffle
 ```
 :::
 
@@ -148,9 +122,7 @@ data, gasLimit, gasPerPubdataByteLimit, new bytes[](0), msg.sender);
 
 ```ts
 import { HardhatUserConfig, task } from "hardhat/config";
-import "@nomiclabs/hardhat-etherscan";
 import "@nomiclabs/hardhat-waffle";
-import "@typechain/hardhat";
 
 // import file with Göerli params
 const goerli = require("./goerli.json");
@@ -373,6 +345,12 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
+::: tip Deposit funds during deployment
+
+The deployment script contains a deposit from Goerli to zkSync Era testnet, which can take a few minutes to finish. If your wallet already has funds in L2, you can skip that part to save you some time.
+
+:::
+
 2. Now deploy the contract from the `L2-counter/` folder root to zkSync:
 
 ::: code-tabs
@@ -461,7 +439,12 @@ Now, let's call the `increment` method on Layer 2 from Layer 1.
 
 2. Paste it into a new file: `/L2-counter/scripts/governance.json`.
 
-3. Create the `L2-counter/scripts/increment-counter.ts` file and paste in the following code, replacing the details as before:
+3. Create the `L2-counter/scripts/increment-counter.ts` file and paste in the following code, replacing the following details:
+
+- GOVERNANCE-ADDRESS: the address of the contract deployed in L1.
+- COUNTER-ADDRESS: the address of the contract deployed in L2.
+- WALLET-PRIVATE-KEY: the private key of your account.
+- RPC-URL: the same url you used in the `goerli.json` file.
 
 ```ts
 import { BigNumber, Contract, ethers, Wallet } from "ethers";
@@ -474,7 +457,7 @@ const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
 async function main() {
 
   // Enter your Ethereum L1 provider RPC URL.
-  const l1Provider = new ethers.providers.JsonRpcProvider("<RPC URL>");
+  const l1Provider = new ethers.providers.JsonRpcProvider("<RPC-URL>");
   // Set up the Governor wallet to be the same as the one that deployed the governance contract.
   const wallet = new ethers.Wallet("<YOUR-PRIVATE-KEY>", l1Provider);
   // Set a constant that accesses the Layer 1 contract.
