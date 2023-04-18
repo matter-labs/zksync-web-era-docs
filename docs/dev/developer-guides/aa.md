@@ -1,11 +1,8 @@
 # Account abstraction support
 
 ::: warning
-
-Please note that with system update released in Feb 2023, the ergs concept is only used by the VM and the SDK (version `0.13.0` and above) whilest the API layer operates with gas. 
-
-Find [more information in the changelog](../troubleshooting/changelog.md).
-
+- Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`. 
+- For more information, read the [changelog](../troubleshooting/changelog.md#hardhat-plugins-update-feb-24th-2023).
 :::
 
 ## Introduction
@@ -15,15 +12,11 @@ The former type is the only one that can initiate transactions,
 while the latter is the only one that can implement arbitrary logic. For some use-cases, like smart-contract wallets or privacy protocols, this difference can create a lot of friction.
 As a result, such applications require L1 relayers, e.g. an EOA to help facilitate transactions from a smart-contract wallet.
 
-Accounts in zkSync Era can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature is called "account
-abstraction" and it aims to resolve the issues described above.
+Accounts in zkSync Era can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature, called "account abstraction" (AA), aims to resolve the issues described above.
 
-::: warning Unstable feature
-
-This is the test release of account abstraction (AA) on zkSync Era. We are very happy to hear your feedback! Please note: **breaking changes to the API/interfaces required for AA should be anticipated.**
-
-zkSync Era is one of the first EVM-compatible chains to adopt AA, so this testnet is also used to see how "classical" projects from EVM chains can coexist with the account abstraction feature.
-
+::: warning
+- zkSync Era is the first EVM-compatible chain to implement native account abstraction. We are evaluating how well the implementation works with EVM projects on testnet and mainnet. No incompatibilities have been found so far.
+- Due to the early stage nature of the feature, you may see some breaking changes to the account abstraction API/interfaces. However, given that accounts are versioned in zkSync Era, older accounts will still work even after breaking changes are released.
 :::
 
 ## Prerequisites
@@ -36,13 +29,10 @@ The account abstraction protocol on zkSync is very similar to [EIP4337](https://
 
 ### Keeping nonces unique
 
-::: warning Changes are expected
-
-The current model has some important drawbacks: it does not allow custom wallets to send multiple transactions at the same time, while keeping a deterministic ordering. For
-EOAs the nonces are expected to be sequentially growing, while for the custom accounts the order of transactions can not be determined for sure.
-
-In the future, we plan to switch to a model where the accounts could choose whether they would want to have sequential nonce ordering (the same as EOA) or they want to have arbitrary ordering.
-
+::: warning
+- The current model does not allow custom wallets to send multiple transactions at the same time and maintain deterministic ordering. 
+- For EOAs, nonces are expected to grow sequentially; while for custom accounts the order of transactions cannot be guaranteed.
+- In the future, we plan to switch to a model where accounts can choose between sequential or arbitrary nonce-ordering.
 :::
 
 One of the important invariants of every blockchain is that each transaction has a unique hash. Holding this property with an arbitrary account abstraction is not trivial,
@@ -195,10 +185,9 @@ await aa.deployed();
 
 ### Limitations of the verification step
 
-::: warning Not implemented yet
-
-The verification rules are not fully enforced right now. Even if your custom account works right now, it might stop working in the future if it does not follow the rules below.
-
+::: warning
+- The verification rules are not yet fully enforced. 
+- Even if your custom account works at the moment, it could stop working in the future if it does not follow the rules below.
 :::
 
 In order to protect the system from a DoS threat, the verification step must have the following limitations:
@@ -247,10 +236,9 @@ If users want to interact with a paymaster, they should provide the non-zero `pa
 
 ### Paymaster verification rules
 
-::: warning Not implemented yet
-
-The verification rules are not fully enforced right now. Even if your paymaster works right now, it might stop working in the future if it does not follow the rules below.
-
+::: warning
+- The verification rules are not yet fully enforced. 
+- Even if your paymaster works at the moment, it could stop working in the future if it does not follow the rules below.
 :::
 
 Since multiple users should be allowed to access the same paymaster, malicious paymasters _can_ do a DoS attack on our system. To work around this, a system similar to the [EIP4337 reputation scoring](https://eips.ethereum.org/EIPS/eip-4337#reputation-scoring-and-throttlingbanning-for-paymasters) will be used.
