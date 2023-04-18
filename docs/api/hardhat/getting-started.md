@@ -27,20 +27,17 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 - Contracts must be compiled using the official zkSync Era plugins. 
 - Contracts compiled with other compilers will fail to deploy to zkSync Era using this plugin.
 :::
+
 ## Setup
 
-To initialize the project and install the dependencies, run the following commands in the terminal:
-::: code-tabs
-
-@tab:active yarn
-
-```bash
+1. Initialize the project and `cd` into the folder:
 
 ```sh
 mkdir greeter-example
 cd greeter-example
-
 ```
+
+2. Add the dependencies:
 
 ```sh
 yarn init -y
@@ -93,7 +90,7 @@ To configure the `hardhat.config.ts` file to target both zkSync Era and other ne
 ```typescript
 networks: {
         goerli: {
-          url: "https://goerli.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL.
+          url: "https://goerli.infura.io/v3/<API_KEY>", // The Ethereum Web3 RPC URL.
           zksync: false, // Set to false to target other networks.
         },
         zkSyncTestnet: {
