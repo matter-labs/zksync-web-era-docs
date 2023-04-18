@@ -158,6 +158,12 @@ The log message described above is not yet fully supported by our SDK but is ava
 
 ### Withdrawals (to L1)
 
+:::tip
+
+Withdrawals in zkSync Era take **24 hours**, to learn about withdrawal delay, see this [guide](../../troubleshooting/withdrawal-delay.md)
+
+:::
+
 Users must call the `withdraw` method on the L2 bridge contract, which will trigger the following actions:
 
 - L2 tokens will be burned.
