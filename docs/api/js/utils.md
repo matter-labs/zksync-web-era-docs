@@ -4,7 +4,7 @@ The [utilities library](https://github.com/matter-labs/zksync-2-dev/blob/94701bd
 
 :::info
 - This document describes common functions and constants you may need.
-- Functions used internally are not described.
+- Functions used internally are not necessarily described.
 - Check the code for the full list.
 :::
 
@@ -16,15 +16,17 @@ Access the library by importing it into your scripts.
 import { utils } from "zksync-web3";
 ```
 
-## Contract interfaces
+## Constants
 
-### zkSync Era main contract
+### Interfaces
+
+#### zkSync Era main contract
 
 ```typescript
 export const ZKSYNC_MAIN_ABI = new utils.Interface(require('../../abi/IZkSync.json').abi);
 ```
 
-### IERC20
+#### IERC20
 
 For interacting with native tokens.
 
@@ -32,13 +34,13 @@ For interacting with native tokens.
 export const IERC20 = new utils.Interface(require('../../abi/IERC20.json').abi);
 ```
 
-### IERC1271
+#### IERC1271
 
 ```ts
 export const IERC1271 = new utils.Interface(require('../../abi/IERC1271.json').abi);
 ```
 
-### Contract deployer
+#### Contract deployer
 
 Used for deploying smart contracts.
 
@@ -46,15 +48,13 @@ Used for deploying smart contracts.
 export const CONTRACT_DEPLOYER = new utils.Interface(require('../../abi/ContractDeployer.json').abi);
 ```
 
-### L1 messenger
+#### L1 messenger
 
 Used for sending messages from zkSync Era to Ethereum.
 
 ```ts
 export const L1_MESSENGER = new utils.Interface(require('../../abi/IL1Messenger.json').abi);
 ```
-
-## Constants
 
 ### Useful addresses
 
@@ -142,7 +142,7 @@ export async function checkBaseCost(baseCost: ethers.BigNumber, value: ethers.Bi
 
 ### `create2Address`
 
-Generates a future-proof contract address using salt plus bytecode which allows determination of a future address before deployment. 
+Generates a future-proof contract address using salt plus bytecode which allows determination of an address before deployment. 
 
 :::warning
 - The zkSync Era implementation is slightly different from Ethereum.
@@ -165,6 +165,10 @@ export function create2Address(sender: Address, bytecodeHash: BytesLike, salt: B
     return ethers.utils.getAddress(addressBytes);
 }
 ```
+
+:::tip
+The `prefix` in the `kekkak256` calculation is equal to `keccak256("zksyncCreate")`.
+:::
 
 ### `createAddress`
 
@@ -530,15 +534,21 @@ export async function isTypedDataSignatureCorrect(
 
 ### `parseTransaction`
 
-Common parsing transaction function used by internal teams. Please see the [utilities library definition](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) for more info.
+Common parsing transaction function used by internal teams. 
+
+Please see the [utilities library definition](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) for more info.
 
 ### `serialize`
 
-Common serialize function used by internal teams. Please see the [utilities library definition](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) for more info.
+Common serialize function used by internal teams. 
+
+Please see the [utilities library definition](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) for more info.
 
 ### `serializeTransaction`
 
-Common serialize transaction function used by internal teams. Please see the [utilities library definition](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) for more info.
+Common serialize transaction function used by internal teams. 
+
+Please see the [utilities library definition](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) for more info.
 
 ### `undoL1ToL2Alias`
 
