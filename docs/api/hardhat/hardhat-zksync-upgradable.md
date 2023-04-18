@@ -164,9 +164,12 @@ main();
 
 ### Hardhat config
 
-The `deployProxy` method (and other deploy/upgrade methods from the zkUpgrades) needs to know which wallet to use to deploy smart contracts. For this reason, the wallet needs to have a configured provider that connects it to the specific zkSync Era network.
+:::warning
 
-The provider is configured in the `networks' part of the hardhat config file (provided at the top of the page) with the RPC URL of the network:
+- deployProxy method (and other deploy/upgrade methods from the zkUpgrades) needs to know which wallet to use to deploy smart contracts.
+- For this reason, the wallet needs to have a configured provider that connects it to the specific zkSync network.
+- This provider is configured in the hardhat config file, by stating the RPC url of the network to connect to.
+:::
 
 ```typescript
 defaultNetwork: 'zkSyncNetwork',
@@ -287,6 +290,7 @@ In order for a smart contract implementation to be upgradable, it has to follow 
 - The current version of the `hardhat-zksync-upgradable` plugin does **NOT** support all the validation checks.
 - This means that it is the users responsibility to check if the new implementation they want to upgrade follows the predefined standards.
 - At the time of writing, we are working on implementing those checks within the plugin itself, and the plan for subsequent releases is to support them natively.
+:::
 
 ## Upgradable examples
 
