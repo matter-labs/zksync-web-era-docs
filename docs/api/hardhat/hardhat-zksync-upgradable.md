@@ -106,6 +106,8 @@ contract Box is Initializable{
 }
 ```
 
+In examples below, we assume that the Box contract is compiled and its artifact loaded using Deployer class from hardhat-zksync-deploy plugin. More info on how to compile and load the contract can be found on the following link: [write-and-deploy-a-contract](https://era.zksync.io/docs/api/hardhat/getting-started.html#write-and-deploy-a-contract).
+
 ## Transparent upgradable proxies
 
 Transparent upgradable proxies provide a way to upgrade a smart contract without changing its address or requiring any change in the contract's interaction code. With transparent proxies, a contract's address is owned by a proxy contract, which forwards all calls to the actual contract implementation. When a new implementation is deployed, the proxy can be upgraded to point to the new implementation, allowing for seamless upgrades without requiring changes to the contract's interaction code.
@@ -122,6 +124,7 @@ To deploy a simple upgradable contract on zkSync Era local setup, first create a
 After that, load the `Box` artifact and call the `deployProxy` method from the `zkUpgrades` hre property.
 
 ```typescript
+  const contractName = 'Box';
   const contract = await deployer.loadArtifact(contractName);
   await hre.zkUpgrades.deployProxy(deployer.zkWallet, contract, [42], { initializer: 'store' });
 ```
@@ -163,7 +166,7 @@ main();
 
 The `deployProxy` method (and other deploy/upgrade methods from the zkUpgrades) needs to know which wallet to use to deploy smart contracts. For this reason, the wallet needs to have a configured provider that connects it to the specific zkSync Era network.
 
-The provider is configured in the hardhat config file with the RPC URL of the network, see the example below.
+The provider is configured in the `networks' part of the hardhat config file (provided at the top of the page) with the RPC URL of the network:
 
 ```typescript
 defaultNetwork: 'zkSyncNetwork',
@@ -213,6 +216,7 @@ This allows for more advanced upgrade patterns, such as adding or removing funct
 
   const deployer = new Deployer(hre, zkWallet);
 
+  const contractName = 'Box';
   const boxContract = await deployer.loadArtifact(contractName);
 ```
 
