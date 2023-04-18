@@ -49,10 +49,10 @@ The definition of the `PaymasterInput` can be found [here](./types.md).
 
 ## Useful gas constants
 Currently, there is no method to accurately estimate the required `gasPerPubdataLimit`. That's why for now, it is highly recommended to provide the `DEFAULT_GAS_PER_PUBDATA_LIMIT`. Users are not charged more by providing it.
-Later on it will be possible to query the current recommended limit.
+In future releases, we will provide a way to estimate the current gasPerPubdata.
 
 ```typescript
-const GAS_PER_PUBDATA_BYTE = 17;
+const GAS_PER_PUBDATA_BYTE = 16;
 
 // The large L2 gas per pubdata to sign. This gas is enough to ensure that
 // any reasonable limit will be accepted. Note, that the operator is NOT required to
@@ -60,9 +60,8 @@ const GAS_PER_PUBDATA_BYTE = 17;
 // In the future releases, we will provide a way to estimate the current gasPerPubdata.
 export const DEFAULT_GAS_PER_PUBDATA_LIMIT = 50000;
 
-export const RECOMMENDED_GAS_LIMIT = {
-    DEPOSIT: 600_000,
-    EXECUTE: 620_000,
-    ERC20_APPROVE: 50_000
-};
+// It is possible to provide practically any gasPerPubdataByte for L1->L2 transactions, since
+// the cost per gas will be adjusted respectively. We will use 800 as an relatively optimal value for now.
+export const REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT = 800;
+
 ```
