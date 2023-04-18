@@ -10,7 +10,7 @@ export const enSidebar = sidebar({
     {
       text: "Getting started",
       link: "/dev/fundamentals",
-      children: ["/dev/fundamentals/rollups.md", "/dev/fundamentals/zkSync.md", "/dev/fundamentals/interacting.md", "/dev/fundamentals/hyperscaling.md"],
+      children: ["/dev/fundamentals/lorem.md", "/dev/fundamentals/rollups.md", "/dev/fundamentals/zkSync.md", "/dev/fundamentals/interacting.md", "/dev/fundamentals/hyperscaling.md"],
     },
     {
       text: "Understanding zkSync Era",
