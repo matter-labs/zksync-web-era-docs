@@ -86,7 +86,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`ETH available in L2`);
 }
 ```
-#### Deposit ERC20 tokens
+### Deposit ERC20 tokens
 
 To deposit ERC20 tokens you can use the same method but pass the `approveERC20: true` option, here's an example:
 
