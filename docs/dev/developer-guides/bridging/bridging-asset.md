@@ -36,7 +36,7 @@ Users must call the `deposit` method on the L1 bridge contract, which will trigg
 - For every executed L1 -> L2 transaction, there will be an L2 -> L1 log message confirming its execution.
 - Lastly, the `finalizeDeposit`method is called and it finalizes the deposit and mints funds on L2.
 
-#### Deposit ETH
+### Deposit ETH
 
 Here is an example on how to deposit ETH with the `deposit` method from the `Deployer` class. 
 
