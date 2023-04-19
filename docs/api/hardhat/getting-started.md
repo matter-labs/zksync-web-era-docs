@@ -11,7 +11,6 @@ zkSync Era has the following official plugins for Hardhat:
 - [@matterlabs/hardhat-zksync-verify](./hardhat-zksync-verify.md) - used to verify smart contracts.
 
 ::: tip Additional plugins
-
 Learn more about [other plugins from the community](./other-plugins.md) that you can use with zkSync Era.
 
 :::
