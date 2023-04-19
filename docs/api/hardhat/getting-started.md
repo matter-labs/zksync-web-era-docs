@@ -58,7 +58,7 @@ import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 ```
 
-Dinamically change the network endpoints of the `zkSyncTestnet` network for local tests. This template project includes a basic unit test in the `/test` folder that runs with the local-setup and can be executed with `yarn test`. 
+Dinamically change the network endpoints of the `zkSyncTestnet` network for local tests. 
 
 ```typescript
 // dynamically changes endpoints for local tests
@@ -76,7 +76,7 @@ const zkSyncTestnet =
       };
 ```
 ::: tip Unit tests
-Learn more about how to [start the local setup and write unit tests here](./testing.md).
+This template project includes a basic unit test in the `/test` folder that runs with the local-setup and can be executed with `yarn test`. Learn more about how to [start the local setup and write unit tests here](./testing.md).
 :::
 
 The `zksolc` block contains the minimal configuration required for the compiler:
