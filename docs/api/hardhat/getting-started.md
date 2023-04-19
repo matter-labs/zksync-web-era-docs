@@ -41,7 +41,7 @@ To create a new project run the `create` task of the CLI passing a project name:
 ```sh
 zksync-cli create demo 
 ```
-This command will create a `demo` folder and clone a Hardhat template project inside it. The downloaded project is already configured and contains all the required plugins.
+This command creates a `demo` folder and clones a Hardhat template project inside it. The downloaded project is already configured and contains all the required plugins.
 
 ::: tip Migrating a project
 If you want to migrate an existing project, please check the [project migration guide](./migrating-to-zksync.md).
