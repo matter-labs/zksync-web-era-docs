@@ -106,12 +106,12 @@ WALLET_PRIVATE_KEY=abcdef12345....
 
 ## Compile and deploy a contract
 
-Smart contracts are placed in the `contracts` folder. The template project contains a simple `Greeter.sol` contract and a script to deploy it.
+Smart contracts belong in the `contracts` folder. The template project contains a simple `Greeter.sol` contract and a script to deploy it.
 
 To compile the contract, run:
+
 ```sh
 yarn hardhat compile
-``` 
 You'll see the following output:
 ```text
 Compiling 1 Solidity file
