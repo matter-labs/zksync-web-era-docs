@@ -206,7 +206,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 ```
 ::: tip Test ETH
-
 Obtain [test ETH from our faucet](https://goerli.portal.zksync.io/faucet) or just bridge GöerliETH using [the zkSync Portal](https://goerli.portal.zksync.io/bridge).
 
 :::
