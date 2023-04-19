@@ -48,7 +48,7 @@ The log message described above is not yet fully supported by our SDK but is ava
 
 ### Withdrawals (to L1)
 
-Users must call the `withdraw` method on the L2 bridge contract, which will trigger the following actions:
+Users must call the `withdraw` method on the [L2 bridge contract](https://github.com/matter-labs/era-contracts/blob/main/zksync/contracts/bridge/L2ERC20Bridge.sol#L101), which will trigger the following actions:
 
 - L2 tokens will be burned.
 - An L2 -> L1 message with the information about the withdrawal will be sent.
