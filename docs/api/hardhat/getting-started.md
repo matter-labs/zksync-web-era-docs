@@ -127,7 +127,7 @@ Note that the `artifacts-zk` and `cache-zk` folders  are already included in the
 
 :::
 
-In the `deploy` folder you'll find the `deploy-greeter.ts` script. This script uses the `Deployer` class from the `hardhat-zksync-deploy` package to deploy the `Greeter.sol` contract. 
+The `deploy-greeter.ts` script is in the `deploy` folder. This script uses the `Deployer` class from the `hardhat-zksync-deploy` package to deploy the `Greeter.sol` contract. 
 
 
 ```typescript
