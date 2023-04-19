@@ -160,7 +160,8 @@ The log message described above is not yet fully supported by our SDK but is ava
 
 :::tip
 
-Withdrawals in zkSync Era take **24 hours**, to learn about withdrawal delay, see this [guide](../../troubleshooting/withdrawal-delay.md)
+- Withdrawals in zkSync Era take **24 hours**.
+- For more information, read the [withdrawal delay guide](../../troubleshooting/withdrawal-delay.md).
 
 :::
 
