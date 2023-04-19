@@ -2,7 +2,7 @@
 
 [Hardhat](https://hardhat.org) is an Ethereum development environment, designed for easy smart contract development in Solidity. One of its most prominent features is extendability: you can easily add new plugins to your hardhat project.
 
-zkSync Era has the following plugins for Hardhat:
+zkSync Era has the following official plugins for Hardhat:
 
 - [@matterlabs/hardhat-zksync-solc](./hardhat-zksync-solc.md) - used to compile contracts written in Solidity.
 - [@matterlabs/hardhat-zksync-vyper](./hardhat-zksync-vyper.md) - used to compile contracts written in Vyper.
@@ -10,15 +10,23 @@ zkSync Era has the following plugins for Hardhat:
 - [@matterlabs/hardhat-zksync-chai-matchers](./hardhat-zksync-chai-matchers.md) - adds zkSync-specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts.
 - [@matterlabs/hardhat-zksync-verify](./hardhat-zksync-verify.md) - used to verify smart contracts.
 
+::: tip Additional plugins
+
+Learn more about [other plugins from the community](./other-plugins.md) that you can use with zkSync Era.
+
+:::
+
 To learn more about Hardhat itself, check out [its official documentation](https://hardhat.org/getting-started/).
 
-This tutorial shows how to set up a zkSync Solidity project using Hardhat from scratch.
+This tutorial shows how to set up a zkSync Era Solidity project with Hardhat using the [zkSync CLI](../tools/zksync-cli/README.md).
+
 If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zksync-vyper.md) or [this example](https://github.com/matter-labs/hardhat-zksync/tree/main/examples/vyper-example) in GitHub!
 
 
 ## Prerequisites
 
 - A Node installation with `yarn` package manager installed.
+- You have [installed the zkSync CLI](../tools/zksync-cli/README.md#installation).
 - You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../../dev/building-on-zksync/hello-world.md).
 - You have a wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. We recommend using [our faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
@@ -30,214 +38,261 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 
 ## Setup
 
-1. Initialize the project and `cd` into the folder:
+To create a new project run:
 
 ```sh
-mkdir greeter-example
-cd greeter-example
+zksync-cli create demo // or any other project name
 ```
+This command will clone a Hardhat template project already configured and with all the required plugins.
 
-2. Add the dependencies:
 
-```sh
-yarn init -y
-yarn add -D typescript ts-node @types/node ethers@^5.7.2 zksync-web3 @ethersproject/hash @ethersproject/web hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
-```
-
-The `typescript`, `ts-node` and `@types/node` dependencies are optional - plugins will work fine in a vanilla JavaScript environment. Although, please note that this tutorial _does_ use TypeScript.
-
-::: tip
-If you are using Yarn 2 or later, there may be additional steps to ensure that `TypeScript` works correctly in your editor. For more information, check out [Yarn's official documentation](https://yarnpkg.com/getting-started/editor-sdks).
+::: tip Migrating a project
+If you want to migrate an existing project, please check the [Hardhat project migration guide](./migrating-to-zksync.md).
 :::
 
-## Configuration
 
-Create the `hardhat.config.ts` file and paste the following code within it:
+## Hardhat configuration
 
+The `hardhat.config.ts` file contains a few lines specific to zkSync Era. The most important are:
+
+Imports the zkSync deployment and compiler plugins.
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
-
-module.exports = {
-  zksolc: {
-    version: "1.3.8",
-    compilerSource: "binary",
-    settings: {},
-  },
-  defaultNetwork: "zkTestnet",
-  networks: {
-    zkTestnet: {
-      url: "https://testnet.era.zksync.dev", // URL of the zkSync network RPC
-      ethNetwork: "goerli", // Can also be the RPC URL of the Ethereum network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
-      zksync: true,
-    },
-  },
-  solidity: {
-    version: "0.8.13",
-  },
-};
 ```
 
+Dinamically change the network endpoints of the `zkSyncTestnet` network for local tests. This template project includes a basic unit test in the `/test` folder that runs with the local-setup and can be executed with `yarn test`. 
 
-### How to configure multiple compilation targets
-
-To configure the `hardhat.config.ts` file to target both zkSync Era and other networks, do the following:
-
-1. In your `hardhat.config.ts`, configure the zkSync Era network with `zksync: true`.
-2. Configure all other networks with `zksync: false`.
-3. Run the compilation script with the network flag: `yarn hardhat compile --network zkSyncTestnet` for zkSync Era network or `yarn hardhat compile --network goerli` for other networks, e.g goerli.
+::: tip Unit tests
+Learn more about how to [start the local setup and write unit tests here](./testing.md).
+:::
 
 ```typescript
-networks: {
-        goerli: {
-          url: "https://goerli.infura.io/v3/<API_KEY>", // The Ethereum Web3 RPC URL.
-          zksync: false, // Set to false to target other networks.
-        },
-        zkSyncTestnet: {
-          url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
-          ethNetwork: "goerli", // The identifier of the network (e.g. `mainnet` or `goerli`)
-        zksync: true, // Set to true to target zkSync Era.
-        }
-    },
-
+// dynamically changes endpoints for local tests
+const zkSyncTestnet =
+  process.env.NODE_ENV == "test"
+    ? {
+        url: "http://localhost:3050",
+        ethNetwork: "http://localhost:8545",
+        zksync: true
+      }
+    : {
+        url: "https://zksync2-testnet.zksync.dev",
+        ethNetwork: "goerli",
+        zksync: true
+      };
 ```
 
-::: tip
+The `zksolc` block contains the minimal configuration required for the compiler:
+
+```typescript
+zksolc: {
+  version: "1.3.8",
+  compilerSource: "binary",
+  settings: {},
+},
+```
+
+
+::: tip Advanced configuration
 To learn more about each specific property in the `hardhat.config.ts` file, check out the [plugins documentation](./plugins.md)
 :::
 
-## Write and deploy a contract
+## Environment variables
 
-1. Create the `contracts` and `deploy` folders. In the `contracts` folder we will store all the smart contract files. In the `deploy` folder we'll place all the scripts related to deploying the contracts.
+This project uses the `dotenv` package to load your private key, which is required to deploy and interact with smart contracts.
 
-2. Create the `contracts/Greeter.sol` contract and paste the following code:
+To configure it, duplicate the `.env.example` file, rename it to `.env`, and enter your wallet private key in it. The `.env` is included in the `.gitignore` file so it won't be uploaded to a repository.
 
-```solidity
-//SPDX-License-Identifier: Unlicensed
-pragma solidity ^0.8.13;
+## Compile and deploy a contract
 
-contract Greeter {
-    string private greeting;
+Smart contracts are placed in the `contracts` folder. The template project contains a simple `Greeter.sol` contract and a script to deploy it.
 
-    constructor(string memory _greeting) {
-        greeting = _greeting;
-    }
-
-    function greet() public view returns (string memory) {
-        return greeting;
-    }
-
-    function setGreeting(string memory _greeting) public {
-        greeting = _greeting;
-    }
-}
+To compile the contract, run:
+```sh
+yarn hardhat compile
+``` 
+You'll see the following output:
+```text
+Compiling 1 Solidity file
+Successfully compiled 1 Solidity file
+✨  Done in 1.09s.
 ```
-
-3. Run `yarn hardhat compile` which uses the `hardhat-zksync-solc` plugin to compile the contract. The `artifacts-zk` and `cache-zk` folders will be created in the root directory (instead of the regular Hardhat's `artifacts` and `cache`).
+The `artifacts-zk` and `cache-zk` folders will be created in the root directory (instead of the regular Hardhat's `artifacts` and `cache`). These folders contain the compilation artifacts (including contract's ABIs) and compiler cache files.
 
 ::: tip
 
-Note that the `artifacts-zk` and `cache-zk` folders contain compilation artifacts and cache, and should not be added to version control, so it's a good practice to include them in the `.gitignore` file of your project.
+Note that the `artifacts-zk` and `cache-zk` folders  are already included in the `.gitignore` file of the project.
 
 :::
 
-4. Create a deployment script called `deploy.ts`, in the `deploy` folder, and copy/paste the following code into it, replacing `<WALLET-PRIVATE-KEY>` with your private key:
+In the `deploy` folder you'll find the `deploy-greeter.ts` script. This script uses the `Deployer` class from the `hardhat-zksync-deploy` package to deploy the `Greeter.sol` contract. 
+
 
 ```typescript
-import { utils, Wallet } from "zksync-web3";
+import { Wallet, utils } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+// load wallet private key from env file
+const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
+
+if (!PRIVATE_KEY)
+  throw "⛔️ Private key not detected! Add it to the .env file!";
 
 // An example of a deploy script that will deploy and call a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
-  const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
+  const wallet = new Wallet(PRIVATE_KEY);
 
-  // Create deployer object and load the artifact of the contract we want to deploy.
+  // Create deployer object and load the artifact of the contract you want to deploy.
   const deployer = new Deployer(hre, wallet);
   const artifact = await deployer.loadArtifact("Greeter");
 
-  // Deposit some funds to L2 in order to be able to perform L2 transactions.
-  const depositAmount = ethers.utils.parseEther("0.001");
-  const depositHandle = await deployer.zkWallet.deposit({
-    to: deployer.zkWallet.address,
-    token: utils.ETH_ADDRESS,
-    amount: depositAmount,
-  });
-  // Wait until the deposit is processed on zkSync
-  await depositHandle.wait();
+  // Estimate contract deployment fee
+  const greeting = "Hi there!";
+  const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting]);
+
+  // ⚠️ OPTIONAL: You can skip this block if your account already has funds in L2
+  // const depositHandle = await deployer.zkWallet.deposit({
+  //   to: deployer.zkWallet.address,
+  //   token: utils.ETH_ADDRESS,
+  //   amount: deploymentFee.mul(2),
+  // });
+  // // Wait until the deposit is processed on zkSync
+  // await depositHandle.wait();
 
   // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
   // `greeting` is an argument for contract constructor.
-  const greeting = "Hi there!";
+  const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
+  console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
+
   const greeterContract = await deployer.deploy(artifact, [greeting]);
+
+  //obtain the Constructor Arguments
+  console.log(
+    "constructor args:" + greeterContract.interface.encodeDeploy([greeting])
+  );
 
   // Show the contract info.
   const contractAddress = greeterContract.address;
   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
-
-  // Call the deployed contract.
-  const greetingFromContract = await greeterContract.greet();
-  if (greetingFromContract == greeting) {
-    console.log(`Contract greets us with ${greeting}!`);
-  } else {
-    console.error(`Contract said something unexpected: ${greetingFromContract}`);
-  }
-
-  // Edit the greeting of the contract
-  const newGreeting = "Hey guys";
-  const setNewGreetingHandle = await greeterContract.setGreeting(newGreeting);
-  await setNewGreetingHandle.wait();
-
-  const newGreetingFromContract = await greeterContract.greet();
-  if (newGreetingFromContract == newGreeting) {
-    console.log(`Contract greets us with ${newGreeting}!`);
-  } else {
-    console.error(`Contract said something unexpected: ${newGreetingFromContract}`);
-  }
 }
 ```
 
-5. Deploy the contract.
+To execute the deployment script run
 
 ```sh
-yarn hardhat deploy-zksync
+yarn hardhat deploy-zksync --script deploy-greeter.ts
 ```
-This script will:
+This script will deploy the `Greeting` contract with the message "Hi there!" to zkSync Era Testnet.
 
-- Transfer 0.001 ETH from Goerli to zkSync.
-- Deploy the `Greeting` contract with the message "Hi there!" to zkSync Era Testnet.
+You should see something like this:
+
+```txt
+Running deploy script for the Greeter contract
+The deployment is estimated to cost 0.00579276320831943 ETH
+constructor args:0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000094869207468657265210000000000000000000000000000000000000000000000
+Greeter was deployed to 0x46f1d2d8A16DBD8b47e9D61175a826ac667288Be4D1293a22E8
+
+✨  Done in 12.69s.
+```
+
+**Congratulations! You have deployed a smart contract project to zkSync Era Testnet with Hardhat 🎉**
+
+::: warning Request-Rate Exceeded message
+- This message is caused by using the default RPC endpoints provided by ethers. 
+- To avoid this, use your own Goerli RPC endpoint in the `hardhat.config.ts` file.
+- Find multiple [node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
+:::
+
+## Interact with the contract
+
+The template project contains another script to interact with the contract, `use-greeter.ts`. To execute it, enter the address of the contract in the `CONTRACT_ADDRESS` variable:
+
+```typescript
+import { Provider } from "zksync-web3";
+import * as ethers from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+// load contract artifact. Make sure to compile first!
+import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.sol/Greeter.json";
+
+const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
+
+if (!PRIVATE_KEY)
+  throw "⛔️ Private key not detected! Add it to the .env file!";
+
+// Address of the contract on zksync testnet
+const CONTRACT_ADDRESS = "";
+
+if (!CONTRACT_ADDRESS) throw "⛔️ Contract address not provided";
+
+// An example of a deploy script that will deploy and call a simple contract.
+export default async function (hre: HardhatRuntimeEnvironment) {
+  console.log(`Running script to interact with contract ${CONTRACT_ADDRESS}`);
+
+  // Initialize the provider.
+  // @ts-ignore
+  const provider = new Provider(hre.userConfig.networks?.zkSyncTestnet?.url);
+  const signer = new ethers.Wallet(PRIVATE_KEY, provider);
+
+  // Initialise contract instance
+  const contract = new ethers.Contract(
+    CONTRACT_ADDRESS,
+    ContractArtifact.abi,
+    signer
+  );
+
+  // Read message from contract
+  console.log(`The message is ${await contract.greet()}`);
+
+  // send transaction to update the message
+  const newMessage = "Hello people!";
+  const tx = await contract.setGreeting(newMessage);
+
+  console.log(`Transaction to change the message is ${tx.hash}`);
+  await tx.wait();
+
+  // Read message after transaction
+  console.log(`The message now is ${await contract.greet()}`);
+}
+```
+To execute this script run:
+
+```sh
+yarn hardhat deploy-zksync --script use-greeter.ts
+```
+
+The script will:
+
 - Retrieve the message from the contract by calling the `greet()` method.
 - Update the greeting message in the contract with the `setGreeting()` method.
 - Retrieve the message from the contract again.
 
 You should see something like this:
 
-```txt
-Greeter was deployed to 0x7eCbF187fcF8904C344b54b218B274D1293a22E8
-Contract greets us with Hi there!!
-Contract greets us with Hey guys!
-✨  Done in 218.69s.
+```text
+Running script to interact with contract Greeter
+The message is Hello there!
+Transaction to change the message is 0x12f16578A16DB0f47e9D61175a823ac214288Af
+The message now is Hello people!
 
+✨  Done in 14.32s.
 ```
-
-**Congratulations! Your Hardhat project is now running on zkSync Era Testnet 🎉**
-
-::: tip Request-Rate Exceeded message
-- This message is caused by using the default RPC endpoints provided by ethers. 
-- To avoid this, use your own Goerli RPC endpoint. 
-- Find multiple [node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
-:::
 
 ## Learn more
 
 - To learn more about the zkSync Hardhat plugins check out the [plugins documentation](./plugins).
 - If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-web3 Javascript SDK documentation](../js) .
-## Future releases
-
-There are two major points of improvement for the plugins which will be released in the future:
-
-- **Compatibility with existing hardhat plugins.** Compatibility with other hardhat plugins is planned for the future.
