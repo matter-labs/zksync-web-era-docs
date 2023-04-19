@@ -148,7 +148,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 To run this script, configure your `hardhat.config.ts` file as explained in this [guide](../../../api/hardhat/hardhat-zksync-deploy.md), or use the command `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project.
 
-If you have your `hardhat.config.ts` file, configure, place the script files in the `deploy` folder and run:
+Once your `hardhat.config.ts` file is configured, place the script files in the `deploy` folder and run them with the following command:
 
 ```sh
  yarn hardhat zksync-deploy --script SCRIPT_FILENAME.ts
