@@ -14,7 +14,6 @@ However, we provide our default bridges (one for ETH and one for ERC20 tokens), 
 Addresses of tokens on L2 will always differ from the same token L1 address.
 
 :::
-
 ## Default bridges
 
 You can get default bridges' addresses using the `zks_getBridgeContracts` endpoint or `getDefaultBridgeAddresses` method of `Provider` in our [Javascript SDK](../../../api/js/) (similar methods are available in the other SDKs).
@@ -37,18 +36,136 @@ Users must call the `deposit` method on the L1 bridge contract, which will trigg
 - For every executed L1 -> L2 transaction, there will be an L2 -> L1 log message confirming its execution.
 - Lastly, the `finalizeDeposit`method is called and it finalizes the deposit and mints funds on L2.
 
-::: warning
+### Deposit ETH
 
-If this transaction fails for any reason (for example, the provided fee is too low) the log message will state its failure.
-In this case, the inclusion of the log can be proven on the L1 bridge to return the deposited funds to the original sender by calling the method `claimFailedDeposit`.
+Here is an example on how to deposit ETH with the `deposit` method from the `Deployer` class. 
 
-:::
+```ts
+import { Wallet, Provider, utils } from "zksync-web3";
+import * as ethers from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+// HTTPS RPC endpoint
+const MAINNET_RPC_ENDPOINT = "";
+
+// Amount in ETH
+const AMOUNT = "0.1";
+
+const WALLET_PRIV_KEY = process.env.WALLET_PRIV_KEY || "";
+
+if (!WALLET_PRIV_KEY) {
+  throw new Error("Wallet private key is not configured in env file");
+}
+
+export default async function (hre: HardhatRuntimeEnvironment) {
+  console.log(`Running script to deposit ETH in L2`);
+
+  // Initialize the wallet.
+  const provider = new Provider(MAINNET_RPC_ENDPOINT);
+
+  const wallet = new Wallet(WALLET_PRIV_KEY, provider);
+
+  // Create deployer object 
+  const deployer = new Deployer(hre, wallet);
+
+  // Deposit ETH to L2
+  const depositHandle = await deployer.zkWallet.deposit({
+    to: deployer.zkWallet.address,
+    token: utils.ETH_ADDRESS,
+    amount: ethers.utils.parseEther(AMOUNT),
+  });
+  console.log(`Deposit transaction sent ${depositHandle.hash}`);
+  console.log(`Waiting for deposit to be processed in L2...`);
+  // Wait until the deposit is processed on zkSync Era
+  await depositHandle.wait();
+  console.log(`ETH available in L2`);
+}
+```
+### Deposit ERC20 tokens
+
+To deposit ERC20 tokens, use the same method but pass the `approveERC20: true` option. Here's an example:
+
+```ts
+import { Wallet, Provider } from "zksync-web3";
+import * as ethers from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+// HTTPS RPC endpoint
+const MAINNET_RPC_ENDPOINT = "";
+
+// Token address
+const TOKEN_ADDRESS = "";
+
+// Amount of tokens 
+const AMOUNT = "5";
+
+const WALLET_PRIV_KEY = process.env.WALLET_PRIV_KEY || "";
+
+if (!WALLET_PRIV_KEY) {
+  throw new Error("Wallet private key not configured in env file");
+}
+
+export default async function (hre: HardhatRuntimeEnvironment) {
+  console.log(`Running script to bridge ERC20 to L2`);
+
+  // Initialize the wallet.
+  const provider = new Provider(
+    // @ts-ignore
+    MAINNET_RPC_ENDPOINT || hre.config.networks.zkSyncTestnet.ethNetwork
+  );
+    
+  const wallet = new Wallet(WALLET_PRIV_KEY, provider);
+
+  // Create deployer object 
+  const deployer = new Deployer(hre, wallet);
+
+  // Deposit ERC20 tokens to L2
+  const depositHandle = await deployer.zkWallet.deposit({
+    to: deployer.zkWallet.address,
+    token: TOKEN_ADDRESS,
+    amount: ethers.utils.parseEther(AMOUNT), // assumes ERC20 has 18 decimals
+    // performs the ERC20 approve action
+    approveERC20: true,
+  });
+
+  console.log(`Deposit transaction sent ${depositHandle.hash}`);
+  console.log(`Waiting for deposit to be processed in L2...`);
+  // Wait until the deposit is processed on zkSync
+  await depositHandle.wait();
+  console.log(`ERC20 tokens available in L2`);
+}
+```
+
+To run this script, configure your `hardhat.config.ts` file as explained in this [guide](../../../api/hardhat/hardhat-zksync-deploy.md), or use the command `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project.
+
+Once your `hardhat.config.ts` file is configured, place the script files in the `deploy` folder and run them with the following command:
+
+```sh
+ yarn hardhat zksync-deploy --script SCRIPT_FILENAME.ts
+```
 
 The log message described above is not yet fully supported by our SDK but is available on the L1 bridge contract.
 
 ### Withdrawals (to L1)
 
-Users must call the `withdraw` method on the [L2 bridge contract](https://github.com/matter-labs/era-contracts/blob/main/zksync/contracts/bridge/L2ERC20Bridge.sol#L101), which will trigger the following actions:
+:::tip
+
+- To provide additional security during the Alpha phase, **withdrawals in zkSync Era take 24 hours**. 
+- For more information, read the [withdrawal delay guide](../../troubleshooting/withdrawal-delay.md).
+
+:::
+
+Users must call the `withdraw` method on the L2 bridge contract, which will trigger the following actions:
 
 - L2 tokens will be burned.
 - An L2 -> L1 message with the information about the withdrawal will be sent.
