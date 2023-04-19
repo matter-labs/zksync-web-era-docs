@@ -36,7 +36,7 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 
 ## Project setup
 
-To create a new project run the `create` task of the CLI passing a project name:
+To create a new project run the CLI's `create` command, passing a project name:
 
 ```sh
 zksync-cli create demo 
