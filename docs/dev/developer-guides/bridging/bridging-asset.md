@@ -88,7 +88,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 ### Deposit ERC20 tokens
 
-To deposit ERC20 tokens you can use the same method but pass the `approveERC20: true` option, here's an example:
+To deposit ERC20 tokens, use the same method but pass the `approveERC20: true` option. Here's an example:
 
 ```ts
 import { Wallet, Provider } from "zksync-web3";
