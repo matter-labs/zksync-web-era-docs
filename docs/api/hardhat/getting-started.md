@@ -29,7 +29,7 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 - You have a wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. We recommend using [our faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
-::: warning Important notes
+::: warning Important
 - Contracts must be compiled using the [official zkSync Era compilers](../compiler-toolchain/README.md), with their respective Hardhat plugins.
 - Contracts compiled with other compilers will fail to deploy to zkSync Era.
 :::
