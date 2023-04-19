@@ -55,7 +55,7 @@ Major updates across the system include:
 
 The following hardhat plugin has been released:
 
-- `hardhat-zksync-verify` version `0.1.2`: now returns a verification id, which can be used to query the status of a smart contract verification. More info [here](https://era.zksync.io/docs/api/hardhat/hardhat-zksync-verify.html#verification-status-check)
+- `hardhat-zksync-verify` version `0.1.2`: now returns a verification id. Use this to query the status of smart contract verification. For more information, read the [Hardhat zkSync Era verification doc](../../api/hardhat/hardhat-zksync-verify.md#verification-status-check)
 - `hardhat-zksync-deploy` version `0.6.2`: integrates with latest version of `zksync-web3`.
 - `hardhat-zksync-chai-matchers` version `0.1.1`: integrates with latest version of `zksync-web3`.
 
