@@ -96,7 +96,7 @@ To learn more about each specific property in the `hardhat.config.ts` file, chec
 
 ## Environment variables
 
-This project uses the `dotenv` package to load your private key, which is required to deploy and interact with smart contracts.
+The project uses the `dotenv` package to load your private key which is required to deploy and interact with smart contracts.
 
 To configure it, duplicate the `.env.example` file, rename it to `.env`, and enter your wallet private key in it. The `.env` is included in the `.gitignore` file so it won't be uploaded to a repository.
 
