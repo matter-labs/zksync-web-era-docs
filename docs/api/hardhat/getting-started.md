@@ -108,7 +108,7 @@ WALLET_PRIVATE_KEY=abcdef12345....
 
 Smart contracts belong in the `contracts` folder. The template project contains a simple `Greeter.sol` contract and a script to deploy it.
 
-To compile the contract, run:
+1. To compile the contract, run:
 
 ```sh
 yarn hardhat compile
@@ -188,7 +188,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-To execute the deployment script run:
+2. To execute the deployment script run:
 
 ```sh
 yarn hardhat deploy-zksync --script deploy-greeter.ts
@@ -216,7 +216,9 @@ Greeter was deployed to 0x46f1d2d8A16DBD8b47e9D61175a826ac667288Be4D1293a22E8
 
 ## Interact with the contract
 
-The template project contains another script to interact with the contract, `use-greeter.ts`. To execute it, enter the address of the deployed Greeter contract in the `CONTRACT_ADDRESS` variable:
+The template project contains another script to interact with the contract. 
+
+1. Enter the address of the deployed Greeter contract in the `CONTRACT_ADDRESS` variable of the `use-greeter.ts` script:
 
 ```typescript
 import { Provider } from "zksync-web3";
@@ -270,7 +272,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`The message now is ${await contract.greet()}`);
 }
 ```
-To execute this script run:
+2. To execute the script, run:
 
 ```sh
 yarn hardhat deploy-zksync --script use-greeter.ts
