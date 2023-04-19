@@ -193,7 +193,7 @@ To execute the deployment script run
 ```sh
 yarn hardhat deploy-zksync --script deploy-greeter.ts
 ```
-This script will deploy the `Greeting` contract with the message "Hi there!" to zkSync Era Testnet.
+This script deploys the `Greeting` contract with the message "Hi there!" to zkSync Era Testnet.
 
 You should see something like this:
 
