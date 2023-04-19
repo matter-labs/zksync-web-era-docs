@@ -12,7 +12,6 @@ zkSync Era has the following official plugins for Hardhat:
 
 ::: tip Additional plugins
 Learn more about [other plugins from the community](./other-plugins.md) that you can use with zkSync Era.
-
 :::
 
 To learn more about Hardhat itself, check out [its official documentation](https://hardhat.org/getting-started/).
