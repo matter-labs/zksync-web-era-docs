@@ -113,6 +113,7 @@ To compile the contract, run:
 ```sh
 yarn hardhat compile
 You'll see the following output:
+
 ```text
 Compiling 1 Solidity file
 Successfully compiled 1 Solidity file
@@ -122,7 +123,7 @@ Successfully compiled 1 Solidity file
 The `artifacts-zk` and `cache-zk` folders appear in the root directory (instead of the regular Hardhat's `artifacts` and `cache`). These folders contain the compilation artifacts (including contract's ABIs) and compiler cache files.
 
 ::: tip
-Note that the `artifacts-zk` and `cache-zk` folders  are already included in the `.gitignore` file of the project.
+The `artifacts-zk` and `cache-zk` folders  are included in the `.gitignore` file.
 
 :::
 
@@ -187,7 +188,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-To execute the deployment script run
+To execute the deployment script run:
 
 ```sh
 yarn hardhat deploy-zksync --script deploy-greeter.ts
