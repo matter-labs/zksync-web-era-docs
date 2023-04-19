@@ -118,7 +118,8 @@ Compiling 1 Solidity file
 Successfully compiled 1 Solidity file
 ✨  Done in 1.09s.
 ```
-The `artifacts-zk` and `cache-zk` folders will be created in the root directory (instead of the regular Hardhat's `artifacts` and `cache`). These folders contain the compilation artifacts (including contract's ABIs) and compiler cache files.
+
+The `artifacts-zk` and `cache-zk` folders appear in the root directory (instead of the regular Hardhat's `artifacts` and `cache`). These folders contain the compilation artifacts (including contract's ABIs) and compiler cache files.
 
 ::: tip
 
