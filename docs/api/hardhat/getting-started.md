@@ -31,23 +31,22 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 - You have a wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. We recommend using [our faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
-::: warning
-- Contracts must be compiled using the official zkSync Era plugins. 
-- Contracts compiled with other compilers will fail to deploy to zkSync Era using this plugin.
+::: warning Important notes
+- Contracts must be compiled using the [official zkSync Era compilers](../compiler-toolchain/README.md), with their respective Hardhat plugins.
+- Contracts compiled with other compilers will fail to deploy to zkSync Era.
 :::
 
-## Setup
+## Project setup
 
-To create a new project run:
+To create a new project run the `create` task of the CLI passing a project name:
 
 ```sh
-zksync-cli create demo // or any other project name
+zksync-cli create demo 
 ```
-This command will clone a Hardhat template project already configured and with all the required plugins.
-
+This command will create a `demo` folder and clone a Hardhat template project inside it. The downloaded project is already configured and contains all the required plugins.
 
 ::: tip Migrating a project
-If you want to migrate an existing project, please check the [Hardhat project migration guide](./migrating-to-zksync.md).
+If you want to migrate an existing project, please check the [project migration guide](./migrating-to-zksync.md).
 :::
 
 
@@ -62,10 +61,6 @@ import "@matterlabs/hardhat-zksync-solc";
 ```
 
 Dinamically change the network endpoints of the `zkSyncTestnet` network for local tests. This template project includes a basic unit test in the `/test` folder that runs with the local-setup and can be executed with `yarn test`. 
-
-::: tip Unit tests
-Learn more about how to [start the local setup and write unit tests here](./testing.md).
-:::
 
 ```typescript
 // dynamically changes endpoints for local tests
@@ -82,6 +77,9 @@ const zkSyncTestnet =
         zksync: true
       };
 ```
+::: tip Unit tests
+Learn more about how to [start the local setup and write unit tests here](./testing.md).
+:::
 
 The `zksolc` block contains the minimal configuration required for the compiler:
 
@@ -103,6 +101,10 @@ To learn more about each specific property in the `hardhat.config.ts` file, chec
 This project uses the `dotenv` package to load your private key, which is required to deploy and interact with smart contracts.
 
 To configure it, duplicate the `.env.example` file, rename it to `.env`, and enter your wallet private key in it. The `.env` is included in the `.gitignore` file so it won't be uploaded to a repository.
+
+```text
+WALLET_PRIVATE_KEY=abcdef12345....
+```
 
 ## Compile and deploy a contract
 
