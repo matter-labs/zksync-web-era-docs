@@ -216,7 +216,7 @@ Greeter was deployed to 0x46f1d2d8A16DBD8b47e9D61175a826ac667288Be4D1293a22E8
 
 ## Interact with the contract
 
-The template project contains another script to interact with the contract, `use-greeter.ts`. To execute it, enter the address of the contract in the `CONTRACT_ADDRESS` variable:
+The template project contains another script to interact with the contract, `use-greeter.ts`. To execute it, enter the address of the deployed Greeter contract in the `CONTRACT_ADDRESS` variable:
 
 ```typescript
 import { Provider } from "zksync-web3";
