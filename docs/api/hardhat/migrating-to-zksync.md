@@ -168,7 +168,7 @@ If your contracts import any non-inlineable libraries, you need to configure the
 
 ## Deploy contracts
 
-::: tip hardhat-deploy support
+::: tip `hardhat-deploy` support
 `hardhat-deploy` version `^0.11.26` supports deployments on zkSync Era.
 :::
 
