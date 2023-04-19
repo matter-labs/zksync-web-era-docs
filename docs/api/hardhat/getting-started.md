@@ -50,7 +50,7 @@ If you want to migrate an existing project, please check the [project migration 
 
 ## Hardhat configuration
 
-The `hardhat.config.ts` file contains a few lines specific to zkSync Era. The most important are:
+The `hardhat.config.ts` file contains some zkSync-Era-specific configurations:
 
 Imports the zkSync deployment and compiler plugins.
 ```typescript
