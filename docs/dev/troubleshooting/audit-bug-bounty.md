@@ -1,6 +1,6 @@
 # Audits and Bug Bounty Program
 
-zkSync Era takes security seriously and as such, we have completed multiple audits in all different parts of the protocol. On top of that, there is an ongoing massive bug bounty program.
+zkSync Era takes security seriously and as such, we have completed multiple audits in all critical parts of the protocol. On top of that, there is an ongoing massive bug bounty program.
 
 ## Audits
 
