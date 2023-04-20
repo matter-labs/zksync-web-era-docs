@@ -32,6 +32,7 @@ In this section, you can find a list of all the transactions included in the blo
 | Transaction hash  | The hash of the transaction serving as the transaction’s ID.                                                                                             |
 | From              | The account or smart contract, sending the transaction.                                                                                                  |
 | To                | The account or smart contract, receiving the transaction.                                                                                                |
+| Nonce             | A unique identifier assigned to each transaction that is used to order transactions.                                                                     |
 | Fee               | The rate of fees associated with this transaction processing.                                                                                            |
 | Amount            | The number of ether (ETH) that were transferred in a particular transaction.                                                                             |
 | Age               | The number of block confirmations that have occurred since the transaction was first included in the block.                                              |
