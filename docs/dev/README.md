@@ -58,7 +58,7 @@ token.
 - [Hardhat Plugins](../api/hardhat/) - Use our Hardhat zkSync plugins to compile, test, deploy, and verify your Solidity or Vyper based 
 - [zkSync CLI](../api/tools/zksync-cli/) - Simplify your development process and interact with zkSync Era from your terminal with zkSync CLI.
 - [Compiler Toolchain](../api/compiler-toolchain/overview.md) - Learn about our compiler toolchain.
-- [Python SDK](../api/python/getting-started.md) - Explore all the Python methods and functions required to build on zkSync Era.
+- [Python SDK](../api/python/) - Explore all the Python methods and functions required to build on zkSync Era.
 - [Go SDK](../api/go/getting-started.md) - Explore all the GO methods and functions required to build on zkSync Era.
 - [Java SDK](../api/java/getting-started.md) - Explore all the Java methods and functions required to build on zkSync Era.
 - [Swift SDK](../api/swift/getting-started.md) - Explore all the Swift methods and functions required to build on zkSync Era.applications.
