@@ -47,3 +47,10 @@ jobs:
           target: prod
           projectId: aqwzx-zksync-v2-docs
           channelID: live
+
+      # TODO: Implement reindex task tracking instead of blindly exiting on task submit
+      - name: Trigger Algolia reindex
+        run: |
+          curl -X POST "${{ secrets.ALGOLIA_CRAWLER_BASE_URL }}/crawlers/${{ secrets.ALGOLIA_CRAWLER_ID }}/reindex" \
+            -H "Content-Type: application/json" \
+            --user "${{ secrets.ALGOLIA_CRAWLER_USER_ID }}:${{ secrets.ALGOLIA_CRAWLER_API_KEY }}"

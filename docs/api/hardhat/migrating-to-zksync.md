@@ -74,6 +74,30 @@ zksolc: {
 ```
 For more advanced settings, check out the [Solidity](./hardhat-zksync-solc.md) or [Vyper](./hardhat-zksync-vyper.md) plugins.
 
+
+### How to configure multiple compilation targets
+
+To configure the `hardhat.config.ts` file to target both zkSync Era and other networks, do the following:
+
+1. In your `hardhat.config.ts`, configure the zkSync Era network with `zksync: true`.
+2. Configure all other networks with `zksync: false`.
+3. Run the compilation or deployment scripts with the network flag: `yarn hardhat compile --network zkSyncTestnet` for zkSync Era network or `yarn hardhat compile --network goerli` for other networks, e.g goerli.
+
+```typescript
+networks: {
+    goerli: {
+      url: "https://goerli.infura.io/v3/<API_KEY>", // The Ethereum Web3 RPC URL.
+      zksync: false, // Set to false to target other networks.
+    },
+    zkSyncTestnet: {
+      url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
+      ethNetwork: "goerli", // The identifier of the network (e.g. `mainnet` or `goerli`)
+    zksync: true, // Set to true to target zkSync Era.
+    }
+},
+
+```
+
 ### Full configuration
 
 Here is an example config file:
@@ -144,10 +168,8 @@ If your contracts import any non-inlineable libraries, you need to configure the
 
 ## Deploy contracts
 
-::: tip Test ETH
-
-Obtain [test ETH from our faucet](https://goerli.portal.zksync.io/faucet) or just bridge GöerliETH using [the zkSync Portal](https://goerli.portal.zksync.io/bridge).
-
+::: tip `hardhat-deploy` support
+`hardhat-deploy` version `^0.11.26` supports deployments on zkSync Era.
 :::
 
 To deploy your contracts you need to use the `Deployer` class from the `hardhat-zksync-deploy`  plugin. This class takes care of all the specifics of [deploying contracts on zkSync](../../dev/building-on-zksync/contracts/contract-deployment.md). 
@@ -183,6 +205,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 
 ```
+::: tip Test ETH
+Obtain [test ETH from our faucet](https://goerli.portal.zksync.io/faucet) or just bridge GöerliETH using [the zkSync Portal](https://goerli.portal.zksync.io/bridge).
+:::
+
 Include your deployment script in the `deploy` folder and execute it running:
 
 ::: code-tabs

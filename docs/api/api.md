@@ -80,29 +80,53 @@ Returns the fee for the transaction. The token in which the fee is calculated is
 }
 ``` -->
 
-### `zks_getMainContract`
+### `zks_getBlockDetails`
 
-Returns the address of the zkSync Era contract.
+Returns additional ZkSync-specific information about the L2 block.
 
-### Input parameters
+#### Input parameters
+
+| Parameter | Type     | Description              |
+| --------- | -------- | ------------------------ |
+| block     | `uint32` | The number of the block. |
+
+#### Output format
+
+```json
+{
+  "commitTxHash": "0x2c8f18312c6b6c2e72df56dd5684e3c65fcdf5f6141763eafdcbbfc02c3a39b5",
+  "committedAt": "2022-12-12T08:41:50.774441Z",
+  "executeTxHash": "0xa12f3a9689101758acad280dd21a00cfc2644c125702ea301f46a33799cde9b9",
+  "executedAt": "2022-12-12T08:41:57.233941Z",
+  "l1TxCount": 5,
+  "l2TxCount": 0,
+  "number": 1,
+  "proveTxHash": "0x0fed6d8a7b02a26b5513edea10d8849342b56a13c0e48317556c78b34aeacd26",
+  "provenAt": "2022-12-12T08:41:57.219584Z",
+  "rootHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
+  "status": "verified",
+  "timestamp": 1670834504
+}
+```
+
+### `zks_getBridgeContracts`
+
+Returns L1/L2 addresses of default bridges.
+
+#### Input parameters
 
 None.
 
-### Output format
+#### Output format
 
-`"0xaBEA9132b05A70803a4E85094fD0e1800777fBEF"`
-
-### `zks_L1ChainId`
-
-Returns the chain id of the underlying L1.
-
-### Input parameters
-
-None.
-
-### Output format
-
-`12`
+```json
+{
+  "l1Erc20DefaultBridge": "0x7786255495348c08f82c09c82352019fade3bf29",
+  "l1EthDefaultBridge": "0xcbebcd41ceabbc85da9bb67527f58d69ad4dfff5",
+  "l2Erc20DefaultBridge": "0x92131f10c54f9b251a5deaf3c05815f7659bbe02",
+  "l2EthDefaultBridge": "0x2c5d8a991f399089f728f1ae40bd0b11acd0fb62"
+}
+```
 
 ### `zks_getConfirmedTokens`
 
@@ -112,14 +136,14 @@ Returns [address, symbol, name, and decimal] information of all tokens within a 
 
 This function is mostly used by the zkSync team.
 
-### Input parameters
+#### Input parameters
 
 | Parameter | Type     | Description                                                                  |
 | --------- | -------- | ---------------------------------------------------------------------------- |
 | from      | `uint32` | The token id from which to start returning the information about the tokens. |
 | limit     | `uint8`  | The number of tokens to be returned from the API.                            |
 
-### Output format
+#### Output format
 
 ```json
 [
@@ -153,14 +177,14 @@ Given a transaction hash, and an index of the L2 to L1 log produced within the t
 
 The index of the log that can be obtained from the transaction receipt (it includes a list of every log produced by the transaction).
 
-### Input parameters
+#### Input parameters
 
 | Parameter          | Type                        | Description                                                      |
 | ------------------ | --------------------------- | ---------------------------------------------------------------- |
 | tx_hash            | `bytes32`                   | Hash of the L2 transaction the L2 to L1 log was produced within. |
 | l2_to_l1_log_index | `undefined` &#124; `number` | The Index of the L2 to L1 log in the transaction.                |
 
-### Output format
+#### Output format
 
 If there was no such message, the returned value is `null`.
 
@@ -193,11 +217,12 @@ There is a log produced by the bootloader for every L1 originated transaction th
 
 :::
 
+
 ### `zks_getL2ToL1MsgProof`
 
 Given a block, a sender, a message, and an optional message log index in the block containing the L1->L2 message, it returns the proof for the message sent via the L1Messenger system contract.
 
-### Input parameters
+#### Input parameters
 
 | Parameter       | Type                    | Description                                                                                                                                                                                                                                                        |
 | --------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -206,7 +231,7 @@ Given a block, a sender, a message, and an optional message log index in the blo
 | msg             | `bytes32`               | The keccak256 hash of the sent message.                                                                                                                                                                                                                            |
 | l2_log_position | `uint256` &#124; `null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/system-contracts.md#l1messenger) when submitting this message. If it is omitted, the proof for the first message with such content will be returned. |
 
-### Output format
+#### Output format
 
 The same as in [zks_getL2ToL1LogProof](#zks-getl2tol1logproof).
 
@@ -216,67 +241,43 @@ The same as in [zks_getL2ToL1LogProof](#zks-getl2tol1logproof).
 
 :::
 
-### `zks_getBridgeContracts`
+### `zks_getMainContract`
 
-Returns L1/L2 addresses of default bridges.
+Returns the address of the zkSync Era contract.
 
-### Input parameters
+#### Input parameters
 
 None.
 
-### Output format
+#### Output format
 
-```json
-{
-  "l1Erc20DefaultBridge": "0x7786255495348c08f82c09c82352019fade3bf29",
-  "l1EthDefaultBridge": "0xcbebcd41ceabbc85da9bb67527f58d69ad4dfff5",
-  "l2Erc20DefaultBridge": "0x92131f10c54f9b251a5deaf3c05815f7659bbe02",
-  "l2EthDefaultBridge": "0x2c5d8a991f399089f728f1ae40bd0b11acd0fb62"
-}
-```
+`"0xaBEA9132b05A70803a4E85094fD0e1800777fBEF"`
 
 ### `zks_getTestnetPaymaster`
 
 Returns the address of the [testnet paymaster](../dev/developer-guides/aa.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
 
-### Input parameters
+#### Input parameters
 
 None.
 
-### Output format
+#### Output format
 
 ```json
 "0x7786255495348c08f82c09c82352019fade3bf29"
 ```
 
-### `zks_getBlockDetails`
+### `zks_L1ChainId`
 
-Returns additional ZkSync-specific information about the L2 block.
+Returns the chain id of the underlying L1.
 
-### Input parameters
+#### Input parameters
 
-| Parameter | Type     | Description              |
-| --------- | -------- | ------------------------ |
-| block     | `uint32` | The number of the block. |
+None.
 
-### Output format
+#### Output format
 
-```json
-{
-  "commitTxHash": "0x2c8f18312c6b6c2e72df56dd5684e3c65fcdf5f6141763eafdcbbfc02c3a39b5",
-  "committedAt": "2022-12-12T08:41:50.774441Z",
-  "executeTxHash": "0xa12f3a9689101758acad280dd21a00cfc2644c125702ea301f46a33799cde9b9",
-  "executedAt": "2022-12-12T08:41:57.233941Z",
-  "l1TxCount": 5,
-  "l2TxCount": 0,
-  "number": 1,
-  "proveTxHash": "0x0fed6d8a7b02a26b5513edea10d8849342b56a13c0e48317556c78b34aeacd26",
-  "provenAt": "2022-12-12T08:41:57.219584Z",
-  "rootHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
-  "status": "verified",
-  "timestamp": 1670834504
-}
-```
+`12`
 
 <!-- TODO: uncomment once fixed --->
 <!-- ### `zks_getTokenPrice`
@@ -320,10 +321,6 @@ fn get_contract_debug_info(
 #[rpc(name = "zks_getTransactionTrace", returns = "Option<VmDebugTrace>")]
 fn get_transaction_trace(&self, hash: H256) -> BoxFutureResult<Option<VmDebugTrace>>;
 
-
-
-
-
 Documented:
 #[rpc(name = "zks_estimateFee", returns = "Fee")]
 fn estimate_fee(&self, req: CallRequest) -> BoxFutureResult<Fee>;
@@ -337,8 +334,6 @@ fn l1_chain_id(&self) -> Result<U64>;
 #[rpc(name = "zks_getL1WithdrawalTx", returns = "Option<H256>")]
 fn get_eth_withdrawal_tx(&self, withdrawal_hash: H256) -> BoxFutureResult<Option<H256>>;
 
-
-
 Don't want to document (at least for now):
 
 ### `zks_getAccountTransactions`
@@ -351,10 +346,6 @@ Don't want to document (at least for now):
 | before    | `u32`     | The offset from which to start returning transactions |
 | limit     | `u8`      | The maximum number of transactions to be returned     |
 
-
-
-
-
 -->
 
 ## PubSub API
@@ -364,7 +355,5 @@ zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/do
 The WebSocket URL is `wss://testnet.era.zksync.dev/ws`.
 
 ::: tip
-
-You can use the websocket endpoint to handle smart contract events, as detailed [in this section of the docs](../dev/building-on-zksync/events.md).
-
+- Use the websocket endpoint to handle smart contract events, as detailed [in this section of the docs](../dev/building-on-zksync/events.md).
 :::
