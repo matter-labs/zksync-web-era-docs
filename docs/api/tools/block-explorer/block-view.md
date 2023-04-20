@@ -1,58 +1,37 @@
 # Browse blocks
 
-![Browse blocks!](../../../assets/images/block-tx.png "View blocks on zkSync")
+![Browse blocks!](../../../assets/images/blocks.png "View blocks on zkSync")
 
-The block explorer home screen, by default, displays the 10 most recent blocks in the chain.
-View all blocks for a more complete overview of recent blocks, or click on a specific block number for details on that block.
-The blocks page is also accessible via the top menu.
+The block explorer home screen shows the 10 most recent blocks by default. To see a more complete overview of recent blocks, you can view all blocks. You can also click on a specific block number to see details about that particular block.
+You can access the blocks page from the top menu as well.
 
 ![Access the block page](../../../assets/images/block-menu.png "Blocks menu")
 
-## View all blocks
+## Block details
 
-You can click on a block number to see all the details of that specific block. If you want to browse more blocks, click the [Blocks](https://explorer.zksync.io/blocks/) section of the navigation menu. Use the pagination to navigate to the next page.
+For specific block details, click on the block number. Go to the [Blocks](https://explorer.zksync.io/blocks/) section and use the pagination at the bottom of the page to see older blocks.
 
-However, if you have already left the homepage, you can always search for any block by typing in the block number.
+Search for a specific block by typing in its block number.
 
-![Browse all blocks](../../../assets/images/view-block.png "Browse all blocks")
+![Search blocks](../../../assets/images/search-blocks.png "Search blocks")
 
-There are two main sections inside a block:
+For specific block details, click on the block number.
 
-1. The Block Header
+![View block](../../../assets/images/view-block.png "View block")
 
-- This shows brief information about this specific block, as well as a link to the previous block in the chain.
-
-2. Transactions
-
-- Consists of lists of all the transactions that were included in this block.
+Block information has the transactions section that contains all the transactions included in the block.
 
 ![Single block page!](../../../assets/images/single-block.png "View a single block")
 
-### Block headers
-
-The following table should help explain what you’ll see in a block.
-For more details on blocks, see the docs on [Blocks](../../../dev/developer-guides/transactions/blocks.md).
-
-| Value        | Description                                                                |
-| ------------ | -------------------------------------------------------------------------- |
-| Block number | The unique sequential number for this block.                               |
-| Block size   | The size of the block.                                                     |
-| Timestamp    | The block generation time in seconds since the Unix epoch.                 |
-| Root hash    | The Cryptographic hash of the block header.                                |
-| Status       | The status of the block, could be `sealed`, `finalized`, or `unfinalized`. |
-
 ### Transactions
 
-This section lists all the transactions that are included in this block.
-Transactions are served on a first-in-first-out basis, but in the future, we will introduce a "priority heap", which will allow for sorting the transactions.
+In this section, you can find a list of all the transactions included in the block. Transactions are processed in the order they are received.
 
-| Value             | Description                                                                                                                                                                    |
+| Value             | Description                                                                                                                                              |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Block             | The amount of transactions in a block                                                                                                                                          |
-| Timestamp         | The block generation time in seconds since the Unix epoch.                                                                                                                     |
-| Hash              | The hash of the transaction serving as the transaction’s ID                                                                                                                    |
-| From              | The account or smart contract, sending the transaction.                                                                                                                        |
-| To                | The account or smart contract, the transaction targeted.                                                                                                                       |
-| Fee               | The rate of fees associated with this transaction processing.                                                                                                                  |
-| Tokens transferred | Details about the tokens(both `to` and `from` addresses) involved in the transactions, it includes, details like the assets, balance in the wallet address, and token address. |
-| Contract address  | The rate of fees collected by the network.                                                                                                                                     |
+| Transaction hash  | The hash of the transaction serving as the transaction’s ID.                                                                                             |
+| From              | The account or smart contract, sending the transaction.                                                                                                  |
+| To                | The account or smart contract, receiving the transaction.                                                                                                |
+| Fee               | The rate of fees associated with this transaction processing.                                                                                            |
+| Amount            | The number of ether (ETH) that were transferred in a particular transaction.                                                                             |
+| Age               | The number of block confirmations that have occurred since the transaction was first included in the block.                                              |
