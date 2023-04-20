@@ -558,6 +558,11 @@ See also [`applyl1tol2alias`](#applyl1tol2alias).
 
 ```ts
 export function undoL1ToL2Alias(address: string): string {
-    return ethers.utils.hexlify(ethers.BigNumber.from(address).sub(L1_TO_L2_ALIAS_OFFSET));
+    let result = ethers.BigNumber.from(address).sub(L1_TO_L2_ALIAS_OFFSET);
+    if (result.lt(BigNumber.from(0))) {
+        result = result.add(ADDRESS_MODULO);
+    }
+
+    return ethers.utils.hexlify(result);
 }
 ```
