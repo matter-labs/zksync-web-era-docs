@@ -16,7 +16,7 @@ Please read [this section of the docs](../../../api/compiler-toolchain/solidity.
 
 ### Unsupported functions
 
-We current do not support the following Solidity functions:
+We currently do not support the following Solidity functions:
 
 - `runtimeCode`
 - `creationCode`
