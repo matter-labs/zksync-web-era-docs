@@ -56,6 +56,55 @@ Used for sending messages from zkSync Era to Ethereum.
 export const L1_MESSENGER = new utils.Interface(require('../../abi/IL1Messenger.json').abi);
 ```
 
+#### L1 and L2 bridges
+
+Bridge interface abis for L1 and L2.
+
+```ts
+export const L1_BRIDGE_ABI = new utils.Interface(require('../../abi/IL1Bridge.json').abi);
+export const L2_BRIDGE_ABI = new utils.Interface(require('../../abi/IL2Bridge.json').abi);
+```
+
+#### L1 to L2 alias offset
+
+Used for applying and undoing aliases on addresses from L1 to L2.
+
+```ts
+export const L1_TO_L2_ALIAS_OFFSET = '0x1111000000000000000000000000000000001111';
+```
+
+#### Magic value
+
+The value returned from `isEIP1271SignatureCorrect` to confirm signature correctness.
+
+```ts
+export const EIP1271_MAGIC_VALUE = '0x1626ba7e';
+```
+
+#### EIP712 transaction type
+
+Constant representing an EIP712 transaction type.
+
+```ts
+export const EIP712_TX_TYPE = 0x71;
+```
+
+#### Priority op transaction on L2
+
+Constant representing a priority transaction operation on L2.
+
+```ts
+export const PRIORITY_OPERATION_L2_TX_TYPE = 0xff;
+```
+
+#### Max bytecode length
+
+Used for ensuring bytecode length is not over the maximum allowed.
+
+```ts
+export const MAX_BYTECODE_LEN_BYTES = ((1 << 16) - 1) * 32;
+```
+
 ### Useful addresses
 
 #### ETH token layer 1
@@ -117,7 +166,13 @@ export const REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT = 800;
 
 Converts the address that submitted a transaction to the inbox on L1 to the `msg.sender` viewed on L2.
 
-See also [`undol1tol2alias`](#undol1tol2alias).
+#### Inputs
+
+- `address`: sender address as string.
+
+#### Outputs
+
+?? not sure how to describe what's coming out here
 
 ```ts
 export function applyL1ToL2Alias(address: string): string {
@@ -125,9 +180,20 @@ export function applyL1ToL2Alias(address: string): string {
 }
 ```
 
+See also [`undol1tol2alias`](#undol1tol2alias).
+
 ### `checkBaseCost`
 
 Checks the base cost is within prescribed limits.
+
+#### Inputs
+
+- `baseCost`: base cost ?? as `BigNumber` object.
+- `value`: value ?? as `BigNumberIsh` object.
+
+#### Outputs
+
+- Returns an `Error` message if the limit is breached.
 
 ```ts
 export async function checkBaseCost(baseCost: ethers.BigNumber, value: ethers.BigNumberish | Promise<ethers.BigNumberish>) {
@@ -150,10 +216,14 @@ Generates a future-proof contract address using salt plus bytecode which allows 
 
 #### Inputs
 
-- `sender`: sender's address.
-- `bytecodeHash`: output from zkSolc.
-- `salt`: randomization element.
-- `input`: ABI encoded constructor arguments.
+- `sender`: sender address as string.
+- `bytecodeHash`: output from zkSolc as `BytesLike` object.
+- `salt`: randomization element as `BytesLike` object.
+- `input`: ABI encoded constructor arguments as `BytesLike` object.
+
+#### Outputs
+
+- Returns an `Address` object.
 
 ```ts
 export function create2Address(sender: Address, bytecodeHash: BytesLike, salt: BytesLike, input: BytesLike) {
@@ -173,6 +243,15 @@ The `prefix` in the `kekkak256` calculation is equal to `keccak256("zksyncCreate
 ### `createAddress`
 
 Generates a contract address from deployer's account and nonce.
+
+#### Inputs
+
+- `sender`: sender address as string.
+- `senderNonce`: sender nonce as `BigNumberish` object.
+
+#### Outputs
+
+- Returns an `Address` object.
 
 ```ts
 export function createAddress(sender: Address, senderNonce: BigNumberish) {
@@ -195,6 +274,11 @@ export function createAddress(sender: Address, senderNonce: BigNumberish) {
 
 Returns signed keccak256 representation of a transaction with signature.
 
+#### Inputs
+
+- `transaction`: given by id ?? as ??
+- `ethSignature?`: the transaction signer signature ?? as `EthereumSignature` object (optional).
+
 ```ts
 function eip712TxHash(transaction: any, ethSignature?: EthereumSignature) {
     const signedDigest = EIP712Signer.getSignedDigest(transaction);
@@ -207,6 +291,16 @@ function eip712TxHash(transaction: any, ethSignature?: EthereumSignature) {
 ### `estimateDefaultBridgeDepositL2Gas`
 
 Returns an estimation of gas required to execute a transaction from L1 to L2.
+
+#### Inputs
+
+- `providerL1`: ethers `Provider` object.
+- `providerL2`: zkSync `Provider` object.
+- `token`: token `Address` object.
+- `amount`: deposit amount as `BigNumberish`.
+- `to`: recipient `Address` object.
+- `from?`: sender `Address` object (optional).
+- `gasPerPubdataByte?`: current gas per byte of pubdata as `BigNumberish` (optional).
 
 ```ts
 export async function estimateDefaultBridgeDepositL2Gas(
@@ -251,6 +345,10 @@ export async function estimateDefaultBridgeDepositL2Gas(
 
 Returns a log containing details of all deployed contracts related to a transaction receipt parameter.
 
+#### Inputs
+
+- `receipt`: transaction receipt as ethers Provider object.
+
 ```ts
 export function getDeployedContracts(receipt: ethers.providers.TransactionReceipt): DeploymentInfo[] {
     const addressBytesLen = 40;
@@ -280,6 +378,14 @@ export function getDeployedContracts(receipt: ethers.providers.TransactionReceip
 
 Returns the calldata sent by an L1 ERC20 bridge to its L2 counterpart.
 
+#### Inputs
+
+- `l1TokenAddress`: token address on L1 as string.
+- `l1Sender`: sender address on L1 as string.
+- `l2Receiver`: recipient address on L2 as string.
+- `amount`: gas fee ?? as `BigNumberish` object.
+- `provider`: ethers `Provider` object.
+
 ```ts
 export async function getERC20BridgeCalldata(
     l1TokenAddress: string,
@@ -303,6 +409,19 @@ export async function getERC20BridgeCalldata(
 
 Gets the data needed for initializing an L1 token counterpart on L2.
 
+#### Inputs
+
+- `l1TokenAddress`: token address on L1 as string.
+- `provider`: ethers `Provider` object.
+
+#### Outputs
+
+An array of:
+
+- `nameBytes`: `bytes` object representation of token name.
+- `symbolBytes`: `bytes` object representation of token symbol.
+- `decimalBytes`: `bytes` object representation of token decimal representation.
+
 ```ts
 async function getERC20GettersData(l1TokenAddress: string, provider: ethers.providers.Provider): Promise<string> {
     const token = IERC20MetadataFactory.connect(l1TokenAddress, provider);
@@ -324,6 +443,11 @@ async function getERC20GettersData(l1TokenAddress: string, provider: ethers.prov
 ### `getL2HashFromPriorityOp`
 
 Returns the hash of the L2 priority operation from a given transaction receipt and L2 address.
+
+#### Inputs
+
+- `txReceipt`: ethers `TransactionReceipt` object.
+- `zkSyncAddress`: address of sender/transaction ?? on L2 as `Address` object.
 
 ```ts
 export function getL2HashFromPriorityOp(
@@ -355,6 +479,12 @@ export function getL2HashFromPriorityOp(
 
 Returns a keccak encoded message with a given sender address and block number from the L1 messenger contract.
 
+#### Inputs
+
+- `sender`: sender address on L1 ?? as `Address` object.
+- `msg`: encoded message as `BytesLike` object.
+- `txNumberInBlock`: block number containing message on L2 ?? as number.
+
 ```ts
 export function getHashedL2ToL1Msg(sender: Address, msg: BytesLike, txNumberInBlock: number) {
     const encodedMsg = new Uint8Array([
@@ -372,7 +502,12 @@ export function getHashedL2ToL1Msg(sender: Address, msg: BytesLike, txNumberInBl
 
 ### `getSignature`
 
-Returns the signature of any transaction.
+Returns the signature of any transaction as a `Uint8Array`.
+
+#### Inputs
+
+- `transaction`: transaction address ?? as ??.
+- `ethSignature?`: transaction signature ?? as `EthereumSignature` object (optional).
 
 ```ts
 function getSignature(transaction: any, ethSignature?: EthereumSignature): Uint8Array {
@@ -395,6 +530,10 @@ function getSignature(transaction: any, ethSignature?: EthereumSignature): Uint8
 ### `hashBytecode`
 
 Returns the hash of given bytecode.
+
+#### Inputs
+
+- `bytecode`: ethers `BytesLike` object.
 
 ```ts
 export function hashBytecode(bytecode: ethers.BytesLike): Uint8Array {
@@ -435,9 +574,15 @@ export function hashBytecode(bytecode: ethers.BytesLike): Uint8Array {
 
 ### `isECDSASignatureCorrect`
 
-Like similar functionality in `ethers.js` but with added try/catch facility. 
+Like similar functionality in `ethers.js` but with added try/catch facility. The function returns true if the validation process succeeds.
 
-Called from [`isSignatureCorrect`](#isSignatureCorrect) for non-contract account addresses.
+Called from [`isSignatureCorrect`](#isSignatureCorrect) for non-contract account addresses. 
+
+#### Inputs
+
+- `address`: sender address ?? as string.
+- `msgHash`: hash of the message as string.
+- `signature`: ethers signature as `SignatureLike` object.
 
 ```ts
 function isECDSASignatureCorrect(address: string, msgHash: string, signature: SignatureLike): boolean {
@@ -454,6 +599,13 @@ function isECDSASignatureCorrect(address: string, msgHash: string, signature: Si
 ### `isEIP1271SignatureCorrect`
 
 Called from [`isSignatureCorrect`](#isSignatureCorrect) for contract account addresses, the function returns true if the validation process results in the `EIP1271_MAGIC_VALUE`.
+
+#### Inputs
+
+- `provider`: `Provider` object.
+- `address`: sender address as string.
+- `msgHash`: hash of the message as string. 
+- `signature`: ethers signature as `SignatureLike` object. 
 
 ```ts
 async function isEIP1271SignatureCorrect(
@@ -473,9 +625,30 @@ async function isEIP1271SignatureCorrect(
 }
 ```
 
+### `isETH`
+
+Returns true if token represents ETH on L1 or L2.
+
+#### Inputs
+
+- `token`: `Address` object.
+
+```ts
+export function isETH(token: Address) {
+    return token.toLowerCase() == ETH_ADDRESS || token.toLowerCase() == L2_ETH_TOKEN_ADDRESS;
+}
+```
+
 ### `isMessageSignatureCorrect`
 
 Returns true if account abstraction EIP712 signature is correct.
+
+#### Inputs
+
+- `provider`: `Provider` object.
+- `address`: sender address as string.
+- `message`: string or Bytes object representation of the message. 
+- `signature`: ethers signature as `SignatureLike` object.
 
 ```ts
 export async function isMessageSignatureCorrect(
@@ -489,10 +662,16 @@ export async function isMessageSignatureCorrect(
 }
 ```
 
-
 ### `isSignatureCorrect`
 
 Called from [`isMessageSignatureCorrect`](#ismessagesignaturecorrect) and [`isTypedDataSignatureCorrect`](#istypeddatasignaturecorrect). Returns true if account abstraction EIP712 signature is correct.
+
+#### Inputs
+
+- `provider`: `Provider` object.
+- `address`: sender address as string.
+- `msgHash`: hash of the message as string. 
+- `signature`: ethers signature as `SignatureLike` object.
 
 ```ts
 async function isSignatureCorrect(
@@ -518,6 +697,15 @@ async function isSignatureCorrect(
 
 Returns true if account abstraction EIP712 signature is correct.
 
+#### Inputs
+
+- `provider`: Provider object.
+- `address`: sender address as string.
+- `domain`: `TypedDataDomain` object from `@ethersproject/abstract-signer`.
+- `types`: map of records pointing to array of data as `Record<string, Array<TypedDataField>>` ??. 
+- `value`: a single `Record` value as `Record<string, any>`.
+- `signature`: ethers signature as `SignatureLike` object.
+
 ```ts
 export async function isTypedDataSignatureCorrect(
     provider: Provider,
@@ -529,6 +717,19 @@ export async function isTypedDataSignatureCorrect(
 ): Promise<boolean> {
     const msgHash = ethers.utils._TypedDataEncoder.hash(domain, types, value);
     return await isSignatureCorrect(provider, address, msgHash, signature);
+}
+```
+
+### `layer1TxDefaults`
+
+Returns ??
+
+```ts
+export function layer1TxDefaults() {
+    return {
+        queueType: PriorityQueueType.Deque,
+        opTree: PriorityOpTree.Full
+    };
 }
 ```
 
@@ -544,17 +745,31 @@ Common serialize function used by internal teams.
 
 Please see the [utilities library definition](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) for more info.
 
-### `serializeTransaction`
+### `sleep`
 
-Common serialize transaction function used by internal teams. 
+Common sleep function that pauses execution for a number of milliseconds.
 
-Please see the [utilities library definition](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) for more info.
+#### Inputs
+
+- `millis`: number of milliseconds as number.
+
+#### Outputs
+
+- `Promise` object: for pausing execution by the specified amount.
+
+```ts
+export function sleep(millis: number) {
+    return new Promise((resolve) => setTimeout(resolve, millis));
+}
+```
 
 ### `undoL1ToL2Alias`
 
-Converts the `msg.sender` viewed on L2 to the address that submitted a transaction to the inbox on L1.
+Converts and returns the `msg.sender` viewed on L2 to the address that submitted a transaction to the inbox on L1.
 
-See also [`applyl1tol2alias`](#applyl1tol2alias).
+#### Inputs
+
+- `address`: sender address as string.
 
 ```ts
 export function undoL1ToL2Alias(address: string): string {
@@ -566,3 +781,5 @@ export function undoL1ToL2Alias(address: string): string {
     return ethers.utils.hexlify(result);
 }
 ```
+
+See also [`applyl1tol2alias`](#applyl1tol2alias).
