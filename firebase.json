@@ -44,21 +44,6 @@
           "type": "302"
         },
         {
-          "source": "/docs/api/go/",
-          "destination": "/docs/api/go/getting-started.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/java/",
-          "destination": "/docs/api/java/getting-started.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/swift/",
-          "destination": "/docs/api/swift/getting-started.html",
-          "type": "302"
-        },
-        {
           "source": "/docs/dev/zksync-v2/aa.html",
           "destination": "/docs/dev/developer-guides/aa.html",
           "type": "302"
@@ -156,21 +141,6 @@
         {
           "source": "/docs/dev/developer-guides/contracts/system-contracts.html",
           "destination": "/docs/dev/developer-guides/system-contracts.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/",
-          "destination": "/docs/api/go/getting-started.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/java/",
-          "destination": "/docs/api/java/getting-started.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/swift/",
-          "destination": "/docs/api/swift/getting-started.html",
           "type": "302"
         },
         {
