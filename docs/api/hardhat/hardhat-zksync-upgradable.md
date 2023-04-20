@@ -38,7 +38,7 @@ import { HardhatUserConfig } from 'hardhat/config';
 
 const config: HardhatUserConfig = {
     zksolc: {
-        version: '1.3.8',
+        version: '1.3.7',
         compilerSource: 'binary',
         settings: {
             optimizer: {
@@ -50,12 +50,12 @@ const config: HardhatUserConfig = {
     networks: {
         goerli: {
             zksync: false,
-            url: 'http://localhost:3050',
+            url: 'http://localhost:8545',
         },
         zkSyncNetwork: {
             zksync: true,
             ethNetwork: 'goerli',
-            url: 'http://localhost:8545',
+            url: 'http://localhost:3050',
         },
     },
     solidity: {
@@ -65,6 +65,10 @@ const config: HardhatUserConfig = {
 
 export default config;
 ```
+
+::: warning
+Currently we support smart contract upgrades compiled with zksolc 1.3.7 version.
+:::
 
 # Deploying Proxies
 
