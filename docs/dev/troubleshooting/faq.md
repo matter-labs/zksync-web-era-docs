@@ -194,7 +194,7 @@ Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The wi
 
 Sometimes, the team working on zkSync will initiate a regenesis on testnet - a restart of the blockchain which will introduce upgrades and return the state to the initial point.
 
-## Can i compile my contracts using a Window?
+## Why do my contracts not compile in Windows?
 
 Using Windows with the windows binaries will not compile your smart contracts, instead if you're using Windows, then make sure to use WSL 2, since WSL 1 is known to cause troubles.
 
