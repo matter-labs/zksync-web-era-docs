@@ -52,7 +52,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.3.8",
+    version: "1.3.9",
     compilerSource: "binary",
       settings: {
         isSystem: true,
