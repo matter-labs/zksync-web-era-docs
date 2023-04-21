@@ -3,7 +3,7 @@
 This tutorial shows you how to implement communication between L1 and L2 with the following example:
 
 - A **Governance** Solidity smart contract is deployed on layer 1. This contract has a function that sends a transaction to zkSync layer 2.
-- A **Counter** Solidity smart contract is deployed on zkSync Era layer 2. This contract stores a number that is incremented by calling the `increment` method. The `Governance` contract on layer 1 calls this function.
+- A **Counter** Solidity smart contract is deployed on zkSync layer 2. This contract stores a number that is incremented by calling the `increment` method. The `Governance` contract on layer 1 calls this function.
 
 ## Prerequisites
 
@@ -109,13 +109,13 @@ data, gasLimit, gasPerPubdataByteLimit, new bytes[](0), msg.sender);
 
 ### Deploy L1 governance contract
 
-1. This tutorial uses the `dotenv` package to load your private key and nodeUrl.
+1. Create the file `L1-Governance/goerli.json` and copy/paste the code below, filling in the relevant values. Find node provider urls [here](https://chainlist.org/chain/5).
 
-To configure it, create a `.env` file, in the root of your directory, and add your `nodeUrl` and `deployerPrivateKey`. Include your `.env` file in `.gitignore`, so it won't upload to a repository.
-
-```text
-NODE_URL= 
-DEPLOYER_PRIVATE_KEY=
+```json
+{
+  "nodeUrl": "<GOERLI NODE URL>", 
+  "deployerPrivateKey": "<YOUR PRIVATE KEY>" 
+}
 ```
 
 2. Replace the code in `hardhat.config.ts` with the following:
@@ -124,18 +124,8 @@ DEPLOYER_PRIVATE_KEY=
 import { HardhatUserConfig, task } from "hardhat/config";
 import "@nomiclabs/hardhat-waffle";
 
-// load env file
-import dotenv from "dotenv";
-dotenv.config();
-
-// load wallet private key from env file
-const DEPLOYER_PRIVATE_KEY = process.env.DEPLOYER_PRIVATE_KEY || "";
-
-// load nodeUrl from env file
-const NODE_URL = process.env.NODE_URL || "";
-
-if (DEPLOYER_PRIVATE_KEY && NODE_URL == "")
-  throw "⛔️ deployer private key and nodeUrl not detected! Add it to the .env file!";
+// import file with Göerli params
+const goerli = require("./goerli.json");
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -144,8 +134,8 @@ const config: HardhatUserConfig = {
     networks: {
       // Göerli network
       goerli: {
-        url: NODE_URL,
-        accounts: [DEPLOYER_PRIVATE_KEY],
+        url: goerli.nodeUrl,
+        accounts: [goerli.deployerPrivateKey],
       },
     },
 };
@@ -245,7 +235,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.3.9",
+    version: "1.3.8",
     compilerSource: "binary",
   },
   defaultNetwork: "zkSyncTestnet",
@@ -255,8 +245,8 @@ module.exports = {
       zksync: true,
     },
     zkSyncTestnet: {
-      url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
-      ethNetwork: "goerli", // The identifier of the network (e.g. `mainnet` or `goerli`)
+      url: "https://testnet.era.zksync.dev",
+      ethNetwork: "<GOERLI RPC URL>", 
       zksync: true,
     },
   },
