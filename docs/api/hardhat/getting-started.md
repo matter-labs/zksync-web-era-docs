@@ -61,7 +61,7 @@ import "@matterlabs/hardhat-zksync-solc";
 The network endpoints of the `zkSyncTestnet` network change dynamically for local tests.
 
 ```typescript
-// dynamically change endpoints for local tests
+// dynamically changes endpoints for local tests
 const zkSyncTestnet =
   process.env.NODE_ENV == "test"
     ? {
@@ -83,7 +83,7 @@ The `zksolc` block contains the minimal configuration required for the compiler.
 
 ```typescript
 zksolc: {
-  version: "1.3.9",
+  version: "1.3.8",
   compilerSource: "binary",
   settings: {},
 },
@@ -101,7 +101,7 @@ The project uses the `dotenv` package to load your private key which is required
 To configure it, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key. The `.env` file is included in `.gitignore` so it won't upload to a repository.
 
 ```text
-WALLET_PRIVATE_KEY=0x1....
+WALLET_PRIVATE_KEY=abcdef12345....
 ```
 
 ## Compile and deploy a contract

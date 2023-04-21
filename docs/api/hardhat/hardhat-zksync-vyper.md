@@ -38,7 +38,7 @@ This plugin most often will not be used directly in the code.
 
 ```typescript
 zkvyper: {
-  version: "1.3.9",
+  version: "1.3.8",
   compilerSource: "binary",  // binary or docker
   settings: {
     compilerPath: "zkvyper",  // ignored for compilerSource: "docker"
