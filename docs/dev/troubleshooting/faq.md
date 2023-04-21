@@ -196,9 +196,9 @@ Sometimes, the team working on zkSync will initiate a regenesis on testnet - a r
 
 ## Why do my contracts not compile in Windows?
 
-Using Windows with the windows binaries will not compile your smart contracts, instead if you're using Windows, then make sure to use WSL 2, since WSL 1 is known to cause troubles.
+If you're using Windows, make sure to use WSL 2, since WSL 1 is known to cause trouble.
 
-Additionally, if you are going to use WSL 2, make sure that your project is located in the linux filesystem, since accessing NTFS partitions from inside of WSL is very slow. For more detailed explanation, check out our system requirement guide for [solidity](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements) and [vyper](https://github.com/matter-labs/era-compiler-vyper/tree/main#system-requirements).
+Additionally, if you use WSL 2, make sure that your project is located in the Linux filesystem, since accessing NTFS partitions from WSL is very slow. 
 
 ## Proof sampling on testnet
 
