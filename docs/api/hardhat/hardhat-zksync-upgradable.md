@@ -110,7 +110,7 @@ contract Box is Initializable{
 }
 ```
 
-In examples below, we assume that the Box contract is compiled and its artifact loaded using Deployer class from hardhat-zksync-deploy plugin. More info on how to compile and load the contract can be found on the following link: [write-and-deploy-a-contract](https://era.zksync.io/docs/api/hardhat/getting-started.html#write-and-deploy-a-contract).
+In examples below, we assume that the Box contract is compiled and its artifact loaded using Deployer class from hardhat-zksync-deploy plugin. More info on how to compile and load the contract can be found in the [Hardhat getting started page](https://era.zksync.io/docs/api/hardhat/getting-started.html#compile-and-deploy-a-contract).
 
 ## Transparent upgradable proxies
 
