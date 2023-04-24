@@ -237,7 +237,7 @@ export function create2Address(sender: Address, bytecodeHash: BytesLike, salt: B
 ```
 
 :::tip
-The `prefix` in the `kekkak256` calculation is equal to `keccak256("zksyncCreate")`.
+The `prefix` is equal to `keccak256("zksyncCreate")`.
 :::
 
 ### `createAddress`
