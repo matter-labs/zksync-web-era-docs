@@ -1,31 +1,29 @@
-# Differences with Ethereum
+# Differences from Ethereum
 
-zkSync Era can handle almost all smart contracts based on the Ethereum Virtual Machine (EVM) and maintains high security standards,
-reducing the need for repeated security audits. However, it's important to be aware of the following differences.
+zkSync Era handles nearly all smart contracts based on the Ethereum Virtual Machine (EVM) and upholds high security standards,
+minimizing the need for repeated security audits. Nevertheless, it's essential to recognize the following differences.
 
 ## EVM Instructions
 
-#### `CREATE` / `CREATE2`
+#### `CREATE`, `CREATE2`
 
-On Ethereum, both `CREATE` and `CREATE2` accept the `initCode` of the contract plus concatenated constructor parameters
-as input. However, on zkSync, contract deployment is done via hashes, and the `factoryDeps` field of EIP712 transactions
-contain the bytecode. The actual deployment is done by providing the contract’s hash to the `ContractDeployer` system contract.
+In zkSync Era, contract deployment is performed using the hash of the bytecode, and the factoryDeps field of EIP712
+transactions contains the bytecode. The actual deployment occurs by providing the contract's hash to the
+ContractDeployer system contract.
 
-To ensure that `create`/`create2` works correctly, the compiler must know the bytecode of the deployed contract beforehand.
-The compiler interprets the `calldata` arguments as incomplete to  `ContractDeployer`
-(the rest is filled with the compiler internally). The `datasize`/ `dataoffset` Yul instructions were adapted to return
-a constant size and the bytecode hash instead of bytecode.
+To guarantee that create/create2 functions operate correctly, the compiler must be aware of the bytecode of the deployed
+contract in advance. The compiler interprets the calldata arguments as incomplete input for ContractDeployer,
+as the remaining part is filled in by the compiler internally. The Yul `datasize` and `dataoffset` instructions
+have been adjusted to return the constant size and bytecode hash rather than the bytecode itself.
 
-Consider the following code:
+The code below should work as expected:
 
 ```solidity
 MyContract a = new MyContract();
 MyContract a = new MyContract{salt: ...}();
 ```
 
-The above should work as expected.
-
-Additionally, the following code should also work, but must be explicitly tested to ensure it works as intended:
+In addition, the subsequent code should also work, but it must be explicitly tested to ensure its intended functionality:
 
 ```solidity
 bytes memory bytecode = type(MyContract).creationCode;
@@ -34,7 +32,7 @@ assembly {
 }
 ```
 
-The following code will not work because the compiler is unaware of the bytecode beforehand.
+The following code will not function correctly because the compiler is not aware of the bytecode beforehand:
 
 ```solidity
 function myFactory(bytes memory bytecode) public {
@@ -44,11 +42,11 @@ function myFactory(bytes memory bytecode) public {
 }
 ```
 
-Unfortunately, it is not possible to distinguish between the above cases at compile-time. Therefore, we highly
-recommended including tests for any factory that deploys child contracts.
+Unfortunately, it's impossible to differentiate between the above cases during compile-time. As a result, we strongly
+recommend including tests for any factory that deploys child contracts.
 
-For zkEVM bytecode, we use a different address derivation from Ethereum. The exact formulas are available in our SDK,
-as seen here:
+For zkEVM bytecode, zkSync Era uses a distinct address derivation method compared to Ethereum. The precise formulas
+can be found in our SDK, as demonstrated below:
 
 ```typescript
 export function create2Address(sender: Address, bytecodeHash: BytesLike, salt: BytesLike, input: BytesLike) {
@@ -76,29 +74,35 @@ export function createAddress(sender: Address, senderNonce: BigNumberish) {
 }
 ```
 
-#### `CALL` / `STATICCALL` / `DELEGATECALL`
+#### `CALL`, `STATICCALL`, `DELEGATECALL`
 
-For `call`, you can specify a memory slice to write the returndata to (the `out` and `outsize` arguments for `call(g, a, v, in, insize, out, outsize)`).
-On EVM if `outsize != 0` the allocated memory will grow to `out + outsize` (rounded up to the words) regardless of the `returndatasize`.
-On zkEVM, `returndatacopy`, similarly to `calldatacopy`, is implemented as a cycle iterating over `returndata` with a few
-additional checks specific to `returndata` (i.e. panic if `offset + len > returndatasize` to simulate the same behaviour as on EVM).
+For calls, you specify a memory slice to write the return data to, e.g. `out` and `outsize` arguments for
+`call(g, a, v, in, insize, out, outsize)`. In EVM, if `outsize != 0`, the allocated memory will grow to `out + outsize`
+(rounded up to the words) regardless of the `returndatasize`. In zkSync Era, `returndatacopy`, similar to `calldatacopy`,
+is implemented as a cycle iterating over return data with a few additional checks
+(e.g. panic if `offset + len > returndatasize` to simulate the same behavior as in EVM).
 
-So, unlike EVM where the memory growth happens before the call itself, on zkEVM the necessary copying of the returndata
-will happen only after the call has ended, leading to a difference in `msize()` and sometimes zkEVM not panicking where
-the EVM would panic due to the difference in memory growth.
+Thus, unlike EVM where memory growth occurs before the call itself, in zkSync Era, the necessary copying of return data
+happens only after the call has ended, leading to a difference in `msize()` and sometimes zkSync Era not panicking where
+EVM would panic due to the difference in memory growth.
 
-#### `MSTORE` / `MLOAD`
+Additionally, there is no native support for passing Ether in zkSync Era, so it is handled by a special system contract
+called `MsgValueSimulator`. The simulator receives the callee address and Ether amount, performs all necessary balance
+changes, and then calls the callee.
+
+#### `MSTORE`, `MLOAD`
 
 Unlike EVM, where the memory growth is in words, on zkEVM the memory growth is counted in bytes. For example, if you write
 `mstore(100, 0)` the `msize` on zkEVM will be `132`, but on the EVM is will be `160`. Note, that also unlike EVM which
 has quadratic growth for memory payments, on zkEVM the fees are charged linearly at a rate of `1` erg per byte.
 
 The other thing is that our compiler can sometimes optimize unused memory reads/writes. This can lead to different `msize`
-compared to Ethereum since fewer bytes have been allocated, leading to cases where EVM panics, but zkEVM won’t due to the difference in memory growth.
+compared to Ethereum since fewer bytes have been allocated, leading to cases where EVM panics, but zkEVM won’t due to
+the difference in memory growth.
 
-#### `CALLDATALOAD` / `CALLDATACOPY`
+#### `CALLDATALOAD`, `CALLDATACOPY`
 
-If the `offset` for `calldataload(offset)` is greater than `2^32-33` then execution will panic. On Ethereum, the returned value is `0`.
+If the `offset` for `calldataload(offset)` is greater than `2^32-33` then execution will panic.
 
 Internally, `calldatacopy(to, offset, len)` on zkEVM is just a loop with the `calldataload` and `mstore` on each iteration.
 That means that the code will panic if `2^32-32 + offset % 32 < offset + len`.
@@ -108,6 +112,10 @@ That means that the code will panic if `2^32-32 + offset % 32 < offset + len`.
 | Deploy code                       | Runtime code                      |
 | --------------------------------- | --------------------------------- |
 | Size of the constructor arguments | Contract size                     |
+
+Yul uses a special instruction `datasize` to distinguish the contract code and constructor arguments, so we
+substitute `datasize` with 0 and `codesize` with `calldatasize` in deploy code. This way when Yul calculates the
+calldata size as `sub(codesize, datasize)`, the result will be the size of the constructor arguments.
 
 #### `CODECOPY`
 
@@ -135,7 +143,8 @@ Returns a constant value of `2500000000000000`.
 
 #### `BASEFEE`
 
-Is not a constant on zkSync Era and defined by the fee model. Most of the time it is 0.25 gwei, but under very high L1 gas prices it may rise.
+Is not a constant on zkSync Era and defined by the fee model. Most of the time it is 0.25 gwei, but under very high L1
+gas prices it may rise.
 
 #### `SELFDESTRUCT`
 
@@ -163,19 +172,112 @@ Always produces a compile-time error with our toolchain.
 
 #### `DATASIZE`, `DATAOFFSET`, `DATACOPY`
 
-`datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `loadimmutable` may behave differently.
-Please note that `datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `loadimmutable` may behave differently in most
-cases in Yul (not assembly blocks in Solidity). This is due to modifications made to make solc-generated Yul work with our system, particularly in regards to create and constructors.
+The contract deployment is handled by two pieces of our system: the front-end and the system contract `ContractDeployer`.
+
+On the compiler front end the code of the deployed contract is substituted with its hash. The hash is returned by the `dataoffset`
+Yul instruction or the `PUSH [$]` EVM legacy assembly instruction. The hash is then passed to the `datacopy` Yul instruction
+or the `CODECOPY` EVM legacy instruction, which writes the hash to the correct position of the calldata of the call to
+`ContractDeployer`.
+
+The calldata consists of several elements:
+
+1. The signature (4 bytes)
+2. The salt (32 bytes)
+3. The contract hash (32 bytes)
+4. The constructor calldata offset (32 bytes)
+5. The constructor calldata length (32 bytes)
+6. The constructor calldata itself (N bytes)
+
+Effectively, the elements 1-5 replace the supposed contract code in the EVM pipeline, and the element 6 containing
+the constructor arguments remains unchanged. For this reason `datasize` and `PUSH [$]` return the size of
+elements 1-5 (132), and the space for constructor arguments is allocated by **solc** on top of it.
+
+In the end, the `CREATE` or `CREATE2` instruction pass 132+N bytes to the `ContractDeployer` contract, which does all
+the necessary changes  to the state and returns the contract address or zero if there has been an error.
+
+If some Ether is passed, the call to the `ContractDeployer` also goes through the `MsgValueSimulator` just like ordinar calls.
+
+It is not recommended to use `CREATE` in other way than creating contracts with the `new` operator, but a lot of contracts
+do that in assembly blocks, so their authors must ensure that their behavior is compatible with the logic described above.
+
+Yul example:
+
+```solidity
+let _1 := 128                                       // the deployer calldata offset
+let _2 := datasize("Callable_50")                   // returns the header size (132)
+let _3 := add(_1, _2)                               // the constructor arguments begin offset
+let _4 := add(_3, args_size)                        // the constructor arguments end offset
+datacopy(_1, dataoffset("Callable_50"), _2)         // dataoffset returns the contract hash, which is written according to the offset in the 1st argument
+let address_or_zero := create(0, _1, sub(_4, _1))   // the header and constructor arguments are passed to the ContractDeployer system contract
+```
+
+EVM legacy assembly example:
+
+```solidity
+010     PUSH #[$]       tests/solidity/complex/create/create/callable.sol:Callable      // returns the header size (132), equivalent to Yul's datasize
+011     DUP1
+012     PUSH [$]        tests/solidity/complex/create/create/callable.sol:Callable      // returns the contract hash, equivalent to Yul's dataoffset
+013     DUP4
+014     CODECOPY        // CODECOPY statically detects the special arguments above and behaves like the Yul's datacopy
+...
+146     CREATE          // accepts the same data as in the Yul example above
+```
 
 #### `SETIMMUTABLE`, `LOADIMMUTABLE`
 
-`datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `loadimmutable` may behave differently.
-Please note that `datasize`, `dataoffset`, `datacopy`, `setimmutable`, and `loadimmutable` may behave differently in most
-cases in Yul (not assembly blocks in Solidity). This is due to modifications made to make solc-generated Yul work with our system, particularly in regards to create and constructors.
+zkEVM does not provide any access to the contract bytecode, so the behavior of immutable values is simulated with the system contracts.
+
+1. The deploy code, also known as constructor, assembles the array of immutables in the auxiliary heap. Each array element
+   consists of an index and a value. Indexes are allocated sequentially by zksolc for each string literal identifier allocated by solc.
+2. The constructor returns the array as the return data to the contract deployer.
+3. The array is passed to a special system contract called `ImmutableSimulator`, where it is stored in a mapping with
+   the contract address as the key.
+4. In order to access immutables from the runtime code, contracts call the `ImmutableSimulator` to fetch a value using
+   the address and value index. In the deploy code, immutable values are read from the auxiliary heap, where they are still available.
+
+The element of the array of immutable values:
+
+```solidity
+struct Immutable {
+    uint256 index;
+		uint256 value;
+}
+```
+
+Yul example:
+
+```solidity
+mstore(128, 1)                                   // write the 1st value to the heap
+mstore(160, 2)                                   // write the 2nd value to the heap
+
+let _2 := mload(64)
+let _3 := datasize("X_21_deployed")              // returns 0 in the deploy code
+codecopy(_2, dataoffset("X_21_deployed"), _3)    // no effect, because the length is 0
+
+// the 1st argument is ignored
+setimmutable(_2, "3", mload(128))                // write the 1st value to the auxiliary heap array at index 0
+setimmutable(_2, "5", mload(160))                // write the 2nd value to the auxiliary heap array at index 32
+
+return(_2, _3)                                   // returns the auxiliary heap array instead
+```
+
+EVM legacy assembly example:
+
+```solidity
+053     PUSH #[$]       <path:Type>               // returns 0 in the deploy code
+054     PUSH [$]        <path:Type>
+055     PUSH            0
+056     CODECOPY                                  // no effect, because the length is 0
+057     ASSIGNIMMUTABLE 5                         // write the 1st value to the auxiliary heap array at index 0
+058     ASSIGNIMMUTABLE 3                         // write the 2nd value to the auxiliary heap array at index 32
+059     PUSH #[$]       <path:Type>
+060     PUSH            0
+061     RETURN                                    // returns the auxiliary heap array instead
+```
 
 ## Using `call` over `.send` or `.transfer`
 
-Avoid using `payable(X).send`/`payable(X).transfer` because the 2300 gas stipend may not be enough to send a transfer,
+Avoid using `payable(X).send`/`payable(X).transfer` because the 2300 gas stipend may not be enough for such calls,
 especially if it involves state changes that require a large amount of L2 gas for data. Instead, we recommend using `call`.
 
 Instead of:
@@ -191,7 +293,17 @@ Use instead:
 (bool s, )= call{value: x}("")
 ```
 
-This converts the `send`/`transfer` functionality to `call` and [avoids potential security risks outlined here.](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/)
+This converts the `send`/`transfer` functionality to `call` and [avoids potential security risks outlined here.](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/).
+
+### Libraries
+
+We rely on the **solc**’s optimizer to do the library inlining for us, so a library may only be used without deployment
+if it has been inlined by the optimizer.
+
+The addresses of deployed libraries must be set in the project configuration. These addresses then replace their placeholders
+in IRs: `linkersymbol` in Yul and `PUSHLIB` in EVM legacy assembly.
+
+All linking happens at compile time. Deploy-time linking is not supported.
 
 ### Precompiles
 
