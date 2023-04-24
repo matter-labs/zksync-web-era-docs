@@ -154,7 +154,7 @@ export const DEFAULT_GAS_PER_PUBDATA_LIMIT = 50000;
 
 #### `REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT`
 
-Any amount is possible for L1->L2 transactions because the cost per gas is adjusted.
+The current required gas per pubdata for L1->L2 transactions. Any amount is possible for L1->L2 transactions because the cost per gas is adjusted.
 
 ```ts
 export const REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT = 800;
