@@ -79,7 +79,7 @@ export const enSidebar = sidebar({
       link: "/api/api.md", // optional, which should be a absolute path.
     },
     {
-      text: "JavaScript SDK", // required
+      text: "TypeScript SDK", // required
       link: "/api/js", // optional, which should be a absolute path.
       children: [
         "/api/js/getting-started",
@@ -89,6 +89,7 @@ export const enSidebar = sidebar({
         "/api/js/contracts",
         "/api/js/features",
         "/api/js/utils",
+        "/api/js/paymaster-utils",
         "/api/js/types",
         "/api/js/front-end",
       ],
