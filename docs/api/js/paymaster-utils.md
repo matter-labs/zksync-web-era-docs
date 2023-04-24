@@ -4,9 +4,9 @@ The [paymaster utilities library](https://github.com/matter-labs/zksync-era/blob
 
 ## Contract interfaces
 
-### `PaymasterFlow`
+### `IPaymasterFlow`
 
-Constant abi definition for the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob/36fe0fd11aeb2cfe88139e7e09d59a25366668d6/zksync/contracts/interfaces/IPaymasterFlow.sol).
+Constant ABI definition for the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob/36fe0fd11aeb2cfe88139e7e09d59a25366668d6/zksync/contracts/interfaces/IPaymasterFlow.sol).
 
 ```typescript
 export const IPaymasterFlow = new ethers.utils.Interface(require('../../abi/IPaymasterFlow.json').abi);

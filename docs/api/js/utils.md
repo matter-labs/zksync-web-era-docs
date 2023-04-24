@@ -58,7 +58,7 @@ export const L1_MESSENGER = new utils.Interface(require('../../abi/IL1Messenger.
 
 #### L1 and L2 bridges
 
-Bridge interface abis for L1 and L2.
+Bridge interface ABIs for L1 and L2.
 
 ```ts
 export const L1_BRIDGE_ABI = new utils.Interface(require('../../abi/IL1Bridge.json').abi);
@@ -67,7 +67,7 @@ export const L2_BRIDGE_ABI = new utils.Interface(require('../../abi/IL2Bridge.js
 
 #### L1 to L2 alias offset
 
-Used for applying and undoing aliases on addresses from L1 to L2.
+Used for applying and undoing aliases on addresses during bridging from L1 to L2.
 
 ```ts
 export const L1_TO_L2_ALIAS_OFFSET = '0x1111000000000000000000000000000000001111';
@@ -416,7 +416,7 @@ Gets the data needed for initializing an L1 token counterpart on L2.
 
 #### Outputs
 
-An array of:
+An ABI-encoded array of:
 
 - `nameBytes`: `bytes` object representation of token name.
 - `symbolBytes`: `bytes` object representation of token symbol.
