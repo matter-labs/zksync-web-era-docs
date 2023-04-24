@@ -416,7 +416,7 @@ Gets the data needed for initializing an L1 token counterpart on L2.
 
 #### Outputs
 
-An array of:
+An ABI-encoded array of:
 
 - `nameBytes`: `bytes` object representation of token name.
 - `symbolBytes`: `bytes` object representation of token symbol.
