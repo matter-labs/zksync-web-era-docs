@@ -481,7 +481,7 @@ Returns a keccak encoded message with a given sender address and block number fr
 
 #### Inputs
 
-- `sender`: sender address on L1 ?? as `Address` object.
+- `sender`: the sender of the message on L2 as `Address` string.
 - `msg`: encoded message as `BytesLike` object.
 - `txNumberInBlock`: index of the transaction in the block as number.
 
