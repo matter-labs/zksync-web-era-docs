@@ -11,7 +11,7 @@ Therefore, for each block, the zkSync Era sequencer defines the following dynami
 
 :::warning Important
 - Only storage slot updates are published on zkSync Era. 
-- For example, if the same storage slot is updated 10 times in the same rollup block, for example, only the final update is published on Ethereum and there is therefore only one gas charge.
+- For example, if the same storage slot is updated 10 times in the same rollup block, only the final update is published on Ethereum and there is therefore only one gas charge.
 :::
 
 ## Fee model overview
@@ -54,7 +54,7 @@ Long transactions incur additional costs during interactions with an account. zk
 
 By default, the zkSync Era sequencer provides a transaction structure with the available information during the fee estimation.
 
-Because the signature is unavailable prior to the transaction taking place, an invalid 65-byte ECDSA signature is used instead. The `DefaultAccount` (used by EOAs), during fee estimation, executes as many operations, including signature verification, and returns only `bytes4(0)` instead of magic.
+Because the signature is unavailable prior to the transaction taking place, an invalid 65-byte ECDSA signature is used instead. The `DefaultAccount` (used by EOAs), during gas fee estimation, executes many operations, including signature verification, and returns only `bytes4(0)` instead of [magic](../../../api/js/utils.md#magic-value).
 
 In the case of a custom account with multiple signers, the account may wish to simulate signature validation for all the provided signers.
 
@@ -87,7 +87,7 @@ Due to this, custom accounts may unexpectedly contain more balance than they hav
 
 A gas estimate may be higher than the actual cost of the transaction. This means users usually only spend a portion of the estimated transaction cost.
 
-The (notional concept) of refund, therefore, returns the unpaid transaction fee portion to the user.
+The refund, therefore, returns the unpaid transaction fee portion to the user.
 
 :::tip
 - Only one transaction is recorded on the block, even if a portion of the original estimate is refunded.
@@ -101,4 +101,4 @@ Refunds are calculated by defining a fair value for the amount the user spent on
 
 Unlike on Geth, it is impossible to track out-of-gas errors on zkSync Era. 
 
-The main reason is that the “actual” execution happens inside the `DefaultAccount` system contract and, due to the 63/64 rule, when a high number of gas is provided, the call to the `execute` function of the `DefaultAccount` will NOT fail, even if it is out of gas, although the subcall to the `transaction.to` contract will fail with an out of gas error.
+The main reason is that the “actual” execution happens inside the `DefaultAccount` system contract and, due to the 63/64 rule, when a high amount of gas is provided, the call to the `execute` function of the `DefaultAccount` will NOT fail, even if it is out of gas, although the subcall to the `transaction.to` contract will fail with an out of gas error.
