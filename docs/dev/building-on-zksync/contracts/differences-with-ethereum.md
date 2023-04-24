@@ -3,16 +3,16 @@
 zkSync Era handles nearly all smart contracts based on the Ethereum Virtual Machine (EVM) and upholds high security standards,
 minimizing the need for repeated security audits. Nevertheless, it's essential to recognize the following differences.
 
-## EVM Instructions
+## EVM instructions
 
-#### `CREATE`, `CREATE2`
+### `CREATE`, `CREATE2`
 
-In zkSync Era, contract deployment is performed using the hash of the bytecode, and the factoryDeps field of EIP712
+In zkSync Era, contract deployment is performed using the hash of the bytecode, and the `factoryDeps` field of EIP712
 transactions contains the bytecode. The actual deployment occurs by providing the contract's hash to the
-ContractDeployer system contract.
+`ContractDeployer` system contract.
 
-To guarantee that create/create2 functions operate correctly, the compiler must be aware of the bytecode of the deployed
-contract in advance. The compiler interprets the calldata arguments as incomplete input for ContractDeployer,
+To guarantee that `create`/`create2` functions operate correctly, the compiler must be aware of the bytecode of the deployed
+contract in advance. The compiler interprets the calldata arguments as incomplete input for `ContractDeployer`,
 as the remaining part is filled in by the compiler internally. The Yul `datasize` and `dataoffset` instructions
 have been adjusted to return the constant size and bytecode hash rather than the bytecode itself.
 
@@ -74,7 +74,7 @@ export function createAddress(sender: Address, senderNonce: BigNumberish) {
 }
 ```
 
-#### `CALL`, `STATICCALL`, `DELEGATECALL`
+### `CALL`, `STATICCALL`, `DELEGATECALL`
 
 For calls, you specify a memory slice to write the return data to, e.g. `out` and `outsize` arguments for
 `call(g, a, v, in, insize, out, outsize)`. In EVM, if `outsize != 0`, the allocated memory will grow to `out + outsize`
@@ -90,7 +90,7 @@ Additionally, there is no native support for passing Ether in zkSync Era, so it 
 called `MsgValueSimulator`. The simulator receives the callee address and Ether amount, performs all necessary balance
 changes, and then calls the callee.
 
-#### `MSTORE`, `MLOAD`
+### `MSTORE`, `MLOAD`
 
 Unlike EVM, where the memory growth is in words, on zkEVM the memory growth is counted in bytes. For example, if you write
 `mstore(100, 0)` the `msize` on zkEVM will be `132`, but on the EVM is will be `160`. Note, that also unlike EVM which
@@ -100,105 +100,100 @@ The other thing is that our compiler can sometimes optimize unused memory reads/
 compared to Ethereum since fewer bytes have been allocated, leading to cases where EVM panics, but zkEVM won’t due to
 the difference in memory growth.
 
-#### `CALLDATALOAD`, `CALLDATACOPY`
+### `CALLDATALOAD`, `CALLDATACOPY`
 
 If the `offset` for `calldataload(offset)` is greater than `2^32-33` then execution will panic.
 
-Internally, `calldatacopy(to, offset, len)` on zkEVM is just a loop with the `calldataload` and `mstore` on each iteration.
+Internally on zkEVM, `calldatacopy(to, offset, len)` there is just a loop with the `calldataload` and `mstore` on each iteration.
 That means that the code will panic if `2^32-32 + offset % 32 < offset + len`.
 
-#### `CODESIZE`
+### `CODESIZE`
 
 | Deploy code                       | Runtime code                      |
 | --------------------------------- | --------------------------------- |
 | Size of the constructor arguments | Contract size                     |
 
 Yul uses a special instruction `datasize` to distinguish the contract code and constructor arguments, so we
-substitute `datasize` with 0 and `codesize` with `calldatasize` in deploy code. This way when Yul calculates the
-calldata size as `sub(codesize, datasize)`, the result will be the size of the constructor arguments.
+substitute `datasize` with 0, and `codesize` with `calldatasize`, in zkSync Era deployment code. This way when Yul calculates the
+calldata size as `sub(codesize, datasize)`, the result is the size of the constructor arguments.
 
-#### `CODECOPY`
+### `CODECOPY` in zkSync Era
 
 | Deploy code                       | Runtime code (old EVM codegen)    | Runtime code (new Yul codegen)    |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | Copies the constructor arguments  | Zeroes memory out                 | Compile-time error                |
 
-#### `RETURN`
+### `RETURN`
 
-Constructors return the array of immutable values. If you use `RETURN` in an assembly block in the constructor,
+Constructors return the array of immutable values. If you use `RETURN` in an assembly block in the constructor in zkSync Era,
 it will return the array of immutable values initialized so far.
 
-#### `TIMESTAMP`, `NUMBER`
+### `TIMESTAMP`, `NUMBER`
 
 For more information on blocks in zkSync Era, including the differences between `block.timestamp` and `block.number`,
 check out the [blocks in zkSync Era documentation](../../developer-guides/transactions/blocks.md#blocks-in-zksync-era).
 
-#### `COINBASE`
+### `COINBASE`
 
-Returns the address of the `Bootloader` contract, which is `0x8001`.
+Returns the address of the `Bootloader` contract, which is `0x8001` in zkSync Era.
 
-#### `DIFFICULTY`
+### `DIFFICULTY`
 
-Returns a constant value of `2500000000000000`.
+Returns a constant value of `2500000000000000` in zkSync Era.
 
-#### `BASEFEE`
+### `BASEFEE`
 
-Is not a constant on zkSync Era and defined by the fee model. Most of the time it is 0.25 gwei, but under very high L1
-gas prices it may rise.
+This is not a constant on zkSync Era and is instead defined by the fee model. Most of the time it is 0.25 gwei, but under very high L1 gas prices it may rise.
 
-#### `SELFDESTRUCT`
+### `SELFDESTRUCT`
 
 Considered harmful and deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).
 
 Always produces a compile-time error with our toolchain.
 
-#### `CALLCODE`
+### `CALLCODE`
 
 Deprecated in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`.
 
 Always produces a compile-time error with our toolchain.
 
-#### `PC`
+### `PC`
 
 Inaccessible in Yul and Solidity `>=0.7.0`, but accessible in Solidity `0.6`.
 
 Always produces a compile-time error with our toolchain.
 
-#### `EXTCODECOPY`
+### `EXTCODECOPY`
 
 Contract bytecode cannot be accessed in our architecture. Only its size is accessible with `CODESIZE` and `EXTCODESIZE`.
 
 Always produces a compile-time error with our toolchain.
 
-#### `DATASIZE`, `DATAOFFSET`, `DATACOPY`
+### `DATASIZE`, `DATAOFFSET`, `DATACOPY`
 
-The contract deployment is handled by two pieces of our system: the front-end and the system contract `ContractDeployer`.
+Contract deployment is handled by two areas of our system: the front-end and the system contract `ContractDeployer`.
 
-On the compiler front end the code of the deployed contract is substituted with its hash. The hash is returned by the `dataoffset`
-Yul instruction or the `PUSH [$]` EVM legacy assembly instruction. The hash is then passed to the `datacopy` Yul instruction
-or the `CODECOPY` EVM legacy instruction, which writes the hash to the correct position of the calldata of the call to
-`ContractDeployer`.
+On the compiler front-end the code of the deployed contract is substituted with its hash. The hash is returned by the `dataoffset` Yul instruction or the `PUSH [$]` EVM legacy assembly instruction. The hash is then passed to the `datacopy` Yul instruction or the `CODECOPY` EVM legacy instruction, which writes the hash to the correct position of the calldata of the call to `ContractDeployer`.
 
 The calldata consists of several elements:
 
-1. The signature (4 bytes)
-2. The salt (32 bytes)
-3. The contract hash (32 bytes)
-4. The constructor calldata offset (32 bytes)
-5. The constructor calldata length (32 bytes)
-6. The constructor calldata itself (N bytes)
+1. The signature (4 bytes).
+2. The salt (32 bytes).
+3. The contract hash (32 bytes).
+4. The constructor calldata offset (32 bytes).
+5. The constructor calldata length (32 bytes).
+6. The constructor calldata itself (N bytes).
 
-Effectively, the elements 1-5 replace the supposed contract code in the EVM pipeline, and the element 6 containing
-the constructor arguments remains unchanged. For this reason `datasize` and `PUSH [$]` return the size of
+The elements 1-5 replace the supposed contract code in the EVM pipeline, and the element 6, containing
+the constructor arguments, remains unchanged. For this reason, `datasize` and `PUSH [$]` return the size of
 elements 1-5 (132), and the space for constructor arguments is allocated by **solc** on top of it.
 
-In the end, the `CREATE` or `CREATE2` instruction pass 132+N bytes to the `ContractDeployer` contract, which does all
-the necessary changes  to the state and returns the contract address or zero if there has been an error.
+Finally, the `CREATE` or `CREATE2` instructions pass 132+N bytes to the `ContractDeployer` contract, which makes all
+the necessary changes to the state and returns the contract address or zero if there has been an error.
 
-If some Ether is passed, the call to the `ContractDeployer` also goes through the `MsgValueSimulator` just like ordinar calls.
+If some Ether is passed, the call to the `ContractDeployer` also goes through the `MsgValueSimulator` just like ordinary calls.
 
-It is not recommended to use `CREATE` in other way than creating contracts with the `new` operator, but a lot of contracts
-do that in assembly blocks, so their authors must ensure that their behavior is compatible with the logic described above.
+We do not recommend using `CREATE` for anything other than creating contracts with the `new` operator. However, a lot of contracts create contracts in assembly blocks instead, so authors must ensure that the behavior is compatible with the logic described above.
 
 Yul example:
 
@@ -223,12 +218,12 @@ EVM legacy assembly example:
 146     CREATE          // accepts the same data as in the Yul example above
 ```
 
-#### `SETIMMUTABLE`, `LOADIMMUTABLE`
+### `SETIMMUTABLE`, `LOADIMMUTABLE`
 
 zkEVM does not provide any access to the contract bytecode, so the behavior of immutable values is simulated with the system contracts.
 
 1. The deploy code, also known as constructor, assembles the array of immutables in the auxiliary heap. Each array element
-   consists of an index and a value. Indexes are allocated sequentially by zksolc for each string literal identifier allocated by solc.
+   consists of an index and a value. Indexes are allocated sequentially by `zksolc` for each string literal identifier allocated by `solc`.
 2. The constructor returns the array as the return data to the contract deployer.
 3. The array is passed to a special system contract called `ImmutableSimulator`, where it is stored in a mapping with
    the contract address as the key.
@@ -277,8 +272,7 @@ EVM legacy assembly example:
 
 ## Using `call` over `.send` or `.transfer`
 
-Avoid using `payable(X).send`/`payable(X).transfer` because the 2300 gas stipend may not be enough for such calls,
-especially if it involves state changes that require a large amount of L2 gas for data. Instead, we recommend using `call`.
+Avoid using `payable(X).send`/`payable(X).transfer` because the 2300 gas stipend may not be enough for such calls, especially if it involves state changes that require a large amount of L2 gas for data. Instead, we recommend using `call`.
 
 Instead of:
 
@@ -295,19 +289,19 @@ Use instead:
 
 This converts the `send`/`transfer` functionality to `call` and [avoids potential security risks outlined here.](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/).
 
-### Libraries
+## Libraries
 
-We rely on the **solc**’s optimizer to do the library inlining for us, so a library may only be used without deployment
+We rely on the **solc** optimizer for library inlining, so a library may only be used without deployment
 if it has been inlined by the optimizer.
 
 The addresses of deployed libraries must be set in the project configuration. These addresses then replace their placeholders
 in IRs: `linkersymbol` in Yul and `PUSHLIB` in EVM legacy assembly.
 
-All linking happens at compile time. Deploy-time linking is not supported.
+All linking happens at compile-time. Deploy-time linking is not supported.
 
-### Precompiles
+## Precompiles
 
-Some EVM cryptographic precompiles (notably pairings and RSA) won’t be immediately available. However, pairing is
+Some EVM cryptographic precompiles (notably pairings and RSA) aren't currently available. However, pairing is
 prioritized to allow deployment of both Hyperchains and protocols like Aztec/Dark Forest without modifications.
 
 Ethereum cryptographic primitives like `ecrecover`, `keccak256`, and `sha256` are supported as precompiles.
@@ -332,19 +326,19 @@ contract later on (which can done by migrating the governance to 0 address in th
 zkSync Era has a distinctive gas logic compared to Ethereum. There are two main drivers:
 
 - We have a state-diff-based data availability, which means that the price for the execution depends on the L1 gas price.
-- zkEVM has a different set of computational trade-offs compared to the standard computational model. In practice, this means that the price for opcodes is different from Ethereum. Also, zkEVM contains a different set of opcodes under the hood and so the “gas” metric of the same set of operations may be different on zkSync Era and on Ethereum.
+- zkEVM has a different set of computational trade-offs compared to the standard computational model. In practice, this means that the price for opcodes is different to Ethereum. Also, zkEVM contains a different set of opcodes under the hood and so the “gas” metric of the same set of operations may be different on zkSync Era and on Ethereum.
 
 :::warning
 Our fee model is being constantly improved and so it is highly recommended **NOT** to hardcode any constants since the fee model changes in the future might be breaking for this constant.
 :::
 
-#### `gasPerPubdataByte` should be taken into account in development
+### `gasPerPubdataByte` should be taken into account in development
 
 Due to the state diff-based fee model of zkSync Era, every transaction includes a constant called `gasPerPubdataByte`.
 
 Presently, the operator has control over this value. However, in EIP712 transactions, users also sign an upper bound
 on this value, but the operator is free to choose any value up to that upper bound. Note, that even if the value
-is chosen by the protocol, it will still fluctuate based on the L1 gas price. Therefore, relying solely on gas is inadequate.
+is chosen by the protocol, it still fluctuates based on the L1 gas price. Therefore, relying solely on gas is inadequate.
 
 A notable example is a Gnosis Safe’s `execTransaction` method:
 
