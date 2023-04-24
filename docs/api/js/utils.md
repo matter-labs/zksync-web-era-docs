@@ -188,30 +188,6 @@ export function applyL1ToL2Alias(address: string): string {
 
 See also [`undol1tol2alias`](#undol1tol2alias).
 
-### `checkBaseCost`
-
-Checks the base cost is within prescribed limits.
-
-#### Inputs
-
-- `baseCost`: the minimum price of the L1->L2 transaction in ETH as `BigNumber` object.
-- `value`: value provided for the L1 transaction as `BigNumberIsh` object.
-
-#### Outputs
-
-- Returns an `Error` message if the limit is breached.
-
-```ts
-export async function checkBaseCost(baseCost: ethers.BigNumber, value: ethers.BigNumberish | Promise<ethers.BigNumberish>) {
-    if (baseCost.gt(await value)) {
-        throw new Error(
-            `The base cost of performing the priority operation is higher than the provided value parameter ` +
-                `for the transaction: baseCost: ${baseCost}, provided value: ${value}`
-        );
-    }
-}
-```
-
 ### `create2Address`
 
 Generates a future-proof contract address using salt plus bytecode which allows determination of an address before deployment. 
@@ -507,33 +483,6 @@ export function getHashedL2ToL1Msg(sender: Address, msg: BytesLike, txNumberInBl
     ]);
 
     return ethers.utils.keccak256(encodedMsg);
-}
-```
-
-### `getSignature`
-
-Returns the signature of any transaction as a `Uint8Array`.
-
-#### Inputs
-
-- `transaction`: transaction address ?? as ??.
-- `ethSignature?`: transaction signature ?? as `EthereumSignature` object (optional).
-
-```ts
-function getSignature(transaction: any, ethSignature?: EthereumSignature): Uint8Array {
-    if (transaction?.customData?.customSignature && transaction.customData.customSignature.length) {
-        return ethers.utils.arrayify(transaction.customData.customSignature);
-    }
-
-    if (!ethSignature) {
-        throw new Error('No signature provided');
-    }
-
-    const r = ethers.utils.zeroPad(ethers.utils.arrayify(ethSignature.r), 32);
-    const s = ethers.utils.zeroPad(ethers.utils.arrayify(ethSignature.s), 32);
-    const v = ethSignature.v;
-
-    return new Uint8Array([...r, ...s, v]);
 }
 ```
 
