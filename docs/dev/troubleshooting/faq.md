@@ -194,6 +194,12 @@ Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The wi
 
 Sometimes, the team working on zkSync will initiate a regenesis on testnet - a restart of the blockchain which will introduce upgrades and return the state to the initial point.
 
+## Why do my contracts not compile in Windows?
+
+If you're using Windows, make sure to use WSL 2, since WSL 1 is known to cause trouble.
+
+Additionally, if you use WSL 2, make sure that your project is located in the Linux filesystem, since accessing NTFS partitions from WSL is very slow. 
+
 ## Proof sampling on testnet
 
 zkSync Era testnet is experiencing immense demand, but its permissionless nature leaves our developer infrastructure vulnerable to potential DoS attack vectors. Generating ZK proofs inherently incurs costs, and a determined attacker could exploit this by submitting a massive number of transactions, resulting in significant expenses for us. As we currently lack a more effective method for rationing resources, we have opted to prove a random subset of batches on the testnet – the subset fluctuates with demand but maintains a high minimal threshold. This approach ensures the detection of errors probabilistically while conserving valuable GPU resources.
