@@ -383,7 +383,7 @@ Returns the calldata sent by an L1 ERC20 bridge to its L2 counterpart.
 - `l1TokenAddress`: token address on L1 as string.
 - `l1Sender`: sender address on L1 as string.
 - `l2Receiver`: recipient address on L2 as string.
-- `amount`: gas fee ?? as `BigNumberish` object.
+- `amount`: gas fee for the number of tokens to bridge as `BigNumberish` object.
 - `provider`: ethers `Provider` object.
 
 ```ts
@@ -446,7 +446,7 @@ Returns the hash of the L2 priority operation from a given transaction receipt a
 
 #### Inputs
 
-- `txReceipt`: ethers `TransactionReceipt` object.
+- `txReceipt`: receipt of the L1 transaction as ethers `TransactionReceipt` object.
 - `zkSyncAddress`: address of sender/transaction ?? on L2 as `Address` object.
 
 ```ts
@@ -483,7 +483,7 @@ Returns a keccak encoded message with a given sender address and block number fr
 
 - `sender`: sender address on L1 ?? as `Address` object.
 - `msg`: encoded message as `BytesLike` object.
-- `txNumberInBlock`: block number containing message on L2 ?? as number.
+- `txNumberInBlock`: index of the transaction in the block as number.
 
 ```ts
 export function getHashedL2ToL1Msg(sender: Address, msg: BytesLike, txNumberInBlock: number) {
@@ -717,19 +717,6 @@ export async function isTypedDataSignatureCorrect(
 ): Promise<boolean> {
     const msgHash = ethers.utils._TypedDataEncoder.hash(domain, types, value);
     return await isSignatureCorrect(provider, address, msgHash, signature);
-}
-```
-
-### `layer1TxDefaults`
-
-Returns ??
-
-```ts
-export function layer1TxDefaults() {
-    return {
-        queueType: PriorityQueueType.Deque,
-        opTree: PriorityOpTree.Full
-    };
 }
 ```
 
