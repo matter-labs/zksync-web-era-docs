@@ -243,7 +243,7 @@ export function create2Address(sender: Address, bytecodeHash: BytesLike, salt: B
 ```
 
 :::tip
-The `prefix` in the `kekkak256` calculation is equal to `keccak256("zksyncCreate")`.
+The `prefix` is equal to `keccak256("zksyncCreate")`.
 :::
 
 ### `createAddress`
@@ -491,7 +491,7 @@ Returns a keccak encoded message with a given sender address and block number fr
 
 #### Inputs
 
-- `sender`: sender address on L1 ?? as `Address` object.
+- `sender`: the sender of the message on L2 as `Address` string.
 - `msg`: encoded message as `BytesLike` object.
 - `txNumberInBlock`: index of the transaction in the block as number.
 
