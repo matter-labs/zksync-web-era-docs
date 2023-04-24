@@ -141,7 +141,7 @@ export const L1_MESSENGER_ADDRESS = '0x0000000000000000000000000000000000008008'
 
 #### `DEFAULT_GAS_PER_PUBDATA_LIMIT`
 
-- Use a large amount of gas for signing on layer 2.
+- Use a large amount of gas per pubdata for signing on layer 2.
 - The amount ensures any reasonable limit is accepted. 
 
 :::info
