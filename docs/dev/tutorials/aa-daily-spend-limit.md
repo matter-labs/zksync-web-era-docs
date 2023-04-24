@@ -49,7 +49,7 @@ import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 module.exports = {
     zksolc: {
-        version: "1.3.8",
+        version: "1.3.9",
         compilerSource: "binary",
         settings: { 
             isSystem: true,
@@ -261,11 +261,9 @@ limit.available -= _amount;
 
 ### Full code for the `SpendLimit` contract
 
-1. Create a new folder `contracts`.
+1. In the folder `contracts`, add a file called `SpendLimit.sol`
 
-2. Add a file to the `contracts` folder called `SpendLimit.sol`
-
-3. Copy/paste the complete code below. 
+2. Copy/paste the complete code below. 
 
 :::warning
 - The value of the `ONE_DAY` variable is set to `1 minutes` instead of `24 hours`. 
@@ -641,11 +639,11 @@ if ( value > 0 ) {
 
 Since we want to set the spending limit of ETH in this example, the first argument in `_checkSpendingLimit` should be `address(ETH_TOKEN_SYSTEM_CONTRACT)`, which is imported from a system contract called `system-contracts/Constant.sol`.
 
-:::warning **Note1**
+:::warning Note 1
 The formal ETH address on zkSync Era is `0x000000000000000000000000000000000000800a`. Neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, which is what `zksync-web3` package ([See](../../api/js/utils.md#the-address-of-ether)) provides a more user-friendly alias.
 :::
 
-:::warning **Note2**
+:::warning Note 2
 `SpendLimit` is token-agnostic. Thus an extension is also possible: add a check for whether or not the execution is an ERC20 transfer by extracting the function selector in bytes from transaction calldata.
 :::
 
@@ -698,9 +696,7 @@ contract AAFactory {
 yarn hardhat compile
 ```
 
-2. Create a new folder `deploy`.
-
-3. Create a file `deploy/deploy-factory-account.ts` and copy/paste the code below, replacing `<WALLET_PRIVATE_KEY>` with your own.
+2. Create a file `deploy/deploy-factory-account.ts` and copy/paste the code below, replacing `<WALLET_PRIVATE_KEY>` with your own.
 
 The script deploys the compiled contracts and creates an account.
 
@@ -765,7 +761,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-4. Run the script.
+3. Run the script.
 
 ```sh
 yarn hardhat deploy-zksync --script deploy-factory-account.ts
@@ -789,9 +785,15 @@ Open up the [zkSync Era block explorer](https://goerli.explorer.zksync.io/) and 
 
 ## Set the daily spending limit
 
+:::warning
+- This script is currently failing. 
+- Engineers are working on a fix.
+- Until fixed, the following scripts are also unavailable.
+:::
+
 1. Create the file `setLimit.ts` in the `deploy` folder and copy/paste the example code below.
 
-2. Replace `<ACCOUNT_ADDRESS>`, `<WALLET_PRIVATE_KEY>` and `<OWNER_PRIVATE_KEY>` with the output from the previous section.
+2. Replace `<ACCOUNT_ADDRESS>` and `<ACCOUNT_OWNER_PRIVATE_KEY>` with the output from the previous section. Replace `<ACCOUNT_ADDRESS>` with your own private key.
 
 To enable the daily spending limit, we execute the `setSpendingLimit` function with two parameters: token address and limit amount. The token address is `ETH_ADDRESS` and the limit parameter is `0.005` in the example below (and can be any amount).
 
@@ -806,7 +808,7 @@ const ACCOUNT_ADDRESS = "<ACCOUNT_ADDRESS>";
 export default async function (hre: HardhatRuntimeEnvironment) {
   const provider = new Provider("https://testnet.era.zksync.dev");
   const wallet = new Wallet("<WALLET_PRIVATE_KEY>", provider);
-  const owner = new Wallet("<OWNER_PRIVATE_KEY>", provider);
+  const owner = new Wallet("<ACCOUNT_OWNER_PRIVATE_KEY>", provider);
 
   const accountArtifact = await hre.artifacts.readArtifact("Account");
   const account = new Contract(ACCOUNT_ADDRESS, accountArtifact.abi, wallet);
@@ -847,7 +849,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-4. Run the script.
+3. Run the script.
 
 ```sh
 yarn hardhat deploy-zksync --script setLimit.ts
