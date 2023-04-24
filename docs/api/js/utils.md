@@ -58,7 +58,7 @@ export const L1_MESSENGER = new utils.Interface(require('../../abi/IL1Messenger.
 
 #### L1 and L2 bridges
 
-Bridge interface abis for L1 and L2.
+Bridge interface ABIs for L1 and L2.
 
 ```ts
 export const L1_BRIDGE_ABI = new utils.Interface(require('../../abi/IL1Bridge.json').abi);
