@@ -67,7 +67,7 @@ export const L2_BRIDGE_ABI = new utils.Interface(require('../../abi/IL2Bridge.js
 
 #### L1 to L2 alias offset
 
-Used for applying and undoing aliases on addresses from L1 to L2.
+Used for applying and undoing aliases on addresses during bridging from L1 to L2.
 
 ```ts
 export const L1_TO_L2_ALIAS_OFFSET = '0x1111000000000000000000000000000000001111';
