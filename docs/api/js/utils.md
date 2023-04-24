@@ -172,7 +172,13 @@ Converts the address that submitted a transaction to the inbox on L1 to the `msg
 
 #### Outputs
 
-?? not sure how to describe what's coming out here
+Returns the `msg.sender` of the L1->L2 transaction as the `address` of the contract that initiated the transaction.
+
+:::tip More info
+1. During a normal transaction, if contract A calls contract B, the `msg.sender` is A.
+2. During L1->L2 communication, if an EOA X calls contract B, the `msg.sender` is X.
+3. During L1->L2 communication, if a contract A calls contract B, the `msg.sender` is `applyL1ToL2Alias(A)`.
+:::
 
 ```ts
 export function applyL1ToL2Alias(address: string): string {
@@ -188,8 +194,8 @@ Checks the base cost is within prescribed limits.
 
 #### Inputs
 
-- `baseCost`: base cost ?? as `BigNumber` object.
-- `value`: value ?? as `BigNumberIsh` object.
+- `baseCost`: the minimum price of the L1->L2 transaction in ETH as `BigNumber` object.
+- `value`: value provided for the L1 transaction as `BigNumberIsh` object.
 
 #### Outputs
 
@@ -272,12 +278,12 @@ export function createAddress(sender: Address, senderNonce: BigNumberish) {
 
 ### `eip712TxHash`
 
-Returns signed keccak256 representation of a transaction with signature.
+Returns the hash of an EIP712 transaction.
 
 #### Inputs
 
-- `transaction`: given by id ?? as ??
-- `ethSignature?`: the transaction signer signature ?? as `EthereumSignature` object (optional).
+- `transaction`: EIP712 transaction as any type.
+- `ethSignature?`: ECDSA signature of the transaction as `EthereumSignature` object (optional).
 
 ```ts
 function eip712TxHash(transaction: any, ethSignature?: EthereumSignature) {
@@ -290,16 +296,20 @@ function eip712TxHash(transaction: any, ethSignature?: EthereumSignature) {
 
 ### `estimateDefaultBridgeDepositL2Gas`
 
-Returns an estimation of gas required to execute a transaction from L1 to L2.
+Returns an estimation of L2 gas required for token bridging via the default ERC20 bridge.
+
+::: tip More info
+- See the [default bridges documentation](../../dev/developer-guides/bridging/bridging-asset.md#default-bridges)
+:::
 
 #### Inputs
 
 - `providerL1`: ethers `Provider` object.
 - `providerL2`: zkSync `Provider` object.
-- `token`: token `Address` object.
+- `token`: token `Address` string.
 - `amount`: deposit amount as `BigNumberish`.
-- `to`: recipient `Address` object.
-- `from?`: sender `Address` object (optional).
+- `to`: recipient `Address` string.
+- `from?`: sender `Address` string (optional).
 - `gasPerPubdataByte?`: current gas per byte of pubdata as `BigNumberish` (optional).
 
 ```ts
@@ -447,7 +457,7 @@ Returns the hash of the L2 priority operation from a given transaction receipt a
 #### Inputs
 
 - `txReceipt`: receipt of the L1 transaction as ethers `TransactionReceipt` object.
-- `zkSyncAddress`: address of sender/transaction ?? on L2 as `Address` object.
+- `zkSyncAddress`: address of zkSync Era main contract as `Address` string.
 
 ```ts
 export function getL2HashFromPriorityOp(
@@ -580,7 +590,7 @@ Called from [`isSignatureCorrect`](#isSignatureCorrect) for non-contract account
 
 #### Inputs
 
-- `address`: sender address ?? as string.
+- `address`: address which signs `msgHash` as string.
 - `msgHash`: hash of the message as string.
 - `signature`: ethers signature as `SignatureLike` object.
 
@@ -702,7 +712,7 @@ Returns true if account abstraction EIP712 signature is correct.
 - `provider`: Provider object.
 - `address`: sender address as string.
 - `domain`: `TypedDataDomain` object from `@ethersproject/abstract-signer`.
-- `types`: map of records pointing to array of data as `Record<string, Array<TypedDataField>>` ??. 
+- `types`: map of records pointing from field name to field type as `Record<string, Array<TypedDataField>>`. 
 - `value`: a single `Record` value as `Record<string, any>`.
 - `signature`: ethers signature as `SignatureLike` object.
 
