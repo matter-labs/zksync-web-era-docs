@@ -99,8 +99,8 @@
           "type": "302"
         },
         {
-          "source": "/docs/dev/fundamentals/faq.html#what-is-the-zkevm",
-          "destination": "/docs/dev/troubleshooting/faq.html#what-is-the-zkevm",
+          "source": "/docs/dev/fundamentals/faq.html",
+          "destination": "/docs/dev/troubleshooting/faq.html",
           "type": "302"
         }
       ]
@@ -204,8 +204,8 @@
           "type": "302"
         },
         {
-          "source": "/docs/dev/fundamentals/faq.html#what-is-the-zkevm",
-          "destination": "/docs/dev/troubleshooting/faq.html#what-is-the-zkevm",
+          "source": "/docs/dev/fundamentals/faq.html",
+          "destination": "/docs/dev/troubleshooting/faq.html",
           "type": "302"
         }
       ]
