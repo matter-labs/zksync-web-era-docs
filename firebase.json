@@ -100,7 +100,7 @@
         },
         {
           "source": "/docs/dev/fundamentals/faq.html",
-          "destination": "/docsapi/compiler-toolchain/overview.html",
+          "destination": "/docs/api/compiler-toolchain/overview.html",
           "type": "302"
         }
       ]
@@ -205,7 +205,7 @@
         },
         {
           "source": "/docs/dev/fundamentals/faq.html",
-          "destination": "/docsapi/compiler-toolchain/overview.html",
+          "destination": "/docs/api/compiler-toolchain/overview.html",
           "type": "302"
         }
       ]
