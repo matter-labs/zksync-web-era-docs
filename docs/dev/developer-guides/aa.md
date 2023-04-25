@@ -66,7 +66,7 @@ Each account is recommended to implement the [IAccount](https://github.com/matte
 - `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) the method should revert. In case the call to this method succeeds, the implemented account logic is considered to accept the transaction, and the system will proceed with the transaction flow.
 - `executeTransaction` is mandatory and will be called by the system after the fee is charged from the user. This function should perform the execution of the transaction.
 - `payForTransaction` is optional and will be called by the system if the transaction has no paymaster, i.e. the account is willing to pay for the transaction. This method should be used to pay for the fees by the account. Note, that if your account will never pay any fees and will always rely on the [paymaster](#paymasters) feature, you don't have to implement this method. This method must send at least `tx.gasprice * tx.gasLimit` ETH to the [bootloader](./system-contracts.md#bootloader) address.
-- `prePaymaster` is optional and will be called by the system if the transaction has a paymaster, i.e. there is a different address that pays the transaction fees for the user. This method should be used to prepare for the interaction with the paymaster. One of the notable [examples](#approval-based-paymaster-flow) where it can be helpful is to approve the ERC-20 tokens for the paymaster.
+- `prepareForPaymaster` is optional and will be called by the system if the transaction has a paymaster, i.e. there is a different address that pays the transaction fees for the user. This method should be used to prepare for the interaction with the paymaster. One of the notable [examples](#approval-based-paymaster-flow) where it can be helpful is to approve the ERC-20 tokens for the paymaster.
 - `executeTransactionFromOutside`, technically, is not mandatory, but it is _highly encouraged_, since there needs to be some way, in case of priority mode (e.g. if the operator is unresponsive), to be able to start transactions from your account from ``outside'' (basically this is the fallback to the standard Ethereum approach, where an EOA starts transaction from your smart contract).
 
 ### IPaymaster interface
@@ -76,8 +76,8 @@ Like in EIP4337, our account abstraction protocol supports paymasters: accounts 
 
 Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IPaymaster.sol) interface. It contains the following two methods:
 
-- `validateAndPayForPaymasterTransaction` is mandatory and will be used by the system to determine if the paymaster approves paying for this transaction. If the paymaster is willing to pay for the transaction, this method must send at least `tx.gasprice * tx.gasLimit` to the operator. It should return the `context` that will be one of the call parameters to the `postOp` method.
-- `postOp` is optional and will be called after the transaction has been executed. Note that unlike EIP4337, there _is no guarantee that this method will be called_. In particular, this method won't be called if the transaction has failed with `out of gas` error. It takes four parameters: the context returned by the `validateAndPayForPaymasterTransaction` method, the transaction itself, whether the execution of the transaction succeeded, and also the maximum amount of gas the paymaster might be refunded with. More documentation on refunds will be available once their support is added to zkSync.
+- `validateAndPayForPaymasterTransaction` is mandatory and will be used by the system to determine if the paymaster approves paying for this transaction. If the paymaster is willing to pay for the transaction, this method must send at least `tx.gasprice * tx.gasLimit` to the operator. It should return the `context` that will be one of the call parameters to the `postTransaction` method.
+- `postTransaction` is optional and will be called after the transaction has been executed. Note that unlike EIP4337, there _is no guarantee that this method will be called_. In particular, this method won't be called if the transaction has failed with `out of gas` error. It takes four parameters: the context returned by the `validateAndPayForPaymasterTransaction` method, the transaction itself, whether the execution of the transaction succeeded, and also the maximum amount of gas the paymaster might be refunded with. More documentation on refunds will be available once their support is added to zkSync.
 
 ### Reserved fields of the `Transaction` struct with special meaning
 
@@ -103,7 +103,7 @@ During the validation step, the account should decide whether it accepts the tra
 
 **Step 4 (no paymaster).** The system calls the `payForTransaction` method of the account. If it does not revert, proceed to the next step.
 
-**Step 4 (paymaster).** The system calls the `prePaymaster` method of the sender. If this call does not revert, then the `validateAndPayForPaymasterTransaction` method of the paymaster is called. If it does not revert too, proceed to the next step.
+**Step 4 (paymaster).** The system calls the `prepareForPaymaster` method of the sender. If this call does not revert, then the `validateAndPayForPaymasterTransaction` method of the paymaster is called. If it does not revert too, proceed to the next step.
 
 **Step 5.** The system verifies that the bootloader has received at least `tx.gasPrice * tx.gasLimit` ETH to the bootloader. If it is the case, the verification is considered
 complete and we can proceed to the next step.
@@ -114,7 +114,7 @@ The execution step is considered responsible for the actual execution of the tra
 
 **Step 6.** The system calls the `executeTransaction` method of the account.
 
-**Step 7. (only in case the transaction has a paymaster)** The `postOp` method of the paymaster is called. This step should typically be used for refunding the sender the unused gass in case the paymaster was used to facilitate paying fees in ERC-20 tokens.
+**Step 7. (only in case the transaction has a paymaster)** The `postTransaction` method of the paymaster is called. This step should typically be used for refunding the sender the unused gass in case the paymaster was used to facilitate paying fees in ERC-20 tokens.
 
 ### Fees
 
