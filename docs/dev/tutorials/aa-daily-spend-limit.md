@@ -628,23 +628,14 @@ function _executeTransaction(Transaction calldata _transaction) internal {
 }
 ```
 
-The `_executeTransaction` method is where we use the methods from the `SpendLimit.sol` contract. If the ETH transaction value is non-zero, the Account contract calls `_checkSpendingLimit` to verify the allowance for spending.
-
-```solidity
-
-if ( value > 0 ) {
-    _checkSpendingLimit(address(ETH_TOKEN_SYSTEM_CONTRACT), value);
-}
-```
-
-Since we want to set the spending limit of ETH in this example, the first argument in `_checkSpendingLimit` should be `address(ETH_TOKEN_SYSTEM_CONTRACT)`, which is imported from a system contract called `system-contracts/Constant.sol`.
-
 :::warning Note 1
-The formal ETH address on zkSync Era is `0x000000000000000000000000000000000000800a`. Neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, which is what `zksync-web3` package ([See](../../api/js/utils.md#the-address-of-ether)) provides a more user-friendly alias.
+- The formal ETH address on zkSync Era is `0x000000000000000000000000000000000000800a`. 
+- Neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, that ([`zksync-web3` provides](../../api/js/utils.md#the-address-of-ether)) has a more user-friendly alias.
 :::
 
 :::warning Note 2
-`SpendLimit` is token-agnostic. Thus an extension is also possible: add a check for whether or not the execution is an ERC20 transfer by extracting the function selector in bytes from transaction calldata.
+- `SpendLimit` is token-agnostic. 
+- This means an extension is also possible: add a check for whether or not the execution is an ERC20 transfer by extracting the function selector in bytes from transaction calldata.
 :::
 
 #### `AAFactory.sol`
@@ -775,8 +766,6 @@ Account owner pk: 0x957aff65500eda28beb7130b7c1bc48f783556bb84fa6874d2204c1d66a0
 Account deployed on address 0x6b6B8ea196a6F27EFE408288a4FEeBE9A9e12005
 ```
 
-## Testing the `SpendLimit` contract - STUCK ON THE SCRIPT HERE
-
 Open up the [zkSync Era block explorer](https://goerli.explorer.zksync.io/) and search for the deployed Account contract address in order to track transactions and changes in the balance.
 
 :::tip
@@ -793,7 +782,7 @@ Open up the [zkSync Era block explorer](https://goerli.explorer.zksync.io/) and 
 
 1. Create the file `setLimit.ts` in the `deploy` folder and copy/paste the example code below.
 
-2. Replace `<ACCOUNT_ADDRESS>` and `<ACCOUNT_OWNER_PRIVATE_KEY>` with the output from the previous section. Replace `<ACCOUNT_ADDRESS>` with your own private key.
+2. Replace `<ACCOUNT_ADDRESS>` and `<ACCOUNT_OWNER_PRIVATE_KEY>` with the output from the previous section. Replace `<WALLET_PRIVATE_KEY>` with your own private key.
 
 To enable the daily spending limit, we execute the `setSpendingLimit` function with two parameters: token address and limit amount. The token address is `ETH_ADDRESS` and the limit parameter is `0.005` in the example below (and can be any amount).
 
