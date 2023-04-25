@@ -101,4 +101,4 @@ Refunds are calculated by defining a fair value for the amount the user spent on
 
 Unlike on Geth, it is impossible to track out-of-gas errors on zkSync Era. 
 
-The main reason is that the “actual” execution happens inside the `DefaultAccount` system contract and, due to the 63/64 rule, when a high amount of gas is provided, the call to the `execute` function of the `DefaultAccount` will NOT fail, even if it is out of gas, although the subcall to the `transaction.to` contract will fail with an out of gas error.
+The main reason is that the “actual” execution happens inside the `DefaultAccount` system contract and, due to the [63/64 rule](https://eips.ethereum.org/EIPS/eip-150), when a high amount of gas is provided, the call to the `execute` function of the `DefaultAccount` will NOT fail, even if it is out of gas, although the subcall to the `transaction.to` contract will fail with an out of gas error.
