@@ -23,7 +23,7 @@ We currently do not support the following Solidity functions:
 
 ## Vyper support
 
-Currently only Vyper `^0.3.3` is supported.
+Currently only Vyper `0.3.3` is supported.
 
 ## Compilers
 
