@@ -16,10 +16,6 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 
 Download the complete project [here](https://github.com/matter-labs/cross-chain-tutorial).
 
-:::warning
-Make sure the tutorial code is up-to-date with the repo by checking latest date for updates.
-:::
-
 ## Project set up
 
 Open a terminal window, create a new folder for the project tutorial, e.g. `mkdir cross-chain-tutorial`, and `cd` into the folder.
