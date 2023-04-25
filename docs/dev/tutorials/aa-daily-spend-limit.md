@@ -401,15 +401,12 @@ The `checkValidECDSASignatureFormat` and `extractECDSASignature` are helper meth
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
-import 
-"@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol";
-import 
-"@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
+import "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol";
+import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
-import 
-"@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
+import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
 import "./SpendLimit.sol";
 
 contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contract
@@ -480,7 +477,6 @@ contract Account is IAccount, IERC1271, SpendLimit { // imports SpendLimit contr
         } else {
             magic = bytes4(0);
         }
-        return magic;
     }
 
     function executeTransaction(
@@ -512,8 +508,7 @@ function _executeTransaction(Transaction calldata _transaction) internal {
 }
 
 
-    function executeTransactionFromOutside(Transaction calldata 
-_transaction)
+    function executeTransactionFromOutside(Transaction calldata _transaction)
         external
         payable
     {
@@ -555,8 +550,7 @@ _transaction)
 
 
     // This function verifies that the ECDSA signature is both in correct format and non-malleable
-    function checkValidECDSASignatureFormat(bytes memory _signature) 
-internal pure returns (bool) {
+    function checkValidECDSASignatureFormat(bytes memory _signature) internal pure returns (bool) {
         if(_signature.length != 65) {
             return false;
         }
@@ -593,8 +587,7 @@ internal pure returns (bool) {
         return true;
     }
     
-    function extractECDSASignature(bytes memory _fullSignature) internal 
-pure returns (bytes memory signature) {
+    function extractECDSASignature(bytes memory _fullSignature) internal pure returns (bytes memory signature) {
         require(_fullSignature.length == 130, "Invalid length");
 
         signature = new bytes(65);
@@ -782,7 +775,7 @@ Account owner pk: 0x957aff65500eda28beb7130b7c1bc48f783556bb84fa6874d2204c1d66a0
 Account deployed on address 0x6b6B8ea196a6F27EFE408288a4FEeBE9A9e12005
 ```
 
-## Set the daily spend limit
+## Testing the `SpendLimit` contract - STUCK ON THE SCRIPT HERE
 
 Open up the [zkSync Era block explorer](https://goerli.explorer.zksync.io/) and search for the deployed Account contract address in order to track transactions and changes in the balance.
 
@@ -791,6 +784,12 @@ Open up the [zkSync Era block explorer](https://goerli.explorer.zksync.io/) and 
 :::
 
 ## Set the daily spending limit
+
+:::warning
+- This script is currently failing. 
+- Engineers are working on a fix.
+- Until fixed, the following scripts are also unavailable.
+:::
 
 1. Create the file `setLimit.ts` in the `deploy` folder and copy/paste the example code below.
 
@@ -819,8 +818,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   setLimitTx = {
     ...setLimitTx,
     from: ACCOUNT_ADDRESS,
-    gasPrice: await provider.getGasPrice(),
-    gasLimit: ethers.BigNumber.from(0), // l2 gas limit
     chainId: (await provider.getNetwork()).chainId,
     nonce: await provider.getTransactionCount(ACCOUNT_ADDRESS),
     type: 113,
@@ -830,7 +827,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     value: ethers.BigNumber.from(0),
   };
 
-  const gasLimit = await provider.estimateGas(setLimitTx); // l2 gas limit
+  setLimitTx.gasPrice = await provider.getGasPrice();
+  setLimitTx.l2gasLimit = await provider.estimateGas(setLimitTx);
 
   const signedTxHash = EIP712Signer.getSignedDigest(setLimitTx);
   const signature = ethers.utils.arrayify(ethers.utils.joinSignature(owner._signingKey().signDigest(signedTxHash)));
