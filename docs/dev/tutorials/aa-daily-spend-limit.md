@@ -70,7 +70,7 @@ module.exports = {
 ```
 
 ::: tip zksync-cli
-- Use the zkSync Era CLI to scaffold a project automatically. 
+- You can use the zkSync Era CLI to scaffold a project automatically. 
 - Find [more info about the zkSync Era CLI here](../../api/tools/zksync-cli/).
 :::
 
