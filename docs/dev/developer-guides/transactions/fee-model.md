@@ -20,7 +20,7 @@ In Ethereum, opcodes have distinct and varying gas prices. However, opcode costs
 
 In zkSync Era, most of the opcode costs are also constant and only change with protocol upgrades. However, storage write charges remain dynamic due to the fluctuation of gas price on L1. See the [zkSync opcode documentation](https://github.com/matter-labs/era-zkevm_opcode_defs/blob/9307543b9ca51bd80d4f5c85d6eb80efd8b19bb2/src/lib.rs#L227) for an idea of how we calculate them.
 
-In general, the execution of arithmetic operations, which do not involve storage updates, is cheap. Like Ethereum, the most costly operation is a storage update.
+Like Ethereum, the most costly operation is a storage update. Execution of arithmetic operations is relatively cheap, as it involves computation alone and no storage changes. 
 
 A considerable advantage we have over optimistic rollups is that, instead of publishing all transaction data to L1, zkSync Era only publishes state diffs, thus publishing significantly less data to L1. Another advantage is the cost-effective contract redeployment. An example is a DEX with a `PairFactory` contract for different `Pair` pools. The contract bytecode of `Pair` is only published when the first instance is deployed. After that, subsequent deployments only involve updating one storage slot which sets the contract code hash on the newly deployed `Pair` address.
 
