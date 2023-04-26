@@ -16,7 +16,7 @@ Therefore, for each block, the zkSync Era sequencer defines the following dynami
 
 ## Fee model overview
 
-In Ethereum, opcodes have distinct and varying gas prices. However, opcode costs remain constant and only change with hard forks. For more information, read the [Ethereum opcode documentation](https://ethereum.org/en/developers/docs/evm/opcodes/).
+In Ethereum, opcodes have unique gas prices. However, opcode costs remain constant and only change with hard forks. For more information, read the [Ethereum opcode documentation](https://ethereum.org/en/developers/docs/evm/opcodes/).
 
 In zkSync Era, most of the opcode costs are also constant and only change with protocol upgrades. However, storage write charges remain dynamic due to the fluctuation of gas price on L1. See the [zkSync opcode documentation](https://github.com/matter-labs/era-zkevm_opcode_defs/blob/9307543b9ca51bd80d4f5c85d6eb80efd8b19bb2/src/lib.rs#L227) for an idea of how we calculate them.
 
