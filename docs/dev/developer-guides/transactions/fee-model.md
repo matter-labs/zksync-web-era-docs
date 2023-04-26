@@ -6,7 +6,7 @@ zkSync Era's fee model is similar to Ethereum’s where `gas` is charged for com
 Because the L1 gas price for publishing data (on L1) is so volatile, the amount of required L2 `gas` is variable.
 Therefore, for each block, the zkSync Era sequencer defines the following dynamic parameters:
 
-- `gasPrice`: a general reference for the price of a unit of gas.
+- `gasPrice`: the price, in gwei, of a unit of gas.
 - `gasPerPubdata`: amount of `gas` for publishing one byte of data to Ethereum.
 
 :::warning Important
