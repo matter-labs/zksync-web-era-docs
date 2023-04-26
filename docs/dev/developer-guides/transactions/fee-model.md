@@ -1,7 +1,7 @@
 
 # Fee mechanism
 
-The zkSync Era fee model is similar to Ethereum’s where `gas` is charged for computational cost, cost of publishing data on-chain, and storage effects. However, zkSync Era includes additional costs of publishing to L1 and proof generation.
+zkSync Era's fee model is similar to Ethereum’s where `gas` is charged for computational cost, cost of publishing data on-chain and storage effects. However, zkSync Era includes additional costs for publishing to L1 and for proof generation.
 
 Because the L1 gas price for publishing data (on L1) is so volatile, the amount of required L2 `gas` is variable.
 Therefore, for each block, the zkSync Era sequencer defines the following dynamic parameters:
