@@ -174,32 +174,13 @@ Users must call the `withdraw` method on the L2 bridge contract, which will trig
 On the testnet environment, we automatically finalize all withdrawals, i.e., for every withdrawal, we will take care of it by making an L1 transaction that proves the inclusion for each message.
 :::
 
-## Custom bridges
+## Custom bridges on L1 and L2
 
-Implement your own custom bridge by creating a new `L1ERC20BridgeFactory` and using it to deploy a custom bridge by passing the `CONTRACTS_DIAMOND_PROXY_ADDR` and an `allowlist` for the contract signer to the `deploy` function. 
+To build a custom bridge, create a regular Solidity contract which extends the correct interface for the layer.
 
-After the initial custom bridge set up, create a `TransparentUpgradeableProxyFactory` and use it to deploy the bridge address you just created.
+- L1: [IL1Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/ethereum/contracts/bridge/interfaces/IL1Bridge.sol)
+- L2: [L2ERC20Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/zksync/contracts/bridge/L2ERC20Bridge.sol)
 
-For example:
+The interfaces provide access to the zkSync Era SDK deposit and withdraw implementations.
 
-```ts
-let l1bridgeFactory = new L1ERC20BridgeFactory(alice._signerL1());
-const gasPrice = await scaledGasPrice(alice);
-
-let l1Bridge = await l1bridgeFactory.deploy(
-
-  process.env.CONTRACTS_DIAMOND_PROXY_ADDR!,
-  allowListContract.address
-        
-);
-
-await l1Bridge.deployTransaction.wait(2);
-    
-    let l1BridgeProxyFactory = new TransparentUpgradeableProxyFactory(alice._signerL1());
-    let l1BridgeProxy = await l1BridgeProxyFactory.deploy(l1Bridge.address, bob.address, '0x');
-    const amount = 1000; // 1 wei is enough.
-    await l1BridgeProxy.deployTransaction.wait(2);
-    ...
-```
-
-Check the docs for the [full code of the snippet above](https://github.com/matter-labs/zksync-2-dev/blob/main/core/tests/ts-integration/tests/custom-erc20-bridge.test.ts).
+For more info, check out an example [custom bridge implementation](https://github.com/matter-labs/zksync-2-dev/blob/main/core/tests/ts-integration/tests/custom-erc20-bridge.test.ts).
