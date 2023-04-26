@@ -113,7 +113,7 @@ from zksync2.core.types import ZkBlockParams
 from eth_account import Account
 from eth_account.signers.local import LocalAccount
 from zksync2.signer.eth_signer import PrivateKeyEthSigner
-from zksync2.transaction.transaction712 import TxFunctionCall
+from zksync2.transaction.transaction_builders import TxFunctionCall
 
 
 def transfer_to_self():
@@ -162,7 +162,7 @@ from zksync2.core.types import ZkBlockParams
 from eth_account import Account
 from eth_account.signers.local import LocalAccount
 from zksync2.signer.eth_signer import PrivateKeyEthSigner
-from zksync2.transaction.transaction712 import TxFunctionCall
+from zksync2.transaction.transaction_builders import TxFunctionCall
 
 
 def transfer_erc20_token():
@@ -218,7 +218,7 @@ from zksync2.core.types import Token, ZkBlockParams, BridgeAddresses
 from eth_account import Account
 from eth_account.signers.local import LocalAccount
 from zksync2.signer.eth_signer import PrivateKeyEthSigner
-from zksync2.transaction.transaction712 import TxFunctionCall
+from zksync2.transaction.transaction_builders import TxFunctionCall
 
 
 def withdraw():
