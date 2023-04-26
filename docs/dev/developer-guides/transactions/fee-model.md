@@ -7,7 +7,7 @@ Because the L1 gas price for publishing data (on L1) is so volatile, the amount 
 Therefore, for each block, the zkSync Era sequencer defines the following dynamic parameters:
 
 - `gasPrice`: the price, in gwei, of a unit of gas.
-- `gasPerPubdata`: amount of `gas` for publishing one byte of data to Ethereum.
+- `gasPerPubdata`: the amount of `gas` for publishing one byte of data on Ethereum.
 
 :::warning Important
 - Only L2 storage slot updates are published on L1. 
