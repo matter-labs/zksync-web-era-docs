@@ -16,7 +16,7 @@ Addresses of tokens on L2 will always differ from the same token L1 address.
 :::
 ## Default bridges
 
-You can get default bridges' addresses using the `zks_getBridgeContracts` endpoint or `getDefaultBridgeAddresses` method of `Provider` in our [Javascript SDK](../../../api/js/) (similar methods are available in the other SDKs).
+You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../../api/api.md#zks_getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../../api/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
 
 ### Add tokens to the bridge
 
@@ -27,7 +27,7 @@ If you would like to add a token, submit a request by filling out the [token req
 
 ### Deposits (to L2)
 
-Users must call the `deposit` method on the L1 bridge contract, which will trigger the following actions:
+Users must call the `deposit` method on the L1 bridge contract, which triggers the following actions:
 
 - The user's L1 tokens will be sent to the L1 bridge and become locked there.
 - The L1 bridge initiates a transaction to the L2 bridge using L1 -> L2 communication.
@@ -38,7 +38,7 @@ Users must call the `deposit` method on the L1 bridge contract, which will trigg
 
 ### Deposit ETH
 
-Here is an example on how to deposit ETH with the `deposit` method from the `Deployer` class. 
+Here is an example of how to deposit ETH with the `deposit` method from the `Deployer` class. 
 
 ```ts
 import { Wallet, Provider, utils } from "zksync-web3";
@@ -159,10 +159,8 @@ The log message described above is not yet fully supported by our SDK but is ava
 ### Withdrawals (to L1)
 
 :::tip
-
 - To provide additional security during the Alpha phase, **withdrawals in zkSync Era take 24 hours**. 
 - For more information, read the [withdrawal delay guide](../../troubleshooting/withdrawal-delay.md).
-
 :::
 
 Users must call the `withdraw` method on the L2 bridge contract, which will trigger the following actions:
@@ -173,7 +171,35 @@ Users must call the `withdraw` method on the L2 bridge contract, which will trig
 - After the method is called, the funds are unlocked from the L1 bridge and sent to the withdrawal recipient.
 
 ::: warning
-
 On the testnet environment, we automatically finalize all withdrawals, i.e., for every withdrawal, we will take care of it by making an L1 transaction that proves the inclusion for each message.
-
 :::
+
+## Custom bridges
+
+Implement your own custom bridge by creating a new `L1ERC20BridgeFactory` and using it to deploy a custom bridge by passing the `CONTRACTS_DIAMOND_PROXY_ADDR` and an `allowlist` for the contract signer to the `deploy` function. 
+
+After the initial custom bridge set up, create a `TransparentUpgradeableProxyFactory` and use it to deploy the bridge address you just created.
+
+For example:
+
+```ts
+let l1bridgeFactory = new L1ERC20BridgeFactory(alice._signerL1());
+const gasPrice = await scaledGasPrice(alice);
+
+let l1Bridge = await l1bridgeFactory.deploy(
+
+  process.env.CONTRACTS_DIAMOND_PROXY_ADDR!,
+  allowListContract.address
+        
+);
+
+await l1Bridge.deployTransaction.wait(2);
+    
+    let l1BridgeProxyFactory = new TransparentUpgradeableProxyFactory(alice._signerL1());
+    let l1BridgeProxy = await l1BridgeProxyFactory.deploy(l1Bridge.address, bob.address, '0x');
+    const amount = 1000; // 1 wei is enough.
+    await l1BridgeProxy.deployTransaction.wait(2);
+    ...
+```
+
+Check the docs for the [full code of the snippet above](https://github.com/matter-labs/zksync-2-dev/blob/main/core/tests/ts-integration/tests/custom-erc20-bridge.test.ts).
