@@ -26,7 +26,7 @@ A considerable advantage we have over optimistic rollups is that, instead of pub
 
 ### Design recommendations
 
-- **Update storage slots as little as possible:** The cost of execution is a lot smaller than the cost of storage updates.
+- **Update storage slots as little as possible:** Check to see if your code can avoid unnecessary storage updates.
 - **Reuse as many storage slots as possible:** Only the state diff is published on Ethereum.
 - **Reuse the contract code where possible:**
 	 - On Ethereum, avoiding constructor parameters and putting them into constants reduces some of the gas costs upon contract deployment.
