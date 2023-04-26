@@ -46,7 +46,7 @@ For any Rust developers interested in the zkSync Era implementation for gas esti
 
 zkSync Era publishes state diffs on-chain. The cost of the transaction, however, may still depend on transaction length because the sequencer stores long transactions in-memory.
 
-Long transactions incur additional costs during interactions with an account. zkSync Era works with many types of accounts and so we cannot make assumptions about signature length. Furthermore, given that a signature (and thus its length) is unavailable at the time of fee estimation, we cannot precisely estimate the cost of such a transaction. To mitigate this, we multiply the recommended cost of the transaction by a small percentage.
+Long transactions incur additional costs during interactions with an account. zkSync Era works with different types of accounts and we, therefore, cannot make assumptions about signature length. Furthermore, given that a signature (and thus its length) is unavailable at the time of fee estimation, we cannot precisely estimate the cost of such a transaction. To mitigate this, we multiply the recommended cost of the transaction by a small percentage.
 
 ### `DefaultAccount`
 
