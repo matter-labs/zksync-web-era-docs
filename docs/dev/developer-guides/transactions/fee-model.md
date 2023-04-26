@@ -3,7 +3,7 @@
 
 The zkSync Era fee model is similar to Ethereum’s where `gas` is charged for computational cost, cost of publishing data on-chain, and storage effects. However, zkSync Era includes additional costs of publishing to L1 and proof generation.
 
-Because the gas price for publishing data on L1 is so volatile, the amount of required `gas` on L2 is variable. 
+Because the L1 gas price for publishing data (on L1) is so volatile, the amount of required L2 `gas` is variable.
 Therefore, for each block, the zkSync Era sequencer defines the following dynamic parameters:
 
 - `gasPrice`: a general reference for the price of a unit of gas.
