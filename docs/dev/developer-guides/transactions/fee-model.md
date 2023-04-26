@@ -10,7 +10,7 @@ Therefore, for each block, the zkSync Era sequencer defines the following dynami
 - `gasPerPubdata`: the amount of `gas` for publishing one byte of data on Ethereum.
 
 :::warning Important
-- Only L2 storage slot updates are published on L1. 
+- Only the L2 state storage slot updates are published on L1. 
 - For example, if the same storage slot is updated 10 times in the same rollup block, only the final update is published on Ethereum and there is therefore only one gas charge.
 :::
 
