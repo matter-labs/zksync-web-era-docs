@@ -22,9 +22,7 @@ In zkSync Era, most of the opcode costs are also constant and only change with p
 
 In general, the execution of arithmetic operations, which do not involve storage updates, is cheap. Like Ethereum, the most costly operation is a storage update.
 
-One advantage of zkSync Era rollups over other optimistic rollups is that, instead of publishing all transaction data, zkSync Era rollups only publish state diffs, thus making fewer storage updates.
-
-Another advantage of zkSync Era rollups is cost-effective contract redeployment. An example use case for this could be a DEX and a `PairFactory` factory for different `Pair` pools. The contract bytecode of `Pair` is only published when the first instance is deployed. After that, subsequent deployments only involve updating one storage slot which sets the contract code hash on the newly deployed `Pair` address.
+A considerable advantage we have over optimistic rollups is that, instead of publishing all transaction data to L1, zkSync Era only publishes state diffs, thus publishing significantly less data to L1. Another advantage is the cost-effective contract redeployment. An example is a DEX with a `PairFactory` contract for different `Pair` pools. The contract bytecode of `Pair` is only published when the first instance is deployed. After that, subsequent deployments only involve updating one storage slot which sets the contract code hash on the newly deployed `Pair` address.
 
 ### Design recommendations
 
