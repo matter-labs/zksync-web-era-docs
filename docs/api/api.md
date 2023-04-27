@@ -60,13 +60,13 @@ These fields are handled by our [SDK](./js/features.md).
 [https://mainnet.era.zksync.io](https://mainnet.era.zksync.io)
 
 
-## zkSync Era-specific JSON-RPC methods
+## zkSync Era JSON-RPC methods
 
-All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods not detailed here which are used internally by the team.
+All methods are located in the `zks_` namespace. The API may also provide methods not detailed here which are used internally by the team.
 
 ::: warning
 - Metamask does not support the `zks_` namespace at the time of writing.
-- Instead, use the `Provider` class with the testnet RPC.
+- Instead, use the [`Provider`](../api/js/providers.md#provider) class with the testnet RPC.
 :::
 
 ### `zks_estimateFee`
