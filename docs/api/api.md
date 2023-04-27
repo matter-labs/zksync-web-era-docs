@@ -87,7 +87,7 @@ The token in which the fee is calculated is based on the `fee_token` provided in
 :todo
 ```
 
-#### Outputs
+#### Output
 
 ```json
 {

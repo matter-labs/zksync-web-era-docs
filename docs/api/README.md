@@ -12,7 +12,7 @@ Our SDKs enable you to build web3 applications, with capabilities such as:
 
 ## SDKs
 
-- [TypeScript SDK](./js)
+- [JavaScript SDK](./js)
 - [Python SDK](./python/getting-started.md)
 - [GO SDK](./go/getting-started.md)
 - [Java SDK](./java/getting-started.md)
