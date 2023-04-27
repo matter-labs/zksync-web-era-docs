@@ -129,7 +129,7 @@ contract MyPaymaster is IPaymaster {
         bytes32,
         bytes32,
         Transaction calldata _transaction
-    ) onlyBootloader external payable returns (bytes4 magic, bytes memory context) {
+    ) external payable onlyBootloader returns (bytes4 magic, bytes memory context) {
         // TO BE IMPLEMENTED
     }
 
@@ -140,7 +140,7 @@ contract MyPaymaster is IPaymaster {
         bytes32,
         ExecutionResult _txResult,
         uint256 _maxRefundedGas
-    ) onlyBootloader external payable override {
+    ) external payable onlyBootloader override {
         // Refunds are not supported yet.
     }
 
@@ -354,7 +354,7 @@ contract MyPaymaster is IPaymaster {
         bytes32,
         ExecutionResult _txResult,
         uint256 _maxRefundedGas
-    ) onlyBootloader external payable override {
+    ) external payable override onlyBootloader {
         // Refunds are not supported yet.
     }
 
