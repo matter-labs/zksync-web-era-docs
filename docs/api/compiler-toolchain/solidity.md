@@ -4,6 +4,9 @@ The compiler we provide as a part of our toolchain is called [zksolc](https://gi
 operates on IR and metadata received from the underlying [solc](https://docs.soliditylang.org/en/latest/) compiler,
 which must be available in `$PATH`, or its path must be explicitly passed via the CLI (command-line interface).
 
+::: warning
+To safeguard the security and efficiency of your application, always use the latest compiler version.
+:::
 ## Usage
 
 Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
