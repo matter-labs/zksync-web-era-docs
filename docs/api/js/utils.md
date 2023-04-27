@@ -270,6 +270,48 @@ function eip712TxHash(transaction: any, ethSignature?: EthereumSignature) {
 }
 ```
 
+### `estimateCustomBridgeDepositL2Gas`
+
+Used by `estimateDefaultBridgeDepositL2Gas` to estimate L2 gas required for token bridging via a custom ERC20 bridge.
+
+::: tip More info
+- See the [default bridges documentation](../../dev/developer-guides/bridging/bridging-asset.md#default-bridges)
+:::
+
+#### Inputs
+
+- `providerL2`: zkSync `Provider` object.
+- `l1BridgeAddress`: bridge `Address` string.
+- `l2BridgeAddress`: bridge `Address` string.
+- `token`: token `Address` string.
+- `amount`: deposit amount as `BigNumberish`.
+- `to`: recipient `Address` string.
+- `bridgeData`: data as `BytesLike` object.
+- `from?`: sender `Address` string (optional).
+- `gasPerPubdataByte?`: current gas per byte of pubdata as `BigNumberish` (optional).
+
+```ts
+export async function estimateCustomBridgeDepositL2Gas(
+    providerL2: Provider,
+    l1BridgeAddress: Address,
+    l2BridgeAddress: Address,
+    token: Address,
+    amount: BigNumberish,
+    to: Address,
+    bridgeData: BytesLike,
+    from?: Address,
+    gasPerPubdataByte?: BigNumberish
+): Promise<BigNumber> {
+    const calldata = await getERC20BridgeCalldata(token, from, to, amount, bridgeData);
+    return await providerL2.estimateL1ToL2Execute({
+        caller: applyL1ToL2Alias(l1BridgeAddress),
+        contractAddress: l2BridgeAddress,
+        gasPerPubdataByte: gasPerPubdataByte,
+        calldata: calldata
+    });
+}
+```
+
 ### `estimateDefaultBridgeDepositL2Gas`
 
 Returns an estimation of L2 gas required for token bridging via the default ERC20 bridge.
@@ -298,9 +340,9 @@ export async function estimateDefaultBridgeDepositL2Gas(
     from?: Address,
     gasPerPubdataByte?: BigNumberish
 ): Promise<BigNumber> {
-    // If `from` is not provided, we use a random address, because
-    // due to storage slot aggregation, the gas estimation depends on the address,
-    // thus estimation for the zero address may be smaller than for the sender.
+    // If the `from` address is not provided, we use a random address, because
+    // due to storage slot aggregation, the gas estimation will depend on the address
+    // and so estimation for the zero address may be smaller than for the sender.
     from ??= ethers.Wallet.createRandom().address;
 
     if (token == ETH_ADDRESS) {
@@ -314,15 +356,18 @@ export async function estimateDefaultBridgeDepositL2Gas(
     } else {
         const l1ERC20BridgeAddresses = (await providerL2.getDefaultBridgeAddresses()).erc20L1;
         const erc20BridgeAddress = (await providerL2.getDefaultBridgeAddresses()).erc20L2;
-
-        const calldata = await getERC20BridgeCalldata(token, from, to, amount, providerL1);
-
-        return await providerL2.estimateL1ToL2Execute({
-            caller: applyL1ToL2Alias(l1ERC20BridgeAddresses),
-            contractAddress: erc20BridgeAddress,
-            gasPerPubdataByte: gasPerPubdataByte,
-            calldata: calldata
-        });
+        const bridgeData = await getERC20DefaultBridgeData(token, providerL1);
+        return await estimateCustomBridgeDepositL2Gas(
+            providerL2,
+            l1ERC20BridgeAddresses,
+            erc20BridgeAddress,
+            token,
+            amount,
+            to,
+            bridgeData,
+            from,
+            gasPerPubdataByte
+        );
     }
 }
 ```
@@ -362,7 +407,7 @@ export function getDeployedContracts(receipt: ethers.providers.TransactionReceip
 
 ### `getERC20BridgeCalldata`
 
-Returns the calldata sent by an L1 ERC20 bridge to its L2 counterpart.
+Returns the calldata sent by an L1 ERC20 bridge to its L2 counterpart during token-bridging.
 
 #### Inputs
 
@@ -370,7 +415,7 @@ Returns the calldata sent by an L1 ERC20 bridge to its L2 counterpart.
 - `l1Sender`: sender address on L1 as string.
 - `l2Receiver`: recipient address on L2 as string.
 - `amount`: gas fee for the number of tokens to bridge as `BigNumberish` object.
-- `provider`: ethers `Provider` object.
+- `bridgeData`: data as `BytesLike` object.
 
 ```ts
 export async function getERC20BridgeCalldata(
@@ -378,22 +423,21 @@ export async function getERC20BridgeCalldata(
     l1Sender: string,
     l2Receiver: string,
     amount: BigNumberish,
-    provider: ethers.providers.Provider
+    bridgeData: BytesLike
 ): Promise<string> {
-    const gettersData = await getERC20GettersData(l1TokenAddress, provider);
     return L2_BRIDGE_ABI.encodeFunctionData('finalizeDeposit', [
         l1Sender,
         l2Receiver,
         l1TokenAddress,
         amount,
-        gettersData
+        bridgeData
     ]);
 }
 ```
 
-### `getERC20GettersData`
+### `getERC20DefaultBridgeData`
 
-Gets the data needed for initializing an L1 token counterpart on L2.
+Returns the data needed for correct initialization of an L1 token counterpart on L2.
 
 #### Inputs
 
@@ -409,7 +453,10 @@ An ABI-encoded array of:
 - `decimalBytes`: `bytes` object representation of token decimal representation.
 
 ```ts
-async function getERC20GettersData(l1TokenAddress: string, provider: ethers.providers.Provider): Promise<string> {
+export async function getERC20DefaultBridgeData(
+    l1TokenAddress: string,
+    provider: ethers.providers.Provider
+): Promise<string> {
     const token = IERC20MetadataFactory.connect(l1TokenAddress, provider);
 
     const name = await token.name();
