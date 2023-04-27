@@ -1,16 +1,16 @@
-# Web3 API
+# JSON RPC API
 
 zkSync Era fully supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/) and adds some L2-specific features.
 
-As long as the code does not involve deploying new smart contracts (they can only be deployed using EIP712 transactions, more on that [below](#eip712)), _no changes to the codebase are needed._
+:::tip Tip
+- As long as code does not involve deploying new smart contracts, which can only be deployed using [EIP712 transactions](#eip712), _no changes to the codebase are needed_.
+:::
 
-It is possible to continue using the SDK that is currently in use. Users will continue paying fees in ETH, and the UX will be identical to the one on Ethereum.
+## EIP-712 transactions
 
-However, zkSync Era has its specifics, which this section describes.
+The Ethereum Improvement Proposal [EIP-712: Typed structured data hashing and signing](https://eips.ethereum.org/EIPS/eip-712) introduces hashing and signing of typed-structured data as well as bytestrings. 
 
-## EIP712
-
-To specify additional fields, like the custom signature for custom accounts or to choose the paymaster, EIP712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but they also have fields that contain additional L2-specific data (`paymaster`, etc).
+To specify additional fields, such as the custom signature for custom accounts or to choose the paymaster, EIP-712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but they also have fields that contain additional L2-specific data (`paymaster`, etc).
 
 ```json
 "gasPerPubdata": "1212",
@@ -22,14 +22,14 @@ To specify additional fields, like the custom signature for custom accounts or t
 "factoryDeps": ["0x..."]
 ```
 
-- `gasPerPubdata`: is a field that describes the maximal amount of gas the user is willing to pay for a single byte of pubdata.
-- `customSignature` is a field with a custom signature, in case the signer's account is not EOA.
-- `paymasterParams` is a field with parameters for configuring the custom paymaster for the transaction. The address of the paymaster and the encoded input to call it are in the paymaster parameters.
-- `factory_deps` is a field that should be a non-empty array of `bytes`. For deployment transactions it should contain the bytecode of the contract being deployed. If the contract being deployed is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which can be deployed by it.
+- `gasPerPubdata`: A field denoting the maximum amount of gas the user is willing to pay for a single byte of pubdata.
+- `customSignature`: A field with a custom signature for the cases in which the signer's account is not an EOA.
+- `paymasterParams`: A field with parameters for configuring the custom paymaster for the transaction. Parameters include the address of the paymaster and the encoded input.
+- `factory_deps`: A non-empty array of `bytes`. For deployment transactions, it should contain the bytecode of the contract being deployed. If the contract is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which it can deploy.
 
-To let the server recognize EIP712 transactions, the `transaction_type` field is equal to `113` (unfortunately the number `712` can not be used as the `transaction_type` since the type has to be one byte long).
+To ensure the server recognizes EIP-712 transactions, the `transaction_type` field is equal to `113`. The number `712` cannot be used as it has to be one byte long.
 
-Instead of signing the RLP-encoded transaction, the user signs the following typed EIP712 structure:
+Instead of signing the RLP-encoded transaction, the user signs the following typed EIP-712 structure:
 
 | Field name             | Type        |
 | ---------------------- | ----------- |
@@ -47,29 +47,30 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 | factoryDeps            | `bytes32[]` |
 | paymasterInput         | `bytes`     |
 
-These fields are conveniently handled by our [SDK](./js/features.md).
+These fields are handled by our [SDK](./js/features.md).
 
-## zkSync-specific JSON-RPC methods
+## zkSync Era-specific JSON-RPC methods
 
-All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods other than those provided here. These methods are to be used internally by the team and are very unstable.
+All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods not detailed here which are used internally by the team.
 
 ::: warning
-
-Please note that Metamask does not support zks\_ namespace's methods, we are working to support it in the future, alternatively, you can use the `Provider` class with the testnet RPC instead of relying on Metamask's injected provider.
-
+- Metamask does not support the `zks_` namespace at the time of writing.
+- Instead, use the `Provider` class with the testnet RPC.
 :::
 
-<!-- ### `zks_estimateFee`
+### `zks_estimateFee`
 
-Returns the fee for the transaction. The token in which the fee is calculated is returned based on the `fee_token` in the transaction provided.
+Returns the fee for the transaction. 
 
-#### Input parameters
+The token in which the fee is calculated is based on the `fee_token` provided in the transaction.
+
+#### Inputs
 
 | Parameter | Type          | Description                                                  |
 | --------- | ------------- | ------------------------------------------------------------ |
-| req       | `CallRequest` | The zkSync transaction for which the fee should be estimated |
+| `req`       | `CallRequest` | The zkSync transaction for which the fee is estimated. |
 
-#### Output format
+#### Output
 
 ```json
 {
@@ -78,7 +79,37 @@ Returns the fee for the transaction. The token in which the fee is calculated is
   "max_priority_fee_per_gas": 100,
   "gas_per_pubdata_limit": 10
 }
-``` -->
+```
+
+#### curl example
+
+```curl
+:todo
+```
+
+### `zks_estimateGasL1ToL2`
+
+Returns an estimate of the gas required for a L1 to L2 transaction.
+
+#### Inputs
+
+| Parameter | Type          | Description                                                  |
+| --------- | ------------- | ------------------------------------------------------------ |
+| `req`       | `CallRequest` | The zkSync transaction for which the gas fee is estimated. |
+
+#### Output
+
+```json
+{
+todo:
+}
+```
+
+#### curl example
+
+```curl
+:todo
+```
 
 ### `zks_getBlockDetails`
 
@@ -132,9 +163,9 @@ None.
 
 Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `from` and `limit`.
 
-**Confirmed** in the function name means the function returns any token bridged to zkSync via the official bridge.
+**Confirmed** in the method name means the method returns any token bridged to zkSync via the official bridge.
 
-This function is mostly used by the zkSync team.
+This method is mostly used by the zkSync team.
 
 #### Input parameters
 
@@ -245,13 +276,19 @@ The same as in [zks_getL2ToL1LogProof](#zks-getl2tol1logproof).
 
 Returns the address of the zkSync Era contract.
 
-#### Input parameters
+#### Inputs
 
 None.
 
-#### Output format
+#### Output
 
 `"0xaBEA9132b05A70803a4E85094fD0e1800777fBEF"`
+
+#### curl example
+
+```curl
+:todo
+```
 
 ### `zks_getTestnetPaymaster`
 
