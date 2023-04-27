@@ -73,7 +73,7 @@ const config: HardhatUserConfig = {
       zksync: false,
     },
     zkSyncTestnet: {
-      url: "https://zksync2-testnet.zksync.dev",
+      url: "https://testnet.era.zksync.dev",
       ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
       zksync: true,
     },
@@ -100,7 +100,7 @@ The skeleton contract looks like this:
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.8;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
@@ -262,7 +262,7 @@ contract MyPaymaster is IPaymaster {
             msg.sender == BOOTLOADER_FORMAL_ADDRESS,
             "Only bootloader can call this method"
         );
-        // Continure execution if called from the bootloader.
+        // Continue execution if called from the bootloader.
         _;
     }
 
@@ -274,7 +274,12 @@ contract MyPaymaster is IPaymaster {
         bytes32,
         bytes32,
         Transaction calldata _transaction
-    ) external payable returns (bytes4 magic, bytes memory context) {
+    )
+        external
+        payable
+        onlyBootloader
+        returns (bytes4 magic, bytes memory context)
+    {
         // By default we consider the transaction as accepted.
         magic = PAYMASTER_VALIDATION_SUCCESS_MAGIC;
         require(
@@ -349,7 +354,7 @@ contract MyPaymaster is IPaymaster {
         bytes32,
         ExecutionResult _txResult,
         uint256 _maxRefundedGas
-    ) external payable override {
+    ) onlyBootloader external payable override {
         // Refunds are not supported yet.
     }
 
@@ -394,7 +399,7 @@ contract MyERC20 is ERC20 {
 
 ## Compile and deploy the contracts
 
-The script below deploys the ERC20 contract and the paymaster contract. It also creates an empty wallet and mints some `MyERC20` tokens for the paymaster to use at a later step. In addition, the script sends `0.03ETH` to the paymaster contract so it can pay the transaction fees we send later on.
+The script below deploys the ERC20 contract and the paymaster contract. It also creates an empty wallet and mints some `MyERC20` tokens for the paymaster to use at a later step. In addition, the script sends `0.06ETH` to the paymaster contract so it can pay the transaction fees we send later on.
 
 1. In the `deploy` folder, create the file `deploy-paymaster.ts` and copy/paste the following, replacing `<PRIVATE-KEY>` with your own:
 
