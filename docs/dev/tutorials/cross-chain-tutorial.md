@@ -53,13 +53,13 @@ To interact with the zkSync bridge contract using Solidity, you need the zkSync 
 3. Install the following dependencies:
 
 ::: code-tabs
-@tab npm
-```sh
-npm i -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts @nomiclabs/hardhat-ethers @nomiclabs/hardhat-waffle ethereum-waffle
-```
 @tab yarn
 ```sh
 yarn add -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts @nomiclabs/hardhat-ethers @nomiclabs/hardhat-waffle ethereum-waffle
+```
+@tab npm
+```sh
+npm i -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts @nomiclabs/hardhat-ethers @nomiclabs/hardhat-waffle ethereum-waffle
 ```
 :::
 
@@ -81,8 +81,7 @@ The constructor sets the contract creator as the single governor. The `callZkSyn
 // SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.13;
 
-import 
-"@matterlabs/zksync-contracts/l1/contracts/zksync/interfaces/IZkSync.sol";
+import "@matterlabs/zksync-contracts/l1/contracts/zksync/interfaces/IZkSync.sol";
 
 contract Governance {
     address public governor;
@@ -102,7 +101,7 @@ contract Governance {
 
         IZkSync zksync = IZkSync(zkSyncAddress);
         zksync.requestL2Transaction{value: msg.value}(contractAddr, 0, 
-data, gasLimit, gasPerPubdataByteLimit, new bytes[](0), msg.sender);
+            data, gasLimit, gasPerPubdataByteLimit, new bytes[](0), msg.sender);
     }
 }
 ```
@@ -121,7 +120,7 @@ data, gasLimit, gasPerPubdataByteLimit, new bytes[](0), msg.sender);
 2. Replace the code in `hardhat.config.ts` with the following:
 
 ```ts
-import { HardhatUserConfig, task } from "hardhat/config";
+import { HardhatUserConfig } from "hardhat/config";
 import "@nomiclabs/hardhat-waffle";
 
 // import file with Göerli params
@@ -129,7 +128,7 @@ const goerli = require("./goerli.json");
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.13",
+    version: "0.8.19",
   },
     networks: {
       // Göerli network
@@ -146,6 +145,11 @@ export default config;
 3. Navigate to the `scripts` folder and copy/paste the following code into the `deploy.ts` file (removing any previous code):
 
 ```ts
+// We require the Hardhat Runtime Environment explicitly here. This is optional
+// but useful for running the script in a standalone fashion through `node <script>`.
+//
+// When running the script with `npx hardhat run <script>` you'll find the Hardhat
+// Runtime Environment's members available in the global scope.
 import { ethers } from "hardhat";
 
 async function main() {
@@ -168,14 +172,6 @@ main().catch((error) => {
 4. From the `L1-governance` folder root, compile and deploy the contract:
 
 ::: code-tabs
-@tab npm
-```sh
-# compile contract
-npx hardhat compile
-
-# deploy contract
-npx hardhat run --network goerli ./scripts/deploy.ts
-```
 @tab yarn
 ```sh
 # compile contract
@@ -183,6 +179,14 @@ yarn hardhat compile
 
 # deploy contract
 yarn hardhat run --network goerli ./scripts/deploy.ts
+```
+@tab npm
+```sh
+# compile contract
+npx hardhat compile
+
+# deploy contract
+npx hardhat run --network goerli ./scripts/deploy.ts
 ```
 :::
 
@@ -199,26 +203,26 @@ Now that we have an address for the L1 governance contract, we can build, deploy
 1. `cd` into `/L2-counter` and initialize the project:
 
 ::: code-tabs
-@tab npm
-```sh
-npm init -y
-```
 @tab yarn
 ```sh
 yarn init -y
+```
+@tab npm
+```sh
+npm init -y
 ```
 :::
 
 2. Install the dependencies:
 
 ::: code-tabs
-@tab npm
-```sh
-npm i typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
-```
 @tab yarn
 ```sh
 yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+```
+@tab npm
+```sh
+npm i typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
 :::
 
@@ -235,7 +239,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.3.8",
+    version: "1.3.10",
     compilerSource: "binary",
   },
   defaultNetwork: "zkSyncTestnet",
@@ -246,12 +250,12 @@ module.exports = {
     },
     zkSyncTestnet: {
       url: "https://testnet.era.zksync.dev",
-      ethNetwork: "<GOERLI RPC URL>", 
+      ethNetwork: "<GOERLI RPC URL>",
       zksync: true,
     },
   },
   solidity: {
-    version: "0.8.13",
+    version: "0.8.19",
   },
 };
 ```
@@ -270,6 +274,7 @@ This contract contains the address of the governance contract deployed previousl
 
 ```sol
 // SPDX-License-Identifier: Unlicense
+
 pragma solidity ^0.8.13;
 
 contract Counter {
@@ -291,13 +296,13 @@ contract Counter {
 3. Compile the contract from the `L2-counter` root:
 
 ::: code-tabs
-@tab npm
-```sh
-npx hardhat compile
-```
 @tab yarn
 ```sh
 yarn hardhat compile
+```
+@tab npm
+```sh
+npx hardhat compile
 ```
 :::
 
@@ -307,7 +312,6 @@ yarn hardhat compile
 
 ```typescript
 import { utils, Wallet } from "zksync-web3";
-import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
@@ -326,7 +330,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const artifact = await deployer.loadArtifact("Counter");
 
   // Deposit some funds to L2 to be able to perform deposits.
-  const deploymentFee = await deployer.estimateDeployFee(artifact, [utils.applyL1ToL2Alias (GOVERNANCE_ADDRESS)]);
+  const deploymentFee = await deployer.estimateDeployFee(artifact, [utils.applyL1ToL2Alias(GOVERNANCE_ADDRESS)]);
   const depositHandle = await deployer.zkWallet.deposit({
     to: deployer.zkWallet.address,
     token: utils.ETH_ADDRESS,
@@ -337,7 +341,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Deploy this contract. The returned object will be of a `Contract` type, similar to the ones in `ethers`.
   // The address of the governance is an argument for contract constructor.
-  const counterContract = await deployer.deploy(artifact, [utils.applyL1ToL2Alias (GOVERNANCE_ADDRESS)]);
+  const counterContract = await deployer.deploy(artifact, [utils.applyL1ToL2Alias(GOVERNANCE_ADDRESS)]);
 
   // Show the contract info.
   const contractAddress = counterContract.address;
@@ -346,21 +350,19 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 
 ::: tip Deposit funds during deployment
-
 The deployment script contains a deposit from Goerli to zkSync Era testnet, which can take a few minutes to finish. If your wallet already has funds in L2, you can skip that part to save you some time.
-
 :::
 
 2. Now deploy the contract from the `L2-counter/` folder root to zkSync:
 
 ::: code-tabs
-@tab npm
-```sh
-npx hardhat deploy-zksync
-```
 @tab yarn
 ```sh
 yarn hardhat deploy-zksync
+```
+@tab npm
+```sh
+npx hardhat deploy-zksync
 ```
 :::
 
@@ -388,20 +390,24 @@ Now both contracts are deployed, we can create a script to retrieve the value of
 4. Create a `/L2-counter/scripts/display-value.ts` file and paste in the following code, adding the counter contract address:
 
 ```ts
-import { Contract, Provider } from "zksync-web3";
+import { Contract, Provider } from 'zksync-web3';
 
-// The address of the counter smart contract
-const COUNTER_ADDRESS = "<COUNTER CONTRACT ADDRESS>";
-// The ABI of the counter smart contract
-const COUNTER_ABI = require("./counter.json");
+const COUNTER_ADDRESS = '<COUNTER-ADDRESS>';
+const COUNTER_ABI = require('./counter.json');
 
 async function main() {
-  // Initializing the zkSync provider
-  const l2Provider = new Provider("https://testnet.era.zksync.dev");
+  // Initialize the provider
+  const l2Provider = new Provider('https://testnet.era.zksync.dev');
 
-  const counterContract = new Contract(COUNTER_ADDRESS, COUNTER_ABI, l2Provider);
+  const counterContract = new Contract(
+    COUNTER_ADDRESS,
+    COUNTER_ABI,
+    l2Provider
+  );
 
-  console.log(`The counter value is ${(await counterContract.value()).toString()}`);
+  const value = (await counterContract.value()).toString();
+
+  console.log(`The counter value is ${value}`);
 }
 
 main().catch((error) => {
@@ -413,13 +419,13 @@ main().catch((error) => {
 5. Run the script:
 
 ::: code-tabs
-@tab npm
-```sh
-npx ts-node ./scripts/display-value.ts
-```
 @tab yarn
 ```sh
 yarn ts-node ./scripts/display-value.ts
+```
+@tab npm
+```sh
+npx ts-node ./scripts/display-value.ts
 ```
 :::
 
@@ -449,13 +455,12 @@ Now, let's call the `increment` method on Layer 2 from Layer 1.
 ```ts
 import { BigNumber, Contract, ethers, Wallet } from "ethers";
 import { Provider, utils } from "zksync-web3";
-const COUNTER_ABI = require("./counter.json");
-const GOVERNANCE_ABI = require("./governance.json");
-const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
-const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
+const GOVERNANCE_ABI = require('./governance.json');
+const GOVERNANCE_ADDRESS = '<GOVERNANCE-ADDRESS>';
+const COUNTER_ABI = require('./counter.json');
+const COUNTER_ADDRESS = '<COUNTER-ADDRESS>';
 
 async function main() {
-
   // Enter your Ethereum L1 provider RPC URL.
   const l1Provider = new ethers.providers.JsonRpcProvider("<RPC-URL>");
   // Set up the Governor wallet to be the same as the one that deployed the governance contract.
@@ -522,13 +527,13 @@ main().catch((error) => {
 4. Run the script with the following command:
 
 ::: code-tabs
-@tab npm
-```sh
-npx ts-node ./scripts/increment-counter.ts
-```
 @tab yarn
 ```sh
 yarn ts-node ./scripts/increment-counter.ts
+```
+@tab npm
+```sh
+npx ts-node ./scripts/increment-counter.ts
 ```
 :::
 
