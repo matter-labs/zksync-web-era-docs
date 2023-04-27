@@ -38,7 +38,7 @@ On zkSync Era this varies because we support custom and paymaster accounts. Thes
 
 The transaction fee estimate depends on the entire transaction flow, including validation and execution. The `eth_estimateGas` function uses binary search to find the smallest gas value under which the transaction succeeds.
 
-For any Rust developers interested in the zkSync Era implementation for gas estimation, see the [Rust code in our repo](https://github.com/matter-labs/zksync-era).
+For any Rust developers interested in the zkSync Era implementation for gas estimation, see the [Rust code in our repo](https://github.com/matter-labs/zksync-era/tree/main/sdk/zksync-rs).
 
 ### Transaction length
 
