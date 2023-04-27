@@ -1,4 +1,4 @@
-# JSON RPC API
+# Web3 JSON-RPC API
 
 zkSync Era fully supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/) and adds some L2-specific features.
 
@@ -49,6 +49,17 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 
 These fields are handled by our [SDK](./js/features.md).
 
+## RPC endpoint URLs
+
+### Testnet
+
+[https://testnet.era.zksync.dev](https://testnet.era.zksync.dev)
+
+### Mainnet
+
+[https://mainnet.era.zksync.io](https://mainnet.era.zksync.io)
+
+
 ## zkSync Era-specific JSON-RPC methods
 
 All zkSync-specific methods are located in the `zks_` namespace. The API may also provide methods not detailed here which are used internally by the team.
@@ -70,6 +81,12 @@ The token in which the fee is calculated is based on the `fee_token` provided in
 | --------- | ------------- | ------------------------------------------------------------ |
 | `req`       | `CallRequest` | The zkSync transaction for which the fee is estimated. |
 
+#### Example
+
+```curl
+:todo
+```
+
 #### Output
 
 ```json
@@ -79,12 +96,6 @@ The token in which the fee is calculated is based on the `fee_token` provided in
   "max_priority_fee_per_gas": 100,
   "gas_per_pubdata_limit": 10
 }
-```
-
-#### curl example
-
-```curl
-:todo
 ```
 
 ### `zks_estimateGasL1ToL2`
@@ -113,7 +124,7 @@ todo:
 
 ### `zks_getBlockDetails`
 
-Returns additional ZkSync-specific information about the L2 block.
+Returns additional zkSync-specific information about the L2 block.
 
 #### Input parameters
 
@@ -121,7 +132,15 @@ Returns additional ZkSync-specific information about the L2 block.
 | --------- | -------- | ------------------------ |
 | block     | `uint32` | The number of the block. |
 
-#### Output format
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" 
+--data '{"jsonrpc": "2.0", "id": 1, "method": "https://testnet.era.zksync.dev”, "params": [ “1”]}’ 
+"https://testnet.era.zksync.dev"
+```
+
+#### Output
 
 ```json
 {
@@ -163,7 +182,11 @@ None.
 
 Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `from` and `limit`.
 
+<<<<<<< Updated upstream
 **Confirmed** in the method name means the method returns any token bridged to zkSync via the official bridge.
+=======
+**Confirmed** in the method name means the function returns any token bridged to zkSync via the official bridge.
+>>>>>>> Stashed changes
 
 This method is mostly used by the zkSync team.
 
