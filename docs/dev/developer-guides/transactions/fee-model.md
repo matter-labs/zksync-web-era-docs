@@ -1,72 +1,100 @@
+
 # Fee mechanism
 
-At zkSync, we aim to be compatible with Ethereum, meaning we aim to share similarities while minimizing huge differences, one such similarity is the gas fee model of zkSync.
+zkSync Era's fee model is similar to Ethereum’s where `gas` is charged for computational cost, cost of publishing data on-chain and storage effects. However, zkSync Era includes additional costs for publishing to L1 and for proof generation.
 
-zkSync's version of `gas` represents not only the costs of computations but also the cost of publishing data on-chain and affecting storage.
+Because the L1 gas price for publishing data (on L1) is so volatile, the amount of required L2 `gas` is variable.
+Therefore, for each block, the zkSync Era sequencer defines the following dynamic parameters:
 
-Since the costs for publishing the calldata on L1 are very volatile, the number of `gas` needed for changing a storage slot is not constant. For each block, the operator defines the following dynamic parameters:
+- `gasPrice`: the price, in gwei, of a unit of gas.
+- `gasPerPubdata`: the amount of `gas` for publishing one byte of data on Ethereum.
 
-- `gas_price` — the table for the current base price in each token. The value of this parameter is used to determine the costs of VM execution in each token.
-- `gas_per_pubdata` — the price in `gas` for publishing one byte of data to Ethereum.
+:::warning Important
+- Only the L2 state storage slot updates are published on L1. 
+- For example, if the same storage slot is updated 10 times in the same rollup batch, only the final update is published on Ethereum and there is therefore only one gas charge.
+:::
 
-**Please note that the public data is published only for state diffs.** If the same storage slot is updated 10 times in the same rollup block, only the final update will be published on Ethereum, thus only charging for public data once.
+## Fee model overview
 
-## Fee model: zkSync vs Ethereum
+In zkSync Era, unlike in Ethereum where each opcode has a fixed gas price, storage write charges remain dynamic due to the fluctuation of gas price on L1. Other opcode prices are constant, similar to Ethereum. See the [zkSync opcode documentation](https://github.com/matter-labs/era-zkevm_opcode_defs/blob/9307543b9ca51bd80d4f5c85d6eb80efd8b19bb2/src/lib.rs#L227) for an idea of how we calculate them.
 
-We want to show the clear distinction between our fee model and the Ethereum one.
-Also, unlike Ethereum, where most of the opcodes have very distinct gas prices, in zkSync the cost of the opcodes is different, hence zkEVM opcodes will likely have similar `gas` prices.
-Generally, the execution itself (arithmetic operations, which do not involve storage updates) is very cheap. As in Ethereum, most of the cost is incurred for storage updates.
+Like Ethereum, the most costly operation is a storage update. Execution of arithmetic operations is relatively cheap, as it involves computation alone and no storage changes. 
 
-## What does this mean to me?
+A considerable advantage we have over optimistic rollups is that, instead of publishing all transaction data to L1, zkSync Era only publishes state diffs, thus publishing significantly less data to L1. Another advantage is the cost-effective contract redeployment. An example is a DEX with a `PairFactory` contract for different `Pair` pools. The contract bytecode of `Pair` is only published when the first instance is deployed. After that, subsequent deployments only involve updating one storage slot which sets the contract code hash on the newly deployed `Pair` address.
 
-Despite the differences, the fee model is quite similar to the one of Ethereum; the most costly operation is the storage change. One of the advantages of zk rollups over-optimistic rollups is that, instead of publishing all the transaction data, zk rollups can publish only state diffs, thus making fewer storage changes.
+### Design recommendations
 
-As already stated, if the same storage slot is updated several times in a single block, only the last update will be published on Ethereum, and the cost of storage change will only be charged once; but it goes beyond simple storage slots. For example, a DEX and a `PairFactory` factory for different `Pair` pools. The contract bytecode of `Pair` needs to be published only when the first instance is deployed. After the code of the `Pair` was published once, the subsequent deployments will only involve changing one storage slot -- to set the contract code hash on the newly deployed `Pair`'s address.
+- **Update storage slots as little as possible:** Check to see if your code can avoid unnecessary storage updates.
+- **Reuse as many storage slots as possible:** Only the final state diff is published on Ethereum.
+- **Reuse the contract code where possible:**
+	 - On Ethereum, avoiding constructor parameters and putting them into constants reduces some of the gas costs upon contract deployment.
+	 - On zkSync Era the opposite is true: as contract bytecode is only published once, updating the constructor parameters alone leads to substantial fee savings.
 
-So the tips to make the most out of the zkSync fee system are the following:
+## Gas estimation for transactions
 
-- **Update storage slots as little as possible.** The cost for execution is a lot smaller than the cost of storage updates.
-- **Reuse as many storage slots as possible.** Only the state diff is published on Ethereum.
-- **Users should share as many storage slots as possible.** If 100 users update a storage slot of your contract in a single block, the diff will be published only once. In the future, we will introduce reimbursement for the users, so that the costs for updating shared storage slots are split between the users.
-- **Reuse the contract code if possible.** On Ethereum, avoiding constructor parameters and putting them into constants reduces some of the gas costs upon contract deployment. On zkSync the opposite is true: deploying the same bytecode for contracts, while changing only constructor parameters can lead to substantial fee savings.
+Ethereum has a constant of 21000 gas that covers the intrinsic costs of processing a transaction, i.e. checking the signature and updating the nonce for the account.
 
+On zkSync Era this varies because we support custom and paymaster accounts. These accounts require a (usually) higher amount of gas than EOAs. zkSync Era provides functions for estimating the cost of a transaction regardless of the type of account.
 
-## Gas estimation during a transaction: For Paymaster and Custom Accounts
+The transaction fee estimate depends on the entire transaction flow, including validation and execution. The `eth_estimateGas` function uses binary search to find the smallest gas value under which the transaction succeeds.
 
-On Ethereum, there is a constant of 21000 gas that should cover all the intrinsic costs of processing a transaction: checking the signature and updating the nonce of the account. 
+For any Rust developers interested in the zkSync Era implementation for gas estimation, see the [Rust code in our repo](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-rs/src/operations/execute_contract.rs#L129).
 
-On zkSync Era, it's quite different, because we support custom accounts that may take a slightly different (typically a bit higher) number of gas than EOAs. 
-We provide a convenient way for anyone to estimate the cost of a transaction regardless of the type of account. 
+### Transaction length
 
-### Changes in the `validateTransaction`
+zkSync Era publishes state diffs on-chain. The cost of the transaction, however, may still depend on transaction length because the sequencer stores long transactions in-memory.
 
-The `validateTransaction` method is considered successful whenever it does not revert (i.e. returns `success = true`). And it returns the magic string. For invalid signatures, the method does not revert, but it returns invalid magic. However, the success of the `validateTransaction` method depends on it returning a magic string.
+Long transactions incur additional costs during interactions with an account. zkSync Era works with different types of accounts and, therefore, the protocol cannot make assumptions about signature length. Furthermore, given that a signature (and thus its length) is unavailable at the time of fee estimation, we cannot precisely estimate the cost of such a transaction. To mitigate this, we multiply the recommended cost of the transaction by a small percentage.
 
-### Notes on custom accounts
+### `DefaultAccount`
 
-Currently, the `validateTransaction` method of the AA (or the paymaster `validateAndPayForPaymasterTransaction` method) always tries to perform the same amount of computation (including storage accesses) regardless of whether the transaction is validated correctly. By default, the operator provides a transaction structure with the available information during fee estimation. To replace the signature, an invalid 65-byte ECDSA signature is utilized. The `DefaultAccount` (used by EOAs), during fee estimation, executes as many operations, including signature verification, and returns only `bytes4(0)` instead of magic. In the case of a custom account with multiple signers, the account may wish to simulate signature validation for all the provided signers.
+By default, the zkSync Era sequencer provides a transaction structure with the available information during the fee estimation.
 
-The code of the validation step of each account can be found in the [DefaultAccount implementation](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/DefaultAccount.sol)
+Because the signature is unavailable prior to the transaction taking place, an invalid 65-byte ECDSA signature is used instead. The `DefaultAccount` (used by EOAs), during gas fee estimation, executes many operations, including signature verification, and returns only `bytes4(0)` instead of [magic](../../../api/js/utils.md#magic-value).
 
-### Notes on the transaction’s length
+In the case of a custom account with multiple signers, the account may wish to simulate signature validation for all the provided signers.
 
-zkSync Era sends state diffs on-chain, but the cost for the transaction will still mildly depend on its length (because long transactions need to be stored in the memory of the operator). Also, long transactions incur additional costs during interactions with an account. However, the signature (as well as its length) is not available at the time of fee estimation and so there is no correct way to precisely estimate the cost of the transaction. For now, we will compensate for it by multiplying the recommended cost of the transaction by a few percent. In the future, we may introduce the following:
+See the [DefaultAccount code](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/DefaultAccount.sol) for more information.
 
-- Each account will be able to implement a method called `fillPartialTransaction` that will fill the signature with the substituted value which will be used for fee estimation.
+### Account abstraction considerations
 
-### Changes for `eth_estimateGas`
+The `validateTransaction` function for account abstraction, and the `validateAndPayForPaymasterTransaction` function for paymasters, always attempt to run using the same amount of computation, including storage access, regardless of whether the transaction is successful or not.
 
-Since the entire flow for tx validation + execution will be executed to get the transaction’s fee, the operator will manually put the necessary balance (if needed) for the account before the emulation is run to conduct the default account’s `payForTransaction` method.
+See the documentation on [account abstraction](../../developer-guides/aa.md) for more detailed information.
 
-The `eth_estimateGas` method itself will use binary search to find the smallest gas value under which the transaction *succeeds*.
+#### `validateTransaction`
 
-### Difference from geth
+- `validateTransaction` is considered successful when it does not revert (i.e. it returns `success = true`) and also returns the magic string.
+- For invalid signatures, the function does not revert. It instead returns invalid magic so the function is unsuccessful.
 
-Just like Geth, we will use binary search for gas estimation. However, there will be some notable differences in gas estimation from the behaviour of Geth:
+#### `eth_estimateGas`
 
-- Unlike Geth, it is impossible to track *out of gas* errors on zkSync Era. The main reason is that the “actual” execution will happen inside the DefaultAccount system contract and due to the 63/64 rule when a high number of gas is provided, the call to the `execute` method of the DefaultAccount will NOT fail due to out of gas even though the subcall to the `transaction.to` contract did fail with an out of gas error.
+Because the entire transaction validation and execution flow is simulated in order to get the transaction’s fee, the user needs to have sufficient funds in their account, otherwise the simulation may exit. This means that, to ensure the execution progresses, the zkSync Era sequencer adds the necessary balance, temporarily, to the user’s account; specifically the sequencer increases the account balance by tx.maxFeePerGas * tx.gasLimit.
 
-- During the simulation, Geth uses `tx.gasprice = 0` to make sure that the user can pay the fee even though the `tx.origin` in the simulation may not have any balance at all. This means that when `estimateGas` from an empty account is called, no `value` can be provided to such call as this account has zero balance to cover this value. 
-We could do that, but that would mean that the `payForTransaction` of the Account Abstraction protocol would do nothing and thus be much cheaper than it will be during the actual transaction validation. Instead, the operator will increase the balance of the user’s account by `tx.maxFeePerGas * tx.gasLimit`.
+This ensures the `DefaultAccount`’s `payForTransaction` function runs successfully.
 
-For DefaultAccount it will behave the same way as on Geth (since the user will get rid of the new funds in the `payForTransaction` method), but for custom accounts, they may unexpectedly contain more balance than they will have on-chain, which may affect their behavior.
+This is different to the Geth implementation which uses `tx.gasprice = 0` to make sure that the user can pay the fee even though the `tx.origin` in the simulation may not have any balance at all.
+
+:::warning
+Due to this, custom accounts may unexpectedly contain more balance than they have on-chain during the validation step, which may affect their behavior.
+:::
+
+## Refunds
+
+A gas estimate may be higher than the actual cost of the transaction. This means users usually only spend a portion of the estimated transaction cost.
+
+The refund, therefore, returns the unpaid transaction fee portion to the user.
+
+:::tip
+- Only one transaction is recorded on the block, even if a portion of the original estimate is refunded.
+- Users can compare their token balance against the transaction cost on the block explorer to verify they did not overspend.
+- Users may see no notification in their wallet depending on which wallet they use.
+:::
+
+Refunds are calculated by defining a fair value for the amount the user spent on the transaction and subtracting it from the actual spend.
+
+## Out-of-gas errors
+
+Unlike on Geth, it is impossible to track out-of-gas errors on zkSync Era. 
+
+The main reason is that the “actual” execution happens inside the `DefaultAccount` system contract and, due to the [63/64 rule](https://eips.ethereum.org/EIPS/eip-150), when a high amount of gas is provided, the call to the `execute` function of the `DefaultAccount` will NOT fail, even if it is out of gas, although the subcall to the `transaction.to` contract will fail with an out of gas error.
