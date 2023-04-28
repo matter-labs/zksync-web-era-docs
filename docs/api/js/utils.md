@@ -58,14 +58,6 @@ export const L1_MESSENGER = new utils.Interface(require('../../abi/IL1Messenger.
 
 #### L1 and L2 bridges
 
-<<<<<<< HEAD
-## Useful gas constants
-Currently, there is no method to accurately estimate the required `gasPerPubdataLimit`. That's why for now, it is highly recommended to provide the `DEFAULT_GAS_PER_PUBDATA_LIMIT`. Users are not charged more by providing it.
-In future releases, we will provide a way to estimate the current gasPerPubdata.
-
-```typescript
-const GAS_PER_PUBDATA_BYTE = 16;
-=======
 Bridge interface ABIs for L1 and L2.
 
 ```ts
@@ -120,7 +112,6 @@ export const MAX_BYTECODE_LEN_BYTES = ((1 << 16) - 1) * 32;
 ```typescript
 export const ETH_ADDRESS = '0x0000000000000000000000000000000000000000';
 ```
->>>>>>> main
 
 #### ETH token alias on ZkSync Era
 
@@ -159,14 +150,6 @@ export const L1_MESSENGER_ADDRESS = '0x0000000000000000000000000000000000008008'
 
 ```typescript
 export const DEFAULT_GAS_PER_PUBDATA_LIMIT = 50000;
-<<<<<<< HEAD
-
-// It is possible to provide practically any gasPerPubdataByte for L1->L2 transactions, since
-// the cost per gas will be adjusted respectively. We will use 800 as an relatively optimal value for now.
-export const REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT = 800;
-
-=======
->>>>>>> main
 ```
 
 #### `REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT`

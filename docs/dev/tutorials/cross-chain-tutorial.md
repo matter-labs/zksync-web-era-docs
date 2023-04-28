@@ -475,12 +475,8 @@ async function main() {
   // Get the `Contract` object of the zkSync bridge.
   const zkSyncContract = new Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
 
-<<<<<<< HEAD
-  // Encoding L2 transaction is the same way it is done on Ethereum.
-=======
   // Encoding the L1 transaction is done in the same way as it is done on Ethereum.
   // Use an Interface which gives access to the contract functions.
->>>>>>> main
   const counterInterface = new ethers.utils.Interface(COUNTER_ABI);
   const data = counterInterface.encodeFunctionData("increment", []);
 
