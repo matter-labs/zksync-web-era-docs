@@ -15,9 +15,9 @@ We have prepared this document to aid users and developers in utilizing the bloc
 We have prepared this tutorial to aid users and traders in utilizing the block explorer and optimizing the ideal learning experience. We will highlight specific touch points in the block explorer:
 
 1. [Search bar](./search.md) - Search by wallet address, transaction hash, block number or contract address.
-2. [Browse blocks](./block-view.md) - Get all the details about a block included in zkSync network.
-3. [Transaction view](./block-view.md#transactions) - Fetch and analyze the list of transactions that occurs on-chain.
-4. [Smart contract verification](./contract-verification.md) - Verify smart contracts with zkSync block explorer.
+2. [Browse blocks](./block-view.md): details about blocks included in zkSync Era.
+4. [Transaction view](./block-view.md#transactions): fetch and analyze on-chain transactions.
+5. [Smart contract verification](./contract-verification.md): verify smart contracts with zkSync Era block explorer.
 
 To start, you can open up [block explorer](https://explorer.zksync.io/) in your web browser and follow along using the guide.
 Let’s take a look at the block explorer!

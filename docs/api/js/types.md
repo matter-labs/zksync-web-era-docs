@@ -2,7 +2,7 @@
 
 All the types which are used in the SDK are referenced here:
 <!-- TODO SMA-1725: prepare quality documentation for SDK types with proper description and explanation -->
-```typescript
+```ts
 import { BytesLike, BigNumberish, providers, BigNumber } from 'ethers';
 import { BlockWithTransactions as EthersBlockWithTransactions } from '@ethersproject/abstract-provider';
 
@@ -18,6 +18,17 @@ export enum Network {
     Rinkeby = 4,
     Goerli = 5,
     Localhost = 9
+}
+
+export enum PriorityQueueType {
+    Deque = 0,
+    HeapBuffer = 1,
+    Heap = 2
+}
+
+export enum PriorityOpTree {
+    Full = 0,
+    Rollup = 1
 }
 
 export enum TransactionStatus {
@@ -39,6 +50,7 @@ export type Eip712Meta = {
     paymasterParams?: PaymasterParams;
 };
 
+// prettier-ignore
 export type BlockTag =
     | number
     | string // hex number
@@ -48,6 +60,7 @@ export type BlockTag =
     | 'earliest'
     | 'pending';
 
+// TODO (SMA-1585): Support create2 variants.
 export type DeploymentType = 'create' | 'createAccount';
 
 export interface Token {
@@ -167,9 +180,27 @@ export interface ContractAccountInfo {
     nonceOrdering: AccountNonceOrdering;
 }
 
+export interface BatchDetails {
+    number: number;
+    timestamp: number;
+    l1TxCount: number;
+    l2TxCount: number;
+    rootHash?: string;
+    status: string;
+    commitTxHash?: string;
+    committedAt?: Date;
+    proveTxHash?: string;
+    provenAt?: Date;
+    executeTxHash?: string;
+    executedAt?: Date;
+    l1GasPrice: number;
+    l2FairGasPrice: number;
+}
+
 export interface BlockDetails {
     number: number;
     timestamp: number;
+    l1BatchNumber: number;
     l1TxCount: number;
     l2TxCount: number;
     rootHash?: string;

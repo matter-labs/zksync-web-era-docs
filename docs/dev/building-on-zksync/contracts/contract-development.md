@@ -14,9 +14,16 @@ Currently, Solidity versions as old as `0.4.12` are supported, although **we str
 
 Please read [this section of the docs](../../../api/compiler-toolchain/solidity.md#using-libraries) if your project uses libraries.
 
+### Unsupported functions
+
+We currently do not support the following Solidity functions:
+
+- `runtimeCode`
+- `creationCode`
+
 ## Vyper support
 
-Currently only Vyper `^0.3.3` is supported.
+Currently only Vyper `0.3.3` is supported.
 
 ## Compilers
 
