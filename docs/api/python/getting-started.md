@@ -113,7 +113,7 @@ from zksync2.core.types import ZkBlockParams
 from eth_account import Account
 from eth_account.signers.local import LocalAccount
 from zksync2.signer.eth_signer import PrivateKeyEthSigner
-from zksync2.transaction.transaction712 import TxFunctionCall
+from zksync2.transaction.transaction_builders import TxFunctionCall
 
 
 def transfer_to_self():
@@ -130,7 +130,7 @@ def transfer_to_self():
                                   nonce=nonce,
                                   from_=account.address,
                                   to=account.address,
-                                  value=Web3.toWei(amount, 'ether'),
+                                  value=Web3.to_wei(amount, 'ether'),
                                   data=HexStr("0x"),
                                   gas_limit=0,  # unknown at this state, will be replaced by estimate_gas
                                   gas_price=gas_price,
@@ -156,13 +156,13 @@ if __name__ == "__main__":
 This example below shows how you can transfer ERC20 tokens.
 
 ```python
-from zksync2.manage_contracts.erc20_contract import ERC20FunctionEncoder
+from zksync2.manage_contracts.erc20_contract import ERC20Encoder
 from zksync2.module.module_builder import ZkSyncBuilder
 from zksync2.core.types import ZkBlockParams
 from eth_account import Account
 from eth_account.signers.local import LocalAccount
 from zksync2.signer.eth_signer import PrivateKeyEthSigner
-from zksync2.transaction.transaction712 import TxFunctionCall
+from zksync2.transaction.transaction_builders import TxFunctionCall
 
 
 def transfer_erc20_token():
@@ -178,7 +178,7 @@ def transfer_erc20_token():
     not_eth_tokens = [x for x in tokens if not x.is_eth()]
     token_address = not_eth_tokens[0].l2_address
 
-    erc20_encoder = ERC20FunctionEncoder(zksync_web3)
+    erc20_encoder = ERC20Encoder(zksync_web3)
     transfer_params = [account.address, 0]
     call_data = erc20_encoder.encode_method("transfer", args=transfer_params)
 
