@@ -69,32 +69,190 @@ All methods are located in the `zks_` namespace. The API may also provide method
 - Instead, use the [`Provider`](../api/js/providers.md#provider) class with the testnet RPC.
 :::
 
-### `zks_estimateFee`
+### `debug_traceBlockByHash`
 
-Returns the fee for the transaction. 
-
-The token in which the fee is calculated is based on the `fee_token` provided in the transaction.
+Returns debug trace of all executed calls contained in a block given by its L2 hash.
 
 #### Inputs
 
 | Parameter | Type          | Description                                                  |
 | --------- | ------------- | ------------------------------------------------------------ |
-| `req`       | `CallRequest` | The zkSync transaction for which the fee is estimated. |
+| `hash`    | `H256`        | The 32 byte hash defining the L2 block.                      |
+| `options` | `TracerConfig`| Optional arguments: see the [TraceConfig documentation](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#traceconfig) for details. |
 
 #### Example
 
 ```curl
-:todo
+curl -X POST  -H "Content-Type: application/json"  \
+--data '{"jsonrpc":"2.0", "id":2, "method": "debug_traceBlockByHash", "params": ["0x4bd0bd4547d8f8a4fc86a024e54558e156c1acf43d82e24733c6dac2fe5c5fc7"] }' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output snippet
+
+```json
+{
+    "calls": [],
+    "error": null,
+    "from": "0x0000000000000000000000000000000000008001",
+    "gas": "0xe1e31a08",
+    "gasUsed": "0x27e",
+    "input": "0x6ef25c3a",
+    "output": "0x000000000000000000000000000000000000000000000000000000000ee6b280",
+    "revertReason": null,
+    "to": "0x000000000000000000000000000000000000800b",
+    "type": "Call",
+    "value": "0x0"
+},
+```
+
+### `debug_traceBlockByNumber`
+
+Returns debug trace of all executed calls contained in a block given by its L2 block number.
+
+#### Inputs
+
+| Parameter | Type           | Description                                                  |
+| --------- | -------------- | ------------------------------------------------------------ |
+| `block`   | `BlockNumber`  | Block number.                                                |
+| `options` | `TracerConfig` | Optional arguments: see the [TraceConfig documentation](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#traceconfig) for details. |
+
+#### Example
+
+```curl
+curl -X POST  -H "Content-Type: application/json"  \
+--data '{"jsonrpc":"2.0", "id":2, "method": "debug_traceBlockByNumber", "params": [ "0x24b258" ] }' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output snippet
+
+```json
+{
+    "calls": [],
+    "error": null,
+    "from": "0x0000000000000000000000000000000000008001",
+    "gas": "0xe1e31a08",
+    "gasUsed": "0x27e",
+    "input": "0x6ef25c3a",
+    "output": "0x000000000000000000000000000000000000000000000000000000000ee6b280",
+    "revertReason": null,
+    "to": "0x000000000000000000000000000000000000800b",
+    "type": "Call",
+    "value": "0x0"
+},
+```
+
+### `debug_traceCall`
+
+Returns debug trace containing information on a specific calls given by the call request.
+
+#### Inputs
+
+| Parameter | Type           | Description                                                  |
+| --------- | -------------- | ------------------------------------------------------------ |
+| `request` | `CallRequest`  | The transaction call for debugging.                          |
+| `block`   | `BlockNumber`  | Block number by hash or number (optional).                   |
+| `options` | `TracerConfig` | Optional arguments: see the [TraceConfig documentation](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#traceconfig) for details. |
+
+#### Example
+
+```curl
+curl -X POST  -H "Content-Type: application/json"  \
+--data '{"jsonrpc":"2.0", "id":2, "method": "debug_traceCall", "params": [ { "from": "0x1111111111111111111111111111111111111111", "to":"0x2222222222222222222222222222222222222222", "data": "0xffffffff" }, "0x24b258" ] }' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output snippet
+
+
+```json
+{
+    "calls": [],
+    "error": null,
+    "from": "0x0000000000000000000000000000000000008001",
+    "gas": "0x4b19b87",
+    "gasUsed": "0x291",
+    "input": "0x4de2e4680000000000000000000000001111111111111111111111111111111111111111",
+    "output": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "revertReason": null,
+    "to": "0x0000000000000000000000000000000000008002",
+    "type": "Call",
+    "value": "0x0"
+},
+```
+
+### `debug_traceTransaction`
+
+Uses the [EVM's `callTracer`](https://geth.ethereum.org/docs/developers/evm-tracing/built-in-tracers#call-tracer) to return a debug trace of a specific transaction given by its transaction hash.
+
+#### Inputs
+
+| Parameter | Type          | Description                                                  |
+| --------- | ------------- | ------------------------------------------------------------ |
+| `hash`    | `H256`        | The 32 byte hash defining the L2 block.                      |
+| `options` | `TracerConfig`| Optional arguments: see the [TraceConfig documentation](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#traceconfig) for details. |
+
+#### Example
+
+```curl
+curl -X POST  -H "Content-Type: application/json"  \
+--data '{"jsonrpc":"2.0", "id":2, "method": "debug_traceTransaction", "params": [ "0x4b228f90e796de5a18227072745b0f28e0c4a4661a339f70d3bdde591d3b7f3a" ] }' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output snippet
+
+```json
+...
+{
+    "calls": [],
+    "error": null,
+    "from": "0x0000000000000000000000000000000000008001",
+    "gas": "0xdff51aa3",
+    "gasUsed": "0x27e",
+    "input": "0x6ef25c3a",
+    "output": "0x000000000000000000000000000000000000000000000000000000000ee6b280",
+    "revertReason": null,
+    "to": "0x000000000000000000000000000000000000800b",
+    "type": "Call",
+    "value": "0x0"
+},
+...
+```
+
+### `zks_estimateFee`
+
+Returns the fee for the transaction. 
+
+The token in which the fee is calculated is based on the `fee_token` provided in the transaction data.
+
+#### Inputs
+
+| Parameter | Type          | Description                                                  |
+| --------- | ------------- | ------------------------------------------------------------ |
+| `request` | `CallRequest` | The zkSync transaction for which the fee is estimated.       |
+
+#### Example
+
+```curl
+curl -X POST  -H "Content-Type: application/json"  \
+--data '{"jsonrpc":"2.0", "id":2, "method": "zks_estimateFee", "params": [ { "from": "0x1111111111111111111111111111111111111111", "to":"0x2222222222222222222222222222222222222222", "data": "0xffffffff" } ] }' \
+"https://mainnet.era.zksync.io"
 ```
 
 #### Output
 
 ```json
 {
-  "gas_limit": 100000000,
-  "max_fee_per_gas": 10000,
-  "max_priority_fee_per_gas": 100,
-  "gas_per_pubdata_limit": 10
+    "jsonrpc": "2.0",
+    "result": {
+        "gas_limit": "0x156c00",
+        "gas_per_pubdata_limit": "0x143b",
+        "max_fee_per_gas": "0xee6b280",
+        "max_priority_fee_per_gas": "0x0"
+    },
+    "id": 2
 }
 ```
 
@@ -106,27 +264,65 @@ Returns an estimate of the gas required for a L1 to L2 transaction.
 
 | Parameter | Type          | Description                                                  |
 | --------- | ------------- | ------------------------------------------------------------ |
-| `req`       | `CallRequest` | The zkSync transaction for which the gas fee is estimated. |
+| `request` | `CallRequest` | The zkSync transaction for which the gas fee is estimated.   |
+
+#### curl example
+
+```curl
+curl -X POST  -H "Content-Type: application/json"  \
+--data '{"jsonrpc":"2.0", "id":2, "method": "zks_estimateGasL1ToL2", "params": [ { "from": "0x1111111111111111111111111111111111111111", "to":"0x2222222222222222222222222222222222222222", "data": "0xffffffff" } ] }' \
+"https://mainnet.era.zksync.io"
+```
 
 #### Output
 
 ```json
 {
-todo:
+    "jsonrpc": "2.0",
+    "result": "0x25f64db",
+    "id": 2
 }
 ```
+
+### `zks_getAllAccountBalances`
+
+Returns all token balances given by an account address.
+
+#### Inputs
+
+| Parameter | Type          | Description                                                  |
+| --------- | ------------- | ------------------------------------------------------------ |
+| `address` | `Address`     | The account address.                                         |
 
 #### curl example
 
 ```curl
-:todo
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getAllAccountBalances", "params": [ "0x98E9D288743839e96A8005a6B51C770Bbf7788C0" ]}' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output
+
+```json
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "0x0000000000000000000000000000000000000000": "0x2fbd72a1121b3100"
+    },
+    "id": 2
+}
 ```
 
 ### `zks_getBlockDetails`
 
 Returns additional zkSync-specific information about the L2 block.
 
-#### Input parameters
+- `committed`: The batch is closed and the state transition it creates exists on layer 1.
+- `proven`:  The batch proof has been created, submitted, and accepted on layer 1.
+- `executed`: The batch state transition has been executed on L1; meaning the root state has been updated.
+
+#### Inputs
 
 | Parameter | Type     | Description              |
 | --------- | -------- | ------------------------ |
@@ -135,27 +331,39 @@ Returns additional zkSync-specific information about the L2 block.
 #### curl example
 
 ```curl
-curl -X POST -H "Content-Type: application/json" 
---data '{"jsonrpc": "2.0", "id": 1, "method": "https://testnet.era.zksync.dev”, "params": [ “1”]}’ 
-"https://testnet.era.zksync.dev"
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getBlockDetails", "params": [ 140599 ]}' \
+"https://mainnet.era.zksync.io"
 ```
 
 #### Output
 
 ```json
 {
-  "commitTxHash": "0x2c8f18312c6b6c2e72df56dd5684e3c65fcdf5f6141763eafdcbbfc02c3a39b5",
-  "committedAt": "2022-12-12T08:41:50.774441Z",
-  "executeTxHash": "0xa12f3a9689101758acad280dd21a00cfc2644c125702ea301f46a33799cde9b9",
-  "executedAt": "2022-12-12T08:41:57.233941Z",
-  "l1TxCount": 5,
-  "l2TxCount": 0,
-  "number": 1,
-  "proveTxHash": "0x0fed6d8a7b02a26b5513edea10d8849342b56a13c0e48317556c78b34aeacd26",
-  "provenAt": "2022-12-12T08:41:57.219584Z",
-  "rootHash": "0x51f81bcdfc324a0dff2b5bec9d92e21cbebc4d5e29d3a3d30de3e03fbeab8d7f",
-  "status": "verified",
-  "timestamp": 1670834504
+    "jsonrpc": "2.0",
+    "result": {
+        "baseSystemContractsHashes": {
+            "bootloader": "0x010007793a328ef16cc7086708f7f3292ff9b5eed9e7e539c184228f461bf4ef",
+            "default_aa": "0x0100067d861e2f5717a12c3e869cfb657793b86bbb0caa05cc1421f16c5217bc"
+        },
+        "commitTxHash": "0xd045e3698f018cb233c3817eb53a41a4c5b28784ffe659da246aa33bda34350c",
+        "committedAt": "2023-03-26T07:21:21.046817Z",
+        "executeTxHash": "0xbb66aa75f437bb4255cf751badfc6b142e8d4d3a4e531c7b2e737a22870ff19e",
+        "executedAt": "2023-03-27T07:44:52.187764Z",
+        "l1BatchNumber": 1617,
+        "l1GasPrice": 20690385511,
+        "l1TxCount": 0,
+        "l2FairGasPrice": 250000000,
+        "l2TxCount": 20,
+        "number": 140599,
+        "operatorAddress": "0xfeee860e7aae671124e9a4e61139f3a5085dfeee",
+        "proveTxHash": "0x1591e9b16ff6eb029cc865614094b2e6dd872c8be40b15cc56164941ed723a1a",
+        "provenAt": "2023-03-26T19:48:35.200565Z",
+        "rootHash": "0xf1adac176fc939313eea4b72055db0622a10bbd9b7a83097286e84e471d2e7df",
+        "status": "verified",
+        "timestamp": 1679815038
+    },
+    "id": 1
 }
 ```
 
@@ -163,66 +371,204 @@ curl -X POST -H "Content-Type: application/json"
 
 Returns L1/L2 addresses of default bridges.
 
-#### Input parameters
+#### Inputs
 
 None.
 
-#### Output format
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getBridgeContracts", "params": [  ]}' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output
 
 ```json
 {
-  "l1Erc20DefaultBridge": "0x7786255495348c08f82c09c82352019fade3bf29",
-  "l1EthDefaultBridge": "0xcbebcd41ceabbc85da9bb67527f58d69ad4dfff5",
-  "l2Erc20DefaultBridge": "0x92131f10c54f9b251a5deaf3c05815f7659bbe02",
-  "l2EthDefaultBridge": "0x2c5d8a991f399089f728f1ae40bd0b11acd0fb62"
+    "jsonrpc": "2.0",
+    "result": {
+        "l1Erc20DefaultBridge": "0x57891966931eb4bb6fb81430e6ce0a03aabde063",
+        "l2Erc20DefaultBridge": "0x11f943b2c77b743ab90f4a0ae7d5a4e7fca3e102"
+    },
+    "id": 1
 }
 ```
 
+<!--
+METHOD NOT YET LIVE 28/04/2023
+### `zks_getBytecodeByHash`
+
+Returns bytecode of a transaction given by its hash.
+
+#### Inputs
+
+| Parameter | Type     | Description              |
+| --------- | -------- | ------------------------ |
+| `hash`    | `H256  ` | Hash address as string.  |
+
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getBytecodeByHash", "params": [ "0x8151d1d2aab91e44b4f8945854d5353ba63672c8f3e01fe2ec9cbf3cd0e1572e" ]}' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output
+
+:::warning
+- Method not found.
+:::
+
+```json
+{
+    "jsonrpc": "2.0",
+    "error": {
+        "code": -32601,
+        "message": "Method not found"
+    },
+    "id": 1
+}
+```
+-->
+
 ### `zks_getConfirmedTokens`
 
-Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `from` and `limit`.
+Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `from` and `limit`. 
 
-<<<<<<< Updated upstream
 **Confirmed** in the method name means the method returns any token bridged to zkSync via the official bridge.
-=======
-**Confirmed** in the method name means the function returns any token bridged to zkSync via the official bridge.
->>>>>>> Stashed changes
 
-This method is mostly used by the zkSync team.
+:::info
+This method is mainly used by the zkSync team as it relates to a database query where the primary keys relate to the given ids.
+:::
 
-#### Input parameters
+#### Inputs
 
 | Parameter | Type     | Description                                                                  |
 | --------- | -------- | ---------------------------------------------------------------------------- |
-| from      | `uint32` | The token id from which to start returning the information about the tokens. |
-| limit     | `uint8`  | The number of tokens to be returned from the API.                            |
+| `from`    | `uint32` | The token id from which to start returning the information about the tokens. |
+| `limit`   | `uint8`  | The number of tokens to be returned from the API.                            |
 
-#### Output format
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getConfirmedTokens", "params": [ 1, 3 ]}' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output
 
 ```json
-[
-  {
-    "decimals": 18,
-    "l1Address": "0x5c221e77624690fff6dd741493d735a17716c26b",
-    "l2Address": "0x3e7676937a7e96cfb7616f255b9ad9ff47363d4b",
-    "name": "DAI",
-    "symbol": "DAI"
-  },
-  {
-    "decimals": 18,
-    "l1Address": "0x0000000000000000000000000000000000000000",
-    "l2Address": "0x0000000000000000000000000000000000000000",
-    "name": "Ether",
-    "symbol": "ETH"
-  },
-  {
-    "decimals": 6,
-    "l1Address": "0xd35cceead182dcee0f148ebac9447da2c4d449c4",
-    "l2Address": "0x0faf6df7054946141266420b43783387a78d82a9",
-    "name": "USD Coin (goerli)",
-    "symbol": "USDC"
-  }
-]
+{
+    "jsonrpc": "2.0",
+    "result": [
+        {
+            "decimals": 18,
+            "l1Address": "0xba100000625a3754423978a60c9317c58a424e3d",
+            "l2Address": "0xaff169fca5086940c890c8a04c6db4b1db6e0dd6",
+            "name": "Balancer",
+            "symbol": "BAL"
+        },
+        {
+            "decimals": 18,
+            "l1Address": "0xffffffff2ba8f66d4e51811c5190992176930278",
+            "l2Address": "0xc2b13bb90e33f1e191b8aa8f44ce11534d5698e3",
+            "name": "Furucombo",
+            "symbol": "COMBO"
+        },
+        {
+            "decimals": 18,
+            "l1Address": "0xa487bf43cf3b10dffc97a9a744cbb7036965d3b9",
+            "l2Address": "0x140d5bc5b62d6cb492b1a475127f50d531023803",
+            "name": "Deri",
+            "symbol": "DERI"
+        }
+    ],
+    "id": 1
+}
+```
+
+### `zks_getL1BatchBlockRange`
+
+Returns the range of blocks contained within a batch given by batch number. 
+
+The range is given by beginning/end block numbers in hexadecimal. 
+
+#### Inputs
+
+| Parameter | Type            | Description                                                                  |
+| --------- | --------------- | ---------------------------------------------------------------------------- |
+| `batch`   | `L1BatchNumber` | The layer 1 batch number. |
+
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getL1BatchBlockRange", "params": [ 12345 ]}' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output
+
+```json
+{
+    "jsonrpc": "2.0",
+    "result": [
+        "0x116fec",
+        "0x117015"
+    ],
+    "id": 1
+}
+```
+
+### `zks_getL1BatchDetails`
+
+Returns data pertaining to a given batch.
+
+#### Inputs
+
+| Parameter | Type            | Description               |
+| --------- | --------------- | ------------------------- |
+| `batch`   | `L1BatchNumber` | The layer 1 batch number. |
+
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getL1BatchDetails", "params": [ 12345 ]}' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output
+
+```json
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "baseSystemContractsHashes": {
+            "bootloader": "0x010007793a328ef16cc7086708f7f3292ff9b5eed9e7e539c184228f461bf4ef",
+            "default_aa": "0x0100067d861e2f5717a12c3e869cfb657793b86bbb0caa05cc1421f16c5217bc"
+        },
+        "commitTxHash": "0xe5e76d1e17cff2b7232d40ddf43c245e29c76e5354571aa8083d73e793efb64a",
+        "committedAt": "2023-04-09T18:05:40.548203Z",
+        "executeTxHash": "0x19c125a6104f731bcc1ce378f090c808e97c6d634fc32cb786694a94fc8219a1",
+        "executedAt": "2023-04-10T18:48:25.009708Z",
+        "l1GasPrice": 29424338466,
+        "l1TxCount": 9,
+        "l2FairGasPrice": 250000000,
+        "l2TxCount": 294,
+        "number": 12345,
+        "proveTxHash": "0xe980f58feed22a4dbc46fe0339bfcbc09f51c99b2f3bc4f9f60e710ea5f0a2da",
+        "provenAt": "2023-04-09T22:51:16.200810Z",
+        "rootHash": "0x994d2738f7ac89b45c8381a7816307b501c00b3127afc79e440dbf1b3e3b5a8c",
+        "status": "verified",
+        "timestamp": 1681063384
+    },
+    "id": 1
+}
 ```
 
 ### `zks_getL2ToL1LogProof`
@@ -231,68 +577,83 @@ Given a transaction hash, and an index of the L2 to L1 log produced within the t
 
 The index of the log that can be obtained from the transaction receipt (it includes a list of every log produced by the transaction).
 
-#### Input parameters
+#### Inputs
 
-| Parameter          | Type                        | Description                                                      |
-| ------------------ | --------------------------- | ---------------------------------------------------------------- |
-| tx_hash            | `bytes32`                   | Hash of the L2 transaction the L2 to L1 log was produced within. |
-| l2_to_l1_log_index | `undefined` &#124; `number` | The Index of the L2 to L1 log in the transaction.                |
+| Parameter          | Type                 | Description                                                      |
+| ------------------ | ---------------------| ---------------------------------------------------------------- |
+| tx_hash            | `bytes32`            | Hash of the L2 transaction the L2 to L1 log was produced within. |
+| l2_to_l1_log_index | `number`             | The index of the L2 to L1 log in the transaction (optional).     |
 
-#### Output format
+#### curl example
 
-If there was no such message, the returned value is `null`.
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getL2ToL1LogProof", "params": [ "0x2a1c6c74b184965c0cb015aae9ea134fd96215d2e4f4979cfec12563295f610e" ]}' \
+"https://mainnet.era.zksync.io"
+```
 
-Otherwise, the object of the following format is returned:
+#### Output
+
+If there was no such message, the returned value is `null`. Otherwise:
 
 ```json
 {
-  "id": 0,
-  "proof": [
-    "0x66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
-    "0x2eeb74a6177f588d80c0c752b99556902ddf9682d0b906f5aa2adbaf8466a4e9",
-    "0x1223349a40d2ee10bd1bebb5889ef8018c8bc13359ed94b387810af96c6e4268",
-    "0x5b82b695a7ac2668e188b75f7d4fa79faa504117d1fdfcbe8a46915c1a8a5191"
-  ],
-  "root": "0x6a420705824f0a3a7e541994bc15e14e6a8991cd4e4b2d35c66f6e7647760d97"
+    "jsonrpc": "2.0",
+    "result": {
+        "id": 0,
+        "proof": [
+            "0x8c48910df2ca7de509daf50b3182fcdf2dd6c422c6704054fd857d6c9516d6fc",
+            "0xc5028885760b8b596c4fa11497c783752cb3a3fb3b8e6b52d7e54b9f1c63521e",
+            "0xeb1f451eb8163723ee19940cf3a8f2a2afdf51100ce8ba25839bd94a057cda16",
+            "0x7aabfd367dea2b5306b8071c246b99566dae551a1dbd40da791e66c4f696b236",
+            "0xe4733f281f18ba3ea8775dd62d2fcd84011c8c938f16ea5790fd29a03bf8db89",
+            "0x1798a1fd9c8fbb818c98cff190daa7cc10b6e5ac9716b4a2649f7c2ebcef2272",
+            "0x66d7c5983afe44cf15ea8cf565b34c6c31ff0cb4dd744524f7842b942d08770d",
+            "0xb04e5ee349086985f74b73971ce9dfe76bbed95c84906c5dffd96504e1e5396c",
+            "0xac506ecb5465659b3a927143f6d724f91d8d9c4bdb2463aee111d9aa869874db"
+        ],
+        "root": "0x920c63cb0066a08da45f0a9bf934517141bd72d8e5a51421a94b517bf49a0d39"
+    },
+    "id": 1
 }
 ```
 
 The `id` is the position of the leaf in the Merkle tree of L2->L1 messages for the block. The `proof` is the Merkle proof for the message, while the `root ` is the root of the Merkle tree of L2->L1 messages. Please note, that the Merkle tree uses _sha256_ for the trees.
 
-You do not need to care about the intrinsics, since the returned `id` and `proof` can be used right away for interacting with the zkSync Era smart contract.
-
-A nice example of using this endpoint via our SDK can be found [here](../dev/developer-guides/bridging/l2-l1.md).
+The `id` and `proof` can be used right away for interacting with the zkSync Era smart contract.
 
 ::: tip
-
-The list of L2 to L1 logs produced by the transaction, which is included in the receipts, is a combination of logs produced by L1Messenger contract or other system contracts/bootloader.
-
-There is a log produced by the bootloader for every L1 originated transaction that shows if the transaction has succeeded.
-
+- The list of L2 to L1 logs produced by the transaction, which is included in the receipts, is a combination of logs produced by the `L1Messenger` contract or other system contracts/bootloader.
+- The bootloader produces a log for every L1-originated transaction that outputs if the transaction has succeeded.
 :::
-
 
 ### `zks_getL2ToL1MsgProof`
 
 Given a block, a sender, a message, and an optional message log index in the block containing the L1->L2 message, it returns the proof for the message sent via the L1Messenger system contract.
 
-#### Input parameters
+#### Inputs
 
-| Parameter       | Type                    | Description                                                                                                                                                                                                                                                        |
-| --------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| block           | `uint32`                | The number of the block where the message was emitted.                                                                                                                                                                                                             |
-| sender          | `address`               | The sender of the message (i.e. the account that called the L1Messenger system contract).                                                                                                                                                                          |
-| msg             | `bytes32`               | The keccak256 hash of the sent message.                                                                                                                                                                                                                            |
-| l2_log_position | `uint256` &#124; `null` | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/system-contracts.md#l1messenger) when submitting this message. If it is omitted, the proof for the first message with such content will be returned. |
+| Parameter       | Type        | Description       |
+| --------------- | ------------ | ---------------------------------------|
+| block           | `uint32`    | The number of the block where the message was emitted.          |
+| sender          | `address`   | The sender of the message (i.e. the account that called the L1Messenger system contract).  |
+| msg             | `bytes32`   | The keccak256 hash of the sent message.    |
+| l2_log_position | `uint256`   | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/system-contracts.md#l1messenger) when submitting this message. If it is omitted, the proof for the first message returns. |
 
-#### Output format
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getL2ToL1MsgProof", "params": [ 5187, "0x87869cb87c4Fa78ca278dF358E890FF73B42a39E", "0x22de7debaa98758afdaee89f447ff43bab5da3de6acca7528b281cc2f1be2ee9" ]}' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output
 
 The same as in [zks_getL2ToL1LogProof](#zks-getl2tol1logproof).
 
 ::: warning
-
-`zks_getL2ToL1MsgProof` endpoint will be deprecated because proofs for L2 to L1 messages can also be fetched from `zks_getL2ToL1LogProof`.
-
+- `zks_getL2ToL1MsgProof` endpoint will be deprecated in favor of `zks_getL2ToL1LogProof`.
 :::
 
 ### `zks_getMainContract`
@@ -303,110 +664,228 @@ Returns the address of the zkSync Era contract.
 
 None.
 
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getMainContract", "params": [  ]}' \
+"https://mainnet.era.zksync.io"
+```
+
 #### Output
 
-`"0xaBEA9132b05A70803a4E85094fD0e1800777fBEF"`
+```json
+{
+    "jsonrpc": "2.0",
+    "result": "0x32400084c286cf3e17e7b677ea9583e60a000324",
+    "id": 1
+}
+```
+
+### `zks_getRawBlockTransactions`
+
+Returns data of transactions in a block.
+
+#### Inputs
+
+| Parameter         | Type                | Description   |
+| ----------------- | --------------------| ------------- |
+| `block`           | `uint32`            | Block number. |
 
 #### curl example
 
 ```curl
-:todo
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getRawBlockTransactions", "params": [ 5817 ]}' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output
+
+```json
+{
+    "jsonrpc": "2.0",
+    "result": [
+        {
+            "common_data": {
+                "L1": {
+                    "canonicalTxHash": "0x22de7debaa98758afdaee89f447ff43bab5da3de6acca7528b281cc2f1be2ee9",
+                    "deadlineBlock": 0,
+                    "ethBlock": 16751339,
+                    "ethHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "fullFee": "0x0",
+                    "gasLimit": "0x989680",
+                    "gasPerPubdataLimit": "0x320",
+                    "layer2TipFee": "0x0",
+                    "maxFeePerGas": "0x0",
+                    "opProcessingType": "Common",
+                    "priorityQueueType": "Deque",
+                    "refundRecipient": "0x87869cb87c4fa78ca278df358e890ff73b42a39e",
+                    "sender": "0x87869cb87c4fa78ca278df358e890ff73b42a39e",
+                    "serialId": 67,
+                    "toMint": "0x0"
+                }
+            },
+            "execute": {
+                "calldata": "0x471c46c800000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000100000000000000000000000031edd5a882583cbf3a712e98e100ef34ad6934b400000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001",
+                "contractAddress": "0xfc5b07a5dd1b80cf271d35642f75cc0500ff1e2c",
+                "factoryDeps": [],
+                "value": "0x0"
+            },
+            "received_timestamp_ms": 1677887544169
+        }
+    ],
+    "id": 1
+}
 ```
 
 ### `zks_getTestnetPaymaster`
 
 Returns the address of the [testnet paymaster](../dev/developer-guides/aa.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
 
-#### Input parameters
+#### Inputs
 
 None.
 
-#### Output format
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getTestnetPaymaster", "params": [  ]}' \
+"https://testnet.era.zksync.dev"
+```
+
+#### Output
 
 ```json
-"0x7786255495348c08f82c09c82352019fade3bf29"
+{
+    "jsonrpc": "2.0",
+    "result": "0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63",
+    "id": 1
+}
+```
+
+### `zks_getTokenPrice`
+
+Returns the price of a given token in USD. 
+
+:::tip Note
+- The price used by the zkSync Era team may be a bit different to the current market price. 
+- On testnets, token prices are often different from the actual market price.
+:::
+
+#### Inputs
+
+| Parameter | Type      | Description              |
+| --------- | ------    | ------------------------ |
+| address   | `address` | The address of the token. |
+
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getTokenPrice", "params": [ "0x0000000000000000000000000000000000000000" ]}' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output
+
+```json
+{
+    "jsonrpc": "2.0",
+    "result": "1908.42",
+    "id": 1
+}
+```
+
+### `zks_getTransactionDetails`
+
+Returns data from a specific transaction given by the transaction hash.
+
+#### Inputs
+
+| Parameter         | Type                | Description   |
+| ----------------- | --------------------| ------------- |
+| `hash`            | `H256`              | Transaction hash as string. |
+
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getTransactionDetails", "params": [ "0x22de7debaa98758afdaee89f447ff43bab5da3de6acca7528b281cc2f1be2ee9" ]}' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output
+
+```json
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "ethCommitTxHash": "0x3da5b6eda357189c9243c41c5a33b1b2ed0169be172705d74681a25217702772",
+        "ethExecuteTxHash": "0xdaff5fd7ff91333b161de54534b4bb6a78e5325329959a0863bf0aae2b0fdcc6",
+        "ethProveTxHash": "0x2f482d3ea163f5be0c2aca7819d0beb80415be1a310e845a2d726fbc4ac54c80",
+        "fee": "0x0",
+        "initiatorAddress": "0x87869cb87c4fa78ca278df358e890ff73b42a39e",
+        "isL1Originated": true,
+        "receivedAt": "2023-03-03T23:52:24.169Z",
+        "status": "verified"
+    },
+    "id": 1
+}
+```
+
+### `zks_L1BatchNumber`
+
+Returns the latest L1 batch number.
+
+#### Inputs
+
+None.
+
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_L1BatchNumber", "params": [  ]}' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output
+
+```json
+{
+    "jsonrpc": "2.0",
+    "result": "0x544c",
+    "id": 1
+}
 ```
 
 ### `zks_L1ChainId`
 
 Returns the chain id of the underlying L1.
 
-#### Input parameters
+#### Inputs
 
 None.
 
-#### Output format
+#### curl example
 
-`12`
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_L1ChainId", "params": [  ]}' \
+"https://mainnet.era.zksync.io"
+```
 
-<!-- TODO: uncomment once fixed --->
-<!-- ### `zks_getTokenPrice`
+#### Output
 
-Given a token address, returns its price in USD. Please note that that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
-
-### Input parameters
-
-| Parameter | Type   | Description              |
-| --------- | ------ | ------------------------ |
-| address   | `address` | The address of the token. |
-
-### Output format
-
-`3500.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000` -->
-
-<!--
-
-#[rpc(name = "zks_getConfirmedTokens", returns = "Vec<Token>")]
-fn get_confirmed_tokens(&self, from: u32, limit: u8) -> BoxFutureResult<Vec<Token>>;
-
-#[rpc(name = "zks_isTokenLiquid", returns = "bool")]
-fn is_token_liquid(&self, token_address: Address) -> BoxFutureResult<bool>;
-
-#[rpc(name = "zks_getTokenPrice", returns = "BigDecimal")]
-fn get_token_price(&self, token_address: Address) -> BoxFutureResult<BigDecimal>;
-
-#[rpc(name = "zks_setContractDebugInfo", returns = "bool")]
-fn set_contract_debug_info(
-    &self,
-    contract_address: Address,
-    info: ContractSourceDebugInfo,
-) -> BoxFutureResult<bool>;
-
-#[rpc(name = "zks_getContractDebugInfo", returns = "ContractSourceDebugInfo")]
-fn get_contract_debug_info(
-    &self,
-    contract_address: Address,
-) -> BoxFutureResult<Option<ContractSourceDebugInfo>>;
-
-#[rpc(name = "zks_getTransactionTrace", returns = "Option<VmDebugTrace>")]
-fn get_transaction_trace(&self, hash: H256) -> BoxFutureResult<Option<VmDebugTrace>>;
-
-Documented:
-#[rpc(name = "zks_estimateFee", returns = "Fee")]
-fn estimate_fee(&self, req: CallRequest) -> BoxFutureResult<Fee>;
-
-#[rpc(name = "zks_getMainContract", returns = "Address")]
-fn get_main_contract(&self) -> BoxFutureResult<Address>;
-
-#[rpc(name = "zks_L1ChainId", returns = "U64")]
-fn l1_chain_id(&self) -> Result<U64>;
-
-#[rpc(name = "zks_getL1WithdrawalTx", returns = "Option<H256>")]
-fn get_eth_withdrawal_tx(&self, withdrawal_hash: H256) -> BoxFutureResult<Option<H256>>;
-
-Don't want to document (at least for now):
-
-### `zks_getAccountTransactions`
-
-### Input parameters
-
-| Parameter | Type      | Description                                           |
-| --------- | --------- | ----------------------------------------------------- |
-| address   | `Address` | The address of the account                            |
-| before    | `u32`     | The offset from which to start returning transactions |
-| limit     | `u8`      | The maximum number of transactions to be returned     |
-
--->
+```json
+{
+    "jsonrpc": "2.0",
+    "result": "0x1",
+    "id": 1
+}
+```
 
 ## PubSub API
 
