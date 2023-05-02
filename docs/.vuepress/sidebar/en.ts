@@ -75,7 +75,7 @@ export const enSidebar = sidebar({
       link: "/api/", // optional, which should be a absolute path.
     },
     {
-      text: "Web3 API", // required
+      text: "Web3 JSON-RPC API", // required
       link: "/api/api.md", // optional, which should be a absolute path.
     },
     {

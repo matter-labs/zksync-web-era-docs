@@ -52,6 +52,22 @@ The 32-byte hash of the bytecode of a zkSync contract is calculated in the follo
 - The second 2 bytes denote the length of the bytecode in 32-byte words.
 - The rest of the 28-byte (i.e. 28 low big-endian bytes) are equal to the last 28 bytes of the `sha256` hash of the contract's bytecode.
 
+## Smart contract security
+
+Smart contract security is critical. A single vulnerability in a smart contract can lead to loss of funds. Make sure your contracts are secure against common threats.
+
+A common Solidity smart contract attack is reentrancy. This threat exploits vulnerabilities in contract code that allow an attacker to repeatedly call a function that withdraws funds.
+
+Auditing smart contracts for security holes prevents theft and other malicious activities. An audit involves a thorough review of the contract's code and its underlying logic to identify any vulnerabilities or weaknesses that could be exploited by attackers. Auditors look for things like buffer overflows, integer overflows, and other types of security issues that can lead to the loss of assets or other unwanted outcomes. This review process should include both manual and automated testing to ensure that all vulnerabilities are identified.
+
+The process of auditing a smart contract should be carried out by experts who have the necessary knowledge and experience to identify potential security risks. Investing in a thorough audit can help prevent security breaches and protect investors and users from losses, reputation damage, and legal issues. Therefore, it's essential to prioritize smart contract security and take proactive measures to ensure that they are thoroughly audited for security holes before deploying your smart contract on zkSync Era network.
+
+For detailed information on smart contract vulnerabilities and security best practices, refer to the following resources:
+
+- (Consensys smart contract best practices)[https://consensys.github.io/smart-contract-best-practices/].
+
+- (Solidity docs security considerations)[https://docs.soliditylang.org/en/latest/security-considerations.html].
+
 ### Differences in `CREATE` behaviour
 
 For the ease of [supporting account abstraction](../../developer-guides/aa.md), for each account, we split the nonce into two parts: _the deployment nonce_ and _the transaction nonce_. The deployment nonce is the number of contracts the account has deployed with `CREATE` opcode, while the transaction nonce is used for replay attack protection for the transactions.
