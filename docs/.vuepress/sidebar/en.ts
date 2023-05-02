@@ -89,6 +89,7 @@ export const enSidebar = sidebar({
         "/api/js/contracts",
         "/api/js/features",
         "/api/js/utils",
+        "/api/js/paymaster-utils",
         "/api/js/types",
         "/api/js/front-end",
       ],
