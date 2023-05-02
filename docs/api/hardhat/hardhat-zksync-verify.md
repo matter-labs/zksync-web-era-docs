@@ -131,9 +131,13 @@ yarn hardhat verify-status --verification-id <your verification id>
 If you need to run the verification task directly from your code, you can use the hardhat `verify:verify` task with the previously mentioned parameters with the difference in using `--address` parameter when specifying contarct's address.
 
 ```typescript
-await hre.run("verify:verify", {
+const verificationId = await hre.run("verify:verify", {
   address: contractAddress,
   contract: contractFullyQualifedName,
   constructorArguments: [...]
 });
 ```
+This task returns a verification id if the request was successfully sent.<br/>
+You can use this id to check the status of your verification request as described in the section above.
+
+If the request was NOT sent successfully, the return value will be `-1`.
