@@ -1,11 +1,18 @@
 import { defineUserConfig } from "vuepress";
 import docsearchPlugin from "@vuepress/plugin-docsearch";
+//import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
+
 import theme from "./theme.js";
 import { pwaPlugin } from '@vuepress/plugin-pwa'
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { getDirname, path } from '@vuepress/utils'
+
+const __dirname = getDirname(import.meta.url)
 
 export default defineUserConfig({
+  alias: {
+    "@Footer": path.resolve(__dirname, "components/Footer.vue"),
+  },
   dest: "dist/docs",
 
   base: "/docs/",
@@ -52,14 +59,6 @@ export default defineUserConfig({
   theme,
 
   plugins: [
-    vue({
-      template: {
-        compilerOptions: {
-          // i am ignorning my custom '<container>' tag
-          isCustomElement: (tag) => ['Footer'].includes(tag)
-        }
-      }
-    }),
     pwaPlugin({}),
     docsearchPlugin({
       appId: "LCWOUB1OFO",
