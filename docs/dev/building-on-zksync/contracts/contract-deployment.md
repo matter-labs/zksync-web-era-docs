@@ -66,7 +66,7 @@ The following are some resources on Smart contract security best practices to co
 
 - (smart contract best practices)[https://consensys.github.io/smart-contract-best-practices/]
 
-- (Security considerations)[https://docs.soliditylang.org/en/latest/security-considerations.html]
+- (Solidity docs security considerations)[https://docs.soliditylang.org/en/latest/security-considerations.html].
 
 ### Differences in `CREATE` behaviour
 
