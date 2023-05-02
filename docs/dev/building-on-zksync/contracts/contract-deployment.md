@@ -54,7 +54,7 @@ The 32-byte hash of the bytecode of a zkSync contract is calculated in the follo
 
 ## Smart contract security
 
-Smart contract security is critical, as a single vulnerability in a smart contract can lead to loss of funds. 
+Smart contract security is critical. A single vulnerability in a smart contract can lead to loss of funds. Make sure your contracts are secure against common threats.
 
 One common vulnerability in smart contracts is the reentrancy attack, which occurs when a contract's code allows an attacker to repeatedly call the same function before the previous function call has completed.
 
