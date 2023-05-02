@@ -73,7 +73,7 @@ The field `l1BatchTxIndex` returns the transaction position among all of the tra
 
 ## Revert blocks
 
-A [revertBlock function](https://github.com/matter-labs/era-contracts/blob/fc7e86a3df404acb88d86502c944c0630a7ed288/ethereum/contracts/zksync/facets/Executor.sol#L342) can be used to reverse a previous transaction on zkSync Era network. This means, in rare cases, where we can not prove the block's correctness i.e. we mistakenly committed an unprovable block or someone committed a malicious block we can use The to revert all the changes that came with that block and prevent such data from being included in subsequent blocks.
+Use [`revertBlock`](https://github.com/matter-labs/era-contracts/blob/fc7e86a3df404acb88d86502c944c0630a7ed288/ethereum/contracts/zksync/facets/Executor.sol#L342) to reverse a previous transaction on zkSync Era. This means, in rare cases, where we cannot prove the block's correctness i.e. we mistakenly committed an unprovable block or someone committed a malicious block, `revertBlock` reverts all changes that came with that block and prevents such data from being included in subsequent blocks.
 
 Only blocks that have not been finalized can be reverted, once the block is finalized it cannot be reverted.
 
