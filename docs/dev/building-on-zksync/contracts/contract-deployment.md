@@ -62,7 +62,7 @@ Auditing smart contracts for security holes prevents theft and other malicious a
 
 The process of auditing a smart contract should be carried out by experts who have the necessary knowledge and experience to identify potential security risks. Investing in a thorough audit can help prevent security breaches and protect investors and users from losses, reputation damage, and legal issues. Therefore, it's essential to prioritize smart contract security and take proactive measures to ensure that they are thoroughly audited for security holes before deploying your smart contract on zkSync Era network.
 
-The following are some resources on Smart contract security best practices to consider:
+For detailed information on smart contract vulnerabilities and security best practices, refer to the following resources:
 
 - (smart contract best practices)[https://consensys.github.io/smart-contract-best-practices/]
 
