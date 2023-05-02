@@ -39,7 +39,14 @@ The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
 
 3. Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders in the project root. See the [quickstart tutorial](../building-on-zksync/hello-world.md) for more info. 
 
-4. Include the `isSystem: true` setting in the configuration to allow interaction with system contracts.
+4. Add the zkSync and OpenZeppelin libraries.
+
+```sh
+yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
+
+```
+
+5. Include the `isSystem: true` setting in the configuration to allow interaction with system contracts.
 
 ```ts
 import { HardhatUserConfig } from "hardhat/config";
