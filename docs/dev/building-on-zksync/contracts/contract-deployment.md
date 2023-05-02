@@ -56,7 +56,7 @@ The 32-byte hash of the bytecode of a zkSync contract is calculated in the follo
 
 Smart contract security is critical. A single vulnerability in a smart contract can lead to loss of funds. Make sure your contracts are secure against common threats.
 
-One common vulnerability in smart contracts is the reentrancy attack, which occurs when a contract's code allows an attacker to repeatedly call the same function before the previous function call has completed.
+A common Solidity smart contract attack is reentrancy. This threat exploits vulnerabilities in contract code that allow an attacker to repeatedly call a function that withdraws funds.
 
 Auditing smart contracts for security holes is crucial to prevent theft or other malicious activities. An audit involves a thorough review of the contract's code and its underlying logic to identify any vulnerabilities or weaknesses that could be exploited by attackers. Auditors look for things like buffer overflows, integer overflows, and other types of security issues that can lead to the loss of assets or other unwanted outcomes. This review process should include both manual and automated testing to ensure that all vulnerabilities are identified.
 
