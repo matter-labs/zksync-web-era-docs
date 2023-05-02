@@ -64,7 +64,7 @@ The process of auditing a smart contract should be carried out by experts who ha
 
 For detailed information on smart contract vulnerabilities and security best practices, refer to the following resources:
 
-- (smart contract best practices)[https://consensys.github.io/smart-contract-best-practices/]
+- (Consensys smart contract best practices)[https://consensys.github.io/smart-contract-best-practices/].
 
 - (Solidity docs security considerations)[https://docs.soliditylang.org/en/latest/security-considerations.html].
 
