@@ -151,7 +151,7 @@ Returns debug trace containing information on a specific calls given by the call
 
 | Parameter | Type           | Description                                                  |
 | --------- | -------------- | ------------------------------------------------------------ |
-| `request` | `CallRequest`  | The transaction call for debugging.                          |
+| `request` | `CallRequest`  | The transaction call request for debugging.                          |
 | `block`   | `BlockNumber`  | Block number by hash or number (optional).                   |
 | `options` | `TracerConfig` | Optional arguments: see the [TraceConfig documentation](https://geth.ethereum.org/docs/interacting-with-geth/rpc/ns-debug#traceconfig) for details. |
 
@@ -223,15 +223,13 @@ curl -X POST  -H "Content-Type: application/json"  \
 
 ### `zks_estimateFee`
 
-Returns the fee for the transaction. 
-
-The token in which the fee is calculated is based on the `fee_token` provided in the transaction data.
+Returns the fee for the transaction.
 
 #### Inputs
 
 | Parameter | Type          | Description                                                  |
 | --------- | ------------- | ------------------------------------------------------------ |
-| `request` | `CallRequest` | The zkSync transaction for which the fee is estimated.       |
+| `request` | `CallRequest` | The zkSync transaction request for which the fee is estimated.       |
 
 #### Example
 
@@ -264,7 +262,7 @@ Returns an estimate of the gas required for a L1 to L2 transaction.
 
 | Parameter | Type          | Description                                                  |
 | --------- | ------------- | ------------------------------------------------------------ |
-| `request` | `CallRequest` | The zkSync transaction for which the gas fee is estimated.   |
+| `request` | `CallRequest` | The zkSync transaction request for which the gas fee is estimated.   |
 
 #### curl example
 
