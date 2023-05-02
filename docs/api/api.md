@@ -286,7 +286,7 @@ curl -X POST  -H "Content-Type: application/json"  \
 
 ### `zks_getAllAccountBalances`
 
-Returns all token balances given by an account address.
+Returns all balances for confirmed tokens given by an account address.
 
 #### Inputs
 
