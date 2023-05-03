@@ -4,7 +4,7 @@
 
 Enumerated list of account abstraction versions.
 
-- None = `0`
+- None = `0` (used for contracts that are not accounts)
 - Version1 = `1`
 
 ## `AccountNonceOrdering`
