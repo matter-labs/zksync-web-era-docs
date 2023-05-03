@@ -1,6 +1,9 @@
 # Estimate gas
 
 
+## L1 transaction
+
+
 ## L1 to L2 transaction
 
 1. Import the relevant zkSync Era library or contract containing the required functionality.
@@ -51,6 +54,10 @@
 ```json
 
 ```
+
+
+## L2 transaction
+
 
 
 ## L2 to L1 transaction
