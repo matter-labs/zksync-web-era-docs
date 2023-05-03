@@ -36,7 +36,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-      version: "1.3.8",
+      version: "1.3.10",
       compilerSource: "binary",
       settings: {
         //compilerPath: "zksolc",  // optional. Ignored for compilerSource "docker". Can be used if compiler is located in a specific folder

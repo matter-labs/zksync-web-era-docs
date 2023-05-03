@@ -71,6 +71,12 @@ Additionally, by querying on a block, you can see the batch number for the batch
 Within transaction receipts, the field `l1BatchNumber` is the batch number that includes the transaction.
 The field `l1BatchTxIndex` returns the transaction position among all of the transactions included in a batch.
 
+## Reverting blocks
+
+Use [`revertBlock`](https://github.com/matter-labs/era-contracts/blob/fc7e86a3df404acb88d86502c944c0630a7ed288/ethereum/contracts/zksync/facets/Executor.sol#L342) to reverse a previous transaction on zkSync Era. This means, in rare cases, where we cannot prove the block's correctness i.e. we mistakenly committed an unprovable block or someone committed a malicious block, `revertBlock` reverts all changes that came with that block and prevents such data from being included in subsequent blocks.
+
+Only non-finalized blocks can be reverted. Once a block is finalized, it cannot be reverted.
+
 
 ### Hashes
 
