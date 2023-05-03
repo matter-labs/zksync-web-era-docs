@@ -13,6 +13,11 @@ export const enSidebar = sidebar({
       children: ["/dev/fundamentals/rollups.md", "/dev/fundamentals/zkSync.md", "/dev/fundamentals/interacting.md", "/dev/fundamentals/hyperscaling.md"],
     },
     {
+      text: "How to",
+      link: "/dev/how-to",
+      children: ["/dev/how-to/estimate-gas.md", ],
+    },
+    {
       text: "Understanding zkSync Era",
       link: "/dev/developer-guides",
       children: [
