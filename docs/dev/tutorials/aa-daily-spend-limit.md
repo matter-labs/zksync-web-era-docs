@@ -268,7 +268,6 @@ if(!limit.isEnabled) return;
 Before checking the spending amount, this method renews the `resetTime` and `available` amount if a day has already passed since the last update: `timestamp > resetTime`. It only updates the `resetTime` if the transaction is the first spending after enabling the limit. This way the daily limit actually starts with the first transaction.
 
 ```solidity
-
 if (limit.limit != limit.available && timestamp > limit.resetTime) {
     limit.resetTime = timestamp + ONE_DAY;
     limit.available = limit.limit;
@@ -277,7 +276,6 @@ if (limit.limit != limit.available && timestamp > limit.resetTime) {
 } else if (limit.limit == limit.available) {
     limit.resetTime = timestamp + ONE_DAY;
 }
-
 ```
 
 Finally, the method checks if the account can spend a specified amount of the token. If the amount doesn't exceed the available amount, it decrements the `available` in the limit:
@@ -734,9 +732,9 @@ contract AAFactory {
 yarn hardhat compile
 ```
 
-1. Create a file `deploy/deployFactoryAccount.ts` and copy/paste the code below, replacing `<DEPLOYER_PRIVATE_KEY>` with your own.
+2. Create a file `deploy/deployFactoryAccount.ts` and copy/paste the code below, replacing `<DEPLOYER_PRIVATE_KEY>` with your own.
 
-The script deploys the factory, creates a new smart contract account and funds it with some ETH.
+The script deploys the factory, creates a new smart contract account, and funds it with some ETH.
 
 ```typescript
 import { utils, Wallet, Provider } from "zksync-web3";
@@ -806,10 +804,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 ```
 
-1. Run the script.
+3. Run the script.
 
 ```sh
-yarn hardhat deploy-zksync --script deploy-factory-account.ts
+yarn hardhat deploy-zksync --script deployFactoryAccount.ts
 ```
 
 You should see something like this:
@@ -832,18 +830,12 @@ Open up the [zkSync Era block explorer](https://goerli.explorer.zksync.io/) and 
 
 1. Create the file `setLimit.ts` in the `deploy` folder and copy/paste the example code below.
 
-2. Replace `<DEPLOYED_ACCOUNT_ADDRESS>` and `<<DEPLOYED_ACCOUNT_PRIVATE_KEY>` with the output from the previous section. 
+2. Replace `<DEPLOYED_ACCOUNT_ADDRESS>` and `<DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY>` with the output from the previous section. 
 
 To enable the daily spending limit, we execute the `setSpendingLimit` function with two parameters: token address and limit amount. The token address is `ETH_ADDRESS` and the limit parameter is `0.0005` in the example below (and can be any amount).
 
 ```typescript
-import {
-  utils,
-  Wallet,
-  Provider,
-  Contract,
-  EIP712Signer,
-  types,
+import { utils, Wallet, Provider, Contract, EIP712Signer, types,
 } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
@@ -923,7 +915,9 @@ Time to reset limit:  1683027630
 
 ## Perform ETH transfer
 
-Finally, we will see if the SpendLimit contract works and refuses any ETH transfer that exceeds the daily limit. Let's create `transferETH.ts` with the example code below.
+Let's test the `SpendLimit` contract works to make it refuses ETH transfers that exceed the daily limit. 
+
+1. Create `transferETH.ts` and copy/paste the example code below, replacing the placeholder constants as before and adding an account address for `<RECEIVER_ACCOUNT>`.
 
 ```typescript
 import {
@@ -1023,13 +1017,13 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 ```
 
-To make a transfer, run the following:
+2. Run the script to attempt to make a transfer.
 
 ```shell
 yarn hardhat deploy-zksync --script deploy/transferETH.ts
 ```
 
-Although the error message doesn't give us the specifics, we know it failed because the amount exceeded the limit. You should see following output:
+You should see an error message. Although the error message doesn't give us the specifics, we know it failed because the amount exceeded the limit.
 
 ```shell
 An unexpected error occurred:
@@ -1039,7 +1033,7 @@ Error: transaction failed...
 
 After the error, we can rerun the code with a different ETH amount that doesn't exceed the limit, say "0.0049", to see if the `SpendLimit` contract doesn't refuse the amount lower than the limit.
 
-If the transaction succeeds, the output would be like the following:
+If the transaction succeeds, the output should look something like this:
 
 ```shell
 Account ETH limit is:  500000000000000
@@ -1055,13 +1049,13 @@ Limit will reset on timestamp:: 1683111958
 Reset time was not updated as not enough time has passed
 ```
 
-The `available` value in the Limit struct was updated accordingly to the initial limit minus the amount we transfered.
+The `available` value in the `Limit` struct updates to the initial limit minus the amount we transferred.
 
-Since the `ONE_DAY` is set to 1 minute for this test in the `SpendLimit.sol` contract, you should expect it to reset after 60 seconds. However, we're using `block.timestamp` so the limit is only reset after a new L1 batch is sealed (around ten minutes on testnet). To understand the reason behind this, we should know about a constraint of using `block.timestamp`.
+Since `ONE_DAY` is set to 1 minute for this test in the `SpendLimit.sol` contract, you should expect it to reset after 60 seconds. However, we're using `block.timestamp` so the limit is only reset after a new L1 batch is sealed (around ten minutes on testnet). To understand the reason behind this, we should know about the constraints around using `block.timestamp`.
 
-::: warning block.timestamp returns L1 batch value
+::: warning `block.timestamp` returns L1 batch value
 
-The `block.timestamp` returns the time of the latest L1 batch instead of the L2 block and it's only updated once a new batch is sealed ( 5-10 minutes on testnet). What this means is that basically, `block.timestamp` in smart contracts on zkSync Era is currently a delayed value.
+`block.timestamp` returns the time of the latest L1 batch, instead of the L2 block, and it's only updated once a new batch is sealed (~5-10 minutes on testnet). What this means is that `block.timestamp` in smart contracts on zkSync Era is currently a delayed value.
 
 To keep this tutorial as simple as possible, we've used `block.timestamp` but we don't recommend relying on this for accurate time calculations.
 
@@ -1070,12 +1064,12 @@ To keep this tutorial as simple as possible, we've used `block.timestamp` but we
 ## Common Errors
 
 - Insufficient gasLimit: Transactions often fail due to insufficient gasLimit. Please increase the value manually when transactions fail without clear reasons.
-- Insufficient balance in account contract: transactions may fail due to the lack of balance in the deployed account contract. Please transfer funds to the account using Metamask or `wallet.sendTransaction()` method used in `deploy/deployFactoryAccount.ts`.
+- Insufficient balance in account contract: transactions may fail due to the lack of balance in the deployed account contract. Please transfer funds to the account using MetaMask or `wallet.sendTransaction()` method used in `deploy/deployFactoryAccount.ts`.
 - Transactions submitted in a close range of time will have the same `block.timestamp` as they can be added to the same L1 batch and might cause the spend limit to not work as expected.
 
 ## Complete Project
 
-You can download the complete project [here](https://github.com/matter-labs/daily-spendlimit-tutorial). Additionally, the repository contains a test folder that can perform more detailed testing than this tutorial on zkSync Era local network.
+Download the complete project [here](https://github.com/matter-labs/daily-spendlimit-tutorial). Additionally, the repository contains a test folder with more detailed tests for running on a zkSync Era local network.
 
 ## Learn more
 
