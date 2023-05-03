@@ -39,13 +39,13 @@ async approveERC20(
 import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
-const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
+const USDC_ADDRESS = "<USDC_ADDRESS>";
 const txHandle = await wallet.approveERC20(
   USDC_ADDRESS,
   "10000000" // 10.0 USDC
@@ -90,13 +90,13 @@ async deposit(transaction: {
 import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
-const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
-const USDC_ADDRESS = "0xd35cceead182dcee0f148ebac9447da2c4d449c4";
+const USDC_ADDRESS = "<USDC_ADDRESS>";
 const usdcDepositHandle = await wallet.deposit({
   token: USDC_ADDRESS,
   amount: "10000000",
@@ -209,7 +209,8 @@ async requestExecute(transaction: {
 import * as zksync from "zksync-web3";
 import { BigNumber, ethers } from "ethers";
 
-const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
+const CONTRACT_ADDRESS = " "
 
 const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
@@ -241,7 +242,7 @@ const txCostPrice = await wallet.getBaseCost({
 console.log(`Executing the transaction will cost ${ethers.utils.formatEther(txCostPrice)} ETH`);
 
 const executeTx = await wallet.requestExecute({
-  contractAddress: "0x19a5bfcbe15f98aa073b9f81b58466521479df8d",
+  contractAddress: CONTRACT_ADDRESS,
   calldata,
   l2Value: 1,
   l2GasLimit,

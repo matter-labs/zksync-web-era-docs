@@ -34,7 +34,7 @@ Just like `ethers.Wallet`, the `Wallet` object from `zksync-web3` can be created
 import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
-const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
@@ -94,6 +94,7 @@ import { ethers } from "ethers";
 
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
 
+const zkSyncProvider = new Provider("https://testnet.era.zksync.dev");
 const ethProvider = ethers.getDefaultProvider("goerli");
 const wallet = unconnectedWallet.connectToL1(ethProvider);
 ```
@@ -101,7 +102,7 @@ const wallet = unconnectedWallet.connectToL1(ethProvider);
 It is possible to chain `connect` and `connectToL1` methods:
 
 ```typescript
-const wallet = unconnectedWallet.connect(provider).connectToL1(ethProvider);
+const wallet = unconnectedWallet.connect(zkSyncProvider).connectToL1(ethProvider);
 ```
 
 ### Getting the zkSync L1 smart contract
@@ -119,10 +120,12 @@ async getMainContract(): Promise<IZkSync>
 > Example
 
 ```typescript
-import * as zksync from "zksync-web3";
+import { Wallet, Provider } from "zksync-web3";
 import { ethers } from "ethers";
-const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
-const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
+
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
+
+const zkSyncProvider = new Provider("https://testnet.era.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
@@ -147,22 +150,22 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 > Example
 
 ```typescript
-import * as zksync from "zksync-web3";
+import { Wallet, Provider } from "zksync-web3";
 import { ethers } from "ethers";
 
-const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
+const zkSyncProvider = new Provider("https://testnet.era.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
-const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
+const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
-const USDC_L2_ADDRESS = "0x852a4599217e76aa725f0ada8bf832a1f57a8a91";
+const USDC_L2_ADDRESS = "<USDC_ADDRESS>";
 
-// Getting balance in USDC
+// Get balance in Big Number
 console.log(await wallet.getBalance(USDC_L2_ADDRESS));
 
-// Getting balance in ETH
-console.log(await wallet.getBalance());
+// Get balance in ETH formatted
+console.log(ethers.utils.formatEther(await wallet.getBalance()));
 ```
 
 ### Getting token balance on L1
@@ -185,19 +188,25 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
-const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
+const PRIVATE_KEY = "0x1f09ccee64f523d43139fd56a034b0c9bde80624b8a1bbbe69019ebad4c96195";
 
 const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
-const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
+const unconnectedWallet = new zksync.Wallet(PRIVATE_KEY);
+const wallet = unconnectedWallet.connect(zkSyncProvider).connectToL1(ethereumProvider);
+const USDC_ADDRESS = "0x0faf6df7054946141266420b43783387a78d82a9";
 
-const USDC_ADDRESS = "0xd35CCeEAD182dcee0F148EbaC9447DA2c4D449c4";
 
-// Getting balance in USDC
-console.log(await wallet.getBalanceL1(USDC_ADDRESS));
+async function getBalance() {
+ // Get balance in Big Number
+ console.log(await wallet.getBalanceL1(USDC_ADDRESS));
 
-// Getting balance in ETH
-console.log(await wallet.getBalanceL1());
+ // Gett balance in ETH formatted
+ console.log(ethers.utils.formatEther(await wallet.getBalanceL1()));
+}
+
+getBalance()
+
 ```
 
 ### Getting a nonce
@@ -218,19 +227,19 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 > Example
 
 ```typescript
-import * as zksync from "zksync-web3";
-import { ethers } from "ethers";
+import { Wallet, Provider } from "zksync-web3";
 
-const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
+const zkSyncProvider = new Provider("https://testnet.era.zksync.dev");
+
 // Note that we don't need ethereum provider to get the nonce
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
 
 console.log(await wallet.getNonce());
 ```
 
-### Transferring tokens inside zkSync
+### Transferring tokens inside zkSync Era
 
 For convenience, the `Wallet` class has `transfer` method, which can transfer `ETH` or any `ERC20` token within the same interface.
 
@@ -256,22 +265,27 @@ async transfer(tx: {
 > Example
 
 ```typescript
-import * as zksync from "zksync-web3";
+import { Wallet, Provider } from "zksync-web3";
 import { ethers } from "ethers";
 
-const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
 
-const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
+
+const zkSyncProvider = new Provider("https://testnet.era.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
-const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
-const recipient = zksync.Wallet.createRandom();
+const recipient = Wallet.createRandom();
 
 // We transfer 0.01 ETH to the recipient and pay the fee in USDC
 const transferHandle = wallet.transfer({
-  to: recipient.address,
-  amount: ethers.utils.parseEther("0.01"),
+    to: recipient.address,
+    amount: ethers.utils.parseEther("0.01"),
 });
+
+const tx = await transferHandle;
+
+console.log(`The sum of ${ethers.utils.formatEther(tx.value)} ETH was transfered to ${tx.to}`)
 ```
 
 ### Initiating a withdrawal to L1
@@ -311,7 +325,7 @@ You can get an `ethers.Wallet` object with the same private key with `ethWallet(
 import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
-const PRIVATE_KEY = "0xc8acb475bb76a4b8ee36ea4d0e516a755a17fad2e84427d5559b37b544d9ba5a";
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
@@ -511,7 +525,7 @@ const provider = new ethers.Web3Provider(window.ethereum);
 const zksyncProvider = new Provider("https://testnet.era.zksync.dev");
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 
-const USDC_ADDRESS = "0xd35CCeEAD182dcee0F148EbaC9447DA2c4D449c4";
+const USDC_ADDRESS = "<ADDRESS>";
 
 // Getting balance in USDC
 console.log(await signer.getBalanceL1(USDC_ADDRESS));

@@ -69,7 +69,7 @@ import { Provider } from "zksync-web3";
 
 const provider = new Provider("https://testnet.era.zksync.dev");
 
-const USDC_L2_ADDRESS = "0x0faF6df7054946141266420b43783387A78d82A9";
+const USDC_L2_ADDRESS = "<YOUR_USDC_L2_AADRESS>";
 // Getting  USDC balance of account 0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5 at the latest processed block
 console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5", "latest", USDC_L2_ADDRESS));
 
@@ -233,7 +233,7 @@ async getTransaction(hash: string | Promise<string>): Promise<TransactionRespons
 import { Provider } from "zksync-web3";
 const provider = new Provider("https://testnet.era.zksync.dev");
 
-const TX_HASH = "0x300baeb6804c2068ff796d95336c53ac671eef216e7ae9c17190660cdb1e2c17";
+const TX_HASH = "<YOUR_TX_HASH_ADDRESS>";
 const txHandle = await provider.getTransaction(TX_HASH);
 
 // Wait until the transaction is processed by the server.
@@ -261,7 +261,7 @@ async getTransactionStatus(txHash: string): Promise<TransactionStatus>
 import { Provider } from "zksync-web3";
 const provider = new Provider("https://testnet.era.zksync.dev");
 
-const TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
+const TX_HASH = "YOUR_TX_HASH_ADDRESS";
 console.log(await provider.getTransactionStatus(TX_HASH));
 ```
 
