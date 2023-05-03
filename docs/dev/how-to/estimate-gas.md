@@ -3,6 +3,8 @@
 
 ## L1 transaction
 
+Gas estimation on Ethereum: https://docs.alchemy.com/reference/eth-estimategas
+
 
 ## L1 to L2 transaction
 
@@ -58,6 +60,7 @@
 
 ## L2 transaction
 
+Gas estimation on zkSync Era: ??
 
 
 ## L2 to L1 transaction
