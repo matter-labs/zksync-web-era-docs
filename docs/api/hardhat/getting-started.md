@@ -83,7 +83,7 @@ The `zksolc` block contains the minimal configuration required for the compiler.
 
 ```typescript
 zksolc: {
-  version: "1.3.8",
+  version: "1.3.10",
   compilerSource: "binary",
   settings: {},
 },
