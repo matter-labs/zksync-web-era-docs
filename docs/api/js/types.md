@@ -268,7 +268,7 @@ Transaction request type extended from the Ethers `providers.TransactionRequest`
 
 ## `TransactionResponse`
 
-Interface representation of transaction response containing various fields.
+Interface representation of transaction response extended from the Ethers `providers.TransactionResponse` containing various fields.
 
 - `l1BatchNumber`: `number`;
 - `l1BatchTxIndex`: `number`;
