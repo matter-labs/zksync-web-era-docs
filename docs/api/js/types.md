@@ -268,7 +268,7 @@ Interface representation of transaction details containing various mandatory and
 
 ## `TransactionReceipt`
 
-Interface representation of transaction receipt containing various fields.
+Interface representation of transaction receipt that extends from `ethers.TransactionReceipt` with additional fields.
 
 - `l1BatchNumber`: `number`;
 - `l1BatchTxIndex`: `number`;
