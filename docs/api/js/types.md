@@ -223,21 +223,6 @@ Interface representation of priority op response that extends [`TransactionRespo
 
 - `waitL1Commit(confirmation?: number)`: `Promise<providers.TransactionReceipt>`;
 
-## `PriorityOpTree`
-
-Enumerated list of priority op tree types.
-
-- Full = `0`
-- Rollup = `1`
-
-## `PriorityQueueType`
-
-Enumerated list of priority queue types.
-
-- Deque = `0`
-- HeapBuffer = `1`
-- Heap = `2`
-
 ## `Signature`
 
 0x-prefixed, hex-encoded, ECDSA signature as string.
