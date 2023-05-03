@@ -277,7 +277,7 @@ Interface representation of transaction receipt containing various fields.
 
 ## `TransactionRequest`
 
-Transaction request type extended from the Ethers `providers.TransactionRequest which adds an optional field for EIP-712 transactions.
+Transaction request type extended from the Ethers `providers.TransactionRequest` which adds an optional field for EIP-712 transactions.
 
 - `customData?`: `Eip712Meta`;
 
