@@ -188,7 +188,7 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 import * as zksync from "zksync-web3";
 import { ethers } from "ethers";
 
-const PRIVATE_KEY = "0x1f09ccee64f523d43139fd56a034b0c9bde80624b8a1bbbe69019ebad4c96195";
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
