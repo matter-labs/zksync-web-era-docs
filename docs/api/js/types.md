@@ -4,7 +4,7 @@
 
 Enumerated list of account abstraction versions.
 
-- None = `0` (used for contracts that are not accounts)
+- None = `0` (Used for contracts that are not accounts.)
 - Version1 = `1`
 
 ## `AccountNonceOrdering`
@@ -54,7 +54,7 @@ Interface representation of batch information containing various optional and ma
 
 ## `Block`
 
-Interface representation of a block that extends the Ethers `providers.Block` definition with additional fields.
+Interface representation of a block that extends the Ethers [`providers.Block`](https://docs.ethers.org/v5/api/providers/types/#providers-Block) definition with additional fields.
 
 - `l1BatchNumber`: `number`;
 - `l1BatchTimestamp`: `number`;
@@ -83,11 +83,11 @@ Pipe-delimited list of block labels that includes block number in denary and hex
 
 - `number`
 - `string` // hex representation of block number
-- `committed`
-- `finalized`
-- `latest`
-- `earliest`
-- `pending`
+- "committed"
+- "finalized"
+- "latest"
+- "earliest"
+- "pending"
 
 ## `BlockWithTransaction`
 
@@ -182,7 +182,7 @@ Interface representation of a layer 2 to layer 1 transaction log containing vari
 
 ## `Log`
 
-Interface representation of log that extends Ethers `providers.Log` and supplies the layer 1 batch number.
+Interface representation of log that extends Ethers [`providers.Log`](https://docs.ethers.org/v5/api/providers/types/#providers-Log) and supplies the layer 1 batch number.
 
 - `l1BatchNumber`: `number`;
 
@@ -223,21 +223,6 @@ Interface representation of priority op response that extends [`TransactionRespo
 
 - `waitL1Commit(confirmation?: number)`: `Promise<providers.TransactionReceipt>`;
 
-## `PriorityOpTree`
-
-Enumerated list of priority op tree types.
-
-- Full = `0`
-- Rollup = `1`
-
-## `PriorityQueueType`
-
-Enumerated list of priority queue types.
-
-- Deque = `0`
-- HeapBuffer = `1`
-- Heap = `2`
-
 ## `Signature`
 
 0x-prefixed, hex-encoded, ECDSA signature as string.
@@ -268,7 +253,7 @@ Interface representation of transaction details containing various mandatory and
 
 ## `TransactionReceipt`
 
-Interface representation of transaction receipt that extends from `ethers.TransactionReceipt` with additional fields.
+Interface representation of transaction receipt that extends from Ethers [`providers.TransactionReceipt`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionReceipt) with additional fields.
 
 - `l1BatchNumber`: `number`;
 - `l1BatchTxIndex`: `number`;
@@ -277,13 +262,13 @@ Interface representation of transaction receipt that extends from `ethers.Transa
 
 ## `TransactionRequest`
 
-Transaction request type extended from the Ethers `providers.TransactionRequest` which adds an optional field for EIP-712 transactions.
+Interface representation of transaction request that extends from Ethers [`providers.TransactionRequest`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionRequest) which adds an optional field for EIP-712 transactions.
 
 - `customData?`: `Eip712Meta`;
 
 ## `TransactionResponse`
 
-Interface representation of transaction response containing various fields.
+Interface representation of transaction response that extends from Ethers [`providers.TransactionResponse`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionResponse) with additional fields.
 
 - `l1BatchNumber`: `number`;
 - `l1BatchTxIndex`: `number`;
@@ -299,5 +284,5 @@ Non-enumerated enum list of transaction statuses.
 - Finalized = `finalized`
 
 :::tip More info
-Find the code definition of the types above on the [zkSync Era Github repo.](https://github.com/matter-labs/zksync-2-dev/blob/98ed4fef2d62c28a7563b7874beaeb59392de211/sdk/zksync-web3.js/src/types.ts)
+Find the code definition of the types above on the [zkSync Era Github repo.](https://github.com/matter-labs/zksync-era/tree/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/types.ts)
 :::
