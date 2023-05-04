@@ -69,7 +69,7 @@ import { Provider } from "zksync-web3";
 
 const provider = new Provider("https://testnet.era.zksync.dev");
 
-const USDC_L2_ADDRESS = "<YOUR_USDC_L2_AADRESS>";
+const USDC_L2_ADDRESS = "<YOUR_USDC_L2_ADDRESS>";
 // Getting  USDC balance of account 0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5 at the latest processed block
 console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5", "latest", USDC_L2_ADDRESS));
 
