@@ -4,19 +4,21 @@ export const enNavbar = navbar([
   { 
     text: "Home", 
     link: "/" 
-  },
-  
+  }, 
   { 
-    text: "Developer docs", 
+    text: "Build", 
     link: "/dev/" 
   },
-
   { 
-    text: "Tools and SDK", 
+    text: "Concepts", 
+    link: "/concepts/" 
+  },
+  { 
+    text: "APIs", 
     link: "/api/" 
   },
   { 
-    text: "Contacts and Links", 
+    text: "Footer", 
     link: "/contact.html" 
   },
 

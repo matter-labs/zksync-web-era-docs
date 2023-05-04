@@ -2,76 +2,77 @@ import { sidebar } from "vuepress-theme-hope";
 
 export const enSidebar = sidebar({
   //The sidebar for developer guides
-  "/dev": [
+  "/build": [
     {
       text: "Introduction",
-      link: "/dev/",
-    },
-    {
-      text: "Getting started",
-      link: "/dev/fundamentals",
-      children: ["/dev/fundamentals/rollups.md", "/dev/fundamentals/zkSync.md", "/dev/fundamentals/interacting.md", "/dev/fundamentals/hyperscaling.md"],
+      link: "/build/building-on-zksync/hello-world.md",
     },
     {
       text: "How to",
-      link: "/dev/how-to",
-      children: ["/dev/how-to/estimate-gas.md", ],
-    },
-    {
-      text: "Understanding zkSync Era",
-      link: "/dev/developer-guides",
-      children: [
-        "/dev/developer-guides/transactions/transactions.md",
-        "/dev/developer-guides/transactions/blocks.md",
-        "/dev/developer-guides/system-contracts.md",
-        "/dev/developer-guides/aa.md",
-        "/dev/developer-guides/transactions/fee-model.md",
-        "/dev/developer-guides/bridging/bridging-asset.md",
-        "/dev/developer-guides/bridging/l1-l2-interop.md",
-        "/dev/developer-guides/bridging/l1-l2.md",
-        "/dev/developer-guides/bridging/l2-l1.md",
-        "/dev/developer-guides/videos.md",
-        // "/dev/developer-guides/security.md",
-      ],
+      link: "/build/how-to",
+      children: ["/build/how-to/estimate-gas.md", ],
     },
     {
       text: "Building on zkSync Era",
-      link: "/dev/building-on-zksync",
+      link: "/build/building-on-zksync",
       children: [
-        "/dev/building-on-zksync/hello-world.md",
-        "/dev/building-on-zksync/contracts/contract-development.md",
-        "/dev/building-on-zksync/contracts/differences-with-ethereum.md",
-        "/dev/building-on-zksync/contracts/contract-deployment.md",
-        "/dev/building-on-zksync/contracts/contract-verification.md",
-        "/dev/building-on-zksync/events.md",
-        "/dev/building-on-zksync/rpc.md",
-        "/dev/building-on-zksync/useful-address.md",
+        "/build/building-on-zksync/hello-world.md",
+        "/build/building-on-zksync/contracts/contract-development.md",
+        "/build/building-on-zksync/contracts/differences-with-ethereum.md",
+        "/build/building-on-zksync/contracts/contract-deployment.md",
+        "/build/building-on-zksync/contracts/contract-verification.md",
+        "/build/building-on-zksync/events.md",
+        "/build/building-on-zksync/rpc.md",
+        "/build/building-on-zksync/useful-address.md",
       ],
     },
     {
       text: "Tutorials",
-      link: "/dev/tutorials",
+      link: "/build/tutorials",
       children: [
-        "/dev/tutorials/cross-chain-tutorial.md",
-        "/dev/tutorials/custom-aa-tutorial.md",
-        "/dev/tutorials/aa-daily-spend-limit.md",
-        "/dev/tutorials/custom-paymaster-tutorial.md",
+        "/build/tutorials/cross-chain-tutorial.md",
+        "/build/tutorials/custom-aa-tutorial.md",
+        "/build/tutorials/aa-daily-spend-limit.md",
+        "/build/tutorials/custom-paymaster-tutorial.md",
       ],
     },
     {
       text: "Troubleshooting",
-      link: "/dev/troubleshooting",
+      link: "/build/troubleshooting",
       children: [
-        "/dev/troubleshooting/changelog.md",
-        "/dev/troubleshooting/withdrawal-delay.md",
-        "/dev/troubleshooting/audit-bug-bounty.md",
-        "/dev/troubleshooting/docs-contribution/docs.md",
-        "/dev/troubleshooting/docs-contribution/community-resources.md",
-        "/dev/troubleshooting/faq.md",
-        // "/dev/troubleshooting/status.md",
-        // "/dev/troubleshooting/important-links.md",
+        "/build/troubleshooting/changelog.md",
+        "/build/troubleshooting/withdrawal-delay.md",
+        "/build/troubleshooting/audit-bug-bounty.md",
+        "/build/troubleshooting/docs-contribution/docs.md",
+        "/build/troubleshooting/docs-contribution/community-resources.md",
+        "/build/troubleshooting/faq.md",
+        // "/build/troubleshooting/status.md",
+        // "/build/troubleshooting/important-links.md",
       ],
     },
+  ],
+  //The sidebar for Tools and SDKs
+  "/concepts": [
+    {
+      text: "The basics", // required
+      link: "/concepts/", // optional, which should be a absolute path.
+      children: [ "/concepts/the-basics/rollups.md", "/concepts/the-basics/zkSync.md", "/concepts/the-basics/interacting.md", "/concepts/the-basics/hyperscaling.md", "/concepts/the-basics/videos.md",],
+    },
+    {
+      text: "Understanding zkSync Era",
+      link: "/build/buildeloper-guides",
+      children: [
+        "/concepts/fundamentals/transactions.md",
+        "/concepts/fundamentals/blocks.md",
+        "/concepts/fundamentals/system-contracts.md",
+        "/concepts/fundamentals/aa.md",
+        "/concepts/fundamentals/fee-model.md",
+        "/concepts/fundamentals/bridging-asset.md",
+        "/concepts/fundamentals/l1-l2-interop.md",
+        "/concepts/fundamentals/l1-l2.md",
+        "/concepts/fundamentals/l2-l1.md",
+        "/concepts/fundamentals/security.md",
+      ],},
   ],
   //The sidebar for Tools and SDKs
   "/api": [

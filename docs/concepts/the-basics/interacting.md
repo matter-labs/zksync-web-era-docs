@@ -12,7 +12,7 @@ The only other place where using zkSync SDK is required is during contract deplo
 
 ### Quickstart on zkSync
 
-Check out our step-by-step [quickstart guide](../building-on-zksync/hello-world.md), where you will learn:
+Check out our step-by-step [quickstart guide](), where you will learn:
 
 - How to install zkSync hardhat plugin and deploy smart contracts with it.
 - How to build the front-end for your dApp using the `zksync-web3` library.
@@ -62,7 +62,7 @@ It is not currently possible to interact with zkSync Era smart contracts via Met
 
 You can open a support ticket in `💻🧪│dev-support-beta` or ask any questions in `🖥│dev-general`
 
-If you need help with anything related to the zkSync Era, you can raise a support ticket on the zkSync Era discord, or check out the [FAQs](../troubleshooting/faq.md) page to view the most common queries about the zkSync Era. Additionally, you can reach out to the support team available on the `#dev-support-beta`, or ask any questions in `#dev-general` channel on the zkSync Era Discord server. 
+If you need help with anything related to the zkSync Era, you can raise a support ticket on the zkSync Era discord, or check out the [FAQs]() page to view the most common queries about the zkSync Era. Additionally, you can reach out to the support team available on the `#dev-support-beta`, or ask any questions in `#dev-general` channel on the zkSync Era Discord server. 
 Instructions for raising a support ticket are as follows:
 
 - Join the zkSync Era [our Discord](https://join.zksync.dev/) server.
