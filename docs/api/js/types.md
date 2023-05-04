@@ -253,7 +253,7 @@ Interface representation of transaction details containing various mandatory and
 
 ## `TransactionReceipt`
 
-Interface representation of transaction receipt that extends from `ethers.TransactionReceipt` with additional fields.
+Interface representation of transaction receipt that extends from Ethers [`providers.TransactionReceipt`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionReceipt) with additional fields.
 
 - `l1BatchNumber`: `number`;
 - `l1BatchTxIndex`: `number`;
