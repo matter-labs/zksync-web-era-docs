@@ -210,7 +210,7 @@ import * as zksync from "zksync-web3";
 import { BigNumber, ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
-const CONTRACT_ADDRESS = " "
+const CONTRACT_ADDRESS = "<CONTRACT_ADDRESS>"
 
 const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
