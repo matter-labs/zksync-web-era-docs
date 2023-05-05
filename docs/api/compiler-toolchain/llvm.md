@@ -1,5 +1,9 @@
 # LLVM Framework
 
+::: warning
+To safeguard the security and efficiency of your application, always use the latest compiler version.
+:::
+
 [The LLVM framework](https://github.com/matter-labs/era-compiler-llvm) is a soundly-architected and well-tested framework
 for developing toolchains for smart contract languages. Its powerful intermediate representation (IR) allows developers
 to design, implement, and optimize efficient language-specific features while benefiting from the extensive LLVM ecosystem.
