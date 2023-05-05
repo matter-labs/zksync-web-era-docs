@@ -1,62 +1,61 @@
 # Account abstraction multisig
 
-Now, let's learn how to deploy your custom accounts and interact directly with the [ContractDeployer](../developer-guides/system-contracts.md#contractdeployer) system contract.
-In this tutorial, we build a factory that deploys 2-of-2 multisig accounts.
+This tutorial shows you how to build and deploy a 2-of-2 multi-signature account via a factory contract, then test it by sending a transaction.
 
+## Prerequisites
 
-## Prerequisite
-To better understand this page, we recommend you first read up on the following guides:
+- A [Node.js](https://nodejs.org/en/download) installation.
+- For background learning, we recommend the following guides:
+    - Read about the [design](../developer-guides/aa.md) of the account abstraction protocol.
+    - Read the [introduction to the system contracts](../developer-guides/system-contracts.md).
+    - Read about [smart contract deployment](../building-on-zksync/contracts/contract-deployment.md) on zkSyn Era.
+    - Read the [gas estimation for transaction](../developer-guides/transactions/fee-model.md#gas-estimation-during-a-transaction-for-paymaster-and-custom-accounts) guide.
+    - If you haven't already, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+- You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
-- Read about the [design](../developer-guides/aa.md) of the account abstraction protocol.
-- Read the [introduction to the system contracts](../developer-guides/system-contracts.md).
-- Read about [smart contract deployment](../building-on-zksync/contracts/contract-deployment.md) on zkSyn Era.
-- Read the [gas estimation for transaction](../developer-guides/transactions/fee-model.md#gas-estimation-during-transaction-for-custom-and-paymaster-accounts) guide.
-- If you haven't, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+## Complete project
 
+Download the complete project [here](https://github.com/matter-labs/custom-aa-tutorial).
 
+## Set up
 
-## Installing dependencies
-
-We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it:
-
-::: code-tabs
-
-@tab:active folder
+1. Create the project folder and `cd` into it:
 
 ```sh
 mkdir custom-aa-tutorial
 cd custom-aa-tutorial
 ```
 
-@tab yarn
+2. Initialize the project with `yarn` and add the dependencies.
 
-```bash
+```sh
 yarn init -y
 yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
 ```
-:::
-
-::: tip
-
+:::tip
 The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
-
 :::
 
-Since we are working with zkSync contracts, we also need to install the package with the contracts and its peer dependencies:
+
+3. Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders in the project root. See the [quickstart tutorial](../building-on-zksync/hello-world.md) for more info. 
+
+4. Add the zkSync and OpenZeppelin libraries.
+
+```sh
+yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
 
 ```
-yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
-```
 
-Also, create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, similar to the [quickstart tutorial](../building-on-zksync/hello-world.md). As in this project our contracts will interact with system contracts, we need to include the `isSystem: true` in the compiler settings:
+5. Include the `isSystem: true` setting in the configuration to allow interaction with system contracts.
 
 ```ts
+import { HardhatUserConfig } from "hardhat/config";
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 
-module.exports = {
+const config: HardhatUserConfig = {
   zksolc: {
-    version: "1.3.5",
+    version: "1.3.10", // Use latest available in https://github.com/matter-labs/zksolc-bin/
     compilerSource: "binary",
       settings: {
         isSystem: true,
@@ -66,32 +65,33 @@ module.exports = {
 
   networks: {
     zkSyncTestnet: {
-      url: "https://zksync2-testnet.zksync.dev",
+      url: "https://testnet.era.zksync.dev",
       ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
       zksync: true,
     },
   },
   solidity: {
-    version: "0.8.17",
+    version: "0.8.16",
   },
 };
+
+export default config;
 ```
 
 ::: tip
-
-You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/)
-
+- Use the zkSync CLI to scaffold a project automatically. 
+- Find out more about the [zkSync CLI](../../api/tools/zksync-cli/).
 :::
 
 ## Account abstraction
 
-Each account needs to implement the [IAccount](../developer-guides/aa.md#iaccount-interface) interface. Since we are building an account with signers, we should also have [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12) implemented.
+Each account must implement the [IAccount](../developer-guides/aa.md#iaccount-interface) interface. Furthermore, since we are building an account with multiple signers, we should implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
-The skeleton for the contract will look the following way:
+The skeleton code for the contract is given below. 
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.16;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
@@ -109,7 +109,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
     modifier onlyBootloader() {
         require(
             msg.sender == BOOTLOADER_FORMAL_ADDRESS,
-            "Only bootloader can call this method"
+            "Only bootloader can call this function"
         );
         // Continure execution if called from the bootloader.
         _;
@@ -258,23 +258,24 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 }
 ```
 
-Note, that only the [bootloader](../developer-guides/system-contracts.md#bootloader) should be allowed to call the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prepareForPaymaster` methods.
-That's why the `onlyBootloader` modifier is used for them.
+:::tip
+The `onlyBootloader` modifier ensures that only the [bootloader](../developer-guides/system-contracts.md#bootloader) calls the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prepareForPaymaster` functions.
+:::
 
-The `executeTransactionFromOutside` is needed to allow external users to initiate transactions from this account. The easiest way to implement it is to do the same as `validateTransaction` + `executeTransaction` would do.
+The `executeTransactionFromOutside` function allows external users to initiate transactions from this account. We implement it by calling `validateTransaction` and `executeTransaction`.
 
-In addition, the `checkValidECDSASignatureFormat` and `extractECDSASignature` are helper methods that we'll use in the `isValidSignature` implementation.
+In addition, `checkValidECDSASignatureFormat` and `extractECDSASignature` are helper functions for the `isValidSignature` implementation.
 
 ### Signature validation
 
-Firstly, we need to implement the signature validation process.  In this tutorial, we use OpenZeppelin's `ECDSA` library for signature validation so we'd need to import it:
+We import OpenZeppelin's `ECDSA` library to use for signature validation.
 
 ```solidity
 // Used for signature validation
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 ```
 
-Since we are building a two-account multisig, let's pass its owners' addresses in the constructor and save their state variables:
+Since we are building a two-account multisig, we pass the owners' addresses to the constructor and save their state variables.
 
 ```solidity
 // state variables for account owners
@@ -288,19 +289,18 @@ constructor(address _owner1, address _owner2) {
 }
 ```
 
-To validate the signature we'll have to:
+To validate the signature we have to implement the following:
 
-- check if the length of the received signature is correct.
-- extract the two signatures from the received multisig using the helper method `extractECDSASignature`
-- check if both signatures are valid using the helper method `checkValidECDSASignatureFormat`.
-- extract the addresses from the transaction hash and each signature using the `ECDSA.recover` method.
-- check if the addresses extracted match with the owners of the account.
-- return the `EIP1271_SUCCESS_RETURN_VALUE` value on success or `bytes4(0)` if validation fails.
+- Check if the length of the received signature is correct.
+- Extract the two signatures from the received multisig using the helper function `extractECDSASignature`.
+- Check if both signatures are valid using the helper function `checkValidECDSASignatureFormat`.
+- Extract the addresses from the transaction hash and each signature using the `ECDSA.recover` function.
+- Check if the addresses extracted match with the owners of the account.
+- Return the `EIP1271_SUCCESS_RETURN_VALUE` value on success or `bytes4(0)` if validation fails.
 
-Here is the full implementation of the `isValidSignature` method:
+Below is the full implementation of the `isValidSignature` function:
 
 ```solidity
-
 function isValidSignature(bytes32 _hash, bytes memory _signature)
     public
     view
@@ -334,35 +334,42 @@ function isValidSignature(bytes32 _hash, bytes memory _signature)
         magic = bytes4(0);
     }
 }
-
 ```
 
 ### Transaction validation
 
-Let's implement the validation process. It is responsible for validating the signature of the transaction and incrementing the nonce. Note, that there are some limitations on what this method is allowed to do. You can read more about them [here](../developer-guides/aa.md#limitations-of-the-verification-step).
+The transaction validation process is responsible for validating the signature of the transaction and incrementing the nonce. 
 
-To increment the nonce, you should use the `incrementNonceIfEquals` method of the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether the nonce is the same as the provided one. If not, the transaction reverts. Otherwise, the nonce is increased.
+:::info
+- There are some [limitations](../developer-guides/aa.md#limitations-of-the-verification-step) on this function.
+:::
 
-Even though the requirements above allow the accounts to touch only their storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../developer-guides/aa.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happened to be in another contract. To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, you should add the following import:
+To increment the nonce, use the `incrementNonceIfEquals` function from the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether it is the same as the provided one. If not, the transaction reverts; otherwise, the nonce increases.
+
+Even though the requirements above mean the accounts only touch their own storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../developer-guides/aa.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happens to be in another contract. 
+
+To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, we add the following import:
 
 ```solidity
-// Access zkSync system contracts, in this case for nonce validation vs NONCE_HOLDER_SYSTEM_CONTRACT
+// Access zkSync system contracts for nonce validation via NONCE_HOLDER_SYSTEM_CONTRACT
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 ```
 
-Note that since the non-view methods of the `NONCE_HOLDER_SYSTEM_CONTRACT` are required to be called with the `isSystem` flag on, the [systemCallWithPropagatedRevert](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/libraries/SystemContractsCaller.sol#L75) method of the `SystemContractsCaller` library should be used, so this library needs to be imported as well:
+:::info
+- The non-view functions of the `NONCE_HOLDER_SYSTEM_CONTRACT` are called if the `isSystem` flag is on.
+- Use the [systemCallWithPropagatedRevert](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/libraries/SystemContractsCaller.sol#L75) function of the `SystemContractsCaller` library.
+- Import this library also:
+    ```solidity
+    // to call non-view function of system contracts
+    import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
+    ```
+:::
 
-```solidity
-// to call non-view method of system contracts
-import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
-```
+Use the `TransactionHelper` library, as imported above with `using TransactionHelper for Transaction;` to get the transaction hash that should be signed. You can also implement your own signature scheme and use a different commitment for signing the transaction, but in this example, we use the hash provided by this library.
 
+Finally, the `_validateTransaction` function has to return the constant `ACCOUNT_VALIDATION_SUCCESS_MAGIC` if the validation is successful, or an empty value `bytes4(0)` if it fails.
 
-The `TransactionHelper` library (already imported above with `using TransactionHelper for Transaction;`) can be used to get the hash of the transaction that should be signed. You can also implement your own signature scheme and use a different commitment for the transaction to sign, but in this example we use the hash provided by this library.
-
-Finally, the `_validateTransaction` method has to return the constant `ACCOUNT_VALIDATION_SUCCESS_MAGIC` if the validation is successful, or an empty value `bytes4(0)` if it fails.
-
-Here is the full implementation for the `_validateTransaction` method:
+Here is the full implementation for the `_validateTransaction` function:
 
 ```solidity
 
@@ -405,7 +412,9 @@ function _validateTransaction(
 
 ### Paying fees for the transaction
 
-We should now implement the `payForTransaction` method. The `TransactionHelper` library already provides us with the `payToTheBootloader` method, that sends `_transaction.maxFeePerGas * _transaction.gasLimit` ETH to the bootloader. So the implementation is rather straightforward:
+This section explains the `payForTransaction` function. 
+
+The `TransactionHelper` library already provides us with the `payToTheBootloader` function, that sends `_transaction.maxFeePerGas * _transaction.gasLimit` ETH to the bootloader. The implementation is straightforward:
 
 ```solidity
 function payForTransaction(
@@ -420,8 +429,7 @@ function payForTransaction(
 
 ### Implementing paymaster support
 
-While generally the account abstraction protocol enables performing arbitrary actions when interacting with the paymasters, there are some [common patterns](../developer-guides/aa.md#built-in-paymaster-flows) with the built-in support for EOAs.
-Unless you want to implement or restrict some specific paymaster use cases for your account, it is better to keep it consistent with EOAs. 
+While the account abstraction protocol enables arbitrary actions when interacting with the paymasters, there are some [common patterns](../developer-guides/aa.md#built-in-paymaster-flows) with built-in support for EOAs. Unless you want to implement or restrict some specific paymaster use cases for your account, it is better to keep it consistent with EOAs. 
 
 The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processes the paymaster parameters the same it's done in EOAs.
 
@@ -438,7 +446,7 @@ function prepareForPaymaster(
 
 ### Transaction execution
 
-The most basic implementation of the transaction execution is quite straightforward. We extract the transaction data and execute it:
+To implementing transaction execution, extract the transaction data and execute it:
 
 ```solidity
 function _executeTransaction(Transaction calldata _transaction) internal {
@@ -458,7 +466,7 @@ function _executeTransaction(Transaction calldata _transaction) internal {
 }
 ```
 
-However, note that calling ContractDeployer is only possible with the `isSystem` call flag. In order to allow your users to deploy contracts, you should do so explicitly:
+Calling `ContractDeployer` is only possible by explicitly using the `isSystem` call flag. 
 
 ```solidity
 function _executeTransaction(Transaction calldata _transaction) internal {
@@ -482,13 +490,18 @@ function _executeTransaction(Transaction calldata _transaction) internal {
 }
 ```
 
-Note, that whether the operator will consider the transaction successful will depend only on whether the call to `executeTransactions` was successful. Therefore, it is highly recommended to put `require(success)` for the transaction, so that users get the best UX.
+:::info
+- Whether or not the operator considers the transaction successful depends on whether the call to `executeTransactions` is successful. 
+- Therefore, it is highly recommended to put `require(success)` for the transaction, so that users get the best UX.
+:::
 
-### Full code of the account
+### Full code of the TwoUserMultisig contract
+
+1. Create a file `TwoUserMultisig.sol` in the `contracts` folder and copy/paste the code below into it.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.16;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
@@ -498,9 +511,9 @@ import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 // Used for signature validation
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
-// Access zkSync system contracts, in this case for nonce validation vs NONCE_HOLDER_SYSTEM_CONTRACT
+// Access zkSync system contracts for nonce validation via NONCE_HOLDER_SYSTEM_CONTRACT
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
-// to call non-view method of system contracts
+// to call non-view function of system contracts
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
 
 contract TwoUserMultisig is IAccount, IERC1271 {
@@ -516,7 +529,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
     modifier onlyBootloader() {
         require(
             msg.sender == BOOTLOADER_FORMAL_ADDRESS,
-            "Only bootloader can call this method"
+            "Only bootloader can call this function"
         );
         // Continue execution if called from the bootloader.
         _;
@@ -738,18 +751,24 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         // Note, that is okay if the bootloader sends funds with no calldata as it may be used for refunds/operator payments
     }
 }
-
 ```
 
 ## The factory
 
-Now, let's build a factory that can deploy these accounts. To deploy the smart contract account, we need to interact directly with the `DEPLOYER_SYSTEM_CONTRACT`. For deterministic addresses, we will call the `create2Account` method.
+1. Create a new Solidity file in the `contracts` folder called `AAFactory.sol`. 
 
-The code will look the following way:
+The contract is a factory that deploys the accounts. 
+
+:::warning
+- To deploy the multisig smart contract, it is necessary to interact with the `DEPLOYER_SYSTEM_CONTRACT` and call the `create2Account` function.
+- If the code doesn't do this, you may see errors like `Validation revert: Sender is not an account`.
+:::
+
+2. Copy/paste the following code into the file.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.16;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
@@ -781,25 +800,22 @@ contract AAFactory {
         (accountAddress) = abi.decode(returnData, (address));
     }
 }
-
 ```
 
-It's worth remembering that on zkSync, contract deployments are not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via `factoryDeps` field. Note, that the `_aaBytecodeHash` must be formed specially:
+It's worth remembering that, on zkSync Era, [contract deployments](../building-on-zksync/contracts/contract-deployment.md)  are not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via the `factoryDeps` field. Note that the `_aaBytecodeHash` must be formed in the following manner:
 
 - Firstly, it is hashed with sha256.
 - Then, the first two bytes are replaced with the length of the bytecode in 32-byte words.
 
-You don't need to worry about it, since our SDK provides a built-in method to do it, explained below.
+This functionality is built into the SDK.
 
-## Deploying the factory
+## Deploy the factory
 
 ::: tip
-
-Make sure you deposit funds on zkSync using the [zkSync Portal](https://goerli.portal.zksync.io/bridge) before running your deployment scripts.
-
+Make sure you deposit funds on zkSync Era using the [zkSync Portal](https://goerli.portal.zksync.io/bridge) before running the deployment script.
 :::
 
-To deploy a factory, we need to create a deployment script. Create the `deploy` folder and create one file there: `deploy-factory.ts`. Put the following deployment script there:
+1. In the `deploy` folder, create the file `deploy-factory.ts` and copy/paste the following code, replacing `<WALLET_PRIVATE_KET>` with your private key.
 
 ```ts
 import { utils, Wallet } from 'zksync-web3';
@@ -808,6 +824,7 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import { Deployer } from '@matterlabs/hardhat-zksync-deploy';
 
 export default async function (hre: HardhatRuntimeEnvironment) {
+  // Private key of the account used to deploy
   const wallet = new Wallet('<WALLET_PRIVATE_KEY>');
   const deployer = new Deployer(hre, wallet);
   const factoryArtifact = await deployer.loadArtifact('AAFactory');
@@ -831,16 +848,16 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-In order to deploy the factory, you should compile the contracts and run the script:
+2. From the project root, compile and deploy the contracts.
 
-```
+```sh
 yarn hardhat compile
 yarn hardhat deploy-zksync --script deploy-factory.ts
 ```
 
-The output should be roughly the following:
+The output should look like this:
 
-```
+```txt
 AA factory address: 0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627Ds
 ```
 
@@ -850,10 +867,15 @@ Note that the address will be different for each run.
 
 ### Deploying an account
 
-Now, let's deploy an account and initiate a new transaction with it. In this section, we assume that you already have an EOA account with enough funds on zkSync.
-In the `deploy`, folder creates a file `deploy-multisig.ts`, where we will put the script.
+Now, let's deploy an account and use it to initiate a new transaction. 
 
-Firstly, let's deploy the AA. This will be a call to the `deployAccount` function:
+:::warning
+This section assumes you have an EOA account with sufficient funds on zkSync Era.
+:::
+
+1. In the `deploy` folder, create a file called `deploy-multisig.ts`.
+
+The call to the `deployAccount` function deploys the AA.
 
 ```ts
 import { utils, Wallet, Provider, EIP712Signer, types } from 'zksync-web3';
@@ -864,7 +886,8 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types';
 const AA_FACTORY_ADDRESS = '<FACTORY-ADDRESS>';
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider('https://zksync2-testnet.zksync.dev');
+  const provider = new Provider('https://testnet.era.zksync.dev');
+  // Private key of the account used to deploy
   const wallet = new Wallet('<WALLET-PRIVATE-KEY>').connect(provider);
   const factoryArtifact = await hre.artifacts.readArtifact('AAFactory');
 
@@ -881,6 +904,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // For the simplicity of the tutorial, we will use zero hash as salt
   const salt = ethers.constants.HashZero;
 
+  // deploy account owned by owner1 & owner2
   const tx = await aaFactory.deployAccount(
     salt,
     owner1.address,
@@ -888,7 +912,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   );
   await tx.wait();
 
-  // Getting the address of the deployed contract
+  // Getting the address of the deployed contract account
   const abiCoder = new ethers.utils.AbiCoder();
   const multisigAddress = utils.create2Address(
     AA_FACTORY_ADDRESS,
@@ -896,31 +920,42 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     salt,
     abiCoder.encode(['address', 'address'], [owner1.address, owner2.address])
   );
-  console.log(`Multisig deployed on address ${multisigAddress}`);
+  console.log(`Multisig account deployed on address ${multisigAddress}`);
 }
 ```
 
-_Note, that zkSync has different address derivation rules from Ethereum_. You should always use the `createAddress` and `create2Address` utility methods of the `zksync-web3` SDK.
+:::tip
+- zkSync has different address derivation rules from Ethereum. 
+- Always use the `createAddress` and `create2Address` utility functions of the `zksync-web3` SDK.
+:::
 
-### Starting a transaction from this account
+### Start a transaction from the account
 
-Before the deployed account can submit any transactions, we need to deposit some ETH to it so it can pay transaction fees:
+Before the deployed account can submit transactions, we need to deposit some ETH to it for the transaction fees.
 
 ```ts
+  // Send funds to the multisig account we just deployed
   await (
     await wallet.sendTransaction({
       to: multisigAddress,
       // You can increase the amount of ETH sent to the multisig
-      value: ethers.utils.parseEther('0.006'),
+      value: ethers.utils.parseEther('0.008'),
     })
   ).wait();
+  
+  //Get the balance in the Multisig account
+  let multisigBalance = await provider.getBalance(multisigAddress);
+
+  console.log(`Multisig account balance is ${multisigBalance.toString()}`);
 ```
 
-Now, as an example, let's try to deploy a new multisig, but the initiator of the transaction will be our deployed account from the previous part:
+Now we can try to deploy a new multisig; the initiator of the transaction will be our deployed account from the previous part.
 
 ```ts
+  // The transaction to deploy a new account using the multisig we just deployed
   let aaTx = await aaFactory.populateTransaction.deployAccount(
     salt,
+    // These are accounts that will own the newly deployed account
     Wallet.createRandom().address,
     Wallet.createRandom().address
   );
@@ -934,6 +969,7 @@ Then, we need to fill all the transaction fields:
 
   aaTx = {
     ...aaTx,
+    // deploy a new account using the multisig
     from: multisigAddress,
     gasLimit: gasLimit,
     gasPrice: gasPrice,
@@ -948,12 +984,12 @@ Then, we need to fill all the transaction fields:
 ```
 
 ::: tip Note on gasLimit
-
-Currently, we expect the `l2gasLimit` to cover both the verification and the execution steps. Currently, the number of gas that is returned by the `estimateGas` is `execution_gas + 20000`, where `20000` is roughly equal to the overhead needed for the defaultAA to have both fee charged and the signature verified. In case your AA has a very expensive verification step, you should add some constant to the `l2gasLimit`.
-
+- Currently, we expect the `l2gasLimit` to cover both the verification and the execution steps. 
+- Currently, the gas returned by `estimateGas` is `execution_gas + 20000`, where `20000` is roughly equal to the overhead needed for the defaultAA to have both fee charged and the signature verified. 
+- In the case that your AA has an expensive verification step, you should add some constant to the `l2gasLimit`.
 :::
 
-Then, we need to sign the transaction and provide the `aaParamas` in the customData of the transaction:
+Then, we need to sign the transaction and provide the `aaParamas` in the customData of the transaction.
 
 ```ts
   const signedTxHash = EIP712Signer.getSignedDigest(aaTx);
@@ -971,7 +1007,7 @@ Then, we need to sign the transaction and provide the `aaParamas` in the customD
   };
 ```
 
-Now, we are ready to send the transaction:
+Finally, we are ready to send the transaction:
 
 ```ts
   console.log(
@@ -988,22 +1024,29 @@ Now, we are ready to send the transaction:
       multisigAddress
     )}`
   );
+
+  multisigBalance = await provider.getBalance(multisigAddress);
+
+  console.log(`Multisig account balance is now ${multisigBalance.toString()}`);
 ```
 
 ### Full example
 
+1. Copy/paste the following code into the deployment file, replacing the `<FACTORY-ADDRESS>` and private key `<WALLET-PRIVATE-KEY>` placeholders with the relevant data.
+
 ```ts
-import { utils, Wallet, Provider, EIP712Signer, types } from 'zksync-web3';
-import * as ethers from 'ethers';
-import { HardhatRuntimeEnvironment } from 'hardhat/types';
+import { utils, Wallet, Provider, EIP712Signer, types } from "zksync-web3";
+import * as ethers from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 // Put the address of your AA factory
-const AA_FACTORY_ADDRESS = '<FACTORY-ADDRESS>';
+const AA_FACTORY_ADDRESS = "<FACTORY-ADDRESS>";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider('https://zksync2-testnet.zksync.dev');
-  const wallet = new Wallet('<WALLET-PRIVATE-KEY>').connect(provider);
-  const factoryArtifact = await hre.artifacts.readArtifact('AAFactory');
+  const provider = new Provider("https://testnet.era.zksync.dev");
+  // Private key of the account used to deploy
+  const wallet = new Wallet("<WALLET-PRIVATE-KEY>").connect(provider);
+  const factoryArtifact = await hre.artifacts.readArtifact("AAFactory");
 
   const aaFactory = new ethers.Contract(
     AA_FACTORY_ADDRESS,
@@ -1018,6 +1061,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // For the simplicity of the tutorial, we will use zero hash as salt
   const salt = ethers.constants.HashZero;
 
+  // deploy account owned by owner1 & owner2
   const tx = await aaFactory.deployAccount(
     salt,
     owner1.address,
@@ -1025,26 +1069,34 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   );
   await tx.wait();
 
-  // Getting the address of the deployed contract
+  // Getting the address of the deployed contract account
   const abiCoder = new ethers.utils.AbiCoder();
   const multisigAddress = utils.create2Address(
     AA_FACTORY_ADDRESS,
     await aaFactory.aaBytecodeHash(),
     salt,
-    abiCoder.encode(['address', 'address'], [owner1.address, owner2.address])
+    abiCoder.encode(["address", "address"], [owner1.address, owner2.address])
   );
-  console.log(`Multisig deployed on address ${multisigAddress}`);
+  console.log(`Multisig account deployed on address ${multisigAddress}`);
 
+  console.log("Sending funds to multisig account");
+  // Send funds to the multisig account we just deployed
   await (
     await wallet.sendTransaction({
       to: multisigAddress,
       // You can increase the amount of ETH sent to the multisig
-      value: ethers.utils.parseEther('0.003'),
+      value: ethers.utils.parseEther("0.008"),
     })
   ).wait();
 
+  let multisigBalance = await provider.getBalance(multisigAddress);
+
+  console.log(`Multisig account balance is ${multisigBalance.toString()}`);
+
+  // Transaction to deploy a new account using the multisig we just deployed
   let aaTx = await aaFactory.populateTransaction.deployAccount(
     salt,
+    // These are accounts that will own the newly deployed account
     Wallet.createRandom().address,
     Wallet.createRandom().address
   );
@@ -1054,6 +1106,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   aaTx = {
     ...aaTx,
+    // deploy a new account using the multisig
     from: multisigAddress,
     gasLimit: gasLimit,
     gasPrice: gasPrice,
@@ -1093,32 +1146,30 @@ export default async function (hre: HardhatRuntimeEnvironment) {
       multisigAddress
     )}`
   );
+
+  multisigBalance = await provider.getBalance(multisigAddress);
+
+  console.log(`Multisig account balance is now ${multisigBalance.toString()}`);
 }
 ```
 
-To run the script, use the following command:
+2. Run the script from the `deploy` folder.
 
-```
+```sh
 yarn hardhat deploy-zksync --script deploy-multisig.ts
 ```
 
-The output should be roughly the following:
+The output should look something like this:
 
-```
+```txt
 Multisig deployed on address 0xCEBc59558938bccb43A6C94769F87bBdb770E956
 The multisig's nonce before the first tx is 0
 The multisig's nonce after the first tx is 1
 ```
 
 ::: tip
-
 If you get an error `Not enough balance to cover the fee.`, try increasing the amount of ETH sent to the multisig wallet so it has enough funds to pay for the transaction fees.
-
 :::
-
-## Complete project
-
-You can download the complete project [here](https://github.com/matter-labs/custom-aa-tutorial).
 
 ## Learn more
 

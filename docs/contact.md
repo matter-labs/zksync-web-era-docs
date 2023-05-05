@@ -54,9 +54,11 @@ Chat live with our team and other developers on the official zkSync [Discord](ht
 - [zkSync Discord](https://join.zksync.dev/)
 - Email user support: **support@zksync.io**
 
-## Partnerships, integrations and press
+## Events and press
 
-Please reach out directly via **hello@matter-labs.io**.
+For events, please reach out to **events@matterlabs.dev**.
+
+For press inquiries, please reach out to **media@matterlabs.dev**.
 
 ## Career opportunities
 

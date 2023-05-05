@@ -1,44 +1,40 @@
 # Smart contract development
 
-zkSync Era allows developers to build projects using the same programming languages and tools as required by Ethereum.
-We provide a customized and optimized compiler toolchain for development on zkSync. For more information, see
-[the toolchain documentation](../../compiler-toolchain/overview.md).
+zkSync Era allows developers to build projects using the same programming languages and tools used to build on Ethereum.
 
-## EVM compatibility
+::: tip Differences with Ethereum
 
-zkSync Era supports almost every smart contract written for EVM and holds all key security invariants so
-that no additional security re-auditing is usually required. Notable exceptions are contracts using
-the following EVM opcodes:
+Although most smart contracts work out of the box, we **strongly recommend developers to read about the [differences between Ethereum and zkSync Era](./differences-with-ethereum.md)**, and test their projects both locally using the [local setup](../../../api/hardhat/testing.md) and in testnet.
 
-- `SELFDESTRUCT` - considered harmful and deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).
-- `CALLCODE` - deprecated in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`.
-- `EXTCODECOPY` - skipped at the time of writing because zkEVM opcodes are not identical in the EVM; can be implemented if needed.
-- `CODECOPY` - replaced with `CALLDATACOPY` in the deploy code.
-- `PC` - inaccessible in Yul and Solidity `>=0.7.0`; accessible in Solidity `0.6` although it produces a runtime error.
-
-::: warning
-These opcodes produce an error on compilation.
 :::
 
-There are several other distinctions, for example:
+## Solidity support
 
-* Gas metering is different (as is the case for other L2s).
-* Some EVM cryptographic precompiles (notably pairings and RSA) won’t be immediately available. However, pairing is prioritized to allow deployment of both Hyperchains and protocols like Aztec/Dark Forest without modifications.
+Currently, Solidity versions as old as `0.4.12` are supported, although **we strongly recommend using the latest supported revision of 0.8**, as older versions contain known bugs and [have limitations with our compiler](../../../api/compiler-toolchain/solidity.md#limitations).
 
-Ethereum cryptographic primitives like `ecrecover`, `keccak256` and `sha256` are supported as precompiles.
-No actions are required from your side as all the calls to the precompiles are done by the compilers under the hood.
+Please read [this section of the docs](../../../api/compiler-toolchain/solidity.md#using-libraries) if your project uses libraries.
 
-### Other considerations
+### Unsupported functions
 
-- `tx.origin` 
-A global variable in Solidity that returns the address of the account that sent the transaction.
-It is supported by zkSync Era, but if a custom account interacts with a contract that uses it, the transactions will fail.
-We discourage its usage as it is vulnerable to phishing attacks that can drain a contract of all funds.
-Read more about [tx.origin phishing and other vulnerabilities](https://hackernoon.com/hacking-solidity-contracts-using-txorigin-for-authorization-are-vulnerable-to-phishing)
+We currently do not support the following Solidity functions:
 
-- `block.timestamp` and `block.number`
-These variables behave differently from L1. Read more [about blocks in zkSync](../../developer-guides/transactions/blocks.md#blocks-in-zksync-era).
+- `runtimeCode`
+- `creationCode`
 
-- 'ecrecover' 
-Use zkSync Era's native account abstraction support for signature validation instead of this function. We recommend not relying on the fact that an account has an ECDSA private key, since the account may be governed by multisig and use another signature scheme.
-Read more about [zkSync Account Abstraction support](../../developer-guides/aa.md)
+## Vyper support
+
+Currently only Vyper `0.3.3` is supported.
+
+## Compilers
+
+Although you can write smart contracts in both Solidity and Vyper, compiling these contracts to our zkEVM bytecode requires special compilers:
+
+- [zksolc](https://github.com/matter-labs/zksolc-bin): Solidity compiler.
+- [zkvyper](https://github.com/matter-labs/zkvyper-bin): Vyper compiler.
+
+You can find more information about our compilers in the [Compiler toolchain section](../../../api/compiler-toolchain/README.md).
+
+**Learn more about how to install and configure the compiler Hardhat plugins in the links below:**
+
+- [hardhat-zksync-solc documentation](../../../api/hardhat/hardhat-zksync-solc.md)
+- [hardhat-zksync-vyper documentation](../../../api/hardhat/hardhat-zksync-vyper.md)

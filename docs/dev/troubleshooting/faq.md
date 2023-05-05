@@ -76,7 +76,7 @@ Almost every smart contract written for EVM will be supported by zkSync Era and 
 
 ::: warning Unsupported opcodes
 
-A few opcodes are unsupported by the zkEVM. Some of them have been deprecated or their use is minor but contracts that use them need to be adapted. You can find more information about this in the [EVM compatibility section of the docs](../building-on-zksync/contracts/contract-development.md#evm-compatibility).
+A few opcodes are unsupported by the zkEVM. Some of them have been deprecated or their use is minor but contracts that use them need to be adapted. You can find more information about this in the [EVM compatibility section of the docs](../building-on-zksync/contracts/contract-development.md#smart-contract-development).
 
 :::
 
@@ -159,9 +159,9 @@ At the moment, we support any Ethereum-based wallet. By default, the provided op
 
 ## How do I Request Funds for Testnet?
 
-To access the testnet funds you can use ([Faucet](https://portal.zksync.io/faucet)) by tweeting about us and get some tokens. Make sure that Twitter message contains your Ethereum address to which we’ll send funds and that it’s not your main Ethereum account. The faucet will not work with new Twitter accounts & accounts without avatar.
+To access the testnet funds you can use ([Faucet](https://goerli.portal.zksync.io/faucet)) by tweeting about us and get some tokens. Make sure that Twitter message contains your Ethereum address to which we’ll send funds and that it’s not your main Ethereum account. The faucet will not work with new Twitter accounts & accounts without avatar.
 
-Alternatively, you can use [our bridge](https://portal.zksync.io/bridge) to bridge ETH from Goerli to zkSync Era Testnet.
+Alternatively, you can use [our bridge](https://goerli.portal.zksync.io/bridge) to bridge ETH from Goerli to zkSync Era Testnet.
 
 ## How long does it take to complete a deposit transaction?
 
@@ -193,6 +193,12 @@ Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The wi
 ## What is a testnet ReGenesis?
 
 Sometimes, the team working on zkSync will initiate a regenesis on testnet - a restart of the blockchain which will introduce upgrades and return the state to the initial point.
+
+## Why do my contracts not compile in Windows?
+
+If you're using Windows, make sure to use WSL 2, since WSL 1 is known to cause trouble.
+
+Additionally, if you use WSL 2, make sure that your project is located in the Linux filesystem, since accessing NTFS partitions from WSL is very slow. 
 
 ## Proof sampling on testnet
 

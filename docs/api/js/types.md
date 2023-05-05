@@ -1,195 +1,288 @@
-# Types
+# Types and interfaces
 
-All the types which are used in the SDK are referenced here:
-<!-- TODO SMA-1725: prepare quality documentation for SDK types with proper description and explanation -->
-```typescript
-import { BytesLike, BigNumberish, providers, BigNumber } from 'ethers';
-import { BlockWithTransactions as EthersBlockWithTransactions } from '@ethersproject/abstract-provider';
+## `AccountAbstractionVersion`
 
-// 0x-prefixed, hex encoded, ethereum account address
-export type Address = string;
-// 0x-prefixed, hex encoded, ECDSA signature.
-export type Signature = string;
+Enumerated list of account abstraction versions.
 
-// Ethereum network
-export enum Network {
-    Mainnet = 1,
-    Ropsten = 3,
-    Rinkeby = 4,
-    Goerli = 5,
-    Localhost = 9
-}
+- None = `0` (Used for contracts that are not accounts.)
+- Version1 = `1`
 
-export enum TransactionStatus {
-    NotFound = 'not-found',
-    Processing = 'processing',
-    Committed = 'committed',
-    Finalized = 'finalized'
-}
+## `AccountNonceOrdering`
 
-export type PaymasterParams = {
-    paymaster: Address;
-    paymasterInput: BytesLike;
-};
+Enumerated list of account nonce ordering formats.
 
-export type Eip712Meta = {
-    gasPerPubdata?: BigNumberish;
-    factoryDeps?: BytesLike[];
-    customSignature?: BytesLike;
-    paymasterParams?: PaymasterParams;
-};
+- Sequential = `0`
+- Arbitrary = `1`
 
-export type BlockTag =
-    | number
-    | string // hex number
-    | 'committed'
-    | 'finalized'
-    | 'latest'
-    | 'earliest'
-    | 'pending';
+## `Address`
 
-export type DeploymentType = 'create' | 'createAccount';
+0x-prefixed, hex-encoded, Ethereum account address as string.
 
-export interface Token {
-    l1Address: Address;
-    l2Address: Address;
-    /** @deprecated This field is here for backward compatibility - please use l2Address field instead */
-    address: Address;
-    name: string;
-    symbol: string;
-    decimals: number;
-}
+## `ApprovalBasedPaymasterInput`
 
-export interface MessageProof {
-    id: number;
-    proof: string[];
-    root: string;
-}
+Interface representation of approval based paymaster input containing various fields including an `ApprovalBased` type.
 
-export interface EventFilter {
-    topics?: Array<string | Array<string> | null>;
-    address?: Address | Array<Address>;
-    fromBlock?: BlockTag;
-    toBlock?: BlockTag;
-    blockHash?: string;
-}
+- `type`: `'ApprovalBased'`;
+- `token`: `Address`;
+- `minimalAllowance`: `BigNumber`;
+- `innerInput`: `BytesLike`;
 
-export interface TransactionResponse extends providers.TransactionResponse {
-    l1BatchNumber: number;
-    l1BatchTxIndex: number;
-    waitFinalize(): Promise<TransactionReceipt>;
-}
+## `BalancesMap`
 
-export interface TransactionReceipt extends providers.TransactionReceipt {
-    l1BatchNumber: number;
-    l1BatchTxIndex: number;
-    logs: Array<Log>;
-    l2ToL1Logs: Array<L2ToL1Log>;
-}
+Type defining a map object containing accounts and their balances.
 
-export interface Block extends providers.Block {
-    l1BatchNumber: number;
-    l1BatchTimestamp: number;
-}
+- `{ [key: string]`: `BigNumber }`
 
-export interface BlockWithTransactions extends EthersBlockWithTransactions {
-    l1BatchNumber: number;
-    l1BatchTimestamp: number;
-    transactions: Array<TransactionResponse>;
-}
+## `BatchDetails`
 
-export interface Log extends providers.Log {
-    l1BatchNumber: number;
-}
+Interface representation of batch information containing various optional and mandatory fields.
 
-export interface L2ToL1Log {
-    blockNumber: number;
-    blockHash: string;
-    l1BatchNumber: number;
-    transactionIndex: number;
-    shardId: number;
-    isService: boolean;
-    sender: string;
-    key: string;
-    value: string;
-    transactionHash: string;
-    logIndex: number;
-}
+- `number`: `number`;
+- `timestamp`: `number`;
+- `l1TxCount`: `number`;
+- `l2TxCount`: `number`;
+- `rootHash?`: `string`;
+- `status`: `string`;
+- `commitTxHash?`: `string`;
+- `committedAt?`: `Date`;
+- `proveTxHash?`: `string`;
+- `provenAt?`: `Date`;
+- `executeTxHash?`: `string`;
+- `executedAt?`: `Date`;
+- `l1GasPrice`: `number`;
+- `l2FairGasPrice`: `number`;
 
-export type TransactionRequest = providers.TransactionRequest & {
-    customData?: Eip712Meta;
-};
+## `Block`
 
-export interface PriorityOpResponse extends TransactionResponse {
-    waitL1Commit(confirmation?: number): Promise<providers.TransactionReceipt>;
-}
+Interface representation of a block that extends the Ethers [`providers.Block`](https://docs.ethers.org/v5/api/providers/types/#providers-Block) definition with additional fields.
 
-export type BalancesMap = { [key: string]: BigNumber };
+- `l1BatchNumber`: `number`;
+- `l1BatchTimestamp`: `number`;
 
-export interface DeploymentInfo {
-    sender: Address;
-    bytecodeHash: string;
-    deployedAddress: Address;
-}
+## `BlockDetails`
 
-export interface ApprovalBasedPaymasterInput {
-    type: 'ApprovalBased';
-    token: Address;
-    minimalAllowance: BigNumber;
-    innerInput: BytesLike;
-}
+Interface representation of block information containing various optional and mandatory fields.
 
-export interface GeneralPaymasterInput {
-    type: 'General';
-    innerInput: BytesLike;
-}
+- `number`: `number`;
+- `timestamp`: `number`;
+- `l1BatchNumber`: `number`;
+- `l1TxCount`: `number`;
+- `l2TxCount`: `number`;
+- `rootHash?`: `string`;
+- `status`: `string`;
+- `commitTxHash?`: `string`;
+- `committedAt?`: `Date`;
+- `proveTxHash?`: `string`;
+- `provenAt?`: `Date`;
+- `executeTxHash?`: `string`;
+- `executedAt?`: `Date`;
 
-export interface EthereumSignature {
-    v: number;
-    r: BytesLike;
-    s: BytesLike;
-}
+## `BlockTag`
 
-export type PaymasterInput = ApprovalBasedPaymasterInput | GeneralPaymasterInput;
+Pipe-delimited list of block labels that includes block number in denary and hex plus block statuses.
 
-export enum AccountAbstractionVersion {
-    None = 0,
-    Version1 = 1
-}
+- `number`
+- `string` // hex representation of block number
+- "committed"
+- "finalized"
+- "latest"
+- "earliest"
+- "pending"
 
-export enum AccountNonceOrdering {
-    Sequential = 0,
-    Arbitrary = 1
-}
+## `BlockWithTransaction`
 
-export interface ContractAccountInfo {
-    supportedAAVersion: AccountAbstractionVersion;
-    nonceOrdering: AccountNonceOrdering;
-}
+Interface representation of a block with transaction(s) that extends the Ethers `BlockWithTransactions` definition with additional fields.
 
-export interface BlockDetails {
-    number: number;
-    timestamp: number;
-    l1TxCount: number;
-    l2TxCount: number;
-    rootHash?: string;
-    status: string;
-    commitTxHash?: string;
-    committedAt?: Date;
-    proveTxHash?: string;
-    provenAt?: Date;
-    executeTxHash?: string;
-    executedAt?: Date;
-}
+- `l1BatchNumber`: `number`;
+- `l1BatchTimestamp`: `number`;
+- `transactions`: `Array<TransactionResponse>`;
 
-export interface TransactionDetails {
-    isL1Originated: boolean;
-    status: string;
-    fee: BigNumberish;
-    initiatorAddress: Address;
-    receivedAt: Date;
-    ethCommitTxHash?: string;
-    ethProveTxHash?: string;
-    ethExecuteTxHash?: string;
-}
-```
+## `ContractAccountInfo`
+
+Interface representation for contract account information containing information on account abstraction version and nonce ordering format.
+
+- `supportedAAVersion`: `AccountAbstractionVersion`;
+- `nonceOrdering`: `AccountNonceOrdering`;
+
+## `DeploymentInfo`
+
+Interface representation of deployment information with various fields.
+
+- `sender`: `Address`;
+- `bytecodeHash`: `string`;
+- `deployedAddress`: `Address`;
+
+## `DeploymentType`
+
+Pipe-delimited choice of two deployment types that support all `create2` variants.
+
+- `create`
+- `createAccount`
+
+## `Eip712Meta`
+
+Type defining an EIP-712 transaction with optional parameters.
+
+- `gasPerPubdata?`: `BigNumberish`;
+- `factoryDeps?`: `BytesLike[]`;
+- `customSignature?`: `BytesLike`;
+- `paymasterParams?`: `PaymasterParams`;
+
+## `EthereumSignature`
+
+Interface representation of an Ethereum signature.
+
+- `v`: `number`;
+- `r`: `BytesLike`;
+- `s`: `BytesLike`;
+
+## `EventFilter`
+
+Interface representation of event filter containing various fields.
+
+- `topics?`: `Array<string | Array<string> | null>`;
+- `address?`: `Address | Array<Address>`;
+- `fromBlock?`: `BlockTag`;
+- `toBlock?`: `BlockTag`;
+- `blockHash?`: `string`;
+
+## `FullDepositFee`
+
+Interface representation of full deposit fee containing various mandatory and optional fields.
+
+- `maxFeePerGas?`: `BigNumber`;
+- `maxPriorityFeePerGas?`: `BigNumber`;
+- `gasPrice?`: `BigNumber`;
+- `baseCost`: `BigNumber`;
+- `l1GasLimit`: `BigNumber`;
+- `l2GasLimit`: `BigNumber`;
+
+## `GeneralPaymasterInput`
+
+Interface representation of general paymaster input containing a couple of fields, including a `General` type.
+
+- `type`: `'General'`;
+- `innerInput`: `BytesLike`;
+
+## `L2ToL1Log`
+
+Interface representation of a layer 2 to layer 1 transaction log containing various fields.
+
+- `blockNumber`: `number`;
+- `blockHash`: `string`;
+- `l1BatchNumber`: `number`;
+- `transactionIndex`: `number`;
+- `shardId`: `number`;
+- `isService`: `boolean`;
+- `sender`: `string`;
+- `key`: `string`;
+- `value`: `string`;
+- `transactionHash`: `string`;
+- `logIndex`: `number`;
+
+## `Log`
+
+Interface representation of log that extends Ethers [`providers.Log`](https://docs.ethers.org/v5/api/providers/types/#providers-Log) and supplies the layer 1 batch number.
+
+- `l1BatchNumber`: `number`;
+
+## `MessageProof`
+
+Interface representation of message proof containing various fields.
+
+- `id`: `number`;
+- `proof`: `string[]`;
+- `root`: `string`;
+
+## `Network`
+
+Enumerated list of networks and their ids.
+
+- Mainnet = `1`
+- Ropsten = `3`
+- Rinkeby = `4`
+- Goerli = `5`
+- localhost = `9`
+
+## `PaymasterInput`
+
+Type definition for a paymaster input specified as either approval based or general.
+
+- `ApprovalBasedPaymasterInput` | `GeneralPaymasterInput`
+
+## `PaymasterParams`
+
+Type defining a paymaster by address and the bytestream input.
+
+- `paymaster`: `Address`;
+- `paymasterInput`: `BytesLike`;
+
+## `PriorityOpResponse`
+
+Interface representation of priority op response that extends [`TransactionResponse`](#transactionresponse) and adds a function that waits to commit a layer 1 transaction, including when given on optional confirmation number.
+
+- `waitL1Commit(confirmation?: number)`: `Promise<providers.TransactionReceipt>`;
+
+## `Signature`
+
+0x-prefixed, hex-encoded, ECDSA signature as string.
+
+## `Token`
+
+Interface representation of token containing various fields.
+
+- `l1Address`: `Address`;
+- `l2Address`: `Address`;
+- `address`: `Address`; // backward compatible field although @deprecated in favor of l2Address 
+- `name`: `string`;
+- `symbol`: `string`;
+- `decimals`: `number`;
+
+## `TransactionDetails`
+
+Interface representation of transaction details containing various mandatory and optional fields.
+
+- `isL1Originated`: `boolean`;
+- `status`: `string`;
+- `fee`: `BigNumberish`;
+- `initiatorAddress`: `Address`;
+- `receivedAt`: `Date`;
+- `ethCommitTxHash?`: `string`;
+- `ethProveTxHash?`: `string`;
+- `ethExecuteTxHash?`: `string`;
+
+## `TransactionReceipt`
+
+Interface representation of transaction receipt that extends from Ethers [`providers.TransactionReceipt`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionReceipt) with additional fields.
+
+- `l1BatchNumber`: `number`;
+- `l1BatchTxIndex`: `number`;
+- `logs`: `Array<Log>`;
+- `l2ToL1Logs`: `Array<L2ToL1Log>`;
+
+## `TransactionRequest`
+
+Interface representation of transaction request that extends from Ethers [`providers.TransactionRequest`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionRequest) which adds an optional field for EIP-712 transactions.
+
+- `customData?`: `Eip712Meta`;
+
+## `TransactionResponse`
+
+Interface representation of transaction response that extends from Ethers [`providers.TransactionResponse`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionResponse) with additional fields.
+
+- `l1BatchNumber`: `number`;
+- `l1BatchTxIndex`: `number`;
+- `waitFinalize()`: `Promise<TransactionReceipt>`;
+
+## `TransactionStatus`
+
+Non-enumerated enum list of transaction statuses.
+
+- NotFound = `not-found`
+- Processing = `processing`
+- Committed = `committed`
+- Finalized = `finalized`
+
+:::tip More info
+Find the code definition of the types above on the [zkSync Era Github repo.](https://github.com/matter-labs/zksync-era/tree/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/types.ts)
+:::

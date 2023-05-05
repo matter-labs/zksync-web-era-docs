@@ -54,8 +54,6 @@
     "@semantic-release/github": "^8.0.7",
     "@vuepress/client": "2.0.0-beta.60",
     "@vuepress/plugin-docsearch": "^2.0.0-beta.60",
-    "@vuepress/plugin-pwa": "next",
-    "@vuepress/plugin-register-components": "^1.9.9",
     "check-md": "^1.0.2",
     "commitlint": "^17.3.0",
     "cspell": "^6.18.1",
@@ -72,5 +70,8 @@
   "lint-staged": {
     "*.md": "yarn run ci:fix"
   },
-  "packageManager": "yarn@3.5.0"
+  "packageManager": "yarn@3.5.0",
+  "dependencies": {
+    "@vuepress/plugin-pwa": "^1.9.9"
+  }
 }

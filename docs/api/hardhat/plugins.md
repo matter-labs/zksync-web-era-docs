@@ -4,13 +4,19 @@
 
 The hardhat-zksync-toolbox plugin provides a convenient method for bundling and accessing a range of zkSync-related Hardhat plugins. This approach simplifies the process of utilizing these plugins and promotes ease of use.
 
-List of supported plugins:
+List of official plugins:
 
 - [hardhat-zksync-solc](./hardhat-zksync-solc.md)
 - [hardhat-zksync-vyper](./hardhat-zksync-vyper.md)
 - [hardhat-zksync-deploy](./hardhat-zksync-deploy.md)
 - [hardhat-zksync-chai-matchers](./hardhat-zksync-chai-matchers.md)
 - [hardhat-zksync-verify](./hardhat-zksync-verify.md)
+
+::: tip Popular Hardhat plugins
+
+Apart from the official plugins, we've compiled a [list of other popular plugins](./other-plugins.md).
+
+:::
 
 ### Installation
 

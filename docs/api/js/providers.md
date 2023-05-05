@@ -18,9 +18,9 @@ The `zksync-web3` library exports two types of providers:
 
 This is the most commonly used type of provider. It provides the same functionality as `ethers.providers.JsonRpcProvider`, but extends it with the zkSync-specific methods.
 
-### Creating provider
+### `constructor`
 
-The constructor accepts the `url` to the operator node and the `network` name (optional).
+The constructor accepts the `url` to the operator node and the `network` name (optional) and returns a `Provider` object.
 
 ```typescript
 constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish)
@@ -39,7 +39,7 @@ constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish
 ```typescript
 import { Provider } from "zksync-web3";
 
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 ```
 
 ### `getBalance`
@@ -67,7 +67,7 @@ async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address):
 ```typescript
 import { Provider } from "zksync-web3";
 
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 
 const USDC_L2_ADDRESS = "0x0faF6df7054946141266420b43783387A78d82A9";
 // Getting  USDC balance of account 0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5 at the latest processed block
@@ -76,67 +76,6 @@ console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC
 // Getting ETH balance
 console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5"));
 ```
-
-### Getting the zkSync smart contract address
-
-```typescript
-async getMainContractAddress(): Promise<string>
-```
-
-#### Inputs and outputs
-
-| Name    | Description                               |
-| ------- | ----------------------------------------- |
-| returns | The address of the zkSync smart contract. |
-
-> Example
-
-```typescript
-import { Provider } from "zksync-web3";
-
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
-
-console.log(await provider.getMainContractAddress());
-```
-
-### Getting testnet paymaster address
-
-On zkSync testnets, the [testnet paymaster](../../dev/developer-guides/aa.md#paymasters) is available.
-
-```typescript
-async getTestnetPaymasterAddress(): Promise<string|null>
-```
-
-#### Inputs and outputs
-
-| Name    | Description                                                        |
-| ------- | ------------------------------------------------------------------ |
-| returns | The address of the testnet paymaster or `null` if there isn't any. |
-
-> Example
-
-```typescript
-import { Provider } from "zksync-web3";
-
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
-
-console.log(await provider.getTestnetPaymasterAddress());
-```
-
-### Getting zkSync default bridge contract addresses
-
-```typescript
-async getDefaultBridgeAddresses(): Promise<{
-    erc20L1: string;
-    erc20L2: string;
-}>
-```
-
-#### Inputs and outputs
-
-| Name    | Description                                                        |
-| ------- | ------------------------------------------------------------------ |
-| returns | The addresses of default zkSync bridge contracts on both L1 and L2 |
 
 ### `getConfirmedTokens`
 
@@ -162,9 +101,89 @@ async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 
 console.log(await provider.getConfirmedTokens());
+```
+
+### `getDefaultBridgeAddresses`
+
+```typescript
+async getDefaultBridgeAddresses(): Promise<{
+    erc20L1: string;
+    erc20L2: string;
+}>
+```
+
+#### Inputs and outputs
+
+| Name    | Description                                                        |
+| ------- | ------------------------------------------------------------------ |
+| returns | The addresses of default zkSync bridge contracts on both L1 and L2 |
+
+### `getL1BatchDetails`
+
+Calls `zks_getL1BatchDetails` which returns zkSync-specific information about the layer 2 block.
+
+```ts
+async getL1BatchDetails(number: number): Promise<BatchDetails> {
+        return await this.send('zks_getL1BatchDetails', [number]);
+}
+```
+
+#### Inputs and outputs
+
+| Name    | Description                               |
+| ------- | ----------------------------------------- |
+| `number` | The batch number on layer 2. |
+| returns | Information about the batch. |
+
+### `getMainContractAddress`
+
+Returns the main zkSync smart contract address.
+
+```typescript
+async getMainContractAddress(): Promise<string>
+```
+
+#### Inputs and outputs
+
+| Name    | Description                               |
+| ------- | ----------------------------------------- |
+| returns | The address of the zkSync smart contract. |
+
+> Example
+
+```typescript
+import { Provider } from "zksync-web3";
+
+const provider = new Provider("https://testnet.era.zksync.dev");
+
+console.log(await provider.getMainContractAddress());
+```
+
+### `getTestnetPaymasterAddress`
+
+On zkSync testnets, the [testnet paymaster](../../dev/developer-guides/aa.md#paymasters) is available.
+
+```typescript
+async getTestnetPaymasterAddress(): Promise<string|null>
+```
+
+#### Inputs and outputs
+
+| Name    | Description                                                        |
+| ------- | ------------------------------------------------------------------ |
+| returns | The address of the testnet paymaster or `null` if there isn't any. |
+
+> Example
+
+```typescript
+import { Provider } from "zksync-web3";
+
+const provider = new Provider("https://testnet.era.zksync.dev");
+
+console.log(await provider.getTestnetPaymasterAddress());
 ```
 
 ### `getTokenPrice`
@@ -190,51 +209,9 @@ async getTokenPrice(token: Address): Promise<string | null>
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 
 console.log(await provider.getTokenPrice(USDC_L2_ADDRESS));
-```
-
-### Getting token's address on L2 from its L1 address and vice-versa
-
-Token's address on L2 will not be the same as on L1.
-ETH's address is set to zero address on both networks.
-
-Provided methods work only for tokens bridged using default zkSync bridges.
-
-```typescript
-// takes L1 address, returns L2 address
-async l2TokenAddress(l1Token: Address): Promise<string>
-// takes L2 address, returns L1 address
-async l1TokenAddress(l2Token: Address): Promise<string>
-```
-
-| Name    | Description                                      |
-| ------- | ------------------------------------------------ |
-| token   | The address of the token on the one layer.       |
-| returns | The address of that token on the opposite layer. |
-
-### `getTransactionStatus`
-
-Given a transaction hash, returns the status of the transaction.
-
-```typescript
-async getTransactionStatus(txHash: string): Promise<TransactionStatus>
-```
-
-| Name    | Description                                                                                                                |
-| ------- | -------------------------------------------------------------------------------------------------------------------------- |
-| txHash   | zkSync transaction hash.                                                                                                  |
-| returns | The status of the transaction. You can find the description for `TransactionStatus` enum variants in the [types](./types). |
-
-> Example
-
-```typescript
-import { Provider } from "zksync-web3";
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
-
-const TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
-console.log(await provider.getTransactionStatus(TX_HASH));
 ```
 
 ### `getTransaction`
@@ -254,7 +231,7 @@ async getTransaction(hash: string | Promise<string>): Promise<TransactionRespons
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://zksync2-testnet.zksync.dev");
+const provider = new Provider("https://testnet.era.zksync.dev");
 
 const TX_HASH = "0x300baeb6804c2068ff796d95336c53ac671eef216e7ae9c17190660cdb1e2c17";
 const txHandle = await provider.getTransaction(TX_HASH);
@@ -265,11 +242,53 @@ await txHandle.wait();
 await txHandle.waitFinalize();
 ```
 
+### `getTransactionStatus`
+
+Given a transaction hash, returns the status of the transaction.
+
+```typescript
+async getTransactionStatus(txHash: string): Promise<TransactionStatus>
+```
+
+| Name    | Description                                                                                                                |
+| ------- | -------------------------------------------------------------------------------------------------------------------------- |
+| txHash   | zkSync transaction hash.                                                                                                  |
+| returns | The status of the transaction. You can find the description for `TransactionStatus` enum variants in the [types](./types). |
+
+> Example
+
+```typescript
+import { Provider } from "zksync-web3";
+const provider = new Provider("https://testnet.era.zksync.dev");
+
+const TX_HASH = "0x95395d90a288b29801c77afbe359774d4fc76c08879b64708c239da8a65dbcf3";
+console.log(await provider.getTransactionStatus(TX_HASH));
+```
+
+### `l1TokenAddress` and `l2TokenAddress`
+
+Returns the equivalent token address on the respective layer as token addresses on L2 are not equal to those on L1.
+ETH's address is set to zero address on both networks.
+
+Provided methods work only for tokens bridged using default zkSync bridges.
+
+```typescript
+// takes L1 address, returns L2 address
+async l2TokenAddress(l1Token: Address): Promise<string>
+// takes L2 address, returns L1 address
+async l1TokenAddress(l2Token: Address): Promise<string>
+```
+
+| Name    | Description                                      |
+| ------- | ------------------------------------------------ |
+| token   | The address of the token on the one layer.       |
+| returns | The address of that token on the opposite layer. |
+
 ## `Web3Provider`
 
 A class that should be used for web3 browser wallet integrations, adapted for easy compatibility with Metamask, WalletConnect, and other popular browser wallets.
 
-### Creating `Web3Provider`
+### `constructor`
 
 The main difference from the constructor of `Provider` class is that it accepts `ExternalProvider` instead of the node URL.
 
@@ -293,9 +312,9 @@ import { Web3Provider } from "zksync-web3";
 const provider = new Web3Provider(window.ethereum);
 ```
 
-### Getting zkSync signer
+### `getSigner`
 
-Returns a `Signer` object that can be used to sign zkSync transactions. More details on the `Signer` class can be found in the next [section](./accounts.md#signer).
+Returns a `Signer` object for signing zkSync transactions. More details on the `Signer` class can be found in the next [section](./accounts.md#signer).
 
 #### Inputs and outputs
 

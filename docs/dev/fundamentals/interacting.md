@@ -52,6 +52,12 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 
 5. Click "Save"
 
+## Why are Metamask native contract interactions not working?
+
+It is not currently possible to interact with zkSync Era smart contracts via Metamask with EIP-1559 transactions. zkSync Era does not support EIP1559 transactions.
+
+**Solution.** Explicitly specify `{ type: 0 }` in transaction overrides to use Ethereum legacy transactions.
+
 ## zkSync Era Support
 
 You can open a support ticket in `💻🧪│dev-support-beta` or ask any questions in `🖥│dev-general`
@@ -66,16 +72,6 @@ Instructions for raising a support ticket are as follows:
 Alternatively, you can now contact our support engineers with your questions and concerns via [email](mailto:support@zksync.io). 
 We will actively monitor for issues and work to resolve them as soon as possible.
 
-<!-- **Testnet network info**
-
-- Network Name: `zkSync alpha testnet`
-- New RPC URL: `https://zksync2-testnet.zksync.dev`
-- Chain ID: `280`
-- Currency Symbol: `ETH`
-- Block Explorer URL: `https://goerli.explorer.zksync.io/`
-- WebSocket URL: `wss://zksync2-testnet.zksync.dev/ws` -->
-
-
 <!-- ## Deposit and withdraw funds using zkSync Portal
 
 As the testnet is running on Goerli network, you will need to get some Goerli ETH first. Try any of the faucets below.
@@ -87,7 +83,7 @@ As the testnet is running on Goerli network, you will need to get some Goerli ET
 
 **Step 1**
 
-Head to [https://portal.zksync.io/](https://portal.zksync.io/) and connect your wallet. You will automatically be asked to add the “zkSync Era testnet Goerli” network.
+Head to [https://goerli.portal.zksync.io/](https://goerli.portal.zksync.io/) and connect your wallet. You will automatically be asked to add the “zkSync Era testnet Goerli” network.
 
 You may also add the network manually to your metamask.
 

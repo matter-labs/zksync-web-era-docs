@@ -22,6 +22,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Account abstraction](./developer-guides/aa.md) - Learn about account abstraction.
 - [Fee mechanism](./developer-guides/transactions/fee-model.md) - A quick overview of the zkSync fee structure.
 - [Bridging of funds](./developer-guides/bridging/bridging-asset.md) - A brief intro on token bridging.
+    - [Add tokens to bridge](./developer-guides/bridging/bridging-asset.md#add-tokens-to-the-bridge) - Add your token to the bridge.
 - [L1 / L2 Interoperability](./developer-guides/bridging/l1-l2-interop.md) - A quick brief on data communication between L1 and L2.
 - [L1 / L2 communication](./developer-guides/bridging/l1-l2.md) - Learn how to send data from Ethereum to zkSync.
 - [L2 / L1 communication](./developer-guides/bridging/l2-l1.md) - Learn how to send data from zkSync to Ethereum.
@@ -34,20 +35,6 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Verify contracts](./building-on-zksync/contracts/contract-verification.md) - A guide on how to verify smart contracts with zkSync block explorer.
 - [Handling events](./building-on-zksync/events.md) - Learn how to handle events in zkSync Era.
 - [JSON-RPC API](./building-on-zksync/rpc.md) - Learn how to use our custom JSON-RPC APIs that are similar to Ethereum.
-
-### Compiler Toolchain
-
-- [Overview](compiler-toolchain/overview.md) - Learn about our compiler toolchain.
-- [Solidity](compiler-toolchain/solidity.md) - Learn about the Solidity support.
-- [Vyper](compiler-toolchain/vyper.md) - Learn about the Vyper support.
-- [LLVM Framework](compiler-toolchain/llvm.md) - Learn about the LLVM framework.
-
-### Compiler Toolchain
-
-- [Overview](compiler-toolchain/overview.md) - Learn about our compiler toolchain.
-- [Solidity](compiler-toolchain/solidity.md) - Learn about the Solidity support.
-- [Vyper](compiler-toolchain/vyper.md) - Learn about the Vyper support.
-- [LLVM Framework](compiler-toolchain/llvm.md) - Learn about the LLVM framework.
 
 ### Tutorials
 
@@ -62,18 +49,16 @@ token.
 - [Changelogs](./troubleshooting/changelog.md) - Get updates, breaking changes and new features on zkSync Era.
 - [Contribute to documentation](./troubleshooting/docs-contribution/docs.md) - Learn the guidelines needed to be a contributor to the zkSync Era docs.
 - [FAQs](./troubleshooting/faq.md) - Popular questions and answers about zkSync Era.
-<!-- - [Known Issues](./troubleshooting/known-issues.md) - Get answers to common issues you may find. -->
-<!-- - [Important links](./troubleshooting/important-links.md) - Get a quick reference to important links. -->
-<!-- - [Status](./troubleshooting/status.md) - Get updates on things we are currently working on. -->
 
 ### Tools and SDKs
 
 - [zkSync Era Portal](https://portal.zksync.io) - Explore Wallet, Bridge and Faucet features.
 - [Block Explorer](../api/tools/block-explorer/) - Search for real-time and historical information about blocks, transactions, addresses, and more on zkSync block explorer.
 - [Javascript SDK](../api/js/) - Extending the capabilities of Ethers, our Javascript SDK contains specific classes and methods required to build on zkSync Era.
-- [Python SDK](../api/python/) - Explore all the Python methods and functions required to build on zkSync Era.
-- [Go SDK](../api/go/) - Explore all the GO methods and functions required to build on zkSync Era.
-- [Java SDK](../api/java/) - Explore all the Java methods and functions required to build on zkSync Era.
-- [Swift SDK](../api/swift/) - Explore all the Swift methods and functions required to build on zkSync Era.
-- [Hardhat Plugins](../api/hardhat/) - Use our Hardhat zkSync plugins to compile, test, deploy, and verify your Solidity or Vyper based applications.
+- [Hardhat Plugins](../api/hardhat/) - Use our Hardhat zkSync plugins to compile, test, deploy, and verify your Solidity or Vyper based 
 - [zkSync CLI](../api/tools/zksync-cli/) - Simplify your development process and interact with zkSync Era from your terminal with zkSync CLI.
+- [Compiler Toolchain](../api/compiler-toolchain/overview.md) - Learn about our compiler toolchain.
+- [Python SDK](../api/python/) - Explore all the Python methods and functions required to build on zkSync Era.
+- [Go SDK](../api/go/getting-started.md) - Explore all the GO methods and functions required to build on zkSync Era.
+- [Java SDK](../api/java/getting-started.md) - Explore all the Java methods and functions required to build on zkSync Era.
+- [Swift SDK](../api/swift/getting-started.md) - Explore all the Swift methods and functions required to build on zkSync Era.applications.

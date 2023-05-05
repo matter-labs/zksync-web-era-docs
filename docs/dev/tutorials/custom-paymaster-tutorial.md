@@ -1,68 +1,102 @@
-# Building custom paymaster
+# Building a custom paymaster
 
-Let's see how we can use the paymaster feature to build a custom paymaster that allows users to pay fees in our token. In this tutorial we will:
+This tutorial shows you how to build a custom paymaster that allows users to pay fees with any ERC20 token. You will:
 
-- Create a paymaster that will assume that a single unit of an ERC20 token is enough to cover any transaction fee.
-- Create the ERC20 token contract and send some tokens to a brand new wallet.
-- Finally we will send a `mint` transaction from the newly created wallet via the paymaster. Even though the transaction would normally require some ETH to pay for the gas fee, our paymaster will execute the transaction in exchange for 1 unit of the ERC20 token.
+- Create a paymaster that assumes a single unit of an ERC20 token is enough to cover any transaction fee.
+- Create the ERC20 token contract and send some tokens to a new wallet.
+- Send a `mint` transaction from the newly created wallet via the paymaster. Although the transaction normally requires ETH to pay the gas fee, our paymaster executes the transaction in exchange for 1 unit of the ERC20 token.
 
+## Prerequisites
 
-## Prerequisite
+- A [Node.js](https://nodejs.org/en/download) installation running Node.js version 16.
+- Some familiarity with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+- Some background knowledge on the concepts covered by the tutorial would be helpful too. Have a look at the following docs:
+    - [Account abstraction protocol](../developer-guides/aa.md).
+    - [Introduction to system contracts](../developer-guides/system-contracts.md).
+    - [Smart contract deployment](../building-on-zksync/contracts/contract-deployment.md) on zkSyn Era.
+    - [Gas estimation for transactions](../developer-guides/transactions/fee-model.md#gas-estimation-during-a-transaction-for-paymaster-and-custom-accounts) guide.
+- You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
-To better understand this page, we recommend you first read up on the following guides:
+## Project repo
 
-- Read about the [design](../developer-guides/aa.md) of the account abstraction protocol.
-- Read the [introduction to the system contracts](../developer-guides/system-contracts.md).
-- Read about [smart contract deployment](../building-on-zksync/contracts/contract-deployment.md) on zkSyn Era.
-- Read the [gas estimation for transaction](../developer-guides/transactions/fee-model.md#gas-estimation-during-transaction-for-custom-and-paymaster-accounts) guide.
-- If you haven't, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+The tutorial code is available [here](https://github.com/matter-labs/custom-paymaster-tutorial).
 
-## Installing dependencies
+## Set up the project
 
-We will use the zkSync hardhat plugin for developing this contract. Firstly, we should install all the dependencies for it:
-
-::: code-tabs
-
-@tab:active folder
+1. Create a project folder and `cd` into it:
 
 ```sh
 mkdir custom-paymaster-tutorial
 cd custom-paymaster-tutorial
 ```
 
-@tab:active yarn
-
-```bash
-yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
-```
-:::
-
-::: tip
-
-The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
-
-:::
-
-Since we are working with zkSync contracts, we also need to install the package with the contracts and its peer dependencies:
+2. Initialize the project:
 
 ```sh
-yarn add @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable
+yarn init -y
 ```
 
-Then create the `hardhat.config.ts` config file, `contracts` and `deploy` folders, like in the [quickstart tutorial](../building-on-zksync/hello-world.md).
+3. Add the project dependencies, including Hardhat and all zkSync packages:
+
+```sh
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @matterlabs/zksync-contracts @openzeppelin/contracts
+```
 
 ::: tip
+- The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
+- An update compatible with `ethers v6.x.x` will be released soon.
+:::
 
-You can use the zkSync CLI to scaffold a project automatically. Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/)
+4. Create the required folders.
 
+```sh
+mkdir contracts deploy
+```
+
+5. Create the file `hardhat.config.ts` and add the following:
+
+```ts
+import { HardhatUserConfig } from "hardhat/config";
+
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-solc";
+
+const config: HardhatUserConfig = {
+  zksolc: {
+    version: "1.3.10", // Use latest available in https://github.com/matter-labs/zksolc-bin/
+    compilerSource: "binary",
+    settings: {},
+  },
+  defaultNetwork: "zkSyncTestnet",
+  networks: {
+    hardhat: {
+      zksync: true,
+    },
+    zkSyncTestnet: {
+      url: "https://testnet.era.zksync.dev",
+      ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
+      zksync: true,
+    },
+  },
+  solidity: {
+    version: "0.8.17",
+  },
+};
+
+export default config;
+```
+
+::: tip
+- You can also use the zkSync CLI to scaffold a zkSync project. Find out more info about [the zkSync CLI](../../api/tools/zksync-cli/).
 :::
 
 ## Design
 
-Our protocol will be a dummy protocol that allows anyone to swap a certain ERC20 token in exchange for paying fees for the transaction.
+### Paymaster Solidity contract
 
-The skeleton for the paymaster looks the following way:
+The contract code defines an ERC20 token and allows it to be used to pay the fees for transactions. 
+
+The skeleton contract looks like this:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -91,22 +125,22 @@ contract MyPaymaster is IPaymaster {
         allowedToken = _erc20;
     }
 
-    function validateAndPayForPaymasterTransaction(
+    function validateAndPayForPaymasterTransaction  (
         bytes32,
         bytes32,
         Transaction calldata _transaction
-    ) external payable returns (bytes4 magic, bytes memory context) {
+    ) external payable onlyBootloader returns (bytes4 magic, bytes memory context) {
         // TO BE IMPLEMENTED
     }
 
-    function postTransaction(
+    function postTransaction (
         bytes calldata _context,
         Transaction calldata _transaction,
         bytes32,
         bytes32,
         ExecutionResult _txResult,
         uint256 _maxRefundedGas
-    ) external payable override {
+    ) external payable onlyBootloader override {
         // Refunds are not supported yet.
     }
 
@@ -114,15 +148,20 @@ contract MyPaymaster is IPaymaster {
 }
 ```
 
-Note, that only the [bootloader](../developer-guides/system-contracts.md#bootloader) should be allowed to call the `validateAndPayForPaymasterTransaction`/`postOp` methods. That's why the `onlyBootloader` modifier is used for them.
+:::info
+- Only the [bootloader](../developer-guides/system-contracts.md#bootloader) is allowed to call the `validateAndPayForPaymasterTransaction` and `postTransaction` functions. 
+- To implement that, the `onlyBootloader` modifier is used on these functions.
+:::
 
 ### Parsing the paymaster input
 
-In this tutorial, we want to charge the user one unit of the `allowedToken` in exchange for the transaction fees, which will be paid by the paymaster contract.
+The paymaster pays the transaction fees and charges the user one unit of the `allowedToken` in exchange.
 
-The input that the paymaster should receive is encoded in the `paymasterInput`. As described [in the paymaster documentation](../developer-guides/aa.md#built-in-paymaster-flows), there are some standardized ways to encode user interactions with paymasterInput. To charge the user, we will require that she has provided enough allowance of the ERC20 token to the paymaster contract. This allowance is done in the `approvalBased` flow behind the scenes.
+The input that the paymaster receives is encoded in the `paymasterInput` within the `validateAndPayForPaymasterTransaction` function. 
 
-Firstly, we'll need to check that the `paymasterInput` was encoded as in the `approvalBased` flow and that the token sent in `paymasterInput` is the one the paymaster accepts:
+As described in [the paymaster documentation](../developer-guides/aa.md#paymasters), there are standardized ways to encode user interactions with `paymasterInput`. To charge the user, we require that she has provided enough allowance of the ERC20 token to the paymaster contract. This allowance is done in the `approvalBased` flow behind the scenes.
+
+Firstly, we check that the `paymasterInput` is encoded as in the `approvalBased` flow, and that the token sent in `paymasterInput` is the one the paymaster accepts.
 
 ```solidity
 magic = PAYMASTER_VALIDATION_SUCCESS_MAGIC;
@@ -147,7 +186,7 @@ if (paymasterInputSelector == IPaymasterFlow.approvalBased.selector)  {
 }
 ```
 
-Then, we need to check that the user indeed provided enough allowance:
+Next, we check the user provided enough allowance:
 
 ```solidity
 // We verify that the user has provided enough allowance
@@ -162,14 +201,13 @@ uint256 providedAllowance = IERC20(token).allowance(
 require(providedAllowance >= PRICE_FOR_PAYING_FEES, "Min allowance too low");
 ```
 
-Finally, we will check how much the transaction fees will be, transfer the ERC20 tokens to the paymaster, and transfers the correspondent gas fee from the paymaster to the bootloader to cover the transaction fees.
+Finally, we check the price of transaction fees, transfer the ERC20 tokens to the paymaster, and transfer the correspondent gas fee from the paymaster to the bootloader to cover the transaction fees.
 
 ```solidity
 // Note, that while the minimal amount of ETH needed is tx.gasPrice * tx.gasLimit,
 // neither paymaster nor account are allowed to access this context variable.
 uint256 requiredETH = _transaction.gasLimit *
     _transaction.maxFeePerGas;
-
 
 try
     IERC20(token).transferFrom(userAddress, thisAddress, amount)
@@ -189,18 +227,18 @@ try
 (bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{
     value: requiredETH
 }("");
-require(success, "Failed to transfer funds to the bootloader");
+require(success, "Failed to transfer tx fee to the bootloader. Paymaster balance might not be enough.");
 ```
 
-::: tip You should validate all the requirements first
+::: tip Validate all requirements first
+The [validation steps](../developer-guides/aa.md#the-validation-step) ensure that the paymaster won't throttle if the first storage read which has a different value from the execution on the API is a storage slot that belongs to the user.
 
-The [rules](../developer-guides/aa.md#the-validation-step) for the paymaster throttling say that the paymaster won't be throttled if the first storage read the value of which differed from the execution on the API was a storage slot that belonged to the user.
-
-That is why it is important to verify that the user provided all the allowed prerequisites to the transaction _before_ performing any logic. This is the reason we _first_ check that the user provided enough allowance, and only then do we do `transferFrom`.
-
+This is why it is important to verify transaction prerequisites _before_ performing any logic and why we _first_ check that the user provided enough allowance before calling `transferFrom`.
 :::
 
-### Full code of the paymaster
+## Paymaster contract full code
+
+Create the `contracts/MyPaymaster.sol` file and copy/paste the following:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -236,7 +274,12 @@ contract MyPaymaster is IPaymaster {
         bytes32,
         bytes32,
         Transaction calldata _transaction
-    ) external payable returns (bytes4 magic, bytes memory context) {
+    )
+        external
+        payable
+        onlyBootloader
+        returns (bytes4 magic, bytes memory context)
+    {
         // By default we consider the transaction as accepted.
         magic = PAYMASTER_VALIDATION_SUCCESS_MAGIC;
         require(
@@ -295,7 +338,10 @@ contract MyPaymaster is IPaymaster {
             (bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{
                 value: requiredETH
             }("");
-            require(success, "Failed to transfer funds to the bootloader");
+            require(
+                success,
+                "Failed to transfer tx fee to the bootloader. Paymaster balance might not be enough."
+            );
         } else {
             revert("Unsupported paymaster flow");
         }
@@ -308,21 +354,19 @@ contract MyPaymaster is IPaymaster {
         bytes32,
         ExecutionResult _txResult,
         uint256 _maxRefundedGas
-    ) external payable override {
+    ) external payable override onlyBootloader {
         // Refunds are not supported yet.
     }
 
     receive() external payable {}
 }
-
-
 ```
 
-## Deploying an ERC20 contract
+## Create ERC20 contract
 
-To test our paymaster, we need an ERC20 token so we are going to deploy one. For the sake of simplicity we will use a somewhat modified OpenZeppelin implementation of it:
+For the sake of simplicity we will use a modified OpenZeppelin ERC20 implementation:
 
-Create the `MyERC20.sol` file and put the following code in it:
+Create the `contracts/MyERC20.sol` file and copy/paste the following:
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
@@ -351,24 +395,27 @@ contract MyERC20 is ERC20 {
         return _decimals;
     }
 }
-
 ```
 
-## Deploying the paymaster
+## Compile and deploy the contracts
 
-To deploy the ERC20 token and the paymaster, we need to create a deployment script. Create the `deploy` folder and create one file there: `deploy-paymaster.ts`. Put the following deployment script there:
+The script below deploys the ERC20 contract and the paymaster contract. It also creates an empty wallet and mints some `MyERC20` tokens for the paymaster to use at a later step. In addition, the script sends `0.06ETH` to the paymaster contract so it can pay the transaction fees we send later on.
+
+1. In the `deploy` folder, create the file `deploy-paymaster.ts` and copy/paste the following, replacing `<PRIVATE-KEY>` with your own:
 
 ```ts
-import { utils, Wallet } from "zksync-web3";
+import { utils, Provider, Wallet } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
+  const provider = new Provider("https://testnet.era.zksync.dev");
+
   // The wallet that will deploy the token and the paymaster
   // It is assumed that this wallet already has sufficient funds on zkSync
-  // ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
   const wallet = new Wallet("<PRIVATE-KEY>");
+
   // The wallet that will receive ERC20 tokens
   const emptyWallet = Wallet.createRandom();
   console.log(`Empty wallet's address: ${emptyWallet.address}`);
@@ -378,7 +425,11 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Deploying the ERC20 token
   const erc20Artifact = await deployer.loadArtifact("MyERC20");
-  const erc20 = await deployer.deploy(erc20Artifact, ["MyToken", "MyToken", 18]);
+  const erc20 = await deployer.deploy(erc20Artifact, [
+    "MyToken",
+    "MyToken",
+    18,
+  ]);
   console.log(`ERC20 address: ${erc20.address}`);
 
   // Deploying the paymaster
@@ -386,13 +437,18 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const paymaster = await deployer.deploy(paymasterArtifact, [erc20.address]);
   console.log(`Paymaster address: ${paymaster.address}`);
 
+  console.log("Funding paymaster with ETH");
   // Supplying paymaster with ETH
   await (
     await deployer.zkWallet.sendTransaction({
       to: paymaster.address,
-      value: ethers.utils.parseEther("0.03"),
+      value: ethers.utils.parseEther("0.06"),
     })
   ).wait();
+
+  let paymasterBalance = await provider.getBalance(paymaster.address);
+
+  console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
 
   // Supplying the ERC20 tokens to the empty wallet:
   await // We will give the empty wallet 3 units of the token:
@@ -404,11 +460,9 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-Besides deploying the paymaster it also creates an empty wallet and mints some of the `MyERC20` tokens to it, so that it can use the paymaster later on.
+2. Compile and deploy the contracts from the project root and execute the deployment script:
 
-To deploy the ERC20 token and the paymaster, you should compile the contracts and run the script:
-
-```
+```sh
 yarn hardhat compile
 yarn hardhat deploy-zksync --script deploy-paymaster.ts
 ```
@@ -416,19 +470,28 @@ yarn hardhat deploy-zksync --script deploy-paymaster.ts
 The output should be roughly the following:
 
 ```
-Empty wallet's address: 0xAd155D3069BB3c587E995916B320444056d8191F
-Empty wallet's private key: 0x236d735297617cc68f4ec8ceb40b351ca5be9fc585d446fa95dff02354ac04fb
-ERC20 address: 0x65C899B5fb8Eb9ae4da51D67E1fc417c7CB7e964
-Paymaster address: 0x0a67078A35745947A37A552174aFe724D8180c25
+Empty wallet's address: 0x9551c71d605c9725B67cC40372d480287B5f7ac3
+Empty wallet's private key: 0x16185a3e00436f2dc5e9ecd2d7f286911f89a1cfe3e1d3ce45dcf52ccdfa2ed7
+ERC20 address: 0x605FfE49B3CFE40c698CcB7eB39DAed29fCbAC21
+Paymaster address: 0x6Df9a2f126fdA07B4a94a8502f908Ce34fA9f525
+Funding paymaster with ETH
+Paymaster ETH balance is now 60000000000000000
 Minted 3 tokens for the empty wallet
 Done!
 ```
 
-Note that the addresses and private keys will be different for each run.
+:::tip
+* Addresses and private keys are different on each run.
+* Make sure you delete the `artifacts-zk` and `cache-zk` folders before recompiling.
+:::
 
 ## Using the paymaster
 
-Create the `use-paymaster.ts` script in the `deploy` folder. You can see the example for interacting with the paymaster in the code snippet below:
+1. Create the `use-paymaster.ts` script in the `deploy` folder, replacing the parameter placeholders with the details from the previous deploy step. 
+
+::: warning 
+Make sure you use the private key of the wallet created by the previous script as that wallet contains the ERC20 tokens.
+:::
 
 ```ts
 import { Provider, utils, Wallet } from "zksync-web3";
@@ -442,23 +505,32 @@ const PAYMASTER_ADDRESS = "<PAYMASTER_ADDRESS>";
 const TOKEN_ADDRESS = "<TOKEN_ADDRESS>";
 
 // Wallet private key
-// ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
 const EMPTY_WALLET_PRIVATE_KEY = "<EMPTY_WALLET_PRIVATE_KEY>";
+
+function getToken(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
+  const artifact = hre.artifacts.readArtifactSync("MyERC20");
+  return new ethers.Contract(TOKEN_ADDRESS, artifact.abi, wallet);
+}
+
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider("https://zksync2-testnet.zksync.dev");
+  const provider = new Provider("https://testnet.era.zksync.dev");
   const emptyWallet = new Wallet(EMPTY_WALLET_PRIVATE_KEY, provider);
 
+  // const paymasterWallet = new Wallet(PAYMASTER_ADDRESS, provider);
   // Obviously this step is not required, but it is here purely to demonstrate that indeed the wallet has no ether.
   const ethBalance = await emptyWallet.getBalance();
   if (!ethBalance.eq(0)) {
-    throw new Error("The wallet is not empty");
+    throw new Error("The wallet is not empty!");
   }
 
   console.log(
-    `Balance of the user before mint: ${await emptyWallet.getBalance(
+    `ERC20 token balance of the empty wallet before mint: ${await emptyWallet.getBalance(
       TOKEN_ADDRESS
     )}`
   );
+
+  let paymasterBalance = await provider.getBalance(PAYMASTER_ADDRESS);
+  console.log(`Paymaster ETH balance is ${paymasterBalance.toString()}`);
 
   const erc20 = getToken(hre, emptyWallet);
 
@@ -475,7 +547,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   });
 
   // Estimate gas fee for mint transaction
-  const gasLimit = await erc20.estimateGas.mint(emptyWallet.address, 100, {
+  const gasLimit = await erc20.estimateGas.mint(emptyWallet.address, 5, {
     customData: {
       gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
       paymasterParams: paymasterParams,
@@ -483,9 +555,11 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   });
 
   const fee = gasPrice.mul(gasLimit.toString());
+  console.log("Transaction fee estimation is :>> ", fee.toString());
 
+  console.log(`Minting 5 tokens for empty wallet via paymaster...`);
   await (
-    await erc20.mint(emptyWallet.address, 100, {
+    await erc20.mint(emptyWallet.address, 5, {
       // paymaster info
       customData: {
         paymasterParams: paymasterParams,
@@ -495,48 +569,49 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   ).wait();
 
   console.log(
-    `Balance of the user after mint: ${await emptyWallet.getBalance(
+    `Paymaster ERC20 token balance is now ${await erc20.balanceOf(
+      PAYMASTER_ADDRESS
+    )}`
+  );
+
+  paymasterBalance = await provider.getBalance(PAYMASTER_ADDRESS);
+  console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
+
+  console.log(
+    `ERC20 token balance of the empty wallet after mint: ${await emptyWallet.getBalance(
       TOKEN_ADDRESS
     )}`
   );
 }
 ```
 
-After filling in the parameters `PAYMASTER_ADDRESS`, `TOKEN_ADDRESS` and `EMPTY_WALLET_PRIVATE_KEY` with the output provided in the previous step. 
+2. Run the script:
 
-::: warning 
-
-Important! Make sure you're using the private key of the wallet created by the previous script as that wallet contains the ERC20 tokens!
-
-:::
-
-Run this script with the following command:
-
-```
+```sh
 yarn hardhat deploy-zksync --script use-paymaster.ts
 ```
 
-The output should be roughly the following:
+The output should look something like this:
 
-```
-Balance of the user before mint: 3
-Balance of the user after mint: 102
+```txt
+ERC20 token balance of the empty wallet before mint: 3
+Paymaster ETH balance is 60000000000000000
+Transaction fee estimation is :>>  5807865263029992
+Minting 5 tokens for empty wallet via paymaster...
+Paymaster ERC20 token balance is now 1
+Paymaster ETH balance is now 56327996250000000
+ERC20 token balance of the empty wallet after mint: 7
 ```
 
-The wallet had 3 tokens after running the deployment script and, after sending the transaction to `mint` 100 more tokens, the balance is 102 as 1 token was used to pay the transaction fee to the paymaster.
+The wallet had 3 tokens after running the deployment script and, after sending the transaction to `mint` 5 more tokens, the balance is 7 as 1 token was used to pay the transaction fee to the paymaster. The paymaster paid the fees for the mint transaction with ETH.
 
 ## Common errors
 
-If the `use-paymaster.ts` script fails with the error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer funds to the bootloader`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use [zkSync Portal](https://portal.zksync.io/).
-
-If the `use-paymaster.ts` script fails when minting new ERC20 tokens with the error `Error: transaction failed`, and the transactions appear with status "Failed" in the [zkSync explorer](https://explorer.zksync.io/), please reach out to us on [our Discord](https://join.zksync.dev/) or [contact page](https://zksync.io/contact.html). As a workaround, try including a specific `gasLimit` value in the transaction.
-
-## Complete project
-
-You can download the complete project [here](https://github.com/matter-labs/custom-paymaster-tutorial).
+* If the `use-paymaster.ts` script fails with the error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer tx fee to the bootloader. Paymaster balance might not be enough.`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use [zkSync Portal](https://goerli.portal.zksync.io/).
+* If the `use-paymaster.ts` script fails when minting new ERC20 tokens with the error `Error: transaction failed`, and the transactions appear with status "Failed" in the [zkSync explorer](https://explorer.zksync.io/), please reach out to us on [our Discord](https://join.zksync.dev/) or [contact page](https://zksync.io/contact.html). As a workaround, try including a specific `gasLimit` value in the transaction.
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2.md).
-- To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
+- Learn more about [L1->L2 interaction on zkSync](../developer-guides/bridging/l1-l2.md).
+- Learn more about [the `zksync-web3` SDK](../../api/js).
+- Learn more about [the zkSync hardhat plugins](../../api/hardhat).

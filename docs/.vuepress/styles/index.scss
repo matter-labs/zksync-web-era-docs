@@ -44,6 +44,11 @@ div[class*=language-] > button.copy-code-button:not(.pure) {
     display: none;
 }
 
+p{
+    hyphens: none !important;
+    text-align: inherit !important;
+}
+
 
 [data-theme="dark"] .sidebar a{
     color: #FFFFFFCC !important;

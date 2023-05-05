@@ -3,7 +3,7 @@ import docsearchPlugin from "@vuepress/plugin-docsearch";
 //import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
 
 import theme from "./theme.js";
-import { pwaPlugin } from '@vuepress/plugin-pwa'
+//import { pwaPlugin } from '@vuepress/plugin-pwa'
 import { defineConfig } from 'vite'
 import { getDirname, path } from '@vuepress/utils'
 
@@ -59,7 +59,9 @@ export default defineUserConfig({
   theme,
 
   plugins: [
-    pwaPlugin({}),
+    // pwaPlugin({
+    //   update: "force"
+    // }),
     docsearchPlugin({
       appId: "LCWOUB1OFO",
       apiKey: "4f82227774adcb38616b787ed4add1b8",

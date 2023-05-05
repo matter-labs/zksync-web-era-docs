@@ -55,7 +55,7 @@ ethereumSigner, err := zksync2.NewEthSignerFromMnemonic("<mnemonic words>", 280)
 ethereumSigner, err = zksync2.NewEthSignerFromRawPrivateKey(pkBytes, 280)
 
 // also, init ZkSync Provider, specify ZkSync2 RPC URL (e.g. testnet)
-zkSyncProvider, err := zksync2.NewDefaultProvider("https://zksync2-testnet.zksync.dev")
+zkSyncProvider, err := zksync2.NewDefaultProvider("https://testnet.era.zksync.dev")
 
 // then init Wallet, passing just created Ethereum Signer and ZkSync Provider
 wallet, err := zksync2.NewWallet(ethereumSigner, zkSyncProvider)

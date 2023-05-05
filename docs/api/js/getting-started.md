@@ -1,9 +1,8 @@
 # Getting started
 
 ::: warning
-
-Please note, that in the new `0.13.1` SDK version, the API/Node layer operates with gas. The ergs concept is used by VM only.
-
+- Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`.
+- For more information, read the [changelog](../../dev/troubleshooting/changelog.md#hardhat-plugins-update-feb-24th-2023).
 :::
 
 ## Concept
@@ -34,7 +33,7 @@ To interact with the zkSync network users need to know the endpoint of the opera
 
 ```typescript
 // Currently, only one environment is supported.
-const zkSyncProvider = new zksync.Provider("https://zksync2-testnet.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
 ```
 
 **Note:** Currently, only `goerli` network is supported.
