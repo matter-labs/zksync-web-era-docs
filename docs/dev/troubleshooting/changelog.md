@@ -14,7 +14,8 @@
 
 Compiler updates:
   - Update `zksolc` version to `1.3.10` in the `hardhat.config.ts` and update `@matterlabs/hardhat-zksync-solc` to `0.3.17`. Recompile and redeploy.
-- hardhat-zksync-verify
+  
+- Verify plugin:
   - Update the package to `0.1.6` in your `package.json` file and re-install dependencies.
 
 
