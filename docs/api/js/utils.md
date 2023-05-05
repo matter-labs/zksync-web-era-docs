@@ -275,7 +275,7 @@ function eip712TxHash(transaction: any, ethSignature?: EthereumSignature) {
 Used by `estimateDefaultBridgeDepositL2Gas` to estimate L2 gas required for token bridging via a custom ERC20 bridge.
 
 ::: tip More info
-- See the [default bridges documentation](../../dev/developer-guides/bridging/bridging-asset.md#default-bridges)
+- See the [default bridges documentation]()
 :::
 
 #### Inputs
@@ -317,7 +317,7 @@ export async function estimateCustomBridgeDepositL2Gas(
 Returns an estimation of L2 gas required for token bridging via the default ERC20 bridge.
 
 ::: tip More info
-- See the [default bridges documentation](../../dev/developer-guides/bridging/bridging-asset.md#default-bridges)
+- See the [default bridges documentation]()
 :::
 
 #### Inputs

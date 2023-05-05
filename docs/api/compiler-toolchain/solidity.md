@@ -49,7 +49,7 @@ Additional zkEVM data inserted by `zksolc`:
 - `long_version`: the full `solc` version output.
 - `zk_version`: the `zksolc` version.
 - `contract/hash`: the hash of the zkEVM bytecode.
-- `contract/factory_dependencies`: bytecode hashes of contracts created in the current contract with `CREATE`. [More details here](../../dev/building-on-zksync/contracts/contract-deployment.md#note-on-factorydeps).
+- `contract/factory_dependencies`: bytecode hashes of contracts created in the current contract with `CREATE`. [More details here]().
 
 Unsupported sections of the output JSON, ignored by `zksolc`:
 
@@ -69,7 +69,7 @@ used for configuration.
 Additional zkEVM data, inserted by `zksolc`:
 
 - `zk_version`: the version of `zksolc`.
-- `contract/factory_deps`: bytecode hashes of contracts created by the current contract with `CREATE`. [More details here](../../dev/building-on-zksync/contracts/contract-deployment.md#note-on-factorydeps).
+- `contract/factory_deps`: bytecode hashes of contracts created by the current contract with `CREATE`. [More details here]().
 
 Unsupported combined JSON flags, rejected by `zksolc`:
 
@@ -109,4 +109,4 @@ The usage of libraries in Solidity is supported in zkSync Era with the following
 - If a Solidity library can be inlined (i.e. it only contains `private` or `internal` methods), it can be used without
 any additional configuration.
 - However, if a library contains at least one `public` or `external` method, it cannot be inlined and its address needs
-to be passed explicitly to the compiler; see [compiling non-inlinable libraries](../../api/hardhat/compiling-libraries.md).
+to be passed explicitly to the compiler; see [compiling non-inlinable libraries]().

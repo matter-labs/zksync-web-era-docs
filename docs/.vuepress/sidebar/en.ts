@@ -4,27 +4,24 @@ export const enSidebar = sidebar({
   //The sidebar for developer guides
   "/build": [
     {
-      text: "Introduction",
+      text: "Getting started",
       link: "/build/building-on-zksync/hello-world.md",
+      children: [
+        "/build/building-on-zksync/hello-world.md", {
+        text: 'Contract development',
+        collapsible: true,
+        children: [      
+          "/build/building-on-zksync/contracts/contract-verification.md",  
+          "/build/building-on-zksync/contracts/contract-development.md",     ]},
+        "/build/building-on-zksync/events.md",
+        "/build/building-on-zksync/rpc.md",
+        "/build/building-on-zksync/useful-address.md",
+      ],
     },
     {
       text: "How to",
       link: "/build/how-to",
       children: ["/build/how-to/estimate-gas.md", ],
-    },
-    {
-      text: "Building on zkSync Era",
-      link: "/build/building-on-zksync",
-      children: [
-        "/build/building-on-zksync/hello-world.md",
-        "/build/building-on-zksync/contracts/contract-development.md",
-        "/build/building-on-zksync/contracts/differences-with-ethereum.md",
-        "/build/building-on-zksync/contracts/contract-deployment.md",
-        "/build/building-on-zksync/contracts/contract-verification.md",
-        "/build/building-on-zksync/events.md",
-        "/build/building-on-zksync/rpc.md",
-        "/build/building-on-zksync/useful-address.md",
-      ],
     },
     {
       text: "Tutorials",
@@ -34,20 +31,6 @@ export const enSidebar = sidebar({
         "/build/tutorials/custom-aa-tutorial.md",
         "/build/tutorials/aa-daily-spend-limit.md",
         "/build/tutorials/custom-paymaster-tutorial.md",
-      ],
-    },
-    {
-      text: "Troubleshooting",
-      link: "/build/troubleshooting",
-      children: [
-        "/build/troubleshooting/changelog.md",
-        "/build/troubleshooting/withdrawal-delay.md",
-        "/build/troubleshooting/audit-bug-bounty.md",
-        "/build/troubleshooting/docs-contribution/docs.md",
-        "/build/troubleshooting/docs-contribution/community-resources.md",
-        "/build/troubleshooting/faq.md",
-        // "/build/troubleshooting/status.md",
-        // "/build/troubleshooting/important-links.md",
       ],
     },
   ],
@@ -65,16 +48,54 @@ export const enSidebar = sidebar({
         "/concepts/fundamentals/transactions.md",
         "/concepts/fundamentals/blocks.md",
         "/concepts/fundamentals/system-contracts.md",
+        "/concepts/fundamentals/contract-deployment.md",  
         "/concepts/fundamentals/aa.md",
         "/concepts/fundamentals/fee-model.md",
         "/concepts/fundamentals/bridging-asset.md",
         "/concepts/fundamentals/l1-l2-interop.md",
         "/concepts/fundamentals/l1-l2.md",
         "/concepts/fundamentals/l2-l1.md",
-        "/concepts/fundamentals/security.md",
       ],},
   ],
-  //The sidebar for Tools and SDKs
+  // Side bar for the spec
+  "/spec": [
+    {
+      text: "Technical specification", // required
+      link: "/spec/", // optional, which should be a absolute path.
+      children: [ "/spec/differences-with-ethereum.md", "/spec/op-codes.md/", "/spec/errors.md",
+      {
+        text: "Releases",
+        link: "/spec",
+        children: [
+          "/spec/releases/changelog.md",
+          // 
+        ],
+      },
+      {
+        text: "Architecture",
+        link: "/spec/security/",
+        children: [
+          "/spec/security/withdrawal-delay.md",
+          "/spec/security/audit-bug-bounty.md",
+        ],
+      },
+      {
+        text: "Security",
+        link: "/spec/security/",
+        children: [
+          "/spec/security/withdrawal-delay.md",
+          "/spec/security/audit-bug-bounty.md",
+        ],
+      },
+      {
+        text: "Info",
+        link: "/spec/",
+        children: [ "/spec/faq.md", "/spec/important-links.md"],
+      },
+       ]
+     },
+  ],
+  //The sidebar for SDKs
   "/api": [
     {
       text: "Overview", // required
@@ -101,38 +122,6 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Hardhat", // required
-      link: "/api/hardhat", // optional, which should be a absolute path.
-      children: [
-        "/api/hardhat/getting-started",
-        "/api/hardhat/migrating-to-zksync",
-        "/api/hardhat/plugins",
-        "/api/hardhat/hardhat-zksync-solc",
-        "/api/hardhat/hardhat-zksync-vyper",
-        "/api/hardhat/hardhat-zksync-deploy",
-        "/api/hardhat/hardhat-zksync-chai-matchers",
-        "/api/hardhat/hardhat-zksync-verify",
-        "/api/hardhat/other-plugins",
-        "/api/hardhat/testing",
-        "/api/hardhat/compiling-libraries",
-      ],
-    },
-    {
-      text: "Block Explorer", // required
-      link: "/api/tools/block-explorer", // optional, which should be a absolute path.
-      children: ["/api/tools/block-explorer/intro", "/api/tools/block-explorer/block-view", "/api/tools/block-explorer/search", "/api/tools/block-explorer/contract-verification"],
-    },
-    {
-      text: "Compiler Toolchain",
-      link: "/api/compiler-toolchain",
-      children: ["/api/compiler-toolchain/overview.md", "/api/compiler-toolchain/solidity.md", "/api/compiler-toolchain/vyper.md", "/api/compiler-toolchain/llvm.md"],
-    },
-    {
-      text: "zkSync Era CLI", // required
-      link: "/api/tools/zksync-cli/", // optional, which should be a absolute path.
-      children: [],
-    },
-    {
       text: "Python SDK",
       link: "/api/python",
       children: [
@@ -154,11 +143,65 @@ export const enSidebar = sidebar({
       link: "/api/go/getting-started", // optional, which should be a absolute path.
       children: ["/api/go/getting-started"],
     },
-
     {
       text: "Swift SDK", // required
       link: "/api/swift/getting-started", // optional, which should be a absolute path.
       children: ["/api/swift/getting-started", "/api/swift/providers"],
+    },
+  ],
+  //The sidebar for Tools
+  "/tools": [
+    {
+      text: "Tools", // required
+      link: "/tools/", // optional, which should be a absolute path.
+    },
+    {
+      text: "Hardhat", // required
+      link: "/api/hardhat", // optional, which should be a absolute path.
+      children: [
+        "/api/hardhat/getting-started",
+        "/api/hardhat/migrating-to-zksync",
+        "/api/hardhat/plugins",
+        "/api/hardhat/hardhat-zksync-solc",
+        "/api/hardhat/hardhat-zksync-vyper",
+        "/api/hardhat/hardhat-zksync-deploy",
+        "/api/hardhat/hardhat-zksync-chai-matchers",
+        "/api/hardhat/hardhat-zksync-verify",
+        "/api/hardhat/other-plugins",
+        "/api/hardhat/testing",
+        "/api/hardhat/compiling-libraries",
+      ],
+    },
+    {
+      text: "Compiler Toolchain",
+      link: "/api/compiler-toolchain",
+      children: ["/api/compiler-toolchain/overview.md", "/api/compiler-toolchain/solidity.md", "/api/compiler-toolchain/vyper.md", "/api/compiler-toolchain/llvm.md"],
+    },
+    {
+      text: "zkSync Era CLI", // required
+      link: "/api/tools/zksync-cli/", // optional, which should be a absolute path.
+      children: [],
+    },
+  ],
+  //The sidebar for User guides
+  "/user-guides": [
+    {
+      text: "User guides", // required
+      link: "/user-guides/", // optional, which should be a absolute path.
+      children: [ "/user-guides/pk.md", ],
+    },
+    {
+      text: "Block Explorer", // required
+      link: "/api/tools/block-explorer", // optional, which should be a absolute path.
+      children: ["/api/tools/block-explorer/intro", "/api/tools/block-explorer/block-view", "/api/tools/block-explorer/search", "/api/tools/block-explorer/contract-verification"],
+    },
+    {
+      text: "Contributing",
+      link: "/spec/",
+      children: [
+        "/spec/docs-contribution/docs.md",
+        "/spec/docs-contribution/community-resources.md",
+      ],
     },
   ],
   //The legal related sidebar

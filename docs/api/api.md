@@ -66,7 +66,7 @@ All methods are located in the `zks_` namespace. The API may also provide method
 
 ::: warning
 - Metamask does not support the `zks_` namespace at the time of writing.
-- Instead, use the [`Provider`](../api/js/providers.md#provider) class with the testnet RPC.
+- Instead, use the [`Provider`]() class with the testnet RPC.
 :::
 
 ### `debug_traceBlockByHash`
@@ -636,7 +636,7 @@ Given a block, a sender, a message, and an optional message log index in the blo
 | block           | `uint32`    | The number of the block where the message was emitted.          |
 | sender          | `address`   | The sender of the message (i.e. the account that called the L1Messenger system contract).  |
 | msg             | `bytes32`   | The keccak256 hash of the sent message.    |
-| l2_log_position | `uint256`   | The index in the block of the event that was emitted by the [L1Messenger](../dev/developer-guides/system-contracts.md#l1messenger) when submitting this message. If it is omitted, the proof for the first message returns. |
+| l2_log_position | `uint256`   | The index in the block of the event that was emitted by the [L1Messenger]() when submitting this message. If it is omitted, the proof for the first message returns. |
 
 #### curl example
 
@@ -739,7 +739,7 @@ curl -X POST -H "Content-Type: application/json" \
 
 ### `zks_getTestnetPaymaster`
 
-Returns the address of the [testnet paymaster](../dev/developer-guides/aa.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
+Returns the address of the [testnet paymaster](): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
 
 #### Inputs
 
@@ -892,5 +892,5 @@ zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/do
 The WebSocket URL is `wss://testnet.era.zksync.dev/ws`.
 
 ::: tip
-- Use the websocket endpoint to handle smart contract events, as detailed [in this section of the docs](../dev/building-on-zksync/events.md).
+- Use the websocket endpoint to handle smart contract events, as detailed [in this section of the docs]().
 :::

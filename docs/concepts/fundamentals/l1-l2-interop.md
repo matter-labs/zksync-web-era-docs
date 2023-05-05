@@ -5,7 +5,7 @@ While most of the execution will happen on L2, some use cases require interopera
 In addition, the L2 censorship resistance is derived from the underlying chain, so the ability to send messages from Ethereum to zkSync is an important part of the censorship-resistance mechanism called the [priority queue](#priority-queue).
 
 Sending transactions from Ethereum to zkSync is done via the zkSync smart contract. It allows the sender to request transactions directly from L1. Thereby allowing the permissionless passing of any data from Ethereum into zkSync.
-[Read more](../bridging/l1-l2.md) about messaging from L1 to L2.
+[Read more]() about messaging from L1 to L2.
 
 ## Priority queue
 
@@ -63,7 +63,7 @@ Each message sent from L2 to L1 contains the sender's address and the message it
 
 ### Reading messages
 
-Every message sent can be read on-chain. Moreover, it is possible to prove that a message has been sent in a specific L2 block. To make such proof as cheap as possible for both the user and the operator, we store all messages, for each L2 block, in a merkle tree. Accordingly, any L1 smart contract can consume the message sent by providing proof of inclusion in some L2 block. Proof can be generated based only on the data that the operator sent to the zkSync L1 smart contract. The proof can also be obtained via [the API](../../../api/api.md#zks-getl2tol1msgproof).
+Every message sent can be read on-chain. Moreover, it is possible to prove that a message has been sent in a specific L2 block. To make such proof as cheap as possible for both the user and the operator, we store all messages, for each L2 block, in a merkle tree. Accordingly, any L1 smart contract can consume the message sent by providing proof of inclusion in some L2 block. Proof can be generated based only on the data that the operator sent to the zkSync L1 smart contract. The proof can also be obtained via [the API]().
 
 ### Summary on L2->L1 messaging
 
