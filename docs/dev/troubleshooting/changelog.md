@@ -1,6 +1,6 @@
 # Changelog
 
-## zksync-upgradable and compiler (May 4th 2023)
+## zksync-upgradable and compiler (May 5th 2023)
 - First relese of `@matterlabs/hardhat-zksync-upgradable` a new package to create beacon and transparent proxy contracts. [More info here](../../api/hardhat/hardhat-zksync-upgradable.md)
 - zksolc compiler has been updated to version `1.3.10`:
   - Multiple optimizations, security and bug fixes.
