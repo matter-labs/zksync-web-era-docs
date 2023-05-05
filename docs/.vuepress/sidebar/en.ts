@@ -5,7 +5,7 @@ export const enSidebar = sidebar({
   "/build": [
     {
       text: "Getting started",
-      link: "/build/building-on-zksync/hello-world.md",
+      link: "/build/building-on-zksync/",
       children: [
         "/build/building-on-zksync/hello-world.md", {
         text: 'Contract development',
