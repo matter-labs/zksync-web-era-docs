@@ -103,6 +103,7 @@ export const enSidebar = sidebar({
         "/api/hardhat/plugins",
         "/api/hardhat/hardhat-zksync-solc",
         "/api/hardhat/hardhat-zksync-vyper",
+        "/api/hardhat/hardhat-zksync-upgradable",
         "/api/hardhat/hardhat-zksync-deploy",
         "/api/hardhat/hardhat-zksync-chai-matchers",
         "/api/hardhat/hardhat-zksync-verify",

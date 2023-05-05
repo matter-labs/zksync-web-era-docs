@@ -1,13 +1,21 @@
 name: "Deploy staging"
-"on":
-  push:
-    branches: [ main ]
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        type: string
+        description: "The branch, tag or SHA to checkout"
+        required: true
+        default: "main"
+
 jobs:
   build_and_deploy:
     if: ${{ github.event.repository.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: "${{ github.event.inputs.ref }}"
       - name: "Enable yarn cache"
         uses: c-hive/gha-yarn-cache@v2  # using cache
 
