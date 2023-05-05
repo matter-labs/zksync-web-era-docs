@@ -4,6 +4,10 @@ The Vyper compiler we provide as part of our toolchain is called [zkvyper](https
 operates on Vyper’s LLL IR, and metadata received from the underlying [vyper](https://docs.vyperlang.org/en/latest/index.html) compiler,
 which must be available in `$PATH`, or its path must be explicitly passed via the CLI (command-line interface).
 
+::: warning
+To safeguard the security and efficiency of your application, always use the latest compiler version.
+:::
+
 ## Usage
 
 Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-vyper/tree/main#system-requirements).
