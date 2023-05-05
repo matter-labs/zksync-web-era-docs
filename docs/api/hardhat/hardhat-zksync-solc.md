@@ -90,7 +90,7 @@ module.exports = {
 - `optimizer` - Compiler optimizations:
   - `enabled`: `true` (default) or `false`.
   - `mode`: `3` (default) recommended for most projects. Mode `z` reduces bytecode size for large projects that make heavy use of `keccak` and far calls.
-- `metadata` - Metadata settings. If the option is ommited, the metadata hash will be appended by default:
+- `metadata`: Metadata settings. If the option is omitted, the metadata hash appends by default:
   - `bytecodeHash` - Can only be `none`. It removes metadata hash from the bytecode.
 - `zksync` network option indicates whether zksolc is enabled on a certain network. `false` by default. Useful for multichain projects in which you can enable `zksync` only for specific networks.
 
