@@ -99,9 +99,3 @@ contributors: false
     </a>
   </div>
 </section>
-
-<Footer />
-
-<script setup lang="ts">
-import Footer from "@Footer";
-</script>
