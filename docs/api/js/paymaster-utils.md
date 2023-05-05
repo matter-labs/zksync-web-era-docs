@@ -40,7 +40,7 @@ export function getGeneralPaymasterInput(paymasterInput: GeneralPaymasterInput):
 
 ### `getPaymasterParams`
 
-Returns a correctly-formed `paymasterParams` object for common [paymaster flows](../../dev/developer-guides/aa.md#built-in-paymaster-flows).
+Returns a correctly-formed `paymasterParams` object for common [paymaster flows]().
 
 ```typescript
 export function getPaymasterParams(paymasterAddress: Address, paymasterInput: PaymasterInput): PaymasterParams

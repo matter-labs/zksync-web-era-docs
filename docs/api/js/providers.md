@@ -164,7 +164,7 @@ console.log(await provider.getMainContractAddress());
 
 ### `getTestnetPaymasterAddress`
 
-On zkSync testnets, the [testnet paymaster](../../dev/developer-guides/aa.md#paymasters) is available.
+On zkSync testnets, the [testnet paymaster]() is available.
 
 ```typescript
 async getTestnetPaymasterAddress(): Promise<string|null>

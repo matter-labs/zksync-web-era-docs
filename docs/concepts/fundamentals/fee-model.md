@@ -50,7 +50,7 @@ Long transactions incur additional costs during interactions with an account. zk
 
 By default, the zkSync Era sequencer provides a transaction structure with the available information during the fee estimation.
 
-Because the signature is unavailable prior to the transaction taking place, an invalid 65-byte ECDSA signature is used instead. The `DefaultAccount` (used by EOAs), during gas fee estimation, executes many operations, including signature verification, and returns only `bytes4(0)` instead of [magic](../../../api/js/utils.md#magic-value).
+Because the signature is unavailable prior to the transaction taking place, an invalid 65-byte ECDSA signature is used instead. The `DefaultAccount` (used by EOAs), during gas fee estimation, executes many operations, including signature verification, and returns only `bytes4(0)` instead of [magic]().
 
 In the case of a custom account with multiple signers, the account may wish to simulate signature validation for all the provided signers.
 
@@ -60,7 +60,7 @@ See the [DefaultAccount code](https://github.com/matter-labs/era-system-contract
 
 The `validateTransaction` function for account abstraction, and the `validateAndPayForPaymasterTransaction` function for paymasters, always attempt to run using the same amount of computation, including storage access, regardless of whether the transaction is successful or not.
 
-See the documentation on [account abstraction](../../developer-guides/aa.md) for more detailed information.
+See the documentation on [account abstraction]() for more detailed information.
 
 #### `validateTransaction`
 

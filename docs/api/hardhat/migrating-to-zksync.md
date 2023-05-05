@@ -12,7 +12,7 @@ zkSync Era offers [multiple Hardhat plugins](./plugins.md) with different featur
 
 ## Install dependencies
 
-Although zkSync Era is [compatible with Solidity and Vyper](../../dev/building-on-zksync/contracts/contract-development.md), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the first step is to install the compiler and deployer Hardhat plugins:
+Although zkSync Era is [compatible with Solidity and Vyper](), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the first step is to install the compiler and deployer Hardhat plugins:
 
 ::: code-tabs
 
@@ -172,7 +172,7 @@ If your contracts import any non-inlineable libraries, you need to configure the
 `hardhat-deploy` version `^0.11.26` supports deployments on zkSync Era.
 :::
 
-To deploy your contracts you need to use the `Deployer` class from the `hardhat-zksync-deploy`  plugin. This class takes care of all the specifics of [deploying contracts on zkSync](../../dev/building-on-zksync/contracts/contract-deployment.md). 
+To deploy your contracts you need to use the `Deployer` class from the `hardhat-zksync-deploy`  plugin. This class takes care of all the specifics of [deploying contracts on zkSync](). 
 
 Here is a basic deployment script for a `Greeter` contract:
 
@@ -243,13 +243,13 @@ import { utils, Provider, Contract, Wallet } from "zksync-web3";
 
 You also need to use the `contract ABI` from the `artifacts-zk` folder to instantiate contracts.
 
-Apart from the same classes and methods provided by ethers, zksync-web3 includes additional methods for zksync-specific features. You can read more in the [`zksync-web3` documentation](../js/getting-started.md).
+Apart from the same classes and methods provided by ethers, zksync-web3 includes additional methods for zksync-specific features. You can read more in the [`zksync-web3` documentation]().
 
 ## Verify contracts
 
 To verify your contracts you have two options:
 
-- Explorer: verify your contracts manually in the [zkSync explorer](../tools/block-explorer/contract-verification.md)
+- Explorer: verify your contracts manually in the [zkSync explorer]()
 - Plugin: verify your contracts programmatically using the [Hardhat verify plugin](./hardhat-zksync-verify.md)
 
 If you have any problems migrating your project, [send us a message on Discord](https://join.zksync.dev/).

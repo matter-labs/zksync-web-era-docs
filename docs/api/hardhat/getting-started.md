@@ -24,13 +24,13 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 ## Prerequisites
 
 - A Node installation with `yarn` package manager installed.
-- You have [installed the zkSync CLI](../tools/zksync-cli/README.md#installation).
-- You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../../dev/building-on-zksync/hello-world.md).
+- You have [installed the zkSync CLI]().
+- You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial]().
 - You have a wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. We recommend using [our faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ::: warning Important
-- Contracts must be compiled using the [official zkSync Era compilers](../compiler-toolchain/README.md), with their respective Hardhat plugins.
+- Contracts must be compiled using the [official zkSync Era compilers](), with their respective Hardhat plugins.
 - Contracts compiled with other compilers will fail to deploy to zkSync Era.
 :::
 
@@ -300,4 +300,4 @@ The message now is Hello people!
 ## Learn more
 
 - To learn more about the zkSync Hardhat plugins check out the [plugins documentation](./plugins).
-- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-web3 Javascript SDK documentation](../js) .
+- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-web3 Javascript SDK documentation]() .
