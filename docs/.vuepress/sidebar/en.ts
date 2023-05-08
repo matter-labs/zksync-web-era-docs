@@ -26,7 +26,6 @@ export const enSidebar = sidebar({
         "/dev/developer-guides/bridging/l1-l2.md",
         "/dev/developer-guides/bridging/l2-l1.md",
         "/dev/developer-guides/videos.md",
-        // "/dev/developer-guides/security.md",
       ],
     },
     {
@@ -63,7 +62,6 @@ export const enSidebar = sidebar({
         "/dev/troubleshooting/docs-contribution/docs.md",
         "/dev/troubleshooting/docs-contribution/community-resources.md",
         "/dev/troubleshooting/faq.md",
-        // "/dev/troubleshooting/status.md",
         // "/dev/troubleshooting/important-links.md",
       ],
     },
