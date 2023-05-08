@@ -394,8 +394,6 @@ curl -X POST -H "Content-Type: application/json" \
 }
 ```
 
-<!--
-METHOD NOT YET LIVE 28/04/2023
 ### `zks_getBytecodeByHash`
 
 Returns bytecode of a transaction given by its hash.
@@ -430,7 +428,6 @@ curl -X POST -H "Content-Type: application/json" \
     "id": 1
 }
 ```
--->
 
 ### `zks_getConfirmedTokens`
 
