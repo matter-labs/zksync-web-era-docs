@@ -26,7 +26,6 @@ export const enSidebar = sidebar({
         "/dev/developer-guides/bridging/l1-l2.md",
         "/dev/developer-guides/bridging/l2-l1.md",
         "/dev/developer-guides/videos.md",
-        // "/dev/developer-guides/security.md",
       ],
     },
     {
@@ -57,14 +56,13 @@ export const enSidebar = sidebar({
       text: "Troubleshooting",
       link: "/dev/troubleshooting",
       children: [
+        "/dev/troubleshooting/important-links.md",
         "/dev/troubleshooting/changelog.md",
         "/dev/troubleshooting/withdrawal-delay.md",
         "/dev/troubleshooting/audit-bug-bounty.md",
         "/dev/troubleshooting/docs-contribution/docs.md",
         "/dev/troubleshooting/docs-contribution/community-resources.md",
         "/dev/troubleshooting/faq.md",
-        // "/dev/troubleshooting/status.md",
-        // "/dev/troubleshooting/important-links.md",
       ],
     },
   ],
@@ -143,17 +141,6 @@ export const enSidebar = sidebar({
       text: "Java SDK", // required
       link: "/api/java/getting-started", // optional, which should be a absolute path.
       children: ["/api/java/getting-started"],
-    },
-    {
-      text: "GO SDK", // required
-      link: "/api/go/getting-started", // optional, which should be a absolute path.
-      children: ["/api/go/getting-started"],
-    },
-
-    {
-      text: "Swift SDK", // required
-      link: "/api/swift/getting-started", // optional, which should be a absolute path.
-      children: ["/api/swift/getting-started", "/api/swift/providers"],
     },
   ],
   //The legal related sidebar

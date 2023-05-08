@@ -62,7 +62,7 @@ These fields are handled by our [SDK](./js/features.md).
 
 ## zkSync Era JSON-RPC methods
 
-All methods are located in the `zks_` namespace. The API may also provide methods not detailed here which are used internally by the team.
+The API may provide methods not detailed here which are used internally by the team.
 
 ::: warning
 - Metamask does not support the `zks_` namespace at the time of writing.
