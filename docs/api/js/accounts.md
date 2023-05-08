@@ -31,14 +31,14 @@ Just like `ethers.Wallet`, the `Wallet` object from `zksync-web3` can be created
 > Example
 
 ```typescript
-import * as zksync from "zksync-web3";
+import { Wallet, Provider, utils } from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
+const zkSyncProvider = new Provider("https://testnet.era.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
-const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 ```
 
 ### Other ways to create `Wallet` instances
@@ -185,16 +185,16 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 > Example
 
 ```typescript
-import * as zksync from "zksync-web3";
-import { ethers } from "ethers";
+import { Wallet, Provider } from "zksync-web3";
+import { ethers, utils } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
+const zkSyncProvider = new Provider("https://testnet.era.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
-const unconnectedWallet = new zksync.Wallet(PRIVATE_KEY);
+const unconnectedWallet = new Wallet(PRIVATE_KEY);
 const wallet = unconnectedWallet.connect(zkSyncProvider).connectToL1(ethereumProvider);
-const USDC_ADDRESS = "0x0faf6df7054946141266420b43783387a78d82a9";
+const USDC_ADDRESS = "<USDC_ADDRESS>";
 
 
 async function getBalance() {
@@ -202,11 +202,10 @@ async function getBalance() {
  console.log(await wallet.getBalanceL1(USDC_ADDRESS));
 
  // Gett balance in ETH formatted
- console.log(ethers.utils.formatEther(await wallet.getBalanceL1()));
+ console.log(utils.formatEther(await wallet.getBalanceL1()));
 }
 
 getBalance()
-
 ```
 
 ### Getting a nonce
@@ -322,14 +321,14 @@ You can get an `ethers.Wallet` object with the same private key with `ethWallet(
 > Example
 
 ```typescript
-import * as zksync from "zksync-web3";
+import { Wallet, Provider, utils } from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
+const zkSyncProvider = new Provider("https://testnet.era.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
-const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const ethWallet = wallet.ethWallet();
 ```

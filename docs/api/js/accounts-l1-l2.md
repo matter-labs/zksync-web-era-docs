@@ -36,14 +36,14 @@ async approveERC20(
 > Example
 
 ```typescript
-import * as zksync from "zksync-web3";
+import { Wallet, Provider } from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev/");
+const zkSyncProvider = new Provider("https://testnet.era.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
-const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const USDC_ADDRESS = "<USDC_ADDRESS>";
 const txHandle = await wallet.approveERC20(
@@ -87,14 +87,14 @@ async deposit(transaction: {
 > Example
 
 ```typescript
-import * as zksync from "zksync-web3";
+import { Wallet, Provider, utils } from "zksync-web3";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev/");
+const zkSyncProvider = new Provider("https://testnet.era.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
-const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const USDC_ADDRESS = "<USDC_ADDRESS>";
 const usdcDepositHandle = await wallet.deposit({
@@ -108,7 +108,7 @@ const usdcDepositHandle = await wallet.deposit({
 await usdcDepositHandle.wait();
 
 const ethDepositHandle = await wallet.deposit({
-  token: zksync.utils.ETH_ADDRESS,
+  token: utils.ETH_ADDRESS,
   amount: "10000000",
 });
 // Note that we wait not only for the L1 transaction to complete but also for it to be
@@ -206,15 +206,15 @@ async requestExecute(transaction: {
 > Example
 
 ```typescript
-import * as zksync from "zksync-web3";
+import { Wallet, Provider } from "zksync-web3";
 import { BigNumber, ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 const CONTRACT_ADDRESS = "<CONTRACT_ADDRESS>"
 
-const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev/");
+const zkSyncProvider = new Provider("https://testnet.era.zksync.dev/");
 const ethereumProvider = ethers.getDefaultProvider("goerli");
-const wallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const gasPrice = await wallet.providerL1.getGasPrice();
 
