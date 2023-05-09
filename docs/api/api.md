@@ -62,7 +62,7 @@ These fields are handled by our [SDK](./js/features.md).
 
 ## zkSync Era JSON-RPC methods
 
-All methods are located in the `zks_` namespace. The API may also provide methods not detailed here which are used internally by the team.
+The API may provide methods not detailed here which are used internally by the team.
 
 ::: warning
 - Metamask does not support the `zks_` namespace at the time of writing.
@@ -394,8 +394,6 @@ curl -X POST -H "Content-Type: application/json" \
 }
 ```
 
-<!--
-METHOD NOT YET LIVE 28/04/2023
 ### `zks_getBytecodeByHash`
 
 Returns bytecode of a transaction given by its hash.
@@ -410,27 +408,32 @@ Returns bytecode of a transaction given by its hash.
 
 ```curl
 curl -X POST -H "Content-Type: application/json" \
---data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getBytecodeByHash", "params": [ "0x8151d1d2aab91e44b4f8945854d5353ba63672c8f3e01fe2ec9cbf3cd0e1572e" ]}' \
+--data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getBytecodeByHash", "params": [ "0x0100067d861e2f5717a12c3e869cfb657793b86bbb0caa05cc1421f16c5217bc" ]}' \
 "https://mainnet.era.zksync.io"
 ```
 
 #### Output
 
-:::warning
-- Method not found.
-:::
-
 ```json
 {
     "jsonrpc": "2.0",
-    "error": {
-        "code": -32601,
-        "message": "Method not found"
-    },
+    "result": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        11,
+        ...,
+        ...,
+            ],
     "id": 1
 }
 ```
--->
 
 ### `zks_getConfirmedTokens`
 
