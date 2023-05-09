@@ -1,9 +1,9 @@
 # Estimate gas
 
 
-## L1 transactions
+## L1 to L1 transactions
 
-To estimate gas for L1 transactions, use the `eth_estimateGas` method.
+To estimate gas for L1 to L1 transactions, use the `eth_estimateGas` method.
 
 :::info More info
 For more information and live testing, check out the [Ethereum JSON RPC docs](https://ethereum.github.io/execution-apis/api-documentation/).
@@ -29,7 +29,7 @@ The import gives access to the [`IZkSync.sol`](l1/contracts/zksync/interfaces/IZ
 4. Get the base cost by calling the [`l2TransactionBaseCost`]((https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L129) ) function with:
     - The gas price returned at step 2.
     - The minimum gas value returned at step 3. 
-    - The L1 to L2 gas per pubdata byte constant that represents the amount of L2 gas required to send a single byte of data. 
+    - The L1 to L2 gas-per-pubdata-byte constant that represents the amount of L2 gas required to send a single byte of data. 
 
 ```solidity
 function l2TransactionBaseCost(
@@ -41,10 +41,12 @@ function l2TransactionBaseCost(
 
 The resulting base cost is given in wei for the L2 part of the transaction.
 
-5. Send the transaction, including both the gas price and base cost in the value parameters, by calling the [`requestL2Transaction`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L119) function. Include the gas limit value from step 3 in the `calldata`.
+5. Send the transaction, including both the gas price and base cost in the value parameters, by calling the [`requestL2Transaction`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L119) function. Include the gas limit value from step 3 as `_l2GasLimit`, the gas-per-pubdata-byte constant as `_l2GasPerPubdataByteLimit`.
+
+The refund recipient as `_refundRecipient` receives any remaining fee after the transaction completes. If `_refundRecipient = 0` then L2 `msg.sender` is used.
 
 ```solidity
-(function requestL2Transaction(
+function requestL2Transaction(
     address _contractL2,
     uint256 _l2Value,
     bytes calldata _calldata,
@@ -52,7 +54,7 @@ The resulting base cost is given in wei for the L2 part of the transaction.
     uint256 _l2GasPerPubdataByteLimit,
     bytes[] calldata _factoryDeps,
     address _refundRecipient
-) external payable returns (bytes32 txHash); IzkSync interface??)
+) external payable returns (bytes32 canonicalTxHash);
 ```
 
 6. Wait for a transaction response and output the details.
@@ -167,7 +169,6 @@ await executeTx.wait();
 ```
 
 
-
 ## L2 transactions
 
 Gas estimation for L2 to L2 transactions on zkSyncEra works in the same way as in Ethereum.
@@ -175,7 +176,6 @@ Gas estimation for L2 to L2 transactions on zkSyncEra works in the same way as i
 Supply the same struct as for a L1 to L2 transaction.
 
 ?? // can you add some code here please
-
 
 
 ## L2 to L1 transactions
@@ -197,6 +197,12 @@ For example, an L2 transaction uses a bridge to transfer funds. The tokens are r
 
 ```solidity
 function sendToL1(bytes memory _message) external returns (bytes32);
+```
+
+4.1 The return value from `sendToL1` is the `keccak256` hash of the message bytes.
+
+```json
+// output example ??
 ```
 
 :::warning What is a message?
@@ -223,6 +229,12 @@ function proveL2MessageInclusion(
 ) public view returns (bool) {
     return _proveL2LogInclusion(_blockNumber, _index, _L2MessageToLog(_message), _proof);   
 }
+```
+
+5.1 The return value from `proveL2MessageInclusion` is `true` or `false`.
+
+```json
+// output example ??
 ```
 
 ### Example
@@ -254,7 +266,6 @@ contract Example {
 
   function consumeMessageFromL2(
     // The address of the zkSync smart contract.
-    // It is not recommended to hardcode it during the alpha testnet as regenesis may happen.
     address _zkSyncAddress,
     // zkSync block number in which the message was sent
     uint256 _l2BlockNumber,
