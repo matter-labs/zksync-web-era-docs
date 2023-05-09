@@ -45,7 +45,36 @@ export default defineUserConfig({
     ['meta', { name: "msapplication-config", content: "/docs/browserconfig.xml" }],
     ['meta', { name: "theme-color", content: "#1E69FF" }],
 
+    [
+      "script",
+      {},
+      `
+      window.addEventListener('load', function() {
+        let contributors = document.querySelectorAll('.contributor');
+        let contributorArr = Array.from(contributors);
+        let topFive = contributorArr.slice(0, 5);
+      
+        topFive.forEach(function(contributor) {
+          contributor.textContent = contributor.textContent.replace(',', '');
+        });
+      
+        let lastComma = contributorArr[4];
+        lastComma.textContent = lastComma.textContent.replace(',', '');
+      
+        let updatedList = topFive.map(function(contributor) {
+          return contributor.textContent;
+        }).join(', ');
+          
+        let contributorsDiv = document.querySelector('.contributors');
+        contributorsDiv.innerHTML = '<span class="label">Contributors: </span>' + updatedList;
+      
+        console.log('Top 5 contributors:', updatedList);
+      });
+
+      `,
+    ],
   ],
+  
 
   theme,
 

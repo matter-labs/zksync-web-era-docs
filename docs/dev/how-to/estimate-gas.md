@@ -225,7 +225,6 @@ function proveL2MessageInclusion(
     uint256 _index,
     L2Message memory _message,
     bytes32[] calldata _proof
-
 ) public view returns (bool) {
     return _proveL2LogInclusion(_blockNumber, _index, _L2MessageToLog(_message), _proof);   
 }
