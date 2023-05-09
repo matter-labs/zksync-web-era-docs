@@ -1,12 +1,8 @@
 name: "Deploy production"
-"on":
-  workflow_dispatch:
-    inputs:
-      ref:
-        type: string
-        description: "The branch, tag or SHA to checkout"
-        required: true
-        default: "main"
+on:
+  push:
+    branches: [main]
+
 jobs:
   build_and_deploy:
     if: ${{ github.event.repository.full_name == github.repository }}
@@ -15,7 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: "${{ github.event.inputs.ref }}"
           fetch-depth: 0
           # Whether to configure the token or SSH key with the local git config
           # Default: true
