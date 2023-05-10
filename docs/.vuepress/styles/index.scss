@@ -140,6 +140,10 @@ input[type="submit" i] {
     padding: 0 9rem !important;
 }
 
+#toc .toc-wrapper {
+    max-height: 40vh !important;
+}
+
 @media screen and (max-width: 1600px) {
     #toc {
         padding: 0 4rem !important;
@@ -489,10 +493,12 @@ ul, ol {
 [data-theme="light"] .footer-col ul li a {
     color: $dark-text !important;
 }
-// .footer-col ul li a:hover{
-// 	color: #ffffff;
-// 	padding-left: 8px;
-// }
+.footer-col ul li a:hover{
+	color: #0759ff !important;
+}
+.footer-col ul li a:active{
+	color: #0759ff !important;
+}
 .footer-col .social-links a{
 	display: inline-block;
 	height: 40px;
@@ -515,6 +521,10 @@ ul, ol {
     .footer-col{
         width: 50%;
         margin-bottom: 30px;
+        
+    }
+    .row {
+        flex-direction: column;
     }
 }
 @media(max-width: 574px){

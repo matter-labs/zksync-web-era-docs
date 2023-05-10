@@ -7,7 +7,7 @@
                     <div class="footer-col">
                         <h4>Learn</h4>
                         <ul>
-                            <li><a href="https://zksync.io/ethos">Ethos & Values</a></li>
+                            <li><a href="https://zksync.io/ethos">Ethos & values</a></li>
                             <li><a href="https://zksync.io/hyperscalability">Hyperscalability</a></li>
                             <li><a href="https://zksync.io/security">Security</a></li>
                             <li><a href="https://zksync.io/ux">UX</a></li>
@@ -18,8 +18,8 @@
                         <ul>
                             <li><a href="https://bridge.zksync.io/">Bridge</a></li>
                             <li><a href="https://ecosystem.zksync.io/">Ecosystem</a></li>
-                            <li><a href="https://portal.zksync.io/">Wallet Portal</a></li>
-                            <li><a href="https://explorer.zksync.io/">Block Explorer</a></li>
+                            <li><a href="https://portal.zksync.io/">Wallet portal</a></li>
+                            <li><a href="https://explorer.zksync.io/">Block explorer</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
@@ -28,7 +28,7 @@
                             <li><a href="https://join.zksync.dev/">Discord</a></li>
                             <li><a href="https://twitter.com/zksync">Twitter</a></li>
                             <li><a href="https://blog.matter-labs.io/">Blog</a></li>
-                            <li><a href="https://t.me/zksync_support">Telegram</a></li>
+                            <li><a href="https://t.me/zksync">Telegram</a></li>
                             <li><a href="https://github.com/matter-labs/">Github</a></li>
                         </ul>
                     </div>
