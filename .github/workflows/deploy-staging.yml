@@ -22,7 +22,7 @@ jobs:
       - name: "Setup node@14"
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
 
       - name: "Install dependencies"
         run: |
