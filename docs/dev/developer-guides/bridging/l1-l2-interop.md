@@ -1,14 +1,6 @@
 # L1 / L2 interoperability
 
-While most of the execution happens on L2, some use cases require interoperability with the L1 chain. Main use cases are building complex bridges, maintaining governance smart contracts on one chain that govern contracts on other chains, ??something-more??, amongst others.
-
-In addition, the L2 censorship resistance ??derives from?? relies on?? the underlying chain, so the ability to send messages from Ethereum to zkSync is an important part of the censorship-resistance mechanism.(??how are these phrases related??)
-
-Sending transactions from Ethereum to zkSync Era is done via the [zkSync smart contract](??). It allows the sender to request transactions directly from L1, thereby allowing the permissionless passing of any data from Ethereum into zkSync.
-
-:::tip More info
-Find out more about [bridging assets from L1 to L2 on zkSync Era](../bridging/bridging-asset.md).
-:::
+While most of the execution is L2-based, there are use cases, including the system's censorship resistance, that require interoperability between L1 and L2. For example, [bridging assets from L1 to L2](../bridging/bridging-asset.md).
 
 ## L1 to L2 transactions with the priority queue
 

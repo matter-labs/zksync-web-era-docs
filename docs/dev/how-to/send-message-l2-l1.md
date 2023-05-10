@@ -4,9 +4,12 @@ Unlike L1 to L2 communication, it is impossible to directly initialize transacti
 
 Verification and confirmation is possible with Ethereum data. However, zkSync Era provides a request proof method to do the same.
 
-## Use cases
+## Common use cases
+
+Along with zkSync Era's built-in censorship resistance that requires multi-layer interoperability, there are some common use cases that need L2 to L1 transaction functionality, such as:
 
 - An L2 transaction uses a bridge to transfer funds. The tokens are removed from L2, and a message is sent to L1 saying the tokens were burned. On L1, the block containing the message is proved, and the bridge counterpart verifies that the token was indeed present in a certain block on L2 and supplies the funds.
+- MORE??
 
 ## Send a message
 
