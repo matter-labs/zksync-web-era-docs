@@ -1,18 +1,21 @@
 # Estimate gas
 
-Estimating gas is a requirement for the following use cases:
+L2 gas fees depend on L1 gas fees because we publish storage diffs on layer 1 and we also verify the zero k proofs on layer 1.
 
-- Sending transactions on: 
+Usually not needed to be done explicitly ..
+User can do it, or SDK will do it implicitly. Why not just leave the SDK to do it? Most often yes, left to SDK. Usually needed when you want to display a fee for the user.
+
+Estimating gas is a (requirement) for the following use cases:
+
+- Sending transactions on (can leave to SDK): 
     - L1 to L1
     - L1 to L2
     - L2 to L2
-- ??anything else??
+- Usually needed when you want to display a fee for the user.
 
 ## L1 to L1
 
-To estimate gas for L1 to L1 transactions, use the Ethereum `eth_estimateGas` method.
-
-??is this only sent to a layer 1 node, or zkSync also??
+To estimate gas for L1 to L1 transactions, use the Ethereum `eth_estimateGas` method and send to a layer 1 node.
 
 :::info More info
 For more information and live testing, check out the [Ethereum JSON RPC docs](https://ethereum.github.io/execution-apis/api-documentation/).
@@ -28,26 +31,24 @@ To estimate gas for an L1 to L2 transaction, first gather the required values:
 
 2. Call the [`zks_estimateGasL1ToL2`](../../api/api.md#zks_estimategasl1tol2) method, passing the transaction data. This returns the minimum amount of gas the transaction requires; commonly called **gas limit** or similar in our code and docs.
 
-    - Apply an alias to the addresses in the request if the sender address is a contract. If the sender is an EOA, no aliasing is required. ??example??
+    - Apply an alias to the addresses in the request if the sender address is a contract. If the sender is an EOA, no aliasing is required. Solidity example: https://github.com/matter-labs/zksync-2-contracts/blob/7b5c094a57c0606785ea38c9c752f9def9a5ed9d/ethereum/contracts/vendor/AddressAliasHelper.sol#L28
 
 3. Call the [`l2TransactionBaseCost`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L129) function, passing the gas price and gas limit from previous steps. This function returns the base cost required to send a transaction.
 
     - You also need to pass the constant representing how much gas is required to publish a byte of data from L1 to L2. 
     
-        For example, in the JavaScript API, we provide [`REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT`](../../api/js/utils.md#gas). ??this is JS, can I say there is equivalent??
+        For example, in the JavaScript API, we provide [`REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT`](../../api/js/utils.md#gas). ??this is JS, can I say there is equivalent, just in JS, removing soon??
 
 Once you have all of the above, you can send a transaction with the [`requestL2Transaction`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L119) function, passing the gas limit returned at step 2, along with the gas price and base cost from steps 1 and 3.
 
-For a more detailed explanation on estimating gas with coded examples, see the [how to send a transaction from L1 to L2](../how-to/send-transaction-l1-l2.md) documentation.
+For a more detailed explanation on estimating gas, with code examples, find out [how to send a transaction from L1 to L2](../how-to/send-transaction-l1-l2.md).
 
 
 ## L2 to L2
 
-Gas estimation for L2 to L2 transactions on zkSyncEra works in the same way as in Ethereum.
+Gas estimation for L2 to L2 transactions on zkSyncEra works in the same way as it does in Ethereum.
 
-Supply the same call data as for a L1 to L2 transaction, and use the Ethereum `eth_estimateGas` method.
-
-??is this only sent to a layer 2 node, or layer1 also??
+Supply the same call data for a L1 to L2 transaction, and use the Ethereum `eth_estimateGas` method, and send to a layer 2 node.
 
 :::info More info
 For more information and live testing, check out the [Ethereum JSON RPC docs](https://ethereum.github.io/execution-apis/api-documentation/).
