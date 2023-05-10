@@ -69,12 +69,13 @@ import { Provider } from "zksync-web3";
 
 const provider = new Provider("https://testnet.era.zksync.dev");
 
-const USDC_L2_ADDRESS = "<YOUR_USDC_L2_ADDRESS>";
-// Getting  USDC balance of account 0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5 at the latest processed block
-console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5", "latest", USDC_L2_ADDRESS));
+//Find the USDC ADDRESS in https://zksync2-testnet.zkscan.io/address/0x0faF6df7054946141266420b43783387A78d82A9/transactions
+const USDC_L2_ADDRESS = "<USDC_L2_ADDRESS>";
+// Getting the USDC balance your account using your address. You can get your address from https://zksync2-testnet.zkscan.io/txs
+console.log(await provider.getBalance("<YOUR_ADDRESS>", "latest", USDC_L2_ADDRESS));
 
 // Getting ETH balance
-console.log(await provider.getBalance("0x0614BB23D91625E60c24AAD6a2E6e2c03461ebC5"));
+console.log(await provider.getBalance("<YOUR_ADDRESS>"));
 ```
 
 ### `getConfirmedTokens`
