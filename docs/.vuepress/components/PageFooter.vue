@@ -7,7 +7,7 @@
                     <div class="footer-col">
                         <h4>Learn</h4>
                         <ul>
-                            <li><a href="https://zksync.io/ethos">Ethos & values</a></li>
+                            <li><a href="https://zksync.io/ethos">Freedom</a></li>
                             <li><a href="https://zksync.io/hyperscalability">Hyperscalability</a></li>
                             <li><a href="https://zksync.io/security">Security</a></li>
                             <li><a href="https://zksync.io/ux">UX</a></li>
