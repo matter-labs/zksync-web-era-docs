@@ -3,37 +3,42 @@
             <span id="doc-version" style="display: none;">{{ docVersion }}</span>
             <div class="container">
                 <div class="row">
+                    
                     <div class="footer-col">
-                        <h4>Matterlabs</h4>
+                        <h4>Learn</h4>
                         <ul>
-                            <li><a href="https://portal.zksync.io/bridge">Bridge</a></li>
-                            <li><a href="https://explorer.zksync.io/">Explorer</a></li>
+                            <li><a href="https://zksync.io/ethos">Ethos & Values</a></li>
+                            <li><a href="https://zksync.io/hyperscalability">Hyperscalability</a></li>
+                            <li><a href="https://zksync.io/security">Security</a></li>
+                            <li><a href="https://zksync.io/ux">UX</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Era Network</h4>
+                        <ul>
+                            <li><a href="https://bridge.zksync.io/">Bridge</a></li>
                             <li><a href="https://ecosystem.zksync.io/">Ecosystem</a></li>
-                            <li><a href="https://jobs.eu.lever.co/matterlabs">Career</a></li>
+                            <li><a href="https://portal.zksync.io/">Wallet Portal</a></li>
+                            <li><a href="https://explorer.zksync.io/">Block Explorer</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4>Community</h4>
                         <ul>
                             <li><a href="https://join.zksync.dev/">Discord</a></li>
-                            <li><a href="https://t.me/zksync_support">Telegram</a></li>
-                            <li><a href="#">Stack Overflow</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Socials</h4>
-                        <ul>
                             <li><a href="https://twitter.com/zksync">Twitter</a></li>
-                            <li><a href="https://www.youtube.com/@zkSync-era">Youtube</a></li>
-                            <li><a href="https://www.linkedin.com/company/matterlabs">LinkedIn</a></li>
+                            <li><a href="https://blog.matter-labs.io/">Blog</a></li>
+                            <li><a href="https://t.me/zksync_support">Telegram</a></li>
+                            <li><a href="https://github.com/matter-labs/">Github</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h4>Legal</h4>
+                        <h4>General</h4>
                         <ul>
-                            <li><a href="#">Privacy</a></li>
-                            <li><a href="#">Terms</a></li>
-                            <li><a href="#">Cookie Policy</a></li>
+                            <li><a href="https://jobs.eu.lever.co/matterlabs">Career</a></li>
+                            <li><a href="https://era.zksync.io/docs/contact.html#events-and-press">Event and press</a></li>
+                            <li><a href="https://docs.zksync.io/legal/terms/">Terms of service</a></li>
+                            <li><a href="https://docs.zksync.io/legal/privacy/">Privacy policy</a></li>
                         </ul>
                     </div>
                 </div>
