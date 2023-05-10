@@ -12,7 +12,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 ## Step-by-step without gas estimation
 
-TODO:
+TODO: xx
 
 ### Transaction parameters
 
