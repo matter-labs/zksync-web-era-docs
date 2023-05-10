@@ -12,6 +12,8 @@ Estimating gas is a requirement for the following use cases:
 
 To estimate gas for L1 to L1 transactions, use the Ethereum `eth_estimateGas` method.
 
+??is this only sent to a layer 1 node, or zkSync also??
+
 :::info More info
 For more information and live testing, check out the [Ethereum JSON RPC docs](https://ethereum.github.io/execution-apis/api-documentation/).
 :::
@@ -44,6 +46,8 @@ For a more detailed explanation on estimating gas with coded examples, see the [
 Gas estimation for L2 to L2 transactions on zkSyncEra works in the same way as in Ethereum.
 
 Supply the same call data as for a L1 to L2 transaction, and use the Ethereum `eth_estimateGas` method.
+
+??is this only sent to a layer 2 node, or layer1 also??
 
 :::info More info
 For more information and live testing, check out the [Ethereum JSON RPC docs](https://ethereum.github.io/execution-apis/api-documentation/).
