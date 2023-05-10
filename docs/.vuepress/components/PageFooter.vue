@@ -36,7 +36,7 @@
                         <h4>General</h4>
                         <ul>
                             <li><a href="https://jobs.eu.lever.co/matterlabs">Career</a></li>
-                            <li><a href="https://era.zksync.io/docs/contact.html#events-and-press">Event and press</a></li>
+                            <li><a href="https://era.zksync.io/docs/contact.html">Contact us</a></li>
                             <li><a href="https://docs.zksync.io/legal/terms/">Terms of service</a></li>
                             <li><a href="https://docs.zksync.io/legal/privacy/">Privacy policy</a></li>
                         </ul>
