@@ -43,9 +43,11 @@ For a more detailed explanation on estimating gas with coded examples, see the [
 
 Gas estimation for L2 to L2 transactions on zkSyncEra works in the same way as in Ethereum.
 
-Supply the same call data as for a L1 to L2 transaction, and use the Ethereum `eth_estimateGas` method or the `zks_??` method.
+Supply the same call data as for a L1 to L2 transaction, and use the Ethereum `eth_estimateGas` method.
 
-?? // can you add some code here please
+:::info More info
+For more information and live testing, check out the [Ethereum JSON RPC docs](https://ethereum.github.io/execution-apis/api-documentation/).
+:::
 
 ## L2 to L1
 
