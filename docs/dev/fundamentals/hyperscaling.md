@@ -3,9 +3,7 @@
 Blockchain systems achieve incorruptible fairness by relying on the cornerstone principle “don’t trust, verify”. At the same time, for blockchains to remain decentralized, resource requirements for running the verifier nodes must be kept relatively low. Connecting these two ideas brings us to the widely accepted definition of scalability:
 
 :::tip
-
 Scaling = processing more transactions without degradation of security and decentralization.
-
 :::
 
 Scalability can be improved in a number of ways, from increasing the efficiency of the verifier to introducing probabilistic trust assumptions (what optimistic rollups do). Most of these approaches offer a linear scalability boost, but one method stands out: succinct zero-knowledge proofs (ZKPs). They always incur roughly O(1) verification costs regardless of the number of transactions processed. This means that ZKP-based scaling — i.e. [validiums and (under certain conditions) zkRollups](https://twitter.com/vitalikbuterin/status/1267455602764251138) — can be hyper-scalable:
@@ -18,7 +16,7 @@ Scalability can be improved in a number of ways, from increasing the efficiency 
 
 In other words, hyperscalability means breaking out of the blockchain trilemma:
 
-![Hyper-scalability!](../../assets/images/image1.png "Hyper-scalability")
+![Hyper-scalability!](../../assets/images/hyperscaling1.png "Hyper-scalability")
 
 Theoretically, given enough hardware, it is possible to aggregate arbitrarily large blocks of transactions and produce a single succinct ZKP (more precisely: proof of computational integrity) for each such block. In practice, however, no single monolithic blockchain system will be able to meet infinite market demand. Here are some reasons why:
 
@@ -30,7 +28,7 @@ Theoretically, given enough hardware, it is possible to aggregate arbitrarily la
 Luckily, ZKPs offer a beautiful way to build a heterogeneous yet simultaneously a hyper-scalable blockchain system. This idea is known as [Fractal scaling](https://medium.com/starkware/fractal-scaling-from-l2-to-l3-7fe238ecfb4f). 
 Many different ZKP chains (in the zkSync world we call them Hyperchains) are run in parallel and get their block proofs aggregated into a single final block that will be settled on L1. Each of the Hyperchains will resemble the entire system (i.e. it can have an infinite number of other Hyperchains on top of it: L3, L4, and so on).
 
-![Hyperchains!](../../assets/images/image5.png "Hyperchains")
+![Hyperchains!](../../assets/images/hyperscaling5.png "Hyperchains")
 
 Fractal scaling is necessary but not sufficient to achieve hyperscaling. You need one additional component:
 
@@ -49,11 +47,11 @@ To achieve zero cost overhead on the underlying chains, each Hyperchain must:
 
 **Fractal scaling**
 
-![Fractal scaling!](../../assets/images/image4.png "Fractal scaling")
+![Fractal scaling!](../../assets/images/hyperscaling4.png "Fractal scaling")
 
 **Hyperscaling**
 
-![Hyperscaling!](../../assets/images/image2.png "Hyperscaling")
+![Hyperscaling!](../../assets/images/hyperscaling2.png "Hyperscaling")
 
 
 
@@ -116,7 +114,7 @@ Synchronicity is important as it enables atomic transactions between partitions,
 
 One prominent example of this is a combination of [zkRollup + zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf) (which will be part of the zkSync Basechain):
 
-![Logical state partitions!](../../assets/images/image3.png "Logical state partitions")
+![Logical state partitions!](../../assets/images/hyperscaling3.png "Logical state partitions")
 
 <!-- ### MEV protection
 

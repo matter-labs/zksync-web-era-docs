@@ -180,7 +180,7 @@ import { Wallet, Provider, Contract } from "zksync-web3";
 import * as hre from "hardhat";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-const RICH_WALLET_PK = "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110";
+const RICH_WALLET_PK = "<RICH_WALLET_PK>";
 
 async function deployGreeter(deployer: Deployer): Promise<Contract> {
   const artifact = await deployer.loadArtifact("Greeter");
@@ -223,4 +223,4 @@ The full example with tests can be found [here](https://github.com/matter-labs/t
 
 ## Chai Matchers
 
-The zkSync Era team provides the [hardhat-zksync-chai-matchers](./hardhat-zksync-chai-matchers) plugin to make it easier to write and maintain tests for your projects, in addition to offering a local testing environment. This plugin includes a set of Chai matchers specifically designed for use with zkSync Era, which can help you write more comprehensive and understandable tests for your contracts. By using these matchers, you can ensure that your contracts are working as intended and reduce the likelihood of encountering bugs or other issues during development.
+The zkSync Era team provides the [hardhat-zksync-chai-matchers](./hardhat-zksync-chai-matchers.md) plugin to make it easier to write and maintain tests for your projects, in addition to offering a local testing environment. This plugin includes a set of Chai matchers specifically designed for use with zkSync Era, which can help you write more comprehensive and understandable tests for your contracts. By using these matchers, you can ensure that your contracts are working as intended and reduce the likelihood of encountering bugs or other issues during development.
