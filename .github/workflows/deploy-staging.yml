@@ -13,7 +13,7 @@ jobs:
     if: ${{ github.event.repository.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+      - uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
         with:
           ref: "${{ github.event.inputs.ref }}"
       - name: "Enable yarn cache"
