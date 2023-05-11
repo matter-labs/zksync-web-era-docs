@@ -55,7 +55,7 @@ _Users should only interact with the token bridge contracts via [zkSync Bridge](
 | AllowList                   | [0xCbA757b4f0527b535bE80720325064058FC4A306](https://goerli.etherscan.io/address/0xCbA757b4f0527b535bE80720325064058FC4A306#code)|
 | L2TestnetPaymaster            | [0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63](https://goerli.explorer.zksync.io/address/0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63#contract)|
 
-### Testnet token bridge contracts addresses
+### Testnet token bridge, contract addresses
 
 These are the addresses that have been deployed and integrated with the token bridge on testnet.
 
