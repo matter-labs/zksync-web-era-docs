@@ -7,36 +7,36 @@
                     <div class="footer-col">
                         <h4>Learn</h4>
                         <ul>
-                            <li><a href="https://zksync.io/ethos">Freedom</a></li>
-                            <li><a href="https://zksync.io/hyperscalability">Hyperscalability</a></li>
-                            <li><a href="https://zksync.io/security">Security</a></li>
-                            <li><a href="https://zksync.io/ux">UX</a></li>
+                            <li><a target="_blank" href="https://zksync.io/ethos">Freedom</a></li>
+                            <li><a target="_blank" href="https://zksync.io/hyperscalability">Hyperscalability</a></li>
+                            <li><a target="_blank" href="https://zksync.io/security">Security</a></li>
+                            <li><a target="_blank" href="https://zksync.io/ux">UX</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4>Era Network</h4>
                         <ul>
-                            <li><a href="https://bridge.zksync.io/">Bridge</a></li>
-                            <li><a href="https://ecosystem.zksync.io/">Ecosystem</a></li>
-                            <li><a href="https://portal.zksync.io/">Wallet portal</a></li>
-                            <li><a href="https://explorer.zksync.io/">Block explorer</a></li>
+                            <li><a target="_blank" href="https://bridge.zksync.io/">Bridge</a></li>
+                            <li><a target="_blank" href="https://ecosystem.zksync.io/">Ecosystem</a></li>
+                            <li><a target="_blank" href="https://portal.zksync.io/">Wallet portal</a></li>
+                            <li><a target="_blank" href="https://explorer.zksync.io/">Block explorer</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4>Community</h4>
                         <ul>
-                            <li><a href="https://join.zksync.dev/">Discord</a></li>
-                            <li><a href="https://twitter.com/zksync">Twitter</a></li>
-                            <li><a href="https://blog.matter-labs.io/">Blog</a></li>
-                            <li><a href="https://t.me/zksync">Telegram</a></li>
-                            <li><a href="https://github.com/matter-labs/">Github</a></li>
+                            <li><a target="_blank" href="https://join.zksync.dev/">Discord</a></li>
+                            <li><a target="_blank" href="https://twitter.com/zksync">Twitter</a></li>
+                            <li><a target="_blank" href="https://blog.matter-labs.io/">Blog</a></li>
+                            <li><a target="_blank" href="https://t.me/zksync">Telegram</a></li>
+                            <li><a target="_blank" href="https://github.com/matter-labs/">Github</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4>General</h4>
                         <ul>
-                            <li><a href="https://jobs.eu.lever.co/matterlabs">Career</a></li>
-                            <li><a href="https://era.zksync.io/docs/contact.html">Contact us</a></li>
+                            <li><a target="_blank" href="https://jobs.eu.lever.co/matterlabs">Career</a></li>
+                            <li><a target="_blank" href="https://era.zksync.io/docs/contact.html">Contact us</a></li>
                             <!-- <li><a href="https://docs.zksync.io/legal/terms/">Terms of service</a></li>
                             <li><a href="https://docs.zksync.io/legal/privacy/">Privacy policy</a></li> -->
                         </ul>
