@@ -55,4 +55,4 @@ For more information and live testing, check out the [Ethereum JSON RPC docs](ht
 
 Gas estimation is dealt with implicitly by the SDK for L2 to L1 transactions.
 
-Find out [how to send a message from L2 to L1](../../how-to/send-message-l2-l1.md).
+Find out [how to send a message from L2 to L1](../../dev/how-to/send-message-l2-l1.md).

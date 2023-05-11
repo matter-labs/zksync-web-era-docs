@@ -2,6 +2,32 @@
 
 While most of the execution is L2-based, there are use cases, including the system's censorship resistance, that require interoperability between L1 and L2. For example, [bridging assets from L1 to L2](../bridging/bridging-asset.md).
 
+## L1 -> L2 communication
+
+This section describes the interface for interaction with zkSync from L1. It assumes that you are already familiar with the basic concepts of working with the priority queue. If you are new to this topic, you can read the conceptual introduction [here](./l1-l2-interop.md#priority-queue). If you want to dive straight into the code, then you can read the cross-chain governance [tutorial](../../tutorials/cross-chain-tutorial.md).
+
+::: warning
+- Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`.
+- For more information, read the [changelog](../../troubleshooting/changelog.md#hardhat-plugins-update-feb-24th-2023).
+:::
+
+### Structure
+
+For the most common usecase, there is "baseFee" for a transaction, which basically means the minimum amount the user has to pay to the operator for him to include this transaction. It is derived based on the `l2gasLimit` for a transaction and the gas price on L1.
+In addition, whatever fee the user pays above is called **layer2 tip** and will be used to sort the transactions by the provided L2 fee.
+
+At the moment, all the L1-> L2 transactions are served at the first-in-first-out basis, but in the future we will introduce "priority heap", which will allow for sorting the
+transactions.
+Basic costs are defined in gas and not in ETH, so the actual amount of ether that the submission of the transaction will cost depends on
+the transaction gas price. Generally the flow for calling any of these methods should be the following:
+
+1. Fetch the gas price that you will use to send the transaction.
+2. Get the base cost for the transaction.
+3. Send the transaction including the needed `value`.
+
+- Find out [how to estimate gas fees](../../how-to/estimate-gas.md) for multi-layer transactions.
+- Find out [how to send a transaction from L1 to L2](../../how-to/send-transaction-l1-l2.md) with zkSync Era.
+
 ## L1 to L2 transactions with the priority queue
 
 The goal of the priority queue is to provide a censorship-resistant way to interact with zkSync Era in case the operator becomes malicious or unavailable.
@@ -38,12 +64,8 @@ The process described above works well for a system supporting a small set of li
 
     The fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the users' transaction, while `txBaseCost` is the base cost for the transaction, which depends on its parameters (e.g. `gasLimit` for an `Execute` transaction).
 
-:::tip
-For further details and code examples, check out our [L1 to L2 docs](./l1-l2.md).
-:::
-
 ## L2 to L1 
 
 L2 to L1 communication is based on transferring the data as a message, and not on L1 transaction execution. 
 
-Find out [how to send a message from L2 to L1](../../how-to/send-message-l2-l1.md).
+- Find out [how to send a message from L2 to L1](../../how-to/send-message-l2-l1.md) with zkSync Era.

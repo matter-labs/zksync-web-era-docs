@@ -82,4 +82,4 @@ Deploying contracts on zkSync Era is also possible via L1-L2 communication.
 
 The [interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l1/contracts/zksync/interfaces/IMailbox.sol#L78) for submitting L1->L2 transactions accepts the list of all the factory dependencies required for this particular transaction. The logic for working with them is the same as for the default L2 deployments. The only difference is that since the user has already published the full preimage for the bytecodes on L1, there is no need to publish these bytecodes again on L1.
 
-To learn more about L1-L2 communication on zkSync Era, visit [this section of the docs](../../developer-guides/bridging/l1-l2.md).
+To learn more about L1-L2 communication on zkSync Era, visit [this section of the docs](../../developer-guides/bridging/l1-l2-interop.md).
