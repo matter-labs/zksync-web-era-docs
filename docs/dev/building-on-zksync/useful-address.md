@@ -4,7 +4,6 @@ Here are some contract addresses that may be useful and/or of interest to those 
 
 ## Mainnet contract addresses
 
-These are the list of mainnet contract addresses that deployed on zkSync Era network.
 
 |      Contract                 | Address                                                            | 
 | ----------------------------- | -------------------------------------------------------------------|
