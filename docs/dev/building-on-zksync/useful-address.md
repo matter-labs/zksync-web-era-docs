@@ -40,7 +40,6 @@ _Users should only interact with the token bridge contracts via [zkSync Bridge](
 
 ## Testnet contract addresses
 
-These are the list of testnet contract addresses that deployed on zkSync Era network.
 
 |      Contract                 | Address                                                                                                                          | 
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------|
