@@ -2,6 +2,8 @@
 
 This plugin is used to provide a convenient interface for compiling Solidity smart contracts before deploying them to zkSync Era.
 
+[Changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-solc/CHANGELOG.md)
+
 ## Installation
 
 [@matterlabs/hardhat-zksync-solc](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-solc)
