@@ -1,14 +1,32 @@
-# Send a message L2 to L1 
+# Send an L2 to L1 message
 
-Unlike L1 to L2 communication, it is impossible to directly initialize transactions from L2 to L1. Instead, send an arbitrary-length message from zkSync to Ethereum, and then handle the received message with an L1 smart contract.
+It is impossible to send transactions directly from L2 to L1. 
 
-Verification and confirmation is possible with Ethereum data. However, zkSync Era provides a request proof method to do the same.
+Instead, you can send arbitrary-length messages from zkSync Era to Ethereum, and then handle the received message on L1 with an L1 smart contract.
+
+:::warning What is a message?
+- A message is like an event on Ethereum. 
+- The difference is that a message publishes data on L1. 
+- Its [Solidity representation](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/Storage.sol#L58):
+    ```solidity
+    struct L2Message {
+            address sender;
+            bytes data;
+            uint256 txNumberInblock;
+    }
+    ```
+:::
+
+:::tip Verification
+- Verification and confirmation is possible using Ethereum data. 
+- However, zkSync Era has an efficient [request proof function](#prove-the-result) which does the same.
+:::
 
 ## Common use cases
 
 Along with zkSync Era's built-in censorship resistance that requires multi-layer interoperability, there are some common use cases that need L2 to L1 transaction functionality, such as:
 
-- An L2 transaction uses a bridge to transfer funds. The tokens are removed from L2, and a message is sent to L1 saying the tokens were burned. On L1, the block containing the message is proved, and the bridge counterpart verifies that the token was indeed present in a certain block on L2 and supplies the funds.
+- Transferring funds from L2 to L1.
 - MORE??
 
 ## Send a message
@@ -16,7 +34,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 Two transactions are required: 
 
 - An L2 transaction which sends a message of arbitrary length.
-- An L1 read implemented by a getter function on an L1 smart contract. 
+- An L1 read; implemented by a getter function on an L1 smart contract. 
 
 1. Import the zkSync Era library or contract containing the required functionality. 
 
@@ -26,29 +44,15 @@ Two transactions are required:
 
 4. Use the [`sendToL1`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L5) function from the `IL1Messenger.sol` interface, passing the message as a raw bytes array.
 
-Each sent message emits an `L1MessageSent` event.
+Each sent message emits an [`L1MessageSent`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L8) event.
 
 ```solidity
+event L1MessageSent(address indexed _sender, bytes32 indexed _hash, bytes _message);
+
 function sendToL1(bytes memory _message) external returns (bytes32);
 ```
 
 4.1 The return value from `sendToL1` is the `keccak256` hash of the message bytes.
-
-```json
-// output example ??
-```
-
-:::warning What is a message?
-- A message functions like an event on Ethereum. The difference is that a message publishes data on L1. 
-- Its Solidity representation:
-    ```solidity
-    struct L2Message {
-            address sender;
-            bytes data;
-            uint256 txNumberInblock;
-    }
-    ```
-:::
 
 ## Prove the result
 
@@ -66,26 +70,40 @@ function proveL2MessageInclusion(
 ```
 
 :::tip Parameter details
-- `_blockNumber`: the L1 batch number in which the L2 block was included; retrievable using the `getBlock` method.
-- `_index`: the index of the L2 log in the block; returned as `id` by the [`zks_getL2ToL1LogProof`](../../api/api.md#zks_getl2tol1logproof) method.
-`_message`: a parameter that contains the full information of the message sent. It should be an object containing:
-    - `sender`: the address that sent the message from L2.
-    - `data`: the message sent in bytes.
-- `txNumberInBlock`: the index of the transaction in the L2 block, which is returned as transactionIndex using getTransaction
-- `_proof` is a parameter that contains the Merkle proof of the message inclusion. It can be retrieved either from observing Ethereum or received from the zks_getL2ToL1LogProof method of the zksync-web3 API.
+- `_blockNumber`: L1 batch number in which the L2 block was included; retrievable using the `getBlock` method.
+- `_index`: Index of the L2 log in the block; returned as `id` by the [`zks_getL2ToL1LogProof`](../../api/api.md#zks_getl2tol1logproof) method.
+`_message`: Parameter holding the message data. It should be an object containing:
+    - `sender`: Address that sent the message from L2.
+    - `data`: Message sent in bytes.
+- `txNumberInBlock`: Index of the transaction in the L2 block; returned as `transactionIndex` using `getTransaction`??
+- `_proof`: Merkle proof of the message inclusion; retrieved by observing Ethereum or using the `zks_getL2ToL1LogProof` method of the zksync-web3 API.
 :::
-
-2. The return value from `proveL2MessageInclusion` is `true` or `false`.
-
-```json
-// output example ??
-```
 
 ## Example
 
 ::: code-tabs
-@tab Solidity
+@tab Solidity 1
 ```solidity
+// The Example contract below sends its address to L1 via the Messenger system contract.
+//SPDX-License-Identifier: Unlicense
+pragma solidity ^0.8.0;
+
+// Importing interfaces and addresses of the system contracts
+import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
+
+contract Example {
+    function sendMessageToL1() external returns(bytes32 messageHash) {
+        // Construct the message directly on the contract
+        bytes memory message = abi.encode(address(this));
+
+        messageHash = L1_MESSENGER_CONTRACT.sendToL1(message);
+    }
+}
+```
+@tab Solidity 2
+```solidity
+// This contract receives the information related to the transaction sent to the L2 messenger contract.
+// It then proves that the message was included in an L2 block.
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
@@ -93,14 +111,6 @@ pragma solidity ^0.8.0;
 import "@matterlabs/zksync-contracts/l1/contracts/zksync/interfaces/IZkSync.sol";
 
 contract Example {
-
-    function sendMessageToL1() external returns(bytes32 messageHash) {
-        // Construct the message directly on the contract
-        bytes memory message = abi.encode(address(this));
-
-        messageHash = L1_MESSENGER_CONTRACT.sendToL1(message);
-    }
-
   // NOTE: The zkSync contract implements only the functionality for proving that a message belongs to a block
   // but does not guarantee that such a proof was used only once. That's why a contract that uses L2 -> L1
   // communication must take care of the double handling of the message.
@@ -110,6 +120,7 @@ contract Example {
 
   function consumeMessageFromL2(
     // The address of the zkSync smart contract.
+    // It is not recommended to hardcode it during the alpha testnet as regenesis may happen.
     address _zkSyncAddress,
     // zkSync block number in which the message was sent
     uint256 _l2BlockNumber,
@@ -144,6 +155,7 @@ contract Example {
 ```
 @tab JavaScript
 ```js
+// The following script sends a message from L2 to L1, retrieves the message proof, and validates that the message received in L1 came from an L2 block.
 import * as ethers from "ethers";
 import { Provider, utils, Wallet } from "zksync-web3";
 const TEST_PRIVATE_KEY = "<YOUR_PRIVATE_KEY>";
@@ -245,10 +257,30 @@ try {
 ```
 :::
 
-### Result
+### Example output
 
-The return value is the `keccak256` hash of the message bytes.??
-
-```json
-// output example ??
+```sh
+Sending message to L1 with text Some L2->L1 message
+L2 trx hash is  0xb6816e16906788ea5867bf868693aa4e7a46b68ccd2091be345e286a984cb39b
+Waiting for transaction to finalize...
+Getting L2 message proof for block 5382192
+Proof is:  {
+  id: 14,
+  proof: [
+    '0xd92e806d774b16f21a00230a5ee93555dde30138daf8dbbc8c225ad4aa670edd',
+    '0xf970801623a03cf02838550dcca2ecf575ace6ae824e5a3339426e69a582c2d8',
+    '0x389719c677f61f2681950c2136df476e78e74016268806986d4f0599e8055a4b',
+    '0xb1bde90366b509799bd535f03da87f4c2b68e305bfb5166e694809c4caf0df69',
+    '0x94b863aefb6546c8465f7700ec701f6b97ddf71a165a6d1e1ce1dc3c41db2534',
+    '0x1798a1fd9c8fbb818c98cff190daa7cc10b6e5ac9716b4a2649f7c2ebcef2272',
+    '0x66d7c5983afe44cf15ea8cf565b34c6c31ff0cb4dd744524f7842b942d08770d',
+    '0xb04e5ee349086985f74b73971ce9dfe76bbed95c84906c5dffd96504e1e5396c',
+    '0xac506ecb5465659b3a927143f6d724f91d8d9c4bdb2463aee111d9aa869874db'
+  ],
+  root: '0xbc872eb80a7d5d35dd16283c1b1a768b1e1c36404000edaaa04868c7d6a5907c'
+}
+L1 Index for Tx in block :>>  32
+L1 Batch for block :>>  77512
+Retrieving proof for batch 77512, transaction index 32 and proof id 14
+Result is :>>  true
 ```

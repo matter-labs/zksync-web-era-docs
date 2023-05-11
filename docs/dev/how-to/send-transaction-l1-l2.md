@@ -59,6 +59,8 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 ### Example code
 
+TODO:
+
 ## Step-by-step with gas estimation
 
 1. Import the zkSync Era library or contract containing the required functionality. 
@@ -268,6 +270,8 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
     :::
 
 ### Example code
+
+TOCHECK::
 
 ::: code-tabs
 @tab Solidity
