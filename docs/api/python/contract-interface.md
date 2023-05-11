@@ -1,10 +1,5 @@
 # Contract interfaces
 
-:::warning
-* We are currently updating the Python SDK and you may encounter errors when trying things out.
-* Apologies for the inconvenience, we will update the documentation in due course.
-:::
-
 There is a set of system contract that helps with the interaction with zkSync Era network.<br>
 The following are the contracts:
 
