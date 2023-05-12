@@ -142,4 +142,4 @@ const verificationId = await hre.run("verify:verify", {
 This task returns a verification id if the request was successfully sent.<br/>
 You can use this id to check the status of your verification request as described in the section above.
 
-If the request was NOT sent successfully, the return value will be `-1`.
+If the request was NOT successful, the return value is `-1`.
