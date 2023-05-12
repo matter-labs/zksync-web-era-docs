@@ -7,8 +7,8 @@ The [zkSync Era smart contracts](https://github.com/matter-labs/zksync-2-contrac
 Along with zkSync Era's built-in censorship resistance that requires multi-layer interoperability, there are some common use cases that need L1 to L2 transaction functionality, such as:
 
 - Custom bridges.
-- Smart contracts on one layer that govern smart contracts on another layer.
-- Amongst others.
+- Multi-layer governing smart contracts.
+- And more.
 
 ## Step-by-step without gas estimation
 
@@ -27,9 +27,9 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 2. Send the transaction by calling the [`requestExecute`](https://github.com/matter-labs/zksync-2-dev/blob/e25e6c3909dc41e71d9f377a2aeef9ddb8f4987f/sdk/zksync-web3.js/src/adapters.ts#L553) method and passing the `contractAddress` and `calldata` as a minimum. 
 
-:::tip 
-- The system takes care of gas estimation implicitly when not providing gas estimation parameters.
-:::
+    :::tip 
+    - The system takes care of gas estimation implicitly when not providing gas estimation parameters.
+    :::
 
     ::: code-tabs
     @tab TypeScript
@@ -54,7 +54,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
     :::info 
     - The `calldata` format is a bytestream containing the contract address and the method call data. 
     - The contract ABI is required to set up the calldata for sending.
-    - See the [governance tutorial implementation](../tutorials/cross-chain-tutorial.md#call-l2-contract-from-l1) for further clarification.
+    - See the [cross chain governance tutorial implementation](../tutorials/cross-chain-tutorial.md#call-l2-contract-from-l1) for further clarification.
     :::
 
 ### Example code
