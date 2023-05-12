@@ -8,15 +8,15 @@ jobs:
     outputs:
       output_urls: "${{ steps.preview_deploy.outputs.urls }}"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
 
       - name: "Enable yarn cache"
-        uses: c-hive/gha-yarn-cache@v2  # using cache
+        uses: c-hive/gha-yarn-cache@d528cd63c28aed0a9f44b1cada95050d7aa95c2e # v2  # using cache
 
       - name: "Setup node@14"
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@7c12f8017d5436eb855f1ed4399f037a36fbd9e8 # v2
         with:
-          node-version: 14
+          node-version: 16
 
       - name: "Install dependencies"
         run: |
