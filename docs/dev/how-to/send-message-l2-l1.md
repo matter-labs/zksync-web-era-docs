@@ -2,7 +2,7 @@
 
 It is impossible to send transactions directly from L2 to L1. 
 
-Instead, you can send arbitrary-length messages from zkSync Era to Ethereum, and then handle the received message on L1 with an L1 smart contract.
+Instead, you can send arbitrary-length messages from zkSync Era to Ethereum, and then handle the received message on Ethereum with an L1 smart contract.
 
 :::warning What is a message?
 - A message is like an event on Ethereum. 
@@ -27,7 +27,8 @@ Instead, you can send arbitrary-length messages from zkSync Era to Ethereum, and
 Along with zkSync Era's built-in censorship resistance that requires multi-layer interoperability, there are some common use cases that need L2 to L1 transaction functionality, such as:
 
 - Transferring funds from L2 to L1.
-- MORE??
+- Bridging.
+- ??MORE
 
 ## Send a message
 
@@ -42,7 +43,7 @@ Two transactions are required:
 
 3. Transform the request into a raw bytes array.
 
-4. Use the [`sendToL1`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L5) function from the `IL1Messenger.sol` interface, passing the message as a raw bytes array.
+4. Use the [`sendToL1`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L5) function from the [`IL1Messenger.sol`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L4) interface, passing the message as a raw bytes array.
 
 Each sent message emits an [`L1MessageSent`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L8) event.
 
