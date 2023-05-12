@@ -311,15 +311,19 @@ No actions are required from your side as all the calls to the precompiles are d
 
 ### Use the proxy pattern at the early stage of the protocol
 
-zkSync Era is based on the special zk-friendly VM. That’s why we provide our compiler that compiles standard Solidity
-code to the zkEVM bytecode.
+zkSync Era is based on the special, zk-friendly VM. That’s why we provide our compiler that compiles standard Solidity
+code to zkEVM bytecode.
 
-While we have extensive test coverage to ensure EVM compatibility, some issues may still be found after the mainnet release.
+While we have extensive test coverage to ensure EVM compatibility, issues may still appear after mainnet release.
 We will implement the patches for these in a timely manner.
 
-In order to apply a fix of a compiler bug, you need to upgrade your smart contract. That’s why we advise using the
+In order to apply compiler bug fix, you need to upgrade your smart contract. We advise using the
 Proxy pattern for a few months after your first deployment on zkSync Era, even if you plan to migrate to the immutable
-contract later on (which can done by migrating the governance to 0 address in the future).
+contract in the future.
+
+:::tip zkSync Upgradeable plugin
+- The [zkSync Upgradeable plugin](https://era.zksync.io/docs/api/hardhat/hardhat-zksync-upgradable.html) is now available to help you create proxies.
+:::
 
 ### Do not rely on EVM gas logic
 
