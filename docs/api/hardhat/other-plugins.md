@@ -1,4 +1,4 @@
-# Other plugins
+# Community plugins
 
 The following plugins were created by the community and tested on zkSync Era. Feel free to suggest new plugins by [creating a PR for this page](https://github.com/matter-labs/zksync-web-v2-docs/edit/main/docs/api/hardhat/other-plugins.md).
 
