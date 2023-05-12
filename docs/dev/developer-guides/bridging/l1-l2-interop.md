@@ -17,11 +17,6 @@ L1 to L2 communication is governed by the [`IZkSync.sol`](https://github.com/mat
 - If you prefer to learn-by-doing, the [cross chain governance tutorial](../../tutorials/cross-chain-tutorial.md) is a practical example of layer interoperability.
 :::
 
-::: warning ??
-- Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`.
-- For more information, read the [changelog](../../troubleshooting/changelog.md#hardhat-plugins-update-feb-24th-2023).
-:::
-
 ### Gas estimation
 
 The system processes gas estimation for transactions implicitly. However, it is also possible to implement the gas estimation processes explicitly.
@@ -29,56 +24,53 @@ The system processes gas estimation for transactions implicitly. However, it is 
 :::tip L1 to L2 gas estimation for transactions
 - Gas is measured in amount and not ERC20 token value so actual costs can vary.
 - The transaction process requires the current L1 gas price, transaction base cost, and transaction gas limit which defines the minimum amount of gas a transaction requires.
-- Any fee the user pays above the estimate is called a **layer2 tip** and sorts the transaction by L2 fee ??
 :::
 
 - Find out [how to estimate gas](../../how-to/estimate-gas.md) for different scenarios.
 - Find out [how to send a transaction from L1 to L2](../../how-to/send-transaction-l1-l2.md) with zkSync Era.
 
-## L2 to L1 
-
-L2 to L1 communication is based on transferring the data as a message, and not on L1 transaction execution. 
-
-- Find out [how to send a message from L2 to L1](../../how-to/send-message-l2-l1.md) with zkSync Era.
-
-## Priority queue
-
-??Does the PQ work for both directions??
+### Priority queue
 
 The priority queue provides a censorship-resistant way to interact with zkSync Era in case the operator becomes malicious or unavailable.
 
 The priority queue functions in a similar way it did in the previous version of zkSync. For the full picture, we explain the priority queue on zkSync Lite before detailing the new design in zkSync Era.
 
-### How it worked in zkSync Lite
+#### How it worked in zkSync Lite
 
 In the previous version, we only had two operations that could be sent to zkSync Era from L1:
 
-- [`Deposit`](??) to bridge funds from Ethereum to zkSync.
-- [`FullExit`](??) to bridge funds back to Ethereum.
+- `Deposit` to bridge funds from Ethereum to zkSync.
+- `FullExit` to bridge funds back to Ethereum.
 
 If users wanted to deposit or withdraw funds, they had to send a transaction request to the smart contract. The request was appended to the priority queue. The queue had the following rules:
 
-1. All transactions are processed sequentially, ie FIFO??.
+1. All transactions were processed sequentially, i.e. FIFO.
 2. Each priority operation had to be processed by the operator within `X` days from submission to the contract.
 
 The first rule was strictly enforced by the smart contract. 
 
 The second rule could be violated if the operator became malicious or unavailable. If that happened, the system entered **exodus mode**, where no new blocks were processed and users could withdraw their funds without operator interference.
 
-### How it works in zkSync Era
+#### How it works in zkSync Era
 
 The previous design was sufficient for a system supporting only deposit and full exit operations. 
 
-However, zkSync Era supports general smart contract computation which includes more complex operations. For this reason, some of the principles had to evolve in order to preserve the stability of the network.
+However, zkSync Era supports general smart contract computation which includes complex operations. For this reason, some of the principles had to evolve in order to preserve the stability of the network.
 
 1. All transactions types are now supported by the priority queue. 
 
-    In Lite, users may have had their funds locked on an L2 smart contract, and not on their own L2 account. Now, before moving funds to L1, they can send an [`Execute`](??) transaction to the zkSync Era network which releases the funds from the smart contract so they can move them.
+    In Lite, users may have had their funds locked on an L2 smart contract, and not on their own L2 account. Now, before moving funds to L1, they can execute a transaction on the zkSync Era network which releases the funds from the smart contract so they can move them.
 
     :::info
-    The [`Withdraw`](??) function in zkSync Era replaces [`FullExit`](??) in Lite.
+    The withdraw functionality in zkSync Era replaces `FullExit` in Lite.
     :::
 
-2. The priority queue must be fully censorship resistant to prevent malicious activity. For example, malicious users might send multiple transactions which push up the block gas limit to unworkable levels. To mitigate against this, submitting transactions to the priority queue is no longer free and users must pay a fee to the operator. 
+2. The priority queue must be fully censorship-resistant to prevent malicious activity. For example, malicious users might send multiple transactions which push up the block gas limit to unworkable levels. To mitigate against this, submitting transactions to the priority queue is no longer free and users must pay a fee to the operator. 
 
     The fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the user's transaction, while `txBaseCost` is the base cost for the transaction and depends on the transaction parameters (e.g. `gasLimit` for an `Execute` transaction).
+
+## L2 to L1 
+
+L2 to L1 communication is based on transferring the data as a message, and not on L1 transaction execution. 
+
+- Find out [how to send a message from L2 to L1](../../how-to/send-message-l2-l1.md) with zkSync Era.

@@ -475,7 +475,7 @@ async function main() {
   // Get the `Contract` object of the zkSync bridge.
   const zkSyncContract = new Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
 
-  // Encoding the L1 transaction is done in the same way as it is done on Ethereum.
+  // Encoding the L2 transaction is done in the same way as it is done on Ethereum.
   // Use an Interface which gives access to the contract functions.
   const counterInterface = new ethers.utils.Interface(COUNTER_ABI);
   const data = counterInterface.encodeFunctionData("increment", []);
@@ -520,7 +520,7 @@ main().catch((error) => {
 ```
 
 :::tip
-- Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `l2gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../developer-guides/transactions/fee-model.md).
+- Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../developer-guides/transactions/fee-model.md).
 - The fee also depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched from the L1 provider.
 :::
 

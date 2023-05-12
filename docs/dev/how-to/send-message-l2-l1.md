@@ -7,7 +7,7 @@ Instead, you can send arbitrary-length messages from zkSync Era to Ethereum, and
 :::warning What is a message?
 - A message is like an event on Ethereum. 
 - The difference is that a message publishes data on L1. 
-- Its [Solidity representation](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/Storage.sol#L58):
+- [Solidity representation](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/Storage.sol#L58):
     ```solidity
     struct L2Message {
             address sender;
@@ -26,9 +26,8 @@ Instead, you can send arbitrary-length messages from zkSync Era to Ethereum, and
 
 Along with zkSync Era's built-in censorship resistance that requires multi-layer interoperability, there are some common use cases that need L2 to L1 transaction functionality, such as:
 
-- Transferring funds from L2 to L1.
-- Bridging.
-- ??MORE
+- Bridging funds from L2 to L1.
+- Layer 2 governance ..
 
 ## Send a message
 
@@ -76,7 +75,7 @@ function proveL2MessageInclusion(
 `_message`: Parameter holding the message data. It should be an object containing:
     - `sender`: Address that sent the message from L2.
     - `data`: Message sent in bytes.
-- `txNumberInBlock`: Index of the transaction in the L2 block; returned as `transactionIndex` using `getTransaction`??
+    - `txNumberInBlock`: Index of the transaction in the L2 block; returned as `transactionIndex` with [`getTransactionReceipt`](https://docs.ethers.org/v5/single-page/#/v5/api/providers/provider/-%23-Provider-getTransactionReceipt) on an Ethers `Provider` object.
 - `_proof`: Merkle proof of the message inclusion; retrieved by observing Ethereum or using the `zks_getL2ToL1LogProof` method of the zksync-web3 API.
 :::
 
