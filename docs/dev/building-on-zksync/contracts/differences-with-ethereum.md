@@ -314,7 +314,7 @@ No actions are required from your side as all the calls to the precompiles are d
 zkSync Era is based on the zk-friendly VM. That’s why we provide our compiler that compiles standard Solidity
 code to zkEVM bytecode.
 
-While we have extensive test coverage to ensure EVM compatibility, issues may still appear after mainnet release.
+While we have extensive test coverage to ensure EVM compatibility, issues may still appear.
 We will implement the patches for these in a timely manner.
 
 In order to apply compiler bug fix, you need to upgrade your smart contract. We advise using the
