@@ -1,13 +1,13 @@
 # Getting started
 
-In this guide we will demonstrate how to:
+This guide demonstrates how to:
 
 1. Connect to the zkSync network.
 2. Deposit assets from Ethereum into zkSync.
 3. Check balances.
 4. Transfer and withdraw funds.
 5. Deploy a smart contract.
-6. Deploy a smart contract with constructor and make interaction with contract.
+6. Deploy a smart contract with constructor and interact with the contract.
 7. Deploy a smart contract with dependency.
 8. Deploy a smart contract using create2.
 9. Deploy a smart contract with dependency using create2. 
