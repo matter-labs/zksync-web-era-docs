@@ -69,15 +69,13 @@ There is a lot of confusion amongst the community with regard to the impacts of 
 zkSync is optimized to be EVM _compatible_ not EVM _equivalent_ for three primary reasons:
 
 1. Creating a generalized circuit for EVM equivalence down to the bytecode would be prohibitively expensive and time-consuming.
-2. Building on what we learned with zkSync 1.0, we were able to design a system optimised for performance and provability in ZK.
+2. Building on what we learned with zkSync 1.0, we were able to design a system optimized for performance and provability in ZK.
 3. The opcodes we’ve chosen NOT to support are deprecated by Ethereum itself, or rarely used. In the case a project needs them, modifications to work with zkSync are minimal and do not generate a need for a new security audit.
 
 Almost every smart contract written for EVM will be supported by zkSync Era and will hold all key security invariants so that no additional security re-auditing will be required in most cases.
 
 ::: warning Unsupported opcodes
-
-A few opcodes are unsupported by the zkEVM. Some of them have been deprecated or their use is minor but contracts that use them need to be adapted. You can find more information about this in the [EVM compatibility section of the docs](../building-on-zksync/contracts/contract-development.md#smart-contract-development).
-
+A few opcodes are unsupported by the zkEVM. Some of them have been deprecated or their use is minor but contracts that use them need to be adapted. You can find more information about this in the [EVM compatibility section of the docs](../building-on-zksync/contracts/differences-with-ethereum.md).
 :::
 
 There are a few other distinctions, for example, gas metering will be different (as is the case for other L2s as well). Some EVM’s cryptographic precompiles (notably pairings and RSA) won’t be available in the very first release but will be implemented soon after the launch, with pairing being a priority to allow both Hyperchains and protocols like Aztec/Dark Forest to be deployed without modifications too.

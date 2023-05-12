@@ -1,0 +1,14 @@
+{
+    "schedule": [
+        "every weekend"
+    ],
+    "extends": [
+        "config:base",
+        "helpers:pinGitHubActionDigests",
+        ":semanticCommits"
+    ],
+    "enabledManagers": [
+        "github-actions"
+    ],
+    "prCreation": "immediate"
+}

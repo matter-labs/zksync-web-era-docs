@@ -33,7 +33,11 @@ To interact with the zkSync network users need to know the endpoint of the opera
 
 ```typescript
 // Currently, only one environment is supported.
-const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
+import { Wallet, Provider } from 'zksync-web3';
+
+  const provider = new Provider('https://testnet.era.zksync.dev');
+  // Private key of the account to connect
+  const wallet = new Wallet('<WALLET-PRIVATE-KEY>').connect(provider);
 ```
 
 **Note:** Currently, only `goerli` network is supported.

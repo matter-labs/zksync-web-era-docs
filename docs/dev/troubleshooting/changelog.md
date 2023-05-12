@@ -1,5 +1,24 @@
 # Changelog
 
+## zksync-upgradable and compiler (May 5th 2023)
+- First relese of `@matterlabs/hardhat-zksync-upgradable` a new package to create beacon and transparent proxy contracts. [More info here](../../api/hardhat/hardhat-zksync-upgradable.md)
+- zksolc compiler has been updated to version `1.3.10`:
+  - Multiple optimizations, security and bug fixes.
+  - Support for metadata output option.
+  - The `@matterlabs/hardhat-zksync-solc` plugin has been updated to support the latest version of the compiler and new options.
+- New release of `@matterlabs/hardhat-zksync-verify`:
+  - Fix to pass optimization options to verification backend.
+  - The `verify:verify` task now returns a verification id.
+
+### How to update your project
+
+Compiler updates:
+  - Update `zksolc` version to `1.3.10` in the `hardhat.config.ts` and update `@matterlabs/hardhat-zksync-solc` to `0.3.17`. Recompile and redeploy.
+  
+- Verify plugin:
+  - Update the package to `0.1.6` in your `package.json` file and re-install dependencies.
+
+
 ## Compilers and plugins (Apr 4th 2023)
 
 - zksolc compiler has been updated to version `1.3.8`:
