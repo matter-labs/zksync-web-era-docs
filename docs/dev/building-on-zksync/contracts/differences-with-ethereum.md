@@ -311,7 +311,7 @@ No actions are required from your side as all the calls to the precompiles are d
 
 ### Use the proxy pattern at the early stage of the protocol
 
-zkSync Era is based on the special, zk-friendly VM. That’s why we provide our compiler that compiles standard Solidity
+zkSync Era is based on the zk-friendly VM. That’s why we provide our compiler that compiles standard Solidity
 code to zkEVM bytecode.
 
 While we have extensive test coverage to ensure EVM compatibility, issues may still appear after mainnet release.
