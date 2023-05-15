@@ -2,6 +2,8 @@
 
 This plugin is used to verify contracts on the zkSync Era network.
 
+[Changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-verify/CHANGELOG.md)
+
 ## Setup
 
 The [@matterlabs/hardhat-zksync-verify](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-verify) plugin is used in conjunction with [@nomiclabs/hardhat-etherscan](https://www.npmjs.com/package/@nomiclabs/hardhat-etherscan) and it supports backward compatibility.
@@ -140,4 +142,4 @@ const verificationId = await hre.run("verify:verify", {
 This task returns a verification id if the request was successfully sent.<br/>
 You can use this id to check the status of your verification request as described in the section above.
 
-If the request was NOT sent successfully, the return value will be `-1`.
+If the request was NOT successful, the return value is `-1`.
