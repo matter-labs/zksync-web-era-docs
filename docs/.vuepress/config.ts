@@ -82,6 +82,59 @@ export default defineUserConfig({
 
       `,
     ],
+    [
+      "script",
+      {},
+      `
+        var changer = document.querySelector(".toc-wrapper");
+        var body = document.querySelector("body")
+        window.addEventListener('scroll', (event) => {
+          let scroll = this.scrollY;
+          var place = window.location.href
+          console.log('SCROLLY', scroll)
+
+          if( place == "http://localhost:8080/docs/api/api.html#zks-l1chainid") {
+            changer.style.height = "50vh"
+          }
+          else if (scroll <= 21340) {
+            changer.style.height = "70vh"
+          }
+
+          if( place == "http://localhost:8080/docs/api/js/utils.html#undol1tol2alias" || place == "http://localhost:8080/docs/api/js/utils.html#sleep") {
+            changer.style.height = "50vh"
+          }
+
+          else if (scroll <= 18560) {
+            changer.style.height = "70vh"
+          }
+          
+          if(place == "http://localhost:8080/docs/api/js/accounts.html#getting-token-balance-on-l1-1" && scroll >= 13100) {
+            changer.style.height = "50vh"
+          }
+
+          else if (scroll <= 13100) {
+            changer.style.height = "70vh"
+          }
+
+          if(place == "http://localhost:8080/docs/dev/developer-guides/aa.html#example-of-using-the-library" || place == "http://localhost:8080/docs/dev/developer-guides/aa.html#verifying-aa-signatures-within-our-sdk") {
+              changer.style.height = "50vh"
+            }
+
+          if(place == "http://localhost:8080/docs/dev/building-on-zksync/contracts/differences-with-ethereum.html#gasperpubdatabyte-should-be-taken-into-account-in-development") {
+            changer.style.height = "50vh"
+          }
+
+          if(place == "http://localhost:8080/docs/dev/troubleshooting/faq.html#proof-sampling-on-testnet") {
+            changer.style.height = "50vh"
+          }
+
+          if(place == "http://localhost:8080/docs/api/js/types.html#transactionresponse") {
+            changer.style.height = "50vh"
+          }
+          
+        }) 
+      `
+    ],
   ],
   
 
