@@ -93,14 +93,14 @@ export default defineUserConfig({
           var place = window.location.href
           console.log('SCROLLY', scroll)
 
-          if( place == "http://localhost:8080/docs/api/api.html#zks-l1chainid") {
+          if( place == "https://aqwzx-zksync-v2-docs--pr484-feat-doc-222-rs0trdzc.web.app/docs/api/api.html#zks-l1chainid") {
             changer.style.height = "50vh"
           }
           else if (scroll <= 21340) {
             changer.style.height = "70vh"
           }
 
-          if( place == "http://localhost:8080/docs/api/js/utils.html#undol1tol2alias" || place == "http://localhost:8080/docs/api/js/utils.html#sleep") {
+          if( place == "https://aqwzx-zksync-v2-docs--pr484-feat-doc-222-rs0trdzc.web.app/docs/api/js/utils.html#undol1tol2alias" || place == "https://aqwzx-zksync-v2-docs--pr484-feat-doc-222-rs0trdzc.web.app/api/js/utils.html#sleep") {
             changer.style.height = "50vh"
           }
 
@@ -108,7 +108,7 @@ export default defineUserConfig({
             changer.style.height = "70vh"
           }
           
-          if(place == "http://localhost:8080/docs/api/js/accounts.html#getting-token-balance-on-l1-1" && scroll >= 13100) {
+          if(place == "https://aqwzx-zksync-v2-docs--pr484-feat-doc-222-rs0trdzc.web.app/docs/api/js/accounts.html#getting-token-balance-on-l1-1" && scroll >= 13100) {
             changer.style.height = "50vh"
           }
 
@@ -116,19 +116,19 @@ export default defineUserConfig({
             changer.style.height = "70vh"
           }
 
-          if(place == "http://localhost:8080/docs/dev/developer-guides/aa.html#example-of-using-the-library" || place == "http://localhost:8080/docs/dev/developer-guides/aa.html#verifying-aa-signatures-within-our-sdk") {
+          if(place == "https://aqwzx-zksync-v2-docs--pr484-feat-doc-222-rs0trdzc.web.app/docs/dev/developer-guides/aa.html#example-of-using-the-library" || place == "https://aqwzx-zksync-v2-docs--pr484-feat-doc-222-rs0trdzc.web.app/dev/developer-guides/aa.html#verifying-aa-signatures-within-our-sdk") {
               changer.style.height = "50vh"
             }
 
-          if(place == "http://localhost:8080/docs/dev/building-on-zksync/contracts/differences-with-ethereum.html#gasperpubdatabyte-should-be-taken-into-account-in-development") {
+          if(place == "https://aqwzx-zksync-v2-docs--pr484-feat-doc-222-rs0trdzc.web.app/docs/dev/building-on-zksync/contracts/differences-with-ethereum.html#gasperpubdatabyte-should-be-taken-into-account-in-development") {
             changer.style.height = "50vh"
           }
 
-          if(place == "http://localhost:8080/docs/dev/troubleshooting/faq.html#proof-sampling-on-testnet") {
+          if(place == "https://aqwzx-zksync-v2-docs--pr484-feat-doc-222-rs0trdzc.web.app/docs/dev/troubleshooting/faq.html#proof-sampling-on-testnet") {
             changer.style.height = "50vh"
           }
 
-          if(place == "http://localhost:8080/docs/api/js/types.html#transactionresponse") {
+          if(place == "https://aqwzx-zksync-v2-docs--pr484-feat-doc-222-rs0trdzc.web.app/docs/api/js/types.html#transactionresponse") {
             changer.style.height = "50vh"
           }
           
