@@ -212,7 +212,7 @@ yarn
 yarn serve
 ```
 
-Navigate to `http://localhost:8081/` in a browser to see the running application.
+Navigate to `http://localhost:8080/` in a browser to see the running application.
 
 ### Connect accounts to the dApp
 
