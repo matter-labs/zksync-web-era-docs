@@ -6,7 +6,6 @@ The plugin is based on [@openzeppelin/hardhat-upgrades](https://www.npmjs.com/pa
 
 ::: info Overview
 - The hardhat-zksync-upgradable plugin supports transparent upgradable proxies and beacon proxies.
-- This plugin requires contracts to be compiled with zksolc version 1.3.7.
 :::
 
 ## Installation
@@ -44,7 +43,7 @@ import { HardhatUserConfig } from 'hardhat/config';
 
 const config: HardhatUserConfig = {
     zksolc: {
-        version: '1.3.7', // upgradable plugin currently supports zksolc 1.3.7
+        version: '1.3.10',
         compilerSource: 'binary',
         settings: {
             optimizer: {
@@ -71,10 +70,6 @@ const config: HardhatUserConfig = {
 
 export default config;
 ```
-
-::: warning Compiler version
-Currently we support smart contract upgrades compiled with zksolc version 1.3.7. 
-:::
 
 # Deploying Proxies
 
