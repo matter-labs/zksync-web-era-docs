@@ -428,3 +428,23 @@ div.hero-img {
 .newsletter-button {
     color: #1e69ff;
 }
+
+
+//Translation css
+
+.google-translate-select-dropdown__activator .google-translate-select-language {
+    visibility: hidden !important;
+    width: 30px;
+}
+
+.google-translate-select-dropdown__activator .google-translate-select-language div {
+    visibility: visible !important;
+    width: 24px;
+}
+
+.google-translate-select-dropdown__menu {
+    position: relative;
+    background-color: red !important;
+    top: 100%;
+    left: -100% !important;
+}

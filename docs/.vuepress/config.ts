@@ -2,8 +2,18 @@ import { defineUserConfig } from "vuepress";
 import docsearchPlugin from "@vuepress/plugin-docsearch";
 import theme from "./theme.js";
 import { pwaPlugin } from "vuepress-plugin-pwa2";
+import { getDirname, path } from '@vuepress/utils'
+
+const dirname = getDirname(import.meta.url);
 
 export default defineUserConfig({
+
+  alias: {
+    '@theme-hope/components/LanguageDropdown': path.resolve(
+      dirname,
+      './components/LanguageDropdown.vue',
+    ),
+  },
   dest: "dist/docs",
 
   base: "/docs/",

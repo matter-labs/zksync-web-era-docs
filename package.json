@@ -70,5 +70,8 @@
   "lint-staged": {
     "*.md": "yarn run ci:fix"
   },
-  "packageManager": "yarn@3.5.0"
+  "packageManager": "yarn@3.5.0",
+  "dependencies": {
+    "@google-translate-select/vue3": "^0.1.1"
+  }
 }
