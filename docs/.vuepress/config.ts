@@ -87,7 +87,9 @@ export default defineUserConfig({
       {},
       `
       window.addEventListener('load', function() {
-        document.querySelector(".homepage").scrollTo(0, document.body.scrollHeight)
+        if(window.location.href == "https://aqwzx-zksync-v2-docs--pr513-fix-contact-links-do-lhwk6zbb.web.app/docs/") {
+          document.querySelector(".homepage").scrollTo(0, document.body.scrollHeight)
+        }
       });
       `,
     ],
