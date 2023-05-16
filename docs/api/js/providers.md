@@ -1,22 +1,19 @@
-# Providers
+# Provider
 
-Providers are objects that wrap interactions with the zkSync node. If you are new to the concept of providers in `ethers`, you should check out their docs [here](https://docs.ethers.io/v5/api/providers).
+A Web3 Provider object provides application-layer access to blockchain networks. 
 
-zkSync fully supports Ethereum Web3 API, so you can use the provider objects from `ethers.js`. However, zkSync API provides some additional JSON-RPC methods, which allow:
+The `zksync-web3` library supports provider objects from the [`ethers.js` library](https://docs.ethers.io/v5/api/providers) and supplies additional functionality.
 
-- Easily track L1<->L2 transactions.
-- Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use-cases may require tracking "finalized" transactions only.
+The library exports two types of providers:
 
-And much more! Generally, you can use providers from `ethers` for a quick start, but switch to providers from the `zksync-web3` library later on.
+- [`Provider`](#provider): Supplies the same functionality as [`ethers.providers.JsonRpcProvider`](https://docs.ethers.org/v5/api/providers/jsonrpc-provider/#JsonRpcProvider) and extends it with zkSync-specific methods.
+- [`Web3Provider`](#web3provider): Extends the `Provider` class to make it more compatible with Web3 wallets. 
 
-The `zksync-web3` library exports two types of providers:
-
-- `Provider` which inherits from `ethers`'s `JsonRpcProvider` and provides access to all of the zkSync JSON-RPC endpoints.
-- `Web3Provider` which extends the `Provider` class by making it more compatible with Web3 wallets. *This is the type of wallet that should be used for browser integrations.*
+:::tip
+- Use the Web3Provider for browser integrations.
+:::
 
 ## `Provider`
-
-This is the most commonly used type of provider. It provides the same functionality as `ethers.providers.JsonRpcProvider`, but extends it with the zkSync-specific methods.
 
 ### `constructor`
 
