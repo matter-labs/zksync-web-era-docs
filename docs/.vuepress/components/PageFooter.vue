@@ -28,7 +28,7 @@
                             <li><a target="_blank" href="https://github.com/matter-labs/">GitHub</a></li>
                             <li><a target="_blank" href="https://join.zksync.dev/">Discord</a></li>
                             <li><a target="_blank" href="https://twitter.com/zksync">Twitter: zkSync Era</a></li>
-                            <li><a target="_blank" href="href='mailto:support@zksync.io'">Support</a></li>
+                            <li><a target="_blank" href="mailto:support@zksync.io">Support</a></li>
                             <li><a target="_blank" href="https://t.me/zksync">Telegram</a></li>
                         </ul>
                     </div>
@@ -38,8 +38,8 @@
                             <li><a target="_blank" href="https://blog.matter-labs.io/">Blog</a></li>
                             <li><a target="_blank" href="https://jobs.eu.lever.co/matterlabs">Careers</a></li>
                             <li><a target="_blank" href="https://twitter.com/the_matter_labs">Twitter: Matter Labs</a></li>
-                            <li><a target="_blank" href="href='mailto:events@matterlabs.dev'">Press</a></li>
-                            <li><a target="_blank" href="href='mailto:media@matterlabs.dev'">Events</a></li>
+                            <li><a target="_blank" href="mailto:events@matterlabs.dev">Press</a></li>
+                            <li><a target="_blank" href="mailto:media@matterlabs.dev">Events</a></li>
                         </ul>
                     </div>
                 </div>
