@@ -462,6 +462,9 @@ div.hero-img {
     width: 25%;
     padding: 0 15px;
 }
+.footer-col ul{
+    list-style: none !important;
+}
 
 [data-theme="dark"] .footer-col h4 {
     color: $light-text !important;
