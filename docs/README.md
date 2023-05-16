@@ -6,7 +6,7 @@ contributors: false
 
 ---
 
-<div>
+<div class="homepage">
    <div >
       <div class="landing">
          <div>

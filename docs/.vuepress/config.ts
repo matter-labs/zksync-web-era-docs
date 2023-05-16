@@ -82,6 +82,15 @@ export default defineUserConfig({
 
       `,
     ],
+    [
+      "script",
+      {},
+      `
+      window.addEventListener('load', function() {
+        document.querySelector(".homepage").scrollTo(0, document.body.scrollHeight)
+      });
+      `,
+    ],
   ],
   
 
