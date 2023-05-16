@@ -5,7 +5,7 @@
                 <div class="row">
                     
                     <div class="footer-col">
-                        <h4>Learn</h4>
+                        <h4>Ethos & values</h4>
                         <ul>
                             <li><a target="_blank" href="https://zksync.io/ethos">Freedom</a></li>
                             <li><a target="_blank" href="https://zksync.io/hyperscalability">Hyperscalability</a></li>
@@ -25,20 +25,21 @@
                     <div class="footer-col">
                         <h4>Community</h4>
                         <ul>
+                            <li><a target="_blank" href="https://github.com/matter-labs/">GitHub</a></li>
                             <li><a target="_blank" href="https://join.zksync.dev/">Discord</a></li>
-                            <li><a target="_blank" href="https://twitter.com/zksync">Twitter</a></li>
-                            <li><a target="_blank" href="https://blog.matter-labs.io/">Blog</a></li>
+                            <li><a target="_blank" href="https://twitter.com/zksync">Twitter: zkSync Era</a></li>
+                            <li><a target="_blank" href="href='mailto:support@zksync.io'">Support</a></li>
                             <li><a target="_blank" href="https://t.me/zksync">Telegram</a></li>
-                            <li><a target="_blank" href="https://github.com/matter-labs/">Github</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h4>General</h4>
+                        <h4>Company</h4>
                         <ul>
-                            <li><a target="_blank" href="https://jobs.eu.lever.co/matterlabs">Career</a></li>
-                            <li><a target="_blank" href="https://era.zksync.io/docs/contact.html">Contact us</a></li>
-                            <!-- <li><a href="https://docs.zksync.io/legal/terms/">Terms of service</a></li>
-                            <li><a href="https://docs.zksync.io/legal/privacy/">Privacy policy</a></li> -->
+                            <li><a target="_blank" href="https://blog.matter-labs.io/">Blog</a></li>
+                            <li><a target="_blank" href="https://jobs.eu.lever.co/matterlabs">Careers</a></li>
+                            <li><a target="_blank" href="https://twitter.com/the_matter_labs">Twitter: Matter Labs</a></li>
+                            <li><a target="_blank" href="href='mailto:events@matterlabs.dev'">Press</a></li>
+                            <li><a target="_blank" href="href='mailto:media@matterlabs.dev'">Events</a></li>
                         </ul>
                     </div>
                 </div>
