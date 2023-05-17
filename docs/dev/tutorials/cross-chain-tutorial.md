@@ -196,6 +196,8 @@ You should see output like this:
 Governance contract was successfully deployed at 0xf28Df77fa8ff56cA3084bd11c1CAF5033A7b8C4A
 ```
 
+Save the address to use in a later step.
+
 ## L2 counter
 
 Now that we have an address for the L1 governance contract, we can build, deploy, and test the counter contract on L2.
