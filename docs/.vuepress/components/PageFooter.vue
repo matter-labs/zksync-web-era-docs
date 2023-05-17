@@ -4,10 +4,10 @@
         <div class="container">
             <div class="row">
 
-                <div class="footer-col">
+                <!-- <div class="footer-col">
                     <GoogleTranslateSelect #navbarStartBefore default-language-code="en" default-page-language-code="en"
                         :fetch-browser-language="false" trigger="click" />
-                </div>
+                </div> -->
                 
                 <div class="footer-col">
                     <h4>Ethos & values</h4>
