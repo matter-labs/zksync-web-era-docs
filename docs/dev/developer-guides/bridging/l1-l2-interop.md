@@ -35,7 +35,7 @@ The priority queue provides a censorship-resistant way to interact with zkSync E
 
 The priority queue functions in a similar way it did in the previous version of zkSync. For the full picture, we explain the priority queue on zkSync Lite before detailing the new design in zkSync Era.
 
-#### How it worked in zkSync Lite
+#### How it works in zkSync Lite
 
 In zkSync Lite, we only have two operations that can be sent to L2 from L1:
 
