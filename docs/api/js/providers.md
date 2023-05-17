@@ -16,21 +16,21 @@ Two providers are available:
 
 ## `Provider`
 
-:::tip
+:::info
 - This doc details zkSync Era specific methods.
-- Ethers implementations are linked.
+- Ethers implementations link to the [Ethers Providers documentation](https://docs.ethers.org/v5/api/providers/).
 :::
 
 ### `constructor`
 
-Returns a `Provider` object.
+Returns a zkSync Era `Provider` object.
 
 #### Inputs
 
 | Parameter | Type          | Description                                                  |
 | --------- | ------------- | ------------------------------------------------------------ |
-| `url?`   | string or [`ConnectionInfo`](https://docs.ethers.org/v5/api/utils/web/#ConnectionInfo)   | Network RPC URL (optional).     |
-| `network?` | `ethers.providers.Networkish`|   Network name (optional). |
+| `url?`   | string or [`ConnectionInfo`](https://docs.ethers.org/v5/api/utils/web/#ConnectionInfo)   | Network RPC URL (optional)     |
+| `network?` | `ethers.providers.Networkish`|   Network name (optional) |
 
 
 ```ts
@@ -61,7 +61,7 @@ const provider = new Provider("https://testnet.era.zksync.dev");
 
 Returns an estimate of the amount of gas required to submit a transaction to the network.
 
-[Ethers implementation](https://docs.ethers.org/v5/api/providers/provider/#Provider-estimateGas).
+[Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-estimateGas)
 
 ### `estimateGasL1`
 
@@ -73,7 +73,7 @@ Calls the [`zks_estimateL1ToL2`](../api.md#zks_estimategasl1tol2) JSON-RPC metho
 
 Returns the gas estimation for a transfer transaction. 
 
-Calls internal method [[`getTransferTx`]](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/provider.ts#L428) to get the transfer transaction and sends it to the [`estimateGas`](#estimategas) method.
+Calls internal method [`getTransferTx`](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/provider.ts#L428) to get the transfer transaction and sends it to the [`estimateGas`](#estimategas) method.
 
 #### Inputs
 
@@ -85,11 +85,24 @@ Calls internal method [[`getTransferTx`]](https://github.com/matter-labs/zksync-
 | `to?` | Address string |   To address (optional). |
 | `overrides?` | `ethers.CallOverrides` |   Ethers call overrides object (optional). |
 
+```ts
+async estimateGasTransfer(transaction: {
+    to: Address;
+    amount: BigNumberish;
+    from?: Address;
+    token?: Address;
+    overrides?: ethers.CallOverrides;
+}): Promise<BigNumber> {
+    const transferTx = await this.getTransferTx(transaction);
+    return await this.estimateGas(transferTx);
+}
+```
+
 ### `estimateGasWithdraw`
 
 Returns the gas estimation for a withdrawal transaction. 
 
-Calls internal method [[`getWithdrawTx`]](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/provider.ts#L372) to get the withdrawal transaction and sends it to the [`estimateGas`](#estimategas) method.
+Calls internal method [`getWithdrawTx`](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/provider.ts#L372) to get the withdrawal transaction and sends it to the [`estimateGas`](#estimategas) method.
 
 #### Inputs
 
@@ -102,9 +115,23 @@ Calls internal method [[`getWithdrawTx`]](https://github.com/matter-labs/zksync-
 | `bridgeAddress?`   | Address string   | Bridge address (optional).     |
 | `overrides?` | `ethers.CallOverrides` |   Ethers call overrides object (optional). |
 
+```ts
+async estimateGasWithdraw(transaction: {
+    token: Address;
+    amount: BigNumberish;
+    from?: Address;
+    to?: Address;
+    bridgeAddress?: Address;
+    overrides?: ethers.CallOverrides;
+}): Promise<BigNumber> {
+    const withdrawTx = await this.getWithdrawTx(transaction);
+    return await this.estimateGas(withdrawTx);
+}
+```
+
 ### `estimateL1ToL2Execute`
 
-Returns gas estimation for a L1 to L2 execute.
+Returns gas estimation for an L1 to L2 execute operation.
 
 #### Inputs
 
@@ -164,15 +191,15 @@ Calls the [`zks_getAllAccountBalances`](../api.md#zks_getallaccountbalances) JSO
 
 Returns the user's balance as a `BigNumber` object for an (optional) block tag and (optional) token. 
 
-When block and token are not supplied, `committed` and `ETH` are used.
+When block and token are not supplied, `committed` and `ETH` are the default values.
 
 #### Inputs
 
 | Name                    | Description                                                                                                   |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------- |
 | address                 | User's address.                                             |
-| blockTag?     | Block tag for getting the balance on. Latest `committed` block is used by default.|
-| tokenAddress? | The address of the token. ETH is used by default. |
+| blockTag?     | Block tag for getting the balance on. Latest `committed` block is default.|
+| tokenAddress? | The address of the token. ETH is default. |
                                                                                           |
 ```typescript
 override async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address) {
@@ -211,7 +238,7 @@ console.log(await provider.getBalance("<YOUR_ADDRESS>"));
 
 Returns block from the network, or false if there is no block.
 
-[Ethers implementation](https://docs.ethers.org/v5/api/providers/provider/#Provider-getBlock).
+[Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-getBlock)
 
 ### `getBlockDetails`
 
@@ -223,7 +250,7 @@ Calls the [`zks_getBlockDetails`](../api.md#zks_getblockdetails) JSON-RPC method
 
 Returns an array of `TransactionResponse` objects.
 
-[Ethers implementation](https://docs.ethers.org/v5/api/providers/provider/#Provider-getBlockWithTransactions).
+[Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-getBlockWithTransactions)
 
 ### `getConfirmedTokens`
 
@@ -231,7 +258,9 @@ Returns [address, symbol, name, and decimal] information of all tokens within a 
 
 Calls the [`zks_getConfirmedTokens`](../api.md#zks_getconfirmedtokens) JSON-RPC method.
 
-**Confirmed** in the function name means any token bridged to zkSync Era via the official bridge.
+:::tip Tip
+- **Confirmed** in the function name means any token bridged to zkSync Era via the official bridge.
+:::
 
 The tokens are returned in alphabetical order by their symbol. This means the token id is its position in an alphabetically sorted array of tokens.
 
@@ -310,11 +339,11 @@ static getDefaultProvider() {
 
 ### `getFilterChanges`
 
-Returns an array of logs by calling Ethereum method [`eth_getFilterChanges`](https://ethereum.github.io/execution-apis/api-documentation/).
+Returns an array of logs by calling Ethereum method [`eth_getFilterChanges`.](https://ethereum.github.io/execution-apis/api-documentation/)
 
 ### `getFormatter`
 
-Static utility method that returns a [Formatter](??link) object for processing readable block data??
+Static utility method that returns a [Formatter](???link) object for processing readable block data???
 
 ```ts
 static override getFormatter(): Formatter {
@@ -360,17 +389,11 @@ static override getFormatter(): Formatter {
 }
 ```
 
-#### Example
-
-```ts
-TODO:
-```
-
 ### `getGasPrice`
 
 Returns an estimate (best guess) of the gas price to use in a transaction.
 
-[Ethers implementation](https://docs.ethers.org/v5/api/providers/provider/#Provider-getGasPrice).
+[Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-getGasPrice)
 
 ### `getL1BatchBlockRange`
 
@@ -433,16 +456,9 @@ Returns the proof for a transaction's L2 to L1 log sent via the L1Messenger syst
 
 Calls the [`zks_getL2ToL1LogProof`](../api.md#zks_getl2tol1logproof) JSON-RPC method.
 
-```typescript
-async getLogProof(txHash: BytesLike, index?: number): Promise<MessageProof | null> {
-    return await this.send('zks_getL2ToL1LogProof', [ethers.utils.hexlify(txHash), index]);
-}
-```
-
 ### `getLogs`
 
-Returns an array of all logs that match a filter with a given id by calling Ethereum method [`eth_getLogs`](https://ethereum.github.io/execution-apis/api-documentation/).
-
+Returns an array of all logs that match a filter with a given id by calling Ethereum method [`eth_getLogs.`](https://ethereum.github.io/execution-apis/api-documentation/)
 
 ### `getMainContractAddress`
 
@@ -593,7 +609,7 @@ Calls the [`getTransactionDetails`](../api.md#zks_gettransactiondetails) JSON-RP
 
 Returns the transaction receipt from a given hash number.
 
-[Ethers implementation](https://docs.ethers.org/v5/api/providers/provider/#Provider-getTransactionReceipt).
+[Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-getTransactionReceipt)
 
 ### `getTransactionStatus`
 
@@ -643,7 +659,7 @@ Calls the [`zks_L1ChainId`](../api.md#zks_l1chainid) JSON-RPC method.
 Returns the L1 token address equivalent for a L2 token address as they are not equal. ETH's address is set to zero address.
 
 :::warning
-- Only works for tokens bridged on default zkSync Era bridges.
+Only works for tokens bridged on default zkSync Era bridges.
 :::
 
 #### Inputs
@@ -670,7 +686,7 @@ async l1TokenAddress(token: Address) {
 Returns the L2 token address equivalent for a L1 token address as they are not equal. ETH's address is set to zero address.
 
 :::warning
-- Only works for tokens bridged on default zkSync Era bridges.
+Only works for tokens bridged on default zkSync Era bridges.
 :::
 
 #### Inputs
@@ -693,7 +709,7 @@ async l2TokenAddress(token: Address) {
 ```
 ### `newBlockFilter`
 
-Returns a new block filter by calling Ethereum method [`eth_newBlockFilter`](https://ethereum.github.io/execution-apis/api-documentation/).
+Returns a new block filter by calling Ethereum method [`eth_newBlockFilter.`](https://ethereum.github.io/execution-apis/api-documentation/)
 
 ### `newFilter`
 
@@ -705,7 +721,7 @@ Returns a new pending transaction filter by calling Ethereum method [`eth_newPen
 
 ### `sendTransaction`
 
-Override of [Ethers implementation](https://docs.ethers.org/v5/api/providers/provider/#Provider-sendTransaction).
+Override of [Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-sendTransaction)
 
 ## `Web3Provider`
 
