@@ -20,7 +20,7 @@ The plugin is based on [@openzeppelin/hardhat-upgrades](https://www.npmjs.com/pa
 @tab:active yarn
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/contracts-upgradeable @openzeppelin/hardhat-upgrades
+yarn add -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/contracts @openzeppelin/contracts-upgradeable @openzeppelin/hardhat-upgrades
 ```
 
 @tab npm
@@ -48,11 +48,7 @@ const config: HardhatUserConfig = {
     zksolc: {
         version: '1.3.10',
         compilerSource: 'binary',
-        settings: {
-            optimizer: {
-                enabled: true,
-            },
-        },
+        settings: {},
     },
     defaultNetwork: 'zkSyncNetwork',
     networks: {
@@ -122,6 +118,7 @@ Transparent upgradable proxies provide a way to upgrade a smart contract without
 To deploy a simple upgradable contract on zkSync Era local setup, first create a test wallet and add it to the new Deployer.
 
 ```typescript
+  // mnemonic for local node rich wallet
   const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
   const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
 
@@ -144,12 +141,13 @@ The `deployProxy` method deploys your implementation contract on zkSync Era, dep
 import { Deployer } from '@matterlabs/hardhat-zksync-deploy';
 import { Wallet } from 'zksync-web3';
 
-const hre = require('hardhat');
+import * as hre from "hardhat";
 
 async function main() {
     const contractName = 'Box';
     console.log('Deploying ' + contractName + '...');
-
+    
+    // mnemonic for local node rich wallet
     const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
     const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
 
@@ -166,8 +164,28 @@ async function main() {
     console.log('Box value is: ', value.toNumber());
 }
 
-main();
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
 ```
+Run the script with:
+
+::: code-tabs
+
+@tab:active yarn
+
+```bash
+yarn hardhat run SCRIPT_FILE
+```
+
+@tab npm
+
+```bash
+npx hardhat run SCRIPT_FILE
+```
+
+:::
 
 :::warning
 
@@ -222,6 +240,7 @@ This allows for more advanced upgrade patterns, such as adding or removing funct
 1. Start by creating a `Deployer` for the zkSync Era  network and load the `Box` artifact:
 
 ```typescript
+  // mnemonic for local node rich wallet
   const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
   const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
 
@@ -251,12 +270,12 @@ After that, your beacon proxy contract is deployed on the network, and you can i
 import { Deployer } from '@matterlabs/hardhat-zksync-deploy';
 import { Wallet } from 'zksync-web3';
 
-const hre = require('hardhat');
+import * as hre from "hardhat";
 
 async function main() {
     const contractName = 'Box';
     console.log('Deploying ' + contractName + '...');
-
+    // mnemonic for local node rich wallet
     const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
     const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
 
@@ -276,9 +295,29 @@ async function main() {
     console.log('Box value is: ', value.toNumber());
 }
 
-main();
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
 
 ```
+Run the script with:
+
+::: code-tabs
+
+@tab:active yarn
+
+```bash
+yarn hardhat run SCRIPT_FILE
+```
+
+@tab npm
+
+```bash
+npx hardhat run SCRIPT_FILE
+```
+
+:::
 
 ## Implementation addresses check
 
@@ -387,15 +426,15 @@ import { Deployer } from '@matterlabs/hardhat-zksync-deploy';
 import { Wallet } from 'zksync-web3';
 import * as zk from 'zksync-web3';
 
-const hre = require('hardhat');
+import * as hre from "hardhat";
 
 async function main() {
+    // mnemonic for local node rich wallet
     const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
     const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
     const deployer = new Deployer(hre, zkWallet);
 
     // deploy beacon proxy
-
     const contractName = 'Box';
     const contract = await deployer.loadArtifact(contractName);
     const beacon = await hre.zkUpgrades.deployBeacon(deployer.zkWallet, contract);
@@ -405,7 +444,6 @@ async function main() {
     await boxBeaconProxy.deployed();
 
     // upgrade beacon
-
     const boxV2Implementation = await deployer.loadArtifact('BoxV2');
     await hre.zkUpgrades.upgradeBeacon(deployer.zkWallet, beacon.address, boxV2Implementation);
     console.log('Successfully upgraded beacon Box to BoxV2 on address: ', beacon.address);
@@ -425,5 +463,25 @@ async function main() {
     console.log('New box value is', value);
 }
 
-main();
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
 ```
+Run the script with:
+
+::: code-tabs
+
+@tab:active yarn
+
+```bash
+yarn hardhat run SCRIPT_FILE
+```
+
+@tab npm
+
+```bash
+npx hardhat run SCRIPT_FILE
+```
+
+:::

@@ -7,11 +7,10 @@ import { getDirname, path } from '@vuepress/utils'
 const dirname = getDirname(import.meta.url);
 
 export default defineUserConfig({
-
   alias: {
-    '@theme-hope/components/LanguageDropdown': path.resolve(
+    '@theme-hope/components/PageFooter': path.resolve(
       dirname,
-      './components/LanguageDropdown.vue',
+      './components/PageFooter.vue',
     ),
   },
   dest: "dist/docs",
