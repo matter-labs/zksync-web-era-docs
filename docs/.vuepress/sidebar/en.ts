@@ -103,14 +103,20 @@ export const enSidebar = sidebar({
       children: [
         "/api/hardhat/getting-started",
         "/api/hardhat/migrating-to-zksync",
-        "/api/hardhat/plugins",
-        "/api/hardhat/hardhat-zksync-solc",
-        "/api/hardhat/hardhat-zksync-vyper",
-        "/api/hardhat/hardhat-zksync-upgradable",
-        "/api/hardhat/hardhat-zksync-deploy",
-        "/api/hardhat/hardhat-zksync-chai-matchers",
-        "/api/hardhat/hardhat-zksync-verify",
-        "/api/hardhat/other-plugins",
+        {
+          text: "Plugins", // required
+          link: "/api/hardhat/plugins", // optional, which should be a absolute path.
+          collapsible: true,
+          children: [
+            "/api/hardhat/hardhat-zksync-solc",
+            "/api/hardhat/hardhat-zksync-vyper",
+            "/api/hardhat/hardhat-zksync-upgradable",
+            "/api/hardhat/hardhat-zksync-deploy",
+            "/api/hardhat/hardhat-zksync-chai-matchers",
+            "/api/hardhat/hardhat-zksync-verify",
+            "/api/hardhat/other-plugins",
+          ],
+        },
         "/api/hardhat/testing",
         "/api/hardhat/compiling-libraries",
       ],
