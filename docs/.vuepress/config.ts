@@ -35,7 +35,7 @@ export default defineUserConfig({
     ['meta', { property: "og:title", content: "Welcome to our Docs | zkSync Era" }],
     ['meta', { name: "og:description", content: "zkSync Era is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet." }],
 
-    ['meta', { name: "twitter:card", content: "summary_large_image" }],
+    ['meta', { name: "twitter:card", content: "summary" }],
     ['meta', { name: "twitter:title", content: "Welcome to our Docs | zkSync Era" }],
     ['meta', { name: "twitter:description", content: "zkSync Era is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet." }],
     ['meta', { name: "twitter:image", content: "https://era.zksync.io/docs/share_image.png" }],
