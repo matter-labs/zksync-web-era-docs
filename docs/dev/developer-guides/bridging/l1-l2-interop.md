@@ -49,7 +49,7 @@ If users want to deposit or withdraw funds (for withdrawals, users can request a
 
 The first rule is strictly enforced by the smart contract.
 
-The second rule could be violated if the operator became malicious or unavailable. If that happened, the system entered **exodus mode**, where no new blocks were processed and users could withdraw their funds without operator interference.
+The second rule can be violated if the operator becomes malicious or unavailable. If that happens, the system enters **exodus mode**, where no new blocks are processed (on L1) and users can withdraw their funds without operator interference.
 
 #### How it works in zkSync Era
 
