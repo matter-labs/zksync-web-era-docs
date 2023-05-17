@@ -444,18 +444,18 @@ div.hero-img {
     
 
 }
-.footer{
+#footer{
 	//background-color: #24262b;
     padding: 20px 0;
     justify-content: center;
     display: flex;
 }
 
-[data-theme="dark"] .footer {
+[data-theme="dark"] #footer {
     background-color: #24262b !important;
 }
 
-[data-theme="light"] .footer {
+[data-theme="light"] #footer {
     background-color: #f5f6f7 !important;
 }
 .footer-col{
