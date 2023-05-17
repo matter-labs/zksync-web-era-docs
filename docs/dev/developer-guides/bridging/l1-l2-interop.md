@@ -53,7 +53,7 @@ The second rule can be violated if the operator becomes malicious or unavailable
 
 #### How it works in zkSync Era
 
-The previous design was sufficient for a system supporting only deposit and full exit operations. 
+The previous design is sufficient for a system supporting only deposit and full exit operations.
 
 However, zkSync Era supports general smart contract computation which includes complex operations. For this reason, some of the principles had to evolve in order to preserve the stability of the network.
 
