@@ -47,7 +47,7 @@ If users want to deposit or withdraw funds (for withdrawals, users can request a
 1. All transactions are processed sequentially, i.e. FIFO.
 2. Each priority operation has to be processed by the operator within `X` days from submission to the contract.
 
-The first rule was strictly enforced by the smart contract. 
+The first rule is strictly enforced by the smart contract.
 
 The second rule could be violated if the operator became malicious or unavailable. If that happened, the system entered **exodus mode**, where no new blocks were processed and users could withdraw their funds without operator interference.
 
