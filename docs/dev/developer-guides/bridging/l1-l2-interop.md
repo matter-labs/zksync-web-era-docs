@@ -37,7 +37,7 @@ The priority queue functions in a similar way it did in the previous version of 
 
 #### How it worked in zkSync Lite
 
-In the previous version, we only had two operations that could be sent to zkSync Era from L1:
+In zkSync Lite, we only have two operations that can be sent to L2 from L1:
 
 - `Deposit` to bridge funds from Ethereum to zkSync.
 - `FullExit` to bridge funds back to Ethereum.
