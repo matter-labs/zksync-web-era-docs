@@ -82,19 +82,15 @@ export default defineUserConfig({
 
       `,
     ],
-    [
-      "script",
-      {},
-      `
-      window.addEventListener('load', function() {
-        var target = window.location.href;
-        if(target == "http://localhost:8080/docs/") {
-          document.querySelector(".homepage").scrollTo(0, document.body.scrollHeight)
+    ['script', {}, `
+    (function() {
+      var url1 = window.location.href;
+      var url2 = "https://era.zksync.io/docs/";
+        if (url1 === url2) {
+          window.scrollTo(0, document.body.scrollHeight);
         }
-        console.log('target', target)
-      });
-      `,
-    ],
+    })();
+  `],
   ],
   
 
