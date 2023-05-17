@@ -65,7 +65,7 @@ However, zkSync Era supports general smart contract computation which includes c
     The withdraw functionality in zkSync Era replaces `FullExit` in Lite.
     :::
 
-2. The priority queue must be fully censorship-resistant to prevent malicious activity. For example, malicious users might send multiple transactions which push up the block gas limit to unworkable levels. To mitigate against this, submitting transactions to the priority queue is no longer free and users must pay a fee to the operator. 
+2. The priority queue must be fully permissionless to prevent malicious activity. For example, malicious users might send multiple transactions which push up the block gas limit to unworkable levels. To mitigate against this, submitting transactions to the priority queue is no longer free and users must pay a fee to the operator. 
 
     The fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the user's transaction, while `txBaseCost` is the base cost for the transaction and depends on the transaction parameters (e.g. `gasLimit` for an `Execute` transaction).
 
