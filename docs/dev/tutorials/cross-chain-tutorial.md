@@ -539,7 +539,7 @@ npx ts-node ./scripts/increment-counter.ts
 ```
 :::
 
-In the output, you should see the full transaction receipt in L2. You can take the `transactionHash` and track it in the [zkSync explorer](https://explorer.zksync.io/). It should look something like this:
+In the output, you should see the full transaction receipt in L2. You can take the `transactionHash` and track it in the [zkSync explorer](https://goerli.explorer.zksync.io/). It should look something like this:
 
 ```json
 {
