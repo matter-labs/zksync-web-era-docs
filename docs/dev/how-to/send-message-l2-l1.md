@@ -27,7 +27,7 @@ Instead, you can send arbitrary-length messages from zkSync Era to Ethereum, and
 Along with zkSync Era's built-in censorship resistance that requires multi-layer interoperability, there are some common use cases that need L2 to L1 transaction functionality, such as:
 
 - Bridging funds from L2 to L1.
-- Layer 2 governance ..
+- Layer 2 governance.
 
 ## Send a message
 
