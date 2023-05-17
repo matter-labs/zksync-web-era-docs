@@ -84,8 +84,8 @@ export default defineUserConfig({
     ],
     ['script', {}, `
     (function() {
-      var url1 = window.location.href;
-      var url2 = "https://era.zksync.io/docs/";
+      let url1 = window.location.href;
+      let url2 = "http://localhost:8080/docs/";
         if (url1 === url2) {
           window.scrollTo(0, document.body.scrollHeight);
         }
