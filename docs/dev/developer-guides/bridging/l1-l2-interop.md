@@ -31,7 +31,7 @@ The system processes gas estimation for transactions implicitly. However, it is 
 
 ### Priority queue
 
-The priority queue provides a censorship-resistant way to interact with zkSync Era in case the operator becomes malicious or unavailable.
+The priority queue provides a permissionless way to interact with zkSync Era in case the operator becomes malicious or unavailable.
 
 The priority queue functions in a similar way it did in the previous version of zkSync. For the full picture, we explain the priority queue on zkSync Lite before detailing the new design in zkSync Era.
 
