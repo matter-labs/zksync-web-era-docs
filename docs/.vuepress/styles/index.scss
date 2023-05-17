@@ -538,3 +538,8 @@ div.hero-img {
 [data-theme="light"] .toggle-sidebar-wrapper .arrow {
     background-color: #f5f6f7 !important;
 }
+
+.theme-hope-content:not(.custom) > h3, .theme-hope-content:not(.custom) > h4 {
+    margin-top: calc(-4.0rem);
+    
+}
