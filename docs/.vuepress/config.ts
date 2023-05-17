@@ -25,14 +25,14 @@ export default defineUserConfig({
     ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap' }],
     ['meta', { name: "keywords", content: "Documentation, Developers, Era, zkSync, Matter Labs, rollup, ZK rollup, zero confirmation, ZKP, zero-knowledge proofs, Ethereum, crypto, blockchain, permissionless, L2, secure payments, scalable" }],
     ['meta', { name: "description", content: "zkSync Era is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet" }],
-    ['meta', { name: "author", content: "https://matter-labs.io" }],
-
+    ['meta', { name: "author", content: "https://matter-labs.io" }], 
 
     ['meta', { name: "og:image", content: "https://era.zksync.io/docs/share_image.png" }],
+    ['meta', { property: 'og:image', content: 'https://era.zksync.io/docs/share_image.png' }],
     ['meta', { name: "og:image:secure_url", content: "https://era.zksync.io/docs/share_image.png" }],
     ['meta', { name: "og:url", content: "https://era.zksync.io/docs/" }],
     ['meta', { name: "og:image:alt", content: "zkSync — Accelerating the mass adoption of crypto for personal sovereignty" }],
-    ['meta', { name: "og:title", content: "Welcome to our Docs | zkSync Era" }],
+    ['meta', { property: "og:title", content: "Welcome to our Docs | zkSync Era" }],
     ['meta', { name: "og:description", content: "zkSync Era is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet." }],
 
     ['meta', { name: "twitter:card", content: "summary_large_image" }],
