@@ -42,7 +42,7 @@ In zkSync Lite, we only have two operations that can be sent to L2 from L1:
 - `Deposit` to bridge funds from Ethereum to zkSync.
 - `FullExit` to bridge funds back to Ethereum.
 
-If users wanted to deposit or withdraw funds, they had to send a transaction request to the smart contract. The request was appended to the priority queue. The queue had the following rules:
+If users want to deposit or withdraw funds (for withdrawals, users can request a withdrawal from L2 without using a priority transaction), they send a transaction request to the L1 smart contract. The request is appended to the priority queue. The queue has the following rules:
 
 1. All transactions were processed sequentially, i.e. FIFO.
 2. Each priority operation had to be processed by the operator within `X` days from submission to the contract.
