@@ -8,7 +8,6 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 - Custom bridges.
 - Multi-layer governing smart contracts.
-- And more.
 
 ## Step-by-step without gas estimation
 
