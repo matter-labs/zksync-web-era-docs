@@ -44,16 +44,16 @@ In zkSync Lite, we only have two operations that can be sent to L2 from L1:
 
 If users want to deposit or withdraw funds (for withdrawals, users can request a withdrawal from L2 without using a priority transaction), they send a transaction request to the L1 smart contract. The request is appended to the priority queue. The queue has the following rules:
 
-1. All transactions were processed sequentially, i.e. FIFO.
-2. Each priority operation had to be processed by the operator within `X` days from submission to the contract.
+1. All transactions are processed sequentially, i.e. FIFO.
+2. Each priority operation has to be processed by the operator within `X` days from submission to the contract.
 
-The first rule was strictly enforced by the smart contract. 
+The first rule is strictly enforced by the smart contract.
 
-The second rule could be violated if the operator became malicious or unavailable. If that happened, the system entered **exodus mode**, where no new blocks were processed and users could withdraw their funds without operator interference.
+The second rule can be violated if the operator becomes malicious or unavailable. If that happens, the system enters **exodus mode**, where no new blocks are processed (on L1) and users can withdraw their funds without operator interference.
 
 #### How it works in zkSync Era
 
-The previous design was sufficient for a system supporting only deposit and full exit operations. 
+The previous design is sufficient for a system supporting only deposit and full exit operations.
 
 However, zkSync Era supports general smart contract computation which includes complex operations. For this reason, some of the principles had to evolve in order to preserve the stability of the network.
 
