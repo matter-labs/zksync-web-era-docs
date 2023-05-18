@@ -31,10 +31,6 @@ The system processes gas estimation for transactions implicitly. However, it is 
 
 ### Priority queue
 
-:::warning
-There is currently no message prioritizing in the priority queue.
-:::
-
 #### How it works in zkSync Lite
 
 In zkSync Lite, we only have two operations:
