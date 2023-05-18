@@ -37,27 +37,9 @@ L2 to L1 communication is based on transferring the data as a message, and not o
 
 ## Priority queue
 
-### How it works in zkSync Lite
+zkSync Lite is sufficient for a system that only support deposit and full exit operations.
 
-In zkSync Lite, we only have two operations:
-
-- `Deposit` to bridge funds from Ethereum to zkSync.
-- `FullExit` to bridge funds back to Ethereum.
-
-If users want to deposit or withdraw funds, they send a transaction request to the L1 smart contract. The request is appended to the priority queue. The queue has the following rules:
-
-1. All transactions are processed sequentially, i.e. FIFO.
-2. Each priority operation has to be processed by the operator within `X` days from submission to the contract.
-
-The first rule is strictly enforced by the smart contract.
-
-The second rule can be violated if the operator becomes malicious or unavailable. If that happens, the system enters **exodus mode**, where no new blocks are processed (on L1) and users can withdraw their funds without operator interference.
-
-### How it works in zkSync Era
-
-The previous design is sufficient for a system supporting only deposit and full exit operations.
-
-However, zkSync Era supports general smart contract computation which includes complex operations. For this reason, some of the principles had to evolve in order to preserve the stability of the network.
+zkSync Era supports general smart contract computation which includes complex operations. For this reason, some principles had to evolve in order to preserve the stability of the network.
 
 1. All transactions types are now supported by the priority queue. 
 
