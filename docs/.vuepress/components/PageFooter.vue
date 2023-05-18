@@ -1,5 +1,5 @@
     <template>
-        <footer class="footer">
+        <footer id="footer">
             <span id="doc-version" style="display: none;">{{ docVersion }}</span>
             <div class="container">
                 <div class="row">

@@ -45,7 +45,7 @@
         },
         {
           "source": "/docs/contact.html",
-          "destination": "/docs/",
+          "destination": "/docs/#footer",
           "type": "302"
         },
         {
@@ -155,7 +155,7 @@
         },
         {
           "source": "/docs/contact.html",
-          "destination": "/docs/",
+          "destination": "/docs/#footer",
           "type": "302"
         },
         {
