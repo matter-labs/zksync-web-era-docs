@@ -37,8 +37,6 @@ L2 to L1 communication is based on transferring the data as a message, and not o
 
 ## Priority queue
 
-zkSync Lite is sufficient for a system that only supports deposit and full exit operations.
-
 zkSync Era supports general smart contract computation which includes complex operations. For this reason, some principles had to evolve in order to preserve the stability of the network.
 
 1. All transactions types are now supported by the priority queue. 
