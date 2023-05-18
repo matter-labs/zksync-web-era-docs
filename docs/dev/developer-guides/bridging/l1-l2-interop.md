@@ -29,9 +29,15 @@ The system processes gas estimation for transactions implicitly. However, it is 
 - Find out [how to estimate gas](../../how-to/estimate-gas.md) for different scenarios.
 - Find out [how to send a transaction from L1 to L2](../../how-to/send-transaction-l1-l2.md) with zkSync Era.
 
-### Priority queue
+## L2 to L1 
 
-#### How it works in zkSync Lite
+L2 to L1 communication is based on transferring the data as a message, and not on L1 transaction execution. 
+
+- Find out [how to send a message from L2 to L1](../../how-to/send-message-l2-l1.md) with zkSync Era.
+
+## Priority queue
+
+### How it works in zkSync Lite
 
 In zkSync Lite, we only have two operations:
 
@@ -47,7 +53,7 @@ The first rule is strictly enforced by the smart contract.
 
 The second rule can be violated if the operator becomes malicious or unavailable. If that happens, the system enters **exodus mode**, where no new blocks are processed (on L1) and users can withdraw their funds without operator interference.
 
-#### How it works in zkSync Era
+### How it works in zkSync Era
 
 The previous design is sufficient for a system supporting only deposit and full exit operations.
 
@@ -64,9 +70,3 @@ However, zkSync Era supports general smart contract computation which includes c
 2. The priority queue must be fully permissionless to prevent malicious activity. For example, malicious users might send multiple transactions which push up the block gas limit to unworkable levels. To mitigate against this, submitting transactions to the priority queue is no longer free and users must pay a fee to the operator. 
 
     The fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the user's transaction, while `txBaseCost` is the base cost for the transaction and depends on the transaction parameters (e.g. `gasLimit` for an `Execute` transaction).
-
-## L2 to L1 
-
-L2 to L1 communication is based on transferring the data as a message, and not on L1 transaction execution. 
-
-- Find out [how to send a message from L2 to L1](../../how-to/send-message-l2-l1.md) with zkSync Era.
