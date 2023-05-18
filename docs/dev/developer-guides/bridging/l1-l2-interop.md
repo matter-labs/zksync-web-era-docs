@@ -31,18 +31,18 @@ The system processes gas estimation for transactions implicitly. However, it is 
 
 ### Priority queue
 
-The priority queue provides a permissionless way to interact with zkSync Era in case the operator becomes malicious or unavailable.
-
-The priority queue functions in a similar way it did in the previous version of zkSync. For the full picture, we explain the priority queue on zkSync Lite before detailing the new design in zkSync Era.
+:::warning
+There is currently no message prioritizing in the priority queue.
+:::
 
 #### How it works in zkSync Lite
 
-In zkSync Lite, we only have two operations that can be sent to L2 from L1:
+In zkSync Lite, we only have two operations:
 
 - `Deposit` to bridge funds from Ethereum to zkSync.
 - `FullExit` to bridge funds back to Ethereum.
 
-If users want to deposit or withdraw funds (for withdrawals, users can request a withdrawal from L2 without using a priority transaction), they send a transaction request to the L1 smart contract. The request is appended to the priority queue. The queue has the following rules:
+If users want to deposit or withdraw funds, they send a transaction request to the L1 smart contract. The request is appended to the priority queue. The queue has the following rules:
 
 1. All transactions are processed sequentially, i.e. FIFO.
 2. Each priority operation has to be processed by the operator within `X` days from submission to the contract.
