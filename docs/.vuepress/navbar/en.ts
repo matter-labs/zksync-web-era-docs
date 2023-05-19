@@ -15,11 +15,6 @@ export const enNavbar = navbar([
     text: "Tools and SDK", 
     link: "/api/" 
   },
-  { 
-    text: "Contacts and Links", 
-    link: "/contact.html" 
-  },
-
   {
     text: "Versions",
     children: [
