@@ -1,26 +1,21 @@
 # Getting started
 
-:::warning
-* We are currently updating the Java SDK and you may encounter errors when trying things out.
-* Apologies for the inconvenience, we will update the documentation in due course.
-:::
+This guide shows you how to:
 
-In this guide we will demonstrate how to:
-
-1. Connect to the zkSync network.
-2. Deposit assets from Ethereum into zkSync.
+1. Connect to the zkSync Era network.
+2. Deposit assets from Ethereum into zkSync Era.
 3. Check balances.
 4. Transfer and withdraw funds (native and ERC20 tokens).
 5. Deploy a smart contract.
 6. Deploy a smart contract with create2.
 
-## Prerequisite
+## Prerequisites
 
-This guide assumes that you are familiar with the basics of [Java](https://docs.oracle.com/en/java/) programming language.
+Familiarity with the basics of the [Java programming language.](https://docs.oracle.com/en/java/)
 
 ## Installation
 
-To install the zkSync Java SDK, just add the following dependency:
+To install the zkSync Era Java SDK, add the following dependency:
 
 Maven `pom.xml`
 
