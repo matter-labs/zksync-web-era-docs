@@ -27,5 +27,9 @@ export const enNavbar = navbar([
         link: "https://docs.zksync.io",
       },
     ],
-  }
+  },
+  { 
+    text: "Contact", 
+    link: "/contact/" 
+  },
 ]);
