@@ -39,7 +39,7 @@ It is not necessary to understand the transaction format to utilize zkSync's SDK
 
 **Transaction finality** refers to the promise that transactions cannot be reversed, altered, or mutated in the context of a blockchain network.
 
-Under proof of stake, Ethereum transactions finalize in 2.5 epochs (16 minutes) on average under normal conditions: reverting that transaction would cost 1/3 of the Ethereum total supply.
+Under proof of stake, Ethereum transactions finalize in 2.5 epochs (16 minutes) on average under normal conditions: reverting that transaction would cost 1/3 of the total staked Ethereum.
 
 Once a block has been filled and sealed in zk rollups, its state is committed to the main Ethereum chain. The proving stage is then started, and a SNARK validity proof is constructed for each block transaction. Once completed, the SNARK is sent for verification on the L1 smart contract, and the transaction state becomes final following verification.
 

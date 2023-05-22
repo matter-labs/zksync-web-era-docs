@@ -57,8 +57,6 @@ const myContract = await deployer.deploy(artifact, [your_constructor_argument]);
 console.log("constructor args:" + myContract.interface.encodeDeploy([your_constructor_argument]));
 ```
 
-To learn how to compile and deploy smart contracts with zkSync CLI tool, see our [hardhat guide](../../hardhat/getting-started.md#compile-and-deploy-a-contract).
-
 then you will receive constructor argument data.
 
 - Lastly, click the **Verify Smart Contract** button.
