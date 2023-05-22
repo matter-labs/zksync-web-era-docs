@@ -1,5 +1,6 @@
 import { defineUserConfig } from "vuepress";
 import docsearchPlugin from "@vuepress/plugin-docsearch";
+import vue from '@vitejs/plugin-vue'
 import theme from "./theme.js";
 import { pwaPlugin } from "vuepress-plugin-pwa2";
 import { getDirname, path } from "@vuepress/utils"
@@ -12,9 +13,9 @@ export default defineUserConfig({
       dirname,
       './components/PageFooter.vue',
     ),
-    '@theme-hope/layouts/LanguageDropdown': path.resolve(
+    '@theme-hope/layouts/Layout': path.resolve(
       dirname,
-      './components/LanguageDropdown.vue',
+      './components/Layout.vue',
     ),
   },
   dest: "dist/docs",
@@ -114,6 +115,14 @@ export default defineUserConfig({
         },
       },
     }),
+    vue({
+      template: {
+        compilerOptions: {
+          // i am ignorning my custom '<container>' tag
+          isCustomElement: (tag) => ['ParentLayout'].includes(tag)
+        }
+      }
+    })
   ],
 
   shouldPrefetch: false,

@@ -4,8 +4,8 @@
         <div class="container">
             <div class="row">
 
-                <!-- <div class="footer-col">
-                    <GoogleTranslateSelect #navbarStartBefore default-language-code="en" default-page-language-code="en"
+                <!-- <div>
+                    <GoogleTranslateSelect #navbar-before default-language-code="en" default-page-language-code="en"
                         :fetch-browser-language="false" trigger="click" />
                 </div> -->
                 

@@ -1,7 +1,7 @@
 import { defineClientConfig } from "@vuepress/client";
 
-import LanguageLayout from "./layouts/LanguageDropdown.vue";
+import Layout from "./layouts/Layout.vue";
 
 export default defineClientConfig({
-    layouts: { LanguageLayout }
+    layouts: { Layout }
 });
