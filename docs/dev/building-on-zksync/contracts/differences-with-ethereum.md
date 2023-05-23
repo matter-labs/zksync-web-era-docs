@@ -284,8 +284,8 @@ payable(X).transfer
 Use instead:
 
 ```solidity
-(bool s, )= call{value: x}("")
-require(s); // 
+(bool s, ) = call{value: x}("");
+require(s);
 ```
 
 This converts the `send`/`transfer` functionality to `call` and [avoids potential security risks outlined here.](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/).
