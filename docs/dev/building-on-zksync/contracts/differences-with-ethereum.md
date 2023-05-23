@@ -284,7 +284,8 @@ payable(X).transfer
 Use instead:
 
 ```solidity
-(bool s, )= call{value: x}("")
+(bool s, ) = call{value: x}("");
+require(s);
 ```
 
 This converts the `send`/`transfer` functionality to `call` and [avoids potential security risks outlined here.](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/).
@@ -306,6 +307,10 @@ prioritized to allow deployment of both Hyperchains and protocols like Aztec/Dar
 
 Ethereum cryptographic primitives like `ecrecover`, `keccak256`, and `sha256` are supported as precompiles.
 No actions are required from your side as all the calls to the precompiles are done by the compilers under the hood.
+
+### ecrecover
+
+In contrast to Ethereum, zkSync Era ecrecover always return a zero address for the zero digests. Be careful with adapting crypto primitives that rely on that, specifically, it affects [secp256k1 mul verification via ecrecover](https://ethresear.ch/t/you-can-kinda-abuse-ecrecover-to-do-ecmul-in-secp256k1-today/2384).
 
 ## Recommendations
 
