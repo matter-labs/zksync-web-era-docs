@@ -44,6 +44,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/dev/developer-guides/transactions/blocks.html#blocks-in-zksync-2-0",
+          "destination": "/docs/dev/developer-guides/transactions/blocks.html#blocks-in-zksync-era",
+          "type": "302"
+        },
+        {
           "source": "/docs/contact.html",
           "destination": "/docs/#footer",
           "type": "302"
