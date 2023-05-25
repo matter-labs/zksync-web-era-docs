@@ -122,7 +122,7 @@ const config: HardhatUserConfig = {
     goerli:{
       url: 'https://goerli.com/api/abcdef12345',
       zksync: false,
-    }
+    },
     mainnet:{
       url: 'https://ethereum.mainnet.com/api/abcdef12345',
       zksync: false,
