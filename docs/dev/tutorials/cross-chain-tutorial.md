@@ -196,6 +196,8 @@ You should see output like this:
 Governance contract was successfully deployed at 0xf28Df77fa8ff56cA3084bd11c1CAF5033A7b8C4A
 ```
 
+Save the address to use in a later step.
+
 ## L2 counter
 
 Now that we have an address for the L1 governance contract, we can build, deploy, and test the counter contract on L2.
@@ -218,11 +220,11 @@ npm init -y
 ::: code-tabs
 @tab yarn
 ```sh
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @types/node
 ```
 @tab npm
 ```sh
-npm i typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+npm i typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @types/node
 ```
 :::
 
@@ -537,7 +539,7 @@ npx ts-node ./scripts/increment-counter.ts
 ```
 :::
 
-In the output, you should see the full transaction receipt in L2. You can take the `transactionHash` and track it in the [zkSync explorer](https://explorer.zksync.io/). It should look something like this:
+In the output, you should see the full transaction receipt in L2. You can take the `transactionHash` and track it in the [zkSync explorer](https://goerli.explorer.zksync.io/). It should look something like this:
 
 ```json
 {
