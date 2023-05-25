@@ -23,7 +23,7 @@ The system processes gas estimation for transactions implicitly. However, it is 
 
 :::tip L1 to L2 gas estimation for transactions
 - Gas is measured in amount and not ERC20 token value so actual costs can vary.
-- The transaction process requires the current L1 gas price, transaction base cost, and transaction gas limit which defines the minimum amount of gas a transaction requires.
+- The transaction process requires the current L1 gas price, transaction base cost, and transaction gas limit which defines the maximum amount of gas a transaction can consume.
 :::
 
 - Find out [how to estimate gas](../../how-to/estimate-gas.md) for different scenarios.

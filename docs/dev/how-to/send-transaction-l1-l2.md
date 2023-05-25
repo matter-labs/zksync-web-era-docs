@@ -9,58 +9,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 - Custom bridges.
 - Multi-layer governing smart contracts.
 
-## Step-by-step without gas estimation
-
-1. Import the zkSync Era library or contract containing the required functionality. 
-
-    The import gives access to the [`IZkSync.sol`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IZkSync.sol#L4) inherited interfaces.
-
-    Import the contracts with yarn (recommended), or [download the contracts](https://github.com/matter-labs/v2-testnet-contracts).
-
-    ::: code-tabs
-    @tab yarn
-    ```yarn
-    yarn add -D @matterlabs/zksync-contracts
-    ```
-    :::
-
-2. Send the transaction by calling the [`requestExecute`](https://github.com/matter-labs/zksync-2-dev/blob/e25e6c3909dc41e71d9f377a2aeef9ddb8f4987f/sdk/zksync-web3.js/src/adapters.ts#L553) method and passing the `contractAddress` and `calldata` as a minimum. 
-
-    :::tip 
-    - The system takes care of gas estimation implicitly when not providing gas estimation parameters.
-    :::
-
-    ::: code-tabs
-    @tab TypeScript
-    ```ts
-    async requestExecute(transaction: {
-        contractAddress: Address;
-        calldata: BytesLike;
-        l2GasLimit?: BigNumberish;
-        l2Value?: BigNumberish;
-        factoryDeps?: ethers.BytesLike[];
-        operatorTip?: BigNumberish;
-        gasPerPubdataByte?: BigNumberish;
-        refundRecipient?: Address;
-        overrides?: ethers.PayableOverrides;
-    }): Promise<PriorityOpResponse> {
-        const requestExecuteTx = await this.getRequestExecuteTx(transaction);
-        return this._providerL2().getPriorityOpResponse(await this._signerL1().sendTransaction(requestExecuteTx));
-    }
-    ```
-    :::
-
-    :::info 
-    - The `calldata` format is a bytestream containing the contract address and the method call data. 
-    - The contract ABI is required to set up the calldata for sending.
-    - See the [cross chain governance tutorial implementation](../tutorials/cross-chain-tutorial.md#call-l2-contract-from-l1) for further clarification.
-    :::
-
-### Example code
-
-TODO:
-
-## Step-by-step with gas estimation
+## Step-by-step
 
 1. Import the zkSync Era library or contract containing the required functionality. 
 
@@ -95,7 +44,7 @@ TODO:
 
 3. Call the JSON-RPC method [`zks_estimateGasL1toL2`](../../api/api.md#zks-estimategasl1tol2), wrapping the transaction data in a [`CallRequest`](#transaction-parameters-1) JSON object parameter. 
 
-    The method returns the minimum amount of gas required for the transaction to succeed. 
+    The method returns the amount of gas required for the transaction to succeed. 
 
     :::tip Important
     This value is often referred to as **limit, or gas limit, or L2 gas limit** in our documented examples. 
@@ -149,7 +98,7 @@ TODO:
 
 4. Get the base cost by calling the [`l2TransactionBaseCost`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L129) function with:
     - The gas price returned at step 2 as `_gasPrice`.
-    - The minimum gas value returned at step 3 as `_l2GasLimit`. 
+    - The gas value returned at step 3 as `_l2GasLimit`. 
     - A constant representing how much gas is required to publish a byte of data from L1 to L2 as `_l2GasPerPubdataByteLimit`. At the time of writing, the JavaScript API provides this constant as [`REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT`](../../api/js/utils.md#gas).
 
     ::: code-tabs
@@ -230,7 +179,6 @@ TODO:
     :::
 
     :::tip Solidity parameters description
-    
     - `_contractL2`: L2 address of the contract to be called.
     - `_l2Value`: Amount of ETH to pass with the call to L2; used as `msg.value` for the transaction.
     - `_calldata`: Calldata of the transaction call; encoded the same way as in Ethereum.
@@ -251,110 +199,140 @@ TODO:
 
 ### Example code
 
-TOCHECK::
-
 ::: code-tabs
-@tab Solidity
-```solidity
-//SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
-
-// Import the zkSync Era contract interface
-import "@matterlabs/zksync-contracts/l1/contracts/zksync/interfaces/IZkSync.sol";
-
-contract Example {
-    function callZkSync(
-        // The address of the zkSync smart contract
-        address _zkSyncAddress
-    ) external payable returns(bytes32 txHash) {
-        IZkSync zksync = IZkSync(_zkSyncAddress);
-        address someL2Contract = "<CONTRACT_ADDRESS>";
-        // Call L2 smart contract from L1 Example contract
-        txHash = zksync.requestL2Transaction{value: msg.value}(
-            // The address of the L2 contract to call
-            someL2Contract,
-            // We pass no ETH with the call
-            0,
-            // Encoding the calldata for the execute
-            abi.encodeWithSignature("someMethod()"),
-            // Gas limit
-            10000,
-            // gas price per pubdata byte
-            800,
-            // factory dependencies
-            new bytes[](0),
-            // refund address
-            address(0)
-        );
-    }
-}
-```
 @tab TypeScript
 ```js
-import { Wallet, Provider, utils } from "zksync-web3";
-import { ethers, BigNumber } from "ethers";
+import { Contract, Wallet, Provider } from "zksync-web3";
+import * as ethers from "ethers";
 
-async function main() {
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
 
-    const TEST_PRIVATE_KEY = "<TEST_PRIVATE_KEY>";
-    const L1_CONTRACT_ADDRESS = "<L1_CONTRACT_ADDRESS>";
-    const L2_CONTRACT_ADDRESS = "<L2_CONTRACT_ADDRESS>";
+// Greeter contract ABI for example
+const ABI = [
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "_greeting",
+        type: "string",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  {
+    inputs: [],
+    name: "greet",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "_greeting",
+        type: "string",
+      },
+    ],
+    name: "setGreeting",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+];
 
-    const zkSyncProvider = new Provider("https://testnet.era.zksync.dev");
-    const ethereumProvider = ethers.getDefaultProvider("goerli");
-    const wallet = new Wallet(TEST_PRIVATE_KEY, zkSyncProvider, ethereumProvider);
+// HTTPS RPC endpoints (from local node)
+const L1_RPC_ENDPOINT = "http://localhost:8545";
+const L2_RPC_ENDPOINT = "http://localhost:3050";
 
-    // Initialize the L2 provider
-    const l2Provider = new Provider('https://testnet.era.zksync.dev');
+const WALLET_PRIV_KEY = process.env.RICH_WALLET_PRIV_KEY || "";
 
-    const gasPrice = await wallet.provider.getGasPrice();
-
-    // The calldata can be encoded in the same way as for Ethereum
-    const calldata = '["from": "0xccf9d7d2f8be1f821cb8d9ec9553ffa92aa8fc4d",
-                        "to": "0xfbb5fa2ea8c5fc6f492c0795564352f262f49f50", 
-                        "data": "0x6ffa1caa0000000000000000000000000000000000000000000000000000000000000007",]';
-    const gasLimit = await l2Provider.estimateL1ToL2Execute({
-        contractAddress: L2_CONTRACT_ADDRESS,
-        calldata: calldata,
-        caller: utils.applyL1ToL2Alias(L1_CONTRACT_ADDRESS), 
-    });
-    const gasPerPubdataByte = utils.REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT;
-
-    const txCostPrice = await wallet.getBaseCost({
-        gasPrice,
-        gasLimit,
-        gasPerPubdataByte,
-    });
-
-    console.log(`Executing the transaction will cost ${ethers.utils.formatEther(txCostPrice)} ETH`);
-
-    // Initiate L2 transfer via L1 and execute from zkSync Era wallet
-    const executeTx = await wallet.requestExecute({
-        calldata,
-        l2GasLimit: gasLimit,
-        gasPerPubdataByte,
-        contractAddress: L2_CONTRACT_ADDRESS,
-        overrides: {
-            gasPrice,
-            value: txCostPrice,
-        },
-    });
-
-    await executeTx.wait();
+if (!WALLET_PRIV_KEY) {
+  throw new Error("Wallet private key is not configured in env file");
 }
 
-// We recommend always using this async/await pattern to properly handle errors.
+const L2_CONTRACT_ADDRESS =  "0x..."; //
+
+async function main() {
+  console.log(`Running script for L1-L2 transaction`);
+
+  // Initialize the wallet.
+  const l1provider = new Provider(L1_RPC_ENDPOINT);
+  const l2provider = new Provider(L2_RPC_ENDPOINT);
+  const wallet = new Wallet(WALLET_PRIV_KEY, l2provider, l1provider);
+
+  // console.log(`L1 Balance is ${await wallet.getBalanceL1()}`);
+  console.log(`L2 Balance is ${await wallet.getBalance()}`);
+
+  // retrieve L1 gas price
+  const l1GasPrice = await l1provider.getGasPrice();
+  console.log(`L1 gasPrice ${ethers.utils.formatEther(l1GasPrice)} ETH`);
+
+  const contract = new Contract(L2_CONTRACT_ADDRESS, ABI, wallet);
+
+  const msg = await contract.greet();
+
+  console.log(`Message in contract is ${msg}`);
+
+  const message = `Updated at ${new Date().toUTCString()}`;
+
+  const tx = await contract.populateTransaction.setGreeting(message);
+
+  // call to RPC method zks_estimateGasL1ToL2 to estimate L2 gas limit
+  const l2GasLimt = await l2provider.estimateGasL1(tx);
+
+  console.log(`L2 gasLimit ${l2GasLimt.toString()}`);
+
+  const baseCost = await wallet.getBaseCost({
+    // L2 computation
+    gasLimit: l2GasLimt,
+    // L1 gas price
+    gasPrice: l1GasPrice,
+  });
+
+  console.log(
+    `Executing this transaction will cost ${ethers.utils.formatEther(
+      baseCost
+    )} ETH`
+  );
+
+  const iface = new ethers.utils.Interface(ABI);
+  const calldata = iface.encodeFunctionData("setGreeting", [message]);
+
+  const txReceipt = await wallet.requestExecute({
+    contractAddress: L2_CONTRACT_ADDRESS,
+    calldata,
+    l2GasLimit: l2GasLimt,
+    refundRecipient: wallet.address,
+    overrides: {
+      // send the required amount of ETH
+      value: baseCost,
+      gasPrice: l1GasPrice,
+    },
+  });
+
+  console.log("L1 tx hash is :>> ", txReceipt.hash);
+
+  txReceipt.wait();
+}
+
 main().catch((error) => {
-    console.error(error);
-    process.exitCode = 1;
+  console.error(error);
+  process.exitCode = 1;
 });
+
 ```
-@tab Python
-```sh
-// In progress. Check back later.
-```
-@tab Go
-```sh
-// In progress. Check back later.
+@tab Solidity
+```solidity
+// in progress
 ```
 :::
