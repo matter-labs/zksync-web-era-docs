@@ -234,7 +234,7 @@ On the other hand, if you need to explicitly set the provider, do that with the 
 - If you want to use the plugin's UUPS proxy functionality, use zksolc version >=1.3.9.
 :::
 
-The UUPS proxy pattern is similar to the transparent proxy pattern, but with the difference that the upgrade is triggered via the logic contract instead from the proxy contract.
+The UUPS proxy pattern is similar to the transparent proxy pattern, except that the upgrade is triggered via the logic contract instead of from the proxy contract.
 
 For the UUPS deployment example, we will use a sligthly modified smart contract called `BoxUups`. 
 
