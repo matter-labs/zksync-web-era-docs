@@ -279,7 +279,7 @@ The main difference between the `Box` and `BoxUups` contracts is that the latter
 You can find more info about how UUPS works in [OpenZeppelin's documentation.](https://docs.openzeppelin.com/contracts/4.x/api/proxy#transparent-vs-uups)
 
 
-To deploy the UUPS contract you can use the same script as in the transparent upgradable proxy's case:
+To deploy the UUPS contract, use the same script as for the transparent upgradable proxy.
 
 ```typescript
 async function main() {
