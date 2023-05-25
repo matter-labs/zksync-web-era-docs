@@ -6,7 +6,7 @@ The plugin is based on [@openzeppelin/hardhat-upgrades](https://www.npmjs.com/pa
 
 ::: warning Overview
 - This plugin is still in alpha.
-- The plugin supports transparent upgradable proxies, uups proxies and beacon proxies.
+- The plugin supports transparent upgradable proxies, UUPS proxies, and beacon proxies.
 - Proxy upgrade validations are not supported yet.
 :::
 
