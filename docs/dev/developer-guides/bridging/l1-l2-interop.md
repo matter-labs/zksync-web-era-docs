@@ -22,7 +22,7 @@ L1 to L2 communication is governed by the [`IZkSync.sol`](https://github.com/mat
 The system processes gas estimation for transactions implicitly. However, it is also possible to implement the gas estimation processes explicitly.
 
 :::tip L1 to L2 gas estimation for transactions
-- Basic costs are measured in number of gas, not in ERC20 token value, so actual cost depends on the transaction gas price.
+- Basic costs are measured in the amount of gas, and so the final cost depends on the gas price that the transaction assigns.
 - The transaction process requires the current L1 gas price, transaction base cost, and transaction gas limit which defines the maximum amount of gas a transaction can consume.
 :::
 
