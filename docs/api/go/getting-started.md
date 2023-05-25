@@ -45,7 +45,7 @@ Full code for all examples is available [here](https://github.com/zksync-sdk/zks
 
 ### Get all confirmed tokens on zkSync
 
-Following example shows how to get all confirmed ERC20 tokens on zkSync network. 
+Following example shows how to get all confirmed tokens on zkSync Era. 
 
 ```go
 package main
