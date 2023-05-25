@@ -477,7 +477,7 @@ To upgrade the implementation of the transparent upgradeable contract, use the `
 
 ## Upgrade UUPS proxy
 
-Similar to the deployment scirpt, there are no modifications needed to upgrade the implementation of the UUPS contract, compared to the upgrading tranparent upgradable contract. The only difference is that we will use the `BoxUupsV2` as a new implementation contract: 
+Similar to the deployment script, there are no modifications needed to upgrade the implementation of the UUPS contract, compared to upgrading the transparent upgradable contract. The only difference is that we use the `BoxUupsV2` as a new implementation contract.
 
 
 ```typescript
