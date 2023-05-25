@@ -236,7 +236,7 @@ On the other hand, if you need to explicitly set the provider, do that with the 
 
 The UUPS proxy pattern is similar to the transparent proxy pattern, except that the upgrade is triggered via the logic contract instead of from the proxy contract.
 
-For the UUPS deployment example, we will use a sligthly modified smart contract called `BoxUups`. 
+For the UUPS deployment example, we use a slightly modified smart contract called `BoxUups`. 
 
 ```typescript
 
