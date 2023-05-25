@@ -29,7 +29,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
     ::: code-tabs
     @tab Solidity
     ```sol
-    
+    // coming
     ```
     @tab TypeScript
     ```ts
