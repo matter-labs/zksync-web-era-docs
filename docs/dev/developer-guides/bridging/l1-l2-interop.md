@@ -37,8 +37,6 @@ L2 to L1 communication is based on transferring the data as a message, and not o
 
 ## Priority queue
 
-zkSync Era supports general smart contract computation which includes complex operations. For this reason, some principles had to evolve in order to preserve the stability of the network.
-
 1. All transactions types are now supported by the priority queue. 
 
     In Lite, users may have had their funds locked on an L2 smart contract, and not on their own L2 account. Now, before moving funds to L1, they can execute a transaction on the zkSync Era network which releases the funds from the smart contract so they can move them.

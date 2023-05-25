@@ -75,31 +75,12 @@ TODO:
     ```
     :::
 
-2. Get the current L1 gas price. Function available in [Yul](https://github.com/matter-labs/era-system-contracts/blob/4e0487b940fa76d26107ca725d65e7abb6d0dee8/bootloader/bootloader.yul#L1069) and then called by the [JavaScript SDK](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/provider.ts#L265).
+2. Get the current L1 gas price. Function available in [Solidity]() and then called by the [JavaScript SDK](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/provider.ts#L265).
 
     ::: code-tabs
-    @tab Yul
-    ```yul
-    function getGasPrice(maxFeePerGas, maxPriorityFeePerGas) -> ret {
-        let baseFee := basefee()
-
-        if gt(maxPriorityFeePerGas, maxFeePerGas) {
-            revertWithReason(
-                MAX_PRIORITY_FEE_PER_GAS_GREATER_THAN_MAX_FEE_PER_GAS(),
-                0
-            )
-        }
-
-        if gt(baseFee, maxFeePerGas) {
-            revertWithReason(
-                BASE_FEE_GREATER_THAN_MAX_FEE_PER_GAS(),
-                0
-            )
-        }
-
-        // We always use `baseFee` to charge the transaction 
-        ret := baseFee
-    }
+    @tab Solidity
+    ```sol
+    
     ```
     @tab TypeScript
     ```ts
@@ -166,7 +147,7 @@ TODO:
     ```
     :::
 
-4. Get the base cost by calling the [`l2TransactionBaseCost`]((https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L129) ) function with:
+4. Get the base cost by calling the [`l2TransactionBaseCost`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L129) function with:
     - The gas price returned at step 2 as `_gasPrice`.
     - The minimum gas value returned at step 3 as `_l2GasLimit`. 
     - A constant representing how much gas is required to publish a byte of data from L1 to L2 as `_l2GasPerPubdataByteLimit`. At the time of writing, the JavaScript API provides this constant as [`REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT`](../../api/js/utils.md#gas).
