@@ -53,11 +53,11 @@ These fields are handled by our [SDK](./js/features.md).
 
 ### Testnet
 
-[https://testnet.era.zksync.dev](https://testnet.era.zksync.dev)
+`https://testnet.era.zksync.dev`
 
 ### Mainnet
 
-[https://mainnet.era.zksync.io](https://mainnet.era.zksync.io)
+`https://mainnet.era.zksync.io`
 
 
 ## zkSync Era JSON-RPC methods
