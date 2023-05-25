@@ -231,7 +231,7 @@ On the other hand, if you need to explicitly set the provider, do that with the 
 ## UUPS proxies
 
 :::warning
-- If you want to use plugin's uups proxies functionalities, you need to use zksolc version >=1.3.9
+- If you want to use the plugin's UUPS proxy functionality, use zksolc version >=1.3.9.
 :::
 
 The UUPS proxy pattern is similar to the transparent proxy pattern, but with the difference that the upgrade is triggered via the logic contract instead from the proxy contract.
