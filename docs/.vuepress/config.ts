@@ -90,9 +90,6 @@ export default defineUserConfig({
   theme,
 
   plugins: [
-    // registerComponentsPlugin({
-    //   componentsDir: "docs/.vuepress/components",
-    // }),
     pwaPlugin({
       update: "force"
     }),
