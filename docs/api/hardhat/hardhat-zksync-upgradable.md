@@ -276,7 +276,7 @@ contract BoxUups is Initializable, {
 ```
 The main difference between `Box` and `BoxUups` contracts is that the latter one implements both `UUPSUpgradeable` and `OwnableUpgradeable` interfaces and has a special function `_authorizeUpgrade` which can be called only by the owner of the contract.
 
-You can find more info about how UUPS works in the [openzeppelin's documentation](https://docs.openzeppelin.com/contracts/4.x/api/proxy#transparent-vs-uups).
+You can find more info about how UUPS works in [OpenZeppelin's documentation.](https://docs.openzeppelin.com/contracts/4.x/api/proxy#transparent-vs-uups)
 
 
 To deploy the UUPS contract you can use the same script as in the transparent upgradable proxy's case:
