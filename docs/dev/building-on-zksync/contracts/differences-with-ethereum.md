@@ -43,7 +43,12 @@ function myFactory(bytes memory bytecode) public {
 ```
 
 Unfortunately, it's impossible to differentiate between the above cases during compile-time. As a result, we strongly
-recommend including tests for any factory that deploys child contracts.
+recommend including tests for any factory that deploys child contracts using `type(T).creationCode`.
+
+Since the deploy and runtime code is merged together in zkSync Era, we do not support `type(T).runtimeCode` and it
+always produces a compile-time error.
+
+#### Address derivation
 
 For zkEVM bytecode, zkSync Era uses a distinct address derivation method compared to Ethereum. The precise formulas
 can be found in our SDK, as demonstrated below:
@@ -73,6 +78,7 @@ export function createAddress(sender: Address, senderNonce: BigNumberish) {
     return ethers.utils.getAddress(addressBytes);
 }
 ```
+
 
 ### `CALL`, `STATICCALL`, `DELEGATECALL`
 
@@ -117,7 +123,7 @@ Yul uses a special instruction `datasize` to distinguish the contract code and c
 substitute `datasize` with 0, and `codesize` with `calldatasize`, in zkSync Era deployment code. This way when Yul calculates the
 calldata size as `sub(codesize, datasize)`, the result is the size of the constructor arguments.
 
-### `CODECOPY` in zkSync Era
+### `CODECOPY`
 
 | Deploy code                       | Runtime code (old EVM codegen)    | Runtime code (new Yul codegen)    |
 | --------------------------------- | --------------------------------- | --------------------------------- |
@@ -284,7 +290,8 @@ payable(X).transfer
 Use instead:
 
 ```solidity
-(bool s, )= call{value: x}("")
+(bool s, ) = call{value: x}("");
+require(s);
 ```
 
 This converts the `send`/`transfer` functionality to `call` and [avoids potential security risks outlined here.](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/).
@@ -306,6 +313,10 @@ prioritized to allow deployment of both Hyperchains and protocols like Aztec/Dar
 
 Ethereum cryptographic primitives like `ecrecover`, `keccak256`, and `sha256` are supported as precompiles.
 No actions are required from your side as all the calls to the precompiles are done by the compilers under the hood.
+
+### ecrecover
+
+In contrast to Ethereum, zkSync Era ecrecover always return a zero address for the zero digests. Be careful with adapting crypto primitives that rely on that, specifically, it affects [secp256k1 mul verification via ecrecover](https://ethresear.ch/t/you-can-kinda-abuse-ecrecover-to-do-ecmul-in-secp256k1-today/2384).
 
 ## Recommendations
 
