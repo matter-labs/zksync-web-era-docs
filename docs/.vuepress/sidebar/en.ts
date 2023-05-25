@@ -148,6 +148,18 @@ export const enSidebar = sidebar({
       link: "/api/java/getting-started", // optional, which should be a absolute path.
       children: ["/api/java/getting-started"],
     },
+    {
+      text: "Go SDK",
+      link: "/api/go",
+      children: [
+        "/api/go/getting-started",
+        "/api/go/providers",
+        "/api/go/accounts",
+        "/api/go/accounts-l1-l2",
+        "/api/go/contract-interface",
+        "/api/go/types",
+      ],
+    },
   ],
   //The legal related sidebar
   "/legal/": ["/legal/terms", "/legal/privacy"],
