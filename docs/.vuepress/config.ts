@@ -13,10 +13,7 @@ export default defineUserConfig({
       dirname,
       './components/PageFooter.vue',
     ),
-    '@theme-hope/layouts/Layout': path.resolve(
-      dirname,
-      './components/Layout.vue',
-    ),
+    "@theme-hope/modules/navbar/components/Navbar": path.resolve(__dirname, "./components/NavBar.vue"),
   },
   dest: "dist/docs",
 
