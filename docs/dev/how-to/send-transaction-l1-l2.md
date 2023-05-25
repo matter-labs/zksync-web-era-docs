@@ -24,13 +24,9 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
     ```
     :::
 
-2. Get the current L1 gas price. Function available in [Solidity]() and then called by the [JavaScript SDK](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/provider.ts#L265).
+2. Get the current L1 gas price with Ethereum JSON-RPC method [`eth_gasPrice`](https://ethereum.github.io/execution-apis/api-documentation/).
 
     ::: code-tabs
-    @tab Solidity
-    ```sol
-    // coming
-    ```
     @tab TypeScript
     ```ts
     // Method available on a zkSync Era JS SDK Provider object
