@@ -274,7 +274,7 @@ contract BoxUups is Initializable, {
     event ValueChanged(uint256 newValue);
 }
 ```
-The main difference between `Box` and `BoxUups` contracts is that the latter one implements both `UUPSUpgradeable` and `OwnableUpgradeable` interfaces and has a special function `_authorizeUpgrade` which can be called only by the owner of the contract.
+The main difference between the `Box` and `BoxUups` contracts is that the latter implements both `UUPSUpgradeable` and `OwnableUpgradeable` interfaces and has a special function `_authorizeUpgrade` which can only be called by the contract owner.
 
 You can find more info about how UUPS works in [OpenZeppelin's documentation.](https://docs.openzeppelin.com/contracts/4.x/api/proxy#transparent-vs-uups)
 
