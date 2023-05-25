@@ -292,7 +292,7 @@ async function main() {
     ...
 ```
 
-When you run the script, the plugin will detect that the proxy kind is UUPS, it will execute the deploy and save the deployment info in your manifest file.
+When you run the script, the plugin detects that the proxy type is UUPS, it executes the deployment, and saves the deployment info in your manifest file.
 
 ## Beacon proxies
 
