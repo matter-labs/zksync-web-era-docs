@@ -112,10 +112,10 @@ import "@matterlabs/zksync-contracts/l1/contracts/zksync/interfaces/IZkSync.sol"
 
 contract Example {
   // NOTE: The zkSync contract implements only the functionality for proving that a message belongs to a block
-  // but does not guarantee that such a proof was used only once. That's why a contract that uses L2 -> L1
+  // but does not guarantee that such a proof was used only once. That's why a contract that uses L2 to L1
   // communication must take care of the double handling of the message.
   /// @dev mapping L2 block number => message number => flag
-  /// @dev Used to indicated that zkSync L2 -> L1 message was already processed
+  /// @dev Used to indicated that zkSync L2 to L1 message was already processed
   mapping(uint256 => mapping(uint256 => bool)) isL2ToL1MessageProcessed;
 
   function consumeMessageFromL2(

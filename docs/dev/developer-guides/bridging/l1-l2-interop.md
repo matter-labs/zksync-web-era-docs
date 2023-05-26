@@ -40,5 +40,3 @@ L2 to L1 communication is based on transferring the data as a message, and not o
 1. All transactions types are now supported by the priority queue. 
 
 2. The priority queue must be fully permissionless to prevent malicious activity. For example, malicious users might send multiple transactions which push up the block gas limit to unworkable levels. To mitigate against this, submitting transactions to the priority queue is no longer free and users must pay a fee to the operator. 
-
-    The fee for a transaction is equal to `txBaseCost * gasPrice`. The `gasPrice` is the gas price of the user's transaction, while `txBaseCost` is the base cost for the transaction and depends on the transaction parameters (e.g. `gasLimit` for an `Execute` transaction).
