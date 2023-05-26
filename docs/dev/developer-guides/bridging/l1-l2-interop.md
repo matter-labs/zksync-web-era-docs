@@ -37,6 +37,6 @@ L2 to L1 communication is based on transferring the data as a message, and not o
 
 ## Priority queue
 
-1. All transactions types are now supported by the priority queue. 
+1. All transactions types are supported by the priority queue.
 
 2. The priority queue must be fully permissionless to prevent malicious activity. For example, malicious users might send multiple transactions which push up the block gas limit to unworkable levels. To mitigate against this, submitting transactions to the priority queue is no longer free and users must pay a fee to the operator. To obtain the cost for sending an L2 to L1 message, please refer to [step 4 of how to send an L1 to L2 transaction](../../how-to/send-transaction-l1-l2.md#step-by-step).
