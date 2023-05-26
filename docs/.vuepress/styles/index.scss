@@ -298,6 +298,30 @@
     [data-theme="light"] .site-name {
         color: $dark-text !important;
     }
+
+    [data-theme="dark"] .google-translate-select-dropdown__menu li.selected {
+        color: $light-text !important;
+    }
+    
+    [data-theme="light"] .google-translate-select-dropdown__menu li.selected {
+        color: $dark-text !important;
+    }
+
+    [data-theme="dark"] .google-translate-select-dropdown__menu {
+        background-color: $dark-text !important;
+    }
+    
+    [data-theme="light"] .google-translate-select-dropdown__menu {
+        background-color: $light-text !important;
+    }
+
+    [data-theme="dark"] .google-translate-select-dropdown__menu__item :hover {
+        color: #1d2536 !important;
+    }
+    
+    [data-theme="light"] .google-translate-select-dropdown__menu__item :hover {
+        color: #1d2536 !important;
+    }
     
     [data-theme="light"] img[src*="../../assets/images/code-light.png"] {
         content: url("../../assets/images/code-dark.png");
