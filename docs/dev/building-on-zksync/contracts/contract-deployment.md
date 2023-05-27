@@ -1,12 +1,12 @@
 # Contract deployment
 
-To maintain the same security as in L1, the zkSync operator must publish on the Ethereum chain the code for each contract it deploys. However, if there are multiple contracts deployed with the same code, it will only publish it on Ethereum once. While deploying contracts for the first time may be relatively expensive, factories, which deploy contracts with the same code multiple times, can have huge savings compared to L1.
+In order to maintain the same level of security as the L1, the zkSync operator is required to publish the code for each contract it deploys on the Ethereum chain. However, if multiple contracts are deployed using the same code, the operator only needs to publish it on Ethereum once. While the initial deployment of contracts can be relatively expensive, utilizing contract factories that deploy contracts with the same code multiple times can lead to huge savings compared to the L1.
 
-All these specifics make the process of deploying smart contracts on zkEVM comply with the major rule: _The operator should know the code of the contract before it is deployed_. This means that deploying contracts is only possible via `EIP712` transactions with the `factory_deps` field containing the supplied bytecode.
+These specific requirements ensure that the process of deploying smart contracts on zkEVM complies to a crucial rule: *the operator must be aware of the contract's code before deployment*. Consequently, deploying contracts can only be accomplished through EIP712 transactions, with the `factory_deps` field containing the bytecode provided.
 
 [Learn more about EIP712 transactions here](../../../api/api.md#eip712).
 
-## Ethereum / zkSync differences
+## Ethereum / zkSync differences in contract deployment
 
 **How deploying contracts works on Ethereum.**
 
@@ -22,8 +22,7 @@ Here's a [step-by-step guide on how to use it](../../../api/hardhat/getting-star
 
 ### Note on `factory_deps`
 
-A good question could be, _how does the validator know the preimage of the bytecode hashes to execute the code?_
-Here comes the concept of factory dependencies (`factory_deps` for short)! Factory dependencies are a list of bytecode hashes whose preimages were shown on L1 (data is always available).
+You might wonder how validators obtain the preimage of the bytecode hashes necessary to execute the code. This is where the concept of factory dependencies, or factory_deps for short, comes into play. Factory dependencies refer to a list of bytecode hashes whose corresponding preimages were previously revealed on the L1 (where data is always available).
 
 Under the hood, zkSync does not store bytecodes of contracts, but [specially formatted hashes of the bytecodes](#format-of-bytecode-hash). You can see that the [ContractDeployer](../../developer-guides/system-contracts.md#contractdeployer) system contract accepts the bytecode hash of the deployed contract and not its bytecode. However, for contract deployment to succeed, the operator needs to know the bytecode. The `factory_deps` field of the transaction is used for this reason: it contains the bytecodes that should be known to the operator for this transaction to succeed. Once the transaction succeeds, these bytecodes are published on L1 and are considered "known" to the operator forever.
 
@@ -34,9 +33,9 @@ Some examples of usage are:
 
 Both of these examples are already seamlessly done under the hood by our [hardhat-zksync-deploy](../../../api/hardhat/getting-started.md).
 
-Note, that the factory deps do not necessarily have to be used by the transaction in any way. These are just markers that these bytecodes should be published on L1 with this transaction. If your contract contains a lot of various factory dependencies and they do not fit inside a single L1 block, you can split the list of factory dependencies between multiple transactions.
+Note that the factory deps do not necessarily have to be used by the transaction in any way. These are just markers that these bytecodes should be published on L1 with this transaction. If your contract contains a lot of various factory dependencies and they do not fit inside a single L1 block, you can split the list of factory dependencies between multiple transactions.
 
-For example, let's say that you want to deploy contract `A` which can also deploy contracts `B` and `C`. This means that you will have three factory dependencies for your deployment transaction: `A`,`B` and `C`. If the pubdata required to publish all of them is too large to fit into one block, you can send a dummy transaction with only factory dependencies `A` and `B` (assuming their combined length is small enough) and do the actual deploy with a second transaction while providing the bytecode of contract `C` as a factory dependency for it. Note, that if some contract _on its own_ is larger than the allowed limit per block, this contract has to be split into smaller ones.
+For example, let's say that you want to deploy contract `A` which can also deploy contracts `B` and `C`. This means that you will have three factory dependencies for your deployment transaction: `A`,`B` and `C`. If the pubdata required to publish all of them is too large to fit into one block, you can send a dummy transaction with only factory dependencies `A` and `B` (assuming their combined length is small enough) and do the actual deploy with a second transaction while providing the bytecode of contract `C` as a factory dependency for it. Note that if some contract _on its own_ is larger than the allowed limit per block, this contract has to be split into smaller ones.
 
 ### Format of bytecode hash
 
@@ -68,11 +67,13 @@ For detailed information on smart contract vulnerabilities and security best pra
 
 - (Solidity docs security considerations)[https://docs.soliditylang.org/en/latest/security-considerations.html].
 
-### Differences in `CREATE` behaviour
+### Differences in `create()` behaviour
 
-For the ease of [supporting account abstraction](../../developer-guides/aa.md), for each account, we split the nonce into two parts: _the deployment nonce_ and _the transaction nonce_. The deployment nonce is the number of contracts the account has deployed with `CREATE` opcode, while the transaction nonce is used for replay attack protection for the transactions.
+To facilitate [support for account abstraction](https://era.zksync.io/docs/dev/developer-guides/aa.html), zkSync splits the nonce of each account into two parts: the deployment nonce and the transaction nonce. The deployment nonce represents the number of contracts the account has deployed using the `create()` opcode, while the transaction nonce is used for protecting against replay attacks for transactions.
 
-This means that while for smart contracts the nonce on zkSync behaves the same way as on Ethereum, for EOAs calculating the address of the deployed contract is not as straightforward. On Ethereum, it can be safely calculated as `hash(RLP[address, nonce])`, while on zkSync it is recommended to wait until the contract is deployed and catch the `ContractDeployed` event emitted by [ContractDeployer](../../developer-guides/system-contracts.md#contractdeployer) with the address of the newly deployed contract. All of this is done in the background by the SDK.
+This distinction implies that, while the nonce on zkSync behaves similarly to Ethereum for smart contracts, calculating the address of a deployed contract for externally owned accounts (EOAs) is not as straightforward. 
+
+On Ethereum, it can be safely determined using the formula `hash(RLP[address, nonce])`. However, on zkSync, it is advisable to wait until the contract is deployed and catch the `ContractDeployed` event emitted by the [ContractDeployer](https://era.zksync.io/docs/dev/developer-guides/system-contracts.html#contractdeployer), which provides the address of the newly deployed contract. The SDK handles all of these processes in the background to simplify the workflow.
 
 To have a deterministic address, you should use the `create2` method from [ContractDeployer](../../developer-guides/system-contracts.md#contractdeployer). It is available for EOAs as well.
 
