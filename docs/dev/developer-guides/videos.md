@@ -3,7 +3,7 @@
 
 ## zkSync Era for Builders - Alex Gluchowski
 
-This talk covers everything you need to know about zkSync Era, and the user, and developer experience perspectives when building on zkSync Era.
+This talk provides an in-depth understanding of zkSync Era from the user and developer’s perspective. It explains the differences and compatibilities between zkSync Era and the Ethereum Virtual Machine in a concise manner.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xd2siik0iBU" title="zSync 2.0 for Builders - Alex Gluchowski" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
