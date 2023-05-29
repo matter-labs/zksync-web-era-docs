@@ -24,73 +24,80 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
     ```
     :::
 
-2. Get the current L1 gas price with Ethereum JSON-RPC method [`eth_gasPrice`](https://ethereum.github.io/execution-apis/api-documentation/).
+2. Get the current L1 gas price with Ethereum JSON-RPC method [`eth_gasPrice`](https://ethereum.github.io/execution-apis/api-documentation/) called with the [Ethers implementation](https://github.com/ethers-io/ethers.js/blob/f97b92bbb1bde22fcc44100af78d7f31602863ab/packages/providers/src.ts/base-provider.ts#L1428).
 
     ::: code-tabs
     @tab TypeScript
     ```ts
-    // Method available on a zkSync Era JS SDK Provider object
-    override async getGasPrice(token?: Address): Promise<BigNumber> {
-        const params = token ? [token] : [];
-        const price = await this.send('eth_gasPrice', params);
-        return BigNumber.from(price);
+    async getGasPrice(): Promise<BigNumber> {
+        await this.getNetwork();
+
+        const result = await this.perform("getGasPrice", { });
+        try {
+            return BigNumber.from(result);
+        } catch (error) {
+            return logger.throwError("bad result from backend", Logger.errors.SERVER_ERROR, {
+                method: "getGasPrice",
+                result, error
+            });
+        }
     }
     ```
     :::
 
 3. Apply an alias to the addresses in the request if the sender address is a contract. 
     
-If the sender is an EOA, no aliasing is required. Aliasing is implemented by the [`applyL1ToL2Alias`](https://github.com/matter-labs/zksync-2-contracts/blob/7b5c094a57c0606785ea38c9c752f9def9a5ed9d/ethereum/contracts/vendor/AddressAliasHelper.sol#L28) Solidity function and called by the [JavaScript SDK](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/utils.ts#L374).
+    If the sender is an EOA, no aliasing is required. Aliasing is implemented by the [`applyL1ToL2Alias`](https://github.com/matter-labs/zksync-2-contracts/blob/7b5c094a57c0606785ea38c9c752f9def9a5ed9d/ethereum/contracts/vendor/AddressAliasHelper.sol#L28) Solidity function and called by the [JavaScript SDK](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/utils.ts#L374).
 
-::: code-tabs
-@tab Solidity
-```solidity
-function applyL1ToL2Alias(address l1Address) internal pure returns (address l2Address) {
-    unchecked {
-        l2Address = address(uint160(l1Address) + offset);
+    ::: code-tabs
+    @tab Solidity
+    ```solidity
+    function applyL1ToL2Alias(address l1Address) internal pure returns (address l2Address) {
+        unchecked {
+            l2Address = address(uint160(l1Address) + offset);
+        }
     }
-}
-```
-@tab TypeScript
-```ts
-export function applyL1ToL2Alias(address: string): string {
-    return ethers.utils.hexlify(ethers.BigNumber.from(address).add(L1_TO_L2_ALIAS_OFFSET).mod(ADDRESS_MODULO));
-}
-```
-:::
+    ```
+    @tab TypeScript
+    ```ts
+    export function applyL1ToL2Alias(address: string): string {
+        return ethers.utils.hexlify(ethers.BigNumber.from(address).add(L1_TO_L2_ALIAS_OFFSET).mod(ADDRESS_MODULO));
+    }
+    ```
+    :::
 
 4. Call the JSON-RPC method [`zks_estimateGasL1toL2`](../../api/api.md#zks-estimategasl1tol2), wrapping the transaction data in a [`CallRequest`](#transaction-parameters-1) JSON object parameter. 
 
-The method returns the amount of gas required for the transaction to succeed. 
+    The method returns the amount of gas required for the transaction to succeed. 
 
-:::tip Important
-This value is often referred to as **limit, or gas limit, or L2 gas limit** in our documented examples. 
-:::
+    :::tip Important
+    This value is often referred to as **limit, or gas limit, or L2 gas limit** in our documented examples. 
+    :::
 
-::: code-tabs
-@tab TypeScript
-```ts
-// available on a zkSync Era JS SDK Provider object
-async estimateGasL1(transaction: utils.Deferrable<TransactionRequest>): Promise<BigNumber> {
-    await this.getNetwork();
-    const params = await utils.resolveProperties({
-       transaction: this._getTransactionRequest(transaction)
-    });
-    if (transaction.customData != null) {
-        // @ts-ignore
-        params.transaction.customData = transaction.customData;
+    ::: code-tabs
+    @tab TypeScript
+    ```ts
+    // available on a zkSync Era JS SDK Provider object
+    async estimateGasL1(transaction: utils.Deferrable<TransactionRequest>): Promise<BigNumber> {
+        await this.getNetwork();
+        const params = await utils.resolveProperties({
+          transaction: this._getTransactionRequest(transaction)
+        });
+        if (transaction.customData != null) {
+            // @ts-ignore
+            params.transaction.customData = transaction.customData;
+        }
+        const result = await this.send('zks_estimateGasL1ToL2', [
+            Provider.hexlifyTransaction(params.transaction, { from: true })
+        ]);
+        try {
+            return BigNumber.from(result);
+        } catch (error) {
+            throw new Error(`bad result from backend (zks_estimateGasL1ToL2): ${result}`);
+        }
     }
-    const result = await this.send('zks_estimateGasL1ToL2', [
-        Provider.hexlifyTransaction(params.transaction, { from: true })
-    ]);
-    try {
-        return BigNumber.from(result);
-    } catch (error) {
-        throw new Error(`bad result from backend (zks_estimateGasL1ToL2): ${result}`);
-    }
-}
-```
-:::
+    ```
+    :::
 
 5. Get the base cost by calling the [`l2TransactionBaseCost`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L129) function with:
     - The gas price returned at step 2 as `_gasPrice`.
