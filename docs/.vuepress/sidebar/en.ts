@@ -13,6 +13,13 @@ export const enSidebar = sidebar({
       children: ["/dev/fundamentals/rollups.md", "/dev/fundamentals/zkSync.md", "/dev/fundamentals/interacting.md", "/dev/fundamentals/hyperscaling.md"],
     },
     {
+      text: "How to",
+      link: "/dev/how-to",
+      children: [ "/dev/how-to/estimate-gas.md", 
+                  "/dev/how-to/send-transaction-l1-l2",
+                  "/dev/how-to/send-message-l2-l1", ],
+    },
+    {
       text: "Understanding zkSync Era",
       link: "/dev/developer-guides",
       children: [
@@ -23,8 +30,6 @@ export const enSidebar = sidebar({
         "/dev/developer-guides/transactions/fee-model.md",
         "/dev/developer-guides/bridging/bridging-asset.md",
         "/dev/developer-guides/bridging/l1-l2-interop.md",
-        "/dev/developer-guides/bridging/l1-l2.md",
-        "/dev/developer-guides/bridging/l2-l1.md",
         "/dev/developer-guides/videos.md",
       ],
     },
@@ -147,6 +152,18 @@ export const enSidebar = sidebar({
       text: "Java SDK", // required
       link: "/api/java/getting-started", // optional, which should be a absolute path.
       children: ["/api/java/getting-started"],
+    },
+    {
+      text: "Go SDK",
+      link: "/api/go",
+      children: [
+        "/api/go/getting-started",
+        "/api/go/providers",
+        "/api/go/accounts",
+        "/api/go/accounts-l1-l2",
+        "/api/go/contract-interface",
+        "/api/go/types",
+      ],
     },
   ],
   //The legal related sidebar

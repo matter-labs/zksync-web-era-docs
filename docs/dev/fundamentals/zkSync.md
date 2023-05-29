@@ -16,6 +16,10 @@ zkSync Era is made to look and feel like Ethereum, but with lower fees. Just lik
 You don't need to register a separate private key before usage; zkSync supports existing Ethereum wallets out of the box.
 At this time, zkSync is solely run and operated by the zkSync team's servers and is therefore centralized. However, this will be transitioned to a decentralized system shortly.
 
+:::tip Gas fees
+- Layer 2 gas fees depend on the current Ethereum gas fees for publishing and verification.
+:::
+
 ## zkSync overview
 
 <!---
@@ -50,7 +54,7 @@ Furthermore, on zkSync, each L2 block will progress through the following four s
 
 The typical time for a transaction to go from `Processed` to `Finalized` is a couple of hours at the current stage.
 
-Please note that for developer convenience, we usually treat the `Processed` and `Committed` states as a single stage called `Committed` since they have no difference from the UX/DexEx standpoints.
+Please note that for developer convenience, we usually treat the `Processed` and `Committed` states as a single stage called `Committed` since they have no difference from the UX/DevEx standpoints.
 
 ### The State of zkSync
 
