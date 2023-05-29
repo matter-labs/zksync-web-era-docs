@@ -1073,7 +1073,7 @@ Download the complete project [here](https://github.com/matter-labs/daily-spendl
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync Era, check out the [documentation](../developer-guides/bridging/l1-l2.md).
+- To find out more about L1->L2 interaction on zkSync Era, check out the [documentation](../developer-guides/bridging/l1-l2-interop.md).
 - To learn more about the zksync-web3 SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync Era Hardhat plugins, check out their [documentation](../../api/hardhat).
 

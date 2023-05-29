@@ -13,6 +13,13 @@ export const enSidebar = sidebar({
       children: ["/dev/fundamentals/rollups.md", "/dev/fundamentals/zkSync.md", "/dev/fundamentals/interacting.md", "/dev/fundamentals/hyperscaling.md"],
     },
     {
+      text: "How to",
+      link: "/dev/how-to",
+      children: [ "/dev/how-to/estimate-gas.md", 
+                  "/dev/how-to/send-transaction-l1-l2",
+                  "/dev/how-to/send-message-l2-l1", ],
+    },
+    {
       text: "Understanding zkSync Era",
       link: "/dev/developer-guides",
       children: [
@@ -23,8 +30,6 @@ export const enSidebar = sidebar({
         "/dev/developer-guides/transactions/fee-model.md",
         "/dev/developer-guides/bridging/bridging-asset.md",
         "/dev/developer-guides/bridging/l1-l2-interop.md",
-        "/dev/developer-guides/bridging/l1-l2.md",
-        "/dev/developer-guides/bridging/l2-l1.md",
         "/dev/developer-guides/videos.md",
       ],
     },
