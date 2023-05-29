@@ -183,7 +183,7 @@ async estimateGasL1(transaction: utils.Deferrable<TransactionRequest>): Promise<
     - `_factoryDeps`: Bytecodes array containing the bytecode of the contract being deployed. If the contract is a factory contract, the array contains the bytecodes of the contracts it can deploy.
     - `_refundRecipient`: Address that receives the rest of the fee after the transaction execution. If `refundRecipient == 0`, L2 `msg.sender` is used. 
 
-    **Note**: If the `_refundRecipient` is a smart contract, then during the L1 to L2 transaction the `msg.sender` address is [aliased](#aliasing). 
+    **Note**: If the `_refundRecipient` is a smart contract, then during the L1 to L2 transaction its address is [aliased](#aliasing). 
     :::
 
 7. Wait for a transaction response and output the details.
