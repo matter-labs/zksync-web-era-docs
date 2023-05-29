@@ -44,26 +44,26 @@
                     </div>
                 </div>
             </div>
-        </footer>
-    </template>    
-    
-    <script setup lang="ts">
-    import { computed } from 'vue';
-    import { usePageData } from '@vuepress/client';
-    
-    const pageData = usePageData();
-    
-    const getDocVersion = (branch = 'main', path = '') => {
-        if (path.indexOf('dist/main') > -1 || path.indexOf('dist') === -1) {
-        return branch;
-        }
-        const branchRex = /UserGuide\/V(\d+\.\d+\.x)/;
-        if (branchRex.test(path)) {
-        const tag = branchRex.exec(path)![1];
-        return `rel/${tag.replace('.x', '')}`;
-        }
-        return branch;
-    };
-    
-    const docVersion = computed(() => getDocVersion('main', pageData.value.path));
-    </script>
+    </footer>
+</template>    
+
+<script setup lang="ts">
+import { computed, ref, onMounted } from 'vue';
+import { usePageData } from '@vuepress/client';
+
+const pageData = usePageData();
+
+const getDocVersion = (branch = 'main', path = '') => {
+    if (path.indexOf('dist/main') > -1 || path.indexOf('dist') === -1) {
+    return branch;
+    }
+    const branchRex = /UserGuide\/V(\d+\.\d+\.x)/;
+    if (branchRex.test(path)) {
+    const tag = branchRex.exec(path)![1];
+    return `rel/${tag.replace('.x', '')}`;
+    }
+    return branch;
+};
+
+const docVersion = computed(() => getDocVersion('main', pageData.value.path));
+</script>
