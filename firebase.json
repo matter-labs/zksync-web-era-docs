@@ -112,7 +112,32 @@
           "source": "/docs/dev/fundamentals/faq.html",
           "destination": "/docs/dev/troubleshooting/faq.html",
           "type": "302"
-        }
+        },
+        {
+          "source": "/docs/api/hardhat/",
+          "destination": "/docs/tools/hardhat/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/compiler-toolchain/",
+          "destination": "/docs/tools/compiler-toolchain/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/zksync-cli/",
+          "destination": "/docs/tools/zksync-cli/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/block-explorer/",
+          "destination": "/docs/tools/block-explorer/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools/",
+          "destination": "/docs/tools/",
+          "type": "302"
+        }, 
       ]
     },
     {
@@ -222,7 +247,32 @@
           "source": "/docs/dev/fundamentals/faq.html",
           "destination": "/docs/dev/troubleshooting/faq.html",
           "type": "302"
-        }
+        },
+        {
+          "source": "/docs/api/hardhat/",
+          "destination": "/docs/tools/hardhat/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/compiler-toolchain/",
+          "destination": "/docs/tools/compiler-toolchain/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/zksync-cli/",
+          "destination": "/docs/tools/zksync-cli/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/block-explorer/",
+          "destination": "/docs/tools/block-explorer/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools/",
+          "destination": "/docs/tools/",
+          "type": "302"
+        },       
       ]
     }
   ]

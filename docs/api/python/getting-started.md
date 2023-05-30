@@ -1,10 +1,5 @@
 # Getting started
 
-:::warning
-* We are currently updating the Python SDK and you may encounter errors when trying things out.
-* Apologies for the inconvenience, we will update the documentation in due course.
-:::
-
 In this guide we will demonstrate how to:
 
 1. Connect to the zkSync network.
