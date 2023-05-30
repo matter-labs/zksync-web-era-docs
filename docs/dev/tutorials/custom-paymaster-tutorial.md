@@ -612,6 +612,6 @@ The wallet had 3 tokens after running the deployment script and, after sending t
 
 ## Learn more
 
-- Learn more about [L1->L2 interaction on zkSync](../developer-guides/bridging/l1-l2.md).
+- Learn more about [L1->L2 interaction on zkSync](../developer-guides/bridging/l1-l2-interop.md).
 - Learn more about [the `zksync-web3` SDK](../../api/js).
 - Learn more about [the zkSync hardhat plugins](../../api/hardhat).

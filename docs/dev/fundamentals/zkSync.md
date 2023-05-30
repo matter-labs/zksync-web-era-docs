@@ -16,6 +16,10 @@ zkSync Era is made to look and feel like Ethereum, but with lower fees. Just lik
 You don't need to register a separate private key before usage; zkSync supports existing Ethereum wallets out of the box.
 At this time, zkSync is solely run and operated by the zkSync team's servers and is therefore centralized. However, this will be transitioned to a decentralized system shortly.
 
+:::tip Gas fees
+- Layer 2 gas fees depend on the current Ethereum gas fees for publishing and verification.
+:::
+
 ## zkSync overview
 
 <!---
