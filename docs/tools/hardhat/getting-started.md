@@ -300,4 +300,4 @@ The message now is Hello people!
 ## Learn more
 
 - To learn more about the zkSync Hardhat plugins check out the [plugins documentation](./plugins.md).
-- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-web3 Javascript SDK documentation](../js) .
+- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-web3 Javascript SDK documentation](../../api/js) .

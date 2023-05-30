@@ -115,7 +115,7 @@ class Deployer {
   async extractFactoryDeps(artifact: ZkSyncArtifact): Promise<string[]>
 ```
 
-To see an example script of how to use a `Deployer` class to deploy a contract, check out the [deployment section of the quickstart](./getting-started.md#write-and-deploy-a-contract).
+To see an example script of how to use a `Deployer` class to deploy a contract, check out the [deployment section of the quickstart](./getting-started.md#compile-and-deploy-a-contract).
 
 ### Configuration
 

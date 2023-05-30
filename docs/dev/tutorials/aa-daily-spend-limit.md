@@ -14,7 +14,7 @@ The daily limit feature prevents an account from spending more ETH than the limi
 
 ## Project set up
 
-We will use the [zkSync Era Hardhat plugins](../../api/hardhat/) to build, deploy, and interact with the smart contracts in this project.
+We will use the [zkSync Era Hardhat plugins](../../tools/hardhat/) to build, deploy, and interact with the smart contracts in this project.
 
 1. Create a project folder and `cd` into it.
 
@@ -77,7 +77,7 @@ export default config;
 
 ::: tip zksync-cli
 - You can use the zkSync Era CLI to scaffold a project automatically. 
-- Find [more info about the zkSync Era CLI here](../../api/tools/zksync-cli/).
+- Find [more info about the zkSync Era CLI here](../../tools/zksync-cli/).
 :::
 
 ## Design
@@ -1075,7 +1075,7 @@ Download the complete project [here](https://github.com/matter-labs/daily-spendl
 
 - To find out more about L1->L2 interaction on zkSync Era, check out the [documentation](../developer-guides/bridging/l1-l2-interop.md).
 - To learn more about the zksync-web3 SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync Era Hardhat plugins, check out their [documentation](../../api/hardhat).
+- To learn more about the zkSync Era Hardhat plugins, check out their [documentation](../../tools/hardhat).
 
 ## Credits
 
