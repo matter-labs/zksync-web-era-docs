@@ -66,7 +66,7 @@ If all goes well, you will see a success message.
 
 <br>
 
-![Smart Contract Verified!](../../../assets/images/contract-verified.png "Contract Verified")
+![Smart Contract Verified!](../../assets/images/contract-verified.png "Contract Verified")
 
 
 If any of the provided information is incorrect, the verification process will fail. Once all details are filled in, click the **Verify Smart Contract** button.
