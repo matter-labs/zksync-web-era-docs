@@ -129,7 +129,7 @@
           "type": "302"
         },
         {
-          "source": "/docs/api/block-explorer{,/**}",
+          "source": "/docs/api/tools/block-explorer{,/**}",
           "destination": "/docs/tools/block-explorer/",
           "type": "302"
         },
@@ -264,7 +264,7 @@
           "type": "302"
         },
         {
-          "source": "/docs/api/block-explorer{,/**}",
+          "source": "/docs/api/tools/block-explorer{,/**}",
           "destination": "/docs/tools/block-explorer/",
           "type": "302"
         },
