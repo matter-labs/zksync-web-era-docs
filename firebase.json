@@ -135,7 +135,7 @@
         },
         {
           "source": "/docs/api/tools{,/**}",
-          "destination": "/docs/tools/",
+          "destination": "/docs/tools{,/**}",
           "type": "302"
         } 
       ]
@@ -270,7 +270,7 @@
         },
         {
           "source": "/docs/api/tools{,/**}",
-          "destination": "/docs/tools/",
+          "destination": "/docs/tools{,/**}",
           "type": "302"
         }       
       ]
