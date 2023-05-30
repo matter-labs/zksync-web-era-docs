@@ -167,7 +167,7 @@ Users must call the `withdraw` method on the L2 bridge contract, which will trig
 
 - L2 tokens will be burned.
 - An L2 -> L1 message with the information about the withdrawal will be sent.
-- After that, the withdrawal action will be available to be finalized by anyone in the L1 bridge (by proving the inclusion of the L2 -> L1 message, which is done when calling the `finalizeWithdraw` method on the L1 bridge contract).
+- After that, the withdrawal action will be available to be finalized by anyone in the L1 bridge (by proving the inclusion of the L2 -> L1 message, which is done when calling the `finalizeWithdrawal` method on the L1 bridge contract).
 - After the method is called, the funds are unlocked from the L1 bridge and sent to the withdrawal recipient.
 
 ::: warning
