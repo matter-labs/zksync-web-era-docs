@@ -3,21 +3,21 @@
 Transactions in Ethereum are cryptographically signed instructions by an externally owned account (an account owned by a user and not by code). These instructions are stored in the blockchain and added to a block.
 The state of the Ethereum virtual machine (EVM) changes when a transaction is initiated. A transaction can be anything from sending ether to another account to invoking the functions of a smart contract.
 
-## Prerequisite
+## Prerequisites
 
-We recommend you first read [accounts](https://ethereum.org/en/developers/docs/accounts/) to understand this page.
+We recommend reading the [accounts documentation](https://ethereum.org/en/developers/docs/accounts/) as preliminary material towards understanding the content on this page.
 
 ## How transactions work
 
 When a user initiates a transaction on Ethereum, some specific data is created:
 
-- Receiver: The recipient is the account's address to receive the transaction. The receiver can be a contract account or an externally owned account. Each transaction is aimed toward a specific recipient.
-- Nonce: This field displays the most recent transaction based on the account's counter, which maintains track of how many transactions it does. The network uses the transaction nonce to ensure that transactions are completed in the correct sequence.
-- Gas Price: Most transactions necessitate the payment of a fee from the transaction's author. This cost is computed per unit of gas. The unit is Wei, a smaller ether unit.
-- Gas Limit: The transaction author specifies the number of gas units used for the transaction. This is the total amount of gas that could be consumed.
-- Value: The quantity of Wei or Ether that the sender account wishes to transmit to the recipient is represented by the value.
-- Data: If the transaction receiver is a smart contract, the data contains information for the contract's functions to be executed. This comprises data with varying lengths.
-- Signature: A signature indicates who sent the communication. The signature is created when an externally owned account confirms and signs the transaction with its private key.
+- **Receiver**: The recipient is the account's address to receive the transaction. The receiver can be a contract account or an externally owned account. Each transaction is aimed toward a specific recipient.
+- **Nonce**: This field displays the most recent transaction based on the account's counter, which maintains track of how many transactions it does. The network uses the transaction nonce to ensure that transactions are completed in the correct sequence.
+- **Gas price**: Most transactions necessitate the payment of a fee from the transaction's author. This cost is computed per unit of gas. The unit is Wei, a smaller ether unit.
+- **Gas limit**: The transaction author specifies the number of gas units used for the transaction. This is the total amount of gas that could be consumed.
+- **Value**: The quantity of Wei or Ether that the sender account wishes to transmit to the recipient is represented by the value.
+- **Data**: If the transaction receiver is a smart contract, the data contains information for the contract's functions to be executed. This comprises data with varying lengths.
+- **Signature**: A signature indicates who sent the communication. The signature is created when an externally owned account confirms and signs the transaction with its private key.
 
 ### Transaction Types
 
@@ -29,9 +29,9 @@ When a user initiates a transaction on Ethereum, some specific data is created:
   Read more on [contract deployment](../../building-on-zksync/contracts/contract-development.md).
 
 ::: tip
-zkSync supports Ethereum's "old" (pre-EIP2718) transaction types, the EIP1559 transaction type, and its EIP712 transactions. Transactions of this type can be used to access zkSync-specific features such as account abstraction. Furthermore, smart contracts can only be deployed with this sort of transaction.
+zkSync Era supports Ethereum's "old" (pre-EIP-2718) transaction types, the EIP-1559 transaction type, and the EIP-712 transactions; which can be used to access zkSync-specific features such as account abstraction. Furthermore, smart contracts can only be deployed with the EIP-712 transaction type.
 
-It is not necessary to understand the transaction format to utilize zkSync's SDK, but if you are interested, you can learn more about it [here](../../../api/api.md#eip712).
+See the [EIP-712 transaction section below](#eip-712-transactions) for more information.
 
 :::
 
@@ -50,3 +50,46 @@ When a user transmits a transaction, zkSync currently waits for the entire block
 ### What exactly are operators?
 
 **Operators** are the actors who carry out essential ZK rollup functions. They are responsible for producing blocks, packaging transactions, conducting calculations, and submitting data to the main Ethereum chain for verification.
+
+## EIP-712 transactions
+
+The Ethereum Improvement Proposal [EIP-712: Typed structured data hashing and signing](https://eips.ethereum.org/EIPS/eip-712) introduces hashing and signing of typed-structured data as well as bytestrings. 
+
+To specify additional fields, such as the custom signature for custom accounts or to choose the paymaster, EIP-712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but they also have fields that contain additional L2-specific data (`paymaster`, etc).
+
+```json
+"gasPerPubdata": "1212",
+"customSignature": "0x...",
+"paymasterParams": {
+  "paymaster": "0x...",
+  "paymasterInput": "0x..."
+},
+"factoryDeps": ["0x..."]
+```
+
+- `gasPerPubdata`: A field denoting the maximum amount of gas the user is willing to pay for a single byte of pubdata.
+- `customSignature`: A field with a custom signature for the cases in which the signer's account is not an EOA.
+- `paymasterParams`: A field with parameters for configuring the custom paymaster for the transaction. Parameters include the address of the paymaster and the encoded input.
+- `factory_deps`: A non-empty array of `bytes`. For deployment transactions, it should contain the bytecode of the contract being deployed. If the contract is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which it can deploy.
+
+To ensure the server recognizes EIP-712 transactions, the `transaction_type` field is equal to `113`. The number `712` cannot be used as it has to be one byte long.
+
+Instead of signing the RLP-encoded transaction, the user signs the following typed EIP-712 structure:
+
+| Field name             | Type        |
+| ---------------------- | ----------- |
+| txType                 | `uint256`   |
+| from                   | `uint256`   |
+| to                     | `uint256`   |
+| gasLimit               | `uint256`   |
+| gasPerPubdataByteLimit | `uint256`   |
+| maxFeePerGas           | `uint256 `  |
+| maxPriorityFeePerGas   | `uint256`   |
+| paymaster              | `uint256`   |
+| nonce                  | `uint256`   |
+| value                  | `uint256`   |
+| data                   | `bytes`     |
+| factoryDeps            | `bytes32[]` |
+| paymasterInput         | `bytes`     |
+
+These fields are handled by our [SDK](./js/features.md).

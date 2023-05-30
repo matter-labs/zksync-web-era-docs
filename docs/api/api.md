@@ -3,51 +3,9 @@
 zkSync Era fully supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/) and adds some L2-specific features.
 
 :::tip Tip
-- As long as code does not involve deploying new smart contracts, which can only be deployed using [EIP712 transactions](#eip712), _no changes to the codebase are needed_.
+- As long as code does not involve deploying new smart contracts, which can only be deployed using [EIP712 transactions](../dev/developer-guides/transactions/transactions.md#eip-712-transactions), _no changes to the codebase are needed_.
+- Read the documentation on [EIP-712 transactions](../dev/developer-guides/transactions/transactions.md#eip-712-transactions) for more information.
 :::
-
-## EIP-712 transactions
-
-The Ethereum Improvement Proposal [EIP-712: Typed structured data hashing and signing](https://eips.ethereum.org/EIPS/eip-712) introduces hashing and signing of typed-structured data as well as bytestrings. 
-
-To specify additional fields, such as the custom signature for custom accounts or to choose the paymaster, EIP-712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but they also have fields that contain additional L2-specific data (`paymaster`, etc).
-
-```json
-"gasPerPubdata": "1212",
-"customSignature": "0x...",
-"paymasterParams": {
-  "paymaster": "0x...",
-  "paymasterInput": "0x..."
-},
-"factoryDeps": ["0x..."]
-```
-
-- `gasPerPubdata`: A field denoting the maximum amount of gas the user is willing to pay for a single byte of pubdata.
-- `customSignature`: A field with a custom signature for the cases in which the signer's account is not an EOA.
-- `paymasterParams`: A field with parameters for configuring the custom paymaster for the transaction. Parameters include the address of the paymaster and the encoded input.
-- `factory_deps`: A non-empty array of `bytes`. For deployment transactions, it should contain the bytecode of the contract being deployed. If the contract is a factory contract, i.e. it can deploy other contracts, the array should also contain the bytecodes of the contracts which it can deploy.
-
-To ensure the server recognizes EIP-712 transactions, the `transaction_type` field is equal to `113`. The number `712` cannot be used as it has to be one byte long.
-
-Instead of signing the RLP-encoded transaction, the user signs the following typed EIP-712 structure:
-
-| Field name             | Type        |
-| ---------------------- | ----------- |
-| txType                 | `uint256`   |
-| from                   | `uint256`   |
-| to                     | `uint256`   |
-| gasLimit               | `uint256`   |
-| gasPerPubdataByteLimit | `uint256`   |
-| maxFeePerGas           | `uint256 `  |
-| maxPriorityFeePerGas   | `uint256`   |
-| paymaster              | `uint256`   |
-| nonce                  | `uint256`   |
-| value                  | `uint256`   |
-| data                   | `bytes`     |
-| factoryDeps            | `bytes32[]` |
-| paymasterInput         | `bytes`     |
-
-These fields are handled by our [SDK](./js/features.md).
 
 ## RPC endpoint URLs
 
