@@ -4,7 +4,7 @@ While most of the existing SDKs should work out of the box, deploying smart cont
 
 To provide easy access to all the features of zkSync Era, the `zksync2` Python SDK was created.
 
-## Table of contents
+## Contents
 
 - [Getting started](./getting-started.md)
 - [Providers](./providers.md)
