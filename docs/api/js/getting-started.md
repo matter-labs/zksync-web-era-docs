@@ -153,7 +153,7 @@ await withdrawL2.waitFinalize();
 
 ## Deploying a contract
 
-A guide on deploying smart contracts using our hardhat plugin is available [here](../hardhat).
+A guide on deploying smart contracts using our hardhat plugin is available [here](../../tools/hardhat/).
 
 ## Adding tokens to the standard bridge
 

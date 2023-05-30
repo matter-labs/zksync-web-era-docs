@@ -4,7 +4,7 @@
 
 Our user-friendly search tool gives you easy access to data from multiple search points and provides a more intuitive understanding of what you are searching for.
 
-![Search Bar!](../../../assets/images/search-bar.png "search bar")
+![Search Bar!](../../assets/images/search-bar.png "search bar")
 
 The main search bar is where you can look up something specific right away. You can search by:
 ‍

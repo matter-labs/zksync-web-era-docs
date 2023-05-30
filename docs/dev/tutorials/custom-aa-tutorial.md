@@ -80,7 +80,7 @@ export default config;
 
 ::: tip
 - Use the zkSync CLI to scaffold a project automatically. 
-- Find out more about the [zkSync CLI](../../api/tools/zksync-cli/).
+- Find out more about the [zkSync CLI](../../tools/zksync-cli/).
 :::
 
 ## Account abstraction
@@ -1175,4 +1175,4 @@ If you get an error `Not enough balance to cover the fee.`, try increasing the a
 
 - To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2-interop.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](../../tools/hardhat).

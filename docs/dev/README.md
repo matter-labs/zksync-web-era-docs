@@ -51,10 +51,10 @@ token.
 ### Tools and SDKs
 
 - [zkSync Era Portal](https://portal.zksync.io) - Explore Wallet, Bridge and Faucet features.
-- [Block Explorer](../api/tools/block-explorer/) - Search for real-time and historical information about blocks, transactions, addresses, and more on zkSync block explorer.
+- [Block Explorer](../tools/block-explorer/) - Search for real-time and historical information about blocks, transactions, addresses, and more on zkSync block explorer.
 - [Javascript SDK](../api/js/) - Extending the capabilities of Ethers, our Javascript SDK contains specific classes and methods required to build on zkSync Era.
-- [Hardhat Plugins](../api/hardhat/) - Use our Hardhat zkSync plugins to compile, test, deploy, and verify your Solidity or Vyper based 
-- [zkSync CLI](../api/tools/zksync-cli/) - Simplify your development process and interact with zkSync Era from your terminal with zkSync CLI.
-- [Compiler Toolchain](../api/compiler-toolchain/overview.md) - Learn about our compiler toolchain.
+- [Hardhat Plugins](../tools/hardhat/) - Use our Hardhat zkSync plugins to compile, test, deploy, and verify your Solidity or Vyper based 
+- [zkSync CLI](../tools/zksync-cli/) - Simplify your development process and interact with zkSync Era from your terminal with zkSync CLI.
+- [Compiler Toolchain](../tools/compiler-toolchain/overview.md) - Learn about our compiler toolchain.
 - [Python SDK](../api/python/) - Explore all the Python methods and functions required to build on zkSync Era.
 - [Java SDK](../api/java/getting-started.md) - Explore all the Java methods and functions required to build on zkSync Era.

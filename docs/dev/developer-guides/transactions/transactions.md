@@ -92,4 +92,4 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 | factoryDeps            | `bytes32[]` |
 | paymasterInput         | `bytes`     |
 
-These fields are handled by our [SDK](./js/features.md).
+These fields are handled by our [SDK](../../../api/js/features.md).

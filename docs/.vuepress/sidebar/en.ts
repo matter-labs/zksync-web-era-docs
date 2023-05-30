@@ -71,12 +71,8 @@ export const enSidebar = sidebar({
       ],
     },
   ],
-  //The sidebar for Tools and SDKs
+    //The sidebar for Tools and SDKs
   "/api": [
-    {
-      text: "Overview", // required
-      link: "/api/", // optional, which should be a absolute path.
-    },
     {
       text: "Web3 JSON-RPC API", // required
       link: "/api/api.md", // optional, which should be a absolute path.
@@ -98,45 +94,6 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Hardhat", // required
-      link: "/api/hardhat", // optional, which should be a absolute path.
-      children: [
-        "/api/hardhat/getting-started",
-        "/api/hardhat/migrating-to-zksync",
-        {
-          text: "Plugins", // required
-          link: "/api/hardhat/plugins", // optional, which should be a absolute path.
-          collapsible: true,
-          children: [
-            "/api/hardhat/hardhat-zksync-solc",
-            "/api/hardhat/hardhat-zksync-vyper",
-            "/api/hardhat/hardhat-zksync-upgradable",
-            "/api/hardhat/hardhat-zksync-deploy",
-            "/api/hardhat/hardhat-zksync-chai-matchers",
-            "/api/hardhat/hardhat-zksync-verify",
-            "/api/hardhat/other-plugins",
-          ],
-        },
-        "/api/hardhat/testing",
-        "/api/hardhat/compiling-libraries",
-      ],
-    },
-    {
-      text: "Block Explorer", // required
-      link: "/api/tools/block-explorer", // optional, which should be a absolute path.
-      children: ["/api/tools/block-explorer/intro", "/api/tools/block-explorer/block-view", "/api/tools/block-explorer/search", "/api/tools/block-explorer/contract-verification"],
-    },
-    {
-      text: "Compiler Toolchain",
-      link: "/api/compiler-toolchain",
-      children: ["/api/compiler-toolchain/overview.md", "/api/compiler-toolchain/solidity.md", "/api/compiler-toolchain/vyper.md", "/api/compiler-toolchain/llvm.md"],
-    },
-    {
-      text: "zkSync Era CLI", // required
-      link: "/api/tools/zksync-cli/", // optional, which should be a absolute path.
-      children: [],
-    },
-    {
       text: "Python SDK",
       link: "/api/python",
       children: [
@@ -149,11 +106,6 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Java SDK", // required
-      link: "/api/java/getting-started", // optional, which should be a absolute path.
-      children: ["/api/java/getting-started"],
-    },
-    {
       text: "Go SDK",
       link: "/api/go",
       children: [
@@ -164,6 +116,53 @@ export const enSidebar = sidebar({
         "/api/go/contract-interface",
         "/api/go/types",
       ],
+    },
+    {
+      text: "Java SDK", // required
+      link: "/api/java/getting-started", // optional, which should be a absolute path.
+      children: ["/api/java/getting-started"],
+    },
+  ],
+  //The sidebar for Tools and SDKs
+  "/tools": [
+    {
+      text: "Hardhat", // required
+      link: "/tools/hardhat", // optional, which should be a absolute path.
+      children: [
+        "/tools/hardhat/getting-started",
+        "/tools/hardhat/migrating-to-zksync",
+        {
+          text: "Plugins", // required
+          link: "/tools/hardhat/plugins", // optional, which should be a absolute path.
+          collapsible: true,
+          children: [
+            "/tools/hardhat/hardhat-zksync-solc",
+            "/tools/hardhat/hardhat-zksync-vyper",
+            "/tools/hardhat/hardhat-zksync-upgradable",
+            "/tools/hardhat/hardhat-zksync-deploy",
+            "/tools/hardhat/hardhat-zksync-chai-matchers",
+            "/tools/hardhat/hardhat-zksync-verify",
+            "/tools/hardhat/other-plugins",
+          ],
+        },
+        "/tools/hardhat/testing",
+        "/tools/hardhat/compiling-libraries",
+      ],
+    },
+    {
+      text: "Compiler Toolchain",
+      link: "/tools/compiler-toolchain",
+      children: ["/tools/compiler-toolchain/overview.md", "/tools/compiler-toolchain/solidity.md", "/tools/compiler-toolchain/vyper.md", "/tools/compiler-toolchain/llvm.md"],
+    },
+    {
+      text: "zkSync Era CLI", // required
+      link: "/tools/zksync-cli/", // optional, which should be a absolute path.
+      children: [],
+    },
+    {
+      text: "Block Explorer", // required
+      link: "/tools/block-explorer", // optional, which should be a absolute path.
+      children: ["/tools/block-explorer/intro", "/tools/block-explorer/block-view", "/tools/block-explorer/search", "/tools/block-explorer/contract-verification"],
     },
   ],
   //The legal related sidebar
