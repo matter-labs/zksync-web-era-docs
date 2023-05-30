@@ -124,13 +124,18 @@
           "type": "302"
         },
         {
-          "source": "/docs/api/zksync-cli{,/**}",
+          "source": "/docs/api/tools/zksync-cli{,/**}",
           "destination": "/docs/tools/zksync-cli/",
           "type": "302"
         },
         {
           "source": "/docs/api/tools/block-explorer{,/**}",
           "destination": "/docs/tools/block-explorer/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools/block-explorer/contract-verification.html#enter-contract-details",
+          "destination": "/docs/tools/block-explorer/contract-verification.html#enter-contract-details",
           "type": "302"
         },
         {
@@ -259,13 +264,18 @@
           "type": "302"
         },
         {
-          "source": "/docs/api/zksync-cli{,/**}",
+          "source": "/docs/api/tools/zksync-cli{,/**}",
           "destination": "/docs/tools/zksync-cli/",
           "type": "302"
         },
         {
           "source": "/docs/api/tools/block-explorer{,/**}",
           "destination": "/docs/tools/block-explorer/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools/block-explorer/contract-verification.html#enter-contract-details",
+          "destination": "/docs/tools/block-explorer/contract-verification.html#enter-contract-details",
           "type": "302"
         },
         {

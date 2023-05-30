@@ -1,4 +1,4 @@
-# Contents
+# zkSync Era Tools
 
 - [Hardhat plugins](./hardhat/)
 - [Compiler toolchain](./compiler-toolchain/)
