@@ -134,7 +134,7 @@
           "type": "302"
         },
         {
-          "source": "/docs/api/tools/",
+          "source": "/docs/api/tools{,/**}",
           "destination": "/docs/tools/",
           "type": "302"
         } 
@@ -269,7 +269,7 @@
           "type": "302"
         },
         {
-          "source": "/docs/api/tools/",
+          "source": "/docs/api/tools{,/**}",
           "destination": "/docs/tools/",
           "type": "302"
         }       

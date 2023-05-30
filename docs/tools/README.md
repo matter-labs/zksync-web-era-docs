@@ -2,5 +2,5 @@
 
 - [Hardhat plugins](./hardhat/)
 - [Compiler toolchain](./compiler-toolchain/)
-- [zkSync CLI](./tools/zksync-cli/)
-- [Block explorer](./tools/block-explorer/)
+- [zkSync CLI](./zksync-cli/)
+- [Block explorer](./block-explorer/)
