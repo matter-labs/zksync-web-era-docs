@@ -141,7 +141,7 @@ Returns gas estimation for an L1 to L2 execute operation.
 | `calldata` | `BytesLike` |   The transaction call data. |
 | `caller?`   | Address string   | Caller address (optional).     |
 | `l2Value?` | `BigNumberish`  |   Current L2 gas value (optional). |
-| `factoryDeps?`   | `BytesLike[]`   | ???    |
+| `factoryDeps?`   | `BytesLike[]`   | Byte array containing contract bytecode.    |
 | `gasPerPubdataByte?` | `BigNumberish` |   Constant representing current amount of gas per byte (optional). |
 | `overrides?` | `ethers.PayableOverrides` |   Ethers payable overrides object (optional). |
 
@@ -343,7 +343,7 @@ Returns an array of logs by calling Ethereum method [`eth_getFilterChanges`.](ht
 
 ### `getFormatter`
 
-Static utility method that returns a [Formatter](???link) object for processing readable block data???
+Static utility method that returns a `Formatter` object for processing readable block data.
 
 ```ts
 static override getFormatter(): Formatter {
@@ -802,7 +802,7 @@ Returns a provider request object by overriding the [Ethers implementation](http
 | Name               | Description           |
 | ------------------ | -------------------------------------------------- |
 | method          | Request method name as string |
-| params? | Optional array of ???
+| params? | Optional array of any type
 
 ```typescript
 override async send(method: string, params?: Array<any>): Promise<any> {
