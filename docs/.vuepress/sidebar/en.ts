@@ -14,7 +14,7 @@ export const enSidebar = sidebar({
     },
     {
       text: "How to",
-      link: "/dev/how-to",
+      link: "/dev/how-to/estimate-gas.md",
       children: [ "/dev/how-to/estimate-gas.md", 
                   "/dev/how-to/send-transaction-l1-l2",
                   "/dev/how-to/send-message-l2-l1", ],
