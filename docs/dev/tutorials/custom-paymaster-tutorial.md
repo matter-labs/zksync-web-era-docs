@@ -8,7 +8,7 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 
 ## Prerequisites
 
-- Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements)
+- Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - A [Node.js](https://nodejs.org/en/download) installation running Node.js version 16.
 - Some familiarity with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - Some background knowledge on the concepts covered by the tutorial would be helpful too. Have a look at the following docs:
