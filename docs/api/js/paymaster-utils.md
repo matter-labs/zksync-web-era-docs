@@ -1,6 +1,6 @@
 # Paymaster utilities
 
-The [paymaster utilities library](https://github.com/matter-labs/zksync-era/blob/f5a36684b8c2088d36308bad86643bc7ab3d6a78/sdk/zksync-web3.js/src/paymaster-utils.ts) contains essential utilities for using paymasters on zkSync Era.
+The [paymaster utilities library](https://github.com/matter-labs/zksync-era/blob/main/sdk/zksync-web3.js/src/paymaster-utils.ts) contains essential utilities for using paymasters on zkSync Era.
 
 ## Contract interfaces
 

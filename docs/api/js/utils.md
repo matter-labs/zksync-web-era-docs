@@ -1,6 +1,6 @@
 # Utilities
 
-The [utilities library](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) contains essential utilities for building on zkSync Era.
+The [utilities library](https://github.com/matter-labs/zksync-2-dev/blob/main/sdk/zksync-web3.js/src/utils.ts) contains essential utilities for building on zkSync Era.
 
 :::info
 - This document describes common functions and constants you may need.
