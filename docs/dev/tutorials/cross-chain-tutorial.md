@@ -230,7 +230,7 @@ npm i typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-z
 
 ::: tip
 - With `npm` you can also use the zkSync CLI to scaffold a project automatically. 
-- Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/).
+- Find [more info about the zkSync CLI here](../../tools/zksync-cli/).
 :::
 
 3. Create the `hardhat.config.ts` file in the root and add the following code, adding a functioning RPC URL:
@@ -376,7 +376,7 @@ Counter was deployed to 0x3c5A6AB2390F6217C78d2F6F403A9dFb7e7784FC
 ```
 
 ::: tip
-For more information about deploying contracts, check out the [quickstart tutorial](../building-on-zksync/hello-world.md) or the documentation for the zkSync [hardhat plugins](../../api/hardhat/getting-started.md).
+For more information about deploying contracts, check out the [quickstart tutorial](../building-on-zksync/hello-world.md) or the documentation for the zkSync [hardhat plugins](../../tools/hardhat/getting-started.md).
 :::
 
 ## Read the counter value
@@ -579,4 +579,4 @@ The counter value is 1
 
 - To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2-interop.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](../../tools/hardhat).
