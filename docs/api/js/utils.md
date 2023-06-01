@@ -289,14 +289,14 @@ Used by `estimateDefaultBridgeDepositL2Gas` to estimate L2 gas required for toke
 
 | Parameter           | Type                             | Description                                                  |
 | ------------------- | -------------------------------  | ------------------------------------------------------------ |
-| `providerL2`        | object                           | zkSync Provider.                                             |
-| `l1BridgeAddress`   | string                           | Bridge Address.                                              |
-| `l2BridgeAddress`   | string                           | Bridge Address.                                              |
-| `token`             | string                           | Token Address.                                               |
+| `providerL2`        | object                           | zkSync provider.                                             |
+| `l1BridgeAddress`   | string                           | L1 bridge address.                                              |
+| `l2BridgeAddress`   | string                           | L2 bridge address.                                              |
+| `token`             | string                           | Token address.                                               |
 | `amount`            | `BigNumberish` object            | Deposit amount.                                              |
-| `to`                | string                           | Recipient Address.                                           |
+| `to`                | string                           | Recipient address.                                           |
 | `bridgeData`        | `BytesLike` object               | Data.                                                        |
-| `from?`             | string (optional)                | Sender Address.                                              |
+| `from?`             | string (optional)                | Sender address.                                              |
 | `gasPerPubdataByte?`| `BigNumberish` object (optional) | Current gas per byte of pubdata.                             |
 
 ```ts
