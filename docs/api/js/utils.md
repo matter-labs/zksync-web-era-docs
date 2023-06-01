@@ -666,7 +666,7 @@ Returns true if token represents ETH on L1 or L2.
 
 | Parameter           | Type                    | Description                  |
 | ------------------- | ----------------------- | ---------------------------  |
-| `token`             | `Address` object        | The token adress.            |
+| `token`             | `Address` object        | The token address.            |
 
 ```ts
 export function isETH(token: Address) {
