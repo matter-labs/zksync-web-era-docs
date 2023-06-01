@@ -781,7 +781,7 @@ Common sleep function that pauses execution for a number of milliseconds.
 
 | Parameter           | Type        | Description                                                        |
 | ------------------- | ----------- | -----------------------------------------------------------------  |
-| `millis`            | number      | The number of time required in milliseconds to pause an execution. |
+| `millis`            | number      | Number of milliseconds. |
 
 #### Outputs
 
