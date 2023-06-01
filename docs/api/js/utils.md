@@ -391,7 +391,7 @@ Returns a log containing details of all deployed contracts related to a transact
 
 | Parameter           | Type                         | Description                                                  |
 | ------------------- | ---------------------------  | ------------------------------------------------------------ |
-| `receipt`           | object                       | Transaction receipt.                                         |
+| `receipt`           | TransactionReceipt object                     | Transaction receipt.                                         |
 
 ```ts
 export function getDeployedContracts(receipt: ethers.providers.TransactionReceipt): DeploymentInfo[] {
