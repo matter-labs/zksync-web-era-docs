@@ -610,7 +610,7 @@ Called from [`isSignatureCorrect`](#isSignatureCorrect) for non-contract account
 
 | Parameter           | Type                    | Description             |
 | ------------------- | ----------------------- | ----------------------  |
-| `address`           | `msgHash`  string       | Address which signs.    |
+| `address`           | string       | Address which signs `msgHash`.    |
 | `msgHash`           | string                  | Hash of the message.    |
 | `signature`         | `SignatureLike` object  | Ethers signature.       |
 
