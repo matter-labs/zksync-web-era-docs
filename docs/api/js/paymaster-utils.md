@@ -66,4 +66,4 @@ Returns a correctly-formed `paymasterParams` object for common [paymaster flows]
 export function getPaymasterParams(paymasterAddress: Address, paymasterInput: PaymasterInput): PaymasterParams
 ```
 
-Find out more about the [`PaymasterInput` type](./types.md).
+Find out more about the [`PaymasterInput` type](./types.md). 
