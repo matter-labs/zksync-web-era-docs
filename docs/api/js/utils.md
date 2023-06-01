@@ -534,7 +534,7 @@ Returns a keccak encoded message with a given sender address and block number fr
 
 | Parameter           | Type                | Description                           |
 | ------------------- | ------------------- | ------------------------------------- |
-| `sender`            | `Address` string    | The sender of the message on L2.      |
+| `sender`            | `Address` as string    | The sender of the message on L2.      |
 | `msg`               | `BytesLike` object  | Encoded message.                      |
 | `txNumberInBlock`   | number              | Index of the transaction in the block.|
 
