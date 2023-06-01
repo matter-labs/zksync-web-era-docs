@@ -168,9 +168,9 @@ Converts the address that submitted a transaction to the inbox on L1 to the `msg
 
 #### Inputs
 
-| Parameter | Type          | Description     |
-| --------- | ------------- | --------------- |
-| `address` | string        | Token address.  |
+| Parameter | Type          | Description        |
+| --------- | ------------- | ------------------ |
+| `address` | string        | Contract address.  |
 
 #### Outputs
 

@@ -20,9 +20,9 @@ Returns encoded input for an approval-based paymaster.
 
 #### Inputs
 
-| Parameter           | Type                    | Description                     |
-| ------------------- | ----------------------- | ------------------------------- |
-| `paymasterInput`    | `BytesLike`             | The input data to the paymaster.|
+| Parameter           | Type                           | Description                     |
+| ------------------- | ------------------------------ | ------------------------------- |
+| `paymasterInput`    | `ApprovalBasedPaymasterInput`  | The input data to the paymaster.|
 
 ```ts
 export function getApprovalBasedPaymasterInput(paymasterInput: ApprovalBasedPaymasterInput): BytesLike {
@@ -39,9 +39,9 @@ export function getApprovalBasedPaymasterInput(paymasterInput: ApprovalBasedPaym
 As above but for general-based paymaster.
 #### Inputs
 
-| Parameter           | Type                    | Description                     |
-| ------------------- | ----------------------- | ------------------------------- |
-| `paymasterInput`    | `BytesLike`             | The input data to the paymaster.|
+| Parameter           | Type                           | Description                     |
+| ------------------- | ------------------------------ | ------------------------------- |
+| `paymasterInput`    | `ApprovalBasedPaymasterInput`  | The input data to the paymaster.|
 
 ```ts
 export function getGeneralPaymasterInput(paymasterInput: GeneralPaymasterInput): BytesLike {
@@ -56,10 +56,10 @@ Returns a correctly-formed `paymasterParams` object for common [paymaster flows]
 
 #### Inputs
 
-| Parameter           | Type                    | Description                       |
-| ------------------- | ----------------------- | --------------------------------  |
-| `paymasterAddress`  | `Address` string        | The non-zero `paymaster` address. |
-| `paymasterInput`    | `BytesLike`             | The input data to the paymaster.  |
+| Parameter           | Type                         | Description                       |
+| ------------------- | ---------------------------- | --------------------------------  |
+| `paymasterAddress`  | `Address` string             | The non-zero `paymaster` address. |
+| `paymasterInput`    | `ApprovalBasedPaymasterInput`| The input data to the paymaster.  |
 
 
 ```typescript
