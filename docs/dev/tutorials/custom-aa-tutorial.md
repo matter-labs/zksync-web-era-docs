@@ -397,7 +397,7 @@ function _validateTransaction(
         txHash = _suggestedSignedHash;
     }
 
-    // The fact there is are enough balance for the account
+    // The fact there is enough balance for the account
     // should be checked explicitly to prevent user paying for fee for a
     // transaction that wouldn't be included on Ethereum.
     uint256 totalRequiredBalance = _transaction.totalRequiredBalance();
@@ -572,7 +572,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
             txHash = _suggestedSignedHash;
         }
 
-        // The fact there is are enough balance for the account
+        // The fact there is enough balance for the account
         // should be checked explicitly to prevent user paying for fee for a
         // transaction that wouldn't be included on Ethereum.
         uint256 totalRequiredBalance = _transaction.totalRequiredBalance();
