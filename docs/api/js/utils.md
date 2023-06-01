@@ -707,8 +707,8 @@ Called from [`isMessageSignatureCorrect`](#ismessagesignaturecorrect) and [`isTy
 
 | Parameter           | Type                    | Description                  |
 | ------------------- | ----------------------- | ---------------------------  |
-| `provider`          | `Provider` object       | The RPC provider.            |
-| `address`           | string                  | Sender address as string.    |
+| `provider`          | `Provider` object       | Provider.            |
+| `address`           | string                  | Sender address.    |
 | `msgHash`           | string                  | The hash of the message.     |
 | `signature`         | `SignatureLike` object  | Ethers signature.            |
 
