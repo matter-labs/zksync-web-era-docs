@@ -234,8 +234,8 @@ Generates a contract address from deployer's account and nonce.
 
 | Parameter      | Type                  | Description      |
 | -------------- | --------------------- | ---------------- |
-| `sender`       | string                | Senders address. |
-| `senderNonce`  | `BigNumberish` object | Senders nonce.   |
+| `sender`       | string                | Sender address. |
+| `senderNonce`  | `BigNumberish` object | Sender nonce.   |
 #### Outputs
 
 - Returns an `Address` object.
