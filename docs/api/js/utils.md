@@ -498,7 +498,7 @@ Returns the hash of the L2 priority operation from a given transaction receipt a
 | Parameter           | Type                        | Description                          |
 | ------------------- | --------------------------- | ------------------------------------ |
 | `txReceipt`         | `TransactionReceipt` object | Receipt of the L1 transaction.       |
-| `zkSyncAddress`     | `Address` string            | Address of zkSync Era main contract. |
+| `zkSyncAddress`     | `Address` as string            | Address of zkSync Era main contract. |
 
 ```ts
 export function getL2HashFromPriorityOp(
