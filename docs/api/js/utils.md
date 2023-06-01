@@ -333,12 +333,12 @@ Returns an estimation of L2 gas required for token bridging via the default ERC2
 
 | Parameter           | Type                             | Description                                   |
 | ------------------- | -------------------------------- | --------------------------------------------- |
-| `providerL1`        | object                           | ethers Provider.                              |
-| `providerL2`        | string                           | zkSync Provider.                              |
-| `token`             | string                           | Token Address.                                |
+| `providerL1`        | Provider object                           | Ethers provider.                              |
+| `providerL2`        | Provider object                         | zkSync provider.                              |
+| `token`             | string                           | Token address.                                |
 | `amount`            | `BigNumberish` object            | Deposit amount.                               |
-| `to`                | string                           | Recipient Address.                            |
-| `from?`             | string (optional)                | Sender Address.                               |
+| `to`                | string                           | Recipient address.                            |
+| `from?`             | string (optional)                | Sender address.                               |
 | `gasPerPubdataByte?`| `BigNumberish` object  (optional)| Current gas per byte of pubdata.              |
 
 ```ts
