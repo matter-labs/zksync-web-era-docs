@@ -20,9 +20,9 @@ Returns encoded input for an approval-based paymaster.
 
 #### Inputs
 
-| Parameter           | Type                           | Description                     |
-| ------------------- | ------------------------------ | ------------------------------- |
-| `paymasterInput`    | `ApprovalBasedPaymasterInput`  | The input data to the paymaster.|
+| Parameter           | Type                                  | Description                     |
+| ------------------- | ------------------------------------- | ------------------------------- |
+| `paymasterInput`    | `ApprovalBasedPaymasterInput` object  | The input data to the paymaster.|
 
 ```ts
 export function getApprovalBasedPaymasterInput(paymasterInput: ApprovalBasedPaymasterInput): BytesLike {
@@ -41,7 +41,7 @@ As above but for general-based paymaster.
 
 | Parameter           | Type                           | Description                     |
 | ------------------- | ------------------------------ | ------------------------------- |
-| `paymasterInput`    | `ApprovalBasedPaymasterInput`  | The input data to the paymaster.|
+| `paymasterInput`    | `GeneralPaymasterInput` object | The input data to the paymaster.|
 
 ```ts
 export function getGeneralPaymasterInput(paymasterInput: GeneralPaymasterInput): BytesLike {
@@ -59,7 +59,7 @@ Returns a correctly-formed `paymasterParams` object for common [paymaster flows]
 | Parameter           | Type                         | Description                       |
 | ------------------- | ---------------------------- | --------------------------------  |
 | `paymasterAddress`  | `Address` string             | The non-zero `paymaster` address. |
-| `paymasterInput`    | `ApprovalBasedPaymasterInput`| The input data to the paymaster.  |
+| `paymasterInput`    | `PaymasterInput` object      | The input data to the paymaster.  |
 
 
 ```typescript
