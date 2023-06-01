@@ -430,7 +430,7 @@ Returns the calldata sent by an L1 ERC20 bridge to its L2 counterpart during tok
 | `l1Sender`          | string                       | Sender address on L1.                         |
 | `l2Receiver`        | string                       | Recipient address on L2.                      |
 | `amount`            | `BigNumberish` object        | Gas fee for the number of tokens to bridge.   |
-| `bridgeData`        | `BytesLike` object           | Data .                                        |
+| `bridgeData`        | `BytesLike` object           | Data                                        |
 
 ```ts
 export async function getERC20BridgeCalldata(
