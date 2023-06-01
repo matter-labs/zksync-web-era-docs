@@ -266,7 +266,7 @@ Returns the hash of an EIP712 transaction.
 | Parameter      | Type                          | Description                                                  |
 | -------------- | ----------------------------- | ------------------------------------------------------------ |
 | `transaction`  | any                           | EIP-712 transaction.                                          |
-| `ethSignature` | `EthereumSignature` (optional)| ECDSA signature of the transaction.                          |
+| `ethSignature?` | `EthereumSignature` (optional)| ECDSA signature of the transaction.                          |
 
 ```ts
 function eip712TxHash(transaction: any, ethSignature?: EthereumSignature) {
