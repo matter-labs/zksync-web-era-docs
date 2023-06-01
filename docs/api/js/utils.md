@@ -459,7 +459,7 @@ Returns the data needed for correct initialization of an L1 token counterpart on
 | Parameter           | Type                             | Description                                   |
 | ------------------- | -------------------------------- | --------------------------------------------- |
 | `l1TokenAddress`    | string                           | Token address on L1.                          |
-| `provider`          | object                           | Ethers Provider.                              |
+| `provider`          | Provider object                           | Ethers provider.                              |
 #### Outputs
 
 An ABI-encoded array of:
