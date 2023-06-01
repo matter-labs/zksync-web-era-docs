@@ -1,6 +1,6 @@
 # Finality
 
-## Defining finality on Ethereum
+## Finality on Ethereum
 
 Finality in blockchain systems refers to the time taken from sending a transaction to when the transaction can be considered settled; and therefore cannot be altered, reversed, or canceled. At the time of writing, finality on the Ethereum layer is considered to occur after 2 [epochs](https://info.etherscan.com/epoch-in-ethereum/) or ~13 minutes.
 
