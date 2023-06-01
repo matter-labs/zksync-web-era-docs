@@ -265,7 +265,7 @@ Returns the hash of an EIP712 transaction.
 
 | Parameter      | Type                          | Description                                                  |
 | -------------- | ----------------------------- | ------------------------------------------------------------ |
-| `transaction`  | any                           | EIP712 transaction.                                          |
+| `transaction`  | any                           | EIP-712 transaction.                                          |
 | `ethSignature` | `EthereumSignature` (optional)| ECDSA signature of the transaction.                          |
 
 ```ts
