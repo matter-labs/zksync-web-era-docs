@@ -18,6 +18,12 @@ export const IPaymasterFlow = new ethers.utils.Interface(require('../../abi/IPay
 
 Returns encoded input for an approval-based paymaster.
 
+#### Inputs
+
+| Parameter           | Type                    | Description                     |
+| ------------------- | ----------------------- | ------------------------------- |
+| `paymasterInput`    | `BytesLike`             | The input data to the paymaster.|
+
 ```ts
 export function getApprovalBasedPaymasterInput(paymasterInput: ApprovalBasedPaymasterInput): BytesLike {
     return IPaymasterFlow.encodeFunctionData('approvalBased', [
@@ -31,6 +37,11 @@ export function getApprovalBasedPaymasterInput(paymasterInput: ApprovalBasedPaym
 ### `getGeneralPaymasterInput`
 
 As above but for general-based paymaster.
+#### Inputs
+
+| Parameter           | Type                    | Description                     |
+| ------------------- | ----------------------- | ------------------------------- |
+| `paymasterInput`    | `BytesLike`             | The input data to the paymaster.|
 
 ```ts
 export function getGeneralPaymasterInput(paymasterInput: GeneralPaymasterInput): BytesLike {
@@ -41,6 +52,15 @@ export function getGeneralPaymasterInput(paymasterInput: GeneralPaymasterInput):
 ### `getPaymasterParams`
 
 Returns a correctly-formed `paymasterParams` object for common [paymaster flows](../../dev/developer-guides/aa.md#built-in-paymaster-flows).
+
+
+#### Inputs
+
+| Parameter           | Type                    | Description                       |
+| ------------------- | ----------------------- | --------------------------------  |
+| `paymasterAddress`  | `Address` string        | The non-zero `paymaster` address. |
+| `paymasterInput`    | `BytesLike`             | The input data to the paymaster.  |
+
 
 ```typescript
 export function getPaymasterParams(paymasterAddress: Address, paymasterInput: PaymasterInput): PaymasterParams
