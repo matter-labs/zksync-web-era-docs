@@ -14,6 +14,7 @@ export default defineUserConfig({
       './components/PageFooter.vue',
     ),
     "@theme-hope/modules/navbar/components/Navbar": path.resolve(__dirname, "./components/NavBar.vue"),
+    "@theme-hope/modules/info/components/TOC": path.resolve(__dirname, "./components/WordInfo.vue"),
   },
   dest: "dist/docs",
 
