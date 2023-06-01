@@ -683,7 +683,7 @@ Returns true if account abstraction EIP712 signature is correct.
 | Parameter           | Type                    | Description                  |
 | ------------------- | ----------------------- | ---------------------------  |
 | `provider`          | `Provider` object       | Provider.            |
-| `address`           | string                  | Sender address as string.    |
+| `address`           | string                  | Sender address.    |
 | `message`           | string                  | The hash of the message.     |
 | `signature`         | `SignatureLike` object  | Ethers signature.            |
 
