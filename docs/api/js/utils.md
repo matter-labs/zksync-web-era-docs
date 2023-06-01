@@ -740,11 +740,11 @@ Returns true if account abstraction EIP712 signature is correct.
 
 | Parameter           | Type                       | Description                                                 |
 | ------------------- | -------------------------- | ----------------------------------------------------------  |
-| `provider`          | `Provider` object          | The RPC provider.                                           |
-| `address`           | string                     | Sender address as string.                                   |
-| `domain`            | `TypedDataDomain` object   |                                                             |
-| `types`             | string                     | The map of records pointing from field name to field type.  |
-| `value`             | string                     | A single record.                                            |
+| `provider`          | `Provider` object          | Provider.                                           |
+| `address`           | string                     | Sender address.                                   |
+| `domain`            | `TypedDataDomain` object   |       Domain data.                                                      |
+| `types`             | Map<string, TypedDataField>    | Map of records pointing from field name to field type.  |
+| `value`             | Record<string, any>                     | A single record value.                                           |
 | `signature`         | `SignatureLike` object     | Ethers signature.                                           |
 
 ```ts
