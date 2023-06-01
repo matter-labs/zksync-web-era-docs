@@ -636,7 +636,7 @@ Called from [`isSignatureCorrect`](#isSignatureCorrect) for contract account add
 | Parameter           | Type                    | Description                  |
 | ------------------- | ----------------------- | ---------------------------  |
 | `provider`          | `Provider` object       | Provider.            |
-| `address`           | string                  | Sender address as string.    |
+| `address`           | string                  | Sender address.    |
 | `msgHash`           | string                  | The hash of the message.     |
 | `signature`         | `SignatureLike` object  | Ethers signature.            |
 
