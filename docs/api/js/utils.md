@@ -561,7 +561,7 @@ Returns the hash of given bytecode.
 
 | Parameter           | Type                | Description             |
 | ------------------- | ------------------- | ----------------------  |
-| `bytecode`          | `BytesLike` object  | Hash of given bytecode. |
+| `bytecode`          | `BytesLike` object  | Bytecode. |
 
 ```ts
 export function hashBytecode(bytecode: ethers.BytesLike): Uint8Array {
