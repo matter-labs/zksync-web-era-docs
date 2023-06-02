@@ -203,9 +203,9 @@ Generates a future-proof contract address using salt plus bytecode which allows 
 | Parameter      | Type               | Description                        |
 | -------------- | ------------------ | ---------------------------------- |
 | `sender`       | string             | Sender address.                   |
-| `bytecodeHash` | `BytesLike`        | Output from zkSolc.                |
-| `salt`         | `BytesLike`        | Randomization element.             |
-| `input`        | `BytesLike`        | ABI encoded constructor arguments. |
+| `bytecodeHash` | `BytesLike`  object      | Output from zkSolc.                |
+| `salt`         | `BytesLike` object        | Randomization element.             |
+| `input`        | `BytesLike`  object      | ABI encoded constructor arguments. |
 
 #### Outputs
 
