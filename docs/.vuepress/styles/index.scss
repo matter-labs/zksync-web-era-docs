@@ -588,9 +588,13 @@
 
 p.text {
     color: #fff !important;
-    padding: 0 0 0 40% !important;
+    padding: 0 0 0 30% !important;
     margin: 50px 0 0 0 !important;
     justify-content: center !important;
     font-size: 15px !important;
     font-weight: 500 !important;
+}
+
+.bar.hide {
+    display: none;
 }
