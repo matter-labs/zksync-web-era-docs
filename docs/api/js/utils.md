@@ -783,10 +783,6 @@ Common sleep function that pauses execution for a number of milliseconds.
 | ------------------- | ----------- | -----------------------------------------------------------------  |
 | `millis`            | number      | Number of milliseconds. |
 
-#### Outputs
-
-- `Promise` object: for pausing execution by the specified amount.
-
 ```ts
 export function sleep(millis: number) {
     return new Promise((resolve) => setTimeout(resolve, millis));
