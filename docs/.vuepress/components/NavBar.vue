@@ -1,11 +1,17 @@
     <template>
         <NavBar>
         <template #rightStart>
-            <GoogleTranslateSelect class="google-translate-select-language" default-language-code="en" default-page-language-code="en" :fetch-browser-language="false" @select="handleGoogleTranslateSelect" />
+            <GoogleTranslateSelect
+            class="google-translate-select-language"
+            default-language-code="en"
+            default-page-language-code="en"
+            :fetch-browser-language="false"
+            @select="handleGoogleTranslateSelect"
+            />
         </template>
         <template #centerStart>
             <div class="bar" :class="{ hide: !showBar }">
-            <p class="text">Our language translation is not working properly.</p>
+            <p class="text">Our Google translate plugin is fairly limited at the current time and may mistranslate some words.</p>
             </div>
         </template>
         </NavBar>
@@ -26,18 +32,12 @@
         const translateElement = document.querySelector(".google-translate-select-language");
         const barElement = document.querySelector(".bar");
     
-        console.log('Translate Element:', translateElement);
-        console.log('Bar Element:', barElement);
-        console.log('Before showBar:', showBar.value);
-    
         // Check if the clicked element is the translate element
-        if (translateElement && event.target === translateElement) {
-            showBar.value = !showBar.value; // Toggle the visibility of the bar element
+        if (translateElement && translateElement.contains(event.target)) {
+            showBar.value = true; // Show the bar element
         } else {
             showBar.value = false; // Hide the bar element
         }
-    
-        console.log('After showBar:', showBar.value);
         };
     
         document.addEventListener("click", handleDocumentClick);
@@ -53,4 +53,14 @@
     .bar.hide {
         display: none;
     }
+    
+    p.text {
+        color: #fff !important;
+        padding: 0 0 0 30% !important;
+        margin: 50px 0 0 0 !important;
+        justify-content: center !important;
+        font-size: 15px !important;
+        font-weight: 500 !important;
+    }
     </style>
+    
