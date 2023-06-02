@@ -30,7 +30,7 @@ To estimate gas for an L1 to L2 transaction, first gather the required values:
 
 2. Call the [`zks_estimateGasL1ToL2`](../../api/api.md#zks_estimategasl1tol2) method, passing the transaction data. This returns the estimated amount of L2 gas the transaction requires; commonly called **gas limit** or similar in our code and docs.
 
-    - Apply an alias to the addresses in the request if the sender address is a contract. If the sender is an EOA, no aliasing is required. This is implemented by the [`applyL1ToL2Alias`](https://github.com/matter-labs/zksync-2-contracts/blob/7b5c094a57c0606785ea38c9c752f9def9a5ed9d/ethereum/contracts/vendor/AddressAliasHelper.sol#L28) Solidity function.
+    - Apply an alias to the addresses in the request if the sender address is a contract. If the sender is an EOA, no aliasing is required. This is implemented by the [`applyL1ToL2Alias`](https://github.com/matter-labs/era-contracts/blob/41c25aa16d182f757c3fed1463c78a81896f65e6/ethereum/contracts/vendor/AddressAliasHelper.sol#L28) Solidity function.
 
 3. Call the [`l2TransactionBaseCost`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L129) function, passing the gas price and gas limit from previous steps. This function returns the base cost required to send a transaction.
 
