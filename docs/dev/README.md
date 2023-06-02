@@ -32,7 +32,6 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Smart contract deployment](./building-on-zksync/contracts/contract-development.md) - A guide on how to deploy smart contracts on zkSync.
 - [Verify contracts](./building-on-zksync/contracts/contract-verification.md) - A guide on how to verify smart contracts with zkSync block explorer.
 - [Handling events](./building-on-zksync/events.md) - Learn how to handle events in zkSync Era.
-- [JSON-RPC API](./building-on-zksync/rpc.md) - Learn how to use our custom JSON-RPC APIs that are similar to Ethereum.
 
 ### Tutorials
 
