@@ -743,7 +743,7 @@ Returns true if account abstraction EIP712 signature is correct.
 | `provider`          | `Provider` object          | Provider.                                           |
 | `address`           | string                     | Sender address.                                   |
 | `domain`            | `TypedDataDomain` object   |       Domain data.                                                      |
-| `types`             | Map<string, TypedDataField>    | Map of records pointing from field name to field type.  |
+| `types`             | `Map<string, TypedDataField>`    | Map of records pointing from field name to field type.  |
 | `value`             | `Record<string, any>`                     | A single record value.                                           |
 | `signature`         | `SignatureLike` object     | Ethers signature.                                           |
 
