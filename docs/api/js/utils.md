@@ -295,7 +295,7 @@ Used by `estimateDefaultBridgeDepositL2Gas` to estimate L2 gas required for toke
 | `token`             | string                           | Token address.                                               |
 | `amount`            | `BigNumberish` object            | Deposit amount.                                              |
 | `to`                | string                           | Recipient address.                                           |
-| `bridgeData`        | `BytesLike` object               | Data.                                                        |
+| `bridgeData`        | `BytesLike` object               | Bridge data.                                                        |
 | `from?`             | string (optional)                | Sender address.                                              |
 | `gasPerPubdataByte?`| `BigNumberish` object (optional) | Current gas per byte of pubdata.                             |
 
