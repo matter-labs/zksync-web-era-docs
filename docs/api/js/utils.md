@@ -289,7 +289,7 @@ Used by `estimateDefaultBridgeDepositL2Gas` to estimate L2 gas required for toke
 
 | Parameter           | Type                             | Description                                                  |
 | ------------------- | -------------------------------  | ------------------------------------------------------------ |
-| `providerL2`        | object                           | zkSync provider.                                             |
+| `providerL2`        | `Provider` object                           | zkSync provider.                                             |
 | `l1BridgeAddress`   | string                           | L1 bridge address.                                              |
 | `l2BridgeAddress`   | string                           | L2 bridge address.                                              |
 | `token`             | string                           | Token address.                                               |
