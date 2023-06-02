@@ -142,6 +142,11 @@
           "source": "/docs/api/tools{,/**}",
           "destination": "/docs/tools/",
           "type": "302"
+        }, 
+        {
+          "source": "/docs/api/hardhat/hardhat-zksync-verify.html",
+          "destination": "/docs/tools/hardhat/hardhat-zksync-verify.html",
+          "type": "302"
         } 
       ]
     },
@@ -282,7 +287,12 @@
           "source": "/docs/api/tools{,/**}",
           "destination": "/docs/tools/",
           "type": "302"
-        }       
+        },
+        {
+          "source": "/docs/api/hardhat/hardhat-zksync-verify.html",
+          "destination": "/docs/tools/hardhat/hardhat-zksync-verify.html",
+          "type": "302"
+        }     
       ]
     }
   ]
