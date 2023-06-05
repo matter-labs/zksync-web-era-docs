@@ -1,6 +1,6 @@
 # Web3 JSON-RPC API
 
-zkSync Era fully supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/) and adds some L2-specific features.
+zkSync Era supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/) and adds some L2-specific features.
 
 :::tip Tip
 - As long as code does not involve deploying new smart contracts, which can only be deployed using [EIP712 transactions](../dev/developer-guides/transactions/transactions.md#eip-712-transactions), _no changes to the codebase are needed_.
@@ -397,7 +397,9 @@ curl -X POST -H "Content-Type: application/json" \
 
 Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `from` and `limit`. 
 
-**Confirmed** in the method name means the method returns any token bridged to zkSync via the official bridge.
+**Confirmed** in the method name means any token bridged to zkSync Era via the official bridge. 
+
+The tokens are returned in alphabetical order by their symbol. This means the token id is its position in an alphabetically sorted array of tokens.
 
 :::info
 This method is mainly used by the zkSync team as it relates to a database query where the primary keys relate to the given ids.

@@ -4,6 +4,7 @@ This tutorial shows you how to build and deploy a 2-of-2 multi-signature account
 
 ## Prerequisites
 
+- Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - A [Node.js](https://nodejs.org/en/download) installation.
 - For background learning, we recommend the following guides:
     - Read about the [design](../developer-guides/aa.md) of the account abstraction protocol.
@@ -396,7 +397,7 @@ function _validateTransaction(
         txHash = _suggestedSignedHash;
     }
 
-    // The fact there is are enough balance for the account
+    // The fact there is enough balance for the account
     // should be checked explicitly to prevent user paying for fee for a
     // transaction that wouldn't be included on Ethereum.
     uint256 totalRequiredBalance = _transaction.totalRequiredBalance();
@@ -571,7 +572,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
             txHash = _suggestedSignedHash;
         }
 
-        // The fact there is are enough balance for the account
+        // The fact there is enough balance for the account
         // should be checked explicitly to prevent user paying for fee for a
         // transaction that wouldn't be included on Ethereum.
         uint256 totalRequiredBalance = _transaction.totalRequiredBalance();
