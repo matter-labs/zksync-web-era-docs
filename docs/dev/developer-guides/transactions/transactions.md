@@ -1,60 +1,71 @@
 # Transactions
 
-Transactions in Ethereum are cryptographically signed instructions by an externally owned account (an account owned by a user and not by code). These instructions are stored in the blockchain and added to a block.
-The state of the Ethereum virtual machine (EVM) changes when a transaction is initiated. A transaction can be anything from sending ether to another account to invoking the functions of a smart contract.
+From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
 
-## Prerequisites
+> Transactions are cryptographically signed instructions from accounts. An account will initiate a transaction to update the state of the Ethereum network. The simplest transaction is transferring ETH from one account to another. 
 
-We recommend reading the [accounts documentation](https://ethereum.org/en/developers/docs/accounts/) as preliminary material towards understanding the content on this page.
+## Transaction data on Ethereum
 
-## How transactions work
+From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
 
-When a user initiates a transaction on Ethereum, some specific data is created:
+> A submitted transaction includes the following information:
+>  - `from`: the address of the sender, that will be signing the transaction. This will be an externally-owned account as contract accounts cannot send transactions.
+>  - `recipient`: the receiving address (if an externally-owned account, the transaction will transfer value. If a contract account, the transaction will execute the contract code).
+>  - `signature`: the identifier of the sender. This is generated when the sender's private key signs the transaction and confirms the sender has authorized this transaction.
+>  - `nonce`: a sequentially incrementing counter which indicates the transaction number from the account.
+>  - `value`: amount of ETH to transfer from sender to recipient (denominated in WEI, where 1ETH equals 1e+18wei).
+>  - `data`: optional field to include arbitrary data.
+>  - `gasLimit`: the maximum amount of gas units that can be consumed by the transaction. The EVM(opens in a new tab)↗ specifies the units of gas required by each computational step.
+>  - `maxPriorityFeePerGas`: the maximum price of the consumed gas to be included as a tip to the validator.
+>  - `maxFeePerGas`: the maximum fee per unit of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas).
 
-- **Receiver**: The recipient is the account's address to receive the transaction. The receiver can be a contract account or an externally owned account. Each transaction is aimed toward a specific recipient.
-- **Nonce**: This field displays the most recent transaction based on the account's counter, which maintains track of how many transactions it does. The network uses the transaction nonce to ensure that transactions are completed in the correct sequence.
-- **Gas price**: Most transactions necessitate the payment of a fee from the transaction's author. This cost is computed per unit of gas. The unit is Wei, a smaller ether unit.
-- **Gas limit**: The transaction author specifies the number of gas units used for the transaction. This is the total amount of gas that could be consumed.
-- **Value**: The quantity of Wei or Ether that the sender account wishes to transmit to the recipient is represented by the value.
-- **Data**: If the transaction receiver is a smart contract, the data contains information for the contract's functions to be executed. This comprises data with varying lengths.
-- **Signature**: A signature indicates who sent the communication. The signature is created when an externally owned account confirms and signs the transaction with its private key.
+## Nature of transactions
 
-### Transaction Types
+There are various different ways of transacting on the Ethereum blockchain:
 
-Contract deployment transactions: To deploy a contract, you need to send a JSON RPC request with transaction information. Remember to include the `EIP712` type in this request. The `EIP712` type should be written in hexadecimal format.
-Contract deployment on zkSync is quite different from Ethereum.
-  - Ethereum: Contract deployment occurs when a user sends a transaction to the zero address `(0x000...000)` with the `data` field of the transaction equal to the contract bytecode concatenated with the constructor parameters.
-  - zkSync Era: To deploy a contract on zkSync, a user calls the `create` function of the [ContractDeployer](../system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the EIP712 transactions. If the contract is a factory (i.e. it can deploy other contracts), the contracts bytecodes should be included in the `factory_deps`.
-  Read more on [contract deployment](../../building-on-zksync/contracts/contract-development.md).
+- Regular transactions: A simple transaction from one account to another such as transferring a token.
+- Contract deployment transactions: A transaction with no `to` address and the `data` field contains the contract code.  
+- Contract deployment on zkSync Era is different from Ethereum.
+  - Ethereum: Contract deployment occurs when a user sends a transaction to the zero address `(0x000...000)` where the `data` field contains the contract bytecode concatenated with constructor parameters.
+  - zkSync Era: To deploy a contract on zkSync, a user calls the `create` function of the [ContractDeployer](../system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode is added to the `factory_deps` field of [EIP-712 transaction types](#eip-712-0x71). If the contract is a factory (i.e. it can deploy other contracts), the bytecode of all child contracts should be included in `factory_deps`.
+- Find out more about [contract deployment](../../building-on-zksync/contracts/contract-development.md) on zkSync Era.
+- Contract execution: A transaction that interacts with an already deployed smart contract where the `to` address is the smart contract's address.
 
-::: tip
-zkSync Era supports Ethereum's "old" (pre-EIP-2718) transaction types, the EIP-1559 transaction type, and the EIP-712 transactions; which can be used to access zkSync-specific features such as account abstraction. Furthermore, smart contracts can only be deployed with the EIP-712 transaction type.
+## Transaction types
 
-See the [EIP-712 transaction section below](#eip-712-transactions) for more information.
-
+:::tip
+The transaction type hex value is output by any RPC method call which returns a transaction type, such as [`eth_getTransactionByHash`](https://ethereum.github.io/execution-apis/api-documentation/) for example.
 :::
 
-### When is a transaction considered final?
+### Legacy: `0x0`
 
-**Transaction finality** refers to the promise that transactions cannot be reversed, altered, or mutated in the context of a blockchain network.
+The transaction format used before the introduction of typed-transactions.
 
-Under proof of stake, Ethereum transactions finalize in 2.5 epochs (16 minutes) on average under normal conditions: reverting that transaction would cost 1/3 of the total staked Ethereum.
+### EIP-2930: `0x1`
 
-Once a block has been filled and sealed in zk rollups, its state is committed to the main Ethereum chain. The proving stage is then started, and a SNARK validity proof is constructed for each block transaction. Once completed, the SNARK is sent for verification on the L1 smart contract, and the transaction state becomes final following verification.
+The Ethereum Improvement Proposal [EIP-2930: Optional access lists](https://eips.ethereum.org/EIPS/eip-2930) addressed contract breakage risks introduced by EIP-2929. 
 
-From the standpoint of zkSync, _finality_ occurs when the transaction (the SNARK verification) is executed by L1. At this point, the guarantees are the same as any other L1 transaction within the same L1 block; the more L1 blocks issued after the initial block is processed, the less likely this transaction will be overturned.
+Everything the legacy format has, plus an `accessList` parameter containing an array of addresses and storage keys.
 
-When a user transmits a transaction, zkSync currently waits for the entire block to be filled, which means the finality time may be longer depending on the volume of transactions sent via zkSync. The finality time will reduce as the throughput increases.
+### EIP-1559: `0x2`
 
-### What exactly are operators?
+The Ethereum Improvement Proposal [EIP-1559: Fee market change for ETH 1.0 chain](https://eips.ethereum.org/EIPS/eip-1559) is an updated transaction type introduced in Ethereum's London fork. It addressed network congestion and excessive fees coming from bids. EIP-1559 transactions don't specify `gasPrice` and instead use a base fee which is adjusted by each block.
 
-**Operators** are the actors who carry out essential ZK rollup functions. They are responsible for producing blocks, packaging transactions, conducting calculations, and submitting data to the main Ethereum chain for verification.
+EIP-1559 transaction types contain everything from EIP-2930 and legacy transactions (apart from removing the `gasPrice`). 
 
-## EIP-712 transactions
+Additional parameters added are the `maxPriorityFeePerGas` and `maxFeePerGas` where users can specific maximum fees they're willing to pay to prioritize their transactions.
 
-The Ethereum Improvement Proposal [EIP-712: Typed structured data hashing and signing](https://eips.ethereum.org/EIPS/eip-712) introduces hashing and signing of typed-structured data as well as bytestrings. 
+:::important
+zkSync Era supports the EIP-1559 transaction-type format but does nothing with the max fee parameters as these are related to miner tips.
+:::
 
-To specify additional fields, such as the custom signature for custom accounts or to choose the paymaster, EIP-712 transactions should be used. These transactions have the same fields as standard Ethereum transactions, but they also have fields that contain additional L2-specific data (`paymaster`, etc).
+### EIP-712: `0x71`
+
+The Ethereum Improvement Proposal [EIP-712: Typed structured data hashing and signing](https://eips.ethereum.org/EIPS/eip-712) introduced hashing and signing of typed-structured data as well as bytestrings. 
+
+EIP-712 transactions access zkSync-specific features such as account abstraction and paymasters. Furthermore, smart contracts must be deployed with the EIP-712 transaction type.
+
+Specify the additional fields, such as the custom signature for custom accounts or to choose the paymaster with EIP-712 transactions. These transactions have the same fields as standard Ethereum transactions, plus fields containing additional L2-specific data (`paymaster`, etc).
 
 ```json
 "gasPerPubdata": "1212",
@@ -92,3 +103,22 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 | paymasterInput         | `bytes`     |
 
 These fields are handled by our [SDK](../../../api/js/features.md).
+
+### Priority: `0xff`
+
+This is a zkSync Era specific transaction type related to a L1 -> L2 transaction.
+
+??MORE HERE PLEASE??
+
+## Transaction statuses
+
+Transactions are always in one of the following statuses:
+
+- `Pending`: Not yet included in a block. 
+- `Included`: Included in a block but not yet verified.
+- `Verified`: Included in a block and verified. 
+- `Failed`: Unverified/failed transaction.
+
+:::info
+For more information on when a transaction is considered complete and unalterable, read the documentation on [finality](../finality.md).
+:::
