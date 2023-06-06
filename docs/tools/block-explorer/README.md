@@ -1,6 +1,6 @@
 # Block Explorer and Tools
 
-The [zkSync Era Block Explorer user interface](https://explorer.zksync.io/) shows comprehensive data about transactions, blocks, batches, wallets, tokens, and smart contracts on the zkSync Era network.
+The [zkSync Era Block Explorer user interface](https://explorer.zksync.io/) details comprehensive data about transactions, blocks, batches, wallets, tokens, and smart contracts on the zkSync Era network.
 
 Toggle between testnet and mainnet data with the top-right dropdown menu.
 

@@ -1,62 +1,78 @@
 # Block explorer menu
 
-# Use the block explorer
+![zkSync Era block explorer menu](../../assets/images/block-explorer-menu.png)
 
-## Overview
+The [zkSync Era block explorer menu](https://explorer.zksync.io/) displays real-time and historical graphical data on [blocks](#blocks), [batches](#batches), [transactions](#transactions), and [tokens](#token-list). 
 
-The [zkSync Era block explorer](https://explorer.zksync.io/) displays real-time and historical blockchain data. It can be used by users and developers to utilize both high-level data (such as contracts, transaction rates, and so on) and more detailed insights (e.g. block contents, transaction hashes, sending accounts, etc.).
-Consider it a window into the zkSync blockchain, letting you see what's going on there.
+## Blocks
 
-Our block explorer graphically displays block activity, allowing users to engage with the data more effectively. They may seek a specific block number and investigate it further by reading the address and transaction details that comprise a block.
+- Click **Block** in the block explorer menu to go to the Blocks page.
 
-## Who Should Make Use of a Block Explorer?
+![zkSync Era block explorer blocks page](../../assets/images/blocks.png)
 
-Users and developers can use block explorer to track the progress of their transactions. When a transaction is submitted, it automatically creates a transaction hash, which can be used to check the transaction details and whether it was successful or not.
-We have prepared this document to aid users and developers in utilizing the block explorer and optimizing the ideal learning experience.
+- Blocks are listed by block number, newest first, with status details and age. 
 
-We have prepared this tutorial to aid users and traders in utilizing the block explorer and optimizing the ideal learning experience. We will highlight specific touch points in the block explorer:
+- Blocks are paginated in groups of 10 and you can scroll through the pages at the bottom, or add a specific block number to the URL. 
 
-1. [Search bar](./search.md) - Search by wallet address, transaction hash, block number or contract address.
-2. [Browse blocks](./block-view.md): details about blocks included in zkSync Era.
-4. [Transaction view](./block-view.md#transactions): fetch and analyze on-chain transactions.
-5. [Smart contract verification](./contract-verification.md): verify smart contracts with zkSync Era block explorer.
+    For example [https://explorer.zksync.io/block/41849](https://explorer.zksync.io/block/41849).
 
-To start, you can open up [block explorer](https://explorer.zksync.io/) in your web browser and follow along using the guide.
-Let’s take a look at the block explorer!
+- Click on any block number to see more details about a block.
 
-![Browse blocks!](../../assets/images/blocks.png "View blocks on zkSync")
+![zkSync Era block explorer block details page](../../assets/images/block-details.png)
 
-The block explorer home screen shows the 10 most recent blocks by default. To see a more complete overview of recent blocks, you can view all blocks. You can also click on a specific block number to see details about that particular block.
-You can access the blocks page from the top menu as well.
+- **Block Size** denotes the number of transactions in a block.
 
-![Access the block page](../../assets/images/block-menu.png "Blocks menu")
+- **Batch** displays the batch number in which the block is submitted to L1.
 
-## Block details
+- The block details page lists all transactions included in the block.
 
-For specific block details, click on the block number. Go to the [Blocks](https://explorer.zksync.io/blocks/) section and use the pagination at the bottom of the page to see older blocks.
+## Batches
 
-Search for a specific block by typing in its block number.
+- Click **Batch** in the block explorer menu to go to the Batches page.
 
-![Search blocks](../../assets/images/search-blocks.png "Search blocks")
+![zkSync Era block explorer batches page](../../assets/images/batches.png)
 
-For specific block details, click on the block number.
+- Batches are listed by batch number, newest first, with status details, size, and age.
 
-![View block](../../assets/images/view-block.png "View block")
+- Click on any batch number to see more details about a batch.
 
-Block information has the transactions section that contains all the transactions included in the block.
+![zkSync Era block explorer batch details page](../../assets/images/batch-details.png)
 
-![Single block page!](../../assets/images/single-block.png "View a single block")
+- **Batch Size** denotes the number of transactions in a batch.
 
-### Transactions
+- **Commit tx hash** is the hash of the L1 transaction hash on Etherscan.
 
-In this section, you can find a list of all the transactions included in the block. Transactions are processed in the order they are received.
+- **Committed**, **Proven**, and **Executed** are verification stages the batch goes through and go to Etherscan L1 details.
 
-| Value             | Description                                                                                                                                              |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Transaction hash  | The hash of the transaction serving as the transaction’s ID.                                                                                             |
-| From              | The account or smart contract, sending the transaction.                                                                                                  |
-| To                | The account or smart contract, receiving the transaction.                                                                                                |
-| Nonce             | A unique identifier assigned to each transaction that is used to order transactions.                                                                     |
-| Fee               | The rate of fees associated with this transaction processing.                                                                                            |
-| Amount            | The number of ether (ETH) that were transferred in a particular transaction.                                                                             |
-| Age               | The number of block confirmations that have occurred since the transaction was first included in the block.                                              |
+- The batch details page lists all transactions included in the batch.
+
+## Transactions
+
+- Click **Transactions** in the block explorer menu to go to the Transactions page.
+
+![zkSync Era block explorer transactions page](../../assets/images/transactions.png)
+
+- Transactions are listed by status and transaction hash, newest first, with the initiator address, recipient, nonce, amount, fee, and age.
+
+- Click on any transaction hash to see more details.
+
+![zkSync Era block explorer transaction details page](../../assets/images/transaction-details.png)
+
+| Data point        | Description         |
+| ----------------- | ------------------- |
+| Transaction Hash  | The hash of the transaction serving as the transaction’s ID.   |
+| Commit Tx hash    |    |
+| Prove Tx hash    |    |
+| Execute Tx hash    |    |
+| Status    |    |
+| Block    |    |
+| Batch    |    |
+| From          | The account or smart contract, sending the transaction.      |
+| Contract address      | The account or smart contract, receiving the transaction.        |
+| Input data          | The account or smart contract, sending the transaction.      |
+| Fee               | The rate of fees associated with this transaction processing.    |
+| Nonce             | A unique identifier assigned to each transaction that is used to order transactions.     |                                                                            |
+| Created              | The number of block confirmations that have occurred since the transaction was first included in the block.                                              |
+
+
+## Token list
