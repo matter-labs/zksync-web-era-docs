@@ -345,7 +345,7 @@ The transaction validation process is responsible for validating the signature o
 - There are some [limitations](../developer-guides/aa.md#limitations-of-the-verification-step) on this function.
 :::
 
-To increment the nonce, use the `incrementNonceIfEquals` function from the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether it is the same as the provided one. If not, the transaction reverts; otherwise, the nonce increases.
+To increment the nonce, use the `incrementMinNonceIfEquals` function from the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether it is the same as the provided one. If not, the transaction reverts; otherwise, the nonce increases.
 
 Even though the requirements above mean the accounts only touch their own storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../developer-guides/aa.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happens to be in another contract. 
 
@@ -763,6 +763,7 @@ The contract is a factory that deploys the accounts.
 :::warning
 - To deploy the multisig smart contract, it is necessary to interact with the `DEPLOYER_SYSTEM_CONTRACT` and call the `create2Account` function.
 - If the code doesn't do this, you may see errors like `Validation revert: Sender is not an account`.
+- Read the documentation on using [`create2Account` during the deployment process](../developer-guides/aa.md#the-deployment-process) for more information.
 :::
 
 2. Copy/paste the following code into the file.
@@ -927,7 +928,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 :::tip
 - zkSync has different address derivation rules from Ethereum. 
-- Always use the `createAddress` and `create2Address` utility functions of the `zksync-web3` SDK.
+- Always use the [`createAddress`](../../api/js/utils.md#createaddress) and [`create2Address`](../../api/js/utils.md#create2address) utility functions of the `zksync-web3` SDK.
+- Read the documentation for more information on [address derivation differences between Ethereum and zkSync](https://era.zksync.io/docs/dev/building-on-zksync/contracts/differences-with-ethereum.html#create-create2).
 :::
 
 ### Start a transaction from the account
@@ -1071,6 +1073,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   await tx.wait();
 
   // Getting the address of the deployed contract account
+  // Always use the JS utility methods
   const abiCoder = new ethers.utils.AbiCoder();
   const multisigAddress = utils.create2Address(
     AA_FACTORY_ADDRESS,
