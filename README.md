@@ -74,18 +74,19 @@ To add a new tutorial:
 - Fork the repository and create a new branch locally to add your changes.
 - Add the tutorial markdown file inside the `docs/dev/tutorials` folder.
 - Give the file an SEO-friendly name, as it is included in the live URL.
-- In the `docs/.vuepress/config.js` file, add the tutorial inside this block:
+- In the `docs/.vuepress/sidebar/en.ts` file, add the tutorial inside this block:
 
 ```js
 {
-title: "Tutorials",
-path: "/dev/tutorials",
-collapsable: false,
-children: [
-  "/dev/tutorials/cross-chain-tutorial.md",
-  "/dev/tutorials/custom-aa-tutorial.md",
-  "/dev/tutorials/custom-paymaster-tutorial.md"],
-  // ADD YOUR FILE HERE
+  text: "Tutorials",
+  link: "/dev/tutorials",
+  children: [
+        "/dev/tutorials/cross-chain-tutorial.md",
+        "/dev/tutorials/custom-aa-tutorial.md",
+        "/dev/tutorials/aa-daily-spend-limit.md",
+        "/dev/tutorials/custom-paymaster-tutorial.md",
+        // ADD YOUR FILE HERE
+  ],
 },
 ```
 
