@@ -6,7 +6,7 @@ The [zkSync Era block explorer menu](https://explorer.zksync.io/) displays real-
 
 ## Blocks
 
-- Click **Block** in the block explorer menu to go to the Blocks page.
+- Click [**Blocks**](https://explorer.zksync.io/blocks/) in the block explorer menu to go to the Blocks page.
 
 ![zkSync Era block explorer blocks page](../../assets/images/blocks.png)
 
@@ -28,7 +28,7 @@ The [zkSync Era block explorer menu](https://explorer.zksync.io/) displays real-
 
 ## Batches
 
-- Click **Batch** in the block explorer menu to go to the Batches page.
+- Click [**Batches**](https://explorer.zksync.io/batches/) in the block explorer menu to go to the Batches page.
 
 ![zkSync Era block explorer batches page](../../assets/images/batches.png)
 
@@ -48,31 +48,37 @@ The [zkSync Era block explorer menu](https://explorer.zksync.io/) displays real-
 
 ## Transactions
 
-- Click **Transactions** in the block explorer menu to go to the Transactions page.
+- Click [**Transactions**](https://explorer.zksync.io/transactions/) in the block explorer menu to go to the Transactions page.
 
 ![zkSync Era block explorer transactions page](../../assets/images/transactions.png)
 
 - Transactions are listed by status and transaction hash, newest first, with the initiator address, recipient, nonce, amount, fee, and age.
 
-- Click on any transaction hash to see more details.
+- Click on a transaction hash to see more details.
 
 ![zkSync Era block explorer transaction details page](../../assets/images/transaction-details.png)
 
 | Data point        | Description         |
 | ----------------- | ------------------- |
-| Transaction Hash  | The hash of the transaction serving as the transaction’s ID.   |
-| Commit Tx hash    |    |
-| Prove Tx hash    |    |
-| Execute Tx hash    |    |
-| Status    |    |
-| Block    |    |
-| Batch    |    |
-| From          | The account or smart contract, sending the transaction.      |
-| Contract address      | The account or smart contract, receiving the transaction.        |
-| Input data          | The account or smart contract, sending the transaction.      |
-| Fee               | The rate of fees associated with this transaction processing.    |
-| Nonce             | A unique identifier assigned to each transaction that is used to order transactions.     |                                                                            |
-| Created              | The number of block confirmations that have occurred since the transaction was first included in the block.                                              |
-
+| Transaction Hash  | Unique 66 character identifier generated when transaction submitted to L2.  |
+| Commit Tx hash    | Unique 66 character identifier generated when transaction committed to L1.  |
+| Prove Tx hash     | Unique 66 character identifier generated when transaction proven on L1.     |
+| Execute Tx hash   | Unique 66 character identifier generated when transaction executed on L1.   |
+| Status    | One of `Pending`, `Included`, `Verified`, or `Failed`.   |
+| Block    |  Block number containing the transaction.  |
+| Batch    |  Batch number containing the transaction.  |
+| From          | The account or smart contract address sending the transaction.      |
+| Tokens Transferred    |  Details on all tokens transferred by the transaction.  |
+| Contract address      | The transaction recipient.        |
+| Input data          |  Any additional data used by the transaction for verified contracts.      |
+| Fee      | Fee for the tx in ETH and USD value. Click **More Details** to see info on refunds.   |
+| Nonce     | Sender nonce.  |                        
+| Created      | Timestamp of when the transaction was added to the block.                        |
 
 ## Token list
+
+- Click [**Token List**](https://explorer.zksync.io/tokenlist) in the block explorer menu to go to the Token List page.
+
+![zkSync Era block explorer token list page](../../assets/images/token-list.png)
+
+- Use the token addresses for bridging tokens.
