@@ -1,4 +1,4 @@
-# Quickstart
+# Hello world
 
 This guide shows you how to deploy a smart contract to zkSync and build a dApp that interacts with it using the zkSync development toolbox.
 
@@ -11,6 +11,7 @@ This is what we're going to do:
 
 ## Prerequisites
 
+- Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - Download and install [Node](https://nodejs.org/en/download).
 - Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to v16.16.0 with command `nvm use 16`.
 - Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
