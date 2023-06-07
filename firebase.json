@@ -44,6 +44,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/dev/developer-guides/transactions/blocks.html#blocks-in-zksync-2-0",
+          "destination": "/docs/dev/developer-guides/transactions/blocks.html#blocks-in-zksync-era",
+          "type": "302"
+        },
+        {
           "source": "/docs/contact.html",
           "destination": "/docs/#footer",
           "type": "302"
@@ -74,11 +79,6 @@
           "type": "302"
         },
         {
-          "source": "/docs/dev/developer-guides/building-on-zksync/events.html",
-          "destination": "/docs/dev/building-on-zksync/events.html",
-          "type": "302"
-        },
-        {
           "source": "/docs/dev/developer-guides/contracts/contracts.html",
           "destination": "/docs/dev/building-on-zksync/contracts/contracts.html",
           "type": "302"
@@ -89,13 +89,18 @@
           "type": "302"
         },
         {
-          "source": "/docs/dev/building-on-zksync/bridging/l1-l2-interop.html",
+          "source": "docs/dev/developer-guides/bridging/l1-l2.html",
           "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
           "type": "302"
         },
         {
-          "source": "/docs/dev/developer-guides/contracts/contract-deployment.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
+          "source": "docs/dev/developer-guides/bridging/l2-l1.html",
+          "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/bridging/l1-l2-interop.html",
+          "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
           "type": "302"
         },
         {
@@ -106,6 +111,41 @@
         {
           "source": "/docs/dev/fundamentals/faq.html",
           "destination": "/docs/dev/troubleshooting/faq.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/hardhat/hardhat-zksync-verify.html",
+          "destination": "/docs/tools/hardhat/hardhat-zksync-verify.html",
+          "type": "302"
+        }, 
+        {
+          "source": "/docs/api/hardhat{,/**}",
+          "destination": "/docs/tools/hardhat/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/compiler-toolchain{,/**}",
+          "destination": "/docs/tools/compiler-toolchain/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools/zksync-cli{,/**}",
+          "destination": "/docs/tools/zksync-cli/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools/block-explorer{,/**}",
+          "destination": "/docs/tools/block-explorer/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools/block-explorer/contract-verification.html#enter-contract-details",
+          "destination": "/docs/tools/block-explorer/contract-verification.html#enter-contract-details",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools{,/**}",
+          "destination": "/docs/tools/",
           "type": "302"
         }
       ]
@@ -184,11 +224,6 @@
           "type": "302"
         },
         {
-          "source": "/docs/dev/developer-guides/building-on-zksync/events.html",
-          "destination": "/docs/dev/building-on-zksync/events.html",
-          "type": "302"
-        },
-        {
           "source": "/docs/dev/developer-guides/contracts/contracts.html",
           "destination": "/docs/dev/building-on-zksync/contracts/contracts.html",
           "type": "302"
@@ -199,13 +234,18 @@
           "type": "302"
         },
         {
-          "source": "/docs/dev/building-on-zksync/bridging/l1-l2-interop.html",
+          "source": "docs/dev/developer-guides/bridging/l1-l2.html",
           "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
           "type": "302"
         },
         {
-          "source": "/docs/dev/developer-guides/contracts/contract-deployment.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
+          "source": "docs/dev/developer-guides/bridging/l2-l1.html",
+          "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/bridging/l1-l2-interop.html",
+          "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
           "type": "302"
         },
         {
@@ -217,7 +257,42 @@
           "source": "/docs/dev/fundamentals/faq.html",
           "destination": "/docs/dev/troubleshooting/faq.html",
           "type": "302"
-        }
+        },
+        {
+          "source": "/docs/api/hardhat/hardhat-zksync-verify.html",
+          "destination": "/docs/tools/hardhat/hardhat-zksync-verify.html",
+          "type": "302"
+        },  
+        {
+          "source": "/docs/api/hardhat{,/**}",
+          "destination": "/docs/tools/hardhat/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/compiler-toolchain{,/**}",
+          "destination": "/docs/tools/compiler-toolchain/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools/zksync-cli{,/**}",
+          "destination": "/docs/tools/zksync-cli/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools/block-explorer{,/**}",
+          "destination": "/docs/tools/block-explorer/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools/block-explorer/contract-verification.html#enter-contract-details",
+          "destination": "/docs/tools/block-explorer/contract-verification.html#enter-contract-details",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools{,/**}",
+          "destination": "/docs/tools/",
+          "type": "302"
+        }   
       ]
     }
   ]

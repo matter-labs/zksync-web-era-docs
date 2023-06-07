@@ -6,6 +6,7 @@ The daily limit feature prevents an account from spending more ETH than the limi
 
 ## Prerequisites
 
+- Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - [Node.js](https://nodejs.org/en/download/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed on your machine.
 - If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You have a web3 wallet app which holds some Goerli test ETH and some zkSync Era test ETH.
@@ -14,7 +15,7 @@ The daily limit feature prevents an account from spending more ETH than the limi
 
 ## Project set up
 
-We will use the [zkSync Era Hardhat plugins](../../api/hardhat/) to build, deploy, and interact with the smart contracts in this project.
+We will use the [zkSync Era Hardhat plugins](../../tools/hardhat/) to build, deploy, and interact with the smart contracts in this project.
 
 1. Create a project folder and `cd` into it.
 
@@ -77,7 +78,7 @@ export default config;
 
 ::: tip zksync-cli
 - You can use the zkSync Era CLI to scaffold a project automatically. 
-- Find [more info about the zkSync Era CLI here](../../api/tools/zksync-cli/).
+- Find [more info about the zkSync Era CLI here](../../tools/zksync-cli/).
 :::
 
 ## Design
@@ -1073,9 +1074,9 @@ Download the complete project [here](https://github.com/matter-labs/daily-spendl
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync Era, check out the [documentation](../developer-guides/bridging/l1-l2.md).
+- To find out more about L1->L2 interaction on zkSync Era, check out the [documentation](../developer-guides/bridging/l1-l2-interop.md).
 - To learn more about the zksync-web3 SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync Era Hardhat plugins, check out their [documentation](../../api/hardhat).
+- To learn more about the zkSync Era Hardhat plugins, check out their [documentation](../../tools/hardhat).
 
 ## Credits
 

@@ -16,15 +16,16 @@ Learn more about [other plugins from the community](./other-plugins.md) that you
 
 To learn more about Hardhat itself, check out [its official documentation](https://hardhat.org/getting-started/).
 
-This tutorial shows you how to set up a zkSync Era Solidity project with Hardhat using the [zkSync CLI](../tools/zksync-cli/README.md).
+This tutorial shows you how to set up a zkSync Era Solidity project with Hardhat using the [zkSync CLI](../zksync-cli/README.md).
 
 If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zksync-vyper.md) or [this example](https://github.com/matter-labs/hardhat-zksync/tree/main/examples/vyper-example) in GitHub!
 
 
 ## Prerequisites
 
+- Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - A Node installation with `yarn` package manager installed.
-- You have [installed the zkSync CLI](../tools/zksync-cli/README.md#installation).
+- You have [installed the zkSync CLI](../zksync-cli/README.md#installation).
 - You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../../dev/building-on-zksync/hello-world.md).
 - You have a wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. We recommend using [our faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
@@ -300,4 +301,4 @@ The message now is Hello people!
 ## Learn more
 
 - To learn more about the zkSync Hardhat plugins check out the [plugins documentation](./plugins.md).
-- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-web3 Javascript SDK documentation](../js) .
+- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-web3 Javascript SDK documentation](../../api/js) .

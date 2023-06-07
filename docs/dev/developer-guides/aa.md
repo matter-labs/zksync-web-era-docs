@@ -51,7 +51,7 @@ Users will be allowed to use any 256-bit number as nonce and they can put any no
 the protocol, but not on the server side.
 
 More documentation on various interactions with the `NonceHolder` system contract as well as tutorials will be available once support on the server side is released. For now,
-it is recommended to only use the `incrementNonceIfEquals` method, which practically enforces the sequential ordering of nonces.
+it is recommended to only use the `incrementMinNonceIfEquals` method, which practically enforces the sequential ordering of nonces.
 
 ### Standardizing transaction hashes
 
@@ -126,7 +126,7 @@ By default, calling `estimateGas` adds a constant to cover charging the fee and 
 
 ## Using the `SystemContractsCaller` library
 
-For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](./system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall`/`systemCallWithPropagatedRevert`/`systemCallWithReturndata` methods of the [SystemContractsCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/SystemContractsCaller.sol) library should be used.
+For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](./system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall`/`systemCallWithPropagatedRevert`/`systemCallWithReturndata` methods of the [SystemContractsCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/libraries/SystemContractsCaller.sol) library should be used.
 
 Using this library is practically a must when developing custom accounts since this is the only way to call non-view methods of the `NonceHolder` system contract. Also, you will have to use this library if you want to allow users to deploy contracts of their own. You can use the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/DefaultAccount.sol) of the EOA account as a reference.
 
@@ -204,7 +204,7 @@ Currently, your transactions may pass through the API despite violating the requ
 ### Nonce holder contract
 
 For optimization purposes, both [tx nonce and the deployment nonce](../building-on-zksync/contracts/contract-deployment.md#differences-in-create-behaviour) are put in one storage slot inside the [NonceHolder](./system-contracts.md#nonceholder) system contracts.
-In order to increment the nonce of your account, it is highly recommended to call the [incrementNonceIfEquals](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/INonceHolder.sol#L12) function and pass the value of the nonce provided in the transaction.
+In order to increment the nonce of your account, it is highly recommended to call the [incrementMinNonceIfEquals](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/INonceHolder.sol#L34) function and pass the value of the nonce provided in the transaction.
 
 This is one of the whitelisted calls, where the account logic is allowed to call outside smart contracts.
 

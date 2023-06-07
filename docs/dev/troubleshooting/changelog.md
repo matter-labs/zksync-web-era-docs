@@ -1,7 +1,7 @@
 # Changelog
 
 ## zksync-upgradable and compiler (May 5th 2023)
-- First relese of `@matterlabs/hardhat-zksync-upgradable` a new package to create beacon and transparent proxy contracts. [More info here](../../api/hardhat/hardhat-zksync-upgradable.md)
+- First relese of `@matterlabs/hardhat-zksync-upgradable` a new package to create beacon and transparent proxy contracts. [More info here](../../tools/hardhat/hardhat-zksync-upgradable.md)
 - zksolc compiler has been updated to version `1.3.10`:
   - Multiple optimizations, security and bug fixes.
   - Support for metadata output option.
@@ -65,8 +65,8 @@ Major updates across the system include:
 
 - Update `zksync-web3` to `^0.14.3` in your `package.json` file and re-install dependencies.
 - Update `zksync-cli` with `npm update -g zksync-cli`.
-- Pull the latest docker images of the local setup by running the `./clear.sh` script. [More about local setup](../../api/hardhat/testing.md).
-- L1->L2 transactions now require gas fees to be paid upfront. The fee can be estimated using the new method `zks_estimateGasL1ToL2`. [Read more here](../developer-guides/bridging/l1-l2.md).
+- Pull the latest docker images of the local setup by running the `./clear.sh` script. [More about local setup](../../tools/hardhat/testing.md).
+- L1->L2 transactions now require gas fees to be paid upfront. The fee can be estimated using the new method `zks_estimateGasL1ToL2`. [Read more here](../developer-guides/bridging/l1-l2-interop.md).
 - Provide `_refundRecipient` when using `requestL2Transaction` indicating the address that will receive refunds. (Optional)
 
 
@@ -74,7 +74,7 @@ Major updates across the system include:
 
 The following hardhat plugin has been released:
 
-- `hardhat-zksync-verify` version `0.1.2`: now returns a verification id. Use this to query the status of smart contract verification. For more information, read the [Hardhat zkSync Era verification doc](../../api/hardhat/hardhat-zksync-verify.md#verification-status-check)
+- `hardhat-zksync-verify` version `0.1.2`: now returns a verification id. Use this to query the status of smart contract verification. For more information, read the [Hardhat zkSync Era verification doc](../../tools/hardhat/hardhat-zksync-verify.md#verification-status-check)
 - `hardhat-zksync-deploy` version `0.6.2`: integrates with latest version of `zksync-web3`.
 - `hardhat-zksync-chai-matchers` version `0.1.1`: integrates with latest version of `zksync-web3`.
 
@@ -152,7 +152,7 @@ To update your project, follow these steps:
   - Smart contract accounts now include versioning to allow for future updates. This should be included as a parameter when calling `create2Account` from AA Factory contracts.
   - Accounts are required to return a magic value after a transaction validation on the `validateTransaction` method. This value should be `ACCOUNT_VALIDATION_SUCCESS_MAGIC` (available on the `IAccount.sol` interface) if the validation is successful, or an empty value `bytes4(0)` if it fails.
 - If your smart contracts use any methods from the `SystemContractsCaller` library (like `systemCall`), you'd need to compile them with the `isSystem` flag set to `true` in the `settings` section of `zksolc` inside the `hardhat.config.ts` file.
-- zkSync system contracts have cycle dependencies and might cause issues flattening contracts with `hardhat flatten`. Use the [hardhat verify plugin](../../api/hardhat/hardhat-zksync-verify.md) instead.
+- zkSync system contracts have cycle dependencies and might cause issues flattening contracts with `hardhat flatten`. Use the [hardhat verify plugin](../../tools/hardhat/hardhat-zksync-verify.md) instead.
 - As with any other regenesis, it will remove all balances and contracts so you’ll need to deposit funds and redeploy your contracts again.
 
 If after doing these changes you’re still facing issues, please [create a support ticket in the "dev-support-beta" channed in our Discord](https://join.zksync.dev/).
