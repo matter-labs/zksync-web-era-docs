@@ -7,9 +7,10 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 
 ## Prerequisites
 
+- Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You already have some experience working with Ethereum.
-- You have a web3 wallet app which holds some Goerli test ETH and some zkSync test ETH.
+- You have a web3 wallet app that holds some Goerli test ETH and some zkSync test ETH.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ### Complete project
@@ -196,6 +197,8 @@ You should see output like this:
 Governance contract was successfully deployed at 0xf28Df77fa8ff56cA3084bd11c1CAF5033A7b8C4A
 ```
 
+Save the address to use in a later step.
+
 ## L2 counter
 
 Now that we have an address for the L1 governance contract, we can build, deploy, and test the counter contract on L2.
@@ -218,17 +221,17 @@ npm init -y
 ::: code-tabs
 @tab yarn
 ```sh
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @types/node
 ```
 @tab npm
 ```sh
-npm i typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+npm i typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @types/node
 ```
 :::
 
 ::: tip
 - With `npm` you can also use the zkSync CLI to scaffold a project automatically. 
-- Find [more info about the zkSync CLI here](../../api/tools/zksync-cli/).
+- Find [more info about the zkSync CLI here](../../tools/zksync-cli/).
 :::
 
 3. Create the `hardhat.config.ts` file in the root and add the following code, adding a functioning RPC URL:
@@ -374,7 +377,7 @@ Counter was deployed to 0x3c5A6AB2390F6217C78d2F6F403A9dFb7e7784FC
 ```
 
 ::: tip
-For more information about deploying contracts, check out the [quickstart tutorial](../building-on-zksync/hello-world.md) or the documentation for the zkSync [hardhat plugins](../../api/hardhat/getting-started.md).
+For more information about deploying contracts, check out the [quickstart tutorial](../building-on-zksync/hello-world.md) or the documentation for the zkSync [hardhat plugins](../../tools/hardhat/getting-started.md).
 :::
 
 ## Read the counter value
@@ -475,7 +478,7 @@ async function main() {
   // Get the `Contract` object of the zkSync bridge.
   const zkSyncContract = new Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
 
-  // Encoding the L1 transaction is done in the same way as it is done on Ethereum.
+  // Encoding the L2 transaction is done in the same way as it is done on Ethereum.
   // Use an Interface which gives access to the contract functions.
   const counterInterface = new ethers.utils.Interface(COUNTER_ABI);
   const data = counterInterface.encodeFunctionData("increment", []);
@@ -520,7 +523,7 @@ main().catch((error) => {
 ```
 
 :::tip
-- Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `l2gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../developer-guides/transactions/fee-model.md).
+- Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../developer-guides/transactions/fee-model.md).
 - The fee also depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched from the L1 provider.
 :::
 
@@ -537,7 +540,7 @@ npx ts-node ./scripts/increment-counter.ts
 ```
 :::
 
-In the output, you should see the full transaction receipt in L2. You can take the `transactionHash` and track it in the [zkSync explorer](https://explorer.zksync.io/). It should look something like this:
+In the output, you should see the full transaction receipt in L2. You can take the `transactionHash` and track it in the [zkSync explorer](https://goerli.explorer.zksync.io/). It should look something like this:
 
 ```json
 {
@@ -575,6 +578,6 @@ The counter value is 1
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2.md).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2-interop.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](../../tools/hardhat).

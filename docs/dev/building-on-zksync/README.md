@@ -9,4 +9,3 @@ A series of guides to get you off localhost.
 - [Contract deployment](../building-on-zksync/contracts/contract-deployment.md)
 - [Verify contracts](../building-on-zksync/contracts/contract-verification.md)
 - [Handling events](./events.md)
-- [JSON-RPC API](./rpc.md)

@@ -1,4 +1,4 @@
-# Quickstart
+# Hello world
 
 This guide shows you how to deploy a smart contract to zkSync and build a dApp that interacts with it using the zkSync development toolbox.
 
@@ -11,6 +11,7 @@ This is what we're going to do:
 
 ## Prerequisites
 
+- Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - Download and install [Node](https://nodejs.org/en/download).
 - Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to v16.16.0 with command `nvm use 16`.
 - Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
@@ -186,7 +187,7 @@ Greeter was deployed to 0xE84774C41F096Ba5BafA1439cEE787D9dD1A6b72
 
 **Congratulations! You have deployed a smart contract to zkSync Era Testnet** 🎉
 
-Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search with the contract address to confirm the deployment. Follow the [contract verification guide](../../api/tools/block-explorer/contract-verification.md) for instructions on how to verify your smart contract using the zkSync block explorer.
+Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search with the contract address to confirm the deployment. Follow the [contract verification guide](../../tools/block-explorer/contract-verification.md) for instructions on how to verify your smart contract using the zkSync block explorer.
 
 ## Build the front-end dApp
 
@@ -700,4 +701,4 @@ After the transaction is processed, the page updates the balances and the new gr
 ### Learn more
 
 - To learn more about `zksync-web3` SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../api/hardhat).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](../../tools/hardhat).

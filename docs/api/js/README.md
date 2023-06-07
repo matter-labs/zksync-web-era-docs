@@ -4,7 +4,7 @@ While most of the existing SDKs should work out of the box, deploying smart cont
 
 To provide easy access to all of the features of zkSync Era, the `zksync-web3` JavaScript SDK was created, which is based on the `ethers.js` library. This section serves as its reference.
 
-## Table of contents
+## Contents
 
 - [Getting started](./getting-started.md)
 - [Providers](./providers.md)

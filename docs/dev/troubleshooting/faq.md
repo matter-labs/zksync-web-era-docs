@@ -186,11 +186,11 @@ The current value is currently set at roughly 2^32 gas. <br>
 
 ## Can I withdraw my funds back to Ethereum?
 
-Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The withdrawal transaction will take up to 1 hour, depending on the usage of the zkSync network.
+Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The withdrawal transaction will take ~24 hours, depending on the usage of the zkSync Era network.
 
 ## What is a testnet ReGenesis?
 
-Sometimes, the team working on zkSync will initiate a regenesis on testnet - a restart of the blockchain which will introduce upgrades and return the state to the initial point.
+Sometimes, the team working on zkSync Era will initiate a regenesis on testnet - a restart of the blockchain which will introduce upgrades and return the state to the initial point.
 
 ## Why do my contracts not compile in Windows?
 

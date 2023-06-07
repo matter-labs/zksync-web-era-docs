@@ -42,10 +42,6 @@ module.exports = {
       compilerSource: "binary",
       settings: {
         //compilerPath: "zksolc",  // optional. Ignored for compilerSource "docker". Can be used if compiler is located in a specific folder
-        experimental: {
-          dockerImage: "matterlabs/zksolc", // Deprecated! use, compilerSource: "binary"
-          tag: "latest"   // Deprecated: used for compilerSource: "docker"
-        },
         libraries:{}, // optional. References to non-inlinable libraries
         isSystem: false, // optional.  Enables Yul instructions available only for zkSync system contracts and libraries
         forceEvmla: false, // optional. Falls back to EVM legacy assembly if there is a bug with Yul
@@ -113,7 +109,7 @@ For Solidity versions older than 0.8, only this compilation mode is available an
 
 `yarn hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates the `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
 
-To understand what the factory dependencies are, read more about them in the [Web3 API](../api.md) documentation.
+To understand what the factory dependencies are, read more about them in the [Web3 API](../../api/api.md) documentation.
 
 ## Why is there an `unexpected end of JSON input` compilation error?
 

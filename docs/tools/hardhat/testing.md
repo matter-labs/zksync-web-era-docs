@@ -207,7 +207,7 @@ describe("Greeter", function () {
 });
 ```
 
-This script deploys the `Greeter` contract created in the [getting started guide](./getting-started.md#write-and-deploy-a-contract) and test that it returns a correct message when calling the `greet()` method, and that the message can be updated with the `setGreeting()` method.
+This script deploys the `Greeter` contract created in the [getting started guide](./getting-started.md#compile-and-deploy-a-contract) and test that it returns a correct message when calling the `greet()` method, and that the message can be updated with the `setGreeting()` method.
 
 You can now run the test file with the following command:
 
