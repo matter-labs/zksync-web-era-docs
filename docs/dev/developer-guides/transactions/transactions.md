@@ -40,7 +40,7 @@ From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
 
 There are various different ways of transacting on the Ethereum blockchain:
 
-- Regular transactions: A simple transaction from one account to another such as transferring a token.
+- Common transactions: A simple transaction from one account to another such as transferring a token.
 - Contract deployment transactions: A transaction with no `to` address and the `data` field contains the contract code.  
 - Contract execution: A transaction that interacts with an already deployed smart contract where the `to` address is the smart contract's address.
 
@@ -64,7 +64,7 @@ The transaction format used before the introduction of typed-transactions.
 
 The Ethereum Improvement Proposal [EIP-2930: Optional access lists](https://eips.ethereum.org/EIPS/eip-2930) addressed contract breakage risks introduced by EIP-2929. 
 
-Everything the legacy format has, plus an `accessList` parameter containing an array of addresses and storage keys.
+EIP-2930 transaction types contain everything from legacy transactions plus an `accessList` parameter containing an array of addresses and storage keys.
 
 ### EIP-1559: `0x2`
 
@@ -72,7 +72,7 @@ The Ethereum Improvement Proposal [EIP-1559: Fee market change for ETH 1.0 chain
 
 EIP-1559 transaction types contain everything from EIP-2930 and legacy transactions (apart from removing the `gasPrice`). 
 
-Additional parameters added are the `maxPriorityFeePerGas` and `maxFeePerGas` where users can specific maximum fees they're willing to pay to prioritize their transactions.
+Additional parameters added are the `maxPriorityFeePerGas` and `maxFeePerGas` where users can specify maximum fees they're willing to pay to prioritize their transactions.
 
 - `maxPriorityFeePerGas`: Is the maximum fee users are willing to give to miners as an incentive.
 - `maxFeePerGas`: Is the maximum fee users are willing to pay in total. This includes the `maxPriorityFeePerGas` and network-determined base fee per gas.
@@ -85,7 +85,9 @@ zkSync Era supports the EIP-1559 transaction-type format but does nothing with t
 
 The Ethereum Improvement Proposal [EIP-712: Typed structured data hashing and signing](https://eips.ethereum.org/EIPS/eip-712) introduced hashing and signing of typed-structured data as well as bytestrings. 
 
-EIP-712 transactions access zkSync-specific features such as account abstraction and paymasters. Furthermore, smart contracts must be deployed with the EIP-712 transaction type.
+Smart contracts must use this transaction type.
+
+EIP-712 transactions access zkSync-specific features such as [account abstraction](../aa.md) and [paymasters](../../tutorials/custom-paymaster-tutorial.md). Furthermore, smart contracts must be deployed with the EIP-712 transaction type.
 
 You can specify the additional fields, such as the custom signature for custom accounts or to choose the paymaster with EIP-712 transactions. These transactions have the same fields as standard Ethereum transactions, plus fields containing additional L2-specific data (`paymaster`, etc).
 
@@ -128,13 +130,11 @@ These fields are handled by our [SDK](../../../api/js/features.md).
 
 ### Priority: `0xff`
 
-This is a zkSync Era specific transaction type related to a L1 -> L2 transaction.
-
-??MORE HERE PLEASE??
+This is a zkSync Era specific transaction type related to a [L1 -> L2 transaction](../../how-to/send-transaction-l1-l2.md).
 
 ## Transaction statuses
 
-Transactions are always in one of the following statuses:
+Transaction are always in one of the following [statuses](https://github.com/matter-labs/zksync-era/blob/6167974ec0dfe4a7c72356ebb4580a65b8966dd3/core/lib/types/src/explorer_api.rs#L119):
 
 - `Pending`: In the mempool but not yet included in a block. 
 - `Included`: Included in a block but the batch containing the block has not yet been committed.
