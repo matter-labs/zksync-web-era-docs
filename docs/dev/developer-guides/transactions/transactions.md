@@ -132,7 +132,7 @@ These fields are handled by our [SDK](../../../api/js/features.md).
 
 ### Priority: `0xff`
 
-This is a zkSync Era specific transaction type related to a [L1 -> L2 transaction](../../how-to/send-transaction-l1-l2.md).
+Since Ethereum L1 has no concept of interacting with other layers, this is a zkSync Era specific transaction type related to [L1 -> L2 transactions](../../how-to/send-transaction-l1-l2.md).
 
 ## Transaction statuses
 
