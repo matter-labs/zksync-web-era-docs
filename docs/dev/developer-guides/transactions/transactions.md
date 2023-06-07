@@ -6,6 +6,21 @@ From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
 
 ## Transaction data on zkSync Era
 
+The following values are returned by any RPC call which outputs transaction details:
+
+- `is_l1_originated`: `bool`
+- `status`: `TransactionStatus`, one of `Pending`, `Included`, `Verified`, or `Failed`. See [Transaction statuses section](#transaction-statuses) below.
+- `fee`: `U256`
+- `initiator_address`: `Address`
+- `received_at`: `DateTime<Utc>`
+- `eth_commit_tx_hash`: `Option<H256>`
+- `eth_prove_tx_hash`: `Option<H256>`
+- `eth_execute_tx_hash`: `Option<H256>`
+
+### Block explorer data
+
+The following general information is included in the transaction details on the [block explorer](https://explorer.zksync.io/transactions/).
+
 - `Transaction Hash`: Unique 66 character identifier generated when transaction submitted to L2.  
 - `Commit Tx hash`: Unique 66 character identifier generated when transaction committed to L1.  
 - `Prove Tx hash`: Unique 66 character identifier generated when transaction proven on L1. 
