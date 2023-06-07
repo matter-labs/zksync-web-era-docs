@@ -15,7 +15,7 @@ Signs typed-struct using Ethereum private key with the EIP-712 signature standar
 |--------|------------------------------------------------|
 | domain | EIP712 domain.                                 |
 | typedData | Object implementing EIP712 structure standard. |
-| returns | Prepared estimate gas request.                 |
+| returns | Prepared gas estimate request.                 |
 
 ### `verifyTypedData`
 
