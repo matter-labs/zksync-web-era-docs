@@ -83,6 +83,6 @@ Send transfer transaction. This is the regular transfer of ERC20 tokens.
 | Name   | Description                                         |
 |--------|-----------------------------------------------------|
 | token  | Token object supported by ZkSync Era.                       |
-| amount | Amount tokens to transfer.                               |
+| amount | Amount of tokens to transfer.                               |
 | to     | Address of receiver tokens.                       |
 | return | CompletableFuture for waiting for transaction mine. |
