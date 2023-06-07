@@ -83,7 +83,7 @@ The `Wallet` object from `zksync-web3` can be created from an Ethereum private k
 
 There are multiple ways to transfer coins or tokens with a wallet object.
 
-Transfer coins
+#### Transfer coins
 
 | Name    | Description                                                         |
 |---------|---------------------------------------------------------------------|
