@@ -15,7 +15,7 @@ From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
 >  - `nonce`: a sequentially incrementing counter which indicates the transaction number from the account.
 >  - `value`: amount of ETH to transfer from sender to recipient (denominated in WEI, where 1ETH equals 1e+18wei).
 >  - `data`: optional field to include arbitrary data.
->  - `gasLimit`: the maximum amount of gas units that can be consumed by the transaction. The EVM(opens in a new tab)↗ specifies the units of gas required by each computational step.
+>  - `gasLimit`: the maximum amount of gas units that can be consumed by the transaction. The EVM specifies the units of gas required by each computational step.
 >  - `maxPriorityFeePerGas`: the maximum price of the consumed gas to be included as a tip to the validator.
 >  - `maxFeePerGas`: the maximum fee per unit of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas).
 
@@ -42,11 +42,13 @@ There are various different ways of transacting on the Ethereum blockchain:
 
 - Regular transactions: A simple transaction from one account to another such as transferring a token.
 - Contract deployment transactions: A transaction with no `to` address and the `data` field contains the contract code.  
-- Contract deployment on zkSync Era is different from Ethereum.
-  - Ethereum: Contract deployment occurs when a user sends a transaction to the zero address `(0x000...000)` where the `data` field contains the contract bytecode concatenated with constructor parameters.
-  - zkSync Era: To deploy a contract on zkSync, a user calls the `create` function of the [ContractDeployer](../system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode is added to the `factory_deps` field of [EIP-712 transaction types](#eip-712-0x71). If the contract is a factory (i.e. it can deploy other contracts), the bytecode of all child contracts should be included in `factory_deps`.
-- Find out more about [contract deployment](../../building-on-zksync/contracts/contract-development.md) on zkSync Era.
 - Contract execution: A transaction that interacts with an already deployed smart contract where the `to` address is the smart contract's address.
+
+### Contract deployment differences between zkSync Era and Ethereum
+
+- Ethereum: Contract deployment occurs when a user sends a transaction to the zero address `(0x000...000)` where the `data` field contains the contract bytecode concatenated with constructor parameters.
+- zkSync Era: To deploy a contract on zkSync, a user calls the `create` function of the [ContractDeployer](../system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode is added to the `factory_deps` field of [EIP-712 transaction types](#eip-712-0x71). If the contract is a factory (i.e. it can deploy other contracts), the bytecode of all child contracts should be included in `factory_deps`.
+- Find out more about [contract deployment](../../building-on-zksync/contracts/contract-development.md) on zkSync Era.
 
 ## Transaction types
 
