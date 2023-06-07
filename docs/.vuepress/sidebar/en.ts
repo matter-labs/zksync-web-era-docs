@@ -19,7 +19,16 @@ export const enSidebar = sidebar({
       children: [ "/dev/how-to/estimate-gas.md", 
                   "/dev/how-to/send-transaction-l1-l2",
                   "/dev/how-to/send-message-l2-l1",
-                  "/dev/how-to/transfer-token-l2" ],
+                  "/dev/how-to/transfer-token-l2",
+                  {
+                    text: "Bridge assets", // required
+                    collapsible: true,
+                    children: [
+                      "/dev/how-to/deposit-via-bridge",
+                      "/dev/how-to/withdraw-via-bridge",
+                    ],
+                  },
+                  ],
     },
     {
       text: "Tutorials",
