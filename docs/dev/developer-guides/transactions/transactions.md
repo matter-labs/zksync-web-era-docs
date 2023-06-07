@@ -19,6 +19,23 @@ From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
 >  - `maxPriorityFeePerGas`: the maximum price of the consumed gas to be included as a tip to the validator.
 >  - `maxFeePerGas`: the maximum fee per unit of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas).
 
+## Transaction data on zkSync Era
+
+- `Transaction Hash`: Unique 66 character identifier generated when transaction submitted to L2.  
+- `Commit Tx hash`: Unique 66 character identifier generated when transaction committed to L1.  
+- `Prove Tx hash`: Unique 66 character identifier generated when transaction proven on L1. 
+- `Execute Tx hash`: Unique 66 character identifier generated when transaction executed on L1. 
+- `Status`: One of `Pending`, `Included`, `Verified`, or `Failed`. See [Transaction statuses section](#transaction-statuses) below.
+- `Block`: Block number containing the transaction.  
+- `Batch`: Batch number containing the transaction. 
+- `From`: The account or smart contract address sending the transaction. 
+- `Tokens Transferred`: Details on all tokens transferred by the transaction. 
+- `Contract address`:  The transaction recipient. 
+- `Input data`: Any additional data used by the transaction for verified contracts.
+- `Fee`: Fee for the tx in ETH and USD value. Click **More Details** to see info on refunds.
+- `Nonce`: Sender nonce.                         
+- `Created`: Timestamp of when the transaction was added to the block.   
+
 ## Nature of transactions
 
 There are various different ways of transacting on the Ethereum blockchain:
