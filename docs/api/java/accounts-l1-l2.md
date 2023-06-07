@@ -30,7 +30,7 @@ Send deposit transaction to ZkSync Era contract. For ERC20 token must be approve
 | token        | Token object supported by ZkSync Era.                   |
 | amount       | Amount of tokens to transfer.                          |
 | operatorTips | Tips for operator that executes deposit on L2.       |
-| userAddress  | Address of L2 receiver deposit in ZkSync.           |
+| userAddress  | Address of L2 receiver of deposit in ZkSync Era.           |
 | return       | CompletableFuture for waiting for transaction mine. |
 
 
