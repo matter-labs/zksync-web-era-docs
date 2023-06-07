@@ -4,39 +4,39 @@ From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
 
 > Transactions are cryptographically signed instructions from accounts. An account will initiate a transaction to update the state of the Ethereum network. The simplest transaction is transferring ETH from one account to another. 
 
+## Transaction data on Ethereum
+
+From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
+
+> A submitted transaction includes the following information:
+>  - `from`: the address of the sender, that will be signing the transaction. This will be an externally-owned account as contract accounts cannot send transactions.
+>  - `recipient`: the receiving address (if an externally-owned account, the transaction will transfer value. If a contract account, the transaction will execute the contract code).
+>  - `signature`: the identifier of the sender. This is generated when the sender's private key signs the transaction and confirms the sender has authorized this transaction.
+>  - `nonce`: a sequentially incrementing counter which indicates the transaction number from the account.
+>  - `value`: amount of ETH to transfer from sender to recipient (denominated in WEI, where 1ETH equals 1e+18wei).
+>  - `data`: optional field to include arbitrary data.
+>  - `gasLimit`: the maximum amount of gas units that can be consumed by the transaction. The EVM specifies the units of gas required by each computational step.
+>  - `maxPriorityFeePerGas`: the maximum price of the consumed gas to be included as a tip to the validator.
+>  - `maxFeePerGas`: the maximum fee per unit of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas).
+
 ## Transaction data on zkSync Era
+
+Transactions on zkSync Era are similar to Ethereum transactions so you can use the same wallet as you use on Ethereum. There are some minor differences.
 
 The following values are returned by any RPC call which outputs transaction details:
 
 - `is_l1_originated`: `bool`
 - `status`: `TransactionStatus`, one of `Pending`, `Included`, `Verified`, or `Failed`. See [Transaction statuses section](#transaction-statuses) below.
-- `fee`: `U256`
+- `fee`: `U256`. See the [fee mechanism documentation](../../developer-guides/transactions/fee-model.md) for more information.
 - `initiator_address`: `Address`
 - `received_at`: `DateTime<Utc>`
 - `eth_commit_tx_hash`: `Option<H256>`
 - `eth_prove_tx_hash`: `Option<H256>`
 - `eth_execute_tx_hash`: `Option<H256>`
 
-### Block explorer data
-
-The following general information is included in the transaction details on the [block explorer](https://explorer.zksync.io/transactions/).
-
-- `Transaction Hash`: Unique 66 character identifier generated when transaction submitted to L2.  
-- `Commit Tx hash`: Unique 66 character identifier generated when transaction committed to L1.  
-- `Prove Tx hash`: Unique 66 character identifier generated when transaction proven on L1. 
-- `Execute Tx hash`: Unique 66 character identifier generated when transaction executed on L1. 
-- `Status`: One of `Pending`, `Included`, `Verified`, or `Failed`. See [Transaction statuses section](#transaction-statuses) below.
-- `Block`: Block number containing the transaction.  
-- `Batch`: Batch number containing the transaction. 
-- `From`: The account or smart contract address sending the transaction. 
-- `Tokens Transferred`: Details on all tokens transferred by the transaction. 
-- `Contract address`:  The transaction recipient. 
-- `Input data`: Any additional data used by the transaction for verified contracts.
-- `Fee`: Fee for the tx in ETH and USD value. Click **More Details** to see info on refunds.
-- `Nonce`: Sender nonce.                         
-- `Created`: Timestamp of when the transaction was added to the block.   
-
 ## Contract deployment differences between zkSync Era and Ethereum
+
+Contract deployment is a special kind of transaction. A contract deployment creates a new contract account in the system. There are some differences for this kind of transaction between zkSync Era and Ethereum:
 
 - Ethereum: Contract deployment occurs when a user sends a transaction to the zero address `(0x000...000)` where the `data` field contains the contract bytecode concatenated with constructor parameters.
 - zkSync Era: To deploy a contract on zkSync, a user calls the `create` function of the [ContractDeployer](../system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode is added to the `factory_deps` field of [EIP-712 transaction types](#eip-712-0x71). If the contract is a factory (i.e. it can deploy other contracts), the bytecode of all child contracts should be included in `factory_deps`.
