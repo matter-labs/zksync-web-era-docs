@@ -163,15 +163,6 @@ export const enSidebar = sidebar({
       link: "/tools/zksync-cli/", // optional, which should be a absolute path.
       children: [],
     },
-    {
-      text: "Block Explorer and Tools", // required
-      link: "/tools/block-explorer", // optional, which should be a absolute path.
-      children: [ "/tools/block-explorer/block-explorer-menu", 
-                  "/tools/block-explorer/contract-verification",
-                  "/tools/block-explorer/portal-wallet", 
-                  "/tools/block-explorer/token-bridger", 
-                  ],
-    },
   ],
   //The legal related sidebar
   "/legal/": ["/legal/terms", "/legal/privacy"],

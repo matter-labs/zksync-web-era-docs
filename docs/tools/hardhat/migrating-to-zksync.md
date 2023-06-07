@@ -249,7 +249,7 @@ Apart from the same classes and methods provided by ethers, zksync-web3 includes
 
 To verify your contracts you have two options:
 
-- Explorer: verify your contracts manually in the [zkSync explorer](../block-explorer/contract-verification.md)
-- Plugin: verify your contracts programmatically using the [Hardhat verify plugin](./hardhat-zksync-verify.md)
+- Verify your contracts manually with the [zkSync Era Smart Contract Verification tool](https://explorer.zksync.io/contracts/verify)
+- Plugin: verify your contracts programmatically using the [Hardhat verification plugin](./hardhat-zksync-verify.md)
 
 If you have any problems migrating your project, [send us a message on Discord](https://join.zksync.dev/).

@@ -187,7 +187,9 @@ Greeter was deployed to 0xE84774C41F096Ba5BafA1439cEE787D9dD1A6b72
 
 **Congratulations! You have deployed a smart contract to zkSync Era Testnet** 🎉
 
-Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search with the contract address to confirm the deployment. Follow the [contract verification guide](../../tools/block-explorer/contract-verification.md) for instructions on how to verify your smart contract using the zkSync block explorer.
+Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search with the contract address to confirm the deployment. 
+
+You can verify your contracts manually with the [zkSync Era Smart Contract Verification tool](https://explorer.zksync.io/contracts/verify) or the [Hardhat verification plugin](../../tools/hardhat/hardhat-zksync-verify.md).
 
 ## Build the front-end dApp
 
