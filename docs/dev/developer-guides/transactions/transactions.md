@@ -4,21 +4,6 @@ From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
 
 > Transactions are cryptographically signed instructions from accounts. An account will initiate a transaction to update the state of the Ethereum network. The simplest transaction is transferring ETH from one account to another. 
 
-## Transaction data on Ethereum
-
-From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
-
-> A submitted transaction includes the following information:
->  - `from`: the address of the sender, that will be signing the transaction. This will be an externally-owned account as contract accounts cannot send transactions.
->  - `recipient`: the receiving address (if an externally-owned account, the transaction will transfer value. If a contract account, the transaction will execute the contract code).
->  - `signature`: the identifier of the sender. This is generated when the sender's private key signs the transaction and confirms the sender has authorized this transaction.
->  - `nonce`: a sequentially incrementing counter which indicates the transaction number from the account.
->  - `value`: amount of ETH to transfer from sender to recipient (denominated in WEI, where 1ETH equals 1e+18wei).
->  - `data`: optional field to include arbitrary data.
->  - `gasLimit`: the maximum amount of gas units that can be consumed by the transaction. The EVM specifies the units of gas required by each computational step.
->  - `maxPriorityFeePerGas`: the maximum price of the consumed gas to be included as a tip to the validator.
->  - `maxFeePerGas`: the maximum fee per unit of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas).
-
 ## Transaction data on zkSync Era
 
 - `Transaction Hash`: Unique 66 character identifier generated when transaction submitted to L2.  
@@ -36,15 +21,7 @@ From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
 - `Nonce`: Sender nonce.                         
 - `Created`: Timestamp of when the transaction was added to the block.   
 
-## Nature of transactions
-
-There are various different ways of transacting on the Ethereum blockchain:
-
-- Common transactions: A simple transaction from one account to another such as transferring a token.
-- Contract deployment transactions: A transaction with no `to` address and the `data` field contains the contract code.  
-- Contract execution: A transaction that interacts with an already deployed smart contract where the `to` address is the smart contract's address.
-
-### Contract deployment differences between zkSync Era and Ethereum
+## Contract deployment differences between zkSync Era and Ethereum
 
 - Ethereum: Contract deployment occurs when a user sends a transaction to the zero address `(0x000...000)` where the `data` field contains the contract bytecode concatenated with constructor parameters.
 - zkSync Era: To deploy a contract on zkSync, a user calls the `create` function of the [ContractDeployer](../system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode is added to the `factory_deps` field of [EIP-712 transaction types](#eip-712-0x71). If the contract is a factory (i.e. it can deploy other contracts), the bytecode of all child contracts should be included in `factory_deps`.
@@ -86,8 +63,6 @@ zkSync Era supports the EIP-1559 transaction-type format but does nothing with t
 ### EIP-712: `0x71`
 
 The Ethereum Improvement Proposal [EIP-712: Typed structured data hashing and signing](https://eips.ethereum.org/EIPS/eip-712) introduced hashing and signing of typed-structured data as well as bytestrings. 
-
-Smart contracts must use this transaction type.
 
 EIP-712 transactions access zkSync-specific features such as [account abstraction](../aa.md) and [paymasters](../../tutorials/custom-paymaster-tutorial.md). Furthermore, smart contracts must be deployed with the EIP-712 transaction type.
 
@@ -136,7 +111,7 @@ Since Ethereum L1 has no concept of interacting with other layers, this is a zkS
 
 ## Transaction statuses
 
-Transaction are always in one of the following [statuses](https://github.com/matter-labs/zksync-era/blob/6167974ec0dfe4a7c72356ebb4580a65b8966dd3/core/lib/types/src/explorer_api.rs#L119):
+Transactions in the [block explorer](https://explorer.zksync.io/transactions/) are always in one of the following statuses:
 
 - `Pending`: In the mempool but not yet included in a block. 
 - `Included`: Included in a block but the batch containing the block has not yet been committed.
