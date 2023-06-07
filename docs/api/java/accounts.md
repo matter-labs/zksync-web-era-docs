@@ -74,7 +74,7 @@ The `Wallet` object from `zksync-web3` can be created from Ethereum private key.
 
 | Name    | Description                                                          |
 |---------|----------------------------------------------------------------------|
-| zksync  | A zkSync node provider. Needed for interaction with zkSync.          |
+| zksync  | A zkSync Era node provider. Needed for interaction with zkSync Era.          |
 | signer  | Used to get wallet address, generate signatures and verify messages. |
 | token   | Token object.                                                        |
 | returns | The new `Wallet` object.                                             |
