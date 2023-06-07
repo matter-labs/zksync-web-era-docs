@@ -8,6 +8,7 @@ Learn how to build dApps on the zkSync Era protocol with the following step-by-s
 - [Account abstraction multisig](../tutorials/custom-aa-tutorial.md)
 - [Daily spend limit account](../tutorials/aa-daily-spend-limit.md)
 - [Building custom paymaster](../tutorials/custom-paymaster-tutorial.md)
+- [USDC Paymaster Tutorial with API3 dAPIs](../tutorials/api3-usd-paymaster-tutorial.md)
 
 ### Tutorial requests
 

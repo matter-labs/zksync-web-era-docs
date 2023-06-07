@@ -29,7 +29,7 @@ export const enSidebar = sidebar({
                 "/dev/tutorials/custom-aa-tutorial.md",
                 "/dev/tutorials/aa-daily-spend-limit.md",
                 "/dev/tutorials/custom-paymaster-tutorial.md",
-                "/dev/tutorials/custom-paymaster-tutorial-api3.md",
+                "/dev/tutorials/api3-usd-paymaster-tutorial.md",
       ],
     },
     {

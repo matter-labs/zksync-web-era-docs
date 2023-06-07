@@ -1,4 +1,4 @@
-# Paymaster Tutorial with API3 dAPIs
+# USDC Paymaster Tutorial with API3 dAPIs
 
 This tutorial shows you how to build a custom paymaster that allows users to pay fees with a `mockUSDC` ERC20 token. You will:
 
@@ -16,7 +16,11 @@ API3 data feeds are known as [dAPIs➚](https://docs.api3.org/guides/dapis/subsc
 
 Within a paymaster, price oracles can be used to provide price data on-chain for execution.
 
-**For this paymaster tutorial, we will use dAPIs to get the price of ETH/USD and USDC/USD datafeeds and use it to calculate gas in USDC value so that users can pay for their transactions with USDC.**
+For this paymaster tutorial, we will use dAPIs to get the price of [ETH/USD](https://market.api3.org/dapis/zksync-goerli-testnet/ETH-USD) and [USDC/USD](https://market.api3.org/dapis/zksync-goerli-testnet/USDC-USD) datafeeds and use it to calculate gas in USDC value so that users can pay for their transactions with USDC.
+
+::: note
+If you want to use an ERC20 token other than USDC, you can do so by changing the dAPIs used in the paymaster. For example, if you want to use DAI, you can use the [DAI/USD](https://market.api3.org/dapis/zksync-goerli-testnet/DAI-USD) dAPI instead of USDC/USD.
+:::
 
 ## Project repo
 
@@ -24,7 +28,7 @@ The tutorial code is available [here](https://github.com/vanshwassan/zk-paymaste
 
 ## Set up the project
 
-1. We're going to use zkSync CLI to set up an empty project. Install it globally:
+1. We're going to use [zkSync CLI](/docs/tools/zksync-cli/) to set up an empty project. Install it globally:
 
 ```sh
 $ yarn add global zksync-cli@latest
@@ -42,10 +46,10 @@ $ yarn zksync-cli create paymaster-dapi
 $ cd paymaster-dapi
 ```
 
-3. Add the project dependencies, including Hardhat, zkSync packages and API3 contracts:
+3. Add the project dependencies, including openzeppelin, zkSync and API3 contracts:
 
 ```sh
-$ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable @api3/contracts dotenv
+$ yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable @api3/contracts dotenv
 ```
 
 ## Design
@@ -321,7 +325,7 @@ contract MyPaymaster is IPaymaster, Ownable {
 
 ## Compile and Deploy the Contracts
 
-The script below deploys the ERC20 (mockUSDC), Greeter and the Paymaster contract. It also creates an empty wallet and mints 5k `mockUSDC` tokens for the paymaster to use at a later step. It also sends 0.05 eth to the paymaster contract so it can pay for the transactions.
+The script below deploys the ERC20 (mockUSDC), Greeter and the Paymaster contract. It also creates an empty wallet and mints 5k `mockUSDC` tokens for the paymaster to use at a later step. Finally, it also sends 0.05 ETH to the paymaster contract so it can pay for the transactions.
 
 The script also calls the `setDapiProxy` to set the proxy addresses for the required dAPIs on-chain. It also sets the `greeting`.
 
