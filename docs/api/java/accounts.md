@@ -19,7 +19,7 @@ Signs typed-struct using Ethereum private key with the EIP-712 signature standar
 
 ### `verifyTypedData`
 
-Verify typed EIP-712 struct standard.
+Verify typed, EIP-712 struct standard.
 
 #### Inputs and outputs
 
