@@ -27,7 +27,7 @@ Verify typed EIP-712 struct standard.
 |--------|------------------------------------------------|
 | domain | EIP712 domain.                                 |
 | typedData | Object implementing EIP712 structure standard. |
-| returns | Prepared estimate gas request.                 |
+| returns | Prepared gas estimate request.                 |
 
 ### `signMessage`
 
