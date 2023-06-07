@@ -31,7 +31,7 @@ Verify typed, EIP-712 struct standard.
 
 ### `signMessage`
 
-Sign raw message
+Sign raw message.
 
 #### Inputs and outputs
 
