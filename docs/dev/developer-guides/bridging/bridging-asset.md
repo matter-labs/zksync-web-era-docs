@@ -191,20 +191,16 @@ async function main() {
   console.log(`Deposit transaction sent ${depositHandle.hash}`);
   console.log(`Please wait a few minutes for the deposit to be processed in L2`);
 }
+```
+
+To run this script, configure your `hardhat.config.ts` file as explained in this [guide](../../../tools/hardhat/hardhat-zksync-deploy.md), or use the command `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project.
 
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
 ```
-<<<<<<< HEAD
 Enter the `TOKEN_ADDRESS`, adjust the `AMOUNT`, and run this script with `ts-node`:
-=======
-
-To run this script, configure your `hardhat.config.ts` file as explained in this [guide](../../../tools/hardhat/hardhat-zksync-deploy.md), or use the command `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project.
-
-Once your `hardhat.config.ts` file is configured, place the script files in the `deploy` folder and run them with the following command:
->>>>>>> 978275964a8fafd3bb0ec57495812b650baf38be
 
 ```sh
 ts-node deposit-erc20.ts
