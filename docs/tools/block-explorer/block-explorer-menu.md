@@ -58,23 +58,6 @@ The [zkSync Era block explorer menu](https://explorer.zksync.io/) displays real-
 
 ![zkSync Era block explorer transaction details page](../../assets/images/transaction-details.png)
 
-| Data point        | Description         |
-| ----------------- | ------------------- |
-| Transaction Hash  | Unique 66 character identifier generated when transaction submitted to L2.  |
-| Commit Tx hash    | Unique 66 character identifier generated when transaction committed to L1.  |
-| Prove Tx hash     | Unique 66 character identifier generated when transaction proven on L1.     |
-| Execute Tx hash   | Unique 66 character identifier generated when transaction executed on L1.   |
-| Status    | One of `Pending`, `Included`, `Verified`, or `Failed`.   |
-| Block    |  Block number containing the transaction.  |
-| Batch    |  Batch number containing the transaction.  |
-| From          | The account or smart contract address sending the transaction.      |
-| Tokens Transferred    |  Details on all tokens transferred by the transaction.  |
-| Contract address      | The transaction recipient.        |
-| Input data          |  Any additional data used by the transaction for verified contracts.      |
-| Fee      | Fee for the tx in ETH and USD value. Click **More Details** to see info on refunds.   |
-| Nonce     | Sender nonce.  |                        
-| Created      | Timestamp of when the transaction was added to the block.                        |
-
 ## Token list
 
 - Click [**Token List**](https://explorer.zksync.io/tokenlist) in the block explorer menu to go to the Token List page.
