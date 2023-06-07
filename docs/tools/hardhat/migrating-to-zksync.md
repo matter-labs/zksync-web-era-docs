@@ -122,7 +122,7 @@ const config: HardhatUserConfig = {
     goerli:{
       url: 'https://goerli.com/api/abcdef12345',
       zksync: false,
-    }
+    },
     mainnet:{
       url: 'https://ethereum.mainnet.com/api/abcdef12345',
       zksync: false,
@@ -243,13 +243,13 @@ import { utils, Provider, Contract, Wallet } from "zksync-web3";
 
 You also need to use the `contract ABI` from the `artifacts-zk` folder to instantiate contracts.
 
-Apart from the same classes and methods provided by ethers, zksync-web3 includes additional methods for zksync-specific features. You can read more in the [`zksync-web3` documentation](../js/getting-started.md).
+Apart from the same classes and methods provided by ethers, zksync-web3 includes additional methods for zksync-specific features. You can read more in the [`zksync-web3` documentation](../../api/js/getting-started.md).
 
 ## Verify contracts
 
 To verify your contracts you have two options:
 
-- Explorer: verify your contracts manually in the [zkSync explorer](../tools/block-explorer/contract-verification.md)
+- Explorer: verify your contracts manually in the [zkSync explorer](../block-explorer/contract-verification.md)
 - Plugin: verify your contracts programmatically using the [Hardhat verify plugin](./hardhat-zksync-verify.md)
 
 If you have any problems migrating your project, [send us a message on Discord](https://join.zksync.dev/).

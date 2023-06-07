@@ -1,8 +1,9 @@
 import { defineUserConfig } from "vuepress";
 import docsearchPlugin from "@vuepress/plugin-docsearch";
+import vue from '@vitejs/plugin-vue'
 import theme from "./theme.js";
 import { pwaPlugin } from "vuepress-plugin-pwa2";
-import { getDirname, path } from '@vuepress/utils'
+import { getDirname, path } from "@vuepress/utils"
 
 const dirname = getDirname(import.meta.url);
 
@@ -12,6 +13,7 @@ export default defineUserConfig({
       dirname,
       './components/PageFooter.vue',
     ),
+    "@theme-hope/modules/navbar/components/Navbar": path.resolve(__dirname, "./components/NavBar.vue"),
   },
   dest: "dist/docs",
 
@@ -107,6 +109,14 @@ export default defineUserConfig({
         },
       },
     }),
+    vue({
+      template: {
+        compilerOptions: {
+          // i am ignorning my custom '<container>' tag
+          isCustomElement: (tag) => ['ParentLayout'].includes(tag)
+        }
+      }
+    })
   ],
 
   shouldPrefetch: false,

@@ -8,13 +8,14 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 
 ## Prerequisites
 
+- Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - A [Node.js](https://nodejs.org/en/download) installation running Node.js version 16.
 - Some familiarity with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - Some background knowledge on the concepts covered by the tutorial would be helpful too. Have a look at the following docs:
     - [Account abstraction protocol](../developer-guides/aa.md).
     - [Introduction to system contracts](../developer-guides/system-contracts.md).
     - [Smart contract deployment](../building-on-zksync/contracts/contract-deployment.md) on zkSyn Era.
-    - [Gas estimation for transactions](../developer-guides/transactions/fee-model.md#gas-estimation-during-a-transaction-for-paymaster-and-custom-accounts) guide.
+    - [Gas estimation for transactions](../developer-guides/transactions/fee-model.md#gas-estimation-for-transactions) guide.
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ## Project repo
@@ -87,7 +88,7 @@ export default config;
 ```
 
 ::: tip
-- You can also use the zkSync CLI to scaffold a zkSync project. Find out more info about [the zkSync CLI](../../api/tools/zksync-cli/).
+- You can also use the zkSync CLI to scaffold a zkSync project. Find out more info about [the zkSync CLI](../../tools/zksync-cli/).
 :::
 
 ## Design
@@ -612,6 +613,6 @@ The wallet had 3 tokens after running the deployment script and, after sending t
 
 ## Learn more
 
-- Learn more about [L1->L2 interaction on zkSync](../developer-guides/bridging/l1-l2.md).
+- Learn more about [L1->L2 interaction on zkSync](../developer-guides/bridging/l1-l2-interop.md).
 - Learn more about [the `zksync-web3` SDK](../../api/js).
-- Learn more about [the zkSync hardhat plugins](../../api/hardhat).
+- Learn more about [the zkSync hardhat plugins](../../tools/hardhat).

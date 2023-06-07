@@ -197,7 +197,14 @@ main().catch((error) => {
   process.exitCode = 1;
 });
 ```
+<<<<<<< HEAD
 Enter the `TOKEN_ADDRESS`, adjust the `AMOUNT`, and run this script with `ts-node`:
+=======
+
+To run this script, configure your `hardhat.config.ts` file as explained in this [guide](../../../tools/hardhat/hardhat-zksync-deploy.md), or use the command `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project.
+
+Once your `hardhat.config.ts` file is configured, place the script files in the `deploy` folder and run them with the following command:
+>>>>>>> 978275964a8fafd3bb0ec57495812b650baf38be
 
 ```sh
 ts-node deposit-erc20.ts
@@ -214,7 +221,7 @@ Users must call the `withdraw` method on the L2 bridge contract, which will trig
 
 - L2 tokens will be burned.
 - An L2 -> L1 message with the information about the withdrawal will be sent.
-- After that, the withdrawal action will be available to be finalized by anyone in the L1 bridge (by proving the inclusion of the L2 -> L1 message, which is done when calling the `finalizeWithdraw` method on the L1 bridge contract).
+- After that, the withdrawal action will be available to be finalized by anyone in the L1 bridge (by proving the inclusion of the L2 -> L1 message, which is done when calling the `finalizeWithdrawal` method on the L1 bridge contract).
 - After the method is called, the funds are unlocked from the L1 bridge and sent to the withdrawal recipient.
 
 ::: warning
