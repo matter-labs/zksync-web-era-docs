@@ -65,7 +65,7 @@ Get base cost for L2 transaction.
 
 ### `transfer`
 
-Send transfer transaction. This is the regular transfer of ERC20 token
+Send transfer transaction. This is the regular transfer of ERC20 tokens.
 
 >Example
 >
