@@ -2,7 +2,7 @@
 
 ## PrivateKeyEthSigner
 
-Used to get wallet address, generate signatures and verify messages.
+Used to get wallet address, generate signatures, and verify messages.
 
 ### `signTypedData`
 
