@@ -6,7 +6,7 @@ Used to get wallet address, generate signatures, and verify messages.
 
 ### `signTypedData`
 
-Signs typed struct using ethereum private key by EIP-712 signature standard.
+Signs typed-struct using Ethereum private key with the EIP-712 signature standard.
 
 
 #### Inputs and outputs
