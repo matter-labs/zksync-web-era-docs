@@ -43,7 +43,7 @@ Sign raw message.
 
 ### `verifySignature`
 
-Verify signature with raw message
+Verify signature with raw message.
 
 #### Inputs and outputs
 
