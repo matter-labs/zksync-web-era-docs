@@ -61,7 +61,7 @@ Get base cost for L2 transaction.
 | gasLimit         | Gas limit for L2 transaction.                       |
 | gasPerPubdataByte | Gas per pubdata byte.                               |
 | gasPrice         | Gas price for L2 transaction.                       |
-| return           | CompletableFuture for waiting for transaction mine. |
+| return           | `CompletableFuture` for waiting for transaction mine. |
 
 ### `transfer`
 
