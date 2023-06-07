@@ -56,7 +56,7 @@ Verify signature with raw message.
 
 ### `getAddress`
 
-Get wallet address
+Get wallet address.
 
 #### Inputs and outputs
 
