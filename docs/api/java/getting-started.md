@@ -12,9 +12,9 @@ In this guide we will demonstrate how to:
 3. Check balances.
 4. Transfer and withdraw funds (native and ERC20 tokens).
 5. Deploy a smart contract.
-6. Deploy a smart contract with create2.
+6. Deploy a smart contract with `create2`.
 
-## Prerequisite
+## Prerequisites
 
 This guide assumes that you are familiar with the basics of [Java](https://docs.oracle.com/en/java/) programming language.
 
@@ -70,7 +70,7 @@ import org.web3j.crypto.Credentials;
 
 public class Main {
     public static void main(String ...args) {
-        long chainId = 123L;// Chainid of the ZkSync network
+        long chainId = 123L;// Chainid of the ZkSync Era network
 
         Credentials credentials = Credentials.create("0x<private_key>");
 
@@ -79,8 +79,8 @@ public class Main {
 }
 ```
 
-## ZkSync wallet
-You can connect zkSync wallet for easier operations.
+## ZkSync Era wallet
+You can connect the zkSync Era wallet for easier operations.
 
 ```java
 import io.zksync.crypto.signer.EthSigner;
@@ -99,13 +99,13 @@ public class Main {
 
 ## Transactions
 
-ZkSync2 supports Ethereum's `Legacy` and `EIP-1155` transaction except deploying contract.
+ZkSync2 supports Ethereum's `Legacy` and `EIP-1155` transactions, except for deploying contracts.
 
 ### EIP712
 
 ## Deploy contract
 
-With zkSync, you can deploy a contract using the create method, by simply building the contract into a binary format and deploying it to the zkSync network.
+With zkSync Era, you can deploy a contract, using the `create` method, by transforming the contract into binary and deploying it to the zkSync Era network.
 
 
 - [Storage](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/storage/Storage.sol): Contract without constructor.
@@ -113,10 +113,10 @@ With zkSync, you can deploy a contract using the create method, by simply buildi
 - [Demo](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/demo/Demo.sol): Contract that has a dependency on
   [Foo](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/demo/Foo.sol) contract.
 
-There is a [user guide](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/README.md) on how to compile Solidity smart contracts using `zksolc`
+There is a [user guide](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/README.md) on how to compile Solidity smart contracts using the `zksolc`
 compiler. `zksolc` compiler generates a `combined.json` file that contains the bytecode and ABI of a smart contract. Those files are used in the following examples.
 
-### Deploy contract (Create 2) [EIP-1014](https://eips.ethereum.org/EIPS/eip-1014)
+### Deploy contract (create2) [EIP-1014](https://eips.ethereum.org/EIPS/eip-1014)
 
 Code:
 
@@ -194,7 +194,7 @@ public class Main {
 }
 ```
 
-### Deploy contract (Create)
+### Deploy contract (create)
 
 Code:
 
@@ -385,7 +385,7 @@ public class Main {
 }
 ```
 
-### Execute contract via Web3j generic Contract
+### Execute contract via Web3j generic contract
 
 ```java
 import io.zksync.crypto.signer.EthSigner;
@@ -420,7 +420,7 @@ public class Main {
 }
 ```
 
-### Transfer funds (Native coins)
+### Transfer funds (native coins)
 
 ```java
 import io.zksync.abi.TransactionEncoder;
@@ -650,7 +650,7 @@ public class Main {
 }
 ```
 
-### Withdraw funds (Native coins)
+### Withdraw funds (native coins)
 
 ```java
 import io.zksync.abi.TransactionEncoder;
@@ -859,9 +859,9 @@ public class Main {
 
 ## Contract interaction using wrapper
 
-## Fee
+### Fee
 
-### Get price of the execution of the transaction
+#### Get price of the transaction execution
 
 ```java
 import io.zksync.crypto.signer.EthSigner;

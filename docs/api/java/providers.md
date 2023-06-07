@@ -1,11 +1,11 @@
 # Providers
 
-Providers are objects that wrap interactions with the zkSync node. If you are new to the concept of providers in `web3`, you should check out their docs [here](https://docs.web3j.io/4.9.8/getting_started/interacting_with_node/).
+Providers are objects that wrap interactions with the zkSync Era node. If you are new to the concept of providers in `web3`, check out the [Web3j docs](https://docs.web3j.io/4.9.8/getting_started/interacting_with_node/).
 
-zkSync fully supports Ethereum Web3 API, so you can use the provider objects from web3.py. However, zkSync API provides some additional JSON-RPC methods, which allow:
+zkSync Era fully supports the Ethereum Web3 JSON-RPC API, so you can use the provider objects from `web3.py`. However, zkSync API provides some additional JSON-RPC methods, which allow:
 
-- Easily track L1<->L2 transactions.
-- Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use cases may require tracking "finalized" transactions only.
+- Easy tracking of L1<->L2 transactions.
+- Different stages of finality for transactions. By default, the RPC returns information about the last state processed by the server, but some use cases may require tracking "finalized" transactions only.
 
 
 
@@ -26,13 +26,13 @@ public class Main {
 
 | Name        | Description                      |
 |-------------| -------------------------------- |
-|web3jService | URL of the zkSync operator node. |
+|web3jService | URL of the zkSync Era operator node. |
 | returns     | `Provider` object.               |
 
 
 ### `zksGetAllAccountBalances`
 
-Get all known balances for the given account.
+Get all known balances for a given account.
 
 Example:
 
@@ -52,12 +52,12 @@ public class Main {
 
 | Name                    | Description                                                                  |
 | ----------------------- |------------------------------------------------------------------------------|
-| address                 | The address of the user to check the balance.                                |
-| returns                 | 'ZksAccounteBalances' List of all balances where account has non-zero value. |
+| address                 | The user address with balances to check.                                |
+| returns                 | 'ZksAccounteBalances': List of all balances where account has non-zero value. |
 
 ### `zksGetConfirmedTokens`
 
-Get list of the tokens supported by ZkSync. The tokens are returned in alphabetical order by their symbol, so basically, the token id is its position in an alphabetically 
+Get list of the tokens supported by ZkSync Era. The tokens are returned in alphabetical order by their symbol. This means that the token id is its position in an alphabetically 
 sorted array of tokens.
 
 Example:
@@ -129,7 +129,7 @@ public class Main {
 
 ### `zksGetTestnetPaymaster`
 
-Get the address of the testnet paymaster: the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
+Get the address of the testnet paymaster; i.e. the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
 
 Example:
 
@@ -170,12 +170,12 @@ public class Main {
 
 | Name         | Description                        |
 |--------------|------------------------------------|
-| tokenAddress | Address of the token in hex forma. |
+| tokenAddress | Address of the token in hex. |
 | returns      | Prepared get token price request.  |
 
 ### `zksGetTransactionReceipt`
 
-Get transaction receipt. The same as eth_getTransactionReceipt but with additional fields belong to L2ToL1 messenger
+Get transaction receipt. The same as `eth_getTransactionReceipt` but with additional fields belong to L2ToL1 messenger
 
 Example:
 
@@ -194,7 +194,7 @@ public class Main {
 
 | Name            | Description                                              |
 |-----------------|----------------------------------------------------------|
-| transactionHash | Hash of the executed transaction hash with sent message. |
+| transactionHash | Hash of the sent message's executed transaction hash. |
 | returns         | Prepared get transaction receipt request.                |
 
 ### `zksGetTransactionDetails`
@@ -218,7 +218,7 @@ public class Main {
 
 | Name            | Description                                              |
 |-----------------|----------------------------------------------------------|
-| transactionHash | Hash of the executed transaction hash with sent message. |
+| transactionHash | Hash of the sent message's executed transaction hash. |
 | returns         | Prepared get transaction details request.                |
 
 ### `zksGetTransactionByHash`
@@ -242,12 +242,12 @@ public class Main {
 
 | Name            | Description                                              |
 |-----------------|----------------------------------------------------------|
-| transactionHash | Hash of the executed transaction hash with sent message. |
+| transactionHash | Hash of the sent message's executed transaction hash. |
 | returns         | Prepared get transaction details request.                |
 
 ### `zksEstimateFee`
 
-Estimate fee for the given transaction at the moment of the latest committed block.
+Estimate fee for the given transaction at the latest committed block time.
 
 Example:
 
@@ -291,7 +291,7 @@ public class Main {
 
 | Name        | Description                  |
 |-------------|------------------------------|
-| returns     | Prepared l1 chainid request. |
+| returns     | Prepared L1 chain id request. |
 
 ### `zksGetL2ToL1MsgProof`
 
@@ -317,11 +317,11 @@ public class Main {
 | sender       | The sender of the message (i.e. the account that called the L1Messenger system contract).                                                                                                   |
 | message      | The keccak256 hash of the message that was sent.                                                                                                                                            |
 | l2LogPosition | The index in the block of the event that was emitted by the L1Messenger when submitting this message. If it is omitted, the proof for the first message with such content will be returned. |
-| returns      | Prepared l1 chainid request.                                                                                                                                                                |
+| returns      | Prepared L1 chain id request.                                                                                                                                                                |
 
 ### `ethEstimateGas`
 
-Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain.
+Generates and returns an estimate of how much gas is required to allow the transaction to complete. The transaction will not be added to the blockchain.
 
 Example:
 
@@ -367,6 +367,6 @@ public class Main {
 | Name        | Description                                                                                    |
 |-------------|------------------------------------------------------------------------------------------------|
 | blockHash | Hash of a block.                                                                               |
-| returnFullTransactionObjects | If true it returns the full transaction objects, if false only the hashes of the transactions. |
+| returnFullTransactionObjects | If true it returns the full transaction objects. If false only the hashes of the transactions. |
 | returns     | Prepared get transaction receipt request.                                                                 |
 

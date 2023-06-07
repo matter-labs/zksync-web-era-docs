@@ -87,63 +87,63 @@ There are multiple ways to transfer coins or tokens with a wallet object.
 
 | Name    | Description                                                         |
 |---------|---------------------------------------------------------------------|
-| to      | Reciever address.                                                   |
-| amount  | Amount of funds to be transferred in minimal denomination (in Wei). |
+| to      | Recipient address.                                                   |
+| amount  | Amount of funds to be transferred in minimum denomination (wei). |
 | returns | Prepared remote call of transaction.                                |
 
-Transfer coins or tokens
+##### Transfer coins or tokens
 
-With specific token
+##### With specific token
 
 | Name    | Description                                                         |
 |---------|---------------------------------------------------------------------|
-| to      | Reciever address.                                                   |
-| amount  | Amount of funds to be transferred in minimal denomination (in Wei). |
-| token   | Token object supported by ZkSync.                                                   |
+| to      | Recipient address.                                                   |
+| amount  | Amount of funds to be transferred in minimum denomination (wei). |
+| token   | Token object supported by ZkSync Era.                                                   |
 | returns | Prepared remote call of transaction.                                |
 
-With specific token and custom nonce
+##### With specific token and custom nonce
 
 | Name    | Description                                                         |
 |---------|---------------------------------------------------------------------|
-| to      | Reciever address.                                                   |
-| amount  | Amount of funds to be transferred in minimal denomination (in Wei). |
-| token   | Token object supported by ZkSync.                                                   |
+| to      | Recipient address.                                                   |
+| amount  | Amount of funds to be transferred in minimum denomination (wei). |
+| token   | Token object supported by ZkSync Era.                                                   |
 | nonce   | Custom nonce value of the wallet.                                                   |
 | returns | Prepared remote call of transaction.                                |
 
 ### `withdraw`
 
-Withdraw native coins or tokens to L1 chain
+Withdraw native coins or tokens from L1.
 
 | Name    | Description                                                        |
 |---------|--------------------------------------------------------------------|
-| to      | Address of the wallet in L1 to that funds will be withdrawn.                                                   |
-| amount  | Amount of the funds to be withdrawn. |
+| to      | Address of the L1 wallet from which funds will be withdrawn.                                                   |
+| amount  | Amount of funds to be withdrawn. |
 | returns | Prepared remote call of transaction.                               |
 
-With specific token
+#### With specific token
 
 | Name    | Description                                                        |
 |---------|--------------------------------------------------------------------|
-| to      | Address of the wallet in L1 to that funds will be withdrawn.                                                   |
-| amount  | Amount of the funds to be withdrawn. |
-| token   | Token object supported by ZkSync.                                                  |
+| to      | Address of the L1 wallet L1 from which funds will be withdrawn.                                                   |
+| amount  | Amount of funds to be withdrawn. |
+| token   | Token object supported by ZkSync Era.                                                  |
 | returns | Prepared remote call of transaction.                               |
 
-With specific token and custom nonce
+#### With specific token and custom nonce
 
 | Name    | Description                                                        |
 |---------|--------------------------------------------------------------------|
-| to      | Address of the wallet in L1 to that funds will be withdrawn.                                                   |
-| amount  | Amount of the funds to be withdrawn. |
-| token   | Token object supported by ZkSync.                                                  |
+| to      | Address of the L1 wallet from which funds will be withdrawn.                                                   |
+| amount  | Amount of funds to be withdrawn. |
+| token   | Token object supported by ZkSync Era.                                                  |
 | nonce   | Custom nonce value of the wallet.                                                  |
 | returns | Prepared remote call of transaction.                               |
 
 ### `deploy`
 
-Deploy new smart-contract into chain (this method uses create2, see <a href="https://eips.ethereum.org/EIPS/eip-1014">EIP-1014</a>)
+Deploy new smart contract onto chain (this method uses `create2`, see <a href="https://eips.ethereum.org/EIPS/eip-1014">EIP-1014</a>)
 
 | Name    | Description                                                        |
 |---------|--------------------------------------------------------------------|
@@ -155,21 +155,21 @@ With constructor
 | Name    | Description                                                        |
 |---------|--------------------------------------------------------------------|
 | bytecode      | Compiled bytecode of the contract.                                                   |
-| calldata  | Encoded constructor parameter of contract. |
+| calldata  | Encoded constructor parameter(s) of contract. |
 | returns | Prepared remote call of transaction.                               |
 
-With constructor and custom nonce
+#### With constructor and custom nonce
 
 | Name    | Description                                                        |
 |---------|--------------------------------------------------------------------|
 | bytecode      | Compiled bytecode of the contract.                                                   |
-| calldata  | Encoded constructor parameter of contract. |
+| calldata  | Encoded constructor parameter(s) of contract. |
 | nonce   | Custom nonce value of the wallet.                                                  |
 | returns | Prepared remote call of transaction.                               |
 
 ### `execute`
 
-Execute function of deployed contract
+Execute function of deployed contract.
 
 | Name    | Description                          |
 |---------|--------------------------------------|
@@ -177,7 +177,7 @@ Execute function of deployed contract
 | function  | Prepared function call with or without parameters.                                   |
 | returns | Prepared remote call of transaction. |
 
-With custom nonce
+#### With custom nonce
 
 | Name    | Description                          |
 |---------|--------------------------------------|
@@ -187,54 +187,61 @@ With custom nonce
 | returns | Prepared remote call of transaction. |
 
 ### `getBalance`
-Get balance of wallet in natice coin (wallet address gets from EthSigner)
+
+Get balance of wallet in native coin (wallet address gets from EthSigner).
 
 | Name   | Description                       |
 |--------|-----------------------------------|
 | address | Wallet address.                   |
 | returns | Prepared get balance call.        |
 
-Get balance of wallet in Token (wallet address gets from EthSigner)
+#### Get balance of wallet in token 
+
+Wallet address gets from EthSigner.
 
 | Name   | Description                       |
 |--------|-----------------------------------|
-| token  | Token object supported by ZkSync. |
+| token  | Token object supported by ZkSync Era. |
 | returns | Prepared get balance call.        |
 
-Get balance of wallet in native coin
+#### Get balance of wallet in native coin
 
 | Name   | Description                       |
 |--------|-----------------------------------|
 | address | Wallet address.                   |
 | returns | Prepared get balance call.        |
 
-Get balance of wallet by address in Token
+#### Get balance of wallet by address of token
 
 | Name   | Description                       |
 |--------|-----------------------------------|
 | address | Wallet address.                   |
-| token  | Token object supported by ZkSync. |
+| token  | Token object supported by ZkSync Era. |
 | returns | Prepared get balance call.        |
 
-Get balance of wallet by address in Token at block DefaultBlockParameter
+#### Get balance of wallet by address of token at block `DefaultBlockParameter`
 
 | Name   | Description                       |
 |--------|-----------------------------------|
 | address | Wallet address.                   |
-| token  | Token object supported by ZkSync. |
+| token  | Token object supported by ZkSync Era. |
 | at     | Block variant.                    |
 | returns | Prepared get balance call.        |
 
 ### `getNonce`
 
-Get nonce for wallet at block DefaultBlockParameter (wallet address gets from EthSigner)
+#### Get nonce for wallet at block `DefaultBlockParameter`
+
+Wallet address gets from EthSigner.
 
 | Name   | Description              |
 |--------|--------------------------|
 | at     | Block variant.           |
 | returns | Prepared get nonce call. |
 
-Get nonce for wallet at block `COMMITTED` ZkBlockParameterName (wallet address gets from EthSigner)
+Get nonce for wallet at block `COMMITTED` `ZkBlockParameterName` 
+
+Wallet address gets from EthSigner.
 
 | Name   | Description              |
 |--------|--------------------------|
