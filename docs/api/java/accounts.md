@@ -68,7 +68,7 @@ Get wallet address.
 
 ### Creating wallet from a private key
 
-The `Wallet` object from `zksync-web3` can be created from Ethereum private key.
+The `Wallet` object from `zksync-web3` can be created from an Ethereum private key.
 
 #### Inputs and outputs
 
