@@ -19,7 +19,7 @@ Send approve transaction to token contract.
 |--------|-----------------------------------------------------|
 | token  | Token object supported by ZkSync Era.                   |
 | limit  | Maximum amount to approve for ZkSync Era contract.      |
-| return | CompletableFuture for waiting for transaction mine. |
+| return | `CompletableFuture` for waiting for transaction mine. |
 
 ### `deposit`
 
