@@ -52,13 +52,15 @@ There are various different ways of transacting on the Ethereum blockchain:
 
 ## Transaction types
 
+For compatibility, the majority of zkSync Era transactions types are similar to those on Ethereum.
+
 :::tip
 The transaction type hex value is output by any RPC method call which returns a transaction type, such as [`eth_getTransactionByHash`](https://ethereum.github.io/execution-apis/api-documentation/) for example.
 :::
 
 ### Legacy: `0x0`
 
-The transaction format used before the introduction of typed-transactions.
+The Ethereum transaction format used before the introduction of typed-transactions.
 
 ### EIP-2930: `0x1`
 
