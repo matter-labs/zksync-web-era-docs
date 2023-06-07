@@ -55,8 +55,11 @@ EIP-1559 transaction types contain everything from EIP-2930 and legacy transacti
 
 Additional parameters added are the `maxPriorityFeePerGas` and `maxFeePerGas` where users can specific maximum fees they're willing to pay to prioritize their transactions.
 
-:::important
-zkSync Era supports the EIP-1559 transaction-type format but does nothing with the max fee parameters as these are related to miner tips.
+- `maxPriorityFeePerGas`: Is the maximum fee users are willing to give to miners as an incentive.
+- `maxFeePerGas`: Is the maximum fee users are willing to pay in total. This includes the `maxPriorityFeePerGas` and network-determined base fee per gas.
+
+:::warning Important
+zkSync Era supports the EIP-1559 transaction-type format but does nothing with the max fee parameters.
 :::
 
 ### EIP-712: `0x71`
@@ -65,7 +68,7 @@ The Ethereum Improvement Proposal [EIP-712: Typed structured data hashing and si
 
 EIP-712 transactions access zkSync-specific features such as account abstraction and paymasters. Furthermore, smart contracts must be deployed with the EIP-712 transaction type.
 
-Specify the additional fields, such as the custom signature for custom accounts or to choose the paymaster with EIP-712 transactions. These transactions have the same fields as standard Ethereum transactions, plus fields containing additional L2-specific data (`paymaster`, etc).
+You can specify the additional fields, such as the custom signature for custom accounts or to choose the paymaster with EIP-712 transactions. These transactions have the same fields as standard Ethereum transactions, plus fields containing additional L2-specific data (`paymaster`, etc).
 
 ```json
 "gasPerPubdata": "1212",
@@ -114,9 +117,9 @@ This is a zkSync Era specific transaction type related to a L1 -> L2 transaction
 
 Transactions are always in one of the following statuses:
 
-- `Pending`: Not yet included in a block. 
-- `Included`: Included in a block but not yet verified.
-- `Verified`: Included in a block and verified. 
+- `Pending`: In the mempool but not yet included in a block. 
+- `Included`: Included in a block but the batch containing the block has not yet been committed.
+- `Verified`: Included in a block and verified. Verified means the transaction has been committed, proven, and executed on the Ethereum L1 network.
 - `Failed`: Unverified/failed transaction.
 
 :::info
