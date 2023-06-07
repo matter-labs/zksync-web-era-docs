@@ -21,12 +21,12 @@ These can be used in conjunction with the [Provider Events API](https://docs.eth
 Here is an example to listen for smart contract events:
 
 ```js
-import * as ethers from "ethers";
+const { ethers } = require("ethers");
 const contractABI = require("./ABI_JSON");
 
 const listenEvents = async () => {
   const contractAddress = "<CONTRACT_ADDRESS>";
-  const provider = new ether.providers.WebSocketProvider(`wss://testnet.era.zksync.dev/ws`);
+  const provider = new ethers.providers.WebSocketProvider(`wss://testnet.era.zksync.dev/ws`);
 
   const contract = new ethers.Contract(contractAddress, contractABI, provider);
 
