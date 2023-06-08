@@ -10,13 +10,13 @@ export const enSidebar = sidebar({
     {
       text: "Getting started",
       link: "/dev/fundamentals",
-      children: [ "/dev/building-on-zksync/hello-world.md", 
+      children: [ "/dev/building-on-zksync/hello-world.md",
                   "/dev/fundamentals/interacting.md", ],
     },
     {
       text: "How to",
       link: "/dev/how-to/estimate-gas.md",
-      children: [ "/dev/how-to/estimate-gas.md", 
+      children: [ "/dev/how-to/estimate-gas.md",
                   "/dev/how-to/send-transaction-l1-l2",
                   "/dev/how-to/send-message-l2-l1",
                   "/dev/how-to/transfer-token-l2" ],
@@ -35,8 +35,8 @@ export const enSidebar = sidebar({
       text: "Understanding zkSync Era",
       link: "/dev/developer-guides",
       children: [
-        "/dev/fundamentals/rollups.md", 
-        "/dev/fundamentals/zkSync.md", 
+        "/dev/fundamentals/rollups.md",
+        "/dev/fundamentals/zkSync.md",
         "/dev/fundamentals/hyperscaling.md",
         "/dev/developer-guides/transactions/transactions.md",
         "/dev/developer-guides/transactions/blocks.md",
@@ -124,7 +124,12 @@ export const enSidebar = sidebar({
     {
       text: "Java SDK", // required
       link: "/api/java/getting-started", // optional, which should be a absolute path.
-      children: ["/api/java/getting-started"],
+      children: [
+          "/api/java/getting-started",
+          "/api/java/providers",
+          "/api/java/accounts",
+          "/api/java/accounts-l1-l2"
+        ],
     },
   ],
   //The sidebar for Tools and SDKs
