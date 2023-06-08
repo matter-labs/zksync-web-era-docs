@@ -1,10 +1,8 @@
-# Withdraw assets via bridge
-
-Read the [how to withdraw assets via the bridge](../../how-to/deposit-via-bridge.md) document for instructions on withdrawing assets to L1.
+# Withdrawal to L1
 
 :::tip
 - To provide additional security during the Alpha phase, **withdrawals in zkSync Era take 24 hours**. 
-- For more information, read the [withdrawal delay guide](../../troubleshooting/withdrawal-delay.md).
+- For more information, read the [withdrawal delay guide](../troubleshooting/withdrawal-delay.md).
 :::
 
 Users must call the `withdraw` method on the L2 bridge contract, which will trigger the following actions:
@@ -20,7 +18,7 @@ On the testnet environment, we automatically finalize all withdrawals, i.e., for
 
 ### Withdraw scripts
 
-To withdraw ETH or ERC20 tokens with [Javascript SDK](../../../api/js/README.md), use the same scripts but call the `withdraw` method of the `Wallet` class.
+To withdraw ETH or ERC20 tokens with [Javascript SDK](../../api/js/README.md), use the same scripts but call the `withdraw` method of the `Wallet` class.
 
 To withdraw ETH use:
 

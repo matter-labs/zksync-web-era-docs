@@ -1,18 +1,8 @@
-# Deposits to L2
+# Deposit to L2
 
-To deposit assets to L2 via the bridge, users must call the `deposit` method on the L1 bridge contract, which triggers the following actions:
+## Deposit scripts
 
-- The user's L1 tokens will be sent to the L1 bridge and become locked there.
-- The L1 bridge initiates a transaction to the L2 bridge using L1 -> L2 communication.
-- Within the L2 transaction, tokens will be minted and sent to the specified address on L2.
-  - If the token does not exist on zkSync yet, a new contract is deployed for it. Given the L2 token address is deterministic (based on the original L1 address, name and symbol), it doesn't matter who is the first person bridging it, the new L2 address will be the same.
-- For every executed L1 -> L2 transaction, there will be an L2 -> L1 log message confirming its execution.
-- Lastly, the `finalizeDeposit` method is called and it finalizes the deposit and mints funds on L2.
-
-
-### Deposit scripts
-
-The examples below show scripts to deposit ETH and ERC20 tokens using the [Javascript SDK](../../../api/js/README.md). 
+The examples below show scripts to deposit ETH and ERC20 tokens using the [Javascript SDK](../../api/js/README.md). 
 
 To scaffold a project run:
 
@@ -35,10 +25,10 @@ You can find RPC endpoints for Goerli and Ethereum mainnet on [Chainlist](https:
 
 :::
 
-#### Deposit ETH script
+### Deposit ETH script
 
 
-Here is an example of how to deposit ETH with the `deposit` method from the `Wallet` class of [Javascript SDK](../../../api/js/getting-started.md).
+Here is an example of how to deposit ETH with the `deposit` method from the `Wallet` class of [Javascript SDK](../../api/js/getting-started.md).
 
 ```ts
 // Filename deposit.ts
@@ -102,7 +92,7 @@ Adjust the `AMOUNT` variable and run the script with `ts-node`:
 ts-node deposit.ts
 ```
 
-#### Deposit ERC20 tokens script
+### Deposit ERC20 tokens script
 
 To deposit ERC20 tokens, use the same method but pass the `approveERC20: true` option. Here's an example:
 
@@ -166,7 +156,7 @@ async function main() {
 }
 ```
 
-To run this script, configure your `hardhat.config.ts` file as explained in this [guide](../../../tools/hardhat/hardhat-zksync-deploy.md), or use the command `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project.
+To run this script, configure your `hardhat.config.ts` file as explained in this [guide](../../tools/hardhat/hardhat-zksync-deploy.md), or use the command `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project.
 
 main().catch((error) => {
   console.error(error);
