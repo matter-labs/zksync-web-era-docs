@@ -171,9 +171,9 @@ Always produces a compile-time error with our toolchain.
 
 ### `EXTCODECOPY`
 
-Contract bytecode cannot be accessed in our architecture. Only its size is accessible with `CODESIZE` and `EXTCODESIZE`.
+Contract bytecode cannot be accessed in our architecture. Only its size is accessible with both `CODESIZE` and `EXTCODESIZE`.
 
-Always produces a compile-time error with our toolchain.
+`EXTCODECOPY` always produces a compile-time error with our toolchain.
 
 ### `DATASIZE`, `DATAOFFSET`, `DATACOPY`
 

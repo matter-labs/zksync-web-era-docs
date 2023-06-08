@@ -2,7 +2,7 @@
 
 Contract verification is a critical step in building trust in your contracts by ensuring that the code running on-chain matches the source code you've published.
 
-In the following sections, we'll provide a comprehensive guide on how to verify your contracts using `hardhat-zksync-verify` plugin.
+In the following sections, we'll provide a comprehensive guide on how to verify your contracts using [`hardhat-zksync-verify`](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-verify) plugin.
 
 ## Common Use Cases
 
