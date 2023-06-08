@@ -10,33 +10,36 @@ export const enSidebar = sidebar({
     {
       text: "Getting started",
       link: "/dev/fundamentals",
-      children: [ "/dev/building-on-zksync/hello-world.md", 
-                  "/dev/fundamentals/interacting.md", ],
+      children: ["/dev/building-on-zksync/hello-world.md", "/dev/fundamentals/interacting.md"],
     },
     {
       text: "How to",
       link: "/dev/how-to/estimate-gas.md",
-      children: [ "/dev/how-to/estimate-gas.md", 
-                  "/dev/how-to/send-transaction-l1-l2",
-                  "/dev/how-to/send-message-l2-l1",
-                  "/dev/how-to/transfer-token-l2" ],
+      children: [
+        "/dev/how-to/estimate-gas.md",
+        "/dev/how-to/send-transaction-l1-l2",
+        "/dev/how-to/send-message-l2-l1",
+        "/dev/how-to/transfer-token-l2",
+        "/dev/how-to/build-smart-contract-thirdweb",
+      ],
     },
     {
       text: "Tutorials",
       link: "/dev/tutorials",
       children: [
-                "/dev/tutorials/cross-chain-tutorial.md",
-                "/dev/tutorials/custom-aa-tutorial.md",
-                "/dev/tutorials/aa-daily-spend-limit.md",
-                "/dev/tutorials/custom-paymaster-tutorial.md",
+        "/dev/tutorials/cross-chain-tutorial.md",
+        "/dev/tutorials/custom-aa-tutorial.md",
+        "/dev/tutorials/aa-daily-spend-limit.md",
+        "/dev/tutorials/custom-paymaster-tutorial.md",
+        "/dev/tutorials/build-dapp-thirdweb.md",
       ],
     },
     {
       text: "Understanding zkSync Era",
       link: "/dev/developer-guides",
       children: [
-        "/dev/fundamentals/rollups.md", 
-        "/dev/fundamentals/zkSync.md", 
+        "/dev/fundamentals/rollups.md",
+        "/dev/fundamentals/zkSync.md",
         "/dev/fundamentals/hyperscaling.md",
         "/dev/developer-guides/transactions/transactions.md",
         "/dev/developer-guides/transactions/blocks.md",
@@ -75,7 +78,7 @@ export const enSidebar = sidebar({
       ],
     },
   ],
-    //The sidebar for Tools and SDKs
+  //The sidebar for Tools and SDKs
   "/api": [
     {
       text: "Web3 JSON-RPC API", // required
@@ -112,14 +115,7 @@ export const enSidebar = sidebar({
     {
       text: "Go SDK",
       link: "/api/go",
-      children: [
-        "/api/go/getting-started",
-        "/api/go/providers",
-        "/api/go/accounts",
-        "/api/go/accounts-l1-l2",
-        "/api/go/contract-interface",
-        "/api/go/types",
-      ],
+      children: ["/api/go/getting-started", "/api/go/providers", "/api/go/accounts", "/api/go/accounts-l1-l2", "/api/go/contract-interface", "/api/go/types"],
     },
     {
       text: "Java SDK", // required
