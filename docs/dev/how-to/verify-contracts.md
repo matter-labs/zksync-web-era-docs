@@ -1,11 +1,8 @@
 # How to Verify Contracts
 
-Contract verification is a critical step in building trust in your contracts by ensuring that the code running on-chain matches the source code you've published. In zkSync, there are two primary methods for verifying contracts:
+Contract verification is a critical step in building trust in your contracts by ensuring that the code running on-chain matches the source code you've published.
 
-1. Using the zkSync Block Explorer.
-2. Using the `hardhat-zksync-verify` plugin.
-
-In the following sections, we'll provide a comprehensive guide on how to verify your contracts using both of these methods, to help you select the approach that best fits your development workflow.
+In the following sections, we'll provide a comprehensive guide on how to verify your contracts using `hardhat-zksync-verify` plugin.
 
 ## Common Use Cases
 
@@ -13,55 +10,10 @@ The primary functionality of contract verification is to validate and authentica
 
 - **Transparent Contract Deployment**: With this plugin, developers can deploy their contracts on the zkSync network with transparency. Users and other developers can independently verify the contract's source code, ensuring it behaves as expected.
 
-- **Contract Upgrade Verification**: When upgrading a contract deployed on zkSync Era, you can use the plugin to verify the new version. This allows users and developers to confirm the upgrade's authenticity and verify the changes.
-
 - **Cross-chain Interoperability**: For contracts operating across multiple chains, verifying contracts on each network assures users of the contract's consistency across different ecosystems.
 
 - **Open Source Projects**: For open-source projects, verifying contracts enhances trust and encourages more developers to contribute. It assures contributors that the deployed contracts match the source code.
-
-## Verifying Contracts using zksync Block Explorer
-
-### Start Verification Process
-
-Begin by navigating to the **Tools** tab on the zkSync Block Explorer's header. From the dropdown menu, select **Smart Contract Verification**.
-
-### Provide Contract Details
-
-You will need to supply the following details for the smart contract verification:
-
-- **Contract Address**: Enter the 0x address generated during the contract creation process.
-- **Compiler Type**: Choose between a single or multi-part solidity file.
-- **Contract Name**: Type in the exact name of the contract, as it appears in the contract code.
-- **Source Code**: Paste the source code from your editor into the provided text area.
-
-If your Solidity code relies on a library or has dependencies on other contracts, you may need to flatten it. To do this, you can use tools such as [Hardhat flatten](https://medium.com/coinmonks/flattening-smart-contracts-using-hardhat-dffe7dbc7b3f), [Truffle flattener](https://github.com/NomicFoundation/truffle-flattener), or [POA Solidity flattener](https://github.com/poanetwork/solidity-flattener).
-
-- **Solidity Version**: Specify the Solidity version used to write your code.
-- **Optimization**: Indicate whether optimization was enabled during contract compilation.
-- **Constructor Arguments**: If your contract includes constructor arguments, provide them here.
-- **Solidity Compiler Version (Solc)**: Select the exact compiler version that was used to compile your smart contract from the dropdown menu.
-- **zkSync Compiler Version (Zksolc)**: Choose `1.3.9` as the [zkSync compiler version](../../dev/troubleshooting/changelog.md) used during compilation.
-
-### Constructor Arguments
-
-To acquire the constructor argument data, consider printing it to the console when deploying the contract. Here's an illustrative example:
-
-```js
-const your_constructor_argument = "Hi there!";
-const myContract = await deployer.deploy(artifact, [your_constructor_argument]);
-
-// Obtain the Constructor Arguments
-console.log("constructor args: " + myContract.interface.encodeDeploy([your_constructor_argument]));
-```
-
-This console command will output the required constructor argument data.
-
-### Verifying the Contract
-
-Once all the necessary details are filled in, click the **Verify Smart Contract** button to initiate the verification process.
-
-If the information provided is accurate, you should see a success message stating **Contract Verified**. However, if any detail is incorrect, the verification process will fail, and you will need to revise your entries.
-
+  
 ## Verifying Contracts using `hardhat-zksync-verify`
 
 This guide will show you how to use the `hardhat-zksync-verify` plugin to verify contracts on the zkSync Era network. 
@@ -101,11 +53,10 @@ networks: {
       url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
       ethNetwork: "goerli", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `goerli`)
       zksync: true,
-      // Verification endpoint for Goerli
+      // Verification endpoint
       verifyURL: 'https://zksync2-testnet-explorer.zksync.dev/contract_verification'
     }
 },
-// defaultNetwork: "zkTestnet", // optional (if not set, use '--network zkTestnet')
 ```
 
 In this configuration, you can specify an arbitrary zkSync Era network name using the `defaultNetwork` property. Also, note that the `verifyURL` property points to the verification endpoint for the specific zkSync network.
@@ -145,7 +96,11 @@ You can specify which contract from your local setup you want to verify using th
 yarn hardhat verify --network <network> <contract address> --contract <fully qualified name>
 ```
 
-A fully qualified name would be `path/sourceName:contractName`. For instance, if the source name is `Greeter.sol`, the contract name is `Greeter` and lives in the `contracts/` directory, then the fully qualified contract name would be: `contracts/Greeter.sol:Greeter`.
+A fully qualified name would be `path/sourceName:contractName`. For instance, if the source name is `Greeter.sol`, the contract name is `Greeter` and lives in the `contracts/` directory, then the fully qualified contract name would be: `contracts/Greeter.sol:Greeter`. An example of command using the `--contract` flag:
+
+```sh
+yarn hardhat verify --network zkSyncTestnet 0x1234abc... --contract contracts/Greeter.sol:Greeter
+```
 
 ### Step 3.2: Verify the Contract with Constructor Arguments
 
@@ -178,7 +133,7 @@ If your contract's constructor includes a complex list of arguments, you should 
     ];
     ```
 
-    Make sure that each argument in this array corresponds with the order of arguments in your contract's constructor.
+    Make sure that each argument in this array corresponds with the order of arguments in your contract's constructor!
 
 2. **Verifying the Contract with the Constructor Arguments File:**
 
@@ -216,8 +171,6 @@ yarn hardhat verify-status --verification-id 12345
 
 This command will return the current status of your verification request. Keep in mind that depending on the network load and complexity of your contract, the verification process may take some time to complete.
 
-Absolutely, let's add more detail and context:
-
 ### Step 5: Verify Smart Contract Programmatically
 
 There may be cases where you need to verify your contracts programmatically, for instance, as part of your project's build or deployment scripts. To achieve this, you can use Hardhat's task runner to call the `verify:verify` task directly from your code. Here's an example of how you can do this:
@@ -225,7 +178,7 @@ There may be cases where you need to verify your contracts programmatically, for
 ```typescript
 const contractAddress = "<your contract address>";
 const contractFullyQualifiedName = "<your contract fully qualified name>";
-const constructorArguments = [/* your constructor arguments */];
+const constructorArguments = [/* your decoded constructor arguments */];
 
 const verificationId = await hre.run("verify:verify", {
   address: contractAddress,
