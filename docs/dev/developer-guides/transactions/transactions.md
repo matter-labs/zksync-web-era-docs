@@ -21,7 +21,9 @@ From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
 
 ## Transaction data on zkSync Era
 
-Transactions on zkSync Era are similar to Ethereum transactions so you can use the same wallet as you use on Ethereum. There are some minor differences.
+Transactions on zkSync Era are similar to Ethereum transactions so you can use the same wallet as you use on Ethereum. There are some minor differences, mostly with regards to setting the fees.
+
+For more information on fees in zkSync Era, read the [fee model documentation](/docs/dev/developer-guides/transactions/fee-model).
 
 The following values are returned by any RPC call which outputs transaction details:
 
