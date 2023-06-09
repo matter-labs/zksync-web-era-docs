@@ -196,5 +196,8 @@ npx ts-node deposit-erc20.ts
 ### 5. Output
 
 ```text
-??
+Running script to bridge ERC-20 to L2
+L1 Balance is 19500035772482145
+L2 Balance is 2969807401250000000
+Deposit transaction sent 0xffb8e302430b0584e2e0104dd6295a03688c98ba7b6e9279b01dba65188cc444
 ```
