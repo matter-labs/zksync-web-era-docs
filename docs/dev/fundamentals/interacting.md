@@ -17,11 +17,11 @@ Check out our step-by-step [quickstart guide](../building-on-zksync/hello-world.
 - How to install zkSync hardhat plugin and deploy smart contracts with it.
 - How to build the front-end for your dApp using the `zksync-web3` library.
 
-### Connecting to zkSync Era on Metamask
+### Connecting to zkSync Era on MetaMask
 
 In order to add the zkSync Era alpha mainnet network to your wallet, you will need to enter the following details:
 
-1. Sign into your Metamask wallet and click on the network in the top center:
+1. Sign into your MetaMask wallet and click on the network in the top center:
 
 ![img](../../assets/images/connect-1.png)
 
@@ -52,9 +52,9 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 
 5. Click "Save"
 
-## Why are Metamask native contract interactions not working?
+## Why are MetaMask native contract interactions not working?
 
-It is not currently possible to interact with zkSync Era smart contracts via Metamask with EIP-1559 transactions. 
+It is not currently possible to interact with zkSync Era smart contracts via MetaMask with EIP-1559 transactions. 
 
 zkSync Era supports the EIP-1559 transaction format but doesn't do anything with some of the transaction parameters.
 
