@@ -31,25 +31,25 @@ The tutorial code is available [here](https://github.com/vanshwassan/zk-paymaste
 1. We're going to use [zkSync CLI](/docs/tools/zksync-cli/) to set up an empty project. Install it globally:
 
 ```sh
-$ yarn add global zksync-cli@latest
+yarn add global zksync-cli@latest
 ```
 
 2. After installation, run the following command to create a new project:
 
 ```sh
-$ yarn zksync-cli create paymaster-dapi
+yarn zksync-cli create paymaster-dapi
 ```
 
 3. This will create a new zkSync project called `paymaster-dapi` with a basic `Greeter` contract. `cd` into the project directory:
 
 ```sh
-$ cd paymaster-dapi
+cd paymaster-dapi
 ```
 
-3. Add the project dependencies, including openzeppelin, zkSync and API3 contracts:
+4. Add the project dependencies, including openzeppelin, zkSync and API3 contracts:
 
 ```sh
-$ yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable @api3/contracts dotenv
+yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable @api3/contracts
 ```
 
 ## Design
@@ -92,7 +92,68 @@ Under contracts, you will find `Greeter.sol`. This is the contract that we will 
 ### Paymaster solidity contract
 
 
-2. We can now create our paymaster contract `MyPaymaster.sol` under `/contracts` directory. It is a custom implementation of the zkSync paymaster contract that uses dAPIs.
+2. We can now create our paymaster contract `MyPaymaster.sol` under `/contracts` directory. As it is a custom implementation of the [zkSync paymaster](/docs/dev/tutorials/custom-paymaster-tutorial.html) contract that uses dAPIs, make sure you've followed the guide to understand the basics of paymasters.
+
+We are going to use a skeleton paymaster contract and add the required functionality to it.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
+import {IPaymaster, ExecutionResult, PAYMASTER_VALIDATION_SUCCESS_MAGIC} from "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol";
+from  "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol";
+import {IPaymasterFlow} from "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol";
+import {TransactionHelper, Transaction} from "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
+
+import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
+
+contract MyPaymaster is IPaymaster {
+    
+    modifier onlyBootloader() {
+        require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
+        // Continue execution if called from the bootloader.
+        _;
+    }
+
+    constructor(address _erc20) {
+        allowedToken = _erc20;
+    }
+    
+    function setDapiProxy(
+        address _USDCproxy,
+        address _ETHproxy
+    ) public onlyOwner {
+         // TO BE IMPLEMENTED
+    }
+    
+    function readDapi(address _dapiProxy) public view returns (uint256) {
+         // TO BE IMPLEMENTED 
+    }
+
+    function validateAndPayForPaymasterTransaction  (
+        bytes32,
+        bytes32,
+        Transaction calldata _transaction
+    ) external payable onlyBootloader returns (bytes4 magic, bytes memory context) {
+        // TO BE IMPLEMENTED
+    }
+
+    function postTransaction (
+        bytes calldata _context,
+        Transaction calldata _transaction,
+        bytes32,
+        bytes32,
+        ExecutionResult _txResult,
+        uint256 _maxRefundedGas
+    ) external payable onlyBootloader override {
+        // Refunds are not supported yet.
+    }
+
+    receive() external payable {}
+}
+```
 
 - Add the following imports.
 
@@ -175,6 +236,91 @@ contract MyPaymaster is IPaymaster, Ownable {
                     }
                 }
             }
+```
+
+- Everything else for `validateAndPayForPaymasterTransaction()` remains the same as the previous paymaster contract as it follows the same paymaster flow. Here's the code for the entire function.
+
+```solidity
+    function validateAndPayForPaymasterTransaction (
+        bytes32,
+        bytes32,
+        Transaction calldata _transaction
+    ) onlyBootloader external payable returns (bytes4 magic, bytes memory context) {
+        // By default we consider the transaction as accepted.
+        magic = PAYMASTER_VALIDATION_SUCCESS_MAGIC;
+        require(
+            _transaction.paymasterInput.length >= 4,
+            "The standard paymaster input must be at least 4 bytes long"
+        );
+
+        bytes4 paymasterInputSelector = bytes4(
+            _transaction.paymasterInput[0:4]
+        );
+        if (paymasterInputSelector == IPaymasterFlow.approvalBased.selector) {
+            // While the transaction data consists of address, uint256 and bytes data,
+            // the data is not needed for this paymaster
+            (address token, uint256 amount, bytes memory data) = abi.decode(
+                _transaction.paymasterInput[4:],
+                (address, uint256, bytes)
+            );
+
+            // Verify if token is the correct one
+            require(token == allowedToken, "Invalid token");
+
+            // We verify that the user has provided enough allowance
+            address userAddress = address(uint160(_transaction.from));
+
+            address thisAddress = address(this);
+
+            uint256 providedAllowance = IERC20(token).allowance(
+                userAddress,
+                thisAddress
+            );
+            // Read values from the dAPIs
+
+            uint256 ETHUSDCPrice = readDapi(ETHdAPIProxy);
+            uint256 USDCUSDPrice = readDapi(USDCdAPIProxy);
+
+            requiredETH = _transaction.gasLimit *
+                _transaction.maxFeePerGas;
+
+            // Calculate the required ERC20 tokens to be sent to the paymaster
+            // (Equal to the value of requiredETH)
+
+            uint256 requiredERC20 = (requiredETH * ETHUSDCPrice)/USDCUSDPrice;
+            require(
+                providedAllowance >= requiredERC20,
+                "Min paying allowance too low"
+            );
+
+            // Note, that while the minimal amount of ETH needed is tx.gasPrice * tx.gasLimit,
+            // neither paymaster nor account are allowed to access this context variable.
+            try
+                IERC20(token).transferFrom(userAddress, thisAddress, requiredERC20)
+            {} catch (bytes memory revertReason) {
+                // If the revert reason is empty or represented by just a function selector,
+                // we replace the error with a more user-friendly message
+                if (requiredERC20 > amount) {
+                    revert("Not the required amount of tokens sent");
+                }
+                if (revertReason.length <= 4) {
+                    revert("Failed to transferFrom from users' account");
+                } else {
+                    assembly {
+                        revert(add(0x20, revertReason), mload(revertReason))
+                    }
+                }
+            }
+
+            // The bootloader never returns any data, so it can safely be ignored here.
+            (bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{
+                value: requiredETH
+            }("");
+            require(success, "Failed to transfer funds to the bootloader");
+        } else {
+            revert("Unsupported paymaster flow");
+        }
+    }
 ```
 
 Here's the full code for `MyPaymaster.sol` that uses dAPIs. You can copy/paste it directly.
@@ -332,19 +478,20 @@ The script also calls the `setDapiProxy` to set the proxy addresses for the requ
 1. Create the file `deploy-paymaster.ts` under `deploy` and copy/paste the following:
 
 ```ts
-import { utils, Wallet } from "zksync-web3";
+import { Wallet } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
 require('dotenv').config();
+// load wallet private key from env file
+const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   // The wallet that will deploy the token and the paymaster
   // It is assumed that this wallet already has sufficient funds on zkSync
   // ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
-
-  const wallet = new Wallet(process.env.PRIVATE_KEY);
+  const wallet = new Wallet(PRIVATE_KEY);
   // The wallet that will receive ERC20 tokens
   const emptyWallet = Wallet.createRandom();
   console.log(`Empty wallet's address: ${emptyWallet.address}`);
@@ -371,8 +518,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   ).wait();
 
   // Setting the dAPIs in Paymaster. Head over to the API3 Market (https://market.api3.org) to verify dAPI proxy contract addresses and whether they're funded or not.
-    const ETHUSDdAPI = "0x28ce555ee7a3daCdC305951974FcbA59F5BdF09b";
-    const USDCUSDdAPI = "0x946E3232Cc18E812895A8e83CaE3d0caA241C2AB";
+  const ETHUSDdAPI = "0x28ce555ee7a3daCdC305951974FcbA59F5BdF09b";
+  const USDCUSDdAPI = "0x946E3232Cc18E812895A8e83CaE3d0caA241C2AB";
   const setProxy = paymaster.setDapiProxy(USDCUSDdAPI, ETHUSDdAPI)
   await (await setProxy).wait()
   console.log("dAPI Proxies Set!")
@@ -393,10 +540,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-2. Create a `.env` file and add your private key:
+2. Update the existing `.env-example` file to your needs by renaming it to `.env` and insert your private key:
 
 ```sh
-$ echo 'PRIVATE_KEY=' > .env
+echo 'PRIVATE_KEY=' > .env
 ```
 
 3. Compile and deploy the contracts from the project root:
@@ -419,7 +566,7 @@ Minted 5k mUSDC for the empty wallet
 Done!
 ```
 
-4. Edit the `.env` file again to populate the following variables from the output:
+4. Update the `.env` file to populate the following variables from the above output:
 
 ```
 PRIVATE_KEY=
@@ -443,16 +590,15 @@ import { ContractFactory, Provider, utils, Wallet } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
-import { getDeployedContracts } from "zksync-web3/build/src/utils";
 
 require("dotenv").config();
 
 // Put the address of the deployed paymaster and the Greeter Contract in the .env file
-const PAYMASTER_ADDRESS = process.env.PAYMASTER_ADDRESS;
-const GREETER_CONTRACT_ADDRESS = process.env.GREETER_CONTRACT;
+const PAYMASTER_ADDRESS = process.env.PAYMASTER_ADDRESS || "";
+const GREETER_CONTRACT_ADDRESS = process.env.GREETER_CONTRACT || "";
 
 // Put the address of the ERC20 token in the .env file:
-const TOKEN_ADDRESS = process.env.TOKEN_ADDRESS;
+const TOKEN_ADDRESS = process.env.TOKEN_ADDRESS || "";
 
 function getToken(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
   const artifact = hre.artifacts.readArtifactSync("MyERC20");
@@ -467,10 +613,10 @@ function getGreeter(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
 
 // Wallet private key
 // ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
-const EMPTY_WALLET_PRIVATE_KEY = process.env.EMPTY_WALLET_PRIVATE_KEY;
+const EMPTY_WALLET_PRIVATE_KEY = process.env.EMPTY_WALLET_PRIVATE_KEY || "";
 export default async function (hre: HardhatRuntimeEnvironment) {
-    const provider = new Provider("https://testnet.era.zksync.dev");
-    const emptyWallet = new Wallet(EMPTY_WALLET_PRIVATE_KEY, provider);
+  const provider = new Provider("https://testnet.era.zksync.dev");
+  const emptyWallet = new Wallet(EMPTY_WALLET_PRIVATE_KEY, provider);
 
   // Obviously this step is not required, but it is here purely to demonstrate that indeed the wallet has no ether.
   const ethBalance = await emptyWallet.getBalance();
