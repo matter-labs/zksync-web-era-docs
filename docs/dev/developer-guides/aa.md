@@ -17,7 +17,7 @@ Accounts in zkSync Era can initiate transactions, like an EOA, but can also have
 Native Account Abstraction on zkSync Era fundamentally changes how accounts operate by introducing the concept of Smart Accounts and Paymasters. Smart Accounts are fully programmable, allowing for various customizations such as signature schemes, native multi-sig capabilities, spending limits, and application-specific restrictions.
 
 ::: note
-The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance accounts' flexibility and user experience, but they differ in critical aspects; learn more [here](../building-on-zksync/contracts/differences-with-ethereum#native-aa-vs-eip-4337). 
+The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance accounts' flexibility and user experience, but they differ in key aspects; learn more [here](../building-on-zksync/contracts/differences-with-ethereum#native-aa-vs-eip-4337). 
 :::
 
 Paymasters, conversely, can sponsor transactions for users, enabling users to pay transaction fees in ERC20 tokens. This innovative approach to account management significantly enhances user experience, security, and flexibility, paving the way for broader adoption of blockchain technology.
