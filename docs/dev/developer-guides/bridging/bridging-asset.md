@@ -6,7 +6,7 @@ communicate with each other with [L1 <-> L2 interoperability](./l1-l2-interop.md
 ## Bridges
 ### Default bridges
 
-Developers are free to build their own bridge for any token. However, we provide default bridges for ETH and other ERC20 tokens.
+Developers are free to build their own bridge for any token. However, we provide default bridges for ETH and other ERC-20 tokens.
 
 :::info
 - Use the [`zks_getBridgeContracts`](../../../api/api.md#zks_getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../../api/js/providers.md#getdefaultbridgeaddresses) method to get the default bridge addresses. 
@@ -72,7 +72,7 @@ Doing so triggers the following:
 
 :::note
 - zkSync Era testnet automatically finalizes all withdrawals.
-- This means that for every testnet withdrawal, an L1 transaction proves the inclusion for each message.
+- This means that for every testnet withdrawal, an L1 transaction proves the inclusion for the message.
 :::
 
 :::info

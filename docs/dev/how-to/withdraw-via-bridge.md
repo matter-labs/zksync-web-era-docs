@@ -5,22 +5,15 @@
 - For more information, read the [withdrawal delay guide](../troubleshooting/withdrawal-delay.md).
 :::
 
-Users must call the `withdraw` method on the L2 bridge contract, which will trigger the following actions:
+To withdraw ETH or ERC-20 tokens, use the following [Javascript SDK](../../api/js/README.md) scripts and call the `withdraw` method of the `Wallet` class.
 
-- L2 tokens will be burned.
-- An L2 -> L1 message with the information about the withdrawal will be sent.
-- After that, the withdrawal action will be available to be finalized by anyone in the L1 bridge (by proving the inclusion of the L2 -> L1 message, which is done when calling the `finalizeWithdrawal` method on the L1 bridge contract).
-- After the method is called, the funds are unlocked from the L1 bridge and sent to the withdrawal recipient.
+## Withdraw ETH
 
-::: warning
-On the testnet environment, we automatically finalize all withdrawals, i.e., for every withdrawal, we will take care of it by making an L1 transaction that proves the inclusion for each message.
-:::
+### 1. Set up
 
-### Withdraw scripts
+??
 
-To withdraw ETH or ERC20 tokens with [Javascript SDK](../../api/js/README.md), use the same scripts but call the `withdraw` method of the `Wallet` class.
-
-To withdraw ETH use:
+### 2. Create the script
 
 ```ts
 // Initialize the wallet.
@@ -37,36 +30,44 @@ const withdrawHandle = await wallet.withdraw({
 });
 console.log(`Withdraw ETH transaction sent ${withdrawHandle.hash}`);
 ```
-To withdraw an ERC20 token use:
+
+### 3. Run the script
+
+??
+
+### 4. Output
+
+??
+
+## Withdraw an ERC-20 token
+
+### 1. Set up
+
+??
+
+### 2. Create the script
 
 ```ts
-
 // Initialize the wallet.
 const l1provider = new Provider(L1_RPC_ENDPOINT);
 const l2provider = new Provider(L2_RPC_ENDPOINT);
 const wallet = new Wallet(WALLET_PRIV_KEY, l2provider, l1provider);
 
-// withdraw ERC20 token to L2
+// withdraw ERC-20 token to L2
 const withdrawErc20Handle = await wallet.withdraw({
   to: wallet.address,  // can bridge to a different address in L2
   token: TOKEN_ADDRESS,
-  amount: ethers.utils.parseEther(AMOUNT), // assumes ERC20 has 18 decimals
-  // performs the ERC20 approve action
+  amount: ethers.utils.parseEther(AMOUNT), // assumes ERC-20 has 18 decimals
+  // performs the ERC-20 approve action
   approveERC20: true,
 });
-console.log(`Withdraw ERC20 transaction sent ${withdrawErc20Handle.hash}`);
-
+console.log(`Withdraw ERC-20 transaction sent ${withdrawErc20Handle.hash}`);
 ```
 
-## Custom bridges on L1 and L2
+### 3. Run the script
 
-To build a custom bridge, create a regular Solidity contract which extends the correct interface for the layer. The interfaces provide access to the zkSync Era SDK deposit and withdraw implementations.
+??
 
-- L1: [IL1Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/ethereum/contracts/bridge/interfaces/IL1Bridge.sol)
+### 4. Output
 
-  For more information, check out our example [L1 custom bridge implementation](https://github.com/matter-labs/era-contracts/blob/main/ethereum/contracts/bridge/L1ERC20Bridge.sol).
-
-
-- L2: [L2ERC20Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/zksync/contracts/bridge/L2ERC20Bridge.sol)
-
-  For more information, check out our example [L2 custom bridge implementation](https://github.com/matter-labs/era-contracts/blob/main/zksync/contracts/bridge/L2ERC20Bridge.sol).
+??

@@ -1,6 +1,6 @@
 # Deposit to L2
 
-This document shows you how to deposit ETH and ERC20 from L1 to L2 using the [Javascript SDK](../../api/js/README.md). 
+This document shows you how to deposit ETH and ERC-20 from L1 to L2 using the [Javascript SDK](../../api/js/README.md). 
 
 ## Deposit ETH
 
@@ -104,7 +104,7 @@ Deposit transaction sent 0xffb8e302430b0584e2e0104dd6295a03688c98ba7b6e9279b01db
 Please wait a few minutes for the deposit to be processed in L2
 ```
 
-## Deposit ERC20 tokens
+## Deposit ERC-20 tokens
 
 ### 1. Scaffold a new project
 
@@ -118,9 +118,9 @@ npx zksync-cli@latest create ERC20_deposit
 
 Copy/paste the `.env` file from above into the directory.
 
-### 3. Create the deposit ERC20 tokens script
+### 3. Create the deposit ERC-20 tokens script
 
-- Create a new file `deposit-erc20.ts` in the project directory and copy/paste the code below. The script passes `approveERC20: true` which deals with ERC20 tokens.
+- Create a new file `deposit-erc20.ts` in the project directory and copy/paste the code below. The script passes `approveERC20: true` which deals with ERC-20 tokens.
 
 - Enter the `TOKEN_ADDRESS` and adjust the `AMOUNT` if necessary.
 
@@ -136,7 +136,7 @@ dotenv.config();
 const L1_RPC_ENDPOINT = process.env.L1_RPC_ENDPOINT || "";  // or an RPC endpoint from Infura/Chainstack/QuickNode/etc.
 const L2_RPC_ENDPOINT = process.env.L2_RPC_ENDPOINT || "https://testnet.era.zksync.dev"; // or the zkSync Era mainnet 
 
-// ERC20 Token address in L1
+// ERC-20 Token address in L1
 const TOKEN_ADDRESS = "<TOKEN_ADDRESS>";
 
 // Amount of tokens 
@@ -155,11 +155,11 @@ if (!L1_RPC_ENDPOINT) {
 }
 
 if (!TOKEN_ADDRESS ) {
-  throw new Error("Missing address of the ERC20 token in L1");
+  throw new Error("Missing address of the ERC-20 token in L1");
 }
 
 async function main() {
-  console.log(`Running script to bridge ERC20 to L2`);
+  console.log(`Running script to bridge ERC-20 to L2`);
 
   // Initialize the wallet.
   const l1provider = new Provider(L1_RPC_ENDPOINT);
@@ -173,8 +173,8 @@ async function main() {
   const depositHandle = await wallet.deposit({
     to: wallet.address,  // can bridge to a different address in L2
     token: TOKEN_ADDRESS,
-    amount: ethers.utils.parseEther(AMOUNT), // assumes ERC20 has 18 decimals
-    // performs the ERC20 approve action
+    amount: ethers.utils.parseEther(AMOUNT), // assumes ERC-20 has 18 decimals
+    // performs the ERC-20 approve action
     approveERC20: true,
   });
   console.log(`Deposit transaction sent ${depositHandle.hash}`);
