@@ -165,9 +165,11 @@ export const enSidebar = sidebar({
       children: [],
     },
     {
-      text: "Block Explorer", // required
+      text: "Block Explorer and Tools", // required
       link: "/tools/block-explorer", // optional, which should be a absolute path.
-      children: ["/tools/block-explorer/intro", "/tools/block-explorer/block-view", "/tools/block-explorer/search", "/tools/block-explorer/contract-verification"],
+      children: [ "/tools/block-explorer/block-explorer-menu", 
+                  "/tools/block-explorer/contract-verification",
+                  ],
     },
   ],
   //The legal related sidebar
