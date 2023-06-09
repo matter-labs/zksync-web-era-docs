@@ -1,5 +1,10 @@
 # Understanding zkSync Era
 
+:::danger
+- This section of the docs is under construction.
+- Please be advised you may come across erroneous information in this section.
+:::
+
 Take a deeper dive into the zkSync ecosystem.
 
 ## Table of contents

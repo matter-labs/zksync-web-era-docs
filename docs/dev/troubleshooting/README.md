@@ -1,5 +1,10 @@
 # Troubleshooting
 
+:::danger
+- This section of the docs is under construction.
+- Please be advised you may come across erroneous information in this section.
+:::
+
 Get brief explainers on your integration with zkSync.
 
 ## Table of contents
