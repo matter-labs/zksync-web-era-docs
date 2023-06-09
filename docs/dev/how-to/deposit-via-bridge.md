@@ -1,38 +1,38 @@
 # Deposit to L2
 
-## Deposit scripts
+This document shows you how to deposit ETH and ERC20 from L1 to L2 using the [Javascript SDK](../../api/js/README.md). 
 
-The examples below show scripts to deposit ETH and ERC20 tokens using the [Javascript SDK](../../api/js/README.md). 
+## Deposit ETH
 
-To scaffold a project run:
+### 1. Scaffold the project
 
 ```sh
 mkdir deposit-scripts && cd deposit-scripts
 npm init -y 
 npm i typescript ts-node ethers@^5.7.2 zksync-web3 dotenv
-
 ```
 
-Create an `.env` file with your private key and the L1 RPC endpoint, which will be loaded as environment variables:
+### 2. Set up environment variables
+
+Create a `.env` file in the project root containing your private key and the L1 RPC endpoint.
 
 ```text
-WALLET_PRIV_KEY=
-L1_RPC_ENDPOINT=
+WALLET_PRIV_KEY=<YOUR_PRIVATE_KEY>
+L1_RPC_ENDPOINT=<RPC_URL>
 ```
-::: tip
-
-You can find RPC endpoints for Goerli and Ethereum mainnet on [Chainlist](https://chainlist.org/). 
-
+:::tip
+If you're not using a node provider, you can find RPC endpoints for Goerli and Ethereum mainnet on [Chainlist](https://chainlist.org/). 
 :::
 
-### Deposit ETH script
+### 3. Deposit ETH
 
+Create a new file `deposit.ts` and copy/paste the code below. 
 
-Here is an example of how to deposit ETH with the `deposit` method from the `Wallet` class of [Javascript SDK](../../api/js/getting-started.md).
+The script deposits ETH using the [`deposit`](../../api/js/getting-started.md#depositing-funds) method from JavaScript SDK `Wallet` class.
+
+Adjust the `AMOUNT` variable if necessary.
 
 ```ts
-// Filename deposit.ts
-
 import { Wallet, Provider, utils } from "zksync-web3";
 import * as ethers from "ethers";
 
@@ -86,19 +86,45 @@ main().catch((error) => {
 });
 ```
 
-Adjust the `AMOUNT` variable and run the script with `ts-node`:
+### 4. Run the script
 
 ```sh
-ts-node deposit.ts
+npx ts-node deposit.ts
 ```
 
-### Deposit ERC20 tokens script
+### 5. Output
 
-To deposit ERC20 tokens, use the same method but pass the `approveERC20: true` option. Here's an example:
+You should see something like this:
+
+```txt
+Running script to deposit ETH in L2
+L1 Balance is 6539874840163375070
+L2 Balance is 5712612651486983637
+Deposit transaction sent 0xffb8e302430b0584e2e0104dd6295a03688c98ba7b6e9279b01dba65188cc444
+Please wait a few minutes for the deposit to be processed in L2
+```
+
+## Deposit ERC20 tokens
+
+### 1. Scaffold a new project
+
+Use the [zkSync Era cli](../../tools/zksync-cli/README.md) to set up a project.
+
+```sh
+npx zksync-cli@latest create ERC20_deposit
+```
+
+### 2. Include the `.env` file at the project root
+
+Copy/paste the `.env` file from above into the directory.
+
+### 3. Create the deposit ERC20 tokens script
+
+- Create a new file `deposit-erc20.ts` in the project directory and copy/paste the code below. The script passes `approveERC20: true` which deals with ERC20 tokens.
+
+- Enter the `TOKEN_ADDRESS` and adjust the `AMOUNT` if necessary.
 
 ```ts
-// Filename deposit-erc20.ts
-
 import { Wallet, Provider, utils } from "zksync-web3";
 import * as ethers from "ethers";
 
@@ -111,7 +137,7 @@ const L1_RPC_ENDPOINT = process.env.L1_RPC_ENDPOINT || "";  // or an RPC endpoin
 const L2_RPC_ENDPOINT = process.env.L2_RPC_ENDPOINT || "https://testnet.era.zksync.dev"; // or the zkSync Era mainnet 
 
 // ERC20 Token address in L1
-const TOKEN_ADDRESS = "";
+const TOKEN_ADDRESS = "<TOKEN_ADDRESS>";
 
 // Amount of tokens 
 const AMOUNT = "5";
@@ -154,17 +180,21 @@ async function main() {
   console.log(`Deposit transaction sent ${depositHandle.hash}`);
   console.log(`Please wait a few minutes for the deposit to be processed in L2`);
 }
-```
-
-To run this script, configure your `hardhat.config.ts` file as explained in this [guide](../../tools/hardhat/hardhat-zksync-deploy.md), or use the command `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project.
 
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
 ```
-Enter the `TOKEN_ADDRESS`, adjust the `AMOUNT`, and run this script with `ts-node`:
+
+### 4. Run the script
 
 ```sh
-ts-node deposit-erc20.ts
+npx ts-node deposit-erc20.ts
+```
+
+### 5. Output
+
+```text
+??
 ```
