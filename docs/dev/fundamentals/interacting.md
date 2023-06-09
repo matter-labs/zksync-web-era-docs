@@ -40,7 +40,6 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - Block Explorer URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://mainnet.era.zksync.io/ws`
 
-
 **Testnet network info**
 
 - Network Name: `zkSync Era Testnet`
@@ -50,15 +49,7 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - Block Explorer URL: `https://goerli.explorer.zksync.io/`
 - WebSocket URL: `wss://testnet.era.zksync.dev/ws`
 
-5. Click "Save"
-
-## Why are MetaMask native contract interactions not working?
-
-It is not currently possible to interact with zkSync Era smart contracts via MetaMask with EIP-1559 transactions. 
-
-For more information, read the [EIP-1559 documentation](../developer-guides/transactions/transactions.md#eip-1559-0x2).
-
-**Solution.** Explicitly specify `{ type: 0 }` in transaction overrides to use Ethereum legacy transactions.
+5. Click "Save".
 
 ## zkSync Era Support
 
