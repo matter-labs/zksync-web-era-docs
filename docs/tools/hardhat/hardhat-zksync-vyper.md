@@ -37,20 +37,31 @@ This plugin most often will not be used directly in the code.
 ### Configuration
 
 ```typescript
-zkvyper: {
-  version: "1.3.10",
-  compilerSource: "binary",  // binary or docker
-  settings: {
-    compilerPath: "zkvyper",  // ignored for compilerSource: "docker"
-    libraries{} // optional. References to non-inlinable libraries
-
-  }
-}
-networks: {
-  hardhat: {
-    zksync: true  // enables zksync in hardhat local network
-  }
-}
+const config: HardhatUserConfig = {
+  zkvyper: {
+    version: "1.3.7",
+    compilerSource: "binary", // docker usage no longer recommended
+    settings: {
+      // compilerPath: "zkvyper", // optional field with the path to the `zkvyper` binary.
+      libraries: {}, // optional. References to non-inlinable libraries
+    },
+  },
+  defaultNetwork: "zkSyncTestnet",
+  networks: {
+    hardhat: {
+      zksync: true, // enables zksync in hardhat local network
+    },
+    zkSyncTestnet: {
+      url: "https://zksync2-testnet.zksync.dev",
+      ethNetwork: "goerli",
+      zksync: true,
+    },
+  },
+  // Currently, only Vyper ^0.3.3 is supported.
+  vyper: {
+    version: "0.3.3",
+  },
+};
 ```
 
 ::: warning
