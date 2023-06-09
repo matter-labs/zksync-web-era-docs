@@ -14,6 +14,14 @@ As a result, such applications require L1 relayers, e.g. an EOA to help facilita
 
 Accounts in zkSync Era can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature, called "account abstraction" (AA), aims to resolve the issues described above.
 
+Native Account Abstraction on zkSync Era fundamentally changes how accounts operate by introducing the concept of Smart Accounts and Paymasters. Smart Accounts are fully programmable, allowing for various customizations such as signature schemes, native multi-sig capabilities, spending limits, and application-specific restrictions.
+
+::: note
+The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance accounts' flexibility and user experience, but they differ in critical aspects; learn more [here](../building-on-zksync/contracts/differences-with-ethereum#native-aa-vs-eip-4337). 
+:::
+
+Paymasters, conversely, can sponsor transactions for users, enabling users to pay transaction fees in ERC20 tokens. This innovative approach to account management significantly enhances user experience, security, and flexibility, paving the way for broader adoption of blockchain technology.
+
 ::: warning
 - zkSync Era is the first EVM-compatible chain to implement native account abstraction. We are evaluating how well the implementation works with EVM projects on testnet and mainnet. No incompatibilities have been found so far.
 - Due to the early stage nature of the feature, you may see some breaking changes to the account abstraction API/interfaces. However, given that accounts are versioned in zkSync Era, older accounts will still work even after breaking changes are released.

@@ -318,6 +318,16 @@ No actions are required from your side as all the calls to the precompiles are d
 
 In contrast to Ethereum, zkSync Era ecrecover always return a zero address for the zero digests. Be careful with adapting crypto primitives that rely on that, specifically, it affects [secp256k1 mul verification via ecrecover](https://ethresear.ch/t/you-can-kinda-abuse-ecrecover-to-do-ecmul-in-secp256k1-today/2384).
 
+## Native AA vs EIP 4337
+
+The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance accounts' flexibility and user experience, but they differ in critical aspects listed below:
+
+1. **Implementation Level**: zkSync's account abstraction is integrated at the protocol level, providing a unified transaction flow. On the other hand, EIP 4337 introduces a separate transaction flow on top of Ethereum's existing one.
+2. **Account Types**: zkSync introduces Smart Contract Accounts and Paymasters. Smart Contract Accounts are fully programmable, offering a wide range of customizations. Paymasters sponsor transactions, allowing users to pay fees in ERC20 tokens. EIP 4337, however, does not introduce a concept equivalent to Paymasters.
+3. **Transaction Processing**: In zkSync, an operator bundles transactions and sends them to the bootloader, the entry point contract. In contrast, EIP 4337 introduces Bundlers, nodes that bundle user operations and send them to a dedicated entry point contract.
+4. **Incentives**: The incentive for running a Bundler node in EIP 4337 is a cut of the transaction fees. zkSync does not have an equivalent concept, but Paymasters can cover transaction fees.
+5. **Flexibility**: Both offers increased flexibility compared to traditional Ethereum accounts, but zkSync's account abstraction, with its Smart Contract Accounts and Paymasters, provides more possibilities for user-friendly and secure account management.
+
 ## Recommendations
 
 ### Use the proxy pattern at the early stage of the protocol
