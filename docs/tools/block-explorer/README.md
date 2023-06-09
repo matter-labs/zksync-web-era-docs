@@ -12,9 +12,9 @@ The [block explorer menu](./block-explorer-menu.md) has options for viewing data
 
 ![zkSync Era block explorer menu](../../assets/images/block-explorer-menu.png)
 
-## Tools menu
+## Smart contract verification
 
-The tools menu has options for [verifying your smart contract deployments](./contract-verification.md), using the [portal wallet](./portal-wallet.md), and [bridging tokens](./token-bridger.md) from L1 to L2.
+The tools menu has options for [verifying your smart contract deployments](./contract-verification.md).
 
 ![zkSync Era tools menu](../../assets/images/tools-menu.png)
 
