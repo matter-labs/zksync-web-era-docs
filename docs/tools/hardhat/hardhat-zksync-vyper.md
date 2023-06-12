@@ -30,8 +30,11 @@ npm i -D @matterlabs/hardhat-zksync-vyper @nomiclabs/hardhat-vyper
 ### 3. Update the `hardhat.config.ts` file
 
 ```ts
+import { HardhatUserConfig } from "hardhat/config";
+
 import "@nomiclabs/hardhat-vyper";
 import "@matterlabs/hardhat-zksync-vyper";
+import "@matterlabs/hardhat-zksync-deploy";
 
 const config: HardhatUserConfig = {
   zkvyper: {
@@ -144,7 +147,8 @@ Remove `example` from the `.env.example` file and add your private key to `<WALL
 
 6. Deploy the contract
 
-yarn hardhat deploy-zksync
+```
+yarn hardhat deploy-zksync --script deploy-greeter.ts
 ```
 
 ### 6. Output
