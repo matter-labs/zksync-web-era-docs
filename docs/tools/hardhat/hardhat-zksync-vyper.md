@@ -1,42 +1,30 @@
 # `hardhat-zksync-vyper`
 
-This plugin is used to provide a convenient interface for compiling Vyper smart contracts before deploying them to zkSync Era.
-## Installation
+The [@matterlabs/hardhat-zksync-vyper](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-vyper) plugin provides an interface for compiling Vyper smart contracts before deploying them to zkSync Era.
 
-[@matterlabs/hardhat-zksync-vyper](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-vyper)
+## Set up
 
-This plugin is used in conjunction with [@nomiclabs/hardhat-vyper](https://www.npmjs.com/package/@nomiclabs/hardhat-vyper).
-To use it, you have to install and import both plugins in the `hardhat.config.ts` file:
+### 1. Install the libraries
 
-```javascript
-import "@nomiclabs/hardhat-vyper";
-import "@matterlabs/hardhat-zksync-vyper";
-```
-
-Add the latest version of this plugin to your project with the following command:
+The plugin is used with [@nomiclabs/hardhat-vyper](https://www.npmjs.com/package/@nomiclabs/hardhat-vyper).
 
 ::: code-tabs
-
 @tab:active yarn
-
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-vyper
+yarn add -D @matterlabs/hardhat-zksync-vyper @nomiclabs/hardhat-vyper
 ```
-
 @tab npm
-
 ```bash
-npm i -D @matterlabs/hardhat-zksync-vyper
+npm i -D @matterlabs/hardhat-zksync-vyper @nomiclabs/hardhat-vyper
 ```
 :::
 
-### Exports
+### 2. Create `hardhat.config.ts`
 
-This plugin most often will not be used directly in the code.
+```ts
+import "@nomiclabs/hardhat-vyper";
+import "@matterlabs/hardhat-zksync-vyper";
 
-### Configuration
-
-```typescript
 const config: HardhatUserConfig = {
   zkvyper: {
     version: "1.3.7",
@@ -52,7 +40,7 @@ const config: HardhatUserConfig = {
       zksync: true, // enables zksync in hardhat local network
     },
     zkSyncTestnet: {
-      url: "https://zksync2-testnet.zksync.dev",
+      url: "https://testnet.era.zksync.dev"",
       ethNetwork: "goerli",
       zksync: true,
     },
@@ -62,26 +50,31 @@ const config: HardhatUserConfig = {
     version: "0.3.3",
   },
 };
+
+export default config;
 ```
 
-::: warning
+#### Options
 
-- Compilers are no longer released as Docker images and its usage is no longer recommended. 
-- Use the `compilerSource: "binary"` in the `hardhat.config.ts` file to use the binary instead.
+- `version`: The `zkvyper` compiler version. Find the latest compiler versions in the [zkvyper repo](https://github.com/matter-labs/zkvyper-bin).
+- `compilerSource`: Indicates the compiler source and can be either `binary`. (A `docker` option is no longer recommended). If there is no previous installation, the plugin automatically downloads one. 
 
+:::warning
+The `docker` option is not recommended as compilers are no longer released as Docker images.
 :::
 
-- `version` is the `zkvyper` compiler version. Compiler versions can be found in [the following repository](https://github.com/matter-labs/zkvyper-bin).
-- `compilerSource` indicates the compiler source and can be either `docker` or `binary`(recommended). If there isn't a compiler binary already installed, the plugin will automatically download it. If `docker` is used, you need to run Docker desktop in the background and provide both `dockerImage` and `tag` in the experimental section.
-- `compilerPath` is an optional field with the path to the `zkvyper` binary. By default, the binary in `$PATH` is used. If `compilerSource` is `docker`, this field is ignored.
-- `dockerImage` and `tag` make up the name of the compiler docker image. If `compilerSource` is `binary`, these fields are ignored.
-- `libraries` if your contract uses non-inlinable libraries as dependencies, they have to be defined here. Learn more about [compiling libraries here](./compiling-libraries.md)
-- `zksync` network option indicates whether zkvyper is enabled on a certain network. `false` by default. Useful for multichain projects in which you can enable `zksync` only for specific networks.
+- `compilerPath`: Optional field with the path to the `zkvyper` binary. By default, the binary in `$PATH` is used.
+- `libraries`: Define any non-inlinable libraries your contracts use as dependencies here. Learn more about [compiling libraries](./compiling-libraries.md).
+- `zksync`: Indicates whether `zkvyper` is enabled on zkSync Era. This option is useful for multichain projects in which you want to enable `zksync` for specific networks only.
 
+### 3. Compile your contracts ??errors here??
 
-
-### Commands
-
-`yarn hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
-
-To understand what the factory dependencies are, read more about them in the [Web3 API](../../api/api.md) documentation.
+::: code-tabs
+@tab:active yarn
+```bash
+yarn hardhat compile
+```
+@tab npm
+```bash
+npx hardhat compile
+```
