@@ -147,7 +147,22 @@
           "source": "/docs/api/tools{,/**}",
           "destination": "/docs/tools/",
           "type": "302"
-        }
+        },
+        {
+          "source": "/docs/dev/developer-guides{,/**}",
+          "destination": "/docs/reference/",
+          "type": "302"
+        },    
+        {
+          "source": "/docs/dev/building-on-zksync/{,/**}",
+          "destination": "/docs/reference/",
+          "type": "302"
+        },     
+        {
+          "source": "/docs/dev/troubleshooting/{,/**}",
+          "destination": "/docs/reference/",
+          "type": "302"
+        }  
       ]
     },
     {
@@ -292,7 +307,22 @@
           "source": "/docs/api/tools{,/**}",
           "destination": "/docs/tools/",
           "type": "302"
-        }   
+        },
+        {
+          "source": "/docs/dev/developer-guides{,/**}",
+          "destination": "/docs/reference/",
+          "type": "302"
+        },    
+        {
+          "source": "/docs/dev/building-on-zksync/{,/**}",
+          "destination": "/docs/reference/",
+          "type": "302"
+        },     
+        {
+          "source": "/docs/dev/troubleshooting/{,/**}",
+          "destination": "/docs/reference/",
+          "type": "302"
+        }     
       ]
     }
   ]

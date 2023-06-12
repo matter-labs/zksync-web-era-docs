@@ -1,4 +1,4 @@
-# Useful Addresses
+# Useful addresses
 
 Here are some contract addresses that may be useful and/or of interest to those exploring the zkSync Era:
 

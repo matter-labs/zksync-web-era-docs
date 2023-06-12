@@ -9,9 +9,10 @@ export const enSidebar = sidebar({
     },
     {
       text: "Getting started",
-      link: "/dev/fundamentals",
+      link: "/dev/building-on-zksync/hello-world.md", 
       children: [ "/dev/building-on-zksync/hello-world.md", 
-                  "/dev/fundamentals/interacting.md", ],
+                  "/dev/building-on-zksync/interacting.md",
+                  "/dev/building-on-zksync/useful-address.md", ],
     },
     {
       text: "How to",
@@ -23,9 +24,9 @@ export const enSidebar = sidebar({
     },
     {
       text: "Tutorials",
-      link: "/dev/tutorials",
-      children: [
-                "/dev/tutorials/cross-chain-tutorial.md",
+      link: "/dev/tutorials/cross-chain-tutorial.md",
+      children: [    
+                "/dev/tutorials/cross-chain-tutorial.md",      
                 "/dev/tutorials/custom-aa-tutorial.md",
                 "/dev/tutorials/aa-daily-spend-limit.md",
                 "/dev/tutorials/custom-paymaster-tutorial.md",
@@ -35,8 +36,12 @@ export const enSidebar = sidebar({
   ],
   "/reference": [
     {
-      text: "Understanding zkSync Era",
-      link: "/dev/developer-guides",
+      text: "Introduction",
+      link: "/reference/README.md",
+    },
+    {
+      text: "Concepts",
+      link: "/reference/concepts",
       children: [
         "/dev/fundamentals/rollups.md", 
         "/dev/fundamentals/zkSync.md", 
@@ -53,28 +58,27 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Building on zkSync Era",
-      link: "/dev/building-on-zksync",
+      text: "Architecture",
+      link: "/reference/architecture",
       children: [
-        "/dev/building-on-zksync/contracts/contract-development.md",
-        "/dev/building-on-zksync/contracts/differences-with-ethereum.md",
-        "/dev/building-on-zksync/contracts/contract-deployment.md",
-        "/dev/building-on-zksync/contracts/contract-verification.md",
-        "/dev/building-on-zksync/events.md",
-        "/dev/building-on-zksync/useful-address.md",
+        "/reference/architecture/contracts/contract-development.md",
+        "/reference/architecture/contracts/differences-with-ethereum.md",
+        "/reference/architecture/contracts/contract-deployment.md",
+        "/reference/architecture/contracts/contract-verification.md",
+        "/reference/architecture/events.md",
       ],
     },
     {
       text: "Troubleshooting",
-      link: "/dev/troubleshooting",
+      link: "/reference/troubleshooting",
       children: [
-        "/dev/troubleshooting/important-links.md",
-        "/dev/troubleshooting/changelog.md",
-        "/dev/troubleshooting/withdrawal-delay.md",
-        "/dev/troubleshooting/audit-bug-bounty.md",
-        "/dev/troubleshooting/docs-contribution/docs.md",
-        "/dev/troubleshooting/docs-contribution/community-resources.md",
-        "/dev/troubleshooting/faq.md",
+        "/reference/troubleshooting/important-links.md",
+        "/reference/troubleshooting/changelog.md",
+        "/reference/troubleshooting/withdrawal-delay.md",
+        "/reference/troubleshooting/audit-bug-bounty.md",
+        "/reference/troubleshooting/docs-contribution/docs.md",
+        "/reference/troubleshooting/docs-contribution/community-resources.md",
+        "/reference/troubleshooting/faq.md",
       ],
     },
   ],
