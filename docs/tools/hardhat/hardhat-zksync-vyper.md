@@ -75,11 +75,11 @@ The `docker` option is not recommended as compilers are no longer released as Do
 - `libraries`: Define any non-inlinable libraries your contracts use as dependencies here. Learn more about [compiling libraries](./compiling-libraries.md).
 - `zksync`: Indicates whether `zkvyper` is enabled on zkSync Era. This option is useful for multichain projects in which you want to enable `zksync` for specific networks only.
 
-### 4. Set Up Vyper Contracts
+### 4. Set Up Vyper contracts
 
-To prepare Vyper contracts, leverage the [zkSync Era cli](../../tools/zksync-cli/README.md), which initially generates a `Contracts` folder including a Greeter.Sol contract. As our objective involves compiling Vyper contracts, not Solidity ones, modifications are in order. 
+The [zkSync Era cli](../../tools/zksync-cli/README.md) generates a `contracts` folder which includes a `Greeter.sol` contract. 
 
-- Delete Greeter.Sol from the `Contracts/` directory.
+- Delete `Greeter.sol` from the `contracts/` directory.
 - Add the equivalent `Greeter.vy` Vyper contract:
 
 ```vyper
@@ -108,9 +108,8 @@ def greet() -> String[100]:
     return self.greeting
 ```
 
-### 3. Compile Your Contract 
+### 3. Compile the contract 
 
-You can compile the contract with the following command:
 
 ::: code-tabs
 @tab:active yarn
@@ -123,14 +122,14 @@ npx hardhat compile
 ```
 :::
 
-### 4. Deploy Your Contract
+### 4. Deploy the contract
 
-To deploy the `Greeter.vy` contract, initially update the `use-greeter.ts` script, supplied by the CLI in the `deploy/` directory. 
+First update the `use-greeter.ts` script, supplied by the CLI in the `deploy/` directory. 
 
 Alter this line:
 ```
 // Load contract artifact. Ensure to compile first!
-import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.Sol/Greeter.json";
+import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.sol/Greeter.json";
 ```
 
 To aim at our Vyper contract:
@@ -139,15 +138,18 @@ To aim at our Vyper contract:
 import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.vy/Greeter.json";
 ```
 
-Following that, substitute `<WALLET-PRIVATE-KEY>` in the `deploy/deploy-greeter.ts` with your personal key. Now, you're ready to deploy the `Greeter.vy` contract! 
+### 5. Add private key to environment variables
 
-```
+Remove `example` from the `.env.example` file and add your private key to `<WALLET-PRIVATE-KEY>`.
+
+6. Deploy the contract
+
 yarn hardhat deploy-zksync
 ```
 
-### 5. Expect the Following Output
+### 6. Output
 
-You should anticipate the following output:
+You should see something like this:
 
 ```txt
 Running deploy function for the Greeter contract
