@@ -21,7 +21,7 @@ These can be used in conjunction with the [Provider Events API](https://docs.eth
 Here is an example to listen for smart contract events:
 
 ```js
-const { ethers } = require("ethers");
+import * as ethers from "ethers";
 const contractABI = require("./ABI_JSON");
 
 const listenEvents = async () => {
