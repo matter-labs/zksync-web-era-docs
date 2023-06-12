@@ -10,6 +10,7 @@ Use the [zkSync Era cli](../../tools/zksync-cli/README.md) to set up a project.
 
 ```sh
 npx zksync-cli@latest create greeter-vyper-example
+cd greeter-vyper-example
 ```
 
 ### 2. Install the libraries
@@ -78,7 +79,7 @@ The `docker` option is not recommended as compilers are no longer released as Do
 - `libraries`: Define any non-inlinable libraries your contracts use as dependencies here. Learn more about [compiling libraries](./compiling-libraries.md).
 - `zksync`: Indicates whether `zkvyper` is enabled on zkSync Era. This option is useful for multichain projects in which you want to enable `zksync` for specific networks only.
 
-### 4. Set Up Vyper contracts
+### 4. Create Vyper contract
 
 The [zkSync Era cli](../../tools/zksync-cli/README.md) generates a `contracts` folder which includes a `Greeter.sol` contract. 
 
@@ -111,7 +112,7 @@ def greet() -> String[100]:
     return self.greeting
 ```
 
-### 3. Compile the contract 
+### 5. Compile the contract 
 
 
 ::: code-tabs
@@ -125,7 +126,7 @@ npx hardhat compile
 ```
 :::
 
-### 4. Deploy the contract
+### 6. Create deployment script
 
 First update the `use-greeter.ts` script, supplied by the CLI in the `deploy/` directory. 
 
@@ -141,17 +142,17 @@ To aim at our Vyper contract:
 import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.vy/Greeter.json";
 ```
 
-### 5. Add private key to environment variables
+### 7. Add private key to environment variables
 
 Remove `example` from the `.env.example` file and add your private key to `<WALLET-PRIVATE-KEY>`.
 
-6. Deploy the contract
+8. Deploy the contract
 
 ```
 yarn hardhat deploy-zksync --script deploy-greeter.ts
 ```
 
-### 6. Output
+### 9. Output
 
 You should see something like this:
 
