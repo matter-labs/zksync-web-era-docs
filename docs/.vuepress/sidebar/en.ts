@@ -46,12 +46,17 @@ export const enSidebar = sidebar({
         "/reference/concepts/rollups.md", 
         "/reference/concepts/zkSync.md", 
         "/reference/concepts/hyperscaling.md",
-        "/reference/concepts/transactions/transactions.md",
-        "/reference/concepts/transactions/blocks.md",
+        {
+          text: "Transactions", // required
+          link: "/reference/concepts/transactions/transactions.md",
+          collapsible: true,
+          children: [
+            "/reference/concepts/transactions/transactions.md",
+            "/reference/concepts/transactions/blocks.md",
+            "/reference/concepts/transactions/fee-model.md",]
+        },
         "/reference/concepts/finality.md",
-        "/reference/concepts/system-contracts.md",
-        "/reference/concepts/aa.md",
-        "/reference/concepts/transactions/fee-model.md",
+        "/reference/concepts/aa.md",     
         {
           text: "Bridging", // required
           link: "/reference/concepts/bridging/bridging-asset.md",
@@ -65,12 +70,19 @@ export const enSidebar = sidebar({
     },
     {
       text: "Architecture",
-      link: "/reference/architecture/contracts/differences-with-ethereum.md",
+      link: "/reference/architecture/differences-with-ethereum.md",
       children: [
-        "/reference/architecture/contracts/differences-with-ethereum.md",
-        "/reference/architecture/contracts/contract-development.md",
-        "/reference/architecture/contracts/contract-deployment.md",
-        "/reference/architecture/contracts/contract-verification.md",
+        "/reference/architecture/differences-with-ethereum.md",
+        {
+          text: "Contracts", // required
+          link: "/reference/architecture/contracts/contract-development.md",
+          collapsible: true,
+          children: [
+            "/reference/architecture/contract/system-contracts.md",
+            "/reference/architecture/contracts/contract-development.md",
+            "/reference/architecture/contracts/contract-deployment.md",
+            "/reference/architecture/contracts/contract-verification.md", ]
+        },
         "/reference/architecture/events.md",
       ],
     },
