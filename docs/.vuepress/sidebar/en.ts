@@ -36,33 +36,39 @@ export const enSidebar = sidebar({
   ],
   "/reference": [
     {
-      text: "Introduction",
-      link: "/reference/README.md",
+      text: "Technical reference",
+      link: "/reference/",
     },
     {
       text: "Concepts",
-      link: "/reference/concepts",
+      link: "/reference/concepts/rollups.md",
       children: [
-        "/dev/fundamentals/rollups.md", 
-        "/dev/fundamentals/zkSync.md", 
-        "/dev/fundamentals/hyperscaling.md",
-        "/dev/developer-guides/transactions/transactions.md",
-        "/dev/developer-guides/transactions/blocks.md",
-        "/dev/developer-guides/finality.md",
-        "/dev/developer-guides/system-contracts.md",
-        "/dev/developer-guides/aa.md",
-        "/dev/developer-guides/transactions/fee-model.md",
-        "/dev/developer-guides/bridging/bridging-asset.md",
-        "/dev/developer-guides/bridging/l1-l2-interop.md",
-        "/dev/developer-guides/videos.md",
+        "/reference/concepts/rollups.md", 
+        "/reference/concepts/zkSync.md", 
+        "/reference/concepts/hyperscaling.md",
+        "/reference/concepts/transactions/transactions.md",
+        "/reference/concepts/transactions/blocks.md",
+        "/reference/concepts/finality.md",
+        "/reference/concepts/system-contracts.md",
+        "/reference/concepts/aa.md",
+        "/reference/concepts/transactions/fee-model.md",
+        {
+          text: "Bridging", // required
+          link: "/reference/concepts/bridging/bridging-asset.md",
+          collapsible: true,
+          children: [
+            "/reference/concepts/bridging/bridging-asset.md",
+            "/reference/concepts/bridging/l1-l2-interop.md",]
+        },
+        "/reference/concepts/videos.md",
       ],
     },
     {
       text: "Architecture",
-      link: "/reference/architecture",
+      link: "/reference/architecture/contracts/differences-with-ethereum.md",
       children: [
-        "/reference/architecture/contracts/contract-development.md",
         "/reference/architecture/contracts/differences-with-ethereum.md",
+        "/reference/architecture/contracts/contract-development.md",
         "/reference/architecture/contracts/contract-deployment.md",
         "/reference/architecture/contracts/contract-verification.md",
         "/reference/architecture/events.md",
@@ -70,7 +76,7 @@ export const enSidebar = sidebar({
     },
     {
       text: "Troubleshooting",
-      link: "/reference/troubleshooting",
+      link: "/reference/troubleshooting/important-links.md",
       children: [
         "/reference/troubleshooting/important-links.md",
         "/reference/troubleshooting/changelog.md",
