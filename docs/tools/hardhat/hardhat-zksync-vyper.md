@@ -146,13 +146,13 @@ import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.vy/Greeter.
 
 Remove `example` from the `.env.example` file and add your private key to `<WALLET-PRIVATE-KEY>`.
 
-8. Deploy the contract
+### 8. Deploy the contract
 
 ```
 yarn hardhat deploy-zksync --script deploy-greeter.ts
 ```
 
-### 7. Output
+### 9. Output
 
 You should see something like this:
 
