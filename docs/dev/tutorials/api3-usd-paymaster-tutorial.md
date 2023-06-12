@@ -1,52 +1,62 @@
-# USDC Paymaster Tutorial with API3 dAPIs
+# USDC paymaster tutorial with API3 dAPIs
 
 This tutorial shows you how to build a custom paymaster that allows users to pay fees with a `mockUSDC` ERC20 token. You will:
 
-- Create a paymaster that will take `mockUSDC` as gas to cover the transaction cost.
+- Create a paymaster that takes `mockUSDC` as gas to cover the transaction cost.
 - Create the `mockUSDC` token contract and send some tokens to a new wallet.
 - Send a `greet` transaction to update the greeting from the newly created wallet via the paymaster. Although the transaction normally requires ETH to pay the gas fee, our paymaster executes the transaction in exchange for the same USDC value.
+- Utilize API3 data feeds within a paymaster.
 
-- Utilize API3 Data Feeds within a paymaster.
+## Prerequisites
 
-## Using API3's self-funded dAPIs with zkSync paymaster example to pay gas fee in USDC on zkSync Era. 
+- Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
+- You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+- You already have some experience working with Ethereum.
+- You have a web3 wallet app that holds some Goerli test ETH and some zkSync test ETH.
+- You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
-[API3➚](https://api3.org/) is a collaborative project to deliver traditional API services to smart contract platforms in a decentralized and trust-minimized way. It is governed by a decentralized autonomous organization (DAO), namely the [API3 DAO](https://api3.org/dao).
+## Use API3's self-funded dAPIs to pay gas in USDC with the zkSync Era paymaster
 
-API3 data feeds are known as [dAPIs➚](https://docs.api3.org/guides/dapis/subscribing-self-funded-dapis/). These provide access to on-chain data feeds sourced from off-chain first-party oracles owned and operated by API providers themselves. Data feeds are continuously updated by first-party oracles using signed data.
+[API3➚](https://api3.org/) is a collaborative project that delivers traditional API services to smart contract platforms in a decentralized and trust-minimized way. It is governed by a decentralized autonomous organization (DAO), namely the [API3 DAO](https://api3.org/dao).
 
-Within a paymaster, price oracles can be used to provide price data on-chain for execution.
+API3 data feeds are known as [dAPIs➚](https://docs.api3.org/guides/dapis/subscribing-self-funded-dapis/). These provide access to on-chain data feeds sourced from off-chain first-party oracles owned and operated by API providers. Data feeds are continuously updated by first-party oracles using signed data.
 
-For this paymaster tutorial, we will use dAPIs to get the price of [ETH/USD](https://market.api3.org/dapis/zksync-goerli-testnet/ETH-USD) and [USDC/USD](https://market.api3.org/dapis/zksync-goerli-testnet/USDC-USD) datafeeds and use it to calculate gas in USDC value so that users can pay for their transactions with USDC.
+Within a paymaster, price oracles provide price data on-chain for execution.
+
+For this paymaster tutorial, we use dAPIs to get the price of [ETH/USD](https://market.api3.org/dapis/zksync-goerli-testnet/ETH-USD) and [USDC/USD](https://market.api3.org/dapis/zksync-goerli-testnet/USDC-USD) datafeeds, and then calculate gas in USDC value so that users can pay for their transactions with USDC.
 
 ::: note
-If you want to use an ERC20 token other than USDC, you can do so by changing the dAPIs used in the paymaster. For example, if you want to use DAI, you can use the [DAI/USD](https://market.api3.org/dapis/zksync-goerli-testnet/DAI-USD) dAPI instead of USDC/USD.
+- If you want to use an ERC20 token other than USDC, change the dAPIs used in the paymaster. 
+- For example, if you want to use DAI, use the [DAI/USD](https://market.api3.org/dapis/zksync-goerli-testnet/DAI-USD) dAPI instead of USDC/USD.
 :::
 
 ## Project repo
 
-The tutorial code is available [here](https://github.com/vanshwassan/zk-paymaster-dapi-poc)
+The tutorial code is available [here](https://github.com/vanshwassan/zk-paymaster-dapi-poc).
 
 ## Set up the project
 
-1. We're going to use [zkSync CLI](/docs/tools/zksync-cli/) to set up an empty project. Install it globally:
+1. Install the project with the [zkSync CLI](/docs/tools/zksync-cli/):
 
 ```sh
 yarn add global zksync-cli@latest
 ```
 
-2. After installation, run the following command to create a new project:
+2. Run the following command to create a new project:
 
 ```sh
 yarn zksync-cli create paymaster-dapi
 ```
 
-3. This will create a new zkSync project called `paymaster-dapi` with a basic `Greeter` contract. `cd` into the project directory:
+This creates a new zkSync Era project called `paymaster-dapi` with a basic `Greeter` contract. 
+
+3. `cd` into the project directory:
 
 ```sh
-cd paymaster-dapi
+cd ~/paymaster-dapi
 ```
 
-4. Add the project dependencies, including openzeppelin, zkSync and API3 contracts:
+4. Add the project dependencies:
 
 ```sh
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable @api3/contracts
@@ -54,9 +64,11 @@ yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/c
 
 ## Design
 
-For the sake of simplicity, we will use a modified OpenZeppelin ERC20 implementation. For that, we are going to code a basic ERC20 token `mockUSDC` which will be used to pay for the transactions.
+For the sake of simplicity, we use a modified OpenZeppelin ERC20 implementation. For that, we are going to code a basic ERC20 token `mockUSDC` which pays for the transactions.
 
-1. Create a new contract `mockUSDC.sol` under `/contracts` directory and add the following code:
+### 1. Create a new contract
+
+Create `mockUSDC.sol` in the `/contracts` directory and add the following code:
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
@@ -87,12 +99,15 @@ contract MyERC20 is ERC20 {
 }
 ```
 
-Under contracts, you will find `Greeter.sol`. This is the contract that we will be using to test our paymaster to set a greeting message on-chain.
+The `Greeter.sol` contract is already in the `contracts` directory. This is the contract that we will be using to test our paymaster to set a greeting message on-chain.
 
-### Paymaster solidity contract
+### 2. Paymaster solidity contract
 
+Create `MyPaymaster.sol` in the `/contracts` directory. 
 
-2. We can now create our paymaster contract `MyPaymaster.sol` under `/contracts` directory. As it is a custom implementation of the [zkSync paymaster](/docs/dev/tutorials/custom-paymaster-tutorial.html) contract that uses dAPIs, make sure you've followed the guide to understand the basics of paymasters.
+:::tip Tip
+As it is a custom implementation of the zkSync Era paymaster contract that uses dAPIs, make sure you follow the [zkSync paymaster](/docs/dev/tutorials/custom-paymaster-tutorial.html) to understand the basics of paymasters.
+:::
 
 We are going to use a skeleton paymaster contract and add the required functionality to it.
 
@@ -196,7 +211,7 @@ contract MyPaymaster is IPaymaster, Ownable {
     }
 ```
 
-- Under `validateAndPayForPaymasterTransaction()`, we will call the `readDapi()` function and add the logic to calculate the required USDC to be sent by the user.
+- Under `validateAndPayForPaymasterTransaction()`, we call the `readDapi()` function and add the logic to calculate the required USDC to be sent by the user.
 
 ```solidity
             // Read values from the dAPIs
@@ -323,7 +338,7 @@ contract MyPaymaster is IPaymaster, Ownable {
     }
 ```
 
-Here's the full code for `MyPaymaster.sol` that uses dAPIs. You can copy/paste it directly.
+- Copy/paste the full code for `MyPaymaster.sol` that uses dAPIs.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -469,13 +484,15 @@ contract MyPaymaster is IPaymaster, Ownable {
 }
 ```
 
-## Compile and Deploy the Contracts
+## Compile and deploy the contracts
 
-The script below deploys the ERC20 (mockUSDC), Greeter and the Paymaster contract. It also creates an empty wallet and mints 5k `mockUSDC` tokens for the paymaster to use at a later step. Finally, it also sends 0.05 ETH to the paymaster contract so it can pay for the transactions.
+The script below deploys the ERC20 (mockUSDC), Greeter, and the Paymaster contract. It also creates an empty wallet and mints 5k `mockUSDC` tokens for the paymaster to use at a later step. Finally, it also sends 0.05 ETH to the paymaster contract so it can pay for the transactions.
 
 The script also calls the `setDapiProxy` to set the proxy addresses for the required dAPIs on-chain. It also sets the `greeting`.
 
-1. Create the file `deploy-paymaster.ts` under `deploy` and copy/paste the following:
+### 1. Create the deployment file
+
+Create `deploy-paymaster.ts` in the `deploy` directory and copy/paste the following code:
 
 ```ts
 import { Wallet } from "zksync-web3";
@@ -540,20 +557,24 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-2. Update the existing `.env-example` file to your needs by renaming it to `.env` and insert your private key:
+### 2. Update env variables
+
+Update the existing `.env-example` file to your needs by renaming it to `.env` and insert your private key:
 
 ```sh
 echo 'PRIVATE_KEY=' > .env
 ```
 
-3. Compile and deploy the contracts from the project root:
+### 3. Compile and deploy
+
+From the project root, run the following:
 
 ```sh
 yarn hardhat compile
 yarn hardhat deploy-zksync --script deploy-paymaster.ts
 ```
 
-The output should be like this (Your values will be different):
+The output should be like this (your values will be different):
 
 ```
 Empty wallet's address: 0xcc7527d2DCb86e5327C494b323af502aEFd76831
@@ -566,7 +587,9 @@ Minted 5k mUSDC for the empty wallet
 Done!
 ```
 
-4. Update the `.env` file to populate the following variables from the above output:
+### 4. Update environment variables
+
+Update the `.env` file to populate the following variables from the above output:
 
 ```
 PRIVATE_KEY=
@@ -583,7 +606,9 @@ GREETER_CONTRACT=
 
 ## Using the paymaster
 
-1. Create the `use-paymaster.ts` script in the `deploy` folder. 
+### 1. Create paymaster script
+
+Create the `use-paymaster.ts` script in the `deploy` folder. 
 
 ```ts
 import { ContractFactory, Provider, utils, Wallet } from "zksync-web3";
@@ -725,7 +750,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-2. Run the script:
+### 2. Run the script
 
 ```sh
 yarn hardhat deploy-zksync --script use-paymaster.ts
