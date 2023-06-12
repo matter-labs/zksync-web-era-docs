@@ -152,7 +152,7 @@ Remove `example` from the `.env.example` file and add your private key to `<WALL
 yarn hardhat deploy-zksync --script deploy-greeter.ts
 ```
 
-### 9. Output
+### 7. Output
 
 You should see something like this:
 
