@@ -32,6 +32,8 @@ export const enSidebar = sidebar({
                 "/dev/tutorials/api3-usd-paymaster-tutorial.md",
       ],
     },
+  ],
+  "/reference": [
     {
       text: "Understanding zkSync Era",
       link: "/dev/developer-guides",
