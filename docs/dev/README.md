@@ -39,7 +39,7 @@ If this is your first time using zkSync, we recommend that you kick off at the b
 - [Account abstraction multisig](./tutorials/custom-aa-tutorial.md) - Learn how to deploy your custom accounts and interact zkSync system contracts.
 - [Daily Spending Limit](./tutorials/aa-daily-spend-limit.md) - Learn how to create a daily spend limit in your smart contract using Account Abstraction.
 - [Building custom paymasters](./tutorials/custom-paymaster-tutorial.md) - Learn how to build a custom paymaster to allow users to pay fees in your 
-token.
+- [USDC Paymaster Tutorial with API3 dAPIs](./tutorials/api3-usd-paymaster-tutorial.md) - Learn how to build a paymaster that allows users pay fees in USDC integrating with API3 dAPIs.
 
 ### Troubleshooting
 
