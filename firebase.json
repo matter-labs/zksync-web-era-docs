@@ -277,7 +277,7 @@
           "source": "/docs/api/tools{,/**}",
           "destination": "/docs/tools/",
           "type": "302"
-        },
+        }
       ]
     },
     {
