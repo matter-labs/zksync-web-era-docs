@@ -22,15 +22,15 @@ For open-source projects, verifying contracts enhances trust and encourages more
   
 ## Verifying contracts using `hardhat-zksync-verify`
 
-### 1. Project Setup
+### 1. Project setup
 
-1. Begin by installing [zkSync CLI](/docs/tools/zksync-cli/) to establish a new project:
+- Begin by installing [zkSync CLI](/docs/tools/zksync-cli/) to establish a new project:
 
 ```sh
 yarn add global zksync-cli@latest
 ```
 
-2. Once you complete the installation, execute the command below to create a fresh project:
+- Once you complete the installation, execute the command below to create a fresh project:
 
 ```sh
 yarn zksync-cli create verify-greeter-contract
@@ -39,10 +39,10 @@ yarn zksync-cli create verify-greeter-contract
 3. This function creates a fresh zkSync project titled `verify-greeter-contract` containing a `Greeter` contract. Proceed by moving into the project directory:
 
 ```sh
-cd verify-greeter-contract
+cd ~/verify-greeter-contract
 ```
 
-### 2. Package Installation for Verification
+### 2. Package installation for verification
 
 ::: code-tabs
 @tab yarn
@@ -110,7 +110,7 @@ export default config;
 - The `verifyURL` attribute directs to the verification endpoint specific to the zkSync network.
 - If you intend to validate a smart contract on Ethereum within the same project, don't forget to include your [Etherscan API key](https://docs.etherscan.io/getting-started/viewing-api-usage-statistics).
 
-### 4. Greeter Contract Compilation
+### 4. Greeter contract compilation
 
 The [zkSync CLI](/docs/tools/zksync-cli/) provides a `Greeter.sol` contract we will verify on zkSync Era. 
 
@@ -120,9 +120,11 @@ Compile the contract using this command:
 yarn hardhat compile
 ```
 
-### 5. Deployment of the Greeter Contract 
+### 5. Deploy the Greeter contract 
 
-The [zkSync CLI](/docs/tools/zksync-cli/) provides a `deploy/deploy-greeter.ts` script that we will use to deploy the Greeter contract. Replace `<WALLET-PRIVATE-KEY>` with your key.
+The [zkSync CLI](/docs/tools/zksync-cli/) provides a `deploy/deploy-greeter.ts` script that we will use to deploy the Greeter contract. 
+
+Add your private key to `<WALLET-PRIVATE-KEY>` in the `.env.example` file and remove `.example`.
 
 Initiate contract deployment using this command:
 
@@ -139,11 +141,11 @@ constructor args:0x0000000000000000000000000000000000000000000000000000000000000
 The Greeter contract got deployed at 0xE84774C41F096Ba5BafA1439cEE787D9dD1A6b72
 ```
 
-Remember, you will need the contract address to verify the contract on zkSync Era. 
+Remember, you need the contract address to verify the contract on zkSync Era. 
 
 ### 6. Verify the contract
 
-Run the following command to verify your contract on the specified network, replacing `<contract address>` with your contract's actual address.
+Run the following command to verify your contract on the specified network, replacing `<contract address>` with your deployed contract's address.
 
 ```sh
 yarn hardhat verify --network <network> <contract address>
@@ -279,5 +281,7 @@ In this script:
 - `constructorArguments` is an array containing the arguments used to deploy your contract (e.g. "Hi There").
 
 Once this script runs, it prints the verification ID. If the verification request is successful, you can use this ID to check the status of your verification request. If the request was not successful, the return value and printed ID is `-1`.
+
+9. UI block explorer alternative
 
 Contract verification in zkSync Era ensures the integrity and trustworthiness of your contracts. The [zkSync Era Block Explorer](https://explorer.zksync.io/blocks/) is a manual UI process for doing the same, ideal for occasional use, while the `hardhat-zksync-verify` plugin facilitates an automated, flexible approach for developers.

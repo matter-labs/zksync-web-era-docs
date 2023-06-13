@@ -1,4 +1,8 @@
-# Interact with zkSync Era
+# Interact with zkSync Era :skull_and_crossbones:
+
+:::danger
+This page is under construction and may be out-of-date.
+:::
 
 ## Do I need experience with zkSync Lite?
 
@@ -52,17 +56,11 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 
 5. Click "Save"
 
-## Why are Metamask native contract interactions not working?
-
-It is not currently possible to interact with zkSync Era smart contracts via Metamask with EIP-1559 transactions. zkSync Era does not support EIP1559 transactions.
-
-**Solution.** Explicitly specify `{ type: 0 }` in transaction overrides to use Ethereum legacy transactions.
-
 ## zkSync Era Support
 
 You can open a support ticket in `💻🧪│dev-support-beta` or ask any questions in `🖥│dev-general`
 
-If you need help with anything related to the zkSync Era, you can raise a support ticket on the zkSync Era discord, or check out the [FAQs](../troubleshooting/faq.md) page to view the most common queries about the zkSync Era. Additionally, you can reach out to the support team available on the `#dev-support-beta`, or ask any questions in `#dev-general` channel on the zkSync Era Discord server. 
+If you need help with anything related to the zkSync Era, you can raise a support ticket on the zkSync Era discord, or check out the [FAQs](../../reference/troubleshooting/faq.md) page to view the most common queries about the zkSync Era. Additionally, you can reach out to the support team available on the `#dev-support-beta`, or ask any questions in `#dev-general` channel on the zkSync Era Discord server. 
 Instructions for raising a support ticket are as follows:
 
 - Join the zkSync Era [our Discord](https://join.zksync.dev/) server.
