@@ -39,40 +39,56 @@ npm i -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
 
 Add the following code to the `hardhat.config.ts` file. The configuration must include the `verifyURL` property pointing to the zkSync Era network.
 
-?? is this the full config file they can copy paste?
-
 ```ts
-import "@matterlabs/hardhat-zksync-verify";
+import { HardhatUserConfig } from "hardhat/config";
 
-networks: {
-    goerli: {
-      url: "https://goerli.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL (optional).
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-solc";
+import "@matterlabs/hardhat-zksync-verify";
+import "@nomiclabs/hardhat-etherscan";
+
+// dynamically changes endpoints for local tests
+const zkSyncTestnet =
+  process.env.NODE_ENV == "test"
+    ? {
+        url: "http://localhost:3050",
+        ethNetwork: "http://localhost:8545",
+        zksync: true,
+      }
+    : {
+        url: "https://zksync2-testnet.zksync.dev",
+        ethNetwork: "goerli",
+        zksync: true,
+        verifyURL: 'https://zksync2-testnet-explorer.zksync.dev/contract_verification'  // Verification endpoint
+      };
+
+const config: HardhatUserConfig = {
+  zksolc: {
+    version: "1.3.10",
+    compilerSource: "binary",
+    settings: {},
+  },
+  defaultNetwork: "zkSyncTestnet",
+  networks: {
+    hardhat: {
+      zksync: false,
     },
-    zkTestnet: {
-      url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
-      ethNetwork: "goerli", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `goerli`)
-      zksync: true,
-      // Verification endpoint
-      verifyURL: 'https://zksync2-testnet-explorer.zksync.dev/contract_verification'
-    }
-},
+    zkSyncTestnet,
+  },
+  // etherscan: { // Optional - If you want to verify a smart contract on Ethereum in the same project
+  //   apiKey: //<Your API key for Etherscan>,
+  // },
+  solidity: {
+    version: "0.8.17",
+  },
+};
+
+export default config;
 ```
 
 - You can specify an arbitrary zkSync Era network name using the `defaultNetwork` property. 
 - Note that the `verifyURL` property points to the verification endpoint for the specific zkSync network.
-
-### 2.1 Add Etherscan API key (optional) ??
-
-If you want to verify a smart contract on Ethereum in the same project, add the `etherscan` field and your Etherscan API key:
-
-```typescript
-networks: {
-    ... ?? // better to include this in the full hardhat config script for copy pasting and mention it is optional ??
-},
-etherscan: {
-  apiKey: //<Your API key for Etherscan>,
-},
-```
+- Note if you want to verify a smart contract on Ethereum in the same project you will need to include your [Etherscan API key](https://docs.etherscan.io/getting-started/viewing-api-usage-statistics).
 
 ### 3. Verify the contract
 
