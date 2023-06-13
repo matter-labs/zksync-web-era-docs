@@ -36,7 +36,7 @@ The tutorial code is available [here](https://github.com/vanshwassan/zk-paymaste
 
 ## Set up the project
 
-1. Install the project with the [zkSync CLI](/docs/tools/zksync-cli/):
+1. Install the [zkSync CLI](/docs/tools/zksync-cli/) if you don't have installed it yet:
 
 ```sh
 yarn add global zksync-cli@latest
