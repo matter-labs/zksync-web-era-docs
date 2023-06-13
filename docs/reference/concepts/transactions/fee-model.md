@@ -95,6 +95,10 @@ The refund, therefore, returns the unpaid transaction fee portion to the user.
 
 Refunds are calculated by defining a fair value for the amount the user spent on the transaction and subtracting it from the actual spend.
 
+::: warning
+- Paymasters currently do not support refunds
+:::
+
 ## Out-of-gas errors
 
 Unlike on Geth, it is impossible to track out-of-gas errors on zkSync Era. 
