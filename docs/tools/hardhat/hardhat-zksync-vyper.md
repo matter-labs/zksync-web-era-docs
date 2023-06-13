@@ -1,76 +1,164 @@
 # `hardhat-zksync-vyper`
 
-This plugin is used to provide a convenient interface for compiling Vyper smart contracts before deploying them to zkSync Era.
-## Installation
+The [@matterlabs/hardhat-zksync-vyper](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-vyper) plugin provides an interface for compiling Vyper smart contracts before deploying them to zkSync Era.
 
-[@matterlabs/hardhat-zksync-vyper](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-vyper)
+## Set up
 
-This plugin is used in conjunction with [@nomiclabs/hardhat-vyper](https://www.npmjs.com/package/@nomiclabs/hardhat-vyper).
-To use it, you have to install and import both plugins in the `hardhat.config.ts` file:
+### 1. Scaffold a new project
 
-```javascript
-import "@nomiclabs/hardhat-vyper";
-import "@matterlabs/hardhat-zksync-vyper";
+Use the [zkSync Era cli](../../tools/zksync-cli/README.md) to set up a project.
+
+```sh
+npx zksync-cli@latest create greeter-vyper-example
+cd greeter-vyper-example
 ```
 
-Add the latest version of this plugin to your project with the following command:
+### 2. Install the libraries
+
+The plugin is used with [@nomiclabs/hardhat-vyper](https://www.npmjs.com/package/@nomiclabs/hardhat-vyper).
 
 ::: code-tabs
-
 @tab:active yarn
-
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-vyper
+yarn add -D @matterlabs/hardhat-zksync-vyper @nomiclabs/hardhat-vyper
 ```
-
 @tab npm
-
 ```bash
-npm i -D @matterlabs/hardhat-zksync-vyper
+npm i -D @matterlabs/hardhat-zksync-vyper @nomiclabs/hardhat-vyper
 ```
 :::
 
-### Exports
+### 3. Update the `hardhat.config.ts` file
 
-This plugin most often will not be used directly in the code.
+```ts
+import { HardhatUserConfig } from "hardhat/config";
 
-### Configuration
+import "@nomiclabs/hardhat-vyper";
+import "@matterlabs/hardhat-zksync-vyper";
+import "@matterlabs/hardhat-zksync-deploy";
 
-```typescript
-zkvyper: {
-  version: "1.3.10",
-  compilerSource: "binary",  // binary or docker
-  settings: {
-    compilerPath: "zkvyper",  // ignored for compilerSource: "docker"
-    libraries{} // optional. References to non-inlinable libraries
+const config: HardhatUserConfig = {
+  zkvyper: {
+    version: "1.3.7",
+    compilerSource: "binary", // docker usage no longer recommended
+    settings: {
+      // compilerPath: "zkvyper", // optional field with the path to the `zkvyper` binary.
+      libraries: {}, // optional. References to non-inlinable libraries
+    },
+  },
+  defaultNetwork: "zkSyncTestnet",
+  networks: {
+    hardhat: {
+      zksync: true, // enables zksync in hardhat local network
+    },
+    zkSyncTestnet: {
+      url: "https://testnet.era.zksync.dev",
+      ethNetwork: "goerli",
+      zksync: true,
+    },
+  },
+  // Currently, only Vyper ^0.3.3 is supported.
+  vyper: {
+    version: "0.3.3",
+  },
+};
 
-  }
-}
-networks: {
-  hardhat: {
-    zksync: true  // enables zksync in hardhat local network
-  }
-}
+export default config;
 ```
 
-::: warning
+#### Options
 
-- Compilers are no longer released as Docker images and its usage is no longer recommended. 
-- Use the `compilerSource: "binary"` in the `hardhat.config.ts` file to use the binary instead.
+- `version`: The `zkvyper` compiler version. Find the latest compiler versions in the [zkvyper repo](https://github.com/matter-labs/zkvyper-bin).
+- `compilerSource`: Indicates the compiler source and can be either `binary`. (A `docker` option is no longer recommended). If there is no previous installation, the plugin automatically downloads one. 
 
+:::warning
+The `docker` option is not recommended as compilers are no longer released as Docker images.
 :::
 
-- `version` is the `zkvyper` compiler version. Compiler versions can be found in [the following repository](https://github.com/matter-labs/zkvyper-bin).
-- `compilerSource` indicates the compiler source and can be either `docker` or `binary`(recommended). If there isn't a compiler binary already installed, the plugin will automatically download it. If `docker` is used, you need to run Docker desktop in the background and provide both `dockerImage` and `tag` in the experimental section.
-- `compilerPath` is an optional field with the path to the `zkvyper` binary. By default, the binary in `$PATH` is used. If `compilerSource` is `docker`, this field is ignored.
-- `dockerImage` and `tag` make up the name of the compiler docker image. If `compilerSource` is `binary`, these fields are ignored.
-- `libraries` if your contract uses non-inlinable libraries as dependencies, they have to be defined here. Learn more about [compiling libraries here](./compiling-libraries.md)
-- `zksync` network option indicates whether zkvyper is enabled on a certain network. `false` by default. Useful for multichain projects in which you can enable `zksync` only for specific networks.
+- `compilerPath`: Optional field with the path to the `zkvyper` binary. By default, the binary in `$PATH` is used.
+- `libraries`: Define any non-inlinable libraries your contracts use as dependencies here. Learn more about [compiling libraries](./compiling-libraries.md).
+- `zksync`: Indicates whether `zkvyper` is enabled on zkSync Era. This option is useful for multichain projects in which you want to enable `zksync` for specific networks only.
+
+### 4. Create Vyper contract
+
+The [zkSync Era cli](../../tools/zksync-cli/README.md) generates a `contracts` folder which includes a `Greeter.sol` contract. 
+
+- Delete `Greeter.sol` from the `contracts/` directory.
+- Add the equivalent `Greeter.vy` Vyper contract:
+
+```vyper
+# @version ^0.3.3
+# vim: ft=python
+
+owner: public(address)
+greeting: public(String[100])
+
+# __init__ is not invoked when deployed from create_forwarder_to
+@external
+def __init__(greeting: String[64]):
+  self.owner = msg.sender
+  self.greeting = greeting
+
+# Invoke once after create_forwarder_to
+@external
+def setup(_greeting: String[100]):
+  assert self.owner == ZERO_ADDRESS, "owner != zero address"
+  self.owner = msg.sender
+  self.greeting = _greeting
+
+@external
+@view
+def greet() -> String[100]:
+    return self.greeting
+```
+
+### 5. Compile the contract 
 
 
+::: code-tabs
+@tab:active yarn
+```bash
+yarn hardhat compile
+```
+@tab npm
+```bash
+npx hardhat compile
+```
+:::
 
-### Commands
+### 6. Create deployment script
 
-`yarn hardhat compile` -- compiles all the smart contracts in the `contracts` directory and creates `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
+First update the `use-greeter.ts` script, supplied by the CLI in the `deploy/` directory. 
 
-To understand what the factory dependencies are, read more about them in the [Web3 API](../../api/api.md) documentation.
+Alter this line:
+```
+// Load contract artifact. Ensure to compile first!
+import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.sol/Greeter.json";
+```
+
+To aim at our Vyper contract:
+```
+// Load contract artifact. Ensure to compile first!
+import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.vy/Greeter.json";
+```
+
+### 7. Add private key to environment variables
+
+Remove `example` from the `.env.example` file and add your private key to `<WALLET-PRIVATE-KEY>`.
+
+### 8. Deploy the contract
+
+```
+yarn hardhat deploy-zksync --script deploy-greeter.ts
+```
+
+### 9. Output
+
+You should see something like this:
+
+```txt
+Running deploy function for the Greeter contract
+The deployment is projected to cost 0.000135806 ETH
+constructor args:0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000094869207468657265210000000000000000000000000000000000000000000000
+Greeter was deployed to 0x7CDF8A4334fafE21B8dCCe70487d6CBC00183c0d
+```
