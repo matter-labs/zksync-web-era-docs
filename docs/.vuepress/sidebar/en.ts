@@ -81,7 +81,6 @@ export const enSidebar = sidebar({
           children: [
             "/reference/architecture/contracts/contract-development.md",
             "/reference/architecture/contracts/contract-deployment.md",
-            "/reference/architecture/contracts/contract-verification.md",
             "/reference/architecture/contracts/system-contracts.md", ]
         },
         "/reference/architecture/events.md",
