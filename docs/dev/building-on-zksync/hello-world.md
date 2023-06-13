@@ -65,7 +65,7 @@ module.exports = {
       url: "https://testnet.era.zksync.dev",
       ethNetwork: "goerli", // RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
       zksync: true,
-      verifyURL: 'https://zksync2-testnet-explorer.zksync.dev/contract_verification'  // Verification endpoint for Goerli
+      verifyURL: 'https://zksync2-testnet-explorer.zksync.dev/contract_verification'  // Verification endpoint
     },
   },
   solidity: {
