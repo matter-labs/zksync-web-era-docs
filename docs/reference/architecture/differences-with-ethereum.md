@@ -1,4 +1,4 @@
-# Differences from Ethereum
+# Differences from Ethereum :star:
 
 zkSync Era handles nearly all smart contracts based on the Ethereum Virtual Machine (EVM) and upholds high security standards,
 minimizing the need for repeated security audits. Nevertheless, it's essential to recognize the following differences.
@@ -137,7 +137,7 @@ it will return the array of immutable values initialized so far.
 ### `TIMESTAMP`, `NUMBER`
 
 For more information on blocks in zkSync Era, including the differences between `block.timestamp` and `block.number`,
-check out the [blocks in zkSync Era documentation](../../developer-guides/transactions/blocks.md#blocks-in-zksync-era).
+check out the [blocks in zkSync Era documentation](../../reference/concepts/transactions/blocks.md#blocks-in-zksync-era).
 
 ### `COINBASE`
 
@@ -396,4 +396,4 @@ Use zkSync Era's native account abstraction support for signature validation ins
 We recommend not relying on the fact that an account has an ECDSA private key, since the account may be governed by
 multisig and use another signature scheme.
 
-Read more about [zkSync Era Account Abstraction support](../../developer-guides/aa.md).
+Read more about [zkSync Era Account Abstraction support](../../reference/concepts/aa.md).

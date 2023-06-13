@@ -14,7 +14,7 @@ To deploy a contract on Ethereum, a user sends a transaction to the zero address
 
 **How deploying contracts works on zkSync.**
 
-To deploy a contract on zkSync Era, a user calls the `create` function of the [ContractDeployer system contract](../../developer-guides/system-contracts.md#contractdeployer) providing the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the transaction (as it's an [EIP712 transaction](../../../api/api.md#eip712)). If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
+To deploy a contract on zkSync Era, a user calls the `create` function of the [ContractDeployer system contract](./system-contracts.md#contractdeployer) providing the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the transaction (as it's an [EIP712 transaction](../../../api/api.md#eip712)). If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
 We recommend using the [hardhat-zksync-deploy](../../../tools/hardhat/) plugin, to simplify the deployment process. It provides classes and methods to take care of all the deployment requirements, like generating the [bytecode hash of the contract](#format-of-bytecode-hash).
 
@@ -24,7 +24,7 @@ Here's a [step-by-step guide on how to use it](../../../tools/hardhat/getting-st
 
 You might wonder how validators obtain the preimage of the bytecode hashes necessary to execute the code. This is where the concept of factory dependencies, or factory_deps for short, comes into play. Factory dependencies refer to a list of bytecode hashes whose corresponding preimages were previously revealed on the L1 (where data is always available).
 
-Under the hood, zkSync does not store bytecodes of contracts, but [specially formatted hashes of the bytecodes](#format-of-bytecode-hash). You can see that the [ContractDeployer](../../developer-guides/system-contracts.md#contractdeployer) system contract accepts the bytecode hash of the deployed contract and not its bytecode. However, for contract deployment to succeed, the operator needs to know the bytecode. The `factory_deps` field of the transaction is used for this reason: it contains the bytecodes that should be known to the operator for this transaction to succeed. Once the transaction succeeds, these bytecodes are published on L1 and are considered "known" to the operator forever.
+Under the hood, zkSync does not store bytecodes of contracts, but [specially formatted hashes of the bytecodes](#format-of-bytecode-hash). You can see that the [ContractDeployer](./system-contracts.md#contractdeployer) system contract accepts the bytecode hash of the deployed contract and not its bytecode. However, for contract deployment to succeed, the operator needs to know the bytecode. The `factory_deps` field of the transaction is used for this reason: it contains the bytecodes that should be known to the operator for this transaction to succeed. Once the transaction succeeds, these bytecodes are published on L1 and are considered "known" to the operator forever.
 
 Some examples of usage are:
 
@@ -69,13 +69,13 @@ For detailed information on smart contract vulnerabilities and security best pra
 
 ### Differences in `create()` behaviour
 
-To facilitate [support for account abstraction](https://era.zksync.io/docs/dev/developer-guides/aa.html), zkSync splits the nonce of each account into two parts: the deployment nonce and the transaction nonce. The deployment nonce represents the number of contracts the account has deployed using the `create()` opcode, while the transaction nonce is used for protecting against replay attacks for transactions.
+To facilitate [support for account abstraction](../../concepts/aa), zkSync splits the nonce of each account into two parts: the deployment nonce and the transaction nonce. The deployment nonce represents the number of contracts the account has deployed using the `create()` opcode, while the transaction nonce is used for protecting against replay attacks for transactions.
 
 This distinction implies that, while the nonce on zkSync behaves similarly to Ethereum for smart contracts, calculating the address of a deployed contract for externally owned accounts (EOAs) is not as straightforward. 
 
-On Ethereum, it can be safely determined using the formula `hash(RLP[address, nonce])`. However, on zkSync, it is advisable to wait until the contract is deployed and catch the `ContractDeployed` event emitted by the [ContractDeployer](https://era.zksync.io/docs/dev/developer-guides/system-contracts.html#contractdeployer), which provides the address of the newly deployed contract. The SDK handles all of these processes in the background to simplify the workflow.
+On Ethereum, it can be safely determined using the formula `hash(RLP[address, nonce])`. However, on zkSync, it is advisable to wait until the contract is deployed and catch the `ContractDeployed` event emitted by the [ContractDeployer](./system-contracts#contractdeployer), which provides the address of the newly deployed contract. The SDK handles all of these processes in the background to simplify the workflow.
 
-To have a deterministic address, you should use the `create2` method from [ContractDeployer](../../developer-guides/system-contracts.md#contractdeployer). It is available for EOAs as well.
+To have a deterministic address, you should use the `create2` method from [ContractDeployer](./system-contracts.md#contractdeployer). It is available for EOAs as well.
 
 ## Deploying contracts from L1
 
@@ -83,4 +83,4 @@ Deploying contracts on zkSync Era is also possible via L1-L2 communication.
 
 The [interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l1/contracts/zksync/interfaces/IMailbox.sol#L78) for submitting L1->L2 transactions accepts the list of all the factory dependencies required for this particular transaction. The logic for working with them is the same as for the default L2 deployments. The only difference is that since the user has already published the full preimage for the bytecodes on L1, there is no need to publish these bytecodes again on L1.
 
-To learn more about L1-L2 communication on zkSync Era, visit [this section of the docs](../../developer-guides/bridging/l1-l2-interop.md).
+To learn more about L1-L2 communication on zkSync Era, visit [this section of the docs](../../concepts/bridging/l1-l2-interop.md).
