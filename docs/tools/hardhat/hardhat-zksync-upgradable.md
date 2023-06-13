@@ -6,8 +6,7 @@ The plugin is based on [@openzeppelin/hardhat-upgrades](https://www.npmjs.com/pa
 
 ::: warning Overview
 - This plugin is still in alpha.
-- The plugin supports transparent upgradable proxies and beacon proxies.
-- UUPS proxies are not supported yet.
+- The plugin supports transparent upgradable proxies, UUPS proxies, and beacon proxies.
 - Proxy upgrade validations are not supported yet.
 :::
 
@@ -70,9 +69,9 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-# Deploying Proxies
+# Deploying proxies
 
-The plugin supports two types of proxy: Transparent upgradable proxies and beacon proxies.
+The plugin supports three types of proxies: Transparent upgradable proxies, UUPS proxies, and beacon proxies.
 
 Upgradability methods are all part of the `zkUpgrades` property in the `HardhatRuntimeEnvironment` and you only need to interact with it in order to deploy or upgrade your contracts.
 
@@ -109,7 +108,7 @@ contract Box is Initializable{
 }
 ```
 
-In examples below, we assume that the Box contract is compiled and its artifact loaded using Deployer class from the [hardhat-zksync-deploy plugin](./hardhat-zksync-deploy.md). More info on how to compile and load the contract can be found in the [Hardhat getting started page](https://era.zksync.io/docs/api/hardhat/getting-started.html#compile-and-deploy-a-contract).
+In the examples below, we assume that the Box contract is compiled and its artifact loaded using Deployer class from the [hardhat-zksync-deploy plugin](./hardhat-zksync-deploy.md). More info on how to compile and load the contract can be found in the [Hardhat getting started page](https://era.zksync.io/docs/api/hardhat/getting-started.html#compile-and-deploy-a-contract).
 
 ## Transparent upgradable proxies
 
@@ -130,7 +129,7 @@ After that, load the `Box` artifact and call the `deployProxy` method from the `
 ```typescript
   const contractName = 'Box';
   const contract = await deployer.loadArtifact(contractName);
-  await hre.zkUpgrades.deployProxy(deployer.zkWallet, contract, [42], { initializer: 'store' });
+  await hre.zkUpgrades.deployProxy(deployer.zkWallet, contract, [42], { initializer: 'initialize' });
 ```
 
 The `deployProxy` method deploys your implementation contract on zkSync Era, deploys the proxy admin contract, and finally, deploys the transparent proxy.
@@ -154,7 +153,7 @@ async function main() {
     const deployer = new Deployer(hre, zkWallet);
 
     const contract = await deployer.loadArtifact(contractName);
-    const box = await hre.zkUpgrades.deployProxy(deployer.zkWallet, contract, [42], { initializer: 'store' });
+    const box = await hre.zkUpgrades.deployProxy(deployer.zkWallet, contract, [42], { initializer: 'initialize' });
 
     await box.deployed();
     console.log(contractName + ' deployed to:', box.address);
@@ -228,6 +227,72 @@ On the other hand, if you need to explicitly set the provider, do that with the 
   const deployer = new Deployer(hre, zkWallet);
   ...
 ```
+
+## UUPS proxies
+
+:::warning
+- If you want to use the plugin's UUPS proxy functionality, use zksolc version >=1.3.9.
+:::
+
+The UUPS proxy pattern is similar to the transparent proxy pattern, except that the upgrade is triggered via the logic contract instead of from the proxy contract.
+
+For the UUPS deployment example, we use a slightly modified smart contract called `BoxUups`. 
+
+```typescript
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.16;
+import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
+import '@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
+
+contract BoxUups is Initializable, {
+    uint256 private value;
+    uint256 private secondValue;
+    uint256 private thirdValue;
+
+    function initialize(uint256 initValue) public initializer {
+        value = initValue;
+        __Ownable_init();
+        __UUPSUpgradeable_init();
+    }
+
+    // Reads the last stored value
+    function retrieve() public view returns (uint256) {
+        return value;
+    }
+
+    // Stores a new value in the contract
+    function store(uint256 newValue) public {
+        value = newValue;
+        emit ValueChanged(newValue);
+    }
+
+    function _authorizeUpgrade(address) internal override onlyOwner {}
+
+    // Emitted when the stored value changes
+    event ValueChanged(uint256 newValue);
+}
+```
+The main difference between the `Box` and `BoxUups` contracts is that the latter implements both `UUPSUpgradeable` and `OwnableUpgradeable` interfaces and has a special function `_authorizeUpgrade` which can only be called by the contract owner.
+
+You can find more info about how UUPS works in [OpenZeppelin's documentation.](https://docs.openzeppelin.com/contracts/4.x/api/proxy#transparent-vs-uups)
+
+
+To deploy the UUPS contract, use the same script as for the transparent upgradable proxy.
+
+```typescript
+async function main() {
+    const contractName = 'BoxUups';
+    console.info(chalk.yellow('Deploying ' + contractName + '...'));
+
+    // mnemonic for local node rich wallet
+    const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
+    const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+    ...
+```
+
+When you run the script, the plugin detects that the proxy type is UUPS, it executes the deployment, and saves the deployment info in your manifest file.
 
 ## Beacon proxies
 
@@ -409,6 +474,76 @@ To upgrade the implementation of the transparent upgradeable contract, use the `
 - The address of the previously deployed box proxy.
 - The artifact containing the new `Box2` implementation.
 
+
+## Upgrade UUPS proxy
+
+Similar to the deployment script, there are no modifications needed to upgrade the implementation of the UUPS contract, compared to upgrading the transparent upgradable contract. The only difference is that we use the `BoxUupsV2` as a new implementation contract.
+
+
+```typescript
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.16;
+import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
+import '@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
+
+contract BoxUupsV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
+    uint256 private value;
+    uint256 private secondValue;
+    uint256 private thirdValue;
+
+    function initialize(uint256 initValue) public initializer {
+        value = initValue;
+    }
+
+    // Reads the last stored value and returns it with a prefix
+    function retrieve() public view returns (string memory) {
+        return string(abi.encodePacked('V2: ', uint2str(value)));
+    }
+
+    // Converts a uint to a string
+    function uint2str(uint _i) internal pure returns (string memory) {
+        if (_i == 0) {
+            return '0';
+        }
+        uint j = _i;
+        uint len;
+        while (j != 0) {
+            len++;
+            j /= 10;
+        }
+        bytes memory bstr = new bytes(len);
+        uint k = len;
+        while (_i != 0) {
+            k = k - 1;
+            uint8 temp = (48 + uint8(_i - (_i / 10) * 10));
+            bytes1 b1 = bytes1(temp);
+            bstr[k] = b1;
+            _i /= 10;
+        }
+        return string(bstr);
+    }
+
+    // Stores a new value in the contract
+    function store(uint256 newValue) public {
+        value = newValue;
+        emit ValueChanged(newValue);
+    }
+
+    function _authorizeUpgrade(address) internal override onlyOwner {}
+
+    // Emitted when the stored value changes
+    event ValueChanged(uint256 newValue);
+}
+```
+
+Upgrade proxy script snippet:
+
+```typescript
+  const BoxUupsV2 = await deployer.loadArtifact('BoxUupsV2');
+  await hre.zkUpgrades.upgradeProxy(deployer.zkWallet, <PROXY_ADDRESS>, BoxUupsV2);
+```
 
 ## Upgrade beacon proxy
 
