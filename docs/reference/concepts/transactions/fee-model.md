@@ -62,7 +62,7 @@ See the [DefaultAccount code](https://github.com/matter-labs/era-system-contract
 
 The `validateTransaction` function for account abstraction, and the `validateAndPayForPaymasterTransaction` function for paymasters, always attempt to run using the same amount of computation, including storage access, regardless of whether the transaction is successful or not.
 
-See the documentation on [account abstraction](../../developer-guides/aa.md) for more detailed information.
+See the documentation on [account abstraction](../aa.md) for more detailed information.
 
 #### `validateTransaction`
 
