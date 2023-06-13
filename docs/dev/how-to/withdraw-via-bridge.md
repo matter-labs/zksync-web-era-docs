@@ -96,13 +96,13 @@ main().catch((error) => {
 });
 ```
 
-### 3. Run the script
+### 4. Run the script
 
 ```sh
 npx ts-node withdraw.ts
 ```
 
-### 4. Output
+### 5. Output
 
 You should see something like this:
 
@@ -194,13 +194,13 @@ main().catch((error) => {
 });
 ```
 
-### 3. Run the script
+### 4. Run the script
 
 ```sh
 npx ts-node withdraw-erc20.ts
 ```
 
-### 4. Output
+### 5. Output
 
 You should see something like this:
 
