@@ -6,9 +6,13 @@ export const enNavbar = navbar([
     link: "/" 
   },
   { 
-    text: "Developer docs", 
+    text: "Build", 
     link: "/dev/" 
   },
+  { 
+    text: "Technical Reference", 
+    link: "/reference/" 
+  }, 
   { 
     text: "API/SDKs", 
     link: "/api/" 

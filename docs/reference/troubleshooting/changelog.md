@@ -66,7 +66,7 @@ Major updates across the system include:
 - Update `zksync-web3` to `^0.14.3` in your `package.json` file and re-install dependencies.
 - Update `zksync-cli` with `npm update -g zksync-cli`.
 - Pull the latest docker images of the local setup by running the `./clear.sh` script. [More about local setup](../../tools/hardhat/testing.md).
-- L1->L2 transactions now require gas fees to be paid upfront. The fee can be estimated using the new method `zks_estimateGasL1ToL2`. [Read more here](../developer-guides/bridging/l1-l2-interop.md).
+- L1->L2 transactions now require gas fees to be paid upfront. The fee can be estimated using the new method `zks_estimateGasL1ToL2`. [Read more here](../../reference/concepts/bridging/l1-l2-interop.md).
 - Provide `_refundRecipient` when using `requestL2Transaction` indicating the address that will receive refunds. (Optional)
 
 
@@ -95,7 +95,7 @@ Version `1.3.5` of `zksolc` has been released and the zkSync docker image of the
   - Adds support for Solidity `0.8.18`.
   - Fixes a broken optimization flag that increased the bytecode size of compiled contracts.
   - Fixes a bug that detected ERC20 `transfer` calls as ETH `transfer` and produced a compilation error. 
-  - Detection of `transfer` and `send` methods in smart contracts now returns a warning message (similar to `v1.3.1`). The new warning message reminds developers that using these methods to transfer ETH can cause issues and suggest replacing them with [`payable(address).call[value: <X>]("")`](../building-on-zksync/contracts/differences-with-ethereum.md#use-call-over-sendtransfer).
+  - Detection of `transfer` and `send` methods in smart contracts now returns a warning message (similar to `v1.3.1`). The new warning message reminds developers that using these methods to transfer ETH can cause issues and suggest replacing them with [`payable(address).call[value: <X>]("")`](../../reference/architecture/differences-with-ethereum.md#use-call-over-sendtransfer).
   - `transfer` can be used to transfer other tokens (e.g. ERC20) without any issues, although this might be still highlighted by the compiler.
 - **Local setup docker image:**
   - Improvements in the zkSync node error messages returned on estimate gas requests.
@@ -147,7 +147,7 @@ To update your project, follow these steps:
   - The `ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT` in the transaction `customData` should be updated to `gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT`. 
   - Custom paymasters are required to return a magic value after a transaction validation on the `validateAndPayForPaymasterTransaction` method. This value should be `ACCOUNT_VALIDATION_SUCCESS_MAGIC` (available on the `IAccount.sol` interface) if the validation is successful, or an empty value `bytes4(0)` if it fails.
 - If your project uses Account Abstraction, keep in mind that the `IAccount` interface has changed. 
-  - The [Account abstraction multisig](../tutorials/custom-aa-tutorial.md) tutorial has been updated to reflect the interface changes.
+  - The [Account abstraction multisig](../../dev/tutorials/custom-aa-tutorial.md) tutorial has been updated to reflect the interface changes.
   - The `prePaymaster` method has been renamed to`prepareForPaymaster`.
   - Smart contract accounts now include versioning to allow for future updates. This should be included as a parameter when calling `create2Account` from AA Factory contracts.
   - Accounts are required to return a magic value after a transaction validation on the `validateTransaction` method. This value should be `ACCOUNT_VALIDATION_SUCCESS_MAGIC` (available on the `IAccount.sol` interface) if the validation is successful, or an empty value `bytes4(0)` if it fails.
@@ -157,4 +157,4 @@ To update your project, follow these steps:
 
 If after doing these changes you’re still facing issues, please [create a support ticket in the "dev-support-beta" channed in our Discord](https://join.zksync.dev/).
 
-The [Javascript SDK documentation](../../api/js/getting-started.md), [Quickstart](../building-on-zksync/hello-world.md) and [Account abstraction multisig](../tutorials/custom-aa-tutorial.md) tutorials have been updated but **some other sections of the docs are not updated yet.** We will release updates during the upcoming days. If you find any issues, please [contact us](https://join.zksync.dev/).
+The [Javascript SDK documentation](../../api/js/getting-started.md), [Quickstart](../../dev/building-on-zksync/hello-world.md) and [Account abstraction multisig](../../dev/tutorials/custom-aa-tutorial.md) tutorials have been updated but **some other sections of the docs are not updated yet.** We will release updates during the upcoming days. If you find any issues, please [contact us](https://join.zksync.dev/).
