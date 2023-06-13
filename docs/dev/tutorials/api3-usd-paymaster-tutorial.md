@@ -106,9 +106,6 @@ The `Greeter.sol` contract is already in the `contracts` directory. This is the 
 
 Create `MyPaymaster.sol` in the `/contracts` directory. 
 
-:::tip Tip
-As it is a custom implementation of the zkSync Era paymaster contract that uses dAPIs, make sure you follow the [zkSync paymaster](/docs/dev/tutorials/custom-paymaster-tutorial.html) to understand the basics of paymasters.
-:::
 
 We are going to use a skeleton paymaster contract and add the required functionality to it.
 
