@@ -152,7 +152,7 @@ yarn hardhat verify --network <network> <contract address>
 For example, to verify our Greeter contract on the `zkSyncTestnet` network and our contract address is `0xE84774C41F096Ba5BafA1439cEE787D9dD1A6b72`, use:
 
 ```sh
-yarn hardhat verify --network zkSyncTestnet 0xE84774C41F096Ba5BafA1439cEE787D9dD1A6b72 'Hi There!'
+yarn hardhat verify --network zkSyncTestnet 0xE84774C41F096Ba5BafA1439cEE787D9dD1A6b72 'Hi there!'
 ```
 
 The verification task attempts to compare the compiled bytecode of all the contracts in your local environment with the deployed bytecode of the deployed contract you are seeking to verify. If there is no match, it reports an error.
@@ -172,7 +172,7 @@ For instance, if the source name is `Greeter.sol`, the contract name is `Greeter
 Here's an example of command using the `--contract` flag:
 
 ```sh
-yarn hardhat verify --network zkSyncTestnet 0xE84774C41F096Ba5BafA1439cEE787D9dD1A6b72 'Hi There!' --contract contracts/Greeter.sol:Greeter
+yarn hardhat verify --network zkSyncTestnet 0xE84774C41F096Ba5BafA1439cEE787D9dD1A6b72 'Hi there!' --contract contracts/Greeter.sol:Greeter
 ```
 
 ### 6.2 Verify the contract with constructor arguments
