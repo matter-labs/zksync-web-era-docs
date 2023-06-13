@@ -78,10 +78,10 @@ export const enSidebar = sidebar({
           link: "/reference/architecture/contracts/contract-development.md",
           collapsible: true,
           children: [
-            "/reference/architecture/contracts/system-contracts.md",
             "/reference/architecture/contracts/contract-development.md",
             "/reference/architecture/contracts/contract-deployment.md",
-            "/reference/architecture/contracts/contract-verification.md", ]
+            "/reference/architecture/contracts/contract-verification.md",
+            "/reference/architecture/contracts/system-contracts.md", ]
         },
         "/reference/architecture/events.md",
       ],
