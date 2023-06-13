@@ -9,37 +9,34 @@ export const enSidebar = sidebar({
     },
     {
       text: "Getting started",
-      link: "/dev/building-on-zksync/hello-world.md", 
-      children: [ "/dev/building-on-zksync/hello-world.md", 
-                  "/dev/building-on-zksync/interacting.md",
-                  "/dev/building-on-zksync/useful-address.md", ],
+      link: "/dev/building-on-zksync/hello-world.md",
+      children: ["/dev/building-on-zksync/hello-world.md", "/dev/building-on-zksync/interacting.md", "/dev/building-on-zksync/useful-address.md"],
     },
     {
       text: "How to",
       link: "/dev/how-to/estimate-gas.md",
-      children: [ "/dev/how-to/estimate-gas.md", 
-                  "/dev/how-to/send-transaction-l1-l2",
-                  "/dev/how-to/send-message-l2-l1",
-                  "/dev/how-to/transfer-token-l2",
-                  {
-                    text: "Bridge assets", // required
-                    collapsible: true,
-                    children: [
-                      "/dev/how-to/deposit-via-bridge",
-                      "/dev/how-to/withdraw-via-bridge",
-                    ],
-                  },
-                  ],
+      children: [
+        "/dev/how-to/estimate-gas.md",
+        "/dev/how-to/send-transaction-l1-l2",
+        "/dev/how-to/send-message-l2-l1",
+        "/dev/how-to/transfer-token-l2",
+        {
+          text: "Bridge assets", // required
+          collapsible: true,
+          children: ["/dev/how-to/deposit-via-bridge", "/dev/how-to/withdraw-via-bridge"],
+        },
+        "/dev/how-to/verify-contracts",
+      ],
     },
     {
       text: "Tutorials",
       link: "/dev/tutorials/cross-chain-tutorial.md",
-      children: [    
-                "/dev/tutorials/cross-chain-tutorial.md",      
-                "/dev/tutorials/custom-aa-tutorial.md",
-                "/dev/tutorials/aa-daily-spend-limit.md",
-                "/dev/tutorials/custom-paymaster-tutorial.md",
-                "/dev/tutorials/api3-usd-paymaster-tutorial.md",
+      children: [
+        "/dev/tutorials/cross-chain-tutorial.md",
+        "/dev/tutorials/custom-aa-tutorial.md",
+        "/dev/tutorials/aa-daily-spend-limit.md",
+        "/dev/tutorials/custom-paymaster-tutorial.md",
+        "/dev/tutorials/api3-usd-paymaster-tutorial.md",
       ],
     },
   ],
@@ -52,27 +49,22 @@ export const enSidebar = sidebar({
       text: "Concepts",
       link: "/reference/concepts/rollups.md",
       children: [
-        "/reference/concepts/rollups.md", 
-        "/reference/concepts/zkSync.md", 
+        "/reference/concepts/rollups.md",
+        "/reference/concepts/zkSync.md",
         "/reference/concepts/hyperscaling.md",
         {
           text: "Transactions", // required
           link: "/reference/concepts/transactions/transactions.md",
           collapsible: true,
-          children: [
-            "/reference/concepts/transactions/transactions.md",
-            "/reference/concepts/transactions/blocks.md",
-            "/reference/concepts/transactions/fee-model.md",]
+          children: ["/reference/concepts/transactions/transactions.md", "/reference/concepts/transactions/blocks.md", "/reference/concepts/transactions/fee-model.md"],
         },
         "/reference/concepts/finality.md",
-        "/reference/concepts/aa.md",     
+        "/reference/concepts/aa.md",
         {
           text: "Bridging", // required
           link: "/reference/concepts/bridging/bridging-asset.md",
           collapsible: true,
-          children: [
-            "/reference/concepts/bridging/bridging-asset.md",
-            "/reference/concepts/bridging/l1-l2-interop.md",]
+          children: ["/reference/concepts/bridging/bridging-asset.md", "/reference/concepts/bridging/l1-l2-interop.md"],
         },
         "/reference/concepts/videos.md",
       ],
@@ -89,8 +81,8 @@ export const enSidebar = sidebar({
           children: [
             "/reference/architecture/contracts/contract-development.md",
             "/reference/architecture/contracts/contract-deployment.md",
-            "/reference/architecture/contracts/contract-verification.md",
-            "/reference/architecture/contracts/system-contracts.md", ]
+            "/reference/architecture/contracts/system-contracts.md",
+          ],
         },
         "/reference/architecture/events.md",
       ],
@@ -109,7 +101,7 @@ export const enSidebar = sidebar({
       ],
     },
   ],
-    //The sidebar for Tools and SDKs
+  //The sidebar for Tools and SDKs
   "/api": [
     {
       text: "Web3 JSON-RPC API", // required
@@ -146,14 +138,7 @@ export const enSidebar = sidebar({
     {
       text: "Go SDK",
       link: "/api/go",
-      children: [
-        "/api/go/getting-started",
-        "/api/go/providers",
-        "/api/go/accounts",
-        "/api/go/accounts-l1-l2",
-        "/api/go/contract-interface",
-        "/api/go/types",
-      ],
+      children: ["/api/go/getting-started", "/api/go/providers", "/api/go/accounts", "/api/go/accounts-l1-l2", "/api/go/contract-interface", "/api/go/types"],
     },
     {
       text: "Java SDK", // required
@@ -200,9 +185,7 @@ export const enSidebar = sidebar({
     {
       text: "Block Explorer and Tools", // required
       link: "/tools/block-explorer", // optional, which should be a absolute path.
-      children: [ "/tools/block-explorer/block-explorer-menu", 
-                  "/tools/block-explorer/contract-verification",
-                  ],
+      children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification"],
     },
   ],
   //The legal related sidebar
