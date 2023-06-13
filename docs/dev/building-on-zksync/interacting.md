@@ -1,4 +1,8 @@
-# Interact with zkSync Era
+# Interact with zkSync Era :skull_and_crossbones:
+
+:::danger
+This page is under construction and may be out-of-date.
+:::
 
 ## Do I need experience with zkSync Lite?
 
@@ -17,11 +21,11 @@ Check out our step-by-step [quickstart guide](../building-on-zksync/hello-world.
 - How to install zkSync hardhat plugin and deploy smart contracts with it.
 - How to build the front-end for your dApp using the `zksync-web3` library.
 
-### Connecting to zkSync Era on MetaMask
+### Connecting to zkSync Era on Metamask
 
 In order to add the zkSync Era alpha mainnet network to your wallet, you will need to enter the following details:
 
-1. Sign into your MetaMask wallet and click on the network in the top center:
+1. Sign into your Metamask wallet and click on the network in the top center:
 
 ![img](../../assets/images/connect-1.png)
 
@@ -40,6 +44,7 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - Block Explorer URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://mainnet.era.zksync.io/ws`
 
+
 **Testnet network info**
 
 - Network Name: `zkSync Era Testnet`
@@ -49,13 +54,13 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - Block Explorer URL: `https://goerli.explorer.zksync.io/`
 - WebSocket URL: `wss://testnet.era.zksync.dev/ws`
 
-5. Click "Save".
+5. Click "Save"
 
 ## zkSync Era Support
 
 You can open a support ticket in `💻🧪│dev-support-beta` or ask any questions in `🖥│dev-general`
 
-If you need help with anything related to the zkSync Era, you can raise a support ticket on the zkSync Era discord, or check out the [FAQs](../troubleshooting/faq.md) page to view the most common queries about the zkSync Era. Additionally, you can reach out to the support team available on the `#dev-support-beta`, or ask any questions in `#dev-general` channel on the zkSync Era Discord server. 
+If you need help with anything related to the zkSync Era, you can raise a support ticket on the zkSync Era discord, or check out the [FAQs](../../reference/troubleshooting/faq.md) page to view the most common queries about the zkSync Era. Additionally, you can reach out to the support team available on the `#dev-support-beta`, or ask any questions in `#dev-general` channel on the zkSync Era Discord server. 
 Instructions for raising a support ticket are as follows:
 
 - Join the zkSync Era [our Discord](https://join.zksync.dev/) server.

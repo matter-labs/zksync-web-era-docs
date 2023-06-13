@@ -38,7 +38,7 @@ On zkSync Era this varies because we support custom and paymaster accounts. Thes
 
 The transaction fee estimate depends on the entire transaction flow, including validation and execution. The `eth_estimateGas` function uses binary search to find the smallest gas value under which the transaction succeeds.
 
-For more information, find out [how to estimate gas for various transactions types](../../how-to/estimate-gas.md).
+For more information, find out [how to estimate gas for various transactions types](../../../dev/how-to/estimate-gas.md).
 
 For any Rust developers interested in the zkSync Era implementation for gas estimation, see the [Rust code in our repo](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-rs/src/operations/execute_contract.rs#L129).
 
@@ -62,7 +62,7 @@ See the [DefaultAccount code](https://github.com/matter-labs/era-system-contract
 
 The `validateTransaction` function for account abstraction, and the `validateAndPayForPaymasterTransaction` function for paymasters, always attempt to run using the same amount of computation, including storage access, regardless of whether the transaction is successful or not.
 
-See the documentation on [account abstraction](../../developer-guides/aa.md) for more detailed information.
+See the documentation on [account abstraction](../aa.md) for more detailed information.
 
 #### `validateTransaction`
 

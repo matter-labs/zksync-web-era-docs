@@ -119,4 +119,4 @@ If you encounter such an error, please do the following:
 
 - Update the `@matterlabs/hardhat-zksync-solc` library and try to re-compile the smart contracts afterwards.
 - If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](./compiling-libraries.md).
-- If the same error persists, [report the issue](../../dev/fundamentals/interacting.md#zksync-era-support) to our team. We will do our best to help you.
+- If the same error persists, [report the issue](../../dev/building-on-zksync/interacting.md#zksync-era-support) to our team. We will do our best to help you.

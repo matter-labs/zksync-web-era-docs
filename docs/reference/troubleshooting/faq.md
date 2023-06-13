@@ -54,10 +54,10 @@ While maintaining maximum compatibility, the zkEVM has significant improvements 
 - **Account Abstraction is included in our zkEVM**. This is a long-anticipated feature in the Ethereum dev community which improves developer adoption and user experience in a number of ways:
   - Native support for smart contracts wallets (like Argent), which is critical for onboarding mainstream users.
   - Much better UX for multisigs.
-  - Transaction fees can be paid in any token using [paymasters](../developer-guides/aa.md#paymasters).
+  - Transaction fees can be paid in any token using [paymasters](../../reference/concepts/aa.md#paymasters).
   - Protocols can now subsidize gas for users from their smart contracts or even enable gasless transactions.
   - Transaction batches (multicall) can be confirmed in one click (big UX problem on Ethereum today).
-  - Learn more about [account abstraction support in zkSync Era](../developer-guides/aa.md).
+  - Learn more about [account abstraction support in zkSync Era](../../reference/concepts/aa.md).
 
 ### EVM Compatibility
 
@@ -75,7 +75,7 @@ zkSync is optimized to be EVM _compatible_ not EVM _equivalent_ for three primar
 Almost every smart contract written for EVM will be supported by zkSync Era and will hold all key security invariants so that no additional security re-auditing will be required in most cases.
 
 ::: warning Unsupported opcodes
-A few opcodes are unsupported by the zkEVM. Some of them have been deprecated or their use is minor but contracts that use them need to be adapted. You can find more information about this in the [EVM compatibility section of the docs](../building-on-zksync/contracts/differences-with-ethereum.md).
+A few opcodes are unsupported by the zkEVM. Some of them have been deprecated or their use is minor but contracts that use them need to be adapted. You can find more information about this in the [EVM compatibility section of the docs](../../reference/architecture/differences-with-ethereum.md).
 :::
 
 There are a few other distinctions, for example, gas metering will be different (as is the case for other L2s as well). Some EVM’s cryptographic precompiles (notably pairings and RSA) won’t be available in the very first release but will be implemented soon after the launch, with pairing being a priority to allow both Hyperchains and protocols like Aztec/Dark Forest to be deployed without modifications too.
@@ -106,7 +106,7 @@ In other words, Account Abstraction brings about major improvements to the overa
 
 In zkSync Era Account Abstraction is natively implemented, meaning accounts can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract.
 
-If you want to better understand what Account Abstraction on zkSync looks like, you can read [this section of the docs](../developer-guides/aa.md), or try out our tutorial [here](../tutorials/custom-aa-tutorial.md).
+If you want to better understand what Account Abstraction on zkSync looks like, you can read [this section of the docs](../../reference/concepts/aa.md), or try out our tutorial [here](../../dev/tutorials/custom-aa-tutorial.md).
 
 ## zkSync Era vs Alternatives
 
