@@ -278,23 +278,28 @@ EVM legacy assembly example:
 
 ## Using `call` over `.send` or `.transfer`
 
-Avoid using `payable(X).send`/`payable(X).transfer` because the 2300 gas stipend may not be enough for such calls, especially if it involves state changes that require a large amount of L2 gas for data. Instead, we recommend using `call`.
+Avoid using `payable(addr).send(x)`/`payable(addr).transfer(x)` because the 2300 gas stipend may not be enough for such calls, especially if it involves state changes that require a large amount of L2 gas for data. Instead, we recommend using `call`.
 
 Instead of:
 
 ```solidity
-payable(X).send // or
-payable(X).transfer
+payable(addr).send(x) // or
+payable(addr).transfer(x)
 ```
 
 Use instead:
 
 ```solidity
-(bool s, ) = call{value: x}("");
+(bool s, ) = addr.call{value: x}("");
 require(s);
 ```
 
-This converts the `send`/`transfer` functionality to `call` and [avoids potential security risks outlined here.](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/).
+This converts the `send`/`transfer` functionality to `call` and [avoids potential security risks outlined here.](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/). 
+
+:::note Be aware of reentrancy
+While `.call` offers more flexibility compared to `.send` or `.transfer`, developers should be aware that `.call` does not provide the same level of reentrancy protection as `.transfer`/`.send`. It's crucial to adhere to best practices like the checks-effects-interactions pattern and/or use reentrancy guard protection to secure your contracts against reentrancy attacks. It can help ensure the robustness and security of your smart contracts on the zkEVM, even under unexpected conditions.
+:::
+
 
 ## Libraries
 

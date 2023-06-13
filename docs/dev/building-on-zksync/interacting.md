@@ -56,12 +56,6 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 
 5. Click "Save"
 
-## Why are Metamask native contract interactions not working?
-
-It is not currently possible to interact with zkSync Era smart contracts via Metamask with EIP-1559 transactions. zkSync Era does not support EIP1559 transactions.
-
-**Solution.** Explicitly specify `{ type: 0 }` in transaction overrides to use Ethereum legacy transactions.
-
 ## zkSync Era Support
 
 You can open a support ticket in `💻🧪│dev-support-beta` or ask any questions in `🖥│dev-general`
