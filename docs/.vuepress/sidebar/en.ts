@@ -20,7 +20,8 @@ export const enSidebar = sidebar({
       children: [ "/dev/how-to/estimate-gas.md", 
                   "/dev/how-to/send-transaction-l1-l2",
                   "/dev/how-to/send-message-l2-l1",
-                  "/dev/how-to/transfer-token-l2" ],
+                  "/dev/how-to/transfer-token-l2",
+                  "/dev/how-to/verify-contracts" ],
     },
     {
       text: "Tutorials",
@@ -80,7 +81,6 @@ export const enSidebar = sidebar({
           children: [
             "/reference/architecture/contracts/contract-development.md",
             "/reference/architecture/contracts/contract-deployment.md",
-            "/reference/architecture/contracts/contract-verification.md",
             "/reference/architecture/contracts/system-contracts.md", ]
         },
         "/reference/architecture/events.md",
