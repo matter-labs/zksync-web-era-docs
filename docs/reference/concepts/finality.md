@@ -1,4 +1,4 @@
-# Finality
+# Finality :star:
 
 ## Finality on Ethereum
 

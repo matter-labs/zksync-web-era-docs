@@ -51,7 +51,7 @@ export function getGeneralPaymasterInput(paymasterInput: GeneralPaymasterInput):
 
 ### `getPaymasterParams`
 
-Returns a correctly-formed `paymasterParams` object for common [paymaster flows](../../dev/developer-guides/aa.md#built-in-paymaster-flows).
+Returns a correctly-formed `paymasterParams` object for common [paymaster flows](../../reference/concepts/aa.md#built-in-paymaster-flows).
 
 
 #### Inputs
