@@ -4,7 +4,7 @@ This guide shows you how to deploy a smart contract to zkSync and build a dApp t
 
 This is what we're going to do:
 
-- Build and deploy a smart contract on zkSync that stores a greeting message.
+- Build, deploy, and verify a smart contract on zkSync that stores a greeting message.
 - Build a dApp that retrieves and updates the greeting message.
 - Allow users to change the greeting message on the smart contract via the app.
 - Show you how to [implement the testnet paymaster](#paying-fees-using-testnet-paymaster) that allows users to pay transaction fees with ERC20 tokens instead of ETH.
@@ -34,7 +34,7 @@ cd greeter-example
 
 ```sh
 yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
 ```
 
 :::info
@@ -50,6 +50,7 @@ The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
+import "@matterlabs/hardhat-zksync-verify";
 
 module.exports = {
   zksolc: {
@@ -64,6 +65,7 @@ module.exports = {
       url: "https://testnet.era.zksync.dev",
       ethNetwork: "goerli", // RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
       zksync: true,
+      verifyURL: 'https://zksync2-testnet-explorer.zksync.dev/contract_verification'  // Verification endpoint
     },
   },
   solidity: {
@@ -161,6 +163,18 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Show the contract info.
   const contractAddress = greeterContract.address;
   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
+
+  // Verify contract programmatically 
+  //
+  // Contract MUST be fully qualified name (e.g. path/sourceName:contractName)
+  const contractFullyQualifedName = "contracts/Greeter.sol:Greeter";
+  const verificationId = await hre.run("verify:verify", {
+    address: contractAddress,
+    contract: contractFullyQualifedName,
+    constructorArguments: [greeting],
+    bytecode: artifact.bytecode,
+  });
+  console.log(`${contractFullyQualifedName} verified! VerificationId: ${verificationId}`)
 }
 ```
 
@@ -183,9 +197,12 @@ Running deploy script for the Greeter contract
 The deployment is estimated to cost 0.0265726735 ETH
 constructor args:0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000094869207468657265210000000000000000000000000000000000000000000000
 Greeter was deployed to 0xE84774C41F096Ba5BafA1439cEE787D9dD1A6b72
+Your verification ID is: 26642
+Contract successfully verified on zkSync block explorer!
+contracts/Greeter.sol:Greeter verified! VerificationId: 26642
 ```
 
-**Congratulations! You have deployed a smart contract to zkSync Era Testnet** 🎉
+**Congratulations! You have deployed and verified a smart contract to zkSync Era Testnet** 🎉
 
 Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search with the contract address to confirm the deployment. Follow the [contract verification guide](../../tools/block-explorer/contract-verification.md) for instructions on how to verify your smart contract using the zkSync block explorer.
 
