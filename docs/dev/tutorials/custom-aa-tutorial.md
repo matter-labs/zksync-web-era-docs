@@ -9,7 +9,7 @@ This tutorial shows you how to build and deploy a 2-of-2 multi-signature account
 - For background learning, we recommend the following guides:
     - Read about the [design](../developer-guides/aa.md) of the account abstraction protocol.
     - Read the [introduction to the system contracts](../developer-guides/system-contracts.md).
-    - Read about [smart contract deployment](../building-on-zksync/contracts/contract-deployment.md) on zkSyn Era.
+    - Read about [smart contract deployment](../building-on-zksync/contracts/contract-deployment.md) on zkSync Era.
     - Read the [gas estimation for transaction](../developer-guides/transactions/fee-model.md#gas-estimation-during-a-transaction-for-paymaster-and-custom-accounts) guide.
     - If you haven't already, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
@@ -1179,4 +1179,4 @@ If you get an error `Not enough balance to cover the fee.`, try increasing the a
 
 - To learn more about L1->L2 interaction on zkSync, check out the [documentation](../developer-guides/bridging/l1-l2-interop.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../tools/hardhat).
+- To learn more about the zkSync Era Hardhat plugins, check out the [Hardhat documentation](../../tools/hardhat).
