@@ -2,7 +2,7 @@
 
 This section explores the methods which allow the [account](./accounts.md) classes to send transactions from L1 to L2.
 
-If you want to get some background on how L1->L2 interaction works on zkSync Era, go through the [introduction](../../dev/developer-guides/bridging/l1-l2-interop.md).
+If you want to get some background on how L1->L2 interaction works on zkSync Era, go through the [introduction](../../reference/concepts/bridging/l1-l2-interop.md).
 
 The zkSync Python SDK account is compatible with the `eth_account` package, and in most cases users can have their private key and get account instances by using it.
 

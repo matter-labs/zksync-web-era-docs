@@ -9,9 +9,10 @@ export const enSidebar = sidebar({
     },
     {
       text: "Getting started",
-      link: "/dev/fundamentals",
+      link: "/dev/building-on-zksync/hello-world.md", 
       children: [ "/dev/building-on-zksync/hello-world.md", 
-                  "/dev/fundamentals/interacting.md", ],
+                  "/dev/building-on-zksync/interacting.md",
+                  "/dev/building-on-zksync/useful-address.md", ],
     },
     {
       text: "How to",
@@ -32,55 +33,79 @@ export const enSidebar = sidebar({
     },
     {
       text: "Tutorials",
-      link: "/dev/tutorials",
-      children: [
-                "/dev/tutorials/cross-chain-tutorial.md",
+      link: "/dev/tutorials/cross-chain-tutorial.md",
+      children: [    
+                "/dev/tutorials/cross-chain-tutorial.md",      
                 "/dev/tutorials/custom-aa-tutorial.md",
                 "/dev/tutorials/aa-daily-spend-limit.md",
                 "/dev/tutorials/custom-paymaster-tutorial.md",
+                "/dev/tutorials/api3-usd-paymaster-tutorial.md",
+      ],
+    },
+  ],
+  "/reference": [
+    {
+      text: "Technical reference",
+      link: "/reference/",
+    },
+    {
+      text: "Concepts",
+      link: "/reference/concepts/rollups.md",
+      children: [
+        "/reference/concepts/rollups.md", 
+        "/reference/concepts/zkSync.md", 
+        "/reference/concepts/hyperscaling.md",
+        {
+          text: "Transactions", // required
+          link: "/reference/concepts/transactions/transactions.md",
+          collapsible: true,
+          children: [
+            "/reference/concepts/transactions/transactions.md",
+            "/reference/concepts/transactions/blocks.md",
+            "/reference/concepts/transactions/fee-model.md",]
+        },
+        "/reference/concepts/finality.md",
+        "/reference/concepts/aa.md",     
+        {
+          text: "Bridging", // required
+          link: "/reference/concepts/bridging/bridging-asset.md",
+          collapsible: true,
+          children: [
+            "/reference/concepts/bridging/bridging-asset.md",
+            "/reference/concepts/bridging/l1-l2-interop.md",]
+        },
+        "/reference/concepts/videos.md",
       ],
     },
     {
-      text: "Understanding zkSync Era",
-      link: "/dev/developer-guides",
+      text: "Architecture",
+      link: "/reference/architecture/differences-with-ethereum.md",
       children: [
-        "/dev/fundamentals/rollups.md", 
-        "/dev/fundamentals/zkSync.md", 
-        "/dev/fundamentals/hyperscaling.md",
-        "/dev/developer-guides/transactions/transactions.md",
-        "/dev/developer-guides/transactions/blocks.md",
-        "/dev/developer-guides/finality.md",
-        "/dev/developer-guides/system-contracts.md",
-        "/dev/developer-guides/aa.md",
-        "/dev/developer-guides/transactions/fee-model.md",
-        "/dev/developer-guides/bridging/bridging-asset.md",
-        "/dev/developer-guides/bridging/l1-l2-interop.md",
-        "/dev/developer-guides/videos.md",
-      ],
-    },
-    {
-      text: "Building on zkSync Era",
-      link: "/dev/building-on-zksync",
-      children: [
-        "/dev/building-on-zksync/contracts/contract-development.md",
-        "/dev/building-on-zksync/contracts/differences-with-ethereum.md",
-        "/dev/building-on-zksync/contracts/contract-deployment.md",
-        "/dev/building-on-zksync/contracts/contract-verification.md",
-        "/dev/building-on-zksync/events.md",
-        "/dev/building-on-zksync/useful-address.md",
+        "/reference/architecture/differences-with-ethereum.md",
+        {
+          text: "Contracts", // required
+          link: "/reference/architecture/contracts/contract-development.md",
+          collapsible: true,
+          children: [
+            "/reference/architecture/contracts/contract-development.md",
+            "/reference/architecture/contracts/contract-deployment.md",
+            "/reference/architecture/contracts/contract-verification.md",
+            "/reference/architecture/contracts/system-contracts.md", ]
+        },
+        "/reference/architecture/events.md",
       ],
     },
     {
       text: "Troubleshooting",
-      link: "/dev/troubleshooting",
+      link: "/reference/troubleshooting/important-links.md",
       children: [
-        "/dev/troubleshooting/important-links.md",
-        "/dev/troubleshooting/changelog.md",
-        "/dev/troubleshooting/withdrawal-delay.md",
-        "/dev/troubleshooting/audit-bug-bounty.md",
-        "/dev/troubleshooting/docs-contribution/docs.md",
-        "/dev/troubleshooting/docs-contribution/community-resources.md",
-        "/dev/troubleshooting/faq.md",
+        "/reference/troubleshooting/important-links.md",
+        "/reference/troubleshooting/changelog.md",
+        "/reference/troubleshooting/withdrawal-delay.md",
+        "/reference/troubleshooting/audit-bug-bounty.md",
+        "/reference/troubleshooting/docs-contribution/docs.md",
+        "/reference/troubleshooting/docs-contribution/community-resources.md",
+        "/reference/troubleshooting/faq.md",
       ],
     },
   ],
@@ -173,9 +198,11 @@ export const enSidebar = sidebar({
       children: [],
     },
     {
-      text: "Block Explorer", // required
+      text: "Block Explorer and Tools", // required
       link: "/tools/block-explorer", // optional, which should be a absolute path.
-      children: ["/tools/block-explorer/intro", "/tools/block-explorer/block-view", "/tools/block-explorer/search", "/tools/block-explorer/contract-verification"],
+      children: [ "/tools/block-explorer/block-explorer-menu", 
+                  "/tools/block-explorer/contract-verification",
+                  ],
     },
   ],
   //The legal related sidebar
