@@ -135,7 +135,12 @@
         },
         {
           "source": "/docs/dev/fundamentals/hyperscaling.html",
-          "destination": "docs/reference/concepts/hyperscaling.html",
+          "destination": "/docs/reference/concepts/hyperscaling.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/fundamentals/docs/reference/concepts/hyperscaling.html",
+          "destination": "/docs/reference/concepts/hyperscaling.html",
           "type": "302"
         },
         {
