@@ -89,12 +89,12 @@
           "type": "302"
         },
         {
-          "source": "docs/dev/developer-guides/bridging/l1-l2.html",
+          "source": "/docs/dev/developer-guides/bridging/l1-l2.html",
           "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
           "type": "302"
         },
         {
-          "source": "docs/dev/developer-guides/bridging/l2-l1.html",
+          "source": "/docs/dev/developer-guides/bridging/l2-l1.html",
           "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
           "type": "302"
         },
@@ -170,7 +170,7 @@
         },
         {
             "source": "/docs/dev/developer-guides/transactions/fee-model.html",
-            "destination": "docs/reference/concepts/transactions/fee-model.html",
+            "destination": "/docs/reference/concepts/transactions/fee-model.html",
             "type": "302"
         },
         {
@@ -369,13 +369,13 @@
           "type": "302"
         },
         {
-          "source": "docs/dev/developer-guides/bridging/l1-l2.html",
+          "source": "/docs/dev/developer-guides/bridging/l1-l2.html",
           "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
           "type": "302"
         },
         {
-          "source": "docs/dev/developer-guides/bridging/l2-l1.html",
-          "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
+          "source": "/docs/dev/developer-guides/bridging/l2-l1.html",
+          "destination": "/docs/reference/concepts/bridging/l1-l2-interop.html#l2-to-l1",
           "type": "302"
         },
         {
@@ -415,7 +415,7 @@
         },
         {
           "source": "/docs/dev/fundamentals/hyperscaling.html",
-          "destination": "docs/reference/concepts/hyperscaling.html",
+          "destination": "/docs/reference/concepts/hyperscaling.html",
           "type": "302"
         },
         {
@@ -445,7 +445,7 @@
         },
         {
             "source": "/docs/dev/developer-guides/transactions/fee-model.html",
-            "destination": "docs/reference/concepts/transactions/fee-model.html",
+            "destination": "/docs/reference/concepts/transactions/fee-model.html",
             "type": "302"
         },
         {
