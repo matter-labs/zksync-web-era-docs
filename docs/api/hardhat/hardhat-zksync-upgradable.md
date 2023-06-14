@@ -620,3 +620,29 @@ npx hardhat run SCRIPT_FILE
 ```
 
 :::
+
+
+# Proxy verification
+
+::: warning
+- To use proxy verification functionality, you must use `hardhat-zksync-verify` plugin version >=0.1.8
+:::
+
+Hardhat-zksync-upgradable plugin supports proxy verification, which means you can verify all the contracts deployed during the proxy deployment with a single verify command.
+
+To use the verification functionality, you first need to import the `hardhat-zksync-verify plugin` <b>*before*</b> the `hardhat-zksync-upgradable` plugin in your `hardhat.config.ts` file:
+
+``` typescript
+...
+import '@matterlabs/hardhat-zksync-verify';
+import '@matterlabs/hardhat-zksync-upgradable';
+...
+```
+
+To verify all the deployed contracts, simply run the verify command with the <b>*proxy address*</b> as an argument:
+
+```sh
+yarn hardhat verify <proxy address>
+```
+
+This command will verify the implementation related to the proxy, the proxy contract itself, and all the smart contract included in the specific deployment process, such as a proxy admin smart contract or a beacon smart contract.
