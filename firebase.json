@@ -490,7 +490,7 @@
         },
         {
             "source": "/docs/dev/building-on-zksync/useful-address.html",
-            "destination": "/docs/api/js/utils.html#useful-addresses",
+            "destination": "/docs/dev/building-on-zksync/useful-address.html",
             "type": "302"
         },
         {
