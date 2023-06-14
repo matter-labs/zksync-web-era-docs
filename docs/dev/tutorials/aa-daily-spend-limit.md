@@ -6,15 +6,16 @@ The daily limit feature prevents an account from spending more ETH than the limi
 
 ## Prerequisites
 
+- Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - [Node.js](https://nodejs.org/en/download/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed on your machine.
 - If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You have a web3 wallet app which holds some Goerli test ETH and some zkSync Era test ETH.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
-- We encourage you to read [the basics of account abstraction on zkSync Era](../developer-guides/aa.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
+- We encourage you to read [the basics of account abstraction on zkSync Era](../../reference/concepts/aa.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
 
 ## Project set up
 
-We will use the [zkSync Era Hardhat plugins](../../api/hardhat/) to build, deploy, and interact with the smart contracts in this project.
+We will use the [zkSync Era Hardhat plugins](../../tools/hardhat/) to build, deploy, and interact with the smart contracts in this project.
 
 1. Create a project folder and `cd` into it.
 
@@ -34,7 +35,7 @@ yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/har
 The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
 :::
 
-3. Add additional packages that use [zkSync Era smart contracts](../developer-guides/system-contracts.md).
+3. Add additional packages that use [zkSync Era smart contracts](../../reference/architecture/contracts/system-contracts.md).
 
 ```sh
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
@@ -77,7 +78,7 @@ export default config;
 
 ::: tip zksync-cli
 - You can use the zkSync Era CLI to scaffold a project automatically. 
-- Find [more info about the zkSync Era CLI here](../../api/tools/zksync-cli/).
+- Find [more info about the zkSync Era CLI here](../../tools/zksync-cli/).
 :::
 
 ## Design
@@ -431,7 +432,7 @@ Let's create the account contract `Account.sol`, and the factory contract that d
 
 2. Copy/paste the code below.
 
-The account needs to implement the [IAccount](../developer-guides/aa.md#iaccount-interface) interface and inherits the `SpendLimit` contract we just created. Since we are building an account with signers, we should also implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
+The account needs to implement the [IAccount](../../reference/concepts/aa.md#iaccount-interface) interface and inherits the `SpendLimit` contract we just created. Since we are building an account with signers, we should also implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
 The `isValidSignature` method will take care of verifying the signature and making sure the extracted address matches with the owner of the account.
 
@@ -823,7 +824,7 @@ Done!
 Open up the [zkSync Era block explorer](https://goerli.explorer.zksync.io/) and search for the deployed Account contract address in order to track transactions and changes in the balance.
 
 :::tip
-- For contract verification, please refer to [this section of the documentation](../building-on-zksync/contracts/contract-verification.md).
+- For contract verification, please refer to [this section of the documentation](../how-to/verify-contracts.md).
 :::
 
 ## Set the daily spending limit
@@ -1073,9 +1074,9 @@ Download the complete project [here](https://github.com/matter-labs/daily-spendl
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync Era, check out the [documentation](../developer-guides/bridging/l1-l2.md).
+- To find out more about L1->L2 interaction on zkSync Era, check out the [documentation](../../reference/concepts/bridging/l1-l2-interop.md).
 - To learn more about the zksync-web3 SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync Era Hardhat plugins, check out their [documentation](../../api/hardhat).
+- To learn more about the zkSync Era Hardhat plugins, check out their [documentation](../../tools/hardhat).
 
 ## Credits
 

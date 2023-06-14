@@ -1,6 +1,6 @@
 # Utilities
 
-The [utilities library](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) contains essential utilities for building on zkSync Era.
+The [utilities library](https://github.com/matter-labs/zksync-2-dev/blob/main/sdk/zksync-web3.js/src/utils.ts) contains essential utilities for building on zkSync Era.
 
 :::info
 - This document describes common functions and constants you may need.
@@ -168,7 +168,9 @@ Converts the address that submitted a transaction to the inbox on L1 to the `msg
 
 #### Inputs
 
-- `address`: sender address as string.
+| Parameter | Type          | Description        |
+| --------- | ------------- | ------------------ |
+| `address` | string        | Contract address.  |
 
 #### Outputs
 
@@ -198,10 +200,12 @@ Generates a future-proof contract address using salt plus bytecode which allows 
 
 #### Inputs
 
-- `sender`: sender address as string.
-- `bytecodeHash`: output from zkSolc as `BytesLike` object.
-- `salt`: randomization element as `BytesLike` object.
-- `input`: ABI encoded constructor arguments as `BytesLike` object.
+| Parameter      | Type               | Description                        |
+| -------------- | ------------------ | ---------------------------------- |
+| `sender`       | string             | Sender address.                   |
+| `bytecodeHash` | `BytesLike`  object      | Output from zkSolc.                |
+| `salt`         | `BytesLike` object        | Randomization element.             |
+| `input`        | `BytesLike`  object      | ABI encoded constructor arguments. |
 
 #### Outputs
 
@@ -228,9 +232,10 @@ Generates a contract address from deployer's account and nonce.
 
 #### Inputs
 
-- `sender`: sender address as string.
-- `senderNonce`: sender nonce as `BigNumberish` object.
-
+| Parameter      | Type                  | Description      |
+| -------------- | --------------------- | ---------------- |
+| `sender`       | string                | Sender address. |
+| `senderNonce`  | `BigNumberish` object | Sender nonce.   |
 #### Outputs
 
 - Returns an `Address` object.
@@ -258,8 +263,10 @@ Returns the hash of an EIP712 transaction.
 
 #### Inputs
 
-- `transaction`: EIP712 transaction as any type.
-- `ethSignature?`: ECDSA signature of the transaction as `EthereumSignature` object (optional).
+| Parameter      | Type                          | Description                                                  |
+| -------------- | ----------------------------- | ------------------------------------------------------------ |
+| `transaction`  | any                           | EIP-712 transaction.                                          |
+| `ethSignature?` | `EthereumSignature` (optional)| ECDSA signature of the transaction.                          |
 
 ```ts
 function eip712TxHash(transaction: any, ethSignature?: EthereumSignature) {
@@ -275,20 +282,22 @@ function eip712TxHash(transaction: any, ethSignature?: EthereumSignature) {
 Used by `estimateDefaultBridgeDepositL2Gas` to estimate L2 gas required for token bridging via a custom ERC20 bridge.
 
 ::: tip More info
-- See the [default bridges documentation](../../dev/developer-guides/bridging/bridging-asset.md#default-bridges)
+- See the [default bridges documentation](../../reference/concepts/bridging/bridging-asset.md#default-bridges)
 :::
 
 #### Inputs
 
-- `providerL2`: zkSync `Provider` object.
-- `l1BridgeAddress`: bridge `Address` string.
-- `l2BridgeAddress`: bridge `Address` string.
-- `token`: token `Address` string.
-- `amount`: deposit amount as `BigNumberish`.
-- `to`: recipient `Address` string.
-- `bridgeData`: data as `BytesLike` object.
-- `from?`: sender `Address` string (optional).
-- `gasPerPubdataByte?`: current gas per byte of pubdata as `BigNumberish` (optional).
+| Parameter           | Type                             | Description                                                  |
+| ------------------- | -------------------------------  | ------------------------------------------------------------ |
+| `providerL2`        | `Provider` object                           | zkSync provider.                                             |
+| `l1BridgeAddress`   | string                           | L1 bridge address.                                              |
+| `l2BridgeAddress`   | string                           | L2 bridge address.                                              |
+| `token`             | string                           | Token address.                                               |
+| `amount`            | `BigNumberish` object            | Deposit amount.                                              |
+| `to`                | string                           | Recipient address.                                           |
+| `bridgeData`        | `BytesLike` object               | Bridge data.                                                        |
+| `from?`             | string (optional)                | Sender address.                                              |
+| `gasPerPubdataByte?`| `BigNumberish` object (optional) | Current gas per byte of pubdata.                             |
 
 ```ts
 export async function estimateCustomBridgeDepositL2Gas(
@@ -317,18 +326,20 @@ export async function estimateCustomBridgeDepositL2Gas(
 Returns an estimation of L2 gas required for token bridging via the default ERC20 bridge.
 
 ::: tip More info
-- See the [default bridges documentation](../../dev/developer-guides/bridging/bridging-asset.md#default-bridges)
+- See the [default bridges documentation](../../reference/concepts/bridging/bridging-asset.md#default-bridges)
 :::
 
 #### Inputs
 
-- `providerL1`: ethers `Provider` object.
-- `providerL2`: zkSync `Provider` object.
-- `token`: token `Address` string.
-- `amount`: deposit amount as `BigNumberish`.
-- `to`: recipient `Address` string.
-- `from?`: sender `Address` string (optional).
-- `gasPerPubdataByte?`: current gas per byte of pubdata as `BigNumberish` (optional).
+| Parameter           | Type                             | Description                                   |
+| ------------------- | -------------------------------- | --------------------------------------------- |
+| `providerL1`        | Provider object                           | Ethers provider.                              |
+| `providerL2`        | Provider object                         | zkSync provider.                              |
+| `token`             | string                           | Token address.                                |
+| `amount`            | `BigNumberish` object            | Deposit amount.                               |
+| `to`                | string                           | Recipient address.                            |
+| `from?`             | string (optional)                | Sender address.                               |
+| `gasPerPubdataByte?`| `BigNumberish` object  (optional)| Current gas per byte of pubdata.              |
 
 ```ts
 export async function estimateDefaultBridgeDepositL2Gas(
@@ -378,7 +389,9 @@ Returns a log containing details of all deployed contracts related to a transact
 
 #### Inputs
 
-- `receipt`: transaction receipt as ethers Provider object.
+| Parameter           | Type                         | Description                                                  |
+| ------------------- | ---------------------------  | ------------------------------------------------------------ |
+| `receipt`           | `TransactionReceipt` object                     | Transaction receipt.                                         |
 
 ```ts
 export function getDeployedContracts(receipt: ethers.providers.TransactionReceipt): DeploymentInfo[] {
@@ -411,11 +424,13 @@ Returns the calldata sent by an L1 ERC20 bridge to its L2 counterpart during tok
 
 #### Inputs
 
-- `l1TokenAddress`: token address on L1 as string.
-- `l1Sender`: sender address on L1 as string.
-- `l2Receiver`: recipient address on L2 as string.
-- `amount`: gas fee for the number of tokens to bridge as `BigNumberish` object.
-- `bridgeData`: data as `BytesLike` object.
+| Parameter           | Type                         | Description                                   |
+| ------------------- | ---------------------------  | --------------------------------------------- |
+| `l1TokenAddress`    | string                       | Token address on L1.                          |
+| `l1Sender`          | string                       | Sender address on L1.                         |
+| `l2Receiver`        | string                       | Recipient address on L2.                      |
+| `amount`            | `BigNumberish` object        | Gas fee for the number of tokens to bridge.   |
+| `bridgeData`        | `BytesLike` object           | Data                                        |
 
 ```ts
 export async function getERC20BridgeCalldata(
@@ -441,9 +456,10 @@ Returns the data needed for correct initialization of an L1 token counterpart on
 
 #### Inputs
 
-- `l1TokenAddress`: token address on L1 as string.
-- `provider`: ethers `Provider` object.
-
+| Parameter           | Type                             | Description                                   |
+| ------------------- | -------------------------------- | --------------------------------------------- |
+| `l1TokenAddress`    | string                           | Token address on L1.                          |
+| `provider`          | Provider object                           | Ethers provider.                              |
 #### Outputs
 
 An ABI-encoded array of:
@@ -479,8 +495,10 @@ Returns the hash of the L2 priority operation from a given transaction receipt a
 
 #### Inputs
 
-- `txReceipt`: receipt of the L1 transaction as ethers `TransactionReceipt` object.
-- `zkSyncAddress`: address of zkSync Era main contract as `Address` string.
+| Parameter           | Type                        | Description                          |
+| ------------------- | --------------------------- | ------------------------------------ |
+| `txReceipt`         | `TransactionReceipt` object | Receipt of the L1 transaction.       |
+| `zkSyncAddress`     | `Address` as string            | Address of zkSync Era main contract. |
 
 ```ts
 export function getL2HashFromPriorityOp(
@@ -514,9 +532,11 @@ Returns a keccak encoded message with a given sender address and block number fr
 
 #### Inputs
 
-- `sender`: the sender of the message on L2 as `Address` string.
-- `msg`: encoded message as `BytesLike` object.
-- `txNumberInBlock`: index of the transaction in the block as number.
+| Parameter           | Type                | Description                           |
+| ------------------- | ------------------- | ------------------------------------- |
+| `sender`            | `Address` as string    | The sender of the message on L2.      |
+| `msg`               | `BytesLike` object  | Encoded message.                      |
+| `txNumberInBlock`   | number              | Index of the transaction in the block.|
 
 ```ts
 export function getHashedL2ToL1Msg(sender: Address, msg: BytesLike, txNumberInBlock: number) {
@@ -539,7 +559,9 @@ Returns the hash of given bytecode.
 
 #### Inputs
 
-- `bytecode`: ethers `BytesLike` object.
+| Parameter           | Type                | Description             |
+| ------------------- | ------------------- | ----------------------  |
+| `bytecode`          | `BytesLike` object  | Bytecode. |
 
 ```ts
 export function hashBytecode(bytecode: ethers.BytesLike): Uint8Array {
@@ -586,9 +608,11 @@ Called from [`isSignatureCorrect`](#isSignatureCorrect) for non-contract account
 
 #### Inputs
 
-- `address`: address which signs `msgHash` as string.
-- `msgHash`: hash of the message as string.
-- `signature`: ethers signature as `SignatureLike` object.
+| Parameter           | Type                    | Description             |
+| ------------------- | ----------------------- | ----------------------  |
+| `address`           | string       | Address which signs `msgHash`.    |
+| `msgHash`           | string                  | Hash of the message.    |
+| `signature`         | `SignatureLike` object  | Ethers signature.       |
 
 ```ts
 function isECDSASignatureCorrect(address: string, msgHash: string, signature: SignatureLike): boolean {
@@ -608,10 +632,13 @@ Called from [`isSignatureCorrect`](#isSignatureCorrect) for contract account add
 
 #### Inputs
 
-- `provider`: `Provider` object.
-- `address`: sender address as string.
-- `msgHash`: hash of the message as string. 
-- `signature`: ethers signature as `SignatureLike` object. 
+
+| Parameter           | Type                    | Description                  |
+| ------------------- | ----------------------- | ---------------------------  |
+| `provider`          | `Provider` object       | Provider.            |
+| `address`           | string                  | Sender address.    |
+| `msgHash`           | string                  | The hash of the message.     |
+| `signature`         | `SignatureLike` object  | Ethers signature.            |
 
 ```ts
 async function isEIP1271SignatureCorrect(
@@ -637,7 +664,9 @@ Returns true if token represents ETH on L1 or L2.
 
 #### Inputs
 
-- `token`: `Address` object.
+| Parameter           | Type                    | Description                  |
+| ------------------- | ----------------------- | ---------------------------  |
+| `token`             | `Address` object        | The token address.            |
 
 ```ts
 export function isETH(token: Address) {
@@ -651,10 +680,12 @@ Returns true if account abstraction EIP712 signature is correct.
 
 #### Inputs
 
-- `provider`: `Provider` object.
-- `address`: sender address as string.
-- `message`: string or Bytes object representation of the message. 
-- `signature`: ethers signature as `SignatureLike` object.
+| Parameter           | Type                    | Description                  |
+| ------------------- | ----------------------- | ---------------------------  |
+| `provider`          | `Provider` object       | Provider.            |
+| `address`           | string                  | Sender address.    |
+| `message`           | string                  | The hash of the message.     |
+| `signature`         | `SignatureLike` object  | Ethers signature.            |
 
 ```ts
 export async function isMessageSignatureCorrect(
@@ -674,10 +705,12 @@ Called from [`isMessageSignatureCorrect`](#ismessagesignaturecorrect) and [`isTy
 
 #### Inputs
 
-- `provider`: `Provider` object.
-- `address`: sender address as string.
-- `msgHash`: hash of the message as string. 
-- `signature`: ethers signature as `SignatureLike` object.
+| Parameter           | Type                    | Description                  |
+| ------------------- | ----------------------- | ---------------------------  |
+| `provider`          | `Provider` object       | Provider.            |
+| `address`           | string                  | Sender address.    |
+| `msgHash`           | string                  | The hash of the message.     |
+| `signature`         | `SignatureLike` object  | Ethers signature.            |
 
 ```ts
 async function isSignatureCorrect(
@@ -705,12 +738,14 @@ Returns true if account abstraction EIP712 signature is correct.
 
 #### Inputs
 
-- `provider`: Provider object.
-- `address`: sender address as string.
-- `domain`: `TypedDataDomain` object from `@ethersproject/abstract-signer`.
-- `types`: map of records pointing from field name to field type as `Record<string, Array<TypedDataField>>`. 
-- `value`: a single `Record` value as `Record<string, any>`.
-- `signature`: ethers signature as `SignatureLike` object.
+| Parameter           | Type                       | Description                                                 |
+| ------------------- | -------------------------- | ----------------------------------------------------------  |
+| `provider`          | `Provider` object          | Provider.                                           |
+| `address`           | string                     | Sender address.                                   |
+| `domain`            | `TypedDataDomain` object   |       Domain data.                                                      |
+| `types`             | `Map<string, TypedDataField>`    | Map of records pointing from field name to field type.  |
+| `value`             | `Record<string, any>`                     | A single record value.                                           |
+| `signature`         | `SignatureLike` object     | Ethers signature.                                           |
 
 ```ts
 export async function isTypedDataSignatureCorrect(
@@ -744,11 +779,9 @@ Common sleep function that pauses execution for a number of milliseconds.
 
 #### Inputs
 
-- `millis`: number of milliseconds as number.
-
-#### Outputs
-
-- `Promise` object: for pausing execution by the specified amount.
+| Parameter           | Type        | Description                                                        |
+| ------------------- | ----------- | -----------------------------------------------------------------  |
+| `millis`            | number      | Number of milliseconds. |
 
 ```ts
 export function sleep(millis: number) {
@@ -762,7 +795,9 @@ Converts and returns the `msg.sender` viewed on L2 to the address that submitted
 
 #### Inputs
 
-- `address`: sender address as string.
+| Parameter           | Type        | Description     |
+| ------------------- | ----------- | --------------- |
+| `address`           | string      | Sender address. |
 
 ```ts
 export function undoL1ToL2Alias(address: string): string {

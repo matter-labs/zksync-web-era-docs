@@ -5,15 +5,21 @@ export const enNavbar = navbar([
     text: "Home", 
     link: "/" 
   },
-  
   { 
-    text: "Developer docs", 
+    text: "Build", 
     link: "/dev/" 
   },
-
   { 
-    text: "Tools and SDK", 
+    text: "Technical Reference", 
+    link: "/reference/" 
+  }, 
+  { 
+    text: "API/SDKs", 
     link: "/api/" 
+  },
+  { 
+    text: "Tools", 
+    link: "/tools/" 
   },
   {
     text: "Versions",
