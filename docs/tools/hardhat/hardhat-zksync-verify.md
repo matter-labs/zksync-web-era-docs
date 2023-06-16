@@ -115,7 +115,7 @@ Include it in the verify function call by adding a new parameter: `--constructor
 yarn hardhat verify --network testnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF --constructor-args arguments.js
 ```
 
-Hardhat-zksync-verify plugin supports the verification with encoded constructor parameters.
+The hardhat-zksync-verify plugin also supports the verification with encoded constructor parameters.
 
 In order to use the encoded parameters, you need to specify a separate javascript module and export them as a <b>*non-array*</b> parameter.
 It is important for encoded arguments to start with `0x` in order to be recognized by the plugin. For example:
