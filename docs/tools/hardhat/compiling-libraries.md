@@ -63,8 +63,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.3.10",
-    compilerSource: "binary",
+    version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
     settings: {
       libraries: {
         "contracts/MiniMath.sol": {
