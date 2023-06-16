@@ -16,7 +16,7 @@ Please read [this section of the docs](../../../tools/compiler-toolchain/solidit
 
 ## Vyper support
 
-Currently only Vyper v0.3.3 and v0.3.8 versions are supported. 
+Currently only Vyper 0.3.3 and 0.3.8 versions are supported. Versions 0.3.4 to 0.3.7 are not supported.
 
 ## Compilers
 
