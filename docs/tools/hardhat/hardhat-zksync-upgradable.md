@@ -4,12 +4,6 @@ The `hardhat-zksync-upgradable` plugin is a Hardhat plugin that supports end-to-
 
 The plugin is based on [@openzeppelin/hardhat-upgrades](https://www.npmjs.com/package/@openzeppelin/hardhat-upgrades) and [@openzeppelin/upgrades-core](https://www.npmjs.com/package/@openzeppelin/upgrades-core) plugins for deploying and managing upgradeable smart contracts on the Ethereum network. The `hardhat-zkSync-upgradable` plugin provides an easy-to-use interface for interacting with the [OpenZeppelin Upgrades Plugins](https://docs.openzeppelin.com/upgrades-plugins) within a Hardhat environment on zkSync.
 
-::: warning Overview
-- This plugin is still in alpha.
-- The plugin supports transparent upgradable proxies, UUPS proxies, and beacon proxies.
-- Proxy upgrade validations are not supported yet.
-:::
-
 ## Installation
 
 [@matterlabs/hardhat-zksync-upgradable](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-upgradable)
@@ -620,3 +614,36 @@ npx hardhat run SCRIPT_FILE
 ```
 
 :::
+
+
+# Proxy verification
+
+::: warning
+- To use proxy verification functionality, you must use the `hardhat-zksync-verify` plugin version >=0.1.8
+:::
+
+The hardhat-zksync-upgradable plugin supports proxy verification, which means you can verify all the contracts deployed during the proxy deployment with a single verify command.
+
+To use the verification functionality, you first need to **import the `hardhat-zksync-verify plugin` before the `hardhat-zksync-upgradable` plugin in your `hardhat.config.ts` file:**
+
+``` typescript
+...
+// Imports the verify plugin before the upgradable plugin
+import '@matterlabs/hardhat-zksync-verify';
+import '@matterlabs/hardhat-zksync-upgradable';
+...
+```
+
+To verify all the deployed contracts, simply run the verify command with the <b>*proxy address*</b> as an argument:
+
+```sh
+yarn hardhat verify <proxy address>
+```
+
+This command will verify the implementation related to the proxy, the proxy contract itself, and all the smart contracts included in the specific deployment process, such as a proxy admin smart contract or a beacon smart contract.
+
+# Proxy validations
+
+The hardhat-zksync-upgradable plugin has built-in checks to ensure that your smart contract's newest implementation version follows the necessary requirements when upgrading your smart contract.
+
+You can learn more about what those restrictions are in [OpenZeppelin's documentation](https://docs.openzeppelin.com/upgrades-plugins/1.x/writing-upgradeable).

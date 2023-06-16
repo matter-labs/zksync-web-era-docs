@@ -115,6 +115,15 @@ Include it in the verify function call by adding a new parameter: `--constructor
 yarn hardhat verify --network testnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF --constructor-args arguments.js
 ```
 
+The hardhat-zksync-verify plugin also supports the verification with encoded constructor parameters.
+
+In order to use the encoded parameters, you need to specify a separate javascript module and export them as a <b>*non-array*</b> parameter.
+It is important for encoded arguments to start with `0x` in order to be recognized by the plugin. For example:
+
+```typescript
+module.exports = "0x0x00087a676164696a61310000087a676164696a61310000000000000000000000008537b364a83f5c9a7ead381d3baf9cbb83769bf5"
+```
+
 ### Verification status check
 
 The verification process consists of two steps: 
@@ -142,4 +151,12 @@ const verificationId = await hre.run("verify:verify", {
 This task returns a verification id if the request was successfully sent.<br/>
 You can use this id to check the status of your verification request as described in the section above.
 
-If the request was NOT successful, the return value is `-1`.
+If you are using encoded constructor args, `constructorArguments` parameter should be a non-array value starting with `0x`.
+
+```typescript
+const verificationId = await hre.run("verify:verify", {
+  address: contractAddress,
+  contract: contractFullyQualifedName,
+  constructorArguments: "0x12345..."
+});
+```
