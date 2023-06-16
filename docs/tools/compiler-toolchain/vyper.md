@@ -37,4 +37,4 @@ Other output formats are available via the `-f` option. Check out `vyper --help`
 
 ## Limitations
 
-Currently only Vyper 0.3.3 and 0.3.8 versions are supported. Versions 0.3.4 to 0.3.7 are not supported.
+Currently only Vyper 0.3.3 and 0.3.9 versions are supported. Versions 0.3.4 to 0.3.8 (both included) are not supported.
