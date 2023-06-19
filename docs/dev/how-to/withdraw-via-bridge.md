@@ -117,11 +117,10 @@ Withdraw transaction sent 0x4905176d42b4c3b4ab10f611e688b2d849e761493f4583119b7c
 
 ### 1. Set up
 
-Use the [zkSync Era cli](../../tools/zksync-cli/README.md) to set up a project.
-
 ```sh
-npx zksync-cli@latest create ERC20_withdraw
-```
+mkdir withdraw-erc20-script && cd withdraw-erc20-script
+npm init -y 
+npm i typescript ts-node ethers@^5.7.2 zksync-web3 dotenv
 
 ### 2. Include the `.env` file at the project root
 
