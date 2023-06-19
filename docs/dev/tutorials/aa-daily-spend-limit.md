@@ -824,7 +824,7 @@ Done!
 Open up the [zkSync Era block explorer](https://goerli.explorer.zksync.io/) and search for the deployed Account contract address in order to track transactions and changes in the balance.
 
 :::tip
-- For contract verification, please refer to [this section of the documentation](../../reference/architecture/contracts/contract-verification.md).
+- For contract verification, please refer to [this section of the documentation](../how-to/verify-contracts.md).
 :::
 
 ## Set the daily spending limit
