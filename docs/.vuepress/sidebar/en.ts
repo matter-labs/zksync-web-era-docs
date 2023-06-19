@@ -196,8 +196,4 @@ export const enSidebar = sidebar({
                   ],
     },
   ],
-  //The legal related sidebar
-  "/legal/": ["/legal/terms", "/legal/privacy"],
-  //The contact related sidebar
-  "/contact/": ["/contact/"],
 });
