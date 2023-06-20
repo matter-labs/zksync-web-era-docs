@@ -60,7 +60,7 @@ cd ~/paymaster-dapi
 4. Add the project dependencies:
 
 ```sh
-yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable @api3/contracts
+yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts@4.6.0 @openzeppelin/contracts-upgradeable@4.6.0 @api3/contracts
 ```
 
 ## Design
