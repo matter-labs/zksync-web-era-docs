@@ -188,8 +188,4 @@ export const enSidebar = sidebar({
       children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification"],
     },
   ],
-  //The legal related sidebar
-  "/legal/": ["/legal/terms", "/legal/privacy"],
-  //The contact related sidebar
-  "/contact/": ["/contact/"],
 });

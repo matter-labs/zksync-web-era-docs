@@ -50,7 +50,7 @@
         },
         {
           "source": "/docs/contact.html",
-          "destination": "/docs/#footer",
+          "destination": "https://zksync.io/contact",
           "type": "302"
         },
         {
@@ -330,7 +330,7 @@
         },
         {
           "source": "/docs/contact.html",
-          "destination": "/docs/#footer",
+          "destination": "https://zksync.io/contact",
           "type": "302"
         },
         {
