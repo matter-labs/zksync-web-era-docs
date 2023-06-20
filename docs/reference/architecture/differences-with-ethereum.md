@@ -319,6 +319,15 @@ prioritized to allow deployment of both Hyperchains and protocols like Aztec/Dar
 Ethereum cryptographic primitives like `ecrecover`, `keccak256`, and `sha256` are supported as precompiles.
 No actions are required from your side as all the calls to the precompiles are done by the compilers under the hood.
 
+## Native AA vs EIP 4337
+
+The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance accounts' flexibility and user experience, but they differ in critical aspects listed below:
+
+1. **Implementation Level**: zkSync's account abstraction is integrated at the protocol level; however, EIP 4337 avoids the implementation at the protocol level.
+2. **Account Types**: on zkSync Era, smart contract accounts and paymasters are first-class citizens. Under the hood, all accounts (even EOAs) behave like smart contract accounts; **all accounts support paymasters**.
+3. **Transaction Processing**: EIP 4337 introduces a separate transaction flow for smart contract accounts, which relies in a separate mempool for user operations, and Bundlers, nodes that bundle user operations and sends them to be processed by the EntryPoint contract, resulting in two separate transaction flows. In contrast, on zkSync Era there is a unified mempool for transactions from EOAs and smart contract accounts. The Operator bundles transactions from all types of accounts and sends them to the Bootloader (similar to the EntryPoint contract), which results in a single mempool and transaction flow.
+4. **Paymasters support**: zkSync Era allows both EOAs and smart contract accounts to benefit from paymasters thanks to its single transaction flow. On the other hand, EIP 4337 does not support paymasters for EOAs because paymasters are only implemented in the new transaction flow for smart contract accounts.
+
 ### ecrecover
 
 In contrast to Ethereum, zkSync Era ecrecover always return a zero address for the zero digests. Be careful with adapting crypto primitives that rely on that, specifically, it affects [secp256k1 mul verification via ecrecover](https://ethresear.ch/t/you-can-kinda-abuse-ecrecover-to-do-ecmul-in-secp256k1-today/2384).
