@@ -55,30 +55,21 @@ can be found in our SDK, as demonstrated below:
 
 ```typescript
 export function create2Address(sender: Address, bytecodeHash: BytesLike, salt: BytesLike, input: BytesLike) {
-    const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes('zksyncCreate2'));
-    const inputHash = ethers.utils.keccak256(input);
-    const addressBytes = ethers.utils
-        .keccak256(ethers.utils.concat([prefix, ethers.utils.zeroPad(sender, 32), salt, bytecodeHash, inputHash]))
-        .slice(26);
-    return ethers.utils.getAddress(addressBytes);
+  const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes("zksyncCreate2"));
+  const inputHash = ethers.utils.keccak256(input);
+  const addressBytes = ethers.utils.keccak256(ethers.utils.concat([prefix, ethers.utils.zeroPad(sender, 32), salt, bytecodeHash, inputHash])).slice(26);
+  return ethers.utils.getAddress(addressBytes);
 }
 
 export function createAddress(sender: Address, senderNonce: BigNumberish) {
-    const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes('zksyncCreate'));
-    const addressBytes = ethers.utils
-        .keccak256(
-            ethers.utils.concat([
-                prefix,
-                ethers.utils.zeroPad(sender, 32),
-                ethers.utils.zeroPad(ethers.utils.hexlify(senderNonce), 32)
-            ])
-        )
-        .slice(26);
+  const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes("zksyncCreate"));
+  const addressBytes = ethers.utils
+    .keccak256(ethers.utils.concat([prefix, ethers.utils.zeroPad(sender, 32), ethers.utils.zeroPad(ethers.utils.hexlify(senderNonce), 32)]))
+    .slice(26);
 
-    return ethers.utils.getAddress(addressBytes);
+  return ethers.utils.getAddress(addressBytes);
 }
 ```
-
 
 ### `CALL`, `STATICCALL`, `DELEGATECALL`
 
@@ -115,9 +106,9 @@ That means that the code will panic if `2^32-32 + offset % 32 < offset + len`.
 
 ### `CODESIZE`
 
-| Deploy code                       | Runtime code                      |
-| --------------------------------- | --------------------------------- |
-| Size of the constructor arguments | Contract size                     |
+| Deploy code                       | Runtime code  |
+| --------------------------------- | ------------- |
+| Size of the constructor arguments | Contract size |
 
 Yul uses a special instruction `datasize` to distinguish the contract code and constructor arguments, so we
 substitute `datasize` with 0, and `codesize` with `calldatasize`, in zkSync Era deployment code. This way when Yul calculates the
@@ -125,9 +116,9 @@ calldata size as `sub(codesize, datasize)`, the result is the size of the constr
 
 ### `CODECOPY`
 
-| Deploy code                       | Runtime code (old EVM codegen)    | Runtime code (new Yul codegen)    |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| Copies the constructor arguments  | Zeroes memory out                 | Compile-time error                |
+| Deploy code                      | Runtime code (old EVM codegen) | Runtime code (new Yul codegen) |
+| -------------------------------- | ------------------------------ | ------------------------------ |
+| Copies the constructor arguments | Zeroes memory out              | Compile-time error             |
 
 ### `RETURN`
 
@@ -323,8 +314,9 @@ In contrast to Ethereum, zkSync Era ecrecover always return a zero address for t
 The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance accounts' flexibility and user experience, but they differ in critical aspects listed below:
 
 1. **Implementation Level**: zkSync's account abstraction is integrated at the protocol level; however, EIP 4337 avoids the implementation at the protocol level.
-2. **Account Types**: zkSync introduces Smart Contract Accounts and Paymasters as first-class citizens. Under the hood, all accounts (even EOAs) behave like smart contract accounts; **all accounts support paymasters**. EIP 4337, however, does not support Paymasters for EOAs because Paymaster is only linked to the EntryPoint contract.
-3. **Transaction Processing**: In zkSync, an operator bundles transactions and sends them to the bootloader, the entry point contract, which results in a single mempool and transaction flow. In contrast, EIP 4337 introduces Bundlers, nodes that bundle user operations to a dedicated entry point contract, resulting in two separate transaction flows.
+2. **Account Types**: on zkSync Era, smart contract accounts and paymasters are first-class citizens. Under the hood, all accounts (even EOAs) behave like smart contract accounts; **all accounts support paymasters**.
+3. **Transaction Processing**: EIP 4337 introduces a separate transaction flow for smart contract accounts, which relies in a separate mempool for user operations, and Bundlers, nodes that bundle user operations and sends them to be processed by the EntryPoint contract, resulting in two separate transaction flows. In contrast, on zkSync Era there is a unified mempool for transactions from EOAs and smart contract accounts. The Operator bundles transactions from all types of accounts and sends them to the Bootloader (similar to the EntryPoint contract), which results in a single mempool and transaction flow.
+4. **Paymasters support**: zkSync Era allows both EOAs and smart contract accounts to benefit from paymasters thanks to its single transaction flow. On the other hand, EIP 4337 does not support paymasters for EOAs because paymasters are only implemented in the new transaction flow for smart contract accounts.
 
 ## Recommendations
 
@@ -341,8 +333,9 @@ Proxy pattern for a few months after your first deployment on zkSync Era, even i
 contract in the future.
 
 :::tip zkSync Upgradeable plugin
+
 - The [zkSync Upgradeable plugin](https://era.zksync.io/docs/api/hardhat/hardhat-zksync-upgradable.html) is now available to help you create proxies.
-:::
+  :::
 
 ### Do not rely on EVM gas logic
 
