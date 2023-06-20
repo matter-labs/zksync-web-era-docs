@@ -55,21 +55,30 @@ can be found in our SDK, as demonstrated below:
 
 ```typescript
 export function create2Address(sender: Address, bytecodeHash: BytesLike, salt: BytesLike, input: BytesLike) {
-  const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes("zksyncCreate2"));
-  const inputHash = ethers.utils.keccak256(input);
-  const addressBytes = ethers.utils.keccak256(ethers.utils.concat([prefix, ethers.utils.zeroPad(sender, 32), salt, bytecodeHash, inputHash])).slice(26);
-  return ethers.utils.getAddress(addressBytes);
+    const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes('zksyncCreate2'));
+    const inputHash = ethers.utils.keccak256(input);
+    const addressBytes = ethers.utils
+        .keccak256(ethers.utils.concat([prefix, ethers.utils.zeroPad(sender, 32), salt, bytecodeHash, inputHash]))
+        .slice(26);
+    return ethers.utils.getAddress(addressBytes);
 }
 
 export function createAddress(sender: Address, senderNonce: BigNumberish) {
-  const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes("zksyncCreate"));
-  const addressBytes = ethers.utils
-    .keccak256(ethers.utils.concat([prefix, ethers.utils.zeroPad(sender, 32), ethers.utils.zeroPad(ethers.utils.hexlify(senderNonce), 32)]))
-    .slice(26);
+    const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes('zksyncCreate'));
+    const addressBytes = ethers.utils
+        .keccak256(
+            ethers.utils.concat([
+                prefix,
+                ethers.utils.zeroPad(sender, 32),
+                ethers.utils.zeroPad(ethers.utils.hexlify(senderNonce), 32)
+            ])
+        )
+        .slice(26);
 
-  return ethers.utils.getAddress(addressBytes);
+    return ethers.utils.getAddress(addressBytes);
 }
 ```
+
 
 ### `CALL`, `STATICCALL`, `DELEGATECALL`
 
@@ -106,9 +115,9 @@ That means that the code will panic if `2^32-32 + offset % 32 < offset + len`.
 
 ### `CODESIZE`
 
-| Deploy code                       | Runtime code  |
-| --------------------------------- | ------------- |
-| Size of the constructor arguments | Contract size |
+| Deploy code                       | Runtime code                      |
+| --------------------------------- | --------------------------------- |
+| Size of the constructor arguments | Contract size                     |
 
 Yul uses a special instruction `datasize` to distinguish the contract code and constructor arguments, so we
 substitute `datasize` with 0, and `codesize` with `calldatasize`, in zkSync Era deployment code. This way when Yul calculates the
@@ -116,9 +125,9 @@ calldata size as `sub(codesize, datasize)`, the result is the size of the constr
 
 ### `CODECOPY`
 
-| Deploy code                      | Runtime code (old EVM codegen) | Runtime code (new Yul codegen) |
-| -------------------------------- | ------------------------------ | ------------------------------ |
-| Copies the constructor arguments | Zeroes memory out              | Compile-time error             |
+| Deploy code                       | Runtime code (old EVM codegen)    | Runtime code (new Yul codegen)    |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| Copies the constructor arguments  | Zeroes memory out                 | Compile-time error                |
 
 ### `RETURN`
 
@@ -333,9 +342,8 @@ Proxy pattern for a few months after your first deployment on zkSync Era, even i
 contract in the future.
 
 :::tip zkSync Upgradeable plugin
-
 - The [zkSync Upgradeable plugin](https://era.zksync.io/docs/api/hardhat/hardhat-zksync-upgradable.html) is now available to help you create proxies.
-  :::
+:::
 
 ### Do not rely on EVM gas logic
 
