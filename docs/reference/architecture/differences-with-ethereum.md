@@ -347,7 +347,7 @@ Proxy pattern for a few months after your first deployment on zkSync Era, even i
 contract in the future.
 
 :::tip zkSync Upgradeable plugin
-- The [zkSync Upgradeable plugin](https://era.zksync.io/docs/api/hardhat/hardhat-zksync-upgradable.html) is now available to help you create proxies.
+- The [hardhat-zksync-upgradeable plugin](https://era.zksync.io/docs/api/hardhat/hardhat-zksync-upgradable.html) is now available to help you create proxies.
 :::
 
 ### Do not rely on EVM gas logic

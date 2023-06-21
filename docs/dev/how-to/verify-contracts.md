@@ -33,7 +33,7 @@ yarn add global zksync-cli@latest
 - Once you complete the installation, execute the command below to create a fresh project:
 
 ```sh
-yarn zksync-cli create verify-greeter-contract
+zksync-cli create verify-greeter-contract
 ```
 
 3. This function creates a fresh zkSync project titled `verify-greeter-contract` containing a `Greeter` contract. Proceed by moving into the project directory:
@@ -84,8 +84,7 @@ const zkSyncTestnet =
 
 const config: HardhatUserConfig = {
   zksolc: {
-    version: "1.3.10",
-    compilerSource: "binary",
+    version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
     settings: {},
   },
   defaultNetwork: "zkSyncTestnet",

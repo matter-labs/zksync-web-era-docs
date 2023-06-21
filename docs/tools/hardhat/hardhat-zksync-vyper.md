@@ -41,7 +41,7 @@ import "@matterlabs/hardhat-zksync-deploy";
 
 const config: HardhatUserConfig = {
   zkvyper: {
-    version: "latest",
+    version: "latest", // Uses latest available in https://github.com/matter-labs/zkvyper-bin/
     settings: {
       // compilerPath: "zkvyper", // optional field with the path to the `zkvyper` binary.
       libraries: {}, // optional. References to non-inlinable libraries
