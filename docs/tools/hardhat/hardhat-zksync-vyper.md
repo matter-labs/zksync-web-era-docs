@@ -42,7 +42,6 @@ import "@matterlabs/hardhat-zksync-deploy";
 const config: HardhatUserConfig = {
   zkvyper: {
     version: "latest",
-    compilerSource: "binary", // docker usage no longer recommended
     settings: {
       // compilerPath: "zkvyper", // optional field with the path to the `zkvyper` binary.
       libraries: {}, // optional. References to non-inlinable libraries
