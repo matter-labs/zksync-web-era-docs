@@ -45,7 +45,6 @@ Any configuration parameters should be added inside a `zksolc` property in the `
 ```typescript
 zksolc: {
     version: "latest", // optional.
-    compilerSource: "binary",  // optional.
     settings: {
       compilerPath: "zksolc",  // optional. Ignored for compilerSource "docker". Can be used if compiler is located in a specific folder
       libraries:{}, // optional. References to non-inlinable libraries
