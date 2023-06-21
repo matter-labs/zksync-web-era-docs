@@ -67,8 +67,7 @@ Finally, add the compiler options inside a `zksolc` or `zkvyper` property. Here 
 
 ```typescript
 zksolc: {
-  version: "1.3.10",
-  compilerSource: "binary",
+  version: "latest",
   settings: {},
 },
 ```
@@ -110,8 +109,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 const config: HardhatUserConfig = {
   zksolc: {
-    version: "1.3.10",
-    compilerSource: "binary",
+    version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
     settings: {},
   },
   defaultNetwork: "zkSyncTestnet",

@@ -2,6 +2,8 @@
 
 The [@matterlabs/hardhat-zksync-vyper](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-vyper) plugin provides an interface for compiling Vyper smart contracts before deploying them to zkSync Era.
 
+Learn more about the latest updates in the [changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-vyper/CHANGELOG.md).
+
 ## Set up
 
 ### 1. Scaffold a new project
@@ -39,8 +41,7 @@ import "@matterlabs/hardhat-zksync-deploy";
 
 const config: HardhatUserConfig = {
   zkvyper: {
-    version: "1.3.7",
-    compilerSource: "binary", // docker usage no longer recommended
+    version: "latest",
     settings: {
       // compilerPath: "zkvyper", // optional field with the path to the `zkvyper` binary.
       libraries: {}, // optional. References to non-inlinable libraries
@@ -57,7 +58,7 @@ const config: HardhatUserConfig = {
       zksync: true,
     },
   },
-  // Currently, only Vyper ^0.3.3 is supported.
+  // Currently only Vyper v0.3.3 and v0.3.9 versions are supported. 
   vyper: {
     version: "0.3.3",
   },
@@ -66,18 +67,20 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-#### Options
+#### Configuration
 
-- `version`: The `zkvyper` compiler version. Find the latest compiler versions in the [zkvyper repo](https://github.com/matter-labs/zkvyper-bin).
-- `compilerSource`: Indicates the compiler source and can be either `binary`. (A `docker` option is no longer recommended). If there is no previous installation, the plugin automatically downloads one. 
+::: info zero-config
 
-:::warning
-The `docker` option is not recommended as compilers are no longer released as Docker images.
+`hardhat-zksync-vyper` v0.2.0 introduced a default configuration so all  parameters are optional.
+
 :::
 
+Any configuration parameters should be added inside a `zkvyper` property in the `hardhat.config.ts` file:
+
+- `version`: The `zkvyper` compiler version. Default value is `latest`. Find the latest compiler versions in the [zkvyper repo](https://github.com/matter-labs/zkvyper-bin).
+- `compilerSource`: Indicates the compiler source and can be either `binary`. (A `docker` option is no longer recommended). If there is no previous installation, the plugin automatically downloads one. 
 - `compilerPath`: Optional field with the path to the `zkvyper` binary. By default, the binary in `$PATH` is used.
 - `libraries`: Define any non-inlinable libraries your contracts use as dependencies here. Learn more about [compiling libraries](./compiling-libraries.md).
-- `zksync`: Indicates whether `zkvyper` is enabled on zkSync Era. This option is useful for multichain projects in which you want to enable `zksync` for specific networks only.
 
 ### 4. Create Vyper contract
 
