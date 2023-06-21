@@ -1,7 +1,25 @@
 # Changelog
 
+## Hardhat plugins update (June 21st, 2023)
+- New release of `@matterlabs/hardhat-zksync-solc`:
+  - Compiler version checks to ascertain the use of the most recent version.
+  - Support for using `version: "latest"` in your `hardhat.config.ts` file.
+  - Inclusion of default values for all necessary configuration parameters to enhance user experience.
+- New release of `@matterlabs/hardhat-zksync-vyper`:
+  - Compiler version checks to ascertain the use of the most recent version.
+  - Support for using `version: "latest"` in your `hardhat.config.ts` file.
+  - Inclusion of default values for all necessary configuration parameters to enhance user experience.
+
+### How to update your project
+  
+- `@matterlabs/hardhat-zksync-solc` plugin:
+  - Update the package to `0.4.0` in your `package.json` file and re-install dependencies.
+
+- `@matterlabs/hardhat-zksync-vyper` plugin:
+  - Update the package to `0.2.0` in your `package.json` file and re-install dependencies.
+
 ## zksync-upgradable and compiler (May 5th 2023)
-- First relese of `@matterlabs/hardhat-zksync-upgradable` a new package to create beacon and transparent proxy contracts. [More info here](../../tools/hardhat/hardhat-zksync-upgradable.md)
+- First release of `@matterlabs/hardhat-zksync-upgradable` a new package to create beacon and transparent proxy contracts. [More info here](../../tools/hardhat/hardhat-zksync-upgradable.md)
 - zksolc compiler has been updated to version `1.3.10`:
   - Multiple optimizations, security and bug fixes.
   - Support for metadata output option.
