@@ -81,12 +81,11 @@ const zkSyncTestnet =
 This template project includes a basic unit test in the `/test` folder that runs with the local-setup and can be executed with `yarn test`. Learn more about how to [start the local setup and write unit tests here](./testing.md).
 :::
 
-The `zksolc` block contains the minimal configuration required for the compiler.
+The `zksolc` block contains the minimal configuration for the compiler.
 
 ```typescript
 zksolc: {
-  version: "1.3.10",
-  compilerSource: "binary",
+  version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
   settings: {},
 },
 ```

@@ -28,4 +28,4 @@ More commands will be added shortly but if you have any suggestions, feel free t
 
 ## Troubleshooting
 
-If you find any issues, you can [open an issue on GitHub](https://github.com/matter-labs/zksync-cli/issues/new) or report it to us [in our Discord](https://join.zksync.dev/).
+If you find any issues, you can [open an issue on GitHub](https://github.com/matter-labs/zksync-cli/issues/new) or report it to us [in GitHub discussions](https://github.com/zkSync-Community-Hub/zkync-developers/discussions).
