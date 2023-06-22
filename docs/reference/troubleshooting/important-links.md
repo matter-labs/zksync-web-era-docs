@@ -21,3 +21,4 @@
 ## Questions and support
 
 - [Discord](https://join.zksync.dev/)
+- [Developer Discussions](https://github.com/zkSync-Community-Hub/zkync-developers/discussions)
