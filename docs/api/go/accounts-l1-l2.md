@@ -14,6 +14,31 @@ func (p *DefaultEthProvider) Deposit(token *Token, amount *big.Int, address comm
 
 ```
 
+> Example
+
+The complete examples how to use `Deposit`:
+
+```go
+tx, err := ep.Deposit(
+  utils.CreateETH(),
+  big.NewInt(1_000_000_000_000_000_000),
+  w.GetAddress(),
+  nil,
+)
+if err != nil {
+  panic(err)
+}
+
+_, err = ep.WaitMined(context.Background(), tx.Hash())
+if err != nil {
+  log.Panic(err)
+}
+```
+
+[Deposit ETH](getting-started.md#deposit-eth).
+
+[Deposit ERC20 token](getting-started.md#deposit-tokens).
+
 **Inputs and outputs**
 
 | Name    | Description                                               |
@@ -46,6 +71,18 @@ L1 bridge, which results in returning L1 tokens back to the depositor, or throws
 | returns     | The transaction hash of claim failed deposit                |
 
 
+> Example
+
+```go
+cfdHash, err := w.ClaimFailedDeposit(l2Hash, ep)
+if err != nil {
+		fmt.Println(err) // this should trigger if deposit succeed
+}
+fmt.Println("ClaimFailedDeposit hash", cfdHash)
+```
+
+
+
 ## Withdrawals
 
 Withdrawal are executed in 2 steps: 
@@ -66,7 +103,6 @@ func (w *Wallet) Withdraw(to common.Address, amount *big.Int, token *Token, nonc
 | token   | The address of the L2 ERC20 token.                       |
 | nonce   | The sender's nonce.                                      |
 | returns | The transaction hash of the withdrawal.                  |
-
 
 
 ### `FinalizeWithdraw`
@@ -112,3 +148,8 @@ if err != nil {
 }
 fmt.Println("Finalize withdraw transaction", fwHash)
 ```
+
+The complete examples how to use `Withdraw` and `FinalizeWithdraw`:
+
+- [Withdraw ETH token](getting-started.md#withdraw-eth).
+- [Withdraw ERC20 token](getting-started.md#withdraw-tokens).
