@@ -103,7 +103,7 @@ multisig and use another signature scheme.
 
 Read more about [zkSync Era Account Abstraction support](../../reference/concepts/aa.md).
 
-### Employ a local testing environment
+### Use local testing environment
 
 For optimal development and testing of your contracts, it is highly recommended to perform local testing before deploying them to the mainnet. Local testing allows you to test your contracts in a controlled environment, providing benefits such as reduced network latency and cost.
 
