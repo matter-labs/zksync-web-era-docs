@@ -10,7 +10,6 @@ These require us to extend standard Ethereum transactions with new custom fields
 
 This document will focus solely on how to pass these arguments to the SDK.
 
-
 ## Overrides
 
 `ethers.js` has a notion of overrides. For any on-chain transaction, `ethers.js` finds the optimal `gasPrice`, `gasLimit`, `nonce`, and other important fields under the hood. But sometimes, you may have a need to explicitly provide these values (you want to set a smaller `gasPrice` for instance, or sign a transaction with future `nonce`).
@@ -34,6 +33,7 @@ In order to make the SDK as flexible as possible, `zksync-web3` uses `customData
     }
 }
 ```
+
 Please note once again: everything that is inside `customData` in `overrides` is related to zkSync(L2 gas, etc).
 
 Examples:
@@ -43,7 +43,7 @@ Override to deploy a contract with bytecode `0xcde...12` and enforce that the op
 ```typescript
 {
     customData: {
-        gasPerPubdata: "100", 
+        gasPerPubdata: "100",
         factoryDeps: ["0xcde...12"],
     }
 }

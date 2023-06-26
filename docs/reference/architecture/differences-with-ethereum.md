@@ -55,30 +55,21 @@ can be found in our SDK, as demonstrated below:
 
 ```typescript
 export function create2Address(sender: Address, bytecodeHash: BytesLike, salt: BytesLike, input: BytesLike) {
-    const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes('zksyncCreate2'));
-    const inputHash = ethers.utils.keccak256(input);
-    const addressBytes = ethers.utils
-        .keccak256(ethers.utils.concat([prefix, ethers.utils.zeroPad(sender, 32), salt, bytecodeHash, inputHash]))
-        .slice(26);
-    return ethers.utils.getAddress(addressBytes);
+  const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes("zksyncCreate2"));
+  const inputHash = ethers.utils.keccak256(input);
+  const addressBytes = ethers.utils.keccak256(ethers.utils.concat([prefix, ethers.utils.zeroPad(sender, 32), salt, bytecodeHash, inputHash])).slice(26);
+  return ethers.utils.getAddress(addressBytes);
 }
 
 export function createAddress(sender: Address, senderNonce: BigNumberish) {
-    const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes('zksyncCreate'));
-    const addressBytes = ethers.utils
-        .keccak256(
-            ethers.utils.concat([
-                prefix,
-                ethers.utils.zeroPad(sender, 32),
-                ethers.utils.zeroPad(ethers.utils.hexlify(senderNonce), 32)
-            ])
-        )
-        .slice(26);
+  const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes("zksyncCreate"));
+  const addressBytes = ethers.utils
+    .keccak256(ethers.utils.concat([prefix, ethers.utils.zeroPad(sender, 32), ethers.utils.zeroPad(ethers.utils.hexlify(senderNonce), 32)]))
+    .slice(26);
 
-    return ethers.utils.getAddress(addressBytes);
+  return ethers.utils.getAddress(addressBytes);
 }
 ```
-
 
 ### `CALL`, `STATICCALL`, `DELEGATECALL`
 
@@ -115,9 +106,9 @@ That means that the code will panic if `2^32-32 + offset % 32 < offset + len`.
 
 ### `CODESIZE`
 
-| Deploy code                       | Runtime code                      |
-| --------------------------------- | --------------------------------- |
-| Size of the constructor arguments | Contract size                     |
+| Deploy code                       | Runtime code  |
+| --------------------------------- | ------------- |
+| Size of the constructor arguments | Contract size |
 
 Yul uses a special instruction `datasize` to distinguish the contract code and constructor arguments, so we
 substitute `datasize` with 0, and `codesize` with `calldatasize`, in zkSync Era deployment code. This way when Yul calculates the
@@ -125,9 +116,9 @@ calldata size as `sub(codesize, datasize)`, the result is the size of the constr
 
 ### `CODECOPY`
 
-| Deploy code                       | Runtime code (old EVM codegen)    | Runtime code (new Yul codegen)    |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| Copies the constructor arguments  | Zeroes memory out                 | Compile-time error                |
+| Deploy code                      | Runtime code (old EVM codegen) | Runtime code (new Yul codegen) |
+| -------------------------------- | ------------------------------ | ------------------------------ |
+| Copies the constructor arguments | Zeroes memory out              | Compile-time error             |
 
 ### `RETURN`
 
@@ -294,12 +285,11 @@ Use instead:
 require(s);
 ```
 
-This converts the `send`/`transfer` functionality to `call` and [avoids potential security risks outlined here.](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/). 
+This converts the `send`/`transfer` functionality to `call` and [avoids potential security risks outlined here.](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/).
 
 :::note Be aware of reentrancy
 While `.call` offers more flexibility compared to `.send` or `.transfer`, developers should be aware that `.call` does not provide the same level of reentrancy protection as `.transfer`/`.send`. It's crucial to adhere to best practices like the checks-effects-interactions pattern and/or use reentrancy guard protection to secure your contracts against reentrancy attacks. It can help ensure the robustness and security of your smart contracts on the zkEVM, even under unexpected conditions.
 :::
-
 
 ## Libraries
 
@@ -347,8 +337,9 @@ Proxy pattern for a few months after your first deployment on zkSync Era, even i
 contract in the future.
 
 :::tip zkSync Upgradeable plugin
+
 - The [hardhat-zksync-upgradeable plugin](https://era.zksync.io/docs/api/hardhat/hardhat-zksync-upgradable.html) is now available to help you create proxies.
-:::
+  :::
 
 ### Do not rely on EVM gas logic
 

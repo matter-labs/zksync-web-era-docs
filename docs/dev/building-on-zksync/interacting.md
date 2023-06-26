@@ -44,7 +44,6 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - Block Explorer URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://mainnet.era.zksync.io/ws`
 
-
 **Testnet network info**
 
 - Network Name: `zkSync Era Testnet`
@@ -60,14 +59,14 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 
 You can open a support ticket in `💻🧪│dev-support-beta` or ask any questions in `🖥│dev-general`
 
-If you need help with anything related to the zkSync Era, you can raise a support ticket on the zkSync Era discord, or check out the [FAQs](../../reference/troubleshooting/faq.md) page to view the most common queries about the zkSync Era. Additionally, you can reach out to the support team available on the `#dev-support-beta`, or ask any questions in `#dev-general` channel on the zkSync Era Discord server. 
+If you need help with anything related to the zkSync Era, you can raise a support ticket on the zkSync Era discord, or check out the [FAQs](../../reference/troubleshooting/faq.md) page to view the most common queries about the zkSync Era. Additionally, you can reach out to the support team available on the `#dev-support-beta`, or ask any questions in `#dev-general` channel on the zkSync Era Discord server.
 Instructions for raising a support ticket are as follows:
 
 - Join the zkSync Era [our Discord](https://join.zksync.dev/) server.
 - Accept the invite sent.
 - Navigate to the `#dev-support-beta` channel.
 
-Alternatively, you can now contact our support engineers with your questions and concerns via [email](mailto:support@zksync.io). 
+Alternatively, you can now contact our support engineers with your questions and concerns via [email](mailto:support@zksync.io).
 We will actively monitor for issues and work to resolve them as soon as possible.
 
 <!-- ## Deposit and withdraw funds using zkSync Portal
@@ -88,7 +87,7 @@ You may also add the network manually to your metamask.
 - Network Name: `zkSync mainnet`
 - New RPC URL: `https://zksync2-mainnet.zksync.io`
 - Chain ID: `324` -->
-<!-- 
+<!--
 **Step 2 (Skip if you don’t have Goerli ETH)**
 
 We first go to “Bridge” and then “Deposit” to deposit some \$ETH to zkSync Era.

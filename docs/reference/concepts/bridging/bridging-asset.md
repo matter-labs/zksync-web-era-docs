@@ -14,16 +14,16 @@ However, we provide our default bridges (one for ETH and one for ERC20 tokens), 
 Addresses of tokens on L2 will always differ from the same token L1 address.
 
 :::
+
 ## Default bridges
 
 You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../../api/api.md#zks_getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../../api/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
 
 ### Add tokens to the bridge
 
-While the zkSync standard bridge can be used without permission from a smart contract perspective, the UI only displays tokens that have been added to our SDK. 
+While the zkSync standard bridge can be used without permission from a smart contract perspective, the UI only displays tokens that have been added to our SDK.
 
 If you would like to add a token, submit a request by filling out the [token request form](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw). Our team will review your request, and get back to you if we have any outstanding questions before adding the token to our list.
-
 
 ### Deposits (to L2)
 
@@ -38,7 +38,7 @@ Users must call the `deposit` method on the L1 bridge contract, which triggers t
 
 ### Deposit ETH
 
-Here is an example of how to deposit ETH with the `deposit` method from the `Deployer` class. 
+Here is an example of how to deposit ETH with the `deposit` method from the `Deployer` class.
 
 ```ts
 import { Wallet, Provider, utils } from "zksync-web3";
@@ -70,7 +70,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   const wallet = new Wallet(WALLET_PRIV_KEY, provider);
 
-  // Create deployer object 
+  // Create deployer object
   const deployer = new Deployer(hre, wallet);
 
   // Deposit ETH to L2
@@ -86,6 +86,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`ETH available in L2`);
 }
 ```
+
 ### Deposit ERC20 tokens
 
 To deposit ERC20 tokens, use the same method but pass the `approveERC20: true` option. Here's an example:
@@ -106,7 +107,7 @@ const MAINNET_RPC_ENDPOINT = "";
 // Token address
 const TOKEN_ADDRESS = "";
 
-// Amount of tokens 
+// Amount of tokens
 const AMOUNT = "5";
 
 const WALLET_PRIV_KEY = process.env.WALLET_PRIV_KEY || "";
@@ -123,10 +124,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     // @ts-ignore
     MAINNET_RPC_ENDPOINT || hre.config.networks.zkSyncTestnet.ethNetwork
   );
-    
+
   const wallet = new Wallet(WALLET_PRIV_KEY, provider);
 
-  // Create deployer object 
+  // Create deployer object
   const deployer = new Deployer(hre, wallet);
 
   // Deposit ERC20 tokens to L2
@@ -159,9 +160,10 @@ The log message described above is not yet fully supported by our SDK but is ava
 ### Withdrawals (to L1)
 
 :::tip
-- To provide additional security during the Alpha phase, **withdrawals in zkSync Era take 24 hours**. 
+
+- To provide additional security during the Alpha phase, **withdrawals in zkSync Era take 24 hours**.
 - For more information, read the [withdrawal delay guide](../../troubleshooting/withdrawal-delay.md).
-:::
+  :::
 
 Users must call the `withdraw` method on the L2 bridge contract, which will trigger the following actions:
 
@@ -181,7 +183,6 @@ To build a custom bridge, create a regular Solidity contract which extends the c
 - L1: [IL1Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/ethereum/contracts/bridge/interfaces/IL1Bridge.sol)
 
   For more information, check out our example [L1 custom bridge implementation](https://github.com/matter-labs/era-contracts/blob/main/ethereum/contracts/bridge/L1ERC20Bridge.sol).
-
 
 - L2: [L2ERC20Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/zksync/contracts/bridge/L2ERC20Bridge.sol)
 

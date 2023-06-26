@@ -1,6 +1,6 @@
 # Verify Contracts with Hardhat
 
-Contract source-code verification ensures that the code running on-chain matches your published code. 
+Contract source-code verification ensures that the code running on-chain matches your published code.
 
 The verification process validates and authenticates contracts running on a blockchain network, and enhances transparency, security, and trust in your smart contracts.
 
@@ -19,7 +19,7 @@ For contracts operating across multiple chains, verifying contracts on each netw
 ### Open source projects
 
 For open-source projects, verifying contracts enhances trust and encourages more developers to contribute. It assures contributors that the deployed contracts match the source code.
-  
+
 ## Verifying contracts using `hardhat-zksync-verify`
 
 ### 1. Project setup
@@ -46,13 +46,17 @@ cd ~/verify-greeter-contract
 
 ::: code-tabs
 @tab yarn
+
 ```bash
 yarn add -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
 ```
+
 @tab npm
+
 ```bash
 npm i -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
 ```
+
 :::
 
 ### 3. Configuration of `hardhat.config.ts`
@@ -79,7 +83,7 @@ const zkSyncTestnet =
         url: "https://zksync2-testnet.zksync.dev",
         ethNetwork: "goerli",
         zksync: true,
-        verifyURL: 'https://zksync2-testnet-explorer.zksync.dev/contract_verification'  // Verification endpoint
+        verifyURL: "https://zksync2-testnet-explorer.zksync.dev/contract_verification", // Verification endpoint
       };
 
 const config: HardhatUserConfig = {
@@ -105,13 +109,13 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-- Feel free to assign an arbitrary zkSync Era network name utilizing the `defaultNetwork` property. 
+- Feel free to assign an arbitrary zkSync Era network name utilizing the `defaultNetwork` property.
 - The `verifyURL` attribute directs to the verification endpoint specific to the zkSync network.
 - If you intend to validate a smart contract on Ethereum within the same project, don't forget to include your [Etherscan API key](https://docs.etherscan.io/getting-started/viewing-api-usage-statistics).
 
 ### 4. Greeter contract compilation
 
-The [zkSync CLI](/docs/tools/zksync-cli/) provides a `Greeter.sol` contract we will verify on zkSync Era. 
+The [zkSync CLI](/docs/tools/zksync-cli/) provides a `Greeter.sol` contract we will verify on zkSync Era.
 
 Compile the contract using this command:
 
@@ -119,9 +123,9 @@ Compile the contract using this command:
 yarn hardhat compile
 ```
 
-### 5. Deploy the Greeter contract 
+### 5. Deploy the Greeter contract
 
-The [zkSync CLI](/docs/tools/zksync-cli/) provides a `deploy/deploy-greeter.ts` script that we will use to deploy the Greeter contract. 
+The [zkSync CLI](/docs/tools/zksync-cli/) provides a `deploy/deploy-greeter.ts` script that we will use to deploy the Greeter contract.
 
 Add your private key to `<WALLET-PRIVATE-KEY>` in the `.env.example` file and remove `.example`.
 
@@ -140,7 +144,7 @@ constructor args:0x0000000000000000000000000000000000000000000000000000000000000
 The Greeter contract got deployed at 0xE84774C41F096Ba5BafA1439cEE787D9dD1A6b72
 ```
 
-Remember, you need the contract address to verify the contract on zkSync Era. 
+Remember, you need the contract address to verify the contract on zkSync Era.
 
 ### 6. Verify the contract
 
@@ -166,9 +170,9 @@ Specify which contract from your local setup you want to verify using the `--con
 yarn hardhat verify --network <network> <contract address> --contract <fully qualified name>
 ```
 
-A fully qualified name is, for example, `path/sourceName:contractName`. 
+A fully qualified name is, for example, `path/sourceName:contractName`.
 
-For instance, if the source name is `Greeter.sol`, the contract name is `Greeter`, and the contract lives in the `contracts/` directory, the fully qualified contract name is: `contracts/Greeter.sol:Greeter`. 
+For instance, if the source name is `Greeter.sol`, the contract name is `Greeter`, and the contract lives in the `contracts/` directory, the fully qualified contract name is: `contracts/Greeter.sol:Greeter`.
 
 Here's an example of command using the `--contract` flag:
 
@@ -196,16 +200,16 @@ If your contract's constructor includes a complex list of arguments, create a se
 
 #### 6.3.1 Prepare the JavaScript module with arguments
 
-Start by creating an `arguments.js` file. This file should export an array of arguments that matches the order and types of the arguments in your contract's constructor. 
+Start by creating an `arguments.js` file. This file should export an array of arguments that matches the order and types of the arguments in your contract's constructor.
 
 For example, if your contract constructor has two string values, an address, and an integer, your `arguments.js` might look like this:
 
 ```javascript
 module.exports = [
-    "string argument 1", // string
-    "string argument 2", // string
-    "0x1234abc...",  // address
-    42  // integer
+  "string argument 1", // string
+  "string argument 2", // string
+  "0x1234abc...", // address
+  42, // integer
 ];
 ```
 
@@ -247,7 +251,7 @@ For instance, if your verification ID is `12345`, run the following:
 yarn hardhat verify-status --verification-id 12345
 ```
 
-This command returns the current status of your verification request. 
+This command returns the current status of your verification request.
 
 :::tip
 Depending on the network load and complexity of your contract, the verification process may take some time to complete.
@@ -255,19 +259,21 @@ Depending on the network load and complexity of your contract, the verification 
 
 ### 8. Verify smart contract programmatically
 
-There may be cases where you need to verify your contracts programmatically, for instance, as part of your project's build or deployment scripts. 
+There may be cases where you need to verify your contracts programmatically, for instance, as part of your project's build or deployment scripts.
 
 To achieve this, use Hardhat's task runner to call the `verify:verify` task directly from your code. For example:
 
 ```typescript
 const contractAddress = "<your contract address>";
 const contractFullyQualifiedName = "<your contract fully qualified name>";
-const constructorArguments = [/* your decoded constructor arguments */];
+const constructorArguments = [
+  /* your decoded constructor arguments */
+];
 
 const verificationId = await hre.run("verify:verify", {
   address: contractAddress,
   contract: contractFullyQualifiedName,
-  constructorArguments: constructorArguments
+  constructorArguments: constructorArguments,
 });
 
 console.log(`Verification ID: ${verificationId}`);
@@ -275,7 +281,7 @@ console.log(`Verification ID: ${verificationId}`);
 
 In this script:
 
-- `contractAddress` is the address of the deployed contract you wish to verify. 
+- `contractAddress` is the address of the deployed contract you wish to verify.
 - `contractFullyQualifiedName` is the fully qualified name of your contract (including the path to your Solidity file and contract name, separated by a colon e.g., `"contracts/Greeter.sol:Greeter"`).
 - `constructorArguments` is an array containing the arguments used to deploy your contract (e.g. "Hi There").
 

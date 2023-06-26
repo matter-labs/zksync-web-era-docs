@@ -2,22 +2,23 @@
 
 From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
 
-> Transactions are cryptographically signed instructions from accounts. An account will initiate a transaction to update the state of the Ethereum network. The simplest transaction is transferring ETH from one account to another. 
+> Transactions are cryptographically signed instructions from accounts. An account will initiate a transaction to update the state of the Ethereum network. The simplest transaction is transferring ETH from one account to another.
 
 ## Transaction data on Ethereum
 
 From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):
 
 > A submitted transaction includes the following information:
->  - `from`: the address of the sender, that will be signing the transaction. This will be an externally-owned account as contract accounts cannot send transactions.
->  - `recipient`: the receiving address (if an externally-owned account, the transaction will transfer value. If a contract account, the transaction will execute the contract code).
->  - `signature`: the identifier of the sender. This is generated when the sender's private key signs the transaction and confirms the sender has authorized this transaction.
->  - `nonce`: a sequentially incrementing counter which indicates the transaction number from the account.
->  - `value`: amount of ETH to transfer from sender to recipient (denominated in WEI, where 1ETH equals 1e+18wei).
->  - `data`: optional field to include arbitrary data.
->  - `gasLimit`: the maximum amount of gas units that can be consumed by the transaction. The EVM specifies the units of gas required by each computational step.
->  - `maxPriorityFeePerGas`: the maximum price of the consumed gas to be included as a tip to the validator.
->  - `maxFeePerGas`: the maximum fee per unit of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas).
+>
+> - `from`: the address of the sender, that will be signing the transaction. This will be an externally-owned account as contract accounts cannot send transactions.
+> - `recipient`: the receiving address (if an externally-owned account, the transaction will transfer value. If a contract account, the transaction will execute the contract code).
+> - `signature`: the identifier of the sender. This is generated when the sender's private key signs the transaction and confirms the sender has authorized this transaction.
+> - `nonce`: a sequentially incrementing counter which indicates the transaction number from the account.
+> - `value`: amount of ETH to transfer from sender to recipient (denominated in WEI, where 1ETH equals 1e+18wei).
+> - `data`: optional field to include arbitrary data.
+> - `gasLimit`: the maximum amount of gas units that can be consumed by the transaction. The EVM specifies the units of gas required by each computational step.
+> - `maxPriorityFeePerGas`: the maximum price of the consumed gas to be included as a tip to the validator.
+> - `maxFeePerGas`: the maximum fee per unit of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas).
 
 ## Transaction data on zkSync Era
 
@@ -58,7 +59,7 @@ The Ethereum transaction format used before the introduction of typed-transactio
 
 ### EIP-2930: `0x1`
 
-The Ethereum Improvement Proposal [EIP-2930: Optional access lists](https://eips.ethereum.org/EIPS/eip-2930) addressed contract breakage risks introduced by EIP-2929. 
+The Ethereum Improvement Proposal [EIP-2930: Optional access lists](https://eips.ethereum.org/EIPS/eip-2930) addressed contract breakage risks introduced by EIP-2929.
 
 EIP-2930 transaction types contain everything from legacy transactions plus an `accessList` parameter containing an array of addresses and storage keys.
 
@@ -66,7 +67,7 @@ EIP-2930 transaction types contain everything from legacy transactions plus an `
 
 The Ethereum Improvement Proposal [EIP-1559: Fee market change for ETH 1.0 chain](https://eips.ethereum.org/EIPS/eip-1559) is an updated transaction type introduced in Ethereum's London fork. It addressed network congestion and excessive fees coming from bids. EIP-1559 transactions don't specify `gasPrice` and instead use a base fee which is adjusted by each block.
 
-EIP-1559 transaction types contain everything from EIP-2930 and legacy transactions (apart from removing the `gasPrice`). 
+EIP-1559 transaction types contain everything from EIP-2930 and legacy transactions (apart from removing the `gasPrice`).
 
 Additional parameters added are the `maxPriorityFeePerGas` and `maxFeePerGas` where users can specify maximum fees they're willing to pay to prioritize their transactions.
 
@@ -79,7 +80,7 @@ zkSync Era supports the EIP-1559 transaction-type format but does nothing with t
 
 ### EIP-712: `0x71`
 
-The Ethereum Improvement Proposal [EIP-712: Typed structured data hashing and signing](https://eips.ethereum.org/EIPS/eip-712) introduced hashing and signing of typed-structured data as well as bytestrings. 
+The Ethereum Improvement Proposal [EIP-712: Typed structured data hashing and signing](https://eips.ethereum.org/EIPS/eip-712) introduced hashing and signing of typed-structured data as well as bytestrings.
 
 EIP-712 transactions access zkSync-specific features such as [account abstraction](../aa.md) and [paymasters](../../../dev/tutorials/custom-paymaster-tutorial.md). Furthermore, smart contracts must be deployed with the EIP-712 transaction type.
 
@@ -130,7 +131,7 @@ Since Ethereum L1 has no concept of interacting with other layers, this is a zkS
 
 Transactions in the [block explorer](https://explorer.zksync.io/transactions/) are always in one of the following statuses:
 
-- `Pending`: In the mempool but not yet included in a block. 
+- `Pending`: In the mempool but not yet included in a block.
 - `Included`: Included in a block but the batch containing the block has not yet been committed.
 - `Verified`: Included in a block and verified. Verified means the transaction has been committed, proven, and executed on the Ethereum L1 network.
 - `Failed`: Unverified/failed transaction.

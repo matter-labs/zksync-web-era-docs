@@ -64,7 +64,7 @@ module.exports = {
       url: "https://testnet.era.zksync.dev",
       ethNetwork: "goerli", // RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
       zksync: true,
-      verifyURL: 'https://zksync2-testnet-explorer.zksync.dev/contract_verification'  // Verification endpoint
+      verifyURL: "https://zksync2-testnet-explorer.zksync.dev/contract_verification", // Verification endpoint
     },
   },
   solidity: {
@@ -79,7 +79,7 @@ If the contract was already compiled, it won't recompile until you delete the `a
 
 ### Compile and deploy the Greeter contract
 
-1. Create the following folders: 
+1. Create the following folders:
 
 ```sh
 mkdir contracts deploy
@@ -163,7 +163,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const contractAddress = greeterContract.address;
   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 
-  // Verify contract programmatically 
+  // Verify contract programmatically
   //
   // Contract MUST be fully qualified name (e.g. path/sourceName:contractName)
   const contractFullyQualifedName = "contracts/Greeter.sol:Greeter";
@@ -173,7 +173,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     constructorArguments: [greeting],
     bytecode: artifact.bytecode,
   });
-  console.log(`${contractFullyQualifedName} verified! VerificationId: ${verificationId}`)
+  console.log(`${contractFullyQualifedName} verified! VerificationId: ${verificationId}`);
 }
 ```
 
@@ -184,10 +184,11 @@ yarn hardhat deploy-zksync
 ```
 
 ::: tip Request-Rate Exceeded message
-- This message is caused by using the default RPC endpoints provided by ethers. 
-- To avoid this, use your own Goerli RPC endpoint. 
+
+- This message is caused by using the default RPC endpoints provided by ethers.
+- To avoid this, use your own Goerli RPC endpoint.
 - Find multiple [node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
-:::
+  :::
 
 You should see something like this:
 
@@ -210,10 +211,11 @@ Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search wi
 ### Set up the project
 
 :::info
-- We use the `Vue` web framework for the tutorial front end (the process is similar to other frameworks). 
-- In order to focus on the `zksync-web3` SDK, we provide a prebuilt template. 
+
+- We use the `Vue` web framework for the tutorial front end (the process is similar to other frameworks).
+- In order to focus on the `zksync-web3` SDK, we provide a prebuilt template.
 - Once set up, we add code that interacts with the smart contract we just deployed.
-:::
+  :::
 
 1. Clone the template and `cd` into the folder.
 
@@ -257,7 +259,7 @@ When bridging from mainnet to a smart account (e.g. Argent) on zkSync Era, you m
 
 ### Project structure
 
-In the `./src/App.vue` file, in the `functions:` section, you will see template code that stores the application. 
+In the `./src/App.vue` file, in the `functions:` section, you will see template code that stores the application.
 
 Most of the code is provided. You have to complete the TODO: sections.
 
@@ -325,9 +327,10 @@ const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
 ### Add the ABI and contract address
 
 :::info
-- To interact with a smart contract deployed to zkSync, we need its ABI. 
+
+- To interact with a smart contract deployed to zkSync, we need its ABI.
 - ABI stands for Application Binary Interface and is json which describes the contract's variable and function, names and types.
-:::
+  :::
 
 1. Create the `./src/abi.json` file. You may find one in the repo, but it's good practice to use the one you created instead.
 
@@ -447,7 +450,7 @@ After connecting the Metamask wallet to zkSync Era Testnet, you should see the f
 
 ![img](../../assets/images/start-1.png)
 
-The **Select token** dropdown menu allows you to choose which token to pay fees with. 
+The **Select token** dropdown menu allows you to choose which token to pay fees with.
 
 ### Retrieving token balance and transaction fee
 
@@ -543,18 +546,18 @@ Read more about `wallet_requestPermissions`, in the [MetaMask documentation](htt
 
 ### Paying fees using testnet paymaster
 
-The zkSync Era account abstraction feature allows you to integrate [paymasters](../../reference/concepts/aa.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly. 
+The zkSync Era account abstraction feature allows you to integrate [paymasters](../../reference/concepts/aa.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly.
 
 We will use the [testnet paymaster](../../reference/concepts/aa.md#testnet-paymaster) that is provided on all zkSync Era testnets.
 
 :::info
-**The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH. 
+**The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH.
 
 This means that transaction fees in tokens with fewer decimals than ETH will be bigger; for example, USDC which has only 6 decimals. This is a known behaviour of the testnet paymaster, which was built for demonstration purposes only.
 :::
 
 ::: warning Paymasters on mainnet
-The testnet [paymaster](https://era.zksync.io/docs/dev/tutorials/custom-paymaster-tutorial.html#building-custom-paymaster) is purely for demonstrating this feature and won't be available on mainnet. 
+The testnet [paymaster](https://era.zksync.io/docs/dev/tutorials/custom-paymaster-tutorial.html#building-custom-paymaster) is purely for demonstrating this feature and won't be available on mainnet.
 
 When integrating your protocol on mainnet, you should follow the documentation of the paymaster you use, or create your own.
 :::
@@ -623,7 +626,7 @@ async getOverrides() {
 }
 ```
 
-4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../reference/concepts/aa.md#testnet-paymaster) and return the needed overrides. 
+4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../reference/concepts/aa.md#testnet-paymaster) and return the needed overrides.
 
 Copy/paste the following complete function:
 

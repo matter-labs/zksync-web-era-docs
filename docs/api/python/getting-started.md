@@ -10,7 +10,7 @@ In this guide we will demonstrate how to:
 6. Deploy a smart contract with constructor and interact with the contract.
 7. Deploy a smart contract with dependency.
 8. Deploy a smart contract using create2.
-9. Deploy a smart contract with dependency using create2. 
+9. Deploy a smart contract with dependency using create2.
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ sdk = ZkSyncBuilder.build("https://testnet.era.zksync.dev")
 
 ## Examples
 
-Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-python/tree/master/examples). Examples are configured to interact with `zkSync` and `Goerli` test networks.  
+Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-python/tree/master/examples). Examples are configured to interact with `zkSync` and `Goerli` test networks.
 
 ### Deposit funds
 
@@ -136,6 +136,7 @@ if __name__ == "__main__":
 ### Check balance
 
 Here is an example of how to check a balance on zkSync Era.
+
 ```python
 from eth_account import Account
 from eth_account.signers.local import LocalAccount
@@ -368,11 +369,13 @@ if __name__ == "__main__":
 
 ### Withdraw funds (Native coins)
 
-Withdrawal are executed in 2 steps: 
- - `Withdraw`: Initiates withdrawal on L2. 
- - `Finalize withdrawal`: Finalized withdrawal on L1.
+Withdrawal are executed in 2 steps:
+
+- `Withdraw`: Initiates withdrawal on L2.
+- `Finalize withdrawal`: Finalized withdrawal on L1.
 
 #### Withdraw
+
 ```python
 import os
 
@@ -489,6 +492,7 @@ if __name__ == "__main__":
 ```
 
 #### Finalize withdrawal
+
 ```python
 import os
 
@@ -535,7 +539,7 @@ def finalize_withdraw(
 if __name__ == "__main__":
     # Get the private key from OS environment variables
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))
-    
+
     # Get the withdrawal transaction hash from OS environment variables
     WITHDRAW_TX_HASH = HexBytes.fromhex(os.environ.get("WITHDRAW_TX_HASH"))
 
@@ -566,24 +570,22 @@ if __name__ == "__main__":
 
 ```
 
-
 ### Smart contract deployment
 
 With zkSync, you can deploy a contract using the create method, by simply building the contract into a binary format and deploying it to the zkSync network.
 
-
 - [Storage](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/storage/Storage.sol): Contract without constructor.
 - [Incrementer](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/incrementer/Incrementer.sol): Contract with constructor.
-- [Demo](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/demo/Demo.sol): Contract that has a dependency on 
-[Foo](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/demo/Foo.sol) contract.
+- [Demo](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/demo/Demo.sol): Contract that has a dependency on
+  [Foo](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/demo/Foo.sol) contract.
 
-There is a [user guide](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/README.md) on how to compile Solidity smart contracts using `zksolc` 
-compiler. `zksolc` compiler generates a `combined.json` file that contains the bytecode and ABI of a smart contract. Those files are used in the following examples. 
+There is a [user guide](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/README.md) on how to compile Solidity smart contracts using `zksolc`
+compiler. `zksolc` compiler generates a `combined.json` file that contains the bytecode and ABI of a smart contract. Those files are used in the following examples.
 
 #### Deploy a contract
 
 To deploy the contract, the contract ABI is needed for calling methods in the standard Web3 way.
-`ConctractEncoder` is used to read the ABI and bytecode from the `combined.json` file. 
+`ConctractEncoder` is used to read the ABI and bytecode from the `combined.json` file.
 
 ```python
 import os
@@ -699,7 +701,7 @@ if __name__ == "__main__":
 
 ### Deploy a contract with constructor and interact with it
 
-In some cases, you need to get the contract address before deploying it. Use `PrecomputeContractDeployer` 
+In some cases, you need to get the contract address before deploying it. Use `PrecomputeContractDeployer`
 to get the precomputed contract address. The Incrementer contract does not need a precomputed address, but it is used in
 this example to check that the precomputed address matches the deployed address. This example also demonstrates how to
 interact with deployed contract.
@@ -915,7 +917,7 @@ if __name__ == "__main__":
 
 ### Deploy a contract with dependency
 
-In following example 
+In following example
 
 ```python
 import os
