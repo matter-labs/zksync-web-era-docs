@@ -25,6 +25,10 @@ Automatically generate TypeScript bindings for smart contracts.
 [More infomation](https://www.npmjs.com/package/@typechain/hardhat)
 
 
+### openzeppelin/hardhat-upgrades
+
+Plugin used to deploy and update upgradable smart contracts (proxies). Use the [hardhat-zksync-upgradable plugin](./hardhat-zksync-upgradable.md) which provides an easy-to-use interface for interacting with the OpenZeppelin Upgrades Plugins within a Hardhat environment on zkSync.
+
 ### hardhat-contract-sizer
 
 Generates a report of the bytecode size of the contracts in your project.
@@ -47,15 +51,6 @@ In addition, make sure to read about [local testing](./testing.md).
 
 
 ## Unsupported plugins
-
-### openzeppelin/hardhat-upgrades
-
-This plugin is currently not supported as it overrides compiler tasks and is incompatible with the zkSync Era compiler. 
-
-:::tip
-- Proxy contracts are supported on zkSync Era and you can write proxies manually.
-- Only this plugin is not currently supported. 
-:::
 
 ### nomicfoundation/hardhat-network-helpers
 

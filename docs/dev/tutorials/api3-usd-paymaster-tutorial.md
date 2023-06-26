@@ -46,7 +46,7 @@ yarn add global zksync-cli@latest
 2. Run the following command to create a new project:
 
 ```sh
-yarn zksync-cli create paymaster-dapi
+zksync-cli create paymaster-dapi
 ```
 
 This creates a new zkSync Era project called `paymaster-dapi` with a basic `Greeter` contract. 
@@ -161,7 +161,6 @@ contract MyPaymaster is IPaymaster {
         ExecutionResult _txResult,
         uint256 _maxRefundedGas
     ) external payable onlyBootloader override {
-        // Refunds are not supported yet.
     }
 
     receive() external payable {}
@@ -475,7 +474,6 @@ contract MyPaymaster is IPaymaster, Ownable {
         ExecutionResult _txResult,
         uint256 _maxRefundedGas
     ) onlyBootloader external payable override {
-        // Refunds are not supported yet.
     }
 
     receive() external payable {}

@@ -33,7 +33,7 @@ yarn add global zksync-cli@latest
 - Once you complete the installation, execute the command below to create a fresh project:
 
 ```sh
-yarn zksync-cli create verify-greeter-contract
+zksync-cli create verify-greeter-contract
 ```
 
 3. This function creates a fresh zkSync project titled `verify-greeter-contract` containing a `Greeter` contract. Proceed by moving into the project directory:
@@ -84,8 +84,7 @@ const zkSyncTestnet =
 
 const config: HardhatUserConfig = {
   zksolc: {
-    version: "1.3.10",
-    compilerSource: "binary",
+    version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
     settings: {},
   },
   defaultNetwork: "zkSyncTestnet",
@@ -282,6 +281,6 @@ In this script:
 
 Once this script runs, it prints the verification ID. If the verification request is successful, you can use this ID to check the status of your verification request. If the request was not successful, the return value and printed ID is `-1`.
 
-9. UI block explorer alternative
+### 9. UI block explorer alternative
 
 Contract verification in zkSync Era ensures the integrity and trustworthiness of your contracts. The [zkSync Era Block Explorer](https://explorer.zksync.io/blocks/) is a manual UI process for doing the same, ideal for occasional use, while the `hardhat-zksync-verify` plugin facilitates an automated, flexible approach for developers.

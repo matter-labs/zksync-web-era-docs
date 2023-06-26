@@ -64,8 +64,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 const config: HardhatUserConfig = {
   zksolc: {
-    version: "1.3.10", // Use latest available in https://github.com/matter-labs/zksolc-bin/
-    compilerSource: "binary",
+    version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
     settings: {},
   },
   defaultNetwork: "zkSyncTestnet",
@@ -142,7 +141,6 @@ contract MyPaymaster is IPaymaster {
         ExecutionResult _txResult,
         uint256 _maxRefundedGas
     ) external payable onlyBootloader override {
-        // Refunds are not supported yet.
     }
 
     receive() external payable {}
@@ -356,7 +354,6 @@ contract MyPaymaster is IPaymaster {
         ExecutionResult _txResult,
         uint256 _maxRefundedGas
     ) external payable override onlyBootloader {
-        // Refunds are not supported yet.
     }
 
     receive() external payable {}
