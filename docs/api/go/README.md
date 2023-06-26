@@ -10,5 +10,6 @@ To provide easy access to all the features of zkSync Era, the `zksync2` Go SDK w
 - [Providers](./providers.md)
 - [Accounts: Overview](./accounts.md)
 - [Accounts: L1->L2 transactions](./accounts-l1-l2.md)
-- [Contract interface](./contract-interface.md)
+- [Contracts](./contracts.md)
+- [Paymaster utilities](./paymaster-utils.md)
 - [Types](./types.md)
