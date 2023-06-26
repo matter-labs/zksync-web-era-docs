@@ -610,6 +610,7 @@ The wallet had 3 tokens after running the deployment script and, after sending t
 
 ## Learn more
 
+- For an overview of best practices and recommendations for developing on zkSync Era, refer to the [Best Practices and Considerations](../building-on-zksync/best-practices.md) section.
 - Learn more about [L1->L2 interaction on zkSync](../../reference/concepts/bridging/l1-l2-interop.md).
 - Learn more about [the `zksync-web3` SDK](../../api/js).
 - Learn more about [the zkSync hardhat plugins](../../tools/hardhat).

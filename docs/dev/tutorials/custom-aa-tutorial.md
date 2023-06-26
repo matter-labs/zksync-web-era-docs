@@ -1176,6 +1176,7 @@ If you get an error `Not enough balance to cover the fee.`, try increasing the a
 
 ## Learn more
 
+- For an overview of best practices and recommendations for developing on zkSync Era, refer to the [Best Practices and Considerations](../building-on-zksync/best-practices.md) section.
 - To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../reference/concepts/bridging/l1-l2-interop.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync Era Hardhat plugins, check out the [Hardhat documentation](../../tools/hardhat).

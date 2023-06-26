@@ -12,6 +12,7 @@ export const enSidebar = sidebar({
       link: "/dev/building-on-zksync/hello-world.md", 
       children: [ "/dev/building-on-zksync/hello-world.md", 
                   "/dev/building-on-zksync/interacting.md",
+                  "/dev/building-on-zksync/best-practices.md",
                   "/dev/building-on-zksync/useful-address.md", ],
     },
     {
