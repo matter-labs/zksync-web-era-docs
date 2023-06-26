@@ -16,6 +16,7 @@ Our docs are open source so feel free to suggest new topics, add new content, or
 - [Send an L1 to L2 transaction](./how-to/send-transaction-l1-l2.md)
 - [Send an L2 to L1 message](./how-to/send-message-l2-l1.md)
 - [Transfer a token on L2](./how-to/transfer-token-l2.md)
+- [Verify contracts with Hardhat](./how-to/verify-contracts.md)
 
 ## Tutorials
 

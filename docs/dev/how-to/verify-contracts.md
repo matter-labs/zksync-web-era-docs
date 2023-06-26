@@ -281,6 +281,6 @@ In this script:
 
 Once this script runs, it prints the verification ID. If the verification request is successful, you can use this ID to check the status of your verification request. If the request was not successful, the return value and printed ID is `-1`.
 
-9. UI block explorer alternative
+### 9. UI block explorer alternative
 
 Contract verification in zkSync Era ensures the integrity and trustworthiness of your contracts. The [zkSync Era Block Explorer](https://explorer.zksync.io/blocks/) is a manual UI process for doing the same, ideal for occasional use, while the `hardhat-zksync-verify` plugin facilitates an automated, flexible approach for developers.
