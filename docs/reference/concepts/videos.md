@@ -1,6 +1,5 @@
 # Video resources
 
-
 ## zkSync Era for Builders - Alex Gluchowski
 
 This talk provides an in-depth understanding of zkSync Era from the user and developer’s perspective. It explains the differences and compatibilities between zkSync Era and the Ethereum Virtual Machine in a concise manner.

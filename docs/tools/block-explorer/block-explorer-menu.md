@@ -2,7 +2,7 @@
 
 ![zkSync Era block explorer menu](../../assets/images/block-explorer-menu.png)
 
-The [zkSync Era block explorer menu](https://explorer.zksync.io/) displays real-time and historical graphical data on [blocks](#blocks), [batches](#batches), [transactions](#transactions), and [tokens](#token-list). 
+The [zkSync Era block explorer menu](https://explorer.zksync.io/) displays real-time and historical graphical data on [blocks](#blocks), [batches](#batches), [transactions](#transactions), and [tokens](#token-list).
 
 ## Blocks
 
@@ -10,11 +10,11 @@ The [zkSync Era block explorer menu](https://explorer.zksync.io/) displays real-
 
 ![zkSync Era block explorer blocks page](../../assets/images/blocks.png)
 
-- Blocks are listed by block number, newest first, with status details and age. 
+- Blocks are listed by block number, newest first, with status details and age.
 
-- Blocks are paginated in groups of 10 and you can scroll through the pages at the bottom, or add a specific block number to the URL. 
+- Blocks are paginated in groups of 10 and you can scroll through the pages at the bottom, or add a specific block number to the URL.
 
-    For example [https://explorer.zksync.io/block/41849](https://explorer.zksync.io/block/41849).
+  For example [https://explorer.zksync.io/block/41849](https://explorer.zksync.io/block/41849).
 
 - Click on any block number to see more details about a block.
 
@@ -58,22 +58,22 @@ The [zkSync Era block explorer menu](https://explorer.zksync.io/) displays real-
 
 ![zkSync Era block explorer transaction details page](../../assets/images/transaction-details.png)
 
-| Data point        | Description         |
-| ----------------- | ------------------- |
-| Transaction Hash  | Unique 66 character identifier generated when transaction submitted to L2.  |
-| Commit Tx hash    | Unique 66 character identifier generated when transaction committed to L1.  |
-| Prove Tx hash     | Unique 66 character identifier generated when transaction proven on L1.     |
-| Execute Tx hash   | Unique 66 character identifier generated when transaction executed on L1.   |
-| Status    | One of `Pending`, `Included`, `Verified`, or `Failed`.   |
-| Block    |  Block number containing the transaction.  |
-| Batch    |  Batch number containing the transaction.  |
-| From          | The account or smart contract address sending the transaction.      |
-| Tokens Transferred    |  Details on all tokens transferred by the transaction.  |
-| Contract address      | The transaction recipient.        |
-| Input data          |  Any additional data used by the transaction for verified contracts.      |
-| Fee      | Fee for the tx in ETH and USD value. Click **More Details** to see info on refunds.   |
-| Nonce     | Sender nonce.  |                        
-| Created      | Timestamp of when the transaction was added to the block.                        |
+| Data point         | Description                                                                         |
+| ------------------ | ----------------------------------------------------------------------------------- |
+| Transaction Hash   | Unique 66 character identifier generated when transaction submitted to L2.          |
+| Commit Tx hash     | Unique 66 character identifier generated when transaction committed to L1.          |
+| Prove Tx hash      | Unique 66 character identifier generated when transaction proven on L1.             |
+| Execute Tx hash    | Unique 66 character identifier generated when transaction executed on L1.           |
+| Status             | One of `Pending`, `Included`, `Verified`, or `Failed`.                              |
+| Block              | Block number containing the transaction.                                            |
+| Batch              | Batch number containing the transaction.                                            |
+| From               | The account or smart contract address sending the transaction.                      |
+| Tokens Transferred | Details on all tokens transferred by the transaction.                               |
+| Contract address   | The transaction recipient.                                                          |
+| Input data         | Any additional data used by the transaction for verified contracts.                 |
+| Fee                | Fee for the tx in ETH and USD value. Click **More Details** to see info on refunds. |
+| Nonce              | Sender nonce.                                                                       |
+| Created            | Timestamp of when the transaction was added to the block.                           |
 
 ## Token list
 

@@ -36,6 +36,7 @@ yarn add -D @matterlabs/hardhat-zksync-toolbox @matterlabs/hardhat-zksync-solc @
 ```bash
 npm i -D @matterlabs/hardhat-zksync-toolbox
 ```
+
 :::
 
 > Note: For `npm`, version 7 or later is recommended.

@@ -3,7 +3,7 @@
 In this guide we will demonstrate how to:
 
 1. Deposit ETH from Ethereum into zkSync.
-2. Transfer ETH on zkSync. 
+2. Transfer ETH on zkSync.
 3. Withdraw ETH from zkSync to Ethereum.
 4. Deposit token from Ethereum into zkSync.
 5. Transfer token on zkSync.
@@ -49,11 +49,12 @@ defer zp.Close()
 
 ## Examples
 
-Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-examples/tree/main/go). Examples are configured to interact with `zkSync` and `Goerli` test networks.  
+Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-examples/tree/main/go). Examples are configured to interact with `zkSync` and `Goerli` test networks.
 
 ### Check balance
 
 Here is an example of how to check a balance on zkSync Era.
+
 ```go
 import (
 	"context"
@@ -106,7 +107,7 @@ func main() {
 
 ### Get all confirmed tokens on zkSync
 
-Following example shows how to get all confirmed tokens on zkSync Era. 
+Following example shows how to get all confirmed tokens on zkSync Era.
 
 ```go
 package main
@@ -839,23 +840,22 @@ func main() {
 
 With zkSync, you can deploy a contract using the create and create2 opcode, by simply building the contract into a binary format and deploying it to the zkSync network.
 
-
 - [Storage](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/storage/Storage.sol): Contract without constructor.
 - [Incrementer](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/incrementer/Incrementer.sol): Contract with constructor.
-- [Demo](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/demo/Demo.sol): Contract that has a dependency on 
-[Foo](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/demo/Foo.sol) contract.
+- [Demo](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/demo/Demo.sol): Contract that has a dependency on
+  [Foo](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/demo/Foo.sol) contract.
 - [Token](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/custom_paymaster/token/Token.sol): custom ERC20 token.
-- [Paymaster](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/custom_paymaster/paymaster/Paymaster.sol): custom paymaster which provides payment of transaction fees in ERC20 tokens. 
+- [Paymaster](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/custom_paymaster/paymaster/Paymaster.sol): custom paymaster which provides payment of transaction fees in ERC20 tokens.
 
-There is a [user guide](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/README.md) on how to compile Solidity smart contracts using `zksolc` 
-compiler. `zksolc` compiler generates a `*.zbin` and a `combined.json` file that contains the bytecode and ABI of a smart contract. 
-The `combined.json` file is used by `abigen` tool to generate smart contrat bindings. 
-Those files are used in the following examples. 
+There is a [user guide](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/README.md) on how to compile Solidity smart contracts using `zksolc`
+compiler. `zksolc` compiler generates a `*.zbin` and a `combined.json` file that contains the bytecode and ABI of a smart contract.
+The `combined.json` file is used by `abigen` tool to generate smart contrat bindings.
+Those files are used in the following examples.
 
 In some cases, you need to get the contract address before deploying it. Use
- - `utils.ComputeL2CreateAddress()` to get precomputed smart contract address when deploying with create opcode, 
- - `utils.ComputeL2Create2Address()` to get precomputed smart contract address when deploying with create2 opcode.
 
+- `utils.ComputeL2CreateAddress()` to get precomputed smart contract address when deploying with create opcode,
+- `utils.ComputeL2Create2Address()` to get precomputed smart contract address when deploying with create2 opcode.
 
 #### Deploy a contract with create opcode
 
@@ -1003,6 +1003,7 @@ func main() {
 }
 
 ```
+
 #### Deploy a contract with a constructor using create opcode
 
 ```go
@@ -1337,7 +1338,6 @@ func main() {
 }
 
 ```
-
 
 #### Deploy a contract using create2 opcode
 
@@ -1807,13 +1807,11 @@ func main() {
 
 ```
 
-
 ### Use paymaster
 
 This example demonstrates how to use a paymaster to facilitate fee payment with an ERC20 token.
 The user initiates a mint transaction that is configured to be paid with an ERC20 token through the paymaster.
 During transaction execution, the paymaster receives the ERC20 token from the user and covers the transaction fee using ETH.
-
 
 ```go
 package main

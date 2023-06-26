@@ -1,4 +1,4 @@
-# Finality :star:
+# Finality
 
 ## Finality on Ethereum
 
@@ -25,4 +25,3 @@ Research into validity proofs have seen tremendous advances in recent years. As 
 Even though zkSync Era finality is usually around 24 hours, users may consider transactions submitted to zkSync Era as having instant confirmation. Transaction details are instantly displayed in the UI and API (although they are marked as unconfirmed), and the transferred assets can be used immediately to make further transfers (which might even end up in the same zkSync Era batch).
 
 More cautious users may prefer to wait for full finality, or for any of the intermediate steps described above, before considering the assets as received.
-

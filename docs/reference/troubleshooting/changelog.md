@@ -1,6 +1,7 @@
 # Changelog
 
 ## Hardhat plugins update (June 21st, 2023)
+
 - New release of `@matterlabs/hardhat-zksync-solc`:
   - Compiler version checks to ascertain the use of the most recent version.
   - Support for using `version: "latest"` in your `hardhat.config.ts` file.
@@ -11,14 +12,16 @@
   - Inclusion of default values for all necessary configuration parameters to enhance user experience.
 
 ### How to update your project
-  
+
 - `@matterlabs/hardhat-zksync-solc` plugin:
+
   - Update the package to `0.4.0` in your `package.json` file and re-install dependencies.
 
 - `@matterlabs/hardhat-zksync-vyper` plugin:
   - Update the package to `0.2.0` in your `package.json` file and re-install dependencies.
 
 ## zksync-upgradable and compiler (May 5th 2023)
+
 - First release of `@matterlabs/hardhat-zksync-upgradable` a new package to create beacon and transparent proxy contracts. [More info here](../../tools/hardhat/hardhat-zksync-upgradable.md)
 - zksolc compiler has been updated to version `1.3.10`:
   - Multiple optimizations, security and bug fixes.
@@ -31,11 +34,11 @@
 ### How to update your project
 
 Compiler updates:
-  - Update `zksolc` version to `1.3.10` in the `hardhat.config.ts` and update `@matterlabs/hardhat-zksync-solc` to `0.3.17`. Recompile and redeploy.
-  
+
+- Update `zksolc` version to `1.3.10` in the `hardhat.config.ts` and update `@matterlabs/hardhat-zksync-solc` to `0.3.17`. Recompile and redeploy.
+
 - Verify plugin:
   - Update the package to `0.1.6` in your `package.json` file and re-install dependencies.
-
 
 ## Compilers and plugins (Apr 4th 2023)
 
@@ -45,7 +48,7 @@ Compiler updates:
   - Allowed to turn off the `solc` optimizer.
   - Support for more Solidity output options.
   - The `@matterlabs/hardhat-zksync-solc` plugin has been updated to support the latest version of the compiler.
-- zkvyper compiler has been updated to version `1.3.5`: 
+- zkvyper compiler has been updated to version `1.3.5`:
   - Multiple optimizations and bug fixes.
   - Allowed to turn off the `vyper` optimizer.
   - Support for more Vyper output options.
@@ -58,10 +61,11 @@ Compiler updates:
 ### How to update your project
 
 Compiler updates:
-  - For Solidity projects, update `zksolc` version to `1.3.8` in the `hardhat.config.ts` and update `@matterlabs/hardhat-zksync-solc` to `0.3.15`. Recompile and redeploy.
-  - For Vyper projects, update `zkvyper` version to `1.3.5` in the `hardhat.config.ts` and update `@matterlabs/hardhat-zksync-vyper` to `0.1.8`. Recompile and redeploy.
-Hardhat plugin updates:
-  - All plugins have been released as minor updates so you can update with `npm update PACKAGE_NAME` or `yarn upgrade PACKAGE_NAME`.
+
+- For Solidity projects, update `zksolc` version to `1.3.8` in the `hardhat.config.ts` and update `@matterlabs/hardhat-zksync-solc` to `0.3.15`. Recompile and redeploy.
+- For Vyper projects, update `zkvyper` version to `1.3.5` in the `hardhat.config.ts` and update `@matterlabs/hardhat-zksync-vyper` to `0.1.8`. Recompile and redeploy.
+  Hardhat plugin updates:
+- All plugins have been released as minor updates so you can update with `npm update PACKAGE_NAME` or `yarn upgrade PACKAGE_NAME`.
 
 ## Full launch system update (Mar 23rd, 2023)
 
@@ -87,7 +91,6 @@ Major updates across the system include:
 - L1->L2 transactions now require gas fees to be paid upfront. The fee can be estimated using the new method `zks_estimateGasL1ToL2`. [Read more here](../../reference/concepts/bridging/l1-l2-interop.md).
 - Provide `_refundRecipient` when using `requestL2Transaction` indicating the address that will receive refunds. (Optional)
 
-
 ## Hardhat plugins update (Feb 24th, 2023)
 
 The following hardhat plugin has been released:
@@ -104,7 +107,6 @@ Update the following versions in the `package.json` file of your project:
 - Update `@matterlabs/hardhat-zksync-deploy` to `0.6.2`.
 - Update `@matterlabs/hardhat-zksync-chai-matchers` to `0.1.1`.
 
-
 ## Compiler & local-setup update (Feb 20th 2023)
 
 Version `1.3.5` of `zksolc` has been released and the zkSync docker image of the local setup has been updated. Details:
@@ -112,7 +114,7 @@ Version `1.3.5` of `zksolc` has been released and the zkSync docker image of the
 - **Compiler:**
   - Adds support for Solidity `0.8.18`.
   - Fixes a broken optimization flag that increased the bytecode size of compiled contracts.
-  - Fixes a bug that detected ERC20 `transfer` calls as ETH `transfer` and produced a compilation error. 
+  - Fixes a bug that detected ERC20 `transfer` calls as ETH `transfer` and produced a compilation error.
   - Detection of `transfer` and `send` methods in smart contracts now returns a warning message (similar to `v1.3.1`). The new warning message reminds developers that using these methods to transfer ETH can cause issues and suggest replacing them with [`payable(address).call[value: <X>]("")`](../../reference/architecture/differences-with-ethereum.md#use-call-over-sendtransfer).
   - `transfer` can be used to transfer other tokens (e.g. ERC20) without any issues, although this might be still highlighted by the compiler.
 - **Local setup docker image:**
@@ -122,9 +124,7 @@ Version `1.3.5` of `zksolc` has been released and the zkSync docker image of the
 
 - Update the compiler version in the `hardhat.config.ts` file to `1.3.5`.
 - Re-compile contracts.
-- Update the docker images of the local setup with `docker-compose` pull` and restart its state by running the `./clear.sh` script.
-
-
+- Update the docker images of the local setup with `docker-compose` pull`and restart its state by running the`./clear.sh` script.
 
 ## System update (Feb 10th 2023)
 
@@ -135,7 +135,6 @@ Minor updated that simplifies the fee model to reduce overhead and fix some bugs
 - Update `zksync-web3` to `v0.13.1`.
 - There are no changes in contract interfaces or APIs, so no code changes are required.
 - Projects that don't use `zksync-web3` but rely on `eth_signTypedData` to sign the transactions would need to manually include a fixed `gasPerPubdataByteLimit` of `50000` in the transaction overrides.
-
 
 ## System update v1.3 (Feb 8th 2023)
 
@@ -161,10 +160,10 @@ To update your project, follow these steps:
 - Re-compile your project with the latest version of the binary compiler (`v1.3.1`).
 - Update `zksync-web3` to `0.13.x`. All methods that included `ergs` have been renamed to `gas` and some function signatures have changed.
 - If your project uses zksync system contracts, make sure to update the `@matterlabs/zksync-contracts` package as well. There are changes in multiple contract interfaces.
-- Paymasters: 
-  - The `ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT` in the transaction `customData` should be updated to `gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT`. 
+- Paymasters:
+  - The `ergsPerPubdata: utils.DEFAULT_ERGS_PER_PUBDATA_LIMIT` in the transaction `customData` should be updated to `gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT`.
   - Custom paymasters are required to return a magic value after a transaction validation on the `validateAndPayForPaymasterTransaction` method. This value should be `ACCOUNT_VALIDATION_SUCCESS_MAGIC` (available on the `IAccount.sol` interface) if the validation is successful, or an empty value `bytes4(0)` if it fails.
-- If your project uses Account Abstraction, keep in mind that the `IAccount` interface has changed. 
+- If your project uses Account Abstraction, keep in mind that the `IAccount` interface has changed.
   - The [Account abstraction multisig](../../dev/tutorials/custom-aa-tutorial.md) tutorial has been updated to reflect the interface changes.
   - The `prePaymaster` method has been renamed to`prepareForPaymaster`.
   - Smart contract accounts now include versioning to allow for future updates. This should be included as a parameter when calling `create2Account` from AA Factory contracts.

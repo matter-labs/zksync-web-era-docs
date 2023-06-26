@@ -1,4 +1,3 @@
-
 # Fee mechanism
 
 zkSync Era's fee model is similar to Ethereum’s where `gas` is charged for computational cost, cost of publishing data on-chain and storage effects. However, zkSync Era includes additional costs for publishing to L1 and for proof generation.
@@ -10,15 +9,16 @@ Therefore, for each block, the zkSync Era sequencer defines the following dynami
 - `gasPerPubdata`: the amount of `gas` for publishing one byte of data on Ethereum.
 
 :::warning Important
-- Only the L2 state storage slot updates are published on L1. 
+
+- Only the L2 state storage slot updates are published on L1.
 - For example, if the same storage slot is updated 10 times in the same rollup batch, only the final update is published on Ethereum and there is therefore only one gas charge.
-:::
+  :::
 
 ## Fee model overview
 
 In zkSync Era, unlike in Ethereum where each opcode has a fixed gas price, storage write charges remain dynamic due to the fluctuation of gas price on L1. Other opcode prices are constant, similar to Ethereum. See the [zkSync opcode documentation](https://github.com/matter-labs/era-zkevm_opcode_defs/blob/9307543b9ca51bd80d4f5c85d6eb80efd8b19bb2/src/lib.rs#L227) for an idea of how we calculate them.
 
-Like Ethereum, the most costly operation is a storage update. Execution of arithmetic operations is relatively cheap, as it involves computation alone and no storage changes. 
+Like Ethereum, the most costly operation is a storage update. Execution of arithmetic operations is relatively cheap, as it involves computation alone and no storage changes.
 
 A considerable advantage we have over optimistic rollups is that, instead of publishing all transaction data to L1, zkSync Era only publishes state diffs, thus publishing significantly less data to L1. Another advantage is the cost-effective contract redeployment. An example is a DEX with a `PairFactory` contract for different `Pair` pools. The contract bytecode of `Pair` is only published when the first instance is deployed. After that, subsequent deployments only involve updating one storage slot which sets the contract code hash on the newly deployed `Pair` address.
 
@@ -27,8 +27,8 @@ A considerable advantage we have over optimistic rollups is that, instead of pub
 - **Update storage slots as little as possible:** Check to see if your code can avoid unnecessary storage updates.
 - **Reuse as many storage slots as possible:** Only the final state diff is published on Ethereum.
 - **Reuse the contract code where possible:**
-	 - On Ethereum, avoiding constructor parameters and putting them into constants reduces some of the gas costs upon contract deployment.
-	 - On zkSync Era the opposite is true: as contract bytecode is only published once, updating the constructor parameters alone leads to substantial fee savings.
+  - On Ethereum, avoiding constructor parameters and putting them into constants reduces some of the gas costs upon contract deployment.
+  - On zkSync Era the opposite is true: as contract bytecode is only published once, updating the constructor parameters alone leads to substantial fee savings.
 
 ## Gas estimation for transactions
 
@@ -71,7 +71,7 @@ See the documentation on [account abstraction](../aa.md) for more detailed infor
 
 #### `eth_estimateGas`
 
-Because the entire transaction validation and execution flow is simulated in order to get the transaction’s fee, the user needs to have sufficient funds in their account, otherwise the simulation may exit. This means that, to ensure the execution progresses, the zkSync Era sequencer adds the necessary balance, temporarily, to the user’s account; specifically the sequencer increases the account balance by tx.maxFeePerGas * tx.gasLimit.
+Because the entire transaction validation and execution flow is simulated in order to get the transaction’s fee, the user needs to have sufficient funds in their account, otherwise the simulation may exit. This means that, to ensure the execution progresses, the zkSync Era sequencer adds the necessary balance, temporarily, to the user’s account; specifically the sequencer increases the account balance by tx.maxFeePerGas \* tx.gasLimit.
 
 This ensures the `DefaultAccount`’s `payForTransaction` function runs successfully.
 
@@ -88,15 +88,16 @@ A gas estimate may be higher than the actual cost of the transaction. This means
 The refund, therefore, returns the unpaid transaction fee portion to the user.
 
 :::tip
+
 - Only one transaction is recorded on the block, even if a portion of the original estimate is refunded.
 - Users can compare their token balance against the transaction cost on the block explorer to verify they did not overspend.
 - Users may see no notification in their wallet depending on which wallet they use.
-:::
+  :::
 
 Refunds are calculated by defining a fair value for the amount the user spent on the transaction and subtracting it from the actual spend.
 
 ## Out-of-gas errors
 
-Unlike on Geth, it is impossible to track out-of-gas errors on zkSync Era. 
+Unlike on Geth, it is impossible to track out-of-gas errors on zkSync Era.
 
 The main reason is that the “actual” execution happens inside the `DefaultAccount` system contract and, due to the [63/64 rule](https://eips.ethereum.org/EIPS/eip-150), when a high amount of gas is provided, the call to the `execute` function of the `DefaultAccount` will NOT fail, even if it is out of gas, although the subcall to the `transaction.to` contract will fail with an out of gas error.

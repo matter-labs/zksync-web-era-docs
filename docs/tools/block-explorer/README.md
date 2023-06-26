@@ -19,8 +19,9 @@ The tools menu has options for [verifying your smart contract deployments](./con
 ![zkSync Era tools menu](../../assets/images/tools-menu.png)
 
 :::warning Warning
+
 - Currently there are some issues with the UI contract verification tool.
-:::
+  :::
 
 ## Search bar
 

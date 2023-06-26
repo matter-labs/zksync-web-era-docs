@@ -2,7 +2,6 @@
 
 This section describes how to make the most of zkSync to provide the best UX.
 
-
 ## Going to production rightaway
 
 If your front-end code does not deploy new smart contracts, then no changes to the codebase are required! All the existing SDKs/infrastructure will work out-of-box.

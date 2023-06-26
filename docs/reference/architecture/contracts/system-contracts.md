@@ -4,7 +4,6 @@ To keep the zero-knowledge circuits as simple as possible and enable simple exte
 
 The code for the system contracts will not be public until it has gone through thorough testing. This section will only provide you with the knowledge needed to build on zkSync.
 
-
 ## Interfaces
 
 The addresses and the interfaces of the system contracts can be found [here](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/Constants.sol).

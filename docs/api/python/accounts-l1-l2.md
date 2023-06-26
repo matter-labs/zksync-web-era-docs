@@ -60,7 +60,6 @@ def deposit(self, l2_receiver: HexStr, l1_token: HexStr, amount: int):
 
 ```
 
-
 ## Claim failed deposit
 
 The `claimFailedDeposit` method withdraws funds from the initiated deposit, which failed when finalizing on L2.  
@@ -103,7 +102,6 @@ def _get_nonce(self, account) -> transaction_count
 | Name    | Description           |
 | ------- | --------------------- |
 | account | The address of a user |
-
 
 ## Finalizing withdrawals.
 

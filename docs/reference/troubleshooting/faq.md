@@ -145,7 +145,6 @@ At the moment, we support any Ethereum-based wallet. By default, the provided op
 - Block Explorer URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://mainnet.era.zksync.io/ws`
 
-
 **Testnet network info**
 
 - Network Name: `zkSync Era Testnet`
@@ -196,7 +195,7 @@ Sometimes, the team working on zkSync Era will initiate a regenesis on testnet -
 
 If you're using Windows, make sure to use WSL 2, since WSL 1 is known to cause trouble.
 
-Additionally, if you use WSL 2, make sure that your project is located in the Linux filesystem, since accessing NTFS partitions from WSL is very slow. 
+Additionally, if you use WSL 2, make sure that your project is located in the Linux filesystem, since accessing NTFS partitions from WSL is very slow.
 
 ## Proof sampling on testnet
 

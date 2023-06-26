@@ -1,9 +1,10 @@
 # Account abstraction support
 
 ::: warning
-- Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`. 
+
+- Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`.
 - For more information, read the [changelog](../troubleshooting/changelog.md#hardhat-plugins-update-feb-24th-2023).
-:::
+  :::
 
 ## Introduction
 
@@ -15,9 +16,10 @@ As a result, such applications require L1 relayers, e.g. an EOA to help facilita
 Accounts in zkSync Era can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract. This feature, called "account abstraction" (AA), aims to resolve the issues described above.
 
 ::: warning
+
 - zkSync Era is the first EVM-compatible chain to implement native account abstraction. We are evaluating how well the implementation works with EVM projects on testnet and mainnet. No incompatibilities have been found so far.
 - Due to the early stage nature of the feature, you may see some breaking changes to the account abstraction API/interfaces. However, given that accounts are versioned in zkSync Era, older accounts will still work even after breaking changes are released.
-:::
+  :::
 
 Native Account Abstraction on zkSync Era fundamentally changes how accounts operate by introducing the concept of Smart Accounts and Paymasters. Smart Accounts are fully programmable, allowing for various customizations such as signature schemes, native multi-sig capabilities, spending limits, and application-specific restrictions.
 
@@ -38,10 +40,11 @@ The account abstraction protocol on zkSync is very similar to [EIP4337](https://
 ### Keeping nonces unique
 
 ::: warning
-- The current model does not allow custom wallets to send multiple transactions at the same time and maintain deterministic ordering. 
+
+- The current model does not allow custom wallets to send multiple transactions at the same time and maintain deterministic ordering.
 - For EOAs, nonces are expected to grow sequentially; while for custom accounts the order of transactions cannot be guaranteed.
 - In the future, we plan to switch to a model where accounts can choose between sequential or arbitrary nonce-ordering.
-:::
+  :::
 
 One of the important invariants of every blockchain is that each transaction has a unique hash. Holding this property with an arbitrary account abstraction is not trivial,
 though accounts can, in general, accept multiple identical transactions. Even though these transactions would be technically valid by the rules of the blockchain, violating
@@ -194,9 +197,10 @@ await aa.deployed();
 ### Limitations of the verification step
 
 ::: warning
-- The verification rules are not yet fully enforced. 
+
+- The verification rules are not yet fully enforced.
 - Even if your custom account works at the moment, it could stop working in the future if it does not follow the rules below.
-:::
+  :::
 
 In order to protect the system from a DoS threat, the verification step must have the following limitations:
 
@@ -245,9 +249,10 @@ If users want to interact with a paymaster, they should provide the non-zero `pa
 ### Paymaster verification rules
 
 ::: warning
-- The verification rules are not yet fully enforced. 
+
+- The verification rules are not yet fully enforced.
 - Even if your paymaster works at the moment, it could stop working in the future if it does not follow the rules below.
-:::
+  :::
 
 Since multiple users should be allowed to access the same paymaster, malicious paymasters _can_ do a DoS attack on our system. To work around this, a system similar to the [EIP4337 reputation scoring](https://eips.ethereum.org/EIPS/eip-4337#reputation-scoring-and-throttlingbanning-for-paymasters) will be used.
 

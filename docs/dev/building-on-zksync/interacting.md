@@ -1,8 +1,4 @@
-# Interact with zkSync Era :skull_and_crossbones:
-
-:::danger
-This page is under construction and may be out-of-date.
-:::
+# Interact with zkSync Era
 
 ## Do I need experience with zkSync Lite?
 
@@ -15,6 +11,8 @@ All the existing SDKs for Ethereum will work out of the box and your users will 
 The only other place where using zkSync SDK is required is during contract deployment. This can be easily done through our hardhat plugin.
 
 ### Quickstart on zkSync
+
+Before diving into the technical details, we highly recommend checking out our [Best Practices and Considerations](./best-practices.md) and [Differenes with Ethereum](../../reference/architecture/differences-with-ethereum.md) sections. This will help align your development with the distinctive attributes of zkSync Era and ensure your projects are secure and optimized.
 
 Check out our step-by-step [quickstart guide](../building-on-zksync/hello-world.md), where you will learn:
 
@@ -44,7 +42,6 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - Block Explorer URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://mainnet.era.zksync.io/ws`
 
-
 **Testnet network info**
 
 - Network Name: `zkSync Era Testnet`
@@ -55,64 +52,3 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - WebSocket URL: `wss://testnet.era.zksync.dev/ws`
 
 5. Click "Save"
-
-## zkSync Era Support
-
-You can open a support ticket in `💻🧪│dev-support-beta` or ask any questions in `🖥│dev-general`
-
-If you need help with anything related to the zkSync Era, you can raise a support ticket on the zkSync Era discord, or check out the [FAQs](../../reference/troubleshooting/faq.md) page to view the most common queries about the zkSync Era. Additionally, you can reach out to the support team available on the `#dev-support-beta`, or ask any questions in `#dev-general` channel on the zkSync Era Discord server. 
-Instructions for raising a support ticket are as follows:
-
-- Join the zkSync Era [our Discord](https://join.zksync.dev/) server.
-- Accept the invite sent.
-- Navigate to the `#dev-support-beta` channel.
-
-Alternatively, you can now contact our support engineers with your questions and concerns via [email](mailto:support@zksync.io). 
-We will actively monitor for issues and work to resolve them as soon as possible.
-
-<!-- ## Deposit and withdraw funds using zkSync Portal
-
-As the testnet is running on Goerli network, you will need to get some Goerli ETH first. Try any of the faucets below.
-
-- [https://goerli-faucet.mudit.blog/](https://goerli-faucet.mudit.blog/)
-- [https://faucets.chain.link/goerli](https://faucets.chain.link/goerli)
-- [https://goerli-faucet.slock.it/](https://goerli-faucet.slock.it/)
-- [https://goerlifaucet.com/](https://goerlifaucet.com/)
-
-**Step 1**
-
-Head to [https://goerli.portal.zksync.io/](https://goerli.portal.zksync.io/) and connect your wallet. You will automatically be asked to add the “zkSync Era testnet Goerli” network.
-
-You may also add the network manually to your metamask.
-
-- Network Name: `zkSync mainnet`
-- New RPC URL: `https://zksync2-mainnet.zksync.io`
-- Chain ID: `324` -->
-<!-- 
-**Step 2 (Skip if you don’t have Goerli ETH)**
-
-We first go to “Bridge” and then “Deposit” to deposit some \$ETH to zkSync Era.
-
-![image](../../assets/images/faq-1.png)
-
-**Step 3**
-
-Next, we go to “Faucet” to get some testnet $ETH, $LINK, $DAI, $WBTC and \$USDC into our zkSync address.
-
-![image](../../assets/images/faq-2.png)
-
-Check your balance at “Balances” after claiming.
-
-![image](../../assets/images/faq-3.png)
-
-**Step 4**
-
-Now go to “Transfer”. Input the address of another wallet and transfer some tokens to it. Pay the fees in DAI if you don’t have ETH.
-
-![image](../../assets/images/faq-4.png)
-
-**Step 5**
-
-At last we go to “Withdraw” to withdraw some \$DAI from zkSync back to Goerli. Pay the fees in ETH.
-
-![image](../../assets/images/faq-5.png) -->

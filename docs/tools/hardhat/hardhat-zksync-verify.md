@@ -22,6 +22,7 @@ yarn add -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
 ```bash
 npm i -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
 ```
+
 :::
 
 ### Configuration
@@ -111,28 +112,31 @@ module.exports = [
 ```
 
 Include it in the verify function call by adding a new parameter: `--constructor-args arguments.js`:
+
 ```sh
 yarn hardhat verify --network testnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF --constructor-args arguments.js
 ```
 
 The hardhat-zksync-verify plugin also supports the verification with encoded constructor parameters.
 
-In order to use the encoded parameters, you need to specify a separate javascript module and export them as a <b>*non-array*</b> parameter.
+In order to use the encoded parameters, you need to specify a separate javascript module and export them as a <b>_non-array_</b> parameter.
 It is important for encoded arguments to start with `0x` in order to be recognized by the plugin. For example:
 
 ```typescript
-module.exports = "0x0x00087a676164696a61310000087a676164696a61310000000000000000000000008537b364a83f5c9a7ead381d3baf9cbb83769bf5"
+module.exports = "0x0x00087a676164696a61310000087a676164696a61310000000000000000000000008537b364a83f5c9a7ead381d3baf9cbb83769bf5";
 ```
 
 ### Verification status check
 
-The verification process consists of two steps: 
-- A verification request is sent to confirm if the given parameters for your contract are correct. 
-- Then, we check the verification status of that request. 
-Both steps run when you run the `verify` task, but you will be able to see your specific verification request ID.
-You can then use this ID to check the status of your verification request without running the whole process from the beginning.
+The verification process consists of two steps:
+
+- A verification request is sent to confirm if the given parameters for your contract are correct.
+- Then, we check the verification status of that request.
+  Both steps run when you run the `verify` task, but you will be able to see your specific verification request ID.
+  You can then use this ID to check the status of your verification request without running the whole process from the beginning.
 
 The following command checks the status of the verification request for the specific verification ID:
+
 ```sh
 yarn hardhat verify-status --verification-id <your verification id>
 ```
@@ -148,6 +152,7 @@ const verificationId = await hre.run("verify:verify", {
   constructorArguments: [...]
 });
 ```
+
 This task returns a verification id if the request was successfully sent.<br/>
 You can use this id to check the status of your verification request as described in the section above.
 
@@ -157,6 +162,6 @@ If you are using encoded constructor args, `constructorArguments` parameter shou
 const verificationId = await hre.run("verify:verify", {
   address: contractAddress,
   contract: contractFullyQualifedName,
-  constructorArguments: "0x12345..."
+  constructorArguments: "0x12345...",
 });
 ```
