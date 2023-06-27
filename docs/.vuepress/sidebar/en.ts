@@ -62,9 +62,10 @@ export const enSidebar = sidebar({
       link: "/reference/architecture/differences-with-ethereum.md",
       children: [
         "/reference/architecture/differences-with-ethereum.md",
+        "/reference/architecture/system-contracts.md",
         "/reference/architecture/contract-development.md",
         "/reference/architecture/contract-deployment.md",
-        "/reference/architecture/system-contracts.md",
+        
         "/reference/architecture/events.md",
       ],
     },
