@@ -280,7 +280,7 @@ Used by `estimateDefaultBridgeDepositL2Gas` to estimate L2 gas required for toke
 
 ::: tip More info
 
-- See the [default bridges documentation](../../reference/concepts/bridging/bridging-asset.md#default-bridges)
+- See the [default bridges documentation](../../reference/concepts/bridging-asset.md#default-bridges)
   :::
 
 #### Inputs
@@ -325,7 +325,7 @@ Returns an estimation of L2 gas required for token bridging via the default ERC2
 
 ::: tip More info
 
-- See the [default bridges documentation](../../reference/concepts/bridging/bridging-asset.md#default-bridges)
+- See the [default bridges documentation](../../reference/concepts/bridging-asset.md#default-bridges)
   :::
 
 #### Inputs

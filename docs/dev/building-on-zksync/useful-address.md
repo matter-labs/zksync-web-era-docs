@@ -61,7 +61,7 @@ These are the addresses that have been deployed and integrated with the token br
 
 ## Mainnet known tokens
 
-These tokens are listed on our block explorer. Learn how to [add tokens to the bridge](../../reference/concepts/bridging/bridging-asset.md#add-tokens-to-the-bridge).
+These tokens are listed on our block explorer. Learn how to [add tokens to the bridge](../../reference/concepts/bridging-asset.md#add-tokens-to-the-bridge).
 
 | Symbol | Name          | L1 token address                                                                                                      | L2 token address                                                                                                                     |
 | ------ | ------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |

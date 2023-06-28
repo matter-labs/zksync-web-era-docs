@@ -201,7 +201,7 @@ When block and token are not supplied, `committed` and `ETH` are the default val
 | address       | User's address.                                                            |
 | blockTag?     | Block tag for getting the balance on. Latest `committed` block is default. |
 | tokenAddress? | The address of the token. ETH is default.                                  |
-|  |
+|               |
 
 ```typescript
 override async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address) {

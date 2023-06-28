@@ -519,7 +519,7 @@ async function main() {
     caller: utils.applyL1ToL2Alias(GOVERNANCE_ADDRESS),
   });
   // baseCost takes the price and limit and formats the total in wei.
-  // For more information on `REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT` see the [fee model documentation](../../reference/concepts/transactions/fee-model.md).
+  // For more information on `REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT` see the [fee model documentation](../../reference/concepts/fee-model.md).
   const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, gasLimit, utils.REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT);
 
   // !! If you don't include the gasPrice and baseCost in the transaction, a re-estimation of fee may generate errors.
@@ -549,7 +549,7 @@ main().catch((error) => {
 
 :::tip
 
-- Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../../reference/concepts/transactions/fee-model.md).
+- Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../../reference/concepts/fee-model.md).
 - The fee also depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched from the L1 provider.
   :::
 
@@ -608,6 +608,6 @@ The counter value is 1
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../reference/concepts/bridging/l1-l2-interop.md).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../reference/concepts/l1-l2-interop.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../tools/hardhat).

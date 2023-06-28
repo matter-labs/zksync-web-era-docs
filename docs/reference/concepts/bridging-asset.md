@@ -17,7 +17,7 @@ Addresses of tokens on L2 will always differ from the same token L1 address.
 
 ## Default bridges
 
-You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../../api/api.md#zks_getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../../api/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
+You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../api/api.md#zks_getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../api/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
 
 ### Add tokens to the bridge
 
@@ -147,7 +147,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-To run this script, configure your `hardhat.config.ts` file as explained in this [guide](../../../tools/hardhat/hardhat-zksync-deploy.md), or use the command `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project.
+To run this script, configure your `hardhat.config.ts` file as explained in this [guide](../../tools/hardhat/hardhat-zksync-deploy.md), or use the command `npx zksync-cli@latest create PROJECT_NAME` to scaffold a new project.
 
 Once your `hardhat.config.ts` file is configured, place the script files in the `deploy` folder and run them with the following command:
 
@@ -162,7 +162,7 @@ The log message described above is not yet fully supported by our SDK but is ava
 :::tip
 
 - To provide additional security during the Alpha phase, **withdrawals in zkSync Era take 24 hours**.
-- For more information, read the [withdrawal delay guide](../../troubleshooting/withdrawal-delay.md).
+- For more information, read the [withdrawal delay guide](../troubleshooting/withdrawal-delay.md).
   :::
 
 Users must call the `withdraw` method on the L2 bridge contract, which will trigger the following actions:

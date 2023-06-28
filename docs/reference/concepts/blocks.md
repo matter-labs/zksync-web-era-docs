@@ -15,7 +15,7 @@ contain a minimal number of transactions ([or none at all](#empty-blocks)), and 
 
 ## Block Properties
 
-The following are the block properties returned when you use the `getBlock` method from the API using [any of our SDKs](../../../api/README.md#sdks).
+The following are the block properties returned when you use the `getBlock` method from the API using [any of our SDKs](../../api/README.md#sdks).
 
 | Parameter     | Description                                                                                                                               |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -27,7 +27,7 @@ The following are the block properties returned when you use the `getBlock` meth
 | difficulty    | The current block difficulty returns 2500000000000000 (zkSync does not have proof of work consensus).                                     |
 | gasLimit      | The maximum gas allowed in this block encoded as a hexadecimal, always returns `2^32-1`.                                                  |
 | gasUsed       | The actual amount of gas used in this block.                                                                                              |
-| transactions  | An array of transaction objects - please see [interface TransactionResponse](../../../api/js/providers.md#gettransaction) for exact shape |
+| transactions  | An array of transaction objects - please see [interface TransactionResponse](../../api/js/providers.md#gettransaction) for exact shape    |
 | baseFeePerGas | The EIP1559-like baseFee for this block.                                                                                                  |
 
 ## Processing times
@@ -42,7 +42,7 @@ In general, a batch will get sealed when:
 1. The batch "capacity" is reached: the capacity includes L1 gas used, L2 gas consumed, and several other parameters.
 2. The batch timeout has passed.
 
-After submitting them, blocks will go through different stages as explained [here](../../concepts/zkSync.md#zksync-overview).
+After submitting them, blocks will go through different stages as explained [here](../concepts/zkSync.md#zksync-overview).
 
 ### Empty Blocks
 

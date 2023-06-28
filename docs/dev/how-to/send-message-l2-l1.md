@@ -10,12 +10,12 @@ Instead, you can send arbitrary-length messages from zkSync Era to Ethereum, and
 - The difference is that a message publishes data on L1.
 - [Solidity representation](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/Storage.sol#L58):
   `solidity
-    struct L2Message {
-            address sender;
-            bytes data;
-            uint256 txNumberInblock;
-    }
-    `
+  struct L2Message {
+          address sender;
+          bytes data;
+          uint256 txNumberInblock;
+  }
+  `
   :::
 
 :::tip Verification
@@ -40,7 +40,7 @@ Two transactions are required:
 
 1. Import the zkSync Era library or contract containing the required functionality.
 
-2. Get a `Contract` object that represents the [`L1Messenger`](../../reference/architecture/contracts/system-contracts.md#l1messenger) contract.
+2. Get a `Contract` object that represents the [`L1Messenger`](../../reference/architecture/system-contracts.md#l1messenger) contract.
 
 3. Transform the request into a raw bytes array.
 
