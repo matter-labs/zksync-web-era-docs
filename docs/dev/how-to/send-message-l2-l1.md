@@ -38,7 +38,7 @@ Two transactions are required:
 
 1. Import the zkSync Era library or contract containing the required functionality. 
 
-2. Get a `Contract` object that represents the [`L1Messenger`](../../reference/architecture/system-contracts.md#l1messenger) contract.
+2. Get a `Contract` object that represents the [`L1Messenger`](../../reference/architecture/contracts/system-contracts.md#l1messenger) contract.
 
 3. Transform the request into a raw bytes array.
 

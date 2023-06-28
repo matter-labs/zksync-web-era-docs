@@ -8,9 +8,9 @@ This tutorial shows you how to build and deploy a 2-of-2 multi-signature account
 - A [Node.js](https://nodejs.org/en/download) installation.
 - For background learning, we recommend the following guides:
     - Read about the [design](../../reference/concepts/aa.md) of the account abstraction protocol.
-    - Read the [introduction to the system contracts](../../reference/architecture/system-contracts.md).
-    - Read about [smart contract deployment](../../reference/architecture/contract-deployment.md) on zkSync Era.
-    - Read the [gas estimation for transaction](../../reference/concepts/fee-model.md#gas-estimation-during-a-transaction-for-paymaster-and-custom-accounts) guide.
+    - Read the [introduction to the system contracts](../../reference/architecture/contracts/system-contracts.md).
+    - Read about [smart contract deployment](../../reference/architecture/contracts/contract-deployment.md) on zkSync Era.
+    - Read the [gas estimation for transaction](../../reference/concepts/transactions/fee-model.md#gas-estimation-during-a-transaction-for-paymaster-and-custom-accounts) guide.
     - If you haven't already, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
@@ -259,7 +259,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 ```
 
 :::tip
-The `onlyBootloader` modifier ensures that only the [bootloader](../../reference/architecture/system-contracts.md#bootloader) calls the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prepareForPaymaster` functions.
+The `onlyBootloader` modifier ensures that only the [bootloader](../../reference/architecture/contracts/system-contracts.md#bootloader) calls the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prepareForPaymaster` functions.
 :::
 
 The `executeTransactionFromOutside` function allows external users to initiate transactions from this account. We implement it by calling `validateTransaction` and `executeTransaction`.
@@ -803,7 +803,7 @@ contract AAFactory {
 }
 ```
 
-It's worth remembering that, on zkSync Era, [contract deployments](../../reference/architecture/contract-deployment.md)  are not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via the `factoryDeps` field. Note that the `_aaBytecodeHash` must be formed in the following manner:
+It's worth remembering that, on zkSync Era, [contract deployments](../../reference/architecture/contracts/contract-deployment.md)  are not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via the `factoryDeps` field. Note that the `_aaBytecodeHash` must be formed in the following manner:
 
 - Firstly, it is hashed with sha256.
 - Then, the first two bytes are replaced with the length of the bytecode in 32-byte words.
@@ -1176,6 +1176,6 @@ If you get an error `Not enough balance to cover the fee.`, try increasing the a
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../reference/concepts/l1-l2-interop.md).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../reference/concepts/bridging/l1-l2-interop.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync Era Hardhat plugins, check out the [Hardhat documentation](../../tools/hardhat).
