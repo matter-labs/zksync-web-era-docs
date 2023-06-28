@@ -12,8 +12,8 @@ This section of our documentation provides comprehensive information on the conc
 - [Fee mechanism](./concepts/transactions/fee-model.md): Discover how the system handles transaction fees.
 - [Finality](./concepts/finality.md): Learn about finality on zkSync Era. 
 - [Account abstraction support](./concepts/aa.md): Discover the benefits and applications of account abstraction.
-- [Bridging assets](./concepts/bridging/bridging-asset.md): Learn about the mechanisms for bridging assets.
-- [L1 / L2 interoperability](./concepts/bridging/l1-l2-interop.md): Understand the interactions and compatibility between L1 and L2.
+- [Bridging assets](./concepts/bridging-asset.md): Learn about the mechanisms for bridging assets.
+- [L1 / L2 interoperability](./concepts/l1-l2-interop.md): Understand the interactions and compatibility between L1 and L2.
 - [Videos](./concepts/videos.md): Access visual learning resources about zkSync Era.
 
 ## Architecture
