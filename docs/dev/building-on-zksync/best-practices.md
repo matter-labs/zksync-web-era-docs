@@ -1,4 +1,4 @@
-# Best Practices and Considerations
+# Best practices and considerations
 
 :::info Important Recommendations
 Before diving into development on zkSync Era, it's crucial to consider the following recommendations. These best practices will help you optimize your code, ensure security, and align with the unique characteristics of zkSync Era.
