@@ -1,7 +1,11 @@
-# Differences from Ethereum :star:
+# Differences from Ethereum
 
 zkSync Era handles nearly all smart contracts based on the Ethereum Virtual Machine (EVM) and upholds high security standards,
 minimizing the need for repeated security audits. Nevertheless, it's essential to recognize the following differences.
+
+:::tip Best practises
+It's highly recommended to review the best practices and key considerations for creating smart contracts on zkSync Era section [here](../../dev/building-on-zksync/best-practices.md).
+:::
 
 ## EVM instructions
 
@@ -55,30 +59,21 @@ can be found in our SDK, as demonstrated below:
 
 ```typescript
 export function create2Address(sender: Address, bytecodeHash: BytesLike, salt: BytesLike, input: BytesLike) {
-    const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes('zksyncCreate2'));
-    const inputHash = ethers.utils.keccak256(input);
-    const addressBytes = ethers.utils
-        .keccak256(ethers.utils.concat([prefix, ethers.utils.zeroPad(sender, 32), salt, bytecodeHash, inputHash]))
-        .slice(26);
-    return ethers.utils.getAddress(addressBytes);
+  const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes("zksyncCreate2"));
+  const inputHash = ethers.utils.keccak256(input);
+  const addressBytes = ethers.utils.keccak256(ethers.utils.concat([prefix, ethers.utils.zeroPad(sender, 32), salt, bytecodeHash, inputHash])).slice(26);
+  return ethers.utils.getAddress(addressBytes);
 }
 
 export function createAddress(sender: Address, senderNonce: BigNumberish) {
-    const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes('zksyncCreate'));
-    const addressBytes = ethers.utils
-        .keccak256(
-            ethers.utils.concat([
-                prefix,
-                ethers.utils.zeroPad(sender, 32),
-                ethers.utils.zeroPad(ethers.utils.hexlify(senderNonce), 32)
-            ])
-        )
-        .slice(26);
+  const prefix = ethers.utils.keccak256(ethers.utils.toUtf8Bytes("zksyncCreate"));
+  const addressBytes = ethers.utils
+    .keccak256(ethers.utils.concat([prefix, ethers.utils.zeroPad(sender, 32), ethers.utils.zeroPad(ethers.utils.hexlify(senderNonce), 32)]))
+    .slice(26);
 
-    return ethers.utils.getAddress(addressBytes);
+  return ethers.utils.getAddress(addressBytes);
 }
 ```
-
 
 ### `CALL`, `STATICCALL`, `DELEGATECALL`
 
@@ -115,9 +110,9 @@ That means that the code will panic if `2^32-32 + offset % 32 < offset + len`.
 
 ### `CODESIZE`
 
-| Deploy code                       | Runtime code                      |
-| --------------------------------- | --------------------------------- |
-| Size of the constructor arguments | Contract size                     |
+| Deploy code                       | Runtime code  |
+| --------------------------------- | ------------- |
+| Size of the constructor arguments | Contract size |
 
 Yul uses a special instruction `datasize` to distinguish the contract code and constructor arguments, so we
 substitute `datasize` with 0, and `codesize` with `calldatasize`, in zkSync Era deployment code. This way when Yul calculates the
@@ -125,9 +120,9 @@ calldata size as `sub(codesize, datasize)`, the result is the size of the constr
 
 ### `CODECOPY`
 
-| Deploy code                       | Runtime code (old EVM codegen)    | Runtime code (new Yul codegen)    |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| Copies the constructor arguments  | Zeroes memory out                 | Compile-time error                |
+| Deploy code                      | Runtime code (old EVM codegen) | Runtime code (new Yul codegen) |
+| -------------------------------- | ------------------------------ | ------------------------------ |
+| Copies the constructor arguments | Zeroes memory out              | Compile-time error             |
 
 ### `RETURN`
 
@@ -276,31 +271,6 @@ EVM legacy assembly example:
 061     RETURN                                    // returns the auxiliary heap array instead
 ```
 
-## Using `call` over `.send` or `.transfer`
-
-Avoid using `payable(addr).send(x)`/`payable(addr).transfer(x)` because the 2300 gas stipend may not be enough for such calls, especially if it involves state changes that require a large amount of L2 gas for data. Instead, we recommend using `call`.
-
-Instead of:
-
-```solidity
-payable(addr).send(x) // or
-payable(addr).transfer(x)
-```
-
-Use instead:
-
-```solidity
-(bool s, ) = addr.call{value: x}("");
-require(s);
-```
-
-This converts the `send`/`transfer` functionality to `call` and [avoids potential security risks outlined here.](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/). 
-
-:::note Be aware of reentrancy
-While `.call` offers more flexibility compared to `.send` or `.transfer`, developers should be aware that `.call` does not provide the same level of reentrancy protection as `.transfer`/`.send`. It's crucial to adhere to best practices like the checks-effects-interactions pattern and/or use reentrancy guard protection to secure your contracts against reentrancy attacks. It can help ensure the robustness and security of your smart contracts on the zkEVM, even under unexpected conditions.
-:::
-
-
 ## Libraries
 
 We rely on the **solc** optimizer for library inlining, so a library may only be used without deployment
@@ -331,78 +301,3 @@ The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance 
 ### ecrecover
 
 In contrast to Ethereum, zkSync Era ecrecover always return a zero address for the zero digests. Be careful with adapting crypto primitives that rely on that, specifically, it affects [secp256k1 mul verification via ecrecover](https://ethresear.ch/t/you-can-kinda-abuse-ecrecover-to-do-ecmul-in-secp256k1-today/2384).
-
-## Recommendations
-
-### Use the proxy pattern at the early stage of the protocol
-
-zkSync Era is based on the zk-friendly VM. That’s why we provide our compiler that compiles standard Solidity
-code to zkEVM bytecode.
-
-While we have extensive test coverage to ensure EVM compatibility, issues may still appear.
-We will implement the patches for these in a timely manner.
-
-In order to apply compiler bug fix, you need to upgrade your smart contract. We advise using the
-Proxy pattern for a few months after your first deployment on zkSync Era, even if you plan to migrate to the immutable
-contract in the future.
-
-:::tip zkSync Upgradeable plugin
-- The [hardhat-zksync-upgradeable plugin](https://era.zksync.io/docs/api/hardhat/hardhat-zksync-upgradable.html) is now available to help you create proxies.
-:::
-
-### Do not rely on EVM gas logic
-
-zkSync Era has a distinctive gas logic compared to Ethereum. There are two main drivers:
-
-- We have a state-diff-based data availability, which means that the price for the execution depends on the L1 gas price.
-- zkEVM has a different set of computational trade-offs compared to the standard computational model. In practice, this means that the price for opcodes is different to Ethereum. Also, zkEVM contains a different set of opcodes under the hood and so the “gas” metric of the same set of operations may be different on zkSync Era and on Ethereum.
-
-:::warning
-Our fee model is being constantly improved and so it is highly recommended **NOT** to hardcode any constants since the fee model changes in the future might be breaking for this constant.
-:::
-
-### `gasPerPubdataByte` should be taken into account in development
-
-Due to the state diff-based fee model of zkSync Era, every transaction includes a constant called `gasPerPubdataByte`.
-
-Presently, the operator has control over this value. However, in EIP712 transactions, users also sign an upper bound
-on this value, but the operator is free to choose any value up to that upper bound. Note, that even if the value
-is chosen by the protocol, it still fluctuates based on the L1 gas price. Therefore, relying solely on gas is inadequate.
-
-A notable example is a Gnosis Safe’s `execTransaction` method:
-
-```solidity
-// We require some gas to emit the events (at least 2500) after the execution and some to perform code until the execution (500)
-// We also include the 1/64 in the check that is not send along with a call to counteract potential shortings because of EIP-150
-require(gasleft() >= ((safeTxGas * 64) / 63).max(safeTxGas + 2500) + 500, "GS010");
-// Use scope here to limit variable lifetime and prevent `stack too deep` errors
-{
-    uint256 gasUsed = gasleft();
-    // If the gasPrice is 0 we assume that nearly all available gas can be used (it is always more than safeTxGas)
-    // We only substract 2500 (compared to the 3000 before) to ensure that the amount passed is still higher than safeTxGas
-    success = execute(to, value, data, operation, gasPrice == 0 ? (gasleft() - 2500) : safeTxGas);
-    gasUsed = gasUsed.sub(gasleft());
-
-    // ...
-}
-```
-
-While the contract does enforce the correct `gasleft()`, it does not enforce the correct `gasPerPubdata`, since there
-was no such parameter on Ethereum. This means that a malicious user could call this wallet when the `gasPerPubdata` is
-high and make the transaction fail, hence making it spend artificially more gas than required.
-
-This is the case for all relayer-like logic ported directly from Ethereum and so if you see your code relying on logic
-like “the user should provide at X gas”, then the `gasPerPubdata` should be also taken into account on zkSync Era.
-
-For now, zkSync Era operators use honest values for ETH L1 price and `gasPerPubdata`, so it should not be an issue if
-enough margin is added to the estimated gas. In order to prepare for the future decentralization of zkSync Era,
-it is imperative that you update your contract.
-
-### Use native account abstraction over `ecrecover` for validation
-
-Use zkSync Era's native account abstraction support for signature validation instead of this function.
-
-We recommend not relying on the fact that an account has an ECDSA private key, since the account may be governed by
-multisig and use another signature scheme.
-
-Read more about [zkSync Era Account Abstraction support](../../reference/concepts/aa.md).
