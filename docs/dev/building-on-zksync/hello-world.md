@@ -716,5 +716,6 @@ After the transaction is processed, the page updates the balances and the new gr
 
 ### Learn more
 
+- For an overview of best practices and recommendations for developing on zkSync Era, refer to the [Best Practices and Considerations](./best-practices.md) section.
 - To learn more about `zksync-web3` SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../tools/hardhat).
