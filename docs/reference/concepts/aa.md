@@ -331,7 +331,7 @@ import { SignatureChecker } from "@matterlabs/signature-checker/contracts/Signat
 contract TestSignatureChecker {
     using SignatureChecker for address;
 
-    function isValidSignature(
+    function isValidSignatureNow(
         address _address,
         bytes32 _hash,
         bytes memory _signature
