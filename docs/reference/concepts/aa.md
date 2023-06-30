@@ -331,12 +331,12 @@ import { SignatureChecker } from "@matterlabs/signature-checker/contracts/Signat
 contract TestSignatureChecker {
     using SignatureChecker for address;
 
-    function isValidSignatureNow(
+    function isValidSignature(
         address _address,
         bytes32 _hash,
         bytes memory _signature
     ) public pure returns (bool) {
-        return _address.checkSignature(_hash, _signature);
+        return _address.isValidSignatureNow(_hash, _signature);
     }
 }
 ```
