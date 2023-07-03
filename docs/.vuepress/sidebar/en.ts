@@ -9,8 +9,12 @@ export const enSidebar = sidebar({
     },
     {
       text: "Getting started",
-      link: "/dev/building-on-zksync/hello-world.md",
-      children: ["/dev/building-on-zksync/hello-world.md", "/dev/building-on-zksync/interacting.md", "/dev/building-on-zksync/useful-address.md"],
+      link: "/dev/building-on-zksync/hello-world.md", 
+      children: [ 
+        "/dev/building-on-zksync/hello-world.md", 
+        "/dev/building-on-zksync/interacting.md",
+        "/dev/building-on-zksync/best-practices.md",
+        "/dev/building-on-zksync/useful-address.md", ],
     },
     {
       text: "How to",
