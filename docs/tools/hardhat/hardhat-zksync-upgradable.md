@@ -39,8 +39,7 @@ import { HardhatUserConfig } from 'hardhat/config';
 
 const config: HardhatUserConfig = {
     zksolc: {
-        version: '1.3.10',
-        compilerSource: 'binary',
+        version: 'latest',
         settings: {},
     },
     defaultNetwork: 'zkSyncNetwork',
