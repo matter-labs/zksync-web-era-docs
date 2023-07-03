@@ -185,7 +185,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/videos.html",
-          "destination": "/docs/reference/concepts/videos.html",
+          "destination": "/docs/reference/",
           "type": "302"
         },
         {
@@ -220,7 +220,7 @@
         },
         {
           "source": "/docs/dev/troubleshooting/important-links.html",
-          "destination": "/docs/reference/troubleshooting/important-links.html",
+          "destination": "/docs/reference/troubleshooting/",
           "type": "302"
         },
         {
@@ -245,8 +245,8 @@
         },
         {
           "source": "/docs/dev/troubleshooting/docs-contribution/community-resources.html",
-          "destination": "/docs/reference/troubleshooting/docs-contribution/community-resources.html",
-          "type": "410"
+          "destination": "/docs/reference/",
+          "type": "302"
         },
         {
           "source": "/docs/dev/troubleshooting/faq.html",
@@ -460,7 +460,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/videos.html",
-          "destination": "/docs/reference/concepts/videos.html",
+          "destination": "/docs/reference/",
           "type": "302"
         },
         {
@@ -495,7 +495,7 @@
         },
         {
           "source": "/docs/dev/troubleshooting/important-links.html",
-          "destination": "/docs/reference/troubleshooting/important-links.html",
+          "destination": "/docs/reference/troubleshooting/",
           "type": "302"
         },
         {
@@ -520,8 +520,8 @@
         },
         {
           "source": "/docs/dev/troubleshooting/docs-contribution/community-resources.html",
-          "destination": "/docs/reference/troubleshooting/docs-contribution/community-resources.html",
-          "type": "410"
+          "destination": "/docs/reference/",
+          "type": "302"
         },
         {
           "source": "/docs/dev/troubleshooting/faq.html",

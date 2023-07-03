@@ -61,7 +61,6 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: ["/reference/concepts/bridging/bridging-asset.md", "/reference/concepts/bridging/l1-l2-interop.md"],
         },
-        "/reference/concepts/videos.md",
       ],
     },
     {
@@ -84,9 +83,8 @@ export const enSidebar = sidebar({
     },
     {
       text: "Troubleshooting",
-      link: "/reference/troubleshooting/important-links.md",
+      link: "/reference/troubleshooting/README.md",
       children: [
-        "/reference/troubleshooting/important-links.md",
         "/reference/troubleshooting/changelog.md",
         "/reference/troubleshooting/withdrawal-delay.md",
         "/reference/troubleshooting/audit-bug-bounty.md",

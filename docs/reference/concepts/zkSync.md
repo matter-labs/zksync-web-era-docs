@@ -96,4 +96,4 @@ For a comprehensive distinction between zkSync Era and Ethereum, read this [guid
 ## How to get started?
 
 - Begin by building a dApp in the [quickstart section](../../dev/building-on-zksync/hello-world.md).
-- See the info on RPC nodes, wallet, and block explorer on the [important links](../troubleshooting/important-links.md) page.
+- See how to [connect your wallet and interact with zkSync Era](../../dev/building-on-zksync/interacting.md).
