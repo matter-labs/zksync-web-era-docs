@@ -72,6 +72,7 @@ export default defineUserConfig({
     ["meta", { name: "msapplication-TileColor", content: "#1E69FF" }],
     ["meta", { name: "msapplication-config", content: "/docs/browserconfig.xml" }],
     ["meta", { name: "theme-color", content: "#1E69FF" }],
+    ["meta", { name: "ahrefs-site-verification", content: "e7c4ecad46da6b349bd70530fe8c272d23dae4ec3095852db8a68155ce87324e" }],
 
     [
       "script",
