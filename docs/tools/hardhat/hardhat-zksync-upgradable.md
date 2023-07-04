@@ -651,8 +651,7 @@ You can learn more about what those restrictions are in [OpenZeppelin's document
 
 # Proxy gas fee estimation
 
-If you want to estimate the total gas used in the whole pipeline of the proxy deployment process, you can use the upgradable plugin's estimate gas functionalities.
-There are three types of gas estimation methods available:
+Should you wish to estimate the total gas used throughout the proxy deployment process, consider utilizing the upgradable plugin's gas estimation functions. We offer three types of gas estimation functions for your convenience:
 
 - estimateGasProxy
 - estimateGasBeacon
