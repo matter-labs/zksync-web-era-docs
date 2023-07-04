@@ -74,6 +74,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/dev/building-on-zksync/contracts/contract-development.html",
+          "destination": "/docs/dev/building-on-zksync/contract-development.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/developer-guides/building-on-zksync/events.html",
           "destination": "/docs/dev/building-on-zksync/events.html",
           "type": "302"
@@ -154,6 +159,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/concepts/transactions/blocks.html",
+          "destination": "/docs/reference/concepts/blocks.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/developer-guides/finality.html",
           "destination": "/docs/reference/concepts/finality.html",
           "type": "302"
@@ -161,6 +171,11 @@
         {
           "source": "/docs/dev/developer-guides/system-contracts.html",
           "destination": "/docs/reference/architecture/contracts/system-contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contracts/system-contracts.html",
+          "destination": "/docs/reference/architecture/system-contracts.html",
           "type": "302"
         },
         {
@@ -174,13 +189,28 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/concepts/transactions/fee-model.html",
+          "destination": "/docs/reference/concepts/fee-model.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/developer-guides/bridging/bridging-asset.html",
           "destination": "/docs/reference/concepts/bridging/bridging-asset.html",
           "type": "302"
         },
         {
+          "source": "/docs/reference/concepts/bridging/bridging-asset.html",
+          "destination": "/docs/reference/concepts/bridging-asset.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
           "destination": "/docs/reference/concepts/bridging/l1-l2-interop.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
           "type": "302"
         },
         {
@@ -194,6 +224,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/architecture/contracts/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/building-on-zksync/contracts/differences-with-ethereum.html",
           "destination": "/docs/reference/architecture/differences-with-ethereum.html",
           "type": "302"
@@ -201,6 +236,11 @@
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
           "destination": "/docs/reference/architecture/contracts/contract-deployment.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contracts/contract-deployment.html",
+          "destination": "/docs/reference/architecture/contract-deployment.html",
           "type": "302"
         },
         {
@@ -379,6 +419,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/concepts/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/building-on-zksync/bridging/l1-l2-interop.html",
           "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
           "type": "302"
@@ -424,8 +469,18 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/concepts/transactions/transactions.html",
+          "destination": "/docs/reference/concepts/transactions.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/developer-guides/transactions/blocks.html",
           "destination": "/docs/reference/concepts/transactions/blocks.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/transactions/blocks.html",
+          "destination": "/docs/reference/concepts/blocks.html",
           "type": "302"
         },
         {
@@ -439,6 +494,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/architecture/contracts/system-contracts.html",
+          "destination": "/docs/reference/architecture/system-contracts.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/developer-guides/aa.html",
           "destination": "/docs/reference/concepts/aa.html",
           "type": "302"
@@ -449,13 +509,28 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/concepts/transactions/fee-model.html",
+          "destination": "/docs/reference/concepts/fee-model.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/developer-guides/bridging/bridging-asset.html",
           "destination": "/docs/reference/concepts/bridging/bridging-asset.html",
           "type": "302"
         },
         {
+          "source": "/docs/reference/concepts/bridging/bridging-asset.html",
+          "destination": "/docs/reference/concepts/bridging-asset.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
           "destination": "/docs/reference/concepts/bridging/l1-l2-interop.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
           "type": "302"
         },
         {
@@ -469,6 +544,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/architecture/contracts/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/building-on-zksync/contracts/differences-with-ethereum.html",
           "destination": "/docs/reference/architecture/differences-with-ethereum.html",
           "type": "302"
@@ -476,6 +556,11 @@
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
           "destination": "/docs/reference/architecture/contracts/contract-deployment.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contracts/contract-deployment.html",
+          "destination": "/docs/reference/architecture/contract-deployment.html",
           "type": "302"
         },
         {
