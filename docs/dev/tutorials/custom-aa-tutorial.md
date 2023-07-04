@@ -20,45 +20,50 @@ Download the complete project [here](https://github.com/matter-labs/custom-aa-tu
 
 ## Set up
 
-1. Create the project folder and `cd` into it:
+1. If you haven't already, install the [zkSync CLI:](/docs/tools/zksync-cli/)
 
 ```sh
-mkdir custom-aa-tutorial
-cd custom-aa-tutorial
+yarn add global zksync-cli@latest
 ```
 
-2. Initialize the project with `yarn` and add the dependencies.
+2. Initiate a new project by running the command:
 
 ```sh
-yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+zksync-cli create custom-aa-tutorial
 ```
+
 :::tip
 The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
 :::
 
+This creates a new zkSync Era project called `custom-aa-tutorial` with a basic `Greeter` contract. 
 
-3. Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders in the project root. See the [quickstart tutorial](../building-on-zksync/hello-world.md) for more info. 
+3. Navigate into the project directory:
 
-4. Add the zkSync and OpenZeppelin libraries.
+```sh
+cd ~/custom-aa-tutorial
+```
+
+4. Add the zkSync and OpenZeppelin contract libraries:
 
 ```sh
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
-
 ```
 
-5. Include the `isSystem: true` setting in the configuration to allow interaction with system contracts.
+5. Include the `isSystem: true` setting in the configuration to allow interaction with system contracts:
 
 ```ts
 import { HardhatUserConfig } from "hardhat/config";
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 
+import "@matterlabs/hardhat-zksync-verify";
+
 const config: HardhatUserConfig = {
   zksolc: {
     version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
     settings: {
-      isSystem: true,
+      isSystem: true, // make sure to include this line
     },
   },
   defaultNetwork: "zkSyncTestnet",
@@ -71,17 +76,12 @@ const config: HardhatUserConfig = {
     },
   },
   solidity: {
-    version: "0.8.16",
+    version: "0.8.17",
   },
 };
 
 export default config;
 ```
-
-::: tip
-- Use the zkSync CLI to scaffold a project automatically. 
-- Find out more about the [zkSync CLI](../../tools/zksync-cli/).
-:::
 
 ## Account abstraction
 
@@ -91,7 +91,7 @@ The skeleton code for the contract is given below.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.16;
+pragma solidity ^0.8.17;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
@@ -372,7 +372,6 @@ Finally, the `_validateTransaction` function has to return the constant `ACCOUNT
 Here is the full implementation for the `_validateTransaction` function:
 
 ```solidity
-
 function _validateTransaction(
     bytes32 _suggestedSignedHash,
     Transaction calldata _transaction
@@ -501,7 +500,7 @@ function _executeTransaction(Transaction calldata _transaction) internal {
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.16;
+pragma solidity ^0.8.17;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
@@ -769,7 +768,7 @@ The contract is a factory that deploys the accounts.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.16;
+pragma solidity ^0.8.17;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
