@@ -17,33 +17,37 @@ The daily limit feature prevents an account from spending more ETH than the limi
 
 We will use the [zkSync Era Hardhat plugins](../../tools/hardhat/) to build, deploy, and interact with the smart contracts in this project.
 
-1. Create a project folder and `cd` into it.
+1. If you haven't already, install the [zkSync CLI:](/docs/tools/zksync-cli/)
 
 ```sh
-mkdir custom-spendlimit-tutorial
-cd custom-spendlimit-tutorial
+yarn add global zksync-cli@latest
 ```
 
-2. Initialize the project and add the dependencies.
+2. Initiate a new project by running the command:
 
 ```sh
-yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+zksync-cli create custom-spendlimit-tutorial
 ```
 
-::: tip
+:::tip
 The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
 :::
 
-3. Add additional packages that use [zkSync Era smart contracts](../../reference/architecture/contracts/system-contracts.md).
+This creates a new zkSync Era project called `custom-spendlimit-tutorial` with a basic `Greeter` contract. 
+
+3. Navigate into the project directory:
+
+```sh
+cd ~/custom-spendlimit-tutorial
+```
+
+4. Add the zkSync and OpenZeppelin contract libraries:
 
 ```sh
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
 ```
 
-4. Create the `contracts` and `deploy` folders, and the configuration file, `hardhat.config.ts`, containing the code below.
-
-In this project our contracts interact with system contracts, so we need to include the `isSystem: true` in the compiler settings.
+5. Include the `isSystem: true` setting in the configuration to allow interaction with system contracts:
 
 ```typescript
 import { HardhatUserConfig } from "hardhat/config";
@@ -51,11 +55,13 @@ import { HardhatUserConfig } from "hardhat/config";
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 
+import "@matterlabs/hardhat-zksync-verify";
+
 const config: HardhatUserConfig = {
     zksolc: {
         version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
         settings: { 
-            isSystem: true,
+            isSystem: true, // make sure to include this line
         },
     },
     defaultNetwork: "zkSyncTestnet",
@@ -67,18 +73,13 @@ const config: HardhatUserConfig = {
         },
     },
     solidity: {
-        version: "0.8.13",
+        version: "0.8.17",
     },
 };
 
 export default config;
 
 ```
-
-::: tip zksync-cli
-- You can use the zkSync Era CLI to scaffold a project automatically. 
-- Find [more info about the zkSync Era CLI here](../../tools/zksync-cli/).
-:::
 
 ## Design
 
@@ -97,7 +98,7 @@ Below you'll find the `SpendLimit` skeleton contract.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.17;
 
 contract SpendLimit {
 
@@ -156,7 +157,6 @@ Note that the `limits` mapping uses the token address as its key. This means tha
 The code below sets and removes the limit.
 
 ```solidity
-
     /// this function enables a daily spending limit for specific tokens.
     /// @param _token ETH or ERC20 token address that a given spending limit is applied.
     /// @param _amount non-zero limit.
@@ -228,7 +228,6 @@ Specifically, `setSpendingLimit` sets a non-zero daily spending limit for a give
 The `_checkSpendingLimit` function is internally called by the account contract before executing the transaction.
 
 ```solidity
-
     // this function is called by the account before execution.
     // Verify the account is able to spend a given amount of tokens. And it records a new available amount.
     function _checkSpendingLimit(address _token, uint _amount) internal {
@@ -304,7 +303,7 @@ limit.available -= _amount;
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.17;
 
 contract SpendLimit {
     // uint public ONE_DAY = 24 hours;
@@ -686,7 +685,7 @@ The `AAFactory.sol` contract is responsible for deploying instances of the `Acco
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.17;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
@@ -800,8 +799,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   ).wait();
   console.log(`Done!`);
 }
-
-
 ```
 
 3. Run the script.
@@ -894,7 +891,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log("Available limit today: ", limit.available.toString());
   console.log("Time to reset limit: ", limit.resetTime.toString());
 }
-
 ```
 
 3. Run the script.
@@ -1014,7 +1010,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   }
   return;
 }
-
 ```
 
 2. Run the script to attempt to make a transfer.
