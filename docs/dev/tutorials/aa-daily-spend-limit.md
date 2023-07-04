@@ -41,13 +41,25 @@ This creates a new zkSync Era project called `custom-spendlimit-tutorial` with a
 cd ~/custom-spendlimit-tutorial
 ```
 
-4. Add the zkSync and OpenZeppelin contract libraries:
+4. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
+
+```sh
+rm -rf ./contracts/Greeter.sol 
+```
+
+5. Similarly, remove the deploy scripts associated with the Greeter contract:
+
+```sh
+rm -rf ./deploy/deploy-greeter.ts && rm -rf ./deploy/use-greeter.ts
+```
+
+6. Add the zkSync and OpenZeppelin contract libraries:
 
 ```sh
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
 ```
 
-5. Include the `isSystem: true` setting in the `hardhat.config.ts` configuration file to allow interaction with system contracts:
+7. Include the `isSystem: true` setting in the `hardhat.config.ts` configuration file to allow interaction with system contracts:
 
 ```typescript
 import { HardhatUserConfig } from "hardhat/config";
