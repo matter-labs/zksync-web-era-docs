@@ -644,7 +644,7 @@ This command will verify the implementation related to the proxy, the proxy cont
 
 # Proxy validations
 
-The hardhat-zksync-upgradable plugin has built-in checks to ensure that your smart contract's newest implementation version follows the necessary requirements when upgrading your smart contract.
+The `hardhat-zksync-upgradable` plugin has built-in checks to ensure that your smart contract's newest implementation version follows the necessary requirements when upgrading your smart contract.
 
 You can learn more about what those restrictions are in [OpenZeppelin's documentation](https://docs.openzeppelin.com/upgrades-plugins/1.x/writing-upgradeable).
 
