@@ -24,71 +24,35 @@ The tutorial code is available [here](https://github.com/matter-labs/custom-paym
 
 ## Set up the project
 
-1. Create a project folder and `cd` into it:
+1. If you haven't already, install the [zkSync CLI:](/docs/tools/zksync-cli/)
 
 ```sh
-mkdir custom-paymaster-tutorial
-cd custom-paymaster-tutorial
+yarn add global zksync-cli@latest
 ```
 
-2. Initialize the project:
+2. Initiate a new project by running the command:
 
 ```sh
-yarn init -y
+zksync-cli create custom-paymaster-tutorial
 ```
 
-3. Add the project dependencies, including Hardhat and all zkSync packages:
-
-```sh
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy @matterlabs/zksync-contracts @openzeppelin/contracts
-```
-
-::: tip
-- The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
-- An update compatible with `ethers v6.x.x` will be released soon.
+:::tip
+The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
 :::
 
-4. Create the required folders.
+This creates a new zkSync Era project called `custom-paymaster-tutorial` with a basic `Greeter` contract. 
+
+3. Navigate into the project directory:
 
 ```sh
-mkdir contracts deploy
+cd ~/custom-paymaster-tutorial
 ```
 
-5. Create the file `hardhat.config.ts` and add the following:
+4. Add the zkSync and OpenZeppelin contract libraries:
 
-```ts
-import { HardhatUserConfig } from "hardhat/config";
-
-import "@matterlabs/hardhat-zksync-deploy";
-import "@matterlabs/hardhat-zksync-solc";
-
-const config: HardhatUserConfig = {
-  zksolc: {
-    version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
-    settings: {},
-  },
-  defaultNetwork: "zkSyncTestnet",
-  networks: {
-    hardhat: {
-      zksync: true,
-    },
-    zkSyncTestnet: {
-      url: "https://testnet.era.zksync.dev",
-      ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
-      zksync: true,
-    },
-  },
-  solidity: {
-    version: "0.8.17",
-  },
-};
-
-export default config;
+```sh
+yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
 ```
-
-::: tip
-- You can also use the zkSync CLI to scaffold a zkSync project. Find out more info about [the zkSync CLI](../../tools/zksync-cli/).
-:::
 
 ## Design
 
