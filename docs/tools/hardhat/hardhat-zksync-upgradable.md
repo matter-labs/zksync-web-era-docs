@@ -701,8 +701,7 @@ const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasBeacon(dep
 ```
 
 
-All of those methods calculate the fee for every contract in their corresponding pipeline, print that cost on the console and return the total sum.
-If you don't want to see all the separate estimations, you can use the parameter `quiet` as the last parameter in every method and receive just the returned sum.
+Each of these methods totals the fee for every contract in their respective pipeline, displays the cost on the console, and returns the cumulative sum. If you prefer not to see the individual estimations, introduce the parameter `quiet` as the final parameter in any method to receive only the returned sum.
 
 ``` typescript
 const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasProxy(this.deployer, contract, [], { kind: 'uups' }, true );
