@@ -214,11 +214,6 @@
           "type": "302"
         },
         {
-          "source": "/docs/dev/building-on-zksync/useful-address.html",
-          "destination": "/docs/dev/building-on-zksync/useful-address.html",
-          "type": "302"
-        },
-        {
           "source": "/docs/dev/troubleshooting/important-links.html",
           "destination": "/docs/reference/troubleshooting/",
           "type": "302"
@@ -486,11 +481,6 @@
         {
           "source": "/docs/dev/building-on-zksync/events.html",
           "destination": "/docs/reference/architecture/events.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/building-on-zksync/useful-address.html",
-          "destination": "/docs/dev/building-on-zksync/useful-address.html",
           "type": "302"
         },
         {
