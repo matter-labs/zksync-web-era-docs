@@ -23,9 +23,9 @@ Here are some contract addresses that may be useful and/or of interest to those 
 
 :::warning
 
-_Do **not** transfer tokens or Ether to any of the addresses below; it will result in a loss of funds._
+**Do not transfer tokens or Ether to any of the addresses below;** it will result in a loss of funds.
 
-_Users should only interact with the token bridge contracts via [zkSync Bridge](https://bridge.zksync.io/)._ 
+Users should only interact with the token bridge contracts via [zkSync Bridge](https://bridge.zksync.io/).
 
 
 :::
