@@ -4,10 +4,14 @@ To keep the zero-knowledge circuits as simple as possible and enable simple exte
 
 The code for the system contracts will not be public until it has gone through thorough testing. This section will only provide you with the knowledge needed to build on zkSync.
 
+::: tip System contract addresses
+You can find the L1 system contract addresses in the [useful addresses page](../../../dev/building-on-zksync/useful-address.md).
+:::
+
 
 ## Interfaces
 
-The addresses and the interfaces of the system contracts can be found [here](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/Constants.sol).
+The addresses and the interfaces of the L2 system contracts can be found [here](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/Constants.sol).
 
 This section will describe the semantic meaning of some of the most popular system contracts.
 
