@@ -50,7 +50,7 @@ cd ~/custom-aa-tutorial
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
 ```
 
-5. Include the `isSystem: true` setting in the configuration to allow interaction with system contracts:
+5. Include the `isSystem: true` setting in the `hardhat.config.ts` configuration file to allow interaction with system contracts:
 
 ```ts
 import { HardhatUserConfig } from "hardhat/config";
