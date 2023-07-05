@@ -70,12 +70,12 @@
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contracts.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-development.html",
-          "destination": "/docs/dev/building-on-zksync/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
           "type": "302"
         },
         {
@@ -220,7 +220,7 @@
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-development.html",
-          "destination": "/docs/reference/architecture/contracts/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
           "type": "302"
         },
         {
@@ -385,7 +385,7 @@
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contracts.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
           "type": "302"
         },
         {
@@ -540,7 +540,7 @@
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-development.html",
-          "destination": "/docs/reference/architecture/contracts/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
           "type": "302"
         },
         {
