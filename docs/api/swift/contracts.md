@@ -1,4 +1,4 @@
-# Contract interfaces
+# Contracts
 
 There is a set of system contracts that supports the zkSync Era network interaction.<br>
 The following are the contracts:
@@ -6,12 +6,12 @@ The following are the contracts:
 - ERC20
 - ContractDeployer
 
-### ERC20
+## `ERC20`
 
 This is a system contract that provides ERC20 token management. It has the same API as
 defined in the [ERC20](https://eips.ethereum.org/EIPS/eip-20) standard.
 
-### ContractDeployer
+## `ContractDeployer`
 
 ContractDeployer is a utility system contract, represented as a type, and covers the following functionality:
 

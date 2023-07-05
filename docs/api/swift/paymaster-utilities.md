@@ -1,4 +1,4 @@
-# Paymaster utilities
+# Paymaster Utilities
 
 The [paymaster utilities library](https://github.com/zksync-sdk/zksync2-swift/blob/main/Sources/ZkSync2/Utils/Paymaster.swift) contains essential utilities for using paymasters on zkSync Era.
 
@@ -11,30 +11,30 @@ the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob
 
 ## Functions
 
-### Approval-based Paymaster
+### `Approval-based` Paymaster
 
-Returns encoded input for an approval-based paymaster.
+Returns encoded input for an `approval-based` paymaster.
 
 #### Inputs
 
-| Parameter         | Type                       | Description                       |
-|-------------------|----------------------------|-----------------------------------|
-| `paymasterAddress`| `Address`                  | The non-zero `paymaster` address. |
-| `paymasterInput`  | `Data`                     | The input data to the paymaster.  |
+| Parameter         | Type                  | Description                       |
+|-------------------|-----------------------|-----------------------------------|
+| `paymasterAddress`| `Address`             | The non-zero `paymaster` address. |
+| `paymasterInput`  | `Data`                | The input data to the paymaster.  |
 
 ```swift
 func encodeApprovalBased(_ tokenAddress: EthereumAddress, minimalAllowance: BigUInt, paymasterInput: Data) -> Data
 ```
 
-### General Paymaster
+### `General` Paymaster
 
-Returns encoded input for a general paymaster.
+Returns encoded input for a `general` paymaster.
 
 #### Inputs
 
-| Parameter         | Type                       | Description                       |
-|-------------------|----------------------------|-----------------------------------|
-| `paymasterInput`  | `Data`                     | The input data to the paymaster.  |
+| Parameter         | Type                  | Description                       |
+|-------------------|-----------------------|-----------------------------------|
+| `paymasterInput`  | `Data`                | The input data to the paymaster.  |
 
 ```swift
 func encodeGeneral(_ paymasterInput: Data) -> Data

@@ -1,6 +1,6 @@
 # Accounts
 
-## PrivateKeyEthSigner
+## `PrivateKeyEthSigner`
 
 A `PrivateKeyEthSigner` provides private key management, transaction, and message signing.
 
@@ -10,7 +10,7 @@ let chainId = try! zkSync.web3.eth.getChainIdPromise().wait()
 let signer = PrivateKeyEthSigner(credentials, chainId: chainId)
 ``` 
 
-## ZkSyncWallet
+## `ZkSyncWallet`
 
 A `ZkSyncWallet` is a wrapper around `EthSigner` which provides actions on the L2 network.
 Based on the action, the `ZkSyncWallet` creates an appropriate transaction, signs the transaction using the `EthSigner`, and then broadcasts the transaction to the network.
