@@ -9,12 +9,13 @@ export const enSidebar = sidebar({
     },
     {
       text: "Getting started",
-      link: "/dev/building-on-zksync/hello-world.md", 
-      children: [ 
-        "/dev/building-on-zksync/hello-world.md", 
+      link: "/dev/building-on-zksync/hello-world.md",
+      children: [
+        "/dev/building-on-zksync/hello-world.md",
         "/dev/building-on-zksync/interacting.md",
         "/dev/building-on-zksync/best-practices.md",
-        "/dev/building-on-zksync/useful-address.md", ],
+        "/dev/building-on-zksync/useful-address.md",
+      ],
     },
     {
       text: "How to",
@@ -120,7 +121,7 @@ export const enSidebar = sidebar({
     {
       text: "Go SDK",
       link: "/api/go",
-      children: ["/api/go/getting-started", "/api/go/providers", "/api/go/accounts", "/api/go/accounts-l1-l2", "/api/go/contract-interface", "/api/go/types"],
+      children: ["/api/go/getting-started", "/api/go/providers", "/api/go/accounts", "/api/go/accounts-l1-l2", "/api/go/contracts", "/api/go/types"],
     },
     {
       text: "Java SDK", // required
