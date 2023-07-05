@@ -489,6 +489,7 @@ export async function getERC20DefaultBridgeData(
 }
 ```
 
+
 ### `getL2HashFromPriorityOp`
 
 Returns the hash of the L2 priority operation from a given transaction receipt and L2 address.
@@ -550,6 +551,34 @@ export function getHashedL2ToL1Msg(sender: Address, msg: BytesLike, txNumberInBl
     ]);
 
     return ethers.utils.keccak256(encodedMsg);
+}
+```
+
+
+### `getPaymasterParams`
+
+Encodes the paymaster parameters that can be added as transaction overrides.
+
+#### Inputs
+
+| Parameter           | Type                        | Description                          |
+| ------------------- | --------------------------- | ------------------------------------ |
+| `paymasterAddress`         | `Address` as string | Address of the paymaster contract|
+| `paymasterInput`     | `paymasterInput` as object            | Contains `type` and `innerInput` (required) and `token` and `minimalAllowance` for approvalBased flow. |
+
+```ts
+export function getPaymasterParams(paymasterAddress: Address, paymasterInput: PaymasterInput): PaymasterParams {
+    if (paymasterInput.type == 'General') {
+        return {
+            paymaster: paymasterAddress,
+            paymasterInput: getGeneralPaymasterInput(paymasterInput)
+        };
+    } else {
+        return {
+            paymaster: paymasterAddress,
+            paymasterInput: getApprovalBasedPaymasterInput(paymasterInput)
+        };
+    }
 }
 ```
 

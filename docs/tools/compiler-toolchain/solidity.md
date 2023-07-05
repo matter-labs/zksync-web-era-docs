@@ -52,7 +52,7 @@ Additional zkEVM data inserted by `zksolc`:
 - `long_version`: the full `solc` version output.
 - `zk_version`: the `zksolc` version.
 - `contract/hash`: the hash of the zkEVM bytecode.
-- `contract/factory_dependencies`: bytecode hashes of contracts created in the current contract with `CREATE`. [More details here](../../reference/architecture/contract-deployment.md#note-on-factorydeps).
+- `contract/factory_dependencies`: bytecode hashes of contracts created in the current contract with `CREATE`. [More details here](../../reference/architecture/contract-deployment.md#note-on-factory_deps).
 
 Unsupported sections of the output JSON, ignored by `zksolc`:
 

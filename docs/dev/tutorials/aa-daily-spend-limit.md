@@ -670,7 +670,7 @@ contract Account is IAccount, IERC1271, SpendLimit {
 
 :::warning Note 1
 - The formal ETH address on zkSync Era is `0x000000000000000000000000000000000000800a`. 
-- Neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, that ([`zksync-web3` provides](../../api/js/utils.md#the-address-of-ether)) has a more user-friendly alias.
+- Neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, that ([`zksync-web3` provides](../../api/js/utils.md#useful-addresses)) has a more user-friendly alias.
 :::
 
 :::warning Note 2

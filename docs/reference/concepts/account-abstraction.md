@@ -294,7 +294,7 @@ If you are developing a paymaster, you _should not_ trust the transaction sender
 
 #### Working with paymaster flows using `zksync-web3` SDK
 
-The `zksync-web3` SDK provides [methods](../../api/js/utils.md#encoding-paymaster-params) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
+The `zksync-web3` SDK provides [methods](../../api/js/utils.md#getpaymasterparams) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
 
 ### Testnet paymaster
 
