@@ -7,3 +7,4 @@ To provide easy access to all the features of zkSync Era, the `zksync2` Swift SD
 ## Contents
 
 - [Getting started](./getting-started.md)
+- [Contracts](./contracts.md)
