@@ -554,34 +554,6 @@ export function getHashedL2ToL1Msg(sender: Address, msg: BytesLike, txNumberInBl
 }
 ```
 
-
-### `getPaymasterParams`
-
-Encodes the paymaster parameters that can be added as transaction overrides.
-
-#### Inputs
-
-| Parameter           | Type                        | Description                          |
-| ------------------- | --------------------------- | ------------------------------------ |
-| `paymasterAddress`         | `Address` as string | Address of the paymaster contract|
-| `paymasterInput`     | `paymasterInput` as object            | Contains `type` and `innerInput` (required) and `token` and `minimalAllowance` for approvalBased flow. |
-
-```ts
-export function getPaymasterParams(paymasterAddress: Address, paymasterInput: PaymasterInput): PaymasterParams {
-    if (paymasterInput.type == 'General') {
-        return {
-            paymaster: paymasterAddress,
-            paymasterInput: getGeneralPaymasterInput(paymasterInput)
-        };
-    } else {
-        return {
-            paymaster: paymasterAddress,
-            paymasterInput: getApprovalBasedPaymasterInput(paymasterInput)
-        };
-    }
-}
-```
-
 ### `hashBytecode`
 
 Returns the hash of given bytecode.
