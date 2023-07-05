@@ -16,7 +16,7 @@ As collaboration on contribution to zkSync documentation is such an integral par
 
 - [Create or edit a page](#edit-or-review-a-documentation-page) - Improve on the existing pages or create a new one.
 - [Pick an issue and work on it](https://github.com/matter-labs/zksync-web-v2-docs/issues) - Work on issues that's has been raised.
-- [Add community resources](./community-resources.md) - Help us add relevant resources, such as videos, tutorials or articles.
+
 
 ## Edit or review a documentation page
 
