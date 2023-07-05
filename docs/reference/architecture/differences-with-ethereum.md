@@ -132,7 +132,7 @@ it will return the array of immutable values initialized so far.
 ### `TIMESTAMP`, `NUMBER`
 
 For more information on blocks in zkSync Era, including the differences between `block.timestamp` and `block.number`,
-check out the [blocks in zkSync Era documentation](../../reference/concepts/transactions/blocks.md#blocks-in-zksync-era).
+check out the [blocks in zkSync Era documentation](../../reference/concepts/blocks.md#blocks-in-zksync-era).
 
 ### `COINBASE`
 
