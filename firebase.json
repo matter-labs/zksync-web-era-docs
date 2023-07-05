@@ -65,7 +65,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-verification.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-verification.html",
+          "destination": "/docs/dev/how-to/verify-contracts.html",
           "type": "302"
         },
         {
@@ -95,17 +95,17 @@
         },
         {
           "source": "/docs/dev/developer-guides/bridging/l1-l2.html",
-          "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/bridging/l2-l1.html",
-          "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/bridging/l1-l2-interop.html",
-          "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
           "type": "302"
         },
         {
@@ -195,7 +195,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/bridging/bridging-asset.html",
-          "destination": "/docs/reference/concepts/bridging/bridging-asset.html",
+          "destination": "/docs/reference/concepts/bridging-asset.html",
           "type": "302"
         },
         {
@@ -205,7 +205,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
-          "destination": "/docs/reference/concepts/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
           "type": "302"
         },
         {
@@ -245,7 +245,7 @@
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-verification.html",
-          "destination": "/docs/reference/architecture/contracts/contract-verification.html",
+          "destination": "/docs/dev/how-to/verify-contracts.html",
           "type": "302"
         },
         {
@@ -380,7 +380,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-verification.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-verification.html",
+          "destination": "/docs/dev/how-to/verify-contracts.html",
           "type": "302"
         },
         {
@@ -565,7 +565,7 @@
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-verification.html",
-          "destination": "/docs/reference/architecture/contracts/contract-verification.html",
+          "destination": "/docs/dev/how-to/verify-contracts.html",
           "type": "302"
         },
         {
