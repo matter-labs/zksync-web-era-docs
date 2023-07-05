@@ -3,8 +3,8 @@
 zkSync Era supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/) and adds some L2-specific features.
 
 :::tip Tip
-- As long as code does not involve deploying new smart contracts, which can only be deployed using [EIP712 transactions](../reference/concepts/transactions/transactions.md#eip-712-transactions), _no changes to the codebase are needed_.
-- Read the documentation on [EIP-712 transactions](../reference/concepts/transactions/transactions.md#eip-712-transactions) for more information.
+- As long as code does not involve deploying new smart contracts, which can only be deployed using [EIP712 transactions](../reference/concepts/transactions.md#eip-712-transactions), _no changes to the codebase are needed_.
+- Read the documentation on [EIP-712 transactions](../reference/concepts/transactions.md#eip-712-transactions) for more information.
 :::
 
 ## RPC endpoint URLs
@@ -599,7 +599,7 @@ Given a block, a sender, a message, and an optional message log index in the blo
 | block           | `uint32`    | The number of the block where the message was emitted.          |
 | sender          | `address`   | The sender of the message (i.e. the account that called the L1Messenger system contract).  |
 | msg             | `bytes32`   | The keccak256 hash of the sent message.    |
-| l2_log_position | `uint256`   | The index in the block of the event that was emitted by the [L1Messenger](../reference/architecture/contracts/system-contracts.md#l1messenger) when submitting this message. If it is omitted, the proof for the first message returns. |
+| l2_log_position | `uint256`   | The index in the block of the event that was emitted by the [L1Messenger](../reference/architecture/system-contracts.md#l1messenger) when submitting this message. If it is omitted, the proof for the first message returns. |
 
 #### curl example
 
