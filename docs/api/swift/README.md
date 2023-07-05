@@ -8,4 +8,4 @@ To provide easy access to all the features of zkSync Era, the `zksync2` Swift SD
 
 - [Getting started](./getting-started.md)
 - [Contracts](./contracts.md)
-- [Paymaster](./paymaster-utils.md)
+- [Paymaster utilities](./paymaster-utils.md)

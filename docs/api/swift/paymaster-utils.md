@@ -18,7 +18,7 @@ Returns encoded input for an approval-based paymaster.
 #### Inputs
 
 | Parameter         | Type                       | Description                       |
-|------------------ |----------------------------|-----------------------------------|
+|-------------------|----------------------------|-----------------------------------|
 | `paymasterAddress`| `Address`                  | The non-zero `paymaster` address. |
 | `paymasterInput`  | `Data`                     | The input data to the paymaster.  |
 
@@ -33,19 +33,11 @@ Returns encoded input for a general paymaster.
 #### Inputs
 
 | Parameter         | Type                       | Description                       |
-|------------------ |----------------------------|-----------------------------------|
+|-------------------|----------------------------|-----------------------------------|
 | `paymasterInput`  | `Data`                     | The input data to the paymaster.  |
 
 ```swift
 func encodeGeneral(_ paymasterInput: Data) -> Data
 ```
-
-#### Inputs
-
-| Parameter          | Type             | Description                       |
-|--------------------|------------------|-----------------------------------|
-| `paymasterAddress` | `Address`        | The non-zero `paymaster` address. |
-| `paymasterInput`   | `PaymasterInput` | The input data to the paymaster.  |
-
 
 Check out the [example](getting-started.md#use-paymaster) how to use paymaster.
