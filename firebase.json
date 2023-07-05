@@ -115,7 +115,7 @@
         },
         {
           "source": "/docs/dev/fundamentals/faq.html",
-          "destination": "/docs/dev/troubleshooting/faq.html",
+          "destination": "/docs/reference/troubleshooting/faq.html",
           "type": "302"
         },
         {
@@ -430,7 +430,7 @@
         },
         {
           "source": "/docs/dev/fundamentals/faq.html",
-          "destination": "/docs/dev/troubleshooting/faq.html",
+          "destination": "/docs/reference/troubleshooting/faq.html",
           "type": "302"
         },
         {
