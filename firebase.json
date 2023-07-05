@@ -90,7 +90,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-deployment.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
+          "destination": "/docs/reference/architecture/contract-deployment.html",
           "type": "302"
         },
         {
@@ -235,7 +235,7 @@
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
-          "destination": "/docs/reference/architecture/contracts/contract-deployment.html",
+          "destination": "/docs/reference/architecture/contract-deployment.html",
           "type": "302"
         },
         {
@@ -400,7 +400,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-deployment.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
+          "destination": "/docs/reference/architecture/contract-deployment.html",
           "type": "302"
         },
         {
@@ -555,7 +555,7 @@
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
-          "destination": "/docs/reference/architecture/contracts/contract-deployment.html",
+          "destination": "/docs/reference/architecture/contract-deployment.html",
           "type": "302"
         },
         {
