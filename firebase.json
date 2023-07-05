@@ -144,11 +144,6 @@
           "type": "302"
         },
         {
-          "source": "/docs/dev/fundamentals/docs/reference/concepts/hyperscaling.html",
-          "destination": "/docs/reference/concepts/hyperscaling.html",
-          "type": "302"
-        },
-        {
           "source": "/docs/dev/developer-guides/transactions/transactions.html",
           "destination": "/docs/reference/concepts/transactions/transactions.html",
           "type": "302"
