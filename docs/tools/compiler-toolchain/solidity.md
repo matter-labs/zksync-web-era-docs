@@ -72,7 +72,7 @@ used for configuration.
 Additional zkEVM data, inserted by `zksolc`:
 
 - `zk_version`: the version of `zksolc`.
-- `contract/factory_deps`: bytecode hashes of contracts created by the current contract with `CREATE`. [More details here](../../reference/architecture/contract-deployment.md#note-on-factorydeps).
+- `contract/factory_deps`: bytecode hashes of contracts created by the current contract with `CREATE`. [More details here](../../reference/architecture/contract-deployment.md#note-on-factory_deps).
 
 Unsupported combined JSON flags, rejected by `zksolc`:
 

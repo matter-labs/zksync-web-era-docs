@@ -66,7 +66,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
     ```
     :::
 
-4. Call the JSON-RPC method [`zks_estimateGasL1toL2`](../../api/api.md#zks-estimategasl1tol2), wrapping the transaction data in a [`CallRequest`](#transaction-parameters-1) JSON object parameter. 
+4. Call the JSON-RPC method [`zks_estimateGasL1toL2`](../../api/api.md#zks-estimategasl1tol2), wrapping the transaction data in a `CallRequest` JSON object parameter. 
 
     The method returns the amount of gas required for the transaction to succeed. 
 
@@ -136,7 +136,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
     ```
     :::
 
-5. The return value is a 256-bit unsigned integer in hexadecimal representing the amount of gas the transaction uses.
+6. The return value is a 256-bit unsigned integer in hexadecimal representing the amount of gas the transaction uses.
 
     ```json
     {
@@ -146,7 +146,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
     }
     ```
 
-6. Send the transaction, including the gas price and base cost in the value parameters, by calling the [`requestL2Transaction`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L119) function.
+7. Send the transaction, including the gas price and base cost in the value parameters, by calling the [`requestL2Transaction`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L119) function.
 
     Include the gas limit value from step 3 as `_l2GasLimit` and the `REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT` constant as `_l2GasPerPubdataByteLimit`.
 
@@ -193,7 +193,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
     **Note**: If the `_refundRecipient` is a smart contract, then during the L1 to L2 transaction its address is aliased. 
     :::
 
-7. Wait for a transaction response and output the details.
+8. Wait for a transaction response and output the details.
 
     :::info Responses
     - A **successful** L1 to L2 transaction produces an `L2Log` with `key = l2TxHash`, and `value = bytes32(1)`.
