@@ -30,7 +30,7 @@ export const enSidebar = sidebar({
     },
     {
       text: "Tutorials",
-      link: "/dev/tutorials/cross-chain-tutorial.md",
+      link: "/dev/tutorials/README.md",
       children: [
         "/dev/tutorials/cross-chain-tutorial.md",
         "/dev/tutorials/custom-aa-tutorial.md",
