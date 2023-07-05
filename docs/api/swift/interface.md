@@ -1,4 +1,4 @@
-# Providers
+# Interface
 
 `ZkSyncImpl` implements the zkSync Era Web3 JSON-RPC API and provides interaction with a zkSync Era node. 
 
@@ -8,7 +8,7 @@
 let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://testnet.era.zksync.dev")!)
 ```
 
-## Interface that provides interaction with zkSync node:
+## Interface that provides interaction with zkSync node
 
 ```swift
 public typealias Result<T> = Swift.Result<T, Error>

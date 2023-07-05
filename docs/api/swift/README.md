@@ -6,8 +6,8 @@ To provide easy access to all the features of zkSync Era, the `zksync2` Swift SD
 
 ## Contents
 
-- [Getting started](./getting-started.md)
-- [Providers](./providers.md)
-- [Accounts: Overview](./accounts.md)
+- [Getting Started](./getting-started.md)
+- [Interface](./interface.md)
+- [Accounts](./accounts.md)
 - [Contracts](./contracts.md)
-- [Paymaster utilities](./paymaster-utils.md)
+- [Paymaster Utilities](./paymaster-utilities.md)

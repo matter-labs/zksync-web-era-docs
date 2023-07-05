@@ -1,4 +1,4 @@
-# Getting started
+# Getting Started
 
 In this guide we will demonstrate how to:
 
