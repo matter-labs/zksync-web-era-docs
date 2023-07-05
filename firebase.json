@@ -110,7 +110,7 @@
         },
         {
           "source": "/docs/dev/fundamentals/testnet.html",
-          "destination": "/docs/dev/fundamentals/interacting.html",
+          "destination": "/docs/dev/building-on-zksync/interacting.html",
           "type": "302"
         },
         {
@@ -425,7 +425,7 @@
         },
         {
           "source": "/docs/dev/fundamentals/testnet.html",
-          "destination": "/docs/dev/fundamentals/interacting.html",
+          "destination": "/docs/dev/building-on-zksync/interacting.html",
           "type": "302"
         },
         {
