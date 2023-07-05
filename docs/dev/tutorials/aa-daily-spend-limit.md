@@ -11,7 +11,7 @@ The daily limit feature prevents an account from spending more ETH than the limi
 - If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You have a web3 wallet app which holds some Goerli test ETH and some zkSync Era test ETH.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
-- We encourage you to read [the basics of account abstraction on zkSync Era](../../reference/concepts/aa.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
+- We encourage you to read [the basics of account abstraction on zkSync Era](../../reference/concepts/account-abstraction.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
 
 ## Project set up
 
@@ -431,7 +431,7 @@ Let's create the account contract `Account.sol`, and the factory contract that d
 
 2. Copy/paste the code below.
 
-The account needs to implement the [IAccount](../../reference/concepts/aa.md#iaccount-interface) interface and inherits the `SpendLimit` contract we just created. Since we are building an account with signers, we should also implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
+The account needs to implement the [IAccount](../../reference/concepts/account-abstraction.md#iaccount-interface) interface and inherits the `SpendLimit` contract we just created. Since we are building an account with signers, we should also implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
 The `isValidSignature` method will take care of verifying the signature and making sure the extracted address matches with the owner of the account.
 
