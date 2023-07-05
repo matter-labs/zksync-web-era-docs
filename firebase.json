@@ -40,7 +40,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/contracts/system-contracts.html",
-          "destination": "/docs/dev/developer-guides/system-contracts.html",
+          "destination": "/docs/reference/architecture/system-contracts.html",
           "type": "302"
         },
         {
@@ -55,7 +55,7 @@
         },
         {
           "source": "/docs/dev/zksync-v2/aa.html",
-          "destination": "/docs/dev/developer-guides/aa.html",
+          "destination": "/docs/reference/concepts/account-abstraction.html",
           "type": "302"
         },
         {
@@ -165,7 +165,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/system-contracts.html",
-          "destination": "/docs/reference/architecture/contracts/system-contracts.html",
+          "destination": "/docs/reference/architecture/system-contracts.html",
           "type": "302"
         },
         {
@@ -175,8 +175,13 @@
         },
         {
           "source": "/docs/dev/developer-guides/aa.html",
-          "destination": "/docs/reference/concepts/aa.html",
+          "destination": "/docs/reference/concepts/account-abstraction.html",
           "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/aa.html",
+          "destination": "/docs/reference/concepts/account-abstraction.html",
+          "type": "301"
         },
         {
           "source": "/docs/dev/developer-guides/transactions/fee-model.html",
@@ -355,7 +360,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/contracts/system-contracts.html",
-          "destination": "/docs/dev/developer-guides/system-contracts.html",
+          "destination": "/docs/reference/architecture/system-contracts.html",
           "type": "302"
         },
         {
@@ -365,7 +370,7 @@
         },
         {
           "source": "/docs/dev/zksync-v2/aa.html",
-          "destination": "/docs/dev/developer-guides/aa.html",
+          "destination": "/docs/reference/concepts/account-abstraction.html",
           "type": "302"
         },
         {
@@ -480,7 +485,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/system-contracts.html",
-          "destination": "/docs/reference/architecture/contracts/system-contracts.html",
+          "destination": "/docs/reference/architecture/system-contracts.html",
           "type": "302"
         },
         {
@@ -490,8 +495,13 @@
         },
         {
           "source": "/docs/dev/developer-guides/aa.html",
-          "destination": "/docs/reference/concepts/aa.html",
+          "destination": "/docs/reference/concepts/account-abstraction.html",
           "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/aa.html",
+          "destination": "/docs/reference/concepts/account-abstraction.html",
+          "type": "301"
         },
         {
           "source": "/docs/dev/developer-guides/transactions/fee-model.html",
