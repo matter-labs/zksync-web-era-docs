@@ -11,12 +11,13 @@ zkSync Era supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en
 
 ### Testnet
 
-`https://testnet.era.zksync.dev`
+- HTTPS: `https://testnet.era.zksync.dev`
+- Websocket: `wss://testnet.era.zksync.dev/ws`
 
 ### Mainnet
 
-`https://mainnet.era.zksync.io`
-
+- HTTPS: `https://mainnet.era.zksync.io`
+- Websocket: `wss://mainnet.era.zksync.io/ws`
 
 ## zkSync Era JSON-RPC methods
 
