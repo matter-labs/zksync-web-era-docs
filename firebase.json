@@ -80,7 +80,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/building-on-zksync/events.html",
-          "destination": "/docs/dev/building-on-zksync/events.html",
+          "destination": "/docs/reference/architecture/events.html",
           "type": "302"
         },
         {
@@ -390,7 +390,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/building-on-zksync/events.html",
-          "destination": "/docs/dev/building-on-zksync/events.html",
+          "destination": "/docs/reference/architecture/events.html",
           "type": "302"
         },
         {
