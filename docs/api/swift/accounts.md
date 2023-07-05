@@ -1,8 +1,8 @@
 # Accounts: Overview
 
-`PrivateKeyEthSigner` provides private key management, transaction, and message signing.
-
 ## PrivateKeyEthSigner
+
+A `PrivateKeyEthSigner` provides private key management, transaction, and message signing.
 
 ```swift
 let credentials = Credentials(<WALLET_PRIVATE_KEY>)
