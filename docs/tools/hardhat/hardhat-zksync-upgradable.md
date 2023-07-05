@@ -643,6 +643,65 @@ This command will verify the implementation related to the proxy, the proxy cont
 
 # Proxy validations
 
-The hardhat-zksync-upgradable plugin has built-in checks to ensure that your smart contract's newest implementation version follows the necessary requirements when upgrading your smart contract.
+The `hardhat-zksync-upgradable` plugin has built-in checks to ensure that your smart contract's newest implementation version follows the necessary requirements when upgrading your smart contract.
 
 You can learn more about what those restrictions are in [OpenZeppelin's documentation](https://docs.openzeppelin.com/upgrades-plugins/1.x/writing-upgradeable).
+
+
+# Proxy gas fee estimation
+
+Should you wish to estimate the total gas used throughout the proxy deployment process, consider utilizing the upgradable plugin's gas estimation functions. We offer three types of gas estimation functions for your convenience:
+
+- estimateGasProxy
+- estimateGasBeacon
+- estimateGasBeaconProxy
+
+In the examples provided below, we will use the a Box contract and the deployer in the same way we used them in the previous examples:
+
+```typescript
+  // mnemonic for local node rich wallet
+  const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
+  const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+
+  const deployer = new Deployer(hre, zkWallet);
+
+  const contractName = 'Box';
+  const contract = await deployer.loadArtifact(contractName);
+```
+
+To estimate the deployment fee for the Transparent upgradable proxies and UUPS proxies, use the `estimateGasProxy` method from the `zkUpgrades.estimation`. This method calculates the fee for deploying the implementation contract, transparent proxy/UUPS contract, and the ProxyAdmin smart contract.
+
+::: code-tabs
+
+@tab:active Transparent proxy
+
+``` typescript
+const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasProxy(deployer, contract, [], { kind: 'transparent' });
+```
+
+@tab UUPS proxy
+
+``` typescript
+const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasProxy(deployer, contract, [], { kind: 'uups' });
+```
+
+:::
+
+To estimate the deployment fee for the beacon contract and its corresponding implementation, use the `estimateGasBeacon` method: 
+
+``` typescript
+const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasBeacon(deployer, contract, []);
+```
+
+If you want to get the estimation for the beacon proxy contract, please use the `estimateGasBeaconProxy` method:
+
+``` typescript
+const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasBeacon(deployer, contract, []);
+```
+
+
+Each of these methods totals the fee for every contract in their respective pipeline, displays the cost on the console, and returns the cumulative sum. If you prefer not to see the individual estimations, introduce the parameter `quiet` as the final parameter in any method to receive only the returned sum.
+
+``` typescript
+const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasProxy(this.deployer, contract, [], { kind: 'uups' }, true );
+```

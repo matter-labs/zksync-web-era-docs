@@ -47,11 +47,11 @@ cd ~/verify-greeter-contract
 ::: code-tabs
 @tab yarn
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
+yarn add -D @matterlabs/hardhat-zksync-verify @nomicfoundation/hardhat-verify
 ```
 @tab npm
 ```bash
-npm i -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
+npm i -D @matterlabs/hardhat-zksync-verify @nomicfoundation/hardhat-verify
 ```
 :::
 
@@ -65,7 +65,6 @@ import { HardhatUserConfig } from "hardhat/config";
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 import "@matterlabs/hardhat-zksync-verify";
-import "@nomiclabs/hardhat-etherscan";
 
 // dynamically alters endpoints for local tests
 const zkSyncTestnet =
