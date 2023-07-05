@@ -135,7 +135,7 @@
         },
         {
           "source": "/docs/dev/fundamentals/zkSync.html",
-          "destination": "/docs/reference/concepts/rollups.html",
+          "destination": "/docs/reference/concepts/zkSync.html",
           "type": "302"
         },
         {
@@ -450,7 +450,7 @@
         },
         {
           "source": "/docs/dev/fundamentals/zkSync.html",
-          "destination": "/docs/reference/concepts/rollups.html",
+          "destination": "/docs/reference/concepts/zkSync.html",
           "type": "302"
         },
         {
