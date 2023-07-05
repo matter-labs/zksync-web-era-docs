@@ -185,7 +185,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/transactions/fee-model.html",
-          "destination": "/docs/reference/concepts/transactions/fee-model.html",
+          "destination": "/docs/reference/concepts/fee-model.html",
           "type": "302"
         },
         {
@@ -500,7 +500,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/transactions/fee-model.html",
-          "destination": "/docs/reference/concepts/transactions/fee-model.html",
+          "destination": "/docs/reference/concepts/fee-model.html",
           "type": "302"
         },
         {
