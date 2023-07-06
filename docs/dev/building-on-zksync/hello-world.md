@@ -237,7 +237,7 @@ Navigate to `http://localhost:8080/` in a browser to see the running application
 
 Enabling smart accounts allows you to onboard Argent account abstraction wallet users that have been using the first version of zkSync.
 
-- Use [this library](../../reference/concepts/aa#aa-signature-checker) to verify your smart account compatibility.
+- Use [this library](../../reference/concepts/account-abstraction.md#aa-signature-checker) to verify your smart account compatibility.
 - Follow [this guide](https://docs.argent.xyz/) to add Argent login to your dApp.
 
 #### Externally owned accounts (EOAs)
@@ -543,9 +543,9 @@ Read more about `wallet_requestPermissions`, in the [MetaMask documentation](htt
 
 ### Paying fees using testnet paymaster
 
-The zkSync Era account abstraction feature allows you to integrate [paymasters](../../reference/concepts/aa.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly. 
+The zkSync Era account abstraction feature allows you to integrate [paymasters](../../reference/concepts/account-abstraction.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly. 
 
-We will use the [testnet paymaster](../../reference/concepts/aa.md#testnet-paymaster) that is provided on all zkSync Era testnets.
+We will use the [testnet paymaster](../../reference/concepts/account-abstraction.md#testnet-paymaster) that is provided on all zkSync Era testnets.
 
 :::info
 **The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH. 
@@ -623,7 +623,7 @@ async getOverrides() {
 }
 ```
 
-4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../reference/concepts/aa.md#testnet-paymaster) and return the needed overrides. 
+4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../reference/concepts/account-abstraction.md#testnet-paymaster) and return the needed overrides. 
 
 Copy/paste the following complete function:
 

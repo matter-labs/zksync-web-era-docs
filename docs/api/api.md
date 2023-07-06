@@ -3,20 +3,21 @@
 zkSync Era supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/) and adds some L2-specific features.
 
 :::tip Tip
-- As long as code does not involve deploying new smart contracts, which can only be deployed using [EIP712 transactions](../reference/concepts/transactions.md#eip-712-transactions), _no changes to the codebase are needed_.
-- Read the documentation on [EIP-712 transactions](../reference/concepts/transactions.md#eip-712-transactions) for more information.
+- As long as code does not involve deploying new smart contracts, which can only be deployed using [EIP712 transactions](../reference/concepts/transactions.md#transaction-types), _no changes to the codebase are needed_.
+- Read the documentation on [EIP-712 transactions](../reference/concepts/transactions.md#eip-712-0x71) for more information.
 :::
 
 ## RPC endpoint URLs
 
 ### Testnet
 
-`https://testnet.era.zksync.dev`
+- HTTPS: `https://testnet.era.zksync.dev`
+- Websocket: `wss://testnet.era.zksync.dev/ws`
 
 ### Mainnet
 
-`https://mainnet.era.zksync.io`
-
+- HTTPS: `https://mainnet.era.zksync.io`
+- Websocket: `wss://mainnet.era.zksync.io/ws`
 
 ## zkSync Era JSON-RPC methods
 
@@ -702,7 +703,7 @@ curl -X POST -H "Content-Type: application/json" \
 
 ### `zks_getTestnetPaymaster`
 
-Returns the address of the [testnet paymaster](../reference/concepts/aa.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
+Returns the address of the [testnet paymaster](../reference/concepts/account-abstraction.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
 
 #### Inputs
 

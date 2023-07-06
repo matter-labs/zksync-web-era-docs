@@ -4,7 +4,7 @@ In order to maintain the same level of security as the L1, the zkSync operator i
 
 These specific requirements ensure that the process of deploying smart contracts on zkEVM complies to a crucial rule: *the operator must be aware of the contract's code before deployment*. Consequently, deploying contracts can only be accomplished through EIP712 transactions, with the `factory_deps` field containing the bytecode provided.
 
-[Learn more about EIP712 transactions here](../../api/api.md#eip712).
+[Learn more about EIP712 transactions here](../../reference/concepts/transactions.md#eip-712-0x71).
 
 ## Ethereum / zkSync differences in contract deployment
 
@@ -14,7 +14,7 @@ To deploy a contract on Ethereum, a user sends a transaction to the zero address
 
 **How deploying contracts works on zkSync.**
 
-To deploy a contract on zkSync Era, a user calls the `create` function of the [ContractDeployer system contract](./system-contracts.md#contractdeployer) providing the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the transaction (as it's an [EIP712 transaction](../../api/api.md#eip712)). If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
+To deploy a contract on zkSync Era, a user calls the `create` function of the [ContractDeployer system contract](./system-contracts.md#contractdeployer) providing the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the transaction (as it's an [EIP712 transaction](../../reference/concepts/transactions.md#eip-712-0x71)). If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
 We recommend using the [hardhat-zksync-deploy](../../tools/hardhat/) plugin, to simplify the deployment process. It provides classes and methods to take care of all the deployment requirements, like generating the [bytecode hash of the contract](#format-of-bytecode-hash).
 
@@ -69,7 +69,7 @@ For detailed information on smart contract vulnerabilities and security best pra
 
 ### Differences in `create()` behaviour
 
-To facilitate [support for account abstraction](../concepts/aa), zkSync splits the nonce of each account into two parts: the deployment nonce and the transaction nonce. The deployment nonce represents the number of contracts the account has deployed using the `create()` opcode, while the transaction nonce is used for protecting against replay attacks for transactions.
+To facilitate [support for account abstraction](../concepts/account-abstraction.md), zkSync splits the nonce of each account into two parts: the deployment nonce and the transaction nonce. The deployment nonce represents the number of contracts the account has deployed using the `create()` opcode, while the transaction nonce is used for protecting against replay attacks for transactions.
 
 This distinction implies that, while the nonce on zkSync behaves similarly to Ethereum for smart contracts, calculating the address of a deployed contract for externally owned accounts (EOAs) is not as straightforward. 
 
