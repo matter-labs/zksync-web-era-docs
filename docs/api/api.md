@@ -787,6 +787,7 @@ curl -X POST -H "Content-Type: application/json" \
         "ethExecuteTxHash": "0xdaff5fd7ff91333b161de54534b4bb6a78e5325329959a0863bf0aae2b0fdcc6",
         "ethProveTxHash": "0x2f482d3ea163f5be0c2aca7819d0beb80415be1a310e845a2d726fbc4ac54c80",
         "fee": "0x0",
+        "gasPerPubdata": "0x320",
         "initiatorAddress": "0x87869cb87c4fa78ca278df358e890ff73b42a39e",
         "isL1Originated": true,
         "receivedAt": "2023-03-03T23:52:24.169Z",
