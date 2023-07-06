@@ -9,16 +9,17 @@ export const enSidebar = sidebar({
     },
     {
       text: "Getting started",
-      link: "/dev/building-on-zksync/hello-world.md", 
-      children: [ 
-        "/dev/building-on-zksync/hello-world.md", 
+      link: "/dev/building-on-zksync/hello-world.md",
+      children: [
+        "/dev/building-on-zksync/hello-world.md",
         "/dev/building-on-zksync/interacting.md",
         "/dev/building-on-zksync/best-practices.md",
-        "/dev/building-on-zksync/useful-address.md", ],
+        "/dev/building-on-zksync/useful-address.md",
+      ],
     },
     {
       text: "How to",
-      link: "/dev/how-to/estimate-gas.md",
+      link: "/dev/how-to/README.md",
       children: [
         "/dev/how-to/estimate-gas.md",
         "/dev/how-to/send-transaction-l1-l2",
@@ -29,7 +30,7 @@ export const enSidebar = sidebar({
     },
     {
       text: "Tutorials",
-      link: "/dev/tutorials/cross-chain-tutorial.md",
+      link: "/dev/tutorials/README.md",
       children: [
         "/dev/tutorials/cross-chain-tutorial.md",
         "/dev/tutorials/custom-aa-tutorial.md",
@@ -51,11 +52,11 @@ export const enSidebar = sidebar({
         "/reference/concepts/rollups.md",
         "/reference/concepts/zkSync.md",
         "/reference/concepts/hyperscaling.md",
+        "/reference/concepts/account-abstraction.md",
         "/reference/concepts/transactions.md",
         "/reference/concepts/blocks.md",
         "/reference/concepts/fee-model.md",
         "/reference/concepts/finality.md",
-        "/reference/concepts/aa.md",
         "/reference/concepts/bridging-asset.md",
         "/reference/concepts/l1-l2-interop.md",
       ],
@@ -65,9 +66,9 @@ export const enSidebar = sidebar({
       link: "/reference/architecture/differences-with-ethereum.md",
       children: [
         "/reference/architecture/differences-with-ethereum.md",
+        "/reference/architecture/system-contracts.md",
         "/reference/architecture/contract-development.md",
         "/reference/architecture/contract-deployment.md",
-        "/reference/architecture/system-contracts.md",
         "/reference/architecture/events.md",
       ],
     },
@@ -120,7 +121,7 @@ export const enSidebar = sidebar({
     {
       text: "Go SDK",
       link: "/api/go",
-      children: ["/api/go/getting-started", "/api/go/providers", "/api/go/accounts", "/api/go/accounts-l1-l2", "/api/go/contract-interface", "/api/go/types"],
+      children: ["/api/go/getting-started", "/api/go/providers", "/api/go/accounts", "/api/go/accounts-l1-l2", "/api/go/contracts", "/api/go/types"],
     },
     {
       text: "Java SDK", // required

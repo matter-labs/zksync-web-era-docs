@@ -7,10 +7,10 @@ This tutorial shows you how to build and deploy a 2-of-2 multi-signature account
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - A [Node.js](https://nodejs.org/en/download) installation.
 - For background learning, we recommend the following guides:
-    - Read about the [design](../../reference/concepts/aa.md) of the account abstraction protocol.
+    - Read about the [design](../../reference/concepts/account-abstraction.md) of the account abstraction protocol.
     - Read the [introduction to the system contracts](../../reference/architecture/system-contracts.md).
     - Read about [smart contract deployment](../../reference/architecture/contract-deployment.md) on zkSync Era.
-    - Read the [gas estimation for transaction](../../reference/concepts/fee-model.md#gas-estimation-during-a-transaction-for-paymaster-and-custom-accounts) guide.
+    - Read the [gas estimation for transaction](../../reference/concepts/fee-model.md#gas-estimation-for-transactions) guide.
     - If you haven't already, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
@@ -85,7 +85,7 @@ export default config;
 
 ## Account abstraction
 
-Each account must implement the [IAccount](../../reference/concepts/aa.md#iaccount-interface) interface. Furthermore, since we are building an account with multiple signers, we should implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
+Each account must implement the [IAccount](../../reference/concepts/account-abstraction.md#iaccount-interface) interface. Furthermore, since we are building an account with multiple signers, we should implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
 The skeleton code for the contract is given below. 
 
@@ -341,12 +341,12 @@ function isValidSignature(bytes32 _hash, bytes memory _signature)
 The transaction validation process is responsible for validating the signature of the transaction and incrementing the nonce. 
 
 :::info
-- There are some [limitations](../../reference/concepts/aa.md#limitations-of-the-verification-step) on this function.
+- There are some [limitations](../../reference/concepts/account-abstraction.md#limitations-of-the-verification-step) on this function.
 :::
 
 To increment the nonce, use the `incrementMinNonceIfEquals` function from the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether it is the same as the provided one. If not, the transaction reverts; otherwise, the nonce increases.
 
-Even though the requirements above mean the accounts only touch their own storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../../reference/concepts/aa.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happens to be in another contract. 
+Even though the requirements above mean the accounts only touch their own storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../../reference/concepts/account-abstraction.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happens to be in another contract. 
 
 To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, we add the following import:
 
@@ -429,7 +429,7 @@ function payForTransaction(
 
 ### Implementing paymaster support
 
-While the account abstraction protocol enables arbitrary actions when interacting with the paymasters, there are some [common patterns](../../reference/concepts/aa.md#built-in-paymaster-flows) with built-in support for EOAs. Unless you want to implement or restrict some specific paymaster use cases for your account, it is better to keep it consistent with EOAs. 
+While the account abstraction protocol enables arbitrary actions when interacting with the paymasters, there are some [common patterns](../../reference/concepts/account-abstraction.md#built-in-paymaster-flows) with built-in support for EOAs. Unless you want to implement or restrict some specific paymaster use cases for your account, it is better to keep it consistent with EOAs. 
 
 The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processes the paymaster parameters the same it's done in EOAs.
 
@@ -762,7 +762,7 @@ The contract is a factory that deploys the accounts.
 :::warning
 - To deploy the multisig smart contract, it is necessary to interact with the `DEPLOYER_SYSTEM_CONTRACT` and call the `create2Account` function.
 - If the code doesn't do this, you may see errors like `Validation revert: Sender is not an account`.
-- Read the documentation on using [`create2Account` during the deployment process](../../reference/concepts/aa.md#the-deployment-process) for more information.
+- Read the documentation on using [`create2Account` during the deployment process](../../reference/concepts/account-abstraction.md#the-deployment-process) for more information.
 :::
 
 2. Copy/paste the following code into the file.
@@ -928,7 +928,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 :::tip
 - zkSync has different address derivation rules from Ethereum. 
 - Always use the [`createAddress`](../../api/js/utils.md#createaddress) and [`create2Address`](../../api/js/utils.md#create2address) utility functions of the `zksync-web3` SDK.
-- Read the documentation for more information on [address derivation differences between Ethereum and zkSync](../../reference/architecture/differences-with-ethereum#create-create2).
+- Read the documentation for more information on [address derivation differences between Ethereum and zkSync](../../reference/architecture/differences-with-ethereum.md).
 :::
 
 ### Start a transaction from the account

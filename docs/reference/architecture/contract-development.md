@@ -4,7 +4,7 @@ zkSync Era allows developers to build projects using the same programming langua
 
 ::: tip Differences with Ethereum
 
-Although most smart contracts work out of the box, we **strongly recommend developers to read about the [differences between Ethereum and zkSync Era](./differences-with-ethereum.md)**, and test their projects both locally using the [local setup](../../tools/hardhat/testing.md) and in testnet.
+Although most smart contracts work out of the box, we **strongly recommend developers to read about the [differences between Ethereum and zkSync Era](./differences-with-ethereum.md)**, and test their projects using the [local setup](../../tools/hardhat/testing.md) and in testnet.
 
 :::
 
@@ -14,9 +14,16 @@ Currently, Solidity versions as old as `0.4.12` are supported, although **we str
 
 Please read [this section of the docs](../../tools/compiler-toolchain/solidity.md#using-libraries) if your project uses libraries.
 
+::: info Best practises
+
+Follow the [best practises and considerations](../../dev/building-on-zksync/best-practices.md) to build smart contracts on zkSync Era.
+
+:::
+
 ## Vyper support
 
 Currently only Vyper 0.3.3 and 0.3.9 versions are supported. Versions 0.3.4 to 0.3.8 (both included) are not supported.
+
 
 ## Compilers
 
@@ -24,6 +31,8 @@ Although you can write smart contracts in both Solidity and Vyper, compiling the
 
 - [zksolc](https://github.com/matter-labs/zksolc-bin): Solidity compiler.
 - [zkvyper](https://github.com/matter-labs/zkvyper-bin): Vyper compiler.
+
+**It's strongly recommended to use the latest version of the compiler available.**
 
 You can find more information about our compilers in the [Compiler toolchain section](../../tools/compiler-toolchain/README.md).
 
