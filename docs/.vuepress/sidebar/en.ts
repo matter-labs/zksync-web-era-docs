@@ -152,7 +152,6 @@ export const enSidebar = sidebar({
             "/tools/hardhat/other-plugins",
           ],
         },
-        "/tools/hardhat/testing",
         "/tools/hardhat/compiling-libraries",
       ],
     },
@@ -165,6 +164,14 @@ export const enSidebar = sidebar({
       text: "zkSync Era CLI", // required
       link: "/tools/zksync-cli/", // optional, which should be a absolute path.
       children: [],
+    },
+    {
+      text: "Local Testing", // required
+      link: "/tools/local-testing/", // optional, which should be a absolute path.
+      children: [
+        "/tools/local-testing/dockerized-testing.md",
+        "/tools/local-testing/era-test-node.md",
+      ],
     },
     {
       text: "Block Explorer and Tools", // required

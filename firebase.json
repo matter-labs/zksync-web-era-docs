@@ -294,6 +294,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/tools/hardhat/testing.html",
+          "destination": "/docs/tools/local-testing/",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/compiler-toolchain{,/**}",
           "destination": "/docs/tools/compiler-toolchain/",
           "type": "302"
@@ -436,6 +441,11 @@
         {
           "source": "/docs/api/hardhat/hardhat-zksync-verify.html",
           "destination": "/docs/tools/hardhat/hardhat-zksync-verify.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/testing.html",
+          "destination": "/docs/tools/local-testing/",
           "type": "302"
         },
         {
