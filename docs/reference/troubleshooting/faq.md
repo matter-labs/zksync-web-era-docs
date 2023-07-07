@@ -54,10 +54,10 @@ While maintaining maximum compatibility, the zkEVM has significant improvements 
 - **Account Abstraction is included in our zkEVM**. This is a long-anticipated feature in the Ethereum dev community which improves developer adoption and user experience in a number of ways:
   - Native support for smart contracts wallets (like Argent), which is critical for onboarding mainstream users.
   - Much better UX for multisigs.
-  - Transaction fees can be paid in any token using [paymasters](../../reference/concepts/aa.md#paymasters).
+  - Transaction fees can be paid in any token using [paymasters](../../reference/concepts/account-abstraction.md#paymasters).
   - Protocols can now subsidize gas for users from their smart contracts or even enable gasless transactions.
   - Transaction batches (multicall) can be confirmed in one click (big UX problem on Ethereum today).
-  - Learn more about [account abstraction support in zkSync Era](../../reference/concepts/aa.md).
+  - Learn more about [account abstraction support in zkSync Era](../../reference/concepts/account-abstraction.md).
 
 ### EVM Compatibility
 
@@ -106,7 +106,7 @@ In other words, Account Abstraction brings about major improvements to the overa
 
 In zkSync Era Account Abstraction is natively implemented, meaning accounts can initiate transactions, like an EOA, but can also have arbitrary logic implemented in them, like a smart contract.
 
-If you want to better understand what Account Abstraction on zkSync looks like, you can read [this section of the docs](../../reference/concepts/aa.md), or try out our tutorial [here](../../dev/tutorials/custom-aa-tutorial.md).
+If you want to better understand what Account Abstraction on zkSync looks like, you can read [this section of the docs](../../reference/concepts/account-abstraction.md), or try out our tutorial [here](../../dev/tutorials/custom-aa-tutorial.md).
 
 ## zkSync Era vs Alternatives
 

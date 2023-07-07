@@ -11,39 +11,55 @@ The daily limit feature prevents an account from spending more ETH than the limi
 - If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You have a web3 wallet app which holds some Goerli test ETH and some zkSync Era test ETH.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
-- We encourage you to read [the basics of account abstraction on zkSync Era](../../reference/concepts/aa.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
+- We encourage you to read [the basics of account abstraction on zkSync Era](../../reference/concepts/account-abstraction.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
 
 ## Project set up
 
 We will use the [zkSync Era Hardhat plugins](../../tools/hardhat/) to build, deploy, and interact with the smart contracts in this project.
 
-1. Create a project folder and `cd` into it.
+1. If you haven't already, install the [zkSync CLI:](/docs/tools/zksync-cli/)
 
 ```sh
-mkdir custom-spendlimit-tutorial
-cd custom-spendlimit-tutorial
+yarn add global zksync-cli@latest
 ```
 
-2. Initialize the project and add the dependencies.
+2. Initiate a new project by running the command:
 
 ```sh
-yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+zksync-cli create custom-spendlimit-tutorial
 ```
 
-::: tip
+:::tip
 The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
 :::
 
-3. Add additional packages that use [zkSync Era smart contracts](../../reference/architecture/contracts/system-contracts.md).
+This creates a new zkSync Era project called `custom-spendlimit-tutorial` with a basic `Greeter` contract. 
+
+3. Navigate into the project directory:
+
+```sh
+cd ~/custom-spendlimit-tutorial
+```
+
+4. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
+
+```sh
+rm -rf ./contracts/Greeter.sol 
+```
+
+5. Similarly, remove the deploy scripts associated with the Greeter contract:
+
+```sh
+rm -rf ./deploy/deploy-greeter.ts && rm -rf ./deploy/use-greeter.ts
+```
+
+6. Add the zkSync and OpenZeppelin contract libraries:
 
 ```sh
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
 ```
 
-4. Create the `contracts` and `deploy` folders, and the configuration file, `hardhat.config.ts`, containing the code below.
-
-In this project our contracts interact with system contracts, so we need to include the `isSystem: true` in the compiler settings.
+7. Include the `isSystem: true` setting in the `hardhat.config.ts` configuration file to allow interaction with system contracts:
 
 ```typescript
 import { HardhatUserConfig } from "hardhat/config";
@@ -51,11 +67,13 @@ import { HardhatUserConfig } from "hardhat/config";
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 
+import "@matterlabs/hardhat-zksync-verify";
+
 const config: HardhatUserConfig = {
     zksolc: {
         version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
         settings: { 
-            isSystem: true,
+            isSystem: true, // make sure to include this line
         },
     },
     defaultNetwork: "zkSyncTestnet",
@@ -67,18 +85,13 @@ const config: HardhatUserConfig = {
         },
     },
     solidity: {
-        version: "0.8.13",
+        version: "0.8.17",
     },
 };
 
 export default config;
 
 ```
-
-::: tip zksync-cli
-- You can use the zkSync Era CLI to scaffold a project automatically. 
-- Find [more info about the zkSync Era CLI here](../../tools/zksync-cli/).
-:::
 
 ## Design
 
@@ -97,7 +110,7 @@ Below you'll find the `SpendLimit` skeleton contract.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.17;
 
 contract SpendLimit {
 
@@ -156,7 +169,6 @@ Note that the `limits` mapping uses the token address as its key. This means tha
 The code below sets and removes the limit.
 
 ```solidity
-
     /// this function enables a daily spending limit for specific tokens.
     /// @param _token ETH or ERC20 token address that a given spending limit is applied.
     /// @param _amount non-zero limit.
@@ -228,7 +240,6 @@ Specifically, `setSpendingLimit` sets a non-zero daily spending limit for a give
 The `_checkSpendingLimit` function is internally called by the account contract before executing the transaction.
 
 ```solidity
-
     // this function is called by the account before execution.
     // Verify the account is able to spend a given amount of tokens. And it records a new available amount.
     function _checkSpendingLimit(address _token, uint _amount) internal {
@@ -304,7 +315,7 @@ limit.available -= _amount;
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.17;
 
 contract SpendLimit {
     // uint public ONE_DAY = 24 hours;
@@ -431,7 +442,7 @@ Let's create the account contract `Account.sol`, and the factory contract that d
 
 2. Copy/paste the code below.
 
-The account needs to implement the [IAccount](../../reference/concepts/aa.md#iaccount-interface) interface and inherits the `SpendLimit` contract we just created. Since we are building an account with signers, we should also implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
+The account needs to implement the [IAccount](../../reference/concepts/account-abstraction.md#iaccount-interface) interface and inherits the `SpendLimit` contract we just created. Since we are building an account with signers, we should also implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
 The `isValidSignature` method will take care of verifying the signature and making sure the extracted address matches with the owner of the account.
 
@@ -670,7 +681,7 @@ contract Account is IAccount, IERC1271, SpendLimit {
 
 :::warning Note 1
 - The formal ETH address on zkSync Era is `0x000000000000000000000000000000000000800a`. 
-- Neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, that ([`zksync-web3` provides](../../api/js/utils.md#the-address-of-ether)) has a more user-friendly alias.
+- Neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, that ([`zksync-web3` provides](../../api/js/utils.md#useful-addresses)) has a more user-friendly alias.
 :::
 
 :::warning Note 2
@@ -686,7 +697,7 @@ The `AAFactory.sol` contract is responsible for deploying instances of the `Acco
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.17;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
@@ -800,8 +811,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   ).wait();
   console.log(`Done!`);
 }
-
-
 ```
 
 3. Run the script.
@@ -894,7 +903,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log("Available limit today: ", limit.available.toString());
   console.log("Time to reset limit: ", limit.resetTime.toString());
 }
-
 ```
 
 3. Run the script.
@@ -1014,7 +1022,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   }
   return;
 }
-
 ```
 
 2. Run the script to attempt to make a transfer.
@@ -1073,7 +1080,7 @@ Download the complete project [here](https://github.com/matter-labs/daily-spendl
 
 ## Learn more
 
-- To find out more about L1->L2 interaction on zkSync Era, check out the [documentation](../../reference/concepts/bridging/l1-l2-interop.md).
+- To find out more about L1->L2 interaction on zkSync Era, check out the [documentation](../../reference/concepts/l1-l2-interop.md).
 - To learn more about the zksync-web3 SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync Era Hardhat plugins, check out their [documentation](../../tools/hardhat).
 
