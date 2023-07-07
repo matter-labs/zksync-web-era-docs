@@ -10,5 +10,5 @@ To provide easy access to all the features of zkSync Era, the `zksync2` Python S
 - [Providers](./providers.md)
 - [Accounts: Overview](./accounts.md)
 - [Accounts: L1->L2 transactions](./accounts-l1-l2.md)
-- [Contracts Interface](./contract-interface.md)
+- [Contracts Interface](./contracts.md)
 - [Types](./types.md)
