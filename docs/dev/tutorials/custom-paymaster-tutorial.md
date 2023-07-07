@@ -12,10 +12,10 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 - A [Node.js](https://nodejs.org/en/download) installation running Node.js version 16.
 - Some familiarity with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - Some background knowledge on the concepts covered by the tutorial would be helpful too. Have a look at the following docs:
-    - [Account abstraction protocol](../../reference/concepts/aa.md).
-    - [Introduction to system contracts](../../reference/architecture/contracts/system-contracts.md).
-    - [Smart contract deployment](../../reference/architecture/contracts/contract-deployment.md) on zkSyn Era.
-    - [Gas estimation for transactions](../../reference/concepts/transactions/fee-model.md#gas-estimation-for-transactions) guide.
+    - [Account abstraction protocol](../../reference/concepts/account-abstraction.md).
+    - [Introduction to system contracts](../../reference/architecture/system-contracts.md).
+    - [Smart contract deployment](../../reference/architecture/contract-deployment.md) on zkSyn Era.
+    - [Gas estimation for transactions](../../reference/concepts/fee-model.md#gas-estimation-for-transactions) guide.
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ## Project repo
@@ -148,7 +148,7 @@ contract MyPaymaster is IPaymaster {
 ```
 
 :::info
-- Only the [bootloader](../../reference/architecture/contracts/system-contracts.md#bootloader) is allowed to call the `validateAndPayForPaymasterTransaction` and `postTransaction` functions. 
+- Only the [bootloader](../../reference/architecture/system-contracts.md#bootloader) is allowed to call the `validateAndPayForPaymasterTransaction` and `postTransaction` functions. 
 - To implement that, the `onlyBootloader` modifier is used on these functions.
 :::
 
@@ -158,7 +158,7 @@ The paymaster pays the transaction fees and charges the user one unit of the `al
 
 The input that the paymaster receives is encoded in the `paymasterInput` within the `validateAndPayForPaymasterTransaction` function. 
 
-As described in [the paymaster documentation](../../reference/concepts/aa.md#paymasters), there are standardized ways to encode user interactions with `paymasterInput`. To charge the user, we require that she has provided enough allowance of the ERC20 token to the paymaster contract. This allowance is done in the `approvalBased` flow behind the scenes.
+As described in [the paymaster documentation](../../reference/concepts/account-abstraction.md#paymasters), there are standardized ways to encode user interactions with `paymasterInput`. To charge the user, we require that she has provided enough allowance of the ERC20 token to the paymaster contract. This allowance is done in the `approvalBased` flow behind the scenes.
 
 Firstly, we check that the `paymasterInput` is encoded as in the `approvalBased` flow, and that the token sent in `paymasterInput` is the one the paymaster accepts.
 
@@ -230,7 +230,7 @@ require(success, "Failed to transfer tx fee to the bootloader. Paymaster balance
 ```
 
 ::: tip Validate all requirements first
-The [validation steps](../../reference/concepts/aa.md#the-validation-step) ensure that the paymaster won't throttle if the first storage read which has a different value from the execution on the API is a storage slot that belongs to the user.
+The [validation steps](../../reference/concepts/account-abstraction.md#the-validation-step) ensure that the paymaster won't throttle if the first storage read which has a different value from the execution on the API is a storage slot that belongs to the user.
 
 This is why it is important to verify transaction prerequisites _before_ performing any logic and why we _first_ check that the user provided enough allowance before calling `transferFrom`.
 :::
@@ -610,6 +610,6 @@ The wallet had 3 tokens after running the deployment script and, after sending t
 
 ## Learn more
 
-- Learn more about [L1->L2 interaction on zkSync](../../reference/concepts/bridging/l1-l2-interop.md).
+- Learn more about [L1->L2 interaction on zkSync](../../reference/concepts/l1-l2-interop.md).
 - Learn more about [the `zksync-web3` SDK](../../api/js).
 - Learn more about [the zkSync hardhat plugins](../../tools/hardhat).

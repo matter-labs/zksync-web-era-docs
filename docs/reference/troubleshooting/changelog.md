@@ -84,7 +84,7 @@ Major updates across the system include:
 - Update `zksync-web3` to `^0.14.3` in your `package.json` file and re-install dependencies.
 - Update `zksync-cli` with `npm update -g zksync-cli`.
 - Pull the latest docker images of the local setup by running the `./clear.sh` script. [More about local setup](../../tools/hardhat/testing.md).
-- L1->L2 transactions now require gas fees to be paid upfront. The fee can be estimated using the new method `zks_estimateGasL1ToL2`. [Read more here](../../reference/concepts/bridging/l1-l2-interop.md).
+- L1->L2 transactions now require gas fees to be paid upfront. The fee can be estimated using the new method `zks_estimateGasL1ToL2`. [Read more here](../concepts/l1-l2-interop.md).
 - Provide `_refundRecipient` when using `requestL2Transaction` indicating the address that will receive refunds. (Optional)
 
 
@@ -113,7 +113,7 @@ Version `1.3.5` of `zksolc` has been released and the zkSync docker image of the
   - Adds support for Solidity `0.8.18`.
   - Fixes a broken optimization flag that increased the bytecode size of compiled contracts.
   - Fixes a bug that detected ERC20 `transfer` calls as ETH `transfer` and produced a compilation error. 
-  - Detection of `transfer` and `send` methods in smart contracts now returns a warning message (similar to `v1.3.1`). The new warning message reminds developers that using these methods to transfer ETH can cause issues and suggest replacing them with [`payable(address).call[value: <X>]("")`](../../reference/architecture/differences-with-ethereum.md#use-call-over-sendtransfer).
+  - Detection of `transfer` and `send` methods in smart contracts now returns a warning message (similar to `v1.3.1`). The new warning message reminds developers that using these methods to transfer ETH can cause issues and suggest replacing them with [`payable(address).call[value: <X>]("")`](../../dev/building-on-zksync/best-practices.md#using-call-over-send-or-transfer).
   - `transfer` can be used to transfer other tokens (e.g. ERC20) without any issues, although this might be still highlighted by the compiler.
 - **Local setup docker image:**
   - Improvements in the zkSync node error messages returned on estimate gas requests.

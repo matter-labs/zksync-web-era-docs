@@ -40,12 +40,12 @@
         },
         {
           "source": "/docs/dev/developer-guides/contracts/system-contracts.html",
-          "destination": "/docs/dev/developer-guides/system-contracts.html",
+          "destination": "/docs/reference/architecture/system-contracts.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/transactions/blocks.html#blocks-in-zksync-2-0",
-          "destination": "/docs/dev/developer-guides/transactions/blocks.html#blocks-in-zksync-era",
+          "destination": "/docs/reference/concepts/blocks.html#blocks-in-zksync-era",
           "type": "302"
         },
         {
@@ -55,7 +55,7 @@
         },
         {
           "source": "/docs/dev/zksync-v2/aa.html",
-          "destination": "/docs/dev/developer-guides/aa.html",
+          "destination": "/docs/reference/concepts/account-abstraction.html",
           "type": "302"
         },
         {
@@ -65,52 +65,57 @@
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-verification.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-verification.html",
+          "destination": "/docs/dev/how-to/verify-contracts.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contracts.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/contracts/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/building-on-zksync/events.html",
-          "destination": "/docs/dev/building-on-zksync/events.html",
+          "destination": "/docs/reference/architecture/events.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contracts.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contracts.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-deployment.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
+          "destination": "/docs/reference/architecture/contract-deployment.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/bridging/l1-l2.html",
-          "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/bridging/l2-l1.html",
-          "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/bridging/l1-l2-interop.html",
-          "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/fundamentals/testnet.html",
-          "destination": "/docs/dev/fundamentals/interacting.html",
+          "destination": "/docs/dev/building-on-zksync/interacting.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/fundamentals/faq.html",
-          "destination": "/docs/dev/troubleshooting/faq.html",
+          "destination": "/docs/reference/troubleshooting/faq.html",
           "type": "302"
         },
         {
@@ -130,7 +135,7 @@
         },
         {
           "source": "/docs/dev/fundamentals/zkSync.html",
-          "destination": "/docs/reference/concepts/rollups.html",
+          "destination": "/docs/reference/concepts/zkSync.html",
           "type": "302"
         },
         {
@@ -139,18 +144,18 @@
           "type": "302"
         },
         {
-          "source": "/docs/dev/fundamentals/docs/reference/concepts/hyperscaling.html",
-          "destination": "/docs/reference/concepts/hyperscaling.html",
-          "type": "302"
-        },
-        {
           "source": "/docs/dev/developer-guides/transactions/transactions.html",
-          "destination": "/docs/reference/concepts/transactions/transactions.html",
+          "destination": "/docs/reference/concepts/transactions.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/transactions/blocks.html",
-          "destination": "/docs/reference/concepts/transactions/blocks.html",
+          "destination": "/docs/reference/concepts/blocks.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/transactions/blocks.html",
+          "destination": "/docs/reference/concepts/blocks.html",
           "type": "302"
         },
         {
@@ -160,27 +165,52 @@
         },
         {
           "source": "/docs/dev/developer-guides/system-contracts.html",
-          "destination": "/docs/reference/architecture/contracts/system-contracts.html",
+          "destination": "/docs/reference/architecture/system-contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contracts/system-contracts.html",
+          "destination": "/docs/reference/architecture/system-contracts.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/aa.html",
-          "destination": "/docs/reference/concepts/aa.html",
+          "destination": "/docs/reference/concepts/account-abstraction.html",
           "type": "302"
         },
         {
+          "source": "/docs/reference/concepts/aa.html",
+          "destination": "/docs/reference/concepts/account-abstraction.html",
+          "type": "301"
+        },
+        {
           "source": "/docs/dev/developer-guides/transactions/fee-model.html",
-          "destination": "/docs/reference/concepts/transactions/fee-model.html",
+          "destination": "/docs/reference/concepts/fee-model.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/transactions/fee-model.html",
+          "destination": "/docs/reference/concepts/fee-model.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/bridging/bridging-asset.html",
-          "destination": "/docs/reference/concepts/bridging/bridging-asset.html",
+          "destination": "/docs/reference/concepts/bridging-asset.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/bridging/bridging-asset.html",
+          "destination": "/docs/reference/concepts/bridging-asset.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
-          "destination": "/docs/reference/concepts/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
           "type": "302"
         },
         {
@@ -190,7 +220,12 @@
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-development.html",
-          "destination": "/docs/reference/architecture/contracts/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contracts/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
           "type": "302"
         },
         {
@@ -200,12 +235,17 @@
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
-          "destination": "/docs/reference/architecture/contracts/contract-deployment.html",
+          "destination": "/docs/reference/architecture/contract-deployment.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contracts/contract-deployment.html",
+          "destination": "/docs/reference/architecture/contract-deployment.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-verification.html",
-          "destination": "/docs/reference/architecture/contracts/contract-verification.html",
+          "destination": "/docs/dev/how-to/verify-contracts.html",
           "type": "302"
         },
         {
@@ -320,7 +360,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/contracts/system-contracts.html",
-          "destination": "/docs/dev/developer-guides/system-contracts.html",
+          "destination": "/docs/reference/architecture/system-contracts.html",
           "type": "302"
         },
         {
@@ -330,7 +370,7 @@
         },
         {
           "source": "/docs/dev/zksync-v2/aa.html",
-          "destination": "/docs/dev/developer-guides/aa.html",
+          "destination": "/docs/reference/concepts/account-abstraction.html",
           "type": "302"
         },
         {
@@ -340,27 +380,27 @@
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-verification.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-verification.html",
+          "destination": "/docs/dev/how-to/verify-contracts.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contracts.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/building-on-zksync/events.html",
-          "destination": "/docs/dev/building-on-zksync/events.html",
+          "destination": "/docs/reference/architecture/events.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contracts.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contracts.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-deployment.html",
-          "destination": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
+          "destination": "/docs/reference/architecture/contract-deployment.html",
           "type": "302"
         },
         {
@@ -374,18 +414,23 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/concepts/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/building-on-zksync/bridging/l1-l2-interop.html",
           "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/fundamentals/testnet.html",
-          "destination": "/docs/dev/fundamentals/interacting.html",
+          "destination": "/docs/dev/building-on-zksync/interacting.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/fundamentals/faq.html",
-          "destination": "/docs/dev/troubleshooting/faq.html",
+          "destination": "/docs/reference/troubleshooting/faq.html",
           "type": "302"
         },
         {
@@ -405,7 +450,7 @@
         },
         {
           "source": "/docs/dev/fundamentals/zkSync.html",
-          "destination": "/docs/reference/concepts/rollups.html",
+          "destination": "/docs/reference/concepts/zkSync.html",
           "type": "302"
         },
         {
@@ -415,12 +460,22 @@
         },
         {
           "source": "/docs/dev/developer-guides/transactions/transactions.html",
-          "destination": "/docs/reference/concepts/transactions/transactions.html",
+          "destination": "/docs/reference/concepts/transactions.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/transactions/transactions.html",
+          "destination": "/docs/reference/concepts/transactions.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/transactions/blocks.html",
-          "destination": "/docs/reference/concepts/transactions/blocks.html",
+          "destination": "/docs/reference/concepts/blocks.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/transactions/blocks.html",
+          "destination": "/docs/reference/concepts/blocks.html",
           "type": "302"
         },
         {
@@ -430,17 +485,32 @@
         },
         {
           "source": "/docs/dev/developer-guides/system-contracts.html",
-          "destination": "/docs/reference/architecture/contracts/system-contracts.html",
+          "destination": "/docs/reference/architecture/system-contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contracts/system-contracts.html",
+          "destination": "/docs/reference/architecture/system-contracts.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/aa.html",
-          "destination": "/docs/reference/concepts/aa.html",
+          "destination": "/docs/reference/concepts/account-abstraction.html",
           "type": "302"
         },
         {
+          "source": "/docs/reference/concepts/aa.html",
+          "destination": "/docs/reference/concepts/account-abstraction.html",
+          "type": "301"
+        },
+        {
           "source": "/docs/dev/developer-guides/transactions/fee-model.html",
-          "destination": "/docs/reference/concepts/transactions/fee-model.html",
+          "destination": "/docs/reference/concepts/fee-model.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/transactions/fee-model.html",
+          "destination": "/docs/reference/concepts/fee-model.html",
           "type": "302"
         },
         {
@@ -449,8 +519,18 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/concepts/bridging/bridging-asset.html",
+          "destination": "/docs/reference/concepts/bridging-asset.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
           "destination": "/docs/reference/concepts/bridging/l1-l2-interop.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/bridging/l1-l2-interop.html",
+          "destination": "/docs/reference/concepts/l1-l2-interop.html",
           "type": "302"
         },
         {
@@ -460,7 +540,12 @@
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-development.html",
-          "destination": "/docs/reference/architecture/contracts/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contracts/contract-development.html",
+          "destination": "/docs/reference/architecture/contract-development.html",
           "type": "302"
         },
         {
@@ -470,12 +555,17 @@
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
-          "destination": "/docs/reference/architecture/contracts/contract-deployment.html",
+          "destination": "/docs/reference/architecture/contract-deployment.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contracts/contract-deployment.html",
+          "destination": "/docs/reference/architecture/contract-deployment.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-verification.html",
-          "destination": "/docs/reference/architecture/contracts/contract-verification.html",
+          "destination": "/docs/dev/how-to/verify-contracts.html",
           "type": "302"
         },
         {
