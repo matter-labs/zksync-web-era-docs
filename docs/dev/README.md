@@ -22,8 +22,8 @@ Our docs are open source so feel free to suggest new topics, add new content, or
 
 ## Tutorials
 
-- [Cross-chain governance](./tutorials/cross-chain-tutorial.md): Facilitate cross-chain governance between L1 and L2 with this comprehensive guide.
-- [Account abstraction multisig](./tutorials/custom-aa-tutorial.md): Build, deploy, and test a 2-of-2 multi-signature account using a factory contract.
-- [Daily spending limit account](./tutorials/aa-daily-spend-limit.md): Create a smart contract account with a daily spending limit using zkSync Era's account abstraction support.
-- [Building a custom paymaster](./tutorials/custom-paymaster-tutorial.md): Construct a custom paymaster to enable users to pay fees with any ERC20 token.
-- [USDC paymaster tutorial with API3 dAPIs](./tutorials/api3-usd-paymaster-tutorial.md): Develop a custom paymaster leveraging API3 data feeds, allowing users to pay fees with mockUSDC ERC20 token.
+- [Cross chain governance](./tutorials/cross-chain-tutorial.md): send transactions and update variables in a contract state using L1-L2 communication.
+- [Account abstraction multisig](./tutorials/custom-aa-tutorial.md): create a native multisig smart contract account.
+- [Daily spending limit account](./tutorials/aa-daily-spend-limit.md): create a smart contract account with a daily spending limit.
+- [Building a custom paymaster](./tutorials/custom-paymaster-tutorial.md): build a paymaster that allows users to pay gas fees with an ERC20 token.
+- [USDC paymaster tutorial with API3](./tutorials/api3-usd-paymaster-tutorial.md): build a paymaster that allows users to pay gas fees with USDC using API3 dAPIs.

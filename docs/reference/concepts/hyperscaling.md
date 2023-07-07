@@ -2,13 +2,13 @@
 
 Blockchain systems achieve incorruptible fairness by relying on the cornerstone principle “don’t trust, verify”. At the same time, for blockchains to remain decentralized, resource requirements for running the verifier nodes must be kept relatively low. Connecting these two ideas brings us to the widely accepted definition of scalability:
 
-:::tip
+:::tip What is Scaling?
 Scaling = processing more transactions without degradation of security and decentralization.
 :::
 
 Scalability can be improved in a number of ways, from increasing the efficiency of the verifier to introducing probabilistic trust assumptions (what optimistic rollups do). Most of these approaches offer a linear scalability boost, but one method stands out: succinct zero-knowledge proofs (ZKPs). They always incur roughly O(1) verification costs regardless of the number of transactions processed. This means that ZKP-based scaling — i.e. [validiums and (under certain conditions) zkRollups](https://twitter.com/vitalikbuterin/status/1267455602764251138) — can be hyper-scalable:
 
-:::tip
+:::tip What is Hyperscaling?
 
  Hyperscaling = processing infinitely many transactions without degradation of security and decentralization.
 
@@ -32,7 +32,7 @@ Many different ZKP chains (in the zkSync world we call them Hyperchains) are run
 
 Fractal scaling is necessary but not sufficient to achieve hyperscaling. You need one additional component:
 
-:::tip
+:::tip What are Hyper-bridges?
 
  Hyper-bridges = native bridges that enable transfers between any two Hyperchains without consuming resources on a third one.
 

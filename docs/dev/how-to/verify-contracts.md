@@ -24,7 +24,7 @@ For open-source projects, verifying contracts enhances trust and encourages more
 
 ### 1. Project setup
 
-- Begin by installing [zkSync CLI](/docs/tools/zksync-cli/) to establish a new project:
+- Begin by installing [zkSync CLI](../../tools/zksync-cli/README.md) to establish a new project:
 
 ```sh
 yarn add global zksync-cli@latest
@@ -47,11 +47,11 @@ cd ~/verify-greeter-contract
 ::: code-tabs
 @tab yarn
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
+yarn add -D @matterlabs/hardhat-zksync-verify @nomicfoundation/hardhat-verify
 ```
 @tab npm
 ```bash
-npm i -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
+npm i -D @matterlabs/hardhat-zksync-verify @nomicfoundation/hardhat-verify
 ```
 :::
 
@@ -65,7 +65,6 @@ import { HardhatUserConfig } from "hardhat/config";
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 import "@matterlabs/hardhat-zksync-verify";
-import "@nomiclabs/hardhat-etherscan";
 
 // dynamically alters endpoints for local tests
 const zkSyncTestnet =
@@ -111,7 +110,7 @@ export default config;
 
 ### 4. Greeter contract compilation
 
-The [zkSync CLI](/docs/tools/zksync-cli/) provides a `Greeter.sol` contract we will verify on zkSync Era. 
+The [zkSync CLI](../../tools/zksync-cli/README.md) provides a `Greeter.sol` contract we will verify on zkSync Era. 
 
 Compile the contract using this command:
 
@@ -121,7 +120,7 @@ yarn hardhat compile
 
 ### 5. Deploy the Greeter contract 
 
-The [zkSync CLI](/docs/tools/zksync-cli/) provides a `deploy/deploy-greeter.ts` script that we will use to deploy the Greeter contract. 
+The [zkSync CLI](../../tools/zksync-cli/README.md) provides a `deploy/deploy-greeter.ts` script that we will use to deploy the Greeter contract. 
 
 Add your private key to `<WALLET-PRIVATE-KEY>` in the `.env.example` file and remove `.example`.
 

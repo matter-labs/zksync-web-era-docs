@@ -5,7 +5,7 @@ To keep the zero-knowledge circuits as simple as possible and enable simple exte
 The code for the system contracts will not be public until it has gone through thorough testing. This section will only provide you with the knowledge needed to build on zkSync.
 
 ::: tip System contract addresses
-You can find the L1 system contract addresses in the [useful addresses page](../../../dev/building-on-zksync/useful-address.md).
+You can find the L1 system contract addresses in the [useful addresses page](../../dev/building-on-zksync/useful-address.md).
 :::
 
 
@@ -34,7 +34,7 @@ This contract is used to send messages from zkSync to Ethereum. For each message
 
 [Interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/INonceHolder.sol#L13)
 
-This contract stores account nonces. The account nonces are stored in a single place for efficiency ([the tx nonce and the deployment nonce](../contracts/contract-deployment.md#differences-in-create-behaviour) are stored in a single place) and also for the ease of the operator.
+This contract stores account nonces. The account nonces are stored in a single place for efficiency ([the tx nonce and the deployment nonce](./contract-deployment.md#differences-in-create-behaviour) are stored in a single place) and also for the ease of the operator.
 
 ## Bootloader
 
@@ -113,7 +113,7 @@ Controls changing the privileged addresses such as governor and validators or on
 
 ### MailboxFacet
 
-The facet that handles L2 <-> L1 communication, an overview for which can be found in the [L1 / L2 Interoperability guide](../../concepts/bridging/l1-l2-interop.md).
+The facet that handles L2 <-> L1 communication, an overview for which can be found in the [L1 / L2 Interoperability guide](../concepts/l1-l2-interop.md).
 
 The Mailbox only cares about transferring information from L2 to L1 and the other way but does not hold or transfer any assets (ETH, ERC20 tokens, or NFTs).
 

@@ -57,4 +57,4 @@ Withdrawal transactions from zkSync Era appear as transactions from **zkSync Era
 
 ![Parent transaction hash](../../assets/images/parent-hash.png "Parent transaction hash in Etherscan")
 
-If for any reason you're still unable to see your withdrawal transaction after following these steps, please contact [support](../../dev/building-on-zksync/interacting.md#zksync-era-support) and we will look into it.
+If for any reason you're still unable to see your withdrawal transaction after following these steps, please contact us on Discord and we will look into it.
