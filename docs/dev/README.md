@@ -18,7 +18,6 @@ Our docs are open source so feel free to suggest new topics, add new content, or
 - [Send an L2 to L1 message](./how-to/send-message-l2-l1.md): Understand the process of sending an L2 to L1 message.
 - [Transfer a token on L2](./how-to/transfer-token-l2.md): Discover the steps for transferring a token within L2.
 - [Verify contracts with Hardhat](./how-to/verify-contracts.md): Contract verification using the zkSync Hardhat plugin.
-- [Local Testing Strategies for zkSync Era](./how-to/test-locally): Explore various strategies for local testing to ensure your zkSync integration operates flawlessly. 
 
 ## Tutorials
 

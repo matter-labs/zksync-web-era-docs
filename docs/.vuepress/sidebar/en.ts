@@ -25,8 +25,7 @@ export const enSidebar = sidebar({
         "/dev/how-to/send-transaction-l1-l2",
         "/dev/how-to/send-message-l2-l1",
         "/dev/how-to/transfer-token-l2",
-        "/dev/how-to/verify-contracts",
-        "/dev/how-to/test-locally"
+        "/dev/how-to/verify-contracts"
       ],
     },
     {
