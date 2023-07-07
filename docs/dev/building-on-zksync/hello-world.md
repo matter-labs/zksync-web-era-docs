@@ -29,13 +29,17 @@ This is what we're going to do:
 yarn add global zksync-cli@latest
 ```
 
-2. Initiate a new project by running the command:
+2. Scaffold a new project by running the command:
 
 ```sh
 zksync-cli create greeter-example
 ```
 
-This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract. 
+This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract and all the zkSync plugins and configurations.
+
+::: tip Hardhat plugins
+Learn more about the [zkSync Era plugins for Hardhat here](../../tools/hardhat/README.md)
+:::
 
 3. Navigate into the project directory:
 
@@ -86,7 +90,7 @@ contract Greeter {
 yarn hardhat compile
 ```
 
-3. The [zkSync-CLI]() also provides a deployment script in `/deploy/deploy-greeter.ts`:
+3. The [zkSync-CLI](../../tools/zksync-cli/README.md) also provides a deployment script in `/deploy/deploy-greeter.ts`:
 
 ```typescript
 import { Wallet, utils } from "zksync-web3";
