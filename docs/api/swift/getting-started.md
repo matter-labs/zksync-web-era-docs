@@ -22,7 +22,7 @@ In this guide we will demonstrate how to:
 To install zkSync via CocoaPods, add zkSync2 pod to the Podfile:
 
 ```
- pod 'ZkSync2'
+ pod 'zkSync2-swift'
 ```
 
 ## Swift Package Manager Integration
