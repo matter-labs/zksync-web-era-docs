@@ -7,7 +7,7 @@ In this guide we will demonstrate how to:
 3. Deposit ETH from Ethereum into zkSync.
 4. Transfer ETH on zkSync. 
 5. Withdraw ETH from zkSync to Ethereum.
-6. Deploy custom token on zkSync.
+6. Mint custom token on zkSync.
 7. Deploy a smart contract using create2 opcode.
 8. Deploy a smart account using create2 opcode.
 9. Use paymaster to pay fee with token.
@@ -19,7 +19,7 @@ In this guide we will demonstrate how to:
 
 ## CocoaPods Integration
 
-To install zkSync Era via CocoaPods, add zkSync2 pod to the Podfile:
+To install zkSync via CocoaPods, add zkSync2 pod to the Podfile:
 
 ```
  pod 'ZkSync2'
@@ -27,7 +27,7 @@ To install zkSync Era via CocoaPods, add zkSync2 pod to the Podfile:
 
 ## Swift Package Manager Integration
 
-To install zkSync Era via Swift Package Manager, add zkSync2 to the Package Dependencies:
+To install zkSync via Swift Package Manager, add zkSync2 to the Package Dependencies:
 
 ```
  'github.com/zksync-sdk/zksync2-swift'
@@ -41,9 +41,9 @@ Once you have integrated zkSync2 dependencies, connect to zkSync using the endpo
 let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://testnet.era.zksync.dev")!)
 ```
 
-## Connecting to Ethereum Network
+## Connecting to Ethereum
 
-Also connect to Ethereum network using the endpoint of the eth_goerli node.
+Also connect to Ethereum using the endpoint of the eth_goerli node.
 
 ```swift
 let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_goerli")!)
@@ -86,7 +86,7 @@ To control your account in zkSync, use the `ZkSyncWallet` object. It can sign tr
 ```swift
 let credentials = Credentials(<WALLET_PRIVATE_KEY>)
 let signer = PrivateKeyEthSigner(credentials, chainId: chainId)
-let wallet = ZkSyncWallet(zkSync, ethSigner: signer, feeToken: Token.ETH)
+let wallet = ZkSyncWallet(zkSync, ethereum: ethereum, ethSigner: signer, feeToken: Token.ETH)
 ```
 
 ## Examples
@@ -95,7 +95,7 @@ Full code for all examples is available [here](https://github.com/zksync-sdk/zks
 
 ### Check balance
 
-This is an example of how to check balance on zkSync Era.
+This is an example of how to check balance on zkSync.
 ```swift
 let balance = try! wallet.getBalance().wait()
 ```
@@ -108,7 +108,7 @@ zkSync.zksGetAllAccountBalances(signer.address) { result in
 
 ### Get all confirmed tokens on zkSync
 
-This is an example shows how to get all confirmed tokens on zkSync Era. 
+This is an example shows how to get all confirmed tokens on zkSync. 
 
 ```swift
 zkSync.zksGetConfirmedTokens(0, limit: 255) { result in
@@ -118,7 +118,7 @@ zkSync.zksGetConfirmedTokens(0, limit: 255) { result in
 
 ### Deposit ETH
 
-This is an example of how to deposit ETH from Ethereum network (L1) to zkSync Era network (L2):
+This is an example of how to deposit ETH from Ethereum network (L1) to zkSync network (L2):
 
 ```swift
 zkSync.zksMainContract { result in
@@ -132,7 +132,7 @@ zkSync.zksMainContract { result in
             
             let l1ERC20Bridge = self.zkSync.web3.contract(
                 Web3.Utils.IL1Bridge,
-                at: EthereumAddress("0x4ee775658259028d399f4cf9d637b14773472988")
+                at: EthereumAddress(self.signer.address)
             )!
             
             let defaultEthereumProvider = DefaultEthereumProvider(
@@ -142,13 +142,13 @@ zkSync.zksMainContract { result in
                 gasProvider: DefaultGasProvider()
             )
             
-            let amount = BigUInt(1_000_000_000_000_000_000)
+            let amount = BigUInt(1_000_000_000_000)
             
             _ = try! defaultEthereumProvider.deposit(
                 with: Token.ETH,
                 amount: amount,
                 operatorTips: BigUInt(0),
-                to: self.wallet.signer.address
+                to: self.signer.address
             ).wait()
         case .failure(let error):
             throw error
@@ -158,10 +158,10 @@ zkSync.zksMainContract { result in
 ```
 or
 ```swift
-let amount = BigUInt(1_000_000_000_000_000_000)
+let amount = BigUInt(1_000_000_000_000)
 
 _ = try! wallet.deposit(
-    <TO_ADDRESS>,
+    signer.address,
     amount: amount
 ).wait()
 ```
@@ -171,7 +171,7 @@ _ = try! wallet.deposit(
 This is an example on how to transfer ETH on zkSync network.
 
 ```swift
-let value = BigUInt(1_000_000_000_000_000_000)
+let value = BigUInt(1_000_000_000_000)
 
 var estimate = EthereumTransaction.createFunctionCallTransaction(
     from: EthereumAddress(signer.address)!,
@@ -219,7 +219,7 @@ assert(receipt?.status == .ok)
 ```
 or
 ```swift
-let amount = BigUInt(1_000_000_000_000_000_000)
+let amount = BigUInt(1_000_000_000_000)
 
 _ = try! wallet.transfer(
     <TO_ADDRESS>,
@@ -229,12 +229,12 @@ _ = try! wallet.transfer(
 
 ### Withdraw ETH
 
-This is an example of how to withdraw ETH from zkSync Era network (L2) to Ethereum network (L1):
+This is an example of how to withdraw ETH from zkSync network (L2) to Ethereum network (L1):
 
 ```swift
 let contract = zkSync.web3.contract(Web3.Utils.IEthToken)!
 
-let value = BigUInt(1_000_000_000_000_000_000)
+let value = BigUInt(1_000_000_000_000)
 
 let inputs = [
     ABI.Element.InOut(name: "_l1Receiver", type: .address)
@@ -251,7 +251,7 @@ let function = ABI.Element.Function(
 let withdrawFunction: ABI.Element = .function(function)
 
 let parameters: [AnyObject] = [
-    EthereumAddress(<TO_ADDRESS>)! as AnyObject,
+    EthereumAddress(signer.address)! as AnyObject,
 ]
 
 let calldata = withdrawFunction.encodeParameters(parameters)!
@@ -277,6 +277,7 @@ transactionOptions.from = EthereumAddress(signer.address)!
 transactionOptions.to = estimate.to
 transactionOptions.maxPriorityFeePerGas = .manual(fee.maxPriorityFeePerGas)
 transactionOptions.maxFeePerGas = .manual(fee.maxFeePerGas)
+transactionOptions.value = value
 transactionOptions.nonce = .manual(nonce)
 transactionOptions.chainID = chainId
 
@@ -310,7 +311,7 @@ assert(receipt.status == .ok)
 
 let l1ERC20Bridge = zkSync.web3.contract(
     Web3.Utils.IL1Bridge,
-    at: EthereumAddress("0x4ee775658259028d399f4cf9d637b14773472988")
+    at: EthereumAddress(signer.address)
 )!
 
 zkSync.zksMainContract { result in
@@ -367,8 +368,18 @@ zkSync.zksMainContract { result in
     }
 }
 ```
+or
+```swift
+let amount = BigUInt(1_000_000_000_000)
 
-#### Deploy custom token
+_ = try! wallet.withdraw(
+    signer.address,
+    amount: amount,
+    token: Token.ETH
+).wait()
+```
+
+#### Mint custom token
 
 ```swift
 let contract = zkSync.web3.contract(Web3.Utils.IToken, at: EthereumAddress(<SMART_CONTRACT_ADDRESS>)!)!
@@ -376,7 +387,7 @@ let contract = zkSync.web3.contract(Web3.Utils.IToken, at: EthereumAddress(<SMAR
 let value = BigUInt(100)
 
 let parameters = [
-    EthereumAddress(<TO_ADDRESS>)! as AnyObject,
+    EthereumAddress(signer.address)! as AnyObject,
     value as AnyObject
 ] as [AnyObject]
 
@@ -457,20 +468,25 @@ In some cases, you need to get the contract address before deploying it. Use
 #### Deploy a smart contract using create2 opcode
 
 ```swift
-let bytecodeBytes = <SMART_CONTRACT_BYTECODE>
+let bytecodeData = <SMART_CONTRACT_BYTECODE>
 
 let contractTransaction = EthereumTransaction.create2ContractTransaction(
     from: EthereumAddress(signer.address)!,
     gasPrice: BigUInt.zero,
     gasLimit: BigUInt.zero,
-    bytecode: bytecodeBytes,
-    deps: [bytecodeBytes],
+    bytecode: bytecodeData,
+    deps: [bytecodeData],
     calldata: Data(),
     salt: Data(),
     chainId: signer.domain.chainId
 )
 
-let precomputedAddress = ContractDeployer.computeL2Create2Address(EthereumAddress(signer.address)!, bytecode: bytecodeBytes, constructor: Data(), salt: Data())
+let precomputedAddress = ContractDeployer.computeL2Create2Address(
+    EthereumAddress(signer.address)!,
+    bytecode: bytecodeData,
+    constructor: Data(),
+    salt: Data()
+)
 
 let chainID = signer.domain.chainId
 
@@ -482,7 +498,7 @@ var estimate = EthereumTransaction.createFunctionCallTransaction(
     data: contractTransaction.data
 )
 
-estimate.parameters.EIP712Meta?.factoryDeps = [bytecodeBytes]
+estimate.parameters.EIP712Meta?.factoryDeps = [bytecodeData]
 
 let fee = try! zkSync.zksEstimateFee(estimate).wait()
 
@@ -499,7 +515,7 @@ transactionOptions.from = contractTransaction.parameters.from
 
 var ethereumParameters = EthereumParameters(from: transactionOptions)
 ethereumParameters.EIP712Meta = estimate.parameters.EIP712Meta
-ethereumParameters.EIP712Meta?.factoryDeps = [bytecodeBytes]
+ethereumParameters.EIP712Meta?.factoryDeps = [bytecodeData]
 
 var transaction = EthereumTransaction(
     type: .eip712,
@@ -543,7 +559,7 @@ let function = ABI.Element.Function(
 let elementFunction: ABI.Element = .function(function)
 
 let parameters: [AnyObject] = [
-    EthereumAddress(<TO_ADDRESS>)! as AnyObject
+    EthereumAddress(<TOKEN_ADDRESS>)! as AnyObject
 ]
 
 guard var encodedCallData = elementFunction.encodeParameters(parameters) else {
@@ -618,10 +634,10 @@ During transaction execution, the paymaster receives the ERC20 token from the us
 ```swift
 let contract = zkSync.web3.contract(Web3.Utils.IToken, at: EthereumAddress(<SMART_CONTRACT_ADDRESS>)!)!
 
-let value = BigUInt(100)
+let value = BigUInt(1_000)
 
 let parameters = [
-    EthereumAddress(<TO_ADDRESS>)! as AnyObject,
+    EthereumAddress(signer.address)! as AnyObject,
     value as AnyObject
 ] as [AnyObject]
 
@@ -652,7 +668,7 @@ let paymasterAddress = EthereumAddress(<PAYMASTER_ADDRESS>)!
 let paymasterInput = Paymaster.encodeApprovalBased(
     EthereumAddress(<TO_ADDRESS>)!,
     minimalAllowance: BigUInt(1),
-    input: Data()
+    paymasterInput: Data()
 )
 
 estimate.parameters.EIP712Meta?.paymasterParams = PaymasterParams(paymaster: paymasterAddress, paymasterInput: paymasterInput)

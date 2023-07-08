@@ -19,8 +19,9 @@ Based on the action, the `ZkSyncWallet` creates an appropriate transaction, sign
 let credentials = Credentials(<WALLET_PRIVATE_KEY>)
 let chainId = try! zkSync.web3.eth.getChainIdPromise().wait()
 let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://testnet.era.zksync.dev")!)
+let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_goerli")!)
 let signer = PrivateKeyEthSigner(credentials, chainId: chainId)
-let wallet = ZkSyncWallet(zkSync, ethSigner: signer, feeToken: Token.ETH)
+let wallet = ZkSyncWallet(zkSync, ethereum: ethereum, ethSigner: signer, feeToken: Token.ETH)
 ```
 
 Complete examples are available on the [getting started](./getting-started.md) page.
