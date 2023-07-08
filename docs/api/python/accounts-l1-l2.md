@@ -88,22 +88,6 @@ If the deposit L2 transaction has failed, it sends an L1 transaction calling `cl
 | l2_msg_index    | The position in the L2 logs Merkle tree of the l2Log that was sent with the message. |
 | merkle_proof    | The Merkle proof of the processing L1 -> L2 transaction with deposit finalization    |
 
-## Getting a nonce
-
-The `_get_nonce` method which is an alias for [getTransactionCount](https://web3py.readthedocs.io/en/v5/web3.eth.html?highlight=web3.eth.get_transaction_count#web3.eth.Eth.get_transaction_count), it returns the number of transactions this account has ever sent.
-
-```py
-
-def _get_nonce(self, account) -> transaction_count
-
-```
-
-**Arguments**
-
-| Name    | Description           |
-| ------- | --------------------- |
-| account | The address of a user |
-
 
 ## Finalizing withdrawals.
 

@@ -489,6 +489,7 @@ export async function getERC20DefaultBridgeData(
 }
 ```
 
+
 ### `getL2HashFromPriorityOp`
 
 Returns the hash of the L2 priority operation from a given transaction receipt and L2 address.

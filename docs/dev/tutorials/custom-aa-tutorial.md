@@ -7,10 +7,10 @@ This tutorial shows you how to build and deploy a 2-of-2 multi-signature account
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - A [Node.js](https://nodejs.org/en/download) installation.
 - For background learning, we recommend the following guides:
-    - Read about the [design](../../reference/concepts/aa.md) of the account abstraction protocol.
+    - Read about the [design](../../reference/concepts/account-abstraction.md) of the account abstraction protocol.
     - Read the [introduction to the system contracts](../../reference/architecture/system-contracts.md).
     - Read about [smart contract deployment](../../reference/architecture/contract-deployment.md) on zkSync Era.
-    - Read the [gas estimation for transaction](../../reference/concepts/fee-model.md#gas-estimation-during-a-transaction-for-paymaster-and-custom-accounts) guide.
+    - Read the [gas estimation for transaction](../../reference/concepts/fee-model.md#gas-estimation-for-transactions) guide.
     - If you haven't already, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
@@ -20,45 +20,62 @@ Download the complete project [here](https://github.com/matter-labs/custom-aa-tu
 
 ## Set up
 
-1. Create the project folder and `cd` into it:
+1. If you haven't already, install the [zkSync CLI:](/docs/tools/zksync-cli/)
 
 ```sh
-mkdir custom-aa-tutorial
-cd custom-aa-tutorial
+yarn add global zksync-cli@latest
 ```
 
-2. Initialize the project with `yarn` and add the dependencies.
+2. Initiate a new project by running the command:
 
 ```sh
-yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+zksync-cli create custom-aa-tutorial
 ```
+
 :::tip
 The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
 :::
 
+This creates a new zkSync Era project called `custom-aa-tutorial` with a basic `Greeter` contract. 
 
-3. Create the `hardhat.config.ts` config file, `contracts` and `deploy` folders in the project root. See the [quickstart tutorial](../building-on-zksync/hello-world.md) for more info. 
+3. Navigate into the project directory:
 
-4. Add the zkSync and OpenZeppelin libraries.
+```sh
+cd ~/custom-aa-tutorial
+```
+
+4. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
+
+```sh
+rm -rf ./contracts/Greeter.sol 
+```
+
+5. Similarly, remove the deploy scripts associated with the Greeter contract:
+
+```sh
+rm -rf ./deploy/deploy-greeter.ts && rm -rf ./deploy/use-greeter.ts
+```
+
+6. Add the zkSync and OpenZeppelin contract libraries:
 
 ```sh
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
-
 ```
 
-5. Include the `isSystem: true` setting in the configuration to allow interaction with system contracts.
+7. Include the `isSystem: true` setting in the `hardhat.config.ts` configuration file to allow interaction with system contracts:
 
 ```ts
 import { HardhatUserConfig } from "hardhat/config";
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 
+import "@matterlabs/hardhat-zksync-verify";
+
 const config: HardhatUserConfig = {
   zksolc: {
     version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
     settings: {
-      isSystem: true,
+      isSystem: true, // make sure to include this line
     },
   },
   defaultNetwork: "zkSyncTestnet",
@@ -71,27 +88,22 @@ const config: HardhatUserConfig = {
     },
   },
   solidity: {
-    version: "0.8.16",
+    version: "0.8.17",
   },
 };
 
 export default config;
 ```
 
-::: tip
-- Use the zkSync CLI to scaffold a project automatically. 
-- Find out more about the [zkSync CLI](../../tools/zksync-cli/).
-:::
-
 ## Account abstraction
 
-Each account must implement the [IAccount](../../reference/concepts/aa.md#iaccount-interface) interface. Furthermore, since we are building an account with multiple signers, we should implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
+Each account must implement the [IAccount](../../reference/concepts/account-abstraction.md#iaccount-interface) interface. Furthermore, since we are building an account with multiple signers, we should implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
 The skeleton code for the contract is given below. 
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.16;
+pragma solidity ^0.8.17;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
@@ -341,12 +353,12 @@ function isValidSignature(bytes32 _hash, bytes memory _signature)
 The transaction validation process is responsible for validating the signature of the transaction and incrementing the nonce. 
 
 :::info
-- There are some [limitations](../../reference/concepts/aa.md#limitations-of-the-verification-step) on this function.
+- There are some [limitations](../../reference/concepts/account-abstraction.md#limitations-of-the-verification-step) on this function.
 :::
 
 To increment the nonce, use the `incrementMinNonceIfEquals` function from the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether it is the same as the provided one. If not, the transaction reverts; otherwise, the nonce increases.
 
-Even though the requirements above mean the accounts only touch their own storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../../reference/concepts/aa.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happens to be in another contract. 
+Even though the requirements above mean the accounts only touch their own storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../../reference/concepts/account-abstraction.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happens to be in another contract. 
 
 To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, we add the following import:
 
@@ -372,7 +384,6 @@ Finally, the `_validateTransaction` function has to return the constant `ACCOUNT
 Here is the full implementation for the `_validateTransaction` function:
 
 ```solidity
-
 function _validateTransaction(
     bytes32 _suggestedSignedHash,
     Transaction calldata _transaction
@@ -429,7 +440,7 @@ function payForTransaction(
 
 ### Implementing paymaster support
 
-While the account abstraction protocol enables arbitrary actions when interacting with the paymasters, there are some [common patterns](../../reference/concepts/aa.md#built-in-paymaster-flows) with built-in support for EOAs. Unless you want to implement or restrict some specific paymaster use cases for your account, it is better to keep it consistent with EOAs. 
+While the account abstraction protocol enables arbitrary actions when interacting with the paymasters, there are some [common patterns](../../reference/concepts/account-abstraction.md#built-in-paymaster-flows) with built-in support for EOAs. Unless you want to implement or restrict some specific paymaster use cases for your account, it is better to keep it consistent with EOAs. 
 
 The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processes the paymaster parameters the same it's done in EOAs.
 
@@ -501,7 +512,7 @@ function _executeTransaction(Transaction calldata _transaction) internal {
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.16;
+pragma solidity ^0.8.17;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
@@ -762,14 +773,14 @@ The contract is a factory that deploys the accounts.
 :::warning
 - To deploy the multisig smart contract, it is necessary to interact with the `DEPLOYER_SYSTEM_CONTRACT` and call the `create2Account` function.
 - If the code doesn't do this, you may see errors like `Validation revert: Sender is not an account`.
-- Read the documentation on using [`create2Account` during the deployment process](../../reference/concepts/aa.md#the-deployment-process) for more information.
+- Read the documentation on using [`create2Account` during the deployment process](../../reference/concepts/account-abstraction.md#the-deployment-process) for more information.
 :::
 
 2. Copy/paste the following code into the file.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.16;
+pragma solidity ^0.8.17;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
@@ -928,7 +939,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 :::tip
 - zkSync has different address derivation rules from Ethereum. 
 - Always use the [`createAddress`](../../api/js/utils.md#createaddress) and [`create2Address`](../../api/js/utils.md#create2address) utility functions of the `zksync-web3` SDK.
-- Read the documentation for more information on [address derivation differences between Ethereum and zkSync](../../reference/architecture/differences-with-ethereum#create-create2).
+- Read the documentation for more information on [address derivation differences between Ethereum and zkSync](../../reference/architecture/differences-with-ethereum.md).
 :::
 
 ### Start a transaction from the account

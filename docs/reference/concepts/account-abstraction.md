@@ -1,4 +1,4 @@
-# Account abstraction support
+# Account abstraction
 
 ::: warning
 - Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`. 
@@ -21,7 +21,7 @@ Accounts in zkSync Era can initiate transactions, like an EOA, but can also have
 
 Native Account Abstraction on zkSync Era fundamentally changes how accounts operate by introducing the concept of Smart Accounts and Paymasters. Smart Accounts are fully programmable, allowing for various customizations such as signature schemes, native multi-sig capabilities, spending limits, and application-specific restrictions.
 
-::: note
+::: info
 The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance accounts' flexibility and user experience, but they differ in key aspects; learn more [here](../architecture/differences-with-ethereum.md#native-aa-vs-eip-4337).
 :::
 
@@ -294,7 +294,7 @@ If you are developing a paymaster, you _should not_ trust the transaction sender
 
 #### Working with paymaster flows using `zksync-web3` SDK
 
-The `zksync-web3` SDK provides [methods](../../api/js/utils.md#encoding-paymaster-params) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
+The `zksync-web3` SDK provides [methods](../../api/js/paymaster-utils.md) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
 
 ### Testnet paymaster
 
