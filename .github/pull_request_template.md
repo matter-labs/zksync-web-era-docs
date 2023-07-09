@@ -9,7 +9,7 @@
 * Reason why third thing was added to PR
 
 # Evidence :camera:
-Include screenshots, screen recodings, or `console` output here demonstrating that your changes work as intended
+Include screenshots, screen recordings, or `console` output here demonstrating that your changes work as intended
 
 <!-- All sections below are optional. You can erase any section not applicable to your Pull Request. -->
 
