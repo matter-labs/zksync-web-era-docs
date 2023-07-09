@@ -9,7 +9,9 @@
 * Reason why third thing was added to PR
 
 # Evidence :camera:
-Include screenshots or `console` output here demonstrating that your changes work as intended
+Include screenshots, screen recodings, or `console` output here demonstrating that your changes work as intended
+
+<!-- All sections below are optional. You can erase any section not applicable to your Pull Request. -->
 
 # Notes :memo:
 * Any notes/thoughts that the reviewers should know prior to reviewing the code?
