@@ -22,12 +22,6 @@ contributors: false
 </div>
 <section>
   <div class="card-container">
-    <!-- <a href="./dev/fundamentals/zkSync.html" class="card">
-      <div class="content">
-        <h3>About zkSync Era</h3>
-        <p>Learn more about our future-proof zkEVM. </p>
-      </div>
-    </a> -->
     <a href="./dev/building-on-zksync/hello-world.html" class="card">
       <div class="content">
         <h3>Getting started</h3>
@@ -81,19 +75,19 @@ contributors: false
    <a href="./dev/tutorials/cross-chain-tutorial.html" class="card">
       <div class="content">
         <h3>Cross-chain vote</h3>
-        <p>Use L1-L2 communication to cast a vote from Ethereum to zkSync Era.</p>
+        <p>Use L1-L2 messages to cast a vote from Ethereum to zkSync Era.</p>
       </div>
    </a>
    <a href="./dev/tutorials/custom-aa-tutorial.html" class="card">
       <div class="content">
         <h3>Multisig with AA</h3>
-        <p>Learn how to create a smart account on zkSync Era.</p>
+        <p>Learn how to create a native multisig smart account on zkSync Era.</p>
       </div>
    </a>
    <a href="./dev/tutorials/custom-paymaster-tutorial.html" class="card">
          <div class="content">
             <h3>Custom Paymaster</h3>
-            <p>Build your own paymaster and delight users with your app.</p>
+            <p>Build your own paymaster to pay gas fees with ERC20 tokens.</p>
          </div>
     </a>
   </div>
