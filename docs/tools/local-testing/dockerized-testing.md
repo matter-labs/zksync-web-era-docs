@@ -1,4 +1,4 @@
-# Dockerized testing
+# Dockerized setup
 
 ## Dockerized local setup: installation & setup
 
@@ -58,7 +58,7 @@ sudo ./clear.sh
 The local zkSync setup includes "rich" wallets preloaded with substantial amounts of ETH on both L1 and L2. You can find a complete list of the accounts' addresses along with the corresponding private keys [here](https://github.com/matter-labs/local-setup/blob/main/rich-wallets.json).
 
 :::warning
-Rich wallets only hold ETH. If you need to test with ERC20 tokens, deploy them yourself.
+Rich wallets only hold ETH. If you need to test with ERC20 tokens, you'd need to deploy them yourself.
 :::
 
 ### Employing a custom database or Ethereum node
