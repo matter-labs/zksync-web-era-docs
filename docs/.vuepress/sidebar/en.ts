@@ -109,14 +109,7 @@ export const enSidebar = sidebar({
     {
       text: "Python SDK",
       link: "/api/python",
-      children: [
-        "/api/python/getting-started",
-        "/api/python/providers",
-        "/api/python/accounts",
-        "/api/python/accounts-l1-l2",
-        "/api/python/contract-interface",
-        "/api/python/types",
-      ],
+      children: ["/api/python/getting-started", "/api/python/providers", "/api/python/accounts", "/api/python/accounts-l1-l2", "/api/python/contracts", "/api/python/types"],
     },
     {
       text: "Go SDK",

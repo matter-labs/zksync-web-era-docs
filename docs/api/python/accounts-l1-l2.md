@@ -60,7 +60,6 @@ def deposit(self, l2_receiver: HexStr, l1_token: HexStr, amount: int):
 
 ```
 
-
 ## Claim failed deposit
 
 The `claimFailedDeposit` method withdraws funds from the initiated deposit, which failed when finalizing on L2.  
@@ -87,7 +86,6 @@ If the deposit L2 transaction has failed, it sends an L1 transaction calling `cl
 | l2_block_number | The L2 block number where the deposit finalization was processed.                    |
 | l2_msg_index    | The position in the L2 logs Merkle tree of the l2Log that was sent with the message. |
 | merkle_proof    | The Merkle proof of the processing L1 -> L2 transaction with deposit finalization    |
-
 
 ## Finalizing withdrawals.
 

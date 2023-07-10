@@ -6,9 +6,10 @@ Currently, it is used in combination with [local testing environment](./testing.
 [Changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-chai-matchers/CHANGELOG.md)
 
 ::: info
-- Since responses from transactions that revert are highly dependent on the RPC implementation, all [Hardhat](https://hardhat.org/hardhat-chai-matchers/docs/overview) chai matchers that start with `revert` have been affected (without any changes to the chai matchers interface). 
+
+- Since responses from transactions that revert are highly dependent on the RPC implementation, all [Hardhat](https://hardhat.org/hardhat-chai-matchers/docs/overview) chai matchers that start with `revert` have been affected (without any changes to the chai matchers interface).
 - In addition, the `options` argument from `changeEtherBalance`/`changeEtherBalances` now includes the `overrides` field in order to support `zksync-web3` transfer methods with overrides.
-:::
+  :::
 
 ## Installation
 
@@ -27,6 +28,7 @@ yarn add -D @matterlabs/hardhat-zksync-chai-matchers @nomicfoundation/hardhat-ch
 ```bash
 npm i -D @matterlabs/hardhat-zksync-chai-matchers
 ```
+
 :::
 
 ### Usage

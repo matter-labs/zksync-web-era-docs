@@ -2,7 +2,7 @@
 
 In order to maintain the same level of security as the L1, the zkSync operator is required to publish the code for each contract it deploys on the Ethereum chain. However, if multiple contracts are deployed using the same code, the operator only needs to publish it on Ethereum once. While the initial deployment of contracts can be relatively expensive, utilizing contract factories that deploy contracts with the same code multiple times can lead to huge savings compared to the L1.
 
-These specific requirements ensure that the process of deploying smart contracts on zkEVM complies to a crucial rule: *the operator must be aware of the contract's code before deployment*. Consequently, deploying contracts can only be accomplished through EIP712 transactions, with the `factory_deps` field containing the bytecode provided.
+These specific requirements ensure that the process of deploying smart contracts on zkEVM complies to a crucial rule: _the operator must be aware of the contract's code before deployment_. Consequently, deploying contracts can only be accomplished through EIP712 transactions, with the `factory_deps` field containing the bytecode provided.
 
 [Learn more about EIP712 transactions here](../../reference/concepts/transactions.md#eip-712-0x71).
 
@@ -71,7 +71,7 @@ For detailed information on smart contract vulnerabilities and security best pra
 
 To facilitate [support for account abstraction](../concepts/account-abstraction.md), zkSync splits the nonce of each account into two parts: the deployment nonce and the transaction nonce. The deployment nonce represents the number of contracts the account has deployed using the `create()` opcode, while the transaction nonce is used for protecting against replay attacks for transactions.
 
-This distinction implies that, while the nonce on zkSync behaves similarly to Ethereum for smart contracts, calculating the address of a deployed contract for externally owned accounts (EOAs) is not as straightforward. 
+This distinction implies that, while the nonce on zkSync behaves similarly to Ethereum for smart contracts, calculating the address of a deployed contract for externally owned accounts (EOAs) is not as straightforward.
 
 On Ethereum, it can be safely determined using the formula `hash(RLP[address, nonce])`. However, on zkSync, it is advisable to wait until the contract is deployed and catch the `ContractDeployed` event emitted by the [ContractDeployer](./system-contracts#contractdeployer), which provides the address of the newly deployed contract. The SDK handles all of these processes in the background to simplify the workflow.
 
