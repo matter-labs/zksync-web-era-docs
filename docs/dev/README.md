@@ -2,7 +2,9 @@
 
 This section of our documentation is dedicated to getting you started, telling you how to do common tasks, and providing tutorials.
 
-Our docs are open source so feel free to suggest new topics, add new content, or provide useful examples. Check out the [how to contribute instructions](../reference/troubleshooting/docs-contribution/docs.md) instructions for more information.
+Our docs are open source so feel free to suggest new topics, add new content, or provide useful examples. Check out the [how to contribute instructions](../reference/troubleshooting/docs-contribution/docs.md) instructions for more information.0x1f9090aaE28b8a3dCeaDf281B0F12828e676c326
+0x00364Fc5dad91eF761825DDFf747CEbF9fe75E65
+https://tronscan.org/#/contract/TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t/code?file=F10L2
 
 ## Getting started
 
