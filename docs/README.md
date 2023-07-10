@@ -21,6 +21,7 @@ contributors: false
    </div>
 </div>
 <section>
+
   <div class="card-container">
     <a href="./dev/building-on-zksync/hello-world.html" class="card">
       <div class="content">
@@ -34,37 +35,38 @@ contributors: false
             <p>Differences between zkSync Era and Ethereum.</p>
          </div>
     </a>
-    <a href="./api/" class="card">
+    <a href="./reference/concepts/hyperscaling.html" class="card">
       <div class="content">
-        <h3>SDK References</h3>
-        <p>References for your favorite web3 SDKs.</p>
+        <h3>Hyperscaling</h3>
+        <p>Scaling Ethereum beyong Era with hyperchains.</p>
       </div>
     </a>
   </div>
 </section>
 <div class="cards-heading">
-   <span class="title-section">Explore Tools</span>
+   <span class="title-section">Developer Tools</span>
 </div>
 <section>
   <div class="card-container">
-   <a href="https://portal.zksync.io/bridge" class="card">
+  
+   <a href="./tools/zksync-cli" class="card">
       <div class="content">
-        <h3>zkSync Era Portal</h3>
-        <p>Bridge, deposit, and withdraw ERC20 tokens.</p>
+        <h3>zksync-cli</h3>
+        <p>A command-line tool to build and interact with zkSync Era.</p>
       </div>
-   </a>
-   <a href="./api/tools/block-explorer/intro.html" class="card">
-      <div class="content">
-        <h3>Block Explorer</h3>
-        <p>Interact with zkSync Era blockchain. </p>
-      </div>
-   </a>
+    </a>
    <a href="./tools/hardhat" class="card">
-         <div class="content">
-            <h3>Hardhat Plugins</h3>
-            <p>Explore Hardhat plugins for your Solidity and Vyper apps. </p>
-         </div>
-      </a>
+      <div class="content">
+        <h3>Hardhat Plugins</h3>
+        <p>Explore Hardhat plugins for your Solidity and Vyper apps. </p>
+      </div>
+    </a>
+    <a href="./api/" class="card">
+      <div class="content">
+        <h3>SDK References</h3>
+        <p>Development kits in multiple programming languages.</p>
+      </div>
+    </a>
   </div>
 </section>
 <div class="cards-heading">
@@ -90,5 +92,25 @@ contributors: false
             <p>Build your own paymaster to pay gas fees with ERC20 tokens.</p>
          </div>
     </a>
+  </div>
+</section>
+<div class="cards-heading">
+   <span class="title-section">Other Tools</span>
+</div>
+<section>
+  <div class="card-container">
+   <a href="https://portal.zksync.io/bridge" class="card">
+      <div class="content">
+        <h3>zkSync Era Portal</h3>
+        <p>Bridge, deposit, and withdraw ERC20 tokens.</p>
+      </div>
+   </a>
+   <a href="./api/tools/block-explorer/intro.html" class="card">
+      <div class="content">
+        <h3>Block Explorer</h3>
+        <p>Interact with zkSync Era blockchain. </p>
+      </div>
+   </a>
+  
   </div>
 </section>
