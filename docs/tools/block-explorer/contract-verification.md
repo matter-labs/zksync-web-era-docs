@@ -2,12 +2,6 @@
 
 ## User interface
 
-:::warning
-
-- The smart contract verification tool on the user interface is currently not working.
-- Please check back later.
-  :::
-
 1. Click [**Smart Contract Verification**](https://explorer.zksync.io/contracts/verify) in the block explorer menu to go to the Smart Contract Verification page.
 
 ![zkSync Era smart contract verification page](../../assets/images/smart-contract-verification.png)
