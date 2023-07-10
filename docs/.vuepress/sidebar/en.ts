@@ -125,6 +125,11 @@ export const enSidebar = sidebar({
   //The sidebar for Tools and SDKs
   "/tools": [
     {
+      text: "zkSync Era CLI", // required
+      link: "/tools/zksync-cli/", // optional, which should be a absolute path.
+      children: [],
+    },
+    {
       text: "Hardhat", // required
       link: "/tools/hardhat", // optional, which should be a absolute path.
       children: [
@@ -153,13 +158,9 @@ export const enSidebar = sidebar({
       link: "/tools/compiler-toolchain",
       children: ["/tools/compiler-toolchain/overview.md", "/tools/compiler-toolchain/solidity.md", "/tools/compiler-toolchain/vyper.md", "/tools/compiler-toolchain/llvm.md"],
     },
+
     {
-      text: "zkSync Era CLI", // required
-      link: "/tools/zksync-cli/", // optional, which should be a absolute path.
-      children: [],
-    },
-    {
-      text: "Block Explorer and Tools", // required
+      text: "Block Explorer", // required
       link: "/tools/block-explorer", // optional, which should be a absolute path.
       children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification"],
     },
