@@ -34,7 +34,7 @@ contributors: false
         <p>Build a smart contract app with zkSync Era.</p>
       </div>
     </a>
-    <a href="./dev/building-on-zksync/contracts/differences-with-ethereum.html" class="card">
+    <a href="./reference/architecture/differences-with-ethereum.html" class="card">
          <div class="content">
             <h3>Era vs Ethereum</h3>
             <p>Differences between zkSync Era and Ethereum.</p>
@@ -65,7 +65,7 @@ contributors: false
         <p>Interact with zkSync Era blockchain. </p>
       </div>
    </a>
-   <a href="./api/hardhat/getting-started.html" class="card">
+   <a href="./tools/hardhat" class="card">
          <div class="content">
             <h3>Hardhat Plugins</h3>
             <p>Explore Hardhat plugins for your Solidity and Vyper apps. </p>
