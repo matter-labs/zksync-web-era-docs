@@ -19,6 +19,7 @@ You can also run this via NPX with `npx zksync-cli@latest [COMMAND]`
 - `zksync-cli create [PROJECT_NAME]`: creates a new project in a new folder with the given project name. If the project name is not provided, it creates the project in the current folder, although this requires the folder to be empty.
 - `zksync-cli deposit`: deposits funds from L1 to zkSync Era. It will ask you to provide: the network (localnet, testnet, mainnet), the recipient wallet, the amount in ETH (eg 0.1) and the private key of the wallet you're sending the funds from.
 - `zksync-cli withdraw`: withdraws funds from zkSync Era to L1. It will ask you to provide: the network (localnet, testnet, mainnet), the recipient wallet, the amount in ETH (eg 0.1) and the private key of the wallet you're sending the funds from.
+- `zksync-cli confirm-withdraw`: confirms withdrawal of funds from zkSync Era to L1. It will ask you to enter: network, withdrawal transaction hash, and the private key of the wallet you sent the funds from.
 - `zksync-cli help`: returns the version and information about the different commands.
 
 > Both deposit and withdraw might take a couple of minutes to complete.
