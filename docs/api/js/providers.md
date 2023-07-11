@@ -1,25 +1,27 @@
 # Providers
 
-A Web3 Provider object provides application-layer access to underlying blockchain networks. 
+A Web3 Provider object provides application-layer access to underlying blockchain networks.
 
 The [`zksync-web3`](https://www.npmjs.com/package/zksync-web3) library supports provider methods from the [`ethers.js`](https://docs.ethers.io/v5/api/providers) library and supplies additional functionality.
 
 Two providers are available:
 
 - [`Provider`](#provider): Supplies the same functionality as [`ethers.providers.JsonRpcProvider`](https://docs.ethers.org/v5/api/providers/jsonrpc-provider/#JsonRpcProvider) and extends it with zkSync-specific methods.
-- [`Web3Provider`](#web3provider): Extends the zkSync Era [`Provider`](#provider) class to make it more compatible with Web3 wallets. 
+- [`Web3Provider`](#web3provider): Extends the zkSync Era [`Provider`](#provider) class to make it more compatible with Web3 wallets.
 
 :::tip
+
 - Use the [`Web3Provider`](#web3provider) for browser integrations.
 - Access the latest [provider.ts code](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/provider.ts) in the zkSync Era GitHub repo.
-:::
+  :::
 
 ## `Provider`
 
 :::info
+
 - This doc details zkSync Era specific methods.
 - Ethers implementations link to the [Ethers Providers documentation](https://docs.ethers.org/v5/api/providers/).
-:::
+  :::
 
 ### `constructor`
 
@@ -27,11 +29,10 @@ Returns a zkSync Era `Provider` object.
 
 #### Inputs
 
-| Parameter | Type          | Description                                                  |
-| --------- | ------------- | ------------------------------------------------------------ |
-| `url?`   | string or [`ConnectionInfo`](https://docs.ethers.org/v5/api/utils/web/#ConnectionInfo)   | Network RPC URL (optional)     |
-| `network?` | `ethers.providers.Networkish`|   Network name (optional) |
-
+| Parameter  | Type                                                                                   | Description                |
+| ---------- | -------------------------------------------------------------------------------------- | -------------------------- |
+| `url?`     | string or [`ConnectionInfo`](https://docs.ethers.org/v5/api/utils/web/#ConnectionInfo) | Network RPC URL (optional) |
+| `network?` | `ethers.providers.Networkish`                                                          | Network name (optional)    |
 
 ```ts
 constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish) {
@@ -65,25 +66,25 @@ Returns an estimate of the amount of gas required to submit a transaction to the
 
 ### `estimateGasL1`
 
-Returns an estimate of the amount of gas required to submit a transaction from L1 to L2 as a `BigNumber` object. 
+Returns an estimate of the amount of gas required to submit a transaction from L1 to L2 as a `BigNumber` object.
 
 Calls the [`zks_estimateL1ToL2`](../api.md#zks_estimategasl1tol2) JSON-RPC method.
 
 ### `estimateGasTransfer`
 
-Returns the gas estimation for a transfer transaction. 
+Returns the gas estimation for a transfer transaction.
 
 Calls internal method [`getTransferTx`](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/provider.ts#L428) to get the transfer transaction and sends it to the [`estimateGas`](#estimategas) method.
 
 #### Inputs
 
-| Parameter | Type          | Description                                                  |
-| --------- | ------------- | ------------------------------------------------------------ |
-| `token`   | Address string   | Token address.     |
-| `amount` | `BigNumberish` |   Amount of token. |
-| `from?`   | Address string   | From address (optional).     |
-| `to?` | Address string |   To address (optional). |
-| `overrides?` | `ethers.CallOverrides` |   Ethers call overrides object (optional). |
+| Parameter    | Type                   | Description                              |
+| ------------ | ---------------------- | ---------------------------------------- |
+| `token`      | Address string         | Token address.                           |
+| `amount`     | `BigNumberish`         | Amount of token.                         |
+| `from?`      | Address string         | From address (optional).                 |
+| `to?`        | Address string         | To address (optional).                   |
+| `overrides?` | `ethers.CallOverrides` | Ethers call overrides object (optional). |
 
 ```ts
 async estimateGasTransfer(transaction: {
@@ -100,20 +101,20 @@ async estimateGasTransfer(transaction: {
 
 ### `estimateGasWithdraw`
 
-Returns the gas estimation for a withdrawal transaction. 
+Returns the gas estimation for a withdrawal transaction.
 
 Calls internal method [`getWithdrawTx`](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/provider.ts#L372) to get the withdrawal transaction and sends it to the [`estimateGas`](#estimategas) method.
 
 #### Inputs
 
-| Parameter | Type          | Description                                                  |
-| --------- | ------------- | ------------------------------------------------------------ |
-| `token`   | Address string   | Token address.     |
-| `amount` | `BigNumberish` |   Amount of token. |
-| `from?`   | Address string   | From address (optional).     |
-| `to?` | Address string |   To address (optional). |
-| `bridgeAddress?`   | Address string   | Bridge address (optional).     |
-| `overrides?` | `ethers.CallOverrides` |   Ethers call overrides object (optional). |
+| Parameter        | Type                   | Description                              |
+| ---------------- | ---------------------- | ---------------------------------------- |
+| `token`          | Address string         | Token address.                           |
+| `amount`         | `BigNumberish`         | Amount of token.                         |
+| `from?`          | Address string         | From address (optional).                 |
+| `to?`            | Address string         | To address (optional).                   |
+| `bridgeAddress?` | Address string         | Bridge address (optional).               |
+| `overrides?`     | `ethers.CallOverrides` | Ethers call overrides object (optional). |
 
 ```ts
 async estimateGasWithdraw(transaction: {
@@ -135,15 +136,15 @@ Returns gas estimation for an L1 to L2 execute operation.
 
 #### Inputs
 
-| Parameter | Type          | Description                                                  |
-| --------- | ------------- | ------------------------------------------------------------ |
-| `contractAddress`   | Address string   | Address of contract.     |
-| `calldata` | `BytesLike` |   The transaction call data. |
-| `caller?`   | Address string   | Caller address (optional).     |
-| `l2Value?` | `BigNumberish`  |   Current L2 gas value (optional). |
-| `factoryDeps?`   | `BytesLike[]`   | Byte array containing contract bytecode.    |
-| `gasPerPubdataByte?` | `BigNumberish` |   Constant representing current amount of gas per byte (optional). |
-| `overrides?` | `ethers.PayableOverrides` |   Ethers payable overrides object (optional). |
+| Parameter            | Type                      | Description                                                      |
+| -------------------- | ------------------------- | ---------------------------------------------------------------- |
+| `contractAddress`    | Address string            | Address of contract.                                             |
+| `calldata`           | `BytesLike`               | The transaction call data.                                       |
+| `caller?`            | Address string            | Caller address (optional).                                       |
+| `l2Value?`           | `BigNumberish`            | Current L2 gas value (optional).                                 |
+| `factoryDeps?`       | `BytesLike[]`             | Byte array containing contract bytecode.                         |
+| `gasPerPubdataByte?` | `BigNumberish`            | Constant representing current amount of gas per byte (optional). |
+| `overrides?`         | `ethers.PayableOverrides` | Ethers payable overrides object (optional).                      |
 
 ```ts
 async estimateL1ToL2Execute(transaction: {
@@ -189,18 +190,19 @@ Calls the [`zks_getAllAccountBalances`](../api.md#zks_getallaccountbalances) JSO
 
 ### `getBalance`
 
-Returns the user's balance as a `BigNumber` object for an (optional) block tag and (optional) token. 
+Returns the user's balance as a `BigNumber` object for an (optional) block tag and (optional) token.
 
 When block and token are not supplied, `committed` and `ETH` are the default values.
 
 #### Inputs
 
-| Name                    | Description                                                                                                   |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------- |
-| address                 | User's address.                                             |
-| blockTag?     | Block tag for getting the balance on. Latest `committed` block is default.|
-| tokenAddress? | The address of the token. ETH is default. |
-                                                                                          |
+| Name          | Description                                                                |
+| ------------- | -------------------------------------------------------------------------- |
+| address       | User's address.                                                            |
+| blockTag?     | Block tag for getting the balance on. Latest `committed` block is default. |
+| tokenAddress? | The address of the token. ETH is default.                                  |
+|  |
+
 ```typescript
 override async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address) {
     const tag = this.formatter.blockTag(blockTag);
@@ -254,22 +256,23 @@ Returns an array of `TransactionResponse` objects.
 
 ### `getConfirmedTokens`
 
-Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `from` and `limit`. 
+Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `from` and `limit`.
 
 Calls the [`zks_getConfirmedTokens`](../api.md#zks_getconfirmedtokens) JSON-RPC method.
 
 :::tip Tip
+
 - **Confirmed** in the function name means any token bridged to zkSync Era via the official bridge.
-:::
+  :::
 
 The tokens are returned in alphabetical order by their symbol. This means the token id is its position in an alphabetically sorted array of tokens.
 
 #### Inputs
 
-| Name    | Description                                                                                     |
-| ------- | ------------------------------------------------------------------------------------------------|
-| start   | The token id from which to start returning the information about the tokens. Zero *by default*. |
-| limit   | The number of tokens to be returned from the API. 255 *by default*.                             |
+| Name  | Description                                                                                     |
+| ----- | ----------------------------------------------------------------------------------------------- |
+| start | The token id from which to start returning the information about the tokens. Zero _by default_. |
+| limit | The number of tokens to be returned from the API. 255 _by default_.                             |
 
 ```typescript
 async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[]> {
@@ -293,9 +296,9 @@ Returns the version of the supported account abstraction and nonce ordering from
 
 #### Inputs
 
-| Name    | Description                                                                                     |
-| ------- | ------------------------------------------------------------------------------------------------|
-| address   | Contract address |
+| Name    | Description      |
+| ------- | ---------------- |
+| address | Contract address |
 
 ```typescript
 async getContractAccountInfo(address: Address): Promise<ContractAccountInfo> {
@@ -429,9 +432,9 @@ Returns a transaction object from a given Ethers [`TransactionResponse`](https:/
 
 #### Inputs
 
-| Name    | Description                                                                                     |
-| ------- | ------------------------------------------------------------------------------------------------|
-| l1TxResponse   | Ethers `TransactionResponse` object. |
+| Name         | Description                          |
+| ------------ | ------------------------------------ |
+| l1TxResponse | Ethers `TransactionResponse` object. |
 
 ```ts
 async getL2TransactionFromPriorityOp(
@@ -503,9 +506,9 @@ Returns an Ethers [`TransactionResponse`](https://docs.ethers.org/v5/api/provide
 
 #### Inputs
 
-| Name    | Description                                                                                     |
-| ------- | ------------------------------------------------------------------------------------------------|
-| l1TxResponse   | Ethers `TransactionResponse` object. |
+| Name         | Description                          |
+| ------------ | ------------------------------------ |
+| l1TxResponse | Ethers `TransactionResponse` object. |
 
 ```ts
 async getPriorityOpResponse(l1TxResponse: ethers.providers.TransactionResponse): Promise<PriorityOpResponse> {
@@ -550,8 +553,9 @@ console.log(await provider.getTestnetPaymasterAddress());
 ### `getTokenPrice` DEPRECATED
 
 ::: warning Deprecated
+
 - This method is deprecated and will be removed in the near future.
-:::
+  :::
 
 Returns the USD price for a token. Please note that that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
 
@@ -572,9 +576,9 @@ Returns a specified L2 transaction response object by overriding the [Ethers imp
 
 #### Inputs
 
-| Name    | Description                                                                                |
-| ------- | ------------------------------------------------------------------------------------------ |
-| hash   |  string                                                                  |
+| Name | Description |
+| ---- | ----------- |
+| hash | string      |
 
 ```typescript
 override async getTransaction(hash: string | Promise<string>): Promise<TransactionResponse> {
@@ -617,9 +621,9 @@ Returns the status of a specified transaction.
 
 #### Inputs
 
-| Name    | Description                                                                                                                |
-| ------- | -------------------------------------------------------------------------------------------------------------------------- |
-| txHash   | string                                                                                                  |
+| Name   | Description |
+| ------ | ----------- |
+| txHash | string      |
 
 ```typescript
 async getTransactionStatus(txHash: string) {
@@ -664,10 +668,9 @@ Only works for tokens bridged on default zkSync Era bridges.
 
 #### Inputs
 
-| Name    | Description                                      |
-| ------- | ------------------------------------------------ |
-| token   | The address of the token on L2.       |
-
+| Name  | Description                     |
+| ----- | ------------------------------- |
+| token | The address of the token on L2. |
 
 ```typescript
 async l1TokenAddress(token: Address) {
@@ -691,10 +694,9 @@ Only works for tokens bridged on default zkSync Era bridges.
 
 #### Inputs
 
-| Name    | Description                                      |
-| ------- | ------------------------------------------------ |
-| token   | The address of the token on L1.       |
-
+| Name  | Description                     |
+| ----- | ------------------------------- |
+| token | The address of the token on L1. |
 
 ```typescript
 async l2TokenAddress(token: Address) {
@@ -707,6 +709,7 @@ async l2TokenAddress(token: Address) {
     }
 }
 ```
+
 ### `newBlockFilter`
 
 Returns a new block filter by calling Ethereum method [`eth_newBlockFilter.`](https://ethereum.github.io/execution-apis/api-documentation/)
@@ -733,10 +736,10 @@ Returns a provider object by extending the constructor of the `Provider` class a
 
 #### Inputs and outputs
 
-| Name               | Description                                                                                                            |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| provider           | The [`ethers.providers.ExternalProvider`](https://docs.ethers.org/v5/api/providers/other/#Web3Provider--ExternalProvider) class instance. For instance, Metamask is `window.ethereum`. |
-| network? | The description of the network.    
+| Name     | Description                                                                                                                                                                            |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| provider | The [`ethers.providers.ExternalProvider`](https://docs.ethers.org/v5/api/providers/other/#Web3Provider--ExternalProvider) class instance. For instance, Metamask is `window.ethereum`. |
+| network? | The description of the network.                                                                                                                                                        |
 
 ```typescript
 constructor(provider: ExternalProvider, network?: ethers.providers.Networkish) {
@@ -767,9 +770,9 @@ Returns gas estimate by overriding the zkSync Era [`estimateGas`](#estimategas) 
 
 #### Inputs and outputs
 
-| Name               | Description           |
-| ------------------ | -------------------------------------------------- |
-| transaction          | Deferrable object of `TransactionRequest` type. |
+| Name        | Description                                     |
+| ----------- | ----------------------------------------------- |
+| transaction | Deferrable object of `TransactionRequest` type. |
 
 ```typescript
 override async estimateGas(transaction: ethers.utils.Deferrable<TransactionRequest>) {
@@ -799,10 +802,10 @@ Returns a provider request object by overriding the [Ethers implementation](http
 
 #### Inputs and outputs
 
-| Name               | Description           |
-| ------------------ | -------------------------------------------------- |
-| method          | Request method name as string |
-| params? | Optional array of any type
+| Name    | Description                   |
+| ------- | ----------------------------- |
+| method  | Request method name as string |
+| params? | Optional array of any type    |
 
 ```typescript
 override async send(method: string, params?: Array<any>): Promise<any> {

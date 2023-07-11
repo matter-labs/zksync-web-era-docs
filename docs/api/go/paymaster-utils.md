@@ -22,7 +22,7 @@ Returns encoded input for an approval-based paymaster.
 #### Inputs
 
 | Parameter        | Type                          | Description                      |
-|------------------|-------------------------------|----------------------------------|
+| ---------------- | ----------------------------- | -------------------------------- |
 | `paymasterInput` | `ApprovalBasedPaymasterInput` | The input data to the paymaster. |
 
 ```go
@@ -41,7 +41,7 @@ As above but for general-based paymaster.
 #### Inputs
 
 | Parameter        | Type                    | Description                      |
-|------------------|-------------------------|----------------------------------|
+| ---------------- | ----------------------- | -------------------------------- |
 | `paymasterInput` | `GeneralPaymasterInput` | The input data to the paymaster. |
 
 ```go
@@ -57,7 +57,7 @@ Returns a correctly-formed `paymasterParams` object for common [paymaster flows]
 #### Inputs
 
 | Parameter          | Type             | Description                       |
-|--------------------|------------------|-----------------------------------|
+| ------------------ | ---------------- | --------------------------------- |
 | `paymasterAddress` | `Address`        | The non-zero `paymaster` address. |
 | `paymasterInput`   | `PaymasterInput` | The input data to the paymaster.  |
 

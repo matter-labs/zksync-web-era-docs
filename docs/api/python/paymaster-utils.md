@@ -21,12 +21,11 @@ Returns encoded input for an approval-based paymaster.
 
 #### Inputs
 
-
-| Parameter       | Type     | Description                                             |
-|-----------------|----------|---------------------------------------------------------|
-| `address`       | `HexStr` | The token address of the paymaster.                     |
-| `min_allowance` | `int`    | The minimal amount of token that can be used to pay fee.|
-| `inner_input`   | `bytes`  | The input data to the paymaster.                        |
+| Parameter       | Type     | Description                                              |
+| --------------- | -------- | -------------------------------------------------------- |
+| `address`       | `HexStr` | The token address of the paymaster.                      |
+| `min_allowance` | `int`    | The minimal amount of token that can be used to pay fee. |
+| `inner_input`   | `bytes`  | The input data to the paymaster.                         |
 
 ```python
 paymaster_params = PaymasterParams(**{
@@ -43,7 +42,7 @@ As above but for general-based paymaster.
 #### Inputs
 
 | Parameter | Type    | Description                      |
-|-----------|---------|----------------------------------|
+| --------- | ------- | -------------------------------- |
 | `inputs`  | `bytes` | The input data to the paymaster. |
 
 ```python
@@ -53,7 +52,6 @@ paymaster_params = PaymasterParams(**{
         hexstr=PaymasterFlowEncoder(zk_web3).encode_general( b''))
 })
 ```
-
 
 Find out more about the [`PaymasterParams` type](./types.md).
 Check out the [example](getting-started.md#use-paymaster) how to use paymaster.

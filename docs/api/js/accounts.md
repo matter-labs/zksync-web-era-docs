@@ -3,7 +3,7 @@
 `zksync-web3` exports four classes that can sign transactions on zkSync:
 
 - `Wallet` class is an extension of the `ethers.Wallet` with additional zkSync features.
-- `EIP712Signer` class that is used to sign `EIP712`*-typed* zkSync transactions.
+- `EIP712Signer` class that is used to sign `EIP712`_-typed_ zkSync transactions.
 - `Signer` and `L1Signer` classes, which should be used for browser integration.
 
 ## `Wallet`
@@ -21,12 +21,12 @@ Just like `ethers.Wallet`, the `Wallet` object from `zksync-web3` can be created
 
 #### Inputs and outputs
 
-| Name                  | Description                                                 |
-| --------------------- | ----------------------------------------------------------- |
-| privateKey            | The private key of the Ethereum account.                    |
+| Name        | Description                                                 |
+| ----------- | ----------------------------------------------------------- |
+| privateKey  | The private key of the Ethereum account.                    |
 | providerL2? | A zkSync node provider. Needed for interaction with zkSync. |
 | providerL1? | An Ethereum node provider. Needed for interaction with L1.  |
-| returns               | The new `Wallet` object.                                    |
+| returns     | The new `Wallet` object.                                    |
 
 > Example
 
@@ -55,9 +55,9 @@ Wallet.connect(provider: Provider): Wallet
 
 #### Inputs and outputs
 
-| Name     | Description                                 |
-| -------- | ------------------------------------------- |
-| provider | A zkSync node provider.                     |
+| Name     | Description                     |
+| -------- | ------------------------------- |
+| provider | A zkSync node provider.         |
 | returns  | A new zkSync `Wallet` instance. |
 
 > Example
@@ -81,9 +81,9 @@ Wallet.connectToL1(provider: ethers.providers.Provider): Wallet
 
 #### Inputs and outputs
 
-| Name     | Description                                   |
-| -------- | --------------------------------------------- |
-| provider | An Ethereum node provider.                    |
+| Name     | Description                                                       |
+| -------- | ----------------------------------------------------------------- |
+| provider | An Ethereum node provider.                                        |
 | returns  | A new zkSync `Wallet` instance that is connected to L1 `provider` |
 
 > Example
@@ -141,11 +141,11 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 
 #### Inputs and outputs
 
-| Name                | Description                                                                                                   |
-| ------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Name      | Description                                                                                                   |
+| --------- | ------------------------------------------------------------------------------------------------------------- |
 | token?    | The address of the token. ETH by default.                                                                     |
 | blockTag? | The block the balance should be checked on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The amount of the token the `Wallet` has.                                                                     |
+| returns   | The amount of the token the `Wallet` has.                                                                     |
 
 > Example
 
@@ -176,11 +176,11 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 
 #### Inputs and outputs
 
-| Name                | Description                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------- |
+| Name      | Description                                                                                 |
+| --------- | ------------------------------------------------------------------------------------------- |
 | token?    | The address of the token. ETH by default.                                                   |
 | blockTag? | The block the balance should be checked on. The latest processed one is the default option. |
-| returns             | The amount of the token the `Wallet` has on Ethereum.                                       |
+| returns   | The amount of the token the `Wallet` has on Ethereum.                                       |
 
 > Example
 
@@ -196,16 +196,15 @@ const unconnectedWallet = new Wallet(PRIVATE_KEY);
 const wallet = unconnectedWallet.connect(zkSyncProvider).connectToL1(ethereumProvider);
 const USDC_ADDRESS = "<USDC_ADDRESS>";
 
-
 async function getBalance() {
- // Get balance in Big Number
- console.log(await wallet.getBalanceL1(USDC_ADDRESS));
+  // Get balance in Big Number
+  console.log(await wallet.getBalanceL1(USDC_ADDRESS));
 
- // Gett balance in ETH formatted
- console.log(utils.formatEther(await wallet.getBalanceL1()));
+  // Gett balance in ETH formatted
+  console.log(utils.formatEther(await wallet.getBalanceL1()));
 }
 
-getBalance()
+getBalance();
 ```
 
 ### Getting a nonce
@@ -218,10 +217,10 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 
 #### Inputs and outputs
 
-| Name                | Description                                                                                             |
-| ------------------- | ------------------------------------------------------------------------------------------------------- |
+| Name      | Description                                                                                             |
+| --------- | ------------------------------------------------------------------------------------------------------- |
 | blockTag? | The block the nonce should be got on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | Account's nonce number.                                                               |
+| returns   | Account's nonce number.                                                                                 |
 
 > Example
 
@@ -253,20 +252,19 @@ async transfer(tx: {
 
 #### Inputs and outputs
 
-| Name                 | Description                                             |
-| -------------------- | ------------------------------------------------------- |
-| tx.to                | The address of the recipient.                           |
-| tx.amount            | The amount of the token to transfer.                    |
-| token?     | The address of the token. `ETH` by default.             |
-| overrides? | **zkSync** transaction overrides. May be used to pass l2 `gasLimit`, `gasPrice`,  `value`, etc.|
-| returns              | A `TransactionResponse` object                          |
+| Name       | Description                                                                                    |
+| ---------- | ---------------------------------------------------------------------------------------------- |
+| tx.to      | The address of the recipient.                                                                  |
+| tx.amount  | The amount of the token to transfer.                                                           |
+| token?     | The address of the token. `ETH` by default.                                                    |
+| overrides? | **zkSync** transaction overrides. May be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc. |
+| returns    | A `TransactionResponse` object                                                                 |
 
 > Example
 
 ```typescript
 import { Wallet, Provider } from "zksync-web3";
 import { ethers } from "ethers";
-
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
@@ -278,13 +276,13 @@ const recipient = Wallet.createRandom();
 
 // We transfer 0.01 ETH to the recipient and pay the fee in USDC
 const transferHandle = wallet.transfer({
-    to: recipient.address,
-    amount: ethers.utils.parseEther("0.01"),
+  to: recipient.address,
+  amount: ethers.utils.parseEther("0.01"),
 });
 
 const tx = await transferHandle;
 
-console.log(`The sum of ${ethers.utils.formatEther(tx.value)} ETH was transfered to ${tx.to}`)
+console.log(`The sum of ${ethers.utils.formatEther(tx.value)} ETH was transfered to ${tx.to}`);
 ```
 
 ### Initiating a withdrawal to L1
@@ -299,14 +297,14 @@ async withdraw(transaction: {
 }): Promise<TransactionResponse>
 ```
 
-| Name                     | Description                                             |
-| ------------------------ | ------------------------------------------------------- |
-| tx.to                    | The address of the recipient on L1.                     |
-| tx.amount                | The amount of the token to transfer.                    |
-| token?         | The address of the token. `ETH` by default.             |
-| bridgeAddress? | The address of the bridge contract to be used.          |
-| overrides?     | **zkSync** transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc.    |
-| returns                  | A `TransactionResponse` object                          |
+| Name           | Description                                                                        |
+| -------------- | ---------------------------------------------------------------------------------- |
+| tx.to          | The address of the recipient on L1.                                                |
+| tx.amount      | The amount of the token to transfer.                                               |
+| token?         | The address of the token. `ETH` by default.                                        |
+| bridgeAddress? | The address of the bridge contract to be used.                                     |
+| overrides?     | **zkSync** transaction overrides. May be used to pass `gasLimit`, `gasPrice`, etc. |
+| returns        | A `TransactionResponse` object                                                     |
 
 ### Retrieving the underlying L1 wallet
 
@@ -356,11 +354,11 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 
 #### Inputs and outputs
 
-| Name                | Description                                                                                                   |
-| ------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Name      | Description                                                                                                   |
+| --------- | ------------------------------------------------------------------------------------------------------------- |
 | token?    | The address of the token. ETH by default.                                                                     |
 | blockTag? | The block the balance should be checked on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The amount of the token the `Signer` has.                                                                     |
+| returns   | The amount of the token the `Signer` has.                                                                     |
 
 > Example
 
@@ -389,10 +387,10 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 
 #### Inputs and outputs
 
-| Name                | Description                                                                                             |
-| ------------------- | ------------------------------------------------------------------------------------------------------- |
+| Name      | Description                                                                                             |
+| --------- | ------------------------------------------------------------------------------------------------------- |
 | blockTag? | The block the nonce should be got on. `committed`, i.e. the latest processed one is the default option. |
-| returns             | The amount of the token the `Wallet` has.                                                               |
+| returns   | The amount of the token the `Wallet` has.                                                               |
 
 > Example
 
@@ -422,13 +420,13 @@ async transfer(tx: {
 
 #### Inputs and outputs
 
-| Name                 | Description                                             |
-| -------------------- | ------------------------------------------------------- |
-| tx.to                | The address of the recipient.                           |
-| tx.amount            | The amount of the token to transfer.                    |
-| token?     | The address of the token. `ETH` by default.             |
-| overrides? | **zkSync** transaction overrides. May be used to pass L2 `gasLimit`, `gasPrice`, etc.    |
-| returns              | An `ethers.ContractTransaction` object.                 |
+| Name       | Description                                                                           |
+| ---------- | ------------------------------------------------------------------------------------- |
+| tx.to      | The address of the recipient.                                                         |
+| tx.amount  | The amount of the token to transfer.                                                  |
+| token?     | The address of the token. `ETH` by default.                                           |
+| overrides? | **zkSync** transaction overrides. May be used to pass L2 `gasLimit`, `gasPrice`, etc. |
+| returns    | An `ethers.ContractTransaction` object.                                               |
 
 > Example
 
@@ -467,19 +465,23 @@ const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 ```typescript
 async getMainContract(): Promise<Contract>
 ```
+
 ### Getting bridge contracts
-ERC-20 bridge `Contract` object: 
+
+ERC-20 bridge `Contract` object:
 
 ```typescript
 async getL1BridgeContracts(): Promise<{
     erc20: IL1Bridge;
 }>
 ```
+
 :::note
 
- there is no separate Ether bridge contract, [Main contract](./accounts.md#getting-the-zksync-l1-smart-contract) is used instead.
+there is no separate Ether bridge contract, [Main contract](./accounts.md#getting-the-zksync-l1-smart-contract) is used instead.
 
- :::
+:::
+
 #### Inputs and outputs
 
 | Name    | Description                                      |
@@ -508,11 +510,11 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 
 #### Inputs and outputs
 
-| Name                | Description                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------- |
+| Name      | Description                                                                                 |
+| --------- | ------------------------------------------------------------------------------------------- |
 | token?    | The address of the token. ETH by default.                                                   |
 | blockTag? | The block the balance should be checked on. The latest processed one is the default option. |
-| returns             | The amount of the token the `L1Signer` has on Ethereum.                                     |
+| returns   | The amount of the token the `L1Signer` has on Ethereum.                                     |
 
 > Example
 

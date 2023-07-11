@@ -1,9 +1,10 @@
 # Getting started
 
 ::: warning
+
 - Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`.
 - For more information, read the [changelog](../../reference/troubleshooting/changelog.md#hardhat-plugins-update-feb-24th-2023).
-:::
+  :::
 
 ## Concept
 
@@ -33,11 +34,11 @@ To interact with the zkSync network users need to know the endpoint of the opera
 
 ```typescript
 // Currently, only one environment is supported.
-import { Wallet, Provider } from 'zksync-web3';
+import { Wallet, Provider } from "zksync-web3";
 
-  const provider = new Provider('https://testnet.era.zksync.dev');
-  // Private key of the account to connect
-  const wallet = new Wallet('<WALLET-PRIVATE-KEY>').connect(provider);
+const provider = new Provider("https://testnet.era.zksync.dev");
+// Private key of the account to connect
+const wallet = new Wallet("<WALLET-PRIVATE-KEY>").connect(provider);
 ```
 
 **Note:** Currently, only `goerli` network is supported.
@@ -72,7 +73,7 @@ const deposit = await zkSyncWallet.deposit({
 });
 ```
 
-**NOTE:** Each token inside zkSync has an address. If `ERC-20` tokens are being bridged, you should supply the token's L1 address in the `deposit` function, or zero address (`0x0000000000000000000000000000000000000000`) if you want to deposit ETH. Note, that for the `ERC-20`      tokens the address of their corresponding L2 token will be different from the one on Ethereum.
+**NOTE:** Each token inside zkSync has an address. If `ERC-20` tokens are being bridged, you should supply the token's L1 address in the `deposit` function, or zero address (`0x0000000000000000000000000000000000000000`) if you want to deposit ETH. Note, that for the `ERC-20` tokens the address of their corresponding L2 token will be different from the one on Ethereum.
 
 After the transaction is submitted to the Ethereum node, its status can be tracked using the transaction handle:
 
@@ -143,7 +144,7 @@ const withdrawL2 = await zkSyncWallet.withdraw({
 });
 ```
 
-Assets will be withdrawn to the target wallet(if  do not define  the `to` address in the `withdraw` method's argument - the sender address will be chosen as a destination) after the validity proof of the zkSync block with this transaction is enerated and verified by the mainnet contract.
+Assets will be withdrawn to the target wallet(if do not define the `to` address in the `withdraw` method's argument - the sender address will be chosen as a destination) after the validity proof of the zkSync block with this transaction is enerated and verified by the mainnet contract.
 
 It is possible to wait until the validity proof verification is complete:
 

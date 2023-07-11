@@ -8,9 +8,9 @@ This section of our documentation provides comprehensive information on the conc
 - [zkSync Era basics](./concepts/zkSync.md): Explore the fundamental concepts of the zkSync Era.
 - [Hyperscaling](./concepts/hyperscaling.md): Delve into the mechanisms and impacts of hyperscaling.
 - [Transactions](./concepts/transactions.md): Learn about the transactions within zkSync Era.
-- [Blocks](./concepts/blocks.md): Understand the role and structure of blocks in zkSync Era. 
+- [Blocks](./concepts/blocks.md): Understand the role and structure of blocks in zkSync Era.
 - [Fee mechanism](./concepts/fee-model.md): Discover how the system handles transaction fees.
-- [Finality](./concepts/finality.md): Learn about finality on zkSync Era. 
+- [Finality](./concepts/finality.md): Learn about finality on zkSync Era.
 - [Account abstraction support](./concepts/account-abstraction.md): Discover the benefits and applications of account abstraction.
 - [Bridging assets](./concepts/bridging-asset.md): Learn about the mechanisms for bridging assets.
 - [L1 / L2 interoperability](./concepts/l1-l2-interop.md): Understand the interactions and compatibility between L1 and L2.
@@ -18,7 +18,7 @@ This section of our documentation provides comprehensive information on the conc
 ## Architecture
 
 - [Differences with Ethereum](./architecture/differences-with-ethereum.md): Compare and contrast the current system's architecture with that of Ethereum.
-- [Smart contract development](./architecture/contract-development.md): Explore the tools and languages supported on zkSync Era for contract development. 
+- [Smart contract development](./architecture/contract-development.md): Explore the tools and languages supported on zkSync Era for contract development.
 - [Contract deployment](./architecture/contract-deployment.md): Understand how to successfully deploy smart contracts.
 - [System contracts](./architecture/system-contracts.md): Learn about the system-level contracts and their roles.
 - [Handling events](./architecture/events.md): Discover how the system processes and reacts to events.
