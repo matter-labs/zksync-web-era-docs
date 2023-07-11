@@ -75,9 +75,9 @@ The Basechain is the main Hyperchain instance of zkSync Era (the L2 instance). I
 
 The Basechain is not special in any particular way except that it settles its blocks directly on the L1.
 
-## How can Hyperchains be parametrized?
+## How can Hyperchains be customized?
 
-Main customization options to be provided by our Hyperchain SDK are explained below. Developers are free to implement their own components and customizations, of course.
+The main customization options to be provided by the [ZK Stack](https://blog.matter-labs.io/introduction-to-hyperchains-fdb33414ead7) are explained below. Developers are free to implement their own components and customizations, of course.
 
 ### Sequencing transactions
 
