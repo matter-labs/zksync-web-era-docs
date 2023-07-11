@@ -8,6 +8,15 @@ The In-memory node uses an in-memory database for storing state information and 
 
 You can visit the `era-test-node` repository [here](https://github.com/matter-labs/era-test-node) to learn more.
 
+## Prerequisites 
+
+Before you get started, there are a few prerequisites to consider. Ensure that your development environment meets the following requirements:
+
+- **Rust:** Since `era-test-node` is written in Rust, you need to have Rust installed on your machine. You can download Rust from [here](https://www.rust-lang.org/tools/install).
+- **Other Dependencies:** This crate relies on `rocksDB` for its operation. If you encounter any compile errors due to `rocksDB`, you might also need to install `cmake`, `pkg-config`, `libssl-dev`, and `clang` using the command `apt-get install -y cmake pkg-config libssl-dev clang`.
+
+After checking all these prerequisites, you should be ready to use the `era-test-node`. Please keep in mind that `era-test-node` is still in its **alpha** stage, so some features might not be fully supported yet.
+
 ## Installing and setting up `era-test-node`
 
 Begin by installing `era-test-node` using the command:
@@ -17,12 +26,6 @@ cargo install --git https://github.com/matter-labs/era-test-node.git
 ```
 
 Rust should install it in the `~/.cargo/bin` directory.
-
-If you encounter compile errors due to rocksDB, install additional packages using:
-
-```bash
-apt-get install -y cmake pkg-config libssl-dev clang
-```
 
 To start the node, execute:
 
