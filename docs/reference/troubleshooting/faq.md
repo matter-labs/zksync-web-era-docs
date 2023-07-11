@@ -134,32 +134,13 @@ While all zero knowledge rollup blockchains share the underlying technology of c
 
 ## Which Wallets are supported?
 
-At the moment, we support any Ethereum-based wallet. By default, the provided option on zkSync Era portal is Metamask - besides connecting automatically, you can add zkSync network to your Metamask manually:
-
-**Mainnet network info**
-
-- Network Name: `zkSync Era Mainnet`
-- RPC URL: `https://mainnet.era.zksync.io`
-- Chain ID: `324`
-- Currency Symbol: `ETH`
-- Block Explorer URL: `https://explorer.zksync.io/`
-- WebSocket URL: `wss://mainnet.era.zksync.io/ws`
-
-
-**Testnet network info**
-
-- Network Name: `zkSync Era Testnet`
-- RPC URL: `https://testnet.era.zksync.dev`
-- Chain ID: `280`
-- Currency Symbol: `ETH`
-- Block Explorer URL: `https://goerli.explorer.zksync.io/`
-- WebSocket URL: `wss://testnet.era.zksync.dev/ws`
+At the moment, we support any Ethereum-based wallet. By default, the provided option on zkSync Era portal is Metamask - besides connecting automatically, you can add zkSync network to your Metamask manually by following the instructions in the [interacting with zkSync Era page](../../dev/building-on-zksync/interacting.md#connecting-to-zksync-era-on-metamask).
 
 ## How do I Request Funds for Testnet?
 
-To access the testnet funds you can use ([Faucet](https://goerli.portal.zksync.io/faucet)) by tweeting about us and get some tokens. Make sure that Twitter message contains your Ethereum address to which we’ll send funds and that it’s not your main Ethereum account. The faucet will not work with new Twitter accounts & accounts without avatar.
+To access the testnet funds you can use the [official faucet](https://goerli.portal.zksync.io/faucet)) to get some testnet ETH and tokens.
 
-Alternatively, you can use [our bridge](https://goerli.portal.zksync.io/bridge) to bridge ETH from Goerli to zkSync Era Testnet.
+Alternatively, you can use any other Goerli faucet and [our bridge](https://goerli.portal.zksync.io/bridge) to bridge ETH from Goerli to zkSync Era Testnet.
 
 ## How long does it take to complete a deposit transaction?
 
@@ -188,7 +169,7 @@ The current value is currently set at roughly 2^32 gas. <br>
 
 Yes, the bridge is two-way. You can withdraw your funds back to Ethereum. The withdrawal transaction will take ~24 hours, depending on the usage of the zkSync Era network.
 
-## What is a testnet ReGenesis?
+## What is a testnet regenesis?
 
 Sometimes, the team working on zkSync Era will initiate a regenesis on testnet - a restart of the blockchain which will introduce upgrades and return the state to the initial point.
 
@@ -196,7 +177,7 @@ Sometimes, the team working on zkSync Era will initiate a regenesis on testnet -
 
 If you're using Windows, make sure to use WSL 2, since WSL 1 is known to cause trouble.
 
-Additionally, if you use WSL 2, make sure that your project is located in the Linux filesystem, since accessing NTFS partitions from WSL is very slow. 
+Additionally, if you use WSL 2, make sure that your project is located in the Linux filesystem, since accessing NTFS partitions from WSL is very slow.
 
 ## Proof sampling on testnet
 

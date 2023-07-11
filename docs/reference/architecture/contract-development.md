@@ -24,7 +24,6 @@ Follow the [best practises and considerations](../../dev/building-on-zksync/best
 
 Currently only Vyper 0.3.3 and 0.3.9 versions are supported. Versions 0.3.4 to 0.3.8 (both included) are not supported.
 
-
 ## Compilers
 
 Although you can write smart contracts in both Solidity and Vyper, compiling these contracts to our zkEVM bytecode requires special compilers:

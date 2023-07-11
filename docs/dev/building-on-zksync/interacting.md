@@ -42,7 +42,6 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - Block Explorer URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://mainnet.era.zksync.io/ws`
 
-
 **Testnet network info**
 
 - Network Name: `zkSync Era Testnet`

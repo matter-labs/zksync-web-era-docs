@@ -21,13 +21,17 @@ The plugin is used with [@nomiclabs/hardhat-vyper](https://www.npmjs.com/package
 
 ::: code-tabs
 @tab:active yarn
+
 ```bash
 yarn add -D @matterlabs/hardhat-zksync-vyper @nomiclabs/hardhat-vyper
 ```
+
 @tab npm
+
 ```bash
 npm i -D @matterlabs/hardhat-zksync-vyper @nomiclabs/hardhat-vyper
 ```
+
 :::
 
 ### 3. Update the `hardhat.config.ts` file
@@ -58,7 +62,7 @@ const config: HardhatUserConfig = {
       zksync: true,
     },
   },
-  // Currently only Vyper v0.3.3 and v0.3.9 versions are supported. 
+  // Currently only Vyper v0.3.3 and v0.3.9 versions are supported.
   vyper: {
     version: "0.3.3",
   },
@@ -71,20 +75,20 @@ export default config;
 
 ::: info zero-config
 
-`hardhat-zksync-vyper` v0.2.0 introduced a default configuration so all  parameters are optional.
+`hardhat-zksync-vyper` v0.2.0 introduced a default configuration so all parameters are optional.
 
 :::
 
 Any configuration parameters should be added inside a `zkvyper` property in the `hardhat.config.ts` file:
 
 - `version`: The `zkvyper` compiler version. Default value is `latest`. Find the latest compiler versions in the [zkvyper repo](https://github.com/matter-labs/zkvyper-bin).
-- `compilerSource`: Indicates the compiler source and can be either `binary`. (A `docker` option is no longer recommended). If there is no previous installation, the plugin automatically downloads one. 
+- `compilerSource`: Indicates the compiler source and can be either `binary`. (A `docker` option is no longer recommended). If there is no previous installation, the plugin automatically downloads one.
 - `compilerPath`: Optional field with the path to the `zkvyper` binary. By default, the binary in `$PATH` is used.
 - `libraries`: Define any non-inlinable libraries your contracts use as dependencies here. Learn more about [compiling libraries](./compiling-libraries.md).
 
 ### 4. Create Vyper contract
 
-The [zkSync Era cli](../../tools/zksync-cli/README.md) generates a `contracts` folder which includes a `Greeter.sol` contract. 
+The [zkSync Era cli](../../tools/zksync-cli/README.md) generates a `contracts` folder which includes a `Greeter.sol` contract.
 
 - Delete `Greeter.sol` from the `contracts/` directory.
 - Add the equivalent `Greeter.vy` Vyper contract:
@@ -115,31 +119,36 @@ def greet() -> String[100]:
     return self.greeting
 ```
 
-### 5. Compile the contract 
-
+### 5. Compile the contract
 
 ::: code-tabs
 @tab:active yarn
+
 ```bash
 yarn hardhat compile
 ```
+
 @tab npm
+
 ```bash
 npx hardhat compile
 ```
+
 :::
 
 ### 6. Create deployment script
 
-First update the `use-greeter.ts` script, supplied by the CLI in the `deploy/` directory. 
+First update the `use-greeter.ts` script, supplied by the CLI in the `deploy/` directory.
 
 Alter this line:
+
 ```
 // Load contract artifact. Ensure to compile first!
 import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.sol/Greeter.json";
 ```
 
 To aim at our Vyper contract:
+
 ```
 // Load contract artifact. Ensure to compile first!
 import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.vy/Greeter.json";

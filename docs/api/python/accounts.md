@@ -25,9 +25,6 @@ signer = PrivateKeyEthSigner(account, chain_id)
 
 ```
 
-
-
-
 ## sign_typed_data
 
 The signer is used to generate the signature of the provided transaction based on your account(your private key).

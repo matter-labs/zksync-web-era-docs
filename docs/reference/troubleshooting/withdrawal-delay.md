@@ -25,7 +25,7 @@ There are several reasons why your withdrawal may be successful but you cannot s
 
 The **Transactions** section in Etherscan displays transactions between two Ethereum addresses. Each transaction has details such as the transaction hash, the block number, the timestamp, the sender and receiver addresses, the amount of Ether or tokens involved, and the transaction fee. These transactions are confirmed by the network and are typically sent from one external address to another.
 
-On the other hand, **Internal Transactions** are initiated by a smart contract or other internal code execution within the Ethereum network. Although these transactions can be prompted by user activity, they are not sent directly from one address to another but are instead part of the internal workings of a smart contract. Internal transactions may involve the transfer of ETH or ERC20 tokens between different addresses within the contract. 
+On the other hand, **Internal Transactions** are initiated by a smart contract or other internal code execution within the Ethereum network. Although these transactions can be prompted by user activity, they are not sent directly from one address to another but are instead part of the internal workings of a smart contract. Internal transactions may involve the transfer of ETH or ERC20 tokens between different addresses within the contract.
 
 ::: tip
 Withdrawals from the zkSync Era network are typically internal transactions managed by the [zkSync Era Diamond Proxy](https://etherscan.io/address/0x32400084c286cf3e17e7b677ea9583e60a000324) contract. These transactions are recorded in the **Internal Transactions** section in Etherscan due to their internal nature.
