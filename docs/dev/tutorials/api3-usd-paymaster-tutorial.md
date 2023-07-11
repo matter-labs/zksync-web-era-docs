@@ -27,9 +27,10 @@ Within a paymaster, price oracles provide price data on-chain for execution.
 For this paymaster tutorial, we use dAPIs to get the price of [ETH/USD](https://market.api3.org/dapis/zksync-goerli-testnet/ETH-USD) and [USDC/USD](https://market.api3.org/dapis/zksync-goerli-testnet/USDC-USD) datafeeds, and then calculate gas in USDC value so that users can pay for their transactions with USDC.
 
 ::: note
-- If you want to use an ERC20 token other than USDC, change the dAPIs used in the paymaster. 
+
+- If you want to use an ERC20 token other than USDC, change the dAPIs used in the paymaster.
 - For example, if you want to use DAI, use the [DAI/USD](https://market.api3.org/dapis/zksync-goerli-testnet/DAI-USD) dAPI instead of USDC/USD.
-:::
+  :::
 
 ## Project repo
 
@@ -49,7 +50,7 @@ yarn add global zksync-cli@latest
 zksync-cli create paymaster-dapi
 ```
 
-This creates a new zkSync Era project called `paymaster-dapi` with a basic `Greeter` contract. 
+This creates a new zkSync Era project called `paymaster-dapi` with a basic `Greeter` contract.
 
 3. `cd` into the project directory:
 
@@ -104,8 +105,7 @@ The `Greeter.sol` contract is already in the `contracts` directory. This is the 
 
 ### 2. Paymaster solidity contract
 
-Create `MyPaymaster.sol` in the `/contracts` directory. 
-
+Create `MyPaymaster.sol` in the `/contracts` directory.
 
 We are going to use a skeleton paymaster contract and add the required functionality to it.
 
@@ -122,7 +122,7 @@ import {TransactionHelper, Transaction} from "@matterlabs/zksync-contracts/l2/sy
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 
 contract MyPaymaster is IPaymaster {
-    
+
     modifier onlyBootloader() {
         require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, "Only bootloader can call this method");
         // Continue execution if called from the bootloader.
@@ -132,16 +132,16 @@ contract MyPaymaster is IPaymaster {
     constructor(address _erc20) {
         allowedToken = _erc20;
     }
-    
+
     function setDapiProxy(
         address _USDCproxy,
         address _ETHproxy
     ) public onlyOwner {
          // TO BE IMPLEMENTED
     }
-    
+
     function readDapi(address _dapiProxy) public view returns (uint256) {
-         // TO BE IMPLEMENTED 
+         // TO BE IMPLEMENTED
     }
 
     function validateAndPayForPaymasterTransaction  (
@@ -190,7 +190,7 @@ contract MyPaymaster is IPaymaster, Ownable {
 
 ```solidity
     // Set dapi proxies for the allowed token/s
-    function setDapiProxy(address _USDCproxy, address _ETHproxy) 
+    function setDapiProxy(address _USDCproxy, address _ETHproxy)
     public onlyOwner {
         USDCdAPIProxy = _USDCproxy;
         ETHdAPIProxy = _ETHproxy;
@@ -342,7 +342,7 @@ pragma solidity ^0.8.8;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-import {IPaymaster, ExecutionResult, PAYMASTER_VALIDATION_SUCCESS_MAGIC} 
+import {IPaymaster, ExecutionResult, PAYMASTER_VALIDATION_SUCCESS_MAGIC}
 from  "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol";
 import {IPaymasterFlow} from  "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol";
 import {TransactionHelper, Transaction} from "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol";
@@ -372,7 +372,7 @@ contract MyPaymaster is IPaymaster, Ownable {
     }
 
     // Set dapi proxies for the allowed token/s
-    function setDapiProxy(address _USDCproxy, address _ETHproxy) 
+    function setDapiProxy(address _USDCproxy, address _ETHproxy)
     public onlyOwner {
         USDCdAPIProxy = _USDCproxy;
         ETHdAPIProxy = _ETHproxy;
@@ -495,7 +495,7 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-require('dotenv').config();
+require("dotenv").config();
 // load wallet private key from env file
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
 
@@ -532,13 +532,13 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Setting the dAPIs in Paymaster. Head over to the API3 Market (https://market.api3.org) to verify dAPI proxy contract addresses and whether they're funded or not.
   const ETHUSDdAPI = "0x28ce555ee7a3daCdC305951974FcbA59F5BdF09b";
   const USDCUSDdAPI = "0x946E3232Cc18E812895A8e83CaE3d0caA241C2AB";
-  const setProxy = paymaster.setDapiProxy(USDCUSDdAPI, ETHUSDdAPI)
-  await (await setProxy).wait()
-  console.log("dAPI Proxies Set!")
+  const setProxy = paymaster.setDapiProxy(USDCUSDdAPI, ETHUSDdAPI);
+  await (await setProxy).wait();
+  console.log("dAPI Proxies Set!");
 
   // Deploying the Greeter contract
   const greeterContractArtifact = await deployer.loadArtifact("Greeter");
-  const oldGreeting = "old greeting"
+  const oldGreeting = "old greeting";
   const deployGreeter = await deployer.deploy(greeterContractArtifact, [oldGreeting]);
   console.log(`Greeter contract address: ${deployGreeter.address}`);
 
@@ -595,15 +595,16 @@ GREETER_CONTRACT=
 ```
 
 :::tip
-* Addresses and private keys are different on each run.
-* Make sure you delete the `artifacts-zk` and `cache-zk` folders before recompiling.
-:::
+
+- Addresses and private keys are different on each run.
+- Make sure you delete the `artifacts-zk` and `cache-zk` folders before recompiling.
+  :::
 
 ## Using the paymaster
 
 ### 1. Create paymaster script
 
-Create the `use-paymaster.ts` script in the `deploy` folder. 
+Create the `use-paymaster.ts` script in the `deploy` folder.
 
 ```ts
 import { ContractFactory, Provider, utils, Wallet } from "zksync-web3";
@@ -640,9 +641,9 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Obviously this step is not required, but it is here purely to demonstrate that indeed the wallet has no ether.
   const ethBalance = await emptyWallet.getBalance();
-    if (!ethBalance.eq(0)) {
-      throw new Error("The wallet is not empty");
-    }
+  if (!ethBalance.eq(0)) {
+    throw new Error("The wallet is not empty");
+  }
 
   const erc20Balance = await emptyWallet.getBalance(TOKEN_ADDRESS);
   console.log(`ERC20 balance of the user before tx: ${erc20Balance}`);
@@ -656,48 +657,34 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const deployer = new Deployer(hre, emptyWallet);
   const paymasterArtifact = await deployer.loadArtifact("MyPaymaster");
 
-  const PaymasterFactory = new ContractFactory(
-    paymasterArtifact.abi,
-    paymasterArtifact.bytecode,
-    deployer.zkWallet
-  );
+  const PaymasterFactory = new ContractFactory(paymasterArtifact.abi, paymasterArtifact.bytecode, deployer.zkWallet);
   const PaymasterContract = PaymasterFactory.attach(PAYMASTER_ADDRESS);
 
   // Estimate gas fee for the transaction
-  const gasLimit = await greeter.estimateGas.setGreeting(
-    "new updated greeting",
-    {
-      customData: {
-        gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
-        paymasterParams: utils.getPaymasterParams(PAYMASTER_ADDRESS, {
-          type: "ApprovalBased",
-          token: TOKEN_ADDRESS,
-          // Set a large allowance just for estimation
-          minimalAllowance: ethers.BigNumber.from(`100000000000000000000`),
-          // Empty bytes as testnet paymaster does not use innerInput
-          innerInput: new Uint8Array(),
-        }),
-      },
-    }
-  );
+  const gasLimit = await greeter.estimateGas.setGreeting("new updated greeting", {
+    customData: {
+      gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+      paymasterParams: utils.getPaymasterParams(PAYMASTER_ADDRESS, {
+        type: "ApprovalBased",
+        token: TOKEN_ADDRESS,
+        // Set a large allowance just for estimation
+        minimalAllowance: ethers.BigNumber.from(`100000000000000000000`),
+        // Empty bytes as testnet paymaster does not use innerInput
+        innerInput: new Uint8Array(),
+      }),
+    },
+  });
 
   // Gas estimation:
   const fee = gasPrice.mul(gasLimit.toString());
   console.log(`Estimated ETH FEE (gasPrice * gasLimit): ${fee}`);
 
   // Calling the dAPI to get the ETH price:
-  const ETHUSD = await PaymasterContract.readDapi(
-    "0x28ce555ee7a3daCdC305951974FcbA59F5BdF09b"
-  );
-  const USDCUSD = await PaymasterContract.readDapi(
-    "0x946E3232Cc18E812895A8e83CaE3d0caA241C2AB"
-  );
+  const ETHUSD = await PaymasterContract.readDapi("0x28ce555ee7a3daCdC305951974FcbA59F5BdF09b");
+  const USDCUSD = await PaymasterContract.readDapi("0x946E3232Cc18E812895A8e83CaE3d0caA241C2AB");
 
   // Checks old allowance (for testing purposes):
-  const checkSetAllowance = await erc20.allowance(
-    emptyWallet.address,
-    PAYMASTER_ADDRESS
-  );
+  const checkSetAllowance = await erc20.allowance(emptyWallet.address, PAYMASTER_ADDRESS);
   console.log(`ERC20 allowance for paymaster : ${checkSetAllowance}`);
 
   console.log(`ETH/USD dAPI Value: ${ETHUSD}`);
@@ -720,27 +707,23 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   });
 
   await (
-    await greeter
-      .connect(emptyWallet)
-      .setGreeting(`new greeting updated at ${new Date().toUTCString()}`, {
-        // specify gas values
-        maxFeePerGas: gasPrice,
-        maxPriorityFeePerGas: 0,
-        gasLimit: gasLimit,
-        // paymaster info
-        customData: {
-          paymasterParams: paymasterParams,
-          gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
-        },
-      })
+    await greeter.connect(emptyWallet).setGreeting(`new greeting updated at ${new Date().toUTCString()}`, {
+      // specify gas values
+      maxFeePerGas: gasPrice,
+      maxPriorityFeePerGas: 0,
+      gasLimit: gasLimit,
+      // paymaster info
+      customData: {
+        paymasterParams: paymasterParams,
+        gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+      },
+    })
   ).wait();
 
   const newErc20Balance = await emptyWallet.getBalance(TOKEN_ADDRESS);
 
   console.log(`ERC20 Balance of the user after tx: ${newErc20Balance}`);
-  console.log(
-    `Transaction fee paid in ERC20 was ${erc20Balance.sub(newErc20Balance)}`
-  );
+  console.log(`Transaction fee paid in ERC20 was ${erc20Balance.sub(newErc20Balance)}`);
   console.log(`Message in contract now is: ${await greeter.greet()}`);
 }
 ```

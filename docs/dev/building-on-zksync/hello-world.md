@@ -46,18 +46,18 @@ Learn more about the [zkSync Era plugins for Hardhat here](../../tools/hardhat/R
 ```sh
 cd greeter-example
 ```
+
 ::: info
 The project uses the `dotenv` package to load your private key which is required to deploy and interact with smart contracts. The `.env` file is included in `.gitignore` so it won't upload to a repository.
 :::
 
-4. To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key. 
+4. To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
 
 ```text
 WALLET_PRIVATE_KEY=abcdef12345....
 ```
 
 ### Compile and deploy the Greeter contract
-
 
 We store all the smart contracts' `*.sol` files in the `contracts` folder. The `deploy` folder contains all scripts related to deployments.
 
@@ -105,8 +105,7 @@ dotenv.config();
 // load wallet private key from env file
 const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
 
-if (!PRIVATE_KEY)
-  throw "⛔️ Private key not detected! Add it to the .env file!";
+if (!PRIVATE_KEY) throw "⛔️ Private key not detected! Add it to the .env file!";
 
 // An example of a deploy script that will deploy and call a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
@@ -141,9 +140,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const greeterContract = await deployer.deploy(artifact, [greeting]);
 
   //obtain the Constructor Arguments
-  console.log(
-    "Constructor args:" + greeterContract.interface.encodeDeploy([greeting])
-  );
+  console.log("Constructor args:" + greeterContract.interface.encodeDeploy([greeting]));
 
   // Show the contract info.
   const contractAddress = greeterContract.address;
@@ -167,19 +164,18 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-4. Create the following deployment script in `deploy/deploy.ts`, replacing `<WALLET-PRIVATE-KEY>` with your own:
-
-5. Deploy the contract.
+Run the deployment script with:
 
 ```sh
-yarn hardhat deploy-zksync
+yarn hardhat deploy-zksync --script deploy-greeter.ts
 ```
 
 ::: tip Request-Rate Exceeded message
-- This message is caused by using the default RPC endpoints provided by ethers. 
-- To avoid this, use your own Goerli RPC endpoint. 
+
+- This message is caused by using the default RPC endpoints provided by ethers.
+- To avoid this, use your own Goerli RPC endpoint.
 - Find multiple [node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
-:::
+  :::
 
 You should see something like this:
 
@@ -195,17 +191,18 @@ contracts/Greeter.sol:Greeter verified! VerificationId: 26642
 
 **Congratulations! You have deployed and verified a smart contract to zkSync Era Testnet** 🎉
 
-Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search with the contract address to confirm the deployment. 
+Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search with the contract address to confirm the deployment.
 
 ## Build the front-end dApp
 
 ### Set up the project
 
 :::info
-- We use the `Vue` web framework for the tutorial front end (the process is similar to other frameworks). 
-- In order to focus on the `zksync-web3` SDK, we provide a prebuilt template. 
+
+- We use the `Vue` web framework for the tutorial front end (the process is similar to other frameworks).
+- In order to focus on the `zksync-web3` SDK, we provide a prebuilt template.
 - Once set up, we add code that interacts with the smart contract we just deployed.
-:::
+  :::
 
 1. Clone the template and `cd` into the folder.
 
@@ -249,7 +246,7 @@ When bridging from mainnet to a smart account (e.g. Argent) on zkSync Era, you m
 
 ### Project structure
 
-In the `./src/App.vue` file, in the `functions:` section, you will see template code that stores the application. 
+In the `./src/App.vue` file, in the `functions:` section, you will see template code that stores the application.
 
 Most of the code is provided. You have to complete the TODO: sections.
 
@@ -317,9 +314,10 @@ const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
 ### Add the ABI and contract address
 
 :::info
-- To interact with a smart contract deployed to zkSync, we need its ABI. 
+
+- To interact with a smart contract deployed to zkSync, we need its ABI.
 - ABI stands for Application Binary Interface and is json which describes the contract's variable and function, names and types.
-:::
+  :::
 
 1. Create the `./src/abi.json` file. You may find one in the repo, but it's good practice to use the one you created instead.
 
@@ -439,7 +437,7 @@ After connecting the Metamask wallet to zkSync Era Testnet, you should see the f
 
 ![img](../../assets/images/start-1.png)
 
-The **Select token** dropdown menu allows you to choose which token to pay fees with. 
+The **Select token** dropdown menu allows you to choose which token to pay fees with.
 
 ### Retrieving token balance and transaction fee
 
@@ -535,18 +533,18 @@ Read more about `wallet_requestPermissions`, in the [MetaMask documentation](htt
 
 ### Paying fees using testnet paymaster
 
-The zkSync Era account abstraction feature allows you to integrate [paymasters](../../reference/concepts/account-abstraction.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly. 
+The zkSync Era account abstraction feature allows you to integrate [paymasters](../../reference/concepts/account-abstraction.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly.
 
 We will use the [testnet paymaster](../../reference/concepts/account-abstraction.md#testnet-paymaster) that is provided on all zkSync Era testnets.
 
 :::info
-**The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH. 
+**The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH.
 
 This means that transaction fees in tokens with fewer decimals than ETH will be bigger; for example, USDC which has only 6 decimals. This is a known behaviour of the testnet paymaster, which was built for demonstration purposes only.
 :::
 
 ::: warning Paymasters on mainnet
-The testnet [paymaster](https://era.zksync.io/docs/dev/tutorials/custom-paymaster-tutorial.html#building-custom-paymaster) is purely for demonstrating this feature and won't be available on mainnet. 
+The testnet [paymaster](https://era.zksync.io/docs/dev/tutorials/custom-paymaster-tutorial.html#building-custom-paymaster) is purely for demonstrating this feature and won't be available on mainnet.
 
 When integrating your protocol on mainnet, you should follow the documentation of the paymaster you use, or create your own.
 :::
@@ -615,7 +613,7 @@ async getOverrides() {
 }
 ```
 
-4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../reference/concepts/account-abstraction.md#testnet-paymaster) and return the needed overrides. 
+4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../reference/concepts/account-abstraction.md#testnet-paymaster) and return the needed overrides.
 
 Copy/paste the following complete function:
 

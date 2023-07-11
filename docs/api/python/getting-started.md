@@ -3,7 +3,7 @@
 In this guide we will demonstrate how to:
 
 1. Deposit ETH from Ethereum into zkSync Era.
-2. Transfer ETH on zkSync Era. 
+2. Transfer ETH on zkSync Era.
 3. Withdraw ETH from zkSync Era to Ethereum.
 4. Transfer token on zkSync Era.
 5. Deploy a smart contract using create opcode.
@@ -41,11 +41,12 @@ sdk = ZkSyncBuilder.build("https://testnet.era.zksync.dev")
 
 ## Examples
 
-Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-python/tree/master/examples). Examples are configured to interact with `zkSync` and `Goerli` test networks.  
+Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-python/tree/master/examples). Examples are configured to interact with `zkSync` and `Goerli` test networks.
 
 ### Check balance
 
 Here is an example of how to check a balance on zkSync Era.
+
 ```python
 from eth_account import Account
 from eth_account.signers.local import LocalAccount
@@ -162,8 +163,6 @@ if __name__ == "__main__":
     print(f"L1 transaction: {l1_tx_hash}")
     print(f"L2 transaction: {l2_tx_hash}")
 ```
-
-
 
 ### Transfer ETH
 
@@ -322,11 +321,13 @@ if __name__ == "__main__":
 
 ### Withdraw ETH
 
-Withdrawal are executed in 2 steps: 
- - `Withdraw`: Initiates withdrawal on L2. 
- - `Finalize withdrawal`: Finalized withdrawal on L1.
+Withdrawal are executed in 2 steps:
+
+- `Withdraw`: Initiates withdrawal on L2.
+- `Finalize withdrawal`: Finalized withdrawal on L1.
 
 #### Withdraw
+
 ```python
 import os
 
@@ -443,6 +444,7 @@ if __name__ == "__main__":
 ```
 
 #### Finalize withdrawal
+
 ```python
 import os
 
@@ -489,7 +491,7 @@ def finalize_withdraw(
 if __name__ == "__main__":
     # Get the private key from OS environment variables
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))
-    
+
     # Get the withdrawal transaction hash from OS environment variables
     WITHDRAW_TX_HASH = HexBytes.fromhex(os.environ.get("WITHDRAW_TX_HASH"))
 
@@ -523,6 +525,7 @@ if __name__ == "__main__":
 ### Transfer token
 
 Here is an example on how to transfer tokens on zkSync Era network.
+
 ```python
 import os
 
@@ -615,28 +618,25 @@ if __name__ == "__main__":
 
 ```
 
-
-
 ### Smart contract and smart account deployment
 
-With zkSync Era, you can deploy a contract using the create and create2 opcode, by simply building the contract into a binary 
+With zkSync Era, you can deploy a contract using the create and create2 opcode, by simply building the contract into a binary
 format and deploying it to the zkSync Era network.
-
 
 - [Storage](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/storage/Storage.sol): Contract without constructor.
 - [Incrementer](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/incrementer/Incrementer.sol): Contract with constructor.
-- [Demo](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/demo/Demo.sol): Contract that has a dependency on 
-[Foo](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/demo/Foo.sol) contract.
+- [Demo](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/demo/Demo.sol): Contract that has a dependency on
+  [Foo](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/demo/Foo.sol) contract.
 - [Token](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/custom_paymaster/token/Token.sol): custom ERC20 token.
-- [Paymaster](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/custom_paymaster/paymaster/Paymaster.sol): custom paymaster which provides payment of transaction fees in ERC20 tokens. 
+- [Paymaster](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/custom_paymaster/paymaster/Paymaster.sol): custom paymaster which provides payment of transaction fees in ERC20 tokens.
 
-There is a [user guide](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/README.md) on how to compile Solidity smart contracts using `zksolc` 
-compiler. `zksolc` compiler generates a `*.zbin` and a `combined.json` file that contains the bytecode and ABI of a smart contract. 
+There is a [user guide](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/README.md) on how to compile Solidity smart contracts using `zksolc`
+compiler. `zksolc` compiler generates a `*.zbin` and a `combined.json` file that contains the bytecode and ABI of a smart contract.
 
 #### Deploy a contract with create opcode
 
 To deploy the contract, the contract ABI is needed for calling methods in the standard Web3 way.
-`ConctractEncoder` is used to read the ABI and bytecode from the `combined.json` file. 
+`ConctractEncoder` is used to read the ABI and bytecode from the `combined.json` file.
 
 ```python
 import os
@@ -963,7 +963,7 @@ if __name__ == "__main__":
 
 #### Deploy a contract with dependency using create opcode
 
-In following example 
+In following example
 
 ```python
 import os

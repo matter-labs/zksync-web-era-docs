@@ -28,35 +28,34 @@ npm i -D @matterlabs/hardhat-zksync-upgradable
 
 After installing it, add the plugin to your `hardhat.config.ts` file:
 
-
 ```typescript
-import '@matterlabs/hardhat-zksync-solc';
-import '@matterlabs/hardhat-zksync-deploy';
+import "@matterlabs/hardhat-zksync-solc";
+import "@matterlabs/hardhat-zksync-deploy";
 // upgradable plugin
-import '@matterlabs/hardhat-zksync-upgradable';
+import "@matterlabs/hardhat-zksync-upgradable";
 
-import { HardhatUserConfig } from 'hardhat/config';
+import { HardhatUserConfig } from "hardhat/config";
 
 const config: HardhatUserConfig = {
-    zksolc: {
-        version: 'latest',
-        settings: {},
+  zksolc: {
+    version: "latest",
+    settings: {},
+  },
+  defaultNetwork: "zkSyncNetwork",
+  networks: {
+    goerli: {
+      zksync: false,
+      url: "http://localhost:8545",
     },
-    defaultNetwork: 'zkSyncNetwork',
-    networks: {
-        goerli: {
-            zksync: false,
-            url: 'http://localhost:8545',
-        },
-        zkSyncNetwork: {
-            zksync: true,
-            ethNetwork: 'goerli',
-            url: 'http://localhost:3050',
-        },
+    zkSyncNetwork: {
+      zksync: true,
+      ethNetwork: "goerli",
+      url: "http://localhost:3050",
     },
-    solidity: {
-        version: '0.8.19',
-    },
+  },
+  solidity: {
+    version: "0.8.19",
+  },
 };
 
 export default config;
@@ -110,19 +109,19 @@ Transparent upgradable proxies provide a way to upgrade a smart contract without
 To deploy a simple upgradable contract on zkSync Era local setup, first create a test wallet and add it to the new Deployer.
 
 ```typescript
-  // mnemonic for local node rich wallet
-  const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
-  const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+// mnemonic for local node rich wallet
+const testMnemonic = "stuff slice staff easily soup parent arm payment cotton trade scatter struggle";
+const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
 
-  const deployer = new Deployer(hre, zkWallet);
+const deployer = new Deployer(hre, zkWallet);
 ```
 
 After that, load the `Box` artifact and call the `deployProxy` method from the `zkUpgrades` hre property.
 
 ```typescript
-  const contractName = 'Box';
-  const contract = await deployer.loadArtifact(contractName);
-  await hre.zkUpgrades.deployProxy(deployer.zkWallet, contract, [42], { initializer: 'initialize' });
+const contractName = "Box";
+const contract = await deployer.loadArtifact(contractName);
+await hre.zkUpgrades.deployProxy(deployer.zkWallet, contract, [42], { initializer: "initialize" });
 ```
 
 The `deployProxy` method deploys your implementation contract on zkSync Era, deploys the proxy admin contract, and finally, deploys the transparent proxy.
@@ -130,30 +129,30 @@ The `deployProxy` method deploys your implementation contract on zkSync Era, dep
 ### Full deploy proxy script
 
 ```typescript
-import { Deployer } from '@matterlabs/hardhat-zksync-deploy';
-import { Wallet } from 'zksync-web3';
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+import { Wallet } from "zksync-web3";
 
 import * as hre from "hardhat";
 
 async function main() {
-    const contractName = 'Box';
-    console.log('Deploying ' + contractName + '...');
-    
-    // mnemonic for local node rich wallet
-    const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
-    const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+  const contractName = "Box";
+  console.log("Deploying " + contractName + "...");
 
-    const deployer = new Deployer(hre, zkWallet);
+  // mnemonic for local node rich wallet
+  const testMnemonic = "stuff slice staff easily soup parent arm payment cotton trade scatter struggle";
+  const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
 
-    const contract = await deployer.loadArtifact(contractName);
-    const box = await hre.zkUpgrades.deployProxy(deployer.zkWallet, contract, [42], { initializer: 'initialize' });
+  const deployer = new Deployer(hre, zkWallet);
 
-    await box.deployed();
-    console.log(contractName + ' deployed to:', box.address);
+  const contract = await deployer.loadArtifact(contractName);
+  const box = await hre.zkUpgrades.deployProxy(deployer.zkWallet, contract, [42], { initializer: "initialize" });
 
-    box.connect(zkWallet);
-    const value = await box.retrieve();
-    console.log('Box value is: ', value.toNumber());
+  await box.deployed();
+  console.log(contractName + " deployed to:", box.address);
+
+  box.connect(zkWallet);
+  const value = await box.retrieve();
+  console.log("Box value is: ", value.toNumber());
 }
 
 main().catch((error) => {
@@ -161,6 +160,7 @@ main().catch((error) => {
   process.exitCode = 1;
 });
 ```
+
 Run the script with:
 
 ::: code-tabs
@@ -184,10 +184,9 @@ npx hardhat run SCRIPT_FILE
 - deployProxy method (and other deploy/upgrade methods from the zkUpgrades) needs to know which wallet to use to deploy smart contracts.
 - For this reason, the wallet needs to have a configured provider that connects it to the specific zkSync network.
 - This provider is configured in the hardhat config file, by stating the RPC url of the network to connect to.
-:::
+  :::
 
 ### Hardhat config
-
 
 ```typescript
 defaultNetwork: 'zkSyncNetwork',
@@ -224,12 +223,13 @@ On the other hand, if you need to explicitly set the provider, do that with the 
 ## UUPS proxies
 
 :::warning
+
 - If you want to use the plugin's UUPS proxy functionality, use zksolc version >=1.3.9.
-:::
+  :::
 
 The UUPS proxy pattern is similar to the transparent proxy pattern, except that the upgrade is triggered via the logic contract instead of from the proxy contract.
 
-For the UUPS deployment example, we use a slightly modified smart contract called `BoxUups`. 
+For the UUPS deployment example, we use a slightly modified smart contract called `BoxUups`.
 
 ```typescript
 
@@ -267,10 +267,10 @@ contract BoxUups is Initializable, {
     event ValueChanged(uint256 newValue);
 }
 ```
+
 The main difference between the `Box` and `BoxUups` contracts is that the latter implements both `UUPSUpgradeable` and `OwnableUpgradeable` interfaces and has a special function `_authorizeUpgrade` which can only be called by the contract owner.
 
 You can find more info about how UUPS works in [OpenZeppelin's documentation.](https://docs.openzeppelin.com/contracts/4.x/api/proxy#transparent-vs-uups)
-
 
 To deploy the UUPS contract, use the same script as for the transparent upgradable proxy.
 
@@ -289,76 +289,76 @@ When you run the script, the plugin detects that the proxy type is UUPS, it exec
 
 ## Beacon proxies
 
-Beacon proxies are a more advanced form of proxy that use an intermediate contract (called the Beacon contract) to delegate calls to a specific implementation contract. 
+Beacon proxies are a more advanced form of proxy that use an intermediate contract (called the Beacon contract) to delegate calls to a specific implementation contract.
 
-Beacon proxies enable a more advanced upgrade pattern, where multiple implementation contracts can be deployed and "hot-swapped" on the fly with no disruption to the contract's operation. 
+Beacon proxies enable a more advanced upgrade pattern, where multiple implementation contracts can be deployed and "hot-swapped" on the fly with no disruption to the contract's operation.
 
 This allows for more advanced upgrade patterns, such as adding or removing functionality while minimizing downtime.
 
-1. Start by creating a `Deployer` for the zkSync Era  network and load the `Box` artifact:
+1. Start by creating a `Deployer` for the zkSync Era network and load the `Box` artifact:
 
 ```typescript
-  // mnemonic for local node rich wallet
-  const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
-  const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+// mnemonic for local node rich wallet
+const testMnemonic = "stuff slice staff easily soup parent arm payment cotton trade scatter struggle";
+const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
 
-  const deployer = new Deployer(hre, zkWallet);
+const deployer = new Deployer(hre, zkWallet);
 
-  const contractName = 'Box';
-  const boxContract = await deployer.loadArtifact(contractName);
+const contractName = "Box";
+const boxContract = await deployer.loadArtifact(contractName);
 ```
 
 2. Deploy the beacon contract using `deployBeacon` method from the `zkUpgrades`
 
 ```typescript
-  await hre.zkUpgrades.deployBeacon(deployer.zkWallet, boxContract);
+await hre.zkUpgrades.deployBeacon(deployer.zkWallet, boxContract);
 ```
 
 3. Use the `deployBeaconProxy` method which receives the zkSync Era wallet, beacon contract, and the implementation (Box) contract with its arguments.
 
 ```typescript
-  const box = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, beacon, boxContract, [42]);
+const box = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, beacon, boxContract, [42]);
 ```
-After that, your beacon proxy contract is deployed on the network, and you can interact with it.
 
+After that, your beacon proxy contract is deployed on the network, and you can interact with it.
 
 ### Full code for deploy beacon
 
 ```typescript
-import { Deployer } from '@matterlabs/hardhat-zksync-deploy';
-import { Wallet } from 'zksync-web3';
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+import { Wallet } from "zksync-web3";
 
 import * as hre from "hardhat";
 
 async function main() {
-    const contractName = 'Box';
-    console.log('Deploying ' + contractName + '...');
-    // mnemonic for local node rich wallet
-    const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
-    const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+  const contractName = "Box";
+  console.log("Deploying " + contractName + "...");
+  // mnemonic for local node rich wallet
+  const testMnemonic = "stuff slice staff easily soup parent arm payment cotton trade scatter struggle";
+  const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
 
-    const deployer = new Deployer(hre, zkWallet);
+  const deployer = new Deployer(hre, zkWallet);
 
-    const boxContract = await deployer.loadArtifact(contractName);
-    const beacon = await hre.zkUpgrades.deployBeacon(deployer.zkWallet, boxContract);
-    await beacon.deployed();
-    console.log('Beacon deployed to:', beacon.address);
+  const boxContract = await deployer.loadArtifact(contractName);
+  const beacon = await hre.zkUpgrades.deployBeacon(deployer.zkWallet, boxContract);
+  await beacon.deployed();
+  console.log("Beacon deployed to:", beacon.address);
 
-    const box = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, beacon, boxContract, [42]);
-    await box.deployed();
-    console.log(contractName + ' beacon proxy deployed to: ', box.address);
+  const box = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, beacon, boxContract, [42]);
+  await box.deployed();
+  console.log(contractName + " beacon proxy deployed to: ", box.address);
 
-    box.connect(zkWallet);
-    const value = await box.retrieve();
-    console.log('Box value is: ', value.toNumber());
+  box.connect(zkWallet);
+  const value = await box.retrieve();
+  console.log("Box value is: ", value.toNumber());
 }
 
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
-
 ```
+
 Run the script with:
 
 ::: code-tabs
@@ -379,7 +379,7 @@ npx hardhat run SCRIPT_FILE
 
 ## Implementation addresses check
 
-Once you deploy the proxy contract, all interactions with your implementation contract go through it. 
+Once you deploy the proxy contract, all interactions with your implementation contract go through it.
 
 If you invoke the `deployProxy` function multiple times for a single implementation contract, several proxies will be created, but the implementation contract will remain the same for all of them. This means we can optimize the process to check for the existing implementation addresses before deploying a new proxy, instead of deploying a new implementation contract every time.
 
@@ -392,10 +392,11 @@ The upgradable plugin saves this information in the manifest file. This file wil
 In order for a smart contract implementation to be upgradable, it has to follow specific [rules](https://docs.openzeppelin.com/upgrades-plugins/1.x/writing-upgradeable).
 
 :::warning
+
 - The current version of the `hardhat-zksync-upgradable` plugin does **NOT** support all the validation checks.
 - This means that it is the users responsibility to check if the new implementation they want to upgrade follows the predefined standards.
 - At the time of writing, we are working on implementing those checks within the plugin itself, and the plan for subsequent releases is to support them natively.
-:::
+  :::
 
 ## Upgradable examples
 
@@ -463,15 +464,14 @@ To upgrade the implementation of the transparent upgradeable contract, use the `
 ```
 
 `upgradeProxy` receives 3 arguments:
+
 - A zkSync Era wallet.
 - The address of the previously deployed box proxy.
 - The artifact containing the new `Box2` implementation.
 
-
 ## Upgrade UUPS proxy
 
 Similar to the deployment script, there are no modifications needed to upgrade the implementation of the UUPS contract, compared to upgrading the transparent upgradable contract. The only difference is that we use the `BoxUupsV2` as a new implementation contract.
-
 
 ```typescript
 
@@ -550,45 +550,40 @@ Beacon proxy implementation can be upgraded using a similarly structured method 
 The example below deploys and upgrades a smart contract using a beacon proxy:
 
 ```typescript
-import { Deployer } from '@matterlabs/hardhat-zksync-deploy';
-import { Wallet } from 'zksync-web3';
-import * as zk from 'zksync-web3';
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+import { Wallet } from "zksync-web3";
+import * as zk from "zksync-web3";
 
 import * as hre from "hardhat";
 
 async function main() {
-    // mnemonic for local node rich wallet
-    const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
-    const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
-    const deployer = new Deployer(hre, zkWallet);
+  // mnemonic for local node rich wallet
+  const testMnemonic = "stuff slice staff easily soup parent arm payment cotton trade scatter struggle";
+  const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+  const deployer = new Deployer(hre, zkWallet);
 
-    // deploy beacon proxy
-    const contractName = 'Box';
-    const contract = await deployer.loadArtifact(contractName);
-    const beacon = await hre.zkUpgrades.deployBeacon(deployer.zkWallet, contract);
-    await beacon.deployed();
+  // deploy beacon proxy
+  const contractName = "Box";
+  const contract = await deployer.loadArtifact(contractName);
+  const beacon = await hre.zkUpgrades.deployBeacon(deployer.zkWallet, contract);
+  await beacon.deployed();
 
-    const boxBeaconProxy = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, beacon, contract, [42]);
-    await boxBeaconProxy.deployed();
+  const boxBeaconProxy = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, beacon, contract, [42]);
+  await boxBeaconProxy.deployed();
 
-    // upgrade beacon
-    const boxV2Implementation = await deployer.loadArtifact('BoxV2');
-    await hre.zkUpgrades.upgradeBeacon(deployer.zkWallet, beacon.address, boxV2Implementation);
-    console.log('Successfully upgraded beacon Box to BoxV2 on address: ', beacon.address);
+  // upgrade beacon
+  const boxV2Implementation = await deployer.loadArtifact("BoxV2");
+  await hre.zkUpgrades.upgradeBeacon(deployer.zkWallet, beacon.address, boxV2Implementation);
+  console.log("Successfully upgraded beacon Box to BoxV2 on address: ", beacon.address);
 
-    const attachTo = new zk.ContractFactory(
-        boxV2Implementation.abi,
-        boxV2Implementation.bytecode,
-        deployer.zkWallet,
-        deployer.deploymentType
-    );
-    const upgradedBox = await attachTo.attach(boxBeaconProxy.address);
+  const attachTo = new zk.ContractFactory(boxV2Implementation.abi, boxV2Implementation.bytecode, deployer.zkWallet, deployer.deploymentType);
+  const upgradedBox = await attachTo.attach(boxBeaconProxy.address);
 
-    upgradedBox.connect(zkWallet);
-    // wait some time before the next call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    const value = await upgradedBox.retrieve();
-    console.log('New box value is', value);
+  upgradedBox.connect(zkWallet);
+  // wait some time before the next call
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  const value = await upgradedBox.retrieve();
+  console.log("New box value is", value);
 }
 
 main().catch((error) => {
@@ -596,6 +591,7 @@ main().catch((error) => {
   process.exitCode = 1;
 });
 ```
+
 Run the script with:
 
 ::: code-tabs
@@ -614,18 +610,18 @@ npx hardhat run SCRIPT_FILE
 
 :::
 
-
 # Proxy verification
 
 ::: warning
+
 - To use proxy verification functionality, you must use the `hardhat-zksync-verify` plugin version >=0.1.8
-:::
+  :::
 
 The hardhat-zksync-upgradable plugin supports proxy verification, which means you can verify all the contracts deployed during the proxy deployment with a single verify command.
 
 To use the verification functionality, you first need to **import the `hardhat-zksync-verify plugin` before the `hardhat-zksync-upgradable` plugin in your `hardhat.config.ts` file:**
 
-``` typescript
+```typescript
 ...
 // Imports the verify plugin before the upgradable plugin
 import '@matterlabs/hardhat-zksync-verify';
@@ -633,7 +629,7 @@ import '@matterlabs/hardhat-zksync-upgradable';
 ...
 ```
 
-To verify all the deployed contracts, simply run the verify command with the <b>*proxy address*</b> as an argument:
+To verify all the deployed contracts, simply run the verify command with the <b>_proxy address_</b> as an argument:
 
 ```sh
 yarn hardhat verify <proxy address>
@@ -647,7 +643,6 @@ The `hardhat-zksync-upgradable` plugin has built-in checks to ensure that your s
 
 You can learn more about what those restrictions are in [OpenZeppelin's documentation](https://docs.openzeppelin.com/upgrades-plugins/1.x/writing-upgradeable).
 
-
 # Proxy gas fee estimation
 
 Should you wish to estimate the total gas used throughout the proxy deployment process, consider utilizing the upgradable plugin's gas estimation functions. We offer three types of gas estimation functions for your convenience:
@@ -659,14 +654,14 @@ Should you wish to estimate the total gas used throughout the proxy deployment p
 In the examples provided below, we will use the a Box contract and the deployer in the same way we used them in the previous examples:
 
 ```typescript
-  // mnemonic for local node rich wallet
-  const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
-  const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+// mnemonic for local node rich wallet
+const testMnemonic = "stuff slice staff easily soup parent arm payment cotton trade scatter struggle";
+const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
 
-  const deployer = new Deployer(hre, zkWallet);
+const deployer = new Deployer(hre, zkWallet);
 
-  const contractName = 'Box';
-  const contract = await deployer.loadArtifact(contractName);
+const contractName = "Box";
+const contract = await deployer.loadArtifact(contractName);
 ```
 
 To estimate the deployment fee for the Transparent upgradable proxies and UUPS proxies, use the `estimateGasProxy` method from the `zkUpgrades.estimation`. This method calculates the fee for deploying the implementation contract, transparent proxy/UUPS contract, and the ProxyAdmin smart contract.
@@ -675,33 +670,32 @@ To estimate the deployment fee for the Transparent upgradable proxies and UUPS p
 
 @tab:active Transparent proxy
 
-``` typescript
-const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasProxy(deployer, contract, [], { kind: 'transparent' });
+```typescript
+const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasProxy(deployer, contract, [], { kind: "transparent" });
 ```
 
 @tab UUPS proxy
 
-``` typescript
-const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasProxy(deployer, contract, [], { kind: 'uups' });
+```typescript
+const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasProxy(deployer, contract, [], { kind: "uups" });
 ```
 
 :::
 
-To estimate the deployment fee for the beacon contract and its corresponding implementation, use the `estimateGasBeacon` method: 
+To estimate the deployment fee for the beacon contract and its corresponding implementation, use the `estimateGasBeacon` method:
 
-``` typescript
+```typescript
 const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasBeacon(deployer, contract, []);
 ```
 
 If you want to get the estimation for the beacon proxy contract, please use the `estimateGasBeaconProxy` method:
 
-``` typescript
+```typescript
 const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasBeacon(deployer, contract, []);
 ```
 
-
 Each of these methods totals the fee for every contract in their respective pipeline, displays the cost on the console, and returns the cumulative sum. If you prefer not to see the individual estimations, introduce the parameter `quiet` as the final parameter in any method to receive only the returned sum.
 
-``` typescript
-const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasProxy(this.deployer, contract, [], { kind: 'uups' }, true );
+```typescript
+const totalGasEstimation = await hre.zkUpgrades.estimation.estimateGasProxy(this.deployer, contract, [], { kind: "uups" }, true);
 ```

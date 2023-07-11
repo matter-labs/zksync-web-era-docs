@@ -10,9 +10,9 @@ Scalability can be improved in a number of ways, from increasing the efficiency 
 
 :::tip What is Hyperscaling?
 
- Hyperscaling = processing infinitely many transactions without degradation of security and decentralization.
+Hyperscaling = processing infinitely many transactions without degradation of security and decentralization.
 
- :::
+:::
 
 In other words, hyperscalability means breaking out of the blockchain trilemma:
 
@@ -25,7 +25,7 @@ Theoretically, given enough hardware, it is possible to aggregate arbitrarily la
 - Data availability will have a bottleneck, at least until advanced sharding is implemented at L1 level.
 - Users have different preferences on conflicting requirements: degree of decentralization vs. latency, privacy vs. transparency, generic composability vs. ultra-high security vs. ultra-low costs, and so on. No particular choice can be optimal for all use-cases.
 
-Luckily, ZKPs offer a beautiful way to build a heterogeneous yet simultaneously a hyper-scalable blockchain system. This idea is known as [Fractal scaling](https://medium.com/starkware/fractal-scaling-from-l2-to-l3-7fe238ecfb4f). 
+Luckily, ZKPs offer a beautiful way to build a heterogeneous yet simultaneously a hyper-scalable blockchain system. This idea is known as [Fractal scaling](https://medium.com/starkware/fractal-scaling-from-l2-to-l3-7fe238ecfb4f).
 Many different ZKP chains (in the zkSync world we call them Hyperchains) are run in parallel and get their block proofs aggregated into a single final block that will be settled on L1. Each of the Hyperchains will resemble the entire system (i.e. it can have an infinite number of other Hyperchains on top of it: L3, L4, and so on).
 
 ![Hyperchains!](../../assets/images/hyperscaling5.png "Hyperchains")
@@ -34,9 +34,9 @@ Fractal scaling is necessary but not sufficient to achieve hyperscaling. You nee
 
 :::tip What are Hyper-bridges?
 
- Hyper-bridges = native bridges that enable transfers between any two Hyperchains without consuming resources on a third one.
+Hyper-bridges = native bridges that enable transfers between any two Hyperchains without consuming resources on a third one.
 
- :::
+:::
 
 Fractal scaling can always have native bridges connecting chains via underlying layers, but in this case eventually the Basechain will turn into a crossroad for most transfers and thus the central scalability bottleneck, defeating the very idea of parallel hyperscalability. As a result it won’t be possible to guarantee cheap direct transfers between users on any given two chains.
 
@@ -52,8 +52,6 @@ To achieve zero cost overhead on the underlying chains, each Hyperchain must:
 **Hyperscaling**
 
 ![Hyperscaling!](../../assets/images/hyperscaling2.png "Hyperscaling")
-
-
 
 With hyper-bridges you can transfer assets from one Hyperchain to another at the cost of a normal transfer, just like hyperlinks can take you from one web page to another at the cost of a single click (without the need to click separately through each layer of navigation).
 
@@ -105,7 +103,7 @@ Each Hyperchain can manage its data availability (DA) policy using a smart contr
 
 ### Logical state partitions
 
-Each Hyperchain can have one or more logical partitions that are part of the same state but live in separate subtrees and enforce different data availability policies. From the user perspective, they would appear as separate Hyperchain instances (with their own chain ID, separate wallet connection, block explorer view, etc), which can however interoperate synchronously. 
+Each Hyperchain can have one or more logical partitions that are part of the same state but live in separate subtrees and enforce different data availability policies. From the user perspective, they would appear as separate Hyperchain instances (with their own chain ID, separate wallet connection, block explorer view, etc), which can however interoperate synchronously.
 
 Synchronicity is important as it enables atomic transactions between partitions, unlocking several unique use-cases:
 

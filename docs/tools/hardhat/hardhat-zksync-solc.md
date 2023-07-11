@@ -23,8 +23,8 @@ yarn add -D @matterlabs/hardhat-zksync-solc
 ```bash
 npm i -D @matterlabs/hardhat-zksync-solc
 ```
-:::
 
+:::
 
 ## Configuration
 
@@ -65,13 +65,13 @@ zksolc: {
 
 ::: warning
 
-- Compilers are no longer released as Docker images and its usage is no longer recommended. 
+- Compilers are no longer released as Docker images and its usage is no longer recommended.
 
 :::
 
 - `version` is the `zksolc` compiler version. Compiler versions can be found in [the following repository](https://github.com/matter-labs/zksolc-bin).
-- `compilerSource` indicates the compiler source and can be either `binary` (default) or `docker` (deprecated). If there isn't a compiler binary already installed, the plugin will automatically download it. 
-- `compilerPath` (optional) is a field with the path to the `zksolc` binary. By default, the binary in `$PATH` is used. 
+- `compilerSource` indicates the compiler source and can be either `binary` (default) or `docker` (deprecated). If there isn't a compiler binary already installed, the plugin will automatically download it.
+- `compilerPath` (optional) is a field with the path to the `zksolc` binary. By default, the binary in `$PATH` is used.
 - `libraries` if your contract uses non-inlinable libraries as dependencies, they have to be defined here. Learn more about [compiling libraries here](./compiling-libraries.md)
 - `isSystem` - required if contracts use enables Yul instructions available only for zkSync system contracts and libraries
 - `forceEvmla` - falls back to EVM legacy assembly if there is an issue with the Yul IR compilation pipeline.
@@ -81,7 +81,6 @@ zksolc: {
 - `metadata`: Metadata settings. If the option is omitted, the metadata hash appends by default:
   - `bytecodeHash`: Can only be `none`. It removes metadata hash from the bytecode.
 - `dockerImage` and `tag` are deprecated options used to identify the name of the compiler docker image.
-
 
 ::: warning `forceEvmla` usage
 
@@ -118,7 +117,6 @@ networks: {
 
 ## Commands
 
-
 ::: code-tabs
 
 @tab:active yarn
@@ -132,8 +130,8 @@ yarn hardhat compile
 ```bash
 npx hardhat compile
 ```
-:::
 
+:::
 
 Compiles all the smart contracts in the `contracts` directory and creates the `artifacts-zk` folder with all the compilation artifacts, including factory dependencies for the contracts, which could be used for contract deployment.
 
