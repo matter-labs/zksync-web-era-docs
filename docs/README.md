@@ -38,7 +38,7 @@ contributors: false
     <a href="./reference/concepts/hyperscaling.html" class="card">
       <div class="content">
         <h3>Hyperscaling</h3>
-        <p>Scaling Ethereum beyong Era with hyperchains and ZK Stack.</p>
+        <p>Scaling Ethereum beyond Era with hyperchains and ZK Stack.</p>
       </div>
     </a>
   </div>
