@@ -1,4 +1,4 @@
-# Block Explorer and Tools
+# Block Explorer
 
 The [zkSync Era Block Explorer user interface](https://explorer.zksync.io/) details comprehensive data about transactions, blocks, batches, wallets, tokens, and smart contracts on the zkSync Era network.
 
@@ -19,8 +19,9 @@ The tools menu has options for [verifying your smart contract deployments](./con
 ![zkSync Era tools menu](../../assets/images/tools-menu.png)
 
 :::warning Warning
+
 - Currently there are some issues with the UI contract verification tool.
-:::
+  :::
 
 ## Search bar
 

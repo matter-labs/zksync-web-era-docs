@@ -11,199 +11,221 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 ## Step-by-step
 
-1. Import the zkSync Era library or contract containing the required functionality. 
+1. Import the zkSync Era library or contract containing the required functionality.
 
-    The import gives access to the [`IZkSync.sol`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IZkSync.sol#L4) inherited interfaces that include the gas estimation functionality.
+   The import gives access to the [`IZkSync.sol`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IZkSync.sol#L4) inherited interfaces that include the gas estimation functionality.
 
-    Import the contracts with yarn (recommended), or [download the contracts](https://github.com/matter-labs/v2-testnet-contracts) from the repo.
+   Import the contracts with yarn (recommended), or [download the contracts](https://github.com/matter-labs/v2-testnet-contracts) from the repo.
 
-    ::: code-tabs
-    @tab yarn
-    ```yarn
-    yarn add -D @matterlabs/zksync-contracts
-    ```
-    :::
+   ::: code-tabs
+   @tab yarn
+
+   ```yarn
+   yarn add -D @matterlabs/zksync-contracts
+   ```
+
+   :::
 
 2. Get the current L1 gas price with Ethereum JSON-RPC method [`eth_gasPrice`](https://ethereum.github.io/execution-apis/api-documentation/) called with the [Ethers implementation](https://github.com/ethers-io/ethers.js/blob/f97b92bbb1bde22fcc44100af78d7f31602863ab/packages/providers/src.ts/base-provider.ts#L1428).
 
-    ::: code-tabs
-    @tab TypeScript
-    ```ts
-    async getGasPrice(): Promise<BigNumber> {
-        await this.getNetwork();
+   ::: code-tabs
+   @tab TypeScript
 
-        const result = await this.perform("getGasPrice", { });
-        try {
-            return BigNumber.from(result);
-        } catch (error) {
-            return logger.throwError("bad result from backend", Logger.errors.SERVER_ERROR, {
-                method: "getGasPrice",
-                result, error
-            });
-        }
-    }
-    ```
-    :::
+   ```ts
+   async getGasPrice(): Promise<BigNumber> {
+       await this.getNetwork();
 
-3. Apply an alias to the addresses in the request if the sender address is a contract. 
-    
-    If the sender is an EOA, no aliasing is required. Aliasing is implemented by the [`applyL1ToL2Alias`](https://github.com/matter-labs/era-contracts/blob/41c25aa16d182f757c3fed1463c78a81896f65e6/ethereum/contracts/vendor/AddressAliasHelper.sol#L28) Solidity function and called by the [JavaScript SDK](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/utils.ts#L374).
+       const result = await this.perform("getGasPrice", { });
+       try {
+           return BigNumber.from(result);
+       } catch (error) {
+           return logger.throwError("bad result from backend", Logger.errors.SERVER_ERROR, {
+               method: "getGasPrice",
+               result, error
+           });
+       }
+   }
+   ```
 
-    ::: code-tabs
-    @tab Solidity
-    ```solidity
-    function applyL1ToL2Alias(address l1Address) internal pure returns (address l2Address) {
-        unchecked {
-            l2Address = address(uint160(l1Address) + offset);
-        }
-    }
-    ```
-    @tab TypeScript
-    ```ts
-    export function applyL1ToL2Alias(address: string): string {
-        return ethers.utils.hexlify(ethers.BigNumber.from(address).add(L1_TO_L2_ALIAS_OFFSET).mod(ADDRESS_MODULO));
-    }
-    ```
-    :::
+   :::
 
-4. Call the JSON-RPC method [`zks_estimateGasL1toL2`](../../api/api.md#zks-estimategasl1tol2), wrapping the transaction data in a `CallRequest` JSON object parameter. 
+3. Apply an alias to the addresses in the request if the sender address is a contract.
 
-    The method returns the amount of gas required for the transaction to succeed. 
+   If the sender is an EOA, no aliasing is required. Aliasing is implemented by the [`applyL1ToL2Alias`](https://github.com/matter-labs/era-contracts/blob/41c25aa16d182f757c3fed1463c78a81896f65e6/ethereum/contracts/vendor/AddressAliasHelper.sol#L28) Solidity function and called by the [JavaScript SDK](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/utils.ts#L374).
 
-    :::tip Important
-    This value is often referred to as **limit, or gas limit, or L2 gas limit** in our documented examples. 
-    :::
+   ::: code-tabs
+   @tab Solidity
 
-    ::: code-tabs
-    @tab TypeScript
-    ```ts
-    // available on a zkSync Era JS SDK Provider object
-    async estimateGasL1(transaction: utils.Deferrable<TransactionRequest>): Promise<BigNumber> {
-        await this.getNetwork();
-        const params = await utils.resolveProperties({
-          transaction: this._getTransactionRequest(transaction)
-        });
-        if (transaction.customData != null) {
-            // @ts-ignore
-            params.transaction.customData = transaction.customData;
-        }
-        const result = await this.send('zks_estimateGasL1ToL2', [
-            Provider.hexlifyTransaction(params.transaction, { from: true })
-        ]);
-        try {
-            return BigNumber.from(result);
-        } catch (error) {
-            throw new Error(`bad result from backend (zks_estimateGasL1ToL2): ${result}`);
-        }
-    }
-    ```
-    :::
+   ```solidity
+   function applyL1ToL2Alias(address l1Address) internal pure returns (address l2Address) {
+       unchecked {
+           l2Address = address(uint160(l1Address) + offset);
+       }
+   }
+   ```
+
+   @tab TypeScript
+
+   ```ts
+   export function applyL1ToL2Alias(address: string): string {
+     return ethers.utils.hexlify(ethers.BigNumber.from(address).add(L1_TO_L2_ALIAS_OFFSET).mod(ADDRESS_MODULO));
+   }
+   ```
+
+   :::
+
+4. Call the JSON-RPC method [`zks_estimateGasL1toL2`](../../api/api.md#zks-estimategasl1tol2), wrapping the transaction data in a `CallRequest` JSON object parameter.
+
+   The method returns the amount of gas required for the transaction to succeed.
+
+   :::tip Important
+   This value is often referred to as **limit, or gas limit, or L2 gas limit** in our documented examples.
+   :::
+
+   ::: code-tabs
+   @tab TypeScript
+
+   ```ts
+   // available on a zkSync Era JS SDK Provider object
+   async estimateGasL1(transaction: utils.Deferrable<TransactionRequest>): Promise<BigNumber> {
+       await this.getNetwork();
+       const params = await utils.resolveProperties({
+         transaction: this._getTransactionRequest(transaction)
+       });
+       if (transaction.customData != null) {
+           // @ts-ignore
+           params.transaction.customData = transaction.customData;
+       }
+       const result = await this.send('zks_estimateGasL1ToL2', [
+           Provider.hexlifyTransaction(params.transaction, { from: true })
+       ]);
+       try {
+           return BigNumber.from(result);
+       } catch (error) {
+           throw new Error(`bad result from backend (zks_estimateGasL1ToL2): ${result}`);
+       }
+   }
+   ```
+
+   :::
 
 5. Get the base cost by calling the [`l2TransactionBaseCost`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L129) function with:
-    - The gas price returned at step 2 as `_gasPrice`.
-    - The gas value returned at step 3 as `_l2GasLimit`. 
-    - A constant representing how much gas is required to publish a byte of data from L1 to L2 as `_l2GasPerPubdataByteLimit`. At the time of writing, the JavaScript API provides this constant as [`REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT`](../../api/js/utils.md#gas).
 
-    ::: code-tabs
-    @tab Solidity
-    ```solidity
-    function l2TransactionBaseCost(
-        uint256 _gasPrice,
-        uint256 _l2GasLimit,
-        uint256 _l2GasPerPubdataByteLimit
-    ) external view returns (uint256);
-    ```
-    @tab TypeScript
-    ```ts
-    async getBaseCost(params: {
-        gasLimit: BigNumberish;
-        gasPerPubdataByte?: BigNumberish;
-        gasPrice?: BigNumberish;
-    }): Promise<BigNumber> {
-        const zksyncContract = await this.getMainContract();
-        const parameters = { ...layer1TxDefaults(), ...params };
-        parameters.gasPrice ??= await this._providerL1().getGasPrice();
-        parameters.gasPerPubdataByte ??= REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT;
+   - The gas price returned at step 2 as `_gasPrice`.
+   - The gas value returned at step 3 as `_l2GasLimit`.
+   - A constant representing how much gas is required to publish a byte of data from L1 to L2 as `_l2GasPerPubdataByteLimit`. At the time of writing, the JavaScript API provides this constant as [`REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT`](../../api/js/utils.md#gas).
 
-        return BigNumber.from(
-            await zksyncContract.l2TransactionBaseCost(
-                parameters.gasPrice,
-                parameters.gasLimit,
-                parameters.gasPerPubdataByte
-            )
-        );
-    }
-    ```
-    :::
+   ::: code-tabs
+   @tab Solidity
+
+   ```solidity
+   function l2TransactionBaseCost(
+       uint256 _gasPrice,
+       uint256 _l2GasLimit,
+       uint256 _l2GasPerPubdataByteLimit
+   ) external view returns (uint256);
+   ```
+
+   @tab TypeScript
+
+   ```ts
+   async getBaseCost(params: {
+       gasLimit: BigNumberish;
+       gasPerPubdataByte?: BigNumberish;
+       gasPrice?: BigNumberish;
+   }): Promise<BigNumber> {
+       const zksyncContract = await this.getMainContract();
+       const parameters = { ...layer1TxDefaults(), ...params };
+       parameters.gasPrice ??= await this._providerL1().getGasPrice();
+       parameters.gasPerPubdataByte ??= REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT;
+
+       return BigNumber.from(
+           await zksyncContract.l2TransactionBaseCost(
+               parameters.gasPrice,
+               parameters.gasLimit,
+               parameters.gasPerPubdataByte
+           )
+       );
+   }
+   ```
+
+   :::
 
 6. The return value is a 256-bit unsigned integer in hexadecimal representing the amount of gas the transaction uses.
 
-    ```json
-    {
-        "jsonrpc": "2.0",
-        "result": "0x25f64db",
-        "id": 2
-    }
-    ```
+   ```json
+   {
+     "jsonrpc": "2.0",
+     "result": "0x25f64db",
+     "id": 2
+   }
+   ```
 
 7. Send the transaction, including the gas price and base cost in the value parameters, by calling the [`requestL2Transaction`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L119) function.
 
-    Include the gas limit value from step 3 as `_l2GasLimit` and the `REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT` constant as `_l2GasPerPubdataByteLimit`.
+   Include the gas limit value from step 3 as `_l2GasLimit` and the `REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT` constant as `_l2GasPerPubdataByteLimit`.
 
-    The `_refundRecipient` address receives any remaining fee after the transaction completes. If `_refundRecipient = 0` then L2 `msg.sender` is used.
+   The `_refundRecipient` address receives any remaining fee after the transaction completes. If `_refundRecipient = 0` then L2 `msg.sender` is used.
 
-    ::: code-tabs
-    @tab Solidity
-    ```solidity
-    function requestL2Transaction(
-        address _contractL2,
-        uint256 _l2Value,
-        bytes calldata _calldata,
-        uint256 _l2GasLimit,
-        uint256 _l2GasPerPubdataByteLimit,
-        bytes[] calldata _factoryDeps,
-        address _refundRecipient
-    ) external payable returns (bytes32 canonicalTxHash);
-    ```
-    @tab TypeScript
-    ```ts
-    // Initiate L2 transfer via L1 and execute from zkSync Era wallet (or signer object)
-    const executeTx = await wallet.requestExecute({
-        calldata,
-        l2GasLimit: gasLimit,
-        gasPerPubdataByte,
-        contractAddress: L2_CONTRACT_ADDRESS,
-        overrides: {
-            gasPrice,
-            value: txCostPrice,
-        },
-    });
-    ```
-    :::
+   ::: code-tabs
+   @tab Solidity
 
-    :::tip Solidity parameters description
-    - `_contractL2`: L2 address of the contract to be called.
-    - `_l2Value`: Amount of ETH to pass with the call to L2; used as `msg.value` for the transaction.
-    - `_calldata`: Calldata of the transaction call; encoded the same way as in Ethereum.
-    - `_l2GasLimit`: Gas limit of the transaction call obtained in step 3 above.
-    - `_l2GasPerPubdataByteLimit`: Constant described in step 4 above.
-    - `_factoryDeps`: Bytecodes array containing the bytecode of the contract being deployed. If the contract is a factory contract, the array contains the bytecodes of the contracts it can deploy.
-    - `_refundRecipient`: Address that receives the rest of the fee after the transaction execution. If `refundRecipient == 0`, L2 `msg.sender` is used. 
+   ```solidity
+   function requestL2Transaction(
+       address _contractL2,
+       uint256 _l2Value,
+       bytes calldata _calldata,
+       uint256 _l2GasLimit,
+       uint256 _l2GasPerPubdataByteLimit,
+       bytes[] calldata _factoryDeps,
+       address _refundRecipient
+   ) external payable returns (bytes32 canonicalTxHash);
+   ```
 
-    **Note**: If the `_refundRecipient` is a smart contract, then during the L1 to L2 transaction its address is aliased. 
-    :::
+   @tab TypeScript
+
+   ```ts
+   // Initiate L2 transfer via L1 and execute from zkSync Era wallet (or signer object)
+   const executeTx = await wallet.requestExecute({
+     calldata,
+     l2GasLimit: gasLimit,
+     gasPerPubdataByte,
+     contractAddress: L2_CONTRACT_ADDRESS,
+     overrides: {
+       gasPrice,
+       value: txCostPrice,
+     },
+   });
+   ```
+
+   :::
+
+   :::tip Solidity parameters description
+
+   - `_contractL2`: L2 address of the contract to be called.
+   - `_l2Value`: Amount of ETH to pass with the call to L2; used as `msg.value` for the transaction.
+   - `_calldata`: Calldata of the transaction call; encoded the same way as in Ethereum.
+   - `_l2GasLimit`: Gas limit of the transaction call obtained in step 3 above.
+   - `_l2GasPerPubdataByteLimit`: Constant described in step 4 above.
+   - `_factoryDeps`: Bytecodes array containing the bytecode of the contract being deployed. If the contract is a factory contract, the array contains the bytecodes of the contracts it can deploy.
+   - `_refundRecipient`: Address that receives the rest of the fee after the transaction execution. If `refundRecipient == 0`, L2 `msg.sender` is used.
+
+   **Note**: If the `_refundRecipient` is a smart contract, then during the L1 to L2 transaction its address is aliased.
+   :::
 
 8. Wait for a transaction response and output the details.
 
-    :::info Responses
-    - A **successful** L1 to L2 transaction produces an `L2Log` with `key = l2TxHash`, and `value = bytes32(1)`.
-    - A **failed** L1 to L2 transaction produces an `L2Log` with `key = l2TxHash`, and `value = bytes32(0)`.
-    :::
+   :::info Responses
+
+   - A **successful** L1 to L2 transaction produces an `L2Log` with `key = l2TxHash`, and `value = bytes32(1)`.
+   - A **failed** L1 to L2 transaction produces an `L2Log` with `key = l2TxHash`, and `value = bytes32(0)`.
+     :::
 
 ### Example code
 
 ::: code-tabs
 @tab TypeScript
+
 ```js
 import { Contract, Wallet, Provider } from "zksync-web3";
 import * as ethers from "ethers";
@@ -263,7 +285,7 @@ if (!WALLET_PRIV_KEY) {
   throw new Error("Wallet private key is not configured in env file");
 }
 
-const L2_CONTRACT_ADDRESS =  "0x..."; //
+const L2_CONTRACT_ADDRESS = "0x..."; //
 
 async function main() {
   console.log(`Running script for L1-L2 transaction`);
@@ -302,11 +324,7 @@ async function main() {
     gasPrice: l1GasPrice,
   });
 
-  console.log(
-    `Executing this transaction will cost ${ethers.utils.formatEther(
-      baseCost
-    )} ETH`
-  );
+  console.log(`Executing this transaction will cost ${ethers.utils.formatEther(baseCost)} ETH`);
 
   const iface = new ethers.utils.Interface(ABI);
   const calldata = iface.encodeFunctionData("setGreeting", [message]);
@@ -332,10 +350,12 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
-
 ```
+
 @tab Solidity
+
 ```solidity
 // in progress
 ```
+
 :::
