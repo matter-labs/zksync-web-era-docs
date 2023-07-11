@@ -27,7 +27,7 @@ apt-get install -y cmake pkg-config libssl-dev clang
 To start the node, execute:
 
 ```bash
-zksync_test_node run
+era_test_node run
 ```
 
 The expected output will be as follows:
@@ -44,16 +44,29 @@ Address: "0xA13c10C0D5bd6f79041B9835c63f91de35A15883" Key: "0x850683b40d4a740aa6
 ========================================
 ```
 
+### Network details
+
+The `era_test_node` has the following default network configurations: 
+
+**L2 RPC:** `http://localhost:8011`
+**Network Id:** 260
+
+These can be configured to your preference. 
+
+::: warning
+Please note that the existing implementation does not facilitate communication with Layer 1. As a result, an L1 RPC is not available. 
+:::
+
 ## Forking networks 
 
 To fork the mainnet, use the following command:
 
 ```bash
-zksync_test_node fork mainnet
+era_test_node fork mainnet
 ```
 
 :::tip
-You can also fork testnet with `zksync_test_node fork testnet`
+You can also fork testnet with `era_test_node fork testnet`
 :::
 
 The expected output will be as follows:
@@ -76,8 +89,8 @@ This command starts the node, forked at the current head of the mainnet.
 You also have the option to specify a custom http endpoint and a custom forking height, like so:
 
 ```bash
-# Usage: zksync_test_node fork --fork-at <FORK_AT> <NETWORK
-zksync_test_node fork --fork-at 7000000 mainnet http://172.17.0.3:3060
+# Usage: era_test_node fork --fork-at <FORK_AT> <NETWORK
+era_test_node fork --fork-at 7000000 mainnet http://172.17.0.3:3060
 ```
 
 ## Replay remote transactions locally 
@@ -85,15 +98,15 @@ zksync_test_node fork --fork-at 7000000 mainnet http://172.17.0.3:3060
 If you wish to replay a remote transaction locally for deep debugging, use the following command:
 
 ```bash
-# Usage: zksync_test_node replay_tx <NETWORK> <TX>
-zksync_test_node replay_tx testnet 0x7f039bcbb1490b855be37e74cf2400503ad57f51c84856362f99b0cbf1ef478a
+# Usage: era_test_node replay_tx <NETWORK> <TX>
+era_test_node replay_tx testnet 0x7f039bcbb1490b855be37e74cf2400503ad57f51c84856362f99b0cbf1ef478a
 ```
 
 For more detailed transaction information, such as call traces, add the `--show-calls` flag. If you want to see ABI names, add the `--resolve-hashes` flag. Here's an example:
 
 ```bash
-# Usage: zksync_test_node replay_tx <NETWORK> <TX>
-zksync_test_node --show-calls=user --resolve-hashes replay_tx testnet 0x7f039bcbb1490b855be37e74cf2400503ad57f51c84856362f99b0cbf1ef478a
+# Usage: era_test_node replay_tx <NETWORK> <TX>
+era_test_node --show-calls=user --resolve-hashes replay_tx testnet 0x7f039bcbb1490b855be37e74cf2400503ad57f51c84856362f99b0cbf1ef478a
 ```
 
 Here's an example of what you should expect to see:
@@ -146,7 +159,7 @@ You can send network calls against a running `era-test-node`. You can check the 
 To get started, launch the local in-memory node:
 
 ```bash
-zksync_test_node fork testnet
+era_test_node fork testnet
 ```
 
 Next, use curl to send a network call:
@@ -231,7 +244,7 @@ yarn preprocess && yarn hardhat run ./scripts/compile-yul.ts
 To use the locally compiled bootloader and system contracts, run:
 
 ```bash
-RUST_LOG=vm=trace zksync_test_node --dev-use-local-contracts fork testnet
+RUST_LOG=vm=trace era_test_node --dev-use-local-contracts fork testnet
 ```
 
 ## Use pre-configured rich wallets

@@ -31,11 +31,17 @@ This command initiates three docker containers:
 - Local Geth node: The L1 for zkSync.
 - The zkSync node itself.
 
-By default, the HTTP JSON-RPC API operates on port `3050`, and the WS API runs on port `3051`.
-
 :::tip
  The first `start.sh` script execution should go uninterrupted. If the bootstrapping process halts unexpectedly, reset the local zkSync state and try again.
 :::
+
+### Network details
+
+By default, the HTTP JSON-RPC API is served via port `3050`, while the WebSocket (WS) API is accessed through port `3051`.
+
+**L1 RPC:** `http://localhost:8545`
+**L2 RPC:** `http://localhost:3050`
+**Network Id:** 270
 
 ### Resetting the zkSync state
 
