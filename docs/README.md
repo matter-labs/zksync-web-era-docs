@@ -15,7 +15,7 @@ contributors: false
             >
          </div>
          <p class="intro-text" style="text-align:center">Welcome to zkSync Era docs!
-         <br>Guides, references, and resources for building with zkSync Era.</p>
+         <br>Guides, technical reference, and tutorials for building on zkSync Era.</p>
          </div>
       </div>
    </div>
