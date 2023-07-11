@@ -16,7 +16,11 @@ Hyperscaling = processing infinitely many transactions without degradation of se
 
 In other words, hyperscalability means breaking out of the blockchain trilemma:
 
+<div align="center">
+
 ![Hyper-scalability!](../../assets/images/hyperscaling1.png "Hyper-scalability")
+
+</div>
 
 Theoretically, given enough hardware, it is possible to aggregate arbitrarily large blocks of transactions and produce a single succinct ZKP (more precisely: proof of computational integrity) for each such block. In practice, however, no single monolithic blockchain system will be able to meet infinite market demand. Here are some reasons why:
 
