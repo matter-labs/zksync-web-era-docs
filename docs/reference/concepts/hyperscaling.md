@@ -1,156 +1,247 @@
 # Hyperscaling
 
-Blockchain systems achieve incorruptible fairness by relying on the cornerstone principle “don’t trust, verify”. At the same time, for blockchains to remain decentralized, resource requirements for running the verifier nodes must be kept relatively low. Connecting these two ideas brings us to the widely accepted definition of scalability:
+## Scaling Blockchains
 
-:::tip What is Scaling?
-Scaling = processing more transactions without degradation of security and decentralization.
-:::
+Today, Ethereum processes around 12 transactions per second. To support a future in which the world's financial activity is on-chain, we need to be able to process millions of transactions per second. However, blockchains are hard to scale due to their decentralized nature. The holy grail has always been horizontal scalability. Similar to the internet, where different servers host different websites, multiple distinct chains could host different applications in parallel. There have been many experiments attempting horizontal scaling, such as Polkadot, Cosmos, Near, and even the now-outdated Eth 2.0 vision, all of which have multiple shards or multiple chains. All of these solutions take care of interoperability, as the shards and bridges are designed together, as both are integral to the ecosystem. Unfortunately, the shards could never fully trust each other in any of these solutions.
 
-Scalability can be improved in a number of ways, from increasing the efficiency of the verifier to introducing probabilistic trust assumptions (what optimistic rollups do). Most of these approaches offer a linear scalability boost, but one method stands out: succinct zero-knowledge proofs (ZKPs). They always incur roughly O(1) verification costs regardless of the number of transactions processed. This means that ZKP-based scaling — i.e. [validiums and (under certain conditions) zkRollups](https://twitter.com/vitalikbuterin/status/1267455602764251138) — can be hyper-scalable:
+<div  align="center">
 
-:::tip What is Hyperscaling?
+![ ](../../assets/images/hyperscalingCosmos.png)
 
-Hyperscaling = processing infinitely many transactions without degradation of security and decentralization.
-
-:::
-
-In other words, hyperscalability means breaking out of the blockchain trilemma:
-
-<div align="center">
-
-![Hyper-scalability!](../../assets/images/hyperscaling1.png "Hyper-scalability")
+The Cosmos ecosystem. Unfortunately, the bridges have trust requirements, the ecosystem ultimately does not scale. 
 
 </div>
 
-Theoretically, given enough hardware, it is possible to aggregate arbitrarily large blocks of transactions and produce a single succinct ZKP (more precisely: proof of computational integrity) for each such block. In practice, however, no single monolithic blockchain system will be able to meet infinite market demand. Here are some reasons why:
 
-- Sequential transaction processing will always be a bottleneck. At least some transactions will need to interact with the same storage slots of the shared state, and no amount of parallelism can help.
-- Decentralized p2p networks and consensus mechanisms will have their own bottlenecks too.
-- Data availability will have a bottleneck, at least until advanced sharding is implemented at L1 level.
-- Users have different preferences on conflicting requirements: degree of decentralization vs. latency, privacy vs. transparency, generic composability vs. ultra-high security vs. ultra-low costs, and so on. No particular choice can be optimal for all use-cases.
+In parallel, the Ethereum community was solving the trust problem by verifying off-chain computations on-chain, inventing Plasma, optimistic rollups, and other solutions. It is now clear that zero-knowledge proofs are the future, as they provide cryptographic security. Ethereum will be accessible to everybody. The [DA layer](https://ethereum.org/en/roadmap/danksharding/) and ZK Rollups together will provide a secure and scalable ecosystem. But how will the rollups interoperate? Now that we have figured out the building blocks, it is time to review the system as a coherent whole again.
 
-Luckily, ZKPs offer a beautiful way to build a heterogeneous yet simultaneously a hyper-scalable blockchain system. This idea is known as [Fractal scaling](https://medium.com/starkware/fractal-scaling-from-l2-to-l3-7fe238ecfb4f).
-Many different ZKP chains (in the zkSync world we call them Hyperchains) are run in parallel and get their block proofs aggregated into a single final block that will be settled on L1. Each of the Hyperchains will resemble the entire system (i.e. it can have an infinite number of other Hyperchains on top of it: L3, L4, and so on).
+## The Problem: Current bridging solutions
 
-![Hyperchains!](../../assets/images/hyperscaling5.png "Hyperchains")
+The current state of bridging solutions is a [mess](https://twitter.com/VitalikButerin/status/1479501366192132099). There are some good solutions, such as atomic swaps, which enable trustless asset swapping between different blockchains. Unfortunately, they are not suitable for general message passing.
 
-Fractal scaling is necessary but not sufficient to achieve hyperscaling. You need one additional component:
+<div  align="center">
 
-:::tip What are Hyper-bridges?
+![](../../assets/images/hyperscalingIslands.png)
 
-Hyper-bridges = native bridges that enable transfers between any two Hyperchains without consuming resources on a third one.
+</div>
 
-:::
+In order to pass information between chains, bridges based on economic incentives were introduced. These require the operators to lock funds, which can be slashed based on an arbitration process.
 
-Fractal scaling can always have native bridges connecting chains via underlying layers, but in this case eventually the Basechain will turn into a crossroad for most transfers and thus the central scalability bottleneck, defeating the very idea of parallel hyperscalability. As a result it won’t be possible to guarantee cheap direct transfers between users on any given two chains.
+The potential design space is vast, and there are several potential issues. These include:
 
-To achieve zero cost overhead on the underlying chains, each Hyperchain must:
+1. The arbitration process is not trustless; dapp developers have to consider the risks involved.
+2. These bridges usually do not transfer real assets cross-chain; they only free up already locked funds. This makes the process expensive. However, this can be solved by using general message passing and minting synthetic assets. But the synthetic assets are less secure than the original assets and are not interchangeable with them.
+3. Chains can hard fork. This is their right, but it endangers the entire bridging ecosystem. This can be mitigated by locking funds separately for each bridge, but this makes the process much more expensive due to liquidity fragmentatio This applies to ZK-enabled bridges as well.
+4. Finally, even if the economic incentives are sound, hacks can always occur. If a vulnerability is found in the smart contracts, then every bridge in the entire ecosystem is affected. With the growth of adoption, cross-chain activity will be an indispensable part of every chain's activity. At this stage, if a bug is found, then every chain will want to hard fork to save its bridges. Bridges can only be hard forked on both sides with consensus. This means there needs to be a common social consensus for the ecosystem.
 
-- Implement native hyper-bridges that can actually burn and mint actual tokens and not their virtual representation (in contrast to the conventional bridges), storing mint claim commitments in the Hyperchain state.
-- Trust the implementations of hyper-bridges on all other Hyperchains – because if a single hyper-bridge is compromised, the malicious chain could mess with the token supply (thus all of the Hyperchains must implement the exact same circuits).
+## The Solution: Hyperchains + Hyperbridges
 
-**Fractal scaling**
+The name Hyperbridge comes from the traditional web, where users can navigate websites using hyperlinks. Similarly, our rollups will be connected with Hyperbridges, connecting the fractal tree of Hyperchains.
 
-![Fractal scaling!](../../assets/images/hyperscaling4.png "Fractal scaling")
+<div  align="center">
 
-**Hyperscaling**
+![](../../assets/images/hyperchains.png)
+Gray lines show how proofs are settled
 
-![Hyperscaling!](../../assets/images/hyperscaling2.png "Hyperscaling")
+</div>
 
-With hyper-bridges you can transfer assets from one Hyperchain to another at the cost of a normal transfer, just like hyperlinks can take you from one web page to another at the cost of a single click (without the need to click separately through each layer of navigation).
 
-Smart contracts can use hyper-chains too, to trustlessly send assets and arbitrary messages to any Hyperchain with a guarantee of eventual delivery (as long as the target Hyperchain is live).
 
-Communication via hyper-bridges is always asynchronous: in order to process a message on the receiving Hyperchain B, the sending Hyperchain A must finalize its state all the way down to the earliest Hyperchain that is common base for both A and B. In practice, the communication latency of hyper-bridging will be a matter of seconds: Hyperchains can finalize blocks every second (which is cheap, in contrast to L1), and hardware acceleration makes block proof generation really fast.
+Using rollups with a shared bridge contract on L1, and *native* bridges between the rollups can solve all of the problems listed above.
 
-For a technical deep dive, take a look at the excellent [Slush paper](https://hackmd.io/@kalmanlajko/rkgg9GLG5) which explores the nuances of hyper-bridge implementation in great detail.
+1. Rollups have validating bridges that are trustless.
+2. Native bridges can easily burn and mint the native tokens for transfers between members of the ecosystem. 
+3. The L1 serves as a single source of truth, so the rollups cannot hard fork.
+4. The ecosystem can coordinate the hard fork together in case a vulnerability is found using a governance framework on L1, similar to how the L1 would react to a vulnerability.
 
-## What are Hyperchains?
+The Hyperbridge itself will be a system of smart contracts, verifying Merkle proofs of the transactions happening on other chains. The original asset is locked in the shared bridge contract on L1. This means liquidity is unified across the ecosystem.
 
-Hyperchains are fractal-like instances of zkEVM running in parallel and with the common settlement on the L1 mainnet.
+Unfortunately, not all rollups can take advantage of these properties. In particular, optimistic rollups have very slow L1 finality, making trustless bridging impossibly slow.
 
-Hyperchains can be developed and permissionlessly deployed by anyone. However, to remain trusted and fully interoperable, each Hyperchain must be powered by the exact same zkEVM engine as the main zkSync L2 instance. All the ZKP circuits will thus remain 100% identical, letting Hyperchains fully inherit their security from L1, no matter who deployed them. This ensures zero additional trust/security assumptions.
+Here is where the magic of ZK comes to rescue. L1 settlement of ZK rollups is fast (down to minutes), and we can securely connect chains due to the cryptographic nature of the validity proofs.
 
-Hyperchains will be implemented following the modular approach – we will provide a Hyperchain SDK framework similar to those of Cosmos or Substrate, where developers can individually pick different components of their blockchains or implement their own ones (except the zkEVM core, for the reasons explained above). See the [question about Hyperchain parametrization](#how-can-hyperchains-be-parametrized) below for more details.
+<div  align="center">
 
-## What is the Basechain?
+![](../../assets/images/hyperbridges.png)
+Gray lines show proofs, orange lines the hyperbridges, which automatically connect all blue chains.
 
-The Basechain is the main Hyperchain instance of zkSync Era (the L2 instance). It serves as the default computation layer for generic smart contracts and as a settlement layer for all other Hyperchains (L3 and above).
+</div>
 
-The Basechain is not special in any particular way except that it settles its blocks directly on the L1.
+### How Hyperbridges work
 
-## How can Hyperchains be customized?
 
-The main customization options to be provided by the [ZK Stack](https://blog.matter-labs.io/introduction-to-hyperchains-fdb33414ead7) are explained below. Developers are free to implement their own components and customizations, of course.
+Hyperbridging will consist of 7 steps. 
+1. First the cross-rollup transaction has to be initiated on the sending rollup. 
+2. The sending rollup settles its proof onto L1.
+3. As the proof is settled, it updates the Transaction Root. This Root is a commitment to all the Hyperbridge transactions happening inside the ecosystem. 
+4. The receiving Hyperchain imports this Transaction Root. 
+5. A relayer sends the transaction from the sending to the receiving Hyperchain. The relayer is rewarded. 
+6. The transaction is verified using the imported Transaction Root. If the transaction is valid, it is executed. 
+7. The receiving Hyperchain settles its proof, where the imported transaction root is also verified.  
 
-### Sequencing transactions
+<div  align="center">
 
-- **Centralized sequencer** - In this mode, there will be a single centralized operator with a conventional REST API to accept transactions from users. The operator must be trusted to maintain liveness, not to abuse MEV, and not to allow reorgs of unfinalized transactions, so the operator’s reputation will play a big role. The biggest advantage of this option is that it can provide the lowest possible latency to confirm transactions (<100ms), which is critical for use-cases such as HFT. The Basechain will run in this mode until it is fully decentralized, so we will have battle-tested server code available for developers early on.
+![](../../assets/images/hyperscalingBridgingFull.png)
 
-- **Decentralized sequencer** - In this mode, a Hyperchain will coordinate on what transactions are included in a block using a consensus algorithm. It can be any algorithm, so developers can reuse existing implementations (e.g. Tendermint or HotStuff with permissionless dPoS). But we can also take advantage of the fact that finality checkpoints are guaranteed by the underlying L1, and implement an algorithm that is simpler and boasts higher performance. The Basechain will switch to this option as soon as the consensus implementation is ready, and will make its code available to the Hyperchain developers.
+</div>
 
-- **Priority queue** - This simply means absence of any sequencer: all transactions can be submitted in batches via the priority queue from an underlying L2 or even L1 chain, taking advantage of their stronger censorship-resistance. It might be especially interesting for special-purpose governance protocols (e.g. on-chain voting). It’s worth noting that the priority queue will always be available as an escape-hatch mechanism (even if a centralized or decentralized sequencer is employed), to protect users against censorship by a malicious sequencer.
+Smart contracts will be written in many different programming languages in the ecosystem, due to our VM’s native LLVM support. Developers will have the option to use the native bridges, there will be no need for external third parties. Assets, function calls, general messages, and historical data can all be trustlessly transferred cross-chain.
 
-### Data availability
+There are three types of bridges in this ecosystem. The enshrined L1-L2 bridge, the [zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf) shard bridges, and the hyperbridges will operate with a similar set of interfaces. 
+
+Hyperbridges technically will be similar to L2→ L1 bridges, they will be asynchronous and not atomic. However, with the help of Account Abstraction, external relayers, and lower fees on rollups, the users will not have to initiate the call on the destination chain. This means the user experience will feel like an L1 → L2 bridge. You can try learn more about L1<>L2 bridging [here](https://era.zksync.io/docs/dev/how-to/send-message-l2-l1.html).
+
+Besides cross-chain calls, it will be also possible to execute cross-chain views inside transactions, accessing arbitrary data from other chains in the ecosystem. 
+
+### Hyperchain User Experience
+
+As we aim to onboard billions of users to Web3, user experience has to be a priority. Users will have wallets on different chains, unified by cross-chain wallet management. This is still a hot research topic, as seen in Vitalik's [recent post](https://vitalik.ca/general/2023/06/20/deeperdive.html). These solutions will be integrated into [Account Abstractions](https://era.zksync.io/docs/reference/concepts/aa.html), which are natively supported on our chains.
+
+The users' wallets will show all of their assets, and relayers will handle bridging, burning, and minting assets to be used on destination. Hyperchains will have unique identifiers that, when paired with ENS/Unstoppable domains, will make recipient addresses look like email addresses. Of course, the default will be the use of traditional Ethereum addresses together with the Hyperchain identifiers.
+
+Bridging will be part of the protocol, so it will be built into the wallet alongside transfers. Bridging time will be the proof settlement time, which will be 1-15 minutes, depending on the Hyperchain. Due to fact that the only relayers will be required as external infrastructure, the cost of the bridging will be minimal, comparable to the gas fees. 
+
+**Imagine a cross-chain Uniswap transaction.** You want to swap Ethereum for DAI. You start the transaction with your wallet. Then the relayer delivers 1 ETH to a Uniswap chain, and the ETH is swapped for DAI. Finally a relayer transfers the DAI back to your original chain. All three steps are part of the same transaction. All of this in a matter of minutes and feels as if you have not left your original chain (except for somewhat longer confirmation time).
+
+<div  align="center">
+
+![](../../assets/images/hyperscalingUniswap.png)
+
+</div>
+
+When setting up wallets on cheaper chains ([validiums](https://ethereum.org/en/developers/docs/scaling/validium/)), they will have to trust the hosting organization to not lose their funds. Unlike centralized exchanges, these funds cannot be stolen, only frozen, which hurts the hosting organization as well! The risks will be made clear in the wallet.
+
+## Proof Aggregation
+
+Validity proofs provide the basic scalability to the ecosystem. Having a single blockchain is like running a single CPU. Having multiple Hyperchains run simultaneously provides parallelisation. The proof aggregator is the mechanism that gives the ecosystem its hyperscalability. If every Hyperchain wanted to settle their proofs to L1 independently, the total load on the L1 would still be proportional to the total number of Hyperchains. So the proofs of the Hyperchains are aggregated, settling all of them together on L1 in a single proof. There are multiple options for this. 
+
+### Simple Proof Aggregation
+
+Simple proof aggregation treats the proofs of different Hyperchains as independent statements that can be verified together on L1. Unfortunately the simple aggregation mechanism does not allow fast messaging as proofs are settled infrequently on L1 to save gas fees.
+
+<div  align="center">
+
+![](../../assets/images/hyperscalingAggregation.png)
+
+</div>
+
+### L3s
+
+Another alternative for aggregation is layering. Hyperchains can settle their proof on an L2 Hyperchain, becoming L3s. L3s settling on the same L2 will have faster messaging between each other and will have cheap atomicity via transactions forced through the L2, and interoperability will be preserved with the wider ecosystem. This is a particularly good solution for Validiums, as they don’t send data to the L1. The only downside is that there is a higher chance of reversion if the L2 reverts. 
+
+Here proof aggreagation happens via the L2, as the proofs of different L2 blocks are aggregated when settling on L1. This method is ultimately not scalable, as the L2's VM will be a bottleneck for proof verification. The L2's VM will also require a full consensus mechanism, meaning long term storage, transaction verification etc.
+
+<div  align="center">
+
+![](../../assets/images/hyperscalingL3Fast2Blocks.png)
+
+</div>
+
+### Layered Aggregation 
+
+Layered Aggregation combines the benefits of L3s with the benefits of aggregation. The L2's VM is replaced by a specialised proof that still permits messaging and aggregation. This proof tracks the State Root of the participating rollups, as well as the Transaction Root. The Transaction Root will be imported from and settled inside this specialised proof. Compared to the L2's VM this solution is more scalable, and will only need a lightweight consensus mechanism. 
+
+<div  align="center">
+
+![](../../assets/images/hyperscalingLayeredAggregation.png)
+
+</div>
+
+### Economic Guarantees
+
+The time it takes to hyperbridge is the settlement time of the proof, which can only happen after the proof is generated. This will be on the order of minutes, but for some chains faster interoperability will be needed. This is impossible to achieve trustlessly, but it is easy to achieve if have economic guarantees. The transaction root can be calculated outside the proof and then imported. This is not as secure as importing the transaction root from a proof, even a single invalid transaction means that all of the participating rollups will have to revert, as valid proofs cannot be generated. So we are building this solution as an optional add-on, and not part of the core protocol. 
+
+For these rollups proof generation and settlement still happens as usual. This means the transaction root will have to be calculated inside the L2 or specialised proof. This means this add-on can only work for L3s or for the Layered Aggregator.  
+
+<div  align="center">
+
+![](../../assets/images/hyperscalingFastEconomic.png)
+
+</div>
+
+### Atomicity
+
+Another property that we would like to enable long-term is atomicity for the transactions. This can be achieved using the DA layer. Instead of a relayer sending the transaction to the destination rollup, it can be posted to the DA layer, and the receiving rollup can read it from there. To guarantee atomicity, the received transactions need to be compared to the sent transactions. If rollups generated blocks at the same frequency then this could be done from block to block inside the proof aggregator. Unfortunately this is not the case, rollups will choose to generate blocks and setle proofs at their own rate. This makes the mechanism more complicated, a detailed description is available [here](https://hackmd.io/@kalmanlajko/BkmTTADai), and is still under review. This will only be possible for the Layered Aggregator. 
+
+<div  align="center">
+
+![ ](../../assets/images/hyperscalingAtomicityDA.png)
+This image is an intuition pump, the real mechanism is more complicated and works differently. 
+</div>
+
+### Sovereignty
+
+All Hyperchains will be sovereign in the ecosystem. This means two things.
+
+Proof aggregation will be optional, Hyperchains can choose to not participate. In this case, they can settle their proofs directly to Ethereum for a much larger fee. Aggregation will also be decentralized and widely accessible, meaning the hardware requirements to run a prover will be as low as possible.
+
+<div  align="center">
+
+![](../../assets/images/hyperscalingSovereignty.png)
+
+</div>
+
+
+Second, Hyperchains will be able to permissionlessly join and exit the ecosystem, adding or removing all their assets to the common pool in the Shared Bridge. Joining is self-explanatory, everyone will have the right to boot up new Hyperchains and join the ecosystem in a Chain Factory contract.
+
+Exiting will usually not be a similarly wise decision, as interoperability will be lost with other Hyperchains. However, the ecosystem could sometimes upgrade due to governance, and in this case, it is imperative that each Hyperchain have the right to rage quit. In this case, there will be a mandatory upgrade period during which the Hyperchains that disagrees with the upgrade can exit in a coordinated fashion.
+
+### Conclusion 
+
+We look at the comparisons that different aggregator mechanisms enable. 
+
+<div  align="center">
+
+
+|   | Aggregation | L3s | Layered Aggregation  |
+|---|---|---|---|
+|Fast Messaging|  No | Yes  |  Yes |
+| Scales   | Yes  |  No | Yes  |
+| Consensus Mechanism | None  | L2 Full Consensus  | Lightweight Consensus  |
+| Instant Messaging Add-on  | No  | Yes | Yes |
+| Hyperbridges atomic | No | No | Yes via DA, under review|
+| Sovereign | Yes  | Yes  | Yes |
+| | | |
+
+</div>
+
+# Modularity: Hyperchain Customization
+
+The main customization options to be provided by [ZK Stack (Post)](https://www.notion.so/ZK-Stack-Post-9d79299086cc4f11acdb78445b8b523f?pvs=21) is explained below. Developers are of course free to implement their own components and customizations.
+
+## **Sequencing transactions**
+
+- **Centralized sequencer** - In this mode, there will be a single centralized operator with a conventional REST API to accept transactions from users. The operator must be trusted to maintain liveness, not to abuse MEV, and not to allow reorgs of unfinalized transactions, so the operator’s reputation will play a big role. The biggest advantage of this option is that it can provide the lowest possible latency to confirm transactions (<100ms), which is critical for use-cases such as HFT. The Basechain will run in this mode until it is fully decentralized, so we will have battle-tested server code available for developers early on.
+- **Decentralized sequencer** - In this mode, a Hyperchain will coordinate on what transactions are included in a block using a consensus algorithm. It can be any algorithm, so developers can reuse existing implementations (e.g. Tendermint or HotStuff with permissionless dPoS). But we can also take advantage of the fact that finality checkpoints are guaranteed by the underlying L1, and implement an algorithm that is simpler and boasts higher performance. The Basechain will switch to this option as soon as the consensus implementation is ready, and will make its code available to the Hyperchain developers.
+- **Priority queue** - This simply means absence of any sequencer: all transactions can be submitted in batches via the priority queue from an underlying L2 or even L1 chain, taking advantage of their stronger censorship-resistance. It might be especially interesting for special-purpose governance protocols (e.g. on-chain voting). It’s worth noting that the priority queue will always be available as an escape-hatch mechanism (even if a centralized or decentralized sequencer is employed), to protect users against censorship by a malicious sequencer.
+
+## **Data availability**
 
 Each Hyperchain can manage its data availability (DA) policy using a smart contract interface. It can use one of the options described below or some more complex logic. For example, to combine zkPorter and validium, the DA will require both a quorum of the signatures from the guardians and a number of signatures from the data availability committee.
 
-- **zkRollup** - This is our default recommendation policy: the values of every changed storage slot at the end of the block must be published as calldata on L1. Note that repeated changes (or back-and-forth changes that result in no net difference) are not posted. It means if a block contains 100 ETH/DAI swaps on the same DEX then pubdata costs will be partially amortized over all such swaps. A Hyperchain working in this mode strictly inherits full security and censorship-resistance properties from Ethereum. The implementation of zkRollup in output mode will be available from day 1. To propagate calldata to L1, it will be aggregated at the Basechain. Note that if Hyperchain’s ZK-proof is potentially large in size and/or computationally heavy to verify it only incurs L2 costs and not pubdata costs.
+- **zkRollup** - This is our default recommendation policy: the values of every changed storage slot at the end of the block must be published as calldata on L1. Note that repeated changes (or back-and-forth changes that result in no net difference) are not posted. It means if a block contains 100 ETH/DAI swaps on the same DEX then pubdata costs will be partially amortized over all such swaps. A Hyperchain working in this mode strictly inherits full security and censorship-resistance properties from Ethereum. The implementation of zkRollup in output mode will be available from day 1. To propagate calldata to L1, it will be aggregated at the Basechain. Note that if Hyperchain’s ZK-proof is potentially large in size and/or computationally heavy to verify it only incurs L2 costs and not pubdata costs.
+- **zkPorter** - it's explained in detail in **[this post](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf)**. We already have a working zkPorter guardian testnet, which we are preparing to open source. We expect zkPorter to be popular with users willing to take higher security risks in exchange for really cheap transactions, which will be extremely useful until Danksharding is implemented, and even afterward for specialized use cases. Hyperchain developers will be able to either tap into the DA from zkSync main zkPorter implementation or bootstrap their own guardian network (which could be interesting for large existing online communities such as Reddit or Twitter), or use external DA solutions (e.g. EigenDA) .
+- **Validium** - Being true to our **[values](https://www.notion.so/d36a797ff1aa47d2859f9e0c5ffbd0ab?pvs=21)**, we generally **[discourage](https://blog.matter-labs.io/zkrollup-vs-validium-starkex-5614e38bc263)** mainstream users from trusting validium-based solutions. However, there are use-cases where using validium is fully justified, e.g. enterprise chains that require both auditability and privacy (since the data availability in such cases is controlled by a central party, it is trivial to keep such a Hyperchain private by simply withholding data). Since validium is essentially a simpler case of a zkPorter, developers can easily deploy Hyperchains based on this policy.
+- **zkRollup (inputs only)** - This policy will require publishing full transaction inputs instead of final storage updates. Trustless state reconstruction and the DA costs in this case will be 100% identical to optimistic rollups (but with all the benefits of a zkRollup of course, including better security and faster exits). The implementation of this option is easily derived from the implementation of the normal zkRollup. It can be explored by application-specific chains where tx inputs are short but might lead to a lot of changes in data (for example, performing financial simulations).
+- **zkRollup (self-hosted)** - An extremely interesting option! In this mode, users self-host the data for all the accounts they own. To enforce this, user confirmation signatures are required to make any changes – which means, you cannot send funds directly to another user. Instead, you will burn the funds and create proof of this burn, which you can provide to your recipient via an off-chain channel. The recipient will then redeem them to their account. This might sound complicated, but it’s easy to construct a nice UI that will abstract away the UX, making it practically indistinguishable from sending and receiving funds on Ethereum (it will automatically redeem all received assets the moment the user intends to spend funds, requiring no extra clicks). But here comes a miracle: a self-hosted zkRollup can be happy with as little as 5 bytes per user interaction that includes a batch of arbitrary many transactions! This makes sharded Ethereum infinitely scalable for any practical purposes in the zkRollup mode (i.e. 100% secure and censorship-resistant). This is a way to onboard every single person on Earth to Ethereum with zero security compromise. A great thing about this approach is also that it’s fully compatible with our zkEVM implementation, but can nonetheless offer privacy to the users. The implementation is non-trivial, so we expect it to come last among all the other options. At the same time, it’s simpler and much more powerful than alternative approaches like Adamantium.
 
-- **zkPorter** - it's explained in detail in [this post](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf). We already have a working zkPorter guardian testnet. We expect zkPorter to be popular with users willing to take higher security risks in exchange for really cheap transactions, until Danksharding is implemented. Hyperchain developers will be able to either tap into the DA from zkSync main zkPorter implementation or bootstrap their own guardian network (which could be interesting for large existing online communities such as Reddit or Twitter).
-
-- **Validium** - Being true to our [values](https://www.notion.so/matterlabs/Freedom-d36a797ff1aa47d2859f9e0c5ffbd0ab), we generally [discourage](https://blog.matter-labs.io/zkrollup-vs-validium-starkex-5614e38bc263) mainstream users from trusting validium-based solutions. However, there are use-cases where using validium is fully justified, e.g. enterprise chains that require both auditability and privacy (since the data availability in such cases is controlled by a central party, it is trivial to keep such a Hyperchain private by simply withholding data). Since validium is essentially a simpler case of a zkPorter, developers can easily deploy Hyperchains based on this policy.
-
-- **zkRollup (inputs only)** - This policy will require publishing full transaction inputs instead of final storage updates. Trustless state reconstruction and the DA costs in this case will be 100% identical to optimistic rollups (but with all the benefits of a zkRollup of course, including better security and faster exits). The implementation of this option is easily derived from the implementation of the normal zkRollup. It can be explored by application-specific chains where tx inputs are short but might lead to a lot of changes in data (for example, performing financial simulations).
-
-- **zkRollup (self-hosted)** - An extremely interesting option! In this mode, users self-host the data for all the accounts they own. To enforce this, user confirmation signatures are required to make any changes – which means, you cannot send funds directly to another user. Instead, you will burn the funds and create a proof of this burn, which you can provide to your recipient via an off-chain channel. The recipient will then redeem them to their account. This might sound complicated, but it’s easy to construct a nice UI which will abstract away the UX, making it practically indistinguishable from sending and receiving funds on Ethereum (it will automatically redeem all received assets the moment the user intends to spend funds, requiring no extra clicks). But here comes a miracle: a self-hosted zkRollup can be happy with as little as 5 bytes per user interaction that includes a batch of arbitrary many transactions! This makes sharded Ethereum infinitely scalable for any practical purposes in the zkRollup mode (i.e. 100% secure and censorship-resistant). This is a way to onboard every single person on Earth to Ethereum with zero security compromise. A great thing about this approach is also that it’s fully compatible with our zkEVM implementation, but can nonetheless offer privacy to the users. The implementation is non-trivial, so we expect it to come last among all the other options. At the same time, it’s simpler and much more powerful than alternative approaches like Adamantium, which we will subsequently ignore.
-
-### Logical state partitions
+## **Logical state partitions in ZK Porters**
 
 Each Hyperchain can have one or more logical partitions that are part of the same state but live in separate subtrees and enforce different data availability policies. From the user perspective, they would appear as separate Hyperchain instances (with their own chain ID, separate wallet connection, block explorer view, etc), which can however interoperate synchronously.
 
-Synchronicity is important as it enables atomic transactions between partitions, unlocking several unique use-cases:
+Synchronicity is important as it enables atomic transactions between partitions, unlocking several unique use cases:
 
 - Transparently reading the state of another partition.
 - Using flash loans between the partitions.
 
-One prominent example of this is a combination of [zkRollup + zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf) (which will be part of the zkSync Basechain):
+One prominent example of this is a combination of **[zkRollup + zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf)** (which will be part of the zkSync Basechain):
 
-![Logical state partitions!](../../assets/images/hyperscaling3.png "Logical state partitions")
+![](../../assets/images/hyperscalingZKPorter.png)
 
-<!-- ### MEV protection
-
-We expect Hyperchain developers to experiment with different MEV-minimization approaches (see the [question about MEV in zkSync](https://docs.google.com/document/d/1Oq-grdnlY8RL8aoA1EAiRPlJSbH698BoTVK-5bX8nxc/edit#heading=h.5ygkd14evhl0)). -->
-
-### Privacy
+## **Privacy**
 
 Hyperchains can add privacy in a number of ways:
 
-1. Validium. For a Hyperchain running in the validium mode, privacy to the outer world is achieved out of the box as long as the operator keeps the block data secret. This might be an interesting option for enterprise users.
-2. Privacy protocols. To implement user-level privacy, a specialized L3 protocol is required. Projects such as Aztec or Tornado can be implemented either directly on the Basechain (taking advantage of account abstraction and cheap recursive ZKP verification on zkSync), or they can opt into standalone special-purpose Hyperchains for more flexibility.
-
-## What does hyperscalability UX feel like?
-
-Hyperchains will have unique hierarchical identifiers similar to the Internet domains:
-
-`zksync` <br/>
-
-`reddit.zksync` <br/>
-
-`ethereum.reddit.zksync`
-
-Accounts will have standard EVM addresses, augmented by the Hyperchain id:
-
-`0x60250Fff03f8E8aed6a5B36Fa4F5a5F75fD5d25d @ zksync` <br/>
-
-`0x31a7ca77c0bc7a26a5ee69ea3e65363ead6aa322 @ reddit.zksync`
-
-Of course, services like ENS / Unstoppable domains can always be used for shortcuts:
-
-`gluk64 @ reddit.zksync` <br/>
-
-`gluk64.eth`
-
-Thus, sending digital assets to another user will feel just like sending an email (which arrives asynchronously in a few seconds), but now you can attach money to it.
-
-Similarly, interacting with contracts on different Hyperchains from the developer’s point of view will resemble calling REST API methods on the web. If a call is initiated by a smart contract, the result will be received via an asynchronous callback.
+1. **Validium**. For a Hyperchain running in the validium mode, privacy to the outer world is achieved out of the box as long as the operator keeps the block data secret. This might be an interesting option for enterprise users.
+2. **Privacy protocols**. To implement user-level privacy, a specialized L3 protocol is required. Projects such as Aztec or Tornado can be implemented either directly on the Basechain (taking advantage of account abstraction and cheap recursive ZKP verification on zkSync), or they can opt into standalone special-purpose Hyperchains for more flexibility.
+3. **[Self-hosted Rollups](https://ethresear.ch/t/account-based-anonymous-rollup/6657),** based on user-maintained data availability and self-proved off-chain state transitions, will offer ultimate privacy and unlimited scalability in the long term.
