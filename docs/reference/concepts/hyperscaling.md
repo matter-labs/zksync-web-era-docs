@@ -201,7 +201,6 @@ We look at the comparisons that different aggregator mechanisms enable.
 | Instant Messaging Add-on  | No  | Yes | Yes |
 | Hyperbridges atomic | No | No | Yes via DA, under review|
 | Sovereign | Yes  | Yes  | Yes |
-| | | |
 
 </div>
 
