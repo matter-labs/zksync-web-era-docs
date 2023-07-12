@@ -18,7 +18,11 @@ This tutorial shows you how to build and deploy a 2-of-2 multi-signature account
 
 Download the complete project [here](https://github.com/matter-labs/custom-aa-tutorial).
 
-## Set up
+::: info Project available in Atlas IDE
+You can [open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/atlas-labs-inc/zksync-aa-multisig&open=/scripts/main.ts&chainId=280) to deploy the smart contracts and interact with them directly from your browser.
+:::
+
+## Set up 
 
 1. If you haven't already, install the [zkSync CLI:](/docs/tools/zksync-cli/)
 
