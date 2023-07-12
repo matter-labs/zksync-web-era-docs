@@ -2,6 +2,10 @@
 
 This documentation provides instructions on setting up and using the In-Memory Node, `era-test-node`, for local testing. It covers installation, network forking, transaction details viewing, replaying transactions, and testing local bootloader and system contracts.
 
+:::warning
+ Please keep in mind that `era-test-node` is still in its **alpha** stage, so some features might not be fully supported yet and may not work as fully intended. It is [open-sourced](https://github.com/matter-labs/era-test-node) and contributions are welcomed. 
+:::
+
 ## Understanding the In-Memory Node 
 
 The In-memory node uses an in-memory database for storing state information and simplified hashmaps for tracking blocks and transactions. In fork mode, it retrieves missing storage data from a remote source when not available locally. Moreover it also uses the remote server (openchain) to resolve the ABI and topics to human readable names.
@@ -46,6 +50,10 @@ Address: "0xA13c10C0D5bd6f79041B9835c63f91de35A15883" Key: "0x850683b40d4a740aa6
   Node is ready at 127.0.0.1:8011
 ========================================
 ```
+
+:::warning
+When utilizing `era-test-node` with MetaMask, it's essential to note that any redeployment of the in-memory node will necessitate a reset of MetaMask's cached account data. To do this, navigate to 'Settings', then 'Advanced', and finally, select 'Clear activity tab data'.
+:::
 
 ### Network details
 
