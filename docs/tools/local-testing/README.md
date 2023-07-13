@@ -1,14 +1,19 @@
 # Local testing strategies for zkSync Era
 
-zkSync Era provides two distinct testing environments for your development needs - Dockerized Local Setup and the In-Memory Node. Each solution boasts unique characteristics tailored to diverse use cases. This guide aims to unpack the intricacies of these tools, aiding you in selecting the setup best suited for your development workflow.
+zkSync Era provides two distinct testing environments for your development needs 
 
-## Understanding your choices: In-Memory node vs Dockerized local setup
+- Dockerized Local Setup 
+- In-Memory Node. 
+
+Each solution boasts unique characteristics tailored to diverse use cases. This guide aims to unpack the intricacies of these tools, aiding you in selecting the setup best suited for your development workflow.
+
+## In-Memory node vs Dockerized local setup
 
 The local testing process revolves around two principal options:
 
 1. **Dockerized local setup**: An extensive zkSync Era network simulation that comprises a Postgres database, a local Geth node functioning as Layer 1, and the zkSync node. Opt for this setup for comprehensive simulations and testing that require interaction with both L1 and L2.
 
-2. **In-Memory node**: A lightweight, speedy alternative, the In-Memory Node, supports forking the state from various networks, including the mainnet and testnet. This choice is ideal for swift testing, prototyping, and bootloader and system contract testing.
+2. **In-Memory node**: A lightweight, speedy alternative, the in-memory node, supports forking the state from various networks, including the mainnet and testnet. This choice is ideal for swift testing, prototyping, and bootloader and system contract testing.
 
 ### When to use each
 

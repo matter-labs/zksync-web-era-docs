@@ -296,7 +296,7 @@
         {
           "source": "/docs/tools/hardhat/testing.html",
           "destination": "/docs/tools/local-testing/",
-          "type": "302"
+          "type": "301"
         },
         {
           "source": "/docs/api/compiler-toolchain{,/**}",
@@ -446,7 +446,7 @@
         {
           "source": "/docs/tools/hardhat/testing.html",
           "destination": "/docs/tools/local-testing/",
-          "type": "302"
+          "type": "301"
         },
         {
           "source": "/docs/dev/fundamentals/interacting.html",

@@ -32,16 +32,16 @@ This command initiates three docker containers:
 - The zkSync node itself.
 
 :::tip
- The first `start.sh` script execution should go uninterrupted. If the bootstrapping process halts unexpectedly, reset the local zkSync state and try again.
+ The first `start.sh` script execution should go uninterrupted. If the bootstrapping process halts unexpectedly, reset the local zkSync state and try again. The process can take up to 10 minutes to start (only the first time!).
 :::
 
 ### Network details
 
 By default, the HTTP JSON-RPC API is served via port `3050`, while the WebSocket (WS) API is accessed through port `3051`.
 
-**L1 RPC:** `http://localhost:8545`
-**L2 RPC:** `http://localhost:3050`
-**Network Id:** 270
+- **L1 RPC:** `http://localhost:8545`
+- **L2 RPC:** `http://localhost:3050`
+- **Network Id:** 270
 
 ### Resetting the zkSync state
 
