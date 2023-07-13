@@ -1,6 +1,6 @@
 # Providers
 
-Providers (clients) are objects that wrap interactions with the zkSync Era node. If you are new to the concept of providers, 
+Providers (clients) are objects that wrap interactions with the zkSync Era node. If you are new to the concept of providers,
 check out the [go-ethereum documentation](https://geth.ethereum.org/docs/developers/dapp-developer/native).
 
 zkSync Era fully supports Ethereum Web3 API, so you can use the provider objects from `geth`. However, the zkSync Era JSON-RPC API provides some additional methods, which allow:
@@ -8,11 +8,12 @@ zkSync Era fully supports Ethereum Web3 API, so you can use the provider objects
 - Easy tracking of L1<->L2 transactions.
 - Different stages of finality for transactions. By default, our RPC returns information about the last state processed by the server, but some use cases may require tracking "finalized" transactions only.
 
-`DefaultProvider` implements the zkSync Era Web3 JSON-RPC API and provides interaction with a zkSync Era node. 
+`DefaultProvider` implements the zkSync Era Web3 JSON-RPC API and provides interaction with a zkSync Era node.
 
 ## DefaultProvider
 
 Init:
+
 ```go
 func NewDefaultProvider(rawUrl string) (*DefaultProvider, error)
 ```
@@ -29,6 +30,7 @@ defer zp.Close()
 ```
 
 Interface that provides interaction with zkSync node:
+
 ```go
 type Provider interface {
 	GetClient() *ethclient.Client
@@ -59,4 +61,3 @@ type Provider interface {
 	GetLogs(q FilterQuery) ([]Log, error)
 }
 ```
-

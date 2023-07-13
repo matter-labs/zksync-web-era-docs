@@ -233,7 +233,7 @@ Interface representation of token containing various fields.
 
 - `l1Address`: `Address`;
 - `l2Address`: `Address`;
-- `address`: `Address`; // backward compatible field although @deprecated in favor of l2Address 
+- `address`: `Address`; // backward compatible field although @deprecated in favor of l2Address
 - `name`: `string`;
 - `symbol`: `string`;
 - `decimals`: `number`;
