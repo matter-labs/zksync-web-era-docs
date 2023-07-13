@@ -23,7 +23,7 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 The tutorial code is available [here](https://github.com/matter-labs/custom-paymaster-tutorial).
 
 ::: info Project available in Atlas IDE
-You can [open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/atlas-labs-inc/zksync-aa-multisig&open=/scripts/main.ts&chainId=280) to deploy the smart contracts and interact with them directly from your browser.
+You can [open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/atlas-labs-inc/zksync-custom-paymaster&open=/scripts/main.ts&chainId=280) to deploy the smart contracts and interact with them directly from your browser.
 :::
 
 ## Set up the project
