@@ -1,9 +1,9 @@
-# Local testing strategies for zkSync Era
+# Testing strategies for zkSync Era
 
-zkSync Era provides two distinct testing environments for your development needs 
+zkSync Era provides two distinct testing environments for your development needs
 
-- Dockerized Local Setup 
-- In-Memory Node. 
+- Dockerized Local Setup
+- In-Memory Node.
 
 Each solution boasts unique characteristics tailored to diverse use cases. This guide aims to unpack the intricacies of these tools, aiding you in selecting the setup best suited for your development workflow.
 
@@ -29,19 +29,20 @@ Being in its alpha stage, the In-Memory Node comes with some constraints and doe
 
 The following table highlights the key characteristics of each testing environment for a quick comparison:
 
-| Feature                                      | In-memory node       | Dockerized Local Setup |
-|----------------------------------------------|----------------------|------------------------|
-| Quick startup                                | Yes                  | No                     |
-| Supports forking state                       | Yes                  | No                     |
-| Console.log debugging                        | Yes                  | No                     |
-| Detailed call traces                         | Yes                  | No                     |
-| Pre-configured 'rich' accounts               | Yes                  | Yes                    |
-| Replay existing transactions                 | Yes                  | No                     |
-| Fast for integration testing                 | Yes                  | No                     |
-| Communication between Layer 1 & Layer 2      | No                   | Yes                    |
-| Multiple transactions per batch              | No                   | Yes                    |
-| Fixed values for gas estimation              | Yes                  | Varies                 |
-| Complete set of APIs                         | No (Basic set only)  | Yes                    |
+| Feature                                 | In-memory node      | Dockerized Local Setup |
+| --------------------------------------- | ------------------- | ---------------------- |
+| Quick startup                           | Yes                 | No                     |
+| Supports forking state                  | Yes                 | No                     |
+| Console.log debugging                   | Yes                 | No                     |
+| Detailed call traces                    | Yes                 | No                     |
+| Pre-configured 'rich' accounts          | Yes                 | Yes                    |
+| Replay existing transactions            | Yes                 | No                     |
+| Fast for integration testing            | Yes                 | No                     |
+| Communication between Layer 1 & Layer 2 | No                  | Yes                    |
+| Multiple transactions per batch         | No                  | Yes                    |
+| Fixed values for gas estimation         | Yes                 | Varies                 |
+| Complete set of APIs                    | No (Basic set only) | Yes                    |
+| wss support                             | No                  | Yes                    |
 
 Whether you're testing new contracts, debugging transactions, or prototyping, zkSync Era provides robust options for local testing. Both the Dockerized local setup and the In-Memory Node offer feature-rich and quick setup options, each with their distinct strengths and limitations. Choose the most appropriate setup based on your specific needs, and happy testing!
 

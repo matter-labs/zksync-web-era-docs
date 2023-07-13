@@ -295,7 +295,7 @@
         },
         {
           "source": "/docs/tools/hardhat/testing.html",
-          "destination": "/docs/tools/local-testing/",
+          "destination": "/docs/tools/testing/",
           "type": "301"
         },
         {
@@ -445,7 +445,7 @@
         },
         {
           "source": "/docs/tools/hardhat/testing.html",
-          "destination": "/docs/tools/local-testing/",
+          "destination": "/docs/tools/testing/",
           "type": "301"
         },
         {

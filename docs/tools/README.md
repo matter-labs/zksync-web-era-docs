@@ -3,5 +3,5 @@
 - [Hardhat plugins](./hardhat/)
 - [Compiler toolchain](./compiler-toolchain/)
 - [zkSync CLI](./zksync-cli/)
-- [Local testing](./local-testing/) 
+- [Local testing](./testing/) 
 - [Block explorer](./block-explorer/)

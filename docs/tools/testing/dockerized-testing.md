@@ -45,9 +45,7 @@ By default, the HTTP JSON-RPC API is served via port `3050`, while the WebSocket
 
 ### Resetting the zkSync state
 
-To reset the zkSync state, run
-
- the `./clear.sh` script:
+To reset the zkSync state, run the `./clear.sh` script:
 
 ```
 ./clear.sh
@@ -58,6 +56,10 @@ In case of a "permission denied" error, execute it with root privileges:
 ```
 sudo ./clear.sh
 ```
+
+::: info Update docker images 
+The `clear.sh` script will also pull the most recent Docker images so it can be used to update the dockerized local setup.
+:::
 
 ### Working with rich wallets
 

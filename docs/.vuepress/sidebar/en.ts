@@ -153,11 +153,11 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Local Testing", // required
-      link: "/tools/local-testing/", // optional, which should be a absolute path.
+      text: "Testing", // required
+      link: "/tools/testing/", // optional, which should be a absolute path.
       children: [
-        "/tools/local-testing/dockerized-testing.md",
-        "/tools/local-testing/era-test-node.md",
+        "/tools/testing/dockerized-testing.md",
+        "/tools/testing/era-test-node.md",
       ],
     },
     {
