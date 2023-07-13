@@ -17,7 +17,7 @@ The daily limit feature prevents an account from spending more ETH than the limi
 
 We will use the [zkSync Era Hardhat plugins](../../tools/hardhat/) to build, deploy, and interact with the smart contracts in this project.
 
-1. If you haven't already, install the [zkSync CLI:](/docs/tools/zksync-cli/)
+1. If you haven't already, install the [zkSync CLI:](../../tools/zksync-cli/README.md)
 
 ```sh
 yarn add global zksync-cli@latest

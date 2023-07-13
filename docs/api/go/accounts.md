@@ -52,7 +52,7 @@ type EthSigner interface {
 - `SignTypedData`: signs EIP712-typed zkSync transaction which is used
   for smart contract deployment.
 
-# Wallet
+## Wallet
 
 A `Wallet` is a wrapper around `EthSigner` which provides actions on the L2 network.
 Based on the action, the `Wallet` crates an appropriate transaction, signs the transaction using

@@ -24,7 +24,7 @@ The tutorial code is available [here](https://github.com/matter-labs/custom-paym
 
 ## Set up the project
 
-1. If you haven't already, install the [zkSync CLI:](/docs/tools/zksync-cli/)
+1. If you haven't already, install the [zkSync CLI:](../../tools/zksync-cli/README.md)
 
 ```sh
 yarn add global zksync-cli@latest

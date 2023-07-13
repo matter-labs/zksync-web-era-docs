@@ -45,14 +45,14 @@ Note, that it is important that the first `start.sh` script invocation goes unin
 
 You can connect your wallet to both L1 and L2 nodes using the following details:
 
-**Local L1 network**
+#### Local L1 network
 
 - Network Name: `L1 local`
 - RPC URL: `http://localhost:8545/`
 - Chain ID: `9`
 - Currency Symbol: `ETH`
 
-**Local zkSync network**
+#### Local zkSync network
 
 - Network Name: `L2 local zkSync`
 - RPC URL: `http://localhost:3050/`
@@ -215,7 +215,7 @@ You can now run the test file with the following command:
 yarn test
 ```
 
-**Congratulations! You just ran your first tests locally with zkSync Era 🎉**
+#### Congratulations! You just ran your first tests locally with zkSync Era 🎉 ####
 
 ## Full example
 

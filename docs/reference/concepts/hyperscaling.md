@@ -45,11 +45,11 @@ To achieve zero cost overhead on the underlying chains, each Hyperchain must:
 - Implement native hyper-bridges that can actually burn and mint actual tokens and not their virtual representation (in contrast to the conventional bridges), storing mint claim commitments in the Hyperchain state.
 - Trust the implementations of hyper-bridges on all other Hyperchains – because if a single hyper-bridge is compromised, the malicious chain could mess with the token supply (thus all of the Hyperchains must implement the exact same circuits).
 
-**Fractal scaling**
+### Fractal scaling
 
 ![Fractal scaling!](../../assets/images/hyperscaling4.png "Fractal scaling")
 
-**Hyperscaling**
+### Hyperscaling
 
 ![Hyperscaling!](../../assets/images/hyperscaling2.png "Hyperscaling")
 

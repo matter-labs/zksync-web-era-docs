@@ -3,7 +3,7 @@
 zkSync Era handles nearly all smart contracts based on the Ethereum Virtual Machine (EVM) and upholds high security standards,
 minimizing the need for repeated security audits. Nevertheless, it's essential to recognize the following differences.
 
-:::tip Best practises
+:::tip Best practices
 It's highly recommended to review the best practices and key considerations for creating smart contracts on zkSync Era section [here](../../dev/building-on-zksync/best-practices.md).
 :::
 
