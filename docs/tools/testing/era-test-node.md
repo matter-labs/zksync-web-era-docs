@@ -17,7 +17,7 @@ You can visit the `era-test-node` repository [here](https://github.com/matter-la
 Before you get started, there are a few prerequisites to consider. Ensure that your development environment meets the following requirements:
 
 - **Rust:** Since `era-test-node` is written in Rust, you need to have Rust installed on your machine. You can download Rust from [here](https://www.rust-lang.org/tools/install).
-- **Other Dependencies:** This crate relies on `rocksDB` for its operation. If you encounter any compile errors due to `rocksDB`, you might also need to install `cmake`, `pkg-config`, `libssl-dev`, and `clang` using the command `apt-get install -y cmake pkg-config libssl-dev clang`.
+- **Other Dependencies:** This crate relies on `rocksDB` for its operation. If you encounter any compile errors due to `rocksDB`, you might also need to install some dependencies with the following command: `apt-get install -y cmake pkg-config libssl-dev clang`.
 
 After checking all these prerequisites, you should be ready to use the `era-test-node`. Please keep in mind that `era-test-node` is still in its **alpha** stage, so some features might not be fully supported yet.
 
@@ -52,15 +52,15 @@ Address: "0xA13c10C0D5bd6f79041B9835c63f91de35A15883" Key: "0x850683b40d4a740aa6
 ```
 
 :::warning
-When utilizing `era-test-node` with MetaMask, it's essential to note that any redeployment of the in-memory node will necessitate a reset of MetaMask's cached account data. To do this, navigate to 'Settings', then 'Advanced', and finally, select 'Clear activity tab data'.
+When utilizing `era-test-node` with MetaMask, it's essential to note that any restart of the in-memory node will necessitate a reset of MetaMask's cached account data (nonce, etc). To do this, navigate to 'Settings', then 'Advanced', and finally, select 'Clear activity tab data'.
 :::
 
 ### Network details
 
 The `era_test_node` has the following default network configurations: 
 
-**L2 RPC:** `http://localhost:8011`
-**Network Id:** 260
+- **L2 RPC:** `http://localhost:8011`
+- **Network Id:** 260
 
 These can be configured to your preference. 
 
@@ -73,6 +73,7 @@ Please note that the existing implementation does not facilitate communication w
 To fork the mainnet, use the following command:
 
 ```bash
+# era_test_node fork <NETWORK>
 era_test_node fork mainnet
 ```
 
@@ -221,6 +222,8 @@ Here's an example of what you should expect to see:
 
 ### Deploying contracts
 
+For the deployment of your contracts, you have the flexibility to choose between two preferred methods: either by using Hardhat with the `hardhat-zksync-deploy` and `hardhat-zksync-solc` plugins, or via `foundry-zksync`. The following example will detail the process using `foundry-zksync`.
+
 Before proceeding, ensure that you've compiled your contracts using `zkforge zk-build`. For instructions on how to do this, please refer to this [link](https://github.com/matter-labs/foundry-zksync#compile-with-zkforge-zk-build).
 
 ```bash
@@ -247,7 +250,7 @@ In-memory node allows testing of the currently compiled bootloader and system co
 :::warning
 These commands assume you have set `$ZKSYNC_HOME` in your shell profile file (e.g. ~/.bash_profile, ~/.zshrc) to target your local copy of `era-test-node`. For instance, 
 
-```
+```bash
 # Add path here:
 export ZKSYNC_HOME=/path/to/era-test-node
 
@@ -290,7 +293,7 @@ This section demonstrates how to author and execute tests locally against `era-t
 
 2. To incorporate the test libraries, execute:
 
-```
+```bash
 yarn add -D mocha chai @types/mocha @types/chai
 ```
 
@@ -389,7 +392,7 @@ describe("Greeter", function () {
 
 To run the test file, execute:
 
-```
+```bash
 yarn test
 ```
 
