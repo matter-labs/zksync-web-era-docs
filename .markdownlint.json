@@ -1,10 +1,5 @@
 {
     "default": true,
-    "line_length": {
-        "line_length": 1800,
-        "tables": false,
-        "code_blocks": false
-    },
     "fenced-code-language": false,
     "no-duplicate-header": false,
     "first-header-h1": false,
@@ -14,13 +9,7 @@
     "MD026": {
         "punctuation": ".,;:!。，；：！:"
     },
-    "MD013": {
-        "indent": 2,
-        "headings": false,
-        "line_length": 1800,
-        "tables": false,
-        "code_blocks": false
-    },
+    "MD013": false,
     "MD001": false,
     "MD051": false,
     "MD025": false,
@@ -30,7 +19,6 @@
         "indent": 2,
         "code_blocks": false,
         "headings": false,
-        "line_length": 1800,
         "tables": false
     },
     "no-hard-tabs": false,
