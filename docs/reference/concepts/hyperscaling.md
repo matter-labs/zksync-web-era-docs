@@ -206,7 +206,7 @@ We look at the comparisons that different aggregator mechanisms enable.
 
 ## Modularity: Hyperchain Customization
 
-The main customization options to be provided by [ZK Stack (Post)](https://www.notion.so/ZK-Stack-Post-9d79299086cc4f11acdb78445b8b523f?pvs=21) is explained below. Developers are of course free to implement their own components and customizations.
+The main customization options to be provided by [ZK Stack (Post)](https://blog.matter-labs.io/introducing-the-zk-stack-c24240c2532a) is explained below. Developers are of course free to implement their own components and customizations.
 
 ## **Sequencing transactions**
 
