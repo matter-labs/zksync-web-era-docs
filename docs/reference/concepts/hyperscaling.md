@@ -112,7 +112,7 @@ Layered Aggregation combines the benefits of L3s with the benefits of aggregatio
 
 ### Economic Guarantees
 
-The time it takes to hyperbridge is the settlement time of the proof, which can only happen after the proof is generated. This will be on the order of minutes, but for some chains faster interoperability will be needed. This is impossible to achieve trustlessly, but it is easy to achieve if have economic guarantees. The transaction root can be calculated outside the proof and then imported. This is not as secure as importing the transaction root from a proof, even a single invalid transaction means that all of the participating rollups will have to revert, as valid proofs cannot be generated. So we are building this solution as an optional add-on, and not part of the core protocol. 
+The time it takes to hyperbridge is the settlement time of the proof, which can only happen after the proof is generated. This will be on the order of minutes, but for some chains faster interoperability will be needed. This is impossible to achieve trustlessly, but it is easy to achieve with economic guarantees. The transaction root can be calculated outside the proof and then imported. This is not as secure as importing the transaction root from a proof, even a single invalid transaction means that all of the participating rollups will have to revert, as valid proofs cannot be generated. So we are building this solution as an optional add-on, and not part of the core protocol. 
 
 For these rollups proof generation and settlement still happens as usual. This means the transaction root will have to be calculated inside the L2 or specialised proof. This means this add-on can only work for L3s or for the Layered Aggregator.  
 
@@ -129,7 +129,7 @@ Another property that we would like to enable long-term is atomicity for the tra
 <div  align="center">
 
 ![ ](../../assets/images/hyperscalingAtomicityDA.png)
-This image is an intuition pump, the real mechanism is more complicated and works differently. 
+This image is a high level overview, the real mechanism is more complicated. 
 </div>
 
 ### Sovereignty
