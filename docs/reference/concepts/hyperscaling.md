@@ -46,9 +46,7 @@ Hyperbridging will consist of 7 steps.
 
 </div>
 
-Smart contracts will be written in many different programming languages in the ecosystem, due to our VM’s native LLVM support. Developers will have the option to use the native bridges, there will be no need for external third parties. Assets, function calls, general messages, and historical data can all be trustlessly transferred cross-chain.
-
-There are three types of bridges in this ecosystem. The enshrined L1-L2 bridge, the [zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf) shard bridges, and the hyperbridges will operate with a similar set of interfaces. 
+There are three types of bridges in this ecosystem. The enshrined L1-L2 bridge, the [zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf) shard bridges, and the hyperbridges will all operate with a similar set of interfaces. 
 
 Hyperbridges technically will be similar to L2→ L1 bridges, they will be asynchronous and not atomic. However, with the help of Account Abstraction, external relayers, and lower fees on rollups, the users will not have to initiate the call on the destination chain. This means the user experience will feel like an L1 → L2 bridge. You can try learn more about L1<>L2 bridging [here](https://era.zksync.io/docs/dev/how-to/send-message-l2-l1.html).
 
