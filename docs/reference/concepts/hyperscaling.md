@@ -237,7 +237,7 @@ One prominent example of this is a combination of **[zkRollup + zkPorter](https
 
 ![](../../assets/images/hyperscalingZKPorter.png)
 
-## **Privacy**
+### Privacy
 
 Hyperchains can add privacy in a number of ways:
 
