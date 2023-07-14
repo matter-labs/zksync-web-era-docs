@@ -22,7 +22,7 @@ This is what we're going to do:
 ## Build and deploy the Greeter contract
 
 ::: info Project available in Atlas IDE
-You can [open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/matter-labs/zksync-hardhat-template&open=Greeter.sol&chainId=280) to deploy the smart contracts and interact with them directly from your browser.
+This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/matter-labs/zksync-hardhat-template&open=Greeter.sol&chainId=280).
 :::
 
 ### Initialize the project
