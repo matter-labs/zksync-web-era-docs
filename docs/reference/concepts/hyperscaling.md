@@ -2,62 +2,13 @@
 
 ## Scaling Blockchains
 
-Today, Ethereum processes around 12 transactions per second. To support a future in which the world's financial activity is on-chain, we need to be able to process millions of transactions per second. However, blockchains are hard to scale due to their decentralized nature. The holy grail has always been horizontal scalability. Similar to the internet, where different servers host different websites, multiple distinct chains could host different applications in parallel. There have been many experiments attempting horizontal scaling, such as Polkadot, Cosmos, Near, and even the now-outdated Eth 2.0 vision, all of which have multiple shards or multiple chains. All of these solutions take care of interoperability, as the shards and bridges are designed together, as both are integral to the ecosystem. Unfortunately, the shards could never fully trust each other in any of these solutions.
+Ethereum, currently processing around 12 transactions per second, must scale to handle millions of transactions for a future of global on-chain financial activities. Achieving this in a decentralized structure poses significant challenges. Various solutions, including Polkadot, Cosmos, Near, and Eth 2.0, have been explored with multi-chain or shard architectures, but full trust remains an issue. The widely accepted solution for these challenges lies in zero-knowledge proofs, offering cryptographic security. Combined with the DA layer and ZK Rollups, these can create a secure, scalable ecosystem, making Ethereum accessible to all.
 
-<div  align="center">
+## Hyperchains + Hyperbridges
 
-![ ](../../assets/images/hyperscalingCosmos.png)
-
-The Cosmos ecosystem. Unfortunately, the bridges have trust requirements, the ecosystem ultimately does not scale. 
-
-</div>
-
-
-In parallel, the Ethereum community was solving the trust problem by verifying off-chain computations on-chain, inventing Plasma, optimistic rollups, and other solutions. It is now clear that zero-knowledge proofs are the future, as they provide cryptographic security. Ethereum will be accessible to everybody. The [DA layer](https://ethereum.org/en/roadmap/danksharding/) and ZK Rollups together will provide a secure and scalable ecosystem. But how will the rollups interoperate? Now that we have figured out the building blocks, it is time to review the system as a coherent whole again.
-
-## The Problem: Current bridging solutions
-
-The current state of bridging solutions is a [mess](https://twitter.com/VitalikButerin/status/1479501366192132099). There are some good solutions, such as atomic swaps, which enable trustless asset swapping between different blockchains. Unfortunately, they are not suitable for general message passing.
-
-<div  align="center">
-
-
-</div>
-
-In order to pass information between chains, bridges based on economic incentives were introduced. These require the operators to lock funds, which can be slashed based on an arbitration process.
-
-The potential design space is vast, and there are several potential issues. These include:
-
-1. The arbitration process is not trustless; dapp developers have to consider the risks involved.
-2. These bridges usually do not transfer real assets cross-chain; they only free up already locked funds. This makes the process expensive. However, this can be solved by using general message passing and minting synthetic assets. But the synthetic assets are less secure than the original assets and are not interchangeable with them.
-3. Chains can hard fork. This is their right, but it endangers the entire bridging ecosystem. This can be mitigated by locking funds separately for each bridge, but this makes the process much more expensive due to liquidity fragmentation. This applies to ZK-enabled bridges as well.
-4. Finally, even if the economic incentives are sound, hacks can always occur. If a vulnerability is found in the smart contracts, then every bridge in the entire ecosystem is affected. With the growth of adoption, cross-chain activity will be an indispensable part of every chain's activity. At this stage, if a bug is found, then every chain will want to hard fork to save its bridges. Bridges can only be hard forked on both sides with consensus. This means there needs to be a common social consensus for the ecosystem.
-
-## The Solution: Hyperchains + Hyperbridges
-
-The name Hyperbridge comes from the traditional web, where users can navigate websites using hyperlinks. Similarly, our rollups will be connected with Hyperbridges, connecting the fractal tree of Hyperchains.
-
-<div  align="center">
-
-![](../../assets/images/hyperchains.png)
-Gray lines show how proofs are settled
-
-</div>
-
-
-
-Using rollups with a shared bridge contract on L1, and *native* bridges between the rollups can solve all of the problems listed above.
-
-1. Rollups have validating bridges that are trustless.
-2. Native bridges can easily burn and mint the native tokens for transfers between members of the ecosystem. 
-3. The L1 serves as a single source of truth, so the rollups cannot hard fork.
-4. The ecosystem can coordinate the hard fork together in case a vulnerability is found using a governance framework on L1, similar to how the L1 would react to a vulnerability.
+Hyperchains are fractal-like instances of zkEVM running in parallel and with the common settlement on the L1 mainnet. The name Hyperbridge comes from the traditional web, where users can navigate websites using hyperlinks. Similarly, our rollups will be connected with Hyperbridges.
 
 The Hyperbridge itself will be a system of smart contracts, verifying Merkle proofs of the transactions happening on other chains. The original asset is locked in the shared bridge contract on L1. This means liquidity is unified across the ecosystem.
-
-Unfortunately, not all rollups can take advantage of these properties. In particular, optimistic rollups have very slow L1 finality, making trustless bridging impossibly slow.
-
-Here is where the magic of ZK comes to rescue. L1 settlement of ZK rollups is fast (down to minutes), and we can securely connect chains due to the cryptographic nature of the validity proofs.
 
 <div  align="center">
 
@@ -65,6 +16,18 @@ Here is where the magic of ZK comes to rescue. L1 settlement of ZK rollups is fa
 Gray lines show proofs, orange lines the hyperbridges, which automatically connect all blue chains.
 
 </div>
+
+
+Using Hyperchains with a shared bridge contract on L1, and *native* bridges between the rollups can solves a lot of problems in other architectures.
+
+1. Rollups have validating bridges that are trustless.
+2. Native Hyperbridges can easily burn and mint the native tokens for transfers between members of the ecosystem. 
+3. The L1 serves as a single source of truth, so the rollups cannot hard fork.
+4. The ecosystem can coordinate the hard fork together in case a vulnerability is found using a governance framework on L1, similar to how the L1 would react to a vulnerability.
+
+Hyperchains can be developed and permissionlessly deployed by anyone. However, to remain trusted and fully interoperable, each Hyperchain must be powered by the exact same zkEVM engine as the main zkSync Era instance. All the ZKP circuits will thus remain 100% identical, letting Hyperchains fully inherit their security from L1, no matter who deployed them. This ensures zero additional trust/security assumptions.
+
+Hyperchains will be implemented following the modular approach – using the ZK Stack developers can individually pick different components of their blockchains or implement their own ones (except the zkEVM core, for the reasons explained above). See [Modularity](#modularity-hyperchain-customization) below for more details.
 
 ### How Hyperbridges work
 
