@@ -4,11 +4,9 @@
 
 Ethereum, currently processing around 12 transactions per second, must scale to handle millions of transactions for a future of global on-chain financial activities. Achieving this in a decentralized structure poses significant challenges. Various solutions, including Polkadot, Cosmos, Near, and Eth 2.0, have been explored with multi-chain or shard architectures, but full trust remains an issue. The widely accepted solution for these challenges lies in zero-knowledge proofs, offering cryptographic security. Combined with the DA layer and ZK Rollups, these can create a secure, scalable ecosystem, making Ethereum accessible to all.
 
-## Hyperchains + Hyperbridges
+## What are Hyperchains?
 
 Hyperchains are fractal-like instances of zkEVM running in parallel and with the common settlement on the L1 mainnet. The name Hyperbridge comes from the traditional web, where users can navigate websites using hyperlinks. Similarly, our rollups will be connected with Hyperbridges.
-
-The Hyperbridge itself will be a system of smart contracts, verifying Merkle proofs of the transactions happening on other chains. The original asset is locked in the shared bridge contract on L1. This means liquidity is unified across the ecosystem.
 
 <div  align="center">
 
@@ -18,27 +16,28 @@ Gray lines show proofs, orange lines the hyperbridges, which automatically conne
 </div>
 
 
-Using Hyperchains with a shared bridge contract on L1, and *native* bridges between the rollups can solves a lot of problems in other architectures.
+Using Hyperchains with a shared bridge contract on L1, and native Hyperbridges between the rollups solves a lot of problems in other architectures.
 
 1. Rollups have validating bridges that are trustless.
-2. Native Hyperbridges can easily burn and mint the native tokens for transfers between members of the ecosystem. 
+2. Hyperbridges can easily burn and mint the native tokens for transfers between members of the ecosystem. 
 3. The L1 serves as a single source of truth, so the rollups cannot hard fork.
-4. The ecosystem can coordinate the hard fork together in case a vulnerability is found using a governance framework on L1, similar to how the L1 would react to a vulnerability.
+4. The ecosystem can coordinate a hard fork together in case a vulnerability is found using a governance framework on L1, similar to how the L1 would react to a vulnerability.
 
 Hyperchains can be developed and permissionlessly deployed by anyone. However, to remain trusted and fully interoperable, each Hyperchain must be powered by the exact same zkEVM engine as the main zkSync Era instance. All the ZKP circuits will thus remain 100% identical, letting Hyperchains fully inherit their security from L1, no matter who deployed them. This ensures zero additional trust/security assumptions.
 
-Hyperchains will be implemented following the modular approach – using the ZK Stack developers can individually pick different components of their blockchains or implement their own ones (except the zkEVM core, for the reasons explained above). See [Modularity](#modularity-hyperchain-customization) below for more details.
+Hyperchains will be implemented following the modular approach – using the ZK Stack developers can individually pick different components of their blockchains or implement their own ones (except the zkEVM core, for the reasons explained above). See [Modularity: Hyperchain Customisation](#modularity-hyperchain-customization) below for more details.
 
 ### How Hyperbridges work
 
+The Hyperbridge itself will be a system of smart contracts, verifying Merkle proofs of the transactions happening on other chains. The original asset is locked in the shared bridge contract on L1. This means liquidity is unified across the ecosystem.
 
 Hyperbridging will consist of 7 steps. 
 1. First the cross-rollup transaction has to be initiated on the sending rollup. 
 2. The sending rollup settles its proof onto L1.
 3. As the proof is settled, it updates the Transaction Root. This Root is a commitment to all the Hyperbridge transactions happening inside the ecosystem. 
 4. The receiving Hyperchain imports this Transaction Root. 
-5. A relayer sends the transaction from the sending to the receiving Hyperchain. The relayer is rewarded. 
-6. The transaction is verified using the imported Transaction Root. If the transaction is valid, it is executed. 
+5. A relayer sends the transaction and a Merkle Proof connecting it to the Transaction Root to the receiving Hyperchain. 
+6. The transaction is verifies the Merkle proof connects the imported Transaction Root and the transaction. If the proof is correct, the transaction is executed and the relayer is rewarded. 
 7. The receiving Hyperchain settles its proof, where the imported transaction root is also verified.  
 
 <div  align="center">
