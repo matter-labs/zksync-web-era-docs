@@ -41,6 +41,7 @@ By default, the HTTP JSON-RPC API is served via port `3050`, while the WebSocket
 
 - **L1 RPC:** `http://localhost:8545`
 - **L2 RPC:** `http://localhost:3050`
+- **WS API** `http://localhost:3051`
 - **Network Id:** 270
 
 ### Resetting the zkSync state
