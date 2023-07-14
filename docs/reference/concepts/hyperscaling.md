@@ -21,7 +21,6 @@ The current state of bridging solutions is a [mess](https://twitter.com/VitalikB
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingIslands.png)
 
 </div>
 
