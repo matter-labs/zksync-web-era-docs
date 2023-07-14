@@ -1,7 +1,7 @@
 # `hardhat-zksync-chai-matchers`
 
 This plugin adds zkSync-specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts. It extends all the functionalities supported by the [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, with the idea to preserve the same behavior and interface.
-Currently, it is used in combination with [local testing environment](./testing.md).
+Currently, it is used in combination with [local testing environment](../testing/README.md).
 
 [Changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-chai-matchers/CHANGELOG.md)
 

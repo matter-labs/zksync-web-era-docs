@@ -110,4 +110,4 @@ The zkSync team provides a dockerized local setup specifically designed for loca
 
 By incorporating local testing into your development workflow, you can effectively verify the behavior and functionality of your contracts in a controlled environment, ensuring a smooth deployment process to the mainnet.
 
-For detailed instructions on configuring the local testing environment and performing tests using Mocha and Chai, refer to the dedicated [Local Testing](../../tools/hardhat/testing.md) page.
+For detailed instructions on configuring the local testing environment and performing tests using Mocha and Chai, refer to the dedicated [Testing](../../tools/testing/README.md) page.
