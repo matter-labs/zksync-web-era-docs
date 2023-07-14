@@ -208,7 +208,7 @@ We look at the comparisons that different aggregator mechanisms enable.
 
 The main customization options to be provided by [ZK Stack (Post)](https://blog.matter-labs.io/introducing-the-zk-stack-c24240c2532a) is explained below. Developers are of course free to implement their own components and customizations.
 
-## **Sequencing transactions**
+### Sequencing transactions
 
 - **Centralized sequencer** - In this mode, there will be a single centralized operator with a conventional REST API to accept transactions from users. The operator must be trusted to maintain liveness, not to abuse MEV, and not to allow reorgs of unfinalized transactions, so the operator’s reputation will play a big role. The biggest advantage of this option is that it can provide the lowest possible latency to confirm transactions (<100ms), which is critical for use-cases such as HFT. The Basechain will run in this mode until it is fully decentralized, so we will have battle-tested server code available for developers early on.
 - **Decentralized sequencer** - In this mode, a Hyperchain will coordinate on what transactions are included in a block using a consensus algorithm. It can be any algorithm, so developers can reuse existing implementations (e.g. Tendermint or HotStuff with permissionless dPoS). But we can also take advantage of the fact that finality checkpoints are guaranteed by the underlying L1, and implement an algorithm that is simpler and boasts higher performance. The Basechain will switch to this option as soon as the consensus implementation is ready, and will make its code available to the Hyperchain developers.
