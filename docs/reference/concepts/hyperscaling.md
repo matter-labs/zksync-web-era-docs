@@ -136,7 +136,7 @@ This image is an intuition pump, the real mechanism is more complicated and work
 
 All Hyperchains will be sovereign in the ecosystem. This means two things.
 
-Proof aggregation will be optional, Hyperchains can choose to not participate. In this case, they can settle their proofs directly to Ethereum for a much larger fee. Aggregation will also be decentralized and widely accessible, meaning the hardware requirements to run a prover will be as low as possible.
+1. Proof aggregation will be optional, Hyperchains can choose to not participate. In this case, they can settle their proofs directly to Ethereum for a much larger fee. Aggregation will also be decentralized and widely accessible, meaning the hardware requirements to run a prover will be as low as possible.
 
 <div  align="center">
 
