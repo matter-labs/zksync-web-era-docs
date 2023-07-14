@@ -186,7 +186,7 @@ Second, Hyperchains will be able to permissionlessly join and exit the ecosystem
 
 Exiting will usually not be a similarly wise decision, as interoperability will be lost with other Hyperchains. However, the ecosystem could sometimes upgrade due to governance, and in this case, it is imperative that each Hyperchain have the right to rage quit. In this case, there will be a mandatory upgrade period during which the Hyperchains that disagrees with the upgrade can exit in a coordinated fashion.
 
-### Conclusion 
+### Feature comparison 
 
 We look at the comparisons that different aggregator mechanisms enable. 
 
