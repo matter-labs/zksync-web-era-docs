@@ -30,7 +30,7 @@ The potential design space is vast, and there are several potential issues. Thes
 
 1. The arbitration process is not trustless; dapp developers have to consider the risks involved.
 2. These bridges usually do not transfer real assets cross-chain; they only free up already locked funds. This makes the process expensive. However, this can be solved by using general message passing and minting synthetic assets. But the synthetic assets are less secure than the original assets and are not interchangeable with them.
-3. Chains can hard fork. This is their right, but it endangers the entire bridging ecosystem. This can be mitigated by locking funds separately for each bridge, but this makes the process much more expensive due to liquidity fragmentatio This applies to ZK-enabled bridges as well.
+3. Chains can hard fork. This is their right, but it endangers the entire bridging ecosystem. This can be mitigated by locking funds separately for each bridge, but this makes the process much more expensive due to liquidity fragmentation. This applies to ZK-enabled bridges as well.
 4. Finally, even if the economic incentives are sound, hacks can always occur. If a vulnerability is found in the smart contracts, then every bridge in the entire ecosystem is affected. With the growth of adoption, cross-chain activity will be an indispensable part of every chain's activity. At this stage, if a bug is found, then every chain will want to hard fork to save its bridges. Bridges can only be hard forked on both sides with consensus. This means there needs to be a common social consensus for the ecosystem.
 
 ## The Solution: Hyperchains + Hyperbridges
