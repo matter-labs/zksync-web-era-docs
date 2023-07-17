@@ -8,5 +8,4 @@
 - [Migration guide for existing projects](./migrating-to-zksync.md)
 - [zkSync plugin toolbox](./plugins.md)
 - [Community plugins](./other-plugins.md)
-- [Local testing](./testing.md)
 - [Compiling non-inlinable libraries](./compiling-libraries.md)

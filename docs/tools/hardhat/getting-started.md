@@ -80,7 +80,7 @@ const zkSyncTestnet =
 ```
 
 ::: tip Unit tests
-This template project includes a basic unit test in the `/test` folder that runs with the local-setup and can be executed with `yarn test`. Learn more about how to [start the local setup and write unit tests here](./testing.md).
+This template project includes a basic unit test in the `/test` folder that runs with the local-setup and can be executed with `yarn test`. Learn more about how to [start the local setup and write unit tests here](../testing/README.md).
 :::
 
 The `zksolc` block contains the minimal configuration for the compiler.
