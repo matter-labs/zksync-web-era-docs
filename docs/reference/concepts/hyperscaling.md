@@ -102,7 +102,7 @@ Here proof aggreagation happens via the L2, as the proofs of different L2 blocks
 
 ### Layered Aggregation 
 
-Layered Aggregation combines the benefits of L3s with the benefits of aggregation. The L2's VM is replaced by a specialised proof that still permits messaging and aggregation. This proof tracks the State Root of the participating rollups, as well as the Transaction Root. The Transaction Root will be imported from and settled inside this specialised proof. Compared to the L2's VM this solution is more scalable, and will only need a lightweight consensus mechanism. 
+Layered Aggregation combines the benefits of L3s with the benefits of aggregation. The L2's VM is replaced by the minimal program required to run L3 with messaging, and this is proven in a specialised proof that allows aggregation. This program tracks the State Root of the participating rollups, as well as the Transaction Root. The Transaction Root will be imported from and settled inside this specialised proof. Compared to the L2's VM this solution is more scalable, and will only need a lightweight consensus mechanism. 
 
 <div  align="center">
 
@@ -122,15 +122,7 @@ For these rollups proof generation and settlement still happens as usual. This m
 
 </div>
 
-### Atomicity
 
-Another property that we would like to enable long-term is atomicity for the transactions. This can be achieved using the DA layer. Instead of a relayer sending the transaction to the destination rollup, it can be posted to the DA layer, and the receiving rollup can read it from there. To guarantee atomicity, the received transactions need to be compared to the sent transactions. If rollups generated blocks at the same frequency then this could be done from block to block inside the proof aggregator. Unfortunately this is not the case, rollups will choose to generate blocks and setle proofs at their own rate. This makes the mechanism more complicated, a detailed description is available [here](https://hackmd.io/@kalmanlajko/BkmTTADai), and is still under review. This will only be possible for the Layered Aggregator. 
-
-<div  align="center">
-
-![ ](../../assets/images/hyperscalingAtomicityDA.png)
-This image is a high level overview, the real mechanism is more complicated. 
-</div>
 
 ### Sovereignty
 
@@ -162,7 +154,6 @@ We look at the comparisons that different aggregator mechanisms enable.
 | Scales   | Yes  |  No | Yes  |
 | Consensus Mechanism | None  | L2 Full Consensus  | Lightweight Consensus  |
 | Instant Messaging Add-on  | No  | Yes | Yes |
-| Hyperbridges atomic | No | No | Yes via DA, under review|
 | Sovereign | Yes  | Yes  | Yes |
 
 </div>
