@@ -99,7 +99,7 @@ contributors: false
 </div>
 <section>
   <div class="card-container">
-   <a href="https://portal.zksync.io/bridge" class="card">
+   <a href="https://portal.zksync.io/" class="card">
       <div class="content">
         <h3>zkSync Era Portal</h3>
         <p>Bridge, deposit, and withdraw ERC20 tokens.</p>

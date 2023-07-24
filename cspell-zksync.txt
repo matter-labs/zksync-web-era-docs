@@ -64,6 +64,9 @@ ethersproject
 nomicfoundation
 nomiclabs
 Consensys
+zkforge
+zkcast
+Eigen
 
 // Used programming language words
 printf
