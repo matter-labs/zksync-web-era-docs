@@ -26,7 +26,7 @@ After checking all these prerequisites, you should be ready to use the `era-test
 Begin by installing `era-test-node` using the command:
 
 ```bash
-cargo install --git https://github.com/matter-labs/era-test-node.git
+cargo install --git https://github.com/matter-labs/era-test-node.git --locked
 ```
 
 Rust should install it in the `~/.cargo/bin` directory.
