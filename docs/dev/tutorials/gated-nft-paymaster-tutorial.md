@@ -30,7 +30,7 @@ You'll gain a thorough understanding of how to create, compile, and deploy smart
 
 ### Complete project
 
-Download the complete project [here]().
+Download the complete project [here](https://github.com/matter-labs/gated-nft-tutorial).
 
 ## Build time!
 
