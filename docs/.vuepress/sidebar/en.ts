@@ -25,13 +25,14 @@ export const enSidebar = sidebar({
         "/dev/how-to/send-transaction-l1-l2",
         "/dev/how-to/send-message-l2-l1",
         "/dev/how-to/transfer-token-l2",
-        "/dev/how-to/verify-contracts"
+        "/dev/how-to/verify-contracts",
       ],
     },
     {
       text: "Tutorials",
       link: "/dev/tutorials/README.md",
       children: [
+        "/dev/tutorials/community-tutorials.md",
         "/dev/tutorials/cross-chain-tutorial.md",
         "/dev/tutorials/custom-aa-tutorial.md",
         "/dev/tutorials/aa-daily-spend-limit.md",
@@ -155,10 +156,7 @@ export const enSidebar = sidebar({
     {
       text: "Testing", // required
       link: "/tools/testing/", // optional, which should be a absolute path.
-      children: [
-        "/tools/testing/dockerized-testing.md",
-        "/tools/testing/era-test-node.md",
-      ],
+      children: ["/tools/testing/dockerized-testing.md", "/tools/testing/era-test-node.md"],
     },
     {
       text: "Compiler Toolchain",
