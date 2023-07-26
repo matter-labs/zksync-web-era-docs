@@ -3,16 +3,16 @@
 This documentation provides instructions on setting up and using the In-Memory Node, `era-test-node`, for local testing. It covers installation, network forking, transaction details viewing, replaying transactions, and testing local bootloader and system contracts.
 
 :::warning Tool in alpha stage
- Please keep in mind that `era-test-node` is still in its **alpha** stage, so some features might not be fully supported yet and may not work as fully intended. It is [open-sourced](https://github.com/matter-labs/era-test-node) and contributions are welcomed. 
+Please keep in mind that `era-test-node` is still in its **alpha** stage, so some features might not be fully supported yet and may not work as fully intended. It is [open-sourced](https://github.com/matter-labs/era-test-node) and contributions are welcomed.
 :::
 
-## Understanding the In-Memory Node 
+## Understanding the In-Memory Node
 
 The In-memory node uses an in-memory database for storing state information and simplified hashmaps for tracking blocks and transactions. In fork mode, it retrieves missing storage data from a remote source when not available locally. Moreover it also uses the remote server (openchain) to resolve the ABI and topics to human readable names.
 
 You can visit the `era-test-node` repository [here](https://github.com/matter-labs/era-test-node) to learn more.
 
-## Prerequisites 
+## Prerequisites
 
 Before you get started, there are a few prerequisites to consider. Ensure that your development environment meets the following requirements:
 
@@ -57,18 +57,18 @@ When utilizing `era-test-node` with MetaMask, it's essential to note that any re
 
 ### Network details
 
-The `era_test_node` has the following default network configurations: 
+The `era_test_node` has the following default network configurations:
 
 - **L2 RPC:** `http://localhost:8011`
 - **Network Id:** 260
 
-These can be configured to your preference. 
+These can be configured to your preference.
 
 ::: warning
-Please note that the existing implementation does not facilitate communication with Layer 1. As a result, an L1 RPC is not available. 
+Please note that the existing implementation does not facilitate communication with Layer 1. As a result, an L1 RPC is not available.
 :::
 
-## Forking networks 
+## Forking networks
 
 To fork the mainnet, use the following command:
 
@@ -115,7 +115,7 @@ You also have the option to specify a custom http endpoint and a custom forking 
 era_test_node fork --fork-at 7000000 mainnet http://172.17.0.3:3060
 ```
 
-## Replay remote transactions locally 
+## Replay remote transactions locally
 
 If you wish to replay a remote transaction locally for deep debugging, use the following command:
 
@@ -176,7 +176,7 @@ EthToken System Contract                   Transfer(address,address,uint256), 0x
 
 ## Sending network calls
 
-You can send network calls against a running `era-test-node`. You can check the testnet LINK balance or mainnet USDT using `curl` or [foundry-zksync](https://github.com/matter-labs/foundry-zksync). 
+You can send network calls against a running `era-test-node`. You can check the testnet LINK balance or mainnet USDT using `curl` or [foundry-zksync](https://github.com/matter-labs/foundry-zksync).
 
 To get started, launch the local in-memory node:
 
@@ -214,7 +214,7 @@ Retrieve the balance of a particular contract:
 zkcast call 0x40609141Db628BeEE3BfAB8034Fc2D8278D0Cc78 "balanceOf(address)(uint256)"  0x40609141Db628BeEE3BfAB8034Fc2D8278D0Cc78  --rpc-url http://localhost:8011
 ```
 
-Here's an example of what you should expect to see: 
+Here's an example of what you should expect to see:
 
 ```bash
 28762283719941475444443116625665
@@ -230,7 +230,7 @@ Before proceeding, ensure that you've compiled your contracts using `zkforge zk-
 zkforge zkc contracts/Greeter.sol:Greeter --constructor-args "ZkSync and Foundry" --private-key 7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110 --rpc-url http://localhost:8011 --chain 270
 ```
 
-Here's an example of what you should expect to see: 
+Here's an example of what you should expect to see:
 
 ```bash
 Deploying contract...
@@ -248,7 +248,7 @@ Block Number: 8072361
 In-memory node allows testing of the currently compiled bootloader and system contracts. This makes it possible to examine the effects of changes on already deployed contracts.
 
 :::warning
-These commands assume you have set `$ZKSYNC_HOME` in your shell profile file (e.g. ~/.bash_profile, ~/.zshrc) to target your local copy of `era-test-node`. For instance, 
+These commands assume you have set `$ZKSYNC_HOME` in your shell profile file (e.g. ~/.bash_profile, ~/.zshrc) to target your local copy of `era-test-node`. For instance,
 
 ```bash
 # Add path here:
@@ -256,6 +256,7 @@ export ZKSYNC_HOME=/path/to/era-test-node
 
 export PATH=$ZKSYNC_HOME/bin:$PATH
 ```
+
 :::
 
 Firstly, you will need to preprocess and compile the contracts:
@@ -275,13 +276,12 @@ RUST_LOG=vm=trace era_test_node --dev-use-local-contracts fork testnet
 
 In-Memory node includes pre-configured "rich" accounts for testing:
 
-| account id | private key |
-|---|---|
+| account id                                 | private key                                                        |
+| ------------------------------------------ | ------------------------------------------------------------------ |
 | 0x36615Cf349d7F6344891B1e7CA7C72883F5dc049 | 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110 |
-| 0xa61464658AfeAf65CccaaFD3a512b69A83B77618 | 0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3 | 
+| 0xa61464658AfeAf65CccaaFD3a512b69A83B77618 | 0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3 |
 | 0x0D43eB5B8a47bA8900d84AA36656c92024e9772e | 0xd293c684d884d56f8d6abd64fc76757d3664904e309a0645baf8522ab6366d9e |
 | 0xA13c10C0D5bd6f79041B9835c63f91de35A15883 | 0x850683b40d4a740aa6e745f889a6fdc8327be76e122f5aba645a5b02d0248db8 |
-
 
 ## Writing and running tests locally
 
@@ -312,7 +312,7 @@ This script makes it possible to run tests in a Hardhat environment with the `NO
 4. Adjust `hardhat.config.ts` to use the local node for testing:
 
 :::warning
-Ensure era-test-node is running in another process before executing yarn test. 
+Ensure era-test-node is running in another process before executing yarn test.
 :::
 
 ```typescript

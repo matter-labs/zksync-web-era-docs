@@ -31,6 +31,7 @@ Hyperchains will be implemented following the modular approach – using the ZK 
 The Hyperbridge itself will be a set of smart contracts, verifying Merkle proofs of the transactions happening on other chains. The original asset is locked in the shared bridge contract on L1. This means liquidity is unified across the ecosystem.
 
 Hyperbridging will consist of 7 steps.
+
 1. A Hyperchain initiates the cross-hyperchain transaction.
 2. The sending Hyperchain settles its proof onto L1.
 3. As the proof is settled, it updates the Transaction Root. This Root is a commitment to all the Hyperbridge transactions happening inside the ecosystem.
@@ -123,7 +124,6 @@ For these rollups proof generation and settlement still happens as usual. This m
 
 </div>
 
-
 ### Sovereignty
 
 All Hyperchains will be sovereign in the ecosystem. This means two things.
@@ -136,7 +136,6 @@ All Hyperchains will be sovereign in the ecosystem. This means two things.
 
 </div>
 
-
 2. In addition, Hyperchains will be able to permissionlessly join and exit the ecosystem, adding or removing all their assets to the common pool in the Shared Bridge. Joining is self-explanatory, everyone will have the right to boot up new Hyperchains and join the ecosystem in a Chain Factory contract.
 
 Exiting will usually not be a similarly wise decision, as interoperability will be lost with other Hyperchains. However, the ecosystem could sometimes upgrade due to governance, and in this case, it is imperative that each Hyperchain have the right to rage quit. In this case, there will be a mandatory upgrade period during which the Hyperchains that disagree with the upgrade can exit alone, or together in a coordinated fashion.
@@ -147,14 +146,13 @@ We look at the comparisons that different aggregator mechanisms enable.
 
 <div  align="center">
 
-
-|   | Aggregation | L3s | Layered Aggregation  |
-|---|---|---|---|
-|Fast Messaging|  No | Yes  |  Yes |
-| Scales   | Yes  |  No | Yes  |
-| Consensus Mechanism | None  | L2 Full Consensus  | Lightweight Consensus  |
-| Instant Messaging Add-on  | No  | Yes | Yes |
-| Sovereign | Yes  | Yes  | Yes |
+|                          | Aggregation | L3s               | Layered Aggregation   |
+| ------------------------ | ----------- | ----------------- | --------------------- |
+| Fast Messaging           | No          | Yes               | Yes                   |
+| Scales                   | Yes         | No                | Yes                   |
+| Consensus Mechanism      | None        | L2 Full Consensus | Lightweight Consensus |
+| Instant Messaging Add-on | No          | Yes               | Yes                   |
+| Sovereign                | Yes         | Yes               | Yes                   |
 
 </div>
 
@@ -167,7 +165,7 @@ The main customization options to be provided by [ZK Stack](https://blog.matter-
 - **Centralized sequencer** - In this mode, there will be a single centralized operator with a conventional REST API to accept transactions from users. The operator must be trusted to maintain liveness, not to abuse MEV, and not to allow reorgs of unfinalized transactions, so the operator’s reputation will play a big role. The biggest advantage of this option is that it can provide the lowest possible latency to confirm transactions (<100ms), which is critical for use cases such as HFT. ZkSync Era will run in this mode until it is fully decentralized, so we will have battle-tested server code available for developers early on.
 - **Decentralized sequencer** - In this mode, a Hyperchain will coordinate on what transactions are included in a block using a consensus algorithm. It can be any algorithm, so developers can reuse existing implementations (e.g. Tendermint or HotStuff with permissionless dPoS). But we can also take advantage of the fact that finality checkpoints are guaranteed by the underlying L1, and implement an algorithm that is simpler and boasts higher performance. ZkSync Era will switch to this option as soon as the consensus implementation is ready and will make its code available to the Hyperchain developers.
 - **Priority queue** - This simply means the absence of any sequencer: all transactions can be submitted in batches via the priority queue from an underlying L2 or even L1 chain, taking advantage of their stronger censorship resistance. It might be especially interesting for special-purpose governance protocols (e.g. on-chain voting). It’s worth noting that the priority queue will always be available as an escape-hatch mechanism (even if a centralized or decentralized sequencer is employed), to protect users against censorship by a malicious sequencer.
-- **External protocol** - The sequencing of the Hyperchain is freely customizable, so external protocols such as Shared Sequencers and Shared Builders can also be used. 
+- **External protocol** - The sequencing of the Hyperchain is freely customizable, so external protocols such as Shared Sequencers and Shared Builders can also be used.
 
 ### Data availability
 

@@ -13,7 +13,6 @@ The daily limit feature prevents an account from spending more ETH than the limi
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 - We encourage you to read [the basics of account abstraction on zkSync Era](../../reference/concepts/account-abstraction.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
 
-
 ## Complete Project
 
 Download the complete project [here](https://github.com/matter-labs/daily-spendlimit-tutorial). Additionally, the repository contains a test folder with more detailed tests for running on a zkSync Era local network.

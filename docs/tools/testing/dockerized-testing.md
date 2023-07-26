@@ -32,7 +32,7 @@ This command initiates three docker containers:
 - The zkSync node itself.
 
 :::tip
- The first `start.sh` script execution should go uninterrupted. If the bootstrapping process halts unexpectedly, reset the local zkSync state and try again. The process can take up to 10 minutes to start (only the first time!).
+The first `start.sh` script execution should go uninterrupted. If the bootstrapping process halts unexpectedly, reset the local zkSync state and try again. The process can take up to 10 minutes to start (only the first time!).
 :::
 
 ### Network details
@@ -58,7 +58,7 @@ In case of a "permission denied" error, execute it with root privileges:
 sudo ./clear.sh
 ```
 
-::: info Update docker images 
+::: info Update docker images
 The `clear.sh` script will also pull the most recent Docker images so it can be used to update the dockerized local setup.
 :::
 
