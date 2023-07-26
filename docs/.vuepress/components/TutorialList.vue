@@ -5,12 +5,16 @@
         <a :href="`${tutorialsRepo}${t.slug}/TUTORIAL.md`" target="_blank">{{ t.title }}</a
         ><span> by {{ t.author }}</span>
       </h3>
-      <div :class="`badge bg-${index}`" v-for="(tag, index) in t.tags" :key="tag">{{ tag }}</div>
+      <div :class="`badge bg-${index}`" v-for="(tag, index) in t.tags" :key="tag"><span style="">⦿ </span>{{ tag }}</div>
+      <!-- <ul>
+        <li :class="`badge bg-${index}`" v-for="(tag, index) in t.tags" :key="tag">{{ tag }}</li>
+      </ul> -->
+
       <p>{{ t.description }}</p>
       <p class="description"><strong>Difficulty:</strong> {{ t.level }}</p>
 
       <p>
-        <a :href="`${tutorialsRepo}${t.slug}/TUTORIAL.md`" target="_blank">Tutorial repository</a>
+        <a class="button" :href="`${tutorialsRepo}${t.slug}/TUTORIAL.md`" target="_blank">Tutorial repository</a>
       </p>
       <hr />
     </div>
@@ -65,34 +69,52 @@ const tutorials = ref([
   margin: 0;
   padding: 0;
 }
+.button {
+  padding: 10px 14px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #1e69ff;
+  border-radius: 10px;
+}
 .badge {
   padding: 4px 8px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 8px;
   margin: 0px 0px 4px 4px;
 }
 .bg-0 {
-  background-color: purple;
-  color: white;
+  border: 1px solid purple;
+  background-color: #fff;
+  color: purple;
+  box-shadow: #2c3e50;
 }
 .bg-1 {
-  background-color: blue;
-  color: white;
+  background-color: #fff;
+  border: 1px solid blue;
+  color: blue;
 }
 .bg-2 {
-  background-color: deeppink;
-  color: white;
+  border: 1px solid deeppink;
+  background-color: #fff;
+
+  color: deeppink;
 }
 .bg-3 {
-  background-color: yellowgreen;
-  color: white;
+  border: 1px solid limegreen;
+  background-color: #fff;
+
+  color: yellowgreen;
 }
 .bg-4 {
-  background-color: darkorange;
-  color: white;
+  border: 1px solid darkorange;
+  background-color: #fff;
+
+  color: darkorange;
 }
 .bg-5 {
-  background-color: crimson;
-  color: white;
+  border: 1px solid crimson;
+  background-color: #fff;
+
+  color: crimson;
 }
 </style>
