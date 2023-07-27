@@ -26,6 +26,7 @@ Instead, you can send arbitrary-length messages from zkSync Era to Ethereum, and
   uint256 txNumberInblock;
   }
   `
+
   > > > > > > > 9e2b079e7965f670c7638c07debe4fe38c91c52c
   > > > > > > > :::
 
