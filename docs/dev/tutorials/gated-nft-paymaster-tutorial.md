@@ -1,4 +1,4 @@
-# Gated NFT Paymaster
+# Gated NFT paymaster
 
 Discover how to construct a tailored paymaster that enables users to sidestep gas fees when they own a particular NFT. By the end of this tutorial, you'll:
 
@@ -34,7 +34,7 @@ Download the complete project [here](https://github.com/matter-labs/gated-nft-tu
 
 ## Build time!
 
-### Setup the project
+### Step 1 — Setup the project
 
 :::info
 
@@ -331,12 +331,6 @@ uint256 requiredETH = _transaction.gasLimit *
     value: requiredETH
 }("");
 ```
-
-::: tip Validate all requirements first
-The [validation steps](../../reference/concepts/account-abstraction.md#the-validation-step) ensure that the paymaster won't throttle if the first storage read which has a different value from the execution on the API is a storage slot that belongs to the user.
-
-This is why it is important to verify transaction prerequisites _before_ performing any logic and why we _first_ check that the user provided enough allowance before calling `transferFrom`.
-:::
 
 The full `validateAndPayForPaymasterTransaction` function should resemble the following:
 
