@@ -8,7 +8,8 @@ Instead, you can send arbitrary-length messages from zkSync Era to Ethereum, and
 
 - A message is like an event on Ethereum.
 - The difference is that a message publishes data on L1.
-- [Solidity representation](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/Storage.sol#L58):
+
+- [Solidity representation](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/Storage.sol#L58)
   `solidity
 <<<<<<< HEAD
   struct L2Message {
@@ -17,15 +18,16 @@ Instead, you can send arbitrary-length messages from zkSync Era to Ethereum, and
           uint256 txNumberInblock;
   }
   `
-=======
-struct L2Message {
-        address sender;
-        bytes data;
-        uint256 txNumberInblock;
-}
-`
->>>>>>> 9e2b079e7965f670c7638c07debe4fe38c91c52c
-  :::
+  =======
+
+  struct L2Message {
+  address sender;
+  bytes data;
+  uint256 txNumberInblock;
+  }
+  `
+  > > > > > > > 9e2b079e7965f670c7638c07debe4fe38c91c52c
+  > > > > > > > :::
 
 :::tip Verification
 
