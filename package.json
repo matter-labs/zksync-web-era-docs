@@ -38,7 +38,7 @@
     "lint:mdl": "markdownlint -c .markdownlint.json \"docs/**/*.md\"",
     "lint:spell": "cspell docs/**/*.md",
     "fix:fmt": "prettier --write \"docs/**/*.md\"",
-    "fix:mdl": "yarn lint:md --fix",
+    "fix:mdl": "yarn lint:mdl --fix",
     "ci": "yarn lint:dead; yarn lint:fmt;",
     "ci:fix": "yarn fix:mdl; yarn fix:fmt",
     "ci:build": "yarn ci && yarn docs:build",

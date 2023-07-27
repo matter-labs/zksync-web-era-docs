@@ -10,7 +10,7 @@ Hyperchains are fractal-like instances of zkEVM running in parallel and with the
 
 <div  align="center">
 
-![](../../assets/images/hyperbridges.png)
+![hyperbridges](../../assets/images/hyperbridges.png)
 Gray lines show proofs, orange lines the hyperbridges, which automatically connect all blue chains.
 
 </div>
@@ -24,13 +24,14 @@ Using Hyperchains with a shared bridge contract on L1, and native Hyperbridges b
 
 Hyperchains can be developed and permissionlessly deployed by anyone. However, to remain trusted and fully interoperable, each Hyperchain must be powered by the same zkEVM engine available on the ZK Stack (and currently powering the first hyperchain, zkSync Era). All the ZKP circuits will thus remain 100% identical, letting Hyperchains fully inherit their security from L1, no matter who deployed them. This ensures zero additional trust/security assumptions.
 
-Hyperchains will be implemented following the modular approach – using the ZK Stack developers can individually pick different components of their blockchains or implement their own ones (except the zkEVM core, for the reasons explained above). See [Modularity: Hyperchain Customisation](#modularity-hyperchain-customization) below for more details.
+Hyperchains will be implemented following the modular approach – using the ZK Stack developers can individually pick different components of their blockchains or implement their own ones (except the zkEVM core, for the reasons explained above). See [Modularity: Hyperchain Customization](#modularity-hyperchain-customization) below for more details.
 
 ### How Hyperbridges work
 
 The Hyperbridge itself will be a set of smart contracts, verifying Merkle proofs of the transactions happening on other chains. The original asset is locked in the shared bridge contract on L1. This means liquidity is unified across the ecosystem.
 
 Hyperbridging will consist of 7 steps.
+
 1. A Hyperchain initiates the cross-hyperchain transaction.
 2. The sending Hyperchain settles its proof onto L1.
 3. As the proof is settled, it updates the Transaction Root. This Root is a commitment to all the Hyperbridge transactions happening inside the ecosystem.
@@ -41,7 +42,7 @@ Hyperbridging will consist of 7 steps.
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingBridgingFull.png)
+![hyperscaling](../../assets/images/hyperscalingBridgingFull.png)
 
 </div>
 
@@ -69,7 +70,7 @@ Bridging will be part of the protocol, so it will be built into the wallet along
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingUniswap.png)
+![hyperscalingUniswap](../../assets/images/hyperscalingUniswap.png)
 
 </div>
 
@@ -85,7 +86,7 @@ Simple proof aggregation treats the proofs of different Hyperchains as independe
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingAggregation.png)
+![HyperscalingAggregation](../../assets/images/hyperscalingAggregation.png)
 
 </div>
 
@@ -97,7 +98,7 @@ Here proof aggregation happens via the L2, as the proofs of different L2 blocks 
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingL3Fast2Blocks.png)
+![hyperscalingL3Fast2Blocks](../../assets/images/hyperscalingL3Fast2Blocks.png)
 
 </div>
 
@@ -107,7 +108,7 @@ Layered Aggregation combines the benefits of L3s with the benefits of simple agg
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingLayeredAggregation.png)
+![hyperscalingLayeredAggregation](../../assets/images/hyperscalingLayeredAggregation.png)
 
 </div>
 
@@ -119,10 +120,9 @@ For these rollups proof generation and settlement still happens as usual. This m
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingFastEconomic.png)
+![hyperscalingFastEconomic](../../assets/images/hyperscalingFastEconomic.png)
 
 </div>
-
 
 ### Sovereignty
 
@@ -132,10 +132,9 @@ All Hyperchains will be sovereign in the ecosystem. This means two things.
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingSovereignty.png)
+![hyperscalingSovereignty](../../assets/images/hyperscalingSovereignty.png)
 
 </div>
-
 
 2. In addition, Hyperchains will be able to permissionlessly join and exit the ecosystem, adding or removing all their assets to the common pool in the Shared Bridge. Joining is self-explanatory, everyone will have the right to boot up new Hyperchains and join the ecosystem in a Chain Factory contract.
 
@@ -147,14 +146,13 @@ We look at the comparisons that different aggregator mechanisms enable.
 
 <div  align="center">
 
-
-|   | Aggregation | L3s | Layered Aggregation  |
-|---|---|---|---|
-|Fast Messaging|  No | Yes  |  Yes |
-| Scales   | Yes  |  No | Yes  |
-| Consensus Mechanism | None  | L2 Full Consensus  | Lightweight Consensus  |
-| Instant Messaging Add-on  | No  | Yes | Yes |
-| Sovereign | Yes  | Yes  | Yes |
+|                          | Aggregation | L3s               | Layered Aggregation   |
+| ------------------------ | ----------- | ----------------- | --------------------- |
+| Fast Messaging           | No          | Yes               | Yes                   |
+| Scales                   | Yes         | No                | Yes                   |
+| Consensus Mechanism      | None        | L2 Full Consensus | Lightweight Consensus |
+| Instant Messaging Add-on | No          | Yes               | Yes                   |
+| Sovereign                | Yes         | Yes               | Yes                   |
 
 </div>
 
@@ -167,7 +165,7 @@ The main customization options to be provided by [ZK Stack](https://blog.matter-
 - **Centralized sequencer** - In this mode, there will be a single centralized operator with a conventional REST API to accept transactions from users. The operator must be trusted to maintain liveness, not to abuse MEV, and not to allow reorgs of unfinalized transactions, so the operator’s reputation will play a big role. The biggest advantage of this option is that it can provide the lowest possible latency to confirm transactions (<100ms), which is critical for use cases such as HFT. ZkSync Era will run in this mode until it is fully decentralized, so we will have battle-tested server code available for developers early on.
 - **Decentralized sequencer** - In this mode, a Hyperchain will coordinate on what transactions are included in a block using a consensus algorithm. It can be any algorithm, so developers can reuse existing implementations (e.g. Tendermint or HotStuff with permissionless dPoS). But we can also take advantage of the fact that finality checkpoints are guaranteed by the underlying L1, and implement an algorithm that is simpler and boasts higher performance. ZkSync Era will switch to this option as soon as the consensus implementation is ready and will make its code available to the Hyperchain developers.
 - **Priority queue** - This simply means the absence of any sequencer: all transactions can be submitted in batches via the priority queue from an underlying L2 or even L1 chain, taking advantage of their stronger censorship resistance. It might be especially interesting for special-purpose governance protocols (e.g. on-chain voting). It’s worth noting that the priority queue will always be available as an escape-hatch mechanism (even if a centralized or decentralized sequencer is employed), to protect users against censorship by a malicious sequencer.
-- **External protocol** - The sequencing of the Hyperchain is freely customizable, so external protocols such as Shared Sequencers and Shared Builders can also be used. 
+- **External protocol** - The sequencing of the Hyperchain is freely customizable, so external protocols such as Shared Sequencers and Shared Builders can also be used.
 
 ### Data availability
 
@@ -190,7 +188,7 @@ Synchronicity is important as it enables atomic transactions between partitions,
 
 One prominent example of this is a combination of **[zkRollup + zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf)** (which will be part of the zkSync Era):
 
-![](../../assets/images/hyperscalingZKPorter.png)
+![hyperscalingZKPorter](../../assets/images/hyperscalingZKPorter.png)
 
 ### Privacy
 
