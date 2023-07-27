@@ -10,7 +10,7 @@ Hyperchains are fractal-like instances of zkEVM running in parallel and with the
 
 <div  align="center">
 
-![](../../assets/images/hyperbridges.png)
+![hyperbridges](../../assets/images/hyperbridges.png)
 Gray lines show proofs, orange lines the hyperbridges, which automatically connect all blue chains.
 
 </div>
@@ -24,7 +24,7 @@ Using Hyperchains with a shared bridge contract on L1, and native Hyperbridges b
 
 Hyperchains can be developed and permissionlessly deployed by anyone. However, to remain trusted and fully interoperable, each Hyperchain must be powered by the same zkEVM engine available on the ZK Stack (and currently powering the first hyperchain, zkSync Era). All the ZKP circuits will thus remain 100% identical, letting Hyperchains fully inherit their security from L1, no matter who deployed them. This ensures zero additional trust/security assumptions.
 
-Hyperchains will be implemented following the modular approach – using the ZK Stack developers can individually pick different components of their blockchains or implement their own ones (except the zkEVM core, for the reasons explained above). See [Modularity: Hyperchain Customisation](#modularity-hyperchain-customization) below for more details.
+Hyperchains will be implemented following the modular approach – using the ZK Stack developers can individually pick different components of their blockchains or implement their own ones (except the zkEVM core, for the reasons explained above). See [Modularity: Hyperchain Customization](#modularity-hyperchain-customization) below for more details.
 
 ### How Hyperbridges work
 
@@ -42,7 +42,7 @@ Hyperbridging will consist of 7 steps.
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingBridgingFull.png)
+![hyperscaling](../../assets/images/hyperscalingBridgingFull.png)
 
 </div>
 
@@ -70,7 +70,7 @@ Bridging will be part of the protocol, so it will be built into the wallet along
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingUniswap.png)
+![hyperscalingUniswap](../../assets/images/hyperscalingUniswap.png)
 
 </div>
 
@@ -86,7 +86,7 @@ Simple proof aggregation treats the proofs of different Hyperchains as independe
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingAggregation.png)
+![HyperscalingAggregation](../../assets/images/hyperscalingAggregation.png)
 
 </div>
 
@@ -98,7 +98,7 @@ Here proof aggregation happens via the L2, as the proofs of different L2 blocks 
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingL3Fast2Blocks.png)
+![hyperscalingL3Fast2Blocks](../../assets/images/hyperscalingL3Fast2Blocks.png)
 
 </div>
 
@@ -108,7 +108,7 @@ Layered Aggregation combines the benefits of L3s with the benefits of simple agg
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingLayeredAggregation.png)
+![hyperscalingLayeredAggregation](../../assets/images/hyperscalingLayeredAggregation.png)
 
 </div>
 
@@ -120,7 +120,7 @@ For these rollups proof generation and settlement still happens as usual. This m
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingFastEconomic.png)
+![hyperscalingFastEconomic](../../assets/images/hyperscalingFastEconomic.png)
 
 </div>
 
@@ -132,7 +132,7 @@ All Hyperchains will be sovereign in the ecosystem. This means two things.
 
 <div  align="center">
 
-![](../../assets/images/hyperscalingSovereignty.png)
+![hyperscalingSovereignty](../../assets/images/hyperscalingSovereignty.png)
 
 </div>
 
@@ -188,7 +188,7 @@ Synchronicity is important as it enables atomic transactions between partitions,
 
 One prominent example of this is a combination of **[zkRollup + zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf)** (which will be part of the zkSync Era):
 
-![](../../assets/images/hyperscalingZKPorter.png)
+![hyperscalingZKPorter](../../assets/images/hyperscalingZKPorter.png)
 
 ### Privacy
 

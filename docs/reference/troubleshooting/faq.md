@@ -94,7 +94,7 @@ While there are a few, rarely used opcodes that we do not support, we have not f
 
 ## What is Account Abstraction?
 
-At a very high level, Account Abstraction allows us to make authorizations *programmable*, enabling a greater diversity of wallet and protocol design with use cases including:
+At a very high level, Account Abstraction allows us to make authorizations programmable, enabling a greater diversity of wallet and protocol design with use cases including:
 
 - The implementation of smart contract wallets that improve the user experience of private key storage and recovery (eg. [social recovery](https://vitalik.ca/general/2021/01/11/recovery.html), multisig).
 - The ability to natively pay gas fees in tokens other than ETH.

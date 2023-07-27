@@ -125,7 +125,7 @@ The execution step is considered responsible for the actual execution of the tra
 
 **Step 6.** The system calls the `executeTransaction` method of the account.
 
-**Step 7. (only in case the transaction has a paymaster)** The `postTransaction` method of the paymaster is called. This step should typically be used for refunding the sender the unused gass in case the paymaster was used to facilitate paying fees in ERC-20 tokens.
+**Step 7. (only in case the transaction has a paymaster)** The `postTransaction` method of the paymaster is called. This step should typically be used for refunding the sender the unused gas in case the paymaster was used to facilitate paying fees in ERC-20 tokens.
 
 ### Fees
 
@@ -320,7 +320,7 @@ The `aa-signature-checker` library provides a way to verify signatures for diffe
 
 _We strongly encourage you to use this library whenever you need to check that a signature of an account is correct._
 
-### Adding the library to your project:
+### Adding the library to your project
 
 ```
 yarn add @matterlabs/signature-checker

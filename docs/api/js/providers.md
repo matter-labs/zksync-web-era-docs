@@ -68,7 +68,7 @@ Returns an estimate of the amount of gas required to submit a transaction to the
 
 Returns an estimate of the amount of gas required to submit a transaction from L1 to L2 as a `BigNumber` object.
 
-Calls the [`zks_estimateL1ToL2`](../api.md#zks_estimategasl1tol2) JSON-RPC method.
+Calls the [`zks_estimateL1ToL2`](../api.md#zks-estimategasl1tol2) JSON-RPC method.
 
 ### `estimateGasTransfer`
 
@@ -186,7 +186,7 @@ async estimateL1ToL2Execute(transaction: {
 
 Returns all balances for confirmed tokens given by an account address.
 
-Calls the [`zks_getAllAccountBalances`](../api.md#zks_getallaccountbalances) JSON-RPC method.
+Calls the [`zks_getAllAccountBalances`](../api.md#zks-getallaccountbalances) JSON-RPC method.
 
 ### `getBalance`
 
@@ -246,7 +246,7 @@ Returns block from the network, or false if there is no block.
 
 Returns additional zkSync-specific information about the L2 block.
 
-Calls the [`zks_getBlockDetails`](../api.md#zks_getblockdetails) JSON-RPC method.
+Calls the [`zks_getBlockDetails`](../api.md#zks-getblockdetails) JSON-RPC method.
 
 ### `getBlockWithTransactions`
 
@@ -258,7 +258,7 @@ Returns an array of `TransactionResponse` objects.
 
 Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `from` and `limit`.
 
-Calls the [`zks_getConfirmedTokens`](../api.md#zks_getconfirmedtokens) JSON-RPC method.
+Calls the [`zks_getConfirmedTokens`](../api.md#zks-getconfirmedtokens) JSON-RPC method.
 
 :::tip Tip
 
@@ -402,7 +402,7 @@ Returns an estimate (best guess) of the gas price to use in a transaction.
 
 Returns the range of blocks contained within a batch given by batch number.
 
-Calls the [`zks_getL1BatchBlockRange`](../api.md#zks_getl1batchblockrange) JSON-RPC method.
+Calls the [`zks_getL1BatchBlockRange`](../api.md#zks-getl1batchblockrange) JSON-RPC method.
 
 ```typescript
 async getL1BatchBlockRange(l1BatchNumber: number): Promise<[number, number] | null> {
@@ -418,13 +418,13 @@ async getL1BatchBlockRange(l1BatchNumber: number): Promise<[number, number] | nu
 
 Returns data pertaining to a given batch.
 
-Calls the [`zks_getL1BatchDetails`](../api.md#zks_getl1batchdetails) JSON-RPC method.
+Calls the [`zks_getL1BatchDetails`](../api.md#zks-getl1batchdetails) JSON-RPC method.
 
 ### `getL1BatchNumber`
 
 Returns the latest L1 batch number.
 
-Calls the [`zks_getL1BatchNumber`](../api.md#zks_l1batchnumber) JSON-RPC method.
+Calls the [`zks_getL1BatchNumber`](../api.md#zks-l1batchnumber) JSON-RPC method.
 
 ### `getL2TransactionFromPriorityOp`
 
@@ -457,7 +457,7 @@ async getL2TransactionFromPriorityOp(
 
 Returns the proof for a transaction's L2 to L1 log sent via the L1Messenger system contract.
 
-Calls the [`zks_getL2ToL1LogProof`](../api.md#zks_getl2tol1logproof) JSON-RPC method.
+Calls the [`zks_getL2ToL1LogProof`](../api.md#zks-getl2tol1logproof) JSON-RPC method.
 
 ### `getLogs`
 
@@ -467,7 +467,7 @@ Returns an array of all logs that match a filter with a given id by calling Ethe
 
 Returns the main zkSync Era smart contract address.
 
-Calls the [`zks_getMainContract`](../api.md#zks_getmaincontract) JSON-RPC method.
+Calls the [`zks_getMainContract`](../api.md#zks-getmaincontract) JSON-RPC method.
 
 ```typescript
 async getMainContractAddress(): Promise<Address> {
@@ -482,7 +482,7 @@ async getMainContractAddress(): Promise<Address> {
 
 Returns the proof for a message sent via the L1Messenger system contract.
 
-Calls the [`zks_getL2ToL1MsgProof`](../api.md#zks_getl2tol1msgproof) JSON-RPC method.
+Calls the [`zks_getL2ToL1MsgProof`](../api.md#zks-getl2tol1msgproof) JSON-RPC method.
 
 ```typescript
 async getMessageProof(
@@ -559,7 +559,7 @@ console.log(await provider.getTestnetPaymasterAddress());
 
 Returns the USD price for a token. Please note that that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
 
-Calls the [`zks_getTokenPrice`](../api.md#zks_gettokenprice) JSON-RPC method.
+Calls the [`zks_getTokenPrice`](../api.md#zks-gettokenprice) JSON-RPC method.
 
 #### Example
 
@@ -607,7 +607,7 @@ await txHandle.waitFinalize();
 
 Returns data from a specific transaction given by the transaction hash.
 
-Calls the [`getTransactionDetails`](../api.md#zks_gettransactiondetails) JSON-RPC method.
+Calls the [`getTransactionDetails`](../api.md#zks-gettransactiondetails) JSON-RPC method.
 
 ### `getTransactionReceipt`
 
@@ -656,7 +656,7 @@ console.log(await provider.getTransactionStatus(TX_HASH));
 
 Returns the chain id of the underlying L1.
 
-Calls the [`zks_L1ChainId`](../api.md#zks_l1chainid) JSON-RPC method.
+Calls the [`zks_L1ChainId`](../api.md#zks-l1chainid) JSON-RPC method.
 
 ### `l1TokenAddress`
 

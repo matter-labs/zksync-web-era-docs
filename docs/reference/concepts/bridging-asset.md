@@ -17,7 +17,7 @@ Addresses of tokens on L2 will always differ from the same token L1 address.
 
 ## Default bridges
 
-You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../api/api.md#zks_getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../api/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
+You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../api/api.md#zks-getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../api/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
 
 ### Add tokens to the bridge
 

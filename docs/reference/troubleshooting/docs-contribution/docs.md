@@ -51,7 +51,7 @@ Review the page to see if it needs editing. Things to look for:
 6. After editing the files click on `Create pull request` and wait for our reviewers to review your PR.
    ![create-pull-request](https://user-images.githubusercontent.com/55744578/136703597-6644e43c-7c64-4cc0-bf8b-7fb8db9544cf.jpg)
 
-### Learning/Improvement resources:
+### Learning/Improvement resources
 
 - [Technical Writing Best Practices](https://proedit.com/technical-writing-best-practices/).
 - [9 Technical Writing Tips Every Writer Needs to Know](https://www.instructionalsolutions.com/blog/technical-writing-tips).

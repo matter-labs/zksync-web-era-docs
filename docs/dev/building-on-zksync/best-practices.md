@@ -68,7 +68,7 @@ A notable example is a Gnosis Safe’s `execTransaction` method:
 
 ```solidity
 // We require some gas to emit the events (at least 2500) after the execution and some to perform code until the execution (500)
-// We also include the 1/64 in the check that is not send along with a call to counteract potential shortings because of EIP-150
+// We also include the 1/64 in the check that is not send along with a call to counteract potential shortcomings because of EIP-150
 require(gasleft() >= ((safeTxGas * 64) / 63).max(safeTxGas + 2500) + 500, "GS010");
 // Use scope here to limit variable lifetime and prevent `stack too deep` errors
 {
