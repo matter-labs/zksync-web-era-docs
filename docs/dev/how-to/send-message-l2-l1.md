@@ -1,26 +1,28 @@
 # Send an L2 to L1 message
 
-It is impossible to send transactions directly from L2 to L1. 
+It is impossible to send transactions directly from L2 to L1.
 
 Instead, you can send arbitrary-length messages from zkSync Era to Ethereum, and then handle the received message on Ethereum with an L1 smart contract.
 
 :::warning What is a message?
-- A message is like an event on Ethereum. 
-- The difference is that a message publishes data on L1. 
+
+- A message is like an event on Ethereum.
+- The difference is that a message publishes data on L1.
 - [Solidity representation](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/Storage.sol#L58):
-    ```solidity
-    struct L2Message {
-            address sender;
-            bytes data;
-            uint256 txNumberInblock;
-    }
-    ```
-:::
+  `solidity
+struct L2Message {
+        address sender;
+        bytes data;
+        uint256 txNumberInblock;
+}
+`
+  :::
 
 :::tip Verification
-- Verification and confirmation is possible using Ethereum data. 
+
+- Verification and confirmation is possible using Ethereum data.
 - However, zkSync Era has an efficient [request proof function](#prove-the-result) which does the same.
-:::
+  :::
 
 ## Common use cases
 
@@ -31,14 +33,14 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 ## Send a message
 
-Two transactions are required: 
+Two transactions are required:
 
 - An L2 transaction which sends a message of arbitrary length.
-- An L1 read; implemented by a getter function on an L1 smart contract. 
+- An L1 read; implemented by a getter function on an L1 smart contract.
 
-1. Import the zkSync Era library or contract containing the required functionality. 
+1. Import the zkSync Era library or contract containing the required functionality.
 
-2. Get a `Contract` object that represents the [`L1Messenger`](../developer-guides/system-contracts.md#l1messenger) contract.
+2. Get a `Contract` object that represents the [`L1Messenger`](../../reference/architecture/system-contracts.md#l1messenger) contract.
 
 3. Transform the request into a raw bytes array.
 
@@ -65,24 +67,23 @@ function proveL2MessageInclusion(
     L2Message memory _message,
     bytes32[] calldata _proof
 ) public view returns (bool) {
-    return _proveL2LogInclusion(_blockNumber, _index, _L2MessageToLog(_message), _proof);   
+    return _proveL2LogInclusion(_blockNumber, _index, _L2MessageToLog(_message), _proof);
 }
 ```
 
 :::tip Parameter details
+
 - `_blockNumber`: L1 batch number in which the L2 block was included; retrievable using the `getBlock` method.
-- `_index`: Index of the L2 log in the block; returned as `id` by the [`zks_getL2ToL1LogProof`](../../api/api.md#zks_getl2tol1logproof) method.
-`_message`: Parameter holding the message data. It should be an object containing:
-    - `sender`: Address that sent the message from L2.
-    - `data`: Message sent in bytes.
-    - `txNumberInBlock`: Index of the transaction in the L2 block; returned as `transactionIndex` with [`getTransactionReceipt`](https://docs.ethers.org/v5/single-page/#/v5/api/providers/provider/-%23-Provider-getTransactionReceipt) on an Ethers `Provider` object.
+- `_index`: Index of the L2 log in the block; returned as `id` by the [`zks_getL2ToL1LogProof`](../../api/api.md#zks-getl2tol1logproof) method.
+  `_message`: Parameter holding the message data. It should be an object containing: - `sender`: Address that sent the message from L2. - `data`: Message sent in bytes. - `txNumberInBlock`: Index of the transaction in the L2 block; returned as `transactionIndex` with [`getTransactionReceipt`](https://docs.ethers.org/v5/single-page/#/v5/api/providers/provider/-%23-Provider-getTransactionReceipt) on an Ethers `Provider` object.
 - `_proof`: Merkle proof of the message inclusion; retrieved by observing Ethereum or using the `zks_getL2ToL1LogProof` method of the zksync-web3 API.
-:::
+  :::
 
 ## Example
 
 ::: code-tabs
 @tab Solidity 1
+
 ```solidity
 // The Example contract below sends its address to L1 via the Messenger system contract.
 //SPDX-License-Identifier: Unlicense
@@ -100,7 +101,9 @@ contract Example {
     }
 }
 ```
+
 @tab Solidity 2
+
 ```solidity
 // This contract receives the information related to the transaction sent to the L2 messenger contract.
 // It then proves that the message was included in an L2 block.
@@ -153,7 +156,9 @@ contract Example {
   }
 }
 ```
+
 @tab JavaScript
+
 ```js
 // The following script sends a message from L2 to L1, retrieves the message proof, and validates that the message received in L1 came from an L2 block.
 import * as ethers from "ethers";
@@ -247,14 +252,19 @@ try {
   console.error(error);
 }
 ```
+
 @tab Python
+
 ```sh
 // In progress. Check back later.
 ```
+
 @tab Go
+
 ```sh
 // In progress. Check back later.
 ```
+
 :::
 
 ### Example output

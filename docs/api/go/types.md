@@ -1,7 +1,7 @@
 # Types
 
 All the types which are used in the SDK are referenced
-[in the source code](https://github.com/zksync-sdk/zksync2-go/blob/main/Types.go):
+[in the source code](https://github.com/zksync-sdk/zksync2-go/tree/main/types):
 
 ```go
 

@@ -1,6 +1,6 @@
 # Accounts: Overview
 
-`DefaultEthSigner` provides private key management, transaction, and message 
+`DefaultEthSigner` provides private key management, transaction, and message
 signing.
 
 ## `DefaultEthSigner`
@@ -38,6 +38,7 @@ if err != nil {
 ```
 
 Interface:
+
 ```go
 type EthSigner interface {
 	GetAddress() common.Address
@@ -48,20 +49,21 @@ type EthSigner interface {
 ```
 
 - `SignHash`: signs transaction hash.
-- `SignTypedData`: signs EIP712-typed zkSync transaction which is used 
-for smart contract deployment.
- 
+- `SignTypedData`: signs EIP712-typed zkSync transaction which is used
+  for smart contract deployment.
 
-# Wallet
+## Wallet
 
 A `Wallet` is a wrapper around `EthSigner` which provides actions on the L2 network.
 Based on the action, the `Wallet` crates an appropriate transaction, signs the transaction using
 the `EthSigner`, and then broadcasts the transaction to the network.
 
 Init:
+
 ```go
 func NewWallet(es EthSigner, zp Provider) (*Wallet, error)
 ```
+
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
 ZkSyncProvider := "https://testnet.era.zksync.dev"
@@ -89,7 +91,7 @@ if err != nil {
 	log.Panic(err)
 }
 ```
+
 Visit [Accounts:L1->L2 Transactions](./accounts-l1-l2.md) to see which actions `Wallet` provides.
 
 Complete examples are available on the [getting started](./getting-started.md) page.
-

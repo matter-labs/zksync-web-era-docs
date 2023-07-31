@@ -4,7 +4,7 @@ This guide shows you how to deploy a smart contract to zkSync and build a dApp t
 
 This is what we're going to do:
 
-- Build and deploy a smart contract on zkSync that stores a greeting message.
+- Build, deploy, and verify a smart contract on zkSync Era testnet that stores a greeting message.
 - Build a dApp that retrieves and updates the greeting message.
 - Allow users to change the greeting message on the smart contract via the app.
 - Show you how to [implement the testnet paymaster](#paying-fees-using-testnet-paymaster) that allows users to pay transaction fees with ERC20 tokens instead of ETH.
@@ -21,72 +21,51 @@ This is what we're going to do:
 
 ## Build and deploy the Greeter contract
 
+::: info Project available in Atlas IDE
+This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/matter-labs/zksync-hardhat-template&open=Greeter.sol&chainId=280).
+:::
+
 ### Initialize the project
 
-1. Create a folder and `cd` into it.
+1. Install the [zkSync CLI:](../../tools/zksync-cli/README.md)
 
 ```sh
-mkdir greeter-example
+yarn add global zksync-cli@latest
+```
+
+2. Scaffold a new project by running the command:
+
+```sh
+zksync-cli create greeter-example
+```
+
+This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract and all the zkSync plugins and configurations.
+
+::: tip Hardhat plugins
+Learn more about the [zkSync Era plugins for Hardhat here](../../tools/hardhat/README.md)
+:::
+
+3. Navigate into the project directory:
+
+```sh
 cd greeter-example
 ```
 
-2. Initialize the project and install the dependencies.
+::: info
+The project uses the `dotenv` package to load your private key which is required to deploy and interact with smart contracts. The `.env` file is included in `.gitignore` so it won't upload to a repository.
+:::
 
-```sh
-yarn init -y
-yarn add -D typescript ts-node ethers@^5.7.2 zksync-web3 hardhat @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-deploy
+4. To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
+
+```text
+WALLET_PRIVATE_KEY=abcdef12345....
 ```
-
-:::info
-TypeScript is required by zkSync plugins.
-:::
-
-::: tip
-The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
-:::
-
-3. Create the `hardhat.config.ts` file and copy/paste the following code, replacing `goerli` with your RPC URL:
-
-```typescript
-import "@matterlabs/hardhat-zksync-deploy";
-import "@matterlabs/hardhat-zksync-solc";
-
-module.exports = {
-  zksolc: {
-    version: "1.3.10",
-    compilerSource: "binary",
-    settings: {},
-  },
-  defaultNetwork: "zkSyncTestnet",
-
-  networks: {
-    zkSyncTestnet: {
-      url: "https://testnet.era.zksync.dev",
-      ethNetwork: "goerli", // RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
-      zksync: true,
-    },
-  },
-  solidity: {
-    version: "0.8.8",
-  },
-};
-```
-
-::: warning
-If the contract was already compiled, it won't recompile until you delete the `artifacts-zk` and `cache-zk` folders, or change the compiler version.
-:::
 
 ### Compile and deploy the Greeter contract
 
-1. Create the following folders: 
+We store all the smart contracts' `*.sol` files in the `contracts` folder. The `deploy` folder contains all scripts related to deployments.
 
-```sh
-mkdir contracts deploy
-```
-
-We store all the smart contracts' `*.sol` files in the `contracts` folder. The `deploy` folder will contain all scripts related to deployments.
-
-2. Create the `contracts/Greeter.sol` contract and copy/paste the following code:
+1. The included `contracts/Greeter.sol` contract has following code:
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
@@ -109,13 +88,13 @@ contract Greeter {
 }
 ```
 
-3. Compile the contract with the following command:
+2. Compile the contract with the following command:
 
 ```sh
 yarn hardhat compile
 ```
 
-4. Create the following deployment script in `deploy/deploy.ts`, replacing `<WALLET-PRIVATE-KEY>` with your own:
+3. The [zkSync-CLI](../../tools/zksync-cli/README.md) also provides a deployment script in `/deploy/deploy-greeter.ts`:
 
 ```typescript
 import { Wallet, utils } from "zksync-web3";
@@ -123,12 +102,21 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+// load wallet private key from env file
+const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
+
+if (!PRIVATE_KEY) throw "⛔️ Private key not detected! Add it to the .env file!";
+
 // An example of a deploy script that will deploy and call a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Greeter contract`);
 
   // Initialize the wallet.
-  const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
+  const wallet = new Wallet(PRIVATE_KEY);
 
   // Create deployer object and load the artifact of the contract you want to deploy.
   const deployer = new Deployer(hre, wallet);
@@ -138,15 +126,15 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const greeting = "Hi there!";
   const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting]);
 
-  // OPTIONAL: Deposit funds to L2
-  // Comment this block if you already have funds on zkSync.
-  const depositHandle = await deployer.zkWallet.deposit({
-    to: deployer.zkWallet.address,
-    token: utils.ETH_ADDRESS,
-    amount: deploymentFee.mul(2),
-  });
-  // Wait until the deposit is processed on zkSync
-  await depositHandle.wait();
+  // ⚠️ OPTIONAL: You can skip this block if your account already has funds in L2
+  // Deposit funds to L2
+  // const depositHandle = await deployer.zkWallet.deposit({
+  //   to: deployer.zkWallet.address,
+  //   token: utils.ETH_ADDRESS,
+  //   amount: deploymentFee.mul(2),
+  // });
+  // // Wait until the deposit is processed on zkSync
+  // await depositHandle.wait();
 
   // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
   // `greeting` is an argument for contract constructor.
@@ -156,25 +144,42 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const greeterContract = await deployer.deploy(artifact, [greeting]);
 
   //obtain the Constructor Arguments
-  console.log("constructor args:" + greeterContract.interface.encodeDeploy([greeting]));
+  console.log("Constructor args:" + greeterContract.interface.encodeDeploy([greeting]));
 
   // Show the contract info.
   const contractAddress = greeterContract.address;
   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
+
+  // verify contract for testnet & mainnet
+  if (process.env.NODE_ENV != "test") {
+    // Contract MUST be fully qualified name (e.g. path/sourceName:contractName)
+    const contractFullyQualifedName = "contracts/Greeter.sol:Greeter";
+
+    // Verify contract programmatically
+    const verificationId = await hre.run("verify:verify", {
+      address: contractAddress,
+      contract: contractFullyQualifedName,
+      constructorArguments: [greeting],
+      bytecode: artifact.bytecode,
+    });
+  } else {
+    console.log(`Contract not verified, deployed locally.`);
+  }
 }
 ```
 
-5. Deploy the contract.
+Run the deployment script with:
 
 ```sh
-yarn hardhat deploy-zksync
+yarn hardhat deploy-zksync --script deploy-greeter.ts
 ```
 
 ::: tip Request-Rate Exceeded message
-- This message is caused by using the default RPC endpoints provided by ethers. 
-- To avoid this, use your own Goerli RPC endpoint. 
+
+- This message is caused by using the default RPC endpoints provided by ethers.
+- To avoid this, use your own Goerli RPC endpoint.
 - Find multiple [node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
-:::
+  :::
 
 You should see something like this:
 
@@ -183,21 +188,25 @@ Running deploy script for the Greeter contract
 The deployment is estimated to cost 0.0265726735 ETH
 constructor args:0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000094869207468657265210000000000000000000000000000000000000000000000
 Greeter was deployed to 0xE84774C41F096Ba5BafA1439cEE787D9dD1A6b72
+Your verification ID is: 26642
+Contract successfully verified on zkSync block explorer!
+contracts/Greeter.sol:Greeter verified! VerificationId: 26642
 ```
 
-**Congratulations! You have deployed a smart contract to zkSync Era Testnet** 🎉
+**Congratulations! You have deployed and verified a smart contract to zkSync Era Testnet** 🎉
 
-Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search with the contract address to confirm the deployment. Follow the [contract verification guide](../../tools/block-explorer/contract-verification.md) for instructions on how to verify your smart contract using the zkSync block explorer.
+Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search with the contract address to confirm the deployment.
 
 ## Build the front-end dApp
 
 ### Set up the project
 
 :::info
-- We use the `Vue` web framework for the tutorial front end (the process is similar to other frameworks). 
-- In order to focus on the `zksync-web3` SDK, we provide a prebuilt template. 
+
+- We use the `Vue` web framework for the tutorial front end (the process is similar to other frameworks).
+- In order to focus on the `zksync-web3` SDK, we provide a prebuilt template.
 - Once set up, we add code that interacts with the smart contract we just deployed.
-:::
+  :::
 
 1. Clone the template and `cd` into the folder.
 
@@ -221,14 +230,14 @@ Navigate to `http://localhost:8080/` in a browser to see the running application
 
 Enabling smart accounts allows you to onboard Argent account abstraction wallet users that have been using the first version of zkSync.
 
-- Use [this library](https://era.zksync.io/docs/dev/developer-guides/aa.html#aa-signature-checker) to verify your smart account compatibility.
+- Use [this library](../../reference/concepts/account-abstraction.md#aa-signature-checker) to verify your smart account compatibility.
 - Follow [this guide](https://docs.argent.xyz/) to add Argent login to your dApp.
 
 #### Externally owned accounts (EOAs)
 
 In order to interact with dApps built on zkSync, connect the MetaMask wallet to the zkSync Era Testnet.
 
-- Follow [this guide](../fundamentals/interacting.md#connecting-to-zksync-era-on-metamask) to connect Metamask to zkSync.
+- Follow [this guide](./interacting.md#connecting-to-zksync-era-on-metamask) to connect Metamask to zkSync.
 
 ### Bridge funds to L2
 
@@ -241,7 +250,7 @@ When bridging from mainnet to a smart account (e.g. Argent) on zkSync Era, you m
 
 ### Project structure
 
-In the `./src/App.vue` file, in the `functions:` section, you will see template code that stores the application. 
+In the `./src/App.vue` file, in the `functions:` section, you will see template code that stores the application.
 
 Most of the code is provided. You have to complete the TODO: sections.
 
@@ -309,9 +318,10 @@ const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
 ### Add the ABI and contract address
 
 :::info
-- To interact with a smart contract deployed to zkSync, we need its ABI. 
+
+- To interact with a smart contract deployed to zkSync, we need its ABI.
 - ABI stands for Application Binary Interface and is json which describes the contract's variable and function, names and types.
-:::
+  :::
 
 1. Create the `./src/abi.json` file. You may find one in the repo, but it's good practice to use the one you created instead.
 
@@ -431,7 +441,7 @@ After connecting the Metamask wallet to zkSync Era Testnet, you should see the f
 
 ![img](../../assets/images/start-1.png)
 
-The **Select token** dropdown menu allows you to choose which token to pay fees with. 
+The **Select token** dropdown menu allows you to choose which token to pay fees with.
 
 ### Retrieving token balance and transaction fee
 
@@ -527,18 +537,18 @@ Read more about `wallet_requestPermissions`, in the [MetaMask documentation](htt
 
 ### Paying fees using testnet paymaster
 
-The zkSync Era account abstraction feature allows you to integrate [paymasters](../developer-guides/aa.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly. 
+The zkSync Era account abstraction feature allows you to integrate [paymasters](../../reference/concepts/account-abstraction.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly.
 
-We will use the [testnet paymaster](../developer-guides/aa.md#testnet-paymaster) that is provided on all zkSync Era testnets.
+We will use the [testnet paymaster](../../reference/concepts/account-abstraction.md#testnet-paymaster) that is provided on all zkSync Era testnets.
 
 :::info
-**The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH. 
+**The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH.
 
 This means that transaction fees in tokens with fewer decimals than ETH will be bigger; for example, USDC which has only 6 decimals. This is a known behaviour of the testnet paymaster, which was built for demonstration purposes only.
 :::
 
 ::: warning Paymasters on mainnet
-The testnet [paymaster](https://era.zksync.io/docs/dev/tutorials/custom-paymaster-tutorial.html#building-custom-paymaster) is purely for demonstrating this feature and won't be available on mainnet. 
+The testnet [paymaster](https://era.zksync.io/docs/dev/tutorials/custom-paymaster-tutorial.html#building-custom-paymaster) is purely for demonstrating this feature and won't be available on mainnet.
 
 When integrating your protocol on mainnet, you should follow the documentation of the paymaster you use, or create your own.
 :::
@@ -607,7 +617,7 @@ async getOverrides() {
 }
 ```
 
-4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../developer-guides/aa.md#testnet-paymaster) and return the needed overrides. 
+4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../reference/concepts/account-abstraction.md#testnet-paymaster) and return the needed overrides.
 
 Copy/paste the following complete function:
 
@@ -700,5 +710,6 @@ After the transaction is processed, the page updates the balances and the new gr
 
 ### Learn more
 
+- For an overview of best practices and recommendations for developing on zkSync Era, refer to the [Best Practices and Considerations](./best-practices.md) section.
 - To learn more about `zksync-web3` SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../tools/hardhat).

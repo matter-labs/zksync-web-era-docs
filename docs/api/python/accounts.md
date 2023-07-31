@@ -5,7 +5,7 @@ The zkSync Python SDK has a method that generates a signature and a method that 
 - `sign_typed_data` : used to sign EIP712-typed zkSync transactions.
 - `verify_typed_data` : used to verify the signed EIP712-typed zkSync transactions.
 
-**construction**
+### construction
 
 For constructing the instance it needs only `account` and `chain_id`.
 
@@ -25,14 +25,11 @@ signer = PrivateKeyEthSigner(account, chain_id)
 
 ```
 
-
-
-
 ## sign_typed_data
 
 The signer is used to generate the signature of the provided transaction based on your account(your private key).
 
-**Parameters**
+### Parameters
 
 | Parameters                        | Return value          | Description                                                                 |
 | --------------------------------- | --------------------- | --------------------------------------------------------------------------- |
@@ -42,7 +39,7 @@ The signer is used to generate the signature of the provided transaction based o
 
 It's used to verify the provided transaction, whose signature is added to the final `EIP712` transaction for its validation.
 
-**Parameters**
+### Parameters
 
 | Parameters                                   | Return value | Description                                                                    |
 | -------------------------------------------- | ------------ | ------------------------------------------------------------------------------ |

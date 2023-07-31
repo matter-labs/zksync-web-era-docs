@@ -1,14 +1,9 @@
 # Tutorials
 
-Learn how to build dApps on the zkSync Era protocol with the following step-by-step tutorials.
+Here is the list of tutorials to help you build on zkSync Era.
 
-## List of zkSync Era tutorials
-
-- [Cross-chain governance](../tutorials/cross-chain-tutorial.md)
-- [Account abstraction multisig](../tutorials/custom-aa-tutorial.md)
-- [Daily spend limit account](../tutorials/aa-daily-spend-limit.md)
-- [Building custom paymaster](../tutorials/custom-paymaster-tutorial.md)
-
-### Tutorial requests
-
-If you want us to create a tutorial about a specific topic, please let us know on our [Discord server](https://join.zksync.dev/).
+- [Cross chain governance](./cross-chain-tutorial.md): send transactions and update variables in a contract state using L1-L2 communication.
+- [Account abstraction multisig](./custom-aa-tutorial.md): create a native multisig smart contract account.
+- [Daily spending limit account](./aa-daily-spend-limit.md): create a smart contract account with a daily spending limit.
+- [Building a custom paymaster](./custom-paymaster-tutorial.md): build a paymaster that allows users to pay gas fees with an ERC20 token.
+- [USDC paymaster tutorial with API3](./api3-usd-paymaster-tutorial.md): build a paymaster that allows users to pay gas fees with USDC using API3 dAPIs.
