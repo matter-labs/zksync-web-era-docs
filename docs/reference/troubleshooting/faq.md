@@ -84,7 +84,7 @@ There are a few other distinctions, for example, gas metering will be different 
 
 zkSync Era’s data availability layer is Ethereum. All ecosystem projects that build on zkSync Era will inherit the full security benefits of Ethereum.
 
-This is obviously a critically important topic for us, and the system has gone through several security audits and bug bounty programs. You can read more about [zkSync Era security in this section of the docs](./audit-bug-bounty.md).
+This is obviously a critically important topic for us, and the system has gone through several security audits and maintains a very detailed bug bounty program. You can read more about [zkSync Era security in this section of the docs](./audit-bug-bounty.md).
 
 
 ### Triggering Security audits
