@@ -25,9 +25,9 @@ This allows transactions to be processed without the overhead of all the data as
 
 ## Optimistic vs ZK rollups
 
-Currently, there are 2 types of rollups used for scaling Ethereum.
+Currently, there are 2 types of rollups used to scale Ethereum.
 
-1. ZK Rollups (Zero-Knowledge Rollups) - eg: zksync, loopring etc
+1. ZK Rollups (Zero-Knowledge Rollups) - eg: zkSync, Loopring, Starknet, Scroll etc
 2. Optimistic Rollups - eg: Optimism, Arbitrum etc
 
 The main difference between ZK and Optimistic rollups is in the way this batch of transactions becomes <em>final</em>.
