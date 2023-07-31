@@ -67,6 +67,7 @@ Consensys
 zkforge
 zkcast
 Eigen
+IPFS
 
 // Used programming language words
 printf
@@ -154,4 +155,5 @@ Upgradability
 Initializable
 Hola
 mundo
+ISTN
 Zerion
