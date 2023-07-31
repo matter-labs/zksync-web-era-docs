@@ -1,6 +1,6 @@
 # Withdrawal delay
 
-In order to prevent a quick drain of the protocol in the case a critical bug has been discovered and exploited, we are introducing a block execution delay. Each L2 block committed to L1 will have a time lock before it is executed and finalized. This means that there is enough time to verify the effects of the transactions included in a block before the block becomes final. The zkSync team will be monitoring each block and investigating any anomaly (e.g. rapid outflow, unusually large withdrawals, etc).
+In order to prevent a quick drain of the protocol in the case a critical bug is  discovered and exploited, we are introducing a block execution delay. Each L2 block committed to L1 will have a time lock before it is executed and finalized. This means that there is enough time to verify the effects of the transactions included in a block before the block becomes final. The zkSync team will be monitoring each block and investigating any anomaly (e.g. rapid outflow, unusually large withdrawals, etc).
 
 To introduce this time lock, no changes were made to the audited smart contracts. Instead, we have used an existing Validator role that we control and that we further restricted by pointing it to an intermediate smart contract with a time lock. The time lock is initially configured for a **24-hour** delay, which will gradually decrease as the system matures. Changing the delay requires multiple signatures collected from several cold wallets owned by zkSync leadership.
 

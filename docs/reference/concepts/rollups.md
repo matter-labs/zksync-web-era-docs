@@ -21,20 +21,17 @@ in a batch.
 
 To be able to work on a rollup, funds need to be locked on a smart contract on the Layer 1 blockchain.
 This allows transactions to be processed without the overhead of all the data associated with performing a transaction on the main chain.
-Rollups significantly decrease associated transaction processing times and gas fees.
+**Rollups significantly decrease associated transaction processing times and gas fees.**
 
-### Rollup Categories
+## Optimistic vs ZK rollups
 
-Currently, there are 2 types of rollups used majorly for scaling ethereum.
+Currently, there are 2 types of rollups used for scaling Ethereum.
 
 1. ZK Rollups (Zero-Knowledge Rollups) - eg: zksync, loopring etc
 2. Optimistic Rollups - eg: Optimism, Arbitrum etc
 
 The main difference between ZK and Optimistic rollups is in the way this batch of transactions becomes <em>final</em>.
 
-### Optimistic rollups versus ZK rollups
-
-There are mainly two types of rollups, ZK rollups and Optimistic rollups.
 
 ### What are ZK rollups?
 
@@ -47,7 +44,7 @@ In zkSync, this is done via a **SNARK**, succinct non-interactive argument of kn
 ### What are Optimistic rollups?
 
 Optimistic rollups, on the other hand, have no mechanism to prove the validity of the off-chain transactions. Instead, they are considered
-“optimistic” because they assume off-chain transactions are valid unless proven otherwise. Hence, they rely on <em>fraud proofs</em>, a
+“optimistic” because they assume off-chain transactions are valid unless proven otherwise. Hence, they rely on <em>fraud proof systems</em>, a
 challenge to the submitted state to Ethereum. If such a challenge is submitted, the Optimistic rollup operator needs to show that the
 state and transactions in questions are actually valid. This is a cumbersome process, and requires watchers to make sure that the Optimistic
 rollup operator is honest at all times.
@@ -61,4 +58,4 @@ The term **Layer 2** (or **L2**) is used to describe an overlaying application o
 are most often built to provide further scalability solutions by taking on a portion of transaction-based tasks to lighten the impact on the
 layer 1 chain, quickening transaction times and lowering gas fees.
 
-zkSync is an L2, where L1 is the main Ethereum blockchain.
+**zkSync Era is an L2, where L1 is the main Ethereum blockchain.**
