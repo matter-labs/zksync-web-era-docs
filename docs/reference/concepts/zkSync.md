@@ -20,7 +20,7 @@ At this time, zkSync is solely run and operated by the zkSync team's servers and
 Layer 2 gas fees depend on the current Ethereum gas fees for publishing and verification.
 :::
 
-## zkSync overview
+## zkSync Era overview
 
 The general rollup workflow is as follows:
 
@@ -67,19 +67,6 @@ Some features that will be released in future upgrades:
 
 - zkPorter: One of the largest and most important features, zkPorter will allow users to choose between a zkRollup account featuring the highest security and a 20x fee reduction compared to Ethereum, or a zkPorter account featuring stable transaction fees of just a few cents in a different security model (much higher than that of a sidechain). Both zkPorter and zkRollup accounts will be able to interact seamlessly together under the hood.
 
-## zkSync in comparison
-
-zkSync [stands out remarkably](https://blog.matter-labs.io/evaluating-ethereum-l2-scaling-solutions-a-comparison-framework-b6b2f410f955) in security and usability among existing L2 scaling solutions.
-Thanks to the combination of cutting-edge cryptography and on-chain data availability, ZK rollups (the core network of zkSync) are the only L2 scaling solution that doesn't require any operational activity to keep the funds safe.
-For example, users can go offline and still be able to withdraw their assets safely when they come back, even if the ZK rollup validators are no longer around.
-For a comprehensive distinction between zkSync Era and Ethereum, read this [guide](../../reference/architecture/differences-with-ethereum.md).
-
-## zkSync user experience
-
-- Transactions have instant confirmations and fast finality on L1.
-- Transaction fees are extremely low.
-- Transaction fees can be conveniently paid with the token being transferred (e.g. USDC) thanks to [native account abstraction and paymasters](./account-abstraction.md).
-
 ## Highlights of zkSync Era
 
 - Mainnet-like security with zero reliance on 3rd parties.
@@ -87,6 +74,29 @@ For a comprehensive distinction between zkSync Era and Ethereum, read this [guid
 - Standard Web3 API.
 - Preserving key EVM features, such as smart contract composability.
 - Introducing new features, such as account abstraction.
+
+## zkSync in comparison
+
+zkSync [stands out remarkably](https://blog.matter-labs.io/evaluating-ethereum-l2-scaling-solutions-a-comparison-framework-b6b2f410f955) in security and usability among existing L2 scaling solutions.
+Thanks to the combination of cutting-edge cryptography and on-chain data availability, ZK rollups (the core network of zkSync) are the only L2 scaling solution that doesn't require any operational activity to keep the funds safe.
+For example, users can go offline and still be able to withdraw their assets safely when they come back, even if the ZK rollup validators are no longer around.
+For a comprehensive distinction between zkSync Era and Ethereum, read this [guide](../../reference/architecture/differences-with-ethereum.md).
+
+## zkSync Era user experience
+
+- Transactions have instant confirmations and fast finality on L1.
+- Transaction fees are extremely low.
+- Transaction fees can be conveniently paid with ERC20 tokens (e.g. USDC) thanks to [native account abstraction and paymasters](./account-abstraction.md).
+- Support for existing Ethereum-based wallets like Metamask, TrustWallet or Zerion.
+
+## zkSync Era developer experience
+
+- Smart contracts can be written in Solidity or Vyper.
+- Most contracts work out of the box so migrating projects is seamless.
+- Web3 API compatibility enables support of most developer tools.
+- Use existing frameworks like [Hardhat](../../tools/hardhat/README.md) and [Foundry (alpha)](https://github.com/matter-labs/foundry-zksync).
+- Compile smart contracts with custom compilers: [zksolc and zkvyper](../../tools/compiler-toolchain/README.md).
+- Different [tools for testing locally](../../tools/testing/README.md).
 
 ## How to get started?
 
