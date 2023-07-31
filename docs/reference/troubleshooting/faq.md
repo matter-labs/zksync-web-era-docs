@@ -86,14 +86,13 @@ zkSync Era’s data availability layer is Ethereum. All ecosystem projects that 
 
 This is obviously a critically important topic for us, and the system has gone through several security audits and maintains a very detailed bug bounty program. You can read more about [zkSync Era security in this section of the docs](./audit-bug-bounty.md).
 
-
 ### Triggering Security audits
 
 While there are a few, rarely used opcodes that we do not support, we have not found any instances with our ecosystem projects where a breaking change was anything other than a simple refactoring of a few lines of code. None of our ecosystem projects who have ported to zkSync have reported that any change has caused a need for a security audit.
 
 ## What is Account Abstraction?
 
-At a very high level, Account Abstraction allows us to make authorizations *programmable*, enabling a greater diversity of wallet and protocol design with use cases including:
+At a very high level, Account Abstraction allows us to make authorizations _programmable_, enabling a greater diversity of wallet and protocol design with use cases including:
 
 - The implementation of smart contract wallets that improve the user experience of private key storage and recovery (eg. [social recovery](https://vitalik.ca/general/2021/01/11/recovery.html), multisig).
 - The ability to natively pay gas fees in tokens other than ETH.
@@ -113,15 +112,15 @@ Optimistic rollups utilize an optimistic approach to secure their networks. At t
 
 Optimistic rollups suffer from the following key downsides:
 
-- **Optimistic rollups are secured via game theory.** This method assumes all transactions are valid and then utilizes an after-the-fact game theory mechanism to pay participants to discover fraudulent or otherwise invalid (e.g. because of bugs) transactions. Game theory is never perfect and as with the game theory that broke with stablecoins and other systems, we just don’t think it can be relied on in the long term and at true scale to offer the security the ecosystem needs. 
+- **Optimistic rollups are secured via game theory.** This method assumes all transactions are valid and then utilizes an after-the-fact game theory mechanism to pay participants to discover fraudulent or otherwise invalid (e.g. because of bugs) transactions. Game theory is never perfect and as with the game theory that broke with stablecoins and other systems, we just don’t think it can be relied on in the long term and at true scale to offer the security the ecosystem needs.
   zkSync Era, on the other hand, relies on math, not game theory, to provide the absolute certainty of proof that every single transaction is valid and not fraudulent.
 
-- **Optimistic methods take 7 days to settle**. Settlement time is becoming an increasingly important feature for ecosystem projects. As ecosystem projects’ needs mature, the need for as close to instant settlement will rise. With optimistic methods, this settlement problem will not go away. It's always going to be a 7-day settlement time because optimistic methods need 7 days for their after-the-fact game theory to conclude its challenge window. The only way around this is to bring in third parties that provide some liquidity - but then again this is a potential security risk in trusting the liquidity providers. 
-  
+- **Optimistic methods take 7 days to settle**. Settlement time is becoming an increasingly important feature for ecosystem projects. As ecosystem projects’ needs mature, the need for as close to instant settlement will rise. With optimistic methods, this settlement problem will not go away. It's always going to be a 7-day settlement time because optimistic methods need 7 days for their after-the-fact game theory to conclude its challenge window. The only way around this is to bring in third parties that provide some liquidity - but then again this is a potential security risk in trusting the liquidity providers.
+
   zkSync Era provides settlement in hours but with optimizations in the system we'll reduce the settlement time without the need of projects to update their code.
 
-- **Optimistic rollups have no method of scaling beyond where they are now.** When optimistic methods first came out, they became popular because they scaled Ethereum (e.g. they enabled the processing of 10x Ethereum transactions _without degradation of security and decentralization_). The problem is that while they can scale Ethereum by 10x now, they have no mechanism to go beyond 10x without degrading security and decentralization. 
-  
+- **Optimistic rollups have no method of scaling beyond where they are now.** When optimistic methods first came out, they became popular because they scaled Ethereum (e.g. they enabled the processing of 10x Ethereum transactions _without degradation of security and decentralization_). The problem is that while they can scale Ethereum by 10x now, they have no mechanism to go beyond 10x without degrading security and decentralization.
+
   In contrast, zkSync Era is based on zero-knowledge proofs which have important characteristics that optimistic methods do not - they can hyperscale.
 
 ::: tip Hyperscalability

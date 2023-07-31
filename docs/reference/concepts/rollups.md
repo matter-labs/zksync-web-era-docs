@@ -32,7 +32,6 @@ Currently, there are 2 types of rollups used to scale Ethereum.
 
 The main difference between ZK and Optimistic rollups is in the way this batch of transactions becomes <em>final</em>.
 
-
 ### What are ZK rollups?
 
 In ZK rollups ('ZK' standing for zero-knowledge) the batch of transactions is verified for correctness on the Ethereum network. After the
