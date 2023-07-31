@@ -1,6 +1,6 @@
 # Tutorials
 
-Here is the lisf of tutorials to help you build on zkSync Era.
+Here is the list of tutorials to help you build on zkSync Era.
 
 - [Cross chain governance](./cross-chain-tutorial.md): send transactions and update variables in a contract state using L1-L2 communication.
 - [Account abstraction multisig](./custom-aa-tutorial.md): create a native multisig smart contract account.

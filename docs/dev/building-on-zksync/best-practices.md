@@ -68,7 +68,7 @@ A notable example is a Gnosis Safe’s `execTransaction` method:
 
 ```solidity
 // We require some gas to emit the events (at least 2500) after the execution and some to perform code until the execution (500)
-// We also include the 1/64 in the check that is not send along with a call to counteract potential shortings because of EIP-150
+// We also include the 1/64 in the check that is not send along with a call to counteract potential shortcomings because of EIP-150
 require(gasleft() >= ((safeTxGas * 64) / 63).max(safeTxGas + 2500) + 500, "GS010");
 // Use scope here to limit variable lifetime and prevent `stack too deep` errors
 {
@@ -110,4 +110,4 @@ The zkSync team provides a dockerized local setup specifically designed for loca
 
 By incorporating local testing into your development workflow, you can effectively verify the behavior and functionality of your contracts in a controlled environment, ensuring a smooth deployment process to the mainnet.
 
-For detailed instructions on configuring the local testing environment and performing tests using Mocha and Chai, refer to the dedicated [Local Testing](../../tools/hardhat/testing.md) page.
+For detailed instructions on configuring the local testing environment and performing tests using Mocha and Chai, refer to the dedicated [Testing](../../tools/testing/README.md) page.

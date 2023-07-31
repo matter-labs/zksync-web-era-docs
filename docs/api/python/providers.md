@@ -22,7 +22,7 @@ def __init__(self,
 
 ```
 
-**Arguments**
+### Arguments
 
 | Name              | Description                                             |
 | ----------------- | ------------------------------------------------------- |
@@ -43,7 +43,7 @@ def approve_deposits(self, token: Token, limit: Optional[int]) -> txn_receipt
 
 ```
 
-**Arguments**
+### Arguments
 
 | Name            | Description                                       |
 | --------------- | ------------------------------------------------- |
@@ -59,7 +59,7 @@ def transfer(self, token: Token, amount: Decimal, to: HexStr) -> txn_receipt
 
 ```
 
-**Arguments**
+### Arguments
 
 | Name   | Description                                  |
 | ------ | -------------------------------------------- |
@@ -105,7 +105,7 @@ def get_deposit_base_cost(self, gas_price: int = None) -> base_cost
 
 ```
 
-**Arguments**
+### Arguments
 
 | Name      | Description                                                                         |
 | --------- | ----------------------------------------------------------------------------------- |
@@ -121,7 +121,7 @@ def deposit(self, token: Token, amount: int, user_address: HexStr) -> txn_receip
 
 ```
 
-**Arguments**
+### Arguments
 
 | Name         | Description                                               |
 | ------------ | --------------------------------------------------------- |
@@ -139,7 +139,7 @@ def is_deposit_approved(self, token: Token, to: HexStr, threshold: int = DEFAULT
 
 ```
 
-**Arguments**
+### Arguments
 
 | Name      | Description                                                             |
 | --------- | ----------------------------------------------------------------------- |

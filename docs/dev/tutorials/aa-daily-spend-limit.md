@@ -13,11 +13,19 @@ The daily limit feature prevents an account from spending more ETH than the limi
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 - We encourage you to read [the basics of account abstraction on zkSync Era](../../reference/concepts/account-abstraction.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
 
+## Complete Project
+
+Download the complete project [here](https://github.com/matter-labs/daily-spendlimit-tutorial). Additionally, the repository contains a test folder with more detailed tests for running on a zkSync Era local network.
+
+::: info Project available in Atlas IDE
+This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/Atlas-labs-inc/zksync-daily-spend-limit&open=/scripts/main.ts&chainId=280).
+:::
+
 ## Project set up
 
 We will use the [zkSync Era Hardhat plugins](../../tools/hardhat/) to build, deploy, and interact with the smart contracts in this project.
 
-1. If you haven't already, install the [zkSync CLI:](/docs/tools/zksync-cli/)
+1. If you haven't already, install the [zkSync CLI:](../../tools/zksync-cli/README.md)
 
 ```sh
 yarn add global zksync-cli@latest
@@ -1040,10 +1048,6 @@ To keep this tutorial as simple as possible, we've used `block.timestamp` but we
 - Insufficient gasLimit: Transactions often fail due to insufficient gasLimit. Please increase the value manually when transactions fail without clear reasons.
 - Insufficient balance in account contract: transactions may fail due to the lack of balance in the deployed account contract. Please transfer funds to the account using MetaMask or `wallet.sendTransaction()` method used in `deploy/deployFactoryAccount.ts`.
 - Transactions submitted in a close range of time will have the same `block.timestamp` as they can be added to the same L1 batch and might cause the spend limit to not work as expected.
-
-## Complete Project
-
-Download the complete project [here](https://github.com/matter-labs/daily-spendlimit-tutorial). Additionally, the repository contains a test folder with more detailed tests for running on a zkSync Era local network.
 
 ## Learn more
 

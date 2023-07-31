@@ -12,7 +12,7 @@ The only other place where using zkSync SDK is required is during contract deplo
 
 ### Quickstart on zkSync
 
-Before diving into the technical details, we highly recommend checking out our [Best Practices and Considerations](./best-practices.md) and [Differenes with Ethereum](../../reference/architecture/differences-with-ethereum.md) sections. This will help align your development with the distinctive attributes of zkSync Era and ensure your projects are secure and optimized.
+Before diving into the technical details, we highly recommend checking out our [Best Practices and Considerations](./best-practices.md) and [Differences with Ethereum](../../reference/architecture/differences-with-ethereum.md) sections. This will help align your development with the distinctive attributes of zkSync Era and ensure your projects are secure and optimized.
 
 Check out our step-by-step [quickstart guide](../building-on-zksync/hello-world.md), where you will learn:
 
@@ -33,7 +33,7 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 
 4. Fill in the zkSync Era mainnet or testnet network details:
 
-**Mainnet network info**
+#### Mainnet network info
 
 - Network Name: `zkSync Era Mainnet`
 - RPC URL: `https://mainnet.era.zksync.io`
@@ -42,7 +42,7 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - Block Explorer URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://mainnet.era.zksync.io/ws`
 
-**Testnet network info**
+#### Testnet network info
 
 - Network Name: `zkSync Era Testnet`
 - RPC URL: `https://testnet.era.zksync.dev`
