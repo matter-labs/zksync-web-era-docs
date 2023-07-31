@@ -2,7 +2,8 @@
 
 Providers are objects that wrap interactions with the zkSync Era node. If you are new to the concept of providers in `web3`, check out the [Web3j docs](https://docs.web3j.io/4.9.8/getting_started/interacting_with_node/).
 
-zkSync Era fully supports the Ethereum Web3 JSON-RPC API, so you can use the provider objects from `web3.py`. However, zkSync API provides some additional JSON-RPC methods, which allow:
+zkSync Era fully supports the Ethereum Web3 JSON-RPC API, so you can use the provider objects from `webj`. However, zkSync API provides some additional JSON-RPC methods, which 
+allow:
 
 - Easy tracking of L1<->L2 transactions.
 - Different stages of finality for transactions. By default, the RPC returns information about the last state processed by the server, but some use cases may require tracking "finalized" transactions only.
@@ -175,7 +176,7 @@ public class Main {
 
 ### `zksGetTransactionReceipt`
 
-Get transaction receipt. The same as `eth_getTransactionReceipt` but with additional fields belong to L2ToL1 messenger
+Get transaction receipt. The same as `eth_getTransactionReceipt` but with additional fields belong to L2toL1Log
 
 Example:
 
