@@ -5,6 +5,7 @@ While most of the existing SDKs should work out of the box, deploying smart cont
 To provide easy access to all the features of zkSync Era, the `zksync2` Java SDK was created.
 
 **Recommended Java 11**
+
 ## Table of contents
 
 - [Getting started](./getting-started.md)

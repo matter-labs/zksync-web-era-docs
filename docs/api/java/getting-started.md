@@ -61,6 +61,7 @@ public class Main {
 }
 
 ```
+
 ## EthSigner
 
 ```java
@@ -80,6 +81,7 @@ public class Main {
 ```
 
 ## ZkSync Era wallet
+
 You can connect the zkSync Era wallet for easier operations.
 
 ```java
@@ -107,7 +109,6 @@ ZkSync2 supports Ethereum's `Legacy` and `EIP-1155` transactions, except for dep
 ## Deploy contract
 
 With zkSync Era, you can deploy a contract, using the `create` method, by transforming the contract into binary and deploying it to the zkSync Era network.
-
 
 - [Storage](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/storage/Storage.sol): Contract without constructor.
 - [Incrementer](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/incrementer/Incrementer.sol): Contract with constructor.
@@ -615,6 +616,7 @@ public class Main {
   }
 }
 ```
+
 ### Deposit
 
 ```java
@@ -897,7 +899,9 @@ public class Main {
   }
 }
 ```
+
 ### Finalize Withdraw
+
 ```java
 import io.zksync.protocol.ZkSync;
 import io.zksync.protocol.provider.EthereumProvider;
@@ -979,4 +983,4 @@ public class Main {
         Fee fee = feeProvider.getFee(forEstimate);
     }
 }
-````
+```
