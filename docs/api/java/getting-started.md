@@ -914,7 +914,7 @@ import java.math.BigInteger;
 public class Main {
   public static void main(String... args) {
     Web3j web3j; //Initialize web3j
-    ZkSync zksync; //Initalize zksync
+    ZkSync zksync; //Initialize zksync
     Credentials credentials; //Initialize credentials
     BigInteger chainId; //Initialize chainId
 
