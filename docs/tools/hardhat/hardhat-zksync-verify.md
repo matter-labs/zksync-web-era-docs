@@ -6,7 +6,7 @@ This plugin is used to verify contracts on the zkSync Era network.
 
 ## Setup
 
-The [@matterlabs/hardhat-zksync-verify](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-verify) plugin is used in conjunction with [@nomiclabs/hardhat-etherscan](https://www.npmjs.com/package/@nomiclabs/hardhat-etherscan) and it supports backward compatibility.
+The [@matterlabs/hardhat-zksync-verify](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-verify) plugin is used in conjunction with [@nomicfoundation/hardhat-verify](https://www.npmjs.com/package/@nomicfoundation/hardhat-verify) and it supports backward compatibility.
 To use it, install both plugins and then import `@matterlabs/hardhat-zksync-verify` in the `hardhat.config.ts` file.
 
 ::: code-tabs
@@ -14,14 +14,15 @@ To use it, install both plugins and then import `@matterlabs/hardhat-zksync-veri
 @tab:active yarn
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
+yarn add -D @matterlabs/hardhat-zksync-verify @nomicfoundation/hardhat-verify
 ```
 
 @tab npm
 
 ```bash
-npm i -D @matterlabs/hardhat-zksync-verify @nomiclabs/hardhat-etherscan
+npm i -D @matterlabs/hardhat-zksync-verify @nomicfoundation/hardhat-verify
 ```
+
 :::
 
 ### Configuration
@@ -55,7 +56,7 @@ Additional network properties:
 - `zkTestnet` is an arbitrary zkSync Era network name. You can select this as the default network using the `defaultNetwork` property.
 - `url` is a field with the URL of the zkSync Era node in case of the zkSync Era network (with `zksync` flag set to `true`), or the URL of the Ethereum node. This field is required for all zkSync Era and Ethereum networks used by this plugin.
 - `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `goerli`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
-- `zksync` is a flag that indicates a zkSync Era network configuration. This field is set to `true` for all zkSync Era networks. If you want to run a `hardhat-etherscan` verification, this field needs to be set to `false`. If set to `true`, the verification process will try to run the verification process on the zkSync Era network.
+- `zksync` is a flag that indicates a zkSync Era network configuration. This field is set to `true` for all zkSync Era networks. If you want to run a `hardhat-verify` verification, this field needs to be set to `false`. If set to `true`, the verification process will try to run the verification process on the zkSync Era network.
 - `verifyURL` is a field that points to the verification endpoint for the specific zkSync network. This parameter is optional, and its default value is the testnet verification url.
   - Testnet: `https://zksync2-testnet-explorer.zksync.dev/contract_verification`
   - Mainnet: `https://zksync2-mainnet-explorer.zksync.io/contract_verification`
@@ -111,19 +112,31 @@ module.exports = [
 ```
 
 Include it in the verify function call by adding a new parameter: `--constructor-args arguments.js`:
+
 ```sh
 yarn hardhat verify --network testnet 0x7cf08341524AAF292288F3ecD435f8EE1a910AbF --constructor-args arguments.js
 ```
 
+The hardhat-zksync-verify plugin also supports the verification with encoded constructor parameters.
+
+In order to use the encoded parameters, you need to specify a separate javascript module and export them as a <b>_non-array_</b> parameter.
+It is important for encoded arguments to start with `0x` in order to be recognized by the plugin. For example:
+
+```typescript
+module.exports = "0x0x00087a676164696a61310000087a676164696a61310000000000000000000000008537b364a83f5c9a7ead381d3baf9cbb83769bf5";
+```
+
 ### Verification status check
 
-The verification process consists of two steps: 
-- A verification request is sent to confirm if the given parameters for your contract are correct. 
-- Then, we check the verification status of that request. 
-Both steps run when you run the `verify` task, but you will be able to see your specific verification request ID.
-You can then use this ID to check the status of your verification request without running the whole process from the beginning.
+The verification process consists of two steps:
+
+- A verification request is sent to confirm if the given parameters for your contract are correct.
+- Then, we check the verification status of that request.
+  Both steps run when you run the `verify` task, but you will be able to see your specific verification request ID.
+  You can then use this ID to check the status of your verification request without running the whole process from the beginning.
 
 The following command checks the status of the verification request for the specific verification ID:
+
 ```sh
 yarn hardhat verify-status --verification-id <your verification id>
 ```
@@ -139,7 +152,16 @@ const verificationId = await hre.run("verify:verify", {
   constructorArguments: [...]
 });
 ```
+
 This task returns a verification id if the request was successfully sent.<br/>
 You can use this id to check the status of your verification request as described in the section above.
 
-If the request was NOT successful, the return value is `-1`.
+If you are using encoded constructor args, `constructorArguments` parameter should be a non-array value starting with `0x`.
+
+```typescript
+const verificationId = await hre.run("verify:verify", {
+  address: contractAddress,
+  contract: contractFullyQualifedName,
+  constructorArguments: "0x12345...",
+});
+```

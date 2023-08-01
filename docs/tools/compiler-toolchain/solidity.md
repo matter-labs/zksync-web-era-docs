@@ -7,6 +7,7 @@ which must be available in `$PATH`, or its path must be explicitly passed via th
 ::: warning
 To safeguard the security and efficiency of your application, always use the latest compiler version.
 :::
+
 ## Usage
 
 Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
@@ -32,7 +33,7 @@ Additional zkEVM data is supported by `zksolc` but is omitted when passed to `so
 
 - `settings/optimizer/enabled`: enables the LLVM optimizer. You can disable it for prototyping and debugging.
 - `settings/optimizer/mode`: sets the optimization mode. Available values: `0`, `1`, `2`, `3`, `s`, `z`. The default
-setting is `3`. See [LLVM optimizer](./llvm.md#optimizer).
+  setting is `3`. See [LLVM optimizer](./llvm.md#optimizer).
 
 Unsupported sections of the input JSON, ignored by `zksolc`:
 
@@ -52,7 +53,7 @@ Additional zkEVM data inserted by `zksolc`:
 - `long_version`: the full `solc` version output.
 - `zk_version`: the `zksolc` version.
 - `contract/hash`: the hash of the zkEVM bytecode.
-- `contract/factory_dependencies`: bytecode hashes of contracts created in the current contract with `CREATE`. [More details here](../../dev/building-on-zksync/contracts/contract-deployment.md#note-on-factorydeps).
+- `contract/factory_dependencies`: bytecode hashes of contracts created in the current contract with `CREATE`. [More details here](../../reference/architecture/contract-deployment.md#note-on-factory-deps).
 
 Unsupported sections of the output JSON, ignored by `zksolc`:
 
@@ -72,7 +73,7 @@ used for configuration.
 Additional zkEVM data, inserted by `zksolc`:
 
 - `zk_version`: the version of `zksolc`.
-- `contract/factory_deps`: bytecode hashes of contracts created by the current contract with `CREATE`. [More details here](../../dev/building-on-zksync/contracts/contract-deployment.md#note-on-factorydeps).
+- `contract/factory_deps`: bytecode hashes of contracts created by the current contract with `CREATE`. [More details here](../../reference/architecture/contract-deployment.md#note-on-factory-deps).
 
 Unsupported combined JSON flags, rejected by `zksolc`:
 
@@ -110,6 +111,6 @@ Due to this obfuscation, there are several limitations in zkSync for contracts w
 The usage of libraries in Solidity is supported in zkSync Era with the following considerations:
 
 - If a Solidity library can be inlined (i.e. it only contains `private` or `internal` methods), it can be used without
-any additional configuration.
+  any additional configuration.
 - However, if a library contains at least one `public` or `external` method, it cannot be inlined and its address needs
-to be passed explicitly to the compiler; see [compiling non-inlinable libraries](../hardhat/compiling-libraries.md).
+  to be passed explicitly to the compiler; see [compiling non-inlinable libraries](../hardhat/compiling-libraries.md).

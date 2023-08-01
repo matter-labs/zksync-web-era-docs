@@ -2,7 +2,7 @@
 
 This section explores the methods which allow the [account](./accounts.md) classes to send transactions from L1 to L2.
 
-If you want to get some background on how L1->L2 interaction works on zkSync Era, go through the [introduction](../../dev/developer-guides/bridging/l1-l2-interop.md).
+If you want to get some background on how L1->L2 interaction works on zkSync Era, go through the [introduction](../../reference/concepts/l1-l2-interop.md).
 
 The zkSync Python SDK account is compatible with the `eth_account` package, and in most cases users can have their private key and get account instances by using it.
 
@@ -29,7 +29,7 @@ def deposit(self, l2_receiver: HexStr, l1_token: HexStr, amount: int) -> txn_rec
 
 ```
 
-**Arguments**
+### Arguments
 
 | Name        | Description                                               |
 | ----------- | --------------------------------------------------------- |
@@ -60,7 +60,6 @@ def deposit(self, l2_receiver: HexStr, l1_token: HexStr, amount: int):
 
 ```
 
-
 ## Claim failed deposit
 
 The `claimFailedDeposit` method withdraws funds from the initiated deposit, which failed when finalizing on L2.  
@@ -77,7 +76,7 @@ If the deposit L2 transaction has failed, it sends an L1 transaction calling `cl
 
 ```
 
-**Arguments**
+### Arguments
 
 | Name            | Description                                                                          |
 | --------------- | ------------------------------------------------------------------------------------ |
@@ -88,24 +87,7 @@ If the deposit L2 transaction has failed, it sends an L1 transaction calling `cl
 | l2_msg_index    | The position in the L2 logs Merkle tree of the l2Log that was sent with the message. |
 | merkle_proof    | The Merkle proof of the processing L1 -> L2 transaction with deposit finalization    |
 
-## Getting a nonce
-
-The `_get_nonce` method which is an alias for [getTransactionCount](https://web3py.readthedocs.io/en/v5/web3.eth.html?highlight=web3.eth.get_transaction_count#web3.eth.Eth.get_transaction_count), it returns the number of transactions this account has ever sent.
-
-```py
-
-def _get_nonce(self, account) -> transaction_count
-
-```
-
-**Arguments**
-
-| Name    | Description           |
-| ------- | --------------------- |
-| account | The address of a user |
-
-
-## Finalizing withdrawals.
+## Finalizing withdrawals
 
 Withdrawals are executed in 2 steps - initiated on L2 and finalized on L1, this method returns the transaction receipt of the withdrawals.
 
@@ -119,7 +101,7 @@ def finalize_withdrawal(self,
 
 ```
 
-**Arguments**
+### Arguments
 
 | Name            | Description                                                                          |
 | --------------- | ------------------------------------------------------------------------------------ |

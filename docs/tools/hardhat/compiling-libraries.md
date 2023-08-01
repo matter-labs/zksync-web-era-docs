@@ -7,7 +7,6 @@ Solidity libraries can be divided into two categories:
 
 **Practically this means that libraries with public methods need to be deployed separately and their addresses passed as an argument when compiling the main contract.** Usage of the methods of this library will be replaced with calls to its address.
 
-
 ## OpenZeppelin utility libraries
 
 Please note, that the total majority of the OpenZeppelin utility libraries _are_ inlinable. That means that _there is no need to do any further actions to make them compile_.
@@ -55,7 +54,7 @@ That error tells us that the address of the `MiniMath` library should be provide
 
 To resolve the issue, you need to create _a separate project_, where only the library file will be located. After deploying _only_ the library to zkSync Era, you should get the address of the deployed library and pass it to the compiler settings. The process of deploying the library is the same as deploying a smart contract. You can learn how to deploy smart contracts on zkSync Era in the [getting started](./getting-started.md#compile-and-deploy-a-contract) guide.
 
-Let's say that the address of the deployed library is `0xF9702469Dfb84A9aC171E284F71615bd3D3f1EdC`. To pass this address to the compiler parameters, open the `harhdat.config.ts` file of the project where the `Main` contract is located and add the `libraries` section in the `zksolc` plugin properties:
+Let's say that the address of the deployed library is `0xF9702469Dfb84A9aC171E284F71615bd3D3f1EdC`. To pass this address to the compiler parameters, open the `hardhat.config.ts` file of the project where the `Main` contract is located and add the `libraries` section in the `zksolc` plugin properties:
 
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
@@ -63,8 +62,7 @@ import "@matterlabs/hardhat-zksync-solc";
 
 module.exports = {
   zksolc: {
-    version: "1.3.10",
-    compilerSource: "binary",
+    version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
     settings: {
       libraries: {
         "contracts/MiniMath.sol": {
