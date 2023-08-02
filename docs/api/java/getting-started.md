@@ -946,7 +946,9 @@ public class Main {
 
 #### Get price of the transaction execution (currently not wokring properly)
 
-> **Warning:** Feature currently unsupported. Under development
+::: warning
+Feature currently unsupported. Under development
+:::
 
 ```java
 import io.zksync.methods.request.Transaction;
