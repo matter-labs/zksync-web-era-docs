@@ -104,12 +104,11 @@ public class Main {
 
 ZkSync2 supports Ethereum's `Legacy` and `EIP-1155` transactions, except for deploying contracts.
 
-### EIP712
-
 ## Deploy contract
 
 With zkSync Era, you can deploy a contract, using the `create` method, by transforming the contract into binary and deploying it to the zkSync Era network.
 
+Find below some smart contract examples below:
 - [Storage](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/storage/Storage.sol): Contract without constructor.
 - [Incrementer](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/incrementer/Incrementer.sol): Contract with constructor.
 - [Demo](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/demo/Demo.sol): Contract that has a dependency on
@@ -932,13 +931,12 @@ public class Main {
 }
 ```
 
-## Wallet
+### Calculate transaction fees
 
-## Contract interaction using wrapper
-
-### Fee
 
 #### Get price of the transaction execution (currently not wokring properly)
+
+> **Warning:** Feature currently unsupported. Under development
 
 ```java
 import io.zksync.methods.request.Transaction;
