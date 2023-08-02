@@ -45,7 +45,9 @@ dependencies {
 }
 ```
 
-## Instantiating the SDK
+## Examples
+
+### Instantiating the SDK
 
 To start using this SDK, you just need to pass in a provider configuration.
 
@@ -62,7 +64,7 @@ public class Main {
 
 ```
 
-## EthSigner
+### EthSigner
 
 ```java
 import io.zksync.crypto.signer.EthSigner;
@@ -80,7 +82,7 @@ public class Main {
 }
 ```
 
-## ZkSync Era wallet
+### ZkSync Era wallet
 
 You can connect the zkSync Era wallet for easier operations.
 
@@ -100,15 +102,16 @@ public class Main {
 }
 ```
 
-## Transactions
+### Transactions
 
 ZkSync2 supports Ethereum's `Legacy` and `EIP-1155` transactions, except for deploying contracts.
 
-## Deploy contract
+### Deploy contract
 
 With zkSync Era, you can deploy a contract, using the `create` method, by transforming the contract into binary and deploying it to the zkSync Era network.
 
 Find below some smart contract examples below:
+
 - [Storage](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/storage/Storage.sol): Contract without constructor.
 - [Incrementer](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/incrementer/Incrementer.sol): Contract with constructor.
 - [Demo](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/demo/Demo.sol): Contract that has a dependency on
@@ -117,7 +120,7 @@ Find below some smart contract examples below:
 There is a [user guide](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/README.md) on how to compile Solidity smart contracts using the `zksolc`
 compiler. `zksolc` compiler generates a `combined.json` file that contains the bytecode and ABI of a smart contract. Those files are used in the following examples.
 
-### Deploy contract (create2) [EIP-1014](https://eips.ethereum.org/EIPS/eip-1014)
+#### Deploy contract (create2) [EIP-1014](https://eips.ethereum.org/EIPS/eip-1014)
 
 Code:
 
@@ -204,7 +207,7 @@ public class Main {
 }
 ```
 
-### Deploy contract (create)
+#### Deploy contract (create)
 
 Code:
 
@@ -285,7 +288,7 @@ public class Main {
 }
 ```
 
-### Deploy contract via ZkSyncWallet
+#### Deploy contract via ZkSyncWallet
 
 Code:
 
@@ -303,7 +306,9 @@ public class Main {
 }
 ```
 
-### Execute contract
+### Contract interaction (execute)
+
+#### Execute contract
 
 ```java
 import io.zksync.abi.TransactionEncoder;
@@ -375,7 +380,7 @@ public class Main {
 }
 ```
 
-### Execute contact via ZkSyncWallet
+#### Execute contact via ZkSyncWallet
 
 ```java
 import io.zksync.ZkSyncWallet;
@@ -403,7 +408,7 @@ public class Main {
 }
 ```
 
-### Execute contract via Web3j generic contract
+#### Execute contract via Web3j generic contract
 
 ```java
 import io.zksync.crypto.signer.EthSigner;
@@ -438,7 +443,9 @@ public class Main {
 }
 ```
 
-### Transfer funds (native coins)
+### Transfer
+
+#### Transfer funds (native coins)
 
 ```java
 import io.zksync.abi.TransactionEncoder;
@@ -511,7 +518,7 @@ public class Main {
 }
 ```
 
-### Transfer funds (ERC20 tokens)
+#### Transfer funds (ERC20 tokens)
 
 ```java
 import io.zksync.abi.TransactionEncoder;
@@ -589,7 +596,7 @@ public class Main {
 }
 ```
 
-### Transfer funds via ZkSyncWallet
+#### Transfer funds via ZkSyncWallet
 
 ```java
 import io.zksync.ZkSyncWallet;
@@ -617,6 +624,8 @@ public class Main {
 ```
 
 ### Deposit
+
+#### Deposit founds (native coins)
 
 ```java
 import io.zksync.protocol.ZkSync;
@@ -653,7 +662,7 @@ public class Main {
 }
 ```
 
-### Deposit ERC20
+#### Deposit founds (ERC20 tokens)
 
 ```java
 import io.zksync.protocol.ZkSync;
@@ -691,7 +700,9 @@ public class Main {
 }
 ```
 
-### Withdraw funds (native coins)
+### Withdraw
+
+#### Withdraw funds (native coins)
 
 ```java
 import io.zksync.abi.TransactionEncoder;
@@ -780,7 +791,7 @@ public class Main {
 }
 ```
 
-### Withdraw funds (ERC20 tokens)
+#### Withdraw funds (ERC20 tokens)
 
 ```java
 import io.zksync.abi.TransactionEncoder;
@@ -872,7 +883,7 @@ public class Main {
 }
 ```
 
-### Withdraw funds via ZkSyncWallet
+#### Withdraw funds via ZkSyncWallet
 
 ```java
 import io.zksync.ZkSyncWallet;
@@ -899,7 +910,7 @@ public class Main {
 }
 ```
 
-### Finalize Withdraw
+#### Finalize Withdraw
 
 ```java
 import io.zksync.protocol.ZkSync;
@@ -932,7 +943,6 @@ public class Main {
 ```
 
 ### Calculate transaction fees
-
 
 #### Get price of the transaction execution (currently not wokring properly)
 
