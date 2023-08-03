@@ -122,6 +122,11 @@ export const enSidebar = sidebar({
       link: "/api/java/getting-started", // optional, which should be a absolute path.
       children: ["/api/java/getting-started"],
     },
+    {
+      text: "Swift SDK",
+      link: "/api/swift",
+      children: ["/api/swift/getting-started", "/api/swift/accounts", "/api/swift/contracts", "/api/swift/interface", "/api/swift/paymaster-utilities"],
+    },
   ],
   //The sidebar for Tools and SDKs
   "/tools": [
