@@ -21,9 +21,13 @@ This is what we're going to do:
 
 ## Build and deploy the Greeter contract
 
+::: info Project available in Atlas IDE
+This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/matter-labs/zksync-hardhat-template&open=Greeter.sol&chainId=280).
+:::
+
 ### Initialize the project
 
-1. Install the [zkSync CLI:](/docs/tools/zksync-cli/)
+1. Install the [zkSync CLI:](../../tools/zksync-cli/README.md)
 
 ```sh
 yarn add global zksync-cli@latest
@@ -146,7 +150,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const contractAddress = greeterContract.address;
   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 
-  // verify contract for tesnet & mainnet
+  // verify contract for testnet & mainnet
   if (process.env.NODE_ENV != "test") {
     // Contract MUST be fully qualified name (e.g. path/sourceName:contractName)
     const contractFullyQualifedName = "contracts/Greeter.sol:Greeter";

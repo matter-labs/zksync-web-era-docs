@@ -29,7 +29,7 @@ To estimate gas for an L1 to L2 transaction, first gather the required values:
 
    For example, the Ethers.js library has a [`getGasPrice()`](https://docs.ethers.org/v5/api/providers/provider/#Provider-getGasPrice) method available on a `Provider` object. Your language of choice should have an equivalent.
 
-2. Call the [`zks_estimateGasL1ToL2`](../../api/api.md#zks_estimategasl1tol2) method, passing the transaction data. This returns the estimated amount of L2 gas the transaction requires; commonly called **gas limit** or similar in our code and docs.
+2. Call the [`zks_estimateGasL1ToL2`](../../api/api.md#zks-estimategasl1tol2) method, passing the transaction data. This returns the estimated amount of L2 gas the transaction requires; commonly called **gas limit** or similar in our code and docs.
 
    - Apply an alias to the addresses in the request if the sender address is a contract. If the sender is an EOA, no aliasing is required. This is implemented by the [`applyL1ToL2Alias`](https://github.com/matter-labs/era-contracts/blob/41c25aa16d182f757c3fed1463c78a81896f65e6/ethereum/contracts/vendor/AddressAliasHelper.sol#L28) Solidity function.
 

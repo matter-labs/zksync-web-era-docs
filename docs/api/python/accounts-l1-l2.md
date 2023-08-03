@@ -29,7 +29,7 @@ def deposit(self, l2_receiver: HexStr, l1_token: HexStr, amount: int) -> txn_rec
 
 ```
 
-**Arguments**
+### Arguments
 
 | Name        | Description                                               |
 | ----------- | --------------------------------------------------------- |
@@ -76,7 +76,7 @@ If the deposit L2 transaction has failed, it sends an L1 transaction calling `cl
 
 ```
 
-**Arguments**
+### Arguments
 
 | Name            | Description                                                                          |
 | --------------- | ------------------------------------------------------------------------------------ |
@@ -87,7 +87,7 @@ If the deposit L2 transaction has failed, it sends an L1 transaction calling `cl
 | l2_msg_index    | The position in the L2 logs Merkle tree of the l2Log that was sent with the message. |
 | merkle_proof    | The Merkle proof of the processing L1 -> L2 transaction with deposit finalization    |
 
-## Finalizing withdrawals.
+## Finalizing withdrawals
 
 Withdrawals are executed in 2 steps - initiated on L2 and finalized on L1, this method returns the transaction receipt of the withdrawals.
 
@@ -101,7 +101,7 @@ def finalize_withdrawal(self,
 
 ```
 
-**Arguments**
+### Arguments
 
 | Name            | Description                                                                          |
 | --------------- | ------------------------------------------------------------------------------------ |

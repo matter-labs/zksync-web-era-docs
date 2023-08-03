@@ -200,7 +200,7 @@ async function getBalance() {
   // Get balance in Big Number
   console.log(await wallet.getBalanceL1(USDC_ADDRESS));
 
-  // Gett balance in ETH formatted
+  // Get balance in ETH formatted
   console.log(utils.formatEther(await wallet.getBalanceL1()));
 }
 
@@ -282,7 +282,7 @@ const transferHandle = wallet.transfer({
 
 const tx = await transferHandle;
 
-console.log(`The sum of ${ethers.utils.formatEther(tx.value)} ETH was transfered to ${tx.to}`);
+console.log(`The sum of ${ethers.utils.formatEther(tx.value)} ETH was transferred to ${tx.to}`);
 ```
 
 ### Initiating a withdrawal to L1

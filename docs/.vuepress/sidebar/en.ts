@@ -25,7 +25,7 @@ export const enSidebar = sidebar({
         "/dev/how-to/send-transaction-l1-l2",
         "/dev/how-to/send-message-l2-l1",
         "/dev/how-to/transfer-token-l2",
-        "/dev/how-to/verify-contracts",
+        "/dev/how-to/verify-contracts"
       ],
     },
     {
@@ -37,6 +37,7 @@ export const enSidebar = sidebar({
         "/dev/tutorials/aa-daily-spend-limit.md",
         "/dev/tutorials/custom-paymaster-tutorial.md",
         "/dev/tutorials/api3-usd-paymaster-tutorial.md",
+        "/dev/tutorials/gated-nft-paymaster-tutorial.md",
       ],
     },
   ],
@@ -149,8 +150,15 @@ export const enSidebar = sidebar({
             "/tools/hardhat/other-plugins",
           ],
         },
-        "/tools/hardhat/testing",
         "/tools/hardhat/compiling-libraries",
+      ],
+    },
+    {
+      text: "Testing", // required
+      link: "/tools/testing/", // optional, which should be a absolute path.
+      children: [
+        "/tools/testing/dockerized-testing.md",
+        "/tools/testing/era-test-node.md",
       ],
     },
     {
@@ -158,7 +166,6 @@ export const enSidebar = sidebar({
       link: "/tools/compiler-toolchain",
       children: ["/tools/compiler-toolchain/overview.md", "/tools/compiler-toolchain/solidity.md", "/tools/compiler-toolchain/vyper.md", "/tools/compiler-toolchain/llvm.md"],
     },
-
     {
       text: "Block Explorer", // required
       link: "/tools/block-explorer", // optional, which should be a absolute path.

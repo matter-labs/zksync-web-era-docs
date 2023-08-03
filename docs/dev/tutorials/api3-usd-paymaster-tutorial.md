@@ -26,15 +26,19 @@ Within a paymaster, price oracles provide price data on-chain for execution.
 
 For this paymaster tutorial, we use dAPIs to get the price of [ETH/USD](https://market.api3.org/dapis/zksync-goerli-testnet/ETH-USD) and [USDC/USD](https://market.api3.org/dapis/zksync-goerli-testnet/USDC-USD) datafeeds, and then calculate gas in USDC value so that users can pay for their transactions with USDC.
 
-::: note
+::: info
 
 - If you want to use an ERC20 token other than USDC, change the dAPIs used in the paymaster.
 - For example, if you want to use DAI, use the [DAI/USD](https://market.api3.org/dapis/zksync-goerli-testnet/DAI-USD) dAPI instead of USDC/USD.
   :::
 
-## Project repo
+## Complete project
 
 The tutorial code is available [here](https://github.com/vanshwassan/zk-paymaster-dapi-poc).
+
+::: info Project available in Atlas IDE
+This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/atlas-labs-inc/zksync-usdc-paymaster&open=/scripts/main.ts&chainId=280).
+:::
 
 ## Set up the project
 
