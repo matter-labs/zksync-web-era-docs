@@ -42,7 +42,7 @@ In general, a batch will get sealed when:
 1. The batch "capacity" is reached: the capacity includes L1 gas used, L2 gas consumed, and several other parameters.
 2. The batch timeout has passed.
 
-After submitting them, blocks will go through different stages as explained [here](../concepts/zkSync.md#zksync-overview).
+After submitting them, blocks will go through different stages as explained [here](../concepts/zkSync.md#zksync-era-overview).
 
 ### Empty Blocks
 

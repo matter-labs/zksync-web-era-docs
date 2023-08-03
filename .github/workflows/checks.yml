@@ -1,0 +1,76 @@
+name: checks
+
+on:
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  links:
+    name: links
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: links
+        run: |
+          yarn install
+          yarn lint:dead
+
+  format:
+    name: format
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: prettier
+        run: |
+          yarn install
+          yarn lint:fmt
+
+  spelling:
+    name: spelling
+    runs-on: ubuntu-latest
+    strategy:
+        matrix:
+          node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+            node-version: ${{ matrix.node-version }}
+      - name: cspell 
+        run: |
+           yarn install
+           yarn lint:spell
+
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    strategy:
+        matrix:
+          node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+            node-version: ${{ matrix.node-version }}
+      - name: lint 
+        run: |
+            yarn install
+            yarn lint:mdl

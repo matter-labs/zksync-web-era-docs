@@ -61,7 +61,7 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-# Deploying proxies
+## Deploying proxies
 
 The plugin supports three types of proxies: Transparent upgradable proxies, UUPS proxies, and beacon proxies.
 

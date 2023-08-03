@@ -13,7 +13,6 @@ The daily limit feature prevents an account from spending more ETH than the limi
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 - We encourage you to read [the basics of account abstraction on zkSync Era](../../reference/concepts/account-abstraction.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
 
-
 ## Complete Project
 
 Download the complete project [here](https://github.com/matter-labs/daily-spendlimit-tutorial). Additionally, the repository contains a test folder with more detailed tests for running on a zkSync Era local network.
@@ -26,7 +25,7 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 
 We will use the [zkSync Era Hardhat plugins](../../tools/hardhat/) to build, deploy, and interact with the smart contracts in this project.
 
-1. If you haven't already, install the [zkSync CLI:](/docs/tools/zksync-cli/)
+1. If you haven't already, install the [zkSync CLI:](../../tools/zksync-cli/README.md)
 
 ```sh
 yarn add global zksync-cli@latest

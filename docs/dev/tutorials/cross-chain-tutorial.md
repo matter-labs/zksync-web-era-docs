@@ -212,7 +212,7 @@ Save the address to use in a later step.
 
 Now that we have an address for the L1 governance contract, we can build, deploy, and test the counter contract on L2.
 
-1. If you haven't already, install the [zkSync CLI:](/docs/tools/zksync-cli/)
+1. If you haven't already, install the [zkSync CLI:](../../tools/zksync-cli/README.md)
 
 ```sh
 yarn add global zksync-cli@latest

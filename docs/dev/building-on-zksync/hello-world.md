@@ -15,7 +15,11 @@ This is what we're going to do:
 - Download and install [Node](https://nodejs.org/en/download).
 - Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to v16.16.0 with command `nvm use 16`.
 - Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
-- A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync and deploying smart contracts.
+- A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync and deploying smart contracts. You can get Göerli ETH from the following faucets:
+  - [Chainstack Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
+  - [Alchemy Goerli faucet](https://goerlifaucet.com/)
+  - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
+  - [Proof of work faucet](https://goerli-faucet.pk910.de/)
 - ERC20 tokens on zkSync are required for the testnet paymaster. We recommend using [the faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
@@ -27,7 +31,7 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 
 ### Initialize the project
 
-1. Install the [zkSync CLI:](/docs/tools/zksync-cli/)
+1. Install the [zkSync CLI:](../../tools/zksync-cli/README.md)
 
 ```sh
 yarn add global zksync-cli@latest
@@ -150,7 +154,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const contractAddress = greeterContract.address;
   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 
-  // verify contract for tesnet & mainnet
+  // verify contract for testnet & mainnet
   if (process.env.NODE_ENV != "test") {
     // Contract MUST be fully qualified name (e.g. path/sourceName:contractName)
     const contractFullyQualifedName = "contracts/Greeter.sol:Greeter";

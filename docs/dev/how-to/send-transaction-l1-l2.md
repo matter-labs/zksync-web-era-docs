@@ -313,13 +313,13 @@ async function main() {
   const tx = await contract.populateTransaction.setGreeting(message);
 
   // call to RPC method zks_estimateGasL1ToL2 to estimate L2 gas limit
-  const l2GasLimt = await l2provider.estimateGasL1(tx);
+  const l2GasLimit = await l2provider.estimateGasL1(tx);
 
-  console.log(`L2 gasLimit ${l2GasLimt.toString()}`);
+  console.log(`L2 gasLimit ${l2GasLimit.toString()}`);
 
   const baseCost = await wallet.getBaseCost({
     // L2 computation
-    gasLimit: l2GasLimt,
+    gasLimit: l2GasLimit,
     // L1 gas price
     gasPrice: l1GasPrice,
   });
@@ -332,7 +332,7 @@ async function main() {
   const txReceipt = await wallet.requestExecute({
     contractAddress: L2_CONTRACT_ADDRESS,
     calldata,
-    l2GasLimit: l2GasLimt,
+    l2GasLimit: l2GasLimit,
     refundRecipient: wallet.address,
     overrides: {
       // send the required amount of ETH
