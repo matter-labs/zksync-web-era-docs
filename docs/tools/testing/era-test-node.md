@@ -131,7 +131,25 @@ For more detailed transaction information, such as call traces, add the `--show-
 era_test_node --show-calls=user --resolve-hashes replay_tx testnet 0x7f039bcbb1490b855be37e74cf2400503ad57f51c84856362f99b0cbf1ef478a
 ```
 
-Here's an example of what you should expect to see:
+Alternatively (if your node is already running) you can use `config_setShowCalls` and `config_setResolveHashes` RPC endpoints to configure these values. Here's an example:
+
+```bash
+# era_test_node already running...
+
+# Set show-calls to User
+curl --request POST \
+  --url http://localhost:8011/ \
+  --header 'content-type: application/json' \
+  --data '{"jsonrpc": "2.0","id": "1","method": "config_setShowCalls","params": ["user"]}'
+
+# Enable resolve-hashes
+curl --request POST \
+  --url http://localhost:8011/ \
+  --header 'content-type: application/json' \
+  --data '{"jsonrpc": "2.0","id": "1","method": "config_setResolveHashes","params": [true]}'
+```
+
+Here's an example of what you should expect to see when `show-calls` and `resolve-hashes` are configured:
 
 ```bash
 Creating fork from "https://testnet.era.zksync.dev:443" L1 block: L1BatchNumber(94420) L2 block: 8072359 with timestamp 1687337488 and L1 gas price 2500011172
