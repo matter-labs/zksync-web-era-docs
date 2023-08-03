@@ -5,6 +5,10 @@ import theme from "./theme.js";
 import { pwaPlugin } from "vuepress-plugin-pwa2";
 import { getDirname, path } from "@vuepress/utils";
 
+// import registerPkg from "@vuepress/plugin-register-components";
+// const { registerComponentsPlugin } = registerPkg;
+import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
+
 const dirname = getDirname(import.meta.url);
 
 export default defineUserConfig({
@@ -133,6 +137,9 @@ export default defineUserConfig({
           isCustomElement: (tag) => ["ParentLayout"].includes(tag),
         },
       },
+    }),
+    registerComponentsPlugin({
+      componentsDir: path.resolve(dirname, "./components"),
     }),
   ],
 
