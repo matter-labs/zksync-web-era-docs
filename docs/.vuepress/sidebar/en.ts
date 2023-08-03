@@ -147,6 +147,7 @@ export const enSidebar = sidebar({
             "/tools/hardhat/hardhat-zksync-deploy",
             "/tools/hardhat/hardhat-zksync-chai-matchers",
             "/tools/hardhat/hardhat-zksync-verify",
+            "/tools/hardhat/hardhat-zksync-vyper-verify",
             "/tools/hardhat/other-plugins",
           ],
         },
