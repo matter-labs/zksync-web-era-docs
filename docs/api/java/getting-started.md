@@ -625,7 +625,7 @@ public class Main {
 
 ### Deposit
 
-#### Deposit founds (native coins)
+#### Deposit ETH
 
 ```java
 import io.zksync.protocol.ZkSync;
