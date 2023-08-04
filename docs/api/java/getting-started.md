@@ -942,7 +942,7 @@ public class Main {
 }
 ```
 
-### Calculate transaction fees
+### Estimate transaction fee
 
 #### Get price of the transaction execution (currently not wokring properly)
 
