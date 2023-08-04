@@ -2,8 +2,8 @@
   <div v-for="group in allTools.toolsByCategory" :key="group.category">
     <h3>{{ group.category }}</h3>
     <div class="flex-container">
-      <a :href="tool.url" class="flex-item" v-for="tool in group.tools" :key="tool.name">
-        <img :src="`/images/tools/${tool.logo}`" height="80" />
+      <a :href="tool.url" target="_blank" class="flex-item" v-for="tool in group.tools" :key="tool.name">
+        <img :src="`/images/tools/${tool.logo}`" height="80" v-if="tool.logo" />
         <p>{{ tool.name }}</p>
       </a>
     </div>

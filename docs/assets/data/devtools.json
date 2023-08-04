@@ -8,42 +8,42 @@
           "category": "SDK",
           "description": "some desc",
           "logo": "js-logo.svg",
-          "url": "#"
+          "url": "https://era.zksync.io/docs/api/js"
         },
         {
           "name": "Python SDK",
           "category": "SDK",
           "description": "some desc",
           "logo": "python-logo.svg",
-          "url": "#"
+          "url": "https://era.zksync.io/docs/api/python"
         },
         {
           "name": "Rust SDK",
           "category": "SDK",
           "description": "some desc",
           "logo": "rust-logo.svg",
-          "url": "#"
+          "url": "https://github.com/lambdaclass/zksync-web3-rs"
         },
         {
           "name": "Go SDK",
           "category": "SDK",
           "description": "some desc",
           "logo": "go-logo.svg",
-          "url": "#"
+          "url": "https://era.zksync.io/docs/api/go"
         },
         {
           "name": "Java SDK",
           "category": "SDK",
           "description": "some desc",
           "logo": "java-logo.svg",
-          "url": "#"
+          "url": "https://era.zksync.io/docs/api/java"
         },
         {
           "name": "Swift SDK",
           "category": "SDK",
           "description": "some desc",
           "logo": "swift-logo.svg",
-          "url": "#"
+          "url": "https://era.zksync.io/docs/api/swift"
         }
       ]
     },
@@ -55,35 +55,35 @@
           "category": "RPC ",
           "description": "some desc",
           "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "url": "https://chainstack.com/build-better-with-zksync-era/"
         },
         {
           "name": "Quicknode",
           "category": "RPC ",
           "description": "some desc",
           "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "url": "https://www.quicknode.com/chains/zksync"
         },
         {
           "name": "Ankr",
           "category": "RPC ",
           "description": "some desc",
           "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "url": "https://www.ankr.com/rpc/zksync_era/"
         },
         {
           "name": "Unifra",
           "category": "RPC ",
           "description": "some desc",
           "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "url": "https://unifra.readme.io/reference/zksync-api"
         },
         {
           "name": "BlockPi",
           "category": "RPC ",
           "description": "some desc",
           "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "url": "https://docs.blockpi.io/documentations/api-reference/zksync-era"
         }
       ]
     },
@@ -94,7 +94,7 @@
           "name": "zksync-cli",
           "category": "Dev tools",
           "description": "some desc",
-          "logo": "thirdweb-logo.svg",
+          "logo": "z-logo.png",
           "url": "#"
         },
         {
@@ -119,14 +119,14 @@
           "url": "#"
         },
         {
-          "name": "Atlas ZK",
+          "name": "Openzeppelin",
           "category": "Dev tools",
           "description": "some desc",
           "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
-          "name": "Openzeppelin",
+          "name": "Atlas ZK",
           "category": "Dev tools",
           "description": "some desc",
           "logo": "thirdweb-logo.svg",
@@ -141,14 +141,14 @@
           "name": "In-memory node",
           "category": "Testing",
           "description": "some desc",
-          "logo": "thirdweb-logo.svg",
+          "logo": "z-logo.png",
           "url": "#"
         },
         {
           "name": "Docker local setup",
           "category": "Testing",
           "description": "some desc",
-          "logo": "thirdweb-logo.svg",
+          "logo": "z-logo.png",
           "url": "#"
         }
       ]
