@@ -78,13 +78,13 @@ With the `--contract` parameter you can also specify which contract from your lo
 
 #### Constructor arguments
 
-If your contract was deployed with the specific constructor arguments, you need to specify them when running the verify task. For example:
+If your contract was deployed with specific constructor arguments, you need to specify them when running the verify task. For example:
 
 ```sh
 yarn hardhat vyper:verify --network testnet 0x7cf08341524AAF292255F3ecD435f8EE1a910AbF "Hi there!"
 ```
 
-If your constructor takes a complex argument list, you can write a separate javascript module to export it. For example, create an `arguments.js` file with the following structure:
+If your constructor takes a complex argument list, you can write a separate Javascript module to export it. For example, create an `arguments.js` file with the following structure:
 
 ```typescript
 module.exports = [
@@ -130,7 +130,7 @@ yarn hardhat verify-status:vyper --verification-id <your verification id>
 
 ### Verify smart contract programmatically
 
-If you need to run the verification task directly from your code, you can use the hardhat `verify:verify:vyper` task with the previously mentioned parameters with the difference in using `--address` parameter when specifying contarct's address.
+If you need to run the verification task directly from your code, you can use the hardhat `verify:verify:vyper` task with the previously mentioned parameters with the difference in using `--address` parameter when specifying contract's address.
 
 ```typescript
 const verificationId = await hre.run("verify:verify:vyper", {
