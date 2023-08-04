@@ -518,7 +518,7 @@ public class Main {
 }
 ```
 
-#### Transfer funds (ERC20 tokens)
+#### Transfer ERC20 tokens
 
 ```java
 import io.zksync.abi.TransactionEncoder;
