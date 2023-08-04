@@ -88,7 +88,7 @@
       ]
     },
     {
-      "category": "Developer tools",
+      "category": "Frameworks, libraries and IDEs",
       "tools": [
         {
           "name": "zksync-cli",
