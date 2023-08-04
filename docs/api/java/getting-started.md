@@ -110,7 +110,7 @@ ZkSync2 supports Ethereum's `Legacy` and `EIP-1155` transactions, except for dep
 
 With zkSync Era, you can deploy a contract, using the `create` method, by transforming the contract into binary and deploying it to the zkSync Era network.
 
-Find below some smart contract examples below:
+Find below some smart contract examples:
 
 - [Storage](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/storage/Storage.sol): Contract without constructor.
 - [Incrementer](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/incrementer/Incrementer.sol): Contract with constructor.
