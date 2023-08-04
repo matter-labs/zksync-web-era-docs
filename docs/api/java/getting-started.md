@@ -662,7 +662,7 @@ public class Main {
 }
 ```
 
-#### Deposit founds (ERC20 tokens)
+#### Deposit ERC20 tokens
 
 ```java
 import io.zksync.protocol.ZkSync;
