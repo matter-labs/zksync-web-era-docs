@@ -130,7 +130,7 @@ yarn hardhat verify-status:vyper --verification-id <your verification id>
 
 ### Verify smart contract programmatically
 
-If you need to run the verification task directly from your code, you can use the hardhat `verify:verify:vyper` task with the previously mentioned parameters with the difference in using `--address` parameter when specifying contract's address.
+If you need to run the verification task directly from your code, you can use the hardhat `verify:verify:vyper` task with the previously mentioned parameters.
 
 ```typescript
 const verificationId = await hre.run("verify:verify:vyper", {
