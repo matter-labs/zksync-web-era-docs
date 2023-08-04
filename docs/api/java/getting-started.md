@@ -791,7 +791,7 @@ public class Main {
 }
 ```
 
-#### Withdraw funds (ERC20 tokens)
+#### Withdraw ERC20 tokens
 
 ```java
 import io.zksync.abi.TransactionEncoder;
