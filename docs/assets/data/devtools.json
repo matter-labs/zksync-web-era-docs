@@ -7,42 +7,42 @@
           "name": "Javascript SDK",
           "category": "SDK",
           "description": "some desc",
-          "logo": "",
+          "logo": "js-logo.svg",
           "url": "#"
         },
         {
           "name": "Python SDK",
           "category": "SDK",
           "description": "some desc",
-          "logo": "",
+          "logo": "python-logo.svg",
           "url": "#"
         },
         {
           "name": "Rust SDK",
           "category": "SDK",
           "description": "some desc",
-          "logo": "",
+          "logo": "rust-logo.svg",
           "url": "#"
         },
         {
           "name": "Go SDK",
           "category": "SDK",
           "description": "some desc",
-          "logo": "",
+          "logo": "go-logo.svg",
           "url": "#"
         },
         {
           "name": "Java SDK",
           "category": "SDK",
           "description": "some desc",
-          "logo": "",
+          "logo": "java-logo.svg",
           "url": "#"
         },
         {
           "name": "Swift SDK",
           "category": "SDK",
           "description": "some desc",
-          "logo": "",
+          "logo": "swift-logo.svg",
           "url": "#"
         }
       ]
@@ -54,35 +54,35 @@
           "name": "Chainstack",
           "category": "RPC ",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Quicknode",
           "category": "RPC ",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Ankr",
           "category": "RPC ",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Unifra",
           "category": "RPC ",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "BlockPi",
           "category": "RPC ",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         }
       ]
@@ -94,42 +94,42 @@
           "name": "zksync-cli",
           "category": "Dev tools",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Hardhat",
           "category": "Framework",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Foundry",
           "category": "Framework",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Thirdweb",
           "category": "Dev tools",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Atlas ZK",
           "category": "Dev tools",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Openzeppelin",
           "category": "Dev tools",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         }
       ]
@@ -141,14 +141,14 @@
           "name": "In-memory node",
           "category": "Testing",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Docker local setup",
           "category": "Testing",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         }
       ]
@@ -160,35 +160,35 @@
           "name": "Uniswap",
           "category": "DeFi",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Safe",
           "category": "Custody",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Snapshot",
           "category": "Governance",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Particle Network",
           "category": "Oracle",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Herodotus",
           "category": "Storage Proofs",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         }
       ]
@@ -200,28 +200,28 @@
           "name": "API3",
           "category": "Oracle",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Redstone",
           "category": "Oracle",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Gelato",
           "category": "Oracle",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Pyth",
           "category": "Oracle",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         }
       ]
@@ -233,21 +233,21 @@
           "name": "theGraph",
           "category": "APIs",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "ZettaBlock",
           "category": "APIs",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         },
         {
           "name": "Covalent",
           "category": "APIs",
           "description": "some desc",
-          "logo": "",
+          "logo": "thirdweb-logo.svg",
           "url": "#"
         }
       ]

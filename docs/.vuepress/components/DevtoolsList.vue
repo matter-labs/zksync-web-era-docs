@@ -3,6 +3,7 @@
     <h3>{{ group.category }}</h3>
     <div class="flex-container">
       <a :href="tool.url" class="flex-item" v-for="tool in group.tools" :key="tool.name">
+        <img :src="`/images/tools/${tool.logo}`" height="80" />
         <p>{{ tool.name }}</p>
       </a>
     </div>
