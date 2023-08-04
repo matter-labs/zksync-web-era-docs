@@ -17,7 +17,7 @@ Addresses of tokens on L2 will always differ from the same token L1 address.
 
 ## Default bridges
 
-You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../api/api.md#zks_getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../api/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
+You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../api/api.md#zks-getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../api/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
 
 ### Add tokens to the bridge
 
@@ -152,7 +152,7 @@ To run this script, configure your `hardhat.config.ts` file as explained in this
 Once your `hardhat.config.ts` file is configured, place the script files in the `deploy` folder and run them with the following command:
 
 ```sh
- yarn hardhat zksync-deploy --script SCRIPT_FILENAME.ts
+yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts
 ```
 
 The log message described above is not yet fully supported by our SDK but is available on the L1 bridge contract.

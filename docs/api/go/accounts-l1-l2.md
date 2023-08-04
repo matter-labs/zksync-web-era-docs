@@ -39,7 +39,7 @@ if err != nil {
 
 [Deposit ERC20 token](getting-started.md#deposit-tokens).
 
-**Inputs and outputs**
+### Inputs and outputs
 
 | Name    | Description                                           |
 | ------- | ----------------------------------------------------- |
@@ -61,7 +61,7 @@ L1 bridge, which results in returning L1 tokens back to the depositor, or throws
 
 ```
 
-**Inputs and Outputs**
+### Inputs and Outputs
 
 | Name        | Description                                                 |
 | ----------- | ----------------------------------------------------------- |
@@ -92,7 +92,7 @@ Withdrawal are executed in 2 steps:
 func (w *Wallet) Withdraw(to common.Address, amount *big.Int, token *Token, nonce *big.Int) (common.Hash, error)
 ```
 
-**Inputs and outputs**
+### Inputs and outputs
 
 | Name    | Description                                           |
 | ------- | ----------------------------------------------------- |
@@ -108,7 +108,7 @@ func (w *Wallet) Withdraw(to common.Address, amount *big.Int, token *Token, nonc
 func (w *Wallet) FinalizeWithdraw(withdrawalHash common.Hash, index int) (common.Hash, error)
 ```
 
-**Inputs and outputs**
+### Inputs and outputs
 
 | Name           | Description                                                                            |
 | -------------- | -------------------------------------------------------------------------------------- |

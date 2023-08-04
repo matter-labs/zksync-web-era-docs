@@ -1,6 +1,6 @@
 # Send an L1 to L2 transaction
 
-The [zkSync Era smart contracts](https://github.com/matter-labs/zksync-2-contracts/tree/main/ethereum/contracts/zksync) allow the sender to request transactions on Ethereum L1 and pass data to zkSync Era L2.
+The [zkSync Era smart contracts](https://github.com/matter-labs/era-contracts/tree/main/ethereum/contracts/zksync) allow the sender to request transactions on Ethereum L1 and pass data to zkSync Era L2.
 
 ## Common use cases
 
@@ -13,7 +13,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 1. Import the zkSync Era library or contract containing the required functionality.
 
-   The import gives access to the [`IZkSync.sol`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IZkSync.sol#L4) inherited interfaces that include the gas estimation functionality.
+   The import gives access to the [`IZkSync.sol`](https://github.com/matter-labs/era-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IZkSync.sol#L4) inherited interfaces that include the gas estimation functionality.
 
    Import the contracts with yarn (recommended), or [download the contracts](https://github.com/matter-labs/v2-testnet-contracts) from the repo.
 
@@ -109,7 +109,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
    :::
 
-5. Get the base cost by calling the [`l2TransactionBaseCost`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L129) function with:
+5. Get the base cost by calling the [`l2TransactionBaseCost`](https://github.com/matter-labs/era-contracts/blob/3a4506522aaef81485d8abb96f5a6394bd2ba69e/ethereum/contracts/zksync/interfaces/IMailbox.sol#L130) function with:
 
    - The gas price returned at step 2 as `_gasPrice`.
    - The gas value returned at step 3 as `_l2GasLimit`.
@@ -161,7 +161,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
    }
    ```
 
-7. Send the transaction, including the gas price and base cost in the value parameters, by calling the [`requestL2Transaction`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IMailbox.sol#L119) function.
+7. Send the transaction, including the gas price and base cost in the value parameters, by calling the [`requestL2Transaction`](https://github.com/matter-labs/era-contracts/blob/3a4506522aaef81485d8abb96f5a6394bd2ba69e/ethereum/contracts/zksync/interfaces/IMailbox.sol#L120) function.
 
    Include the gas limit value from step 3 as `_l2GasLimit` and the `REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT` constant as `_l2GasPerPubdataByteLimit`.
 
@@ -313,13 +313,13 @@ async function main() {
   const tx = await contract.populateTransaction.setGreeting(message);
 
   // call to RPC method zks_estimateGasL1ToL2 to estimate L2 gas limit
-  const l2GasLimt = await l2provider.estimateGasL1(tx);
+  const l2GasLimit = await l2provider.estimateGasL1(tx);
 
-  console.log(`L2 gasLimit ${l2GasLimt.toString()}`);
+  console.log(`L2 gasLimit ${l2GasLimit.toString()}`);
 
   const baseCost = await wallet.getBaseCost({
     // L2 computation
-    gasLimit: l2GasLimt,
+    gasLimit: l2GasLimit,
     // L1 gas price
     gasPrice: l1GasPrice,
   });
@@ -332,7 +332,7 @@ async function main() {
   const txReceipt = await wallet.requestExecute({
     contractAddress: L2_CONTRACT_ADDRESS,
     calldata,
-    l2GasLimit: l2GasLimt,
+    l2GasLimit: l2GasLimit,
     refundRecipient: wallet.address,
     overrides: {
       // send the required amount of ETH

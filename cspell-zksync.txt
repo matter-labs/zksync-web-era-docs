@@ -49,6 +49,11 @@ Paypal
 Numio
 MLTT
 USDCs
+dapi 
+validiums
+validium
+Validium
+sharded
 
 // Used libraries
 numberish
@@ -56,6 +61,13 @@ arrayify
 hexlify
 markdownlint
 ethersproject
+nomicfoundation
+nomiclabs
+Consensys
+zkforge
+zkcast
+Eigen
+IPFS
 
 // Used programming language words
 printf
@@ -64,6 +76,20 @@ println
 fatalf
 allowfullscreen
 inttypes
+zbin
+Panicf
+Deri
+DERI
+Furucombo
+kwargs
+scaleb
+isinstance
+mload
+secp
+porco
+rosso
+insize
+MLOAD
 
 // ETC
 gitter
@@ -83,6 +109,22 @@ gemeente
 unauthorised
 Ethereum's
 SDKs
+EVM's
+EVM
+Göerli
+ETHUSDC
+USDCUSD
+ETHUS
+USDCUS
+ETHUSD
+Arbitrum
+Adamantium
+Immunefi
+Winternitz
+ewasm
+Evmla
+UUPS
+Uups
 
 // crypto events
 Edcon
@@ -97,6 +139,7 @@ convertion
 Keyhash
 Armeabi
 scijava
+gluk
 
 bytecode
 timeframe
@@ -106,3 +149,11 @@ zksyncrobot
 precompiles
 vyper
 zkvyper
+undol
+applyl
+Upgradability
+Initializable
+Hola
+mundo
+ISTN
+Zerion

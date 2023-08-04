@@ -37,6 +37,7 @@ export const enSidebar = sidebar({
         "/dev/tutorials/aa-daily-spend-limit.md",
         "/dev/tutorials/custom-paymaster-tutorial.md",
         "/dev/tutorials/api3-usd-paymaster-tutorial.md",
+        "/dev/tutorials/gated-nft-paymaster-tutorial.md",
       ],
     },
   ],
