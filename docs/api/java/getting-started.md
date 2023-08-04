@@ -118,7 +118,7 @@ Find below some smart contract examples:
   [Foo](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/demo/Foo.sol) contract.
 
 There is a [user guide](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/README.md) on how to compile Solidity smart contracts using the `zksolc`
-compiler. `zksolc` compiler generates a `combined.json` file that contains the bytecode and ABI of a smart contract. Those files are used in the following examples.
+The compiler generates a `combined.json` file that contains the bytecode and ABI of a smart contract. Those files are used in the following examples.
 
 #### Deploy contract (create2) [EIP-1014](https://eips.ethereum.org/EIPS/eip-1014)
 
