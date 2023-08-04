@@ -15,7 +15,7 @@ This guide assumes that you are familiar with the basics of [Java](https://docs.
 
 ## Dependency
 
-For connecting ZkSync2 library just add the following dependency to your build file.
+To install the ZkSync2 Java SDK, just add the following dependency to your build file:
 
 Maven `pom.xml`
 
