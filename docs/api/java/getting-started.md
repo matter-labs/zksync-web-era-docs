@@ -702,7 +702,7 @@ public class Main {
 
 ### Withdraw
 
-#### Withdraw funds (native coins)
+#### Withdraw ETH
 
 ```java
 import io.zksync.abi.TransactionEncoder;
