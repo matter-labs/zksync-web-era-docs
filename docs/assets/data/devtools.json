@@ -1,0 +1,256 @@
+{
+  "toolsByCategory": [
+    {
+      "category": "SDKs",
+      "tools": [
+        {
+          "name": "Javascript SDK",
+          "category": "SDK",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Python SDK",
+          "category": "SDK",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Rust SDK",
+          "category": "SDK",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Go SDK",
+          "category": "SDK",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Java SDK",
+          "category": "SDK",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Swift SDK",
+          "category": "SDK",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "category": "Node Providers",
+      "tools": [
+        {
+          "name": "Chainstack",
+          "category": "RPC ",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Quicknode",
+          "category": "RPC ",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Ankr",
+          "category": "RPC ",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Unifra",
+          "category": "RPC ",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "BlockPi",
+          "category": "RPC ",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "category": "Developer tools",
+      "tools": [
+        {
+          "name": "zksync-cli",
+          "category": "Dev tools",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Hardhat",
+          "category": "Framework",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Foundry",
+          "category": "Framework",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Thirdweb",
+          "category": "Dev tools",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Atlas ZK",
+          "category": "Dev tools",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Openzeppelin",
+          "category": "Dev tools",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "category": "Testing and debugging",
+      "tools": [
+        {
+          "name": "In-memory node",
+          "category": "Testing",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Docker local setup",
+          "category": "Testing",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "category": "Ecosystem tools",
+      "tools": [
+        {
+          "name": "Uniswap",
+          "category": "DeFi",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Safe",
+          "category": "Custody",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Snapshot",
+          "category": "Governance",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Particle Network",
+          "category": "Oracle",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Herodotus",
+          "category": "Storage Proofs",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "category": "Oracles",
+      "tools": [
+        {
+          "name": "API3",
+          "category": "Oracle",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Redstone",
+          "category": "Oracle",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Gelato",
+          "category": "Oracle",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Pyth",
+          "category": "Oracle",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "category": "Analytics and APIs",
+      "tools": [
+        {
+          "name": "theGraph",
+          "category": "APIs",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "ZettaBlock",
+          "category": "APIs",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        },
+        {
+          "name": "Covalent",
+          "category": "APIs",
+          "description": "some desc",
+          "logo": "",
+          "url": "#"
+        }
+      ]
+    }
+  ]
+}
