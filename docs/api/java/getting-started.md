@@ -445,7 +445,7 @@ public class Main {
 
 ### Transfer
 
-#### Transfer funds (native coins)
+#### Transfer ETH
 
 ```java
 import io.zksync.abi.TransactionEncoder;
