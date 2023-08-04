@@ -101,7 +101,7 @@ public class Main {
     }
 }
 ```
-
+## Examples
 ### Transactions
 
 ZkSync2 supports Ethereum's `Legacy` and `EIP-1155` transactions, except for deploying contracts.
