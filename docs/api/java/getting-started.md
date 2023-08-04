@@ -944,7 +944,7 @@ public class Main {
 
 ### Estimate transaction fee
 
-#### Get price of the transaction execution (currently not wokring properly)
+Calculate the price of executing a transaction on chain.
 
 ::: warning
 Feature currently unsupported. Under development
