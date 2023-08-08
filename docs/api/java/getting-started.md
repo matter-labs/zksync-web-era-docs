@@ -15,7 +15,7 @@ This guide assumes that you are familiar with the basics of [Java](https://docs.
 
 ## Dependency
 
-For connecting ZkSync2 library just add the following dependency to your build file.
+To install the ZkSync2 Java SDK, just add the following dependency to your build file:
 
 Maven `pom.xml`
 
@@ -107,7 +107,7 @@ public class Main {
     }
 }
 ```
-
+## Examples
 ### Transactions
 
 ZkSync2 supports Ethereum's `Legacy` and `EIP-1155` transactions, except for deploying contracts.
@@ -116,15 +116,15 @@ ZkSync2 supports Ethereum's `Legacy` and `EIP-1155` transactions, except for dep
 
 With zkSync Era, you can deploy a contract, using the `create` method, by transforming the contract into binary and deploying it to the zkSync Era network.
 
-Find below some smart contract examples below:
+Find below some smart contract examples:
 
 - [Storage](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/storage/Storage.sol): Contract without constructor.
 - [Incrementer](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/incrementer/Incrementer.sol): Contract with constructor.
 - [Demo](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/demo/Demo.sol): Contract that has a dependency on
   [Foo](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/solidity/demo/Foo.sol) contract.
 
-There is a [user guide](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/README.md) on how to compile Solidity smart contracts using the `zksolc`
-compiler. `zksolc` compiler generates a `combined.json` file that contains the bytecode and ABI of a smart contract. Those files are used in the following examples.
+Follow [this guide to compile Solidity smart contracts using the `zksolc` compiler](https://github.com/zksync-sdk/zksync2-python/blob/master/examples/README.md).
+The compiler generates a `combined.json` file that contains the bytecode and ABI of a smart contract. Those files are used in the following examples.
 
 #### Deploy contract (create2) [EIP-1014](https://eips.ethereum.org/EIPS/eip-1014)
 
@@ -496,7 +496,7 @@ public class Main {
 
 ### Transfer
 
-#### Transfer funds (native coins)
+#### Transfer ETH
 
 ```java
 import io.zksync.abi.TransactionEncoder;
@@ -569,7 +569,7 @@ public class Main {
 }
 ```
 
-#### Transfer funds (ERC20 tokens)
+#### Transfer ERC20 tokens
 
 ```java
 import io.zksync.abi.TransactionEncoder;
@@ -705,7 +705,7 @@ public class Main {
 
 ### Deposit
 
-#### Deposit founds (native coins)
+#### Deposit ETH
 
 ```java
 import io.zksync.protocol.ZkSync;
@@ -742,7 +742,7 @@ public class Main {
 }
 ```
 
-#### Deposit founds (ERC20 tokens)
+#### Deposit ERC20 tokens
 
 ```java
 import io.zksync.protocol.ZkSync;
@@ -782,7 +782,7 @@ public class Main {
 
 ### Withdraw
 
-#### Withdraw funds (native coins)
+#### Withdraw ETH
 
 ```java
 import io.zksync.abi.TransactionEncoder;
@@ -871,7 +871,7 @@ public class Main {
 }
 ```
 
-#### Withdraw funds (ERC20 tokens)
+#### Withdraw ERC20 tokens
 
 ```java
 import io.zksync.abi.TransactionEncoder;
@@ -1022,32 +1022,9 @@ public class Main {
 }
 ```
 
-### Calculate transaction fees
+### Estimate transaction fee
 
-#### Get fee via TransactionFeeProvider
-
-```java
-import io.zksync.methods.request.Transaction;
-import io.zksync.protocol.ZkSync;
-import io.zksync.protocol.core.Token;
-import io.zksync.transaction.fee.DefaultTransactionFeeProvider;
-import io.zksync.transaction.fee.Fee;
-import io.zksync.transaction.fee.ZkTransactionFeeProvider;
-
-public class Main {
-    public static void main(String ...args) {
-        ZkSync zksync; // Initialize client
-
-        ZkTransactionFeeProvider feeProvider = new DefaultTransactionFeeProvider(zksync, Token.ETH);
-
-        Transaction forEstimate; // Create transaction as described above
-
-        Fee fee = feeProvider.getFee(forEstimate);
-    }
-}
-```
-
-#### Get price of the transaction execution
+#### Get price of the transaction execution (currently not wokring properly)
 
 ::: warning
 Feature currently unsupported. Under development
