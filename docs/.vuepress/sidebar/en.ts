@@ -120,7 +120,7 @@ export const enSidebar = sidebar({
       text: "Java SDK", // required
       link: "/api/java/getting-started", // optional, which should be a absolute path.
       children: [
-          "/api/java/getting-started",
+          "/api/java",
           "/api/java/providers",
           "/api/java/accounts",
           "/api/java/accounts-l1-l2"
