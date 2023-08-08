@@ -22,7 +22,7 @@ Send approve transaction to token contract.
 
 ### `deposit`
 
-Send deposit transaction to ZkSync Era contract. For ERC20 token must be approved before. @see EthereumProvider.approveDeposits
+Send deposit transaction to ZkSync Era contract. For ERC20 token must be approved before. See [approveDeposits](#approvedeposits)
 
 | Name         | Description                                           |
 | ------------ | ----------------------------------------------------- |

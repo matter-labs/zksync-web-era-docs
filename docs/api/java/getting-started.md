@@ -82,6 +82,12 @@ public class Main {
 }
 ```
 
+:::tip
+Mainnet chain id: 324
+Testnet chain id: 280
+Local setup chain id: 270
+:::
+
 ### ZkSync Era wallet
 
 You can connect the zkSync Era wallet for easier operations.
@@ -306,6 +312,41 @@ public class Main {
 }
 ```
 
+#### Deploy contract with constructor via ZkSyncWallet
+
+```java
+import io.zksync.ZkSyncWallet;
+import org.web3j.abi.FunctionEncoder;
+import org.web3j.abi.datatypes.Type;
+import org.web3j.abi.datatypes.Utf8String;
+import org.web3j.abi.datatypes.generated.Uint256;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.utils.Numeric;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String ...args) {
+        ZkSyncWallet wallet; // Initialize wallet
+
+        String name = "NAME";
+        String symbol = "SYMBOL";
+        BigInteger amount = new BigInteger("666234").multiply(new BigInteger("10").pow(18));
+
+        List<Type> inputParameter = new ArrayList<>();
+        inputParameter.add(new Utf8String(name));
+        inputParameter.add(new Utf8String(symbol));
+        inputParameter.add(new Uint256(amount));
+
+        String bytecode = "0x<bytecode_of_the_contract>";
+        String calldata = FunctionEncoder.encodeConstructor(inputParameter);
+        TransactionReceipt receipt = wallet.deploy(Numeric.hexStringToByteArray(bytecode), Numeric.hexStringToByteArray(calldata)).send();
+    }
+}
+```
+
 ### Contract interaction (execute)
 
 #### Execute contract
@@ -322,6 +363,9 @@ import io.zksync.transaction.fee.ZkTransactionFeeProvider;
 import io.zksync.transaction.type.Transaction712;
 import io.zksync.transaction.response.ZkSyncTransactionReceiptProcessor;
 
+import org.web3j.abi.FunctionEncoder;
+import org.web3j.abi.datatypes.Function;
+import org.web3j.abi.datatypes.generated.Uint256;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
 import org.web3j.protocol.exceptions.TransactionException;
@@ -329,6 +373,7 @@ import org.web3j.utils.Numeric;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.Collections;
 
 import static io.zksync.transaction.manager.ZkSyncTransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH;
 import static io.zksync.transaction.manager.ZkSyncTransactionManager.DEFAULT_POLLING_FREQUENCY;
@@ -346,7 +391,13 @@ public class Main {
       .getTransactionCount();
 
     String contractAddress = "0x<contract_address>";
-    String calldata = "0x<calldata>"; // Here is an encoded contract function
+
+    Function contractFunction = new Function(
+      "increment",
+      Collections.singletonList(new Uint256(BigInteger.ONE)),
+      Collections.emptyList());
+
+    String calldata = FunctionEncoder.encode(function);
 
     Transaction estimate = Transaction.createFunctionCallTransaction(
       signer.getAddress(),
@@ -596,7 +647,7 @@ public class Main {
 }
 ```
 
-#### Transfer funds via ZkSyncWallet
+#### Transfer native coins via ZkSyncWallet
 
 ```java
 import io.zksync.ZkSyncWallet;
@@ -613,6 +664,35 @@ public class Main {
     BigInteger amount = Token.ETH.toBigInteger(0.5);
 
     TransactionReceipt receipt = wallet.transfer("0x<receiver_address>", amount).send();
+
+    //You can check balance
+    BigInteger balance = wallet.getBalance().send();
+
+    //Also, you can convert amount number to decimal
+    BigDecimal decimalBalance = Token.ETH.intoDecimal(balance);
+  }
+}
+```
+
+#### Transfer ERC20 coins via ZkSyncWallet
+
+```java
+import io.zksync.ZkSyncWallet;
+import io.zksync.protocol.core.Token;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+public class Main {
+  public static void main(String... args) throws Exception {
+    ZkSyncWallet wallet; // Initialize wallet
+
+    Token token = new Token("L1_ADDRESS", "L2_ADDRESS", "SYMBOL", 18);
+
+    BigInteger amount = Token.ETH.toBigInteger(0.5);
+
+    TransactionReceipt receipt = wallet.transfer("0x<receiver_address>", amount, token).send();
 
     //You can check balance
     BigInteger balance = wallet.getBalance().send();
@@ -944,7 +1024,30 @@ public class Main {
 
 ### Calculate transaction fees
 
-#### Get price of the transaction execution (currently not wokring properly)
+#### Get fee via TransactionFeeProvider
+
+```java
+import io.zksync.methods.request.Transaction;
+import io.zksync.protocol.ZkSync;
+import io.zksync.protocol.core.Token;
+import io.zksync.transaction.fee.DefaultTransactionFeeProvider;
+import io.zksync.transaction.fee.Fee;
+import io.zksync.transaction.fee.ZkTransactionFeeProvider;
+
+public class Main {
+    public static void main(String ...args) {
+        ZkSync zksync; // Initialize client
+
+        ZkTransactionFeeProvider feeProvider = new DefaultTransactionFeeProvider(zksync, Token.ETH);
+
+        Transaction forEstimate; // Create transaction as described above
+
+        Fee fee = feeProvider.getFee(forEstimate);
+    }
+}
+```
+
+#### Get price of the transaction execution
 
 ::: warning
 Feature currently unsupported. Under development
@@ -969,28 +1072,5 @@ public class Main {
     // Also possible to use eth_estimateGas
     BigInteger gasUsed = zksync.ethEstimateGas(forEstimate).send().getAmountUsed();
   }
-}
-```
-
-### Get fee via TransactionFeeProvider
-
-```java
-import io.zksync.methods.request.Transaction;
-import io.zksync.protocol.ZkSync;
-import io.zksync.protocol.core.Token;
-import io.zksync.transaction.fee.DefaultTransactionFeeProvider;
-import io.zksync.transaction.fee.Fee;
-import io.zksync.transaction.fee.ZkTransactionFeeProvider;
-
-public class Main {
-    public static void main(String ...args) {
-        ZkSync zksync; // Initialize client
-
-        ZkTransactionFeeProvider feeProvider = new DefaultTransactionFeeProvider(zksync, Token.ETH);
-
-        Transaction forEstimate; // Create transaction as described above
-
-        Fee fee = feeProvider.getFee(forEstimate);
-    }
 }
 ```
