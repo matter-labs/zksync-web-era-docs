@@ -11,8 +11,10 @@ If you want to some background on how L1->L2 interaction works on zkSync Era, go
 Send approve transaction to token contract.
 
 Example:
+
 ```java
 TransactionReceipt approveReceipt = provider.approveDeposits(token, Optional.of(token.toBigInteger(10000000000L))).join();
+```
 
 | Name   | Description                                           |
 | ------ | ----------------------------------------------------- |
@@ -32,7 +34,7 @@ Send deposit transaction to ZkSync Era contract. For ERC20 token must be approve
 | userAddress  | Address of L2 receiver of deposit in ZkSync Era.      |
 | return       | `CompletableFuture` for waiting for transaction mine. |
 
-> Example
+Example:
 
 ```java
   TransactionManager manager = new RawTransactionManager(web3j, credentials, chainId.longValue());
@@ -50,8 +52,11 @@ Send deposit transaction to ZkSync Era contract. For ERC20 token must be approve
 Get base cost for L2 transaction.
 
 Example:
+
 ```java
 BigInteger baseCost = provider.getBaseCost(gasLimit, L1_TO_L2_GAS_PER_PUBDATA, gasPriceValue).join();
+```
+
 | Name              | Description                                           |
 | ----------------- | ----------------------------------------------------- |
 | gasLimit          | Gas limit for L2 transaction.                         |
@@ -63,7 +68,7 @@ BigInteger baseCost = provider.getBaseCost(gasLimit, L1_TO_L2_GAS_PER_PUBDATA, g
 
 Send transfer transaction. This is the regular transfer of ERC20 tokens.
 
-> Example
+Example:
 
 ```java
 TransactionManager manager = new RawTransactionManager(web3j, credentials, chainId.longValue());
