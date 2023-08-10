@@ -13,8 +13,8 @@ Here are some contract addresses that may be useful and/or of interest to those 
 | ExecutorFacet   | [0x389a081BCf20e5803288183b929F08458F1d863D](https://etherscan.io/address/0x389a081BCf20e5803288183b929F08458F1d863D#code) |
 | GettersFacet    | [0xF1fB730b7f8E8391B27B91f8f791e10E4a53CEcc](https://etherscan.io/address/0xF1fB730b7f8E8391B27B91f8f791e10E4a53CEcc#code) |
 | GovernanceFacet | [0x6df4A6D71622860dcc64C1FD9645d9a5BE96f088](https://etherscan.io/address/0x6df4A6D71622860dcc64C1FD9645d9a5BE96f088#code) |
-| Verifier        | [0x473b1887D45D61EfD87731a1D8eC3590b93c565d](https://etherscan.io/address/0x473b1887D45D61EfD87731a1D8eC3590b93c565d#code) |
-| MailboxFacet    | [0xc796A402E1B26eCd2cd38F23e05A2f904504ec89](https://etherscan.io/address/0xc796A402E1B26eCd2cd38F23e05A2f904504ec89#code) |
+| Verifier        | [0x020b26826C23142f2582733b2E6428EE31eAaB49](https://etherscan.io/address/0x020b26826C23142f2582733b2E6428EE31eAaB49#code) |
+| MailboxFacet    | [0xb2097DBe4410B538a45574B1FCD767E2303c7867](https://etherscan.io/address/0xb2097DBe4410B538a45574B1FCD767E2303c7867#code) |
 | AllowList       | [0x8ffd57A9B2dcc10327768b601468FA192adC5C86](https://etherscan.io/address/0x8ffd57A9B2dcc10327768b601468FA192adC5C86#code) |
 
 ### Mainnet token bridge contract addresses
