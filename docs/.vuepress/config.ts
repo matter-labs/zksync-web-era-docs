@@ -4,6 +4,9 @@ import vue from "@vitejs/plugin-vue";
 import theme from "./theme.js";
 import { pwaPlugin } from "vuepress-plugin-pwa2";
 import { getDirname, path } from "@vuepress/utils";
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 const dirname = getDirname(import.meta.url);
 
@@ -105,6 +108,11 @@ export default defineUserConfig({
   ],
 
   theme,
+
+  define: {
+    __RUDDER_WRITE_KEY__: process.env.RUDDERSTACK_WRITE_KEY,
+    __RUDDERSTACK_DATA_PLANE_URL__: process.env.RUDDERSTACK_DATA_PLANE_URL,
+  },
 
   plugins: [
     pwaPlugin({
