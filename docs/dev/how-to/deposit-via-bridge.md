@@ -112,6 +112,7 @@ Please wait a few minutes for the deposit to be processed in L2
 mkdir deposit-erc20-script && cd deposit-erc20-script
 npm init -y 
 npm i typescript ts-node ethers@^5.7.2 zksync-web3 dotenv
+```
 
 ### 2. Include the `.env` file at the project root
 
