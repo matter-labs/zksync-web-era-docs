@@ -6,42 +6,42 @@
         {
           "name": "Javascript SDK",
           "category": "SDK",
-          "description": "some desc",
+          "description": "Extends ethers including zksync-specific methods and utilities.",
           "logo": "js-logo.svg",
           "url": "https://era.zksync.io/docs/api/js"
         },
         {
           "name": "Python SDK",
           "category": "SDK",
-          "description": "some desc",
+          "description": "Extends web3.py including zksync-specific methods and utilities.",
           "logo": "python-logo.svg",
           "url": "https://era.zksync.io/docs/api/python"
         },
         {
           "name": "Rust SDK",
           "category": "SDK",
-          "description": "some desc",
+          "description": "Extends XXXX including zksync-specific methods and utilities.",
           "logo": "rust-logo.svg",
           "url": "https://github.com/lambdaclass/zksync-web3-rs"
         },
         {
           "name": "Go SDK",
           "category": "SDK",
-          "description": "some desc",
+          "description": "Extends go-ethereum including zksync-specific methods and utilities.",
           "logo": "go-logo.svg",
           "url": "https://era.zksync.io/docs/api/go"
         },
         {
           "name": "Java SDK",
           "category": "SDK",
-          "description": "some desc",
+          "description": "Extends web3.j including zksync-specific methods and utilities.",
           "logo": "java-logo.svg",
           "url": "https://era.zksync.io/docs/api/java"
         },
         {
           "name": "Swift SDK",
           "category": "SDK",
-          "description": "some desc",
+          "description": "Custom SDK to build apps for Apple products.",
           "logo": "swift-logo.svg",
           "url": "https://era.zksync.io/docs/api/swift"
         }
@@ -51,86 +51,87 @@
       "category": "Node Providers",
       "tools": [
         {
+          "name": "Ankr",
+          "category": "RPC ",
+          "logo": "ankr-logo.png",
+          "url": "https://www.ankr.com/rpc/zksync_era/"
+        },
+        {
+          "name": "BlockPi",
+          "category": "RPC ",
+          "logo": "blockpi-logo.jpg",
+          "url": "https://docs.blockpi.io/documentations/api-reference/zksync-era"
+        },
+        {
           "name": "Chainstack",
           "category": "RPC ",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
+          "logo": "chainstack-logo.png",
           "url": "https://chainstack.com/build-better-with-zksync-era/"
         },
         {
           "name": "Quicknode",
           "category": "RPC ",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
+          "logo": "quicknode-logo.png",
           "url": "https://www.quicknode.com/chains/zksync"
-        },
-        {
-          "name": "Ankr",
-          "category": "RPC ",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "https://www.ankr.com/rpc/zksync_era/"
         },
         {
           "name": "Unifra",
           "category": "RPC ",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
+          "logo": "unifra-logo.jpg",
           "url": "https://unifra.readme.io/reference/zksync-api"
-        },
-        {
-          "name": "BlockPi",
-          "category": "RPC ",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "https://docs.blockpi.io/documentations/api-reference/zksync-era"
         }
       ]
     },
     {
-      "category": "Frameworks, libraries and IDEs",
+      "category": "Toolchains, frameworks, libraries and IDEs",
       "tools": [
         {
           "name": "zksync-cli",
           "category": "Dev tools",
-          "description": "some desc",
-          "logo": "z-logo.png",
-          "url": "#"
-        },
-        {
-          "name": "Hardhat",
-          "category": "Framework",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
-        },
-        {
-          "name": "Foundry",
-          "category": "Framework",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
-        },
-        {
-          "name": "Thirdweb",
-          "category": "Dev tools",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
-        },
-        {
-          "name": "Openzeppelin",
-          "category": "Dev tools",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "logo": "cli-logo.png",
+          "url": "https://era.zksync.io/docs/tools/zksync-cli/"
         },
         {
           "name": "Atlas ZK",
           "category": "Dev tools",
-          "description": "some desc",
+          "logo": "atlaszk-logo.jpg",
+          "url": "https://www.atlaszk.com/"
+        },
+        {
+          "name": "Foundry",
+          "category": "Framework",
+          "logo": "foundry-logo.png",
+          "url": "https://github.com/matter-labs/foundry-zksync"
+        },
+        {
+          "name": "Hardhat",
+          "category": "Framework",
+          "logo": "hardhat-logo.png",
+          "url": "https://era.zksync.io/docs/tools/hardhat"
+        },
+        {
+          "name": "Openzeppelin",
+          "category": "Dev tools",
+          "logo": "openzeppelin-logo.png",
+          "url": "https://www.openzeppelin.com/"
+        },
+        {
+          "name": "Particle Network",
+          "category": "Dev tools",
+          "logo": "particle-logo.png",
+          "url": "https://particle.network/"
+        },
+        {
+          "name": "Thirdweb",
+          "category": "Dev tools",
           "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "url": "https://thirdweb.com/"
+        },
+        {
+          "name": "Wagmi",
+          "category": "Dev tools",
+          "logo": "wagmi-logo.png",
+          "url": "https://wagmi.sh/"
         }
       ]
     },
@@ -140,56 +141,46 @@
         {
           "name": "In-memory node",
           "category": "Testing",
-          "description": "some desc",
-          "logo": "z-logo.png",
-          "url": "#"
+          "description": "Super fast node built in Rust for local testing and debugging.",
+          "logo": "memory-node-logo.png",
+          "url": "https://era.zksync.io/docs/tools/testing/era-test-node.html"
         },
         {
           "name": "Docker local setup",
           "category": "Testing",
-          "description": "some desc",
-          "logo": "z-logo.png",
-          "url": "#"
+          "description": "Simulate your own tesnet locally running an L1 and L2 nodes.",
+          "logo": "docker-setup-logo.png",
+          "url": "https://era.zksync.io/docs/tools/testing/dockerized-testing.html"
         }
       ]
     },
     {
-      "category": "Ecosystem tools",
+      "category": "Ecosystem primitives",
       "tools": [
         {
-          "name": "Uniswap",
-          "category": "DeFi",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "name": "Herodotus",
+          "category": "Storage Proofs",
+          "logo": "herodotus-logo.jpeg",
+          "url": "https://www.herodotus.dev/"
         },
         {
-          "name": "Safe",
+          "name": "Safe (Protofire)",
           "category": "Custody",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "logo": "safe-logo.png",
+          "url": "https://zksafe.protofire.io/welcome"
         },
         {
           "name": "Snapshot",
           "category": "Governance",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "logo": "snapshot-logo.jpg",
+          "url": "https://snapshot.org/#/"
         },
         {
-          "name": "Particle Network",
-          "category": "Oracle",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
-        },
-        {
-          "name": "Herodotus",
-          "category": "Storage Proofs",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "name": "Uniswap",
+          "category": "DeFi",
+          "logo": "uniswap-logo.png",
+          "url": "#",
+          "soon": true
         }
       ]
     },
@@ -199,30 +190,26 @@
         {
           "name": "API3",
           "category": "Oracle",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
-        },
-        {
-          "name": "Redstone",
-          "category": "Oracle",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "logo": "api3-logo.webp",
+          "url": "https://api3.org/"
         },
         {
           "name": "Gelato",
           "category": "Oracle",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "logo": "gelato-logo.jpg",
+          "url": "https://gelato.network/"
         },
         {
           "name": "Pyth",
           "category": "Oracle",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "logo": "pyth-logo.jpg",
+          "url": "https://pyth.network/"
+        },
+        {
+          "name": "Redstone",
+          "category": "Oracle",
+          "logo": "redstone-logo.png",
+          "url": "https://redstone.finance/"
         }
       ]
     },
@@ -230,25 +217,30 @@
       "category": "Analytics and APIs",
       "tools": [
         {
-          "name": "theGraph",
+          "name": "Chainlink",
           "category": "APIs",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
-        },
-        {
-          "name": "ZettaBlock",
-          "category": "APIs",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "logo": "chainlink-logo.png",
+          "url": "https://chain.link/",
+          "soon": true
         },
         {
           "name": "Covalent",
           "category": "APIs",
-          "description": "some desc",
-          "logo": "thirdweb-logo.svg",
-          "url": "#"
+          "logo": "covalent-logo.png",
+          "url": "https://www.covalenthq.com/",
+          "soon": true
+        },
+        {
+          "name": "theGraph",
+          "category": "APIs",
+          "logo": "graph-logo.png",
+          "url": "https://thegraph.com/"
+        },
+        {
+          "name": "ZettaBlock",
+          "category": "APIs",
+          "logo": "zettablock-logo.jpeg",
+          "url": "https://www.zettablock.com/"
         }
       ]
     }

@@ -4,8 +4,10 @@
     <div class="flex-container">
       <div class="flex-item" v-for="tool in group.tools" :key="tool.name">
         <img :src="`/images/tools/${tool.logo}`" class="devlogo" v-if="tool.logo" :alt="`${tool.name} logo`" />
-        <p>{{ tool.name }}</p>
-        <a :href="tool.url" target="_blank" class="button">Visit website</a>
+        <h4 class="tool-name">{{ tool.name }}</h4>
+        <p v-if="tool.description" class="tool-desc">{{ tool.description }}</p>
+        <span v-if="tool.soon" class="tool-desc">(soon)</span>
+        <a :href="tool.url" target="_blank" class="button">Visit website </a>
       </div>
     </div>
   </div>
@@ -50,7 +52,7 @@ import allTools from "../../assets/data/devtools.json";
     width: calc(50% - 1rem);
   }
   @media screen and (min-width: 1100px) {
-    width: calc(25% - 1rem);
+    width: calc(32% - 1rem);
   }
 }
 .flex-item:hover {
@@ -66,9 +68,18 @@ import allTools from "../../assets/data/devtools.json";
   pointer-events: none !important;
   cursor: default !important;
 }
+.tool-name {
+  margin-bottom: 0;
+}
+.tool-desc {
+  font-weight: 200;
+  margin-top: 5px;
+}
 
 .button {
   padding: 10px 14px;
+  margin-top: 5px;
+
   font-weight: 500;
   color: #fff;
   background-color: #1e69ff;
