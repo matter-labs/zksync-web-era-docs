@@ -188,6 +188,12 @@
           "url": "https://api3.org/"
         },
         {
+          "name": "Dia ",
+          "category": "Oracle",
+          "logo": "dia-logo.png",
+          "url": "https://www.diadata.org/"
+        },
+        {
           "name": "Gelato",
           "category": "Oracle",
           "logo": "gelato-logo.jpg",
