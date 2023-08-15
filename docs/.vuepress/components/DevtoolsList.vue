@@ -3,15 +3,17 @@
     <h2 :id="group.category">
       {{ group.category }}
     </h2>
-    <div class="flex-container">
-      <div class="flex-item" v-for="tool in group.tools" :key="tool.name">
+    <div class="grid-container">
+      <div class="grid-item" v-for="tool in group.tools" :key="tool.name">
         <img :src="$withBase(`/images/tools/${tool.logo}`)" class="devlogo" v-if="tool.logo" :alt="`${tool.name} logo`" />
         <h4 class="tool-name">
           {{ tool.name }}
         </h4>
         <p v-if="tool.description" class="tool-desc">{{ tool.description }}</p>
         <span v-if="tool.soon" class="tool-desc">(soon)</span>
-        <a :href="tool.url" target="_blank" class="button">Visit website </a>
+        <div class="btn-wrapper">
+          <a :href="tool.url" target="_blank" class="button">Visit website </a>
+        </div>
       </div>
     </div>
   </div>
@@ -25,18 +27,27 @@ import allTools from "../../assets/data/devtools.json";
 * {
   box-sizing: border-box;
 }
-.flex-container {
+.grid-container {
   padding: 0.5rem;
   margin: 2rem auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
+  display: grid;
+  grid-auto-rows: 1fr;
+
+  @media screen and (min-width: 320px) {
+    grid-template-columns: 1fr;
+  }
+  @media screen and (min-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media screen and (min-width: 1100px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 
-.flex-item {
+.grid-item {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   transition: all 0.3s ease-out;
   background: var(--info-bg-color);
   border-radius: 10px;
@@ -44,19 +55,8 @@ import allTools from "../../assets/data/devtools.json";
   text-align: center;
   padding: 0.5rem;
   margin: 0.5rem;
-  /* flex: 1 1 auto; */
-  flex: 1 1 1;
-  @media screen and (min-width: 320px) {
-    width: 100%;
-  }
-  @media screen and (min-width: 640px) {
-    width: calc(50% - 1rem);
-  }
-  @media screen and (min-width: 1100px) {
-    width: calc(30% - 1rem);
-  }
 }
-.flex-item:hover {
+.grid-item:hover {
   font-style: none !important;
   -webkit-box-shadow: 4px 10px 24px -10px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 4px 10px 24px -10px rgba(0, 0, 0, 0.75);
@@ -76,7 +76,13 @@ import allTools from "../../assets/data/devtools.json";
   font-weight: 200;
 }
 
+.btn-wrapper {
+  justify-content: flex-end;
+  display: flex;
+}
+
 .button {
+  width: 100%;
   padding: 10px 14px;
   margin-top: 10px;
 
