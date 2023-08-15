@@ -1,4 +1,4 @@
-# zkSync Era developer tools overview
+# zkSync Era developer tools
 
 Find below different tools to help you build on zkSync Era.
 

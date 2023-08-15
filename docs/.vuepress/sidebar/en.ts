@@ -126,7 +126,7 @@ export const enSidebar = sidebar({
   //The sidebar for Tools and SDKs
   "/tools": [
     {
-      text: "Developer tools overview", // required
+      text: "Developer tools", // required
       link: "/tools/", // optional, which should be a absolute path.
       children: [],
     },
