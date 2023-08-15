@@ -152,6 +152,12 @@
       "category": "Ecosystem primitives",
       "tools": [
         {
+          "name": "1inch",
+          "category": "DeFi",
+          "logo": "1inch-logo.webp",
+          "url": "https://app.1inch.io/#/324/simple/swap/ETH"
+        },
+        {
           "name": "Herodotus",
           "category": "Storage Proofs",
           "logo": "herodotus-logo.jpeg",
@@ -188,7 +194,7 @@
           "url": "https://api3.org/"
         },
         {
-          "name": "Dia ",
+          "name": "DIA",
           "category": "Oracle",
           "logo": "dia-logo.png",
           "url": "https://www.diadata.org/"
