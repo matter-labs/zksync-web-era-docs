@@ -77,12 +77,11 @@ import allTools from "../../assets/data/devtools.json";
 }
 .tool-desc {
   font-weight: 200;
-  margin-top: 5px;
 }
 
 .button {
   padding: 10px 14px;
-  margin-top: 5px;
+  margin-top: 10px;
 
   font-weight: 500;
   color: #fff;
