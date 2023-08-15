@@ -20,7 +20,7 @@
         {
           "name": "Rust SDK",
           "category": "SDK",
-          "description": "Extends XXXX including zksync-specific methods and utilities.",
+          "description": "Rust speed with a similar API to ethers including zksync-specific methods.",
           "logo": "rust-logo.svg",
           "url": "https://github.com/lambdaclass/zksync-web3-rs"
         },
@@ -34,7 +34,7 @@
         {
           "name": "Java SDK",
           "category": "SDK",
-          "description": "Extends web3.j including zksync-specific methods and utilities.",
+          "description": "Extends web3j including zksync-specific methods and utilities.",
           "logo": "java-logo.svg",
           "url": "https://era.zksync.io/docs/api/java"
         },
