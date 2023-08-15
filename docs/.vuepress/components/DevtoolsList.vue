@@ -30,8 +30,7 @@ import allTools from "../../assets/data/devtools.json";
   margin: 2rem auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  /* justify-content: space-around; */
+  justify-content: start;
 }
 
 .flex-item {
@@ -41,9 +40,7 @@ import allTools from "../../assets/data/devtools.json";
   transition: all 0.3s ease-out;
   background: var(--info-bg-color);
   border-radius: 10px;
-  /* border: 1px solid #333; */
   font-weight: bold;
-  /* font-size: 2rem; */
   text-align: center;
   padding: 0.5rem;
   margin: 0.5rem;
@@ -56,7 +53,7 @@ import allTools from "../../assets/data/devtools.json";
     width: calc(50% - 1rem);
   }
   @media screen and (min-width: 1100px) {
-    width: calc(32% - 1rem);
+    width: calc(30% - 1rem);
   }
 }
 .flex-item:hover {
