@@ -25,7 +25,7 @@ export const enSidebar = sidebar({
         "/dev/how-to/send-transaction-l1-l2",
         "/dev/how-to/send-message-l2-l1",
         "/dev/how-to/transfer-token-l2",
-        "/dev/how-to/verify-contracts"
+        "/dev/how-to/verify-contracts",
       ],
     },
     {
@@ -59,7 +59,8 @@ export const enSidebar = sidebar({
         "/reference/concepts/fee-model.md",
         "/reference/concepts/finality.md",
         "/reference/concepts/bridging-asset.md",
-        "/reference/concepts/l1-l2-interop.md",      ],
+        "/reference/concepts/l1-l2-interop.md",
+      ],
     },
     {
       text: "Architecture",
@@ -119,16 +120,16 @@ export const enSidebar = sidebar({
     {
       text: "Java SDK", // required
       link: "/api/java/getting-started", // optional, which should be a absolute path.
-      children: [
-          "/api/java",
-          "/api/java/providers",
-          "/api/java/accounts",
-          "/api/java/accounts-l1-l2"
-        ],
+      children: ["/api/java", "/api/java/providers", "/api/java/accounts", "/api/java/accounts-l1-l2"],
     },
   ],
   //The sidebar for Tools and SDKs
   "/tools": [
+    {
+      text: "Developer tools overview", // required
+      link: "/tools/", // optional, which should be a absolute path.
+      children: [],
+    },
     {
       text: "zkSync Era CLI", // required
       link: "/tools/zksync-cli/", // optional, which should be a absolute path.
@@ -160,10 +161,7 @@ export const enSidebar = sidebar({
     {
       text: "Testing", // required
       link: "/tools/testing/", // optional, which should be a absolute path.
-      children: [
-        "/tools/testing/dockerized-testing.md",
-        "/tools/testing/era-test-node.md",
-      ],
+      children: ["/tools/testing/dockerized-testing.md", "/tools/testing/era-test-node.md"],
     },
     {
       text: "Compiler Toolchain",

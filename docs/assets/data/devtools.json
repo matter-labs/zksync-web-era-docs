@@ -126,12 +126,6 @@
           "category": "Dev tools",
           "logo": "thirdweb-logo.svg",
           "url": "https://thirdweb.com/"
-        },
-        {
-          "name": "Wagmi",
-          "category": "Dev tools",
-          "logo": "wagmi-logo.png",
-          "url": "https://wagmi.sh/"
         }
       ]
     },
