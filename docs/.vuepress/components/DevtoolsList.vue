@@ -3,7 +3,7 @@
     <h2>{{ group.category }}</h2>
     <div class="flex-container">
       <div class="flex-item" v-for="tool in group.tools" :key="tool.name">
-        <img :src="`/images/tools/${tool.logo}`" class="devlogo" v-if="tool.logo" :alt="`${tool.name} logo`" />
+        <img :src="$withBase(`/images/tools/${tool.logo}`)" class="devlogo" v-if="tool.logo" :alt="`${tool.name} logo`" />
         <h4 class="tool-name">{{ tool.name }}</h4>
         <p v-if="tool.description" class="tool-desc">{{ tool.description }}</p>
         <span v-if="tool.soon" class="tool-desc">(soon)</span>
