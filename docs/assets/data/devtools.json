@@ -112,8 +112,8 @@
         {
           "name": "Openzeppelin",
           "category": "Dev tools",
-          "logo": "openzeppelin-logo.png",
-          "url": "https://www.openzeppelin.com/"
+          "logo": "oz-logo.png",
+          "url": "https://www.openzeppelin.com/contracts"
         },
         {
           "name": "Particle Network",
@@ -227,8 +227,7 @@
           "name": "Covalent",
           "category": "APIs",
           "logo": "covalent-logo.png",
-          "url": "https://www.covalenthq.com/",
-          "soon": true
+          "url": "https://www.covalenthq.com/docs/networks/zksync-era/"
         },
         {
           "name": "theGraph",
