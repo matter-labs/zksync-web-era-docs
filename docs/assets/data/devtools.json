@@ -20,7 +20,7 @@
         {
           "name": "Rust SDK",
           "category": "SDK",
-          "description": "Rust speed with a similar API to ethers including zksync-specific methods.",
+          "description": "Similar API to ethers with the speed of Rust.",
           "logo": "rust-logo.svg",
           "url": "https://github.com/lambdaclass/zksync-web3-rs"
         },
@@ -48,82 +48,54 @@
       ]
     },
     {
-      "category": "Node Providers",
-      "tools": [
-        {
-          "name": "Ankr",
-          "category": "RPC ",
-          "logo": "ankr-logo.png",
-          "url": "https://www.ankr.com/rpc/zksync_era/"
-        },
-        {
-          "name": "BlockPi",
-          "category": "RPC ",
-          "logo": "blockpi-logo.jpg",
-          "url": "https://docs.blockpi.io/documentations/api-reference/zksync-era"
-        },
-        {
-          "name": "Chainstack",
-          "category": "RPC ",
-          "logo": "chainstack-logo.png",
-          "url": "https://chainstack.com/build-better-with-zksync-era/"
-        },
-        {
-          "name": "Quicknode",
-          "category": "RPC ",
-          "logo": "quicknode-logo.png",
-          "url": "https://www.quicknode.com/chains/zksync"
-        },
-        {
-          "name": "Unifra",
-          "category": "RPC ",
-          "logo": "unifra-logo.jpg",
-          "url": "https://unifra.readme.io/reference/zksync-api"
-        }
-      ]
-    },
-    {
-      "category": "Toolchains, frameworks, libraries and IDEs",
+      "category": "Toolchains, frameworks and IDEs",
       "tools": [
         {
           "name": "zksync-cli",
           "category": "Dev tools",
+          "description": "Scaffold projects from templates and interact with Era from the terminal.",
           "logo": "cli-logo.png",
           "url": "https://era.zksync.io/docs/tools/zksync-cli/"
         },
         {
           "name": "Atlas ZK",
           "category": "Dev tools",
+          "description": "Write, test, and deploy smart contracts from your browser.",
           "logo": "atlaszk-logo.jpg",
           "url": "https://www.atlaszk.com/"
         },
         {
           "name": "Foundry",
           "category": "Framework",
+          "description": "Fork from the popular toolkit with zkSync-specific features.",
           "logo": "foundry-logo.png",
           "url": "https://github.com/matter-labs/foundry-zksync"
         },
         {
           "name": "Hardhat",
           "category": "Framework",
+          "description": "Official Hardhat plugins to enhance the developer experience on Era.",
           "logo": "hardhat-logo.png",
           "url": "https://era.zksync.io/docs/tools/hardhat"
         },
         {
           "name": "Openzeppelin",
           "category": "Dev tools",
+          "description": "Battle tested and audited smart contracts to kickstart your project.",
           "logo": "oz-logo.png",
           "url": "https://www.openzeppelin.com/contracts"
         },
         {
           "name": "Particle Network",
           "category": "Dev tools",
+          "description": "The full-stack infrastructure to simplify web3.",
           "logo": "particle-logo.png",
           "url": "https://particle.network/"
         },
         {
           "name": "Thirdweb",
           "category": "Dev tools",
+          "description": "SDKs, smart contracts, tools, and infrastructure for web3.",
           "logo": "thirdweb-logo.svg",
           "url": "https://thirdweb.com/"
         }
@@ -145,6 +117,47 @@
           "description": "Simulate your own tesnet locally running an L1 and L2 nodes.",
           "logo": "docker-setup-logo.png",
           "url": "https://era.zksync.io/docs/tools/testing/dockerized-testing.html"
+        }
+      ]
+    },
+    {
+      "category": "Node Providers",
+      "tools": [
+        {
+          "name": "Ankr",
+          "category": "RPC ",
+          "logo": "ankr-logo.png",
+          "url": "https://www.ankr.com/rpc/zksync_era/"
+        },
+        {
+          "name": "BlockPi",
+          "category": "RPC ",
+          "logo": "blockpi-logo.jpg",
+          "url": "https://docs.blockpi.io/documentations/api-reference/zksync-era"
+        },
+        {
+          "name": "Chainstack",
+          "category": "RPC ",
+          "logo": "chainstack-logo.png",
+          "url": "https://chainstack.com/build-better-with-zksync-era/"
+        },
+        {
+          "name": "DRPC",
+          "category": "RPC ",
+          "logo": "drpc-logo.jpg",
+          "url": "https://drpc.org/"
+        },
+        {
+          "name": "Quicknode",
+          "category": "RPC ",
+          "logo": "quicknode-logo.png",
+          "url": "https://www.quicknode.com/chains/zksync"
+        },
+        {
+          "name": "Unifra",
+          "category": "RPC ",
+          "logo": "unifra-logo.jpg",
+          "url": "https://unifra.readme.io/reference/zksync-api"
         }
       ]
     },
@@ -185,6 +198,36 @@
       ]
     },
     {
+      "category": "Analytics and APIs",
+      "tools": [
+        {
+          "name": "Chainlink",
+          "category": "APIs",
+          "logo": "chainlink-logo.png",
+          "url": "https://chain.link/",
+          "soon": true
+        },
+        {
+          "name": "Covalent",
+          "category": "APIs",
+          "logo": "covalent-logo.png",
+          "url": "https://www.covalenthq.com/docs/networks/zksync-era/"
+        },
+        {
+          "name": "theGraph",
+          "category": "APIs",
+          "logo": "graph-logo.png",
+          "url": "https://thegraph.com/"
+        },
+        {
+          "name": "ZettaBlock",
+          "category": "APIs",
+          "logo": "zettablock-logo.jpeg",
+          "url": "https://www.zettablock.com/"
+        }
+      ]
+    },
+    {
       "category": "Oracles",
       "tools": [
         {
@@ -216,36 +259,6 @@
           "category": "Oracle",
           "logo": "redstone-logo.png",
           "url": "https://redstone.finance/"
-        }
-      ]
-    },
-    {
-      "category": "Analytics and APIs",
-      "tools": [
-        {
-          "name": "Chainlink",
-          "category": "APIs",
-          "logo": "chainlink-logo.png",
-          "url": "https://chain.link/",
-          "soon": true
-        },
-        {
-          "name": "Covalent",
-          "category": "APIs",
-          "logo": "covalent-logo.png",
-          "url": "https://www.covalenthq.com/docs/networks/zksync-era/"
-        },
-        {
-          "name": "theGraph",
-          "category": "APIs",
-          "logo": "graph-logo.png",
-          "url": "https://thegraph.com/"
-        },
-        {
-          "name": "ZettaBlock",
-          "category": "APIs",
-          "logo": "zettablock-logo.jpeg",
-          "url": "https://www.zettablock.com/"
         }
       ]
     }
