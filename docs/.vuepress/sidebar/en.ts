@@ -59,8 +59,7 @@ export const enSidebar = sidebar({
         "/reference/concepts/fee-model.md",
         "/reference/concepts/finality.md",
         "/reference/concepts/bridging-asset.md",
-        "/reference/concepts/l1-l2-interop.md",
-      ],
+        "/reference/concepts/l1-l2-interop.md",      ],
     },
     {
       text: "Architecture",
@@ -120,7 +119,12 @@ export const enSidebar = sidebar({
     {
       text: "Java SDK", // required
       link: "/api/java/getting-started", // optional, which should be a absolute path.
-      children: ["/api/java/getting-started"],
+      children: [
+          "/api/java",
+          "/api/java/providers",
+          "/api/java/accounts",
+          "/api/java/accounts-l1-l2"
+        ],
     },
   ],
   //The sidebar for Tools and SDKs
