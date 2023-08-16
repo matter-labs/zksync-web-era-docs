@@ -81,14 +81,14 @@
         {
           "name": "Openzeppelin",
           "category": "Dev tools",
-          "description": "Battle tested and audited smart contracts to kickstart your project.",
+          "description": "Battle tested smart contracts to kickstart your project.",
           "logo": "oz-logo.png",
           "url": "https://www.openzeppelin.com/contracts"
         },
         {
           "name": "Particle Network",
           "category": "Dev tools",
-          "description": "The full-stack infrastructure to simplify web3.",
+          "description": "Full-stack infrastructure and tools to simplify web3.",
           "logo": "particle-logo.png",
           "url": "https://particle.network/"
         },

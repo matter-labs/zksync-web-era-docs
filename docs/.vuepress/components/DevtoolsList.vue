@@ -88,6 +88,7 @@ import allTools from "../../assets/data/devtools.json";
 }
 .tool-desc {
   font-weight: 200;
+  margin-bottom: 5px;
 }
 
 .btn-wrapper {
