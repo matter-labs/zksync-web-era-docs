@@ -54,7 +54,7 @@ always produces a compile-time error.
 
 #### Address derivation
 
-For EraVM bytecode, zkSync Era uses a distinct address derivation method compared to Ethereum. The precise formulas
+For zkEVM bytecode, zkSync Era uses a distinct address derivation method compared to Ethereum. The precise formulas
 can be found in our SDK, as demonstrated below:
 
 ```typescript
@@ -102,19 +102,19 @@ changes, and then calls the callee.
 
 ### `MSTORE`, `MLOAD`
 
-Unlike EVM, where the memory growth is in words, on EraVM the memory growth is counted in bytes. For example, if you write
-`mstore(100, 0)` the `msize` on EraVM will be `132`, but on the EVM is will be `160`. Note, that also unlike EVM which
-has quadratic growth for memory payments, on EraVM the fees are charged linearly at a rate of `1` erg per byte.
+Unlike EVM, where the memory growth is in words, on zkEVM the memory growth is counted in bytes. For example, if you write
+`mstore(100, 0)` the `msize` on zkEVM will be `132`, but on the EVM is will be `160`. Note, that also unlike EVM which
+has quadratic growth for memory payments, on zkEVM the fees are charged linearly at a rate of `1` erg per byte.
 
 The other thing is that our compiler can sometimes optimize unused memory reads/writes. This can lead to different `msize`
-compared to Ethereum since fewer bytes have been allocated, leading to cases where EVM panics, but EraVM won’t due to
+compared to Ethereum since fewer bytes have been allocated, leading to cases where EVM panics, but zkEVM will not due to
 the difference in memory growth.
 
 ### `CALLDATALOAD`, `CALLDATACOPY`
 
 If the `offset` for `calldataload(offset)` is greater than `2^32-33` then execution will panic.
 
-Internally on EraVM, `calldatacopy(to, offset, len)` there is just a loop with the `calldataload` and `mstore` on each iteration.
+Internally on zkEVM, `calldatacopy(to, offset, len)` there is just a loop with the `calldataload` and `mstore` on each iteration.
 That means that the code will panic if `2^32-32 + offset % 32 < offset + len`.
 
 ### `RETURN`
@@ -131,7 +131,7 @@ contract Example {
         x = 45;
 
         assembly {
-            // The statement below is overridden by the EraVM compiler to return
+            // The statement below is overridden by the zkEVM compiler to return
             // the array of immutables instead of 32 bytes specified by the user.
             // 'x' equals 45, 'y' equals 0.
             return(0, 32)
@@ -168,19 +168,19 @@ This is not a constant on zkSync Era and is instead defined by the fee model. Mo
 
 Considered harmful and deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).
 
-Always produces a compile-time error with the EraVM compiler.
+Always produces a compile-time error with the zkEVM compiler.
 
 ### `CALLCODE`
 
 Deprecated in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`.
 
-Always produces a compile-time error with the EraVM compiler.
+Always produces a compile-time error with the zkEVM compiler.
 
 ### `PC`
 
 Inaccessible in Yul and Solidity `>=0.7.0`, but accessible in Solidity `0.6`.
 
-Always produces a compile-time error with the EraVM compiler.
+Always produces a compile-time error with the zkEVM compiler.
 
 ### `CODESIZE`
 
@@ -233,7 +233,7 @@ contract Example {
             // `CODECOPY` is safe to prohibit in runtime code.
             // Produces a compile-time error on the new codegen, as it is not required anywhere else,
             // so it is safe to assume that the user wants to read the contract bytecode which is not
-            // available on EraVM.
+            // available on zkEVM.
             codecopy(0, 0, 32)
         }
     }
@@ -242,13 +242,13 @@ contract Example {
 
 ### `EXTCODECOPY`
 
-Contract bytecode cannot be accessed on EraVM architecture. Only its size is accessible with both `CODESIZE` and `EXTCODESIZE`.
+Contract bytecode cannot be accessed on zkEVM architecture. Only its size is accessible with both `CODESIZE` and `EXTCODESIZE`.
 
-`EXTCODECOPY` always produces a compile-time error with the EraVM compiler.
+`EXTCODECOPY` always produces a compile-time error with the zkEVM compiler.
 
 ### `DATASIZE`, `DATAOFFSET`, `DATACOPY`
 
-Contract deployment is handled by two parts of the EraVM protocol: the compiler front end and the system contract called `ContractDeployer`.
+Contract deployment is handled by two parts of the zkEVM protocol: the compiler front end and the system contract called `ContractDeployer`.
 
 On the compiler front-end the code of the deployed contract is substituted with its hash. The hash is returned by the `dataoffset`
 Yul instruction or the `PUSH [$]` EVM legacy assembly instruction. The hash is then passed to the `datacopy` Yul instruction or
@@ -303,7 +303,7 @@ EVM legacy assembly example:
 
 ### `SETIMMUTABLE`, `LOADIMMUTABLE`
 
-EraVM does not provide any access to the contract bytecode, so the behavior of immutable values is simulated with the system contracts.
+zkEVM does not provide any access to the contract bytecode, so the behavior of immutable values is simulated with the system contracts.
 
 1. The deploy code, also known as constructor, assembles the array of immutables in the auxiliary heap. Each array element
    consists of an index and a value. Indexes are allocated sequentially by `zksolc` for each string literal identifier allocated by `solc`.
