@@ -112,7 +112,7 @@
           "url": "https://era.zksync.io/docs/tools/testing/era-test-node.html"
         },
         {
-          "name": "Docker local setup",
+          "name": "Docker setup",
           "category": "Testing",
           "description": "Simulate your own tesnet locally running an L1 and L2 nodes.",
           "logo": "docker-setup-logo.png",
