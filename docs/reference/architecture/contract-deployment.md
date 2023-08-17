@@ -65,7 +65,7 @@ For detailed information on smart contract vulnerabilities and security best pra
 
 - [Consensys smart contract best practices](https://consensys.github.io/smart-contract-best-practices/).
 - [Solidity docs security considerations](https://docs.soliditylang.org/en/latest/security-considerations.html).
-- [Security considerations and best practises on zkSync](../../dev/building-on-zksync/best-practices.md)
+- [Security considerations and best practices on zkSync](../../dev/building-on-zksync/best-practices.md)
 
 ### Differences in `create()` behaviour
 
