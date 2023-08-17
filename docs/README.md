@@ -48,7 +48,12 @@ contributors: false
 </div>
 <section>
   <div class="card-container">
-  
+   <a href="./tools/" class="card">
+      <div class="content">
+        <h3>Tools overview</h3>
+        <p>Browse the most popular tools to build on zkSync Era.</p>
+      </div>
+    </a>
    <a href="./tools/zksync-cli" class="card">
       <div class="content">
         <h3>zksync-cli</h3>
@@ -59,12 +64,6 @@ contributors: false
       <div class="content">
         <h3>Hardhat Plugins</h3>
         <p>Explore Hardhat plugins for your Solidity and Vyper apps. </p>
-      </div>
-    </a>
-    <a href="./api/" class="card">
-      <div class="content">
-        <h3>SDK References</h3>
-        <p>Development kits in multiple programming languages.</p>
       </div>
     </a>
   </div>
