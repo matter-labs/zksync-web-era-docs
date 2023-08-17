@@ -1495,7 +1495,7 @@ if __name__ == "__main__":
     account: LocalAccount = Account.from_key(PRIVATE_KEY)
 
     # Provide a compiled JSON source contract
-    contract_path = Path("solidity/custom_paymaster/build/Paymaster.json")
+    contract_path = Path("solidity/custom-paymaster/build/Paymaster.json")
 
     # Crown token than can be minted for free
     token_address = zk_web3.to_checksum_address("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
@@ -1643,7 +1643,7 @@ if __name__ == "__main__":
     account: LocalAccount = Account.from_key(PRIVATE_KEY)
 
     # Provide a compiled JSON source contract
-    contract_path = Path("solidity/custom_paymaster/build/Paymaster.json")
+    contract_path = Path("solidity/custom-paymaster/build/Paymaster.json")
 
     # Crown token than can be minted for free
     token_address = zk_web3.to_checksum_address("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
@@ -1705,7 +1705,7 @@ if __name__ == "__main__":
     paymaster_address = zk_web3.to_checksum_address("0xd660c2F92d3d0634e5A20f26821C43F1b09298fe")
 
     # Provide a compiled JSON source contract
-    token_path = Path("solidity/custom_paymaster/build/Token.json")
+    token_path = Path("solidity/custom-paymaster/build/Token.json")
 
     token_contract = zk_web3.zksync.contract(token_address, abi=get_abi_from_standard_json(token_path))
 
