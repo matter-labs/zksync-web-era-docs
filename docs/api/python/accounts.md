@@ -1,6 +1,6 @@
 # Accounts: overview
 
-The zkSync Python SDK has a method that generates a signature and a method that verify messages.
+The zkSync Python SDK has a method that generates a signature and a method that verifies messages.
 
 - `sign_typed_data` : used to sign EIP712-typed zkSync transactions.
 - `verify_typed_data` : used to verify the signed EIP712-typed zkSync transactions.
@@ -47,7 +47,7 @@ It's used to verify the provided transaction, whose signature is added to the fi
 
 The signer class also has the following properties:
 
-| Attribute | Description                                                                       |
-| --------- | --------------------------------------------------------------------------------- |
-| address   | Account address                                                                   |
-| domain    | Domain that is used to generate signature. It's depends on `chain_id` of network. |
+| Attribute | Description                                                                     |
+| --------- | ------------------------------------------------------------------------------- |
+| address   | Account address                                                                 |
+| domain    | Domain that is used to generate signature. It depends on `chain_id` of network. |

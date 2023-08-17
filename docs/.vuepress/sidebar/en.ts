@@ -115,7 +115,43 @@ export const enSidebar = sidebar({
     {
       text: "Go SDK",
       link: "/api/go",
-      children: ["/api/go/getting-started", "/api/go/providers", "/api/go/accounts", "/api/go/accounts-l1-l2", "/api/go/contracts", "/api/go/types"],
+      children: [
+        {
+          text: "Getting started",
+          link: "/api/go/getting-started",
+          collapsible: true,
+          children: [
+            "/api/go/examples/deposit",
+            "/api/go/examples/transfer",
+            "/api/go/examples/withdraw",
+            "/api/go/examples/get-confirmed-tokens",
+            "/api/go/examples/create",
+            "/api/go/examples/create2",
+            "/api/go/examples/custom-paymaster/deploy-token",
+            "/api/go/examples/custom-paymaster/deploy-account",
+            "/api/go/examples/custom-paymaster/use-paymaster",
+          ],
+        },
+
+        "/api/go/clients",
+        "/api/go/accounts",
+        "/api/go/accounts-l1-l2",
+        "/api/go/contracts",
+        "/api/go/features",
+        "/api/go/paymaster-utils",
+        "/api/go/utils",
+        {
+          text: "Types",
+          link: "/api/go/types/intro",
+          collapsible: true,
+          children: [
+            "/api/go/types/types",
+            "/api/go/types/eip712",
+            "/api/go/types/clients",
+            "/api/go/types/accounts",
+          ]
+        },
+      ],
     },
     {
       text: "Java SDK", // required
