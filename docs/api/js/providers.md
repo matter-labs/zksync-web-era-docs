@@ -557,7 +557,7 @@ console.log(await provider.getTestnetPaymasterAddress());
 - This method is deprecated and will be removed in the near future.
   :::
 
-Returns the USD price for a token. Please note that that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
+Returns the USD price for a token. Please note that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
 
 Calls the [`zks_getTokenPrice`](../api.md#zks-gettokenprice) JSON-RPC method.
 
