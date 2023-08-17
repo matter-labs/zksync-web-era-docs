@@ -6,10 +6,12 @@ To provide easy access to all the features of zkSync Era, the `zksync2` Go SDK w
 
 ## Contents
 
-- [Getting started](./getting-started.md)
-- [Providers](./providers.md)
-- [Accounts: Overview](./accounts.md)
-- [Accounts: L1->L2 transactions](./accounts-l1-l2.md)
-- [Contracts](./contracts.md)
-- [Paymaster utilities](./paymaster-utils.md)
-- [Types](./types.md)
+- [Getting started](getting-started.md)
+- [Clients](clients.md)
+- [Accounts: Overview](accounts.md)
+- [Accounts: L1<->L2 transactions](accounts-l1-l2.md)
+- [Contracts](contracts.md)
+- [Features](features.md)
+- [Paymaster utilities](paymaster-utils.md)
+- [Types](types/intro.md)
+- [Utils](utils.md)
