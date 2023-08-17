@@ -4,6 +4,7 @@ import vue from "@vitejs/plugin-vue";
 import theme from "./theme.js";
 import { pwaPlugin } from "vuepress-plugin-pwa2";
 import { getDirname, path } from "@vuepress/utils";
+import { seoPlugin } from "vuepress-plugin-seo2";
 
 import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
 
@@ -109,6 +110,7 @@ export default defineUserConfig({
   theme,
 
   plugins: [
+    seoPlugin,
     pwaPlugin({
       update: "force",
     }),
