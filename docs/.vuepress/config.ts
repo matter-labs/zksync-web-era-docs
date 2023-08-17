@@ -5,8 +5,6 @@ import theme from "./theme.js";
 import { pwaPlugin } from "vuepress-plugin-pwa2";
 import { getDirname, path } from "@vuepress/utils";
 
-// import registerPkg from "@vuepress/plugin-register-components";
-// const { registerComponentsPlugin } = registerPkg;
 import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
 
 const dirname = getDirname(import.meta.url);
