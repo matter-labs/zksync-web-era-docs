@@ -199,7 +199,7 @@ contract Example {
 
     constructor() {
         assembly {
-            deployTimeCodeSize := codesize() // behaves as CALLDATASIZE
+            deployTimeCodeSize := codesize() // return the size of the constructor arguments
         }
     }
 
