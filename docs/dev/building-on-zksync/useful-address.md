@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Useful addresses | zkSync Era docs
+---
+
 # Useful addresses
 
 Here are some contract addresses that may be useful and/or of interest to those exploring zkSync Era:

@@ -4361,7 +4361,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/core@npm:^10.2.1, @vueuse/core@npm:^10.3.0":
+"@vueuse/core@npm:^10.2.1":
   version: 10.3.0
   resolution: "@vueuse/core@npm:10.3.0"
   dependencies:
@@ -6342,13 +6342,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:^1.11.9":
-  version: 1.11.9
-  resolution: "dayjs@npm:1.11.9"
-  checksum: a4844d83dc87f921348bb9b1b93af851c51e6f71fa259604809cfe1b49d1230e6b0212dab44d1cb01994c096ad3a77ea1cf18fa55154da6efcc9d3610526ac38
-  languageName: node
-  linkType: hard
-
 "debug@npm:4, debug@npm:^4.0.0, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.3, debug@npm:^4.3.4":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
@@ -6949,23 +6942,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"execa@npm:^7.2.0":
-  version: 7.2.0
-  resolution: "execa@npm:7.2.0"
-  dependencies:
-    cross-spawn: ^7.0.3
-    get-stream: ^6.0.1
-    human-signals: ^4.3.0
-    is-stream: ^3.0.0
-    merge-stream: ^2.0.0
-    npm-run-path: ^5.1.0
-    onetime: ^6.0.0
-    signal-exit: ^3.0.7
-    strip-final-newline: ^3.0.0
-  checksum: 14fd17ba0ca8c87b277584d93b1d9fc24f2a65e5152b31d5eb159a3b814854283eaae5f51efa9525e304447e2f757c691877f7adff8fde5746aae67eb1edd1cc
-  languageName: node
-  linkType: hard
-
 "expand-brackets@npm:^2.1.4":
   version: 2.1.4
   resolution: "expand-brackets@npm:2.1.4"
@@ -7097,13 +7073,6 @@ __metadata:
   version: 0.7.4
   resolution: "fflate@npm:0.7.4"
   checksum: b812ab26047432db70ff4c73eb45ad53bd0774575b4818b9c61c2921e89ec65d1259f06ec1618f2ac55e6a2f2e29b6dc09173d213b46580bc69efae5344bf8f1
-  languageName: node
-  linkType: hard
-
-"fflate@npm:^0.8.0":
-  version: 0.8.0
-  resolution: "fflate@npm:0.8.0"
-  checksum: 6215f95ee01d620a41e459247a7de7e7117dd23e78ef017c26b64c26f2a880a90eedc77675918bbf816d18cc990f6505cd71be933c67cc48cc1e7ebbff1589ea
   languageName: node
   linkType: hard
 
@@ -7888,13 +7857,6 @@ __metadata:
   version: 3.0.1
   resolution: "human-signals@npm:3.0.1"
   checksum: f252a7769c8094a5c9dc6772816bdb417b188820b04c8b42d0fc468e03a0ba905b1dd07afabe9385cc83504af1ccc2b985cd1e4aeeeb8e0029896c5af2e6f354
-  languageName: node
-  linkType: hard
-
-"human-signals@npm:^4.3.0":
-  version: 4.3.1
-  resolution: "human-signals@npm:4.3.1"
-  checksum: 6f12958df3f21b6fdaf02d90896c271df00636a31e2bbea05bddf817a35c66b38a6fdac5863e2df85bd52f34958997f1f50350ff97249e1dff8452865d5235d1
   languageName: node
   linkType: hard
 
@@ -11564,17 +11526,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.5.4":
-  version: 7.5.4
-  resolution: "semver@npm:7.5.4"
-  dependencies:
-    lru-cache: ^6.0.0
-  bin:
-    semver: bin/semver.js
-  checksum: 12d8ad952fa353b0995bf180cdac205a4068b759a140e5d3c608317098b3575ac2f1e09182206bf2eb26120e1c0ed8fb92c48c592f6099680de56bb071423ca3
-  languageName: node
-  linkType: hard
-
 "serialize-javascript@npm:^4.0.0":
   version: 4.0.0
   resolution: "serialize-javascript@npm:4.0.0"
@@ -12153,7 +12104,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"striptags@npm:3.2.0, striptags@npm:^3.2.0":
+"striptags@npm:3.2.0":
   version: 3.2.0
   resolution: "striptags@npm:3.2.0"
   checksum: 1b1f127ab46394665bd4f4dc3dc10f5f98c012cbdea93a68b10d78693671e98efc9ae7609f546af997ae0a02b81a5c9b7b916fa119482c31741406cdabaebf3b
@@ -13267,28 +13218,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vuepress-plugin-seo2@npm:^2.0.0-beta.235":
-  version: 2.0.0-beta.235
-  resolution: "vuepress-plugin-seo2@npm:2.0.0-beta.235"
-  dependencies:
-    "@vuepress/shared": 2.0.0-beta.66
-    "@vuepress/utils": 2.0.0-beta.66
-    vuepress-shared: 2.0.0-beta.235
-  peerDependencies:
-    vuepress: 2.0.0-beta.66
-    vuepress-vite: 2.0.0-beta.66
-    vuepress-webpack: 2.0.0-beta.66
-  peerDependenciesMeta:
-    vuepress:
-      optional: true
-    vuepress-vite:
-      optional: true
-    vuepress-webpack:
-      optional: true
-  checksum: 4a8a58bf0fab383694becc6942136aa3d1a525f492a1cbbf8483ac852ecb0bbe2376b502beeff9c9806962f6b849b367b2cf3e4b260dc51c616944b28cabe6d6
-  languageName: node
-  linkType: hard
-
 "vuepress-plugin-sitemap2@npm:2.0.0-beta.146":
   version: 2.0.0-beta.146
   resolution: "vuepress-plugin-sitemap2@npm:2.0.0-beta.146"
@@ -13328,38 +13257,6 @@ __metadata:
     vue: ^3.2.45
     vue-router: ^4.1.6
   checksum: 0ebf9b7ae8b5161917a2b387460150e5c061dcb1fb8de00bf4009e1044f448b4f4e0d7d0a20dd6b23729566d438a7160fbcf6abee2707470deeb5e44280516aa
-  languageName: node
-  linkType: hard
-
-"vuepress-shared@npm:2.0.0-beta.235":
-  version: 2.0.0-beta.235
-  resolution: "vuepress-shared@npm:2.0.0-beta.235"
-  dependencies:
-    "@vuepress/client": 2.0.0-beta.66
-    "@vuepress/shared": 2.0.0-beta.66
-    "@vuepress/utils": 2.0.0-beta.66
-    "@vueuse/core": ^10.3.0
-    cheerio: 1.0.0-rc.12
-    dayjs: ^1.11.9
-    execa: ^7.2.0
-    fflate: ^0.8.0
-    gray-matter: ^4.0.3
-    semver: ^7.5.4
-    striptags: ^3.2.0
-    vue: ^3.3.4
-    vue-router: ^4.2.4
-  peerDependencies:
-    vuepress: 2.0.0-beta.66
-    vuepress-vite: 2.0.0-beta.66
-    vuepress-webpack: 2.0.0-beta.66
-  peerDependenciesMeta:
-    vuepress:
-      optional: true
-    vuepress-vite:
-      optional: true
-    vuepress-webpack:
-      optional: true
-  checksum: 399d5e6c52098c620fad7be1d2e1dbba7dc07f5b48851dc920500a5ebdbe2f313a905155d4092ad5ede02a92d14d58e2283f3b36ecdd78601818c9a5ccafc7f1
   languageName: node
   linkType: hard
 
@@ -13939,7 +13836,6 @@ __metadata:
     semantic-release: ^19.0.5
     vue: ^3.2.45
     vuepress: 2.0.0-beta.60
-    vuepress-plugin-seo2: ^2.0.0-beta.235
     vuepress-theme-hope: 2.0.0-beta.146
   languageName: unknown
   linkType: soft

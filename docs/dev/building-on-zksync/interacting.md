@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Interact with zkSync Era | zkSync Era docs
+---
+
 # Interact with zkSync Era
 
 ## Do I need experience with zkSync Lite?

@@ -4,7 +4,6 @@ import vue from "@vitejs/plugin-vue";
 import theme from "./theme.js";
 import { pwaPlugin } from "vuepress-plugin-pwa2";
 import { getDirname, path } from "@vuepress/utils";
-import { seoPlugin } from "vuepress-plugin-seo2";
 
 import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
 
@@ -43,15 +42,14 @@ export default defineUserConfig({
     ["meta", { name: "og:image:secure_url", content: "https://era.zksync.io/docs/share_image.png" }],
     ["meta", { name: "og:url", content: "https://era.zksync.io/docs/" }],
     ["meta", { name: "og:image:alt", content: "zkSync — Accelerating the mass adoption of crypto for personal sovereignty" }],
-    // ["meta", { property: "og:title", content: "Welcome to our Docs | zkSync Era" }],
-    // [
-    //   "meta",
-    //   {
-    //     name: "og:description",
-    //     content: "zkSync Era is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet.",
-    //   },
-    // ],
-
+    ["meta", { property: "og:title", content: "Welcome to our Docs | zkSync Era" }],
+    [
+      "meta",
+      {
+        name: "og:description",
+        content: "zkSync Era is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet.",
+      },
+    ],
     ["meta", { name: "twitter:card", content: "summary" }],
     ["meta", { name: "twitter:title", content: "Welcome to our Docs | zkSync Era" }],
     [
@@ -100,7 +98,6 @@ export default defineUserConfig({
         let contributorsDiv = document.querySelector('.contributors');
         contributorsDiv.innerHTML = '<span class="label">Contributors: </span>' + updatedList;
       
-        console.log('Top 5 contributors:', updatedList);
       });
 
       `,
@@ -110,7 +107,6 @@ export default defineUserConfig({
   theme,
 
   plugins: [
-    seoPlugin,
     pwaPlugin({
       update: "force",
     }),
