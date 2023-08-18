@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK use paymaster example | zkSync Era docs
+---
+
 # Use paymaster
 
 This example demonstrates how to use a paymaster to facilitate fee payment with an ERC20 token.

@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: JS SDK features | zkSync Era docs
+---
+
 # zkSync Era features
 
 While zkSync is mostly Web3-compatible, it has some differences compared to Ethereum. The major of those are:

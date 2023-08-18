@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK Accounts | zkSync Era docs
+---
+
 # Accounts: Overview
 
 The `accounts` package provides abstractions that wrap operations that interact with an account. An account typically contains a private

@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK Contracts | zkSync Era docs
+---
+
 # Contracts
 
 The usual way to deploy a contract with the `geth` library is to use `abigen` with the provided `--bin` option, which generates a function

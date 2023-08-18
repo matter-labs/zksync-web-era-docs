@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: JS SDK contracts | zkSync Era docs
+---
+
 # Contracts
 
 `zksync-web3` does not implement any new `Contract` class, since `ethers.Contract` fully works out of the box. However, for convenience, the library still re-exports this class.

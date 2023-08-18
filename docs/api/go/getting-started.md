@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK getting started | zkSync Era docs
+---
+
 # Getting started
 
 This is a short introduction to `zksync2-go` SDK, but covers many of the most common operations that developers require and provides a

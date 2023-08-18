@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: JS SDK utilities | zkSync Era docs
+---
+
 # Utilities
 
 The [utilities library](https://github.com/matter-labs/zksync-2-dev/blob/main/sdk/zksync-web3.js/src/utils.ts) contains essential utilities for building on zkSync Era.

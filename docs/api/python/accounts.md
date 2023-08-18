@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Python SDK accounts | zkSync Era docs
+---
+
 # Accounts: overview
 
 The zkSync Python SDK has a method that generates a signature and a method that verifies messages.

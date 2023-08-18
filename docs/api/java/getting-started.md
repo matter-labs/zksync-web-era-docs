@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Java SDK getting started | zkSync Era docs
+---
+
 # Getting started
 
 In this guide we will demonstrate how to:

@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK create example | zkSync Era docs
+---
+
 # Deploy contract with CREATE opcode
 
 With zkSync Era contract can be deployed using the CREATE by simply building the contract into a binary format and deploying it to the

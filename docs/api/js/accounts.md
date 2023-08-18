@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: JS SDK accounts | zkSync Era docs
+---
+
 # Accounts: overview
 
 `zksync-web3` exports four classes that can sign transactions on zkSync:

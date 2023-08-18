@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK deploy token example | zkSync Era docs
+---
+
 # Deploy token
 
 Deploy the token which will be used to pay transaction fee.

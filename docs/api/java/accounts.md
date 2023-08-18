@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Java SDK accounts | zkSync Era docs
+---
+
 # Accounts
 
 ## PrivateKeyEthSigner

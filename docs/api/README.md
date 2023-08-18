@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Web3 API & SDKs | zkSync Era docs
+---
+
 # Contents
 
 ## JSON-RPC API

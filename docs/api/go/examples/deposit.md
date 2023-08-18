@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK deposit example | zkSync Era docs
+---
+
 # Deposit
 
 ## Deposit ETH

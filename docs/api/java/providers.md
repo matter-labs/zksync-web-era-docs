@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Java SDK providers | zkSync Era docs
+---
+
 # Providers
 
 Providers are objects that wrap interactions with the zkSync Era node. If you are new to the concept of providers in `web3`, check out the [Web3j docs](https://docs.web3j.io/4.9.8/getting_started/interacting_with_node/).

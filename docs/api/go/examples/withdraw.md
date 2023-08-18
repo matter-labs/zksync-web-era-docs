@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK withdraw example | zkSync Era docs
+---
+
 # Withdrawal
 
 When it comes to withdrawals there are several notes that needs to be taken into account:

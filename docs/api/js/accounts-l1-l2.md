@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: JS SDK L1/L2 transactions | zkSync Era docs
+---
+
 # Accounts: L1->L2 transactions
 
 This section explores the methods which allow the [account](./accounts.md) classes to send transactions from L1 to L2.

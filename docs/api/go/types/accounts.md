@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK accounts package | zkSync Era docs
+---
+
 # `accounts` package
 
 ### `CallOpts`

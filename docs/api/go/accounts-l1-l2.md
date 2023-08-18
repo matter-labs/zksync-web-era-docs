@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK L1/L2 transactions | zkSync Era docs
+---
+
 # Accounts: L1<->L2 transactions
 
 This section explores the methods which allow the [account](./accounts.md) to send transactions among both L1 to L2 networks.

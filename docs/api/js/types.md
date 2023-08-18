@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: JS SDK types | zkSync Era docs
+---
+
 # Types and interfaces
 
 ## `AccountAbstractionVersion`

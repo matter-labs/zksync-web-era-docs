@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK types package | zkSync Era docs
+---
+
 # `types` package
 
 ### `AccountAbstractionVersion`

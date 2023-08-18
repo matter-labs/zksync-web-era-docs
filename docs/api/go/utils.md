@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK Utils | zkSync Era docs
+---
+
 # Utils
 
 Provides essential utilities for building on zkSync Era.
