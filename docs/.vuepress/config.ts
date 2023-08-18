@@ -17,7 +17,6 @@ export default defineUserConfig({
   dest: "dist/docs",
 
   base: "/docs/",
-  title: "Welcome to our Docs | zkSync Era",
 
   head: [
     ["link", { rel: "canonical", href: "https://era.zksync.io/docs/" }],
