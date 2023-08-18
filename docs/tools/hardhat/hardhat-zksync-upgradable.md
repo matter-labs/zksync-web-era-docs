@@ -18,7 +18,7 @@ The plugin is based on [@openzeppelin/hardhat-upgrades](https://www.npmjs.com/pa
 @tab:active yarn
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/contracts @openzeppelin/contracts-upgradeable 
+yarn add -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
 @tab npm
