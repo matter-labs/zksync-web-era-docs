@@ -1,0 +1,266 @@
+{
+  "toolsByCategory": [
+    {
+      "category": "SDKs",
+      "tools": [
+        {
+          "name": "Javascript SDK",
+          "category": "SDK",
+          "description": "Extends ethers including zksync-specific methods and utilities.",
+          "logo": "js-logo.svg",
+          "url": "https://era.zksync.io/docs/api/js"
+        },
+        {
+          "name": "Python SDK",
+          "category": "SDK",
+          "description": "Extends web3.py including zksync-specific methods and utilities.",
+          "logo": "python-logo.svg",
+          "url": "https://era.zksync.io/docs/api/python"
+        },
+        {
+          "name": "Rust SDK",
+          "category": "SDK",
+          "description": "Extends ethers-rs including zksync-specific methods and utilities.",
+          "logo": "rust-logo.svg",
+          "url": "https://github.com/lambdaclass/zksync-web3-rs"
+        },
+        {
+          "name": "Go SDK",
+          "category": "SDK",
+          "description": "Extends go-ethereum including zksync-specific methods and utilities.",
+          "logo": "go-logo.svg",
+          "url": "https://era.zksync.io/docs/api/go"
+        },
+        {
+          "name": "Java SDK",
+          "category": "SDK",
+          "description": "Extends web3j including zksync-specific methods and utilities.",
+          "logo": "java-logo.svg",
+          "url": "https://era.zksync.io/docs/api/java"
+        },
+        {
+          "name": "Swift SDK",
+          "category": "SDK",
+          "description": "Extends web3swift including zksync-specific methods and utilities.",
+          "logo": "swift-logo.svg",
+          "url": "https://era.zksync.io/docs/api/swift"
+        }
+      ]
+    },
+    {
+      "category": "Toolchains, frameworks and IDEs",
+      "tools": [
+        {
+          "name": "zksync-cli",
+          "category": "Dev tools",
+          "description": "Scaffold projects from templates and interact with Era from the terminal.",
+          "logo": "cli-logo.png",
+          "url": "https://era.zksync.io/docs/tools/zksync-cli/"
+        },
+        {
+          "name": "Atlas ZK",
+          "category": "Dev tools",
+          "description": "Write, test, and deploy smart contracts from your browser.",
+          "logo": "atlaszk-logo.jpg",
+          "url": "https://www.atlaszk.com/"
+        },
+        {
+          "name": "Foundry",
+          "category": "Framework",
+          "description": "Fork from the popular toolkit with zkSync-specific features.",
+          "logo": "foundry-logo.png",
+          "url": "https://github.com/matter-labs/foundry-zksync"
+        },
+        {
+          "name": "Hardhat",
+          "category": "Framework",
+          "description": "Official Hardhat plugins to enhance the developer experience on Era.",
+          "logo": "hardhat-logo.png",
+          "url": "https://era.zksync.io/docs/tools/hardhat"
+        },
+        {
+          "name": "Openzeppelin",
+          "category": "Dev tools",
+          "description": "Battle tested smart contracts to kickstart your project.",
+          "logo": "oz-logo.png",
+          "url": "https://www.openzeppelin.com/contracts"
+        },
+        {
+          "name": "Particle Network",
+          "category": "Dev tools",
+          "description": "Full-stack infrastructure and tools to simplify web3.",
+          "logo": "particle-logo.png",
+          "url": "https://particle.network/"
+        },
+        {
+          "name": "Thirdweb",
+          "category": "Dev tools",
+          "description": "SDKs, smart contracts, tools, and infrastructure for web3.",
+          "logo": "thirdweb-logo.svg",
+          "url": "https://thirdweb.com/"
+        }
+      ]
+    },
+    {
+      "category": "Testing and debugging",
+      "tools": [
+        {
+          "name": "In-memory node",
+          "category": "Testing",
+          "description": "Super fast node built in Rust for local testing and debugging.",
+          "logo": "memory-node-logo.png",
+          "url": "https://era.zksync.io/docs/tools/testing/era-test-node.html"
+        },
+        {
+          "name": "Docker setup",
+          "category": "Testing",
+          "description": "Simulate your own testnet locally running an L1 and L2 nodes.",
+          "logo": "docker-setup-logo.png",
+          "url": "https://era.zksync.io/docs/tools/testing/dockerized-testing.html"
+        }
+      ]
+    },
+    {
+      "category": "Node Providers",
+      "tools": [
+        {
+          "name": "Ankr",
+          "category": "RPC ",
+          "logo": "ankr-logo.png",
+          "url": "https://www.ankr.com/rpc/zksync_era/"
+        },
+        {
+          "name": "BlockPi",
+          "category": "RPC ",
+          "logo": "blockpi-logo.jpg",
+          "url": "https://docs.blockpi.io/documentations/api-reference/zksync-era"
+        },
+        {
+          "name": "Chainstack",
+          "category": "RPC ",
+          "logo": "chainstack-logo.png",
+          "url": "https://chainstack.com/build-better-with-zksync-era/"
+        },
+        {
+          "name": "DRPC",
+          "category": "RPC ",
+          "logo": "drpc-logo.jpg",
+          "url": "https://drpc.org/"
+        },
+        {
+          "name": "Quicknode",
+          "category": "RPC ",
+          "logo": "quicknode-logo.png",
+          "url": "https://www.quicknode.com/chains/zksync"
+        },
+        {
+          "name": "Unifra",
+          "category": "RPC ",
+          "logo": "unifra-logo.jpg",
+          "url": "https://unifra.readme.io/reference/zksync-api"
+        }
+      ]
+    },
+    {
+      "category": "Ecosystem primitives",
+      "tools": [
+        {
+          "name": "1inch",
+          "category": "DeFi",
+          "logo": "1inch-logo.webp",
+          "url": "https://app.1inch.io/#/324/simple/swap/ETH"
+        },
+        {
+          "name": "Herodotus",
+          "category": "Storage Proofs",
+          "logo": "herodotus-logo.jpeg",
+          "url": "https://www.herodotus.dev/"
+        },
+        {
+          "name": "Safe (Protofire)",
+          "category": "Custody",
+          "logo": "safe-logo.png",
+          "url": "https://zksafe.protofire.io/welcome"
+        },
+        {
+          "name": "Snapshot",
+          "category": "Governance",
+          "logo": "snapshot-logo.jpg",
+          "url": "https://snapshot.org/#/"
+        },
+        {
+          "name": "Uniswap",
+          "category": "DeFi",
+          "logo": "uniswap-logo.png",
+          "url": "#",
+          "soon": true
+        }
+      ]
+    },
+    {
+      "category": "Analytics and APIs",
+      "tools": [
+        {
+          "name": "Chainlink",
+          "category": "APIs",
+          "logo": "chainlink-logo.png",
+          "url": "https://chain.link/",
+          "soon": true
+        },
+        {
+          "name": "Covalent",
+          "category": "APIs",
+          "logo": "covalent-logo.png",
+          "url": "https://www.covalenthq.com/docs/networks/zksync-era/"
+        },
+        {
+          "name": "theGraph",
+          "category": "APIs",
+          "logo": "graph-logo.png",
+          "url": "https://thegraph.com/"
+        },
+        {
+          "name": "ZettaBlock",
+          "category": "APIs",
+          "logo": "zettablock-logo.jpeg",
+          "url": "https://www.zettablock.com/"
+        }
+      ]
+    },
+    {
+      "category": "Oracles",
+      "tools": [
+        {
+          "name": "API3",
+          "category": "Oracle",
+          "logo": "api3-logo.webp",
+          "url": "https://api3.org/"
+        },
+        {
+          "name": "DIA",
+          "category": "Oracle",
+          "logo": "dia-logo.png",
+          "url": "https://www.diadata.org/"
+        },
+        {
+          "name": "Gelato",
+          "category": "Oracle",
+          "logo": "gelato-logo.jpg",
+          "url": "https://gelato.network/"
+        },
+        {
+          "name": "Pyth",
+          "category": "Oracle",
+          "logo": "pyth-logo.jpg",
+          "url": "https://pyth.network/"
+        },
+        {
+          "name": "Redstone",
+          "category": "Oracle",
+          "logo": "redstone-logo.png",
+          "url": "https://redstone.finance/"
+        }
+      ]
+    }
+  ]
+}
