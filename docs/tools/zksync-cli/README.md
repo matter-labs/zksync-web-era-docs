@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: zkSync CLI | zkSync Era docs
+---
+
 # zkSync CLI
 
 The zkSync CLI simplifies the process of developing applications and interacting with zkSync Era.

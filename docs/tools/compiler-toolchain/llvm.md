@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: LLVM Framework | zkSync Era docs
+---
+
 # LLVM Framework
 
 ::: warning

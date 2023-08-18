@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Compiling non-inlinable libraries | zkSync Era docs
+---
+
 # Compiling non-inlinable libraries
 
 Solidity libraries can be divided into two categories:

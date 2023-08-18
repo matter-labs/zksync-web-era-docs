@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: hardhat-zksync-solc | zkSync Era docs
+---
+
 # `hardhat-zksync-solc`
 
 This plugin is used to provide a convenient interface for compiling Solidity smart contracts before deploying them to zkSync Era.

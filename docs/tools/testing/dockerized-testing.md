@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Dockerized setup | zkSync Era docs
+---
+
 # Dockerized setup
 
 ## Dockerized local setup: installation & setup

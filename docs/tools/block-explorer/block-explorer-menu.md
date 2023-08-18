@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Block explorer menu | zkSync Era docs
+---
+
 # Block explorer menu
 
 ![zkSync Era block explorer menu](../../assets/images/block-explorer-menu.png)

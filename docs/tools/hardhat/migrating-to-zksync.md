@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Migration guide | zkSync Era docs
+---
+
 # Migration guide
 
 This guide shows you how to migrate an existing Hardhat project to zkSync Era.

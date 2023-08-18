@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Testing strategies | zkSync Era docs
+---
+
 # Testing strategies for zkSync Era
 
 zkSync Era provides two distinct testing environments for your development needs
