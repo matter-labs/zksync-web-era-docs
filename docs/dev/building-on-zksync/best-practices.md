@@ -1,10 +1,10 @@
-# Best practices and considerations
+# Security and best practices
 
 :::info Important Recommendations
 Before diving into development on zkSync Era, it's crucial to consider the following recommendations. These best practices will help you optimize your code, ensure security, and align with the unique characteristics of zkSync Era.
 :::
 
-## Using `call` over `.send` or `.transfer`
+## Use `call` over `.send` or `.transfer`
 
 Avoid using `payable(addr).send(x)`/`payable(addr).transfer(x)` because the 2300 gas stipend may not be enough for such calls, especially if it involves state changes that require a large amount of L2 gas for data. Instead, we recommend using `call`.
 
@@ -15,7 +15,7 @@ payable(addr).send(x) // or
 payable(addr).transfer(x)
 ```
 
-Use instead:
+Use:
 
 ```solidity
 (bool s, ) = addr.call{value: x}("");
@@ -24,20 +24,18 @@ require(s);
 
 This converts the `send`/`transfer` functionality to `call` and [avoids potential security risks outlined here.](https://consensys.net/diligence/blog/2019/09/stop-using-soliditys-transfer-now/).
 
-:::note Be aware of reentrancy
+::: warning Be aware of reentrancy
 While `.call` offers more flexibility compared to `.send` or `.transfer`, developers should be aware that `.call` does not provide the same level of reentrancy protection as `.transfer`/`.send`. It's crucial to adhere to best practices like the checks-effects-interactions pattern and/or use reentrancy guard protection to secure your contracts against reentrancy attacks. It can help ensure the robustness and security of your smart contracts on the zkEVM, even under unexpected conditions.
 :::
 
 ## Use the proxy pattern at the early stage of the protocol
 
-zkSync Era is based on the zk-friendly VM. That’s why we provide our compiler that compiles standard Solidity
-code to zkEVM bytecode.
+zkSync Era is based on the zk-friendly VM. Thus, we offer [a dedicated compiler](../../tools/compiler-toolchain/README.md) responsible for transforming conventional Solidity and Vyper code into zkEVM bytecode.
 
 While we have extensive test coverage to ensure EVM compatibility, issues may still appear.
 We will implement the patches for these in a timely manner.
 
-In order to apply compiler bug fix, you need to upgrade your smart contract. We advise using the
-Proxy pattern for a few months after your first deployment on zkSync Era, even if you plan to migrate to the immutable
+To integrate a compiler bug fix, you need to recompile and upgrade your smart contract. We recommend using the Proxy pattern for a few months after your first deployment on zkSync Era, even if you plan to migrate to an immutable
 contract in the future.
 
 :::tip zkSync Upgradeable plugin
@@ -106,7 +104,7 @@ Read more about [zkSync Era Account Abstraction support](../../reference/concept
 
 For optimal development and testing of your contracts, it is highly recommended to perform local testing before deploying them to the mainnet. Local testing allows you to test your contracts in a controlled environment, providing benefits such as reduced network latency and cost.
 
-The zkSync team provides a dockerized local setup specifically designed for local testing purposes. This setup allows you to simulate the zkSync network locally, enabling you to validate your contracts effectively.
+We provides [two different testing environments](../../tools/testing/README.md) designed for local testing purposes. These tools allow you to simulate the zkSync network locally, enabling you to validate your contracts effectively.
 
 By incorporating local testing into your development workflow, you can effectively verify the behavior and functionality of your contracts in a controlled environment, ensuring a smooth deployment process to the mainnet.
 
