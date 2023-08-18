@@ -1,3 +1,12 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: SEO plugin
+    - name: "twitter:description"
+      content: "zkSync Era handles nearly all smart contracts based on the Ethereum Virtual Machine. Nevertheless, it is essential to recognize the following differences."
+---
+
 # Differences from Ethereum
 
 zkSync Era handles nearly all smart contracts based on the Ethereum Virtual Machine (EVM) and upholds high security standards,
