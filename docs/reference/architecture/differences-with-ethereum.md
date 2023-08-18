@@ -3,8 +3,8 @@ head:
   - - meta
     - name: "twitter:title"
       content: Differences with Ethereum | zkSync Era docs
-    - name: "twitter:description"
-      content: zkSync Era handles nearly all smart contracts based on the Ethereum Virtual Machine.
+    - name: "description"
+      content: zkSync Era handles nearly all smart contracts based on the Ethereum Virtual Machine but it is essential to recognize some differences.
 ---
 
 # Differences from Ethereum
