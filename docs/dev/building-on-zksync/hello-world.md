@@ -215,8 +215,8 @@ Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search wi
 1. Clone the template and `cd` into the folder.
 
 ```sh
-git clone https://github.com/matter-labs/greeter-tutorial-starter
-cd greeter-tutorial-starter
+git clone https://github.com/matter-labs/tutorials
+cd tutorials/hello-world/frontend
 ```
 
 2. Spin up the project.

@@ -20,7 +20,7 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 
 ## Complete project
 
-The tutorial code is available [here](https://github.com/matter-labs/custom-paymaster-tutorial).
+The tutorial code is available [here](https://github.com/matter-labs/tutorials/tree/main/custom-paymaster).
 
 ::: info Project available in Atlas IDE
 
