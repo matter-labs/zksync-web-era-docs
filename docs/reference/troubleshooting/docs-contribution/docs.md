@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Contribute to documentation | zkSync Era docs
+---
+
 # Contribute to documentation
 
 zkSync Era documentation is open-sourced, it welcomes community contributions from individuals all around the world, including you.

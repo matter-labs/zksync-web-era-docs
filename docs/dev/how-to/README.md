@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: How to | zkSync Era docs
+---
+
 # How to
 
 - [Estimate gas](./estimate-gas.md): Learn to implement gas estimation for various transactions (L1 to L1, L1 to L2, L2 to L2) in the zkSync environment.

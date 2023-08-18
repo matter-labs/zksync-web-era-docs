@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Bridging assets | zkSync Era docs
+---
+
 # Bridging assets
 
 ## Introduction

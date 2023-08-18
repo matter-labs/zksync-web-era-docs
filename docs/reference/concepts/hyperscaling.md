@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Hyperscaling | zkSync Era docs
+---
+
 # Hyperscaling
 
 ## Scaling Blockchains

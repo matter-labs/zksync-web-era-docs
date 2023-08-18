@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Verify Contracts with Hardhat | zkSync Era docs
+---
+
 # Verify Contracts with Hardhat
 
 Contract source-code verification ensures that the code running on-chain matches your published code.

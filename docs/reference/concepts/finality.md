@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Finality | zkSync Era docs
+---
+
 # Finality
 
 ## Finality on Ethereum

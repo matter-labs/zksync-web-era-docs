@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Changelog | zkSync Era docs
+---
+
 # Changelog
 
 ## Hardhat plugins update (June 21st, 2023)

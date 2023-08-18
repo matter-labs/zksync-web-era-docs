@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Building a custom paymaster | zkSync Era docs
+---
+
 # Building a custom paymaster
 
 This tutorial shows you how to build a custom paymaster that allows users to pay fees with any ERC20 token. You will:

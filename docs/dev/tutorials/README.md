@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Tutorials | zkSync Era docs
+---
+
 # Tutorials
 
 Here is the list of tutorials to help you build on zkSync Era.

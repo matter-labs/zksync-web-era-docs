@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Daily spending limit account | zkSync Era docs
+---
+
 # Daily spending limit account
 
 This tutorial shows you how to create a smart contract account with a daily spending limit using the zkSync Era account abstraction support.

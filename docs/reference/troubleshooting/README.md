@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Troubleshooting | zkSync Era docs
+---
+
 # Troubleshooting
 
 - [Changelog](./changelog.md)

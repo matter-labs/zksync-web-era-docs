@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: zkSync Era basics | zkSync Era docs
+---
+
 # zkSync Era basics
 
 ## Prerequisites

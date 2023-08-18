@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Account abstraction multisig | zkSync Era docs
+---
+
 # Account abstraction multisig
 
 This tutorial shows you how to build and deploy a 2-of-2 multi-signature account via a factory contract, then test it by sending a transaction.

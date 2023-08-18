@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Transactions | zkSync Era docs
+---
+
 # Transactions
 
 From [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/):

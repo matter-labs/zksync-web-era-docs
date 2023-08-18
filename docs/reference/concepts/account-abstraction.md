@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Account abstraction | zkSync Era docs
+---
+
 # Account abstraction
 
 ::: warning
