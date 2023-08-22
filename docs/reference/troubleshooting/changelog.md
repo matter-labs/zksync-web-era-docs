@@ -25,7 +25,7 @@ Different projects like SDKs and tools now have their own specific Changelogs. Y
 
 ## Tools
 
-- [In-memory node changelog](https://github.com/matter-labs/era-test-node)
+- [In-memory node changelog](https://github.com/matter-labs/era-test-node/releases)
 - [zksync-cli changelog](https://github.com/matter-labs/zksync-cli)
 
 ## Hardhat plugins
