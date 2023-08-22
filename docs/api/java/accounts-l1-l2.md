@@ -2,7 +2,7 @@
 
 This section explores the methods which allow the [account](./accounts.md) classes to send transactions from L1 to L2.
 
-If you want to some background on how L1->L2 interaction works on zkSync Era, go through the [L1 / L2 interoperability doc](../../reference/concepts/l1-l2-interop.md).
+If you want some background on how L1->L2 interaction works on zkSync Era, go through the [L1 / L2 interoperability doc](../../reference/concepts/l1-l2-interop.md).
 
 ## EthereumProvider
 

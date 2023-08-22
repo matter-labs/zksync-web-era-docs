@@ -12,7 +12,7 @@ The only other place where using zkSync SDK is required is during contract deplo
 
 ### Quickstart on zkSync
 
-Before diving into the technical details, we highly recommend checking out our [Best Practices and Considerations](./best-practices.md) and [Differences with Ethereum](../../reference/architecture/differences-with-ethereum.md) sections. This will help align your development with the distinctive attributes of zkSync Era and ensure your projects are secure and optimized.
+Before diving into the technical details, we highly recommend checking out our [Security considerations](./best-practices.md) and [Differences with Ethereum](../../reference/architecture/differences-with-ethereum.md) sections. This will help align your development with the distinctive attributes of zkSync Era and ensure your projects are secure and optimized.
 
 Check out our step-by-step [quickstart guide](../building-on-zksync/hello-world.md), where you will learn:
 

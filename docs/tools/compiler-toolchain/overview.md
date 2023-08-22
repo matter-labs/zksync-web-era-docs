@@ -31,6 +31,10 @@ We are using two high-level source code compilers at the time of writing:
 - [solc](https://github.com/ethereum/solc-bin): the official Solidity compiler. For more info, see the latest [Solidity documentation](https://docs.soliditylang.org/en/latest/).
 - [vyper](https://github.com/vyperlang/vyper/releases): the official Vyper compiler. For more info, see the latest [Vyper documentation](https://docs.vyperlang.org/en/latest/index.html).
 
+::: info Security and best practices
+Follow the [security considerations and best practices](../../dev/building-on-zksync/best-practices.md) to build smart contracts on zkSync Era.
+:::
+
 ## IR Compilers
 
 Our toolchain includes LLVM front ends, written in Rust, that process the output of high-level source code compilers:
