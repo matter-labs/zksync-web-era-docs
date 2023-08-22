@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Python SDK accounts | zkSync Era docs
+      content: Python SDK accounts | zkSync Era Docs
 ---
 
 # Accounts: overview

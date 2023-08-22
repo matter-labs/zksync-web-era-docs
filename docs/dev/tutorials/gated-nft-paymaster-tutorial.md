@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Gated NFT paymaster | zkSync Era docs
+      content: Gated NFT paymaster | zkSync Era Docs
 ---
 
 # Gated NFT paymaster

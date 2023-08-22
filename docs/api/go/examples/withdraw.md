@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Go SDK withdraw example | zkSync Era docs
+      content: Go SDK withdraw example | zkSync Era Docs
 ---
 
 # Withdrawal

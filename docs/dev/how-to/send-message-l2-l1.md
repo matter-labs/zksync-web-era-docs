@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Send an L2 to L1 message | zkSync Era docs
+      content: Send an L2 to L1 message | zkSync Era Docs
 ---
 
 # Send an L2 to L1 message

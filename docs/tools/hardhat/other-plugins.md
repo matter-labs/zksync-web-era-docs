@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Hardhat community plugins | zkSync Era docs
+      content: Hardhat community plugins | zkSync Era Docs
 ---
 
 # Community plugins

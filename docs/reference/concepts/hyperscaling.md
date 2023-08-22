@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Hyperscaling | zkSync Era docs
+      content: Hyperscaling | zkSync Era Docs
 ---
 
 # Hyperscaling

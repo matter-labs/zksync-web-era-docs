@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Go SDK deposit example | zkSync Era docs
+      content: Go SDK deposit example | zkSync Era Docs
 ---
 
 # Deposit

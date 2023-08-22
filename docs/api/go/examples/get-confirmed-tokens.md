@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Go SDK get tokens example | zkSync Era docs
+      content: Go SDK get tokens example | zkSync Era Docs
 ---
 
 # Get all confirmed tokens on zkSync Era

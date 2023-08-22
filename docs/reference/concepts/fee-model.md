@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Fee mechanism | zkSync Era docs
+      content: Fee mechanism | zkSync Era Docs
 ---
 
 # Fee mechanism

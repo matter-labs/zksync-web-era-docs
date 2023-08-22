@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Useful addresses | zkSync Era docs
+      content: Useful addresses | zkSync Era Docs
 ---
 
 # Useful addresses

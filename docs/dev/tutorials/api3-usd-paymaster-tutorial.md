@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: USDC paymaster tutorial | zkSync Era docs
+      content: USDC paymaster tutorial | zkSync Era Docs
 ---
 
 # USDC paymaster tutorial with API3 dAPIs

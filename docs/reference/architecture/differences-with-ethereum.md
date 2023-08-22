@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Differences with Ethereum | zkSync Era docs
+      content: Differences with Ethereum | zkSync Era Docs
 ---
 
 # Differences from Ethereum

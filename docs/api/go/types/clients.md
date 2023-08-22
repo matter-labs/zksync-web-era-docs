@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Go SDK clients package | zkSync Era docs
+      content: Go SDK clients package | zkSync Era Docs
 ---
 
 # `clients` package

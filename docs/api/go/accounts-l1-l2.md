@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Go SDK L1/L2 transactions | zkSync Era docs
+      content: Go SDK L1/L2 transactions | zkSync Era Docs
 ---
 
 # Accounts: L1<->L2 transactions

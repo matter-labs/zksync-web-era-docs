@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Security and best practices | zkSync Era docs
+      content: Security and best practices | zkSync Era Docs
 ---
 
 # Security and best practices

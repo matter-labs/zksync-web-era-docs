@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Transfer a token on L2 | zkSync Era docs
+      content: Transfer a token on L2 | zkSync Era Docs
 ---
 
 # Transfer a token on L2

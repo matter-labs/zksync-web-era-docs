@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Dockerized setup | zkSync Era docs
+      content: Dockerized setup | zkSync Era Docs
 ---
 
 # Dockerized setup

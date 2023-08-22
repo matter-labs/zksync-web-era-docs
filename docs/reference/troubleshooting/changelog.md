@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Changelog | zkSync Era docs
+      content: Changelog | zkSync Era Docs
 ---
 
 # Changelog

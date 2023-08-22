@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: JS SDK front-end integration | zkSync Era docs
+      content: JS SDK front-end integration | zkSync Era Docs
 ---
 
 # Front-end integration

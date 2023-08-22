@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Cross-chain governance | zkSync Era docs
+      content: Cross-chain governance | zkSync Era Docs
 ---
 
 # Cross-chain governance

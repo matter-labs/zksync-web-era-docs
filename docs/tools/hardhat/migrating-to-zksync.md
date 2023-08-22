@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Migration guide | zkSync Era docs
+      content: Migration guide | zkSync Era Docs
 ---
 
 # Migration guide

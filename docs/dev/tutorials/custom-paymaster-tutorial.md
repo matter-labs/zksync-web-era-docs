@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Building a custom paymaster | zkSync Era docs
+      content: Building a custom paymaster | zkSync Era Docs
 ---
 
 # Building a custom paymaster

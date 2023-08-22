@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Python SDK paymaster utilities | zkSync Era docs
+      content: Python SDK paymaster utilities | zkSync Era Docs
 ---
 
 # Paymaster utilities
