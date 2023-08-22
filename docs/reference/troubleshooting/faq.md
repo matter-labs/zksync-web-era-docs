@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: FAQ | zkSync Era Docs
+---
+
 # FAQ
 
 Here you will find some of the most common questions we receive about zkSync Era.

@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK Types | zkSync Era Docs
+---
+
 # Types
 
 Types are placed in three packages for different purposes:

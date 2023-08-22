@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: JS SDK Providers | zkSync Era Docs
+---
+
 # Providers
 
 A Web3 Provider object provides application-layer access to underlying blockchain networks.

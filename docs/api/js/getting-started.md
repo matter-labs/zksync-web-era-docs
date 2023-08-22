@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: JS SDK Getting Started | zkSync Era Docs
+---
+
 # Getting started
 
 ::: warning

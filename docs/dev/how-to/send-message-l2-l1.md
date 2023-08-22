@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Send an L2 to L1 Message | zkSync Era Docs
+---
+
 # Send an L2 to L1 message
 
 It is impossible to send transactions directly from L2 to L1.

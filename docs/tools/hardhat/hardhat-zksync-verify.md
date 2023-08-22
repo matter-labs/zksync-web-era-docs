@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: hardhat-zksync-verify | zkSync Era Docs
+---
+
 # `hardhat-zksync-verify`
 
 This plugin is used to verify contracts on the zkSync Era network.

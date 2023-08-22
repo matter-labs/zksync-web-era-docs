@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Smart Contract Development | zkSync Era Docs
+---
+
 # Smart contract development
 
 zkSync Era allows developers to build projects using the same programming languages and tools used to build on Ethereum.
