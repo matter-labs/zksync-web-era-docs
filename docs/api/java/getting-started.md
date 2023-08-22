@@ -1050,7 +1050,7 @@ public class Main {
 }
 ```
 
-#### Get price of the transaction execution (currently not wokring properly)
+#### Get price of the transaction execution (currently not working properly)
 
 ::: warning
 Feature currently unsupported. Under development

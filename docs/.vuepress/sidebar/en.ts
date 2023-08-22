@@ -25,7 +25,7 @@ export const enSidebar = sidebar({
         "/dev/how-to/send-transaction-l1-l2",
         "/dev/how-to/send-message-l2-l1",
         "/dev/how-to/transfer-token-l2",
-        "/dev/how-to/verify-contracts"
+        "/dev/how-to/verify-contracts",
       ],
     },
     {
@@ -59,7 +59,8 @@ export const enSidebar = sidebar({
         "/reference/concepts/fee-model.md",
         "/reference/concepts/finality.md",
         "/reference/concepts/bridging-asset.md",
-        "/reference/concepts/l1-l2-interop.md",      ],
+        "/reference/concepts/l1-l2-interop.md",
+      ],
     },
     {
       text: "Architecture",
@@ -114,17 +115,48 @@ export const enSidebar = sidebar({
     {
       text: "Go SDK",
       link: "/api/go",
-      children: ["/api/go/getting-started", "/api/go/providers", "/api/go/accounts", "/api/go/accounts-l1-l2", "/api/go/contracts", "/api/go/types"],
+      children: [
+        {
+          text: "Getting started",
+          link: "/api/go/getting-started",
+          collapsible: true,
+          children: [
+            "/api/go/examples/deposit",
+            "/api/go/examples/transfer",
+            "/api/go/examples/withdraw",
+            "/api/go/examples/get-confirmed-tokens",
+            "/api/go/examples/create",
+            "/api/go/examples/create2",
+            "/api/go/examples/custom-paymaster/deploy-token",
+            "/api/go/examples/custom-paymaster/deploy-account",
+            "/api/go/examples/custom-paymaster/use-paymaster",
+          ],
+        },
+
+        "/api/go/clients",
+        "/api/go/accounts",
+        "/api/go/accounts-l1-l2",
+        "/api/go/contracts",
+        "/api/go/features",
+        "/api/go/paymaster-utils",
+        "/api/go/utils",
+        {
+          text: "Types",
+          link: "/api/go/types/intro",
+          collapsible: true,
+          children: [
+            "/api/go/types/types",
+            "/api/go/types/eip712",
+            "/api/go/types/clients",
+            "/api/go/types/accounts",
+          ]
+        },
+      ],
     },
     {
       text: "Java SDK", // required
       link: "/api/java/getting-started", // optional, which should be a absolute path.
-      children: [
-          "/api/java",
-          "/api/java/providers",
-          "/api/java/accounts",
-          "/api/java/accounts-l1-l2"
-        ],
+      children: ["/api/java", "/api/java/providers", "/api/java/accounts", "/api/java/accounts-l1-l2"],
     },
     {
       text: "Swift SDK",
@@ -134,6 +166,11 @@ export const enSidebar = sidebar({
   ],
   //The sidebar for Tools and SDKs
   "/tools": [
+    {
+      text: "Developer tools", // required
+      link: "/tools/", // optional, which should be a absolute path.
+      children: [],
+    },
     {
       text: "zkSync Era CLI", // required
       link: "/tools/zksync-cli/", // optional, which should be a absolute path.
@@ -165,10 +202,7 @@ export const enSidebar = sidebar({
     {
       text: "Testing", // required
       link: "/tools/testing/", // optional, which should be a absolute path.
-      children: [
-        "/tools/testing/dockerized-testing.md",
-        "/tools/testing/era-test-node.md",
-      ],
+      children: ["/tools/testing/dockerized-testing.md", "/tools/testing/era-test-node.md"],
     },
     {
       text: "Compiler Toolchain",

@@ -129,10 +129,10 @@ async finalizeWithdrawal(withdrawalHash: BytesLike, index: number = 0): Promise<
 
 #### Inputs and outputs
 
-| Name           | Description                                                                                                                                |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| withdrawalHash | Hash of the L2 transaction where the withdrawal was initiated.                                                                             |
-| index?         | In case there where multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize (defaults to 0). |
+| Name           | Description                                                                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| withdrawalHash | Hash of the L2 transaction where the withdrawal was initiated.                                                                            |
+| index?         | In case there were multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize (defaults to 0). |
 
 ## Force-executing transactions on L2
 
@@ -150,7 +150,7 @@ async getBaseCost(params: {
 
 | Name                     | Description                                                                           |
 | ------------------------ | ------------------------------------------------------------------------------------- |
-| params.gasLimit          | The `gasLimit` for the the L2 contract call.                                          |
+| params.gasLimit          | The `gasLimit` for the L2 contract call.                                              |
 | params.gasPerPubdataByte | The L2 gas price for each published L1 calldata byte.                                 |
 | params.gasPrice?         | The L1 gas price of the L1 transaction that will send the request for an execute call |
 | returns                  | The base cost in ETH for requesting the L2 contract call.                             |
@@ -217,7 +217,7 @@ const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 const gasPrice = await wallet.providerL1.getGasPrice();
 
 // The calldata can be encoded the same way as for Ethereum.
-// Here is an example on how to get the calldata from an ABI:
+// Here is an example of how to get the calldata from an ABI:
 const abi = [
   {
     inputs: [],

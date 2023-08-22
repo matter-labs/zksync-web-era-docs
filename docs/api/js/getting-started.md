@@ -144,7 +144,7 @@ const withdrawL2 = await zkSyncWallet.withdraw({
 });
 ```
 
-Assets will be withdrawn to the target wallet(if do not define the `to` address in the `withdraw` method's argument - the sender address will be chosen as a destination) after the validity proof of the zkSync block with this transaction is enerated and verified by the mainnet contract.
+Assets will be withdrawn to the target wallet(if do not define the `to` address in the `withdraw` method's argument - the sender address will be chosen as a destination) after the validity proof of the zkSync block with this transaction is generated and verified by the mainnet contract.
 
 It is possible to wait until the validity proof verification is complete:
 
