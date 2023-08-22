@@ -7,7 +7,44 @@ head:
 
 # Changelog
 
-## Hardhat plugins update (June 21st, 2023)
+For protocol updates and announcements, please check the [GitHub discussions announcements](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/categories/announcements).
+
+Different projects like SDKs and tools now have their own specific Changelogs. You can find them below:
+
+## Protocol
+
+- [zksync-era changelog](https://github.com/matter-labs/zksync-era/blob/main/CHANGELOG.md)
+- [era-contracts changelog](https://github.com/matter-labs/era-contracts)
+
+## SDKs
+
+- [Python SDK changelog](https://github.com/zksync-sdk/zksync2-python/blob/master/CHANGELOG.md)
+- [Go SDK changelog](https://github.com/zksync-sdk/zksync2-go/blob/main/CHANGELOG.md)
+- [Java SDK changelog](https://github.com/zksync-sdk/zksync2-java/blob/master/CHANGELOG.md)
+- [Swift SDK changelog](https://github.com/zksync-sdk/zksync2-swift/blob/main/CHANGELOG.md)
+
+## Tools
+
+- [In-memory node changelog]()
+- [zksync-cli changelog]()
+
+## Hardhat plugins
+
+- [hardhat-zksync-toolbox changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-toolbox/CHANGELOG.md)
+- [hardhat-zksync-solc changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-solc/CHANGELOG.md)
+- [hardhat-zksync-vyper changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-vyper/CHANGELOG.md)
+- [hardhat-zksync-upgradable changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-upgradable/CHANGELOG.md)
+- [hardhat-zksync-deploy changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-deploy/CHANGELOG.md)
+- [hardhat-zksync-chai-matchers changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-chai-matchers/CHANGELOG.md)
+- [hardhat-zksync-verify changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-verify/CHANGELOG.md)
+
+## Previous updates
+
+::: warning New updates
+For new updates please refer to the changelogs linked above or the [announcements in GitHub discussions](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/categories/announcements).
+:::
+
+### Hardhat plugins update (June 21st, 2023)
 
 - New release of `@matterlabs/hardhat-zksync-solc`:
   - Compiler version checks to ascertain the use of the most recent version.
@@ -18,7 +55,7 @@ head:
   - Support for using `version: "latest"` in your `hardhat.config.ts` file.
   - Inclusion of default values for all necessary configuration parameters to enhance user experience.
 
-### How to update your project
+#### How to update your project
 
 - `@matterlabs/hardhat-zksync-solc` plugin:
 
@@ -27,7 +64,7 @@ head:
 - `@matterlabs/hardhat-zksync-vyper` plugin:
   - Update the package to `0.2.0` in your `package.json` file and re-install dependencies.
 
-## zksync-upgradable and compiler (May 5th 2023)
+### zksync-upgradable and compiler (May 5th 2023)
 
 - First release of `@matterlabs/hardhat-zksync-upgradable` a new package to create beacon and transparent proxy contracts. [More info here](../../tools/hardhat/hardhat-zksync-upgradable.md)
 - zksolc compiler has been updated to version `1.3.10`:
@@ -38,7 +75,7 @@ head:
   - Fix to pass optimization options to verification backend.
   - The `verify:verify` task now returns a verification id.
 
-### How to update your project
+#### How to update your project
 
 Compiler updates:
 
@@ -47,7 +84,7 @@ Compiler updates:
 - Verify plugin:
   - Update the package to `0.1.6` in your `package.json` file and re-install dependencies.
 
-## Compilers and plugins (Apr 4th 2023)
+### Compilers and plugins (Apr 4th 2023)
 
 - zksolc compiler has been updated to version `1.3.8`:
   - Multiple optimizations and bug fixes.
@@ -65,7 +102,7 @@ Compiler updates:
   - hardhat-zksync-verify version `0.1.4`.
   - hardhat-zksync-deploy version `0.6.3`.
 
-### How to update your project
+#### How to update your project
 
 Compiler updates:
 
@@ -74,7 +111,7 @@ Compiler updates:
   Hardhat plugin updates:
 - All plugins have been released as minor updates so you can update with `npm update PACKAGE_NAME` or `yarn upgrade PACKAGE_NAME`.
 
-## Full launch system update (Mar 23rd, 2023)
+### Full launch system update (Mar 23rd, 2023)
 
 Major updates across the system include:
 
@@ -90,7 +127,7 @@ Major updates across the system include:
 - New version of `zksync-cli` `0.1.4`.
 - Released new docker images of the local setup for unit tests.
 
-### How to update your project
+#### How to update your project
 
 - Update `zksync-web3` to `^0.14.3` in your `package.json` file and re-install dependencies.
 - Update `zksync-cli` with `npm update -g zksync-cli`.
@@ -98,7 +135,7 @@ Major updates across the system include:
 - L1->L2 transactions now require gas fees to be paid upfront. The fee can be estimated using the new method `zks_estimateGasL1ToL2`. [Read more here](../concepts/l1-l2-interop.md).
 - Provide `_refundRecipient` when using `requestL2Transaction` indicating the address that will receive refunds. (Optional)
 
-## Hardhat plugins update (Feb 24th, 2023)
+### Hardhat plugins update (Feb 24th, 2023)
 
 The following hardhat plugin has been released:
 
@@ -106,7 +143,7 @@ The following hardhat plugin has been released:
 - `hardhat-zksync-deploy` version `0.6.2`: integrates with latest version of `zksync-web3`.
 - `hardhat-zksync-chai-matchers` version `0.1.1`: integrates with latest version of `zksync-web3`.
 
-### How to update your project
+#### How to update your project
 
 Update the following versions in the `package.json` file of your project:
 
@@ -114,7 +151,7 @@ Update the following versions in the `package.json` file of your project:
 - Update `@matterlabs/hardhat-zksync-deploy` to `0.6.2`.
 - Update `@matterlabs/hardhat-zksync-chai-matchers` to `0.1.1`.
 
-## Compiler & local-setup update (Feb 20th 2023)
+### Compiler & local-setup update (Feb 20th 2023)
 
 Version `1.3.5` of `zksolc` has been released and the zkSync docker image of the local setup has been updated. Details:
 
@@ -127,23 +164,23 @@ Version `1.3.5` of `zksolc` has been released and the zkSync docker image of the
 - **Local setup docker image:**
   - Improvements in the zkSync node error messages returned on estimate gas requests.
 
-### How to update your project
+#### How to update your project
 
 - Update the compiler version in the `hardhat.config.ts` file to `1.3.5`.
 - Re-compile contracts.
 - Update the docker images of the local setup with `docker-compose` pull`and restart its state by running the`./clear.sh` script.
 
-## System update (Feb 10th 2023)
+### System update (Feb 10th 2023)
 
 Minor updated that simplifies the fee model to reduce overhead and fix some bugs. It requires an update on the `zksync-web3` package to `v0.13.1`.
 
-### How to update your project
+#### How to update your project
 
 - Update `zksync-web3` to `v0.13.1`.
 - There are no changes in contract interfaces or APIs, so no code changes are required.
 - Projects that don't use `zksync-web3` but rely on `eth_signTypedData` to sign the transactions would need to manually include a fixed `gasPerPubdataByteLimit` of `50000` in the transaction overrides.
 
-## System update v1.3 (Feb 8th 2023)
+### System update v1.3 (Feb 8th 2023)
 
 This update made several modifications to the system in preparation for the "Fair Onboarding Alpha" milestone. The modifications include:
 
@@ -157,7 +194,7 @@ This update made several modifications to the system in preparation for the "Fai
 
 **These updates were followed by a system regenesis.**
 
-### How to update your project
+#### How to update your project
 
 To update your project, follow these steps:
 
