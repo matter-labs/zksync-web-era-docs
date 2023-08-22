@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Account abstraction multisig | zkSync Era Docs
+      content: Account Abstraction Multisig Tutorial | zkSync Era Docs
 ---
 
 # Account abstraction multisig

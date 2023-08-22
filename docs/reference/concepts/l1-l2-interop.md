@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: L1 / L2 interoperability | zkSync Era Docs
+      content: L1 / L2 Interoperability | zkSync Era Docs
 ---
 
 # L1 / L2 interoperability

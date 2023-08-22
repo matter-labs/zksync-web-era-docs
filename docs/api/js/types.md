@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: JS SDK types | zkSync Era Docs
+      content: JS SDK Types | zkSync Era Docs
 ---
 
 # Types and interfaces

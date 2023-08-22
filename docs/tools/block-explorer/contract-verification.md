@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Block explorer contract verification | zkSync Era Docs
+      content: Block Explorer Contract Verification | zkSync Era Docs
 ---
 
 # Contract verification

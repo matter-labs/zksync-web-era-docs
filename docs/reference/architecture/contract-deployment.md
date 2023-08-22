@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Contract deployment | zkSync Era Docs
+      content: Contract Deployment | zkSync Era Docs
 ---
 
 # Contract deployment

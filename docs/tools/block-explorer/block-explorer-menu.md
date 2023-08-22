@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Block explorer menu | zkSync Era Docs
+      content: Block Explorer Menu | zkSync Era Docs
 ---
 
 # Block explorer menu

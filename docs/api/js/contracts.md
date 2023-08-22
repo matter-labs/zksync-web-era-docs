@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: JS SDK contracts | zkSync Era Docs
+      content: JS SDK Contracts | zkSync Era Docs
 ---
 
 # Contracts

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Go SDK transfer example | zkSync Era Docs
+      content: Go SDK Transfer Example | zkSync Era Docs
 ---
 
 # Transfer

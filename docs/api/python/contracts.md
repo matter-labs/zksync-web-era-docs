@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Python SDK contract | zkSync Era Docs
+      content: Python SDK Contract | zkSync Era Docs
 ---
 
 # Contract interfaces

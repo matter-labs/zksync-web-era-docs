@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Estimate gas | zkSync Era Docs
+      content: Estimate Gas | zkSync Era Docs
 ---
 
 # Estimate gas

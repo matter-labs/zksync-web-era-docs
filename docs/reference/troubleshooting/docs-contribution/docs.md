@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Contribute to documentation | zkSync Era Docs
+      content: Contribute to Documentation | zkSync Era Docs
 ---
 
 # Contribute to documentation
