@@ -131,8 +131,7 @@ it will return the array of immutable values initialized so far.
 
 ```solidity
 contract Example {
-    uint public immutable x;
-    uint public immutable y;
+    uint immutable x;
 
     constructor() {
         x = 45;
@@ -140,7 +139,6 @@ contract Example {
         assembly {
             // The statement below is overridden by the zkEVM compiler to return
             // the array of immutables instead of 32 bytes specified by the user.
-            // 'x' equals 45, 'y' equals 0.
             return(0, 32)
         }
     }
@@ -206,7 +204,7 @@ contract Example {
 
     constructor() {
         assembly {
-            deployTimeCodeSize := codesize() // behaves as CALLDATASIZE
+            deployTimeCodeSize := codesize() // return the size of the constructor arguments
         }
     }
 
