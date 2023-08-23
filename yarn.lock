@@ -6611,6 +6611,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv@npm:^16.3.1":
+  version: 16.3.1
+  resolution: "dotenv@npm:16.3.1"
+  checksum: 15d75e7279018f4bafd0ee9706593dd14455ddb71b3bcba9c52574460b7ccaf67d5cf8b2c08a5af1a9da6db36c956a04a1192b101ee102a3e0cf8817bbcf3dfd
+  languageName: node
+  linkType: hard
+
 "duplexer2@npm:~0.1.0":
   version: 0.1.4
   resolution: "duplexer2@npm:0.1.4"
@@ -13931,6 +13938,7 @@ __metadata:
     check-md: ^1.0.2
     commitlint: ^17.3.0
     cspell: ^6.18.1
+    dotenv: ^16.3.1
     husky: ^8.0.3
     lint-staged: ^13.1.0
     markdownlint: ^0.27.0
