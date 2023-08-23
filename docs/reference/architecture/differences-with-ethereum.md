@@ -154,6 +154,10 @@ contract Example {
 
 ### `TIMESTAMP`, `NUMBER`
 
+::: warning Upcoming changes
+An upcoming protocol upgrade will change the implementation of some of the block properties on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
+:::
+
 For more information about blocks on zkSync Era, including the differences between `block.timestamp` and `block.number`,
 check out the [blocks on zkSync Era documentation](../../reference/concepts/blocks.md#blocks-in-zksync-era).
 
