@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: In-memory Node | zkSync Era Docs
+---
+
 # In-memory node
 
 This documentation provides instructions on setting up and using the In-Memory Node, `era-test-node`, for local testing. It covers installation, network forking, transaction details viewing, replaying transactions, and testing local bootloader and system contracts.
@@ -40,12 +47,22 @@ era_test_node run
 The expected output will be as follows:
 
 ```bash
-Starting network with chain id: L2ChainId(270)
-Setting Rich accounts:
-Address: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049" Key: "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110"
-Address: "0xa61464658AfeAf65CccaaFD3a512b69A83B77618" Key: "0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3"
-Address: "0x0D43eB5B8a47bA8900d84AA36656c92024e9772e" Key: "0xd293c684d884d56f8d6abd64fc76757d3664904e309a0645baf8522ab6366d9e"
-Address: "0xA13c10C0D5bd6f79041B9835c63f91de35A15883" Key: "0x850683b40d4a740aa6e745f889a6fdc8327be76e122f5aba645a5b02d0248db8"
+Starting network with chain id: L2ChainId(260)
+
+Rich Accounts
+=============
+Account #0: 0x36615Cf349d7F6344891B1e7CA7C72883F5dc049 (10000 ETH)
+Private Key: 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
+
+Account #1: 0xa61464658AfeAf65CccaaFD3a512b69A83B77618 (10000 ETH)
+Private Key: 0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3
+
+Account #2: 0x0D43eB5B8a47bA8900d84AA36656c92024e9772e (10000 ETH)
+Private Key: 0xd293c684d884d56f8d6abd64fc76757d3664904e309a0645baf8522ab6366d9e
+
+Account #3: 0xA13c10C0D5bd6f79041B9835c63f91de35A15883 (10000 ETH)
+Private Key: 0x850683b40d4a740aa6e745f889a6fdc8327be76e122f5aba645a5b02d0248db8
+
 ========================================
   Node is ready at 127.0.0.1:8011
 ========================================
@@ -245,7 +262,7 @@ For the deployment of your contracts, you have the flexibility to choose between
 Before proceeding, ensure that you've compiled your contracts using `zkforge zk-build`. For instructions on how to do this, please refer to this [link](https://github.com/matter-labs/foundry-zksync#compile-with-zkforge-zk-build).
 
 ```bash
-zkforge zkc contracts/Greeter.sol:Greeter --constructor-args "ZkSync and Foundry" --private-key 7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110 --rpc-url http://localhost:8011 --chain 270
+zkforge zkc contracts/Greeter.sol:Greeter --constructor-args "ZkSync and Foundry" --private-key 7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110 --rpc-url http://localhost:8011 --chain 260
 ```
 
 Here's an example of what you should expect to see:

@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Python SDK Providers | zkSync Era Docs
+---
+
 # Providers
 
 Providers are objects that wrap interactions with the zkSync node. If you are new to the concept of providers in `web3`, you should check out their docs [here](https://web3py.readthedocs.io/en/v5/providers.html?highlight=providers).

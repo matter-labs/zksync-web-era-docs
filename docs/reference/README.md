@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Technical Reference | zkSync Era Docs
+---
+
 # Technical reference
 
 This section of our documentation provides comprehensive information on the concepts, architecture, and troubleshooting aspects of zkSync Era.

@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Solidity Compiler | zkSync Era Docs
+---
+
 # Solidity
 
 The compiler we provide as a part of our toolchain is called [zksolc](https://github.com/matter-labs/zksolc-bin). It

@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Java SDK Getting Started | zkSync Era Docs
+---
+
 # Getting started
 
 In this guide we will demonstrate how to:
@@ -1050,7 +1057,7 @@ public class Main {
 }
 ```
 
-#### Get price of the transaction execution (currently not wokring properly)
+#### Get price of the transaction execution (currently not working properly)
 
 ::: warning
 Feature currently unsupported. Under development

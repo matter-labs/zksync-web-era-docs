@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Welcome | zkSync Era Docs
+---
+
 # Welcome
 
 This section of our documentation is dedicated to getting you started, telling you how to do common tasks, and providing tutorials.
@@ -8,7 +15,7 @@ Our docs are open source so feel free to suggest new topics, add new content, or
 
 - [Hello world](./building-on-zksync/hello-world.md): Build a full dApp using the zkSync Era development toolbox.
 - [Interacting with zkSync Era](./building-on-zksync/interacting.md): Learn the essentials of interacting with zkSync Era, utilizing zkSync SDKs, and connecting to the network via Metamask.
-- [Best practices and considerations](./building-on-zksync/best-practices.md): Understand the recommended ways of working with zkSync Era to optimize performance and security. Be aware of specific considerations when developing.
+- [Security and best practices](./building-on-zksync/best-practices.md): Understand the recommendations to build secure and optimized apps on zkSync Era.
 - [Useful addresses](./building-on-zksync/useful-address.md): Comprehensive list of essential addresses for developers building on zkSync.
 
 ## How to

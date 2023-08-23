@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Testing Strategies | zkSync Era Docs
+---
+
 # Testing strategies for zkSync Era
 
 zkSync Era provides two distinct testing environments for your development needs
@@ -40,13 +47,12 @@ The following table highlights the key characteristics of each testing environme
 | Fast for integration testing            | Yes                 | No                     |
 | Communication between Layer 1 & Layer 2 | No                  | Yes                    |
 | Multiple transactions per batch         | No                  | Yes                    |
-| Fixed values for gas estimation         | Yes                 | Varies                 |
 | Complete set of APIs                    | No (Basic set only) | Yes                    |
 | Websocket support                       | No                  | Yes                    |
 
 Whether you're testing new contracts, debugging transactions, or prototyping, zkSync Era provides robust options for local testing. Both the Dockerized local setup and the In-Memory Node offer feature-rich and quick setup options, each with their distinct strengths and limitations. Choose the most appropriate setup based on your specific needs, and happy testing!
 
-# zkSync Era local testing
+## zkSync Era local testing
 
 - [Dockerized testing](./dockerized-testing.md)
 - [In-memory node testing](./era-test-node.md)

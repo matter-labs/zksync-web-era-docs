@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: zkSync CLI | zkSync Era Docs
+---
+
 # zkSync CLI
 
 The zkSync CLI simplifies the process of developing applications and interacting with zkSync Era.
@@ -22,7 +29,12 @@ You can also run this via NPX with `npx zksync-cli@latest [COMMAND]`
 - `zksync-cli confirm-withdraw`: confirms withdrawal of funds from zkSync Era to L1. It will ask you to enter: network, withdrawal transaction hash, and the private key of the wallet you sent the funds from.
 - `zksync-cli help`: returns the version and information about the different commands.
 
-> Both deposit and withdraw might take a couple of minutes to complete.
+::: info Deposit and withdraw times
+
+- Both deposit and withdraw might take a couple of minutes to complete.
+- Withdraws on mainnet have a [24h delay during Alpha](../../reference/troubleshooting/withdrawal-delay.md).
+
+:::
 
 More commands will be added shortly but if you have any suggestions, feel free to [open an issue on GitHub](https://github.com/matter-labs/zksync-cli/issues/new).
 

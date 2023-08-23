@@ -5,8 +5,11 @@ import theme from "./theme.js";
 import { pwaPlugin } from "vuepress-plugin-pwa2";
 import { getDirname, path } from "@vuepress/utils";
 import * as dotenv from 'dotenv'
+import { seoPlugin } from "vuepress-plugin-seo2";
+import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
 
 dotenv.config()
+
 
 const dirname = getDirname(import.meta.url);
 
@@ -17,7 +20,7 @@ export default defineUserConfig({
   dest: "dist/docs",
 
   base: "/docs/",
-  title: "Welcome to our Docs | zkSync Era",
+  title: "Welcome to our Docs | zkSync Era Docs",
 
   head: [
     ["link", { rel: "canonical", href: "https://era.zksync.io/docs/" }],
@@ -51,7 +54,6 @@ export default defineUserConfig({
         content: "zkSync Era is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet.",
       },
     ],
-
     ["meta", { name: "twitter:card", content: "summary" }],
     ["meta", { name: "twitter:title", content: "Welcome to our Docs | zkSync Era" }],
     [
@@ -100,7 +102,6 @@ export default defineUserConfig({
         let contributorsDiv = document.querySelector('.contributors');
         contributorsDiv.innerHTML = '<span class="label">Contributors: </span>' + updatedList;
       
-        console.log('Top 5 contributors:', updatedList);
       });
 
       `,
@@ -115,6 +116,7 @@ export default defineUserConfig({
   },
 
   plugins: [
+    seoPlugin,
     pwaPlugin({
       update: "force",
     }),
@@ -141,6 +143,9 @@ export default defineUserConfig({
           isCustomElement: (tag) => ["ParentLayout"].includes(tag),
         },
       },
+    }),
+    registerComponentsPlugin({
+      componentsDir: path.resolve(dirname, "./components"),
     }),
   ],
 

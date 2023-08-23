@@ -20,6 +20,11 @@ contributors: false
       </div>
    </div>
 </div>
+
+::: warning Protocol upgrade
+In the upcoming protocol upgrade scheduled for August-September 2023, there will be modifications to how certain block properties are implemented on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
+:::
+
 <section>
 
   <div class="card-container">
@@ -48,7 +53,12 @@ contributors: false
 </div>
 <section>
   <div class="card-container">
-  
+   <a href="./tools/" class="card">
+      <div class="content">
+        <h3>Tools overview</h3>
+        <p>Browse the most popular tools to build on zkSync Era.</p>
+      </div>
+    </a>
    <a href="./tools/zksync-cli" class="card">
       <div class="content">
         <h3>zksync-cli</h3>
@@ -59,12 +69,6 @@ contributors: false
       <div class="content">
         <h3>Hardhat Plugins</h3>
         <p>Explore Hardhat plugins for your Solidity and Vyper apps. </p>
-      </div>
-    </a>
-    <a href="./api/" class="card">
-      <div class="content">
-        <h3>SDK References</h3>
-        <p>Development kits in multiple programming languages.</p>
       </div>
     </a>
   </div>

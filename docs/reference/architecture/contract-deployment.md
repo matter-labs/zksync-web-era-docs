@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Contract Deployment | zkSync Era Docs
+---
+
 # Contract deployment
 
 In order to maintain the same level of security as the L1, the zkSync operator is required to publish the code for each contract it deploys on the Ethereum chain. However, if multiple contracts are deployed using the same code, the operator only needs to publish it on Ethereum once. While the initial deployment of contracts can be relatively expensive, utilizing contract factories that deploy contracts with the same code multiple times can lead to huge savings compared to the L1.
@@ -64,8 +71,8 @@ The process of auditing a smart contract should be carried out by experts who ha
 For detailed information on smart contract vulnerabilities and security best practices, refer to the following resources:
 
 - [Consensys smart contract best practices](https://consensys.github.io/smart-contract-best-practices/).
-
 - [Solidity docs security considerations](https://docs.soliditylang.org/en/latest/security-considerations.html).
+- [Security considerations and best practices on zkSync](../../dev/building-on-zksync/best-practices.md)
 
 ### Differences in `create()` behaviour
 

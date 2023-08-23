@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: hardhat-zksync-upgradable | zkSync Era Docs
+---
+
 # `hardhat-zksync-upgradable`
 
 The `hardhat-zksync-upgradable` plugin is a Hardhat plugin that supports end-to-end pipelines for deploying and updating upgradable smart contracts on the zkSync Era network.
@@ -6,6 +13,11 @@ The plugin is based on [@openzeppelin/hardhat-upgrades](https://www.npmjs.com/pa
 
 ## Installation
 
+:::warning
+
+- Current version of the upgradable plugin does not support the latest versions of the `@openzeppelin/hardhat-upgrades` and `@openzeppelin/upgrades-core` packages. <br>
+  We are working on this and we will update the plugin as soon as our changes are compatible with those latest versions. :::
+
 [@matterlabs/hardhat-zksync-upgradable](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-upgradable)
 
 ::: code-tabs
@@ -13,13 +25,13 @@ The plugin is based on [@openzeppelin/hardhat-upgrades](https://www.npmjs.com/pa
 @tab:active yarn
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/contracts @openzeppelin/contracts-upgradeable @openzeppelin/hardhat-upgrades
+yarn add -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
 @tab npm
 
 ```bash
-npm i -D @matterlabs/hardhat-zksync-upgradable
+npm i -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/contracts @openzeppelin/contracts-upgradeable
 ```
 
 :::
