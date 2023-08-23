@@ -7,6 +7,10 @@ head:
 
 # Changelog
 
+::: warning Upcoming changes
+An upcoming protocol upgrade will change the implementation of some of the block properties on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
+:::
+
 ## Hardhat plugins update (June 21st, 2023)
 
 - New release of `@matterlabs/hardhat-zksync-solc`:

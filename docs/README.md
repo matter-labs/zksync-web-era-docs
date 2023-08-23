@@ -20,6 +20,11 @@ contributors: false
       </div>
    </div>
 </div>
+
+::: warning Upcoming changes
+An upcoming protocol upgrade will change the implementation of some of the block properties on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
+:::
+
 <section>
 
   <div class="card-container">
