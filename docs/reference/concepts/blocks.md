@@ -91,7 +91,7 @@ Projects are advised not to use the L2 block hash as a source of randomness.
 ## Block number and timestamp considerations
 
 ::: warning Upcoming changes
-An upcoming protocol upgrade will change the implementation of some of the block properties on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
+In the upcoming protocol upgrade scheduled for August-September 2023, there will be modifications to how certain block properties are implemented on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
 :::
 
 The `number` and `timestamp` properties of the block retrieved via the API using any of the SDKs will refer to L2 blocks however, `block.number` and `block.timestamp` in the EVM (on smart contracts), return the number and timestamp of the L1 batch respectively.
