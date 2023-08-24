@@ -6,11 +6,11 @@ The plugin is based on [@openzeppelin/hardhat-upgrades](https://www.npmjs.com/pa
 
 ## Installation
 
-:::warning
+:::warning Version Incompatibility
+Current version of the upgradable plugin does not support the latest versions of the `@openzeppelin/hardhat-upgrades` and `@openzeppelin/upgrades-core` packages. <br>
 
-- Current version of the upgradable plugin does not support the latest versions of the `@openzeppelin/hardhat-upgrades` and `@openzeppelin/upgrades-core` packages. <br>
-  We are working on this and we will update the plugin as soon as our changes are compatible with those latest versions.
-  :::
+We are working on this and we will update the plugin as soon as our changes are compatible with those latest versions.
+:::
 
 [@matterlabs/hardhat-zksync-upgradable](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-upgradable)
 
