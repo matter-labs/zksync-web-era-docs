@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK Get Tokens Example | zkSync Era Docs
+---
+
 # Get all confirmed tokens on zkSync Era
 
 Following example shows how to get all confirmed tokens on zkSync Era.

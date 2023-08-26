@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK Transfer Example | zkSync Era Docs
+---
+
 # Transfer
 
 ## Transfer ETH

@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Hello world | zkSync Era Docs
+---
+
 # Hello world
 
 This guide shows you how to deploy a smart contract to zkSync and build a dApp that interacts with it using the zkSync development toolbox.
@@ -254,12 +261,12 @@ When bridging from mainnet to a smart account (e.g. Argent) on zkSync Era, you m
 
 ### Project structure
 
-In the `./src/App.vue` file, in the `functions:` section, you will see template code that stores the application.
+In the `./src/App.vue` file, in the `methods:` section, you will see template code that stores the application.
 
 Most of the code is provided. You have to complete the TODO: sections.
 
 ```javascript
-functions: {
+methods: {
   initializeProviderAndSigner() {
     // TODO: initialize provider and signer based on `window.ethereum`
   },

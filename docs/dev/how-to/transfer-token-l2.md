@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Transfer a Token on L2 | zkSync Era Docs
+---
+
 # Transfer a token on L2
 
 ## Prerequisites

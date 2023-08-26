@@ -177,6 +177,12 @@
           "url": "https://www.herodotus.dev/"
         },
         {
+          "name": "LayerZero",
+          "category": "Messaging",
+          "logo": "layerzero-logo.png",
+          "url": "https://layerzero.network/"
+        },
+        {
           "name": "Safe (Protofire)",
           "category": "Custody",
           "logo": "safe-logo.png",

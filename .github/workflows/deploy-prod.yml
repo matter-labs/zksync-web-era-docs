@@ -30,6 +30,10 @@ jobs:
           yarn install
       - name: "Deploy production"
         run: yarn run docs:build
+        env:
+          RUDDERSTACK_WRITE_KEY: "${{ secrets.RUDDERSTACK_WRITE_KEY }}"
+          RUDDERSTACK_DATA_PLANE_URL: "${{ secrets.RUDDERSTACK_DATA_PLANE_URL }}"
+
 
       - name: "Copy 404"
         run: |

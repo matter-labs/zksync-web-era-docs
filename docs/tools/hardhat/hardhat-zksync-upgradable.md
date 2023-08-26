@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: hardhat-zksync-upgradable | zkSync Era Docs
+---
+
 # `hardhat-zksync-upgradable`
 
 The `hardhat-zksync-upgradable` plugin is a Hardhat plugin that supports end-to-end pipelines for deploying and updating upgradable smart contracts on the zkSync Era network.

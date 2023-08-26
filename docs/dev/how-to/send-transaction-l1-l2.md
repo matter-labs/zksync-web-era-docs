@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Send an L1 to L2 Transaction | zkSync Era Docs
+---
+
 # Send an L1 to L2 transaction
 
 The [zkSync Era smart contracts](https://github.com/matter-labs/era-contracts/tree/main/ethereum/contracts/zksync) allow the sender to request transactions on Ethereum L1 and pass data to zkSync Era L2.

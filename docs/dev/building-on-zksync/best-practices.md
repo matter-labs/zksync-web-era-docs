@@ -1,7 +1,16 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Security and Best Practices | zkSync Era Docs
+---
+
 # Security and best practices
 
-:::info Important Recommendations
 Before diving into development on zkSync Era, it's crucial to consider the following recommendations. These best practices will help you optimize your code, ensure security, and align with the unique characteristics of zkSync Era.
+
+::: warning Upcoming changes
+In the upcoming protocol upgrade scheduled for August-September 2023, there will be modifications to how certain block properties are implemented on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
 :::
 
 ## Use `call` over `.send` or `.transfer`

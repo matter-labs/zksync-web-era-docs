@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: zkSync Hardhat Plugins | zkSync Era Docs
+---
+
 # zkSync Era toolbox
 
 ## `hardhat-zksync-toolbox`
