@@ -37,6 +37,13 @@
           "description": "Extends web3j including zksync-specific methods and utilities.",
           "logo": "java-logo.svg",
           "url": "https://era.zksync.io/docs/api/java"
+        },
+        {
+          "name": "Swift SDK",
+          "category": "SDK",
+          "description": "Extends web3swift including zksync-specific methods and utilities.",
+          "logo": "swift-logo.svg",
+          "url": "https://era.zksync.io/docs/api/swift"
         }
       ]
     },
