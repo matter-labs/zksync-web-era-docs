@@ -129,6 +129,12 @@
           "url": "https://docs.blockpi.io/documentations/api-reference/zksync-era"
         },
         {
+          "name": "Chainbase",
+          "category": "RPC ",
+          "logo": "chainbase-logo.png",
+          "url": "https://chainbase.com/chainNetwork/zkSync"
+        },
+        {
           "name": "Chainstack",
           "category": "RPC ",
           "logo": "chainstack-logo.png",
@@ -199,6 +205,12 @@
     {
       "category": "Analytics and APIs",
       "tools": [
+        {
+          "name": "Chainbase",
+          "category": "APIs",
+          "logo": "chainbase-logo.png",
+          "url": "https://chainbase.com/chainNetwork/zkSync"
+        },
         {
           "name": "Chainlink",
           "category": "APIs",
