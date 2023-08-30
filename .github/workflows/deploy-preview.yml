@@ -8,7 +8,7 @@ jobs:
     outputs:
       output_urls: "${{ steps.preview_deploy.outputs.urls }}"
     steps:
-      - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
 
       - name: "Enable yarn cache"
         uses: c-hive/gha-yarn-cache@d528cd63c28aed0a9f44b1cada95050d7aa95c2e # v2  # using cache
