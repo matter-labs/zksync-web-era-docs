@@ -183,7 +183,7 @@ Deployment workflow:
 3. Compile and deploy Library A, referencing the deployed address of Library B.
 ```
 
-Automatic updating of hardhat user config with deployed addresses of libraries in `zksolc` object is supported.
+The feature to automatically update the Hardhat user configuration with deployed addresses of libraries in the `zksolc` object is supported as well.
 
 ```typescript
 zksolc: {
@@ -202,7 +202,7 @@ zksolc: {
   // If the settings and libraries don't exist, they'll be created.
 ```
 
-For a step-by-step guide on how to deploy missing libraries, see the `deploy-zksync:libraries` command below. 
+For a step-by-step guide on how to deploy missing libraries, see the `deploy-zksync:libraries` command below.
 
 ### Commands
 
@@ -223,7 +223,7 @@ For more details about a dockerized local setup, check out [Local testing](../te
 
 `yarn hardhat deploy-zksync:libraries --private-key <PRIVATE_KEY>` -- runs compilation and deployment of missing libraries (the list of all missing libraries is provided by the output of `@matterlabs/hardhat-zksync-solc` plugin).
 
-- `--private-key <PRIVATE_KEY>` - Mandatory argument. Libraries will be deployed by using this private key.
+- `--private-key <PRIVATE_KEY>` - A required argument. Libraries are deployed using the provided private key.
 - `--no-auto-populate-config` - Flag which disables the auto-population of the hardhat config file. Enabled by default.
 - `--external-config-object-path <file path>` - Specifies the path to the file containing the zksolc configuration. If not set, it defaults to the Hardhat configuration file path. Works only if auto-population is enabled.
 - `--exported-config-object <object name>` - Specifies the name of the user's Hardhat config object within the Hardhat configuration file. Primarily for auto-population. Defaults to `config`.
@@ -233,7 +233,7 @@ For more details about a dockerized local setup, check out [Local testing](../te
 yarn hardhat deploy-zksync:libraries --private-key 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
 ```
 
-Use case of `--exported-config-object <object name>` argument:
+Example of using the `--exported-config-object <object name>` argument:
 
 ```javascript
 const someObject = {
@@ -249,12 +249,12 @@ const someObject = {
 }
 
 module.exports = someObject;
+```
 
-//use --exported-config-object someObject
+```bash
+yarn hardhat deploy-zksync:libraries --private-key 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110 --exported-config-object someObject
 ```
 
 ::: tip
 In Typescript projects `--exported-config-object <object name>` argument can be provided optionally. Plugin will try to resolve config by `HardhatUserConfig` type.
 :::
-
-When hardhat user config object is imported from another file in `hardhat.config.ts|.js`, add `--external-config-object-path <file path>` argument to specify path of that file so hardhat user config object is filled with deployed libraries.
