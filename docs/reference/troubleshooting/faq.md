@@ -140,7 +140,7 @@ At the moment, we support any Ethereum-based wallet like Metamask, BitKeep, Trus
 
 ## How do I Request Funds for Testnet?
 
-To access the testnet funds you can use the [official faucet](https://goerli.portal.zksync.io/faucet) to get some testnet ETH and tokens.
+To access the testnet funds you can use [Chainstack's testnet faucet](https://faucet.chainstack.com/zksync-testnet-faucet) or the [zkSync faucet](https://goerli.portal.zksync.io/faucet) to get some testnet ETH and tokens.
 
 Alternatively, you can use any other Goerli faucet and [our bridge](https://goerli.portal.zksync.io/bridge) to bridge ETH from Goerli to zkSync Era Testnet.
 
