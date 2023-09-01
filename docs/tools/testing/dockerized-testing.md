@@ -200,4 +200,4 @@ yarn test
 
 Well done! You've successfully run your first local tests with zkSync Era.
 
-For a complete example with tests, check [here](https://github.com/matter-labs/tutorial-examples/tree/main/local-setup-testing)
+For a complete example with tests, check [here](https://github.com/matter-labs/tutorials/tree/main/hello-world)
