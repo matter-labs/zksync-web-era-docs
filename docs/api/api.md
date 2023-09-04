@@ -19,7 +19,7 @@ zkSync Era supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en
 
 :::warning Rate Limits
 
-We apply rate limiting to both Https and Websocket apis. The limits are generally permissive (currently 10s to 100s RPS per client), but please contact us if you face any issues in that regard.
+We apply rate limiting to both HTTPs and Websocket APIs. The limits are generally permissive (currently 10s to 100s RPS per client), but please contact us if you face any issues in that regard.
 
 ### Testnet
 
