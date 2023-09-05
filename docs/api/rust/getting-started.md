@@ -7,17 +7,11 @@ head:
 
 # Getting started
 
-<!-- FIXME add callout stating this SDK is in an alpha state and pin it's version --> 
-
 ## Concept
 
 While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features, like paying fees in other tokens, requires providing additional fields to those that Ethereum transactions have by default.
 
 To provide easy access to all of the features of zkSync Era, the [`zksync-web3-rs`][sdk] Rust SDK was created, which builds upon the [`ethers`][ethers] library. This section serves as its reference.
-
-<!-- FIXME can we rephrase this in any meaningful way? -->
-<!-- The library is made in such a way that after replacing `ethers` with `zksync-web3` most client apps will work out of box. -->
-
 
 ## Adding dependencies
 
@@ -78,12 +72,12 @@ l2_chain_id = 270
 l1_chain_id = 9
 ```
 
-Here, the trait `ZKSProvider` extended the `Provider<Http>` struct  adding zkSync Era specific functionality.
+Here, the trait `ZKSProvider` extended the `Provider<Http>` struct adding zkSync Era specific functionality.
 In this case, the method `.get_chainid()` comes from `ethers` while the method `get_l1_chain_id` comes from the `ZKSProvider` and hits an era-specific API.
 
 ## Conecting to Ethereum layer-1
 
-To perform operations that interact with both layers, we will also need to instantiate a provider for the Ethereum layer-1 associeted with our zkSync Era blockchain.
+To perform operations that interact with both layers, we will also need to instantiate a provider for the Ethereum layer-1 associated with our zkSync Era blockchain.
 
 ```rust
 static L1_URL: &str = "http://localhost:8545";
@@ -287,23 +281,13 @@ Assets will be withdrawn to the target wallet after the validity proof of the zk
 It is possible to wait until the validity proof verification is complete using the `finalize_withdraw` method:
 
 ```typescript
-let withdraw_transaction_hash_l1 = zk_wallet_2
-    .finalize_withdraw(withdraw_transaction_hash_l2)
-    .await
-    .unwrap();
+let withdraw_transaction_hash_l1 = zk_wallet_2.finalize_withdraw(withdraw_transaction_hash_l2).await.unwrap();
 
 // Then, get the transaction receipt:
-let withdraw_receipt_l1 = zk_wallet_2
-    .get_eth_provider()
-    .unwrap()
-    .get_transaction_receipt(withdraw_transaction_hash_l1)
-    .await
-    .unwrap()
-    .unwrap();
+let withdraw_receipt_l1 = zk_wallet_2.get_eth_provider().unwrap().get_transaction_receipt(withdraw_transaction_hash_l1).await.unwrap().unwrap();
 ```
 
 [sdk]: https://github.com/lambdaclass/zksync-web3-rs/
 [ethers]: https://crates.io/crates/ethers
 [tokio]: https://tokio.rs/
 [localnet]: https://github.com/matter-labs/local-setup
-[rand]: https://crates.io/crates/rand
