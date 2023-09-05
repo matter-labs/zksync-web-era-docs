@@ -17,6 +17,11 @@ zkSync Era supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en
 
 ## RPC endpoint URLs
 
+:::warning Rate Limits
+
+We apply rate limiting to both HTTPS and Websocket APIs. The limits are generally permissive (currently 10s to 100s RPS per client), but please [contact us](https://github.com/zkSync-Community-Hub/zkync-developers/discussions) if you face any issues in that regard.
+:::
+
 ### Testnet
 
 - HTTPS: `https://testnet.era.zksync.dev`
