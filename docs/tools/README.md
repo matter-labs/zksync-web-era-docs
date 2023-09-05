@@ -1,9 +1,16 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Developer Tools | zkSync Era Docs
+---
+
 # zkSync Era developer tools
 
 Find below different tools to help you build on zkSync Era.
 
 ::: info Adding tools
-Did we miss a tool? Add it to the list by [creating a PR in our docs](https://github.com/matter-labs/zksync-web-era-docs/compare).
+Did we miss a tool? Add it to the list by [creating a PR in our docs](https://github.com/matter-labs/zksync-web-era-docs/).
 :::
 
 <DevtoolsList />

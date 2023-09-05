@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Gated NFT Paymaster Tutorial | zkSync Era Docs
+---
+
 # Gated NFT paymaster
 
 Discover how to construct a tailored paymaster that enables users to sidestep gas fees when they own a particular NFT. By the end of this tutorial, you'll:

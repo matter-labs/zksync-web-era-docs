@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: JS SDK Paymaster Utilities | zkSync Era Docs
+---
+
 # Paymaster utilities
 
 The [paymaster utilities library](https://github.com/matter-labs/zksync-era/blob/main/sdk/zksync-web3.js/src/paymaster-utils.ts) contains essential utilities for using paymasters on zkSync Era.

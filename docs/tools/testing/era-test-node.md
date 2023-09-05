@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: In-memory Node | zkSync Era Docs
+---
+
 # In-memory node
 
 This documentation provides instructions on setting up and using the In-Memory Node, `era-test-node`, for local testing. It covers installation, network forking, transaction details viewing, replaying transactions, and testing local bootloader and system contracts.
@@ -255,7 +262,7 @@ For the deployment of your contracts, you have the flexibility to choose between
 Before proceeding, ensure that you've compiled your contracts using `zkforge zk-build`. For instructions on how to do this, please refer to this [link](https://github.com/matter-labs/foundry-zksync#compile-with-zkforge-zk-build).
 
 ```bash
-zkforge zkc contracts/Greeter.sol:Greeter --constructor-args "ZkSync and Foundry" --private-key 7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110 --rpc-url http://localhost:8011 --chain 270
+zkforge zkc contracts/Greeter.sol:Greeter --constructor-args "ZkSync and Foundry" --private-key 7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110 --rpc-url http://localhost:8011 --chain 260
 ```
 
 Here's an example of what you should expect to see:

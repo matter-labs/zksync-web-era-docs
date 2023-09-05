@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: JS SDK Front-end Integration | zkSync Era Docs
+---
+
 # Front-end integration
 
 This section describes how to make the most of zkSync to provide the best UX.

@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: USDC Paymaster tutorial | zkSync Era Docs
+---
+
 # USDC paymaster tutorial with API3 dAPIs
 
 This tutorial shows you how to build a custom paymaster that allows users to pay fees with a `mockUSDC` ERC20 token. You will:

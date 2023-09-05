@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: L1 / L2 Interoperability | zkSync Era Docs
+---
+
 # L1 / L2 interoperability
 
 ## Common use cases

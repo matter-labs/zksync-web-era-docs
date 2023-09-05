@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Audits and Bug Bounty Program | zkSync Era Docs
+---
+
 # Audits and bug bounty program
 
 zkSync Era takes security seriously and as such, we have completed multiple audits in all critical parts of the protocol. On top of that, there is an ongoing massive bug bounty program.

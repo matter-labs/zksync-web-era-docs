@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Estimate Gas | zkSync Era Docs
+---
+
 # Estimate gas
 
 :::tip Gas fees
