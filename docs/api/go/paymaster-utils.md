@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK Paymaster Utilities | zkSync Era Docs
+---
+
 # Paymaster utilities
 
 The [paymaster utilities library](https://github.com/zksync-sdk/zksync2-go/blob/main/utils/paymaster.go) contains essential utilities for using paymasters on zkSync Era.
@@ -9,8 +16,8 @@ The [paymaster utilities library](https://github.com/zksync-sdk/zksync2-go/blob/
 Constant ABI definition for
 the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob/36fe0fd11aeb2cfe88139e7e09d59a25366668d6/zksync/contracts/interfaces/IPaymasterFlow.sol).
 
-```typescript
-var IPaymasterFlow = abi.JSON(strings.NewReader(paymasterflow.IPaymasterFlowMetaData.ABI));
+```go
+IPaymasterFlow := abi.JSON(strings.NewReader(paymasterflow.IPaymasterFlowMetaData.ABI));
 ```
 
 ## Functions
@@ -36,7 +43,7 @@ func GetApprovalBasedPaymasterInput(paymasterInput types.ApprovalBasedPaymasterI
 
 ### `GetGeneralPaymasterInput`
 
-As above but for general-based paymaster.
+Returns encoded input for a general-based paymaster.
 
 #### Inputs
 
@@ -65,5 +72,5 @@ Returns a correctly-formed `paymasterParams` object for common [paymaster flows]
 func GetPaymasterParams(paymasterAddress common.Address, paymasterInput types.PaymasterInput) (*types.PaymasterParams, error)
 ```
 
-Find out more about the [`PaymasterInput` type](./types.md).
-Check out the [example](getting-started.md#use-paymaster) how to use paymaster.
+Find out more about the [`PaymasterInput` type](types/types.md).
+Check out the [example](examples/custom-paymaster/use-paymaster.md) how to use paymaster.

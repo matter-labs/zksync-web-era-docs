@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Python SDK Types | zkSync Era Docs
+---
+
 # Types
 
 All the types which are used in the SDK are referenced here:

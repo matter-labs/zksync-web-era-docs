@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Compiler Toolchain | zkSync Era Docs
+---
+
 # Compiler Toolchain
 
 Learn about the structure of the zkSync compiler toolchain and how it works.

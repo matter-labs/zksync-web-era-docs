@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Handling Events | zkSync Era Docs
+---
+
 # Handling events
 
 ## Overview

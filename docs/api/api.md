@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Web3 JSON-RPC API | zkSync Era Docs
+---
+
 # Web3 JSON-RPC API
 
 zkSync Era supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/) and adds some L2-specific features.
@@ -9,6 +16,11 @@ zkSync Era supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en
   :::
 
 ## RPC endpoint URLs
+
+:::warning Rate Limits
+
+We apply rate limiting to both HTTPS and Websocket APIs. The limits are generally permissive (currently 10s to 100s RPS per client), but please [contact us](https://github.com/zkSync-Community-Hub/zkync-developers/discussions) if you face any issues in that regard.
+:::
 
 ### Testnet
 

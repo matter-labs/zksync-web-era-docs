@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Differences with Ethereum | zkSync Era Docs
+---
+
 # Differences from Ethereum
 
 zkSync Era handles nearly all smart contracts based on the Ethereum Virtual Machine (EVM) and upholds high security standards,
@@ -11,7 +18,7 @@ It's highly recommended to review the best practices and key considerations for 
 
 ### `CREATE`, `CREATE2`
 
-In zkSync Era, contract deployment is performed using the hash of the bytecode, and the `factoryDeps` field of EIP712
+On zkSync Era, contract deployment is performed using the hash of the bytecode, and the `factoryDeps` field of EIP712
 transactions contains the bytecode. The actual deployment occurs by providing the contract's hash to the
 `ContractDeployer` system contract.
 
@@ -49,7 +56,7 @@ function myFactory(bytes memory bytecode) public {
 Unfortunately, it's impossible to differentiate between the above cases during compile-time. As a result, we strongly
 recommend including tests for any factory that deploys child contracts using `type(T).creationCode`.
 
-Since the deploy and runtime code is merged together in zkSync Era, we do not support `type(T).runtimeCode` and it
+Since the deploy and runtime code is merged together on zkSync Era, we do not support `type(T).runtimeCode` and it
 always produces a compile-time error.
 
 #### Address derivation
@@ -81,15 +88,24 @@ Since the bytecode differs from Ethereum as zkSync uses a modified version of th
 
 For calls, you specify a memory slice to write the return data to, e.g. `out` and `outsize` arguments for
 `call(g, a, v, in, insize, out, outsize)`. In EVM, if `outsize != 0`, the allocated memory will grow to `out + outsize`
-(rounded up to the words) regardless of the `returndatasize`. In zkSync Era, `returndatacopy`, similar to `calldatacopy`,
-is implemented as a cycle iterating over return data with a few additional checks
-(e.g. panic if `offset + len > returndatasize` to simulate the same behavior as in EVM).
+(rounded up to the words) regardless of the `returndatasize`. On zkSync Era, `returndatacopy`, similar to `calldatacopy`,
+is implemented as a cycle iterating over return data with a few additional checks and trigerring a panic if
+`out + outsize > returndatasize` to simulate the same behavior as in EVM.
 
-Thus, unlike EVM where memory growth occurs before the call itself, in zkSync Era, the necessary copying of return data
+Thus, unlike EVM where memory growth occurs before the call itself, on zkSync Era, the necessary copying of return data
 happens only after the call has ended, leading to a difference in `msize()` and sometimes zkSync Era not panicking where
 EVM would panic due to the difference in memory growth.
 
-Additionally, there is no native support for passing Ether in zkSync Era, so it is handled by a special system contract
+```solidity
+success := call(gas(), target, 0, in, insize, out, outsize) // grows to 'min(returndatasize(), out + outsize)'
+```
+
+```solidity
+success := call(gas(), target, 0, in, insize, out, 0) // memory untouched
+returndatacopy(out, 0, returndatasize()) // grows to 'out + returndatasize()'
+```
+
+Additionally, there is no native support for passing Ether on zkSync Era, so it is handled by a special system contract
 called `MsgValueSimulator`. The simulator receives the callee address and Ether amount, performs all necessary balance
 changes, and then calls the callee.
 
@@ -100,7 +116,7 @@ Unlike EVM, where the memory growth is in words, on zkEVM the memory growth is c
 has quadratic growth for memory payments, on zkEVM the fees are charged linearly at a rate of `1` erg per byte.
 
 The other thing is that our compiler can sometimes optimize unused memory reads/writes. This can lead to different `msize`
-compared to Ethereum since fewer bytes have been allocated, leading to cases where EVM panics, but zkEVM won’t due to
+compared to Ethereum since fewer bytes have been allocated, leading to cases where EVM panics, but zkEVM will not due to
 the difference in memory growth.
 
 ### `CALLDATALOAD`, `CALLDATACOPY`
@@ -110,39 +126,50 @@ If the `offset` for `calldataload(offset)` is greater than `2^32-33` then execut
 Internally on zkEVM, `calldatacopy(to, offset, len)` there is just a loop with the `calldataload` and `mstore` on each iteration.
 That means that the code will panic if `2^32-32 + offset % 32 < offset + len`.
 
-### `CODESIZE`
-
-| Deploy code                       | Runtime code  |
-| --------------------------------- | ------------- |
-| Size of the constructor arguments | Contract size |
-
-Yul uses a special instruction `datasize` to distinguish the contract code and constructor arguments, so we
-substitute `datasize` with 0, and `codesize` with `calldatasize`, in zkSync Era deployment code. This way when Yul calculates the
-calldata size as `sub(codesize, datasize)`, the result is the size of the constructor arguments.
-
-### `CODECOPY`
-
-| Deploy code                      | Runtime code (old EVM codegen) | Runtime code (new Yul codegen) |
-| -------------------------------- | ------------------------------ | ------------------------------ |
-| Copies the constructor arguments | Zeroes memory out              | Compile-time error             |
-
 ### `RETURN`
 
-Constructors return the array of immutable values. If you use `RETURN` in an assembly block in the constructor in zkSync Era,
+Constructors return the array of immutable values. If you use `RETURN` in an assembly block in the constructor on zkSync Era,
 it will return the array of immutable values initialized so far.
+
+```solidity
+contract Example {
+    uint immutable x;
+
+    constructor() {
+        x = 45;
+
+        assembly {
+            // The statement below is overridden by the zkEVM compiler to return
+            // the array of immutables instead of 32 bytes specified by the user.
+            return(0, 32)
+        }
+    }
+
+    function getData() external pure returns (string memory) {
+        assembly {
+            return(0, 32) // works as expected
+        }
+    }
+}
+
+```
 
 ### `TIMESTAMP`, `NUMBER`
 
-For more information on blocks in zkSync Era, including the differences between `block.timestamp` and `block.number`,
-check out the [blocks in zkSync Era documentation](../../reference/concepts/blocks.md#blocks-in-zksync-era).
+::: warning Upcoming changes
+In the upcoming protocol upgrade scheduled for August-September 2023, there will be modifications to how certain block properties are implemented on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
+:::
+
+For more information about blocks on zkSync Era, including the differences between `block.timestamp` and `block.number`,
+check out the [blocks on zkSync Era documentation](../../reference/concepts/blocks.md#blocks-in-zksync-era).
 
 ### `COINBASE`
 
-Returns the address of the `Bootloader` contract, which is `0x8001` in zkSync Era.
+Returns the address of the `Bootloader` contract, which is `0x8001` on zkSync Era.
 
 ### `DIFFICULTY`
 
-Returns a constant value of `2500000000000000` in zkSync Era.
+Returns a constant value of `2500000000000000` on zkSync Era.
 
 ### `BASEFEE`
 
@@ -152,51 +179,115 @@ This is not a constant on zkSync Era and is instead defined by the fee model. Mo
 
 Considered harmful and deprecated in [EIP-6049](https://eips.ethereum.org/EIPS/eip-6049).
 
-Always produces a compile-time error with our toolchain.
+Always produces a compile-time error with the zkEVM compiler.
 
 ### `CALLCODE`
 
 Deprecated in [EIP-2488](https://eips.ethereum.org/EIPS/eip-2488) in favor of `DELEGATECALL`.
 
-Always produces a compile-time error with our toolchain.
+Always produces a compile-time error with the zkEVM compiler.
 
 ### `PC`
 
 Inaccessible in Yul and Solidity `>=0.7.0`, but accessible in Solidity `0.6`.
 
-Always produces a compile-time error with our toolchain.
+Always produces a compile-time error with the zkEVM compiler.
+
+### `CODESIZE`
+
+| Deploy code                       | Runtime code  |
+| --------------------------------- | ------------- |
+| Size of the constructor arguments | Contract size |
+
+Yul uses a special instruction `datasize` to distinguish the contract code and constructor arguments, so we
+substitute `datasize` with 0 and `codesize` with `calldatasize` in zkSync Era deployment code. This way when Yul calculates the
+calldata size as `sub(codesize, datasize)`, the result is the size of the constructor arguments.
+
+```solidity
+contract Example {
+    uint256 public deployTimeCodeSize;
+    uint256 public runTimeCodeSize;
+
+    constructor() {
+        assembly {
+            deployTimeCodeSize := codesize() // return the size of the constructor arguments
+        }
+    }
+
+    function getRunTimeCodeSize() external {
+        assembly {
+            runTimeCodeSize := codesize() // works as expected
+        }
+    }
+}
+```
+
+### `CODECOPY`
+
+| Deploy code                      | Runtime code (old EVM codegen) | Runtime code (new Yul codegen) |
+| -------------------------------- | ------------------------------ | ------------------------------ |
+| Copies the constructor arguments | Zeroes memory out              | Compile-time error             |
+
+```solidity
+contract Example {
+    constructor() {
+        assembly {
+            codecopy(0, 0, 32) // behaves as CALLDATACOPY
+        }
+    }
+
+    function getRunTimeCodeSegment() external {
+        assembly {
+            // Behaves as 'memzero' if the compiler is run with the old (EVM assembly) codegen,
+            // since it is how solc performs this operation there. On the new (Yul) codegen
+            // `CALLDATACOPY(dest, calldatasize(), 32)` would be generated by solc instead, and
+            // `CODECOPY` is safe to prohibit in runtime code.
+            // Produces a compile-time error on the new codegen, as it is not required anywhere else,
+            // so it is safe to assume that the user wants to read the contract bytecode which is not
+            // available on zkEVM.
+            codecopy(0, 0, 32)
+        }
+    }
+}
+```
 
 ### `EXTCODECOPY`
 
-Contract bytecode cannot be accessed in our architecture. Only its size is accessible with both `CODESIZE` and `EXTCODESIZE`.
+Contract bytecode cannot be accessed on zkEVM architecture. Only its size is accessible with both `CODESIZE` and `EXTCODESIZE`.
 
-`EXTCODECOPY` always produces a compile-time error with our toolchain.
+`EXTCODECOPY` always produces a compile-time error with the zkEVM compiler.
 
 ### `DATASIZE`, `DATAOFFSET`, `DATACOPY`
 
-Contract deployment is handled by two areas of our system: the front-end and the system contract `ContractDeployer`.
+Contract deployment is handled by two parts of the zkEVM protocol: the compiler front end and the system contract called `ContractDeployer`.
 
-On the compiler front-end the code of the deployed contract is substituted with its hash. The hash is returned by the `dataoffset` Yul instruction or the `PUSH [$]` EVM legacy assembly instruction. The hash is then passed to the `datacopy` Yul instruction or the `CODECOPY` EVM legacy instruction, which writes the hash to the correct position of the calldata of the call to `ContractDeployer`.
+On the compiler front-end the code of the deployed contract is substituted with its hash. The hash is returned by the `dataoffset`
+Yul instruction or the `PUSH [$]` EVM legacy assembly instruction. The hash is then passed to the `datacopy` Yul instruction or
+the `CODECOPY` EVM legacy instruction, which writes the hash to the correct position of the calldata of the call to `ContractDeployer`.
 
-The calldata consists of several elements:
+The deployer calldata consists of several elements:
 
-1. The signature (4 bytes).
-2. The salt (32 bytes).
-3. The contract hash (32 bytes).
-4. The constructor calldata offset (32 bytes).
-5. The constructor calldata length (32 bytes).
-6. The constructor calldata itself (N bytes).
+| Element                     | Offset | Size |
+| --------------------------- | ------ | ---- |
+| Deployer method signature   | 0      | 4    |
+| Salt                        | 4      | 32   |
+| Contract hash               | 36     | 32   |
+| Constructor calldata offset | 68     | 32   |
+| Constructor calldata length | 100    | 32   |
+| Constructor calldata        | 132    | N    |
 
-The elements 1-5 replace the supposed contract code in the EVM pipeline, and the element 6, containing
-the constructor arguments, remains unchanged. For this reason, `datasize` and `PUSH [$]` return the size of
-elements 1-5 (132), and the space for constructor arguments is allocated by **solc** on top of it.
+The data can be logically split into header (first 132 bytes) and constructor calldata (the rest).
+
+The header replaces the contract code in the EVM pipeline, whereas the constructor calldata remains unchanged.
+For this reason, `datasize` and `PUSH [$]` return the header size (132), and the space for constructor arguments is allocated by **solc** on top of it.
 
 Finally, the `CREATE` or `CREATE2` instructions pass 132+N bytes to the `ContractDeployer` contract, which makes all
 the necessary changes to the state and returns the contract address or zero if there has been an error.
 
 If some Ether is passed, the call to the `ContractDeployer` also goes through the `MsgValueSimulator` just like ordinary calls.
 
-We do not recommend using `CREATE` for anything other than creating contracts with the `new` operator. However, a lot of contracts create contracts in assembly blocks instead, so authors must ensure that the behavior is compatible with the logic described above.
+We do not recommend using `CREATE` for anything other than creating contracts with the `new` operator. However, a lot of contracts create contracts
+in assembly blocks instead, so authors must ensure that the behavior is compatible with the logic described above.
 
 Yul example:
 
@@ -297,7 +388,7 @@ The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance 
 
 1. **Implementation Level**: zkSync's account abstraction is integrated at the protocol level; however, EIP 4337 avoids the implementation at the protocol level.
 2. **Account Types**: on zkSync Era, smart contract accounts and paymasters are first-class citizens. Under the hood, all accounts (even EOAs) behave like smart contract accounts; **all accounts support paymasters**.
-3. **Transaction Processing**: EIP 4337 introduces a separate transaction flow for smart contract accounts, which relies on a separate mempool for user operations, and Bundlers - nodes that bundle user operations and sends them to be processed by the EntryPoint contract, resulting in two separate transaction flows. In contrast, on zkSync Era there is a unified mempool for transactions from both Externally Owned Accounts (EOAs) and smart contract accounts. In zkSync Era, the Operator takes on the role of bundling transactions, irrespective of the account type, and sends them to the Bootloader (similar to the EntryPoint contract), which results in a single mempool and transaction flow.
+3. **Transaction Processing**: EIP 4337 introduces a separate transaction flow for smart contract accounts, which relies on a separate mempool for user operations, and Bundlers - nodes that bundle user operations and sends them to be processed by the EntryPoint contract, resulting in two separate transaction flows. In contrast, on zkSync Era there is a unified mempool for transactions from both Externally Owned Accounts (EOAs) and smart contract accounts. On zkSync Era, the Operator takes on the role of bundling transactions, irrespective of the account type, and sends them to the Bootloader (similar to the EntryPoint contract), which results in a single mempool and transaction flow.
 4. **Paymasters support**: zkSync Era allows both EOAs and smart contract accounts to benefit from paymasters thanks to its single transaction flow. On the other hand, EIP 4337 does not support paymasters for EOAs because paymasters are only implemented in the new transaction flow for smart contract accounts.
 
 ### ecrecover

@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: hardhat-zksync-vyper | zkSync Era Docs
+---
+
 # `hardhat-zksync-vyper`
 
 The [@matterlabs/hardhat-zksync-vyper](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-vyper) plugin provides an interface for compiling Vyper smart contracts before deploying them to zkSync Era.
@@ -11,7 +18,7 @@ Learn more about the latest updates in the [changelog](https://github.com/matter
 Use the [zkSync Era cli](../../tools/zksync-cli/README.md) to set up a project.
 
 ```sh
-npx zksync-cli@latest create greeter-vyper-example
+npx zksync-cli@latest create-project greeter-vyper-example
 cd greeter-vyper-example
 ```
 

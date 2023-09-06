@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: hardhat-zksync-deploy | zkSync Era Docs
+---
+
 # `hardhat-zksync-deploy`
 
 This plugin provides utilities for deploying smart contracts on zkSync Era with artifacts built by the `@matterlabs/hardhat-zksync-solc` or `@matterlabs/hardhat-zksync-vyper` plugins.
@@ -148,6 +155,55 @@ networks: {
 - `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `goerli`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
 - `zksync` is a flag that indicates if the network is zkSync Era. This field needs to be set to `true` for all zkSync Era networks; it is `false` by default.
 
+### Compilation and Deployment Support for Missing Libraries
+
+This plugin facilitates the compilation and deployment of missing libraries for users. By leveraging the `@matterlabs/hardhat-zksync-solc` plugin, users can obtain a file that not only contains specifics about the missing libraries for compilation but also showcases how they interlink with other dependent libraries. For more information about missing libraries during the compilation process, please refer to [this link](./compiling-libraries.md).
+
+::: warning zksolc compiler version
+Starting from version 1.13.14, the zksolc compiler has been enhanced to identify missing libraries.
+:::
+
+Complex library dependecy tree is also supported. It ensures libraries are compiled and deployed in a structured manner, starting from the most foundational library to the topmost dependent one.
+
+Example:
+
+```
+Consider three libraries where:
+
+- Library A is dependent on Library B
+- Library B is dependent on Library C
+
+A
+└── B
+    └── C
+
+Deployment workflow:
+1. Compile and deploy Library C.
+2. Compile and deploy Library B, referencing the deployed address of Library C.
+3. Compile and deploy Library A, referencing the deployed address of Library B.
+```
+
+The feature to automatically update the Hardhat user configuration with deployed addresses of libraries in the `zksolc` object is supported as well.
+
+```typescript
+zksolc: {
+    compilerSource: 'binary',
+    settings: {
+      libraries: {
+        "contracts/LibraryA.sol": {
+          "LibraryA": "0x13706Afd344d905BB9Cb50752065a67Fa8d09c70"
+        },
+        "contracts/LibraryB.sol": {
+          "LibraryB": "0x4cf2E778D384746EaB115b914885e2bB18E893E2"
+        }
+      }
+    }
+  },
+  // If the settings and libraries don't exist, they'll be created.
+```
+
+For a step-by-step guide on how to deploy missing libraries, see the `deploy-zksync:libraries` command below.
+
 ### Commands
 
 `yarn hardhat deploy-zksync` -- runs through all the scripts in the `deploy` folder.
@@ -163,4 +219,42 @@ The deployment scripts must be placed in the `deploy` folder.
 
 If network argument `--network` or `defaultNetwork` configuration are not specified, local setup with `http://localhost:8545` (Ethereum RPC URL) and `http://localhost:3050` (zkSync Era RPC URL), will be used. In this case zkSync Era network will not need to be configured in `hardhat.config.ts` file.
 For more details about a dockerized local setup, check out [Local testing](../testing/README.md).
+:::
+
+`yarn hardhat deploy-zksync:libraries --private-key <PRIVATE_KEY>` -- runs compilation and deployment of missing libraries (the list of all missing libraries is provided by the output of `@matterlabs/hardhat-zksync-solc` plugin).
+
+- `--private-key <PRIVATE_KEY>` - A required argument. Libraries are deployed using the provided private key.
+- `--no-auto-populate-config` - Flag which disables the auto-population of the hardhat config file. Enabled by default.
+- `--external-config-object-path <file path>` - Specifies the path to the file containing the zksolc configuration. If not set, it defaults to the Hardhat configuration file path. Works only if auto-population is enabled.
+- `--exported-config-object <object name>` - Specifies the name of the user's Hardhat config object within the Hardhat configuration file. Primarily for auto-population. Defaults to `config`.
+- `--compile-all-contracts` - Compile all contracts with deployed libraries. Disabled by default.
+
+```
+yarn hardhat deploy-zksync:libraries --private-key 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
+```
+
+Example of using the `--exported-config-object <object name>` argument:
+
+```javascript
+const someObject = {
+  zksolc: {
+    compilerSource: 'binary',
+      settings: {
+  },
+  solidity: {
+    compilers: compilers,
+  },
+  ....
+  },
+}
+
+module.exports = someObject;
+```
+
+```bash
+yarn hardhat deploy-zksync:libraries --private-key 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110 --exported-config-object someObject
+```
+
+::: tip
+In Typescript projects `--exported-config-object <object name>` argument can be provided optionally. Plugin will try to resolve config by `HardhatUserConfig` type.
 :::

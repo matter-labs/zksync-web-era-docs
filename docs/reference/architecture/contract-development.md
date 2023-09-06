@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Smart Contract Development | zkSync Era Docs
+---
+
 # Smart contract development
 
 zkSync Era allows developers to build projects using the same programming languages and tools used to build on Ethereum.
@@ -14,10 +21,8 @@ Currently, Solidity versions as old as `0.4.12` are supported, although **we str
 
 Please read [this section of the docs](../../tools/compiler-toolchain/solidity.md#using-libraries) if your project uses libraries.
 
-::: info Best practices
-
-Follow the [best practices and considerations](../../dev/building-on-zksync/best-practices.md) to build smart contracts on zkSync Era.
-
+::: info Security and best practices
+Follow the [security considerations and best practices](../../dev/building-on-zksync/best-practices.md) to build smart contracts on zkSync Era.
 :::
 
 ## Vyper support

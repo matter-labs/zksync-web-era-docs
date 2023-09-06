@@ -55,9 +55,11 @@
     "@semantic-release/github": "^8.0.7",
     "@vuepress/client": "2.0.0-beta.60",
     "@vuepress/plugin-docsearch": "^2.0.0-beta.60",
+    "@vuepress/plugin-register-components": "next",
     "check-md": "^1.0.2",
     "commitlint": "^17.3.0",
     "cspell": "^6.18.1",
+    "dotenv": "^16.3.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "markdownlint": "^0.27.0",
@@ -66,6 +68,7 @@
     "semantic-release": "^19.0.5",
     "vue": "^3.2.45",
     "vuepress": "2.0.0-beta.60",
+    "vuepress-plugin-seo2": "^2.0.0-beta.235",
     "vuepress-theme-hope": "2.0.0-beta.146"
   },
   "lint-staged": {
