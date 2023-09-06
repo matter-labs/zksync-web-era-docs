@@ -49,7 +49,7 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 To create a new project run the CLI's `create` command, passing a project name:
 
 ```sh
-zksync-cli create demo
+zksync-cli create-project demo
 ```
 
 This command creates a `demo` folder and clones a Hardhat template project inside it. The downloaded project is already configured and contains all the required plugins.

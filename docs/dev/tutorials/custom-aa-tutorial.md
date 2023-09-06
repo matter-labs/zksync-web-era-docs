@@ -40,7 +40,7 @@ yarn add global zksync-cli@latest
 2. Initiate a new project by running the command:
 
 ```sh
-zksync-cli create custom-aa-tutorial
+zksync-cli create-project custom-aa-tutorial
 ```
 
 :::tip
