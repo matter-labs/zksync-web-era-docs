@@ -384,7 +384,10 @@ import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 - The non-view functions of the `NONCE_HOLDER_SYSTEM_CONTRACT` are called if the `isSystem` flag is on.
 - Use the [systemCallWithPropagatedRevert](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/libraries/SystemContractsCaller.sol#L75) function of the `SystemContractsCaller` library.
 - Import this library also:
-  `solidity // to call non-view function of system contracts import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol"; `
+  `solidity
+// to call non-view function of system contracts
+import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
+`
   :::
 
 Use the `TransactionHelper` library, as imported above with `using TransactionHelper for Transaction;` to get the transaction hash that should be signed. You can also implement your own signature scheme and use a different commitment for signing the transaction, but in this example, we use the hash provided by this library.
