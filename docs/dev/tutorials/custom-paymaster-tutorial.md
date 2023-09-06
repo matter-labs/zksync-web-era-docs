@@ -45,7 +45,7 @@ yarn add global zksync-cli@latest
 2. Initiate a new project by running the command:
 
 ```sh
-zksync-cli create custom-paymaster-tutorial
+zksync-cli create-project custom-paymaster-tutorial
 ```
 
 :::tip

@@ -58,7 +58,7 @@ yarn add global zksync-cli@latest
 2. Run the following command to create a new project:
 
 ```sh
-zksync-cli create paymaster-dapi
+zksync-cli create-project paymaster-dapi
 ```
 
 This creates a new zkSync Era project called `paymaster-dapi` with a basic `Greeter` contract.
