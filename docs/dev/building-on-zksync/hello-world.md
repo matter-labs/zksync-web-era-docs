@@ -47,7 +47,7 @@ yarn add global zksync-cli@latest
 2. Scaffold a new project by running the command:
 
 ```sh
-zksync-cli create greeter-example
+zksync-cli create-project greeter-example
 ```
 
 This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract and all the zkSync plugins and configurations.

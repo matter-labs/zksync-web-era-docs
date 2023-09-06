@@ -18,7 +18,7 @@ Learn more about the latest updates in the [changelog](https://github.com/matter
 Use the [zkSync Era cli](../../tools/zksync-cli/README.md) to set up a project.
 
 ```sh
-npx zksync-cli@latest create greeter-vyper-example
+npx zksync-cli@latest create-project greeter-vyper-example
 cd greeter-vyper-example
 ```
 
