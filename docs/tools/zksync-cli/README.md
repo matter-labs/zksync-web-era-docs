@@ -36,7 +36,7 @@ You can also run this via NPX with `npx zksync-cli@latest [COMMAND]`
 - `zksync-cli withdraw`: withdraws funds from zkSync (L2) to Ethereum (L1)
 - `zksync-cli withdraw-finalize`: finalizes withdrawal of funds from zkSync (L2) to Ethereum (L1)
 - `zksync-cli help`: Provides information about all supported commands
-- `zksync-cli help <command>`: Provides detailed information about how to use a specific command. Replace <command> with the name of the command you want help with (e.g., create-project, deposit, withdraw, withdraw-finalize)
+- `zksync-cli help {command}`: Provides detailed information about how to use a specific command. Replace {command} with the name of the command you want help with (e.g., create-project, deposit, withdraw, withdraw-finalize)
 - `zksync-cli --version`: Returns the current version
 
 ::: info Deposit and withdraw times
