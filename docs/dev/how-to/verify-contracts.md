@@ -40,7 +40,7 @@ yarn add global zksync-cli@latest
 - Once you complete the installation, execute the command below to create a fresh project:
 
 ```sh
-zksync-cli create verify-greeter-contract
+zksync-cli create-project verify-greeter-contract
 ```
 
 3. This function creates a fresh zkSync project titled `verify-greeter-contract` containing a `Greeter` contract. Proceed by moving into the project directory:
