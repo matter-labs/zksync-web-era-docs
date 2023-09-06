@@ -82,6 +82,8 @@ export function createAddress(sender: Address, senderNonce: BigNumberish) {
 }
 ```
 
+Since the bytecode differs from Ethereum as zkSync uses a modified version of the EVM, the address derived from the bytecode hash will also differ. This means that the same bytecode deployed on Ethereum and zkSync will have different addresses and the Ethereum address will still be available and unused on zkSync. If and when the zkEVM reaches parity with the EVM, the address derivation will be updated to match Ethereum and the same bytecode will have the same address on both chains, deployed bytecodes to different addresses on zkSync could then be deployed to the same the Ethereum-matching addresses on zkSync.
+
 ### `CALL`, `STATICCALL`, `DELEGATECALL`
 
 For calls, you specify a memory slice to write the return data to, e.g. `out` and `outsize` arguments for
