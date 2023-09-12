@@ -22,7 +22,7 @@ The daily limit feature prevents an account from spending more ETH than the limi
 
 ## Complete Project
 
-Download the complete project [here](https://github.com/matter-labs/daily-spendlimit-tutorial). Additionally, the repository contains a test folder with more detailed tests for running on a zkSync Era local network.
+Download the complete project [here](https://github.com/matter-labs/tutorials/tree/main/spend-limit). Additionally, the repository contains a test folder with more detailed tests for running on a zkSync Era local network.
 
 ::: info Project available in Atlas IDE
 This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/Atlas-labs-inc/zksync-daily-spend-limit&open=/scripts/main.ts&chainId=280).
@@ -41,7 +41,7 @@ yarn add global zksync-cli@latest
 2. Initiate a new project by running the command:
 
 ```sh
-zksync-cli create custom-spendlimit-tutorial
+zksync-cli create-project custom-spendlimit-tutorial
 ```
 
 :::tip

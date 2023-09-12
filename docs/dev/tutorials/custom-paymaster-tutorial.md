@@ -27,7 +27,7 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 
 ## Complete project
 
-The tutorial code is available [here](https://github.com/matter-labs/custom-paymaster-tutorial).
+The tutorial code is available [here](https://github.com/matter-labs/tutorials/tree/main/custom-paymaster).
 
 ::: info Project available in Atlas IDE
 
@@ -45,7 +45,7 @@ yarn add global zksync-cli@latest
 2. Initiate a new project by running the command:
 
 ```sh
-zksync-cli create custom-paymaster-tutorial
+zksync-cli create-project custom-paymaster-tutorial
 ```
 
 :::tip

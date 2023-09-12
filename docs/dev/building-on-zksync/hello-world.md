@@ -47,7 +47,7 @@ yarn add global zksync-cli@latest
 2. Scaffold a new project by running the command:
 
 ```sh
-zksync-cli create greeter-example
+zksync-cli create-project greeter-example
 ```
 
 This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract and all the zkSync plugins and configurations.
@@ -222,8 +222,8 @@ Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search wi
 1. Clone the template and `cd` into the folder.
 
 ```sh
-git clone https://github.com/matter-labs/greeter-tutorial-starter
-cd greeter-tutorial-starter
+git clone https://github.com/matter-labs/tutorials
+cd tutorials/hello-world/frontend
 ```
 
 2. Spin up the project.

@@ -47,6 +47,12 @@ Version 0.4.0 introduced a default configuration making all parameters optional.
 
 :::
 
+::: info Support for missing libraries in hardhat-zksync-solc ^0.4.2
+
+Version 0.4.2 introduced a mode that detects non-inlinable libraries that are missing and that are required for the compilation of contracts. This feature works with the `hardhat-zksync-deploy` plugin, specifically the `deploy-zksync:libraries` task, to compile and deploy the missing libraries. There are no new commands, just follow the instructions logged by the `yarn hardhat compile` output.
+
+:::
+
 Any configuration parameters should be added inside a `zksolc` property in the `hardhat.config.ts` file:
 
 ```typescript
@@ -55,6 +61,7 @@ zksolc: {
     settings: {
       compilerPath: "zksolc",  // optional. Ignored for compilerSource "docker". Can be used if compiler is located in a specific folder
       libraries:{}, // optional. References to non-inlinable libraries
+      missingLibrariesPath: "./.zksolc-libraries-cache/missingLibraryDependencies.json" // optional. This path serves as a cache that stores all the libraries that are missing or have dependencies on other libraries. A `hardhat-zksync-deploy` plugin uses this cache later to compile and deploy the libraries, especially when the `deploy-zksync:libraries` task is executed
       isSystem: false, // optional.  Enables Yul instructions available only for zkSync system contracts and libraries
       forceEvmla: false, // optional. Falls back to EVM legacy assembly if there is a bug with Yul
       optimizer: {
@@ -80,6 +87,7 @@ zksolc: {
 - `compilerSource` indicates the compiler source and can be either `binary` (default) or `docker` (deprecated). If there isn't a compiler binary already installed, the plugin will automatically download it.
 - `compilerPath` (optional) is a field with the path to the `zksolc` binary. By default, the binary in `$PATH` is used.
 - `libraries` if your contract uses non-inlinable libraries as dependencies, they have to be defined here. Learn more about [compiling libraries here](./compiling-libraries.md)
+- `missingLibrariesPath` (optional) serves as a cache that stores all the libraries that are missing or have dependencies on other libraries. A `hardhat-zksync-deploy` plugin uses this cache later to compile and deploy the libraries, especially when the `deploy-zksync:libraries` task is executed. Defaults to `./.zksolc-libraries-cache/missingLibraryDependencies.json`.
 - `isSystem` - required if contracts use enables Yul instructions available only for zkSync system contracts and libraries
 - `forceEvmla` - falls back to EVM legacy assembly if there is an issue with the Yul IR compilation pipeline.
 - `optimizer` - Compiler optimizations:
