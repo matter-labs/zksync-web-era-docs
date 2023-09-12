@@ -18,7 +18,7 @@ To provide easy access to all of the features of zkSync Era, the [`zksync-web3-r
 Add the following dependencies to your `Cargo.toml` file:
 
 ```toml
-zksync-web3-rs = { git = "https://www.github.com/lambdaclass/zksync-web3-rs" }
+zksync-web3-rs = "0.1.1"
 ```
 
 Consider adding [`tokio`][tokio] as dependency since we are using a lot of async/await functions. If this example is meant to be done in the main function the `#[tokio::main]` annotation is needed.
