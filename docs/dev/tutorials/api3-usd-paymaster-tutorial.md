@@ -41,7 +41,7 @@ For this paymaster tutorial, we use dAPIs to get the price of [ETH/USD](https://
 
 ## Complete project
 
-The tutorial code is available [here](https://github.com/vanshwassan/zk-paymaster-dapi-poc).
+The tutorial code is available [here](https://github.com/matter-labs/tutorials/tree/main/usdc-paymaster-w-api3-data-feeds).
 
 ::: info Project available in Atlas IDE
 This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/atlas-labs-inc/zksync-usdc-paymaster&open=/scripts/main.ts&chainId=280).
@@ -58,7 +58,7 @@ yarn add global zksync-cli@latest
 2. Run the following command to create a new project:
 
 ```sh
-zksync-cli create paymaster-dapi
+zksync-cli create-project paymaster-dapi
 ```
 
 This creates a new zkSync Era project called `paymaster-dapi` with a basic `Greeter` contract.
