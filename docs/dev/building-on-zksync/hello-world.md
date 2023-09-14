@@ -20,7 +20,7 @@ This is what we're going to do:
 
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - Download and install [Node](https://nodejs.org/en/download).
-- Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to v16.16.0 with command `nvm use 16`.
+- Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to latest use command `nvm use --lts`.
 - Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
 - A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync and deploying smart contracts. You can get Göerli ETH from the following faucets:
   - [Chainstack Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
@@ -50,7 +50,7 @@ yarn add global zksync-cli@latest
 zksync-cli create-project greeter-example
 ```
 
-This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract and all the zkSync plugins and configurations.
+Choose "Hardhat + Solidity" option. This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract and all the zkSync plugins and configurations.
 
 ::: tip Hardhat plugins
 Learn more about the [zkSync Era plugins for Hardhat here](../../tools/hardhat/README.md)
@@ -249,6 +249,8 @@ Enabling smart accounts allows you to onboard Argent account abstraction wallet 
 In order to interact with dApps built on zkSync, connect the MetaMask wallet to the zkSync Era Testnet.
 
 - Follow [this guide](./interacting.md#connecting-to-zksync-era-on-metamask) to connect Metamask to zkSync.
+
+Please note, that login functionality for "Hello, world" will be implemented in the next steps.
 
 ### Bridge funds to L2
 
@@ -564,7 +566,8 @@ The testnet [paymaster](https://era.zksync.io/docs/dev/tutorials/custom-paymaste
 When integrating your protocol on mainnet, you should follow the documentation of the paymaster you use, or create your own.
 :::
 
-The `getOverrides` function returns an empty object when users decide to pay with ether but, when users select the ERC20 option, it should return the paymaster address and all the information required by it. This is how to do it:
+The `getOverrides` function returns an empty object when users decide to pay with Ether but, when users select the ERC20 option, it should return the paymaster address and all
+the information required by it. This is how to do it:
 
 1. To retrieve the address of the testnet paymaster from the zkSync provider, add a new function `getOverrides`:
 
