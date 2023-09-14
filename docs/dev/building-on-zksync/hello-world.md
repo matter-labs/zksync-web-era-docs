@@ -20,7 +20,7 @@ This is what we're going to do:
 
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - Download and install [Node](https://nodejs.org/en/download).
-- Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to v16.16.0 with command `nvm use -lts`.
+- Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to v16.16.0 with command `nvm use --lts`.
 - Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
 - A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync and deploying smart contracts. You can get Göerli ETH from the following faucets:
   - [Chainstack Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
