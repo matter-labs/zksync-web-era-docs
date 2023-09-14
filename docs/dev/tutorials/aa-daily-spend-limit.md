@@ -942,7 +942,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // account that will receive the ETH transfer
   const receiver = "<RECEIVER_ACCOUNT>";
-  // ⚠️ update this amount to test if the limit works; 0.00051 fails but 0.0049 succeeds
+  // ⚠️ update this amount to test if the limit works; 0.00051 fails but 0.00049 succeeds
   const transferAmount = "0.00051";
 
   let ethTransferTx = {
@@ -1020,7 +1020,7 @@ An unexpected error occurred:
 Error: transaction failed...
 ```
 
-After the error, we can rerun the code with a different ETH amount that doesn't exceed the limit, say "0.0049", to see if the `SpendLimit` contract doesn't refuse the amount lower than the limit.
+After the error, we can rerun the code with a different ETH amount that doesn't exceed the limit, say "0.00049", to see if the `SpendLimit` contract doesn't refuse the amount lower than the limit.
 
 If the transaction succeeds, the output should look something like this:
 
@@ -1064,4 +1064,4 @@ To keep this tutorial as simple as possible, we've used `block.timestamp` but we
 
 ## Credits
 
-Written by [porco-rosso](https://linktr.ee/porcorossoj) for the following [GitCoin bounty](https://gitcoin.co/issue/29669).
+Written by [porco-rosso](https://linktr.ee/porcorossoj) for the GitCoin bounty.
