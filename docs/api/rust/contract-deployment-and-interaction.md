@@ -5,11 +5,9 @@ head:
       content: Rust SDK Contract Deployment and Interaction | zkSync Era Docs
 ---
 
-<!-- Based on https://era.zksync.io/docs/dev/building-on-zksync/hello-world.html -->
-
 # Rust SDK Contract Deployment and Interaction
 
-This guide shows you how to deploy a smart contract to zkSync and call its methods using the [`zksynk-web3-rs`][repo] SDK.
+This guide shows you how to deploy a smart contract to zkSync and call its methods using the [`zksync-web3-rs`][repo] SDK.
 
 This is what we're going to do:
 
@@ -18,12 +16,12 @@ This is what we're going to do:
 - Perform a transaction that updates the greeting message.
 
 ::: Project available as an example in the SDK REPO
-This entire tutorial can be easily run using `cargo run --example contract-deployment` which is [available under the `examples/` directory][code] in the [`zksynk-web3-rs`][repo].
+This entire tutorial can be easily run using `cargo run --example contract-deployment` which is [available under the `examples/` directory][code] in the [`zksync-web3-rs`][repo].
 :::
 
 ## Prerequisites
 
-This tutorial assumes that you know how to create a rust project and add [`zksynk-web3-rs`][repo] as a dependency. We recommend having followed the [Rust SDK Getting
+This tutorial assumes that you know how to create a rust project and add [`zksync-web3-rs`][repo] as a dependency. We recommend having followed the [Rust SDK Getting
 started](./getting-started.md) tutorial first.
 
 Also, since our SDK does not provide wrappers for the compiler, building the `Greeter` contract is out of the scope of this tutorial. We will provide the ABI and compilation output
