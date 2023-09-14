@@ -14,6 +14,7 @@ To provide easy access to all of the features of zkSync Era, the [`zksync-web3-r
 ## Contents
 
 - [Getting started](./getting-started.md)
+- [Contract deployment and interaction](./contract-deployment-and-interaction.md)
 
 [sdk]: https://github.com/lambdaclass/zksync-web3-rs/
 [ethers]: https://crates.io/crates/ethers
