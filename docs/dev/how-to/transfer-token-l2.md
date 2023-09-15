@@ -153,8 +153,12 @@ l2transfer();
 ## Run the script
 
 ```sh
-yarn ts-node transfer-l2.ts
+ts-node transfer-l2.ts
 ```
+
+:::tip
+Try running the `ts-node transfer-l2.ts` command in case you receive an error with `yarn ts-node transfer-l2.ts`.
+:::
 
 ## Output
 
