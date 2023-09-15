@@ -153,7 +153,7 @@ l2transfer();
 ## Run the script
 
 ```sh
-ts-node transfer-l2.ts
+yarn ts-node transfer-l2.ts
 ```
 
 :::tip
