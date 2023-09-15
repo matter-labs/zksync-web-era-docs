@@ -110,7 +110,7 @@ export default config;
 
 Each account must implement the [IAccount](../../reference/concepts/account-abstraction.md#iaccount-interface) interface. Furthermore, since we are building an account with multiple signers, we should implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
-The skeleton code for the contract is given below. Use it to perform next steps, or you can skip and use completed code from [Full example](../tutorials/custom-aa-tutorial.html#full-example) section.
+The skeleton code for the contract is given below. Use it to perform next steps, or you can skip and use completed code from [Full example](../tutorials/custom-aa-tutorial.md#full-example) section.
 
 ```solidity
 // SPDX-License-Identifier: MIT
