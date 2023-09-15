@@ -47,12 +47,12 @@ zksync-cli create-project custom-aa-tutorial
 The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
 :::
 
-This creates a new zkSync Era project called `custom-aa-tutorial` with a basic `Greeter` contract.
+Choose "Hardhat + Solidity" option. This creates a new zkSync Era project called `custom-aa-tutorial` with a basic `Greeter` contract.
 
 3. Navigate into the project directory:
 
 ```sh
-cd ~/custom-aa-tutorial
+cd custom-aa-tutorial
 ```
 
 4. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
