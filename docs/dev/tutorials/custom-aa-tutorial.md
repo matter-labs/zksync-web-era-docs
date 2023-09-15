@@ -47,12 +47,12 @@ zksync-cli create-project custom-aa-tutorial
 The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
 :::
 
-This creates a new zkSync Era project called `custom-aa-tutorial` with a basic `Greeter` contract.
+Choose "Hardhat + Solidity" option. This creates a new zkSync Era project called `custom-aa-tutorial` with a basic `Greeter` contract.
 
 3. Navigate into the project directory:
 
 ```sh
-cd ~/custom-aa-tutorial
+cd custom-aa-tutorial
 ```
 
 4. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
@@ -110,7 +110,7 @@ export default config;
 
 Each account must implement the [IAccount](../../reference/concepts/account-abstraction.md#iaccount-interface) interface. Furthermore, since we are building an account with multiple signers, we should implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
-The skeleton code for the contract is given below.
+The skeleton code for the contract is given below. Use it to perform next steps, or you can skip and use completed code from [Full example](../tutorials/custom-aa-tutorial.md#full-example) section.
 
 ```solidity
 // SPDX-License-Identifier: MIT
