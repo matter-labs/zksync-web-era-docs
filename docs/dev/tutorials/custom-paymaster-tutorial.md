@@ -54,7 +54,8 @@ The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
 
 This creates a new zkSync Era project called `custom-paymaster-tutorial` with a basic `Greeter` contract.
 
-Select "Hardhat+Solidity" option in the "Project template to use" choice 
+Select "Hardhat+Solidity" option in the "Project template to use" choice
+
 ```sh
 ? Project template to use (Use arrow keys)
 › Hardhat + Solidity
