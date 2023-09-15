@@ -15,7 +15,7 @@ This is what we're going to do:
 - Call a `view` method that retrieves the greeting message.
 - Perform a transaction that updates the greeting message.
 
-::: Project available as an example in the SDK REPO
+:::info Project available as an example in the SDK REPO
 This entire tutorial can be easily run using `cargo run --example contract-deployment` which is [available under the `examples/` directory][code] in the [`zksync-web3-rs`][repo].
 :::
 
