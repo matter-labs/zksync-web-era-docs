@@ -565,10 +565,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 ### 2. Update env variables
 
-Update the existing `.env-example` file to your needs by renaming it to `.env` and insert your private key:
+To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
 
-```sh
-echo 'PRIVATE_KEY=' > .env
+```text
+WALLET_PRIVATE_KEY=abcdef12345....
 ```
 
 ### 3. Compile and deploy
