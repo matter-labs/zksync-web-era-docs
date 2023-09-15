@@ -574,6 +574,7 @@ echo 'PRIVATE_KEY=' > .env
 ### 3. Compile and deploy
 
 From the project root, run the following:
+<delete>
 
 ```sh
 yarn hardhat compile
