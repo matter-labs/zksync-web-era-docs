@@ -17,3 +17,4 @@ head:
 - [Python SDK](./python/getting-started.md)
 - [Go SDK](./go/getting-started.md)
 - [Java SDK](./java/getting-started.md)
+- [Rust SDK](./rust/getting-started.md)
