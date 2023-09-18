@@ -21,7 +21,7 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 - Some background knowledge on the concepts covered by the tutorial would be helpful too. Have a look at the following docs:
   - [Account abstraction protocol](../../reference/concepts/account-abstraction.md).
   - [Introduction to system contracts](../../reference/architecture/system-contracts.md).
-  - [Smart contract deployment](../../reference/architecture/contract-deployment.md) on zkSyn Era.
+  - [Smart contract deployment](../../reference/architecture/contract-deployment.md) on zkSync Era.
   - [Gas estimation for transactions](../../reference/concepts/fee-model.md#gas-estimation-for-transactions) guide.
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
@@ -53,6 +53,14 @@ The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
 :::
 
 This creates a new zkSync Era project called `custom-paymaster-tutorial` with a basic `Greeter` contract.
+
+Select "Hardhat+Solidity" option in the "Project template to use" choice
+
+```sh
+? Project template to use (Use arrow keys)
+› Hardhat + Solidity
+Hardhat + Vyper
+```
 
 3. Navigate into the project directory:
 
