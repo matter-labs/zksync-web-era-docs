@@ -51,13 +51,13 @@ npx hardhat
 ```
 
 :::info
-In case of question: 
+In case of question:
 Need to install the following packages:
-hardhat@*version*
+hardhat@_version_
 Ok to proceed? (y)
 
 - Press (y)
-:::
+  :::
 
 Select the option **Create a Typescript project** and accept the defaults for everything else.
 
@@ -287,9 +287,9 @@ contract Counter {
 ```
 
 3. Compile the contract from the `L2-counter` root:
-::: tip
-Compilations happens only after the installation of a compiler
-:::
+   ::: tip
+   Compilations happens only after the installation of a compiler
+   :::
 
 ::: code-tabs
 @tab yarn
@@ -451,51 +451,51 @@ You have to copy only abi content from the file after the keyword abi, an exampl
 
 ```json
 [
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "newGovernance",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "inputs": [],
-      "name": "governance",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "increment",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "value",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    }
-  ]
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newGovernance",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "governance",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "increment",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "value",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
 ```
 
 2. Paste it into a new file: `/L2-counter/scripts/governance.json`.
