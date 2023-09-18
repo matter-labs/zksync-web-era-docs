@@ -240,6 +240,7 @@ yarn add global zksync-cli@latest
 ```sh
 zksync-cli create-project .
 ```
+
 ::: tip
 In case of any issues on this step (f.e. you did not have a yarn), you may get errors during the recreation of the project environment. Clean your current environment in advance or create another folder and create environment there.
 :::
