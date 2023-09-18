@@ -156,6 +156,10 @@ l2transfer();
 yarn ts-node transfer-l2.ts
 ```
 
+:::tip
+Try running the `ts-node transfer-l2.ts` command in case you receive an error with `yarn ts-node transfer-l2.ts`.
+:::
+
 ## Output
 
 You should see output like this:
