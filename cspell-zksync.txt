@@ -35,6 +35,7 @@ sidechains
 tokenomics
 validator's
 CHAINID
+
 // Names
 Vyper
 stimate
@@ -54,6 +55,9 @@ validiums
 validium
 Validium
 sharded
+pepe
+Arweave
+Streamr
 
 // Used libraries
 numberish
@@ -125,6 +129,7 @@ ewasm
 Evmla
 UUPS
 Uups
+TLDR
 
 // crypto events
 Edcon

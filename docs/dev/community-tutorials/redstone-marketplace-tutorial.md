@@ -79,7 +79,7 @@ function buy(uint256 orderId) external payable {}
 
 ```
 
-The implementation is quite straightforward, so we won't describe it here. You can check the full contract code in the [contracts/Marketplace.sol.](contracts/Marketplace.sol)
+The implementation is quite straightforward, so we won't describe it here. You can check the full contract code in the `contracts/Marketplace.sol`.
 
 #### StableMarketplace.sol
 
@@ -96,7 +96,7 @@ If you take a look into the `blockchain.ts` file code, you'll notice that each c
 
 ### Tests
 
-We've used hardhat test framework to contract tests. All the tests are located in the [test](test/) folder.
+We've used hardhat test framework to contract tests. All the tests are located in the `test` folder.
 
 ## 🔥 Tutorial how to integrate RedStone oracles on zkSync
 
@@ -129,7 +129,7 @@ Now it is time to integrate RedStone Oracles into the marketplace. As you maybe 
 
 #### 1. Adjust smart contract
 
-First, we need to modify contracts as currently, they are not ready to receive transactions with RedStone data regarding price. If you are not familiar with our core model please read [how to adjust your smart contracts](#1-adjust-your-smart-contracts). Take a look at the StableMarketplace contract. It is the marketplace contract with stable price support. It extends the `Marketplace.sol` implementation and only overrides its `_getPriceFromOrder` function. The contract should be extended by MainDemoConsumerBase which is imported from [@redstone-finance/evm-connector](https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/evm-connector). The `_getPriceFromOrder` function should use the `getOracleNumericValueFromTxMsg` function to get price data and calculate the final price based on the order price and the price of ETH. Full implementation can be seen below:
+First, we need to modify contracts as currently, they are not ready to receive transactions with RedStone data regarding price. Take a look at the StableMarketplace contract. It is the marketplace contract with stable price support. It extends the `Marketplace.sol` implementation and only overrides its `_getPriceFromOrder` function. The contract should be extended by MainDemoConsumerBase which is imported from [@redstone-finance/evm-connector](https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/evm-connector). The `_getPriceFromOrder` function should use the `getOracleNumericValueFromTxMsg` function to get price data and calculate the final price based on the order price and the price of ETH. Full implementation can be seen below:
 
 ```js
 // SPDX-License-Identifier: MIT
@@ -159,7 +159,7 @@ contract StableMarketplace is Marketplace, MainDemoConsumerBase {
 
 #### 2. Adjust dApp TypeScript code
 
-The second thing to do is adjust the Typescript code of the dApp. Please take a look at the `blockchain.ts` file. Here you can find all functions required to make the marketplace work. But the function `buy` is not implemented. Here we will call the function from the contracts which require price data. To make it possible we need to wrap the contract instance with the [RedStone framework](https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/evm-connector). If you are not familiar with our core model please read how to [adjust Typescript code](#2-adjust-javascript-code-of-your-dapp). After wrapping the contract we will be able to call the `getPrice` function from the `StableMarketplace` contract which eventually will call overridden `_getPriceFromOrder`. Now we are able to call the `buy` function from the `StableMarketplace` contract with the expected ETH amount to buy the NFT. Full implementation can be seen below:
+The second thing to do is adjust the Typescript code of the dApp. Please take a look at the `blockchain.ts` file. Here you can find all functions required to make the marketplace work. But the function `buy` is not implemented. Here we will call the function from the contracts which require price data. To make it possible we need to wrap the contract instance with the [RedStone framework](https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/evm-connector). After wrapping the contract we will be able to call the `getPrice` function from the `StableMarketplace` contract which eventually will call overridden `_getPriceFromOrder`. Now we are able to call the `buy` function from the `StableMarketplace` contract with the expected ETH amount to buy the NFT. Full implementation can be seen below:
 
 ```js
 import { WrapperBuilder } from "@redstone-finance/evm-connector";
@@ -323,8 +323,8 @@ npm install @redstone-finance/evm-connector
 
 TLDR; You need to do 2 things:
 
-1. [Adjust your smart contracts](#1-adjust-your-smart-contracts)
-2. [Adjust Javascript code of your dApp](#2-adjust-javascript-code-of-your-dapp) (**it is required**, otherwise you will get smart contract errors)
+1. Adjust your smart contracts
+2. Adjust Javascript code of your dApp (**it is required**, otherwise you will get smart contract errors)
 
 💡 Note: Please don't use Remix to test RedStone oracles, as Remix does not support modifying transactions in the way that the evm-connector does.
 
