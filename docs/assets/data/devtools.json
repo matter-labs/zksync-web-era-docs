@@ -210,6 +210,18 @@
       ]
     },
     {
+      "category": "Data Indexers",
+      "tools": [
+        {
+          "name": "Flair",
+          "category": "Indexing",
+          "description": "Real-time and historical custom data indexing for any evm chain",
+          "logo": "flair-logo.jpeg",
+          "url": "https://flair.dev"
+        }
+      ]
+    },
+    {
       "category": "Analytics and APIs",
       "tools": [
         {
