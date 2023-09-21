@@ -167,7 +167,7 @@ check out the [blocks on zkSync Era documentation](../../reference/concepts/bloc
 
 Returns the address of the `Bootloader` contract, which is `0x8001` on zkSync Era.
 
-### `DIFFICULTY`
+### `DIFFICULTY`, `PREVRANDAO`
 
 Returns a constant value of `2500000000000000` on zkSync Era.
 
