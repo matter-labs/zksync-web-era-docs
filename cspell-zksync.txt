@@ -35,6 +35,7 @@ sidechains
 tokenomics
 validator's
 CHAINID
+PREVRANDAO
 
 // Names
 Vyper
