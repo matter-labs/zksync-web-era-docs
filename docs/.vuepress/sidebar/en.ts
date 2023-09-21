@@ -160,6 +160,15 @@ export const enSidebar = sidebar({
       link: "/api/java/getting-started", // optional, which should be a absolute path.
       children: ["/api/java", "/api/java/providers", "/api/java/accounts", "/api/java/accounts-l1-l2"],
     },
+    {
+      text: "Rust SDK", // required
+      link: "/api/rust/getting-started", // optional, which should be a absolute path.
+      children: [
+        "/api/rust",
+        "/api/rust/getting-started",
+        "/api/rust/contract-deployment-and-interaction"
+      ],
+    },
   ],
   //The sidebar for Tools and SDKs
   "/tools": [
