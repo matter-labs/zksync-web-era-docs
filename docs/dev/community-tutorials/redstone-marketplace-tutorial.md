@@ -11,7 +11,7 @@ By the end of this tutorial you will understand how to integrate your dApp built
 
 ## Example dApp - Stable price NFT marketplace
 
-This repo is designed to show how to build a dApp that uses [RedStone oracles](https://redstone.finance/) on [zkSync](https://zksync.io/).
+[This repo](https://github.com/zkSync-Community-Hub/tutorials/tree/main/tutorials/zkSync-RedStone-stable-price-marketplace-tutorial/code) is designed to show how to build a dApp that uses [RedStone oracles](https://redstone.finance/) on [zkSync](https://zksync.io/).
 
 The repo contains an implementation of an NFT marketplace dApp with so-called "stable" price. It means that sellers can create sell orders (offers), specifying the price amount in USD. But buyers are able to pay with native coins, the required amount of which is calculated dynamically at the moment of the order execution. Repo lacks few crucial parts which will demonstrate how to integrate RedStone oracles and deploy dApp on zkSync Era Testnet.
 
