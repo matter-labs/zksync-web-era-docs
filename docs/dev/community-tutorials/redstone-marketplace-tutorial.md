@@ -106,7 +106,7 @@ We've used hardhat test framework to contract tests. All the tests are located i
 
 ```sh
 git clone https://github.com/zkSync-Community-Hub/tutorials
-cd tutorials/tutorials/zkSync-RedStone-stable-price-marketplace-tutorial
+cd tutorials/tutorials/zkSync-RedStone-stable-price-marketplace-tutorial/code
 ```
 
 #### 2. Install dependencies
