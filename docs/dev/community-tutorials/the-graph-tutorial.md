@@ -8,8 +8,8 @@ The Graph is a decentralized protocol for indexing and querying data from blockc
 
 ## Prerequisites
 
-- Node.js (^18.17.1) and NPM
-- Yarn (^1.22.19)
+- Node.js LTS and NPM
+- Yarn LTS
 - An account with ETH on zkSync Era testnet
 
 ## Build time
