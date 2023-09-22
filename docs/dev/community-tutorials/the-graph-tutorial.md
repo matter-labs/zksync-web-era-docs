@@ -43,7 +43,7 @@ The Graph is a decentralized protocol for indexing and querying data from blockc
 - Change directory to the subgraph with `cd zksync-thegraph-tutorial`
 - Build the subgraph with `graph codegen && graph build`
 - Deploy the subgraph with `graph deploy --studio zksync-thegraph-tutorial`
-- Please, make sure that local folder name matches name of the Subrgaph Studio
+- Please, make sure that local folder name matches name of the subgraph studio
 
 ### Step 5 — Query the Subgraph
 
