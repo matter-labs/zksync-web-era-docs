@@ -8,8 +8,8 @@ In this tutorial we'll use the zksync-cli to deploy our first smart contract to 
 
 Here are the system requirements and the versions I used:
 
-- Node.js (v16.17.1) and NPM
-- Yarn (v1.22.19)
+- Node.js LTS and NPM LTS
+- Yarn LTS
 
 Additionally, you'd need an account with ETH on zkSync Era testnet. You can use the [faucet from the official portal](https://goerli.portal.zksync.io/faucet).
 
@@ -24,10 +24,10 @@ npm i -g zksync-cli@latest
 2. Create a sample project
 
 ```sh
-zksync-cli create quickstart  && cd quickstart
+zksync-cli create-project quickstart  && cd quickstart
 ```
 
-This commands clones an existing template project inside a new folder named `quickstart`.
+Choose "Hardhat + Solidity" option. This commands clones an existing template project inside a new folder named `quickstart`.
 
 The template project has the following structure:
 
