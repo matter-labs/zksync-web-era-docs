@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Python SDK Contract | zkSync Era Docs
+---
+
 # Contract interfaces
 
 There is a set of system contract that helps with the interaction with zkSync Era network.<br>

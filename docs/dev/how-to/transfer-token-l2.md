@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Transfer a Token on L2 | zkSync Era Docs
+---
+
 # Transfer a token on L2
 
 ## Prerequisites
@@ -148,6 +155,10 @@ l2transfer();
 ```sh
 yarn ts-node transfer-l2.ts
 ```
+
+:::tip
+Try running the `ts-node transfer-l2.ts` command in case you receive an error with `yarn ts-node transfer-l2.ts`.
+:::
 
 ## Output
 

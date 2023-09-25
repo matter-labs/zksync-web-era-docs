@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Withdrawal Delay | zkSync Era Docs
+---
+
 # Withdrawal delay
 
 In order to prevent a quick drain of the protocol in the case a critical bug is discovered and exploited, we are introducing a block execution delay. Each L2 block committed to L1 will have a time lock before it is executed and finalized. This means that there is enough time to verify the effects of the transactions included in a block before the block becomes final. The zkSync team will be monitoring each block and investigating any anomaly (e.g. rapid outflow, unusually large withdrawals, etc).

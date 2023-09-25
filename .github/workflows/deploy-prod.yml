@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: prod
     steps:
-      - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3
+      - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4
         with:
           fetch-depth: 0
           # Whether to configure the token or SSH key with the local git config
@@ -30,6 +30,10 @@ jobs:
           yarn install
       - name: "Deploy production"
         run: yarn run docs:build
+        env:
+          RUDDERSTACK_WRITE_KEY: "${{ secrets.RUDDERSTACK_WRITE_KEY }}"
+          RUDDERSTACK_DATA_PLANE_URL: "${{ secrets.RUDDERSTACK_DATA_PLANE_URL }}"
+
 
       - name: "Copy 404"
         run: |

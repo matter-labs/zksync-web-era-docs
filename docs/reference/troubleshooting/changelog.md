@@ -1,4 +1,15 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Changelog | zkSync Era Docs
+---
+
 # Changelog
+
+::: warning Upcoming changes
+In the upcoming protocol upgrade scheduled for August-September 2023, there will be modifications to how certain block properties are implemented on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
+:::
 
 ## Hardhat plugins update (June 21st, 2023)
 
@@ -115,7 +126,7 @@ Version `1.3.5` of `zksolc` has been released and the zkSync docker image of the
   - Adds support for Solidity `0.8.18`.
   - Fixes a broken optimization flag that increased the bytecode size of compiled contracts.
   - Fixes a bug that detected ERC20 `transfer` calls as ETH `transfer` and produced a compilation error.
-  - Detection of `transfer` and `send` methods in smart contracts now returns a warning message (similar to `v1.3.1`). The new warning message reminds developers that using these methods to transfer ETH can cause issues and suggest replacing them with [`payable(address).call[value: <X>]`](../../dev/building-on-zksync/best-practices.md#using-call-over-send-or-transfer).
+  - Detection of `transfer` and `send` methods in smart contracts now returns a warning message (similar to `v1.3.1`). The new warning message reminds developers that using these methods to transfer ETH can cause issues and suggest replacing them with [`payable(address).call[value: <X>]`](../../dev/building-on-zksync/best-practices.md#use-call-over-send-or-transfer).
   - `transfer` can be used to transfer other tokens (e.g. ERC20) without any issues, although this might be still highlighted by the compiler.
 - **Local setup docker image:**
   - Improvements in the zkSync node error messages returned on estimate gas requests.

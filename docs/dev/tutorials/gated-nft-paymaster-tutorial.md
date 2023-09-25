@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Gated NFT Paymaster Tutorial | zkSync Era Docs
+---
+
 # Gated NFT paymaster
 
 Discover how to construct a tailored paymaster that enables users to sidestep gas fees when they own a particular NFT. By the end of this tutorial, you'll:
@@ -30,7 +37,7 @@ You'll gain a thorough understanding of how to create, compile, and deploy smart
 
 ### Complete project
 
-Download the complete project [here](https://github.com/matter-labs/gated-nft-tutorial).
+Download the complete project [here](https://github.com/matter-labs/tutorials/tree/main/gated-nft).
 
 ## Build time
 
@@ -45,8 +52,8 @@ Download the complete project [here](https://github.com/matter-labs/gated-nft-tu
 1. Clone the template and `cd` into the folder.
 
 ```bash
-git clone https://github.com/matter-labs/gated-nft-tutorial-starter.git
-cd gated-nft-tutorial-starter
+git clone https://github.com/matter-labs/tutorials
+cd tutorials/gated-nft
 ```
 
 2. Install dependencies:

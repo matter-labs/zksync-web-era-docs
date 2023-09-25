@@ -39,11 +39,11 @@
           "url": "https://era.zksync.io/docs/api/java"
         },
         {
-          "name": "Swift SDK",
+          "name": "Rust SDK",
           "category": "SDK",
-          "description": "Extends web3swift including zksync-specific methods and utilities.",
-          "logo": "swift-logo.svg",
-          "url": "https://era.zksync.io/docs/api/swift"
+          "description": "Extends ethers-rs including zksync-specific methods and utilities.",
+          "logo": "rust-logo.svg",
+          "url": "https://era.zksync.io/docs/api/rust"
         }
       ]
     },
@@ -136,6 +136,12 @@
           "url": "https://docs.blockpi.io/documentations/api-reference/zksync-era"
         },
         {
+          "name": "Chainbase",
+          "category": "RPC ",
+          "logo": "chainbase-logo.png",
+          "url": "https://chainbase.com/chainNetwork/zkSync"
+        },
+        {
           "name": "Chainstack",
           "category": "RPC ",
           "logo": "chainstack-logo.png",
@@ -177,6 +183,12 @@
           "url": "https://www.herodotus.dev/"
         },
         {
+          "name": "LayerZero",
+          "category": "Messaging",
+          "logo": "layerzero-logo.png",
+          "url": "https://layerzero.network/"
+        },
+        {
           "name": "Safe (Protofire)",
           "category": "Custody",
           "logo": "safe-logo.png",
@@ -198,8 +210,26 @@
       ]
     },
     {
+      "category": "Data Indexers",
+      "tools": [
+        {
+          "name": "Flair",
+          "category": "Indexing",
+          "description": "Real-time and historical custom data indexing for any evm chain",
+          "logo": "flair-logo.jpeg",
+          "url": "https://flair.dev"
+        }
+      ]
+    },
+    {
       "category": "Analytics and APIs",
       "tools": [
+        {
+          "name": "Chainbase",
+          "category": "APIs",
+          "logo": "chainbase-logo.png",
+          "url": "https://chainbase.com/chainNetwork/zkSync"
+        },
         {
           "name": "Chainlink",
           "category": "APIs",

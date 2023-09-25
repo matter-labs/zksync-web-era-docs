@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: zkSync Hardhat Plugins | zkSync Era Docs
+---
+
 # zkSync Era toolbox
 
 ## `hardhat-zksync-toolbox`
@@ -11,6 +18,7 @@ List of official plugins:
 - [hardhat-zksync-deploy](./hardhat-zksync-deploy.md)
 - [hardhat-zksync-chai-matchers](./hardhat-zksync-chai-matchers.md)
 - [hardhat-zksync-verify](./hardhat-zksync-verify.md)
+- [hardhat-zksync-verify-vyper](./hardhat-zksync-verify-vyper.md)
 - [hardhat-zksync-upgradable](./hardhat-zksync-upgradable.md)
 
 ::: tip Popular Hardhat plugins

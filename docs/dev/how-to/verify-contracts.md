@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Verify Contracts with Hardhat | zkSync Era Docs
+---
+
 # Verify Contracts with Hardhat
 
 Contract source-code verification ensures that the code running on-chain matches your published code.
@@ -24,16 +31,16 @@ For open-source projects, verifying contracts enhances trust and encourages more
 
 ### 1. Project setup
 
-- Begin by installing [zkSync CLI](../../tools/zksync-cli/README.md) to establish a new project:
+1. Begin by installing [zkSync CLI](../../tools/zksync-cli/README.md) to establish a new project:
 
 ```sh
 yarn add global zksync-cli@latest
 ```
 
-- Once you complete the installation, execute the command below to create a fresh project:
+2. Once you complete the installation, execute the command below to create a fresh project:
 
 ```sh
-zksync-cli create verify-greeter-contract
+zksync-cli create-project verify-greeter-contract
 ```
 
 3. This function creates a fresh zkSync project titled `verify-greeter-contract` containing a `Greeter` contract. Proceed by moving into the project directory:
@@ -126,7 +133,11 @@ yarn hardhat compile
 
 The [zkSync CLI](../../tools/zksync-cli/README.md) provides a `deploy/deploy-greeter.ts` script that we will use to deploy the Greeter contract.
 
-Add your private key to `<WALLET-PRIVATE-KEY>` in the `.env.example` file and remove `.example`.
+To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
+
+```text
+WALLET_PRIVATE_KEY=abcdef12345....
+```
 
 Initiate contract deployment using this command:
 
@@ -288,4 +299,4 @@ Once this script runs, it prints the verification ID. If the verification reques
 
 ### 9. UI block explorer alternative
 
-Contract verification in zkSync Era ensures the integrity and trustworthiness of your contracts. The [zkSync Era Block Explorer](https://explorer.zksync.io/blocks/) is a manual UI process for doing the same, ideal for occasional use, while the `hardhat-zksync-verify` plugin facilitates an automated, flexible approach for developers.
+Contract verification in zkSync Era ensures the integrity and trustworthiness of your contracts. The [Smart Contract Verification in zkSync Era Block Explorer](https://explorer.zksync.io/contracts/verify) is a manual UI process for doing the same, ideal for occasional use, while the `hardhat-zksync-verify` plugin facilitates an automated, flexible approach for developers.

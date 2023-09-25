@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Python SDK Getting Started | zkSync Era Docs
+---
+
 # Getting started
 
 In this guide we will demonstrate how to:

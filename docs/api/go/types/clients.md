@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Go SDK Clients Package | zkSync Era Docs
+---
+
 # `clients` package
 
 ### `BlockRange`

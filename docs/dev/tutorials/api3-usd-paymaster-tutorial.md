@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: USDC Paymaster tutorial | zkSync Era Docs
+---
+
 # USDC paymaster tutorial with API3 dAPIs
 
 This tutorial shows you how to build a custom paymaster that allows users to pay fees with a `mockUSDC` ERC20 token. You will:
@@ -34,7 +41,7 @@ For this paymaster tutorial, we use dAPIs to get the price of [ETH/USD](https://
 
 ## Complete project
 
-The tutorial code is available [here](https://github.com/vanshwassan/zk-paymaster-dapi-poc).
+The tutorial code is available [here](https://github.com/matter-labs/tutorials/tree/main/usdc-paymaster-w-api3-data-feeds).
 
 ::: info Project available in Atlas IDE
 This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/atlas-labs-inc/zksync-usdc-paymaster&open=/scripts/main.ts&chainId=280).
@@ -51,7 +58,7 @@ yarn add global zksync-cli@latest
 2. Run the following command to create a new project:
 
 ```sh
-zksync-cli create paymaster-dapi
+zksync-cli create-project paymaster-dapi
 ```
 
 This creates a new zkSync Era project called `paymaster-dapi` with a basic `Greeter` contract.
@@ -558,10 +565,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 ### 2. Update env variables
 
-Update the existing `.env-example` file to your needs by renaming it to `.env` and insert your private key:
+To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
 
-```sh
-echo 'PRIVATE_KEY=' > .env
+```text
+WALLET_PRIVATE_KEY=abcdef12345....
 ```
 
 ### 3. Compile and deploy

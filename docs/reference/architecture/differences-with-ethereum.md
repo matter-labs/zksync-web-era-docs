@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Differences with Ethereum | zkSync Era Docs
+---
+
 # Differences from Ethereum
 
 zkSync Era handles nearly all smart contracts based on the Ethereum Virtual Machine (EVM) and upholds high security standards,
@@ -75,6 +82,8 @@ export function createAddress(sender: Address, senderNonce: BigNumberish) {
 }
 ```
 
+Since the bytecode differs from Ethereum as zkSync uses a modified version of the EVM, the address derived from the bytecode hash will also differ. This means that the same bytecode deployed on Ethereum and zkSync will have different addresses and the Ethereum address will still be available and unused on zkSync. If and when the zkEVM reaches parity with the EVM, the address derivation will be updated to match Ethereum and the same bytecode will have the same address on both chains, deployed bytecodes to different addresses on zkSync could then be deployed to the same the Ethereum-matching addresses on zkSync.
+
 ### `CALL`, `STATICCALL`, `DELEGATECALL`
 
 For calls, you specify a memory slice to write the return data to, e.g. `out` and `outsize` arguments for
@@ -117,10 +126,10 @@ If the `offset` for `calldataload(offset)` is greater than `2^32-33` then execut
 Internally on zkEVM, `calldatacopy(to, offset, len)` there is just a loop with the `calldataload` and `mstore` on each iteration.
 That means that the code will panic if `2^32-32 + offset % 32 < offset + len`.
 
-### `RETURN`
+### `RETURN`, `STOP`
 
-Constructors return the array of immutable values. If you use `RETURN` in an assembly block in the constructor on zkSync Era,
-it will return the array of immutable values initialized so far.
+Constructors return the array of immutable values. If you use `RETURN` or `STOP` in an assembly block in the constructor on zkSync Era,
+it will leave the immutable variables uninitialized.
 
 ```solidity
 contract Example {
@@ -130,9 +139,14 @@ contract Example {
         x = 45;
 
         assembly {
-            // The statement below is overridden by the zkEVM compiler to return
-            // the array of immutables instead of 32 bytes specified by the user.
-            return(0, 32)
+            // The statements below are overridden by the zkEVM compiler to return
+            // the array of immutables.
+
+            // The statement below leaves the variable x uninitialized.
+            // return(0, 32)
+
+            // The statement below leaves the variable x uninitialized.
+            // stop()
         }
     }
 
@@ -147,6 +161,10 @@ contract Example {
 
 ### `TIMESTAMP`, `NUMBER`
 
+::: warning Upcoming changes
+In the upcoming protocol upgrade scheduled for August-September 2023, there will be modifications to how certain block properties are implemented on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
+:::
+
 For more information about blocks on zkSync Era, including the differences between `block.timestamp` and `block.number`,
 check out the [blocks on zkSync Era documentation](../../reference/concepts/blocks.md#blocks-in-zksync-era).
 
@@ -154,7 +172,7 @@ check out the [blocks on zkSync Era documentation](../../reference/concepts/bloc
 
 Returns the address of the `Bootloader` contract, which is `0x8001` on zkSync Era.
 
-### `DIFFICULTY`
+### `DIFFICULTY`, `PREVRANDAO`
 
 Returns a constant value of `2500000000000000` on zkSync Era.
 

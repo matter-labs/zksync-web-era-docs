@@ -20,6 +20,11 @@ contributors: false
       </div>
    </div>
 </div>
+
+::: warning Protocol upgrade
+In the upcoming protocol upgrade scheduled for August-September 2023, there will be modifications to how certain block properties are implemented on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
+:::
+
 <section>
 
   <div class="card-container">

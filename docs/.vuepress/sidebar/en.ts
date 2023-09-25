@@ -30,14 +30,21 @@ export const enSidebar = sidebar({
     },
     {
       text: "Tutorials",
-      link: "/dev/tutorials/README.md",
+      link: "/dev/tutorials.md",
       children: [
-        "/dev/tutorials/cross-chain-tutorial.md",
-        "/dev/tutorials/custom-aa-tutorial.md",
-        "/dev/tutorials/aa-daily-spend-limit.md",
-        "/dev/tutorials/custom-paymaster-tutorial.md",
-        "/dev/tutorials/api3-usd-paymaster-tutorial.md",
-        "/dev/tutorials/gated-nft-paymaster-tutorial.md",
+        { text: "zkSync Team", link: "/dev/tutorials/README.md", children: [
+          "/dev/tutorials/cross-chain-tutorial.md",
+          "/dev/tutorials/custom-aa-tutorial.md",
+          "/dev/tutorials/aa-daily-spend-limit.md",
+          "/dev/tutorials/custom-paymaster-tutorial.md",
+          "/dev/tutorials/api3-usd-paymaster-tutorial.md",
+          "/dev/tutorials/gated-nft-paymaster-tutorial.md",
+        ]},
+        { text: "Community", link: "/dev/community-tutorials/README.md", children: [
+          "/dev/community-tutorials/redstone-marketplace-tutorial.md",
+          "/dev/community-tutorials/the-graph-tutorial.md",
+          "/dev/community-tutorials/zksync-cli-quickstart.md",
+        ] },
       ],
     },
   ],
@@ -144,12 +151,7 @@ export const enSidebar = sidebar({
           text: "Types",
           link: "/api/go/types/intro",
           collapsible: true,
-          children: [
-            "/api/go/types/types",
-            "/api/go/types/eip712",
-            "/api/go/types/clients",
-            "/api/go/types/accounts",
-          ]
+          children: ["/api/go/types/types", "/api/go/types/eip712", "/api/go/types/clients", "/api/go/types/accounts"],
         },
       ],
     },
@@ -162,6 +164,15 @@ export const enSidebar = sidebar({
       text: "Swift SDK",
       link: "/api/swift",
       children: ["/api/swift/getting-started", "/api/swift/accounts", "/api/swift/contracts", "/api/swift/interface", "/api/swift/paymaster-utilities"],
+    },
+    {
+      text: "Rust SDK", // required
+      link: "/api/rust/getting-started", // optional, which should be a absolute path.
+      children: [
+        "/api/rust",
+        "/api/rust/getting-started",
+        "/api/rust/contract-deployment-and-interaction"
+      ],
     },
   ],
   //The sidebar for Tools and SDKs
@@ -193,6 +204,7 @@ export const enSidebar = sidebar({
             "/tools/hardhat/hardhat-zksync-deploy",
             "/tools/hardhat/hardhat-zksync-chai-matchers",
             "/tools/hardhat/hardhat-zksync-verify",
+            "/tools/hardhat/hardhat-zksync-verify-vyper",
             "/tools/hardhat/other-plugins",
           ],
         },

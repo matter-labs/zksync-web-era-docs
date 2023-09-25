@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Web3 API & SDKs | zkSync Era Docs
+---
+
 # Contents
 
 ## JSON-RPC API
@@ -11,3 +18,4 @@
 - [Go SDK](./go/getting-started.md)
 - [Java SDK](./java/getting-started.md)
 - [Swift SDK](./swift/getting-started.md)
+- [Rust SDK](./rust/getting-started.md)

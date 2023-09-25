@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: zkSync Hardhat Plugins | zkSync Era Docs
+---
+
 # Hardhat plugins for zkSync Era
 
 [Hardhat](https://hardhat.org) is an Ethereum development environment designed for smart contract development in Solidity.
