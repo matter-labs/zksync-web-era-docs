@@ -129,7 +129,7 @@ Now it is time to integrate RedStone Oracles into the marketplace. As you maybe 
 
 #### 1. Adjust smart contract
 
-First, we need to modify contracts as currently, they are not ready to receive transactions with RedStone data regarding price. Take a look at the StableMarketplace contract. It is the marketplace contract with stable price support. It extends the `Marketplace.sol` implementation and only overrides its `_getPriceFromOrder` function. The contract should be extended by MainDemoConsumerBase which is imported from [@redstone-finance/evm-connector](https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/evm-connector). The `_getPriceFromOrder` function should use the `getOracleNumericValueFromTxMsg` function to get price data and calculate the final price based on the order price and the price of ETH. Full implementation can be seen below:
+First, we need to modify contracts as currently, they are not ready to receive transactions with RedStone data regarding price. Take a look at the `StableMarketplace.sol` contract. It is the marketplace contract with stable price support. It extends the `Marketplace.sol` implementation and only overrides its `_getPriceFromOrder` function. The contract should be extended by MainDemoConsumerBase which is imported from [@redstone-finance/evm-connector](https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/evm-connector). The `_getPriceFromOrder` function should use the `getOracleNumericValueFromTxMsg` function to get price data and calculate the final price based on the order price and the price of ETH. Full implementation can be seen below:
 
 ```js
 // SPDX-License-Identifier: MIT
@@ -212,13 +212,13 @@ yarn compile
 
 #### 3. Deploy contracts on local blockchain
 
-You need to populate .env file with private key for deployment e.g.
+Rename the `.env.example` file to `.env` and then populate .env file with private key for deployment e.g.
 
 ```
 WALLET_PRIVATE_KEY=0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
 ```
 
-and then run
+and after that run
 
 ```sh
 yarn deploy:local
@@ -236,7 +236,7 @@ The app should be running on <http://localhost:3000>
 
 ##### 3.1 Add local hardhat network to metamask
 
-Select `Networks dropdown` -> `Add network` and enter the following details:
+Select `Networks dropdown` -> `Add network` -> `Add a network manually` and enter the following details:
 **Network Name**|**hardhat-local**
 :-----:|:-----:
 New RPC URL|<http://localhost:3050>
@@ -247,8 +247,14 @@ Then hit the `Save` button.
 
 ##### 3.2 Add local wallets to metamask
 
+Click on account dropdown in your MetaMask -> `Import account` and enter the following private keys to `Enter your private key string here:` field:
 - `User 1`: `0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3`
 - `User 2`: `0xd293c684d884d56f8d6abd64fc76757d3664904e309a0645baf8522ab6366d9e`
+
+and after that click `Import` button.
+
+<img width="341" alt="image" src="https://github.com/matter-labs/zksync-web-era-docs/assets/112873874/22c7d2d0-34f9-4017-9cc1-51bc0788e37e">
+
 
 #### 4. Explore the app in browser
 
@@ -398,7 +404,7 @@ wrappedContract.executeYourMethod();
 
 If you'd like to use the wrapper in a test context, we recommend using a mock wrapper so that you can easily override the oracles values to test different scenarios. To use the mock wrapper just use the `usingMockData(signedDataPackages)` function instead of the `usingDataService` function. You can see examples of the mock wrapper usage [here.](https://github.com/redstone-finance/redstone-oracles-monorepo/tree/main/packages/evm-connector/test/mock-wrapper)
 
-You can find more information in the [RedStone documentation](https://docs.redstone.finance/docs/smart-contract-devs/getting-started) to learn how to integrate your zkSync dApp with RedStone oracles.
+You can find more information in the [RedStone documentation](https://docs.redstone.finance/docs/category/-get-started) to learn how to integrate your zkSync dApp with RedStone oracles.
 
 ## 🌎 Useful links
 
