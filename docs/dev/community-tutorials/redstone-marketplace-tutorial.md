@@ -212,7 +212,7 @@ yarn compile
 
 #### 3. Deploy contracts on local blockchain
 
-Rename the `.env.example` file to `.env` and then populate .env file with private key for deployment e.g.
+Rename the `.env.example` file to `.env` and then populate the `.env` file with private key for deployment e.g.
 
 ```
 WALLET_PRIVATE_KEY=0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
@@ -252,10 +252,7 @@ Click on account dropdown in your MetaMask -> `Import account` and enter the fol
 - `User 1`: `0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3`
 - `User 2`: `0xd293c684d884d56f8d6abd64fc76757d3664904e309a0645baf8522ab6366d9e`
 
-and after that click `Import` button.
-
-<img width="341" alt="image" src="https://github.com/matter-labs/zksync-web-era-docs/assets/112873874/22c7d2d0-34f9-4017-9cc1-51bc0788e37e">
-
+Then hit the `Import` button.
 
 #### 4. Explore the app in browser
 
