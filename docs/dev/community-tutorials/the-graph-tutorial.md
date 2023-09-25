@@ -8,8 +8,8 @@ The Graph is a decentralized protocol for indexing and querying data from blockc
 
 ## Prerequisites
 
-- Node.js (^18.17.1) and NPM
-- Yarn (^1.22.19)
+- Node.js LTS and NPM
+- Yarn LTS
 - An account with ETH on zkSync Era testnet
 
 ## Build time
@@ -22,12 +22,13 @@ The Graph is a decentralized protocol for indexing and querying data from blockc
 ### Step 2 — Create a new Subgraph
 
 - Click on the button to create a new subgraph
-- Enter the name of the subgraph
+- Enter the name of the subgraph (for example: `zksync-thegraph-tutorial`)
 - Select the network you want to deploy the subgraph on, in this case: `zkSync Era (Subgraph Only)`
 
 ### Step 3 — Install the Graph CLI
 
 - Install the Graph CLI with `npm install -g @graphprotocol/graph-cli`
+- Create `pepe_abi.json` file and use code from [GH Tutorial file](https://github.com/zkSync-Community-Hub/tutorials/blob/main/tutorials/the-graph/code/pepe_abi.json)
 - Initialize the Graph project with `graph init --studio zksync-thegraph-tutorial`
   - Select `Ethereum` as the protocol
   - Select `zksync-era` as the Ethereum network
@@ -42,6 +43,7 @@ The Graph is a decentralized protocol for indexing and querying data from blockc
 - Change directory to the subgraph with `cd zksync-thegraph-tutorial`
 - Build the subgraph with `graph codegen && graph build`
 - Deploy the subgraph with `graph deploy --studio zksync-thegraph-tutorial`
+- Please, make sure that local folder name matches name of the subgraph studio
 
 ### Step 5 — Query the Subgraph
 
