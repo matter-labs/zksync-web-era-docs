@@ -22,7 +22,7 @@ The Graph is a decentralized protocol for indexing and querying data from blockc
 ### Step 2 — Create a new Subgraph
 
 - Click on the button to create a new subgraph
-- Enter the name of the subgraph
+- Enter the name of the subgraph (for example: `zksync-thegraph-tutorial`)
 - Select the network you want to deploy the subgraph on, in this case: `zkSync Era (Subgraph Only)`
 
 ### Step 3 — Install the Graph CLI
