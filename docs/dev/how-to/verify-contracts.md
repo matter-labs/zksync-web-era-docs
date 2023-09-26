@@ -86,7 +86,7 @@ const zkSyncTestnet =
         zksync: true,
       }
     : {
-        url: "https://zksync2-testnet.zksync.dev",
+        url: "https://testnet.era.zksync.dev",
         ethNetwork: "goerli",
         zksync: true,
         verifyURL: "https://zksync2-testnet-explorer.zksync.dev/contract_verification", // Verification endpoint
