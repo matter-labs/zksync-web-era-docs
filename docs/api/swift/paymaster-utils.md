@@ -1,6 +1,13 @@
-# Paymaster Utilities
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Swift SDK Paymaster Utilities | zkSync Era Docs
+---
 
-The [paymaster utilities library](https://github.com/zksync-sdk/zksync2-swift/blob/main/Sources/ZkSync2/Utils/Paymaster.swift) contains essential utilities for using paymasters on zkSync Era.
+# Paymaster utilities
+
+The [paymaster utilities library](https://github.com/zksync-sdk/zksync2-swift/blob/main/utils/paymaster.swift) contains essential utilities for using paymasters on zkSync Era.
 
 ## Contract interfaces
 

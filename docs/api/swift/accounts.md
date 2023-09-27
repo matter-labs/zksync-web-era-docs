@@ -1,28 +1,314 @@
-# Accounts
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Swift SDK Accounts | zkSync Era Docs
+---
 
-## `PrivateKeyEthSigner`
+# Accounts: Overview
 
-A `PrivateKeyEthSigner` provides private key management, transaction, and message signing.
+The `accounts` package provides abstractions that wrap operations that interact with an account. An account typically contains a private
+key, allowing it to sign various types of payloads. There are the following interfaces that provide account operations for different
+purposes:
+
+- `Signer` provides support for signing EIP-712 transactions as well as other types of transactions
+- `AdapterL1` is associated with an account and provides common operations on the L1 network for the associated account.
+- `AdapterL2` is associated with an account and provides common operations on the L2 network for the associated account.
+- `Deployer` is associated with an account and provides deployment of smart contracts and smart accounts on the L2 network for the
+  associated account.
+- `Adapter` consists of `AdapterL1`, `AdapterL2`, and `Deployer` interfaces.
+
+There are the following objects that provide account operations:
+
+- `BaseSigner` implements the `Signer` interface.
+- `WalletL1` implements the `AdapterL1` interface.
+- `WalletL2` implements the `AdapterL2` interface.
+- `BaseDeployer` implements the `Deployer` interface.
+- `Wallet` implements the `Adapter` interface.
+
+In most cases, `Wallet` should be used because it provides all the necessary operations. Other objects and interfaces are separated to make
+the SDK more flexible and extensible.
+
+## `BaseSigner`
+
+### `Init`
+
+Creates a new instance of `BaseSigner` based on the credentials.
 
 ```swift
-let credentials = Credentials(<WALLET_PRIVATE_KEY>)
-let chainId = try! zkSync.web3.eth.getChainIdPromise().wait()
-let signer = PrivateKeyEthSigner(credentials, chainId: chainId)
-``` 
+BaseSigner(credentials, chainId: chainId)
+```
 
-## `ZkSyncWallet`
+### `Address`
 
-A `ZkSyncWallet` is a wrapper around `EthSigner` which provides actions on the L2 network.
-Based on the action, the `ZkSyncWallet` creates an appropriate transaction, signs the transaction using the `EthSigner`, and then broadcasts the transaction to the network.
+Returns the address associated with the signer.
+
+```swift
+signer.address: String
+```
+
+### `Domain`
+
+Returns the EIP-712 domain used for signing.
+
+```swift
+signer.domain: EIP712Domain
+```
+
+### `PrivateKey`
+
+Returns the private key associated with the signer.
+
+```swift
+signer.credentials.privateKey: Data
+```
+
+Signs the given hash using the signer's private key and returns the signature. The hash should be the 32-byte hash of the data to be signed.
+
+### `SignHash`
+
+```swift
+signer.signMessage(message)
+```
+
+### `SignTypeData`
+
+Signs the given EIP-712 typed data using the signer's private key and returns the signature. The domain parameter is the EIP-712 domain
+separator, and the data parameter is the EIP-712 typed data.
+
+```swift
+signer.signTypedData(domain, typedData: typeddata)
+```
+
+## `WalletL1`
+
+### `Init`
+
+Creates an instance of WalletL1 associated with the account provided by the signer.
+
+```swift
+WalletL1(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
+```
+
+#### Example
 
 ```swift
 let credentials = Credentials(<WALLET_PRIVATE_KEY>)
 let chainId = try! zkSync.web3.eth.getChainIdPromise().wait()
 let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://testnet.era.zksync.dev")!)
 let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_goerli")!)
-let signer = PrivateKeyEthSigner(credentials, chainId: chainId)
-let wallet = ZkSyncWallet(zkSync, ethereum: ethereum, ethSigner: signer, feeToken: Token.ETH)
+let signer = BaseSigner(credentials, chainId: chainId)
+let wallet = WalletL1(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
 ```
 
-Complete examples are available on the [getting started](./getting-started.md) page.
+### `MainContract`
 
+Returns the zkSync L1 smart contract.
+
+```swift
+func mainContract() async throws -> String
+```
+
+#### Example
+
+```swift
+try await self.zkSync.mainContract()
+```
+
+### `L1BridgeContracts`
+
+Returns L1 bridge contracts.
+
+```swift
+func L1BridgeContracts() async throws -> BridgeAddresses
+```
+
+#### Example
+
+```swift
+try await wallet.L1BridgeContracts()
+```
+
+### `BalanceL1`
+
+Returns the balance of the specified token on L1 that can be either ETH or any ERC20 token.
+
+#### Inputs
+
+| Parameter | Type                                                | Description    |
+| --------- | --------------------------------------------------- | -------------- |
+| `token`   | `Token`                                             | Token.         |
+
+```swift
+func balanceL1(token: Token) async -> BigUInt
+```
+
+#### Example
+
+```swift
+try await wallet.BalanceL1(Token.ETH)
+```
+
+### `AllowanceL1`
+
+Returns the amount of approved tokens for a specific L1 bridge.
+
+#### Inputs
+
+| Parameter       | Type                                                | Description     |
+| --------------- | --------------------------------------------------- | --------------- |
+| `token`         | `Token`                                             | Token.          |
+| `bridgeAddress` | `EthereumAddress                                    | Bridge address. |
+
+```swift
+func allowanceL1(token: Token, bridgeAddress: EthereumAddress) async -> BigUInt
+```
+
+### `L2TokenAddress`
+
+Returns the corresponding address on the L2 network for the token on the L1 network.
+
+#### Inputs
+
+| Parameter | Type              | Description       |
+| --------- | ----------------- | ----------------- |
+| `token`   | `Token`           | L1 token.         |
+
+```swift
+try await L2TokenAddress(token: Token) async throws -> EthereumAddress
+```
+
+### `BaseCost`
+
+Returns base cost for L2 transaction.
+
+#### Inputs
+
+| Parameter           | Type                                                | Description                                                                             |
+| ------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `gasLimit`          | `BigUInt`                                           | The gasLimit for the the L2 contract call.                                              |
+| `gasPerPubdataByte` | `BigUInt`                                           | The L2 gas price for each published L1 calldata byte.                                   |
+| `gasPrice`          | `BigUInt` (optional)                                | The L1 gas price of the L1 transaction that will send the request for an execute call. |
+
+```swift
+func baseCost(_ gasLimit: BigUInt, gasPerPubdataByte: BigUInt, gasPrice: BigUInt?) async throws -> [String: Any]
+```
+
+### `Deposit`
+
+Transfers the specified token from the associated account on the L1 network to the target account on the L2 network. The token can be either
+ETH or any ERC20 token. For ERC20 tokens, enough approved tokens must be associated with the specified L1 bridge (default one or the one
+defined in `BridgeAddress`). In this case, `ApproveERC20` can be enabled to perform token approval. If there are already enough approved
+tokens for the L1 bridge, token approval will be skipped. To check the amount of approved tokens for a specific bridge, use the
+[`AllowanceL1`](#allowancel1) method.
+
+#### Inputs
+
+| Parameter | Type                 | Description            |
+| --------- | ------------------------------------------------------------ | ------------------------------- |
+| `to`      | `String`             | To address.            |
+| `amount`  | `BigUInt`            | Amount to deposit.     |
+| `token`   | `Token` (optional)   | Token.                 |
+| `nonce`   | `BigUInt` (optional) | Nonce.                 |
+
+```swift
+func deposit(_ to: String, amount: BigUInt, token: Token?, nonce: BigUInt?) async throws -> TransactionSendingResult
+```
+
+#### Example
+
+```swift
+let amount = BigUInt(1_000_000_000_000)
+
+_ = try! await walletL1.deposit(
+    signer.address,
+    amount: amount,
+    token: Token.ETH
+)
+```
+
+### `ClaimFailedDeposit`
+
+Withdraws funds from the initiated deposit, which failed when finalizing on L2. If the deposit L2 transaction has failed, it sends an L1
+transaction calling ClaimFailedDeposit method of the L1 bridge, which results in returning L1 tokens back to the depositor, otherwise throws
+the error.
+
+#### Inputs
+
+| Parameter     | Type                                                         | Description                                    |
+| ------------- | ------------------------------------------------------------ | ---------------------------------------------- |
+| `depositHash` | `common.Hash`                                                | The L2 transaction hash of the failed deposit. |
+
+```swift
+func claimFailedDeposit(_ l1BridgeAddress: String, depositSender: String, l1Token: String, l2TxHash: Data, l2BlockNumber: BigUInt, l2MessageIndex: BigUInt, l2TxNumberInBlock: UInt, proof: [Data]) async throws -> TransactionSendingResult
+```
+
+### `RequestExecute`
+
+Request execution of L2 transaction from L1.
+
+#### Inputs
+
+| Parameter         | Type                 | Description           |
+| --------- | ------------------------------------------------------------ | ------------------------------- |
+| `contractAddress` | `String`             | Transaction options.  |
+| `l2Value`         | `BigUInt`            | L2 value.             |
+| `calldata`        | `Token` (optional)   | Calldata.             |
+| `gasLimit`        | `BigUInt` (optional) | Gas limit.            |
+| `factoryDeps`     | `BigUInt` (optional) | Factory deps.         |
+| `operatorTips`    | `BigUInt` (optional) | Operator tips.        |
+| `gasPrice`        | `BigUInt` (optional) | Gas price.            |
+| `refundRecipient` | `BigUInt` (optional) | Refund recipient.     |
+
+```swift
+func requestExecute(_ contractAddress: String, l2Value: BigUInt, calldata: Data, gasLimit: BigUInt, factoryDeps: [Data]?, operatorTips: BigUInt?, gasPrice: BigUInt?, refundRecipient: String) async throws -> TransactionSendingResult
+```
+
+## `WalletL2`
+
+### `Init`
+
+Creates an instance of WalletL2 associated with the account provided by the signer.
+
+```swift
+WalletL2(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
+```
+
+#### Example
+
+```swift
+let credentials = Credentials(<WALLET_PRIVATE_KEY>)
+let chainId = try! zkSync.web3.eth.getChainIdPromise().wait()
+let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://testnet.era.zksync.dev")!)
+let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_goerli")!)
+let signer = BaseSigner(credentials, chainId: chainId)
+let wallet = WalletL2(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
+```
+
+### `Address`
+
+Returns the address of the associated account.
+
+```swift
+let address: EthereumAddress
+```
+
+#### Example
+
+```swift
+wallet.address
+```
+
+### `Signer`
+
+Returns the signer of the associated account.
+
+```swift
+let signer: ETHSigner
+```
+
+#### Example
+
+```swift
+wallet.signer
+```
