@@ -19,53 +19,43 @@ The In-memory node uses an in-memory database for storing state information and 
 
 You can visit the `era-test-node` repository [here](https://github.com/matter-labs/era-test-node) to learn more.
 
-## Prerequisites
-
-Before you get started, there are a few prerequisites to consider. Ensure that your development environment meets the following requirements:
-
-- **Rust:** Since `era-test-node` is written in Rust, you need to have Rust installed on your machine. You can download Rust from [here](https://www.rust-lang.org/tools/install).
-- **Other Dependencies:** This crate relies on `rocksDB` for its operation. If you encounter any compile errors due to `rocksDB`, you might also need to install some dependencies with the following command: `apt-get install -y cmake pkg-config libssl-dev clang`.
-
-After checking all these prerequisites, you should be ready to use the `era-test-node`. Please keep in mind that `era-test-node` is still in its **alpha** stage, so some features might not be fully supported yet.
-
 ## Installing and setting up `era-test-node`
 
-Begin by installing `era-test-node` using the command:
+1. Download `era-test-node` from latest [Release](https://github.com/matter-labs/era-test-node/releases/latest)
 
-```bash
-cargo install --git https://github.com/matter-labs/era-test-node.git --locked
-```
+2. Extract the binary and mark as executable:
 
-Rust should install it in the `~/.cargo/bin` directory.
+   ```bash
+   tar xz -f /path/to/downloaded/binary/era_test_node.tar.gz -C /usr/local/bin/
+   chmod +x /usr/local/bin/era_test_node
+   ```
 
-To start the node, execute:
+3. Start the node:
 
-```bash
-era_test_node run
-```
+   ```bash
+   era_test_node run
+   ```
 
 The expected output will be as follows:
 
-```bash
-Starting network with chain id: L2ChainId(260)
+```log
+12:34:56 [INFO] Starting network with chain id: L2ChainId(260)
+12:34:56 [INFO] Rich Accounts
+12:34:56 [INFO] =============
+12:34:56 [INFO] Account #0: 0x36615Cf349d7F6344891B1e7CA7C72883F5dc049 (1_000_000_000_000 ETH)
+12:34:56 [INFO] Private Key: 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
+12:34:56 [INFO]
+12:34:56 [INFO] Account #1: 0xa61464658AfeAf65CccaaFD3a512b69A83B77618 (1_000_000_000_000 ETH)
+12:34:56 [INFO] Private Key: 0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3
 
-Rich Accounts
-=============
-Account #0: 0x36615Cf349d7F6344891B1e7CA7C72883F5dc049 (10000 ETH)
-Private Key: 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
+...
 
-Account #1: 0xa61464658AfeAf65CccaaFD3a512b69A83B77618 (10000 ETH)
-Private Key: 0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3
-
-Account #2: 0x0D43eB5B8a47bA8900d84AA36656c92024e9772e (10000 ETH)
-Private Key: 0xd293c684d884d56f8d6abd64fc76757d3664904e309a0645baf8522ab6366d9e
-
-Account #3: 0xA13c10C0D5bd6f79041B9835c63f91de35A15883 (10000 ETH)
-Private Key: 0x850683b40d4a740aa6e745f889a6fdc8327be76e122f5aba645a5b02d0248db8
-
-========================================
-  Node is ready at 127.0.0.1:8011
-========================================
+12:34:56 [INFO] Account #9: 0xE90E12261CCb0F3F7976Ae611A29e84a6A85f424 (1_000_000_000_000 ETH)
+12:34:56 [INFO] Private Key: 0x3eb15da85647edd9a1159a4a13b9e7c56877c4eb33f614546d4db06a51868b1c
+12:34:56 [INFO]
+12:34:56 [INFO] ========================================
+12:34:56 [INFO]   Node is ready at 127.0.0.1:8011
+12:34:56 [INFO] ========================================
 ```
 
 :::warning
@@ -87,48 +77,45 @@ Please note that the existing implementation does not facilitate communication w
 
 ## Forking networks
 
-To fork the mainnet, use the following command:
+To fork the testnet, use the following command:
 
 ```bash
-# era_test_node fork <NETWORK>
-era_test_node fork mainnet
+era_test_node fork testnet
 ```
 
 :::tip
-You can also fork testnet with `era_test_node fork testnet`
+You can also fork testnet with `era_test_node fork mainnet`
 :::
 
 The expected output will be as follows:
 
-```bash
-Creating fork from "https://testnet.era.zksync.dev:443" L1 block: L1BatchNumber(119993) L2 block: 9602073 with timestamp 1689261421 and L1 gas price 89159417930
-Starting network with chain id: L2ChainId(260)
+```log
+12:34:56 [INFO] Creating fork from "https://testnet.era.zksync.dev:443" L1 block: L1BatchNumber(128846) L2 block: 12088718 with timestamp 1695822231, L1 gas price 2500000014 and protocol version: Some(Version15)
+12:34:56 [INFO] Starting network with chain id: L2ChainId(260)
+12:34:56 [INFO] Rich Accounts
+12:34:56 [INFO] =============
+12:34:56 [INFO] Account #0: 0x36615Cf349d7F6344891B1e7CA7C72883F5dc049 (1_000_000_000_000 ETH)
+12:34:56 [INFO] Private Key: 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
+12:34:56 [INFO]
+12:34:56 [INFO] Account #1: 0xa61464658AfeAf65CccaaFD3a512b69A83B77618 (1_000_000_000_000 ETH)
+12:34:56 [INFO] Private Key: 0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3
 
-Rich Accounts
-=============
-Account #0: 0x36615Cf349d7F6344891B1e7CA7C72883F5dc049 (10000 ETH)
-Private Key: 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
+...
 
-Account #1: 0xa61464658AfeAf65CccaaFD3a512b69A83B77618 (10000 ETH)
-Private Key: 0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3
-
-Account #2: 0x0D43eB5B8a47bA8900d84AA36656c92024e9772e (10000 ETH)
-Private Key: 0xd293c684d884d56f8d6abd64fc76757d3664904e309a0645baf8522ab6366d9e
-
-Account #3: 0xA13c10C0D5bd6f79041B9835c63f91de35A15883 (10000 ETH)
-Private Key: 0x850683b40d4a740aa6e745f889a6fdc8327be76e122f5aba645a5b02d0248db8
-
-========================================
-  Node is ready at 127.0.0.1:8011
-========================================
+12:34:56 [INFO] Account #9: 0xE90E12261CCb0F3F7976Ae611A29e84a6A85f424 (1_000_000_000_000 ETH)
+12:34:56 [INFO] Private Key: 0x3eb15da85647edd9a1159a4a13b9e7c56877c4eb33f614546d4db06a51868b1c
+12:34:56 [INFO]
+12:34:56 [INFO] ========================================
+12:34:56 [INFO]   Node is ready at 127.0.0.1:8011
+12:34:56 [INFO] ========================================
 ```
 
-This command starts the node, forked at the current head of the mainnet.
+This command starts the node, forked at the current head of the testnet.
 
 You also have the option to specify a custom http endpoint and a custom forking height, like so:
 
 ```bash
-# Usage: era_test_node fork --fork-at <FORK_AT> <NETWORK
+# Usage: era_test_node fork --fork-at <FORK_AT> <NETWORK>
 era_test_node fork --fork-at 7000000 mainnet http://172.17.0.3:3060
 ```
 
@@ -317,6 +304,12 @@ In-Memory node includes pre-configured "rich" accounts for testing:
 | 0xa61464658AfeAf65CccaaFD3a512b69A83B77618 | 0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3 |
 | 0x0D43eB5B8a47bA8900d84AA36656c92024e9772e | 0xd293c684d884d56f8d6abd64fc76757d3664904e309a0645baf8522ab6366d9e |
 | 0xA13c10C0D5bd6f79041B9835c63f91de35A15883 | 0x850683b40d4a740aa6e745f889a6fdc8327be76e122f5aba645a5b02d0248db8 |
+| 0x8002cD98Cfb563492A6fB3E7C8243b7B9Ad4cc92 | 0xf12e28c0eb1ef4ff90478f6805b68d63737b7f33abfa091601140805da450d93 |
+| 0x4F9133D1d3F50011A6859807C837bdCB31Aaab13 | 0xe667e57a9b8aaa6709e51ff7d093f1c5b73b63f9987e4ab4aa9a5c699e024ee8 |
+| 0xbd29A1B981925B94eEc5c4F1125AF02a2Ec4d1cA | 0x28a574ab2de8a00364d5dd4b07c4f2f574ef7fcc2a86a197f65abaec836d1959 |
+| 0xedB6F5B4aab3dD95C7806Af42881FF12BE7e9daa | 0x74d8b3a188f7260f67698eb44da07397a298df5427df681ef68c45b34b61f998 |
+| 0xe706e60ab5Dc512C36A4646D719b889F398cbBcB | 0xbe79721778b48bcc679b78edac0ce48306a8578186ffcb9f2ee455ae6efeace1 |
+| 0xE90E12261CCb0F3F7976Ae611A29e84a6A85f424 | 0x3eb15da85647edd9a1159a4a13b9e7c56877c4eb33f614546d4db06a51868b1c |
 
 ## Writing and running tests locally
 
@@ -354,33 +347,21 @@ Ensure era-test-node is running in another process before executing yarn test.
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 
-// dynamically changes endpoints for local tests
-const zkSyncTestnet =
-  process.env.NODE_ENV == "test"
-    ? {
-        url: "http://localhost:8011",
-        ethNetwork: "http://localhost:8545",
-        zksync: true,
-      }
-    : {
-        url: "https://testnet.era.zksync.dev",
-        ethNetwork: "goerli",
-        zksync: true,
-      };
-
 module.exports = {
   zksolc: {
-    version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
+    version: "latest",
     settings: {},
   },
-  // defaults to zkSync network
   defaultNetwork: "zkSyncTestnet",
   networks: {
     hardhat: {
       zksync: true,
     },
-    // load test network details
-    zkSyncTestnet,
+    zkSyncTestnet: {
+      url: "http://localhost:8011",
+      ethNetwork: "http://localhost:8545",
+      zksync: true,
+    },
   },
   solidity: {
     version: "0.8.17",
@@ -398,12 +379,7 @@ import { Wallet, Provider, Contract } from "zksync-web3";
 import * as hre from "hardhat";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-const RICH_WALLET_PK = "<RICH_WALLET_PK>";
-
-async function deployGreeter(deployer: Deployer): Promise<Contract> {
-  const artifact = await deployer.loadArtifact("Greeter");
-  return await deployer.deploy(artifact, ["Hi"]);
-}
+const RICH_WALLET_PK = "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110";
 
 describe("Greeter", function () {
   it("Should return the new greeting once it's changed", async function () {
@@ -412,7 +388,8 @@ describe("Greeter", function () {
     const wallet = new Wallet(RICH_WALLET_PK, provider);
     const deployer = new Deployer(hre, wallet);
 
-    const greeter = await deployGreeter(deployer);
+    const artifact = await deployer.loadArtifact("Greeter");
+    const greeter = await deployer.deploy(artifact, ["Hi"]);
 
     expect(await greeter.greet()).to.eq("Hi");
 
@@ -432,3 +409,32 @@ yarn test
 ```
 
 Well done! You've successfully run your first local tests with zkSync Era and `era-test-node`.
+
+## CI/CD Testing with GitHub Actions
+
+A GitHub Action is available for integrating `era-test-node` into your CI/CD environments. This action offers high configurability and streamlines the process of testing your applications in an automated way.
+
+You can find this GitHub Action in the marketplace [here](https://github.com/marketplace/actions/era-test-node-action).
+
+### Example Usage
+
+Below is an example `yaml` configuration to use the `era-test-node` GitHub Action in your workflow:
+
+```yml
+name: Run Era Test Node Action
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Era Test Node
+        uses: dutterbutter/era-test-node-action@latest
+```
