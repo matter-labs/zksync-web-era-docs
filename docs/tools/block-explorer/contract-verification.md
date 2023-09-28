@@ -18,12 +18,17 @@ head:
 ![Contract details page](../../assets/images/contract-details.png)
 
 - **Contract Address**: Enter the `0x` address generated at deployment time.
-- **Compiler type**: Select Solidity single or multi-part file from the dropdown menu.
-- **Zksolc Version**: Select the zkSync Era compiler version used in your code from the dropdown menu.
-- **Solc Version**: Specify the Solidity compiler version used in your code from the dropdown menu.
+- **Compiler type**: Select Solidity or Vyper single or multi-part file from the dropdown menu.
+- **Zksolc Version (in case Solidity is selected as Compiler type)**: Select the zkSync Era compiler version for Solidity used in your code from the dropdown menu.
+- **Solc Version (in case Solidity is selected as Compiler type)**: Specify the Solidity compiler version used in your code from the dropdown menu.
+- **Zkvyper Version (in case Vyper is selected as Compiler type)**: Select the zkSync Era compiler version for Vyper used in your code from the dropdown menu.
+- **Vyper Version (in case Vyper is selected as Compiler type)**: Specify the Vyper compiler version used in your code from the dropdown menu.
 - **Optimization**: Select **Yes** if you enabled optimization during contract compilation, otherwise **No**.
 - **Contract Name**: Enter the exact name of your contract without the `.sol` postfix.
-- **Solidity Contract Code**: Copy/paste your contract code into this text box.
+- **Contract Path (in case Solidity (Single file) is selected as Compiler type)**: Enter the path to the `.sol` contract file in the required format.
+- **Enter the Solidity Contract Code (in case Solidity (Single file) is selected as Compiler type)**: Copy/paste your Solidity contract code into this text box.
+- **Enter the Vyper Contract Code (in case Vyper (Single file) is selected as Compiler type)**: Copy/paste your Vyper contract code into this text box.
+
 
   :::tip Contract code flattening
   If your Solidity code uses a library or inherits dependencies from another contract, you may need to flatten it. Use a tool such as:
