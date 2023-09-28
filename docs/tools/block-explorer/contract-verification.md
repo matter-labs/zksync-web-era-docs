@@ -29,7 +29,6 @@ head:
 - **Enter the Solidity Contract Code (in case Solidity (Single file) is selected as Compiler type)**: Copy/paste your Solidity contract code into this text box.
 - **Enter the Vyper Contract Code (in case Vyper (Single file) is selected as Compiler type)**: Copy/paste your Vyper contract code into this text box.
 
-
   :::tip Contract code flattening
   If your Solidity code uses a library or inherits dependencies from another contract, you may need to flatten it. Use a tool such as:
 
