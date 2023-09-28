@@ -59,26 +59,26 @@ The [zkSync Era block explorer menu](https://explorer.zksync.io/) displays real-
 
 ![zkSync Era block explorer transactions page](../../assets/images/transactions.png)
 
-- Transactions are listed by status and transaction hash, newest first, with the initiator address, recipient, nonce, amount, fee, and age.
+- Transactions are listed by status and transaction hash, newest first, method, age, initiator address, recipient, value and fee.
 
 - Click on a transaction hash to see more details.
 
 ![zkSync Era block explorer transaction details page](../../assets/images/transaction-details.png)
 
-| Data point         | Description                                                                         |
-| ------------------ | ----------------------------------------------------------------------------------- |
-| Transaction Hash   | Unique 66 character identifier generated when transaction submitted to L2.          |
+| Data point         | Description                                                                                                                                                                                                                                                  |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Transaction Hash   | Unique 66 character identifier generated when transaction submitted to L2.                                                                                                                                                                                   |
 | Status             | One of `Indexing`, `zkSync Era Processed, Ethereum Sending`, `zkSync Era Processed, Ethereum Validating`, `zkSync Era Processed, Ethereum Executing`, `zkSync Era Processed, Ethereum Executed` or `Failed` with links to Etherscan (if they exist already). |
-| Block              | Block number containing the transaction.                                            |
-| Batch              | Batch number containing the transaction.                                            |
-| From               | The account or smart contract address sending the transaction.                      |
-| To                 | The transaction recipient.                                                          |
-| Tokens Transferred | Details on all tokens transferred by the transaction.                               |
-| Input data         | Amount of Ether being transferred from one address to another within a transaction. |
-| Value              | Any additional data used by the transaction for verified contracts.                 |
-| Fee                | Fee for the tx in ETH and USD value. Click **More Details** to see info on refunds. |
-| Nonce              | Sender nonce.                                                                       |
-| Created            | Timestamp of when the transaction was added to the block.                           |
+| Block              | Block number containing the transaction.                                                                                                                                                                                                                     |
+| Batch              | Batch number containing the transaction.                                                                                                                                                                                                                     |
+| From               | The account or smart contract address sending the transaction.                                                                                                                                                                                               |
+| To                 | The transaction recipient.                                                                                                                                                                                                                                   |
+| Tokens Transferred | Details on all tokens transferred by the transaction.                                                                                                                                                                                                        |
+| Input data         | Any additional data used by the transaction for verified contracts.                                                                                                                                                                                          |
+| Value              | Amount of Ether being transferred from one address to another within a transaction.                                                                                                                                                                          |
+| Fee                | Fee for the tx in ETH and USD value. Click **More Details** to see info on refunds.                                                                                                                                                                          |
+| Nonce              | Sender nonce.                                                                                                                                                                                                                                                |
+| Created            | Timestamp of when the transaction was added to the block.                                                                                                                                                                                                    |
 
 ## Token list
 
