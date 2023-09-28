@@ -152,7 +152,7 @@ Compiles all the smart contracts in the `contracts` directory and creates the `a
 
 To understand what the factory dependencies are, read more about them in the [Web3 API](../../api/api.md) documentation.
 
-## Troubleshoting
+## Troubleshooting
 
 #### Error in plugin @matterlabs/hardhat-zksync-solc: Invalid zksolc compiler version
 
