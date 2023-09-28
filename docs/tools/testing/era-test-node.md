@@ -84,7 +84,7 @@ era_test_node fork testnet
 ```
 
 :::tip
-You can also fork testnet with `era_test_node fork mainnet`
+You can also fork mainnet with `era_test_node fork mainnet`
 :::
 
 The expected output will be as follows:
