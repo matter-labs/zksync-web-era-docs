@@ -312,3 +312,401 @@ let signer: ETHSigner
 ```swift
 wallet.signer
 ```
+
+### `Balance`
+
+Returns the balance of the specified token that can be either ETH or any ERC20 token. The block number can be `nil`, in which case the
+balance is taken from the latest known block.
+
+#### Inputs
+
+| Parameter     | Type          | Description       |
+| ------------- | ------------- | ----------------- |
+| `token`       | `Token`       | L2 token address. |
+| `blockNumber` | `BlockNumber` | Block number.     |
+
+```swift
+func balance(token: Token, blockNumber: BlockNumber) async throws -> BigUInt
+```
+
+#### Example
+
+```swift
+try await walletL2.balance(token: Token.ETH, blockNumber: .latest)
+```
+
+### `AllBalances`
+
+Returns all balances for confirmed tokens given by an associated account.
+
+#### Inputs
+
+| Parameter | Type              | Description |
+| --------- | ----------------- | ----------- |
+| `address` | `String`          | Address.    |
+
+```swift
+func allBalances(_ address: String) async throws -> Dictionary<String, String>
+```
+
+#### Example
+
+```swift
+try await walletL2.allBalances(addres: <ADDRESS>)
+```
+
+### `Withdraw`
+
+Initiates the withdrawal process which withdraws ETH or any ERC20 token from the associated account on L2 network to the target account on
+L1 network.
+
+#### Inputs
+
+| Parameter | Type                 | Description            |
+| --------- | ------------------------------------------------------------ | ------------------------------- |
+| `to`      | `String`             | To address.            |
+| `amount`  | `BigUInt`            | Amount to withdraw.    |
+| `token`   | `Token` (optional)   | Token.                 |
+| `nonce`   | `BigUInt` (optional) | Nonce.                 |
+
+```swift
+func withdraw(_ to: String, amount: BigUInt, token: Token?, nonce: BigUInt?) async throws -> TransactionSendingResult
+```
+
+#### Example
+
+```swift
+let amount = BigUInt(1_000_000_000_000)
+
+_ = try! await walletL2.withdraw(
+    signer.address,
+    amount: amount,
+    token: Token.ETH
+)
+```
+
+### `EstimateGasWithdraw`
+
+Estimates the amount of gas required for a withdrawal transaction.
+
+#### Inputs
+
+| Parameter | Type                                                       | Description                 |
+| --------- | ---------------------------------------------------------- | --------------------------- |
+| `transaction`     | `CodableTransaction` (optional) | Withdrawal transaction. |
+
+```swift
+func estimateGasWithdraw(_ transaction: CodableTransaction) async throws -> BigUInt
+```
+
+#### Example
+
+```swift
+try await walletL2.estimateGasWithdraw(transaction)
+```
+
+### `Transfer`
+
+Moves the ETH or any ERC20 token from the associated account to the target account.
+
+#### Inputs
+
+| Parameter | Type                 | Description            |
+| --------- | ------------------------------------------------------------ | ------------------------------- |
+| `to`      | `String`             | To address.            |
+| `amount`  | `BigUInt`            | Amount to transfer.    |
+| `token`   | `Token` (optional)   | Token.                 |
+| `nonce`   | `BigUInt` (optional) | Nonce.                 |
+
+```swift
+func transfer(_ to: String, amount: BigUInt, token: Token?, nonce: BigUInt?) async -> TransactionSendingResult
+```
+
+#### Example
+
+```swift
+let amount = BigUInt(1_000_000_000_000)
+
+_ = try! await walletL2.transfer(
+    signer.address,
+    amount: amount,
+    token: Token.ETH
+)
+```
+
+### `EstimateGasTransfer`
+
+Estimates the amount of gas required for a transfer transaction.
+
+#### Inputs
+
+| Parameter      | Type                                                   | Description               |
+| -------------- | ------------------------------------------------------ | ------------------------- |
+| `transaction`  | `CodableTransaction`                                   | Transaction.            |
+
+```swift
+func estimateGasTransfer(_ transaction: CodableTransaction) async throws -> BigUInt
+```
+
+#### Example
+
+```swift
+try await walletL2.estimateGasTransfer(transaction)
+```
+
+### `CallContract`
+
+Executes a message call for EIP-712 transaction, which is directly executed in the VM of the node, but never mined into the
+blockchain.
+
+#### Inputs
+
+| Parameter     | Type                                   | Description                                                                                                                                                                                 |
+| ------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `transaction`         | `CodableTransaction`                      | Transaction.                                                                                                                                                                                    |
+| `blockNumber` | `BigUInt` (optional)                  | Selects the block height at which the call runs. It can be `nil`, in which case the code is taken from the latest known block. Note that state from very old blocks might not be available. |
+
+```swift
+func callContract(_ transaction: CodableTransaction, blockNumber: BigUInt?) async throws -> Data
+```
+
+#### Example
+
+```swift
+try await walletL2.callContract(transaction, blockNumber: .latest)
+```
+
+### PopulateTransaction
+
+Designed for users who prefer a simplified approach by providing only the necessary data to create a valid EIP-712 transaction.
+The only required fields are `Transaction.To` and either `Transaction.Data` or `Transaction.Value` (or both, if the method is payable).
+Any other fields that are not set will be prepared by this method.
+
+#### Inputs
+
+| Parameter     | Type                 | Description             |
+| ------------- | -------------------- | ----------------------- |
+| `transaction` | `CodableTransaction` | Transaction.            |
+
+```swift
+func populateTransaction(_ transaction: inout CodableTransaction) async
+```
+
+#### Example
+
+```swift
+await walletL2.populateTransaction(transaction)
+```
+
+### `SignTransaction`
+
+Returns a signed transaction that is ready to be broadcast to the network. The input transaction must be a valid transaction with all fields
+having appropriate values. To obtain a valid transaction, you can use the [`PopulateTransaction`](#populatetransaction) method.
+
+#### Inputs
+
+| Parameter     | Type                 | Description             |
+| ------------- | -------------------- | ----------------------- |
+| `transaction` | `CodableTransaction` | Transaction.            |
+
+```swift
+func signTransaction(_ transaction: inout CodableTransaction)
+```
+
+#### Example
+
+```swift
+await walletL2.populateTransaction(transaction)
+```
+
+### `SendTransaction`
+
+Injects a transaction into the pending pool for execution. Any unset transaction fields are prepared using the PopulateTransaction method.
+
+#### Inputs
+
+| Parameter     | Type                 | Description             |
+| ------------- | -------------------- | ----------------------- |
+| `transaction` | `CodableTransaction` | Transaction.            |
+
+```swift
+func sendTransaction(_ transaction: CodableTransaction) async throws -> TransactionSendingResult
+```
+
+#### Example
+
+```swift
+try await walletL2.sendTransaction(transaction)
+```
+
+## `BaseDeployer`
+
+### `Init`
+
+Creates an instance of `BaseDeployer` based on provided `AdapterL2`.
+
+```swift
+BaseDeployer(adapterL2: walletL2, signer: signer)
+```
+
+### `Deploy`
+
+Deploys smart contract using CREATE2 opcode.
+
+#### Inputs
+
+| Parameter     | Type              | Description              |
+| ------------- | ----------------- | ------------------------ |
+| `bytecode`    | `Data`            | Smart contract bytecode. |
+| `calldata`    | `Data` (optional) | Calldata.                |
+| `nonce`       | `Data` (optional) | Nonce.                   |
+
+```swift
+func deploy(_ bytecode: Data, calldata: Data?, nonce: BigUInt?) async -> TransactionSendingResult
+```
+
+#### Example
+
+```swift
+let url = Bundle.main.url(forResource: "Storage", withExtension: "zbin")!
+let bytecodeData = try! Data(contentsOf: url)
+
+_ = try await deployer.deploy(bytecodeData, calldata: nil, nonce: nil)
+```
+
+### `DeployWithCreate`
+
+Deploys smart contract using CREATE opcode.
+
+#### Inputs
+
+| Parameter     | Type              | Description              |
+| ------------- | ----------------- | ------------------------ |
+| `bytecode`    | `Data`            | Smart contract bytecode. |
+| `calldata`    | `Data` (optional) | Calldata.                |
+| `nonce`       | `Data` (optional) | Nonce.                   |
+
+```swift
+func deployWithCreate(_ bytecode: Data, calldata: Data?, nonce: BigUInt?) async -> TransactionSendingResult
+```
+
+#### Example
+
+```swift
+let url = Bundle.main.url(forResource: "Storage", withExtension: "zbin")!
+let bytecodeData = try! Data(contentsOf: url)
+
+_ = try await deployer.deployWithCreate(bytecodeData, calldata: nil, nonce: nil)
+```
+
+### `DeployAccount`
+
+Deploys smart account using CREATE2 opcode.
+
+#### Inputs
+
+| Parameter     | Type              | Description              |
+| ------------- | ----------------- | ------------------------ |
+| `bytecode`    | `Data`            | Smart account bytecode.  |
+| `calldata`    | `Data` (optional) | Calldata.                |
+| `nonce`       | `Data` (optional) | Nonce.                   |
+
+```swift
+func deployAccount(_ bytecode: Data, calldata: Data?, nonce: BigUInt?) async -> TransactionSendingResult
+```
+
+#### Example
+
+```swift
+let url = Bundle.main.url(forResource: "Storage", withExtension: "zbin")!
+let bytecodeData = try! Data(contentsOf: url)
+
+_ = try await deployer.deployAccount(bytecodeData, calldata: nil, nonce: nil)
+```
+
+### `DeployAccountWithCreate`
+
+Deploys smart account using CREATE opcode.
+
+#### Inputs
+
+| Parameter     | Type              | Description              |
+| ------------- | ----------------- | ------------------------ |
+| `bytecode`    | `Data`            | Smart account bytecode.  |
+| `calldata`    | `Data` (optional) | Calldata.                |
+| `nonce`       | `Data` (optional) | Nonce.                   |
+
+```swift
+func deployAccountWithCreate(_ bytecode: Data, calldata: Data?, nonce: BigUInt?) async -> TransactionSendingResult
+```
+
+#### Example
+
+```swift
+let url = Bundle.main.url(forResource: "Storage", withExtension: "zbin")!
+let bytecodeData = try! Data(contentsOf: url)
+
+_ = try await deployer.deployAccountWithCreate(bytecodeData, calldata: nil, nonce: nil)
+```
+
+## `Wallet`
+
+It contains the same functions as [`WalletL1`](#walletl1), [`WalletL2`](#walletl2), and [`BaseDeployer`](#basedeployer) since it implements
+the Adapter interface, and the usage of those methods is the same.
+
+### `Init`
+
+Creates an instance of Wallet associated with the account provided by the signer. The `clientL2` and `clientL1` parameters are optional;
+if not provided, only `SignTransaction`, `Address` and `Signer` methods can be used, as the rest of the functionalities require
+communication with the network. A wallet that contains only a signer can be configured to communicate with L2 and L1 networks by using
+[`Connect`](#connect) and [`ConnectL1`](#connectl1), respectively.
+
+```swift
+WalletL2(zkSync, ethClient: ethClient, web3: web, ethSigner: signer)
+```
+
+#### Example
+
+```swift
+let credentials = Credentials(<WALLET_PRIVATE_KEY>)
+let chainId = try! zkSync.web3.eth.getChainIdPromise().wait()
+let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://testnet.era.zksync.dev")!)
+let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_goerli")!)
+let signer = BaseSigner(credentials, chainId: chainId)
+let wallet = Wallet(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
+```
+
+### `Nonce`
+
+Returns the account nonce of the associated account. The block number can be `nil`, in which case the nonce is taken from the latest known
+block.
+
+#### Inputs
+
+| Parameter     | Type                     | Description   |
+| ------------- | ------------------------ | ------------- |
+| `blockNumber` | `BlockNumber` (optional) | Block number. |
+
+```swift
+func nonce(at block: BlockNumber = .latest) async throws -> BigUInt
+```
+
+#### Example
+
+```swift
+try await wallet.nonce(at: .exact(9000))
+```
+
+### `PendingNonce`
+
+Returns the account nonce of the associated account in the pending state. This is the nonce that should be used for the next transaction.
+
+```swift
+func pendingNonce() async throws -> BigUInt
+```
+
+#### Example
+
+```swift
+try await wallet.pendingNonce()
+```

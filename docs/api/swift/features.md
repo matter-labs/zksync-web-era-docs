@@ -21,13 +21,7 @@ This document will focus solely on how to pass these arguments to the SDK.
 
 ## EIP-712 Metadata
 
-[`EIP712Meta`](types/types.md#eip712meta) contains EIP-712 transaction metadata. Following objects contain `EIP712Meta` and provides working with
-EIP-712 transactions:
-
-- [`types.CallMsg`](types/types.md#callmsg)
-- [`types.Transaction712`](types/types.md#transaction712)
-- [`accounts.CallMsg`](types/accounts.md#callmsg)
-- [`accounts.Transaction`](types/accounts#transaction)
+EIP712Meta contains EIP-712 transaction metadata.
 
 ## Encoding paymaster params
 

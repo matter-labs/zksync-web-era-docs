@@ -17,8 +17,6 @@ Full examples of actions below are available on the [getting started](./getting-
 
 `WalletL1` and `Wallet` objects provide a deposit workflow. For more information, please refer to the method specification [`Deposit`](accounts.md#deposit).
 
-For a complete example of how to execute the deposit workflow, take a look at the following: [Deposit ETH and ERC20 token](examples/deposit.md).
-
 ## Request execute
 
 `WalletL1` and `Wallet` objects provide an option to request execution of L2 transaction from L1. For more information, please refer
@@ -42,5 +40,3 @@ method specification [`BaseCost`](accounts.md#basecost).
 ## Withdrawal
 
 `WalletL2` and `Wallet` objects provide a withdrawal workflow. For more information, please refer to the method specification [`Deposit`](accounts.md#deposit).
-
-For a complete example of how to execute the deposit workflow, take a look at the following: [Withdraw ETH and ERC20 token](examples/withdraw.md).
