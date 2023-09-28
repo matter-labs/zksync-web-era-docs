@@ -102,17 +102,51 @@ export const enSidebar = sidebar({
       text: "JavaScript SDK", // required
       link: "/api/js", // optional, which should be a absolute path.
       children: [
-        "/api/js/getting-started",
-        "/api/js/providers",
-        "/api/js/accounts",
-        "/api/js/accounts-l1-l2",
-        "/api/js/contracts",
-        "/api/js/features",
-        "/api/js/utils",
-        "/api/js/paymaster-utils",
-        "/api/js/types",
-        "/api/js/front-end",
-      ],
+        {
+          text: "JavaScript Ethers V5 SDK",
+          link: "/api/js",
+          children: [
+            "/api/js/getting-started",
+            "/api/js/providers",
+            "/api/js/accounts",
+            "/api/js/accounts-l1-l2",
+            "/api/js/contracts",
+            "/api/js/features",
+            "/api/js/utils",
+            "/api/js/paymaster-utils",
+            "/api/js/types",
+            "/api/js/front-end",
+          ],
+        },
+        {
+          text: "JavaScript Ethers V6 SDK",
+          link: "/api/js/zksync2-js",
+          children: [
+            {
+              text: "Getting started",
+              link: "/api/js/zksync2-js/getting-started",
+              collapsible: true,
+              children: [
+                "/api/js/zksync2-js/examples/deposit",
+                "/api/js/zksync2-js/examples/transfer",
+                "/api/js/zksync2-js/examples/withdraw",
+                "/api/js/zksync2-js/examples/get-confirmed-tokens",
+                "/api/js/zksync2-js/examples/custom-paymaster/use-paymaster",
+              ],
+            },
+            "/api/js/zksync2-js/providers",
+            "/api/js/zksync2-js/accounts",
+            "/api/js/zksync2-js/accounts-l1-l2",
+            "/api/js/zksync2-js/contracts",
+            "/api/js/zksync2-js/features",
+            "/api/js/zksync2-js/utils",
+            "/api/js/zksync2-js/paymaster-utils",
+            "/api/js/zksync2-js/types",
+            "/api/js/zksync2-js/front-end",
+            "/api/js/zksync2-js/migration"
+          ],
+        }
+      ]
     },
     {
       text: "Python SDK",
