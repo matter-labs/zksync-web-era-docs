@@ -39,7 +39,7 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 1. If you haven't already, install the [zkSync CLI:](../../tools/zksync-cli/README.md)
 
 ```sh
-yarn add global zksync-cli@latest
+yarn global add zksync-cli@latest
 ```
 
 2. Initiate a new project by running the command:
