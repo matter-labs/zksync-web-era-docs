@@ -35,7 +35,7 @@ method specification [`BaseCost`](accounts.md#basecost).
 ## Finalize withdraw
 
 `WalletL1` and `Wallet` objects provide a finalize withdraw workflow. For more information, please refer to the method specification
-[`FinalizeWithdraw`](accounts.md#finalizewithdraw).
+[`Withdraw`](accounts.md#withdraw).
 
 ## Withdrawal
 

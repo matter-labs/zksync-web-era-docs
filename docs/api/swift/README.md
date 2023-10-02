@@ -14,10 +14,8 @@ To provide easy access to all the features of zkSync Era, the `zksync2` Swift SD
 ## Contents
 
 - [Getting started](getting-started.md)
-- [Clients](clients.md)
 - [Accounts: Overview](accounts.md)
 - [Accounts: L1<->L2 transactions](accounts-l1-l2.md)
 - [Contracts](contracts.md)
 - [Features](features.md)
 - [Paymaster utilities](paymaster-utils.md)
-- [Utils](utils.md)
