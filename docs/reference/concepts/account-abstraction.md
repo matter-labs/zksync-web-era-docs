@@ -316,7 +316,7 @@ The paymaster supports only the [approval based](#approval-based-paymaster-flow)
 
 An example of how to use testnet paymaster can be seen in the [quickstart](../../dev/building-on-zksync/hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
 
-## `Signature Validation`
+## Signature validation
 
 Your project can start preparing for native AA support. We highly encourage you to do so, since it will allow you to onboard hundreds of thousands of users (e.g. Argent users that already use the first version of zkSync).
 We expect that in the future even more users will switch to smart wallets.
