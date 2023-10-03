@@ -59,6 +59,7 @@ sharded
 pepe
 Arweave
 Streamr
+dutterbutter
 
 // Used libraries
 numberish
