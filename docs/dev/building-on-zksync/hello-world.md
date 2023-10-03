@@ -30,6 +30,10 @@ This is what we're going to do:
 - ERC20 tokens on zkSync are required for the testnet paymaster. We recommend using [the faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
+::: tip Local zkSync Testing with zksync-cli
+Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+:::
+
 ## Build and deploy the Greeter contract
 
 ::: info Project available in Atlas IDE
@@ -38,39 +42,33 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 
 ### Initialize the project
 
-1. Install the [zkSync CLI:](../../tools/zksync-cli/README.md)
+1. Scaffold a new project by running the command:
 
 ```sh
-yarn global add zksync-cli@latest
+npx zksync-cli create-project greeter-example --template hardhat_solidity
 ```
 
-2. Scaffold a new project by running the command:
-
-```sh
-zksync-cli create-project greeter-example
-```
-
-Choose "Hardhat + Solidity" option. This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract and all the zkSync plugins and configurations.
+This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract and all the zkSync plugins and configurations.
 
 ::: tip Hardhat plugins
 Learn more about the [zkSync Era plugins for Hardhat here](../../tools/hardhat/README.md)
 :::
 
-3. Navigate into the project directory:
+2. Navigate into the project directory:
 
 ```sh
 cd greeter-example
 ```
 
-::: info
-The project uses the `dotenv` package to load your private key which is required to deploy and interact with smart contracts. The `.env` file is included in `.gitignore` so it won't upload to a repository.
-:::
+3. Configure Your Private Key:
 
-4. To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
+Rename the `.env.example` file to `.env` and then enter your private key:
 
 ```text
-WALLET_PRIVATE_KEY=abcdef12345....
+WALLET_PRIVATE_KEY=YourPrivateKeyHere...
 ```
+
+Your private key will be used for paying the costs of deploying the smart contract.
 
 ### Compile and deploy the Greeter contract
 

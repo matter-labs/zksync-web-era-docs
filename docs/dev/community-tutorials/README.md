@@ -11,7 +11,7 @@ Here is the list of tutorials created by the community to help you build on zkSy
 
 - [zkSync Redstone Stable Price Marketplace](./redstone-marketplace-tutorial.md): build a marketplace where users can buy and sell NFTs using Redstone oracles on zkSync.
 - [the Graph on zkSync](./the-graph-tutorial.md): build a subgraph for zkSync on the Graph Protocol using the Graph Studio.
-- [zkSync CLI Quickstart](./zksync-cli-quickstart.md): use the zkSync CLI to deploy your first smart contract to zkSync Era testnet.
+- [zkSync CLI Quickstart](./zksync-cli-quickstart.md): use the zkSync CLI to deploy your first smart contract on zkSync.
 
 ## Contributing
 

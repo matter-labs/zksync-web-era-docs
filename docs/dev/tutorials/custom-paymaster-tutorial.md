@@ -36,16 +36,10 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 
 ## Set up the project
 
-1. If you haven't already, install the [zkSync CLI:](../../tools/zksync-cli/README.md)
+1. Initiate a new project by running the command:
 
 ```sh
-yarn global add zksync-cli@latest
-```
-
-2. Initiate a new project by running the command:
-
-```sh
-zksync-cli create-project custom-paymaster-tutorial
+npx zksync-cli create-project custom-paymaster-tutorial --template hardhat_solidity
 ```
 
 :::tip
@@ -54,33 +48,25 @@ The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
 
 This creates a new zkSync Era project called `custom-paymaster-tutorial` with a basic `Greeter` contract.
 
-Select "Hardhat+Solidity" option in the "Project template to use" choice
+2. Navigate into the project directory:
 
 ```sh
-? Project template to use (Use arrow keys)
-› Hardhat + Solidity
-Hardhat + Vyper
+cd custom-paymaster-tutorial
 ```
 
-3. Navigate into the project directory:
-
-```sh
-cd ~/custom-paymaster-tutorial
-```
-
-4. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
+3. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
 
 ```sh
 rm -rf ./contracts/Greeter.sol
 ```
 
-5. Similarly, remove the deploy scripts associated with the Greeter contract:
+4. Similarly, remove the deploy scripts associated with the Greeter contract:
 
 ```sh
 rm -rf ./deploy/deploy-greeter.ts && rm -rf ./deploy/use-greeter.ts
 ```
 
-6. Add the zkSync and OpenZeppelin contract libraries:
+5. Add the zkSync and OpenZeppelin contract libraries:
 
 ```sh
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
