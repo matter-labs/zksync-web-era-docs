@@ -19,7 +19,7 @@ The In-memory node uses an in-memory database for storing state information and 
 
 You can visit the `era-test-node` repository [here](https://github.com/matter-labs/era-test-node) to learn more.
 
-## Installing with `zksync-cli`
+## Running with `zksync-cli`
 
 You can set up In-Memory Node quickly with `npx zksync-cli dev start`. Note: at the moment this method won't allow you to use additional features like forking networks or replaying transactions.
 

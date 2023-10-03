@@ -56,7 +56,7 @@ Run `zksync-cli help dev` for more commands and details.
 ::: info Deposit and withdraw times
 
 - Operations like deposit and withdraw can take several minutes.
-- [Mainnet withdrawals have a 24h delay during the Alpha phase](../../reference/troubleshooting/withdrawal-delay.md).
+- [Mainnet withdrawals have a 24h delay](../../reference/troubleshooting/withdrawal-delay.md).
   :::
 
 More commands and updates are coming! If you have suggestions, [open an issue on GitHub](https://github.com/matter-labs/zksync-cli/issues/new).
