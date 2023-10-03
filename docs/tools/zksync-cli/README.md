@@ -40,7 +40,7 @@ Use `zksync-cli dev` for an easy way to work with zkSync on your computer. It he
 - `zksync-cli dev clean`: Clear data for configured modules
 - `zksync-cli dev config`: Choose modules to run in local development environment
 
-Run `zksync-cli help` for more details.
+Run `zksync-cli help dev` for more commands and details.
 
 ### Other Essential Commands
 
