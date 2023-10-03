@@ -2,66 +2,81 @@
 
 ## Introduction
 
-In this tutorial we'll use the zksync-cli to deploy our first smart contract to zkSync Era testnet.
+Let’s explore how to utilize `zksync-cli` to deploy our initial smart contract on the zkSync Era testnet.
 
-## Requirements
+## Prerequisites
 
-Here are the system requirements and the versions I used:
+Ensure your system is prepared with:
 
-- Node.js LTS and NPM LTS
-- Yarn LTS
+- **Node.js** (LTS version) & **NPM** (LTS version) - [Download here](https://nodejs.org/en)
+- **Yarn** (LTS version) - [Download here](https://v3.yarnpkg.com/getting-started/install)
+- **Git** - [Download here](https://git-scm.com/downloads)
 
-Additionally, you'd need an account with ETH on zkSync Era testnet. You can use the [faucet from the official portal](https://goerli.portal.zksync.io/faucet).
+Also, you'll need an account loaded with ETH on zkSync Era testnet. Get free test ETH [here](https://goerli.portal.zksync.io/faucet).
 
-## Build time
+::: info Local zkSync Testing
+Without needing test ETH, `zksync-cli` allows testing contracts locally. Use `npx zksync-cli dev start` to activate a local zkSync development setup, inclusive of local Ethereum and zkSync nodes. Further details are available in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+:::
 
-1. Install the zksync-cli with:
+## Steps to Deploy Your First Contract
+
+#### Step 1: Initiate a Sample Project
+
+Execute the following code to create a new project named `quickstart` using an existing template.
 
 ```sh
-npm i -g zksync-cli@latest
+npx zksync-cli create-project quickstart --template hardhat_solidity  && cd quickstart
 ```
 
-2. Create a sample project
+Inside `quickstart`, you’ll find:
 
-```sh
-zksync-cli create-project quickstart  && cd quickstart
-```
+- `hardhat.config.ts`: This contains configuration and imports needed by zksync.
+- `contracts`: This directory holds a `Greeter.sol` smart contract.
+- `deploy`: Houses scripts to both deploy and interact with the smart contract.
 
-Choose "Hardhat + Solidity" option. This commands clones an existing template project inside a new folder named `quickstart`.
+::: info
+For local zkSync testing, modify `url` and `ethNetwork` in `hardhat.config.ts` to align with your local zkSync and Ethereum node's L2 and L1 RPC URLs, respectively.
+:::
 
-The template project has the following structure:
+#### Step 2: Compile Your Contract
 
-- `hardhat.config.ts`: Hardhat configuration file that imports the zksync required plugins.
-- `contracts`: folder with a `Greeter.sol` smart contract.
-- `deploy`: folder with scripts to deploy and interact with the smart contract.
-
-3. Compile the contract with:
+Compile your contract using the command:
 
 ```sh
 yarn hardhat compile
 ```
 
-Once compiled, the `artifacts-zk` and `cache-zk` folders will be generated.
+After compiling, two folders - `artifacts-zk` and `cache-zk` will be created.
 
-4. Rename the `.env.example` file to `.env` and enter your account private key in it. This is the account that will pay for the deployment of the smart contract.
+#### Step 3: Set your Private Key
+
+Rename `.env.example` to `.env` and input your private key:
 
 ```text
-WALLET_PRIVATE_KEY=abcdef123456....
+WALLET_PRIVATE_KEY=YourPrivateKeyHere...
 ```
 
-5. Deploy the contract with:
+Your private key will be used for paying the costs of deploying the smart contract.
+
+#### Step 4: Deploy Your Contract
+
+Deploy your contract with the following:
 
 ```sh
 yarn hardhat deploy-zksync --script deploy-greeter.ts
 ```
 
-You'll see something like this:
+You should observe an output akin to:
 
 ```sh
 Running deploy script for the Greeter contract
 The deployment is estimated to cost 0.00004848225 ETH
-Constructor args:0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000094869207468657265210000000000000000000000000000000000000000000000
-Greeter was deployed to 0x922a36d29b1e991DB35b8e14C08828eC31E64Ac0
+Constructor args: [Byte code will be here]
+Greeter was deployed to [Your Contract Address will be here]
 ```
 
-Congrats, you've deployed a contract to zkSync Era testnet. You can see the contract in the [zkSync Explorer](https://goerli.explorer.zksync.io/)
+🎉 **Congratulations!** Your contract has been deployed on the zkSync Era testnet. Inspect your contract [here](https://goerli.explorer.zksync.io/).
+
+### Conclusion
+
+Great job! You’ve successfully deployed a smart contract using `zksync-cli`. Now, feel free to explore further and play around with your new smart contract on the testnet!

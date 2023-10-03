@@ -20,8 +20,18 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 - Make sure your machine satisfies the [zksolc compiler system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You already have some experience working with Ethereum.
-- You have a web3 wallet app that holds some Goerli test ETH and some zkSync test ETH.
-- You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
+- A wallet with sufficient Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
+  - You can get Göerli ETH from the following faucets:
+    - [Chainstack Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
+    - [Alchemy Goerli faucet](https://goerlifaucet.com/)
+    - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
+    - [Proof of work faucet](https://goerli-faucet.pk910.de/)
+  - Get testnet `ETH` on zkSync Era from the [zkSync portal](https://goerli.portal.zksync.io/faucet).
+- You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
+
+::: info Local zkSync Testing with zksync-cli
+Skip the hustle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+:::
 
 ## Use API3's self-funded dAPIs to pay gas in USDC with the zkSync Era paymaster
 
@@ -49,16 +59,10 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 
 ## Set up the project
 
-1. Install the [zkSync CLI](../../tools/zksync-cli/README.md) if you don't have installed it yet:
-
-```sh
-yarn add global zksync-cli@latest
-```
-
 2. Run the following command to create a new project:
 
 ```sh
-zksync-cli create-project paymaster-dapi
+npx zksync-cli create-project paymaster-dapi --template hardhat_solidity
 ```
 
 This creates a new zkSync Era project called `paymaster-dapi` with a basic `Greeter` contract.
@@ -66,7 +70,7 @@ This creates a new zkSync Era project called `paymaster-dapi` with a basic `Gree
 3. `cd` into the project directory:
 
 ```sh
-cd ~/paymaster-dapi
+cd paymaster-dapi
 ```
 
 4. Add the project dependencies:

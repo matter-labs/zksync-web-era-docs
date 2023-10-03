@@ -35,8 +35,18 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 - A Node installation with `yarn` package manager installed.
 - You have [installed the zkSync CLI](../zksync-cli/README.md#installation).
 - You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../../dev/building-on-zksync/hello-world.md).
-- You have a wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. We recommend using [our faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
+- A wallet with sufficient Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
+  - You can get Göerli ETH from the following faucets:
+    - [Chainstack Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
+    - [Alchemy Goerli faucet](https://goerlifaucet.com/)
+    - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
+    - [Proof of work faucet](https://goerli-faucet.pk910.de/)
+  - Get testnet `ETH` on zkSync Era from the [zkSync portal](https://goerli.portal.zksync.io/faucet).
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
+
+::: info Local zkSync Testing with zksync-cli
+Skip the hustle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+:::
 
 ::: warning Important
 
@@ -49,7 +59,7 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 To create a new project run the CLI's `create` command, passing a project name:
 
 ```sh
-zksync-cli create-project demo
+npx zksync-cli create-project demo --template hardhat_solidity
 ```
 
 This command creates a `demo` folder and clones a Hardhat template project inside it. The downloaded project is already configured and contains all the required plugins.
@@ -87,6 +97,10 @@ const zkSyncTestnet =
       };
 ```
 
+::: info
+For local zkSync testing, modify `url` and `ethNetwork` in `hardhat.config.ts` to align with your local zkSync and Ethereum node's L2 and L1 RPC URLs, respectively.
+:::
+
 ::: tip Unit tests
 This template project includes a basic unit test in the `/test` folder that runs with the local-setup and can be executed with `yarn test`. Learn more about how to [start the local setup and write unit tests here](../testing/README.md).
 :::
@@ -104,15 +118,15 @@ zksolc: {
 To learn more about each specific property in the `hardhat.config.ts` file, check out the [plugins documentation](./plugins.md)
 :::
 
-## Environment variables
+## Set your Private Key
 
-The project uses the `dotenv` package to load your private key which is required to deploy and interact with smart contracts.
-
-To configure it, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key. The `.env` file is included in `.gitignore` so it won't upload to a repository.
+Rename `.env.example` to `.env` and input your private key:
 
 ```text
-WALLET_PRIVATE_KEY=abcdef12345....
+WALLET_PRIVATE_KEY=YourPrivateKeyHere...
 ```
+
+Your private key will be used for paying the costs of deploying the smart contract.
 
 ## Compile and deploy a contract
 

@@ -52,7 +52,12 @@ The following table highlights the key characteristics of each testing environme
 
 Whether you're testing new contracts, debugging transactions, or prototyping, zkSync Era provides robust options for local testing. Both the Dockerized local setup and the In-Memory Node offer feature-rich and quick setup options, each with their distinct strengths and limitations. Choose the most appropriate setup based on your specific needs, and happy testing!
 
+## Using zkSync CLI for Easy Setup
+
+The [zkSync CLI](../zksync-cli/README.md) makes it simple for developers to work with both Dockerized Local Setup and In-Memory Node. Just use `zksync-cli dev start` to get your local development environment running and choose to use additional modules like Wallet and Bridge if you need them.
+
 ## zkSync Era local testing
 
 - [Dockerized testing](./dockerized-testing.md)
 - [In-memory node testing](./era-test-node.md)
+- [zkSync CLI](../zksync-cli/README.md)

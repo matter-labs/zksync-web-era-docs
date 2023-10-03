@@ -11,6 +11,24 @@ The [@matterlabs/hardhat-zksync-vyper](https://www.npmjs.com/package/@matterlabs
 
 Learn more about the latest updates in the [changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-vyper/CHANGELOG.md).
 
+## Prerequisites
+
+- Download and install [Node](https://nodejs.org/en/download).
+- Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to latest use command `nvm use --lts`.
+- Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
+- A wallet with sufficient Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
+  - You can get Göerli ETH from the following faucets:
+    - [Chainstack Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
+    - [Alchemy Goerli faucet](https://goerlifaucet.com/)
+    - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
+    - [Proof of work faucet](https://goerli-faucet.pk910.de/)
+  - Get testnet `ETH` on zkSync Era from the [zkSync portal](https://goerli.portal.zksync.io/faucet).
+- You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
+
+::: info Local zkSync Testing with zksync-cli
+Skip the hustle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+:::
+
 ## Set up
 
 ### 1. Scaffold a new project
@@ -18,7 +36,7 @@ Learn more about the latest updates in the [changelog](https://github.com/matter
 Use the [zkSync Era cli](../../tools/zksync-cli/README.md) to set up a project.
 
 ```sh
-npx zksync-cli@latest create-project greeter-vyper-example
+npx zksync-cli@latest create-project greeter-vyper-example --template hardhat_vyper
 cd greeter-vyper-example
 ```
 
