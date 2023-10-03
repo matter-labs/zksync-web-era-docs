@@ -14,8 +14,8 @@ Ensure your system is prepared with:
 
 Also, you'll need an account loaded with ETH on zkSync Era testnet. Get free test ETH [here](https://goerli.portal.zksync.io/faucet).
 
-::: info Local zkSync Testing
-Without needing test ETH, `zksync-cli` allows testing contracts locally. Use `npx zksync-cli dev start` to activate a local zkSync development setup, inclusive of local Ethereum and zkSync nodes. Further details are available in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+::: hint Local zkSync Testing
+Without needing testnet ETH, `zksync-cli` allows testing contracts locally. Use `npx zksync-cli dev start` to activate a local zkSync development setup, inclusive of local Ethereum and zkSync nodes. Further details are available in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
 :::
 
 ## Steps to Deploy Your First Contract
