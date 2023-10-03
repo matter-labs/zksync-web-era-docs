@@ -24,10 +24,10 @@ Returns encoded input for an `approval-based` paymaster.
 
 #### Inputs
 
-| Parameter         | Type                  | Description                       |
-|-------------------|-----------------------|-----------------------------------|
-| `paymasterAddress`| `Address`             | The non-zero `paymaster` address. |
-| `paymasterInput`  | `Data`                | The input data to the paymaster.  |
+| Parameter          | Type      | Description                       |
+| ------------------ | --------- | --------------------------------- |
+| `paymasterAddress` | `Address` | The non-zero `paymaster` address. |
+| `paymasterInput`   | `Data`    | The input data to the paymaster.  |
 
 ```swift
 func encodeApprovalBased(_ tokenAddress: EthereumAddress, minimalAllowance: BigUInt, paymasterInput: Data) -> Data
@@ -39,9 +39,9 @@ Returns encoded input for a `general` paymaster.
 
 #### Inputs
 
-| Parameter         | Type                  | Description                       |
-|-------------------|-----------------------|-----------------------------------|
-| `paymasterInput`  | `Data`                | The input data to the paymaster.  |
+| Parameter        | Type   | Description                      |
+| ---------------- | ------ | -------------------------------- |
+| `paymasterInput` | `Data` | The input data to the paymaster. |
 
 ```swift
 func encodeGeneral(_ paymasterInput: Data) -> Data
