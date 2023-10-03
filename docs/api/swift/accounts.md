@@ -135,9 +135,9 @@ Returns the balance of the specified token on L1 that can be either ETH or any E
 
 #### Inputs
 
-| Parameter | Type                                                | Description    |
-| --------- | --------------------------------------------------- | -------------- |
-| `token`   | `Token`                                             | Token.         |
+| Parameter | Type    | Description |
+| --------- | ------- | ----------- |
+| `token`   | `Token` | Token.      |
 
 ```swift
 func balanceL1(token: Token) async -> BigUInt
@@ -155,10 +155,10 @@ Returns the amount of approved tokens for a specific L1 bridge.
 
 #### Inputs
 
-| Parameter       | Type                                                | Description     |
-| --------------- | --------------------------------------------------- | --------------- |
-| `token`         | `Token`                                             | Token.          |
-| `bridgeAddress` | `EthereumAddress                                    | Bridge address. |
+| Parameter       | Type             | Description     |
+| --------------- | ---------------- | --------------- |
+| `token`         | `Token`          | Token.          |
+| `bridgeAddress` | `EthereumAddress | Bridge address. |
 
 ```swift
 func allowanceL1(token: Token, bridgeAddress: EthereumAddress) async -> BigUInt
@@ -170,9 +170,9 @@ Returns the corresponding address on the L2 network for the token on the L1 netw
 
 #### Inputs
 
-| Parameter | Type              | Description       |
-| --------- | ----------------- | ----------------- |
-| `token`   | `Token`           | L1 token.         |
+| Parameter | Type    | Description |
+| --------- | ------- | ----------- |
+| `token`   | `Token` | L1 token.   |
 
 ```swift
 try await L2TokenAddress(token: Token) async throws -> EthereumAddress
@@ -184,11 +184,11 @@ Returns base cost for L2 transaction.
 
 #### Inputs
 
-| Parameter           | Type                                                | Description                                                                             |
-| ------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `gasLimit`          | `BigUInt`                                           | The gasLimit for the the L2 contract call.                                              |
-| `gasPerPubdataByte` | `BigUInt`                                           | The L2 gas price for each published L1 calldata byte.                                   |
-| `gasPrice`          | `BigUInt` (optional)                                | The L1 gas price of the L1 transaction that will send the request for an execute call. |
+| Parameter           | Type                 | Description                                                                            |
+| ------------------- | -------------------- | -------------------------------------------------------------------------------------- |
+| `gasLimit`          | `BigUInt`            | The gasLimit for the the L2 contract call.                                             |
+| `gasPerPubdataByte` | `BigUInt`            | The L2 gas price for each published L1 calldata byte.                                  |
+| `gasPrice`          | `BigUInt` (optional) | The L1 gas price of the L1 transaction that will send the request for an execute call. |
 
 ```swift
 func baseCost(_ gasLimit: BigUInt, gasPerPubdataByte: BigUInt, gasPrice: BigUInt?) async throws -> [String: Any]
@@ -204,12 +204,12 @@ tokens for the L1 bridge, token approval will be skipped. To check the amount of
 
 #### Inputs
 
-| Parameter | Type                 | Description            |
-| --------- | ------------------------------------------------------------ | ------------------------------- |
-| `to`      | `String`             | To address.            |
-| `amount`  | `BigUInt`            | Amount to deposit.     |
-| `token`   | `Token` (optional)   | Token.                 |
-| `nonce`   | `BigUInt` (optional) | Nonce.                 |
+| Parameter | Type                 | Description        |
+| --------- | -------------------- | ------------------ |
+| `to`      | `String`             | To address.        |
+| `amount`  | `BigUInt`            | Amount to deposit. |
+| `token`   | `Token` (optional)   | Token.             |
+| `nonce`   | `BigUInt` (optional) | Nonce.             |
 
 ```swift
 func deposit(_ to: String, amount: BigUInt, token: Token?, nonce: BigUInt?) async throws -> TransactionSendingResult
@@ -235,9 +235,9 @@ the error.
 
 #### Inputs
 
-| Parameter     | Type                                                         | Description                                    |
-| ------------- | ------------------------------------------------------------ | ---------------------------------------------- |
-| `depositHash` | `common.Hash`                                                | The L2 transaction hash of the failed deposit. |
+| Parameter     | Type          | Description                                    |
+| ------------- | ------------- | ---------------------------------------------- |
+| `depositHash` | `common.Hash` | The L2 transaction hash of the failed deposit. |
 
 ```swift
 func claimFailedDeposit(_ l1BridgeAddress: String, depositSender: String, l1Token: String, l2TxHash: Data, l2BlockNumber: BigUInt, l2MessageIndex: BigUInt, l2TxNumberInBlock: UInt, proof: [Data]) async throws -> TransactionSendingResult
@@ -249,16 +249,16 @@ Request execution of L2 transaction from L1.
 
 #### Inputs
 
-| Parameter         | Type                 | Description           |
-| --------- | ------------------------------------------------------------ | ------------------------------- |
-| `contractAddress` | `String`             | Transaction options.  |
-| `l2Value`         | `BigUInt`            | L2 value.             |
-| `calldata`        | `Token` (optional)   | Calldata.             |
-| `gasLimit`        | `BigUInt` (optional) | Gas limit.            |
-| `factoryDeps`     | `BigUInt` (optional) | Factory deps.         |
-| `operatorTips`    | `BigUInt` (optional) | Operator tips.        |
-| `gasPrice`        | `BigUInt` (optional) | Gas price.            |
-| `refundRecipient` | `BigUInt` (optional) | Refund recipient.     |
+| Parameter         | Type                 | Description          |
+| ----------------- | -------------------- | -------------------- |
+| `contractAddress` | `String`             | Transaction options. |
+| `l2Value`         | `BigUInt`            | L2 value.            |
+| `calldata`        | `Token` (optional)   | Calldata.            |
+| `gasLimit`        | `BigUInt` (optional) | Gas limit.           |
+| `factoryDeps`     | `BigUInt` (optional) | Factory deps.        |
+| `operatorTips`    | `BigUInt` (optional) | Operator tips.       |
+| `gasPrice`        | `BigUInt` (optional) | Gas price.           |
+| `refundRecipient` | `BigUInt` (optional) | Refund recipient.    |
 
 ```swift
 func requestExecute(_ contractAddress: String, l2Value: BigUInt, calldata: Data, gasLimit: BigUInt, factoryDeps: [Data]?, operatorTips: BigUInt?, gasPrice: BigUInt?, refundRecipient: String) async throws -> TransactionSendingResult
@@ -341,9 +341,9 @@ Returns all balances for confirmed tokens given by an associated account.
 
 #### Inputs
 
-| Parameter | Type              | Description |
-| --------- | ----------------- | ----------- |
-| `address` | `String`          | Address.    |
+| Parameter | Type     | Description |
+| --------- | -------- | ----------- |
+| `address` | `String` | Address.    |
 
 ```swift
 func allBalances(_ address: String) async throws -> Dictionary<String, String>
@@ -362,12 +362,12 @@ L1 network.
 
 #### Inputs
 
-| Parameter | Type                 | Description            |
-| --------- | ------------------------------------------------------------ | ------------------------------- |
-| `to`      | `String`             | To address.            |
-| `amount`  | `BigUInt`            | Amount to withdraw.    |
-| `token`   | `Token` (optional)   | Token.                 |
-| `nonce`   | `BigUInt` (optional) | Nonce.                 |
+| Parameter | Type                 | Description         |
+| --------- | -------------------- | ------------------- |
+| `to`      | `String`             | To address.         |
+| `amount`  | `BigUInt`            | Amount to withdraw. |
+| `token`   | `Token` (optional)   | Token.              |
+| `nonce`   | `BigUInt` (optional) | Nonce.              |
 
 ```swift
 func withdraw(_ to: String, amount: BigUInt, token: Token?, nonce: BigUInt?) async throws -> TransactionSendingResult
@@ -391,9 +391,9 @@ Estimates the amount of gas required for a withdrawal transaction.
 
 #### Inputs
 
-| Parameter | Type                                                       | Description                 |
-| --------- | ---------------------------------------------------------- | --------------------------- |
-| `transaction`     | `CodableTransaction` (optional) | Withdrawal transaction. |
+| Parameter     | Type                            | Description             |
+| ------------- | ------------------------------- | ----------------------- |
+| `transaction` | `CodableTransaction` (optional) | Withdrawal transaction. |
 
 ```swift
 func estimateGasWithdraw(_ transaction: CodableTransaction) async throws -> BigUInt
@@ -411,12 +411,12 @@ Moves the ETH or any ERC20 token from the associated account to the target accou
 
 #### Inputs
 
-| Parameter | Type                 | Description            |
-| --------- | ------------------------------------------------------------ | ------------------------------- |
-| `to`      | `String`             | To address.            |
-| `amount`  | `BigUInt`            | Amount to transfer.    |
-| `token`   | `Token` (optional)   | Token.                 |
-| `nonce`   | `BigUInt` (optional) | Nonce.                 |
+| Parameter | Type                 | Description         |
+| --------- | -------------------- | ------------------- |
+| `to`      | `String`             | To address.         |
+| `amount`  | `BigUInt`            | Amount to transfer. |
+| `token`   | `Token` (optional)   | Token.              |
+| `nonce`   | `BigUInt` (optional) | Nonce.              |
 
 ```swift
 func transfer(_ to: String, amount: BigUInt, token: Token?, nonce: BigUInt?) async -> TransactionSendingResult
@@ -440,9 +440,9 @@ Estimates the amount of gas required for a transfer transaction.
 
 #### Inputs
 
-| Parameter      | Type                                                   | Description               |
-| -------------- | ------------------------------------------------------ | ------------------------- |
-| `transaction`  | `CodableTransaction`                                   | Transaction.            |
+| Parameter     | Type                 | Description  |
+| ------------- | -------------------- | ------------ |
+| `transaction` | `CodableTransaction` | Transaction. |
 
 ```swift
 func estimateGasTransfer(_ transaction: CodableTransaction) async throws -> BigUInt
@@ -461,10 +461,10 @@ blockchain.
 
 #### Inputs
 
-| Parameter     | Type                                   | Description                                                                                                                                                                                 |
-| ------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `transaction`         | `CodableTransaction`                      | Transaction.                                                                                                                                                                                    |
-| `blockNumber` | `BigUInt` (optional)                  | Selects the block height at which the call runs. It can be `nil`, in which case the code is taken from the latest known block. Note that state from very old blocks might not be available. |
+| Parameter     | Type                 | Description                                                                                                                                                                                 |
+| ------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `transaction` | `CodableTransaction` | Transaction.                                                                                                                                                                                |
+| `blockNumber` | `BigUInt` (optional) | Selects the block height at which the call runs. It can be `nil`, in which case the code is taken from the latest known block. Note that state from very old blocks might not be available. |
 
 ```swift
 func callContract(_ transaction: CodableTransaction, blockNumber: BigUInt?) async throws -> Data
@@ -484,9 +484,9 @@ Any other fields that are not set will be prepared by this method.
 
 #### Inputs
 
-| Parameter     | Type                 | Description             |
-| ------------- | -------------------- | ----------------------- |
-| `transaction` | `CodableTransaction` | Transaction.            |
+| Parameter     | Type                 | Description  |
+| ------------- | -------------------- | ------------ |
+| `transaction` | `CodableTransaction` | Transaction. |
 
 ```swift
 func populateTransaction(_ transaction: inout CodableTransaction) async
@@ -505,9 +505,9 @@ having appropriate values. To obtain a valid transaction, you can use the [`Popu
 
 #### Inputs
 
-| Parameter     | Type                 | Description             |
-| ------------- | -------------------- | ----------------------- |
-| `transaction` | `CodableTransaction` | Transaction.            |
+| Parameter     | Type                 | Description  |
+| ------------- | -------------------- | ------------ |
+| `transaction` | `CodableTransaction` | Transaction. |
 
 ```swift
 func signTransaction(_ transaction: inout CodableTransaction)
@@ -525,9 +525,9 @@ Injects a transaction into the pending pool for execution. Any unset transaction
 
 #### Inputs
 
-| Parameter     | Type                 | Description             |
-| ------------- | -------------------- | ----------------------- |
-| `transaction` | `CodableTransaction` | Transaction.            |
+| Parameter     | Type                 | Description  |
+| ------------- | -------------------- | ------------ |
+| `transaction` | `CodableTransaction` | Transaction. |
 
 ```swift
 func sendTransaction(_ transaction: CodableTransaction) async throws -> TransactionSendingResult
@@ -555,11 +555,11 @@ Deploys smart contract using CREATE2 opcode.
 
 #### Inputs
 
-| Parameter     | Type              | Description              |
-| ------------- | ----------------- | ------------------------ |
-| `bytecode`    | `Data`            | Smart contract bytecode. |
-| `calldata`    | `Data` (optional) | Calldata.                |
-| `nonce`       | `Data` (optional) | Nonce.                   |
+| Parameter  | Type              | Description              |
+| ---------- | ----------------- | ------------------------ |
+| `bytecode` | `Data`            | Smart contract bytecode. |
+| `calldata` | `Data` (optional) | Calldata.                |
+| `nonce`    | `Data` (optional) | Nonce.                   |
 
 ```swift
 func deploy(_ bytecode: Data, calldata: Data?, nonce: BigUInt?) async -> TransactionSendingResult
@@ -580,11 +580,11 @@ Deploys smart contract using CREATE opcode.
 
 #### Inputs
 
-| Parameter     | Type              | Description              |
-| ------------- | ----------------- | ------------------------ |
-| `bytecode`    | `Data`            | Smart contract bytecode. |
-| `calldata`    | `Data` (optional) | Calldata.                |
-| `nonce`       | `Data` (optional) | Nonce.                   |
+| Parameter  | Type              | Description              |
+| ---------- | ----------------- | ------------------------ |
+| `bytecode` | `Data`            | Smart contract bytecode. |
+| `calldata` | `Data` (optional) | Calldata.                |
+| `nonce`    | `Data` (optional) | Nonce.                   |
 
 ```swift
 func deployWithCreate(_ bytecode: Data, calldata: Data?, nonce: BigUInt?) async -> TransactionSendingResult
@@ -605,11 +605,11 @@ Deploys smart account using CREATE2 opcode.
 
 #### Inputs
 
-| Parameter     | Type              | Description              |
-| ------------- | ----------------- | ------------------------ |
-| `bytecode`    | `Data`            | Smart account bytecode.  |
-| `calldata`    | `Data` (optional) | Calldata.                |
-| `nonce`       | `Data` (optional) | Nonce.                   |
+| Parameter  | Type              | Description             |
+| ---------- | ----------------- | ----------------------- |
+| `bytecode` | `Data`            | Smart account bytecode. |
+| `calldata` | `Data` (optional) | Calldata.               |
+| `nonce`    | `Data` (optional) | Nonce.                  |
 
 ```swift
 func deployAccount(_ bytecode: Data, calldata: Data?, nonce: BigUInt?) async -> TransactionSendingResult
@@ -630,11 +630,11 @@ Deploys smart account using CREATE opcode.
 
 #### Inputs
 
-| Parameter     | Type              | Description              |
-| ------------- | ----------------- | ------------------------ |
-| `bytecode`    | `Data`            | Smart account bytecode.  |
-| `calldata`    | `Data` (optional) | Calldata.                |
-| `nonce`       | `Data` (optional) | Nonce.                   |
+| Parameter  | Type              | Description             |
+| ---------- | ----------------- | ----------------------- |
+| `bytecode` | `Data`            | Smart account bytecode. |
+| `calldata` | `Data` (optional) | Calldata.               |
+| `nonce`    | `Data` (optional) | Nonce.                  |
 
 ```swift
 func deployAccountWithCreate(_ bytecode: Data, calldata: Data?, nonce: BigUInt?) async -> TransactionSendingResult
