@@ -1,6 +1,13 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: hardhat-zksync-node | zkSync Era Docs
+---
+
 # `hardhat-zksync-node`
 
-This plugin is used to provide a convenient way to run zkSync [In-memory node](../testing/era-test-node.md) locally using hardhat.
+This plugin is used to provide a convenient way to run zkSync Era [In-memory node](../testing/era-test-node.md) locally using hardhat.
 
 ## Installation
 
@@ -21,6 +28,8 @@ yarn add -D @matterlabs/hardhat-zksync-node
 ```bash
 npm i -D @matterlabs/hardhat-zksync-node
 ```
+
+:::
 
 ### Configuration
 

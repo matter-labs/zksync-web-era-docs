@@ -200,6 +200,7 @@ export const enSidebar = sidebar({
             "/tools/hardhat/hardhat-zksync-chai-matchers",
             "/tools/hardhat/hardhat-zksync-verify",
             "/tools/hardhat/hardhat-zksync-verify-vyper",
+            "/tools/hardhat/hardhat-zksync-node",
             "/tools/hardhat/other-plugins",
           ],
         },
