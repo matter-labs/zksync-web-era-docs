@@ -657,9 +657,7 @@ the Adapter interface, and the usage of those methods is the same.
 ### `Init`
 
 Creates an instance of Wallet associated with the account provided by the signer. The `clientL2` and `clientL1` parameters are optional;
-if not provided, only `SignTransaction`, `Address` and `Signer` methods can be used, as the rest of the functionalities require
-communication with the network. A wallet that contains only a signer can be configured to communicate with L2 and L1 networks by using
-[`Connect`](#connect) and [`ConnectL1`](#connectl1), respectively.
+if not provided, only `SignTransaction`, `Address` and `Signer` methods can be used, as the rest of the functionalities require communication with the network.
 
 ```swift
 WalletL2(zkSync, ethClient: ethClient, web3: web, ethSigner: signer)

@@ -46,5 +46,3 @@ Returns encoded input for a `general` paymaster.
 ```swift
 func encodeGeneral(_ paymasterInput: Data) -> Data
 ```
-
-Check out the [example](getting-started.md#use-paymaster) how to use paymaster.

@@ -32,11 +32,6 @@ method specification [`BaseCost`](accounts.md#basecost).
 `WalletL1` and `Wallet` objects provide a claim fail deposit workflow. For more information, please refer to the method specification
 [`ClaimFailedDeposit`](accounts.md#claimfaileddeposit).
 
-## Finalize withdraw
-
-`WalletL1` and `Wallet` objects provide a finalize withdraw workflow. For more information, please refer to the method specification
-[`FinalizeWithdraw`](accounts.md#finalizewithdraw).
-
 ## Withdrawal
 
 `WalletL2` and `Wallet` objects provide a withdrawal workflow. For more information, please refer to the method specification [`Deposit`](accounts.md#deposit).

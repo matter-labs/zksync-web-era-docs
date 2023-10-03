@@ -26,5 +26,3 @@ EIP712Meta contains EIP-712 transaction metadata.
 ## Encoding paymaster params
 
 While the paymaster feature by itself does not impose any limitations on values of the `paymasterInput`, the Matter Labs team endorses certain types of [paymaster flows](../../reference/concepts/account-abstraction.md#built-in-paymaster-flows) that are processable by EOAs.
-
-zkSync SDK provides a utility method that can be used to get the correctly formed `PaymasterParams` object: [GetPaymasterParams](./paymaster-utils.md#getpaymasterparams).
