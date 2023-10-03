@@ -32,8 +32,7 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 ## Prerequisites
 
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
-- A Node installation with `yarn` package manager installed.
-- You have [installed the zkSync CLI](../zksync-cli/README.md#installation).
+- A Node and `yarn` package manager installed.
 - You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../../dev/building-on-zksync/hello-world.md).
 - A wallet with sufficient Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
   - You can get Göerli ETH from the following faucets:
