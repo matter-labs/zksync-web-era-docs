@@ -33,6 +33,15 @@ Import the plugin in the `hardhat.config.ts` file:
 import "@matterlabs/hardhat-zksync-verify";
 ```
 
+::: warning Dependency Change from Version 0.2.0!
+Starting from version 0.2.0, the plugin is dependent on @nomicfoundation/hardhat-verify instead of @nomiclabs/hardhat-etherscan.
+
+Important Notes:
+
+- Ensure that you do not import both @nomiclabs/hardhat-etherscan and @nomicfoundation/hardhat-verify in hardhat.config.ts as this might lead to conflicts.
+- If using @nomicfoundation/hardhat-toolbox in hardhat.config.ts, be cautious as it may internally import one of the above plugins. Ensure you're using compatible versions to prevent issues.
+  :::
+
 Add the `verifyURL` property to the zkSync Era network in the `hardhat.config.ts` file as shown below:
 
 ```typescript
