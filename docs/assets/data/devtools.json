@@ -98,13 +98,6 @@
           "description": "SDKs, smart contracts, tools, and infrastructure for web3.",
           "logo": "thirdweb-logo.svg",
           "url": "https://thirdweb.com/"
-        },
-        {
-          "name": "SubQuery",
-          "category": "Dev tools",
-          "description": "Fast, reliable, decentralised, and customised APIs for your web3 project.",
-          "logo": "subquery-logo.svg",
-          "url": "https://subquery.network/"
         }
       ]
     },
@@ -225,6 +218,13 @@
           "description": "Real-time and historical custom data indexing for any evm chain",
           "logo": "flair-logo.jpeg",
           "url": "https://flair.dev"
+        },
+        {
+          "name": "SubQuery",
+          "category": "Indexing",
+          "description": "Fast, reliable, decentralised, and customised APIs for your web3 project.",
+          "logo": "subquery-logo.svg",
+          "url": "https://subquery.network/"
         }
       ]
     },
