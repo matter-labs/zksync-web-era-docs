@@ -33,7 +33,7 @@ Our docs are open source so feel free to suggest new topics, add new content, or
 - [Daily spending limit account](./tutorials/aa-daily-spend-limit.md): create a smart contract account with a daily spending limit.
 - [Building a custom paymaster](./tutorials/custom-paymaster-tutorial.md): build a paymaster that allows users to pay gas fees with an ERC20 token.
 - [USDC paymaster tutorial with API3](./tutorials/api3-usd-paymaster-tutorial.md): build a paymaster that allows users to pay gas fees with USDC using API3 dAPIs.
-- [Gated NFT paymaster](gated-nft-paymaster-tutorial.md): build a paymaster that allows users to pay 0 gas fees when owning a particular NFT.
-- [zkSync Redstone Stable Price Marketplace](./redstone-marketplace-tutorial.md): build a marketplace where users can buy and sell NFTs using Redstone oracles on zkSync.
-- [the Graph on zkSync](./the-graph-tutorial.md): build a subgraph for zkSync on the Graph Protocol using the Graph Studio.
-- [zkSync CLI Quickstart](./zksync-cli-quickstart.md): use the zkSync CLI to deploy your first smart contract on zkSync.
+- [Gated NFT paymaster](./tutorials/gated-nft-paymaster-tutorial.md): build a paymaster that allows users to pay 0 gas fees when owning a particular NFT.
+- [zkSync Redstone Stable Price Marketplace](./tutorials/redstone-marketplace-tutorial.md): build a marketplace where users can buy and sell NFTs using Redstone oracles on zkSync.
+- [the Graph on zkSync](./tutorials/the-graph-tutorial.md): build a subgraph for zkSync on the Graph Protocol using the Graph Studio.
+- [zkSync CLI Quickstart](./tutorials/zksync-cli-quickstart.md): use the zkSync CLI to deploy your first smart contract on zkSync.
