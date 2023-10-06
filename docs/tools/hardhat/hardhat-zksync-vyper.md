@@ -36,7 +36,7 @@ Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply exe
 Use the [zkSync Era cli](../../tools/zksync-cli/README.md) to set up a project.
 
 ```sh
-npx zksync-cli@latest create-project greeter-vyper-example --template hardhat_vyper
+npx zksync-cli@latest create project greeter-vyper-example --template hardhat_vyper
 cd greeter-vyper-example
 ```
 

@@ -20,7 +20,7 @@ Ensure you have the following installed:
 - [Node.js v18+](https://nodejs.org/en)
 - [Git](https://git-scm.com/downloads)
 - [Docker](https://www.docker.com/get-started/) (required for `zksync-cli dev` commands)
-- [Yarn](https://v3.yarnpkg.com/getting-started/install) (required for `zksync-cli create-project`)
+- [Yarn](https://v3.yarnpkg.com/getting-started/install) (required for `zksync-cli create project`)
 
 ### Installation and Usage
 
@@ -45,9 +45,9 @@ Run `zksync-cli help dev` for more commands and details.
 ### Other Essential Commands
 
 - **Basic Operations**:
-  - `zksync-cli create-project {FOLDER_NAME}`: Creates a project in a specified folder.
-  - `zksync-cli deposit`: Moves funds from Ethereum (L1) to zkSync (L2).
-  - `zksync-cli withdraw` and `zksync-cli withdraw-finalize`: Manage funds withdrawal from zkSync (L2) to Ethereum (L1).
+  - `zksync-cli create project {FOLDER_NAME}`: Creates a project in a specified folder.
+  - `zksync-cli bridge deposit`: Moves funds from Ethereum (L1) to zkSync (L2).
+  - `zksync-cli bridge withdraw` and `zksync-cli bridge withdraw-finalize`: Manage funds withdrawal from zkSync (L2) to Ethereum (L1).
 - **Help & Info**:
   - `zksync-cli help`: General help.
   - `zksync-cli help {command}`: Detailed command usage info.
@@ -63,14 +63,14 @@ More commands and updates are coming! If you have suggestions, [open an issue on
 
 ### Project Templates
 
-Create projects with these templates using `zksync-cli create-project`:
+Create projects with these templates using `zksync-cli create project`:
 
 - [Hardhat + Solidity](https://github.com/matter-labs/zksync-hardhat-template).
 - [Hardhat + Vyper](https://github.com/matter-labs/zksync-hardhat-vyper-template).
 
 ### 🔗 Supported Chains
 
-zkSync CLI supports Era Testnet and Era Mainnet by default. Use other networks by overriding L1 and L2 RPC URLs: `zksync-cli deposit --l2-rpc=http://... --l1-rpc=http://...`
+zkSync CLI supports Era Testnet and Era Mainnet by default. Use other networks by overriding L1 and L2 RPC URLs: `zksync-cli bridge deposit --l2-rpc=http://... --l1-rpc=http://...`
 
 For using [local setup (dockerized testing node)](../testing/dockerized-testing.md) with default RPC URLs, select `Local Dockerized node` in CLI or use `--chain local-dockerized`.
 
