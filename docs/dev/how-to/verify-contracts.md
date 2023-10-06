@@ -34,7 +34,7 @@ For open-source projects, verifying contracts enhances trust and encourages more
 1. Scaffold a new project by running the command:
 
 ```sh
-npx zksync-cli create-project verify-greeter-contract --template hardhat_solidity
+npx zksync-cli create project verify-greeter-contract --template hardhat_solidity
 ```
 
 This creates a new zkSync Era project called `verify-greeter-contract` with a basic `Greeter` contract and all the zkSync plugins and configurations.

@@ -25,7 +25,7 @@ Without needing testnet ETH, `zksync-cli` allows testing contracts locally. Use 
 Execute the following code to create a new project named `quickstart` using an existing template.
 
 ```sh
-npx zksync-cli create-project quickstart --template hardhat_solidity  && cd quickstart
+npx zksync-cli create project quickstart --template hardhat_solidity  && cd quickstart
 ```
 
 Inside `quickstart`, you’ll find:

@@ -45,7 +45,7 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 1. Scaffold a new project by running the command:
 
 ```sh
-npx zksync-cli create-project greeter-example --template hardhat_solidity
+npx zksync-cli create project greeter-example --template hardhat_solidity
 ```
 
 This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract and all the zkSync plugins and configurations.

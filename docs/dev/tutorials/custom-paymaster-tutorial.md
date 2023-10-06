@@ -39,7 +39,7 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 1. Initiate a new project by running the command:
 
 ```sh
-npx zksync-cli create-project custom-paymaster-tutorial --template hardhat_solidity
+npx zksync-cli create project custom-paymaster-tutorial --template hardhat_solidity
 ```
 
 :::tip

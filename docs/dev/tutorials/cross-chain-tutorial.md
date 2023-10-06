@@ -242,7 +242,7 @@ Now that we have an address for the L1 governance contract, we can build, deploy
 1. `cd` into `/L2-counter` and initialize the project:
 
 ```sh
-npx zksync-cli create-project . --template hardhat_solidity
+npx zksync-cli create project . --template hardhat_solidity
 ```
 
 ::: tip
