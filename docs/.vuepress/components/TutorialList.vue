@@ -17,14 +17,13 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-// const tutorialsRepo = "https://raw.githubusercontent.com/zkSync-Community-Hub/tutorials/main/";
-const tutorialsRepo = "https://raw.githubusercontent.com/zkSync-Community-Hub/tutorials/feat/json-descriptions/";
+const tutorialsRepo = "https://github.com/zkSync-Community-Hub/tutorials/blob/main/tutorials/";
 
 const tutorials = ref([]);
 
 onMounted(async () => {
   try {
-    const response = await fetch(`${tutorialsRepo}tutorials.json`);
+    const response = await fetch("https://raw.githubusercontent.com/zkSync-Community-Hub/tutorials/main/tutorials.json");
     if (response.ok) {
       tutorials.value = await response.json();
     } else {
