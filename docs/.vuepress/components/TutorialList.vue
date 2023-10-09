@@ -1,120 +1,118 @@
 <template>
-  <div>
+  <div class="tutorial-container">
     <div v-for="(t, index) in tutorials" :key="t.title" class="tutorial-card">
       <h3 class="tutorial-title">
-        <a :href="`${tutorialsRepo}${t.slug}/TUTORIAL.md`" target="_blank">{{ t.title }}</a
-        ><span> by {{ t.author }}</span>
+        <a :href="`${tutorialsRepo}${t.slug}/TUTORIAL.md`" target="_blank">{{ t.title }}</a>
+        <span> by {{ t.author }}</span>
       </h3>
-      <div :class="`badge bg-${index}`" v-for="(tag, index) in t.tags" :key="tag"><span style="">⦿ </span>{{ tag }}</div>
-      <p class="description"><strong>Difficulty:</strong> {{ t.level }}</p>
-      <!-- <ul>
-        <li :class="`badge bg-${index}`" v-for="(tag, index) in t.tags" :key="tag">{{ tag }}</li>
-      </ul> -->
-
+      <div :class="`badge`" v-for="tag in t.tags" :key="tag" :style="{ backgroundColor: getColorForBadge(tag) }">{{ tag }}</div>
+      <p class="time"><span>⏳ Time:</span> <strong>{{ t.time }}</strong></p>
       <p>{{ t.description }}</p>
-
       <p>
         <a class="button" :href="`${tutorialsRepo}${t.slug}/TUTORIAL.md`" target="_blank">Tutorial repository</a>
       </p>
-      <hr />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-const tutorialsRepo = "https://github.com/zkSync-Community-Hub/tutorials/tree/main/tutorials/";
+import { ref, onMounted } from "vue";
+// const tutorialsRepo = "https://raw.githubusercontent.com/zkSync-Community-Hub/tutorials/main/";
+const tutorialsRepo = "https://raw.githubusercontent.com/zkSync-Community-Hub/tutorials/feat/json-descriptions/";
 
-const tutorials = ref([
-  {
-    title: "Create awesome apps with Gelato",
-    description:
-      "Ut sed dui tristique, elementum enim eu, finibus odio. Mauris congue mi vel magna viverra, vel lacinia leo consequat. Morbi eleifend ex in orci ultricies, ut tincidunt leo posuere. ",
-    tags: ["defi", "oracle", "uniswap"],
-    level: "intermediate",
-    author: "B.Blockchain",
-    slug: "zksync-cli-quickstart",
-  },
-  {
-    title: "Use Redstone to feed offchain data to smart contracts",
-    description: "Ut sed dui tristique, elementum enim eu, finibus odio. Mauris congue mi vel magna viverra, vel lacinia leo consequat. Morbi eleifend ex in oleo posuere. ",
-    tags: ["oracle", "redstone"],
-    level: "beginner",
-    author: "A.Developer",
-    slug: "create-liquidity-pool-uniswap",
-  },
-  {
-    title: "Sed pulvinar libero justo",
-    description: "Vivamus egestas fringilla risus ac condimentum. In maximus massa ut bibendum faucibus. Duis condimentum ex diam, vitae vestibulum ligula convallis quis. ",
-    tags: ["defi", "oracle", "uniswap", "thirdweb", "something soe", "somethings"],
-    level: "beginner",
-    author: "A.Developer",
-    slug: "create-liquidity-pool-uniswap",
-  },
-]);
+const tutorials = ref([]);
+
+onMounted(async () => {
+  try {
+    const response = await fetch(`${tutorialsRepo}tutorials.json`);
+    if (response.ok) {
+      tutorials.value = await response.json();
+    } else {
+      console.error("Failed to fetch tutorials:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error fetching tutorials:", error);
+  }
+});
+
+const getColorForBadge = (badgeName) => {
+  const hash = badgeName.split("").reduce((acc, char) => char.charCodeAt(0) + ((acc << 5) - acc), 0);
+  const hue = hash % 360;
+  return `hsl(${hue}, 60%, 70%)`;
+};
 </script>
 
 <style>
-.title {
-  /* margin: 0 0 0.1rem; */
-  padding: 0;
-  color: #2c3e50 !important;
+.tutorial-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
+
 .tutorial-card {
-  border-bottom: 1px solid #1e69ff;
-  padding-bottom: 10px;
-  margin-bottom: 15px;
+  border: 1px solid #eaeaea;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
 }
-.description {
-  margin: 0;
-  padding: 0;
+
+.tutorial-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
+
+.tutorial-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.tutorial-title a {
+  color: #1e69ff;
+  text-decoration: none;
+}
+
+.tutorial-title a:hover {
+  text-decoration: underline;
+}
+
+.author {
+  font-size: 1rem;
+  color: #888;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
 .button {
-  padding: 10px 14px;
+  display: inline-block;
+  padding: 10px 20px;
   font-weight: 500;
   color: #fff;
   background-color: #1e69ff;
-  border-radius: 10px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background-color 0.3s;
 }
-.badge {
-  padding: 4px 8px;
-  text-align: center;
-  border-radius: 8px;
-  margin: 0px 0px 4px 4px;
-}
-.bg-0 {
-  border: 1px solid purple;
-  background-color: #fff;
-  color: purple;
-  box-shadow: #2c3e50;
-}
-.bg-1 {
-  background-color: #fff;
-  border: 1px solid blue;
-  color: blue;
-}
-.bg-2 {
-  border: 1px solid deeppink;
-  background-color: #fff;
 
-  color: deeppink;
+.button:hover {
+  background-color: #0056b3;
 }
-.bg-3 {
-  border: 1px solid limegreen;
-  background-color: #fff;
 
-  color: yellowgreen;
+.time {
+  font-size: 1.1em;
+  margin-top: 10px;
 }
-.bg-4 {
-  border: 1px solid darkorange;
-  background-color: #fff;
 
-  color: darkorange;
-}
-.bg-5 {
-  border: 1px solid crimson;
-  background-color: #fff;
-
-  color: crimson;
+.time span {
+  margin-right: 5px;
 }
 </style>
