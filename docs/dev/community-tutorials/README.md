@@ -13,7 +13,7 @@ Here is the list of tutorials created by partners, projects, and community membe
 
 ### Want to Contribute?
 
-The community tutorials is an **open source inititive** from the [zkSync Community Hub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions).
+The community tutorials is an **open source initiative** from the [zkSync Community Hub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions).
 
 If you'd like to contribute and don't know exactly how, check out [the repo's issues](https://github.com/zkSync-Community-Hub/tutorials/issues) for ideas on what to work on - help is welcome! Make also sure to follow the contribution guidelines in the [community tutorials repo](https://github.com/zkSync-Community-Hub/tutorials#tutorial-guideliness).
 
