@@ -32,6 +32,7 @@ export const enSidebar = sidebar({
       text: "Tutorials",
       link: "/dev/tutorials.md",
       children: [
+        { text: "Community", link: "/dev/community-tutorials/README.md", children: [] },
         { text: "zkSync Team", link: "/dev/tutorials/README.md", children: [
           "/dev/tutorials/cross-chain-tutorial.md",
           "/dev/tutorials/custom-aa-tutorial.md",
@@ -40,11 +41,6 @@ export const enSidebar = sidebar({
           "/dev/tutorials/api3-usd-paymaster-tutorial.md",
           "/dev/tutorials/gated-nft-paymaster-tutorial.md",
         ]},
-        { text: "Community", link: "/dev/community-tutorials/README.md", children: [
-          "/dev/community-tutorials/redstone-marketplace-tutorial.md",
-          "/dev/community-tutorials/the-graph-tutorial.md",
-          "/dev/community-tutorials/zksync-cli-quickstart.md",
-        ] },
       ],
     },
   ],
