@@ -9,6 +9,12 @@ head:
 
 This plugin is used to provide a convenient way to run zkSync Era [In-memory node](../testing/era-test-node.md) locally using hardhat.
 
+::: warning Platform Restrictions
+
+The zkSync Era In-memory node binaries are not supported on Windows at the moment. As an alternative, users can utilize the Windows Subsystem for Linux (WSL).
+
+:::
+
 ## Installation
 
 [@matterlabs/hardhat-zksync-node](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-node)
@@ -79,5 +85,42 @@ If you wish to learn more about replaying transactions or forking, check out the
 ::: tip Supported APIs
 
 To see a list of all supported APIs, visit [this link ](https://github.com/matter-labs/era-test-node/blob/main/SUPPORTED_APIS.md).
+
+:::
+
+## Running Hardhat's test Task with hardhat-zksync-node
+
+The `hardhat-zksync-node` plugin enhances Hardhat's test task, allowing all tests to run against an In-memory node operated in a separate process. By invoking the test task with the Hardhat network's `zksync` flag set to `true`, the plugin initiates an In-memory node alongside the tests. After the tests conclude, the node shuts down gracefully. The plugin begins port allocation from the default 8011.
+
+```ts
+networks: {
+  hardhat: {
+    zksync: true,
+  }
+},
+```
+
+The network object in the Hardhat runtime environment is also updated to match the running node as follows:
+
+- The network name is set to `zkSyncEraTestNode`.
+- The network config is set as an HTTP network config, adopting default values.
+- The network provider uses a provider adapter that implements `EthereumProvider` and wraps the zksync's JS SDK Provider implementation.
+
+::: note Provider Implementation
+
+Since the network provider in the Hardhat runtime environment needs to implement `EthereumProvider`, we've introduced a new adapter (`ZkSyncProviderAdapter`) for the JS SDK Provider. This adapter encompasses all the required functionalities. If you wish to access the JS SDK Provider, you can do so in TypeScript as follows:
+
+```typescript
+// hre stands for hardhat runtime environment
+(hre.network.provider as ZkSyncProviderAdapter)._zkSyncProvider;
+```
+
+This is especially beneficial when you need to create an instance of the Wallet that expects a JS SDK Provider.
+
+:::
+
+::: warning Provider URL Mismatch
+
+When running tests, be aware that the In-memory node attempts to allocate free ports (starting from the default 8011). This can lead to situations where the provider's URL does not match your expectations. It's strongly recommended to use the network provider as explained in the previous section.
 
 :::
