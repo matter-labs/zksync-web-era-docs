@@ -316,21 +316,19 @@ The paymaster supports only the [approval based](#approval-based-paymaster-flow)
 
 An example of how to use testnet paymaster can be seen in the [quickstart](../../dev/building-on-zksync/hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
 
-## `aa-signature-checker`
+## Signature validation
 
 Your project can start preparing for native AA support. We highly encourage you to do so, since it will allow you to onboard hundreds of thousands of users (e.g. Argent users that already use the first version of zkSync).
 We expect that in the future even more users will switch to smart wallets.
 
-One of the most notable differences between various types of accounts to be built is different signature schemes. We expect accounts to support the [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271) standard. Our team has created a utility library for verifying account signatures. Currently, it only supports ECDSA signatures, but we will add support for EIP-1271 very soon as well.
+One of the most notable differences between various types of accounts to be built is different signature schemes. We expect accounts to support the [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271) standard.
 
-The `aa-signature-checker` library provides a way to verify signatures for different account implementations. Currently it only supports verifying ECDSA signatures. Very soon we will add support for EIP-1271 as well.
-
-_We strongly encourage you to use this library whenever you need to check that a signature of an account is correct._
+The [`@openzeppelin/contracts/utils/cryptography/SignatureChecker.sol`](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/5ed5a86d1d22f387ce69ab4e0ace405de8bc888d/contracts/utils/cryptography/SignatureChecker.sol#L22) library provides a way to verify signatures for different account implementations. We strongly encourage you to use this library whenever you need to check that a signature of an account is correct.
 
 ### Adding the library to your project
 
 ```
-yarn add @matterlabs/signature-checker
+yarn add @openzeppelin/contracts
 ```
 
 ### Example of using the library
@@ -338,7 +336,7 @@ yarn add @matterlabs/signature-checker
 ```solidity
 pragma solidity ^0.8.0;
 
-import { SignatureChecker } from "@matterlabs/signature-checker/contracts/SignatureChecker.sol";
+import { SignatureChecker } from "@openzeppelin/contracts/utils/cryptography/SignatureChecker.sol";
 
 contract TestSignatureChecker {
     using SignatureChecker for address;
