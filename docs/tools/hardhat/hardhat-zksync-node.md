@@ -106,21 +106,23 @@ The network object in the Hardhat runtime environment is also updated to match t
 - The network config is set as an HTTP network config, adopting default values.
 - The network provider uses a provider adapter that implements `EthereumProvider` and wraps the zksync's JS SDK Provider implementation.
 
-::: note Provider Implementation
+::: warning Provider URL Mismatch
 
-Since the network provider in the Hardhat runtime environment needs to implement `EthereumProvider`, we've introduced a new adapter (`ZkSyncProviderAdapter`) for the JS SDK Provider. This adapter encompasses all the required functionalities. If you wish to access the JS SDK Provider, you can do so in TypeScript as follows:
+When running tests, be aware that the In-memory node attempts to allocate free ports (starting from the default 8011). This can lead to situations where the provider's URL does not match your expectations. It's strongly recommended to use the network config URL from the hardhat runtime environment to instantiate the Provider instance from the JS SDK, like this:
+
+```typescript
+const provider = new Provider(hre.network.config.url);
+```
+
+:::
+
+::: note Accessing the Network Provider in Hardhat
+
+Apart from the previously described method of instantiating the Provider, you can also directly access it from the Hardhat runtime environment. Due to incompatibilities between Hardhat's `EthereumProvider` and the JS SDK Provider, we've introduced a new adapter (`ZkSyncProviderAdapter`). This adapter bridges the gap and ensures that all the necessary functionalities are seamlessly integrated. If you wish to access the JS SDK Provider directly, you can do so in TypeScript with:
 
 ```typescript
 // hre stands for hardhat runtime environment
 (hre.network.provider as ZkSyncProviderAdapter)._zkSyncProvider;
 ```
-
-This is especially beneficial when you need to create an instance of the Wallet that expects a JS SDK Provider.
-
-:::
-
-::: warning Provider URL Mismatch
-
-When running tests, be aware that the In-memory node attempts to allocate free ports (starting from the default 8011). This can lead to situations where the provider's URL does not match your expectations. It's strongly recommended to use the network provider as explained in the previous section.
 
 :::
