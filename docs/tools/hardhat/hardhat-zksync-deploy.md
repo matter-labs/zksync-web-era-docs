@@ -15,7 +15,7 @@ To use the `hardhat-zksync-deploy` in your project, we recommend that:
 
 - You have a Node installation and `yarn` package manager.
 - You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../../dev/building-on-zksync/hello-world.md).
-- You have a wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Use the [third party faucets](../../reference/troubleshooting/faq.md#how-do-i-request-funds-for-testnet) to get some test ERC20 tokens in your account.
+- You have a wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Use the [third party faucets](../../reference/troubleshooting/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ## Setup
