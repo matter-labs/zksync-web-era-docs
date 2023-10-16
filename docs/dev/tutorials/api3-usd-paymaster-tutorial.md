@@ -26,7 +26,7 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
     - [Alchemy Goerli faucet](https://goerlifaucet.com/)
     - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
     - [Proof of work faucet](https://goerli-faucet.pk910.de/)
-  - Get testnet `ETH` on zkSync Era from the [zkSync portal](https://goerli.portal.zksync.io/faucet).
+  - Get testnet `ETH` on zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ::: tip Local zkSync Testing with zksync-cli

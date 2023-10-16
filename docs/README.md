@@ -105,8 +105,8 @@ In the upcoming protocol upgrade scheduled for August-September 2023, there will
   <div class="card-container">
    <a href="https://portal.zksync.io/" class="card">
       <div class="content">
-        <h3>zkSync Era Portal</h3>
-        <p>Bridge, deposit, and withdraw ERC20 tokens.</p>
+        <h3>Bridges & Wallets</h3>
+        <p>Bridge, deposit, and withdraw ERC20 tokens using native bridge or ecosystem partners.</p>
       </div>
    </a>
    <a href="./api/tools/block-explorer/intro.html" class="card">
