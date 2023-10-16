@@ -322,6 +322,11 @@
           "source": "/docs/api/tools{,/**}",
           "destination": "/docs/tools/",
           "type": "302"
+        },
+        {
+          "source": "/docs/dev/community-tutorials/the-graph-tutorial.html",
+          "destination": "https://github.com/zkSync-Community-Hub/tutorials/blob/main/tutorials/the-graph/TUTORIAL.md",
+          "type": "302"
         }
       ]
     },
@@ -646,6 +651,11 @@
         {
           "source": "/docs/api/tools{,/**}",
           "destination": "/docs/tools/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/community-tutorials/the-graph-tutorial.html",
+          "destination": "https://github.com/zkSync-Community-Hub/tutorials/blob/main/tutorials/the-graph/TUTORIAL.md",
           "type": "302"
         }
       ]
