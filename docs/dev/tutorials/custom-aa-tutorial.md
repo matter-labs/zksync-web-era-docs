@@ -21,6 +21,10 @@ This tutorial shows you how to build and deploy a 2-of-2 multi-signature account
   - If you haven't already, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
+::: tip Local zkSync Testing with zksync-cli
+Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+:::
+
 ## Complete project
 
 Download the complete project [here](https://github.com/matter-labs/tutorials/tree/main/custom-aa).
@@ -31,16 +35,10 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 
 ## Set up
 
-1. If you haven't already, install the [zkSync CLI:](../../tools/zksync-cli/README.md)
+1. Initiate a new project by running the command:
 
 ```sh
-yarn add global zksync-cli@latest
-```
-
-2. Initiate a new project by running the command:
-
-```sh
-zksync-cli create-project custom-aa-tutorial
+npx zksync-cli create project custom-aa-tutorial --template hardhat_solidity
 ```
 
 :::tip
@@ -49,31 +47,31 @@ The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
 
 This creates a new zkSync Era project called `custom-aa-tutorial` with a basic `Greeter` contract.
 
-3. Navigate into the project directory:
+2. Navigate into the project directory:
 
 ```sh
-cd ~/custom-aa-tutorial
+cd custom-aa-tutorial
 ```
 
-4. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
+3. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
 
 ```sh
 rm -rf ./contracts/Greeter.sol
 ```
 
-5. Similarly, remove the deploy scripts associated with the Greeter contract:
+4. Similarly, remove the deploy scripts associated with the Greeter contract:
 
 ```sh
 rm -rf ./deploy/deploy-greeter.ts && rm -rf ./deploy/use-greeter.ts
 ```
 
-6. Add the zkSync and OpenZeppelin contract libraries:
+5. Add the zkSync and OpenZeppelin contract libraries:
 
 ```sh
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
 ```
 
-7. Include the `isSystem: true` setting in the `hardhat.config.ts` configuration file to allow interaction with system contracts:
+6. Include the `isSystem: true` setting in the `hardhat.config.ts` configuration file to allow interaction with system contracts:
 
 ```ts
 import { HardhatUserConfig } from "hardhat/config";
@@ -110,7 +108,7 @@ export default config;
 
 Each account must implement the [IAccount](../../reference/concepts/account-abstraction.md#iaccount-interface) interface. Furthermore, since we are building an account with multiple signers, we should implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
-The skeleton code for the contract is given below.
+The skeleton code for the contract is given below. Use it to perform next steps, or you can skip and use completed code from [Full example](../tutorials/custom-aa-tutorial.md#full-example) section.
 
 ```solidity
 // SPDX-License-Identifier: MIT

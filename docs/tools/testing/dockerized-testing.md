@@ -7,6 +7,9 @@ head:
 
 # Dockerized setup
 
+Get started quickly with a Dockerized zkSync node using `npx zksync-cli dev start`! This tool simplifies local environment setups and other zkSync operations. Learn more and in the [zkSync CLI documentation](../zksync-cli/README.md).
+Or follow the instructions below to set up Dockerized node manually.
+
 ## Dockerized local setup: installation & setup
 
 Let's delve into the setup process for Dockerized Local Testing Environment.
