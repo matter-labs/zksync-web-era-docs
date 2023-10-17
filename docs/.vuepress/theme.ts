@@ -43,7 +43,7 @@ export default hopeTheme({
       <div class="footer-links">
         <a href="https://github.com/zksync/credo" target="_blank">ZK Credo</a>
         <a href="https://explorer.zksync.io/" target="_blank">Block explorer</a>
-        <a href="https://portal.zksync.io/" target="_blank">Wallet portal</a>
+        <a href="https://zksync.io/explore#bridges" target="_blank">Bridges & Wallets</a>
         <a href="https://github.com/zkSync-Community-Hub/zkync-developers/discussions" target="_blank">GitHub Discussions</a>
         <a href="https://ecosystem.zksync.io/" target="_blank">Ecosystem</a>
       </div>

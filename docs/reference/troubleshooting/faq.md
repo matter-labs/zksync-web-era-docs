@@ -146,6 +146,10 @@ To access the testnet funds (Goerli ETH) you can use one of the following third 
 
 - [QuickNode faucet](https://faucet.quicknode.com/ethereum/goerli)
 
+- [Alchemy Goerli faucet](https://goerlifaucet.com/)
+
+- [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
+
 - [PoW faucet](https://goerli-faucet.pk910.de/).
 
 ## How long does it take to complete a deposit transaction?
