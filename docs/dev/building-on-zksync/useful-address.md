@@ -30,8 +30,6 @@ Here are some contract addresses that may be useful and/or of interest to those 
 
 **Do not transfer tokens or Ether to any of the addresses below;** it will result in a loss of funds.
 
-Users should only interact with the token bridge contracts via [zkSync Bridge](https://bridge.zksync.io/).
-
 :::
 
 | Contract           | Address                                                                                                                     |
