@@ -126,10 +126,10 @@ If the `offset` for `calldataload(offset)` is greater than `2^32-33` then execut
 Internally on zkEVM, `calldatacopy(to, offset, len)` there is just a loop with the `calldataload` and `mstore` on each iteration.
 That means that the code will panic if `2^32-32 + offset % 32 < offset + len`.
 
-### `RETURN`
+### `RETURN`, `STOP`
 
-Constructors return the array of immutable values. If you use `RETURN` in an assembly block in the constructor on zkSync Era,
-it will return the array of immutable values initialized so far.
+Constructors return the array of immutable values. If you use `RETURN` or `STOP` in an assembly block in the constructor on zkSync Era,
+it will leave the immutable variables uninitialized.
 
 ```solidity
 contract Example {
@@ -139,9 +139,14 @@ contract Example {
         x = 45;
 
         assembly {
-            // The statement below is overridden by the zkEVM compiler to return
-            // the array of immutables instead of 32 bytes specified by the user.
-            return(0, 32)
+            // The statements below are overridden by the zkEVM compiler to return
+            // the array of immutables.
+
+            // The statement below leaves the variable x uninitialized.
+            // return(0, 32)
+
+            // The statement below leaves the variable x uninitialized.
+            // stop()
         }
     }
 
@@ -167,7 +172,7 @@ check out the [blocks on zkSync Era documentation](../../reference/concepts/bloc
 
 Returns the address of the `Bootloader` contract, which is `0x8001` on zkSync Era.
 
-### `DIFFICULTY`
+### `DIFFICULTY`, `PREVRANDAO`
 
 Returns a constant value of `2500000000000000` on zkSync Era.
 

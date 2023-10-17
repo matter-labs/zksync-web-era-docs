@@ -37,6 +37,13 @@
           "description": "Extends web3j including zksync-specific methods and utilities.",
           "logo": "java-logo.svg",
           "url": "https://era.zksync.io/docs/api/java"
+        },
+        {
+          "name": "Rust SDK",
+          "category": "SDK",
+          "description": "Extends ethers-rs including zksync-specific methods and utilities.",
+          "logo": "rust-logo.svg",
+          "url": "https://era.zksync.io/docs/api/rust"
         }
       ]
     },
@@ -46,7 +53,7 @@
         {
           "name": "zksync-cli",
           "category": "Dev tools",
-          "description": "Scaffold projects from templates and interact with Era from the terminal.",
+          "description": "Quickly set up local zkSync dev environment, scaffold projects, and interact with Era seamlessly from your terminal",
           "logo": "cli-logo.png",
           "url": "https://era.zksync.io/docs/tools/zksync-cli/"
         },
@@ -199,6 +206,25 @@
           "logo": "uniswap-logo.png",
           "url": "#",
           "soon": true
+        }
+      ]
+    },
+    {
+      "category": "Data Indexers",
+      "tools": [
+        {
+          "name": "Flair",
+          "category": "Indexing",
+          "description": "Real-time and historical custom data indexing for any evm chain",
+          "logo": "flair-logo.jpeg",
+          "url": "https://flair.dev"
+        },
+        {
+          "name": "SubQuery",
+          "category": "Indexing",
+          "description": "Fast, reliable, decentralised, and customised APIs for your web3 project.",
+          "logo": "subquery-logo.svg",
+          "url": "https://subquery.network/"
         }
       ]
     },

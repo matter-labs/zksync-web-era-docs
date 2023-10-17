@@ -30,14 +30,17 @@ export const enSidebar = sidebar({
     },
     {
       text: "Tutorials",
-      link: "/dev/tutorials/README.md",
+      link: "/dev/tutorials.md",
       children: [
-        "/dev/tutorials/cross-chain-tutorial.md",
-        "/dev/tutorials/custom-aa-tutorial.md",
-        "/dev/tutorials/aa-daily-spend-limit.md",
-        "/dev/tutorials/custom-paymaster-tutorial.md",
-        "/dev/tutorials/api3-usd-paymaster-tutorial.md",
-        "/dev/tutorials/gated-nft-paymaster-tutorial.md",
+        { text: "Community", link: "/dev/community-tutorials/README.md", children: [] },
+        { text: "zkSync Team", link: "/dev/tutorials/README.md", children: [
+          "/dev/tutorials/cross-chain-tutorial.md",
+          "/dev/tutorials/custom-aa-tutorial.md",
+          "/dev/tutorials/aa-daily-spend-limit.md",
+          "/dev/tutorials/custom-paymaster-tutorial.md",
+          "/dev/tutorials/api3-usd-paymaster-tutorial.md",
+          "/dev/tutorials/gated-nft-paymaster-tutorial.md",
+        ]},
       ],
     },
   ],
@@ -95,17 +98,51 @@ export const enSidebar = sidebar({
       text: "JavaScript SDK", // required
       link: "/api/js", // optional, which should be a absolute path.
       children: [
-        "/api/js/getting-started",
-        "/api/js/providers",
-        "/api/js/accounts",
-        "/api/js/accounts-l1-l2",
-        "/api/js/contracts",
-        "/api/js/features",
-        "/api/js/utils",
-        "/api/js/paymaster-utils",
-        "/api/js/types",
-        "/api/js/front-end",
-      ],
+        {
+          text: "JavaScript Ethers V5 SDK",
+          link: "/api/js",
+          children: [
+            "/api/js/getting-started",
+            "/api/js/providers",
+            "/api/js/accounts",
+            "/api/js/accounts-l1-l2",
+            "/api/js/contracts",
+            "/api/js/features",
+            "/api/js/utils",
+            "/api/js/paymaster-utils",
+            "/api/js/types",
+            "/api/js/front-end",
+          ],
+        },
+        {
+          text: "JavaScript Ethers V6 SDK",
+          link: "/api/js/zksync2-js",
+          children: [
+            {
+              text: "Getting started",
+              link: "/api/js/zksync2-js/getting-started",
+              collapsible: true,
+              children: [
+                "/api/js/zksync2-js/examples/deposit",
+                "/api/js/zksync2-js/examples/transfer",
+                "/api/js/zksync2-js/examples/withdraw",
+                "/api/js/zksync2-js/examples/get-confirmed-tokens",
+                "/api/js/zksync2-js/examples/custom-paymaster/use-paymaster",
+              ],
+            },
+            "/api/js/zksync2-js/providers",
+            "/api/js/zksync2-js/accounts",
+            "/api/js/zksync2-js/accounts-l1-l2",
+            "/api/js/zksync2-js/contracts",
+            "/api/js/zksync2-js/features",
+            "/api/js/zksync2-js/utils",
+            "/api/js/zksync2-js/paymaster-utils",
+            "/api/js/zksync2-js/types",
+            "/api/js/zksync2-js/front-end",
+            "/api/js/zksync2-js/migration"
+          ],
+        }
+      ]
     },
     {
       text: "Python SDK",
@@ -144,12 +181,7 @@ export const enSidebar = sidebar({
           text: "Types",
           link: "/api/go/types/intro",
           collapsible: true,
-          children: [
-            "/api/go/types/types",
-            "/api/go/types/eip712",
-            "/api/go/types/clients",
-            "/api/go/types/accounts",
-          ]
+          children: ["/api/go/types/types", "/api/go/types/eip712", "/api/go/types/clients", "/api/go/types/accounts"],
         },
       ],
     },
@@ -157,6 +189,15 @@ export const enSidebar = sidebar({
       text: "Java SDK", // required
       link: "/api/java/getting-started", // optional, which should be a absolute path.
       children: ["/api/java", "/api/java/providers", "/api/java/accounts", "/api/java/accounts-l1-l2"],
+    },
+    {
+      text: "Rust SDK", // required
+      link: "/api/rust/getting-started", // optional, which should be a absolute path.
+      children: [
+        "/api/rust",
+        "/api/rust/getting-started",
+        "/api/rust/contract-deployment-and-interaction"
+      ],
     },
   ],
   //The sidebar for Tools and SDKs
