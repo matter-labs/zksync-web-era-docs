@@ -22,12 +22,13 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
    The import gives access to the [`IZkSync.sol`](https://github.com/matter-labs/era-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IZkSync.sol#L4) inherited interfaces that include the gas estimation functionality.
 
-   Import the contracts with yarn (recommended), or [download the contracts](https://github.com/matter-labs/v2-testnet-contracts) from the repo.
+   You can do it using yarn (recommended), or [download the contracts](https://github.com/matter-labs/v2-testnet-contracts) from the repo.
 
    ::: code-tabs
    @tab yarn
 
    ```yarn
+   yarn init -y
    yarn add -D @matterlabs/zksync-contracts
    ```
 
@@ -230,8 +231,26 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 ### Example code
 
-::: code-tabs
-@tab TypeScript
+User needs to perform next steps:
+
+1. Run local node dockerized containers. [`Instructions how to run it`](https://github.com/matter-labs/local-setup/tree/main)
+2. In the root folder of the imported project (step 1) create `file.js` and insert there code from example below
+3. In the root folder add `.env` file with private key of wallet to use
+
+```js
+"RICH_WALLET_PRIV_KEY=0x..";
+```
+
+4. Add script to package.json file next script:
+
+```js
+`"scripts": {  "run": "node file.js"},``"type": "module",`;
+```
+
+5. Run `npm i --save-dev ethers` (in case it is not installed)
+6. Run command `npm run`
+   ::: code-tabs
+   @tab TypeScript
 
 ```js
 import { Contract, Wallet, Provider } from "zksync-web3";
