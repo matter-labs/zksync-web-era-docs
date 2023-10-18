@@ -16,9 +16,19 @@ The daily limit feature prevents an account from spending more ETH than the limi
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - [Node.js](https://nodejs.org/en/download/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed on your machine.
 - If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
-- You have a web3 wallet app which holds some Goerli test ETH and some zkSync Era test ETH.
-- You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
+- A wallet with sufficient Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
+  - You can get Göerli ETH from the following faucets:
+    - [Chainstack Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
+    - [Alchemy Goerli faucet](https://goerlifaucet.com/)
+    - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
+    - [Proof of work faucet](https://goerli-faucet.pk910.de/)
+  - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
+- You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 - We encourage you to read [the basics of account abstraction on zkSync Era](../../reference/concepts/account-abstraction.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
+
+::: tip Local zkSync Testing with zksync-cli
+Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+:::
 
 ## Complete Project
 
@@ -32,16 +42,10 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 
 We will use the [zkSync Era Hardhat plugins](../../tools/hardhat/) to build, deploy, and interact with the smart contracts in this project.
 
-1. If you haven't already, install the [zkSync CLI:](../../tools/zksync-cli/README.md)
+1. Initiate a new project by running the command:
 
 ```sh
-yarn add global zksync-cli@latest
-```
-
-2. Initiate a new project by running the command:
-
-```sh
-zksync-cli create-project custom-spendlimit-tutorial
+npx zksync-cli create project custom-spendlimit-tutorial --template hardhat_solidity
 ```
 
 :::tip
@@ -50,31 +54,31 @@ The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. 
 
 This creates a new zkSync Era project called `custom-spendlimit-tutorial` with a basic `Greeter` contract.
 
-3. Navigate into the project directory:
+2. Navigate into the project directory:
 
 ```sh
-cd ~/custom-spendlimit-tutorial
+cd custom-spendlimit-tutorial
 ```
 
-4. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
+3. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
 
 ```sh
 rm -rf ./contracts/Greeter.sol
 ```
 
-5. Similarly, remove the deploy scripts associated with the Greeter contract:
+4. Similarly, remove the deploy scripts associated with the Greeter contract:
 
 ```sh
 rm -rf ./deploy/deploy-greeter.ts && rm -rf ./deploy/use-greeter.ts
 ```
 
-6. Add the zkSync and OpenZeppelin contract libraries:
+5. Add the zkSync and OpenZeppelin contract libraries:
 
 ```sh
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
 ```
 
-7. Include the `isSystem: true` setting in the `hardhat.config.ts` configuration file to allow interaction with system contracts:
+6. Include the `isSystem: true` setting in the `hardhat.config.ts` configuration file to allow interaction with system contracts:
 
 ```typescript
 import { HardhatUserConfig } from "hardhat/config";

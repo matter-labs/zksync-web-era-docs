@@ -20,7 +20,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 1. Import the zkSync Era library or contract containing the required functionality.
 
-   The import gives access to the [`IZkSync.sol`](https://github.com/matter-labs/era-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IZkSync.sol#L4) inherited interfaces that include the gas estimation functionality.
+   The import gives access to the [`IZkSync.sol`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IZkSync.sol#L4) inherited interfaces that include the gas estimation functionality.
 
    You can do it using yarn (recommended), or [download the contracts](https://github.com/matter-labs/v2-testnet-contracts) from the repo.
 

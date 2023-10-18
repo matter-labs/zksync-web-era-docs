@@ -27,8 +27,12 @@ This is what we're going to do:
   - [Alchemy Goerli faucet](https://goerlifaucet.com/)
   - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
   - [Proof of work faucet](https://goerli-faucet.pk910.de/)
-- ERC20 tokens on zkSync are required for the testnet paymaster. We recommend using [the faucet from the zkSync portal](https://goerli.portal.zksync.io/faucet).
+- ERC20 tokens on zkSync are required for the testnet paymaster. Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync. Use any Goerli swap to get the ERC 20 token you need in exchange for testnet `ETH` - for example [Maverik Testnet Swap](https://testnet.mav.xyz/?chain=5).
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
+
+::: tip Local zkSync Testing with zksync-cli
+Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+:::
 
 ## Build and deploy the Greeter contract
 
@@ -38,39 +42,33 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 
 ### Initialize the project
 
-1. Install the [zkSync CLI:](../../tools/zksync-cli/README.md)
+1. Scaffold a new project by running the command:
 
 ```sh
-yarn add global zksync-cli@latest
+npx zksync-cli create project greeter-example --template hardhat_solidity
 ```
 
-2. Scaffold a new project by running the command:
-
-```sh
-zksync-cli create-project greeter-example
-```
-
-Choose "Hardhat + Solidity" option. This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract and all the zkSync plugins and configurations.
+This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract and all the zkSync plugins and configurations.
 
 ::: tip Hardhat plugins
 Learn more about the [zkSync Era plugins for Hardhat here](../../tools/hardhat/README.md)
 :::
 
-3. Navigate into the project directory:
+2. Navigate into the project directory:
 
 ```sh
 cd greeter-example
 ```
 
-::: info
-The project uses the `dotenv` package to load your private key which is required to deploy and interact with smart contracts. The `.env` file is included in `.gitignore` so it won't upload to a repository.
-:::
+3. Configure Your Private Key:
 
-4. To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
+Rename the `.env.example` file to `.env` and then enter your private key:
 
 ```text
-WALLET_PRIVATE_KEY=abcdef12345....
+WALLET_PRIVATE_KEY=YourPrivateKeyHere...
 ```
+
+Your private key will be used for paying the costs of deploying the smart contract.
 
 ### Compile and deploy the Greeter contract
 
@@ -231,7 +229,7 @@ Navigate to `http://localhost:8080/` in a browser to see the running application
 
 Enabling smart accounts allows you to onboard Argent account abstraction wallet users that have been using the first version of zkSync.
 
-- Use [this library](../../reference/concepts/account-abstraction.md#aa-signature-checker) to verify your smart account compatibility.
+- Use [this library](../../reference/concepts/account-abstraction.md#signature-validation) to verify your smart account compatibility.
 - Follow [this guide](https://docs.argent.xyz/) to add Argent login to your dApp.
 
 #### Externally owned accounts (EOAs)
@@ -244,8 +242,8 @@ Please note, that login functionality for "Hello, world" will be implemented in 
 
 ### Bridge funds to L2
 
-- Use our [portal](https://goerli.portal.zksync.io) to bridge funds to zkSync.
-- Use the [faucet](https://goerli.portal.zksync.io/faucet) to get some test ERC20 tokens in your account.
+- Use [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
+- Use the [third party faucets](../../reference/troubleshooting/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
 
 :::warning
 When bridging from mainnet to a smart account (e.g. Argent) on zkSync Era, you must specify the address of your L2 wallet by clicking on **Deposit to another address on zkSync Era Mainnet**.

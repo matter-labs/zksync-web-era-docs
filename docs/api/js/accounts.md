@@ -20,10 +20,10 @@ head:
 Just like `ethers.Wallet`, the `Wallet` object from `zksync-web3` can be created from Ethereum private key.
 
 ```typescript
-   constructor Wallet(
-  privateKey: ethers.utils.BytesLike | ethers.utils.SigningKey,
-  providerL2?: Provider,
-  providerL1?: ethers.providers.Provider): Wallet
+  constructor Wallet(
+    privateKey: ethers.utils.BytesLike | ethers.utils.SigningKey,
+    providerL2?: Provider,
+    providerL1?: ethers.providers.Provider): Wallet
 ```
 
 #### Inputs and outputs

@@ -31,22 +31,18 @@ For open-source projects, verifying contracts enhances trust and encourages more
 
 ### 1. Project setup
 
-1. Begin by installing [zkSync CLI](../../tools/zksync-cli/README.md) to establish a new project:
+1. Scaffold a new project by running the command:
 
 ```sh
-yarn add global zksync-cli@latest
+npx zksync-cli create project verify-greeter-contract --template hardhat_solidity
 ```
 
-2. Once you complete the installation, execute the command below to create a fresh project:
+This creates a new zkSync Era project called `verify-greeter-contract` with a basic `Greeter` contract and all the zkSync plugins and configurations.
+
+2. Proceed by moving into the project directory:
 
 ```sh
-zksync-cli create-project verify-greeter-contract
-```
-
-3. This function creates a fresh zkSync project titled `verify-greeter-contract` containing a `Greeter` contract. Proceed by moving into the project directory:
-
-```sh
-cd ~/verify-greeter-contract
+cd verify-greeter-contract
 ```
 
 ### 2. Package installation for verification
@@ -136,8 +132,10 @@ The [zkSync CLI](../../tools/zksync-cli/README.md) provides a `deploy/deploy-gre
 To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
 
 ```text
-WALLET_PRIVATE_KEY=abcdef12345....
+WALLET_PRIVATE_KEY=YourPrivateKeyHere....
 ```
+
+Your private key will be used for paying the costs of deploying the smart contract.
 
 Initiate contract deployment using this command:
 
@@ -147,7 +145,7 @@ yarn hardhat deploy-zksync --script deploy-greeter.ts
 
 Expect an output similar to this:
 
-```txt
+```text
 Running the deployment function for the Greeter contract
 The deployment is estimated to cost 0.0265726735 ETH
 constructor args:0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000094869207468657265210000000000000000000000000000000000000000000000

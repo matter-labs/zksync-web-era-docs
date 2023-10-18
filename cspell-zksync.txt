@@ -59,6 +59,7 @@ sharded
 pepe
 Arweave
 Streamr
+dutterbutter
 
 // Used libraries
 numberish
@@ -163,3 +164,4 @@ Hola
 mundo
 ISTN
 Zerion
+Maverik
