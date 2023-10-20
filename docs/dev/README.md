@@ -1,36 +1,87 @@
----
-head:
-  - - meta
-    - name: "twitter:title"
-      content: Welcome | zkSync Era Docs
----
+npx zksync-cli create project greeter-example --template hardhat_solidity
+WALLET_PRIVATE_KEY=YourPrivateKeyHere...
+//SPDX-License-Identifier: Unlicense
+pragma solidity ^0.8.8;
 
-# Welcome
+contract Greeter {
+    string private greeting;
 
-This section of our documentation is dedicated to getting you started, telling you how to do common tasks, and providing tutorials.
+    constructor(string memory _greeting) {
+        greeting = _greeting;
+    }
 
-Our docs are open source so feel free to suggest new topics, add new content, or provide useful examples. Check out the [how to contribute instructions](../reference/troubleshooting/docs-contribution/docs.md) instructions for more information.
+    function greet() public view returns (string memory) {
+        return greeting;
+    }
 
-## Getting started
+    function setGreeting(string memory _greeting) public {
+        greeting = _greeting;
+    }
+}
+import { Wallet, utils } from "zksync-web3";
+import * as ethers from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-- [Hello world](./building-on-zksync/hello-world.md): Build a full dApp using the zkSync Era development toolbox.
-- [Interacting with zkSync Era](./building-on-zksync/interacting.md): Learn the essentials of interacting with zkSync Era, utilizing zkSync SDKs, and connecting to the network via Metamask.
-- [Security and best practices](./building-on-zksync/best-practices.md): Understand the recommendations to build secure and optimized apps on zkSync Era.
-- [Useful addresses](./building-on-zksync/useful-address.md): Comprehensive list of essential addresses for developers building on zkSync.
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
 
-## How to
+// load wallet private key from env file
+const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
 
-- [Estimate gas](./how-to/estimate-gas.md): Learn to implement gas estimation for various transactions (L1 to L1, L1 to L2, L2 to L2) in the zkSync environment.
-- [Send an L1 to L2 transaction](./how-to/send-transaction-l1-l2.md): Detailed guide for initiating an L1 to L2 transaction.
-- [Send an L2 to L1 message](./how-to/send-message-l2-l1.md): Understand the process of sending an L2 to L1 message.
-- [Transfer a token on L2](./how-to/transfer-token-l2.md): Discover the steps for transferring a token within L2.
-- [Verify contracts with Hardhat](./how-to/verify-contracts.md): Contract verification using the zkSync Hardhat plugin.
+if (!PRIVATE_KEY) throw "⛔️ Private key not detected! Add it to the .env file!";
 
-## Tutorials
+// An example of a deploy script that will deploy and call a simple contract.
+export default async function (hre: HardhatRuntimeEnvironment) {
+  console.log(`Running deploy script for the Greeter contract`);
 
-- [Cross chain governance](./tutorials/cross-chain-tutorial.md): send transactions and update variables in a contract state using L1-L2 communication.
-- [Account abstraction multisig](./tutorials/custom-aa-tutorial.md): create a native multisig smart contract account.
-- [Daily spending limit account](./tutorials/aa-daily-spend-limit.md): create a smart contract account with a daily spending limit.
-- [Building a custom paymaster](./tutorials/custom-paymaster-tutorial.md): build a paymaster that allows users to pay gas fees with an ERC20 token.
-- [USDC paymaster tutorial with API3](./tutorials/api3-usd-paymaster-tutorial.md): build a paymaster that allows users to pay gas fees with USDC using API3 dAPIs.
-- [Gated NFT paymaster](./tutorials/gated-nft-paymaster-tutorial.md): build a paymaster that allows users to pay 0 gas fees when owning a particular NFT.
+  // Initialize the wallet.
+  const wallet = new Wallet(PRIVATE_KEY);
+
+  // Create deployer object and load the artifact of the contract you want to deploy.
+  const deployer = new Deployer(hre, wallet);
+  const artifact = await deployer.loadArtifact("Greeter");
+
+  // Estimate contract deployment fee
+  const greeting = "Hi there!";
+  const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting]);
+
+  // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
+  // `greeting` is an argument for contract constructor.
+  const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
+  console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
+
+  const greeterContract = await deployer.deploy(artifact, [greeting]);
+
+  //obtain the Constructor Arguments
+  console.log("Constructor args:" + greeterContract.interface.encodeDeploy([greeting]));
+
+  // Show the contract info.
+  const contractAddress = greeterContract.address;
+  console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
+
+  // verify contract for testnet & mainnet
+  if (process.env.NODE_ENV != "test") {
+    // Contract MUST be fully qualified name (e.g. path/sourceName:contractName)
+    const contractFullyQualifedName = "contracts/Greeter.sol:Greeter";
+
+    // Verify contract programmatically
+    const verificationId = await hre.run("verify:verify", {
+      address: contractAddress,
+      contract: contractFullyQualifedName,
+      constructorArguments: [greeting],
+      bytecode: artifact.bytecode,
+    });
+  } else {
+    console.log(`Contract not verified, deployed locally.`);
+  }
+}
+Running deploy script for the Greeter contract
+The deployment is estimated to cost 0.0265726735 ETH
+constructor args:0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000094869207468657265210000000000000000000000000000000000000000000000
+Greeter was deployed to 0xE84774C41F096Ba5BafA1439cEE787D9dD1A6b72
+Your verification ID is: 26642
+Contract successfully verified on zkSync block explorer!
+contracts/Greeter.sol:Greeter verified! VerificationId: 26642
+
