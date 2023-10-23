@@ -116,6 +116,16 @@ const provider = new Provider(hre.network.config.url);
 
 :::
 
+::: info TypeScript Note
+
+If TypeScript marks the 'url' property indicating a potential issue (even though it works), simply add the following import to your project:
+
+```typescript
+import "@matterlabs/hardhat-zksync-node/dist/type-extensions";
+```
+
+:::
+
 ::: note Accessing the Network Provider in Hardhat
 
 Apart from the previously described method of instantiating the Provider, you can also directly access it from the Hardhat runtime environment. Due to incompatibilities between Hardhat's `EthereumProvider` and the JS SDK Provider, we've introduced a new adapter (`ZkSyncProviderAdapter`). This adapter bridges the gap and ensures that all the necessary functionalities are seamlessly integrated. If you wish to access the JS SDK Provider directly, you can do so in TypeScript with:
