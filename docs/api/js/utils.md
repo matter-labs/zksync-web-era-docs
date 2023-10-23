@@ -7,7 +7,7 @@ head:
 
 # Utilities
 
-The [utilities library](https://github.com/matter-labs/zksync-2-dev/blob/main/sdk/zksync-web3.js/src/utils.ts) contains essential utilities for building on zkSync Era.
+The [utilities library](https://github.com/matter-labs/zksync-era/blob/main/sdk/zksync-web3.js/src/utils.ts) contains essential utilities for building on zkSync Era.
 
 :::info
 
