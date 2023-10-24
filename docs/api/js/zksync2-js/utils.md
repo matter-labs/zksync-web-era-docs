@@ -546,7 +546,7 @@ export async function isTypedDataSignatureCorrect(
 
 Common parsing transaction function used by internal teams.
 
-Please see the [utilities library definition](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) for more
+Please see the [utilities library definition](https://github.com/matter-labs/zksync-era/blob/main/sdk/zksync-web3.js/src/utils.ts) for more
 info.
 
 ### `serialize`
