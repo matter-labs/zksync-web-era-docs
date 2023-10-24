@@ -113,7 +113,7 @@ Read more about [zkSync Era Account Abstraction support](../../reference/concept
 
 For optimal development and testing of your contracts, it is highly recommended to perform local testing before deploying them to the mainnet. Local testing allows you to test your contracts in a controlled environment, providing benefits such as reduced network latency and cost.
 
-We provides [two different testing environments](../../tools/testing/README.md) designed for local testing purposes. These tools allow you to simulate the zkSync network locally, enabling you to validate your contracts effectively.
+We provide [two different testing environments](../../tools/testing/README.md) designed for local testing purposes. These tools allow you to simulate the zkSync network locally, enabling you to validate your contracts effectively.
 
 By incorporating local testing into your development workflow, you can effectively verify the behavior and functionality of your contracts in a controlled environment, ensuring a smooth deployment process to the mainnet.
 
