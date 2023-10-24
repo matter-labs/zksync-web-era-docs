@@ -211,11 +211,11 @@ Two transactions are required:
 - An L2 transaction which sends a message of arbitrary length.
 - An L1 read; implemented by a getter function on an L1 smart contract.
 
-8. Get a `Contract` object that represents the [`L1Messenger`](../../reference/architecture/system-contracts.md#l1messenger) contract.
+1. Get a `Contract` object that represents the [`L1Messenger`](../../reference/architecture/system-contracts.md#l1messenger) contract.
 
-9. Transform the request into a raw bytes array.
+2. Transform the request into a raw bytes array.
 
-10. Use the [`sendToL1`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L5) function from the [`IL1Messenger.sol`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L4) interface, passing the message as a raw bytes array.
+3. Use the [`sendToL1`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L5) function from the [`IL1Messenger.sol`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L4) interface, passing the message as a raw bytes array.
 
 Each sent message emits an [`L1MessageSent`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L8) event.
 
@@ -225,7 +225,7 @@ event L1MessageSent(address indexed _sender, bytes32 indexed _hash, bytes _messa
 function sendToL1(bytes memory _message) external returns (bytes32);
 ```
 
-10.1 The return value from `sendToL1` is the `keccak256` hash of the message bytes.
+3.1 The return value from `sendToL1` is the `keccak256` hash of the message bytes.
 
 ## Prove the result
 
