@@ -35,6 +35,8 @@ sidechains
 tokenomics
 validator's
 CHAINID
+PREVRANDAO
+
 // Names
 Vyper
 stimate
@@ -54,6 +56,10 @@ validiums
 validium
 Validium
 sharded
+pepe
+Arweave
+Streamr
+dutterbutter
 
 // Used libraries
 numberish
@@ -125,6 +131,7 @@ ewasm
 Evmla
 UUPS
 Uups
+TLDR
 
 // crypto events
 Edcon
@@ -157,3 +164,4 @@ Hola
 mundo
 ISTN
 Zerion
+Maverik

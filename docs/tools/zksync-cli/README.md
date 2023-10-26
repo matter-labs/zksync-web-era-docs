@@ -5,62 +5,75 @@ head:
       content: zkSync CLI | zkSync Era Docs
 ---
 
-# zkSync CLI
+# zkSync CLI: Your Local Development Assistant
 
-The zkSync CLI simplifies the process of developing applications and interacting with zkSync Era.
+Easily interact and develop applications with zkSync Era using the zkSync CLI.
 
-The code is available [in the following repository](https://github.com/matter-labs/zksync-cli).
+Find the source code [here](https://github.com/matter-labs/zksync-cli).
 
-## Installation
+## Get Started with zkSync CLI
 
-Install the zkSync CLI globally with the following command:
+### Prerequisites
 
-- Install with Yarn:
+Ensure you have the following installed:
 
-  ```
-  yarn add global zksync-cli@latest
-  ```
+- [Node.js v18+](https://nodejs.org/en)
+- [Git](https://git-scm.com/downloads)
+- [Docker](https://www.docker.com/get-started/) (required for `zksync-cli dev` commands)
+- [Yarn](https://v3.yarnpkg.com/getting-started/install) (required for `zksync-cli create project`)
 
-- Install with NPM:
+### Installation and Usage
 
-  ```
-  npm install -g zksync-cli@latest
-  ```
+- Run commands directly with NPX: `npx zksync-cli {COMMAND}`
 
-You can also run this via NPX with `npx zksync-cli@latest [COMMAND]`
+Or
 
-## Commands
+- Install globally with npm: `npm install -g zksync-cli` and then use: `zksync-cli {COMMAND}`
 
-- `zksync-cli create-project {FOLDER_NAME}`: creates project from template in the specified folder
-- `zksync-cli deposit`: deposits funds from Ethereum (L1) to zkSync (L2)
-- `zksync-cli withdraw`: withdraws funds from zkSync (L2) to Ethereum (L1)
-- `zksync-cli withdraw-finalize`: finalizes withdrawal of funds from zkSync (L2) to Ethereum (L1)
-- `zksync-cli help`: Provides information about all supported commands
-- `zksync-cli help {command}`: Provides detailed information about how to use a specific command. Replace {command} with the name of the command you want help with (e.g., create-project, deposit, withdraw, withdraw-finalize)
-- `zksync-cli --version`: Returns the current version
+## Highlight: Start Developing Locally, Fast
+
+Use `zksync-cli dev` for an easy way to work with zkSync on your computer. It helps you set up and manage local zkSync and Ethereum nodes, Block Explorer, Wallet, and Bridge without hassle.
+
+### Quick ‘dev’ Commands
+
+- `zksync-cli dev start`: Begin your local development environment (first-time users will be prompted to configure)
+- `zksync-cli dev clean`: Clear data for configured modules
+- `zksync-cli dev config`: Choose modules to run in local development environment
+
+Run `zksync-cli help dev` for more commands and details.
+
+### Other Essential Commands
+
+- **Basic Operations**:
+  - `zksync-cli create project {FOLDER_NAME}`: Creates a project in a specified folder.
+  - `zksync-cli bridge deposit`: Moves funds from Ethereum (L1) to zkSync (L2).
+  - `zksync-cli bridge withdraw` and `zksync-cli bridge withdraw-finalize`: Manage funds withdrawal from zkSync (L2) to Ethereum (L1).
+- **Help & Info**:
+  - `zksync-cli help`: General help.
+  - `zksync-cli help {command}`: Detailed command usage info.
+  - `zksync-cli --version`: CLI version info.
 
 ::: info Deposit and withdraw times
 
-- Both deposit and withdraw might take a couple of minutes to complete.
-- Withdraws on mainnet have a [24h delay during Alpha](../../reference/troubleshooting/withdrawal-delay.md).
+- Operations like deposit and withdraw can take several minutes.
+- [Mainnet withdrawals have a 24h delay](../../reference/troubleshooting/withdrawal-delay.md).
+  :::
 
-:::
+More commands and updates are coming! If you have suggestions, [open an issue on GitHub](https://github.com/matter-labs/zksync-cli/issues/new).
 
-More commands will be added shortly but if you have any suggestions, feel free to [open an issue on GitHub](https://github.com/matter-labs/zksync-cli/issues/new).
+### Project Templates
 
-### Project templates
-
-Below are the repositories of the different project templates used on the `zksync-cli create-project` command:
+Create projects with these templates using `zksync-cli create project`:
 
 - [Hardhat + Solidity](https://github.com/matter-labs/zksync-hardhat-template).
 - [Hardhat + Vyper](https://github.com/matter-labs/zksync-hardhat-vyper-template).
 
-### 🔗 Supported chains
+### 🔗 Supported Chains
 
-By default zkSync CLI supports Era Testnet and Era Mainnet. You can also use other networks by overwriting L1 and L2 RPC URLs. For example: `zksync-cli deposit --l2-rpc=http://... --l1-rpc=http://...`
+zkSync CLI supports Era Testnet and Era Mainnet by default. Use other networks by overriding L1 and L2 RPC URLs: `zksync-cli bridge deposit --l2-rpc=http://... --l1-rpc=http://...`
 
-If you're using [local setup (dockerized testing node)](../testing/dockerized-testing.md) with default L1 and L2 RPC URLs, you can select `Local Dockerized node` option in the CLI or provide option `--chain local-dockerized`.
+For using [local setup (dockerized testing node)](../testing/dockerized-testing.md) with default RPC URLs, select `Local Dockerized node` in CLI or use `--chain local-dockerized`.
 
-## Troubleshooting
+## Troubleshooting & Feedback
 
-If you find any issues, you can [open an issue on GitHub](https://github.com/matter-labs/zksync-cli/issues/new) or report it to us [in GitHub discussions](https://github.com/zkSync-Community-Hub/zkync-developers/discussions).
+Encounter issues or have feedback? [Open an issue](https://github.com/matter-labs/zksync-cli/issues/new) or share thoughts [in GitHub discussions](https://github.com/zkSync-Community-Hub/zkync-developers/discussions).

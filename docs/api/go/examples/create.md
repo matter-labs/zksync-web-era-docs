@@ -17,7 +17,7 @@ zkSync Era network.
 
 There is a [user guide](https://github.com/zksync-sdk/zksync2-examples/blob/main/solidity/README.md) on how to compile Solidity smart contracts using `zksolc`
 compiler. `zksolc` compiler generates a `*.zbin` and a `combined.json` file that contains the bytecode and ABI of a smart contract.
-The `combined.json` file is used by `abigen` tool to generate smart contrat bindings.
+The `combined.json` file is used by `abigen` tool to generate smart contract bindings.
 Those files are used in the following examples.
 
 ## Deploy contract
