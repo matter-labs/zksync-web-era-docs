@@ -1044,7 +1044,7 @@ Reset time was not updated as not enough time has passed
 
 The `available` value in the `Limit` struct updates to the initial limit minus the amount we transferred.
 
-Since `ONE_DAY` is set to 1 minute for this test in the `SpendLimit.sol` contract, you should expect it to reset after 60 seconds. However, we're using `block.timestamp` so the limit is only reset after a new L1 block is collated (around 2-3 seconds).
+Since `ONE_DAY` is set to 1 minute for this test in the `SpendLimit.sol` contract, you should expect it to reset after 60 seconds. However, we're using `block.timestamp` so the limit is only reset after a new L2 block is collated (around 2-3 seconds).
 
 ## Common Errors
 

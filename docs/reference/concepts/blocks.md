@@ -26,10 +26,10 @@ The following are the block properties returned when you use the `getBlock` meth
 
 | Parameter     | Description                                                                                                                               |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| hash          | The hash of the block. null if pending                                                                                                    |
+| hash          | The hash of the L2 block. null if pending                                                                                                 |
 | parentHash    | It refers to the hash of the parent block in L2.                                                                                          |
-| number        | The number of the current block. null if pending. [More info on block.number](#block-number-and-timestamp-considerations)                 |
-| timestamp     | The UNIX timestamp for when the block was collated. [More info on block.timestamp](#block-number-and-timestamp-considerations)            |
+| number        | The number of the current L2 block. null if pending. [More info on block.number](#block-number-and-timestamp-considerations)              |
+| timestamp     | The UNIX timestamp for when the L2 block was collated. [More info on block.timestamp](#block-number-and-timestamp-considerations)         |
 | nonce         | It's the most recent transaction based on the account's counter, which maintains track of how many transactions it does. null if pending. |
 | difficulty    | The current block difficulty returns 2500000000000000 (zkSync does not have proof of work consensus).                                     |
 | gasLimit      | The maximum gas allowed in this block encoded as a hexadecimal, always returns `2^32-1`.                                                  |
