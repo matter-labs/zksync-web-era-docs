@@ -194,7 +194,7 @@ The code below sets and removes the limit.
         require(_amount != 0, "Invalid amount");
 
         uint resetTime;
-        uint timestamp = block.timestamp; // L1 batch timestamp
+        uint timestamp = block.timestamp; // L2 block timestamp
 
         if (isValidUpdate(_token)) {
             resetTime = timestamp + ONE_DAY;
@@ -266,7 +266,7 @@ The `_checkSpendingLimit` function is internally called by the account contract 
         // return if spending limit hasn't been enabled yet
         if (!limit.isEnabled) return;
 
-        uint timestamp = block.timestamp; // L1 batch timestamp
+        uint timestamp = block.timestamp; // L2 block timestamp
 
         // Renew resetTime and available amount, which is only performed
         // if a day has already passed since the last update: timestamp > resetTime
@@ -370,7 +370,7 @@ contract SpendLimit {
         require(_amount != 0, "Invalid amount");
 
         uint resetTime;
-        uint timestamp = block.timestamp; // L1 batch timestamp
+        uint timestamp = block.timestamp; // L2 block timestamp
 
         if (isValidUpdate(_token)) {
             resetTime = timestamp + ONE_DAY;
@@ -429,7 +429,7 @@ contract SpendLimit {
         // return if spending limit hasn't been enabled yet
         if (!limit.isEnabled) return;
 
-        uint timestamp = block.timestamp; // L1 batch timestamp
+        uint timestamp = block.timestamp; // L2 block timestamp
 
         // Renew resetTime and available amount, which is only performed
         // if a day has already passed since the last update: timestamp > resetTime
@@ -1044,15 +1044,7 @@ Reset time was not updated as not enough time has passed
 
 The `available` value in the `Limit` struct updates to the initial limit minus the amount we transferred.
 
-Since `ONE_DAY` is set to 1 minute for this test in the `SpendLimit.sol` contract, you should expect it to reset after 60 seconds. However, we're using `block.timestamp` so the limit is only reset after a new L1 batch is sealed (around ten minutes on testnet). To understand the reason behind this, we should know about the constraints around using `block.timestamp`.
-
-::: warning `block.timestamp` returns L1 batch value
-
-`block.timestamp` returns the time of the latest L1 batch, instead of the L2 block, and it's only updated once a new batch is sealed (~5-10 minutes on testnet). What this means is that `block.timestamp` in smart contracts on zkSync Era is currently a delayed value.
-
-To keep this tutorial as simple as possible, we've used `block.timestamp` but we don't recommend relying on this for accurate time calculations.
-
-:::
+Since `ONE_DAY` is set to 1 minute for this test in the `SpendLimit.sol` contract, you should expect it to reset after 60 seconds. However, we're using `block.timestamp` so the limit is only reset after a new L2 block is collated (around 2-3 seconds).
 
 ## Common Errors
 
