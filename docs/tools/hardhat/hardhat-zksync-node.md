@@ -90,7 +90,7 @@ To see a list of all supported APIs, visit [this link ](https://github.com/matte
 
 ## Running Hardhat's test Task with hardhat-zksync-node
 
-The `hardhat-zksync-node` plugin enhances Hardhat's test task, allowing all tests to run against an In-memory node operated in a separate process. By invoking the test task with the Hardhat network's `zksync` flag set to `true`, the plugin initiates an In-memory node alongside the tests. After the tests conclude, the node shuts down gracefully. The plugin begins port allocation from the default 8011.
+The `hardhat-zksync-node` plugin enhances Hardhat's test task, allowing all tests to run against an In-memory node operated in a separate process. By invoking the test task, ensure you are using the `hardhat` network and have set its `zksync` flag to `true`. Doing so will initiate the plugin's In-memory node alongside the tests. After the tests conclude, the node shuts down gracefully. The plugin begins port allocation from the default 8011.
 
 ```ts
 networks: {
