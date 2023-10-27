@@ -372,10 +372,12 @@ async function main() {
   txReceipt.wait();
 }
 
-main().then.catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main()
+  .then()
+  .catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
 ```
 
 @tab Solidity
