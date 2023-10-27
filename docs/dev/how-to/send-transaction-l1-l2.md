@@ -372,7 +372,7 @@ async function main() {
   txReceipt.wait();
 }
 
-main().catch((error) => {
+main().then().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
