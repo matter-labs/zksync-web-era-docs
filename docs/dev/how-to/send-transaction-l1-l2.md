@@ -249,8 +249,38 @@ User needs to perform next steps:
 
 5. Run `npm i --save-dev ethers` (in case it is not installed)
 6. Run command `npm run`
-   ::: code-tabs
-   @tab TypeScript
+
+Please note, that if you want to run on local-node Dockerized setup use next `hardhat.config.ts`:
+
+```js
+export const zkSyncTestnet = {
+  url: "https://localhost:3051",
+  ethNetwork: "https://localhost:8545",
+  zksync: true,
+};
+```
+
+For Testnet:
+
+```js
+export const zkSyncTestnet = {
+  url: "https://testnet.era.zksync.dev",
+  ethNetwork: "https://rpc.ankr.com/eth_goerli",
+  zksync: true,
+};
+```
+
+And also insert same credentials in `file.js`:
+
+```js
+const L1_RPC_ENDPOINT = "<insert network config here>"; //ethNetwork from instruction above
+const L2_RPC_ENDPOINT = "<insert network config here>"; //url from instruction above
+```
+
+### Example code
+
+::: code-tabs
+@tab TypeScript
 
 ```js
 import { Contract, Wallet, Provider } from "zksync-web3";
