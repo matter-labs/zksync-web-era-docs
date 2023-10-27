@@ -26,10 +26,10 @@ The following are the block properties returned when you use the `getBlock` meth
 
 | Parameter     | Description                                                                                                                               |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| hash          | The hash of the block. null if pending                                                                                                    |
+| hash          | The hash of the L2 block. null if pending                                                                                                 |
 | parentHash    | It refers to the hash of the parent block in L2.                                                                                          |
-| number        | The number of the current block. null if pending. [More info on block.number](#block-number-and-timestamp-considerations)                 |
-| timestamp     | The UNIX timestamp for when the block was collated. [More info on block.timestamp](#block-number-and-timestamp-considerations)            |
+| number        | The number of the current L2 block. null if pending. [More info on block.number](#block-number-and-timestamp-considerations)              |
+| timestamp     | The UNIX timestamp for when the L2 block was collated. [More info on block.timestamp](#block-number-and-timestamp-considerations)         |
 | nonce         | It's the most recent transaction based on the account's counter, which maintains track of how many transactions it does. null if pending. |
 | difficulty    | The current block difficulty returns 2500000000000000 (zkSync does not have proof of work consensus).                                     |
 | gasLimit      | The maximum gas allowed in this block encoded as a hexadecimal, always returns `2^32-1`.                                                  |
@@ -90,18 +90,12 @@ Projects are advised not to use the L2 block hash as a source of randomness.
 
 ## Block number and timestamp considerations
 
-::: warning Upcoming changes
-In the upcoming protocol upgrade scheduled for August-September 2023, there will be modifications to how certain block properties are implemented on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
-:::
+The `number` and `timestamp` properties of the block retrieved via the API using any of the SDKs will refer to L2 blocks, this is also the case for `block.number` and `block.timestamp` in smart contracts.
 
-The `number` and `timestamp` properties of the block retrieved via the API using any of the SDKs will refer to L2 blocks however, `block.number` and `block.timestamp` in the EVM (on smart contracts), return the number and timestamp of the L1 batch respectively.
+::: note Changes From the Previous Protocol Version
+Modifications were performed on how certain block properties were implemented on zkSync Era. For details on the changes performed visit the [announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
+:::
 
 ### Why do we return L2 blocks from API?
 
 On zkSync Era we return L2 blocks from API because this is how all platforms, which include SDKs, Metamask and all other popular wallets can perceive our transactions as processed. It is expected that a transaction is processed once it is included in a block. That's why we need to produce L2 blocks faster than L1 batches.
-
-### Why do we return L1 batches inside EVM?
-
-Currently, we return the number and timestamp of the L1 batch inside the VM, as the values related to the L2 block will be unprovable. Unlike Ethereum blocks that contain some kind of commitment to the state of the chain, on zkSync Era these blocks won't have such commitment, because calculating the Merkle tree is too expensive to be done more often than once per batch.
-
-A method to retrieve the L2 block number and timestamp inside the EVM is under development.
