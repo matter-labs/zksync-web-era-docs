@@ -32,7 +32,7 @@ Or
 
 ## Highlight: Start Developing Locally, Fast
 
-Use `zksync-cli dev` for an easy way to work with zkSync on your computer. It helps you set up and manage local zkSync and Ethereum nodes, Wallet, and Bridge without hassle.
+Use `zksync-cli dev` for an easy way to work with zkSync on your computer. It helps you set up and manage local zkSync and Ethereum nodes, Block Explorer, Wallet, and Bridge without hassle.
 
 ### Quick ‘dev’ Commands
 
