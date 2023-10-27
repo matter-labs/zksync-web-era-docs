@@ -260,7 +260,7 @@ export const zkSyncTestnet = {
 };
 ```
 
-For Testnet:
+For Testnet (recommended):
 
 ```js
 export const zkSyncTestnet = {
