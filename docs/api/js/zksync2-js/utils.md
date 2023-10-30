@@ -73,6 +73,22 @@ export const L1_BRIDGE_ABI = new utils.Interface(require("../abi/IL1Bridge.json"
 export const L2_BRIDGE_ABI = new utils.Interface(require("../abi/IL2Bridge.json").abi);
 ```
 
+#### NonceHolder
+
+Used for managing deployment nonce.
+
+```ts
+export const NONCE_HOLDER_ABI = new ethers.Interface(require("../abi/INonceHolder.json").abi);
+```
+
+#### PaymasterFlow
+
+Used for encoding paymaster flows.
+
+```ts
+export const PAYMASTER_FLOW_ABI = new ethers.Interface(require("../abi/IPaymasterFlow.json").abi);
+```
+
 #### L1 to L2 alias offset
 
 Used for applying and undoing aliases on addresses during bridging from L1 to L2.
