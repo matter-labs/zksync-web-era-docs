@@ -135,6 +135,15 @@ Interface representation of an Ethereum signature.
 - `r`: `BytesLike`;
 - `s`: `BytesLike`;
 
+## `Fee`
+
+Interface representation of transaction fee.
+
+- `gasLimit`: `BigInt`;
+- `gasPerPubdataLimit`: `BigInt`;
+- `maxPriorityFeePerGas`: `BigInt`;
+- `maxFeePerGas`: `BigInt`;
+
 ## `FullDepositFee`
 
 Interface representation of full deposit fee containing various mandatory and optional fields.
