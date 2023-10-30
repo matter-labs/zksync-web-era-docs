@@ -18,6 +18,7 @@ zkSync Era has the following official plugins for Hardhat:
 - [@matterlabs/hardhat-zksync-verify](./hardhat-zksync-verify.md) - used to verify smart contracts.
 - [@matterlabs/hardhat-zksync-verify-vyper](./hardhat-zksync-verify-vyper.md) - used to verify vyper smart contracts.
 - [@matterlabs/hardhat-zksync-upgradable](./hardhat-zksync-upgradable.md) - used to deploy, update, and verify proxy smart contracts.
+- [@matterlabs/hardhat-zksync-zksync2js](./hardhat-zksync-zksync2js.md) - wrapper around zksync2-js with some extra Hardhat-specific functionality.
 
 ::: tip Additional plugins
 Learn more about [other plugins from the community](./other-plugins.md) that you can use with zkSync Era.
