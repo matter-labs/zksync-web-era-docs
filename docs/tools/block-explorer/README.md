@@ -65,3 +65,7 @@ Use the search bar on all pages to access data by:
 - **Batch index**: The index of a batch submitted to L1.
 - **Contract address**: The callable address of a smart contract deployed on zkSync Era.
 - **Transaction hash**: The unique 66 character identifier of an executed transaction.
+
+## Block Explorer API
+
+The [zkSync Era Block Explorer API](https://block-explorer-api.mainnet.zksync.io/docs) is available for developers to access data directly via HTTP requests. Learn more [here](./block-explorer-api.md).
