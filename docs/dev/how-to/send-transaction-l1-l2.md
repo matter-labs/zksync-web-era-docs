@@ -22,12 +22,13 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
    The import gives access to the [`IZkSync.sol`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IZkSync.sol#L4) inherited interfaces that include the gas estimation functionality.
 
-   Import the contracts with yarn (recommended), or [download the contracts](https://github.com/matter-labs/v2-testnet-contracts) from the repo.
+   You can do it using yarn (recommended), or [download the contracts](https://github.com/matter-labs/v2-testnet-contracts) from the repo.
 
    ::: code-tabs
    @tab yarn
 
    ```yarn
+   yarn init -y
    yarn add -D @matterlabs/zksync-contracts
    ```
 
@@ -230,6 +231,54 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 ### Example code
 
+User needs to perform next steps:
+
+1. Run local node dockerized containers. [`Instructions how to run it`](https://github.com/matter-labs/local-setup/tree/main)
+2. In the root folder of the imported project (step 1) create `file.js` and insert there code from example below
+3. In the root folder add `.env` file with private key of wallet to use
+
+```js
+"RICH_WALLET_PRIV_KEY=0x..";
+```
+
+4. Add script to package.json file next script:
+
+```js
+`"scripts": {  "run": "node file.js"},``"type": "module",`;
+```
+
+5. Run `npm i --save-dev ethers` (in case it is not installed)
+6. Run command `npm run`
+
+Please note, that if you want to run on local-node Dockerized setup use next `hardhat.config.ts`:
+
+```js
+export const zkSyncTestnet = {
+  url: "https://localhost:3051",
+  ethNetwork: "https://localhost:8545",
+  zksync: true,
+};
+```
+
+For Testnet (recommended):
+
+```js
+export const zkSyncTestnet = {
+  url: "https://testnet.era.zksync.dev",
+  ethNetwork: "https://rpc.ankr.com/eth_goerli",
+  zksync: true,
+};
+```
+
+And also insert same credentials in `file.js`:
+
+```js
+const L1_RPC_ENDPOINT = "<insert network config here>"; //ethNetwork from instruction above
+const L2_RPC_ENDPOINT = "<insert network config here>"; //url from instruction above
+```
+
+### Example code
+
 ::: code-tabs
 @tab TypeScript
 
@@ -353,10 +402,12 @@ async function main() {
   txReceipt.wait();
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main()
+  .then()
+  .catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
 ```
 
 @tab Solidity

@@ -837,7 +837,7 @@ This functionality is built into the SDK.
 ## Deploy the factory
 
 ::: tip
-Make sure you deposit funds on zkSync Era using the [zkSync Portal](https://goerli.portal.zksync.io/bridge) before running the deployment script.
+Make sure you deposit funds on zkSync Era using [bridges](https://zksync.io/explore#bridges) before running the deployment script.
 :::
 
 1. In the `deploy` folder, create the file `deploy-factory.ts` and copy/paste the following code, replacing `<WALLET_PRIVATE_KET>` with your private key.

@@ -18,13 +18,6 @@
           "url": "https://era.zksync.io/docs/api/python"
         },
         {
-          "name": "Rust SDK",
-          "category": "SDK",
-          "description": "Extends ethers-rs including zksync-specific methods and utilities.",
-          "logo": "rust-logo.svg",
-          "url": "https://github.com/lambdaclass/zksync-web3-rs"
-        },
-        {
           "name": "Go SDK",
           "category": "SDK",
           "description": "Extends go-ethereum including zksync-specific methods and utilities.",
