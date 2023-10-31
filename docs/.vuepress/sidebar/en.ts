@@ -249,7 +249,7 @@ export const enSidebar = sidebar({
     {
       text: "Block Explorer", // required
       link: "/tools/block-explorer", // optional, which should be a absolute path.
-      children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification"],
+      children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification", "/tools/block-explorer/block-explorer-api"],
     },
   ],
 });
