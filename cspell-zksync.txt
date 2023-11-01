@@ -142,7 +142,7 @@ Vitalik's
 Buterin's
 multisignature
 onchain
-convertion
+conversion
 Keyhash
 Armeabi
 scijava
