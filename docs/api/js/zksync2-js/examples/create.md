@@ -35,11 +35,9 @@ async function main() {
   const bytecode: string = conf.contracts["Storage.sol:Storage"].bin;
 
   const factory = new ContractFactory(abi, bytecode, wallet);
-  const contract = await factory.deploy();
-  const contractAddress = await contract.getAddress();
-  console.log(`Contract address: ${contractAddress}`);
+  const storage = (await factory.deploy()) as Contract;
+  console.log(`Contract address: ${await storage.getAddress()}`);
 
-  const storage = new Contract(contractAddress, abi, wallet);
   console.log(`Value: ${await storage.get()}`);
 
   const tx = await storage.set(Typed.uint256(200));
@@ -71,11 +69,9 @@ async function main() {
   const bytecode: string = conf.contracts["Incrementer.sol:Incrementer"].bin;
 
   const factory = new ContractFactory(abi, bytecode, wallet);
-  const contract = await factory.deploy(2);
-  const contractAddress = await contract.getAddress();
-  console.log(`Contract address: ${contractAddress}`);
+  const incrementer = (await factory.deploy(2)) as Contract;
+  console.log(`Contract address: ${await incrementer.getAddress()}`);
 
-  const incrementer = new Contract(contractAddress, abi, wallet);
   console.log(`Value before Increment method execution: ${await incrementer.get()}`);
 
   const tx = await incrementer.increment();
@@ -107,13 +103,11 @@ async function main() {
   const bytecode: string = conf.contracts["Demo.sol:Demo"].bin;
 
   const factory = new ContractFactory(abi, bytecode, wallet);
-  const contract = await factory.deploy({
+  const demo = (await factory.deploy({
     customData: { factoryDeps: [conf.contracts["Foo.sol:Foo"].bin] },
-  });
-  const contractAddress = await contract.getAddress();
-  console.log(`Contract address: ${contractAddress}`);
+  })) as Contract;
+  console.log(`Contract address: ${await demo.getAddress()}`);
 
-  const demo = new Contract(contractAddress, abi, wallet);
   console.log(`Value: ${await demo.getFooName()}`);
 }
 
