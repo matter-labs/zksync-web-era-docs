@@ -182,10 +182,10 @@
           "url": "https://layerzero.network/"
         },
         {
-          "name": "Safe (Protofire)",
+          "name": "Safe",
           "category": "Custody",
           "logo": "safe-logo.png",
-          "url": "https://zksafe.protofire.io/welcome"
+          "url": "https://app.safe.global/welcome"
         },
         {
           "name": "Snapshot",
