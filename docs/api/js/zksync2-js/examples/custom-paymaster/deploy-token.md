@@ -25,11 +25,10 @@ async function main() {
   const bytecode: string = conf.bytecode;
 
   const factory = new ContractFactory(abi, bytecode, wallet);
-  const contract = await factory.deploy("Crown", "Crown", 18);
-  const tokenAddress = await contract.getAddress();
+  const token = (await factory.deploy("Crown", "Crown", 18)) as Contract;
+  const tokenAddress = await token.getAddress();
   console.log(`Contract address: ${tokenAddress}`);
 
-  const token = new Contract(tokenAddress, abi, wallet);
   const tx = await token.mint(Typed.address(await wallet.getAddress()), Typed.uint256(10));
   await tx.wait();
   console.log(`Crown tokens: ${await wallet.getBalance(tokenAddress)}`);
@@ -58,13 +57,12 @@ async function main() {
   const bytecode: string = conf.bytecode;
 
   const factory = new ContractFactory(abi, bytecode, wallet, "create2");
-  const contract = await factory.deploy("Crown", "Crown", 18, {
+  const token = (await factory.deploy("Crown", "Crown", 18, {
     customData: { salt: ethers.hexlify(ethers.randomBytes(32)) },
-  });
-  const tokenAddress = await contract.getAddress();
+  })) as Contract;
+  const tokenAddress = await token.getAddress();
   console.log(`Contract address: ${tokenAddress}`);
 
-  const token = new Contract(tokenAddress, abi, wallet);
   const tx = await token.mint(Typed.address(await wallet.getAddress()), Typed.uint256(10));
   await tx.wait();
   console.log(`Crown tokens: ${await wallet.getBalance(tokenAddress)}`);

@@ -28,8 +28,7 @@ async function main() {
 
   const factory = new ContractFactory(abi, bytecode, wallet, "createAccount");
   const account = await factory.deploy(tokenAddress);
-  const accountAddress = await account.getAddress();
-  console.log(`Account address: ${accountAddress}`);
+  console.log(`Account address: ${await account.getAddress()}`);
 }
 
 main()
@@ -60,8 +59,7 @@ async function main() {
   const account = await factory.deploy(tokenAddress, {
     customData: { salt: ethers.hexlify(ethers.randomBytes(32)) },
   });
-  const accountAddress = await account.getAddress();
-  console.log(`Account address: ${accountAddress}`);
+  console.log(`Account address: ${await account.getAddress()}`);
 }
 
 main()
