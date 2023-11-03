@@ -66,15 +66,23 @@ yarn add -D @matterlabs/zksync-contracts
 yarn add zksync-web3 ethers@5 typescript @types/node ts-node
 ```
 
-5. Create a `file.ts` file in the root directory with the next script:
+5. In the root folder add `.env` file with private key of wallet to use
 
-Note: Replace `<YOUR_PRIVATE_KEY>` with private key of the wallet to use.
+```js
+"RICH_WALLET_PRIV_KEY=0x..";
+```
+
+6. Create a `file.ts` file in the root directory with the next script:
 
 ```ts
 // The following script sends a message from L2 to L1, retrieves the message proof, and validates that the message received in L1 came from an L2 block.
 import * as ethers from "ethers";
 import { Provider, utils, Wallet } from "zksync-web3";
-const TEST_PRIVATE_KEY = "<YOUR_PRIVATE_KEY>";
+
+import dotenv from "dotenv";
+dotenv.config();
+
+const TEST_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
 
 const MESSAGE = "Some L2->L1 message";
 
