@@ -65,6 +65,22 @@ import { Provider } from "zksync-web3";
 const provider = new Provider("https://testnet.era.zksync.dev");
 ```
 
+### `estimateFee`
+
+Returns an estimated [`Fee`](./types.md#fee) for requested transaction.
+
+#### Inputs
+
+| Parameter     | Type                                                                                                 | Description          |
+| ------------- | ---------------------------------------------------------------------------------------------------- | -------------------- |
+| `transaction` | [`TransactionRequest`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionRequest) | Transaction request. |
+
+```ts
+async estimateFee(transaction: TransactionRequest): Promise<Fee> {
+    return await this.send("zks_estimateFee", [transaction]);
+}
+```
+
 ### `estimateGas`
 
 Returns an estimate of the amount of gas required to submit a transaction to the network.
