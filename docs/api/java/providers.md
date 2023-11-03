@@ -155,29 +155,6 @@ public class Main {
 | ------- | ------------------------------- |
 | returns | Prepared get paymaster request. |
 
-### `zksGetTokenPrice`
-
-Get price of the token in USD.
-
-Example:
-
-```java
-import io.zksync.protocol.ZkSync;
-import org.web3j.protocol.http.HttpService;
-
-public class Main {
-    public static void main(String ...args) {
-      ZksTokenPrice response = zksync.zksGetTokenPrice(ETH.getL2Address()).send();
-}
-```
-
-#### Inputs and outputs
-
-| Name         | Description                       |
-| ------------ | --------------------------------- |
-| tokenAddress | Address of the token in hex.      |
-| returns      | Prepared get token price request. |
-
 ### `zksGetTransactionReceipt`
 
 Get transaction receipt. The same as `eth_getTransactionReceipt` but with additional fields belong to L2toL1Log
