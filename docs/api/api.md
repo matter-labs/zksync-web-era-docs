@@ -739,40 +739,6 @@ curl -X POST -H "Content-Type: application/json" \
 }
 ```
 
-### `zks_getTokenPrice`
-
-Returns the price of a given token in USD.
-
-:::tip Note
-
-- The price used by the zkSync Era team may be a bit different to the current market price.
-- On testnets, token prices are often different from the actual market price.
-  :::
-
-#### Inputs
-
-| Parameter | Type      | Description               |
-| --------- | --------- | ------------------------- |
-| address   | `address` | The address of the token. |
-
-#### curl example
-
-```curl
-curl -X POST -H "Content-Type: application/json" \
---data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getTokenPrice", "params": [ "0x0000000000000000000000000000000000000000" ]}' \
-"https://mainnet.era.zksync.io"
-```
-
-#### Output
-
-```json
-{
-  "jsonrpc": "2.0",
-  "result": "1908.42",
-  "id": 1
-}
-```
-
 ### `zks_getTransactionDetails`
 
 Returns data from a specific transaction given by the transaction hash.
