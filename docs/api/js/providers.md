@@ -573,26 +573,6 @@ const provider = new Provider("https://testnet.era.zksync.dev");
 console.log(await provider.getTestnetPaymasterAddress());
 ```
 
-### `getTokenPrice` DEPRECATED
-
-::: warning Deprecated
-
-- This method is deprecated and will be removed in the near future.
-  :::
-
-Returns the USD price for a token. Please note that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
-
-Calls the [`zks_getTokenPrice`](../api.md#zks-gettokenprice) JSON-RPC method.
-
-#### Example
-
-```typescript
-import { Provider } from "zksync-web3";
-const provider = new Provider("https://testnet.era.zksync.dev");
-
-console.log(await provider.getTokenPrice(USDC_L2_ADDRESS));
-```
-
 ### `getTransaction`
 
 Returns a specified L2 transaction response object by overriding the [Ethers implementation](https://docs.ethers.org/v5/api/providers/provider/#Provider-getTransaction).
