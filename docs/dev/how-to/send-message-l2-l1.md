@@ -68,6 +68,8 @@ yarn add zksync-web3 ethers@5 typescript @types/node ts-node
 
 5. Create a `file.ts` file in the root directory with the next script:
 
+Note: Replace `<YOUR_PRIVATE_KEY>` with private key of the wallet to use.
+
 ```ts
 // The following script sends a message from L2 to L1, retrieves the message proof, and validates that the message received in L1 came from an L2 block.
 import * as ethers from "ethers";
