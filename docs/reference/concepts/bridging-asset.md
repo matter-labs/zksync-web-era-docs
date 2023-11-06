@@ -40,6 +40,7 @@ Users must call the `deposit` method on the L1 bridge contract, which triggers t
 - The L1 bridge initiates a transaction to the L2 bridge using L1 -> L2 communication.
 - Within the L2 transaction, tokens will be minted and sent to the specified address on L2.
   - If the token does not exist on zkSync yet, a new contract is deployed for it. Given the L2 token address is deterministic (based on the original L1 address, name and symbol), it doesn't matter who is the first person bridging it, the new L2 address will be the same.
+  - The L2 token address is not guaranteed to be the same with the L1 token address. The [ContractDeployer](../architecture/system-contracts.md#contractdeployer) system contract will emit a `ContractDeployed` event with the new L2 token address.
 - For every executed L1 -> L2 transaction, there will be an L2 -> L1 log message confirming its execution.
 - Lastly, the `finalizeDeposit`method is called and it finalizes the deposit and mints funds on L2.
 
