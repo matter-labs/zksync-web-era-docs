@@ -127,6 +127,10 @@ export const enSidebar = sidebar({
                 "/api/js/zksync2-js/examples/transfer",
                 "/api/js/zksync2-js/examples/withdraw",
                 "/api/js/zksync2-js/examples/get-confirmed-tokens",
+                "/api/js/zksync2-js/examples/create",
+                "/api/js/zksync2-js/examples/create2",
+                "/api/js/zksync2-js/examples/custom-paymaster/deploy-token",
+                "/api/js/zksync2-js/examples/custom-paymaster/deploy-account",
                 "/api/js/zksync2-js/examples/custom-paymaster/use-paymaster",
               ],
             },
@@ -249,7 +253,7 @@ export const enSidebar = sidebar({
     {
       text: "Block Explorer", // required
       link: "/tools/block-explorer", // optional, which should be a absolute path.
-      children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification"],
+      children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification", "/tools/block-explorer/block-explorer-api"],
     },
   ],
 });

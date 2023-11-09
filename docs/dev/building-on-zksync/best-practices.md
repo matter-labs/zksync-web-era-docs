@@ -9,10 +9,6 @@ head:
 
 Before diving into development on zkSync Era, it's crucial to consider the following recommendations. These best practices will help you optimize your code, ensure security, and align with the unique characteristics of zkSync Era.
 
-::: warning Upcoming changes
-In the upcoming protocol upgrade scheduled for August-September 2023, there will be modifications to how certain block properties are implemented on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
-:::
-
 ## Use `call` over `.send` or `.transfer`
 
 Avoid using `payable(addr).send(x)`/`payable(addr).transfer(x)` because the 2300 gas stipend may not be enough for such calls, especially if it involves state changes that require a large amount of L2 gas for data. Instead, we recommend using `call`.
