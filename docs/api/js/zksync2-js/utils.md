@@ -306,6 +306,7 @@ Used by `estimateDefaultBridgeDepositL2Gas` to estimate L2 gas required for toke
 | `bridgeData`         | `BytesLike`    | Bridge data.                                |
 | `from?`              | `Address`      | Sender address (optional).                  |
 | `gasPerPubdataByte?` | `BigNumberish` | Current gas per byte of pubdata (optional). |
+| `l2Value?`           | `BigNumberish` | L2 value (optional).                        |
 
 ```ts
 export async function estimateCustomBridgeDepositL2Gas(
@@ -317,7 +318,8 @@ export async function estimateCustomBridgeDepositL2Gas(
   to: Address,
   bridgeData: BytesLike,
   from?: Address,
-  gasPerPubdataByte?: BigNumberish
+  gasPerPubdataByte?: BigNumberish,
+  l2Value?: BigNumberish
 ): Promise<bigint>;
 ```
 
