@@ -45,7 +45,7 @@ We will use the [zkSync Era Hardhat plugins](../../tools/hardhat/) to build, dep
 1. Initiate a new project by running the command:
 
 ```sh
-npx zksync-cli create project custom-spendlimit-tutorial --template hardhat_solidity
+npx zksync-cli create custom-spendlimit-tutorial --template hardhat_solidity
 ```
 
 :::tip
