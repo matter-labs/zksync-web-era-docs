@@ -86,7 +86,7 @@ async function main() {
 main()
   .then()
   .catch((error) => {
-    console.log(`Error: ${error}`);
+    console.error(`Error during contract deployment: ${error}`);
   });
 ```
 
