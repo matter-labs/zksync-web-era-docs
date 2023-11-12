@@ -84,7 +84,7 @@ async function main() {
 }
 
 main()
-  .then()
+  .then(() => console.log('Deployment successful')) // Added success message
   .catch((error) => {
     console.error(`Error during contract deployment: ${error}`);
   });
