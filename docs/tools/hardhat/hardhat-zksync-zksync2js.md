@@ -94,7 +94,7 @@ function deployContract: (artifact: ZkSyncArtifact, constructorArguments: any[],
 
 ::: tip
 
-- If `wallet?: zk.Wallet` is not provided and if newtork ise set to local, the default wallet will be the first account in the list of rich accounts. If an `accounts` object is set in the hardhat config for the used network, the default wallet will be taken from that object.
+- If `wallet?: zk.Wallet` is not provided and if the network is set to local, the default wallet will be the first account in the list of rich accounts. If an `accounts` object is set in the hardhat config for the used network, the default wallet will be taken from that object.
 - If `deploymentType?: DeploymentType` is not provided default value will be `create`
   :::
 
