@@ -59,7 +59,7 @@ Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply exe
 To create a new project run the CLI's `create` command, passing a project name:
 
 ```sh
-npx zksync-cli create project demo --template hardhat_solidity
+npx zksync-cli create demo --template hardhat_solidity
 ```
 
 This command creates a `demo` folder and clones a Hardhat template project inside it. The downloaded project is already configured and contains all the required plugins.

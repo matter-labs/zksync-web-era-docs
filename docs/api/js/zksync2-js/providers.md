@@ -87,6 +87,34 @@ const tx = await provider.broadcastTransaction(signedTx);
 console.log(tx.hash);
 ```
 
+### `estimateFee`
+
+Returns an estimated [`Fee`](./types.md#fee) for requested transaction.
+
+#### Inputs
+
+| Parameter     | Type                                                                                 | Description          |
+| ------------- | ------------------------------------------------------------------------------------ | -------------------- |
+| `transaction` | [`TransactionRequest`](https://docs.ethers.org/v6/api/providers/#TransactionRequest) | Transaction request. |
+
+```ts
+async estimateFee(transaction: TransactionRequest): Promise<Fee>
+```
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync2-js";
+
+const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const fee = await provider.estimateFee({
+  from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+  to: "0xa61464658AfeAf65CccaaFD3a512b69A83B77618",
+  value: `0x${BigInt(7_000_000_000).toString(16)}`,
+});
+console.log(`Fee: ${toJSON(fee)}`);
+```
+
 ### `estimateGas`
 
 Returns an estimate of the amount of gas required to submit a transaction to the network.
