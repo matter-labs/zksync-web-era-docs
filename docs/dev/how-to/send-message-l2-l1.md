@@ -66,13 +66,23 @@ yarn add -D @matterlabs/zksync-contracts
 yarn add zksync-web3 ethers@5 typescript @types/node ts-node
 ```
 
-5. Create a `file.ts` file in the root directory with the next script:
+5. In the root folder add `.env` file with private key of wallet to use
+
+```js
+"RICH_WALLET_PRIV_KEY=0x..";
+```
+
+6. Create a `file.ts` file in the root directory with the next script:
 
 ```ts
 // The following script sends a message from L2 to L1, retrieves the message proof, and validates that the message received in L1 came from an L2 block.
 import * as ethers from "ethers";
 import { Provider, utils, Wallet } from "zksync-web3";
-const TEST_PRIVATE_KEY = "<YOUR_PRIVATE_KEY>";
+
+import dotenv from "dotenv";
+dotenv.config();
+
+const TEST_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
 
 const MESSAGE = "Some L2->L1 message";
 
@@ -246,7 +256,10 @@ function proveL2MessageInclusion(
 
 - `_blockNumber`: L1 batch number in which the L2 block was included; retrievable using the `getBlock` method.
 - `_index`: Index of the L2 log in the block; returned as `id` by the [`zks_getL2ToL1LogProof`](../../api/api.md#zks-getl2tol1logproof) method.
-  `_message`: Parameter holding the message data. It should be an object containing: - `sender`: Address that sent the message from L2. - `data`: Message sent in bytes. - `txNumberInBlock`: Index of the transaction in the L2 block; returned as `transactionIndex` with [`getTransactionReceipt`](https://docs.ethers.org/v5/single-page/#/v5/api/providers/provider/-%23-Provider-getTransactionReceipt) on an Ethers `Provider` object.
+- `_message`: Parameter holding the message data. It should be an object containing:
+  - `sender`: Address that sent the message from L2.
+  - `data`: Message sent in bytes.
+  - `txNumberInBlock`: Index of the transaction in the L2 block; returned as `transactionIndex` with [`getTransactionReceipt`](https://docs.ethers.org/v5/single-page/#/v5/api/providers/provider/-%23-Provider-getTransactionReceipt) on an Ethers `Provider` object.
 - `_proof`: Merkle proof of the message inclusion; retrieved by observing Ethereum or using the `zks_getL2ToL1LogProof` method of the zksync-web3 API.
   :::
 
