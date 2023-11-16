@@ -14,7 +14,6 @@ This is what we're going to do:
 - Build, deploy, and verify a smart contract on zkSync Era testnet that stores a greeting message.
 - Build a dApp that retrieves and updates the greeting message.
 - Allow users to change the greeting message on the smart contract via the app.
-- Show you how to [implement the testnet paymaster](#paying-fees-using-testnet-paymaster) that allows users to pay transaction fees with ERC20 tokens instead of ETH.
 
 ## Prerequisites
 
@@ -27,7 +26,6 @@ This is what we're going to do:
   - [Alchemy Goerli faucet](https://goerlifaucet.com/)
   - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
   - [Proof of work faucet](https://goerli-faucet.pk910.de/)
-- ERC20 tokens on zkSync are required for the testnet paymaster. Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync. Use any Goerli swap to get the ERC 20 token you need in exchange for testnet `ETH` - for example [Maverik Testnet Swap](https://testnet.mav.xyz/?chain=5).
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ::: tip Local zkSync Testing with zksync-cli
@@ -60,7 +58,7 @@ Learn more about the [zkSync Era plugins for Hardhat here](../../tools/hardhat/R
 cd greeter-example
 ```
 
-3. Configure Your Private Key:
+3. Configure Your Private Key (if you have not already done so through the `zksync-cli` wizard):
 
 Rename the `.env.example` file to `.env` and then enter your private key:
 
@@ -225,29 +223,19 @@ Navigate to `http://localhost:8080/` in a browser to see the running application
 
 ### Connect accounts to the dApp
 
-#### Smart accounts
-
-Enabling smart accounts allows you to onboard Argent account abstraction wallet users that have been using the first version of zkSync.
-
-- Use [this library](../../reference/concepts/account-abstraction.md#signature-validation) to verify your smart account compatibility.
-- Follow [this guide](https://docs.argent.xyz/) to add Argent login to your dApp.
-
-#### Externally owned accounts (EOAs)
-
 In order to interact with dApps built on zkSync, connect the MetaMask wallet to the zkSync Era Testnet.
 
 - Follow [this guide](./interacting.md#connecting-to-zksync-era-on-metamask) to connect Metamask to zkSync.
 
 Please note, that login functionality for "Hello, world" will be implemented in the next steps.
 
-### Bridge funds to L2
+:::tip Smart accounts
 
-- Use [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
-- Use the [third party faucets](../../reference/troubleshooting/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
+Enabling smart accounts allows you to onboard Argent account abstraction wallet users that have been using the first version of zkSync.
 
-:::warning
-When bridging from mainnet to a smart account (e.g. Argent) on zkSync Era, you must specify the address of your L2 wallet by clicking on **Deposit to another address on zkSync Era Mainnet**.
-:::
+- Use [this library](../../reference/concepts/account-abstraction.md#signature-validation) to verify your smart account compatibility.
+- Follow [this guide](https://docs.argent.xyz/) to add Argent login to your dApp.
+  :::
 
 ### Project structure
 
@@ -535,162 +523,6 @@ Refresh your browser, or open the MetaMask extension on your browser and click _
 
 Read more about `wallet_requestPermissions`, in the [MetaMask documentation](https://docs.metamask.io/guide/rpc-api.html#wallet-requestpermissions).
 :::
-
-### Paying fees using testnet paymaster
-
-The zkSync Era account abstraction feature allows you to integrate [paymasters](../../reference/concepts/account-abstraction.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly.
-
-We will use the [testnet paymaster](../../reference/concepts/account-abstraction.md#testnet-paymaster) that is provided on all zkSync Era testnets.
-
-:::info
-**The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH.
-
-This means that transaction fees in tokens with fewer decimals than ETH will be bigger; for example, USDC which has only 6 decimals. This is a known behaviour of the testnet paymaster, which was built for demonstration purposes only.
-:::
-
-::: warning Paymasters on mainnet
-The testnet [paymaster](https://era.zksync.io/docs/dev/tutorials/custom-paymaster-tutorial.html#building-custom-paymaster) is purely for demonstrating this feature and won't be available on mainnet.
-
-When integrating your protocol on mainnet, you should follow the documentation of the paymaster you use, or create your own.
-:::
-
-The `getOverrides` function returns an empty object when users decide to pay with Ether but, when users select the ERC20 option, it should return the paymaster address and all
-the information required by it. This is how to do it:
-
-1. To retrieve the address of the testnet paymaster from the zkSync provider, add a new function `getOverrides`:
-
-```javascript
-async getOverrides() {
-  if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
-    const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
-
-    // ..
-  }
-
-  return {};
-}
-```
-
-:::info
-It is recommended to retrieve the testnet paymaster's address before each interaction as it may change.
-:::
-
-2. Add `utils` to the same import from `zksync-web3` SDK as before:
-
-```javascript
-import { Contract, Web3Provider, Provider, utils } from "zksync-web3";
-```
-
-3. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token to ETH at a 1:1 rate, the amount is the same as the ETH amount in wei:
-
-```javascript
-async getOverrides() {
-  if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
-    const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
-
-    const gasPrice = await this.provider.getGasPrice();
-    // estimate gasLimit via paymaster
-    const paramsForFeeEstimation = utils.getPaymasterParams(
-          testnetPaymaster,
-          {
-            type: "ApprovalBased",
-            minimalAllowance: ethers.BigNumber.from("1"),
-            token: this.selectedToken.l2Address,
-            innerInput: new Uint8Array(),
-          }
-        );
-
-        // estimate gasLimit via paymaster
-        const gasLimit = await this.contract.estimateGas.setGreeting(
-          this.newGreeting,
-          {
-            customData: {
-              gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
-              paymasterParams: paramsForFeeEstimation,
-            },
-          }
-        );
-    const fee = gasPrice.mul(gasLimit);
-
-    // ..
-  }
-
-  return {};
-}
-```
-
-4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../reference/concepts/account-abstraction.md#testnet-paymaster) and return the needed overrides.
-
-Copy/paste the following complete function:
-
-```javascript
-async getOverrides() {
-  if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
-    const testnetPaymaster =
-      await this.provider.getTestnetPaymasterAddress();
-
-    const gasPrice = await this.provider.getGasPrice();
-
-    // estimate gasLimit via paymaster
-    const paramsForFeeEstimation = utils.getPaymasterParams(
-      testnetPaymaster,
-      {
-        type: "ApprovalBased",
-        minimalAllowance: ethers.BigNumber.from("1"),
-        token: this.selectedToken.l2Address,
-        innerInput: new Uint8Array(),
-      }
-    );
-
-    // estimate gasLimit via paymaster
-    const gasLimit = await this.contract.estimateGas.setGreeting(
-      this.newGreeting,
-      {
-        customData: {
-          gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
-          paymasterParams: paramsForFeeEstimation,
-        },
-      }
-    );
-
-    const fee = gasPrice.mul(gasLimit.toString());
-
-    const paymasterParams = utils.getPaymasterParams(testnetPaymaster, {
-      type: "ApprovalBased",
-      token: this.selectedToken.l2Address,
-      minimalAllowance: fee,
-      // empty bytes as testnet paymaster does not use innerInput
-      innerInput: new Uint8Array(),
-    });
-
-    return {
-      maxFeePerGas: gasPrice,
-      maxPriorityFeePerGas: ethers.BigNumber.from(0),
-      gasLimit,
-      customData: {
-        gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
-        paymasterParams,
-      },
-    };
-  }
-
-  return {};
-},
-```
-
-5. To use a list of ERC20 tokens, change the following line:
-
-```javascript
-const allowedTokens = require("./eth.json");
-```
-
-to the following one:
-
-```javascript
-const allowedTokens = require("./erc20.json");
-```
-
-The `erc20.json` file contains a few tokens like DAI, USDC and wBTC.
 
 ### Complete app
 
