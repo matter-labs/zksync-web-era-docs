@@ -314,7 +314,7 @@ To ensure users experience paymasters on testnet, as well as keep supporting pay
 
 The paymaster supports only the [approval based](#approval-based-paymaster-flow) paymaster flow and requires that the `token` param is equal to the token being swapped and `minAllowance` to equal to least `tx.maxFeePerGas * tx.gasLimit`. In addition, the testnet paymaster does not make use of the `_innerInput` parameter, so nothing should be provided (empty `bytes`).
 
-An example of how to use testnet paymaster can be seen in the [quickstart](../../dev/building-on-zksync/hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
+For more examples on paymaster please see our [paymaster examples repository on GitHub](https://github.com/matter-labs/paymaster-examples).
 
 ## Signature validation
 
