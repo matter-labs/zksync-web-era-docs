@@ -56,6 +56,7 @@ export const enSidebar = sidebar({
         "/reference/concepts/rollups.md",
         "/reference/concepts/zkSync.md",
         "/reference/concepts/hyperscaling.md",
+        "/reference/concepts/validiums.md",
         "/reference/concepts/account-abstraction.md",
         "/reference/concepts/transactions.md",
         "/reference/concepts/blocks.md",
