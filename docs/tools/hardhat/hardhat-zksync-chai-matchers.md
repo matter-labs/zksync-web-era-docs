@@ -15,7 +15,7 @@ Currently, it is used in combination with [local testing environment](../testing
 ::: info
 
 - Since responses from transactions that revert are highly dependent on the RPC implementation, all [Hardhat](https://hardhat.org/hardhat-chai-matchers/docs/overview) chai matchers that start with `revert` have been affected (without any changes to the chai matchers interface).
-- In addition, the `options` argument from `changeEtherBalance`/`changeEtherBalances` now includes the `overrides` field in order to support `zksync-web3` transfer methods with overrides.
+- In addition, the `options` argument from `changeEtherBalance`/`changeEtherBalances` now includes the `overrides` field in order to support `zksync2-js` transfer methods with overrides.
   :::
 
 ## Installation
@@ -58,7 +58,7 @@ await expect(() =>
     to: receiver.address,
     amount: 2000,
   })
-).to.changeEtherBalance(sender.address, BigInt("-2000"));
+).to.changeEtherBalance(sender.address, -2000);
 
 await expect(() =>
   sender.sendTransaction({

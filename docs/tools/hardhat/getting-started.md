@@ -155,7 +155,7 @@ The `artifacts-zk` and `cache-zk` folders are included in the `.gitignore` file.
 The `deploy-greeter.ts` script is in the `deploy` folder. This script uses the `Deployer` class from the `hardhat-zksync-deploy` package to deploy the `Greeter.sol` contract.
 
 ```typescript
-import { Wallet, utils } from "zksync-web3";
+import { Wallet, utils } from "zksync2-js";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -195,7 +195,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
   // `greeting` is an argument for contract constructor.
-  const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
+  const parsedFee = ethers.formatEther(deploymentFee);
   console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
 
   const greeterContract = await deployer.deploy(artifact, [greeting]);
@@ -204,7 +204,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log("constructor args:" + greeterContract.interface.encodeDeploy([greeting]));
 
   // Show the contract info.
-  const contractAddress = greeterContract.address;
+  const contractAddress = await greeterContract.getAddress();
   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 }
 ```
@@ -244,7 +244,7 @@ The template project contains another script to interact with the contract.
 1. Enter the address of the deployed Greeter contract in the `CONTRACT_ADDRESS` variable of the `use-greeter.ts` script:
 
 ```typescript
-import { Provider } from "zksync-web3";
+import { Provider } from "zksync2-js";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
@@ -317,4 +317,4 @@ The message now is Hello people!
 ## Learn more
 
 - To learn more about the zkSync Hardhat plugins check out the [plugins documentation](./plugins.md).
-- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-web3 Javascript SDK documentation](../../api/js) .
+- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync2-js Javascript SDK documentation](../../api/js) .

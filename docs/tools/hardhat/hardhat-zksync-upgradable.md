@@ -124,7 +124,7 @@ To deploy a simple upgradable contract on zkSync Era local setup, first create a
 ```typescript
 // mnemonic for local node rich wallet
 const testMnemonic = "stuff slice staff easily soup parent arm payment cotton trade scatter struggle";
-const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+const zkWallet = Wallet.fromMnemonic(testMnemonic);
 
 const deployer = new Deployer(hre, zkWallet);
 ```
@@ -143,7 +143,7 @@ The `deployProxy` method deploys your implementation contract on zkSync Era, dep
 
 ```typescript
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
-import { Wallet } from "zksync-web3";
+import { Wallet } from "zksync2-js";
 
 import * as hre from "hardhat";
 
@@ -160,12 +160,12 @@ async function main() {
   const contract = await deployer.loadArtifact(contractName);
   const box = await hre.zkUpgrades.deployProxy(deployer.zkWallet, contract, [42], { initializer: "initialize" });
 
-  await box.deployed();
-  console.log(contractName + " deployed to:", box.address);
+  await box.waitForDeployment();
+  console.log(contractName + " deployed to:", await box.getAddress());
 
   box.connect(zkWallet);
   const value = await box.retrieve();
-  console.log("Box value is: ", value.toNumber());
+  console.log("Box value is: ", value);
 }
 
 main().catch((error) => {
@@ -221,12 +221,12 @@ Since the provider was instantiated on creating the `Deployer` class, based on y
 On the other hand, if you need to explicitly set the provider, do that with the code below:
 
 ```typescript
-  import { Provider } from "zksync-web3";
+  import { Provider } from "zksync2-js";
 
   const provider = new Provider("https://testnet.era.zksync.dev");
 
   const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
-  const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+  const zkWallet = Wallet.fromMnemonic(testMnemonic);
   zkWallet.connect(provider);
 
   const deployer = new Deployer(hre, zkWallet);
@@ -294,7 +294,7 @@ async function main() {
 
     // mnemonic for local node rich wallet
     const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
-    const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+    const zkWallet = Wallet.fromMnemonic(testMnemonic);
     ...
 ```
 
@@ -339,7 +339,7 @@ After that, your beacon proxy contract is deployed on the network, and you can i
 
 ```typescript
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
-import { Wallet } from "zksync-web3";
+import { Wallet } from "zksync2-js";
 
 import * as hre from "hardhat";
 
@@ -348,22 +348,22 @@ async function main() {
   console.log("Deploying " + contractName + "...");
   // mnemonic for local node rich wallet
   const testMnemonic = "stuff slice staff easily soup parent arm payment cotton trade scatter struggle";
-  const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+  const zkWallet = Wallet.fromMnemonic(testMnemonic);
 
   const deployer = new Deployer(hre, zkWallet);
 
   const boxContract = await deployer.loadArtifact(contractName);
   const beacon = await hre.zkUpgrades.deployBeacon(deployer.zkWallet, boxContract);
-  await beacon.deployed();
-  console.log("Beacon deployed to:", beacon.address);
+  await beacon.waitForDeployment();
+  console.log("Beacon deployed to:", await beacon.getAddress());
 
   const box = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, beacon, boxContract, [42]);
-  await box.deployed();
-  console.log(contractName + " beacon proxy deployed to: ", box.address);
+  await box.waitForDeployment();
+  console.log(contractName + " beacon proxy deployed to: ", await box.getAddress());
 
   box.connect(zkWallet);
   const value = await box.retrieve();
-  console.log("Box value is: ", value.toNumber());
+  console.log("Box value is: ", value);
 }
 
 main().catch((error) => {
@@ -564,33 +564,32 @@ The example below deploys and upgrades a smart contract using a beacon proxy:
 
 ```typescript
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
-import { Wallet } from "zksync-web3";
-import * as zk from "zksync-web3";
+import { Wallet } from "zksync2-js";
+import * as zk from "zksync2-js";
 
 import * as hre from "hardhat";
 
 async function main() {
   // mnemonic for local node rich wallet
   const testMnemonic = "stuff slice staff easily soup parent arm payment cotton trade scatter struggle";
-  const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+  const zkWallet = Wallet.fromMnemonic(testMnemonic);
   const deployer = new Deployer(hre, zkWallet);
 
   // deploy beacon proxy
   const contractName = "Box";
   const contract = await deployer.loadArtifact(contractName);
   const beacon = await hre.zkUpgrades.deployBeacon(deployer.zkWallet, contract);
-  await beacon.deployed();
+  await beacon.waitForDeployment();
 
   const boxBeaconProxy = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, beacon, contract, [42]);
-  await boxBeaconProxy.deployed();
-
+  await boxBeaconProxy.waitForDeployment();
   // upgrade beacon
   const boxV2Implementation = await deployer.loadArtifact("BoxV2");
-  await hre.zkUpgrades.upgradeBeacon(deployer.zkWallet, beacon.address, boxV2Implementation);
-  console.log("Successfully upgraded beacon Box to BoxV2 on address: ", beacon.address);
+  await hre.zkUpgrades.upgradeBeacon(deployer.zkWallet, await beacon.getAddress(), boxV2Implementation);
+  console.log("Successfully upgraded beacon Box to BoxV2 on address: ", await beacon.getAddress());
 
   const attachTo = new zk.ContractFactory(boxV2Implementation.abi, boxV2Implementation.bytecode, deployer.zkWallet, deployer.deploymentType);
-  const upgradedBox = await attachTo.attach(boxBeaconProxy.address);
+  const upgradedBox = await attachTo.attach(await boxBeaconProxy.getAddress());
 
   upgradedBox.connect(zkWallet);
   // wait some time before the next call
@@ -669,7 +668,7 @@ In the examples provided below, we will use the a Box contract and the deployer 
 ```typescript
 // mnemonic for local node rich wallet
 const testMnemonic = "stuff slice staff easily soup parent arm payment cotton trade scatter struggle";
-const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+const zkWallet = Wallet.fromMnemonic(testMnemonic);
 
 const deployer = new Deployer(hre, zkWallet);
 
