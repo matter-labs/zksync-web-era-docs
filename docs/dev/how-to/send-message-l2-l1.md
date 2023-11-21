@@ -39,143 +39,54 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 - Bridging funds from L2 to L1.
 - Layer 2 governance.
 
-## Send a message
+## Step-by-step
 
-Two transactions are required:
+1. Create a project folder and `cd` into it
 
-- An L2 transaction which sends a message of arbitrary length.
-- An L1 read; implemented by a getter function on an L1 smart contract.
-
-1. Import the zkSync Era library or contract containing the required functionality.
-
-2. Get a `Contract` object that represents the [`L1Messenger`](../../reference/architecture/system-contracts.md#l1messenger) contract.
-
-3. Transform the request into a raw bytes array.
-
-4. Use the [`sendToL1`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L5) function from the [`IL1Messenger.sol`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L4) interface, passing the message as a raw bytes array.
-
-Each sent message emits an [`L1MessageSent`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L8) event.
-
-```solidity
-event L1MessageSent(address indexed _sender, bytes32 indexed _hash, bytes _message);
-
-function sendToL1(bytes memory _message) external returns (bytes32);
+```sh
+mkdir message-l2
+cd message-l2
 ```
 
-4.1 The return value from `sendToL1` is the `keccak256` hash of the message bytes.
+2. Run
 
-## Prove the result
-
-1. The [`proveL2MessageInclusion`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/facets/Mailbox.sol#L46) function returns a boolean parameter indicating whether the message was sent successfully to L1.
-
-```solidity
-function proveL2MessageInclusion(
-    uint256 _blockNumber,
-    uint256 _index,
-    L2Message memory _message,
-    bytes32[] calldata _proof
-) public view returns (bool) {
-    return _proveL2LogInclusion(_blockNumber, _index, _L2MessageToLog(_message), _proof);
-}
+```sh
+yarn init add -y
 ```
 
-:::tip Parameter details
+3. Run
 
-- `_blockNumber`: L1 batch number in which the L2 block was included; retrievable using the `getBlock` method.
-- `_index`: Index of the L2 log in the block; returned as `id` by the [`zks_getL2ToL1LogProof`](../../api/api.md#zks-getl2tol1logproof) method.
-  `_message`: Parameter holding the message data. It should be an object containing: - `sender`: Address that sent the message from L2. - `data`: Message sent in bytes. - `txNumberInBlock`: Index of the transaction in the L2 block; returned as `transactionIndex` with [`getTransactionReceipt`](https://docs.ethers.org/v5/single-page/#/v5/api/providers/provider/-%23-Provider-getTransactionReceipt) on an Ethers `Provider` object.
-- `_proof`: Merkle proof of the message inclusion; retrieved by observing Ethereum or using the `zks_getL2ToL1LogProof` method of the zksync-web3 API.
-  :::
-
-## Example
-
-::: code-tabs
-@tab Solidity 1
-
-```solidity
-// The Example contract below sends its address to L1 via the Messenger system contract.
-//SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
-
-// Importing interfaces and addresses of the system contracts
-import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
-
-contract Example {
-    function sendMessageToL1() external returns(bytes32 messageHash) {
-        // Construct the message directly on the contract
-        bytes memory message = abi.encode(address(this));
-
-        messageHash = L1_MESSENGER_CONTRACT.sendToL1(message);
-    }
-}
+```sh
+yarn add -D @matterlabs/zksync-contracts
 ```
 
-@tab Solidity 2
+4. Import the zkSync Era library or contract containing the required functionality.
 
-```solidity
-// This contract receives the information related to the transaction sent to the L2 messenger contract.
-// It then proves that the message was included in an L2 block.
-//SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
-
-// Importing zkSync contract interface
-import "@matterlabs/zksync-contracts/l1/contracts/zksync/interfaces/IZkSync.sol";
-
-contract Example {
-  // NOTE: The zkSync contract implements only the functionality for proving that a message belongs to a block
-  // but does not guarantee that such a proof was used only once. That's why a contract that uses L2 to L1
-  // communication must take care of the double handling of the message.
-  /// @dev mapping L2 block number => message number => flag
-  /// @dev Used to indicated that zkSync L2 to L1 message was already processed
-  mapping(uint256 => mapping(uint256 => bool)) isL2ToL1MessageProcessed;
-
-  function consumeMessageFromL2(
-    // The address of the zkSync smart contract.
-    // It is not recommended to hardcode it during the alpha testnet as regenesis may happen.
-    address _zkSyncAddress,
-    // zkSync block number in which the message was sent
-    uint256 _l2BlockNumber,
-    // Message index, that can be received via API
-    uint256 _index,
-    // The tx number in block
-    uint16 _l2TxNumberInBlock,
-    // The message that was sent from l2
-    bytes calldata _message,
-    // Merkle proof for the message
-    bytes32[] calldata _proof
-  ) external {
-    // check that the message has not been processed yet
-    require(!isL2ToL1MessageProcessed[_l2BlockNumber][_index]);
-
-    IZkSync zksync = IZkSync(_zkSyncAddress);
-    address someSender = 0x19A5bFCBE15f98Aa073B9F81b58466521479DF8D;
-    L2Message memory message = L2Message({sender: someSender, data: _message, txNumberInBlock:_l2TxNumberInBlock});
-
-    bool success = zksync.proveL2MessageInclusion(
-      _l2BlockNumber,
-      _index,
-      message,
-      _proof
-    );
-    require(success, "Failed to prove message inclusion");
-
-    // Mark message as processed
-    isL2ToL1MessageProcessed[_l2BlockNumber][_index] = true;
-  }
-}
+```sh
+yarn add zksync-web3 ethers@5 typescript @types/node ts-node
 ```
 
-@tab JavaScript
+5. In the root folder add `.env` file with private key of wallet to use
 
 ```js
+"RICH_WALLET_PRIV_KEY=0x..";
+```
+
+6. Create a `file.ts` file in the root directory with the next script:
+
+```ts
 // The following script sends a message from L2 to L1, retrieves the message proof, and validates that the message received in L1 came from an L2 block.
 import * as ethers from "ethers";
 import { Provider, utils, Wallet } from "zksync-web3";
-const TEST_PRIVATE_KEY = "<YOUR_PRIVATE_KEY>";
+
+import dotenv from "dotenv";
+dotenv.config();
+
+const TEST_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
 
 const MESSAGE = "Some L2->L1 message";
 
-const l2Provider = new Provider("https://testnet.era.zksync.dev");
+const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
 const l1Provider = ethers.getDefaultProvider("goerli");
 
 const wallet = new Wallet(TEST_PRIVATE_KEY, l2Provider, l1Provider);
@@ -261,19 +172,19 @@ try {
 }
 ```
 
-@tab Python
+6. Add the following lines to your `package.json` in the root folder:
 
-```sh
-// In progress. Check back later.
+```json
+"scripts": {
+   "run-file": "ts-node file.ts"
+}
 ```
 
-@tab Go
+7. To run the script, execute:
 
-```sh
-// In progress. Check back later.
+```bash
+yarn run-file
 ```
-
-:::
 
 ### Example output
 
@@ -302,3 +213,144 @@ L1 Batch for block :>>  77512
 Retrieving proof for batch 77512, transaction index 32 and proof id 14
 Result is :>>  true
 ```
+
+## Send a message
+
+Two transactions are required:
+
+- An L2 transaction which sends a message of arbitrary length.
+- An L1 read; implemented by a getter function on an L1 smart contract.
+
+1. Get a `Contract` object that represents the [`L1Messenger`](../../reference/architecture/system-contracts.md#l1messenger) contract.
+
+2. Transform the request into a raw bytes array.
+
+3. Use the [`sendToL1`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L5) function from the [`IL1Messenger.sol`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L4) interface, passing the message as a raw bytes array.
+
+Each sent message emits an [`L1MessageSent`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L8) event.
+
+```solidity
+event L1MessageSent(address indexed _sender, bytes32 indexed _hash, bytes _message);
+
+function sendToL1(bytes memory _message) external returns (bytes32);
+```
+
+3.1 The return value from `sendToL1` is the `keccak256` hash of the message bytes.
+
+## Prove the result
+
+The [`proveL2MessageInclusion`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/facets/Mailbox.sol#L46) function returns a boolean parameter indicating whether the message was sent successfully to L1.
+
+```solidity
+function proveL2MessageInclusion(
+    uint256 _blockNumber,
+    uint256 _index,
+    L2Message memory _message,
+    bytes32[] calldata _proof
+) public view returns (bool) {
+    return _proveL2LogInclusion(_blockNumber, _index, _L2MessageToLog(_message), _proof);
+}
+```
+
+:::tip Parameter details
+
+- `_blockNumber`: L1 batch number in which the L2 block was included; retrievable using the `getBlock` method.
+- `_index`: Index of the L2 log in the block; returned as `id` by the [`zks_getL2ToL1LogProof`](../../api/api.md#zks-getl2tol1logproof) method.
+- `_message`: Parameter holding the message data. It should be an object containing:
+  - `sender`: Address that sent the message from L2.
+  - `data`: Message sent in bytes.
+  - `txNumberInBlock`: Index of the transaction in the L2 block; returned as `transactionIndex` with [`getTransactionReceipt`](https://docs.ethers.org/v5/single-page/#/v5/api/providers/provider/-%23-Provider-getTransactionReceipt) on an Ethers `Provider` object.
+- `_proof`: Merkle proof of the message inclusion; retrieved by observing Ethereum or using the `zks_getL2ToL1LogProof` method of the zksync-web3 API.
+  :::
+
+## Example
+
+::: code-tabs
+@tab Solidity 1
+
+```solidity
+// The Example contract below sends its address to L1 via the Messenger system contract.
+//SPDX-License-Identifier: Unlicense
+pragma solidity ^0.8.0;
+
+// Importing interfaces and addresses of the system contracts
+import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
+
+contract Example {
+    function sendMessageToL1() external returns(bytes32 messageHash) {
+        // Construct the message directly on the contract
+        bytes memory message = abi.encode(address(this));
+
+        messageHash = L1_MESSENGER_CONTRACT.sendToL1(message);
+    }
+}
+```
+
+@tab Solidity 2
+
+```solidity
+// This contract receives the information related to the transaction sent to the L2 messenger contract.
+// It then proves that the message was included in an L2 block.
+//SPDX-License-Identifier: Unlicense
+pragma solidity ^0.8.0;
+
+// Importing zkSync contract interface
+import "@matterlabs/zksync-contracts/l1/contracts/zksync/interfaces/IZkSync.sol";
+
+contract Example {
+  // NOTE: The zkSync contract implements only the functionality for proving that a message belongs to a block
+  // but does not guarantee that such a proof was used only once. That's why a contract that uses L2 to L1
+  // communication must take care of the double handling of the message.
+  /// @dev mapping L2 block number => message number => flag
+  /// @dev Used to indicated that zkSync L2 to L1 message was already processed
+  mapping(uint256 => mapping(uint256 => bool)) isL2ToL1MessageProcessed;
+
+  function consumeMessageFromL2(
+    // The address of the zkSync smart contract.
+    // It is not recommended to hardcode it during the alpha testnet as regenesis may happen.
+    address _zkSyncAddress,
+    // zkSync block number in which the message was sent
+    uint256 _l2BlockNumber,
+    // Message index, that can be received via API
+    uint256 _index,
+    // The tx number in block
+    uint16 _l2TxNumberInBlock,
+    // The message that was sent from l2
+    bytes calldata _message,
+    // Merkle proof for the message
+    bytes32[] calldata _proof
+  ) external {
+    // check that the message has not been processed yet
+    require(!isL2ToL1MessageProcessed[_l2BlockNumber][_index]);
+
+    IZkSync zksync = IZkSync(_zkSyncAddress);
+    address someSender = 0x19A5bFCBE15f98Aa073B9F81b58466521479DF8D;
+    L2Message memory message = L2Message({sender: someSender, data: _message, txNumberInBlock:_l2TxNumberInBlock});
+
+    bool success = zksync.proveL2MessageInclusion(
+      _l2BlockNumber,
+      _index,
+      message,
+      _proof
+    );
+    require(success, "Failed to prove message inclusion");
+
+    // Mark message as processed
+    isL2ToL1MessageProcessed[_l2BlockNumber][_index] = true;
+  }
+}
+```
+
+@tab Python
+
+```sh
+// In progress. Check back later.
+```
+
+@tab Go
+
+```sh
+// In progress. Check back later.
+```
+
+:::

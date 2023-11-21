@@ -73,6 +73,22 @@ export const L1_BRIDGE_ABI = new utils.Interface(require("../abi/IL1Bridge.json"
 export const L2_BRIDGE_ABI = new utils.Interface(require("../abi/IL2Bridge.json").abi);
 ```
 
+#### NonceHolder
+
+Used for managing deployment nonce.
+
+```ts
+export const NONCE_HOLDER_ABI = new ethers.Interface(require("../abi/INonceHolder.json").abi);
+```
+
+#### PaymasterFlow
+
+Used for encoding paymaster flows.
+
+```ts
+export const PAYMASTER_FLOW_ABI = new ethers.Interface(require("../abi/IPaymasterFlow.json").abi);
+```
+
 #### L1 to L2 alias offset
 
 Used for applying and undoing aliases on addresses during bridging from L1 to L2.
@@ -143,6 +159,12 @@ export const CONTRACT_DEPLOYER_ADDRESS = "0x000000000000000000000000000000000000
 
 ```ts
 export const L1_MESSENGER_ADDRESS = "0x0000000000000000000000000000000000008008";
+```
+
+#### Nonce holder
+
+```ts
+export const NONCE_HOLDER_ADDRESS = "0x0000000000000000000000000000000000008003";
 ```
 
 ### Gas
@@ -284,6 +306,7 @@ Used by `estimateDefaultBridgeDepositL2Gas` to estimate L2 gas required for toke
 | `bridgeData`         | `BytesLike`    | Bridge data.                                |
 | `from?`              | `Address`      | Sender address (optional).                  |
 | `gasPerPubdataByte?` | `BigNumberish` | Current gas per byte of pubdata (optional). |
+| `l2Value?`           | `BigNumberish` | L2 value (optional).                        |
 
 ```ts
 export async function estimateCustomBridgeDepositL2Gas(
@@ -295,7 +318,8 @@ export async function estimateCustomBridgeDepositL2Gas(
   to: Address,
   bridgeData: BytesLike,
   from?: Address,
-  gasPerPubdataByte?: BigNumberish
+  gasPerPubdataByte?: BigNumberish,
+  l2Value?: BigNumberish
 ): Promise<bigint>;
 ```
 

@@ -395,6 +395,29 @@ const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 console.log(`Nonce: ${await wallet.getNonce()}`);
 ```
 
+### getDeploymentNonce
+
+Returns account's deployment nonce number.
+
+```ts
+async getDeploymentNonce(): Promise<bigint>
+```
+
+#### Example
+
+```ts
+import { Wallet, Provider, utils } from "zksync2-js";
+import { ethers } from "ethers";
+
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const ethProvider = ethers.getDefaultProvider("goerli");
+const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
+
+console.log(`Nonce: ${await wallet.getDeploymentNonce()}`);
+```
+
 ### ethWallet
 
 You can get an `ethers.Wallet` object with the same private key with `ethWallet()` method.

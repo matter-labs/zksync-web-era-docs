@@ -18,6 +18,7 @@ zkSync Era has the following official plugins for Hardhat:
 - [@matterlabs/hardhat-zksync-verify](./hardhat-zksync-verify.md) - used to verify smart contracts.
 - [@matterlabs/hardhat-zksync-verify-vyper](./hardhat-zksync-verify-vyper.md) - used to verify vyper smart contracts.
 - [@matterlabs/hardhat-zksync-upgradable](./hardhat-zksync-upgradable.md) - used to deploy, update, and verify proxy smart contracts.
+- [@matterlabs/hardhat-zksync-zksync2js](./hardhat-zksync-zksync2js.md) - wrapper around zksync2-js with some extra Hardhat-specific functionality.
 
 ::: tip Additional plugins
 Learn more about [other plugins from the community](./other-plugins.md) that you can use with zkSync Era.
@@ -58,7 +59,7 @@ Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply exe
 To create a new project run the CLI's `create` command, passing a project name:
 
 ```sh
-npx zksync-cli create project demo --template hardhat_solidity
+npx zksync-cli create demo --template hardhat_solidity
 ```
 
 This command creates a `demo` folder and clones a Hardhat template project inside it. The downloaded project is already configured and contains all the required plugins.

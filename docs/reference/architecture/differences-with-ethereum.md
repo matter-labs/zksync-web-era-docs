@@ -112,7 +112,7 @@ changes, and then calls the callee.
 ### `MSTORE`, `MLOAD`
 
 Unlike EVM, where the memory growth is in words, on zkEVM the memory growth is counted in bytes. For example, if you write
-`mstore(100, 0)` the `msize` on zkEVM will be `132`, but on the EVM is will be `160`. Note, that also unlike EVM which
+`mstore(100, 0)` the `msize` on zkEVM will be `132`, but on the EVM it will be `160`. Note, that also unlike EVM which
 has quadratic growth for memory payments, on zkEVM the fees are charged linearly at a rate of `1` erg per byte.
 
 The other thing is that our compiler can sometimes optimize unused memory reads/writes. This can lead to different `msize`
@@ -161,12 +161,12 @@ contract Example {
 
 ### `TIMESTAMP`, `NUMBER`
 
-::: warning Upcoming changes
-In the upcoming protocol upgrade scheduled for August-September 2023, there will be modifications to how certain block properties are implemented on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
-:::
-
 For more information about blocks on zkSync Era, including the differences between `block.timestamp` and `block.number`,
 check out the [blocks on zkSync Era documentation](../../reference/concepts/blocks.md#blocks-in-zksync-era).
+
+::: note Changes From the Previous Protocol Version
+Modifications were performed on how certain block properties were implemented on zkSync Era. For details on the changes performed visit the [announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
+:::
 
 ### `COINBASE`
 

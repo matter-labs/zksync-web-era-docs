@@ -11,7 +11,12 @@ The [paymaster utilities library](https://github.com/zksync-sdk/zksync2-js/blob/
 
 ## Contract interfaces
 
-### `IPaymasterFlow`
+### `IPaymasterFlow` Deprecated
+
+::: warning Deprecated
+
+- This method is deprecated in favor of [utils.PAYMASTER_FLOW_ABI](./utils.md#paymasterflow).
+  :::
 
 Constant ABI definition for
 the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob/36fe0fd11aeb2cfe88139e7e09d59a25366668d6/zksync/contracts/interfaces/IPaymasterFlow.sol).

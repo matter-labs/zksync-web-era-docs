@@ -153,6 +153,15 @@ Interface representation of event filter containing various fields.
 - `toBlock?`: `BlockTag`;
 - `blockHash?`: `string`;
 
+## `Fee`
+
+Interface representation of transaction fee.
+
+- `gasLimit`: `BigNumber`;
+- `gasPerPubdataLimit`: `BigNumber`;
+- `maxPriorityFeePerGas`: `BigNumber`;
+- `maxFeePerGas`: `BigNumber`;
+
 ## `FullDepositFee`
 
 Interface representation of full deposit fee containing various mandatory and optional fields.
