@@ -394,7 +394,7 @@ fmt.Println("L1 deposit transaction: ", tx.Hash())
 
 ### `EstimateGasDeposit`
 
-Estimates the amount of gas required for a deposit transaction on L1 network. Gas of approving ERC20 token is not included in estimation.
+Estimates the amount of gas required for a deposit transaction on L1 network. Gas of approving ERC20 token is not included in the estimation.
 
 #### Inputs
 
@@ -487,7 +487,7 @@ Checks if the withdrawal finalized on L1 network.
 | ---------------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `opts`           | [`CallOpts`](types/accounts.md#callopts) (optional) | Call options.                                                                                                              |
 | `withdrawalHash` | `common.Hash`                                       | Hash of the L2 transaction where the withdrawal was initiated.                                                             |
-| `index`          | `int`                                               | In case there where multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize. |
+| `index`          | `int`                                               | In case there were multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize. |
 
 ```go
 IsWithdrawFinalized(opts *CallOpts, withdrawalHash common.Hash, index int) (bool, error)
