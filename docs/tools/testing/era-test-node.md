@@ -33,6 +33,7 @@ You can set up In-Memory Node quickly with `npx zksync-cli dev start`. Note: at 
    tar xz -f /path/to/downloaded/binary/era_test_node.tar.gz -C /usr/local/bin/
    chmod +x /usr/local/bin/era_test_node
    ```
+Some configurations may require the use of `sudo`.
 
 3. Start the node:
 
