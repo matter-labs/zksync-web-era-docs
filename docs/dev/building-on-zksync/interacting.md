@@ -28,17 +28,18 @@ Check out our step-by-step [quickstart guide](../building-on-zksync/hello-world.
 
 ### Connecting to zkSync Era on Metamask
 
-In order to add the zkSync Era alpha mainnet network to your wallet, you will need to enter the following details:
+In order to add the zkSync Era alpha mainnet network to your wallet, you will need to enter the details below:
 
-1. Sign into your Metamask wallet and click on the network in the top center:
+1. Sign into your Metamask wallet using a supported browser.  If your browser configuration disables popup windows, you may need to check manually for notifications and respond to them after some of the following steps.
+2. Click on the network in the top center:
 
 ![img](../../assets/images/connect-1.png)
 
-2. Click on **Add network**.
+3. Click on **Add network**.
 
-3. Scroll down to the bottom of the network list and click **Add network manually**.
+4. Scroll down to the bottom of the network list and click **Add network manually**.
 
-4. Fill in the zkSync Era mainnet or testnet network details:
+5. Fill in the zkSync Era mainnet or testnet network details:
 
 #### Mainnet network info
 
