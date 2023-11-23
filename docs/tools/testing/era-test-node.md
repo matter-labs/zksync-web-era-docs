@@ -33,7 +33,9 @@ You can set up In-Memory Node quickly with `npx zksync-cli dev start`. Note: at 
    tar xz -f /path/to/downloaded/binary/era_test_node.tar.gz -C /usr/local/bin/
    chmod +x /usr/local/bin/era_test_node
    ```
-Some configurations may require the use of `sudo`.
+Some configurations may require the use of `sudo`.  On macOS, the binary may need to have its quarantine attribute cleared: 
+
+```xattr -d com.apple.quarantine /usr/local/bin/era_test_node```
 
 3. Start the node:
 
