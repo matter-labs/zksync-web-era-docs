@@ -15,7 +15,7 @@ We always ensure that all code deployed to production has been thoroughly tested
 
 Here is the list of **completed audits**:
 
-- Layer 1 Smart Contracts, Internal Audit, from 2022-14-06 to 2022-08-17.
+- Layer 1 Smart Contracts, Internal Audit, from 2022-06-14 to 2022-08-17.
 - [Layer 1 Smart Contracts](https://blog.openzeppelin.com/zksync-layer-1-audit/), OpenZeppelin, from 2022-09-05 to 2022-09-30.
 - [Layer 1 Diff Audit (Upgrade Audit)](https://blog.openzeppelin.com/zksync-layer-1-diff-audit/), OpenZeppelin, from 2022-11-21 to 2022-11-25.
 - [Layer 1 Diff Audit (Upgrade Audit)](https://blog.openzeppelin.com/zksync-l1-diff-audit-february-2023/), OpenZeppelin, from 2023-02-06 to 2023-02-17.

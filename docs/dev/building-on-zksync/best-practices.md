@@ -9,10 +9,6 @@ head:
 
 Before diving into development on zkSync Era, it's crucial to consider the following recommendations. These best practices will help you optimize your code, ensure security, and align with the unique characteristics of zkSync Era.
 
-::: warning Upcoming changes
-In the upcoming protocol upgrade scheduled for August-September 2023, there will be modifications to how certain block properties are implemented on zkSync Era. Find more details [in the announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
-:::
-
 ## Use `call` over `.send` or `.transfer`
 
 Avoid using `payable(addr).send(x)`/`payable(addr).transfer(x)` because the 2300 gas stipend may not be enough for such calls, especially if it involves state changes that require a large amount of L2 gas for data. Instead, we recommend using `call`.
@@ -113,7 +109,7 @@ Read more about [zkSync Era Account Abstraction support](../../reference/concept
 
 For optimal development and testing of your contracts, it is highly recommended to perform local testing before deploying them to the mainnet. Local testing allows you to test your contracts in a controlled environment, providing benefits such as reduced network latency and cost.
 
-We provides [two different testing environments](../../tools/testing/README.md) designed for local testing purposes. These tools allow you to simulate the zkSync network locally, enabling you to validate your contracts effectively.
+We provide [two different testing environments](../../tools/testing/README.md) designed for local testing purposes. These tools allow you to simulate the zkSync network locally, enabling you to validate your contracts effectively.
 
 By incorporating local testing into your development workflow, you can effectively verify the behavior and functionality of your contracts in a controlled environment, ensuring a smooth deployment process to the mainnet.
 

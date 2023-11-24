@@ -74,6 +74,8 @@ zkforge
 zkcast
 Eigen
 IPFS
+Nuxt
+viem
 
 // Used programming language words
 printf
@@ -164,3 +166,4 @@ Hola
 mundo
 ISTN
 Zerion
+Maverik

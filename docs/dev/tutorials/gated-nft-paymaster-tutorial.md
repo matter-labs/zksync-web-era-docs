@@ -98,15 +98,13 @@ Let’s first break down the project structure within `/zksync`:
 
 The template provides a ready-to-use `hardhat.config.ts` file that targets zkSync Era Testnet. If you are unfamiliar with zkSync Era Hardhat configurations please refer to the documentation [here](https://era.zksync.io/docs/tools/hardhat/getting-started.html#hardhat-configuration).
 
-::: info
-The project uses the `dotenv` package to load your private key which is required to deploy and interact with smart contracts. The `.env` file is included in `.gitignore` so it won't upload to a repository.
-:::
-
 1. To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
 
 ```text
-WALLET_PRIVATE_KEY=abcdef12345....
+WALLET_PRIVATE_KEY=YourPrivateKeyHere...
 ```
+
+Your private key will be used for paying the costs of deploying the smart contract.
 
 ::: warning
 A heads up! Make sure your account has zkSync Era Testnet Goerli ETH to successfully deploy the contracts.
@@ -295,7 +293,7 @@ The paymaster pays the transaction fees only if the user possesses one of NFT's 
 
 The input that the paymaster receives is encoded in the `paymasterInput` within the `validateAndPayForPaymasterTransaction` function.
 
-As described in [the paymaster documentation](../../reference/concepts/account-abstraction.md#paymasters), there are standardized ways to encode user interactions with `paymasterInput`. To cover the gas costs of a user, we need to ensure the user has the appropiate NFT in their account.
+As described in [the paymaster documentation](../../reference/concepts/account-abstraction.md#paymasters), there are standardized ways to encode user interactions with `paymasterInput`. To cover the gas costs of a user, we need to ensure the user has the appropriate NFT in their account.
 
 1. Firstly, we check that the `paymasterInput` is encoded and uses the `General` flow, and that the account address has a balance of at least 1 of the required NFTs.
 

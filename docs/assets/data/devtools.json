@@ -18,13 +18,6 @@
           "url": "https://era.zksync.io/docs/api/python"
         },
         {
-          "name": "Rust SDK",
-          "category": "SDK",
-          "description": "Extends ethers-rs including zksync-specific methods and utilities.",
-          "logo": "rust-logo.svg",
-          "url": "https://github.com/lambdaclass/zksync-web3-rs"
-        },
-        {
           "name": "Go SDK",
           "category": "SDK",
           "description": "Extends go-ethereum including zksync-specific methods and utilities.",
@@ -53,7 +46,7 @@
         {
           "name": "zksync-cli",
           "category": "Dev tools",
-          "description": "Scaffold projects from templates and interact with Era from the terminal.",
+          "description": "Quickly set up local zkSync dev environment, scaffold projects, and interact with Era seamlessly from your terminal",
           "logo": "cli-logo.png",
           "url": "https://era.zksync.io/docs/tools/zksync-cli/"
         },
@@ -189,10 +182,10 @@
           "url": "https://layerzero.network/"
         },
         {
-          "name": "Safe (Protofire)",
+          "name": "Safe",
           "category": "Custody",
           "logo": "safe-logo.png",
-          "url": "https://zksafe.protofire.io/welcome"
+          "url": "https://app.safe.global/welcome"
         },
         {
           "name": "Snapshot",
@@ -218,6 +211,13 @@
           "description": "Real-time and historical custom data indexing for any evm chain",
           "logo": "flair-logo.jpeg",
           "url": "https://flair.dev"
+        },
+        {
+          "name": "SubQuery",
+          "category": "Indexing",
+          "description": "Fast, reliable, decentralised, and customised APIs for your web3 project.",
+          "logo": "subquery-logo.svg",
+          "url": "https://subquery.network/"
         }
       ]
     },

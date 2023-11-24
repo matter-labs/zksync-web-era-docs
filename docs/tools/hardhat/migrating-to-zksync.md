@@ -214,7 +214,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 
 ::: tip Test ETH
-Obtain [test ETH from our faucet](https://goerli.portal.zksync.io/faucet) or just bridge GöerliETH using [the zkSync Portal](https://goerli.portal.zksync.io/bridge).
+Obtain [test ETH from third party faucets](../../reference/troubleshooting/faq.md#how-do-i-request-funds-for-testnet) or just bridge GöerliETH using [bridges](https://zksync.io/explore#bridges).
 :::
 
 Include your deployment script in the `deploy` folder and execute it running:

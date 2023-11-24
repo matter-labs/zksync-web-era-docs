@@ -32,6 +32,7 @@ export const enSidebar = sidebar({
       text: "Tutorials",
       link: "/dev/tutorials.md",
       children: [
+        { text: "Community", link: "/dev/community-tutorials/README.md", children: [] },
         { text: "zkSync Team", link: "/dev/tutorials/README.md", children: [
           "/dev/tutorials/cross-chain-tutorial.md",
           "/dev/tutorials/custom-aa-tutorial.md",
@@ -40,11 +41,6 @@ export const enSidebar = sidebar({
           "/dev/tutorials/api3-usd-paymaster-tutorial.md",
           "/dev/tutorials/gated-nft-paymaster-tutorial.md",
         ]},
-        { text: "Community", link: "/dev/community-tutorials/README.md", children: [
-          "/dev/community-tutorials/redstone-marketplace-tutorial.md",
-          "/dev/community-tutorials/the-graph-tutorial.md",
-          "/dev/community-tutorials/zksync-cli-quickstart.md",
-        ] },
       ],
     },
   ],
@@ -60,6 +56,7 @@ export const enSidebar = sidebar({
         "/reference/concepts/rollups.md",
         "/reference/concepts/zkSync.md",
         "/reference/concepts/hyperscaling.md",
+        "/reference/concepts/validiums.md",
         "/reference/concepts/account-abstraction.md",
         "/reference/concepts/transactions.md",
         "/reference/concepts/blocks.md",
@@ -102,17 +99,55 @@ export const enSidebar = sidebar({
       text: "JavaScript SDK", // required
       link: "/api/js", // optional, which should be a absolute path.
       children: [
-        "/api/js/getting-started",
-        "/api/js/providers",
-        "/api/js/accounts",
-        "/api/js/accounts-l1-l2",
-        "/api/js/contracts",
-        "/api/js/features",
-        "/api/js/utils",
-        "/api/js/paymaster-utils",
-        "/api/js/types",
-        "/api/js/front-end",
-      ],
+        {
+          text: "JavaScript Ethers V5 SDK",
+          link: "/api/js",
+          children: [
+            "/api/js/getting-started",
+            "/api/js/providers",
+            "/api/js/accounts",
+            "/api/js/accounts-l1-l2",
+            "/api/js/contracts",
+            "/api/js/features",
+            "/api/js/utils",
+            "/api/js/paymaster-utils",
+            "/api/js/types",
+            "/api/js/front-end",
+          ],
+        },
+        {
+          text: "JavaScript Ethers V6 SDK",
+          link: "/api/js/zksync2-js",
+          children: [
+            {
+              text: "Getting started",
+              link: "/api/js/zksync2-js/getting-started",
+              collapsible: true,
+              children: [
+                "/api/js/zksync2-js/examples/deposit",
+                "/api/js/zksync2-js/examples/transfer",
+                "/api/js/zksync2-js/examples/withdraw",
+                "/api/js/zksync2-js/examples/get-confirmed-tokens",
+                "/api/js/zksync2-js/examples/create",
+                "/api/js/zksync2-js/examples/create2",
+                "/api/js/zksync2-js/examples/custom-paymaster/deploy-token",
+                "/api/js/zksync2-js/examples/custom-paymaster/deploy-account",
+                "/api/js/zksync2-js/examples/custom-paymaster/use-paymaster",
+              ],
+            },
+            "/api/js/zksync2-js/providers",
+            "/api/js/zksync2-js/accounts",
+            "/api/js/zksync2-js/accounts-l1-l2",
+            "/api/js/zksync2-js/contracts",
+            "/api/js/zksync2-js/features",
+            "/api/js/zksync2-js/utils",
+            "/api/js/zksync2-js/paymaster-utils",
+            "/api/js/zksync2-js/types",
+            "/api/js/zksync2-js/front-end",
+            "/api/js/zksync2-js/migration"
+          ],
+        }
+      ]
     },
     {
       text: "Python SDK",
@@ -201,6 +236,7 @@ export const enSidebar = sidebar({
             "/tools/hardhat/hardhat-zksync-verify",
             "/tools/hardhat/hardhat-zksync-verify-vyper",
             "/tools/hardhat/hardhat-zksync-node",
+            "/tools/hardhat/hardhat-zksync-zksync2js",
             "/tools/hardhat/other-plugins",
           ],
         },
@@ -220,7 +256,7 @@ export const enSidebar = sidebar({
     {
       text: "Block Explorer", // required
       link: "/tools/block-explorer", // optional, which should be a absolute path.
-      children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification"],
+      children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification", "/tools/block-explorer/block-explorer-api"],
     },
   ],
 });
