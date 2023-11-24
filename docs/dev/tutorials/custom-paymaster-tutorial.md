@@ -39,7 +39,7 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 1. Initiate a new project by running the command:
 
 ```sh
-npx zksync-cli create project custom-paymaster-tutorial --template hardhat_solidity
+npx zksync-cli create custom-paymaster-tutorial --template hardhat_solidity
 ```
 
 :::tip
@@ -52,24 +52,6 @@ This creates a new zkSync Era project called `custom-paymaster-tutorial` with a 
 
 ```sh
 cd custom-paymaster-tutorial
-```
-
-3. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
-
-```sh
-rm -rf ./contracts/Greeter.sol
-```
-
-4. Similarly, remove the deploy scripts associated with the Greeter contract:
-
-```sh
-rm -rf ./deploy/deploy-greeter.ts && rm -rf ./deploy/use-greeter.ts
-```
-
-5. Add the zkSync and OpenZeppelin contract libraries:
-
-```sh
-yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
 ```
 
 ## Design
@@ -385,75 +367,71 @@ The script below deploys the ERC20 contract and the paymaster contract. It also 
 1. In the `deploy` folder, create the file `deploy-paymaster.ts` and copy/paste the following, replacing `<PRIVATE-KEY>` with your own:
 
 ```ts
-import { utils, Provider, Wallet } from "zksync-web3";
+import { deployContract, getWallet, getProvider } from "./utils";
 import * as ethers from "ethers";
-import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
-export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider("https://testnet.era.zksync.dev");
+export default async function () {
+  const erc20 = await deployContract("MyERC20", ["MyToken", "MyToken", 18]);
+  const paymaster = await deployContract("MyPaymaster", [erc20.address]);
 
-  // The wallet that will deploy the token and the paymaster
-  // It is assumed that this wallet already has sufficient funds on zkSync
-  const wallet = new Wallet("<PRIVATE-KEY>");
-
-  // The wallet that will receive ERC20 tokens
-  const emptyWallet = Wallet.createRandom();
-  console.log(`Empty wallet's address: ${emptyWallet.address}`);
-  console.log(`Empty wallet's private key: ${emptyWallet.privateKey}`);
-
-  const deployer = new Deployer(hre, wallet);
-
-  // Deploying the ERC20 token
-  const erc20Artifact = await deployer.loadArtifact("MyERC20");
-  const erc20 = await deployer.deploy(erc20Artifact, ["MyToken", "MyToken", 18]);
-  console.log(`ERC20 address: ${erc20.address}`);
-
-  // Deploying the paymaster
-  const paymasterArtifact = await deployer.loadArtifact("MyPaymaster");
-  const paymaster = await deployer.deploy(paymasterArtifact, [erc20.address]);
-  console.log(`Paymaster address: ${paymaster.address}`);
-
-  console.log("Funding paymaster with ETH");
   // Supplying paymaster with ETH
+  console.log("Funding paymaster with ETH...");
+  const wallet = getWallet();
   await (
-    await deployer.zkWallet.sendTransaction({
+    await wallet.sendTransaction({
       to: paymaster.address,
       value: ethers.utils.parseEther("0.06"),
     })
   ).wait();
 
-  let paymasterBalance = await provider.getBalance(paymaster.address);
-
+  const provider = getProvider();
+  const paymasterBalance = await provider.getBalance(paymaster.address);
   console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
 
-  // Supplying the ERC20 tokens to the empty wallet:
-  await // We will give the empty wallet 3 units of the token:
-  (await erc20.mint(emptyWallet.address, 3)).wait();
+  // Supplying the ERC20 tokens to the wallet:
+  // We will give the wallet 3 units of the token:
+  await (await erc20.mint(wallet.address, 3)).wait();
 
-  console.log("Minted 3 tokens for the empty wallet");
-
+  console.log("Minted 3 tokens for the wallet");
   console.log(`Done!`);
 }
 ```
 
-2. Compile and deploy the contracts from the project root and execute the deployment script:
+2. Compile and the contracts from the project root:
 
 ```sh
 yarn hardhat compile
+```
+
+3. Execute the deployment script:
+
+```sh
 yarn hardhat deploy-zksync --script deploy-paymaster.ts
 ```
 
 The output should be roughly the following:
 
 ```
-Empty wallet's address: 0x9551c71d605c9725B67cC40372d480287B5f7ac3
-Empty wallet's private key: 0x16185a3e00436f2dc5e9ecd2d7f286911f89a1cfe3e1d3ce45dcf52ccdfa2ed7
-ERC20 address: 0x605FfE49B3CFE40c698CcB7eB39DAed29fCbAC21
-Paymaster address: 0x6Df9a2f126fdA07B4a94a8502f908Ce34fA9f525
-Funding paymaster with ETH
+Starting deployment process of "MyERC20"...
+Estimated deployment cost: 0.00077890075 ETH
+
+"MyERC20" was successfully deployed:
+ - Contract address: 0x26b368C3Ed16313eBd6660b72d8e4439a697Cb0B
+ - Contract source: contracts/MyERC20.sol:MyERC20
+ - Encoded constructor arguments: 0x000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000001200000000000000000000000000000000000000000000000000000000000000074d79546f6b656e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000074d79546f6b656e00000000000000000000000000000000000000000000000000
+
+
+Starting deployment process of "MyPaymaster"...
+Estimated deployment cost: 0.000545256 ETH
+
+"MyPaymaster" was successfully deployed:
+ - Contract address: 0x094499Df5ee555fFc33aF07862e43c90E6FEe501
+ - Contract source: contracts/MyPaymaster.sol:MyPaymaster
+ - Encoded constructor arguments: 0x00000000000000000000000026b368c3ed16313ebd6660b72d8e4439a697cb0b
+
+Funding paymaster with ETH...
 Paymaster ETH balance is now 60000000000000000
-Minted 3 tokens for the empty wallet
+Minted 3 tokens for the wallet
 Done!
 ```
 
@@ -472,7 +450,8 @@ Make sure you use the private key of the wallet created by the previous script a
 :::
 
 ```ts
-import { Provider, utils, Wallet } from "zksync-web3";
+import { utils, Wallet } from "zksync-web3";
+import { getWallet, getProvider } from "./utils";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
@@ -482,32 +461,21 @@ const PAYMASTER_ADDRESS = "<PAYMASTER_ADDRESS>";
 // Put the address of the ERC20 token here:
 const TOKEN_ADDRESS = "<TOKEN_ADDRESS>";
 
-// Wallet private key
-const EMPTY_WALLET_PRIVATE_KEY = "<EMPTY_WALLET_PRIVATE_KEY>";
-
 function getToken(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
   const artifact = hre.artifacts.readArtifactSync("MyERC20");
   return new ethers.Contract(TOKEN_ADDRESS, artifact.abi, wallet);
 }
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider("https://testnet.era.zksync.dev");
-  const emptyWallet = new Wallet(EMPTY_WALLET_PRIVATE_KEY, provider);
+  const provider = getProvider();
+  const wallet = getWallet();
 
-  // const paymasterWallet = new Wallet(PAYMASTER_ADDRESS, provider);
-  // Obviously this step is not required, but it is here purely to demonstrate that indeed the wallet has no ether.
-  const ethBalance = await emptyWallet.getBalance();
-  if (!ethBalance.eq(0)) {
-    throw new Error("The wallet is not empty!");
-  }
-
-  console.log(`ERC20 token balance of the empty wallet before mint: ${await emptyWallet.getBalance(TOKEN_ADDRESS)}`);
+  console.log(`ERC20 token balance of the wallet before mint: ${await wallet.getBalance(TOKEN_ADDRESS)}`);
 
   let paymasterBalance = await provider.getBalance(PAYMASTER_ADDRESS);
   console.log(`Paymaster ETH balance is ${paymasterBalance.toString()}`);
 
-  const erc20 = getToken(hre, emptyWallet);
-
+  const erc20 = getToken(hre, wallet);
   const gasPrice = await provider.getGasPrice();
 
   // Encoding the "ApprovalBased" paymaster flow's input
@@ -521,7 +489,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   });
 
   // Estimate gas fee for mint transaction
-  const gasLimit = await erc20.estimateGas.mint(emptyWallet.address, 5, {
+  const gasLimit = await erc20.estimateGas.mint(wallet.address, 5, {
     customData: {
       gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
       paymasterParams: paymasterParams,
@@ -531,9 +499,9 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const fee = gasPrice.mul(gasLimit.toString());
   console.log("Transaction fee estimation is :>> ", fee.toString());
 
-  console.log(`Minting 5 tokens for empty wallet via paymaster...`);
+  console.log(`Minting 5 tokens for the wallet via paymaster...`);
   await (
-    await erc20.mint(emptyWallet.address, 5, {
+    await erc20.mint(wallet.address, 5, {
       // paymaster info
       customData: {
         paymasterParams: paymasterParams,
@@ -543,11 +511,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   ).wait();
 
   console.log(`Paymaster ERC20 token balance is now ${await erc20.balanceOf(PAYMASTER_ADDRESS)}`);
-
   paymasterBalance = await provider.getBalance(PAYMASTER_ADDRESS);
-  console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
 
-  console.log(`ERC20 token balance of the empty wallet after mint: ${await emptyWallet.getBalance(TOKEN_ADDRESS)}`);
+  console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
+  console.log(`ERC20 token balance of the the wallet after mint: ${await wallet.getBalance(TOKEN_ADDRESS)}`);
 }
 ```
 
@@ -560,20 +527,20 @@ yarn hardhat deploy-zksync --script use-paymaster.ts
 The output should look something like this:
 
 ```txt
-ERC20 token balance of the empty wallet before mint: 3
+ERC20 token balance of the wallet before mint: 3
 Paymaster ETH balance is 60000000000000000
-Transaction fee estimation is :>>  5807865263029992
-Minting 5 tokens for empty wallet via paymaster...
+Transaction fee estimation is :>>  568750000000000
+Minting 5 tokens for the wallet via paymaster...
 Paymaster ERC20 token balance is now 1
-Paymaster ETH balance is now 56327996250000000
-ERC20 token balance of the empty wallet after mint: 7
+Paymaster ETH balance is now 59650952750000000
+ERC20 token balance of the the wallet after mint: 7
 ```
 
 The wallet had 3 tokens after running the deployment script and, after sending the transaction to `mint` 5 more tokens, the balance is 7 as 1 token was used to pay the transaction fee to the paymaster. The paymaster paid the fees for the mint transaction with ETH.
 
 ## Common errors
 
-- If the `use-paymaster.ts` script fails with the error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer tx fee to the bootloader. Paymaster balance might not be enough.`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use [zkSync Portal](https://goerli.portal.zksync.io/).
+- If the `use-paymaster.ts` script fails with the error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer tx fee to the bootloader. Paymaster balance might not be enough.`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use [zkSync native bridge or ecosystem partners](https://zksync.io/explore#bridges) (make sure Goerli testnet supported by selected bridge).
 - If the `use-paymaster.ts` script fails when minting new ERC20 tokens with the error `Error: transaction failed`, and the transactions appear with status "Failed" in the [zkSync explorer](https://explorer.zksync.io/), please reach out to us on [our Discord](https://join.zksync.dev/). As a workaround, try including a specific `gasLimit` value in the transaction.
 
 ## Learn more

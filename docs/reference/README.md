@@ -14,6 +14,7 @@ This section of our documentation provides comprehensive information on the conc
 - [Intro to rollups](./concepts/rollups.md): Gain a foundational understanding of rollups.
 - [zkSync Era basics](./concepts/zkSync.md): Explore the fundamental concepts of the zkSync Era.
 - [Hyperscaling](./concepts/hyperscaling.md): Delve into the mechanisms and impacts of hyperscaling.
+- [Validiums](./concepts/validiums.md): A concise overview of Validiums.
 - [Transactions](./concepts/transactions.md): Learn about the transactions within zkSync Era.
 - [Blocks](./concepts/blocks.md): Understand the role and structure of blocks in zkSync Era.
 - [Fee mechanism](./concepts/fee-model.md): Discover how the system handles transaction fees.

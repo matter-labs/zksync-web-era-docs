@@ -62,7 +62,7 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 2. Run the following command to create a new project:
 
 ```sh
-npx zksync-cli create project paymaster-dapi --template hardhat_solidity
+npx zksync-cli create paymaster-dapi --template hardhat_solidity
 ```
 
 This creates a new zkSync Era project called `paymaster-dapi` with a basic `Greeter` contract.

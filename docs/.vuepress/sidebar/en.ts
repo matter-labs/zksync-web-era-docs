@@ -56,6 +56,7 @@ export const enSidebar = sidebar({
         "/reference/concepts/rollups.md",
         "/reference/concepts/zkSync.md",
         "/reference/concepts/hyperscaling.md",
+        "/reference/concepts/validiums.md",
         "/reference/concepts/account-abstraction.md",
         "/reference/concepts/transactions.md",
         "/reference/concepts/blocks.md",
@@ -234,6 +235,7 @@ export const enSidebar = sidebar({
             "/tools/hardhat/hardhat-zksync-chai-matchers",
             "/tools/hardhat/hardhat-zksync-verify",
             "/tools/hardhat/hardhat-zksync-verify-vyper",
+            "/tools/hardhat/hardhat-zksync-zksync2js",
             "/tools/hardhat/other-plugins",
           ],
         },
@@ -253,7 +255,7 @@ export const enSidebar = sidebar({
     {
       text: "Block Explorer", // required
       link: "/tools/block-explorer", // optional, which should be a absolute path.
-      children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification"],
+      children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification", "/tools/block-explorer/block-explorer-api"],
     },
   ],
 });

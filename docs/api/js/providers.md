@@ -65,6 +65,22 @@ import { Provider } from "zksync-web3";
 const provider = new Provider("https://testnet.era.zksync.dev");
 ```
 
+### `estimateFee`
+
+Returns an estimated [`Fee`](./types.md#fee) for requested transaction.
+
+#### Inputs
+
+| Parameter     | Type                                                                                                 | Description          |
+| ------------- | ---------------------------------------------------------------------------------------------------- | -------------------- |
+| `transaction` | [`TransactionRequest`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionRequest) | Transaction request. |
+
+```ts
+async estimateFee(transaction: TransactionRequest): Promise<Fee> {
+    return await this.send("zks_estimateFee", [transaction]);
+}
+```
+
 ### `estimateGas`
 
 Returns an estimate of the amount of gas required to submit a transaction to the network.
@@ -555,26 +571,6 @@ import { Provider } from "zksync-web3";
 const provider = new Provider("https://testnet.era.zksync.dev");
 
 console.log(await provider.getTestnetPaymasterAddress());
-```
-
-### `getTokenPrice` DEPRECATED
-
-::: warning Deprecated
-
-- This method is deprecated and will be removed in the near future.
-  :::
-
-Returns the USD price for a token. Please note that this is the price that is used by the zkSync team and can be a bit different from the current market price. On testnets, token prices can be very different from the actual market price.
-
-Calls the [`zks_getTokenPrice`](../api.md#zks-gettokenprice) JSON-RPC method.
-
-#### Example
-
-```typescript
-import { Provider } from "zksync-web3";
-const provider = new Provider("https://testnet.era.zksync.dev");
-
-console.log(await provider.getTokenPrice(USDC_L2_ADDRESS));
 ```
 
 ### `getTransaction`

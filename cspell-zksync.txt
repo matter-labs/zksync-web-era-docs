@@ -74,6 +74,8 @@ zkforge
 zkcast
 Eigen
 IPFS
+Nuxt
+viem
 
 // Used programming language words
 printf
