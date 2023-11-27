@@ -28,9 +28,7 @@ You can get the default bridge addresses using the [`zks_getBridgeContracts`](..
 
 ### Add tokens to the bridge
 
-While the zkSync standard bridge can be used without permission from a smart contract perspective, the UI only displays tokens that have been added to our SDK.
-
-If you would like to add a token, submit a request by filling out the [token request form](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw). Our team will review your request, and get back to you if we have any outstanding questions before adding the token to our list.
+Currently only a small list of selected tokens is displayed on the bridge page. We're actively working on allowing deposits and withdrawals of any ERC-20 token user has on their balance, so there will be no action required from your side.
 
 ### Deposits (to L2)
 
