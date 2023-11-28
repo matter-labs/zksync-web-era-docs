@@ -43,8 +43,8 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new Provider("https://testnet.era.zksync.dev/");
-const ethereumProvider = ethers.getDefaultProvider("goerli");
+const zkSyncProvider = new Provider("https://sepolia.era.zksync.dev");
+const ethereumProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 ```
 
@@ -74,7 +74,7 @@ import { Wallet, Provider } from "zksync-web3";
 
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
 
-const provider = new Provider("https://testnet.era.zksync.dev");
+const provider = new Provider("https://sepolia.era.zksync.dev");
 const wallet = unconnectedWallet.connect(provider);
 ```
 
@@ -101,8 +101,8 @@ import { ethers } from "ethers";
 
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
 
-const zkSyncProvider = new Provider("https://testnet.era.zksync.dev");
-const ethProvider = ethers.getDefaultProvider("goerli");
+const zkSyncProvider = new Provider("https://sepolia.era.zksync.dev");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = unconnectedWallet.connectToL1(ethProvider);
 ```
 
@@ -132,8 +132,8 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new Provider("https://testnet.era.zksync.dev");
-const ethereumProvider = ethers.getDefaultProvider("goerli");
+const zkSyncProvider = new Provider("https://sepolia.era.zksync.dev");
+const ethereumProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const contract = await wallet.getMainContract();
@@ -162,8 +162,8 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new Provider("https://testnet.era.zksync.dev");
-const ethereumProvider = ethers.getDefaultProvider("goerli");
+const zkSyncProvider = new Provider("https://sepolia.era.zksync.dev");
+const ethereumProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const USDC_L2_ADDRESS = "<USDC_ADDRESS>";
@@ -197,8 +197,8 @@ import { ethers, utils } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new Provider("https://testnet.era.zksync.dev/");
-const ethereumProvider = ethers.getDefaultProvider("goerli");
+const zkSyncProvider = new Provider("https://sepolia.era.zksync.dev");
+const ethereumProvider = ethers.getDefaultProvider("sepolia");
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
 const wallet = unconnectedWallet.connect(zkSyncProvider).connectToL1(ethereumProvider);
 const USDC_ADDRESS = "<USDC_ADDRESS>";
@@ -275,8 +275,8 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new Provider("https://testnet.era.zksync.dev");
-const ethereumProvider = ethers.getDefaultProvider("goerli");
+const zkSyncProvider = new Provider("https://sepolia.era.zksync.dev");
+const ethereumProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const recipient = Wallet.createRandom();
@@ -331,8 +331,8 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new Provider("https://testnet.era.zksync.dev/");
-const ethereumProvider = ethers.getDefaultProvider("goerli");
+const zkSyncProvider = new Provider("https://sepolia.era.zksync.dev");
+const ethereumProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const ethWallet = wallet.ethWallet();

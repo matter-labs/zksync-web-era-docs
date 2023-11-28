@@ -40,19 +40,19 @@ Here are some contract addresses that may be useful and/or of interest to those 
 
 ## Testnet contract addresses
 
-| Contract           | Address                                                                                                                                     |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| DiamondCutFacet    | [0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d](https://goerli.etherscan.io/address/0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d#code)           |
-| DiamondInit        | [0x81aE464127286C26f21495d053AA19Eec708055F](https://goerli.etherscan.io/address/0x81aE464127286C26f21495d053AA19Eec708055F#code)           |
-| DiamondProxy       | [0x1908e2BF4a88F91E4eF0DC72f02b8Ea36BEa2319](https://goerli.etherscan.io/address/0x1908e2BF4a88F91E4eF0DC72f02b8Ea36BEa2319#code)           |
-| DiamondUpgrade     | [0xFC88e9e4e11B1C083B40197500827E1894d55a83](https://goerli.etherscan.io/address/0xFC88e9e4e11B1C083B40197500827E1894d55a83#code)           |
-| ExecutorFacet      | [0x9B276BD8D84901a8e57F980C05A6aD7Fee5c241d](https://goerli.etherscan.io/address/0x9B276BD8D84901a8e57F980C05A6aD7Fee5c241d#code)           |
-| GettersFacet       | [0x71b3Ffda716Ef5df529FA89a8BBb8D16676fD47f](https://goerli.etherscan.io/address/0x71b3Ffda716Ef5df529FA89a8BBb8D16676fD47f#code)           |
-| GovernanceFacet    | [0xc288177781D3555822edB31D323aEcB6cFD849c7](https://goerli.etherscan.io/address/0xc288177781D3555822edB31D323aEcB6cFD849c7#code)           |
-| Verifier           | [0xc8517230276e0df51377ecc07b528cd3ee083132](https://goerli.etherscan.io/address/0xc8517230276e0df51377ecc07b528cd3ee083132#code)           |
-| MailboxFacet       | [0xd80eF7aCBEC07dbf10Eb84452b40D0a8882ADfB5](https://goerli.etherscan.io/address/0xd80eF7aCBEC07dbf10Eb84452b40D0a8882ADfB5#code)           |
-| AllowList          | [0xCbA757b4f0527b535bE80720325064058FC4A306](https://goerli.etherscan.io/address/0xCbA757b4f0527b535bE80720325064058FC4A306#code)           |
-| L2TestnetPaymaster | [0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63](https://goerli.explorer.zksync.io/address/0x8f0ea1312da29f17eabeb2f484fd3c112cccdd63#contract) |
+| Contract           | Address                                                                                                                             |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| DiamondCutFacet    | [0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d](https://goerli.etherscan.io/address/0x6F883c7DA8Ec1918fa83C5E57F239f47f03b135d#code)   |
+| DiamondInit        | [0x81aE464127286C26f21495d053AA19Eec708055F](https://goerli.etherscan.io/address/0x81aE464127286C26f21495d053AA19Eec708055F#code)   |
+| DiamondProxy       | [0x1908e2BF4a88F91E4eF0DC72f02b8Ea36BEa2319](https://goerli.etherscan.io/address/0x1908e2BF4a88F91E4eF0DC72f02b8Ea36BEa2319#code)   |
+| DiamondUpgrade     | [0xFC88e9e4e11B1C083B40197500827E1894d55a83](https://goerli.etherscan.io/address/0xFC88e9e4e11B1C083B40197500827E1894d55a83#code)   |
+| ExecutorFacet      | [0x9B276BD8D84901a8e57F980C05A6aD7Fee5c241d](https://goerli.etherscan.io/address/0x9B276BD8D84901a8e57F980C05A6aD7Fee5c241d#code)   |
+| GettersFacet       | [0x71b3Ffda716Ef5df529FA89a8BBb8D16676fD47f](https://goerli.etherscan.io/address/0x71b3Ffda716Ef5df529FA89a8BBb8D16676fD47f#code)   |
+| GovernanceFacet    | [0xc288177781D3555822edB31D323aEcB6cFD849c7](https://goerli.etherscan.io/address/0xc288177781D3555822edB31D323aEcB6cFD849c7#code)   |
+| Verifier           | [0xc8517230276e0df51377ecc07b528cd3ee083132](https://goerli.etherscan.io/address/0xc8517230276e0df51377ecc07b528cd3ee083132#code)   |
+| MailboxFacet       | [0xd80eF7aCBEC07dbf10Eb84452b40D0a8882ADfB5](https://goerli.etherscan.io/address/0xd80eF7aCBEC07dbf10Eb84452b40D0a8882ADfB5#code)   |
+| AllowList          | [0xCbA757b4f0527b535bE80720325064058FC4A306](https://goerli.etherscan.io/address/0xCbA757b4f0527b535bE80720325064058FC4A306#code)   |
+| L2TestnetPaymaster | [0x3cb2b87d10ac01736a65688f3e0fb1b070b3eea3](https://sepolia.explorer.zksync.io/address/0x3cb2b87d10ac01736a65688f3e0fb1b070b3eea3) |
 
 ### Testnet token bridge, contract addresses
 

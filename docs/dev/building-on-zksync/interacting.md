@@ -55,7 +55,7 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - RPC URL: `https://testnet.era.zksync.dev`
 - Chain ID: `280`
 - Currency Symbol: `ETH`
-- Block Explorer URL: `https://goerli.explorer.zksync.io/`
+- Block Explorer URL: `https://sepolia.explorer.zksync.io/` or `https://goerli.explorer.zksync.io/`
 - WebSocket URL: `wss://testnet.era.zksync.dev/ws`
 
 5. Click "Save"

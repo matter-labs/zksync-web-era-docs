@@ -837,7 +837,7 @@ Funding smart contract account with some ETH
 Done!
 ```
 
-Open up the [zkSync Era block explorer](https://goerli.explorer.zksync.io/) and search for the deployed Account contract address in order to track transactions and changes in the balance.
+Open up the [zkSync Era block explorer](https://sepolia.explorer.zksync.io) and search for the deployed Account contract address in order to track transactions and changes in the balance.
 
 :::tip
 

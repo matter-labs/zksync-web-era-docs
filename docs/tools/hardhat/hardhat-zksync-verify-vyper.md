@@ -58,7 +58,7 @@ networks: {
       ethNetwork: "goerli", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `goerli`)
       zksync: true,
       // Verification endpoint for Goerli
-      verifyURL: 'https://zksync2-testnet-explorer.zksync.dev/contract_verification'
+      verifyURL: 'https://explorer.sepolia.era.zksync.dev/contract_verification'
     }
 },
 // defaultNetwork: "zkTestnet", // optional (if not set, use '--network zkTestnet')
@@ -71,7 +71,7 @@ Additional network properties:
 - `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `goerli`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
 - `zksync` is a flag that indicates a zkSync Era network configuration. This field is set to `true` for all zkSync Era networks. Field value `true` is required for this plugin work. If field is missing or if values is set to `false` plugin will throw a error.
 - `verifyURL` is a field that points to the verification endpoint for the specific zkSync network. This parameter is optional, and its default value is the testnet verification url.
-  - Testnet: `https://zksync2-testnet-explorer.zksync.dev/contract_verification`
+  - Testnet: `https://explorer.sepolia.era.zksync.dev/contract_verification`
   - Mainnet: `https://zksync2-mainnet-explorer.zksync.io/contract_verification`
 
 ### Commands

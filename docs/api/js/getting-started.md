@@ -48,13 +48,13 @@ const provider = new Provider("https://testnet.era.zksync.dev");
 const wallet = new Wallet("<WALLET-PRIVATE-KEY>").connect(provider);
 ```
 
-**Note:** Currently, only `goerli` network is supported.
+**Note:** Currently, `goerli` and `sepolia` network is supported.
 
 Some operations require access to the Ethereum network. `ethers` library should be used to interact with
 Ethereum.
 
 ```typescript
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 ```
 
 ## Creating a wallet
