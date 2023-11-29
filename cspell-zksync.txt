@@ -36,6 +36,7 @@ tokenomics
 validator's
 CHAINID
 PREVRANDAO
+sepolia
 
 // Names
 Vyper

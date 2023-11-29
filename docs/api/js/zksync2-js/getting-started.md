@@ -58,8 +58,8 @@ Connect to the zkSync Era network:
 import { Provider, utils, types } from "zksync2-js";
 import { ethers } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 ```
 
 Get the network (helper function [toJSON](./providers.md#tojson)):
