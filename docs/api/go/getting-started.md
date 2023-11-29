@@ -113,4 +113,4 @@ Also, the following examples demonstrate how to:
 9. [Use paymaster to pay fee with token](examples/custom-paymaster/use-paymaster.md).
 
 Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-examples/tree/main/go). Examples are configured to
-interact with `zkSync Era` and `Goerli` test networks.
+interact with `zkSync Era`, `Sepolia` and `Goerli` test networks.

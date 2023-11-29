@@ -40,8 +40,8 @@ import (
 func main() {
 	var (
 		PrivateKey        = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
-		EthereumProvider  = "https://rpc.ankr.com/eth_goerli"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
+		EthereumProvider  = "https://rpc.ankr.com/eth_sepolia"
 	)
 
 	// Connect to zkSync network
@@ -112,8 +112,8 @@ import (
 func main() {
 	var (
 		PrivateKey        = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
-		EthereumProvider  = "https://rpc.ankr.com/eth_goerli"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
+		EthereumProvider  = "https://rpc.ankr.com/eth_sepolia"
 	)
 
 	// Connect to zkSync network
@@ -170,8 +170,8 @@ import (
 func main() {
 	var (
 		PrivateKey        = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
-		EthereumProvider  = "https://rpc.ankr.com/eth_goerli"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
+		EthereumProvider  = "https://rpc.ankr.com/eth_sepolia"
 		WithdrawTx        = common.HexToHash("<Withdraw tx hash>")
 	)
 

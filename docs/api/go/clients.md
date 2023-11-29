@@ -746,7 +746,7 @@ L2TransactionFromPriorityOp(ctx context.Context, l1TxReceipt *types.Receipt) (*z
 
 ```go
 // Connect to Ethereum network
-ethClient, err := ethclient.Dial("https://rpc.ankr.com/eth_goerli")
+ethClient, err := ethclient.Dial("https://rpc.ankr.com/eth_sepolia")
 if err != nil {
 	log.Panic(err)
 }

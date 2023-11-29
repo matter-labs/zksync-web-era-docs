@@ -116,7 +116,7 @@ Configure the `zksync` parameter in the networks to enable the zksolc compiler:
 ```ts
 defaultNetwork: "zkSyncTestnet",
 networks: {
-  goerli: {
+  sepolia: {
     url: "https://sepolia.infura.io/v3/<API_KEY>", // The Ethereum Web3 RPC URL (optional).
     zksync: false, // disables zksolc compiler
   },

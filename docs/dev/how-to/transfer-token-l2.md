@@ -10,7 +10,7 @@ head:
 ## Prerequisites
 
 - A [Node.js](https://nodejs.org/en/download) installation.
-- The token address from the [testnet tokens page](https://goerli.explorer.zksync.io/tokenlist). This document uses DAI on testnet.
+- The token address from the [testnet tokens page](https://sepolia.explorer.zksync.io/tokenlist). This document uses DAI on testnet.
 - Check the [mainnet tokens list](https://explorer.zksync.io/tokenlist) for mainnet token addresses.
 - Be sure to have some of the token in your wallet.
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).

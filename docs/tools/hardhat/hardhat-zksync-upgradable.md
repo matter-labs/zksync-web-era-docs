@@ -204,13 +204,13 @@ npx hardhat run SCRIPT_FILE
 ```typescript
 defaultNetwork: 'zkSyncNetwork',
     networks: {
-        goerli: {
+        sepolia: {
             zksync: false,
             url: 'http://localhost:3050',
         },
         zkSyncNetwork: {
             zksync: true,
-            ethNetwork: 'goerli',
+            ethNetwork: 'sepolia',
             url: 'http://localhost:8545',
         },
     },
