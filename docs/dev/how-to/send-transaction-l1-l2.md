@@ -249,7 +249,7 @@ User needs to perform next steps:
 
 ```npm
   // install zksync-cli
-  npm i -g zksync-cli
+  npm i -g zksync-cli@latest
   zksync-cli dev config
   // choose: Dockerized node - Persistent state, includes L1 and L2 nodes
   // choose: BE and Portal (optional)
