@@ -91,8 +91,8 @@ const config: HardhatUserConfig = {
 
   networks: {
     zkSyncTestnet: {
-      url: "https://testnet.era.zksync.dev",
-      ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
+      url: "https://sepolia.era.zksync.dev",
+      ethNetwork: "sepolia", // Can also be the RPC URL of the network (e.g. `https://sepolia.infura.io/v3/<API_KEY>`)
       zksync: true,
     },
   },

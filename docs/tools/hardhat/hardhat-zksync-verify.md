@@ -44,14 +44,14 @@ Add the `verifyURL` property to the zkSync Era network in the `hardhat.config.ts
 
 ```typescript
 networks: {
-    goerli: {
-      url: "https://goerli.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL (optional).
+    sepolia: {
+      url: "https://sepolia.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL (optional).
     },
     zkTestnet: {
-      url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
-      ethNetwork: "goerli", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `goerli`)
+      url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
+      ethNetwork: "sepolia", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `sepolia`)
       zksync: true,
-      // Verification endpoint for Goerli
+      // Verification endpoint for Sepolia
       verifyURL: 'https://explorer.sepolia.era.zksync.dev/contract_verification'
     }
 },
@@ -62,7 +62,7 @@ Additional network properties:
 
 - `zkTestnet` is an arbitrary zkSync Era network name. You can select this as the default network using the `defaultNetwork` property.
 - `url` is a field with the URL of the zkSync Era node in case of the zkSync Era network (with `zksync` flag set to `true`), or the URL of the Ethereum node. This field is required for all zkSync Era and Ethereum networks used by this plugin.
-- `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `goerli`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
+- `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `sepolia`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
 - `zksync` is a flag that indicates a zkSync Era network configuration. This field is set to `true` for all zkSync Era networks. If you want to run a `hardhat-verify` verification, this field needs to be set to `false`. If set to `true`, the verification process will try to run the verification process on the zkSync Era network.
 - `verifyURL` is a field that points to the verification endpoint for the specific zkSync network. This parameter is optional, and its default value is the testnet verification url.
   - Testnet: `https://explorer.sepolia.era.zksync.dev/contract_verification`

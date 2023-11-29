@@ -15,7 +15,7 @@ To use the `hardhat-zksync-deploy` in your project, we recommend that:
 
 - You have a Node installation and `yarn` package manager.
 - You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../../dev/building-on-zksync/hello-world.md).
-- You have a wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Use the [third party faucets](../../reference/troubleshooting/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
+- You have a wallet with sufficient Sepolia or Göerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Use the [third party faucets](../../reference/troubleshooting/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ## Setup
@@ -138,12 +138,12 @@ In the `hardhat.config.ts` file, specify zkSync Era and Ethereum networks in the
 
 ```typescript
 networks: {
-    goerli: {
-      url: "https://goerli.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL (optional).
+    sepolia: {
+      url: "https://sepolia.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL (optional).
     },
     zkTestnet: {
-      url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
-      ethNetwork: "goerli", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `goerli`)
+      url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
+      ethNetwork: "sepolia", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `sepolia`)
       zksync: true
     }
 },
@@ -152,7 +152,7 @@ networks: {
 
 - `zkTestnet` is an arbitrary zkSync Era network name. You can select this as the default network using the `defaultNetwork` property.
 - `url` is a field containing the URL of the zkSync Era node in case of the zkSync Era network (with `zksync` flag set to `true`), or the URL of the Ethereum node. This field is required for all zkSync Era and Ethereum networks used by this plugin.
-- `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `goerli`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
+- `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `sepolia`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
 - `zksync` is a flag that indicates if the network is zkSync Era. This field needs to be set to `true` for all zkSync Era networks; it is `false` by default.
 
 ### Compilation and Deployment Support for Missing Libraries

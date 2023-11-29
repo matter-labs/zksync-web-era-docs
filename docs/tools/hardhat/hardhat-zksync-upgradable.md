@@ -56,13 +56,13 @@ const config: HardhatUserConfig = {
   },
   defaultNetwork: "zkSyncNetwork",
   networks: {
-    goerli: {
+    sepolia: {
       zksync: false,
       url: "http://localhost:8545",
     },
     zkSyncNetwork: {
       zksync: true,
-      ethNetwork: "goerli",
+      ethNetwork: "sepolia",
       url: "http://localhost:3050",
     },
   },
