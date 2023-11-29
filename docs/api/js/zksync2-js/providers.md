@@ -685,8 +685,8 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const l1Tx = "0xcca5411f3e514052f4a4ae1c2020badec6e0998adb52c09959c5f5ff15fba3a8";
 const l1TxResponse = await ethProvider.getTransaction(l1Tx);
 if (l1TxResponse) {
@@ -790,8 +790,8 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const l1Tx = "0xcca5411f3e514052f4a4ae1c2020badec6e0998adb52c09959c5f5ff15fba3a8";
 const l1TxResponse = await ethProvider.getTransaction(l1Tx);
 if (l1TxResponse) {
