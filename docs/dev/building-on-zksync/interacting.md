@@ -60,6 +60,10 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 
 #### Goerli testnet network info
 
+:::warning
+Goerli testnet will be deprecated in January 2024.
+:::
+
 - Network Name: `zkSync Era Testnet`
 - RPC URL: `https://zksync2-testnet.zksync.dev`
 - Chain ID: `280`

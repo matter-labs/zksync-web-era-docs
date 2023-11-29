@@ -38,7 +38,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 ```
 
@@ -65,7 +65,7 @@ import { ethers } from "ethers";
 
 const MNEMONIC = "stuff slice staff easily soup parent arm payment cotton hammer scatter struggle";
 
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = Wallet.fromMnemonic(MNEMONIC, ethProvider);
 ```
 
@@ -171,7 +171,7 @@ import { ethers } from "ethers";
 
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
 
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = unconnectedWallet.connectToL1(ethProvider);
 ```
 
@@ -198,7 +198,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 console.log(`Main contract: ${await wallet.getMainContract()}`);
@@ -227,7 +227,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const l1BridgeContracts = await wallet.getL1BridgeContracts();
@@ -250,7 +250,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const l2BridgeContracts = await wallet.getL2BridgeContracts();
@@ -273,7 +273,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 console.log(`Address: ${await wallet.getAddress()}`);
@@ -303,7 +303,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_L2_ADDRESS = "0x0faF6df7054946141266420b43783387A78d82A9";
@@ -335,7 +335,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_L1_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -360,7 +360,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const allBalances = await wallet.getAllBalances();
@@ -389,7 +389,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 console.log(`Nonce: ${await wallet.getNonce()}`);
@@ -412,7 +412,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 console.log(`Nonce: ${await wallet.getDeploymentNonce()}`);
@@ -435,7 +435,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const ethWallet = wallet.ethWallet();
@@ -468,7 +468,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_L1_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -499,7 +499,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const recipient = Wallet.createRandom();
@@ -541,7 +541,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const recipient = Wallet.createRandom();
@@ -585,7 +585,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_L1_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -621,7 +621,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -662,7 +662,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 console.log(`Base cost: ${await wallet.getBaseCost({ gasLimit: 100_000 })}`);
@@ -719,7 +719,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -786,7 +786,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -839,7 +839,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -885,7 +885,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -921,7 +921,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const FAILED_DEPOSIT_HASH = "<FAILED_DEPOSIT_TX_HASH>";
@@ -962,7 +962,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_ADDRESS = "0x0faF6df7054946141266420b43783387A78d82A9";
@@ -997,7 +997,7 @@ import { ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const WITHDRAWAL_HASH = "<WITHDRAWAL_TX_HASH>";
@@ -1046,7 +1046,7 @@ const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 const CONTRACT_ADDRESS = "<CONTRACT_ADDRESS>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const gasPrice = await wallet.providerL1.getGasPrice();
@@ -1130,7 +1130,7 @@ const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 const CONTRACT_ADDRESS = "<CONTRACT_ADDRESS>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const gasPrice = await wallet.providerL1.getGasPrice();
@@ -1212,7 +1212,7 @@ const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 const CONTRACT_ADDRESS = "<CONTRACT_ADDRESS>";
 
 const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const gasPrice = await wallet.providerL1.getGasPrice();

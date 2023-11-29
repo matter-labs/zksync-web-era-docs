@@ -48,7 +48,7 @@ const provider = new Provider("https://sepolia.era.zksync.dev");
 const wallet = new Wallet("<WALLET-PRIVATE-KEY>").connect(provider);
 ```
 
-**Note:** Currently, `goerli` and `sepolia` network is supported.
+**Note:** Currently, `Sepolia` and `Goerli` networks are supported.
 
 Some operations require access to the Ethereum network. `ethers` library should be used to interact with
 Ethereum.

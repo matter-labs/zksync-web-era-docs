@@ -82,8 +82,8 @@ const zkSyncTestnet =
         zksync: true,
       }
     : {
-        url: "https://testnet.era.zksync.dev",
-        ethNetwork: "goerli",
+        url: "https://sepolia.era.zksync.dev",
+        ethNetwork: "sepolia",
         zksync: true,
         verifyURL: "https://explorer.sepolia.era.zksync.dev/contract_verification", // Verification endpoint
       };
