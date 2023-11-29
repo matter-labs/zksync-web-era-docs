@@ -239,10 +239,10 @@ User needs to perform next steps:
 @tab npx
 
 ```npx
-  npx zksync-cli@latest dev config
+  npx zksync-cli dev config
   // choose: Dockerized node - Persistent state, includes L1 and L2 nodes
   // choose: BE and Portal (optional)
-  npx zksync-cli@latest dev start
+  npx zksync-cli dev start
 ```
 
 @tab npm
