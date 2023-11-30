@@ -142,7 +142,7 @@ At the moment, we support any Ethereum-based wallet like Metamask, BitKeep, Trus
 
 We source our token information from [Coingecko](https://www.coingecko.com/en/categories/zksync-ecosystem).
 
-- **Adding a Token**: usually tokens are identified automatically. If you wish to include a logo, pricing, or other details for your token, ensure it is listed on Coingecko. Once listed, these details will automatically appear on Block Explorer and Bridge. It may take up to 24 hours for updates to be reflected.
+- **Adding a Token**: all tokens are identified automatically. If you wish to include a logo, pricing, or other details for your token, ensure it is listed on Coingecko. Once listed, these details will automatically appear on Block Explorer and Bridge. It may take up to 24 hours for updates to be reflected.
 - **Top Tokens List**: Tokens are arranged in descending order based on liquidity. We do not control the order of the tokens.
 
 ## How do I Request Funds for Testnet?
