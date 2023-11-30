@@ -138,6 +138,13 @@ Read more about [Hyperscalability and ZK Stack here](../concepts/hyperscaling.md
 
 At the moment, we support any Ethereum-based wallet like Metamask, BitKeep, TrustWallet or Zerion. You can add zkSync network to your Metamask manually by following the instructions in the [interacting with zkSync Era page](../../dev/building-on-zksync/interacting.md#connecting-to-zksync-era-on-metamask).
 
+## Token Listing
+
+We source our token information from [Coingecko](https://www.coingecko.com/en/categories/zksync-ecosystem).
+
+- **Adding a Token**: usually tokens are identified automatically. If you wish to include a logo, pricing, or other details for your token, ensure it is listed on Coingecko. Once listed, these details will automatically appear on Block Explorer and Bridge. It may take up to 24 hours for updates to be reflected.
+- **Top Tokens List**: Tokens are arranged in descending order based on liquidity. We do not control the order of the tokens.
+
 ## How do I Request Funds for Testnet?
 
 To access the testnet funds (Goerli ETH) you can use one of the following third party faucets:
