@@ -58,7 +58,7 @@ public class Main {
 | Name    | Description                                                                   |
 | ------- | ----------------------------------------------------------------------------- |
 | address | The user address with balances to check.                                      |
-| returns | 'ZksAccounteBalances': List of all balances where account has non-zero value. |
+| returns | 'ZksAccountBalances': List of all balances where account has non-zero value. |
 
 ### `zksGetConfirmedTokens`
 
