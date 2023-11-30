@@ -28,7 +28,7 @@ You can get the default bridge addresses using the [`zks_getBridgeContracts`](..
 
 ### Adding Tokens to the Bridge UI
 
-No action is required to add tokens to the bridge UI. All tokens are automatically recognized based on user balances. If you desire for your token to display an icon or price, refer to the [Token Listing Guide](../troubleshooting/faq.md#tokens-listing).
+No action is required to add tokens to the bridge UI. All tokens are automatically recognized based on user balances. If you desire for your token to display an icon or price, refer to the [Token Listing Guide](../troubleshooting/faq.md#token-listing).
 
 ### Deposits (to L2)
 
