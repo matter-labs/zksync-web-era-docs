@@ -73,8 +73,8 @@ Jumpstart your projects with `npx zksync-cli create` using our updated templates
 
 #### For Smart Contracts
 
-- **Solidity**: Deploy and test using Hardhat with our [Solidity Template](https://github.com/matter-labs/zksync-hardhat-template#readme).
-- **Vyper**: Explore our [Vyper Template](https://github.com/matter-labs/zksync-hardhat-vyper-template#readme) for Hardhat integration.
+- **Solidity**: Deploy and test using Hardhat with our [Solidity Template](https://github.com/matter-labs/zksync-contract-templates/tree/main/templates/hardhat/solidity#readme).
+- **Vyper**: Explore our [Vyper Template](https://github.com/matter-labs/zksync-contract-templates/tree/main/templates/hardhat/vyper#readme) for Hardhat integration.
 
 #### For Scripting and Automation
 
