@@ -84,7 +84,7 @@ Jumpstart your projects with `npx zksync-cli create` using our updated templates
 
 ### 🔗 Supported Chains
 
-zkSync CLI supports Era Testnet and Era Mainnet by default. Use other networks by overriding L1 and L2 RPC URLs: `npx zksync-cli bridge deposit --l2-rpc=http://... --l1-rpc=http://...`
+zkSync CLI supports Era Testnet and Era Mainnet by default. Use other networks by overriding L1 and L2 RPC URLs: `npx zksync-cli bridge deposit --rpc=http://... --l1-rpc=http://...`
 
 For using [local setup (dockerized testing node)](../testing/dockerized-testing.md) with default RPC URLs, select `Local Dockerized node` in CLI or use `--chain local-dockerized`.
 
