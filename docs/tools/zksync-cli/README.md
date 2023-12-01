@@ -44,7 +44,7 @@ The easiest way to interact with zkSync contracts.
 - `npx zksync-cli contract read`: run read-only contract methods
 - `npx zksync-cli contract write`: send transactions to the contract
 
-See full documentation and advanced examples [here](./contract-interaction.md).
+See full documentation and advanced examples [here](./examples/contract-interaction.md).
 
 ### Wallet commands
 - `npx zksync-cli wallet transfer`: send ETH on L2 to another account
