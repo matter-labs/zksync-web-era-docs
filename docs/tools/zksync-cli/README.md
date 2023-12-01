@@ -37,25 +37,31 @@ Use `npx zksync-cli dev` for an easy way to work with zkSync on your computer. I
 Run `npx zksync-cli dev` to see the full list of commands.
 
 ### Create Project commands
+
 - `npx zksync-cli create`: Create a project using updated templates. See [Quick Scaffolding with Templates](#quick-scaffolding-with-templates) for more information.
 
 ### Contract interaction commands
+
 The easiest way to interact with zkSync contracts.
+
 - `npx zksync-cli contract read`: run read-only contract methods
 - `npx zksync-cli contract write`: send transactions to the contract
 
 See full documentation and advanced examples [here](./examples/contract-interaction.md).
 
 ### Wallet commands
+
 - `npx zksync-cli wallet transfer`: send ETH on L2 to another account
 - `npx zksync-cli wallet balance`: displays ETH balance of the specified address
 
 ### Bridge commands
+
 - `npx zksync-cli bridge deposit`: deposits funds from Ethereum (L1) to zkSync (L2)
 - `npx zksync-cli bridge withdraw`: withdraws funds from zkSync (L2) to Ethereum (L1)
 - `npx zksync-cli bridge withdraw-finalize`: finalizes withdrawal of funds from zkSync (L2) to Ethereum (L1)
 
 ### Other commands
+
 - `npx zksync-cli help`: Provides information about all supported commands
 - `npx zksync-cli <command> --help`: Provides detailed information about how to use a specific command. Replace \<command\> with the name of the command you want help with (e.g., `create`, `dev config`, `bridge withdraw-finalize`)
 - `npx zksync-cli --version`: Returns the current version
