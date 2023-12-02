@@ -554,7 +554,7 @@ We will use the [testnet paymaster](../../reference/concepts/account-abstraction
 :::info
 **The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH.
 
-This means that transaction fees in tokens with fewer decimals than ETH will be bigger; for example, USDC which has only 6 decimals. This is a known behaviour of the testnet paymaster, which was built for demonstration purposes only.
+This means that transaction fees in tokens with fewer decimals than ETH will be bigger; for example, USDC which has only 6 decimals. This is a known behavior of the testnet paymaster, which was built for demonstration purposes only.
 :::
 
 ::: warning Paymasters on mainnet
