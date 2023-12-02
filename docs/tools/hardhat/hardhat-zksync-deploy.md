@@ -97,7 +97,7 @@ class Deployer {
 
   /**
     * Sends a deploy transaction to the zkSync network.
-    * For now it uses defaults values for the transaction parameters:
+    * For now it uses default values for the transaction parameters:
     *
     * @param artifact The previously loaded artifact object.
     * @param constructorArguments The list of arguments to be passed to the contract constructor.
