@@ -39,7 +39,7 @@ The following are the block properties returned when you use the `getBlock` meth
 
 ## Processing times
 
-When transactions are made on zkSync Era, they are processed right away and added to blocks, which are generated immediately. Once zkSync Era becomes fully decentralised, block time will take a couple of seconds, as the involved entities would need to achieve consensus.
+When transactions are made on zkSync Era, they are processed right away and added to blocks, which are generated immediately. Once zkSync Era becomes fully decentralized, block time will take a couple of seconds, as the involved entities would need to achieve consensus.
 
 The time it takes to seal an L1 batch depends on the system activity - the more activity the system has, the faster we <em>seal</em> a batch.
 There are several criteria for sealing a batch, which we defer from explaining in detail here, as these may change.
@@ -65,7 +65,7 @@ Each L1 batch (which comprises several L2 blocks) is executed in a single VM ins
 
 We could add it in the latest L2 block in the L1 batch, but imagine the following scenario: if an L2 block was closed, but its L1 batch was not, and the node hasn't received any new transactions in a while, then the L1 batch must be closed by the timeout. If we add the event to the most recent closed block, it will modify the block, resulting in a sort of re-organization.
 
-To avoid this, we built a purely fictional block containing only the event .
+To avoid this, we built a purely fictional block containing only the event.
 
 ## Retrieving block and batch numbers
 
