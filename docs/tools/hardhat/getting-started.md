@@ -194,7 +194,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // // Wait until the deposit is processed on zkSync
   // await depositHandle.wait();
 
-  // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
+  // Deploy this contract. The returned object will be of a `Contract` type, similar to ones in `ethers`.
   // `greeting` is an argument for contract constructor.
   const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
   console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
