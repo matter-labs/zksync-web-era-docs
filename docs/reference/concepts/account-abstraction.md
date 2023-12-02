@@ -178,7 +178,7 @@ In the future, we might even allow time-bound transactions, e.g. allow checking 
 As already mentioned above, each account should implement the [IAccount](#iaccount-interface) interface.
 
 An example of the implementation of the AA interface is the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/DefaultAccount.sol#L17) of the EOA account.
-Note that this account, just like standard EOA accounts on Ethereum, successfully returns empty value whenever it is called by an external address, while this may not be the behaviour that you would like for your account.
+Note that this account, just like standard EOA accounts on Ethereum, successfully returns empty value whenever it is called by an external address, while this may not be the behavior that you would like for your account.
 
 ### EIP1271
 
