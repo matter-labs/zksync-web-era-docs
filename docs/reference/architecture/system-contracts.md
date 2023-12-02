@@ -85,37 +85,9 @@ It is called only once on the diamond constructor and is not saved in the diamon
 
 Implementation detail - function returns a magic value just like it is designed in [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271), but the magic value is 32 bytes in size.
 
-### DiamondCutFacet
-
-These smart contracts manage the freezing/unfreezing and upgrades of the diamond proxy.
-That being said, the contract must never be frozen.
-
-Currently, freezing and unfreezing are implemented as access control functions. It is fully controlled by the governor but can be changed later.
-The governor can call `emergencyFreezeDiamond` to freeze the diamond and `unfreezeDiamond` to restore it.
-
-Another purpose of `DiamondCutFacet` is to upgrade the facets. The upgrading is split into 2-3 phases:
-
-- `proposeDiamondCut` - propose an upgrade by the governor.
-- `approveEmergencyDiamondCutAsSecurityCouncilMember` - approve the upgrade by the security council.
-- `executeDiamondCutProposal` - finalize the upgrade.
-
-The upgrade itself characterizes by three variables:
-
-- `facetCuts` - a set of changes to the facets (adding new facets, removing facets, and replacing them).
-- pair `(address _initAddress, bytes _calldata)` for initializing the upgrade by making a delegate call to `_initAddress` with `_calldata` inputs.
-
-NOTE: `proposeDiamondCut` - commits data associated with an upgrade but does not execute it.
-While the upgrade is associated with `facetCuts` and `(address _initAddress, bytes _calldata)` the upgrade will be committed to the
-`facetCuts` and `_initAddress`. This is done on purpose, to leave some freedom to the governor to change calldata for
-the upgrade between proposing and executing it.
-
 ### GettersFacet
 
 Separate facet, whose only function is providing `view` and `pure` methods. It also implements [diamond loupe](https://eips.ethereum.org/EIPS/eip-2535#diamond-loupe) which makes managing facets easier.
-
-### GovernanceFacet
-
-Controls changing the privileged addresses such as governor and validators or one of the system parameters (L2 bootloader bytecode hash, verifier address, verifier parameters, etc).
 
 ### MailboxFacet
 
