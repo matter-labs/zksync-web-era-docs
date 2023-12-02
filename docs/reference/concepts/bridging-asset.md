@@ -26,11 +26,9 @@ Addresses of tokens on L2 will always differ from the same token L1 address.
 
 You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../api/api.md#zks-getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../api/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
 
-### Add tokens to the bridge
+### Adding Tokens to the Bridge UI
 
-While the zkSync standard bridge can be used without permission from a smart contract perspective, the UI only displays tokens that have been added to our SDK.
-
-If you would like to add a token, submit a request by filling out the [token request form](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw). Our team will review your request, and get back to you if we have any outstanding questions before adding the token to our list.
+No action is required to add tokens to the bridge UI. All tokens are automatically recognized based on user balances. If you desire for your token to display an icon or price, refer to the [Token Listing Guide](../troubleshooting/faq.md#token-listing).
 
 ### Deposits (to L2)
 
