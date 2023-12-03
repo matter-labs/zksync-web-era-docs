@@ -9,7 +9,7 @@ head:
 
 This section of our documentation is dedicated to getting you started, telling you how to do common tasks, and providing tutorials.
 
-Our docs are open source so feel free to suggest new topics, add new content, or provide useful examples. Check out the [how to contribute instructions](../reference/troubleshooting/docs-contribution/docs.md) instructions for more information.
+Our docs are open source so feel free to suggest new topics, add new content, or provide useful examples. Check out the [how to contribute instructions](../reference/troubleshooting/docs-contribution/docs.md) for more information.
 
 ## Getting started
 
