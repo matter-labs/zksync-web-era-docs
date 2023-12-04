@@ -24,7 +24,7 @@ compiler. `zksolc` compiler generates a `*.zbin` and a `combined.json` file that
 import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
 import { ethers, Contract, Typed } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider);
 
@@ -60,7 +60,7 @@ main()
 import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
 import { Contract, ethers } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider);
 
@@ -96,7 +96,7 @@ main()
 import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
 import { Contract, ethers } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider);
 

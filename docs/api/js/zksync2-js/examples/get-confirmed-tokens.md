@@ -12,7 +12,7 @@ Following example shows how to get all confirmed tokens on zkSync Era.
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 
 function toJSON(object: any): string {
   return JSON.stringify(object, (key, value) => {

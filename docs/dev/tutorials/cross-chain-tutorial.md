@@ -141,7 +141,18 @@ contract Governance {
 
 ### Deploy L1 governance contract
 
-1. Create the file `L1-Governance/goerli.json` and copy/paste the code below, filling in the relevant values. Find node provider urls [here](https://chainlist.org/chain/5). You have to connect your wallet to the network and add the network to the wallet in advance.
+1. Create the file `L1-Governance/goerli.json`, or `L1-Governance/sepolia.json` and copy/paste the code below, filling in the relevant values. Find node provider urls [here](https://chainlist.org/chain/5). You have to connect your wallet to the network and add the network to the wallet in advance.
+
+`L1-Governance/sepolia.json` file
+
+```json
+{
+  "nodeUrl": "<SEPOLIA NODE URL>",
+  "deployerPrivateKey": "<YOUR PRIVATE KEY>"
+}
+```
+
+`L1-Governance/goerli.json` file,
 
 ```json
 {
@@ -156,19 +167,27 @@ contract Governance {
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomiclabs/hardhat-waffle";
 
-// import file with Göerli params
+// import file with Sepolia params
 const goerli = require("./goerli.json");
+
+// Or, import file with Göerli params
+// const goerli = require("./goerli.json");
 
 const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.19",
   },
   networks: {
-    // Göerli network
-    goerli: {
-      url: goerli.nodeUrl,
-      accounts: [goerli.deployerPrivateKey],
+    // Sepolia network
+    sepolia: {
+      url: sepolia.nodeUrl,
+      accounts: [sepolia.deployerPrivateKey],
     },
+    // Or Göerli network
+    // goerli: {
+    //   url: goerli.nodeUrl,
+    //   accounts: [goerli.deployerPrivateKey],
+    // },
   },
 };
 
@@ -212,7 +231,7 @@ main().catch((error) => {
 yarn hardhat compile
 
 # deploy contract
-yarn hardhat run --network goerli ./scripts/deploy.ts
+yarn hardhat run --network sepolia ./scripts/deploy.ts
 ```
 
 @tab npm
@@ -222,7 +241,7 @@ yarn hardhat run --network goerli ./scripts/deploy.ts
 npx hardhat compile
 
 # deploy contract
-npx hardhat run --network goerli ./scripts/deploy.ts
+npx hardhat run --network sepolia ./scripts/deploy.ts
 ```
 
 :::
@@ -354,7 +373,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 
 ::: tip Deposit funds during deployment
-The deployment script contains a deposit from Goerli to zkSync Era testnet, which can take a few minutes to finish. If your wallet already has funds in L2, you can skip that part to save you some time.
+The deployment script contains a deposit from Sepolia, or Goerli to zkSync Era testnet, which can take a few minutes to finish. If your wallet already has funds in L2, you can skip that part to save you some time.
 :::
 
 2. Now deploy the contract from the `L2-counter/` folder root to zkSync:
