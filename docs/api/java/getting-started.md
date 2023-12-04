@@ -92,7 +92,8 @@ public class Main {
 
 :::tip
 Mainnet chain id: 324
-Testnet chain id: 280
+Sepolia testnet chain id: 300
+Goerli testnet chain id: 280
 Local setup chain id: 270
 :::
 

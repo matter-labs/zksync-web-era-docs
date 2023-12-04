@@ -24,8 +24,8 @@ We apply rate limiting to both HTTPS and Websocket APIs. The limits are generall
 
 ### Testnet
 
-- HTTPS: `https://testnet.era.zksync.dev`
-- Websocket: `wss://testnet.era.zksync.dev/ws`
+- HTTPS: `https://sepolia.era.zksync.dev`
+- Websocket: `wss://sepolia.era.zksync.dev/ws`
 
 ### Mainnet
 

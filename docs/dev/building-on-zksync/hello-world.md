@@ -407,7 +407,7 @@ import { Contract, Web3Provider, Provider } from "zksync-web3";
 
 ```javascript
 initializeProviderAndSigner() {
-    this.provider = new Provider('https://testnet.era.zksync.dev');
+    this.provider = new Provider('https://sepolia.era.zksync.dev');
     // Note that we still need to get the Metamask signer
     this.signer = (new Web3Provider(window.ethereum)).getSigner();
     this.contract = new Contract(
@@ -433,7 +433,7 @@ The function looks like this:
 
 ```javascript
 initializeProviderAndSigner() {
-    this.provider = new Provider('https://testnet.era.zksync.dev');
+    this.provider = new Provider('https://sepolia.era.zksync.dev');
     // Note that we still need to get the Metamask signer
     this.signer = (new Web3Provider(window.ethereum)).getSigner();
     this.contract = new Contract(
