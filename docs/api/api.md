@@ -372,9 +372,9 @@ Returns bytecode of a transaction given by its hash.
 
 #### Inputs
 
-| Parameter | Type     | Description             |
-| --------- | -------- | ----------------------- |
-| `hash`    | `H256  ` | Hash address as string. |
+| Parameter | Type     | Description              |
+| --------- | -------- | ------------------------ |
+| `hash`    | `H256  ` | Bytecode hash as string. |
 
 #### curl example
 
