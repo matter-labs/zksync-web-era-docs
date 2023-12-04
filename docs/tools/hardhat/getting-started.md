@@ -36,7 +36,7 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 - A Node and `yarn` package manager installed.
 - You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../../dev/building-on-zksync/hello-world.md).
 - A wallet with sufficient Sepolia or Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
-  - You can get Göerli ETH from the following faucets:
+  - You can get Sepolia or Göerli ETH from the following faucets:
     - Chainstack [Sepolia faucet](https://faucet.chainstack.com/sepolia-testnet-faucet), [Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
     - Alchemy [Sepolia faucet](https://sepoliafaucet.com/), [Goerli faucet](https://goerlifaucet.com/)
     - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
@@ -234,7 +234,7 @@ Greeter was deployed to 0x46f1d2d8A16DBD8b47e9D61175a826ac667288Be4D1293a22E8
 ::: warning Request-Rate Exceeded message
 
 - This message is caused by using the default RPC endpoints provided by ethers.
-- To avoid this, use your own Goerli RPC endpoint in the `hardhat.config.ts` file.
+- To avoid this, use your own Sepolia RPC endpoint in the `hardhat.config.ts` file.
 - Find multiple [node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
   :::
 
