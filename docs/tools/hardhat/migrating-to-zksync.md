@@ -221,7 +221,7 @@ Include your deployment script in the `deploy` folder and execute it running:
 
 ::: code-tabs
 
-@tab:active yarng
+@tab:active yarn
 
 ```bash
 yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
