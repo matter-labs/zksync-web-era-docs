@@ -11,18 +11,16 @@ Here are some contract addresses that may be useful and/or of interest to those 
 
 ## Mainnet contract addresses
 
-| Contract        | Address                                                                                                                    |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| DiamondCutFacet | [0x2a2d6010202B93E727b61a60dfC1d5CF2707c1CE](https://etherscan.io/address/0x2a2d6010202B93E727b61a60dfC1d5CF2707c1CE#code) |
-| DiamondInit     | [0xb91d905A698c28b73C61aF60C63919b754FCF4DE](https://etherscan.io/address/0xb91d905A698c28b73C61aF60C63919b754FCF4DE#code) |
-| DiamondProxy    | [0x32400084c286cf3e17e7b677ea9583e60a000324](https://etherscan.io/address/0x32400084c286cf3e17e7b677ea9583e60a000324#code) |
-| DiamondUpgrade  | [0xf48b2a42712BFBBb95f4000AEe3873410DC0546F](https://etherscan.io/address/0xf48b2a42712BFBBb95f4000AEe3873410DC0546F#code) |
-| ExecutorFacet   | [0x389a081BCf20e5803288183b929F08458F1d863D](https://etherscan.io/address/0x389a081BCf20e5803288183b929F08458F1d863D#code) |
-| GettersFacet    | [0xF1fB730b7f8E8391B27B91f8f791e10E4a53CEcc](https://etherscan.io/address/0xF1fB730b7f8E8391B27B91f8f791e10E4a53CEcc#code) |
-| GovernanceFacet | [0x6df4A6D71622860dcc64C1FD9645d9a5BE96f088](https://etherscan.io/address/0x6df4A6D71622860dcc64C1FD9645d9a5BE96f088#code) |
-| Verifier        | [0x020b26826C23142f2582733b2E6428EE31eAaB49](https://etherscan.io/address/0x020b26826C23142f2582733b2E6428EE31eAaB49#code) |
-| MailboxFacet    | [0xb2097DBe4410B538a45574B1FCD767E2303c7867](https://etherscan.io/address/0xb2097DBe4410B538a45574B1FCD767E2303c7867#code) |
-| AllowList       | [0x8ffd57A9B2dcc10327768b601468FA192adC5C86](https://etherscan.io/address/0x8ffd57A9B2dcc10327768b601468FA192adC5C86#code) |
+| Contract       | Address                                                                                                                    |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| DiamondInit    | [0xb91d905A698c28b73C61aF60C63919b754FCF4DE](https://etherscan.io/address/0xb91d905A698c28b73C61aF60C63919b754FCF4DE#code) |
+| DiamondProxy   | [0x32400084c286cf3e17e7b677ea9583e60a000324](https://etherscan.io/address/0x32400084c286cf3e17e7b677ea9583e60a000324#code) |
+| DiamondUpgrade | [0xe79a6d29bB0520648F25D11d65e29FB06B195F0F](https://etherscan.io/address/0xe79a6d29bB0520648F25D11d65e29FB06B195F0F#code) |
+| ExecutorFacet  | [0xD059478a564dF1353A54AC0D0e7Fc55A90b92246](https://etherscan.io/address/0xD059478a564dF1353A54AC0D0e7Fc55A90b92246#code) |
+| GettersFacet   | [0xF3ACF6a03ea4a914B78Ec788624B25ceC37c14A4](https://etherscan.io/address/0xF3ACF6a03ea4a914B78Ec788624B25ceC37c14A4#code) |
+| Verifier       | [0xB465882F67d236DcC0D090F78ebb0d838e9719D8](https://etherscan.io/address/0xB465882F67d236DcC0D090F78ebb0d838e9719D8#code) |
+| MailboxFacet   | [0x63b5EC36B09384fFA7106A80Ec7cfdFCa521fD08](https://etherscan.io/address/0x63b5EC36B09384fFA7106A80Ec7cfdFCa521fD08#code) |
+| AllowList      | [0x0C0dC1171258694635AA50cec5845aC1031cA6d7](https://etherscan.io/address/0x0C0dC1171258694635AA50cec5845aC1031cA6d7#code) |
 
 ### Mainnet token bridge contract addresses
 
@@ -35,7 +33,7 @@ Here are some contract addresses that may be useful and/or of interest to those 
 | Contract           | Address                                                                                                                     |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------- |
 | L1ERC20BridgeProxy | [0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063](https://etherscan.io/address/0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063#code)  |
-| L1ERC20BridgeImpl  | [0x7e5E66B01fe43293545eaB98ec4D31784A5Efa84](https://etherscan.io/address/0x7e5E66B01fe43293545eaB98ec4D31784A5Efa84#code)  |
+| L1ERC20BridgeImpl  | [0x03F3F3c12e11C2FAA60080bd3F7f80AADF369a33](https://etherscan.io/address/0x03F3F3c12e11C2FAA60080bd3F7f80AADF369a33#code)  |
 | L2ERC20Bridge      | [0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102](https://explorer.zksync.io/address/0x11f943b2c77b743AB90f4A0Ae7d5A4e7FCA3E102) |
 
 ## Goerli Testnet contract addresses
