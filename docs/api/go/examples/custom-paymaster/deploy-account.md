@@ -29,7 +29,7 @@ import (
 func main() {
 	var (
 		PrivateKey     = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
 		TokenAddress   = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B" // Crown token which can be minted for free
 	)
 
@@ -101,7 +101,7 @@ import (
 func main() {
 	var (
 		PrivateKey        = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
 		TokenAddress      = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B" // Crown token which can be minted for free
 	)
 

@@ -30,7 +30,7 @@ func main() {
 	var (
 		PrivateKey1       = os.Getenv("PRIVATE_KEY")
 		PublicKey2        = "81E9D85b65E9CC8618D85A1110e4b1DF63fA30d9"
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
 	)
 
 	// Connect to zkSync network
@@ -112,7 +112,7 @@ func main() {
 	var (
 		PrivateKey1       = os.Getenv("PRIVATE_KEY")
 		PublicKey2        = "0x81E9D85b65E9CC8618D85A1110e4b1DF63fA30d9"
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
 		TokenL2Address    = common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
 	)
 
