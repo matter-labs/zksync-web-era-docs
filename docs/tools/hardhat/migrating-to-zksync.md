@@ -136,7 +136,7 @@ const config: HardhatUserConfig = {
       zksync: false,
     },
     zkSyncTestnet: {
-      url: "https://testnet.era.zksync.dev",
+      url: "https://sepolia.era.zksync.dev",
       ethNetwork: "sepolia", // or a Sepolia RPC endpoint from Infura/Alchemy/Chainstack etc.
       zksync: true,
     },
@@ -214,14 +214,14 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 
 ::: tip Test ETH
-Obtain [test ETH from third party faucets](../../reference/troubleshooting/faq.md#how-do-i-request-funds-for-testnet) or just bridge test ETH using [bridges](https://zksync.io/explore#bridges).
+Obtain [test ETH from third party faucets](../../reference/troubleshooting/faq.md#how-do-i-request-funds-for-testnet) or just bridge GöerliETH using [bridges](https://zksync.io/explore#bridges).
 :::
 
 Include your deployment script in the `deploy` folder and execute it running:
 
 ::: code-tabs
 
-@tab:active yarn
+@tab:active yarng
 
 ```bash
 yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet

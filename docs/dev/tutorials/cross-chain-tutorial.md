@@ -424,7 +424,7 @@ const COUNTER_ABI = require("./counter.json");
 
 async function main() {
   // Initialize the provider
-  const l2Provider = new Provider("https://testnet.era.zksync.dev");
+  const l2Provider = new Provider("https://sepolia.era.zksync.dev");
 
   const counterContract = new Contract(COUNTER_ADDRESS, COUNTER_ABI, l2Provider);
 
@@ -547,7 +547,7 @@ async function main() {
   const govcontract = new Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
 
   // Initialize the L2 provider.
-  const l2Provider = new Provider("https://testnet.era.zksync.dev");
+  const l2Provider = new Provider("https://sepolia.era.zksync.dev");
   // Get the current address of the zkSync L1 bridge.
   const zkSyncAddress = await l2Provider.getMainContractAddress();
   // Get the `Contract` object of the zkSync bridge.

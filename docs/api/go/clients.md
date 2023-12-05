@@ -52,8 +52,8 @@ func NewClient(c *rpc.Client) Client
 #### Example
 
 ```go
-ZkSyncEraProvider   := "https://testnet.era.zksync.dev"
-ZkSyncEraWSProvider := "ws://testnet.era.zksync.dev:3051"
+ZkSyncEraProvider   := "https://sepolia.era.zksync.dev"
+ZkSyncEraWSProvider := "wss://sepolia.era.zksync.dev:3051"
 
 // Connect to zkSync network
 client, err := clients.Dial(ZkSyncEraProvider)

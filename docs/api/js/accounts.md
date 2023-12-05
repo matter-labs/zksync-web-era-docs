@@ -236,7 +236,7 @@ import { Wallet, Provider } from "zksync-web3";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new Provider("https://testnet.era.zksync.dev");
+const zkSyncProvider = new Provider("https://sepolia.era.zksync.dev");
 
 // Note that we don't need ethereum provider to get the nonce
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider);
@@ -463,7 +463,7 @@ The easiest way to construct it is from an `Web3Provider` object.
 import { Web3Provider, Provider, L1Signer } from "zksync-web3";
 
 const provider = new ethers.Web3Provider(window.ethereum);
-const zksyncProvider = new Provider("https://testnet.era.zksync.dev");
+const zksyncProvider = new Provider("https://sepolia.era.zksync.dev");
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 ```
 
@@ -502,7 +502,7 @@ import { Web3Provider, Provider, L1Signer } from "zksync-web3";
 import { ethers } from "ethers";
 
 const provider = new ethers.Web3Provider(window.ethereum);
-const zksyncProvider = new Provider("https://testnet.era.zksync.dev");
+const zksyncProvider = new Provider("https://sepolia.era.zksync.dev");
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 
 const mainContract = await signer.getMainContract();
@@ -530,7 +530,7 @@ import { Web3Provider, Provider, L1Signer } from "zksync-web3";
 import { ethers } from "ethers";
 
 const provider = new ethers.Web3Provider(window.ethereum);
-const zksyncProvider = new Provider("https://testnet.era.zksync.dev");
+const zksyncProvider = new Provider("https://sepolia.era.zksync.dev");
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 
 const USDC_ADDRESS = "<ADDRESS>";

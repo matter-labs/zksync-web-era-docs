@@ -906,7 +906,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 const AA_FACTORY_ADDRESS = "<FACTORY-ADDRESS>";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider("https://testnet.era.zksync.dev");
+  const provider = new Provider("https://sepolia.era.zksync.dev");
   // Private key of the account used to deploy
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>").connect(provider);
   const factoryArtifact = await hre.artifacts.readArtifact("AAFactory");
@@ -1050,7 +1050,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 const AA_FACTORY_ADDRESS = "<FACTORY-ADDRESS>";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider("https://testnet.era.zksync.dev");
+  const provider = new Provider("https://sepolia.era.zksync.dev");
   // Private key of the account used to deploy
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>").connect(provider);
   const factoryArtifact = await hre.artifacts.readArtifact("AAFactory");

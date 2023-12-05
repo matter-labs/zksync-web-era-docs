@@ -23,7 +23,7 @@ import org.web3j.protocol.http.HttpService;
 
 public class Main {
     public static void main(String ...args) {
-        ZkSync zksync = ZkSync.build(new HttpService("https://testnet.era.zksync.dev"));
+        ZkSync zksync = ZkSync.build(new HttpService("https://sepolia.era.zksync.dev"));
     }
 }
 ```
@@ -47,7 +47,7 @@ import org.web3j.protocol.http.HttpService;
 
 public class Main {
     public static void main(String ...args) {
-        ZkSync zksync = ZkSync.build(new HttpService("https://testnet.era.zksync.dev"));
+        ZkSync zksync = ZkSync.build(new HttpService("https://sepolia.era.zksync.dev"));
         ZksAccountBalances response = zksync.zksGetAllAccountBalances("ADDRESS").send();
     }
 }

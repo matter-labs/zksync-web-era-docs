@@ -53,7 +53,7 @@ constructor(url ? : ethers.FetchRequest | string, network ? : Networkish, option
 ```ts
 import { Provider } from "zksync2-js";
 
-const provider = new Provider("https://testnet.era.zksync.dev");
+const provider = new Provider("https://sepolia.era.zksync.dev");
 ```
 
 ### `broadcastTransaction`

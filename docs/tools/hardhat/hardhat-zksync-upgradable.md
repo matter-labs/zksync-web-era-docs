@@ -223,7 +223,7 @@ On the other hand, if you need to explicitly set the provider, do that with the 
 ```typescript
   import { Provider } from "zksync-web3";
 
-  const provider = new Provider("https://testnet.era.zksync.dev");
+  const provider = new Provider("https://sepolia.era.zksync.dev");
 
   const testMnemonic = 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle';
   const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");

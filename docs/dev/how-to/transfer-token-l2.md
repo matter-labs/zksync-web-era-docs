@@ -56,7 +56,7 @@ Check the [JSON-RPC API doc](https://era.zksync.io/docs/api/api.html#rpc-endpoin
 Create a zkSync Era provider on testnet and use it to build a zkSync Era wallet, replacing `<PRIVATE-KEY` with your private key.
 
 ```ts
-const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://sepolia.era.zksync.dev");
 const zkSyncWallet = new zksync.Wallet("<SENDER-PRIVATE-KEY>", zkSyncProvider);
 ```
 
@@ -113,7 +113,7 @@ import * as zksync from "zksync-web3";
 import * as ethers from "ethers";
 
 // Create zkSync Era provider on testnet
-const zkSyncProvider = new zksync.Provider("https://testnet.era.zksync.dev");
+const zkSyncProvider = new zksync.Provider("https://sepolia.era.zksync.dev");
 
 // Create a zkSync wallet for the sender
 const zkSyncWallet = new zksync.Wallet("<SENDER-PRIVATE-KEY>", zkSyncProvider);

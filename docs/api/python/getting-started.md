@@ -43,12 +43,12 @@ Once you have all the necessary dependencies, connect to zkSync Era using the en
 ```python
 from zksync2.module.module_builder import ZkSyncBuilder
 ...
-sdk = ZkSyncBuilder.build("https://testnet.era.zksync.dev")
+sdk = ZkSyncBuilder.build("https://sepolia.era.zksync.dev")
 ```
 
 ## Examples
 
-Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-python/tree/master/examples). Examples are configured to interact with `zkSync` and `Goerli` test networks.
+Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-python/tree/master/examples). Examples are configured to interact with `zkSync`, `Sepolia` or `Goerli` test networks.
 
 ### Check balance
 
@@ -61,7 +61,7 @@ from examples.utils import EnvPrivateKey
 from zksync2.module.module_builder import ZkSyncBuilder
 from zksync2.core.types import EthBlockParams
 
-ZKSYNC_PROVIDER = "https://testnet.era.zksync.dev"
+ZKSYNC_PROVIDER = "https://sepolia.era.zksync.dev"
 
 
 def check_balance():
@@ -148,8 +148,8 @@ if __name__ == "__main__":
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))
 
     # Set a provider
-    ZKSYNC_PROVIDER = "https://testnet.era.zksync.dev"
-    ETH_PROVIDER = "https://rpc.ankr.com/eth_goerli"
+    ZKSYNC_PROVIDER = "https://sepolia.era.zksync.dev"
+    ETH_PROVIDER = "https://rpc.ankr.com/eth_sepolia"
 
     # Connect to zkSync network
     zk_web3 = ZkSyncBuilder.build(ZKSYNC_PROVIDER)
@@ -303,7 +303,7 @@ if __name__ == "__main__":
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))
 
     # Set a provider
-    PROVIDER = "https://testnet.era.zksync.dev"
+    PROVIDER = "https://sepolia.era.zksync.dev"
 
     # Connect to zkSync network
     zk_web3 = ZkSyncBuilder.build(PROVIDER)
@@ -421,8 +421,8 @@ if __name__ == "__main__":
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))
 
     # Set a provider
-    ZKSYNC_PROVIDER = "https://testnet.era.zksync.dev"
-    ETH_PROVIDER = "https://rpc.ankr.com/eth_goerli"
+    ZKSYNC_PROVIDER = "https://sepolia.era.zksync.dev"
+    ETH_PROVIDER = "https://rpc.ankr.com/eth_sepolia"
 
     # Connect to zkSync network
     zk_web3 = ZkSyncBuilder.build(ZKSYNC_PROVIDER)
@@ -503,8 +503,8 @@ if __name__ == "__main__":
     WITHDRAW_TX_HASH = HexBytes.fromhex(os.environ.get("WITHDRAW_TX_HASH"))
 
     # Set a provider
-    ZKSYNC_PROVIDER = "https://testnet.era.zksync.dev"
-    ETH_PROVIDER = "https://rpc.ankr.com/eth_goerli"
+    ZKSYNC_PROVIDER = "https://sepolia.era.zksync.dev"
+    ETH_PROVIDER = "https://rpc.ankr.com/eth_sepolia"
 
     # Connect to zkSync network
     zk_web3 = ZkSyncBuilder.build(ZKSYNC_PROVIDER)
@@ -595,7 +595,7 @@ if __name__ == "__main__":
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))
 
     # Set a provider
-    PROVIDER = "https://testnet.era.zksync.dev"
+    PROVIDER = "https://sepolia.era.zksync.dev"
 
     # Connect to zkSync network
     zk_web3 = ZkSyncBuilder.build(PROVIDER)
@@ -738,7 +738,7 @@ def deploy_contract(
 
 if __name__ == "__main__":
     # Set a provider
-    PROVIDER = "https://testnet.era.zksync.dev"
+    PROVIDER = "https://sepolia.era.zksync.dev"
 
     # Byte-format private key
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))
@@ -939,7 +939,7 @@ def execute(
 
 if __name__ == "__main__":
     # Set a provider
-    PROVIDER = "https://testnet.era.zksync.dev"
+    PROVIDER = "https://sepolia.era.zksync.dev"
 
     # Byte-format private key
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))
@@ -1083,7 +1083,7 @@ def deploy_contract(
 
 if __name__ == "__main__":
     # Set a provider
-    PROVIDER = "https://testnet.era.zksync.dev"
+    PROVIDER = "https://sepolia.era.zksync.dev"
 
     # Byte-format private key
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))
@@ -1120,7 +1120,7 @@ from zksync2.module.module_builder import ZkSyncBuilder
 from zksync2.signer.eth_signer import PrivateKeyEthSigner
 from zksync2.transaction.transaction_builders import TxCreate2Contract
 
-ZKSYNC_TEST_URL = "https://testnet.era.zksync.dev"
+ZKSYNC_TEST_URL = "https://sepolia.era.zksync.dev"
 
 
 def generate_random_salt() -> bytes:
@@ -1220,7 +1220,7 @@ def deploy_contract(
 
 if __name__ == "__main__":
     # Set a provider
-    PROVIDER = "https://testnet.era.zksync.dev"
+    PROVIDER = "https://sepolia.era.zksync.dev"
 
     # Byte-format private key
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))
@@ -1355,7 +1355,7 @@ def deploy_contract(
 
 if __name__ == "__main__":
     # Set a provider
-    PROVIDER = "https://testnet.era.zksync.dev"
+    PROVIDER = "https://sepolia.era.zksync.dev"
 
     # Byte-format private key
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))
@@ -1490,7 +1490,7 @@ def deploy_account(
 
 if __name__ == "__main__":
     # Set a provider
-    PROVIDER = "https://testnet.era.zksync.dev"
+    PROVIDER = "https://sepolia.era.zksync.dev"
 
     # Byte-format private key
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))
@@ -1638,7 +1638,7 @@ def deploy_account(
 
 if __name__ == "__main__":
     # Set a provider
-    PROVIDER = "https://testnet.era.zksync.dev"
+    PROVIDER = "https://sepolia.era.zksync.dev"
 
     # Byte-format private key
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))
@@ -1695,7 +1695,7 @@ During transaction execution, the paymaster receives the ERC20 token from the us
 """
 if __name__ == "__main__":
     # Set a provider
-    PROVIDER = "https://testnet.era.zksync.dev"
+    PROVIDER = "https://sepolia.era.zksync.dev"
 
     # Byte-format private key
     PRIVATE_KEY = bytes.fromhex(os.environ.get("PRIVATE_KEY"))

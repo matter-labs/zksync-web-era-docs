@@ -726,7 +726,7 @@ None.
 ```curl
 curl -X POST -H "Content-Type: application/json" \
 --data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getTestnetPaymaster", "params": [  ]}' \
-"https://testnet.era.zksync.dev"
+"https://sepolia.era.zksync.dev"
 ```
 
 #### Output
@@ -833,7 +833,7 @@ curl -X POST -H "Content-Type: application/json" \
 
 zkSync is fully compatible with [Geth's pubsub API](https://geth.ethereum.org/docs/interacting-with-geth/rpc/pubsub), except for the `syncing` subscription. This is because nodes on the zkSync network are technically always synchronized.
 
-The WebSocket URL is `wss://testnet.era.zksync.dev/ws`.
+The WebSocket URL is `wss://sepolia.era.zksync.dev/ws`.
 
 ::: tip
 

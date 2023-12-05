@@ -1,6 +1,6 @@
-import { hopeTheme } from "vuepress-theme-hope";
 import { enNavbar } from "./navbar/index.js";
 import { enSidebar } from "./sidebar/index.js";
+import { hopeTheme } from "vuepress-theme-hope";
 
 export default hopeTheme({
   hostname: "https://era.zksync.io",
@@ -42,7 +42,7 @@ export default hopeTheme({
       </div>
       <div class="footer-links">
         <a href="https://github.com/zksync/credo" target="_blank">ZK Credo</a>
-        <a href="https://explorer.zksync.io/" target="_blank">Block explorer</a>
+        <a href="https://sepolia.explorer.zksync.io/" target="_blank">Block explorer</a>
         <a href="https://zksync.io/explore#bridges" target="_blank">Bridges & Wallets</a>
         <a href="https://github.com/zkSync-Community-Hub/zkync-developers/discussions" target="_blank">GitHub Discussions</a>
         <a href="https://ecosystem.zksync.io/" target="_blank">Ecosystem</a>

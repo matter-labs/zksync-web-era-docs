@@ -94,7 +94,7 @@ You can also fork mainnet with `era_test_node fork mainnet`
 The expected output will be as follows:
 
 ```log
-12:34:56 [INFO] Creating fork from "https://testnet.era.zksync.dev:443" L1 block: L1BatchNumber(128846) L2 block: 12088718 with timestamp 1695822231, L1 gas price 2500000014 and protocol version: Some(Version15)
+12:34:56 [INFO] Creating fork from "https://sepolia.era.zksync.dev:443" L1 block: L1BatchNumber(128846) L2 block: 12088718 with timestamp 1695822231, L1 gas price 2500000014 and protocol version: Some(Version15)
 12:34:56 [INFO] Starting network with chain id: L2ChainId(260)
 12:34:56 [INFO] Rich Accounts
 12:34:56 [INFO] =============
@@ -160,7 +160,7 @@ curl --request POST \
 Here's an example of what you should expect to see when `show-calls` and `resolve-hashes` are configured:
 
 ```bash
-Creating fork from "https://testnet.era.zksync.dev:443" L1 block: L1BatchNumber(94420) L2 block: 8072359 with timestamp 1687337488 and L1 gas price 2500011172
+Creating fork from "https://sepolia.era.zksync.dev:443" L1 block: L1BatchNumber(94420) L2 block: 8072359 with timestamp 1687337488 and L1 gas price 2500011172
 Starting network with chain id: L2ChainId(280)
 Running 1 transactions (one per batch)
 
