@@ -81,7 +81,7 @@
         {
           "name": "Particle Network",
           "category": "Dev tools",
-          "description": "The Intent-Centric, Modular Access Layer of Web3",
+          "description": "The Intent-Centric, Modular Access Layer of Web3, facilitating social logins through Wallet-as-a-Service.",
           "logo": "particle-logo.png",
           "url": "https://particle.network/"
         },
