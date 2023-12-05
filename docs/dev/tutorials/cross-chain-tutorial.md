@@ -528,7 +528,7 @@ You have to copy only abi content from the file after the keyword abi, an exampl
 - GOVERNANCE-ADDRESS: the address of the contract deployed in L1.
 - COUNTER-ADDRESS: the address of the contract deployed in L2.
 - WALLET-PRIVATE-KEY: the private key of your account.
-- RPC-URL: the same url you used in the `goerli.json` file.
+- RPC-URL: the same url you used in the `sepolia.json` or `goerli.json` file.
 
 ```ts
 import { BigNumber, Contract, ethers, Wallet } from "ethers";
