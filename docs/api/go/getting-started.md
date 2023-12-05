@@ -42,7 +42,7 @@ Connect to the zkSync Era network:
 
 ```go
 ZkSyncEraProvider   := "https://sepolia.era.zksync.dev"
-ZkSyncEraWSProvider := "wss://sepolia.era.zksync.dev/ws:3051"
+ZkSyncEraWSProvider := "wss://sepolia.era.zksync.dev:3051"
 
 // Connect to zkSync network
 client, err := clients.Dial(ZkSyncEraProvider)
