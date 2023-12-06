@@ -17,12 +17,12 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You already have some experience working with Ethereum.
-- A wallet with sufficient Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
-  - You can get Göerli ETH from the following faucets:
-    - [Chainstack Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
-    - [Alchemy Goerli faucet](https://goerlifaucet.com/)
+- A wallet with sufficient Sepolia or Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
+  - You can get Sepolia or Goerli ETH from the following faucets:
+    - Chainstack [Sepolia faucet](https://faucet.chainstack.com/sepolia-testnet-faucet), [Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
+    - Alchemy [Sepolia faucet](https://sepoliafaucet.com/), [Goerli faucet](https://goerlifaucet.com/)
     - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
-    - [Proof of work faucet](https://goerli-faucet.pk910.de/)
+    - Proof of work [Sepolia faucet](https://sepolia-faucet.pk910.de/), [Goerli faucet](https://goerli-faucet.pk910.de/)
   - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
@@ -141,7 +141,18 @@ contract Governance {
 
 ### Deploy L1 governance contract
 
-1. Create the file `L1-Governance/goerli.json` and copy/paste the code below, filling in the relevant values. Find node provider urls [here](https://chainlist.org/chain/5). You have to connect your wallet to the network and add the network to the wallet in advance.
+1. Create the file `L1-Governance/goerli.json`, or `L1-Governance/sepolia.json` and copy/paste the code below, filling in the relevant values. Find node provider urls [here](https://chainlist.org/chain/5). You have to connect your wallet to the network and add the network to the wallet in advance.
+
+`L1-Governance/sepolia.json` file
+
+```json
+{
+  "nodeUrl": "<SEPOLIA NODE URL>",
+  "deployerPrivateKey": "<YOUR PRIVATE KEY>"
+}
+```
+
+`L1-Governance/goerli.json` file,
 
 ```json
 {
@@ -156,19 +167,27 @@ contract Governance {
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomiclabs/hardhat-waffle";
 
-// import file with Göerli params
-const goerli = require("./goerli.json");
+// import file with Sepolia params
+const sepolia = require("./sepolia.json");
+
+// Or, import file with Göerli params
+// const goerli = require("./goerli.json");
 
 const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.19",
   },
   networks: {
-    // Göerli network
-    goerli: {
-      url: goerli.nodeUrl,
-      accounts: [goerli.deployerPrivateKey],
+    // Sepolia network
+    sepolia: {
+      url: sepolia.nodeUrl,
+      accounts: [sepolia.deployerPrivateKey],
     },
+    // Or Göerli network
+    // goerli: {
+    //   url: goerli.nodeUrl,
+    //   accounts: [goerli.deployerPrivateKey],
+    // },
   },
 };
 
@@ -212,7 +231,7 @@ main().catch((error) => {
 yarn hardhat compile
 
 # deploy contract
-yarn hardhat run --network goerli ./scripts/deploy.ts
+yarn hardhat run --network sepolia ./scripts/deploy.ts
 ```
 
 @tab npm
@@ -222,7 +241,7 @@ yarn hardhat run --network goerli ./scripts/deploy.ts
 npx hardhat compile
 
 # deploy contract
-npx hardhat run --network goerli ./scripts/deploy.ts
+npx hardhat run --network sepolia ./scripts/deploy.ts
 ```
 
 :::
@@ -354,7 +373,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 
 ::: tip Deposit funds during deployment
-The deployment script contains a deposit from Goerli to zkSync Era testnet, which can take a few minutes to finish. If your wallet already has funds in L2, you can skip that part to save you some time.
+The deployment script contains a deposit from Sepolia, or Goerli to zkSync Era testnet, which can take a few minutes to finish. If your wallet already has funds in L2, you can skip that part to save you some time.
 :::
 
 2. Now deploy the contract from the `L2-counter/` folder root to zkSync:
@@ -405,7 +424,7 @@ const COUNTER_ABI = require("./counter.json");
 
 async function main() {
   // Initialize the provider
-  const l2Provider = new Provider("https://testnet.era.zksync.dev");
+  const l2Provider = new Provider("https://sepolia.era.zksync.dev");
 
   const counterContract = new Contract(COUNTER_ADDRESS, COUNTER_ABI, l2Provider);
 
@@ -509,7 +528,7 @@ You have to copy only abi content from the file after the keyword abi, an exampl
 - GOVERNANCE-ADDRESS: the address of the contract deployed in L1.
 - COUNTER-ADDRESS: the address of the contract deployed in L2.
 - WALLET-PRIVATE-KEY: the private key of your account.
-- RPC-URL: the same url you used in the `goerli.json` file.
+- RPC-URL: the same url you used in the `sepolia.json` or `goerli.json` file.
 
 ```ts
 import { BigNumber, Contract, ethers, Wallet } from "ethers";
@@ -528,7 +547,7 @@ async function main() {
   const govcontract = new Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
 
   // Initialize the L2 provider.
-  const l2Provider = new Provider("https://testnet.era.zksync.dev");
+  const l2Provider = new Provider("https://sepolia.era.zksync.dev");
   // Get the current address of the zkSync L1 bridge.
   const zkSyncAddress = await l2Provider.getMainContractAddress();
   // Get the `Contract` object of the zkSync bridge.
@@ -601,7 +620,7 @@ npx ts-node ./scripts/increment-counter.ts
 
 :::
 
-In the output, you should see the full transaction receipt in L2. You can take the `transactionHash` and track it in the [zkSync explorer](https://goerli.explorer.zksync.io/). It should look something like this:
+In the output, you should see the full transaction receipt in L2. You can take the `transactionHash` and track it in the [zkSync explorer](https://sepolia.explorer.zksync.io/). It should look something like this:
 
 ```json
 {

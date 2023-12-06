@@ -288,8 +288,8 @@ For Testnet (recommended):
 
 ```js
 export const zkSyncTestnet = {
-  url: "https://testnet.era.zksync.dev",
-  ethNetwork: "https://rpc.ankr.com/eth_goerli",
+  url: "https://sepolia.era.zksync.dev",
+  ethNetwork: "https://rpc.ankr.com/eth_sepolia",
   zksync: true,
 };
 ```

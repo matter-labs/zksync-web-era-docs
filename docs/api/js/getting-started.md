@@ -43,18 +43,18 @@ To interact with the zkSync network users need to know the endpoint of the opera
 // Currently, only one environment is supported.
 import { Wallet, Provider } from "zksync-web3";
 
-const provider = new Provider("https://testnet.era.zksync.dev");
+const provider = new Provider("https://sepolia.era.zksync.dev");
 // Private key of the account to connect
 const wallet = new Wallet("<WALLET-PRIVATE-KEY>").connect(provider);
 ```
 
-**Note:** Currently, only `goerli` network is supported.
+**Note:** Currently, `Sepolia` and `Goerli` networks are supported.
 
 Some operations require access to the Ethereum network. `ethers` library should be used to interact with
 Ethereum.
 
 ```typescript
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 ```
 
 ## Creating a wallet

@@ -53,7 +53,7 @@ constructor(url ? : ethers.FetchRequest | string, network ? : Networkish, option
 ```ts
 import { Provider } from "zksync2-js";
 
-const provider = new Provider("https://testnet.era.zksync.dev");
+const provider = new Provider("https://sepolia.era.zksync.dev");
 ```
 
 ### `broadcastTransaction`
@@ -75,7 +75,7 @@ override async broadcastTransaction(signedTx: string): Promise<TransactionRespon
 ```ts
 import { Provider, types, Wallet } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = "<PRIVATE_KEY>";
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
@@ -106,7 +106,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const fee = await provider.estimateFee({
   from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
   to: "0xa61464658AfeAf65CccaaFD3a512b69A83B77618",
@@ -134,7 +134,7 @@ async estimateGas(_tx: TransactionRequest): Promise<bigint>
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const gasTokenApprove = await provider.estimateGas({
   from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
   to: "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B",
@@ -146,7 +146,7 @@ console.log(`Gas for token approval tx: ${gasTokenApprove}`);
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const tokenAddress = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B"; // Crown token which can be minted for free
 const paymasterAddress = "0xd660c2F92d3d0634e5A20f26821C43F1b09298fe"; // Paymaster for Crown token
 
@@ -190,7 +190,7 @@ async estimateGasL1(transaction: TransactionRequest): Promise<bigint>
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const gasL1 = await provider.estimateGasL1({
   from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
   to: await provider.getMainContractAddress(),
@@ -233,7 +233,7 @@ async estimateGasTransfer(transaction: {
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const gasTransfer = await provider.estimateGasTransfer({
   token: utils.ETH_ADDRESS,
   amount: 7_000_000_000,
@@ -277,7 +277,7 @@ async estimateGasWithdraw(transaction: {
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const gasWithdraw = await provider.estimateGasWithdraw({
   token: utils.ETH_ADDRESS,
   amount: 7_000_000,
@@ -319,7 +319,7 @@ async estimateL1ToL2Execute(transaction: {
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const gasL1ToL2 = await provider.estimateL1ToL2Execute({
   contractAddress: await provider.getMainContractAddress(),
   calldata: "0x",
@@ -352,7 +352,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const balances = await provider.getAllAccountBalances("0x36615Cf349d7F6344891B1e7CA7C72883F5dc049");
 console.log(`All balances: ${toJSON(balances)}`);
 ```
@@ -380,7 +380,7 @@ async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address)
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const account = "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049";
 const tokenAddress = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B"; // Crown token which can be minted for free
 console.log(`ETH balance: ${await provider.getBalance(account)}`);
@@ -409,7 +409,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Block: ${toJSON(await provider.getBlock("latest", true))}`);
 ```
 
@@ -436,7 +436,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Block details: ${toJSON(await provider.getBlockDetails(90_000))}`);
 ```
 
@@ -496,7 +496,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Confirmed tokens: ${toJSON(await provider.getConfirmedTokens())}`);
 ```
 
@@ -521,7 +521,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const tokenAddress = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B"; // Crown token which can be minted for free
 console.log(`Contract account info: ${toJSON(await provider.getContractAccountInfo(tokenAddress))}`);
 ```
@@ -542,7 +542,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Default bridges: ${toJSON(await provider.getDefaultBridgeAddresses())}`);
 ```
 
@@ -566,7 +566,7 @@ static getDefaultProvider(zksyncNetwork: ZkSyncNetwork = ZkSyncNetwork.Localhost
 import { Provider, types } from "zksync2-js";
 
 const providerMainnet = Provider.getDefaultProvider(types.Network.Mainnet);
-const providerTestnet = Provider.getDefaultProvider(types.Network.Goerli);
+const providerTestnet = Provider.getDefaultProvider(types.Network.Sepolia);
 const providerLocalnet = Provider.getDefaultProvider(types.Network.Localhost);
 ```
 
@@ -589,7 +589,7 @@ async getFilterChanges(idx: bigint): Promise<Array<Log | string>>
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const filter = await provider.newFilter({
   address: utils.L2_ETH_TOKEN_ADDRESS,
   topics: [ethers.id("Transfer(address,address,uint256)")],
@@ -610,7 +610,7 @@ async getGasPrice(): Promise<bigint>
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Gas price: ${await provider.getGasPrice()}`);
 ```
 
@@ -637,7 +637,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const l1BatchNumber = await provider.getL1BatchNumber();
 console.log(`L1 batch block range: ${toJSON(await provider.getL1BatchBlockRange(l1BatchNumber))}`);
 ```
@@ -665,7 +665,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const l1BatchNumber = await provider.getL1BatchNumber();
 console.log(`L1 batch details: ${toJSON(await provider.getL1BatchDetails(l1BatchNumber))}`);
 ```
@@ -685,7 +685,7 @@ async getL1BatchNumber(): Promise<number>
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`L1 batch number: ${await provider.getL1BatchNumber()}`);
 ```
 
@@ -710,8 +710,8 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const l1Tx = "0xcca5411f3e514052f4a4ae1c2020badec6e0998adb52c09959c5f5ff15fba3a8";
 const l1TxResponse = await ethProvider.getTransaction(l1Tx);
 if (l1TxResponse) {
@@ -743,7 +743,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const tx = "0x2a1c6c74b184965c0cb015aae9ea134fd96215d2e4f4979cfec12563295f610e";
 console.log(`Log ${toJSON(await provider.getLogProof(tx, 0))}`);
 ```
@@ -769,7 +769,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Logs: ${toJSON(await provider.getLogs({ fromBlock: 0, toBlock: 5, address: utils.L2_ETH_TOKEN_ADDRESS }))}`);
 ```
 
@@ -790,7 +790,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Main contract: ${await provider.getMainContractAddress()}`);
 ```
 
@@ -815,8 +815,8 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const l1Tx = "0xcca5411f3e514052f4a4ae1c2020badec6e0998adb52c09959c5f5ff15fba3a8";
 const l1TxResponse = await ethProvider.getTransaction(l1Tx);
 if (l1TxResponse) {
@@ -864,7 +864,7 @@ async getTestnetPaymasterAddress(): Promise<Address | null>
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Testnet paymaster: ${await provider.getTestnetPaymasterAddress()}`);
 ```
 
@@ -887,7 +887,7 @@ override async getTransaction(txHash: string): Promise<TransactionResponse>
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 
 const TX_HASH = "<YOUR_TX_HASH_ADDRESS>";
 const txHandle = await provider.getTransaction(TX_HASH);
@@ -921,7 +921,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 
 const TX_HASH = "<YOUR_TX_HASH_ADDRESS>";
 console.log(`Transaction details: ${toJSON(await provider.getTransactionDetails(TX_HASH))}`);
@@ -950,7 +950,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const TX_HASH = "<YOUR_TX_HASH_ADDRESS>";
 console.log(`Transaction receipt: ${toJSON(await provider.getTransactionReceipt(TX_HASH))}`);
 ```
@@ -976,7 +976,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 
 const TX_HASH = "<YOUR_TX_HASH_ADDRESS>";
 console.log(`Transaction status: ${toJSON(await provider.getTransactionStatus(TX_HASH))}`);
@@ -1073,7 +1073,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`L1 chain ID: ${await provider.l1ChainId()}`);
 ```
 
@@ -1100,7 +1100,7 @@ async l1TokenAddress(token: Address): Promise<string>
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`L1 token address: ${await provider.l1TokenAddress("0x3e7676937A7E96CFB7616f255b9AD9FF47363D4b")}`);
 ```
 
@@ -1127,7 +1127,7 @@ async l2TokenAddress(token: Address): Promise<string>
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`L2 token address: ${await provider.l2TokenAddress("0x5C221E77624690fff6dd741493D735a17716c26B")}`);
 ```
 
@@ -1144,7 +1144,7 @@ async newBlockFilter(): Promise<bigint>
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`New block filter: ${await provider.newBlockFilter()}`);
 ```
 
@@ -1167,7 +1167,7 @@ async newFilter(filter: FilterByBlockHash | Filter): Promise<bigint>
 ```ts
 import { Provider, types, utils } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(
   `New filter: ${await provider.newFilter({
     fromBlock: 0,
@@ -1191,7 +1191,7 @@ async newPendingTransactionsFilter(): Promise<bigint>
 ```ts
 import { Provider, types } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`New pending transaction filter: ${await provider.newPendingTransactionsFilter()}`);
 ```
 

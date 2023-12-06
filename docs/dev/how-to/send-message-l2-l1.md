@@ -86,8 +86,8 @@ const TEST_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
 
 const MESSAGE = "Some L2->L1 message";
 
-const l2Provider = new Provider("https://zksync2-testnet.zksync.dev");
-const l1Provider = ethers.getDefaultProvider("goerli");
+const l2Provider = new Provider("https://sepolia.era.zksync.dev");
+const l1Provider = ethers.getDefaultProvider("sepolia");
 
 const wallet = new Wallet(TEST_PRIVATE_KEY, l2Provider, l1Provider);
 

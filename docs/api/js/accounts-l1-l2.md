@@ -47,8 +47,8 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new Provider("https://testnet.era.zksync.dev/");
-const ethereumProvider = ethers.getDefaultProvider("goerli");
+const zkSyncProvider = new Provider("https://sepolia.era.zksync.dev");
+const ethereumProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const USDC_ADDRESS = "<USDC_ADDRESS>";
@@ -97,8 +97,8 @@ import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const zkSyncProvider = new Provider("https://testnet.era.zksync.dev/");
-const ethereumProvider = ethers.getDefaultProvider("goerli");
+const zkSyncProvider = new Provider("https://sepolia.era.zksync.dev");
+const ethereumProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const USDC_ADDRESS = "<USDC_ADDRESS>";
@@ -217,8 +217,8 @@ import { BigNumber, ethers } from "ethers";
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 const CONTRACT_ADDRESS = "<CONTRACT_ADDRESS>";
 
-const zkSyncProvider = new Provider("https://testnet.era.zksync.dev/");
-const ethereumProvider = ethers.getDefaultProvider("goerli");
+const zkSyncProvider = new Provider("https://sepolia.era.zksync.dev");
+const ethereumProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, zkSyncProvider, ethereumProvider);
 
 const gasPrice = await wallet.providerL1.getGasPrice();

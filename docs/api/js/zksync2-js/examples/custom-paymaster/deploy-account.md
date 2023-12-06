@@ -15,7 +15,7 @@ sends the token. The token address on testnet that is deployed in previous step 
 ```ts
 import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider);
 
@@ -44,7 +44,7 @@ main()
 import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
 import { ethers } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider);
 

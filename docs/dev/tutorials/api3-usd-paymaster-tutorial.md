@@ -20,12 +20,12 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 - Make sure your machine satisfies the [zksolc compiler system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You already have some experience working with Ethereum.
-- A wallet with sufficient Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
-  - You can get Göerli ETH from the following faucets:
-    - [Chainstack Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
-    - [Alchemy Goerli faucet](https://goerlifaucet.com/)
+- A wallet with sufficient Sepolia or Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
+  - You can get Sepolia or Goerli ETH from the following faucets:
+    - Chainstack [Sepolia faucet](https://faucet.chainstack.com/sepolia-testnet-faucet), [Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
+    - Alchemy [Sepolia faucet](https://sepoliafaucet.com/), [Goerli faucet](https://goerlifaucet.com/)
     - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
-    - [Proof of work faucet](https://goerli-faucet.pk910.de/)
+    - Proof of work [Sepolia faucet](https://sepolia-faucet.pk910.de/), [Goerli faucet](https://goerli-faucet.pk910.de/)
   - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
@@ -651,7 +651,7 @@ function getGreeter(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
 // ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
 const EMPTY_WALLET_PRIVATE_KEY = process.env.EMPTY_WALLET_PRIVATE_KEY || "";
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider("https://testnet.era.zksync.dev");
+  const provider = new Provider("https://sepolia.era.zksync.dev");
   const emptyWallet = new Wallet(EMPTY_WALLET_PRIVATE_KEY, provider);
 
   // Obviously this step is not required, but it is here purely to demonstrate that indeed the wallet has no ether.

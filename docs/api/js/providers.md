@@ -62,7 +62,7 @@ constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://testnet.era.zksync.dev");
+const provider = new Provider("https://sepolia.era.zksync.dev");
 ```
 
 ### `estimateFee`
@@ -248,7 +248,7 @@ override async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: 
 ```typescript
 import { Provider } from "zksync-web3";
 
-const provider = new Provider("https://testnet.era.zksync.dev");
+const provider = new Provider("https://sepolia.era.zksync.dev");
 
 //Find the USDC ADDRESS in https://zksync2-testnet.zkscan.io/address/0x0faF6df7054946141266420b43783387A78d82A9/transactions
 const USDC_L2_ADDRESS = "<USDC_L2_ADDRESS>";
@@ -308,7 +308,7 @@ async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://testnet.era.zksync.dev");
+const provider = new Provider("https://sepolia.era.zksync.dev");
 
 console.log(await provider.getConfirmedTokens());
 ```
@@ -568,7 +568,7 @@ async getTestnetPaymasterAddress(): Promise<Address | null> {
 ```typescript
 import { Provider } from "zksync-web3";
 
-const provider = new Provider("https://testnet.era.zksync.dev");
+const provider = new Provider("https://sepolia.era.zksync.dev");
 
 console.log(await provider.getTestnetPaymasterAddress());
 ```
@@ -595,7 +595,7 @@ override async getTransaction(hash: string | Promise<string>): Promise<Transacti
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://testnet.era.zksync.dev");
+const provider = new Provider("https://sepolia.era.zksync.dev");
 
 const TX_HASH = "<YOUR_TX_HASH_ADDRESS>";
 const txHandle = await provider.getTransaction(TX_HASH);
@@ -649,7 +649,7 @@ async getTransactionStatus(txHash: string) {
 
 ```typescript
 import { Provider } from "zksync-web3";
-const provider = new Provider("https://testnet.era.zksync.dev");
+const provider = new Provider("https://sepolia.era.zksync.dev");
 
 const TX_HASH = "YOUR_TX_HASH_ADDRESS";
 console.log(await provider.getTransactionStatus(TX_HASH));

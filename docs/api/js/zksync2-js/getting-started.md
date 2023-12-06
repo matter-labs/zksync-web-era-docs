@@ -58,8 +58,8 @@ Connect to the zkSync Era network:
 import { Provider, utils, types } from "zksync2-js";
 import { ethers } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 ```
 
 Get the network (helper function [toJSON](./providers.md#tojson)):
@@ -95,4 +95,4 @@ Also, the following examples demonstrate how to:
 5. [Use paymaster to pay fee with token](examples/custom-paymaster/use-paymaster.md).
 
 Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-examples/tree/main/js). Examples are configured to
-interact with `zkSync Era` and `Goerli` test networks.
+interact with `zkSync Era`, `Sepolia` and `Goerli` test networks.

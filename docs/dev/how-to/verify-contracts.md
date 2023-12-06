@@ -82,10 +82,10 @@ const zkSyncTestnet =
         zksync: true,
       }
     : {
-        url: "https://testnet.era.zksync.dev",
-        ethNetwork: "goerli",
+        url: "https://sepolia.era.zksync.dev",
+        ethNetwork: "sepolia",
         zksync: true,
-        verifyURL: "https://zksync2-testnet-explorer.zksync.dev/contract_verification", // Verification endpoint
+        verifyURL: "https://explorer.sepolia.era.zksync.dev/contract_verification", // Verification endpoint
       };
 
 const config: HardhatUserConfig = {

@@ -15,7 +15,7 @@ Deploy the token which will be used to pay transaction fee.
 import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
 import { Contract, Typed } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider);
 
@@ -47,7 +47,7 @@ main()
 import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
 import { Contract, ethers, Typed } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider);
 

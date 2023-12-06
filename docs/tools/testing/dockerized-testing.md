@@ -133,8 +133,8 @@ const zkSyncTestnet =
         zksync: true,
       }
     : {
-        url: "https://testnet.era.zksync.dev",
-        ethNetwork: "goerli",
+        url: "https://sepolia.era.zksync.dev",
+        ethNetwork: "sepolia",
         zksync: true,
       };
 
