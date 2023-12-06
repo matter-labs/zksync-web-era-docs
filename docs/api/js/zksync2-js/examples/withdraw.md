@@ -99,7 +99,7 @@ const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 const WITHDRAW_TX = process.env.WITHDRAW_TX;
 
 async function main() {
-  if (!wallet.isWithdrawalFinalized(WITHDRAW_TX)) {
+  if (!(await wallet.isWithdrawalFinalized(WITHDRAW_TX))) {
     const finalizeWithdrawTx = await wallet.finalizeWithdrawal(WITHDRAW_TX);
     const receipt = await finalizeWithdrawTx.wait();
     console.log(`Tx: ${receipt.hash}`);

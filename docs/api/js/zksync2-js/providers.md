@@ -440,6 +440,31 @@ const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Block details: ${toJSON(await provider.getBlockDetails(90_000))}`);
 ```
 
+### `getBytecodeByHash`
+
+Returns bytecode of a transaction given by its hash.
+
+Calls the [`zks_getBytecodeByHash`](../../api.md#zks-getbytecodebyhash) JSON-RPC method.
+
+#### Inputs
+
+| Parameter      | Type        | Description    |
+| -------------- | ----------- | -------------- |
+| `bytecodeHash` | `BytesLike` | Bytecode hash. |
+
+```ts
+async getBytecodeByHash(bytecodeHash: BytesLike): Promise<Uint8Array>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync2-js";
+
+const provider = Provider.getDefaultProvider(types.Network.Goerli);
+console.log(`Bytecode: ${await provider.getBytecodeByHash("0x0f9acdb01827403765458b4685de6d9007580d15")}`);
+```
+
 ### `getConfirmedTokens`
 
 Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `from` and `limit`.
@@ -797,6 +822,33 @@ const l1TxResponse = await ethProvider.getTransaction(l1Tx);
 if (l1TxResponse) {
   console.log(`Tx: ${toJSON(await provider.getPriorityOpResponse(l1TxResponse))}`);
 }
+```
+
+### `getRawBlockTransactions`
+
+Returns data of transactions in a block.
+
+Calls the [`zks_getRawBlockTransactions`](../../api.md#zks-getrawblocktransactions) JSON-RPC method.
+
+#### Inputs
+
+| Parameter | Type     | Description   |
+| --------- | -------- | ------------- |
+| `number`  | `number` | Block number. |
+
+```ts
+async getRawBlockTransactions(number: number): Promise<RawBlockTransaction[]>
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync2-js";
+
+const provider = Provider.getDefaultProvider(types.Network.Goerli);
+console.log(`Raw block transactions: ${toJSON(await provider.getRawBlockTransactions(90_000))}`);
 ```
 
 ### `getTestnetPaymasterAddress`

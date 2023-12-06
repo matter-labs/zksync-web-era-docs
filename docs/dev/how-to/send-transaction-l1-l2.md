@@ -233,7 +233,31 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 User needs to perform next steps:
 
-1. Run local node dockerized containers. [`Instructions how to run it`](https://github.com/matter-labs/local-setup/tree/main)
+1. Run local node dockerized containers. [`Instructions how to run it`](https://github.com/matter-labs/local-setup/tree/main) or use [`zksync-cli`](https://github.com/matter-labs/zksync-cli):
+
+::: code-tabs
+@tab npx
+
+```npx
+  npx zksync-cli dev config
+  // choose: Dockerized node - Persistent state, includes L1 and L2 nodes
+  // choose: BE and Portal (optional)
+  npx zksync-cli dev start
+```
+
+@tab npm
+
+```npm
+  // install zksync-cli
+  npm i -g zksync-cli@latest
+  zksync-cli dev config
+  // choose: Dockerized node - Persistent state, includes L1 and L2 nodes
+  // choose: BE and Portal (optional)
+  zksync-cli dev start
+```
+
+:::
+
 2. In the root folder of the imported project (step 1) create `file.js` and insert there code from example below
 3. In the root folder add `.env` file with private key of wallet to use
 

@@ -26,9 +26,9 @@ Addresses of tokens on L2 will always differ from the same token L1 address.
 
 You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../api/api.md#zks-getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../api/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
 
-### Add tokens to the bridge
+### Adding Tokens to the Bridge UI
 
-Currently only a small list of selected tokens is displayed on the bridge page. We're actively working on allowing deposits and withdrawals of any ERC-20 token user has on their balance, so there will be no action required from your side to add a token to the bridge page.
+No action is required to add tokens to the bridge UI. All tokens are automatically recognized based on user balances. If you desire for your token to display an icon or price, refer to the [Token Listing Guide](../troubleshooting/faq.md#token-listing).
 
 ### Deposits (to L2)
 
