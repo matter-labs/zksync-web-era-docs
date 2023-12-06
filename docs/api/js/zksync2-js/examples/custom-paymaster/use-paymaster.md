@@ -11,8 +11,8 @@ This example demonstrates how to use a paymaster to facilitate fee payment with 
 The user initiates a mint transaction that is configured to be paid with an ERC20 token through the paymaster.
 During transaction execution, the paymaster receives the ERC20 token from the user and covers the transaction fee using ETH.
 
-The token address used in this example is already deployed at: `0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B`.
-The paymaster address used in this example is already deployed at: `0xd660c2F92d3d0634e5A20f26821C43F1b09298fe`.
+The token address used in this example is already deployed at: `0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150`.
+The paymaster address used in this example is already deployed at: `0x3cb2b87d10ac01736a65688f3e0fb1b070b3eea3`.
 
 ```ts
 import { Provider, types, utils, Wallet } from "zksync2-js";
@@ -23,8 +23,8 @@ const ethProvider = ethers.getDefaultProvider("sepolia");
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
-const tokenAddress = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B"; // Crown token which can be minted for free
-const paymasterAddress = "0xd660c2F92d3d0634e5A20f26821C43F1b09298fe"; // Paymaster for Crown token
+const tokenAddress = "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150"; // Crown token which can be minted for free
+const paymasterAddress = "0x3cb2b87d10ac01736a65688f3e0fb1b070b3eea3"; // Paymaster for Crown token
 const token = new ethers.Interface(require("../../solidity/custom_paymaster/token/build/Token.json").abi);
 
 async function main() {
