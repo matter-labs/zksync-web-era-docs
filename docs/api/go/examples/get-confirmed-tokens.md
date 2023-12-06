@@ -21,7 +21,7 @@ import (
 
 func main() {
 	var (
-		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
+		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
 	)
 
 	client, err := clients.Dial(ZkSyncEraProvider)

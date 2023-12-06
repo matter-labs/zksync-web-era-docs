@@ -119,8 +119,8 @@ NewWalletL1FromSigner(signer *Signer, clientL1 *ethclient.Client, clientL2 *clie
 
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
-ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
-EthereumProvider := "https://rpc.ankr.com/eth_sepolia"
+ZkSyncEraProvider := "https://testnet.era.zksync.dev"
+EthereumProvider := "https://rpc.ankr.com/eth_goerli"
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
@@ -230,7 +230,7 @@ AllowanceL1(opts *CallOpts, token common.Address, bridgeAddress common.Address) 
 #### Example
 
 ```go
-ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
+ZkSyncEraProvider := "https://testnet.era.zksync.dev"
 // The Crown token on testnet
 TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
 
@@ -297,7 +297,7 @@ ApproveERC20(auth *TransactOpts, token common.Address, amount *big.Int, bridgeAd
 #### Example
 
 ```go
-ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
+ZkSyncEraProvider := "https://testnet.era.zksync.dev"
 // The Crown token on testnet
 TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
 
@@ -339,7 +339,7 @@ BaseCost(opts *CallOpts, gasLimit, gasPerPubdataByte, gasPrice *big.Int) (*big.I
 #### Example
 
 ```go
-ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
+ZkSyncEraProvider := "https://testnet.era.zksync.dev"
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
@@ -714,7 +714,7 @@ func NewWalletL2FromSigner(signer *Signer, client *clients.Client) (*WalletL2, e
 
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
-ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
+ZkSyncEraProvider := "https://testnet.era.zksync.dev"
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
@@ -1362,8 +1362,8 @@ func NewRandomWallet(chainId int64, clientL2 *clients.Client, clientL1 *ethclien
 
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
-ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
-EthereumProvider := "https://rpc.ankr.com/eth_sepolia"
+ZkSyncEraProvider := "https://testnet.era.zksync.dev"
+EthereumProvider := "https://rpc.ankr.com/eth_goerli"
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
@@ -1410,7 +1410,7 @@ Connect(client *clients.Client) (*Wallet, error)
 
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
-ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
+ZkSyncEraProvider := "https://testnet.era.zksync.dev"
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
@@ -1453,8 +1453,8 @@ ConnectL1(client *ethclient.Client) (*Wallet, error)
 
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
-ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
-EthereumProvider := "https://rpc.ankr.com/eth_sepolia"
+ZkSyncEraProvider := "https://testnet.era.zksync.dev"
+EthereumProvider := "https://rpc.ankr.com/eth_goerli"
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {

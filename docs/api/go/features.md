@@ -42,7 +42,7 @@ If you want to call the method `setGreeting` of a contract called `greeter`, thi
 
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
-ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
+ZkSyncEraProvider := "https://testnet.era.zksync.dev"
 
 TokenAddress   := common.HexToAddress("<Token address>")
 GreeterAddress := common.HexToAddress("<Greeter contract address>")

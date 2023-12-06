@@ -52,8 +52,8 @@ func NewClient(c *rpc.Client) Client
 #### Example
 
 ```go
-ZkSyncEraProvider   := "https://sepolia.era.zksync.dev"
-ZkSyncEraWSProvider := "wss://sepolia.era.zksync.dev:3051"
+ZkSyncEraProvider   := "https://testnet.era.zksync.dev"
+ZkSyncEraWSProvider := "ws://testnet.era.zksync.dev:3051"
 
 // Connect to zkSync network
 client, err := clients.Dial(ZkSyncEraProvider)
@@ -746,7 +746,7 @@ L2TransactionFromPriorityOp(ctx context.Context, l1TxReceipt *types.Receipt) (*z
 
 ```go
 // Connect to Ethereum network
-ethClient, err := ethclient.Dial("https://rpc.ankr.com/eth_sepolia")
+ethClient, err := ethclient.Dial("https://rpc.ankr.com/eth_goerli")
 if err != nil {
 	log.Panic(err)
 }

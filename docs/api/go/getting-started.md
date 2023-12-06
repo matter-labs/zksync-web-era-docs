@@ -41,8 +41,8 @@ To begin, it is useful to have a basic understanding of the types of objects ava
 Connect to the zkSync Era network:
 
 ```go
-ZkSyncEraProvider   := "https://sepolia.era.zksync.dev"
-ZkSyncEraWSProvider := "wss://sepolia.era.zksync.dev:3051"
+ZkSyncEraProvider   := "https://testnet.era.zksync.dev"
+ZkSyncEraWSProvider := "ws://testnet.era.zksync.dev:3051"
 
 // Connect to zkSync network
 client, err := clients.Dial(ZkSyncEraProvider)
@@ -113,4 +113,4 @@ Also, the following examples demonstrate how to:
 9. [Use paymaster to pay fee with token](examples/custom-paymaster/use-paymaster.md).
 
 Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-examples/tree/main/go). Examples are configured to
-interact with `zkSync Era`, `Sepolia` and `Goerli` test networks.
+interact with `zkSync Era`, and `Sepolia` test networks.
