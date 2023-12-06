@@ -48,7 +48,7 @@ sdk = ZkSyncBuilder.build("https://sepolia.era.zksync.dev")
 
 ## Examples
 
-Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-python/tree/master/examples). Examples are configured to interact with `zkSync`, `Sepolia` or `Goerli` test networks.
+Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-python/tree/master/examples). Examples are configured to interact with `zkSync`, and `Sepolia` test networks.
 
 ### Check balance
 
