@@ -137,7 +137,7 @@ import { Provider, types } from "zksync2-js";
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const gasTokenApprove = await provider.estimateGas({
   from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
-  to: "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B",
+  to: "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150",
   data: utils.IERC20.encodeFunctionData("approve", [RECEIVER, 1]),
 });
 console.log(`Gas for token approval tx: ${gasTokenApprove}`);
@@ -147,8 +147,8 @@ console.log(`Gas for token approval tx: ${gasTokenApprove}`);
 import { Provider, types } from "zksync2-js";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
-const tokenAddress = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B"; // Crown token which can be minted for free
-const paymasterAddress = "0xd660c2F92d3d0634e5A20f26821C43F1b09298fe"; // Paymaster for Crown token
+const tokenAddress = "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150"; // Crown token which can be minted for free
+const paymasterAddress = "0x3cb2b87d10ac01736a65688f3e0fb1b070b3eea3"; // Paymaster for Crown token
 
 const paymasterParams = utils.getPaymasterParams(paymasterAddress, {
   type: "ApprovalBased",
@@ -382,7 +382,7 @@ import { Provider, types } from "zksync2-js";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const account = "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049";
-const tokenAddress = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B"; // Crown token which can be minted for free
+const tokenAddress = "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150"; // Crown token which can be minted for free
 console.log(`ETH balance: ${await provider.getBalance(account)}`);
 console.log(`Token balance: ${await provider.getBalance(account, "latest", tokenAddres)}`);
 ```
@@ -522,7 +522,7 @@ Helper function: [toJSON](#tojson).
 import { Provider, types } from "zksync2-js";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
-const tokenAddress = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B"; // Crown token which can be minted for free
+const tokenAddress = "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150"; // Crown token which can be minted for free
 console.log(`Contract account info: ${toJSON(await provider.getContractAccountInfo(tokenAddress))}`);
 ```
 

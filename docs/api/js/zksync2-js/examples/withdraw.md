@@ -64,7 +64,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 async function main() {
-  const token = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B";
+  const token = "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150";
 
   console.log(`L2 balance before withdrawal: ${await wallet.getBalance()}`);
   console.log(`L1 balance before withdrawal: ${await wallet.getBalanceL1()}`);

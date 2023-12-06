@@ -58,7 +58,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 async function main() {
-  const token = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B";
+  const token = "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150";
   const receiver = "0x81E9D85b65E9CC8618D85A1110e4b1DF63fA30d9";
 
   console.log(`Account1 balance before transfer: ${await wallet.getBalance()}`);
