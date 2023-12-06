@@ -604,7 +604,7 @@ if __name__ == "__main__":
     account1: LocalAccount = Account.from_key(PRIVATE_KEY)
     account2_address = zk_web3.to_checksum_address("0x81E9D85b65E9CC8618D85A1110e4b1DF63fA30d9")
 
-    token_address = zk_web3.to_checksum_address("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+    token_address = zk_web3.to_checksum_address("0x09B0196641D91eDEC4042e4bb8C605bb35a02546")
     token_contract = zk_web3.zksync.contract(token_address, abi=get_erc20_abi())
 
     # Show balance before token transfer
@@ -1505,7 +1505,7 @@ if __name__ == "__main__":
     contract_path = Path("solidity/custom-paymaster/build/Paymaster.json")
 
     # Crown token than can be minted for free
-    token_address = zk_web3.to_checksum_address("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+    token_address = zk_web3.to_checksum_address("0x09B0196641D91eDEC4042e4bb8C605bb35a02546")
     constructor_arguments = {"_erc20": token_address}
 
     # Perform contract deployment
@@ -1653,7 +1653,7 @@ if __name__ == "__main__":
     contract_path = Path("solidity/custom-paymaster/build/Paymaster.json")
 
     # Crown token than can be minted for free
-    token_address = zk_web3.to_checksum_address("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+    token_address = zk_web3.to_checksum_address("0x09B0196641D91eDEC4042e4bb8C605bb35a02546")
     constructor_arguments = {"_erc20": token_address}
 
     # Perform contract deployment
@@ -1707,7 +1707,7 @@ if __name__ == "__main__":
     account: LocalAccount = Account.from_key(PRIVATE_KEY)
 
     # Crown token than can be minted for free
-    token_address = zk_web3.to_checksum_address("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+    token_address = zk_web3.to_checksum_address("0x09B0196641D91eDEC4042e4bb8C605bb35a02546")
     # Paymaster for Crown token
     paymaster_address = zk_web3.to_checksum_address("0xd660c2F92d3d0634e5A20f26821C43F1b09298fe")
 

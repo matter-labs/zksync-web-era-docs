@@ -232,7 +232,7 @@ AllowanceL1(opts *CallOpts, token common.Address, bridgeAddress common.Address) 
 ```go
 ZkSyncEraProvider := "https://testnet.era.zksync.dev"
 // The Crown token on testnet
-TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+TokenAddress := common.HexToAddress("0x09B0196641D91eDEC4042e4bb8C605bb35a02546")
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
