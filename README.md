@@ -95,7 +95,7 @@ To add a new tutorial:
 
 ### Deployment
 
-The `main` branch is automatically deployed to <https://console.firebase.google.com/u/0/project/aqwzx-zksync-v2-docs>
+The `main` branch is automatically deployed to <https://console.firebase.google.com/u/0/project/aqwzx-zksync-v2-docs>.
 
 Deploying does the following:
 
