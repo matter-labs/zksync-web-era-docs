@@ -197,8 +197,7 @@
           "name": "Uniswap",
           "category": "DeFi",
           "logo": "uniswap-logo.png",
-          "url": "#",
-          "soon": true
+          "url": "https://app.uniswap.org/swap"
         }
       ]
     },
