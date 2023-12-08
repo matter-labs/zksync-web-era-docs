@@ -144,7 +144,7 @@
           "name": "DRPC",
           "category": "RPC ",
           "logo": "drpc-logo.jpg",
-          "url": "https://drpc.org/"
+          "url": "https://drpc.org/public-endpoints/zksync"
         },
         {
           "name": "Quicknode",
