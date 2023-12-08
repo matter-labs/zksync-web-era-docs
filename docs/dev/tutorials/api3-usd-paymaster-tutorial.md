@@ -14,6 +14,10 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 - Send a `greet` transaction to update the greeting from the newly created wallet via the paymaster. Although the transaction normally requires ETH to pay the gas fee, our paymaster executes the transaction in exchange for the same USDC value.
 - Utilize API3 data feeds within a paymaster.
 
+:::warning
+The team is migrating to the Sepolia testnet, and for this tutorial, we're updating the contract addresses for `ETHUSDdAPI` and `USDCUSDdAPI` with the API3 team.
+:::
+
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/en/download/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed on your machine.
