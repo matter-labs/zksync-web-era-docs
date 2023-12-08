@@ -512,13 +512,12 @@ import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
 require("dotenv").config();
 // load wallet private key from env file
-const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   // The wallet that will deploy the token and the paymaster
   // It is assumed that this wallet already has sufficient funds on zkSync
   // ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
-  const wallet = new Wallet(PRIVATE_KEY);
+  const wallet = new Wallet(process.env.PRIVATE_KEY);
   // The wallet that will receive ERC20 tokens
   const emptyWallet = Wallet.createRandom();
   console.log(`Empty wallet's address: ${emptyWallet.address}`);
@@ -572,7 +571,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
 
 ```text
-WALLET_PRIVATE_KEY=abcdef12345....
+PRIVATE_KEY=abcdef12345....
 ```
 
 ### 3. Compile and deploy
