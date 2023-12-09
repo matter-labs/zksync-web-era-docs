@@ -12,7 +12,7 @@ Discover how to construct a tailored paymaster that enables users to sidestep ga
 - Write a `mint` function for the `ERC721.sol` contract.
 - Design and implement the validation logic for the `ERC721GatedPaymaster.sol` contract.
 - Deploy `Greeter.sol`, `ERC721.sol`, and `ERC721GatedPaymaster.sol` contracts.
-- Connect our frontend application with users MetaMask wallets.
+- Connect our frontend application with users' MetaMask wallets.
 - Initialize our contracts to facilitate interaction on the client side.
 - Fetch data to display in a React component.
 - Harness the capabilities of our paymaster based on NFT possession.
@@ -179,7 +179,7 @@ function mint(address recipient, string memory stoneName) public onlyOwner {
 }
 ```
 
-Great! A few criteria are met, but we aren't done yet. We still need to ensure the `stoneName` is 1 of 6 stones, and update our owners mapping. Lets do that now.
+Great! A few criteria are met, but we aren't done yet. We still need to ensure the `stoneName` is 1 of 6 stones, and update our owners mapping. Let's do that now.
 
 ```solidity
 function mint(address recipient, string memory stoneName) public onlyOwner {
@@ -380,7 +380,7 @@ function validateAndPayForPaymasterTransaction(
 }
 ```
 
-Amazing! We have successfully written the smart contracts lets proceed to deploy them using the deployment scripts provided.
+Amazing! We have successfully written the smart contracts let's proceed to deploy them using the deployment scripts provided.
 
 #### Contract deployment
 
