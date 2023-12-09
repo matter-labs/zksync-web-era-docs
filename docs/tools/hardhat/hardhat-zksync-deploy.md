@@ -163,7 +163,7 @@ This plugin facilitates the compilation and deployment of missing libraries for 
 Starting from version 1.13.14, the zksolc compiler has been enhanced to identify missing libraries.
 :::
 
-Complex library dependecy tree is also supported. It ensures libraries are compiled and deployed in a structured manner, starting from the most foundational library to the topmost dependent one.
+Complex library dependency tree is also supported. It ensures libraries are compiled and deployed in a structured manner, starting from the most foundational library to the topmost dependent one.
 
 Example:
 
