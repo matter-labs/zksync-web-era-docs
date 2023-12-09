@@ -398,7 +398,7 @@ The output of the command should resemble the following:
 Successfully compiled 43 Solidity files
 ```
 
-2. Deploy the contracts to zkSync Era Testnet. This will also programatically verify the contracts on zkSync Era Testnet.
+2. Deploy the contracts to zkSync Era Testnet. This will also programmatically verify the contracts on zkSync Era Testnet.
 
 ```bash
 yarn deploy:contracts
