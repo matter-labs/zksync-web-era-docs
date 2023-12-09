@@ -54,7 +54,7 @@ Contract deployment is a special kind of transaction. A contract deployment crea
 
 ## Transaction types
 
-For compatibility, the majority of zkSync Era transactions types are similar to those on Ethereum.
+For compatibility, the majority of zkSync Era transaction types are similar to those on Ethereum.
 
 :::tip
 The transaction type hex value is output by any RPC method call which returns a transaction type, such as [`eth_getTransactionByHash`](https://ethereum.github.io/execution-apis/api-documentation/) for example.
