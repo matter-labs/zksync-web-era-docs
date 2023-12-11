@@ -7,16 +7,16 @@ head:
 
 # USDC paymaster tutorial with API3 dAPIs
 
+:::warning
+The team is migrating to the Sepolia testnet, and for this tutorial, we're updating the contract addresses for `ETHUSDdAPI` and `USDCUSDdAPI` with the API3 team.
+:::
+
 This tutorial shows you how to build a custom paymaster that allows users to pay fees with a `mockUSDC` ERC20 token. You will:
 
 - Create a paymaster that takes `mockUSDC` as gas to cover the transaction cost.
 - Create the `mockUSDC` token contract and send some tokens to a new wallet.
 - Send a `greet` transaction to update the greeting from the newly created wallet via the paymaster. Although the transaction normally requires ETH to pay the gas fee, our paymaster executes the transaction in exchange for the same USDC value.
 - Utilize API3 data feeds within a paymaster.
-
-:::warning
-The team is migrating to the Sepolia testnet, and for this tutorial, we're updating the contract addresses for `ETHUSDdAPI` and `USDCUSDdAPI` with the API3 team.
-:::
 
 ## Prerequisites
 
