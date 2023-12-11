@@ -8,7 +8,7 @@ head:
 # USDC paymaster tutorial with API3 dAPIs
 
 :::warning
-The team is migrating to the Sepolia testnet, and for this tutorial, we're updating the contract addresses for `ETHUSDdAPI` and `USDCUSDdAPI` with the API3 team.
+The team is migrating to the Sepolia testnet, and for this tutorial, we're updating the contract addresses for `ETHUSDdAPI` and `USDCUSDdAPI` with the API3 team. Only then will the tutorial be functional.
 :::
 
 This tutorial shows you how to build a custom paymaster that allows users to pay fees with a `mockUSDC` ERC20 token. You will:
