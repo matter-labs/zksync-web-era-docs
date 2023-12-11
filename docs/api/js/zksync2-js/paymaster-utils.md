@@ -7,7 +7,7 @@ head:
 
 # Paymaster utilities
 
-The [paymaster utilities library](https://github.com/zksync-sdk/zksync2-js/blob/main/src/paymaster-utils.ts) contains essential utilities for using paymasters on zkSync Era.
+The [paymaster utilities library](https://github.com/zksync-sdk/zksync-ethers/blob/main/src/paymaster-utils.ts) contains essential utilities for using paymasters on zkSync Era.
 
 ## Contract interfaces
 
