@@ -7,7 +7,7 @@ head:
 
 # Utilities
 
-The [utilities library](https://github.com/matter-labs/zksync-2-dev/blob/main/sdk/zksync-web3.js/src/utils.ts) contains essential utilities for building on zkSync Era.
+The [utilities library](https://github.com/zksync-sdk/zksync-ethers/blob/ethers-v5/src/utils.ts) contains essential utilities for building on zkSync Era.
 
 :::info
 
@@ -21,7 +21,7 @@ The [utilities library](https://github.com/matter-labs/zksync-2-dev/blob/main/sd
 Access the library by importing it into your scripts.
 
 ```typescript
-import { utils } from "zksync-web3";
+import { utils } from "zksync-ethers";
 ```
 
 ## Constants
@@ -746,13 +746,13 @@ export async function isTypedDataSignatureCorrect(
 
 Common parsing transaction function used by internal teams.
 
-Please see the [utilities library definition](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) for more info.
+Please see the [utilities library definition](https://github.com/zksync-sdk/zksync-ethers/blob/ethers-v5/src/utils.ts) for more info.
 
 ### `serialize`
 
 Common serialize function used by internal teams.
 
-Please see the [utilities library definition](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) for more info.
+Please see the [utilities library definition](https://github.com/zksync-sdk/zksync-ethers/blob/ethers-v5/src/utils.ts) for more info.
 
 ### `sleep`
 
