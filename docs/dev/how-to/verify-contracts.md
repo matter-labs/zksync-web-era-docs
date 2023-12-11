@@ -113,7 +113,7 @@ export default config;
 
 - Feel free to assign an arbitrary zkSync Era network name utilizing the `defaultNetwork` property.
 - The `verifyURL` attribute directs to the verification endpoint specific to the zkSync network.
-- If you want to verify a smart contract in other supported block explorer you can set `verifyURL` to point to it's verification API URL. For example for [L2scan](https://zksync-era.l2scan.co) on mainnet set `verifyURL=https://zksync-era.l2scan.co/api/zksync_contract_verification`.
+- If you want to verify a smart contract in other supported block explorer you can set `verifyURL` to point to it's verification API URL. For example for [L2scan](https://zksync-era.l2scan.co) on mainnet set `verifyURL` to `https://zksync-era.l2scan.co/api/zksync_contract_verification`.
 - If you intend to validate a smart contract on Ethereum within the same project, don't forget to include your [Etherscan API key](https://docs.etherscan.io/getting-started/viewing-api-usage-statistics).
 
 ### 4. Greeter contract compilation
