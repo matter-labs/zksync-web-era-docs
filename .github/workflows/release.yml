@@ -20,7 +20,7 @@ jobs:
       - name: "Setup node@14"
         uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4
         with:
-          node-version: 16
+          node-version: "lts/*"
 
       - name: "Install dependencies"
         run: |
