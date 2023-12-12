@@ -15,10 +15,10 @@ Smart contract and account deployment using hardhat plugin is under development.
 Take a look at [migration guide](migration.md) if you are migration from `zksync-web3`.
 :::
 
-This is a short introduction to `zksync2-js` SDK, but covers many of the most common operations that developers require and provides a
+This is a short introduction to `zksync-ethers` SDK, but covers many of the most common operations that developers require and provides a
 starting point for those newer to zkSync Era.
 
-## Getting zksync2-js
+## Getting zksync-ethers
 
 ### Prerequisites
 
@@ -27,8 +27,8 @@ starting point for those newer to zkSync Era.
 In order to install SDK for zkSync Era, run the command below in your terminal.
 
 ```bash
-yarn add zksync2-js
-yarn add ethers@6 # ethers is a peer dependency of zksync2-js
+yarn add zksync-ethers
+yarn add ethers@6 # ethers is a peer dependency of zksync-ethers
 ```
 
 ## Overview
@@ -55,7 +55,7 @@ npx ts-node src/zksync.ts
 Connect to the zkSync Era network:
 
 ```ts
-import { Provider, utils, types } from "zksync2-js";
+import { Provider, utils, types } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);

@@ -12,7 +12,7 @@ head:
 Here is an example on how to transfer ETH on zkSync Era network.
 
 ```ts
-import { Provider, types, Wallet } from "zksync2-js";
+import { Provider, types, Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
@@ -49,7 +49,7 @@ main()
 Here is an example on how to transfer tokens on zkSync Era network.
 
 ```ts
-import { Provider, types, Wallet } from "zksync2-js";
+import { Provider, types, Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
@@ -58,7 +58,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 async function main() {
-  const token = "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150";
+  const token = "0x6a4Fb925583F7D4dF82de62d98107468aE846FD1";
   const receiver = "0x81E9D85b65E9CC8618D85A1110e4b1DF63fA30d9";
 
   console.log(`Account1 balance before transfer: ${await wallet.getBalance()}`);

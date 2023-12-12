@@ -13,7 +13,7 @@ sends the token. The token address on testnet that is deployed in previous step 
 ## Deploy paymaster with CREATE opcode
 
 ```ts
-import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
+import { Provider, types, Wallet, ContractFactory } from "zksync-ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
@@ -41,7 +41,7 @@ main()
 ## Deploy paymaster with CREATE2 opcode
 
 ```ts
-import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
+import { Provider, types, Wallet, ContractFactory } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
