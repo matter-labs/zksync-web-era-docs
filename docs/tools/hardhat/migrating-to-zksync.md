@@ -185,7 +185,7 @@ To deploy your contracts you need to use the `Deployer` class from the `hardhat-
 Here is a basic deployment script for a `Greeter` contract:
 
 ```typescript
-import { utils, Wallet } from "zksync-web3";
+import { utils, Wallet } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -209,7 +209,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const greeterContract = await deployer.deploy(artifact, [greeting]);
 
   // Show the contract info.
-  console.log(`${artifact.contractName} was deployed to ${greeterContract.address}`);
+  console.log(`${artifact.contractName} was deployed to ${await greeterContract.getAddress()}`);
 }
 ```
 
@@ -241,16 +241,16 @@ Check out a detailed [approach](./hardhat-zksync-deploy.md) on how to use `hardh
 
 ## Frontend integration
 
-You can interact with your contracts using the `zksync-web3` Javascript library. This SDK has been built on top of ethers and uses the same classes (`Provider`, `Contract`, `Wallet`) so in a lot of cases, you just need to import these classes from `zksync-web3` instead of `ethers`:
+You can interact with your contracts using the `zksync-ethers` Javascript library. This SDK has been built on top of ethers and uses the same classes (`Provider`, `Contract`, `Wallet`) so in a lot of cases, you just need to import these classes from `zksync-ethers` instead of `ethers`:
 
 ```typescript
 //import { utils, Provider, Contract, Wallet } from "ethers";
-import { utils, Provider, Contract, Wallet } from "zksync-web3";
+import { utils, Provider, Contract, Wallet } from "zksync-ethers";
 ```
 
 You also need to use the `contract ABI` from the `artifacts-zk` folder to instantiate contracts.
 
-Apart from the same classes and methods provided by ethers, zksync-web3 includes additional methods for zksync-specific features. You can read more in the [`zksync-web3` documentation](../../api/js/getting-started.md).
+Apart from the same classes and methods provided by ethers, zksync-ethers includes additional methods for zksync-specific features. You can read more in the [`zksync-ethers` documentation](../../api/js/getting-started.md).
 
 ## Verify contracts
 
