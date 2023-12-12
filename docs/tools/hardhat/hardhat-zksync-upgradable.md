@@ -590,7 +590,7 @@ async function main() {
   await hre.zkUpgrades.upgradeBeacon(deployer.zkWallet, await beacon.getAddress(), boxV2Implementation);
   console.log("Successfully upgraded beacon Box to BoxV2 on address: ", await beacon.getAddress());
 
-  const attachTo = new zk.ContractFactoryy<any[], Contract>(boxV2Implementation.abi, boxV2Implementation.bytecode, deployer.zkWallet, deployer.deploymentType);
+  const attachTo = new zk.ContractFactory<any[], Contract>(boxV2Implementation.abi, boxV2Implementation.bytecode, deployer.zkWallet, deployer.deploymentType);
   const upgradedBox = await attachTo.attach(await boxBeaconProxy.getAddress());
 
   upgradedBox.connect(zkWallet);
