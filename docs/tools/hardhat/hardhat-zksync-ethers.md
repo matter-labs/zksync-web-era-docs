@@ -1,12 +1,15 @@
-# `hardhat-zksync-zksync2js`
+# `hardhat-zksync-ethers`
 
-This plugin brings to Hardhat the zksync2-js library, which allows you to interact with the zksync network in a simple way.
-
-Learn more about the latest updates in the [changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-zksync2js/CHANGELOG.md)
+:::warning SDK Deprecation Notice
+The `zksync2-js` SDK is now deprecated. \
+In line with this, the `hardhat-zksync-zksync2js` package will also be deprecated. \
+Moving forward, this package will be renamed to `hardhat-zksync-ethers` and will utilize the newly introduced `zksync-ethers` SDK. \
+Please update your dependencies accordingly to ensure compatibility and continued support.
+:::
 
 ## Installation
 
-[@matterlabs/hardhat-zksync-zksync2js](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-zksync2js)
+[@matterlabs/hardhat-zksync-ethers](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-ethers)
 
 Add the latest version of this plugin to your project with the following command:
 
@@ -15,13 +18,13 @@ Add the latest version of this plugin to your project with the following command
 @tab:active yarn
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-zksync2js zksync2-js ethers
+yarn add -D @matterlabs/hardhat-zksync-ethers zksync-ethers ethers
 ```
 
 @tab npm
 
 ```bash
-npm i -D @matterlabs/hardhat-zksync-zksync2js
+npm i -D @matterlabs/hardhat-zksync-ethers
 ```
 
 :::
@@ -31,7 +34,7 @@ npm i -D @matterlabs/hardhat-zksync-zksync2js
 Import the package in the `hardhat.config.ts` file:
 
 ```ts
-import "@matterlabs/hardhat-zksync-zksync2js";
+import "@matterlabs/hardhat-zksync-ethers";
 ```
 
 ## Tasks
@@ -40,12 +43,12 @@ This plugin creates no additional tasks.
 
 ## Environment extensions
 
-This plugins adds an zksync2-js object to the Hardhat Runtime Environment.
-This object has the same API as [zksync2-js](../../api/js/zksync2-js/getting-started.md), with some extra Hardhat-specific functionality.
+This plugins adds an zksync-ethers object to the Hardhat Runtime Environment.
+This object has the same API as [zksync-ethers](../../api/js/zksync2-js/getting-started.md), with some extra Hardhat-specific functionality.
 
 ## Helpers
 
-Helpers added to zksync2-js object:
+Helpers added to zksync-ethers object:
 
 ```ts
 interface FactoryDeps {
@@ -100,13 +103,13 @@ function deployContract: (artifact: ZkSyncArtifact, constructorArguments: any[],
 
 ## Usage
 
-Install it and access zksync2-js through the Hardhat Runtime Environment anywhere you need it (tasks, scripts, tests, etc). For example:
+Install it and access zksync-ethers through the Hardhat Runtime Environment anywhere you need it (tasks, scripts, tests, etc). For example:
 
 Task usage:
 
 ```ts
 task("getFeeData", "Returns a fee data.").setAction(async (hre) => {
-  return await hre.zksync2js.provider.getFeeData();
+  return await hre.zksyncEthers.provider.getFeeData();
 });
 ```
 
@@ -117,11 +120,11 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.info(chalk.yellow(`Running deploy`));
 
   //automatically connected to the selected network
-  const gasPrice = await hre.zksync2js.provider.send("eth_gasPrice", []);
+  const gasPrice = await hre.zksyncEthers.provider.send("eth_gasPrice", []);
   assert.strictEqual("0xee6b280", gasPrice);
 
   //getContractFactory with default wallet
-  const greeterFactory = await hre.zksync2js.getContractFactory("Greeter");
+  const greeterFactory = await hre.zksyncEthers.getContractFactory("Greeter");
   const greeter = (await greeterFactory.deploy("Hello, world!")) as zk.Contract;
 
   console.info(chalk.green(`Greeter deployed to: ${await greeter.getAddress()}`));
@@ -132,7 +135,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   await tx.wait();
   console.info(chalk.green(`Greeter greeting set to: ${await greeter.greet()}`));
 
-  const wallet = await hre.zksync2js.getWallet("0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110");
+  const wallet = await hre.zksyncEthers.getWallet("0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110");
   console.info(chalk.green(`Wallet address: ${await wallet.getAddress()}`));
 }
 ```

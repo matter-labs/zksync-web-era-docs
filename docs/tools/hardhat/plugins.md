@@ -20,7 +20,7 @@ List of official plugins:
 - [hardhat-zksync-verify](./hardhat-zksync-verify.md)
 - [hardhat-zksync-verify-vyper](./hardhat-zksync-verify-vyper.md)
 - [hardhat-zksync-upgradable](./hardhat-zksync-upgradable.md)
-- [/hardhat-zksync-zksync2js](./hardhat-zksync-zksync2js.md)
+- [hardhat-zksync-ethers](./hardhat-zksync-ethers.md)
 
 ::: tip Popular Hardhat plugins
 
@@ -37,7 +37,7 @@ Add the latest version of this plugin to your project with the following command
 @tab:active yarn
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-toolbox @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-vyper @matterlabs/hardhat-zksync-chai-matchers @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-verify hardhat ethers zksync-web3 @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomicfoundation/hardhat-verify
+yarn add -D @matterlabs/hardhat-zksync-toolbox @matterlabs/hardhat-zksync-solc @matterlabs/hardhat-zksync-vyper @matterlabs/hardhat-zksync-chai-matchers @matterlabs/hardhat-zksync-deploy @matterlabs/hardhat-zksync-verify hardhat ethers zksync-ethers @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomicfoundation/hardhat-verify
 ```
 
 @tab npm

@@ -22,7 +22,7 @@ When it comes to withdrawals there are several notes that needs to be taken into
 This is an example of how to withdraw ETH from zkSync Era network (L2) to Ethereum network (L1):
 
 ```ts
-import { Provider, types, utils, Wallet } from "zksync2-js";
+import { Provider, types, utils, Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
@@ -55,7 +55,7 @@ main()
 This is an example of how to withdraw tokens from zkSync Era network (L2) to Ethereum network (L1):
 
 ```ts
-import { Provider, types, Wallet } from "zksync2-js";
+import { Provider, types, Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
@@ -64,7 +64,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 async function main() {
-  const token = "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150";
+  const token = "0x6a4Fb925583F7D4dF82de62d98107468aE846FD1";
 
   console.log(`L2 balance before withdrawal: ${await wallet.getBalance()}`);
   console.log(`L1 balance before withdrawal: ${await wallet.getBalanceL1()}`);
@@ -88,7 +88,7 @@ main()
 ## Finalize withdrawal
 
 ```ts
-import { Provider, types, Wallet } from "zksync2-js";
+import { Provider, types, Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);

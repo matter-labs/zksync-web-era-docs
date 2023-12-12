@@ -21,7 +21,7 @@ compiler. `zksolc` compiler generates a `*.zbin` and a `combined.json` file that
 ## Deploy contract
 
 ```ts
-import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
+import { Provider, types, Wallet, ContractFactory } from "zksync-ethers";
 import { ethers, Contract, Typed } from "ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
@@ -57,7 +57,7 @@ main()
 ## Deploy contract with constructor
 
 ```ts
-import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
+import { Provider, types, Wallet, ContractFactory } from "zksync-ethers";
 import { Contract, ethers } from "ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
@@ -93,7 +93,7 @@ main()
 ## Deploy contract with dependencies
 
 ```ts
-import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
+import { Provider, types, Wallet, ContractFactory } from "zksync-ethers";
 import { Contract, ethers } from "ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);

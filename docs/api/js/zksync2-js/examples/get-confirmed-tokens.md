@@ -10,7 +10,7 @@ head:
 Following example shows how to get all confirmed tokens on zkSync Era.
 
 ```ts
-import { Provider, types } from "zksync2-js";
+import { Provider, types } from "zksync-ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 
