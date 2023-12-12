@@ -282,5 +282,5 @@ Non-enumerated enum list of transaction statuses.
 - Finalized = `finalized`
 
 :::tip More info
-Find the code definition of the types above on the [zkSync Era Github repo.](https://github.com/zksync-sdk/zksync2-js/blob/main/src/types.ts)
+Find the code definition of the types above on the [zkSync Era Github repo.](https://github.com/zksync-sdk/zksync-ethers/blob/main/src/types.ts)
 :::

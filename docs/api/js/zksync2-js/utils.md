@@ -7,7 +7,7 @@ head:
 
 # Utilities
 
-The [utilities library](https://github.com/zksync-sdk/zksync2-js/blob/main/src/utils.ts) contains essential utilities for building on zkSync Era.
+The [utilities library](https://github.com/zksync-sdk/zksync-ethers/blob/main/src/utils.ts) contains essential utilities for building on zkSync Era.
 
 :::info
 
@@ -21,7 +21,7 @@ The [utilities library](https://github.com/zksync-sdk/zksync2-js/blob/main/src/u
 Access the library by importing it into your scripts.
 
 ```typescript
-import { utils } from "zksync2-js";
+import { utils } from "zksync-ethers";
 ```
 
 ## Constants
