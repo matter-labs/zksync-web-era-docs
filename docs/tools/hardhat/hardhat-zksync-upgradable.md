@@ -355,7 +355,7 @@ async function main() {
   const boxContract = await deployer.loadArtifact(contractName);
   const beacon = await hre.zkUpgrades.deployBeacon(deployer.zkWallet, boxContract);
   await beacon.waitForDeployment();
-  console.log("Beacon deployed to:", await beacon.getAdress());
+  console.log("Beacon deployed to:", await beacon.getAddress());
 
   const box = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, await beacon.getAddress(), boxContract, [42]);
   await box.waitForDeployment();
