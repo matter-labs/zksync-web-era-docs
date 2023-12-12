@@ -31,8 +31,8 @@ import (
 func main() {
 	var (
 		PrivateKey        = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
-		EthereumProvider  = "https://rpc.ankr.com/eth_goerli"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
+		EthereumProvider  = "https://rpc.ankr.com/eth_sepolia"
 	)
 
 	// Connect to zkSync network
@@ -135,7 +135,7 @@ func main() {
 		PrivateKey        = os.Getenv("PRIVATE_KEY")
 		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
 		EthereumProvider  = "https://rpc.ankr.com/eth_goerli"
-		TokenL1Address    = common.HexToAddress("0xc8F8cE6491227a6a2Ab92e67a64011a4Eba1C6CF")
+		TokenL1Address    = common.HexToAddress("0x56E69Fa1BB0d1402c89E3A4E3417882DeA6B14Be")
 	)
 
 	// Connect to zkSync network
@@ -243,7 +243,6 @@ func main() {
 
 	fmt.Println("Token balance on L2 network: ", tokenL2Balance)
 }
-
 ```
 
 ## Claim failed deposit
@@ -266,8 +265,8 @@ import (
 func main() {
 	var (
 		PrivateKey        = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
-		EthereumProvider  = "https://rpc.ankr.com/eth_goerli"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
+		EthereumProvider  = "https://rpc.ankr.com/eth_sepolia"
 		DepositL2Tx       = common.HexToHash("<Failed Deposit L2 tx hash>")
 	)
 

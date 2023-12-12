@@ -236,7 +236,7 @@ export const enSidebar = sidebar({
             "/tools/hardhat/hardhat-zksync-verify",
             "/tools/hardhat/hardhat-zksync-verify-vyper",
             "/tools/hardhat/hardhat-zksync-node",
-            "/tools/hardhat/hardhat-zksync-zksync2js",
+            "/tools/hardhat/hardhat-zksync-ethers",
             "/tools/hardhat/other-plugins",
           ],
         },
