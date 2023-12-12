@@ -12,7 +12,7 @@ Deploy the token which will be used to pay transaction fee.
 ## Deploy token with CREATE opcode
 
 ```ts
-import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
+import { Provider, types, Wallet, ContractFactory } from "zksync-ethers";
 import { Contract, Typed } from "ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
@@ -44,7 +44,7 @@ main()
 ## Deploy token with CREATE2 opcode
 
 ```ts
-import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
+import { Provider, types, Wallet, ContractFactory } from "zksync-ethers";
 import { Contract, ethers, Typed } from "ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);

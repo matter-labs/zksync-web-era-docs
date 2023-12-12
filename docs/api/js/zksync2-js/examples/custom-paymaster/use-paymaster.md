@@ -15,7 +15,7 @@ The token address used in this example is already deployed at: `0x765F5AF819D818
 The paymaster address used in this example is already deployed at: `0x3cb2b87d10ac01736a65688f3e0fb1b070b3eea3`.
 
 ```ts
-import { Provider, types, utils, Wallet } from "zksync2-js";
+import { Provider, types, utils, Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);

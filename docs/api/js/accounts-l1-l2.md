@@ -42,7 +42,7 @@ async approveERC20(
 > Example
 
 ```typescript
-import { Wallet, Provider } from "zksync-web3";
+import { Wallet, Provider } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -92,7 +92,7 @@ async deposit(transaction: {
 > Example
 
 ```typescript
-import { Wallet, Provider, utils } from "zksync-web3";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -211,7 +211,7 @@ async requestExecute(transaction: {
 > Example
 
 ```typescript
-import { Wallet, Provider } from "zksync-web3";
+import { Wallet, Provider } from "zksync-ethers";
 import { BigNumber, ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
