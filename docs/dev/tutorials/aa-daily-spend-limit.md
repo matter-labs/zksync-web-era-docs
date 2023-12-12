@@ -765,7 +765,7 @@ contract AAFactory {
 yarn hardhat compile
 ```
 
-2. Create a file `deploy/deployFactoryAccount.ts` and copy/paste the code below, don't forget to add `DEPLOYER_PRIVATE_KEY` in your `.env` file.
+2. Create a file named `deploy/deployFactoryAccount.ts`. Then, copy and paste the following code into it. Remember to add your `DEPLOYER_PRIVATE_KEY` to the .env file.
 
 The script deploys the factory, creates a new smart contract account, and funds it with some ETH.
 
