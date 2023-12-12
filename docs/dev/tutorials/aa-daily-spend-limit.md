@@ -765,7 +765,7 @@ contract AAFactory {
 yarn hardhat compile
 ```
 
-2. Create a file `deploy/deployFactoryAccount.ts` and copy/paste the code below, replacing `<DEPLOYER_PRIVATE_KEY>` with your own.
+2. Create a file `deploy/deployFactoryAccount.ts` and copy/paste the code below, don't forget to add `DEPLOYER_PRIVATE_KEY` in your `.env` file.
 
 The script deploys the factory, creates a new smart contract account, and funds it with some ETH.
 
@@ -775,10 +775,16 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+const DEPLOYER_PRIVATE_KEY = process.env.DEPLOYER_PRIVATE_KEY || "";
+
 export default async function (hre: HardhatRuntimeEnvironment) {
   // @ts-ignore target zkSyncTestnet in config file which can be testnet or local
   const provider = new Provider(hre.config.networks.zkSyncTestnet.url);
-  const wallet = new Wallet("<DEPLOYER_PRIVATE_KEY>", provider);
+  const wallet = new Wallet(DEPLOYER_PRIVATE_KEY, provider);
   const deployer = new Deployer(hre, wallet);
   const factoryArtifact = await deployer.loadArtifact("AAFactory");
   const aaArtifact = await deployer.loadArtifact("Account");
