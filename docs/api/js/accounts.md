@@ -7,7 +7,7 @@ head:
 
 # Accounts: overview
 
-`zksync-web3` exports four classes that can sign transactions on zkSync:
+`zksync-ethers` exports four classes that can sign transactions on zkSync:
 
 - `Wallet` class is an extension of the `ethers.Wallet` with additional zkSync features.
 - `EIP712Signer` class that is used to sign `EIP712`_-typed_ zkSync transactions.

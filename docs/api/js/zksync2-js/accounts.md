@@ -7,7 +7,7 @@ head:
 
 # Accounts: overview
 
-`zksync2-js` exports following classes that can sign transactions on zkSync:
+`zksync-ethers` exports following classes that can sign transactions on zkSync:
 
 - `Wallet` class is an extension of the `ethers.Wallet` with additional zkSync features.
 - `EIP712Signer` class that is used to sign `EIP712`_-typed_ zkSync transactions.
@@ -32,7 +32,7 @@ constructor(privateKey: string | ethers.SigningKey, providerL2?: Provider, provi
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -60,7 +60,7 @@ static fromMnemonic(mnemonic: string, provider?: ethers.Provider): Wallet
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const MNEMONIC = "stuff slice staff easily soup parent arm payment cotton hammer scatter struggle";
@@ -88,7 +88,7 @@ static override async fromEncryptedJson(json: string, password: string | Uint8Ar
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import * as fs from "fs";
 
 const wallet = await Wallet.fromEncryptedJson(fs.readFileSync("wallet.json", "utf8"), "password");
@@ -112,7 +112,7 @@ static override fromEncryptedJsonSync(json: string, password: string | Uint8Arra
 #### Example
 
 ```ts
-import { Wallet } from "zksync2-js";
+import { Wallet } from "zksync-ethers";
 import * as fs from "fs";
 
 const wallet = Wallet.fromEncryptedJsonSync(fs.readFileSync("tests/files/wallet.json", "utf8"), "password");
@@ -135,7 +135,7 @@ Wallet.connect(provider:Provider): Wallet
 #### Example
 
 ```ts
-import { Wallet, Provider, types } from "zksync2-js";
+import { Wallet, Provider, types } from "zksync-ethers";
 
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
 
@@ -166,7 +166,7 @@ Wallet.connectToL1(provider: ethers.Provider): Wallet
 #### Example
 
 ```ts
-import { Wallet } from "zksync2-js";
+import { Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
@@ -192,7 +192,7 @@ async getMainContract(): Promise<IZkSync>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -221,7 +221,7 @@ there is no separate Ether bridge contract, [Main contract](./accounts.md#getmai
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -244,7 +244,7 @@ async getL2BridgeContracts(): Promise<{ erc20: IL2Bridge }>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -267,7 +267,7 @@ async getAddress(): Promise<Address>;
 ### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -297,7 +297,7 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<big
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -329,7 +329,7 @@ async getBalanceL1(token?: Address, blockTag?: BlockTag): Promise<bigint>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -354,7 +354,7 @@ async getAllBalances(): Promise<BalancesMap>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -383,7 +383,7 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -406,7 +406,7 @@ async getDeploymentNonce(): Promise<bigint>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -429,7 +429,7 @@ ethWallet(): ethers.Wallet
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -462,7 +462,7 @@ async l2TokenAddress(token: Address): Promise<string>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -493,7 +493,7 @@ override async populateTransaction(transaction: TransactionRequest): Promise<Tra
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -535,7 +535,7 @@ async transfer(tx: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -579,7 +579,7 @@ async getAllowanceL1(
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -615,7 +615,7 @@ async approveERC20(
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -656,7 +656,7 @@ async getBaseCost(params: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -713,7 +713,7 @@ async deposit(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -780,7 +780,7 @@ async getDepositTx(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -833,7 +833,7 @@ async estimateGasDeposit(transaction:
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -879,7 +879,7 @@ async getFullRequiredDepositFee(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -915,7 +915,7 @@ async claimFailedDeposit(depositHash: BytesLike): Promise<ethers.ContractTransac
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -956,7 +956,7 @@ async withdraw(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -991,7 +991,7 @@ async finalizeWithdrawal(withdrawalHash: BytesLike, index: number = 0, overrides
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -1039,7 +1039,7 @@ async requestExecute(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -1123,7 +1123,7 @@ async getRequestExecuteTx(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -1205,7 +1205,7 @@ async estimateGasRequestExecute(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -1304,7 +1304,7 @@ This class is to be used in a browser environment. The easiest way to construct 
 extends `ethers.JsonRpcSigner` and so supports all the methods available for it.
 
 ```ts
-import { BrowserProvider } from "zksync2-js";
+import { BrowserProvider } from "zksync-ethers";
 
 const provider = new BrowserProvider(window.ethereum);
 const signer = provider.getSigner();
@@ -1328,7 +1328,7 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<big
 #### Example
 
 ```ts
-import { BrowserProvider } from "zksync2-js";
+import { BrowserProvider } from "zksync-ethers";
 
 const provider = new BrowserProvider(window.ethereum);
 const signer = provider.getSigner();
@@ -1358,7 +1358,7 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 #### Example
 
 ```ts
-import { BrowserProvider } from "zksync2-js";
+import { BrowserProvider } from "zksync-ethers";
 
 const provider = new BrowserProvider(window.ethereum);
 const signer = provider.getSigner();
@@ -1394,7 +1394,7 @@ async transfer(tx: {
 #### Example
 
 ```ts
-import { BrowserProvider } from "zksync2-js";
+import { BrowserProvider } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new BrowserProvider(window.ethereum);
@@ -1416,7 +1416,7 @@ available for it.
 The easiest way to construct it is from an `BrowserProvider` object.
 
 ```ts
-import { Provider, L1Signer, types } from "zksync2-js";
+import { Provider, L1Signer, types } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new ethers.BrowserProvider(window.ethereum);
@@ -1435,7 +1435,7 @@ async getMainContract(): Promise<Contract>
 #### Example
 
 ```ts
-import { Provider, L1Signer, types } from "zksync2-js";
+import { Provider, L1Signer, types } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new ethers.BrowserProvider(window.ethereum);
@@ -1463,7 +1463,7 @@ there is no separate Ether bridge contract, [Main contract](./accounts.md#getmai
 ### Example
 
 ```ts
-import { Provider, L1Signer, types } from "zksync2-js";
+import { Provider, L1Signer, types } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new ethers.BrowserProvider(window.ethereum);
@@ -1491,7 +1491,7 @@ async getBalanceL1(token?: Address, blockTag?: BlockTag): Promise<bigint>
 #### Example
 
 ```ts
-import { Provider, L1Signer, types } from "zksync2-js";
+import { Provider, L1Signer, types } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new ethers.BrowserProvider(window.ethereum);

@@ -17,21 +17,23 @@ head:
 
 While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features, like account abstraction, requires providing additional fields to those that Ethereum transactions have by default.
 
-To provide easy access to all of the features of zkSync Era, the `zksync-web3` JavaScript SDK was created, which is made in a way that has an interface very similar to those of [ethers](https://docs.ethers.io/v5/). In fact, `ethers` is a peer dependency of our library and most of the objects exported by `zksync-web3` (e.g. `Wallet`, `Provider` etc.) inherit from the corresponding `ethers` objects and override only the fields that need to be changed.
+To provide easy access to all the features of zkSync Era, the `zksync-ethers` JavaScript SDK was created, which is made in a way that has an interface very similar to those of
+[ethers](https://docs.ethers.io/v5/). In fact, `ethers` is a peer dependency of our library and most of the objects exported by `zksync-ethers` (e.g. `Wallet`, `Provider` etc.)
+inherit from the corresponding `ethers` objects and override only the fields that need to be changed.
 
-The library is made in such a way that after replacing `ethers` with `zksync-web3` most client apps will work out of box.
+The library is made in such a way that after replacing `ethers` with `zksync-ethers` most client apps will work out of box.
 
 ## Adding dependencies
 
 ```bash
-yarn add zksync-web3
-yarn add ethers@5 # ethers is a peer dependency of zksync-web3
+yarn add zksync-ethers@5
+yarn add ethers@5 # ethers is a peer dependency of zksync-ethers
 ```
 
-Then you can import all the content of the `ethers` library and the `zksync-web3` library with the following statement:
+Then you can import all the content of the `ethers` library and the `zksync-ethers` library with the following statement:
 
 ```typescript
-import * as zksync from "zksync-web3";
+import * as zksync from "zksync-ethers";
 import * as ethers from "ethers";
 ```
 
@@ -41,7 +43,7 @@ To interact with the zkSync network users need to know the endpoint of the opera
 
 ```typescript
 // Currently, only one environment is supported.
-import { Wallet, Provider } from "zksync-web3";
+import { Wallet, Provider } from "zksync-ethers";
 
 const provider = new Provider("https://sepolia.era.zksync.dev");
 // Private key of the account to connect

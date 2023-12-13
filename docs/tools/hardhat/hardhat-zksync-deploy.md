@@ -29,7 +29,7 @@ Add the latest version of this plugin to your project with the following command
 @tab:active yarn
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-deploy
+yarn add -D @matterlabs/hardhat-zksync-deploy ethers zksync-ethers
 ```
 
 @tab npm
@@ -44,7 +44,7 @@ npm i -D @matterlabs/hardhat-zksync-deploy
 
 #### `Deployer`
 
-The main export of this plugin is the `Deployer` class. It is used to wrap a `zksync-web3` Wallet instance and provides a convenient interface to deploy smart contracts and account abstractions. It's main methods are:
+The main export of this plugin is the `Deployer` class. It is used to wrap a `zksync-ethers` Wallet instance and provides a convenient interface to deploy smart contracts and account abstractions. It's main methods are:
 
 ```typescript
 class Deployer {
