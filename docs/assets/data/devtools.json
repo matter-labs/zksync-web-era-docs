@@ -235,7 +235,7 @@
           "category": "APIs",
           "logo": "chainlink-logo.png",
           "url": "https://chain.link/",
-          "soon": true
+          "soon": false
         },
         {
           "name": "Covalent",
