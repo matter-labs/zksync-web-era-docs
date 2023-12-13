@@ -765,7 +765,7 @@ contract AAFactory {
 yarn hardhat compile
 ```
 
-2. Create a file `deploy/deployFactoryAccount.ts` and copy/paste the code below, replacing `<DEPLOYER_PRIVATE_KEY>` with your own.
+2. Create a file named `deploy/deployFactoryAccount.ts`. Then, copy and paste the following code into it. Remember to add your `DEPLOYER_PRIVATE_KEY` to the .env file.
 
 The script deploys the factory, creates a new smart contract account, and funds it with some ETH.
 
@@ -775,10 +775,16 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+const DEPLOYER_PRIVATE_KEY = process.env.DEPLOYER_PRIVATE_KEY || "";
+
 export default async function (hre: HardhatRuntimeEnvironment) {
   // @ts-ignore target zkSyncTestnet in config file which can be testnet or local
   const provider = new Provider(hre.config.networks.zkSyncTestnet.url);
-  const wallet = new Wallet("<DEPLOYER_PRIVATE_KEY>", provider);
+  const wallet = new Wallet(DEPLOYER_PRIVATE_KEY, provider);
   const deployer = new Deployer(hre, wallet);
   const factoryArtifact = await deployer.loadArtifact("AAFactory");
   const aaArtifact = await deployer.loadArtifact("Account");
@@ -848,7 +854,7 @@ Open up the [zkSync Era block explorer](https://sepolia.explorer.zksync.io) and 
 
 1. Create the file `setLimit.ts` in the `deploy` folder and copy/paste the example code below.
 
-2. Replace `<DEPLOYED_ACCOUNT_ADDRESS>` and `<DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY>` with the output from the previous section.
+2. Replace `<DEPLOYED_ACCOUNT_ADDRESS>` and `<DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY>` with the output from the previous section in your `.env` file.
 
 To enable the daily spending limit, we execute the `setSpendingLimit` function with two parameters: token address and limit amount. The token address is `ETH_ADDRESS` and the limit parameter is `0.0005` in the example below (and can be any amount).
 
@@ -857,14 +863,20 @@ import { utils, Wallet, Provider, Contract, EIP712Signer, types } from "zksync-w
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
-const ETH_ADDRESS = "0x000000000000000000000000000000000000800A";
-const ACCOUNT_ADDRESS = "<DEPLOYED_ACCOUNT_ADDRESS>";
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+// load the values into .env file after deploying the FactoryAccount
+const DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY = process.env.DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY || "";
+const ETH_ADDRESS = process.env.ETH_ADDRESS || "";
+const ACCOUNT_ADDRESS = process.env.DEPLOYED_ACCOUNT_ADDRESS || "";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   // @ts-ignore target zkSyncTestnet in config file which can be testnet or local
   const provider = new Provider(hre.config.networks.zkSyncTestnet.url);
 
-  const owner = new Wallet("<DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY>", provider);
+  const owner = new Wallet(DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY, provider);
 
   const accountArtifact = await hre.artifacts.readArtifact("Account");
   const account = new Contract(ACCOUNT_ADDRESS, accountArtifact.abi, owner);
@@ -928,30 +940,35 @@ Time to reset limit:  1683027630
 
 Let's test the `SpendLimit` contract works to make it refuses ETH transfers that exceed the daily limit.
 
-1. Create `transferETH.ts` and copy/paste the example code below, replacing the placeholder constants as before and adding an account address for `<RECEIVER_ACCOUNT>`.
+1. Create `transferETH.ts` and copy/paste the example code below, replacing the placeholder constants as before and adding an account address for `RECEIVER_ACCOUNT`.
 
 ```typescript
 import { utils, Wallet, Provider, Contract, EIP712Signer, types } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
-const ETH_ADDRESS = "0x000000000000000000000000000000000000800A";
-const ACCOUNT_ADDRESS = "<DEPLOYED_ACCOUNT_ADDRESS>";
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+// load the values into .env file after deploying the FactoryAccount
+const DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY = process.env.DEPLOYED_ACCOUNT_OWNER_PRIV;
+const ETH_ADDRESS = process.env.ETH_ADDRESS || "";
+const ACCOUNT_ADDRESS = process.env.DEPLOYED_ACCOUNT_ADDRESS || "";
+const RECEIVER_ACCOUNT = process.env.RECEIVER_ACCOUNT || "";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   // @ts-ignore target zkSyncTestnet in config file which can be testnet or local
   const provider = new Provider(hre.config.networks.zkSyncTestnet.url);
 
-  const owner = new Wallet("<DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY>", provider);
+  const owner = new Wallet(DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY, provider);
 
-  // account that will receive the ETH transfer
-  const receiver = "<RECEIVER_ACCOUNT>";
   // ⚠️ update this amount to test if the limit works; 0.00051 fails but 0.00049 succeeds
   const transferAmount = "0.00051";
 
   let ethTransferTx = {
     from: ACCOUNT_ADDRESS,
-    to: receiver,
+    to: RECEIVER_ACCOUNT, // account that will receive the ETH transfer
     chainId: (await provider.getNetwork()).chainId,
     nonce: await provider.getTransactionCount(ACCOUNT_ADDRESS),
     type: 113,
