@@ -2,20 +2,39 @@ import { sidebar } from "vuepress-theme-hope";
 
 export const enSidebar = sidebar({
   //The sidebar for developer guides
-  "/dev": [
+  "/build": [
+    // {
+    //   text: "Introduction",
+    //   link: "/build/",
+    // },
+    // {
+    //   text: "Getting started",
+    //   link: "/dev/building-on-zksync/hello-world.md",
+    //   children: [
+    //     "/dev/building-on-zksync/hello-world.md",
+    //     "/dev/building-on-zksync/interacting.md",
+    //     "/dev/building-on-zksync/best-practices.md",
+    //     "/dev/building-on-zksync/useful-address.md",
+    //   ],
+    // },
     {
-      text: "Introduction",
-      link: "/dev/",
-    },
-    {
-      text: "Getting started",
-      link: "/dev/building-on-zksync/hello-world.md",
+      text: "Quick Start",
+      link: "/build/quick-start/README.md",
       children: [
-        "/dev/building-on-zksync/hello-world.md",
-        "/dev/building-on-zksync/interacting.md",
-        "/dev/building-on-zksync/best-practices.md",
-        "/dev/building-on-zksync/useful-address.md",
-      ],
+        { text: "Bridge funds", link: "/build/quick-start/README.md", 
+          children: [
+            "/build/quick-start/testnet-faucets.md",
+            "/build/quick-start/portals.md"
+        ] },
+        { text: "Deploy contract", link: "/build/quick-start/README.md#deploy-contract", 
+          children: [
+            "/build/quick-start/hardhat-foundry.md",
+            "/build/quick-start/zksync-cli.md"
+          ] },
+        { text: "Differences between Era and Ethereum", link: "/build/quick-start/differences-era-ethereum.md",
+          children: [
+          ],
+    }]
     },
     {
       text: "How to",
