@@ -6,5 +6,3 @@ head:
 ---
 
 # Bridge Funds
-
-...

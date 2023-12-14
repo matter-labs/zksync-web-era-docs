@@ -2,10 +2,10 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Welcome | zkSync Era Docs
+      content: Build | zkSync Era Docs
 ---
 
-# Welcome
+# Build
 
 This section of our documentation is dedicated to getting you started, telling you how to do common tasks, and providing tutorials.
 

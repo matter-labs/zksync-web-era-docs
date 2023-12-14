@@ -21,20 +21,46 @@ export const enSidebar = sidebar({
       text: "Quick Start",
       link: "/build/quick-start/README.md",
       children: [
-        { text: "Bridge funds", link: "/build/quick-start/README.md", 
+        { text: "Bridge funds", link: "/build/quick-start/bridge-funds.md", 
           children: [
+            "/build/quick-start/add-zksync-to-metamask.md",
             "/build/quick-start/testnet-faucets.md",
             "/build/quick-start/portals.md"
-        ] },
-        { text: "Deploy contract", link: "/build/quick-start/README.md#deploy-contract", 
+          ] 
+        },
+        { text: "Deploy contract", link: "/build/quick-start/deploy-contract.md", 
           children: [
-            "/build/quick-start/hardhat-foundry.md",
-            "/build/quick-start/zksync-cli.md"
+            "/build/quick-start/zksync-cli.md",
+            // "/build/quick-start/hardhat-foundry.md", 
+            {
+              text: "Hardhat Plugins",
+              collapsible: true,
+              children: [
+                "/build/quick-start/hardhat-plugins/hardhat-zksync-solc.md",
+                "/build/quick-start/hardhat-plugins/hardhat-zksync-vyper.md",
+                "/build/quick-start/hardhat-plugins/hardhat-zksync-deploy.md",
+                "/build/quick-start/hardhat-plugins/hardhat-zksync-upgradable.md",
+                "/build/quick-start/hardhat-plugins/hardhat-zksync-chai-matchers.md",
+                "/build/quick-start/hardhat-plugins/hardhat-zksync-verify.md",
+                "/build/quick-start/hardhat-plugins/hardhat-zksync-verify-vyper.md"
+              ]
+            },
+            {
+              text: "Foundry",
+              collapsible: true,
+              children: [
+                "/build/quick-start/foundry/get-started.md",
+              ]
+            },
+            {
+              text: "Remix",
+              link: "/build/quick-start/remix.md",
+            }
           ] },
         { text: "Differences between Era and Ethereum", link: "/build/quick-start/differences-era-ethereum.md",
-          children: [
-          ],
-    }]
+          children: []
+        },
+      ]
     },
     {
       text: "How to",

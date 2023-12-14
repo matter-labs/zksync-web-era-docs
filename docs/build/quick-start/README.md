@@ -5,9 +5,9 @@ head:
       content: Quick Start | zkSync Era Docs
 ---
 
-# Quick Start README needs to be provided
+# Quick Start
 
-# Tutorials by the zkSync Team (Old Content)
+## Tutorials by the zkSync Team (Old Content)
 
 Here is the list of tutorials created and maintained by the zkSync DevRel team to help you build on zkSync Era:
 

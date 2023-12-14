@@ -11,16 +11,4 @@ Bridges are pivotal in enhancing interoperability between different networks or 
 
 ## zkSync Portal Bridge
 
-The Portal Bridge on zkSync provides a gateway for assets between Ethereum and the zkSync network, ensuring secure and efficient transfers.
-
-## Omnibtc Finance
-
-Omnibtc Finance operates as a decentralized platform offering cross-chain swap, lending, and borrowing services. Its primary objective is to integrate and harmonize on-chain liquidity across various networks.
-
-## Orbiter Finance
-
-Orbiter Finance is a cross-chain rollup protocol designed to enable safe, economical, and swift transfer of messages or assets across different networks.
-
-## Owlto Finance
-
-Owlto Finance is focused on creating a decentralized cross-rollup bridge, emphasizing layer 2 solutions to promote scalability and interoperability.
+The Portal Bridge on zkSync provides a gateway for assets between Ethereum and the zkSync network, ensuring secure and efficient transfers. Find more details on the [zkSync Bridges & Wallets page](https://zksync.io/explore#bridges).
