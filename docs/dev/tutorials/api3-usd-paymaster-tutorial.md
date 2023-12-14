@@ -7,7 +7,7 @@ head:
 
 # USDC paymaster tutorial with API3 dAPIs
 
-:::Warning
+::: warning
 This tutorial is currently operational exclusively on the Goerli testnet. Stay tuned for upcoming support for the Sepolia network.
 :::
 
@@ -45,12 +45,12 @@ API3 data feeds are known as [dAPIs➚](https://docs.api3.org/guides/dapis/subsc
 
 Within a paymaster, price oracles provide price data on-chain for execution.
 
-For this paymaster tutorial, we use dAPIs to get the price of [ETH/USD](https://market.api3.org/dapis/zksync-goerli-testnet/ETH-USD) and [USDC/USD](https://market.api3.org/dapis/zksync-goerli-testnet/USDC-USD) datafeeds, and then calculate gas in USDC value so that users can pay for their transactions with USDC.
+For this paymaster tutorial, we use dAPIs to get the price of ETH/USD and USDC/USD datafeeds, and then calculate gas in USDC value so that users can pay for their transactions with USDC.
 
 ::: info
 
 - If you want to use an ERC20 token other than USDC, change the dAPIs used in the paymaster.
-- For example, if you want to use DAI, use the [DAI/USD](https://market.api3.org/dapis/zksync-goerli-testnet/DAI-USD) dAPI instead of USDC/USD.
+- For example, if you want to use DAI, use the DAI/USD dAPI instead of USDC/USD.
   :::
 
 ## Complete project
@@ -80,7 +80,7 @@ cd paymaster-dapi
 4. Add the project dependencies:
 
 ```sh
-yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable @api3/contracts
+yarn add -D @api3/contracts
 ```
 
 ## Design
@@ -576,7 +576,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
 
 ```text
-WALLET_PRIVATE_KEY=abcdef12345....
+PRIVATE_KEY=abcdef12345....
 ```
 
 ### 3. Compile and deploy
@@ -585,7 +585,7 @@ From the project root, run the following:
 
 ```sh
 yarn hardhat compile
-yarn hardhat deploy-zksync --script deploy-paymaster.ts
+yarn hardhat deploy-zksync --script deploy-paymaster.ts --network zkSyncTestnetGoerli
 ```
 
 The output should be like this (your values will be different):
@@ -750,7 +750,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ### 2. Run the script
 
 ```sh
-yarn hardhat deploy-zksync --script use-paymaster.ts
+yarn hardhat deploy-zksync --script use-paymaster.ts --network zkSyncTestnetGoerli
 ```
 
 The output should look something like this:

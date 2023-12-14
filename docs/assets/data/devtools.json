@@ -261,12 +261,6 @@
       "category": "Oracles",
       "tools": [
         {
-          "name": "API3",
-          "category": "Oracle",
-          "logo": "api3-logo.webp",
-          "url": "https://api3.org/"
-        },
-        {
           "name": "DIA",
           "category": "Oracle",
           "logo": "dia-logo.png",
