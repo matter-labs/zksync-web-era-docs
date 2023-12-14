@@ -7,7 +7,7 @@ head:
 
 # USDC paymaster tutorial with API3 dAPIs
 
-:::Warning
+::: warning
 This tutorial is currently operational exclusively on the Goerli testnet. Stay tuned for upcoming support for the Sepolia network.
 :::
 
@@ -576,7 +576,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
 
 ```text
-WALLET_PRIVATE_KEY=abcdef12345....
+PRIVATE_KEY=abcdef12345....
 ```
 
 ### 3. Compile and deploy
@@ -585,7 +585,7 @@ From the project root, run the following:
 
 ```sh
 yarn hardhat compile
-yarn hardhat deploy-zksync --script deploy-paymaster.ts
+yarn hardhat deploy-zksync --script deploy-paymaster.ts --network zkSyncTestnetGoerli
 ```
 
 The output should be like this (your values will be different):
@@ -750,7 +750,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ### 2. Run the script
 
 ```sh
-yarn hardhat deploy-zksync --script use-paymaster.ts
+yarn hardhat deploy-zksync --script use-paymaster.ts --network zkSyncTestnetGoerli
 ```
 
 The output should look something like this:
