@@ -171,8 +171,8 @@ export const enSidebar = sidebar({
             },
             {
               text: "Python",
-              link: "/build/development/sdks/python/README.md",
               collapsible: true,
+              link: "/build/development/sdks/python/README.md",
               children: [
                 {
                   text: "Accounts: L1->L2 transactions",
@@ -215,7 +215,33 @@ export const enSidebar = sidebar({
             },
             {
               text: "Rust",
-              link: "",
+              collapsible: true,
+              link: "/build/development/sdks/rust/README.md",
+              children: [
+                {
+                  text: "Getting Started",
+                  link: "/build/development/sdks/rust/getting-started.md",
+                },
+                {
+                  text: "Rust SDK Contract Deployment and Interaction",
+                  link: "/build/development/sdks/rust/contract-deployment-and-interaction.md",
+                }
+              ]
+            },
+            {
+              text: "Go",
+              collapsible: true,
+              link: "/build/development/sdks/go/README.md",
+              children: [
+                {
+                  text: "Examples",
+                  link: "/build/development/sdks/rust/getting-started.md",
+                },
+                {
+                  text: "Types",
+                  link: "/build/development/sdks/rust/contract-deployment-and-interaction.md",
+                }
+              ]
             },
             {
               text: "Go",
