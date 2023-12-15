@@ -5,9 +5,7 @@ head:
       content: IDEs | zkSync Era Docs
 ---
 
-Experience seamless development with no overhead.
-
-# IDE
+# IDEs
 
 ### Overview
 

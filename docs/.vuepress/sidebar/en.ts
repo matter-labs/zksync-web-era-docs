@@ -33,26 +33,6 @@ export const enSidebar = sidebar({
             "/build/quick-start/zksync-cli.md",
             "/build/quick-start/hardhat-foundry.md", 
             {
-              text: "Hardhat Plugins",
-              collapsible: true,
-              children: [
-                "/build/quick-start/hardhat-plugins/hardhat-zksync-solc.md",
-                "/build/quick-start/hardhat-plugins/hardhat-zksync-vyper.md",
-                "/build/quick-start/hardhat-plugins/hardhat-zksync-deploy.md",
-                "/build/quick-start/hardhat-plugins/hardhat-zksync-upgradable.md",
-                "/build/quick-start/hardhat-plugins/hardhat-zksync-chai-matchers.md",
-                "/build/quick-start/hardhat-plugins/hardhat-zksync-verify.md",
-                "/build/quick-start/hardhat-plugins/hardhat-zksync-verify-vyper.md"
-              ]
-            },
-            {
-              text: "Foundry",
-              collapsible: true,
-              children: [
-                "/build/quick-start/foundry/get-started.md",
-              ]
-            },
-            {
               text: "Remix",
               link: "/build/quick-start/remix.md",
             }
@@ -69,13 +49,14 @@ export const enSidebar = sidebar({
         "/build/development/zksync-cli.md",
         {
           text: "Foundry",
-          collapsible: true,
+          link: "/build/development/foundry/README.md",
           children: [
             "/build/development/foundry/get-started.md",
           ]
         },
         {
           text: "Hardhat Plugins",
+          link: "/build/development/hardhat-plugins/README.md",
           collapsible: true,
           children: [
             "/build/development/hardhat-plugins/hardhat-zksync-solc.md",
@@ -89,28 +70,39 @@ export const enSidebar = sidebar({
         },
         "/build/development/IDEs.md",
         {
-          text: "Frameworks",
+          text: "Frontend",
           collapsible: true,
+          link: "/build/development/frontend/README.md",
           children: [
-            "/build/development/frameworks/wagmi.md",
+            {
+              text: "Frameworks",
+              link: "/build/development/frontend/frameworks/README.md",
+          
+              children: [
+                "/build/development/frontend/frameworks/wagmi.md",
+              ]
+            },
+            {
+              text: "Libraries",
+              link: "/build/development/frontend/libraries/README.md",
+              children: [
+                "/build/development/frontend/libraries/viem.md",
+              ]
+            },
+            {
+              text: "Wallets",
+              link: "/build/development/frontend/wallets/README.md",
+            
+              children: [
+                "/build/development/frontend/wallets/wallet-connect.md",
+              ]
+            },
           ]
         },
         {
-          text: "Libraries",
-          link: "/build/development/libraries/README.md",
-          collapsible: true,
-          children: [
-            "/build/development/libraries/viem.md",
-          ]
-        },
-        {
-          text: "Wallets",
-          link: "/build/development/wallets/README.md",
-          collapsible: true,
-          children: [
-            "/build/development/wallets/wallet-connect.md",
-          ]
-        },
+          text: "Contribution Track",
+          link: "/build/development/contribution-track.md",
+        }
       ],
     },
     {
