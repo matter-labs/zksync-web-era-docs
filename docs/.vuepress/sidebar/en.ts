@@ -31,7 +31,7 @@ export const enSidebar = sidebar({
         { text: "Deploy contract", link: "/build/quick-start/deploy-contract.md", 
           children: [
             "/build/quick-start/zksync-cli.md",
-            // "/build/quick-start/hardhat-foundry.md", 
+            "/build/quick-start/hardhat-foundry.md", 
             {
               text: "Hardhat Plugins",
               collapsible: true,
@@ -61,6 +61,57 @@ export const enSidebar = sidebar({
           children: []
         },
       ]
+    },
+    {
+      text: "Development",
+      link: "/build/development/README.md",
+      children: [
+        "/build/development/zksync-cli.md",
+        {
+          text: "Foundry",
+          collapsible: true,
+          children: [
+            "/build/development/foundry/get-started.md",
+          ]
+        },
+        {
+          text: "Hardhat Plugins",
+          collapsible: true,
+          children: [
+            "/build/development/hardhat-plugins/hardhat-zksync-solc.md",
+            "/build/development/hardhat-plugins/hardhat-zksync-vyper.md",
+            "/build/development/hardhat-plugins/hardhat-zksync-deploy.md",
+            "/build/development/hardhat-plugins/hardhat-zksync-upgradable.md",
+            "/build/development/hardhat-plugins/hardhat-zksync-chai-matchers.md",
+            "/build/development/hardhat-plugins/hardhat-zksync-verify.md",
+            "/build/development/hardhat-plugins/hardhat-zksync-verify-vyper.md"
+          ]
+        },
+        "/build/development/IDEs.md",
+        {
+          text: "Frameworks",
+          collapsible: true,
+          children: [
+            "/build/development/frameworks/wagmi.md",
+          ]
+        },
+        {
+          text: "Libraries",
+          link: "/build/development/libraries/README.md",
+          collapsible: true,
+          children: [
+            "/build/development/libraries/viem.md",
+          ]
+        },
+        {
+          text: "Wallets",
+          link: "/build/development/wallets/README.md",
+          collapsible: true,
+          children: [
+            "/build/development/wallets/wallet-connect.md",
+          ]
+        },
+      ],
     },
     {
       text: "How to",
