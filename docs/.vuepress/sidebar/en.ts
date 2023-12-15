@@ -225,7 +225,7 @@ export const enSidebar = sidebar({
                 {
                   text: "Rust SDK Contract Deployment and Interaction",
                   link: "/build/development/sdks/rust/contract-deployment-and-interaction.md",
-                }
+                },
               ]
             },
             {
@@ -235,17 +235,51 @@ export const enSidebar = sidebar({
               children: [
                 {
                   text: "Examples",
-                  link: "/build/development/sdks/rust/getting-started.md",
+                  children: [
+                    {
+                      text: "Custom Paymaster",
+                      children: [
+                        {
+                          text: "Deploy Account",
+                          link: "/build/development/sdks/go/examples/custom-paymaster/deploy-account.md"
+                        },
+                        {
+                          text: "Deploy Token",
+                          link: "/build/development/sdks/go/examples/custom-paymaster/deploy-token.md"
+                        },
+                        {
+                          text: "Use Paymaster",
+                          link: "/build/development/sdks/go/examples/custom-paymaster/use-paymaster.md"
+                        },
+                      ]
+                    },
+                    {
+                      text: "Go SDK Create Example",
+                      link: "/build/development/sdks/go/examples/create.md"
+                    },
+                    {
+                      text: "Deploy contract with CREATE2 opcode",
+                      link: "/build/development/sdks/go/examples/create2.md"
+                    },
+                    {
+                      text: "Deposit",
+                      link: "/build/development/sdks/go/examples/deposit.md"
+                    },
+                    {
+                      text: "Get all confirmed tokens on zkSync Era",
+                      link: "/build/development/sdks/go/examples/get-confirmed-tokens.md"
+                    },
+                    {
+                      text: "Transfer",
+                      link: "/build/development/sdks/go/examples/transfer.md"
+                    },
+                    {
+                      text: "Withdraw",
+                      link: "/build/development/sdks/go/examples/withdraw.md"
+                    },
+                  ]
                 },
-                {
-                  text: "Types",
-                  link: "/build/development/sdks/rust/contract-deployment-and-interaction.md",
-                }
               ]
-            },
-            {
-              text: "Go",
-              link: "",
             },
             {
               text: "Java",
