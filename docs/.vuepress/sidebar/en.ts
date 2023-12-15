@@ -307,6 +307,67 @@ export const enSidebar = sidebar({
           ]
         },
         {
+          text: "Web3 JSON-RPC",
+          link: ""
+        },
+        {
+          text: "Node Providers",
+          link: ""
+        },
+        {
+          text: "Testing",
+          link: "/build/development/test-and-debug/README.md",
+          collapsible: true,
+          children: [
+            {
+              text: "In-Memory Node",
+              link: "/build/development/test-and-debug/era-test-node/README.md",
+              collapsible: true,
+              children: [
+                {
+                  text: "Getting Started",
+                  link: "/build/development/test-and-debug/era-test-node/getting-started.md"
+                },
+                {
+                  text: "CLI",
+                  link: "/build/development/test-and-debug/era-test-node/cli.md"
+                },
+                {
+                  text: "Usage Examples",
+                  link: "/build/development/test-and-debug/era-test-node/usage-examples/README.md",
+                  collapsible: true,
+                  children: [
+                    {
+                      text: "Forking",
+                      link: "/build/development/test-and-debug/era-test-node/usage-examples/forking.md"
+                    },
+                    {
+                      text: "Logging and Configuration",
+                      link: "/build/development/test-and-debug/era-test-node/usage-examples/logging-and-configuration.md"
+                    },
+                    {
+                      text: "Testing bootloader and system contracts",
+                      link: "/build/development/test-and-debug/era-test-node/usage-examples/testing-bootloader-and-system-contracts.md"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              text: "Foundry",
+              link: ""
+            },
+            {
+              text: "Hardhat",
+              link: ""
+            },
+            {
+              text: "ontinuous Integration (CI)",
+              link: ""
+            },
+          ]
+        },
+        {
           text: "Contribution Track",
           link: "/build/development/contribution-track.md",
         },
