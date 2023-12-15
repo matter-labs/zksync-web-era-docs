@@ -346,7 +346,7 @@ export const enSidebar = sidebar({
                       link: "/build/development/test-and-debug/era-test-node/usage-examples/logging-and-configuration.md"
                     },
                     {
-                      text: "Testing bootloader and system contracts",
+                      text: " Testing bootloader and system contracts",
                       link: "/build/development/test-and-debug/era-test-node/usage-examples/testing-bootloader-and-system-contracts.md"
                     }
                   ]
@@ -367,11 +367,68 @@ export const enSidebar = sidebar({
             },
           ]
         },
-        {
-          text: "Contribution Track",
-          link: "/build/development/contribution-track.md",
-        },
       ],
+    },
+    {
+      text: "Guides",
+      link: "/build/guides/README.md",
+      collapsible: true,
+      children: [
+        {
+          text: "Get Started",
+          link: "/build/guides/get-started.md"
+        }
+      ]
+    },
+    {
+      text: "Tutorials",
+      link: "/build/tutorials/README.md",
+      collapsible: true,
+      children: [
+        {
+          text: "Daily spending limit account",
+          link: "/build/tutorials/aa-daily-spend-limit.md",
+        },
+        {
+          text: "Daily spending limit account",
+          link: "/build/tutorials/api3-usd-paymaster-tutorial.md",
+        },
+        {
+          text: "USDC paymaster tutorial with API3 dAPIs",
+          link: "/build/tutorials/api3-usd-paymaster-tutorial.md",
+        },
+        {
+          text: "Cross-chain governance",
+          link: "/build/tutorials/cross-chain-tutorial.md",
+        },
+        {
+          text: "Account abstraction multisig",
+          link: "/build/tutorials/custom-aa-tutorial.md",
+        },
+        {
+          text: "Building a custom paymaster",
+          link: "/build/tutorials/custom-paymaster-tutorial.md",
+        },
+        {
+          text: "Gated NFT paymaster",
+          link: "/build/tutorials/gated-nft-paymaster-tutorial.md",
+        }
+      ]
+    },
+    {
+      text: "Community",
+      link: "",
+      collapsible: true,
+      children: [
+        {
+          text: "",
+          link: ""
+        }
+      ]
+    },
+    {
+      text: "Contribution Track",
+      link: "/build/development/contribution-track.md",
     },
     // {
     //   text: "How to",
