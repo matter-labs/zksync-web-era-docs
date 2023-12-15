@@ -35,7 +35,7 @@
       "redirects": [
         {
           "source": "/",
-          "destination": "/docs/",
+          "destination": "/docs/build/",
           "type": "302"
         },
         {

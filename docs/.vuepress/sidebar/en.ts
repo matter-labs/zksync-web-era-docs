@@ -20,15 +20,21 @@ export const enSidebar = sidebar({
     {
       text: "Quick Start",
       link: "/build/quick-start/README.md",
+      collapsible: true,
       children: [
-        { text: "Bridge funds", link: "/build/quick-start/bridge-funds.md", 
+        { 
+          text: "Bridge funds", 
+          link: "/build/quick-start/bridge-funds.md", 
+          collapsible: false,
           children: [
             "/build/quick-start/add-zksync-to-metamask.md",
             "/build/quick-start/testnet-faucets.md",
             "/build/quick-start/portals.md"
           ] 
         },
-        { text: "Deploy contract", link: "/build/quick-start/deploy-contract.md", 
+        { 
+          text: "Deploy contract", 
+          link: "/build/quick-start/deploy-contract.md", 
           children: [
             "/build/quick-start/zksync-cli.md",
             "/build/quick-start/hardhat-foundry.md", 
@@ -37,7 +43,8 @@ export const enSidebar = sidebar({
               link: "/build/quick-start/remix.md",
             }
           ] },
-        { text: "Differences between Era and Ethereum", link: "/build/quick-start/differences-era-ethereum.md",
+        { 
+          text: "Differences between Era and Ethereum", link: "/build/quick-start/differences-era-ethereum.md",
           children: []
         },
       ]
@@ -45,11 +52,13 @@ export const enSidebar = sidebar({
     {
       text: "Development",
       link: "/build/development/README.md",
+      collapsible: true,
       children: [
         "/build/development/zksync-cli.md",
         {
           text: "Foundry",
           link: "/build/development/foundry/README.md",
+          collapsible: true,
           children: [
             "/build/development/foundry/get-started.md",
           ]
@@ -100,37 +109,156 @@ export const enSidebar = sidebar({
           ]
         },
         {
+          text: "SDKs",
+          link: "/build/development/sdks/README.md",
+          collapsible: true,
+          children: [
+            {
+              text: "Javascript",
+              collapsible: true,
+              link: "/build/development/sdks/javascript/README.md",
+              children: [
+                { 
+                  text: "Ethers V5",
+                  link: "/build/development/sdks/javascript/ethers-v5.md"
+                },
+                { 
+                  text: "Ethers V6",
+                  link: "/build/development/sdks/javascript/ethers-v6.md"
+                },
+                {
+                  text: "API Reference",
+                  collapsible: true,
+                  link: "/build/development/sdks/javascript/api-reference/README.md",
+                  children: [
+                    {
+                      text: "Provider",
+                      link: "/build/development/sdks/javascript/api-reference/provider/README.md",
+                      children: [
+                        {
+                          text: "Account",
+                          link: "/build/development/sdks/javascript/api-reference/provider/account.md"
+                        },
+                        {
+                          text: "Block and Transaction",
+                          link: "/build/development/sdks/javascript/api-reference/provider/block-and-transaction.md"
+                        },
+                        {
+                          text: "Estimate Gas",
+                          link: "/build/development/sdks/javascript/api-reference/provider/estimate-gas.md"
+                        },
+                        {
+                          text: "Event and Log",
+                          link: "/build/development/sdks/javascript/api-reference/provider/event-and-log.md"
+                        },
+                        {
+                          text: "Network and Chain",
+                          link: "/build/development/sdks/javascript/api-reference/provider/network-and-chain.md"
+                        },
+                        {
+                          text: "Token and Contract",
+                          link: "/build/development/sdks/javascript/api-reference/provider/token-and-contract.md"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                // {
+                //   text: "Core Concepts",
+                //   link: "/build/development/sdks/javascript/core-concepts.md"
+                // }
+              ]
+            },
+            {
+              text: "Python",
+              link: "/build/development/sdks/python/README.md",
+              collapsible: true,
+              children: [
+                {
+                  text: "Accounts: L1->L2 transactions",
+                  link: "/build/development/sdks/python/accounts-l1-l2.md"
+                },
+                {
+                  text: "Accounts",
+                  link: "/build/development/sdks/python/accounts.md"
+                },
+                {
+                  text: "API Reference",
+                  link: "/build/development/sdks/python/api-reference.md"
+                },
+                {
+                  text: "Contracts",
+                  link: "/build/development/sdks/python/contracts.md"
+                },
+                {
+                  text: "Core Concepts",
+                  link: "/build/development/sdks/python/core-concepts.md"
+                },
+                {
+                  text: "Getting Started",
+                  link: "/build/development/sdks/python/getting-started.md"
+                },
+                {
+                  text: "Paymaster utilities",
+                  link: "/build/development/sdks/python/paymaster-utils.md"
+                },
+                {
+                  text: "Providers",
+                  link: "/build/development/sdks/python/providers.md"
+                },
+                {
+                  text: "Python SDK Types",
+                  link: "/build/development/sdks/python/types.md"
+                },
+
+              ]
+            },
+            {
+              text: "Rust",
+              link: "",
+            },
+            {
+              text: "Go",
+              link: "",
+            },
+            {
+              text: "Java",
+              link: "",
+            }
+          ]
+        },
+        {
           text: "Contribution Track",
           link: "/build/development/contribution-track.md",
-        }
+        },
       ],
     },
-    {
-      text: "How to",
-      link: "/dev/how-to/README.md",
-      children: [
-        "/dev/how-to/estimate-gas.md",
-        "/dev/how-to/send-transaction-l1-l2",
-        "/dev/how-to/send-message-l2-l1",
-        "/dev/how-to/transfer-token-l2",
-        "/dev/how-to/verify-contracts",
-      ],
-    },
-    {
-      text: "Tutorials",
-      link: "/dev/tutorials.md",
-      children: [
-        { text: "Community", link: "/dev/community-tutorials/README.md", children: [] },
-        { text: "zkSync Team", link: "/dev/tutorials/README.md", children: [
-          "/dev/tutorials/cross-chain-tutorial.md",
-          "/dev/tutorials/custom-aa-tutorial.md",
-          "/dev/tutorials/aa-daily-spend-limit.md",
-          "/dev/tutorials/custom-paymaster-tutorial.md",
-          "/dev/tutorials/api3-usd-paymaster-tutorial.md",
-          "/dev/tutorials/gated-nft-paymaster-tutorial.md",
-        ]},
-      ],
-    },
+    // {
+    //   text: "How to",
+    //   link: "/dev/how-to/README.md",
+    //   children: [
+    //     "/dev/how-to/estimate-gas.md",
+    //     "/dev/how-to/send-transaction-l1-l2",
+    //     "/dev/how-to/send-message-l2-l1",
+    //     "/dev/how-to/transfer-token-l2",
+    //     "/dev/how-to/verify-contracts",
+    //   ],
+    // },
+    // {
+    //   text: "Tutorials",
+    //   link: "/dev/tutorials.md",
+    //   children: [
+    //     { text: "Community", link: "/dev/community-tutorials/README.md", children: [] },
+    //     { text: "zkSync Team", link: "/dev/tutorials/README.md", children: [
+    //       "/dev/tutorials/cross-chain-tutorial.md",
+    //       "/dev/tutorials/custom-aa-tutorial.md",
+    //       "/dev/tutorials/aa-daily-spend-limit.md",
+    //       "/dev/tutorials/custom-paymaster-tutorial.md",
+    //       "/dev/tutorials/api3-usd-paymaster-tutorial.md",
+    //       "/dev/tutorials/gated-nft-paymaster-tutorial.md",
+    //     ]},
+    //   ],
+    // },
   ],
   "/reference": [
     {
