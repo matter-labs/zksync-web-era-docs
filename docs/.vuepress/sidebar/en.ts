@@ -283,7 +283,26 @@ export const enSidebar = sidebar({
             },
             {
               text: "Java",
-              link: "",
+              collapsible: true,
+              link: "/build/development/sdks/java/README.md",
+              children: [
+                {
+                  text: "Getting Started",
+                  link: "/build/development/sdks/java/getting-started.md"
+                },
+                {
+                  text: "Java SDK L1/L2 Transactions",
+                  link: "/build/development/sdks/java/accounts-l1-l2.md"
+                },
+                {
+                  text: "Accounts",
+                  link: "/build/development/sdks/java/accounts.md"
+                },
+                {
+                  text: "Providers",
+                  link: "/build/development/sdks/java/providers.md"
+                }
+              ]
             }
           ]
         },
