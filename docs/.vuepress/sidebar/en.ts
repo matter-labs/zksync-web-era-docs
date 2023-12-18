@@ -417,12 +417,16 @@ export const enSidebar = sidebar({
     },
     {
       text: "Community",
-      link: "",
+      link: "/build/community/README.md",
       collapsible: true,
       children: [
         {
-          text: "",
-          link: ""
+          text: "Community Channels",
+          link: "/build/community/community-channels.md"
+        },
+        {
+          text: "FAQs",
+          link: "/build/community/faq.md"
         }
       ]
     },
@@ -562,61 +566,61 @@ export const enSidebar = sidebar({
         }
       ]
     },
-    {
-      text: "Python SDK",
-      link: "/api/python",
-      children: ["/api/python/getting-started", "/api/python/providers", "/api/python/accounts", "/api/python/accounts-l1-l2", "/api/python/contracts", "/api/python/types"],
-    },
-    {
-      text: "Go SDK",
-      link: "/api/go",
-      children: [
-        {
-          text: "Getting started",
-          link: "/api/go/getting-started",
-          collapsible: true,
-          children: [
-            "/api/go/examples/deposit",
-            "/api/go/examples/transfer",
-            "/api/go/examples/withdraw",
-            "/api/go/examples/get-confirmed-tokens",
-            "/api/go/examples/create",
-            "/api/go/examples/create2",
-            "/api/go/examples/custom-paymaster/deploy-token",
-            "/api/go/examples/custom-paymaster/deploy-account",
-            "/api/go/examples/custom-paymaster/use-paymaster",
-          ],
-        },
+    // {
+    //   text: "Python SDK",
+    //   link: "/api/python",
+    //   children: ["/api/python/getting-started", "/api/python/providers", "/api/python/accounts", "/api/python/accounts-l1-l2", "/api/python/contracts", "/api/python/types"],
+    // },
+    // {
+    //   text: "Go SDK",
+    //   link: "/api/go",
+    //   children: [
+    //     {
+    //       text: "Getting started",
+    //       link: "/api/go/getting-started",
+    //       collapsible: true,
+    //       children: [
+    //         "/api/go/examples/deposit",
+    //         "/api/go/examples/transfer",
+    //         "/api/go/examples/withdraw",
+    //         "/api/go/examples/get-confirmed-tokens",
+    //         "/api/go/examples/create",
+    //         "/api/go/examples/create2",
+    //         "/api/go/examples/custom-paymaster/deploy-token",
+    //         "/api/go/examples/custom-paymaster/deploy-account",
+    //         "/api/go/examples/custom-paymaster/use-paymaster",
+    //       ],
+    //     },
 
-        "/api/go/clients",
-        "/api/go/accounts",
-        "/api/go/accounts-l1-l2",
-        "/api/go/contracts",
-        "/api/go/features",
-        "/api/go/paymaster-utils",
-        "/api/go/utils",
-        {
-          text: "Types",
-          link: "/api/go/types/intro",
-          collapsible: true,
-          children: ["/api/go/types/types", "/api/go/types/eip712", "/api/go/types/clients", "/api/go/types/accounts"],
-        },
-      ],
-    },
-    {
-      text: "Java SDK", // required
-      link: "/api/java/getting-started", // optional, which should be a absolute path.
-      children: ["/api/java", "/api/java/providers", "/api/java/accounts", "/api/java/accounts-l1-l2"],
-    },
-    {
-      text: "Rust SDK", // required
-      link: "/api/rust/getting-started", // optional, which should be a absolute path.
-      children: [
-        "/api/rust",
-        "/api/rust/getting-started",
-        "/api/rust/contract-deployment-and-interaction"
-      ],
-    },
+    //     "/api/go/clients",
+    //     "/api/go/accounts",
+    //     "/api/go/accounts-l1-l2",
+    //     "/api/go/contracts",
+    //     "/api/go/features",
+    //     "/api/go/paymaster-utils",
+    //     "/api/go/utils",
+    //     {
+    //       text: "Types",
+    //       link: "/api/go/types/intro",
+    //       collapsible: true,
+    //       children: ["/api/go/types/types", "/api/go/types/eip712", "/api/go/types/clients", "/api/go/types/accounts"],
+    //     },
+    //   ],
+    // },
+    // {
+    //   text: "Java SDK", // required
+    //   link: "/api/java/getting-started", // optional, which should be a absolute path.
+    //   children: ["/api/java", "/api/java/providers", "/api/java/accounts", "/api/java/accounts-l1-l2"],
+    // },
+    // {
+    //   text: "Rust SDK", // required
+    //   link: "/api/rust/getting-started", // optional, which should be a absolute path.
+    //   children: [
+    //     "/api/rust",
+    //     "/api/rust/getting-started",
+    //     "/api/rust/contract-deployment-and-interaction"
+    //   ],
+    // },
   ],
   //The sidebar for Tools and SDKs
   "/tools": [
