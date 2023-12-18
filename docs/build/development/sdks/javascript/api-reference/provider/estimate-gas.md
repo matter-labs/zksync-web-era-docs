@@ -19,9 +19,9 @@ At the bottom of this section you can see a working example using Stackblitz for
 
 The `estimateGas` method returns a `Promise` that resolves to a `BigNumber` representing an estimate of the amount of gas required to submit a given transaction to the network.
 
-:::info
+{% hint style="info" %}
 Keep in mind that the estimate may not be entirely accurate. Network conditions, such as other transactions being mined, can affect the actual gas required.
-:::
+{% endhint %}
 
 #### Method Signature
 
@@ -87,22 +87,14 @@ if err != nil {
 }
 ```
 
-:::
-
 @tab Python
 
-```typescript
-web3.eth.estimate_gas({ to: "0xd3CdA913deB6f67967B99D67aCDFa1712C293601", from: web3.eth.coinbase, value: 12345 });
-21000;
+```python
+web3.eth.estimate_gas({'to': '0xd3CdA913deB6f67967B99D67aCDFa1712C293601', 'from':web3.eth.coinbase, 'value': 12345})
+21000
 ```
 
 :::
-
-@tab Swift
-
-```swift
-// to be added
-```
 
 ### `estimateGasL1` Method
 
@@ -124,14 +116,13 @@ provider.estimateGasL1(transaction: <TransactionRequest>): Promise<BigNumber>
 
 **TransactionRequest Object**
 
-| Property      | Type        | Description                                | Example                                                                                                                    |
-| ------------- | ----------- | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| `to`          | `string`    | The recipient's address on L2              | `"0xYourL2AddressHere"`                                                                                                    |
-| `data`        | `string`    | The transaction data                       | `"0xYourDataHere"`                                                                                                         |
-| `value`       | `BigNumber` | The value being sent in the transaction    | `parseEther("1.0")`                                                                                                        |
-| `customData`  | `any`       | Custom data for the transaction (optional) | `<pre class="language-typescript" data-overflow="wrap"><code class="lang-typescript">customData: { gasPerPubdataByte: 0 }` |
-| </code></pre> |
-|               |             |                                            |                                                                                                                            |
+| Property     | Type        | Description                                | Example                                                                                                                                  |
+| ------------ | ----------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `to`         | `string`    | The recipient's address on L2              | `"0xYourL2AddressHere"`                                                                                                                  |
+| `data`       | `string`    | The transaction data                       | `"0xYourDataHere"`                                                                                                                       |
+| `value`      | `BigNumber` | The value being sent in the transaction    | `parseEther("1.0")`                                                                                                                      |
+| `customData` | `any`       | Custom data for the transaction (optional) | `<pre class="language-typescript" data-overflow="wrap"><code class="lang-typescript">customData: { gasPerPubdataByte: 0 } </code></pre>` |
+|              |             |                                            |                                                                                                                                          |
 
 #### Return Value
 
