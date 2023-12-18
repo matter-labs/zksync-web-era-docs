@@ -620,12 +620,35 @@ export const enSidebar = sidebar({
               text: "FE & Equivalence",
               link: "/zk-stack/components/compiler/fe-equivalence.md"
             }
-          ]
+          ],
         },
-        {
+        { 
           text: "Block Explorer",
           link: "/zk-stack/components/blockexplorer.md"
-        }
+        },
+      ],
+    },
+    {
+      text: "Future / Advanced Topics",
+      link: "/zk-stack/advanced-topics/README.md",
+      collapsible: true,
+      children: [
+        {
+          text: "Decentralized Sequencer",
+          link: "/zk-stack/advanced-topics/decentralized-sequencer.md"
+        },
+        {
+          text: "Shared Bridges",
+          link: "/zk-stack/advanced-topics/shared-bridges.md"
+        },
+        {
+          text: "Hyperchain Permissions",
+          link: "/zk-stack/advanced-topics/hyperchain-permissions.md"
+        },
+        {
+          text: "Validium for Boojum",
+          link: "/zk-stack/advanced-topics/validium-for-boojum.md"
+        },
       ]
     }
   ],
