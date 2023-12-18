@@ -37,6 +37,7 @@ validator's
 CHAINID
 PREVRANDAO
 sepolia
+Boojum
 
 // Names
 Vyper
@@ -77,6 +78,7 @@ Eigen
 IPFS
 Nuxt
 viem
+Wagmi
 
 // Used programming language words
 printf

@@ -171,4 +171,4 @@ describe("evm_setTime", function () {
 
 </details>
 
-Developers can utilize these tests as templates to simulate specific time-based scenarios in zkSync. This ability is crucial for debugging, developing time-dependent features, or understanding chain behaviours.
+Developers can utilize these tests as templates to simulate specific time-based scenarios in zkSync. This ability is crucial for debugging, developing time-dependent features, or understanding chain behaviors.

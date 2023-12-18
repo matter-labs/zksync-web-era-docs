@@ -45,8 +45,8 @@ describe("hardhat_impersonateAccount & hardhat_stopImpersonatingAccount", functi
     };
 
     // Send a transaction from the impersonated account
-    const recieptTx = await signer.sendTransaction(tx);
-    await recieptTx.wait();
+    const receiptTx = await signer.sendTransaction(tx);
+    await receiptTx.wait();
 
     // Stop impersonating the account
     await provider.send("hardhat_stopImpersonatingAccount", [RichAccounts[0].Account]);
