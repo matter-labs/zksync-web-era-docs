@@ -498,6 +498,29 @@ export const enSidebar = sidebar({
         }
       ],
     },
+    {
+      text: "zkSync Era",
+      link: "/run-a-node/zksync-era/README.md",
+      collapsible: true,
+      children: [
+        {
+          text: "Installation",
+          link: "/run-a-node/zksync-era/installation.md"
+        },
+        {
+          text: "Running Node",
+          link: "/run-a-node/zksync-era/running-node.md"
+        },
+        {
+          text: "Development",
+          link: "/run-a-node/zksync-era/development.md"
+        },
+      ]
+    },
+    {
+      text: "How to recreate L2 state from L1 state diffs",
+      link: "/run-a-node/recreate-l2-state-from-l1-state-diffs.md"
+    }
   ]
   // "/reference": [
     // {
