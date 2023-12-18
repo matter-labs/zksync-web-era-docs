@@ -465,7 +465,6 @@ export const enSidebar = sidebar({
     {
       text: "Introduction",
       link: "/run-a-node/README.md",
-
     },
     {
       text: "External Node (EN)",
@@ -521,7 +520,115 @@ export const enSidebar = sidebar({
       text: "How to recreate L2 state from L1 state diffs",
       link: "/run-a-node/recreate-l2-state-from-l1-state-diffs.md"
     }
-  ]
+  ],
+  "/zk-stack": [
+    {
+      text: "Overview",
+      link: "/zk-stack/overview/README.md",
+      collapsible: true,
+      children: [
+        {
+          text: "Transaction Lifecycle",
+          link: "/zk-stack/overview/transaction-lifecycle.md"
+        },
+        {
+          text: "Blocks",
+          link: "/zk-stack/overview/blocks.md"
+        },
+        {
+          text: "Fee Mechanism",
+          link: "/zk-stack/overview/fee-mechanism.md"
+        },
+        {
+          text: "Finality",
+          link: "/zk-stack/overview/finality.md"
+        },
+        {
+          text: "System Upgrades",
+          link: "/zk-stack/overview/system-upgrades.md"
+        },
+        {
+          text: "Hyperchains / Hyperscaling",
+          link: "/zk-stack/overview/hyperchains-hyperscaling.md"
+        },
+      ]
+    },
+    {
+      text: "Running a Hyperchain",
+      link: "/zk-stack/running-a-hyperchain/README.md",
+      collapsible: true,
+      children: [
+        {
+          text: "Locally",
+          link: "/zk-stack/running-a-hyperchain/locally.md"
+        },
+        {
+          text: "In-Production",
+          link: "/zk-stack/running-a-hyperchain/in-production.md"
+        }
+      ]
+    },
+    {
+      text: "Components",
+      link: "/zk-stack/components/README.md",
+      collapsible: true,
+      children: [
+        {
+          text: "Sequencer",
+          link: "/zk-stack/components/sequencer/README.md",
+          collapsible: true,
+          children: [
+            {
+              text: "Server",
+              link: "/zk-stack/components/sequencer/server.md"
+            },
+            {
+              text: "Out-of-Circuit VM",
+              link: "/zk-stack/components/sequencer/out-of-circuit-vm.md"
+            },
+            {
+              text: "Bootloader",
+              link: "/zk-stack/components/sequencer/bootloader.md"
+            }
+          ]
+        },
+        {
+          text: "Proof System",
+          link: "/zk-stack/components/proof-system/README.md",
+          collapsible: true,
+          children: [
+            {
+              text: "In-Circuit VM",
+              link: "/zk-stack/components/proof-system/in-circuit-vm.md"
+            },
+            {
+              text: "Proof System",
+              link: "/zk-stack/components/proof-system/proof-system.md"
+            }
+          ]
+        },
+        {
+          text: "Compiler",
+          link: "/zk-stack/components/compiler/README.md",
+          collapsible: true,
+          children: [
+            {
+              text: "Overview",
+              link: "/zk-stack/components/compiler/overview.md"
+            },
+            {
+              text: "FE & Equivalence",
+              link: "/zk-stack/components/compiler/fe-equivalence.md"
+            }
+          ]
+        },
+        {
+          text: "Block Explorer",
+          link: "/zk-stack/components/blockexplorer.md"
+        }
+      ]
+    }
+  ],
   // "/reference": [
     // {
     //   text: "Technical reference",
@@ -567,7 +674,7 @@ export const enSidebar = sidebar({
     //   ],
     // },
   // ],
-  //The sidebar for Tools and SDKs
+  // The sidebar for Tools and SDKs
   // "/api": [
   //   {
   //     text: "Web3 JSON-RPC API", // required
@@ -737,4 +844,5 @@ export const enSidebar = sidebar({
   //     children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification", "/tools/block-explorer/block-explorer-api"],
   //   },
   // ],
+  // ]
 });

@@ -15,7 +15,11 @@ export const enNavbar = navbar([
   // }, 
   { 
     text: "Run a Node", 
-    link: "/run-a-node/" 
+    link: "/run-a-node" 
+  }, 
+  { 
+    text: "ZK Stack", 
+    link: "/zk-stack" 
   }, 
   // { 
   //   text: "API/SDKs", 
@@ -25,10 +29,6 @@ export const enNavbar = navbar([
   //   text: "Tools", 
   //   link: "/tools/" 
   // },
-  { 
-    text: "ZK Stack", 
-    link: "/tools/" 
-  },
   // {
   //   text: "Versions",
   //   children: [

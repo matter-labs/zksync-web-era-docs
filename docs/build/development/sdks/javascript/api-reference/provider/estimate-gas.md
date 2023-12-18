@@ -19,9 +19,9 @@ At the bottom of this section you can see a working example using Stackblitz for
 
 The `estimateGas` method returns a `Promise` that resolves to a `BigNumber` representing an estimate of the amount of gas required to submit a given transaction to the network.
 
-{% hint style="info" %}
+:::info
 Keep in mind that the estimate may not be entirely accurate. Network conditions, such as other transactions being mined, can affect the actual gas required.
-{% endhint %}
+:::
 
 #### Method Signature
 
