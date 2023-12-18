@@ -15,7 +15,7 @@ export const enNavbar = navbar([
   // }, 
   { 
     text: "Run a Node", 
-    link: "/reference/" 
+    link: "/run-a-node/" 
   }, 
   // { 
   //   text: "API/SDKs", 

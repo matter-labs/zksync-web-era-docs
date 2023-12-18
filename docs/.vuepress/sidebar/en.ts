@@ -461,111 +461,149 @@ export const enSidebar = sidebar({
     //   ],
     // },
   ],
-  "/reference": [
+  "/run-a-node": [
     {
-      text: "Technical reference",
-      link: "/reference/",
+      text: "Introduction",
+      link: "/run-a-node/README.md",
+
     },
     {
-      text: "Concepts",
-      link: "/reference/concepts/rollups.md",
-      children: [
-        "/reference/concepts/rollups.md",
-        "/reference/concepts/zkSync.md",
-        "/reference/concepts/hyperscaling.md",
-        "/reference/concepts/validiums.md",
-        "/reference/concepts/account-abstraction.md",
-        "/reference/concepts/transactions.md",
-        "/reference/concepts/blocks.md",
-        "/reference/concepts/fee-model.md",
-        "/reference/concepts/finality.md",
-        "/reference/concepts/bridging-asset.md",
-        "/reference/concepts/l1-l2-interop.md",
-      ],
-    },
-    {
-      text: "Architecture",
-      link: "/reference/architecture/differences-with-ethereum.md",
-      children: [
-        "/reference/architecture/differences-with-ethereum.md",
-        "/reference/architecture/system-contracts.md",
-        "/reference/architecture/contract-development.md",
-        "/reference/architecture/contract-deployment.md",
-        "/reference/architecture/events.md",
-      ],
-    },
-    {
-      text: "Troubleshooting",
-      link: "/reference/troubleshooting/README.md",
-      children: [
-        "/reference/troubleshooting/changelog.md",
-        "/reference/troubleshooting/withdrawal-delay.md",
-        "/reference/troubleshooting/audit-bug-bounty.md",
-        "/reference/troubleshooting/docs-contribution/docs.md",
-        "/reference/troubleshooting/faq.md",
-      ],
-    },
-  ],
-  //The sidebar for Tools and SDKs
-  "/api": [
-    {
-      text: "Web3 JSON-RPC API", // required
-      link: "/api/api.md", // optional, which should be a absolute path.
-    },
-    {
-      text: "JavaScript SDK", // required
-      link: "/api/js", // optional, which should be a absolute path.
+      text: "External Node (EN)",
+      link: "/run-a-node/external-node/README.md",
+      collapsible: true,
       children: [
         {
-          text: "JavaScript Ethers V5 SDK",
-          link: "/api/js",
-          children: [
-            "/api/js/getting-started",
-            "/api/js/providers",
-            "/api/js/accounts",
-            "/api/js/accounts-l1-l2",
-            "/api/js/contracts",
-            "/api/js/features",
-            "/api/js/utils",
-            "/api/js/paymaster-utils",
-            "/api/js/types",
-            "/api/js/front-end",
-          ],
+          text: "Component Breakdown",
+          link: "/run-a-node/external-node/component-breakdown.md",
         },
         {
-          text: "JavaScript Ethers V6 SDK",
-          link: "/api/js/zksync2-js",
-          children: [
-            {
-              text: "Getting started",
-              link: "/api/js/zksync2-js/getting-started",
-              collapsible: true,
-              children: [
-                "/api/js/zksync2-js/examples/deposit",
-                "/api/js/zksync2-js/examples/transfer",
-                "/api/js/zksync2-js/examples/withdraw",
-                "/api/js/zksync2-js/examples/get-confirmed-tokens",
-                "/api/js/zksync2-js/examples/create",
-                "/api/js/zksync2-js/examples/create2",
-                "/api/js/zksync2-js/examples/custom-paymaster/deploy-token",
-                "/api/js/zksync2-js/examples/custom-paymaster/deploy-account",
-                "/api/js/zksync2-js/examples/custom-paymaster/use-paymaster",
-              ],
-            },
-            "/api/js/zksync2-js/providers",
-            "/api/js/zksync2-js/accounts",
-            "/api/js/zksync2-js/accounts-l1-l2",
-            "/api/js/zksync2-js/contracts",
-            "/api/js/zksync2-js/features",
-            "/api/js/zksync2-js/utils",
-            "/api/js/zksync2-js/paymaster-utils",
-            "/api/js/zksync2-js/types",
-            "/api/js/zksync2-js/front-end",
-            "/api/js/zksync2-js/migration"
-          ],
+          text: "Configuration",
+          link: "/run-a-node/external-node/configuration.md",
+        },
+        {
+          text: "Running Node",
+          link: "/run-a-node/external-node/running-node.md",
+        },
+        {
+          text: "API Overview",
+          link: "/run-a-node/external-node/api-overview.md",
+        },
+        {
+          text: "Observability",
+          link: "/run-a-node/external-node/observability.md",
+        },
+        {
+          text: "Troubleshooting",
+          link: "/run-a-node/external-node/troubleshooting.md",
         }
-      ]
+      ],
     },
+  ]
+  // "/reference": [
+    // {
+    //   text: "Technical reference",
+    //   link: "/reference/",
+    // },
+    // {
+    //   text: "Concepts",
+    //   link: "/reference/concepts/rollups.md",
+    //   children: [
+    //     "/reference/concepts/rollups.md",
+    //     "/reference/concepts/zkSync.md",
+    //     "/reference/concepts/hyperscaling.md",
+    //     "/reference/concepts/validiums.md",
+    //     "/reference/concepts/account-abstraction.md",
+    //     "/reference/concepts/transactions.md",
+    //     "/reference/concepts/blocks.md",
+    //     "/reference/concepts/fee-model.md",
+    //     "/reference/concepts/finality.md",
+    //     "/reference/concepts/bridging-asset.md",
+    //     "/reference/concepts/l1-l2-interop.md",
+    //   ],
+    // },
+    // {
+    //   text: "Architecture",
+    //   link: "/reference/architecture/differences-with-ethereum.md",
+    //   children: [
+    //     "/reference/architecture/differences-with-ethereum.md",
+    //     "/reference/architecture/system-contracts.md",
+    //     "/reference/architecture/contract-development.md",
+    //     "/reference/architecture/contract-deployment.md",
+    //     "/reference/architecture/events.md",
+    //   ],
+    // },
+    // {
+    //   text: "Troubleshooting",
+    //   link: "/reference/troubleshooting/README.md",
+    //   children: [
+    //     "/reference/troubleshooting/changelog.md",
+    //     "/reference/troubleshooting/withdrawal-delay.md",
+    //     "/reference/troubleshooting/audit-bug-bounty.md",
+    //     "/reference/troubleshooting/docs-contribution/docs.md",
+    //     "/reference/troubleshooting/faq.md",
+    //   ],
+    // },
+  // ],
+  //The sidebar for Tools and SDKs
+  // "/api": [
+  //   {
+  //     text: "Web3 JSON-RPC API", // required
+  //     link: "/api/api.md", // optional, which should be a absolute path.
+  //   },
+  //   {
+  //     text: "JavaScript SDK", // required
+  //     link: "/api/js", // optional, which should be a absolute path.
+  //     children: [
+  //       {
+  //         text: "JavaScript Ethers V5 SDK",
+  //         link: "/api/js",
+  //         children: [
+  //           "/api/js/getting-started",
+  //           "/api/js/providers",
+  //           "/api/js/accounts",
+  //           "/api/js/accounts-l1-l2",
+  //           "/api/js/contracts",
+  //           "/api/js/features",
+  //           "/api/js/utils",
+  //           "/api/js/paymaster-utils",
+  //           "/api/js/types",
+  //           "/api/js/front-end",
+  //         ],
+  //       },
+  //       {
+  //         text: "JavaScript Ethers V6 SDK",
+  //         link: "/api/js/zksync2-js",
+  //         children: [
+  //           {
+  //             text: "Getting started",
+  //             link: "/api/js/zksync2-js/getting-started",
+  //             collapsible: true,
+  //             children: [
+  //               "/api/js/zksync2-js/examples/deposit",
+  //               "/api/js/zksync2-js/examples/transfer",
+  //               "/api/js/zksync2-js/examples/withdraw",
+  //               "/api/js/zksync2-js/examples/get-confirmed-tokens",
+  //               "/api/js/zksync2-js/examples/create",
+  //               "/api/js/zksync2-js/examples/create2",
+  //               "/api/js/zksync2-js/examples/custom-paymaster/deploy-token",
+  //               "/api/js/zksync2-js/examples/custom-paymaster/deploy-account",
+  //               "/api/js/zksync2-js/examples/custom-paymaster/use-paymaster",
+  //             ],
+  //           },
+  //           "/api/js/zksync2-js/providers",
+  //           "/api/js/zksync2-js/accounts",
+  //           "/api/js/zksync2-js/accounts-l1-l2",
+  //           "/api/js/zksync2-js/contracts",
+  //           "/api/js/zksync2-js/features",
+  //           "/api/js/zksync2-js/utils",
+  //           "/api/js/zksync2-js/paymaster-utils",
+  //           "/api/js/zksync2-js/types",
+  //           "/api/js/zksync2-js/front-end",
+  //           "/api/js/zksync2-js/migration"
+  //         ],
+  //       }
+  //     ]
+  //   },
     // {
     //   text: "Python SDK",
     //   link: "/api/python",
@@ -621,59 +659,59 @@ export const enSidebar = sidebar({
     //     "/api/rust/contract-deployment-and-interaction"
     //   ],
     // },
-  ],
+  // ],
   //The sidebar for Tools and SDKs
-  "/tools": [
-    {
-      text: "Developer tools", // required
-      link: "/tools/", // optional, which should be a absolute path.
-      children: [],
-    },
-    {
-      text: "zkSync Era CLI", // required
-      link: "/tools/zksync-cli/", // optional, which should be a absolute path.
-      children: [],
-    },
-    {
-      text: "Hardhat", // required
-      link: "/tools/hardhat", // optional, which should be a absolute path.
-      children: [
-        "/tools/hardhat/getting-started",
-        "/tools/hardhat/migrating-to-zksync",
-        {
-          text: "Plugins", // required
-          link: "/tools/hardhat/plugins", // optional, which should be a absolute path.
-          collapsible: true,
-          children: [
-            "/tools/hardhat/hardhat-zksync-solc",
-            "/tools/hardhat/hardhat-zksync-vyper",
-            "/tools/hardhat/hardhat-zksync-upgradable",
-            "/tools/hardhat/hardhat-zksync-deploy",
-            "/tools/hardhat/hardhat-zksync-chai-matchers",
-            "/tools/hardhat/hardhat-zksync-verify",
-            "/tools/hardhat/hardhat-zksync-verify-vyper",
-            "/tools/hardhat/hardhat-zksync-node",
-            "/tools/hardhat/hardhat-zksync-ethers",
-            "/tools/hardhat/other-plugins",
-          ],
-        },
-        "/tools/hardhat/compiling-libraries",
-      ],
-    },
-    {
-      text: "Testing", // required
-      link: "/tools/testing/", // optional, which should be a absolute path.
-      children: ["/tools/testing/dockerized-testing.md", "/tools/testing/era-test-node.md"],
-    },
-    {
-      text: "Compiler Toolchain",
-      link: "/tools/compiler-toolchain",
-      children: ["/tools/compiler-toolchain/overview.md", "/tools/compiler-toolchain/solidity.md", "/tools/compiler-toolchain/vyper.md", "/tools/compiler-toolchain/llvm.md"],
-    },
-    {
-      text: "Block Explorer", // required
-      link: "/tools/block-explorer", // optional, which should be a absolute path.
-      children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification", "/tools/block-explorer/block-explorer-api"],
-    },
-  ],
+  // "/tools": [
+  //   {
+  //     text: "Developer tools", // required
+  //     link: "/tools/", // optional, which should be a absolute path.
+  //     children: [],
+  //   },
+  //   {
+  //     text: "zkSync Era CLI", // required
+  //     link: "/tools/zksync-cli/", // optional, which should be a absolute path.
+  //     children: [],
+  //   },
+  //   {
+  //     text: "Hardhat", // required
+  //     link: "/tools/hardhat", // optional, which should be a absolute path.
+  //     children: [
+  //       "/tools/hardhat/getting-started",
+  //       "/tools/hardhat/migrating-to-zksync",
+  //       {
+  //         text: "Plugins", // required
+  //         link: "/tools/hardhat/plugins", // optional, which should be a absolute path.
+  //         collapsible: true,
+  //         children: [
+  //           "/tools/hardhat/hardhat-zksync-solc",
+  //           "/tools/hardhat/hardhat-zksync-vyper",
+  //           "/tools/hardhat/hardhat-zksync-upgradable",
+  //           "/tools/hardhat/hardhat-zksync-deploy",
+  //           "/tools/hardhat/hardhat-zksync-chai-matchers",
+  //           "/tools/hardhat/hardhat-zksync-verify",
+  //           "/tools/hardhat/hardhat-zksync-verify-vyper",
+  //           "/tools/hardhat/hardhat-zksync-node",
+  //           "/tools/hardhat/hardhat-zksync-ethers",
+  //           "/tools/hardhat/other-plugins",
+  //         ],
+  //       },
+  //       "/tools/hardhat/compiling-libraries",
+  //     ],
+  //   },
+  //   {
+  //     text: "Testing", // required
+  //     link: "/tools/testing/", // optional, which should be a absolute path.
+  //     children: ["/tools/testing/dockerized-testing.md", "/tools/testing/era-test-node.md"],
+  //   },
+  //   {
+  //     text: "Compiler Toolchain",
+  //     link: "/tools/compiler-toolchain",
+  //     children: ["/tools/compiler-toolchain/overview.md", "/tools/compiler-toolchain/solidity.md", "/tools/compiler-toolchain/vyper.md", "/tools/compiler-toolchain/llvm.md"],
+  //   },
+  //   {
+  //     text: "Block Explorer", // required
+  //     link: "/tools/block-explorer", // optional, which should be a absolute path.
+  //     children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification", "/tools/block-explorer/block-explorer-api"],
+  //   },
+  // ],
 });
