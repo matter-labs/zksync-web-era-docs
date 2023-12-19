@@ -13,7 +13,6 @@ Here is the list of tutorials created and maintained by the zkSync DevRel team t
 - [Account abstraction multisig](./custom-aa-tutorial.md): create a native multisig smart contract account.
 - [Daily spending limit account](./aa-daily-spend-limit.md): create a smart contract account with a daily spending limit.
 - [Building a custom paymaster](./custom-paymaster-tutorial.md): build a paymaster that allows users to pay gas fees with an ERC20 token.
-- [USDC paymaster tutorial with API3](./api3-usd-paymaster-tutorial.md): build a paymaster that allows users to pay gas fees with USDC using API3 dAPIs.
 - [Gated NFT paymaster](gated-nft-paymaster-tutorial.md): build a paymaster that allows users to pay 0 gas fees when owning a particular NFT.
 
 These tutorials were created with the goal of showcasing key features of zkSync Era.

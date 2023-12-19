@@ -465,41 +465,6 @@ const provider = Provider.getDefaultProvider(types.Network.Goerli);
 console.log(`Bytecode: ${await provider.getBytecodeByHash("0x0f9acdb01827403765458b4685de6d9007580d15")}`);
 ```
 
-### `getConfirmedTokens`
-
-Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `from` and `limit`.
-
-Calls the [`zks_getConfirmedTokens`](../../api.md#zks-getconfirmedtokens) JSON-RPC method.
-
-:::tip Tip
-
-- **Confirmed** in the function name means any token bridged to zkSync Era via the official bridge.
-  :::
-
-The tokens are returned in alphabetical order by their symbol. This means the token id is its position in an alphabetically sorted array of tokens.
-
-#### Inputs
-
-| Parameter | Type     | Description                                                                                     |
-| --------- | -------- | ----------------------------------------------------------------------------------------------- |
-| `start`   | `number` | The token id from which to start returning the information about the tokens. Zero _by default_. |
-| `limit`   | `number` | The number of tokens to be returned from the API. 255 _by default_.                             |
-
-```ts
-async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[]>
-```
-
-#### Example
-
-Helper function: [toJSON](#tojson).
-
-```ts
-import { Provider, types } from "zksync-ethers";
-
-const provider = Provider.getDefaultProvider(types.Network.Sepolia);
-console.log(`Confirmed tokens: ${toJSON(await provider.getConfirmedTokens())}`);
-```
-
 ### `getContractAccountInfo`
 
 Returns the version of the supported account abstraction and nonce ordering from a given contract address.

@@ -277,42 +277,6 @@ Returns an array of `TransactionResponse` objects.
 
 [Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-getBlockWithTransactions)
 
-### `getConfirmedTokens`
-
-Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `from` and `limit`.
-
-Calls the [`zks_getConfirmedTokens`](../api.md#zks-getconfirmedtokens) JSON-RPC method.
-
-:::tip Tip
-
-- **Confirmed** in the function name means any token bridged to zkSync Era via the official bridge.
-  :::
-
-The tokens are returned in alphabetical order by their symbol. This means the token id is its position in an alphabetically sorted array of tokens.
-
-#### Inputs
-
-| Name  | Description                                                                                     |
-| ----- | ----------------------------------------------------------------------------------------------- |
-| start | The token id from which to start returning the information about the tokens. Zero _by default_. |
-| limit | The number of tokens to be returned from the API. 255 _by default_.                             |
-
-```typescript
-async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[]> {
-    const tokens: Token[] = await this.send('zks_getConfirmedTokens', [start, limit]);
-    return tokens.map((token) => ({ address: token.l2Address, ...token }));
-}
-```
-
-#### Example
-
-```typescript
-import { Provider } from "zksync-ethers";
-const provider = new Provider("https://sepolia.era.zksync.dev");
-
-console.log(await provider.getConfirmedTokens());
-```
-
 ### `getContractAccountInfo`
 
 Returns the version of the supported account abstraction and nonce ordering from a given contract address.

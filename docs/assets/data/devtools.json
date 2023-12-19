@@ -235,7 +235,7 @@
           "category": "APIs",
           "logo": "chainlink-logo.png",
           "url": "https://chain.link/",
-          "soon": true
+          "soon": false
         },
         {
           "name": "Covalent",
@@ -260,12 +260,6 @@
     {
       "category": "Oracles",
       "tools": [
-        {
-          "name": "API3",
-          "category": "Oracle",
-          "logo": "api3-logo.webp",
-          "url": "https://api3.org/"
-        },
         {
           "name": "DIA",
           "category": "Oracle",
