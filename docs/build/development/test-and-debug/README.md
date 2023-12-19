@@ -58,6 +58,6 @@ The [zkSync CLI](../zksync-cli/README.md) makes it simple for developers to work
 
 ## zkSync Era local testing
 
-- [Dockerized testing](./dockerized-testing.md)
-- [In-memory node testing](./era-test-node.md)
+- [Dockerized testing](../old-testing/dockerized-testing.md)
+- [In-memory node testing](./era-test-node/README.md)
 - [zkSync CLI](../zksync-cli/README.md)

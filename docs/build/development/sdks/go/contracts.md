@@ -24,4 +24,4 @@ examples of how to deploy and instantiate contracts and accounts, refer to the f
 
 ## Contracts interfaces
 
-The `contracts` package provides [zkSync Era system contracts](../../reference/architecture/system-contracts.md).
+The `contracts` package provides [zkSync Era system contracts].

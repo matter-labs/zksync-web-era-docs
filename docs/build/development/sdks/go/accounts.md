@@ -602,7 +602,7 @@ Used by [`EstimateDefaultBridgeDepositL2Gas`](#estimatedefaultbridgedepositl2gas
 custom ERC20 bridge.
 
 ::: tip More info
-See the [default bridges documentation](../../reference/concepts/bridging-asset.md#default-bridges)
+
 :::
 
 #### Inputs
@@ -659,7 +659,7 @@ fmt.Println("L2 gas: ", gas)
 Returns an estimation of L2 gas required for token bridging via the default ERC20 bridge.
 
 ::: tip More info
-See the [default bridges documentation](../../reference/concepts/bridging-asset.md#default-bridges)
+
 :::
 
 #### Inputs

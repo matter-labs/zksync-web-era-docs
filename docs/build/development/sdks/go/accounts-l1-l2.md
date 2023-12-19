@@ -9,7 +9,7 @@ head:
 
 This section explores the methods which allow the [account](./accounts.md) to send transactions among both L1 to L2 networks.
 
-If you want some background on how L1<->L2 interaction works on zkSync, go through the [introduction](../../reference/concepts/l1-l2-interop.md).
+If you want some background on how L1<->L2 interaction works on zkSync, go through the introduction.
 
 Full examples of actions below are available on the [getting started](./getting-started.md) page.
 

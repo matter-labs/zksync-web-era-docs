@@ -16,7 +16,7 @@ Let's delve into the setup process for Dockerized Local Testing Environment.
 
 ### Prerequisites
 
-Make sure `Docker` and `docker-compose` are installed on your system. If not, follow the [installation guide](https://docs.docker.com/get-docker/). Familiarity with the zkSync Hardhat plugins is also recommended. If you're new to zkSync development with Hardhat, check out the [getting started section here](../../tools/hardhat/getting-started.md).
+Make sure `Docker` and `docker-compose` are installed on your system. If not, follow the [installation guide](https://docs.docker.com/get-docker/). Familiarity with the zkSync Hardhat plugins is also recommended. If you're new to zkSync development with Hardhat, check out the [getting started section here](../hardhat-plugins/README.md).
 
 ### Setting up the testing environment
 
@@ -98,7 +98,7 @@ Next, we'll explore how to write and execute tests locally. We'll use `mocha` an
 
 ### Project configuration
 
-1. Start by creating a new Hardhat project. If you need guidance, follow the [getting started guide](../../tools/hardhat/getting-started.md).
+1. Start by creating a new Hardhat project. If you need guidance, follow the [getting started guide](../hardhat-plugins/README.md).
 
 2. To incorporate the test libraries, execute:
 

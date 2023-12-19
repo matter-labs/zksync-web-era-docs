@@ -240,7 +240,6 @@ Navigate to `http://localhost:8080/` in a browser to see the running application
 Enabling smart accounts allows you to onboard Argent account abstraction wallet users that have been using the first version of zkSync.
 
 - Use [this library](../../reference/concepts/account-abstraction.md#signature-validation) to verify your smart account compatibility.
-- Follow [this guide](https://docs.argent.xyz/) to add Argent login to your dApp.
 
 #### Externally owned accounts (EOAs)
 
