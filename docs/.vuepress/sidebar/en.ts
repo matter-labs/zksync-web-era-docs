@@ -117,7 +117,7 @@ export const enSidebar = sidebar({
             {
               text: "Javascript",
               collapsible: true,
-              link: "/build/development/sdks/javascript/README.md",
+              // link: "/build/development/sdks/javascript/README.md",
               children: [
                 { 
                   text: "Ethers V5",
@@ -130,12 +130,20 @@ export const enSidebar = sidebar({
                 {
                   text: "API Reference",
                   collapsible: true,
-                  link: "/build/development/sdks/javascript/api-reference/README.md",
+                  // link: "/build/development/sdks/javascript/api-reference/README.md",
                   children: [
                     {
+                      text: "Overview",
+                      link: "/build/development/sdks/javascript/api-reference/README.md"
+                    },
+                    {
                       text: "Provider",
-                      link: "/build/development/sdks/javascript/api-reference/provider/README.md",
+                      // link: "/build/development/sdks/javascript/api-reference/provider/README.md",
                       children: [
+                        {
+                          text: "Overview",
+                          link: "/build/development/sdks/javascript/api-reference/provider/README.md",
+                        },
                         {
                           text: "Account",
                           link: "/build/development/sdks/javascript/api-reference/provider/account.md"
@@ -173,7 +181,7 @@ export const enSidebar = sidebar({
             {
               text: "Python",
               collapsible: true,
-              link: "/build/development/sdks/python/README.md",
+              // link: "/build/development/sdks/python/README.md",
               children: [
                 {
                   text: "Accounts: L1->L2 transactions",
@@ -217,7 +225,7 @@ export const enSidebar = sidebar({
             {
               text: "Rust",
               collapsible: true,
-              link: "/build/development/sdks/rust/README.md",
+              // link: "/build/development/sdks/rust/README.md",
               children: [
                 {
                   text: "Getting Started",
@@ -232,7 +240,7 @@ export const enSidebar = sidebar({
             {
               text: "Go",
               collapsible: true,
-              link: "/build/development/sdks/go/README.md",
+              // link: "/build/development/sdks/go/README.md",
               children: [
                 {
                   text: "Examples",
@@ -285,7 +293,7 @@ export const enSidebar = sidebar({
             {
               text: "Java",
               collapsible: true,
-              link: "/build/development/sdks/java/README.md",
+              // link: "/build/development/sdks/java/README.md",
               children: [
                 {
                   text: "Getting Started",
@@ -756,12 +764,12 @@ export const enSidebar = sidebar({
     },
     {
       text: "Python SDK",
-      link: "/api/python",
+      // link: "/api/python",
       children: ["/api/python/getting-started", "/api/python/providers", "/api/python/accounts", "/api/python/accounts-l1-l2", "/api/python/contracts", "/api/python/types"],
     },
     {
       text: "Go SDK",
-      link: "/api/go",
+      // link: "/api/go",
       children: [
         {
           text: "Getting started",
@@ -797,7 +805,7 @@ export const enSidebar = sidebar({
     },
     {
       text: "Java SDK", // required
-      link: "/api/java/getting-started", // optional, which should be a absolute path.
+      // link: "/api/java/getting-started", // optional, which should be a absolute path.
       children: ["/api/java", "/api/java/providers", "/api/java/accounts", "/api/java/accounts-l1-l2"],
     },
     {
