@@ -390,14 +390,10 @@ export const enSidebar = sidebar({
           text: "Daily spending limit account",
           link: "/build/tutorials/aa-daily-spend-limit.md",
         },
-        {
-          text: "Daily spending limit account",
-          link: "/build/tutorials/api3-usd-paymaster-tutorial.md",
-        },
-        {
-          text: "USDC paymaster tutorial with API3 dAPIs",
-          link: "/build/tutorials/api3-usd-paymaster-tutorial.md",
-        },
+        // {
+        //   text: "USDC paymaster tutorial with API3 dAPIs",
+        //   link: "/build/tutorials/api3-usd-paymaster-tutorial.md",
+        // },
         {
           text: "Cross-chain governance",
           link: "/build/tutorials/cross-chain-tutorial.md",

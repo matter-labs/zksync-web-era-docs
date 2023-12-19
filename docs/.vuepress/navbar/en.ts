@@ -14,12 +14,12 @@ export const enNavbar = navbar([
   //   link: "/reference/" 
   // }, 
   { 
-    text: "Run a Node", 
-    link: "/run-a-node" 
-  }, 
-  { 
     text: "ZK Stack", 
     link: "/zk-stack" 
+  }, 
+  { 
+    text: "Run a Node", 
+    link: "/run-a-node" 
   }, 
   // { 
   //   text: "API/SDKs", 
