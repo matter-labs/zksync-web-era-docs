@@ -5,6 +5,6 @@ head:
       content: Get Started | zkSync Era Docs
 ---
 
-# Overview
+# Get Started
 
 ...

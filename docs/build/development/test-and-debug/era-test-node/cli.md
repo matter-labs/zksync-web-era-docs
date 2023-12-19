@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: CLI | zkSync Era Docs
+---
+
 # CLI
 
 To list available commands, either run `era_test_node` with no parameters or execute `era_test_node help`

@@ -25,7 +25,7 @@ export const enSidebar = sidebar({
         { 
           text: "Bridge funds", 
           link: "/build/quick-start/bridge-funds.md", 
-          collapsible: false,
+          collapsible: true,
           children: [
             "/build/quick-start/add-zksync-to-metamask.md",
             "/build/quick-start/testnet-faucets.md",
@@ -35,6 +35,7 @@ export const enSidebar = sidebar({
         { 
           text: "Deploy contract", 
           link: "/build/quick-start/deploy-contract.md", 
+          collapsible: true,
           children: [
             "/build/quick-start/zksync-cli.md",
             "/build/quick-start/hardhat-foundry.md", 
@@ -86,7 +87,7 @@ export const enSidebar = sidebar({
             {
               text: "Frameworks",
               link: "/build/development/frontend/frameworks/README.md",
-          
+              collapsible: true,
               children: [
                 "/build/development/frontend/frameworks/wagmi.md",
               ]
@@ -94,6 +95,7 @@ export const enSidebar = sidebar({
             {
               text: "Libraries",
               link: "/build/development/frontend/libraries/README.md",
+              collapsible: true,
               children: [
                 "/build/development/frontend/libraries/viem.md",
               ]
@@ -101,7 +103,7 @@ export const enSidebar = sidebar({
             {
               text: "Wallets",
               link: "/build/development/frontend/wallets/README.md",
-            
+              collapsible: true,
               children: [
                 "/build/development/frontend/wallets/wallet-connect.md",
               ]
@@ -308,11 +310,11 @@ export const enSidebar = sidebar({
         },
         {
           text: "Web3 JSON-RPC",
-          link: ""
+          link: "/build/development/web3-json-rpc.md"
         },
         {
           text: "Node Providers",
-          link: ""
+          link: "/build/development/node-providers.md"
         },
         {
           text: "Testing",
@@ -355,15 +357,15 @@ export const enSidebar = sidebar({
             },
             {
               text: "Foundry",
-              link: ""
+              link: "/build/development/test-and-debug/era-test-node/foundry/README.md"
             },
             {
               text: "Hardhat",
-              link: ""
+              link: "/build/development/test-and-debug/era-test-node/hardhat/README.md"
             },
             {
-              text: "ontinuous Integration (CI)",
-              link: ""
+              text: "Continuous Integration (CI)",
+              link: "/build/development/test-and-debug/era-test-node/continuous-integration.md"
             },
           ]
         },

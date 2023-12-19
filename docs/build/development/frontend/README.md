@@ -5,6 +5,6 @@ head:
       content: Frontend | zkSync Era Docs
 ---
 
-# Overview
+# Frontend
 
 ...

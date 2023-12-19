@@ -5,6 +5,6 @@ head:
       content: Libraries | zkSync Era Docs
 ---
 
-# Libraries Overview
+# Libraries
 
 ...

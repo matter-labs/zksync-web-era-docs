@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Getting started | zkSync Era Docs
+---
+
 # Getting started
 
 ### Prerequisites

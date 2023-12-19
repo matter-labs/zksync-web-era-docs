@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Foundry | zkSync Era Docs
+---
+
 # Foundry
 
 Support for testing with Foundry is currently **in development** and not yet available. We are actively working on it. You can stay updated on the progress by visiting the repository at:

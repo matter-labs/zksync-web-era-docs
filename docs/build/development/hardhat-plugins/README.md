@@ -5,6 +5,6 @@ head:
       content: Hardhat Plugins | zkSync Era Docs
 ---
 
-# Overview
+# Hardhat Plugins
 
 ...

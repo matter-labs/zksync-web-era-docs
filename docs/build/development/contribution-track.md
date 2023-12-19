@@ -98,7 +98,3 @@ Feel free to explore these repositories, and don't hesitate to contribute!
 **7. Submit a** [**Community Tutorial**](https://github.com/zkSync-Community-Hub/tutorials) **or Guide**
 
 - Help others by sharing your knowledge. Write a tutorial or guide, then submit it to our community contributions repository or community forums
-
-###
-
-###
