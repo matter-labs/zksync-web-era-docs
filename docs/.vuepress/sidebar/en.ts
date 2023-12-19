@@ -434,32 +434,32 @@ export const enSidebar = sidebar({
       text: "Contribution Track",
       link: "/build/development/contribution-track.md",
     },
-    {
-      text: "How to",
-      link: "/dev/how-to/README.md",
-      children: [
-        "/dev/how-to/estimate-gas.md",
-        "/dev/how-to/send-transaction-l1-l2",
-        "/dev/how-to/send-message-l2-l1",
-        "/dev/how-to/transfer-token-l2",
-        "/dev/how-to/verify-contracts",
-      ],
-    },
-    {
-      text: "Tutorials",
-      link: "/dev/tutorials.md",
-      children: [
-        { text: "Community", link: "/dev/community-tutorials/README.md", children: [] },
-        { text: "zkSync Team", link: "/dev/tutorials/README.md", children: [
-          "/dev/tutorials/cross-chain-tutorial.md",
-          "/dev/tutorials/custom-aa-tutorial.md",
-          "/dev/tutorials/aa-daily-spend-limit.md",
-          "/dev/tutorials/custom-paymaster-tutorial.md",
-          "/dev/tutorials/api3-usd-paymaster-tutorial.md",
-          "/dev/tutorials/gated-nft-paymaster-tutorial.md",
-        ]},
-      ],
-    },
+  //   {
+  //     text: "How to",
+  //     link: "/dev/how-to/README.md",
+  //     children: [
+  //       "/dev/how-to/estimate-gas.md",
+  //       "/dev/how-to/send-transaction-l1-l2",
+  //       "/dev/how-to/send-message-l2-l1",
+  //       "/dev/how-to/transfer-token-l2",
+  //       "/dev/how-to/verify-contracts",
+  //     ],
+  //   },
+  //   {
+  //     text: "Tutorials",
+  //     link: "/dev/tutorials.md",
+  //     children: [
+  //       { text: "Community", link: "/dev/community-tutorials/README.md", children: [] },
+  //       { text: "zkSync Team", link: "/dev/tutorials/README.md", children: [
+  //         "/dev/tutorials/cross-chain-tutorial.md",
+  //         "/dev/tutorials/custom-aa-tutorial.md",
+  //         "/dev/tutorials/aa-daily-spend-limit.md",
+  //         "/dev/tutorials/custom-paymaster-tutorial.md",
+  //         "/dev/tutorials/api3-usd-paymaster-tutorial.md",
+  //         "/dev/tutorials/gated-nft-paymaster-tutorial.md",
+  //       ]},
+  //     ],
+  //   },
   ],
   "/run-a-node": [
     {
