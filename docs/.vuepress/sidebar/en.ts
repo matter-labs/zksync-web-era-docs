@@ -19,12 +19,12 @@ export const enSidebar = sidebar({
     // },
     {
       text: "Quick Start",
-      link: "/build/quick-start/README.md",
+      // link: "/build/quick-start/README.md",
       collapsible: true,
       children: [
         { 
           text: "Bridge funds", 
-          link: "/build/quick-start/bridge-funds.md", 
+          // link: "/build/quick-start/bridge-funds.md", 
           collapsible: true,
           children: [
             "/build/quick-start/add-zksync-to-metamask.md",
@@ -34,7 +34,7 @@ export const enSidebar = sidebar({
         },
         { 
           text: "Deploy contract", 
-          link: "/build/quick-start/deploy-contract.md", 
+          // link: "/build/quick-start/deploy-contract.md", 
           collapsible: true,
           children: [
             "/build/quick-start/zksync-cli.md",
@@ -52,13 +52,13 @@ export const enSidebar = sidebar({
     },
     {
       text: "Development",
-      link: "/build/development/README.md",
+      // link: "/build/development/README.md",
       collapsible: true,
       children: [
         "/build/development/zksync-cli.md",
         {
           text: "Foundry",
-          link: "/build/development/foundry/README.md",
+          // link: "/build/development/foundry/README.md",
           collapsible: true,
           children: [
             "/build/development/foundry/get-started.md",
@@ -66,7 +66,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "Hardhat Plugins",
-          link: "/build/development/hardhat-plugins/README.md",
+          // link: "/build/development/hardhat-plugins/README.md",
           collapsible: true,
           children: [
             "/build/development/hardhat-plugins/hardhat-zksync-solc.md",
@@ -82,7 +82,7 @@ export const enSidebar = sidebar({
         {
           text: "Frontend",
           collapsible: true,
-          link: "/build/development/frontend/README.md",
+          // link: "/build/development/frontend/README.md",
           children: [
             {
               text: "Frameworks",
@@ -112,7 +112,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "SDKs",
-          link: "/build/development/sdks/README.md",
+          // link: "/build/development/sdks/README.md",
           collapsible: true,
           children: [
             {
@@ -318,7 +318,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "Testing",
-          link: "/build/development/test-and-debug/README.md",
+          // link: "/build/development/test-and-debug/README.md",
           collapsible: true,
           children: [
             {
@@ -373,7 +373,7 @@ export const enSidebar = sidebar({
     },
     {
       text: "Guides",
-      link: "/build/guides/README.md",
+      // link: "/build/guides/README.md",
       collapsible: true,
       children: [
         {
@@ -384,7 +384,7 @@ export const enSidebar = sidebar({
     },
     {
       text: "Tutorials",
-      link: "/build/tutorials/README.md",
+      // link: "/build/tutorials/README.md",
       collapsible: true,
       children: [
         {
@@ -419,7 +419,7 @@ export const enSidebar = sidebar({
     },
     {
       text: "Community",
-      link: "/build/community/README.md",
+      // link: "/build/community/README.md",
       collapsible: true,
       children: [
         {
@@ -470,7 +470,7 @@ export const enSidebar = sidebar({
     },
     {
       text: "External Node (EN)",
-      link: "/run-a-node/external-node/README.md",
+      // link: "/run-a-node/external-node/README.md",
       collapsible: true,
       children: [
         {
@@ -501,7 +501,7 @@ export const enSidebar = sidebar({
     },
     {
       text: "zkSync Era",
-      link: "/run-a-node/zksync-era/README.md",
+      // link: "/run-a-node/zksync-era/README.md",
       collapsible: true,
       children: [
         {
@@ -526,7 +526,7 @@ export const enSidebar = sidebar({
   "/zk-stack": [
     {
       text: "Overview",
-      link: "/zk-stack/overview/README.md",
+      // link: "/zk-stack/overview/README.md",
       collapsible: true,
       children: [
         {
@@ -557,7 +557,7 @@ export const enSidebar = sidebar({
     },
     {
       text: "Running a Hyperchain",
-      link: "/zk-stack/running-a-hyperchain/README.md",
+      // link: "/zk-stack/running-a-hyperchain/README.md",
       collapsible: true,
       children: [
         {
@@ -572,12 +572,12 @@ export const enSidebar = sidebar({
     },
     {
       text: "Components",
-      link: "/zk-stack/components/README.md",
+      // link: "/zk-stack/components/README.md",
       collapsible: true,
       children: [
         {
           text: "Sequencer",
-          link: "/zk-stack/components/sequencer/README.md",
+          // link: "/zk-stack/components/sequencer/README.md",
           collapsible: true,
           children: [
             {
@@ -596,7 +596,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "Proof System",
-          link: "/zk-stack/components/proof-system/README.md",
+          // link: "/zk-stack/components/proof-system/README.md",
           collapsible: true,
           children: [
             {
@@ -611,7 +611,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "Compiler",
-          link: "/zk-stack/components/compiler/README.md",
+          // link: "/zk-stack/components/compiler/README.md",
           collapsible: true,
           children: [
             {
@@ -632,7 +632,7 @@ export const enSidebar = sidebar({
     },
     {
       text: "Future / Advanced Topics",
-      link: "/zk-stack/advanced-topics/README.md",
+      // link: "/zk-stack/advanced-topics/README.md",
       collapsible: true,
       children: [
         {
