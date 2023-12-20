@@ -558,7 +558,7 @@ This means that transaction fees in tokens with fewer decimals than ETH will be 
 :::
 
 ::: warning Paymasters on mainnet
-The testnet [paymaster](https://docs.zksync.io/docs/dev/tutorials/custom-paymaster-tutorial.html#building-custom-paymaster) is purely for demonstrating this feature and won't be available on mainnet.
+The testnet [paymaster](https://docs.zksync.io/dev/tutorials/custom-paymaster-tutorial.html#building-custom-paymaster) is purely for demonstrating this feature and won't be available on mainnet.
 
 When integrating your protocol on mainnet, you should follow the documentation of the paymaster you use, or create your own.
 :::

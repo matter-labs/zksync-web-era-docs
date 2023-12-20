@@ -50,7 +50,7 @@ import * as ethers from "ethers";
 ### 3. Create a wallet for the sender
 
 :::tip
-Check the [JSON-RPC API doc](https://docs.zksync.io/docs/api/api.html#rpc-endpoint-urls) for the correct RPC endpoint URL.
+Check the [JSON-RPC API doc](https://docs.zksync.io/api/api.html#rpc-endpoint-urls) for the correct RPC endpoint URL.
 :::
 
 Create a zkSync Era provider on testnet and use it to build a zkSync Era wallet, replacing `<PRIVATE-KEY` with your private key.

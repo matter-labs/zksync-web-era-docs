@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: zkSync Architecture | zkSync Era Docs
+      content: zkSync Architecture | zkSync Docs
 ---
 
 # zkSync v2 Project Architecture

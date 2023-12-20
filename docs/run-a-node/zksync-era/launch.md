@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: zkSync Launch | zkSync Era Docs
+      content: zkSync Launch | zkSync Docs
 ---
 
 # Running the application

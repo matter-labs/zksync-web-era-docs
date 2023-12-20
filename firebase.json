@@ -369,6 +369,11 @@
       ],
       "redirects": [
         {
+          "source": "/docs{,/**}",
+          "destination": "/",
+          "type": "302"
+        },
+        {
           "source": "/",
           "destination": "/docs/build",
           "type": "302"

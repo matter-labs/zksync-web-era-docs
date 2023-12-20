@@ -8,35 +8,35 @@
           "category": "SDK",
           "description": "Extends ethers including zksync-specific methods and utilities.",
           "logo": "js-logo.svg",
-          "url": "https://docs.zksync.io/docs/api/js"
+          "url": "https://docs.zksync.io/build/development/sdks/javascript"
         },
         {
           "name": "Python SDK",
           "category": "SDK",
           "description": "Extends web3.py including zksync-specific methods and utilities.",
           "logo": "python-logo.svg",
-          "url": "https://docs.zksync.io/docs/api/python"
+          "url": "https://docs.zksync.io/build/development/sdks/python"
         },
         {
           "name": "Go SDK",
           "category": "SDK",
           "description": "Extends go-ethereum including zksync-specific methods and utilities.",
           "logo": "go-logo.svg",
-          "url": "https://docs.zksync.io/docs/api/go"
+          "url": "https://docs.zksync.io/build/development/sdks/go"
         },
         {
           "name": "Java SDK",
           "category": "SDK",
           "description": "Extends web3j including zksync-specific methods and utilities.",
           "logo": "java-logo.svg",
-          "url": "https://docs.zksync.io/docs/api/java"
+          "url": "https://docs.zksync.io/build/development/sdks/java"
         },
         {
           "name": "Rust SDK",
           "category": "SDK",
           "description": "Extends ethers-rs including zksync-specific methods and utilities.",
           "logo": "rust-logo.svg",
-          "url": "https://docs.zksync.io/docs/api/rust"
+          "url": "https://docs.zksync.io/build/development/sdks/rust"
         }
       ]
     },
@@ -48,7 +48,7 @@
           "category": "Dev tools",
           "description": "Quickly set up local zkSync dev environment, scaffold projects, and interact with Era seamlessly from your terminal",
           "logo": "cli-logo.png",
-          "url": "https://docs.zksync.io/docs/tools/zksync-cli/"
+          "url": "https://docs.zksync.io/build/development/zksync-cli/"
         },
         {
           "name": "Atlas ZK",
@@ -69,7 +69,7 @@
           "category": "Framework",
           "description": "Official Hardhat plugins to enhance the developer experience on Era.",
           "logo": "hardhat-logo.png",
-          "url": "https://docs.zksync.io/docs/tools/hardhat"
+          "url": "https://docs.zksync.io/build/development/hardhat-plugins"
         },
         {
           "name": "Openzeppelin",
@@ -102,14 +102,14 @@
           "category": "Testing",
           "description": "Super fast node built in Rust for local testing and debugging.",
           "logo": "memory-node-logo.png",
-          "url": "https://docs.zksync.io/docs/tools/testing/era-test-node.html"
+          "url": "https://docs.zksync.io/build/development/test-and-debug/era-test-node"
         },
         {
           "name": "Docker setup",
           "category": "Testing",
           "description": "Simulate your own testnet locally running an L1 and L2 nodes.",
           "logo": "docker-setup-logo.png",
-          "url": "https://docs.zksync.io/docs/tools/testing/dockerized-testing.html"
+          "url": "https://docs.zksync.io/build/development/test-and-debug/dockerized-l1-l2-nodes"
         }
       ]
     },

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Gasless | zkSync Era Docs
+      content: Gasless | zkSync Docs
 ---
 
 # Gasless
@@ -14,7 +14,7 @@ zkSync's native account abstraction allows contracts to cover transaction fees o
 This guide describes the process of setting up and deploying the **`GaslessPaymaster`** contract.
 
 :::info
-For detailed explanations of the IPaymaster interface please refer to the documentation [here](https://era.zksync.io/docs/reference/concepts/account-abstraction.html#ipaymaster-interface).
+For detailed explanations of the IPaymaster interface please refer to the documentation [here](https://docs.zksync.io/reference/concepts/account-abstraction.html#ipaymaster-interface).
 :::
 
 ### Prerequisites

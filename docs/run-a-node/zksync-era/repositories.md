@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: zkSync Repositories | zkSync Era Docs
+      content: zkSync Repositories | zkSync Docs
 ---
 
 # Repositories
@@ -67,7 +67,7 @@ head:
 
 | Public repository                                                                       | Description                                                                        |
 | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [zksync-web-era-docs](https://github.com/matter-labs/zksync-web-era-docs)               | [Public zkSync documentation](https://era.zksync.io/docs/), API descriptions etc.  |
+| [zksync-web-era-docs](https://github.com/matter-labs/zksync-web-era-docs)               | [Public zkSync documentation](https://docs.zksync.io/), API descriptions etc.      |
 | [zksync-contract-templates](https://github.com/matter-labs/zksync-contract-templates)   | Quick contract deployment and testing with tools like Hardhat on Solidity or Vyper |
 | [zksync-frontend-templates](https://github.com/matter-labs/zksync-frontend-templates)   | Rapid UI development with templates for Vue, React, Next.js, Nuxt, Vite, etc.      |
 | [zksync-scripting-templates](https://github.com/matter-labs/zksync-scripting-templates) | Automated interactions and advanced zkSync operations using Node.js                |

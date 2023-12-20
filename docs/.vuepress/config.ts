@@ -7,6 +7,7 @@ import { getDirname, path } from "@vuepress/utils";
 import * as dotenv from 'dotenv'
 import { seoPlugin } from "vuepress-plugin-seo2";
 import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
+import { redirectPlugin } from "vuepress-plugin-redirect";
 
 dotenv.config()
 
@@ -17,13 +18,13 @@ export default defineUserConfig({
   alias: {
     "@theme-hope/modules/navbar/components/Navbar": path.resolve(__dirname, "./components/NavBar.vue"),
   },
-  dest: "dist/docs",
+  dest: "dist/",
 
-  base: "/docs/",
+  base: "/",
   title: "Welcome to our Docs | zkSync",
 
   head: [
-    ["link", { rel: "canonical", href: "https://docs.zksync.io/docs/" }],
+    ["link", { rel: "canonical", href: "https://docs.zksync.io/" }],
     ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
     ["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true }],
     ["link", { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" }],
@@ -41,10 +42,10 @@ export default defineUserConfig({
     ],
     ["meta", { name: "author", content: "https://matter-labs.io" }],
 
-    ["meta", { name: "og:image", content: "https://docs.zksync.io/docs/share_image.png" }],
-    ["meta", { property: "og:image", content: "https://docs.zksync.io/docs/share_image.png" }],
-    ["meta", { name: "og:image:secure_url", content: "https://docs.zksync.io/docs/share_image.png" }],
-    ["meta", { name: "og:url", content: "https://docs.zksync.io/docs/" }],
+    ["meta", { name: "og:image", content: "https://docs.zksync.io/share_image.png" }],
+    ["meta", { property: "og:image", content: "https://docs.zksync.io/share_image.png" }],
+    ["meta", { name: "og:image:secure_url", content: "https://docs.zksync.io/share_image.png" }],
+    ["meta", { name: "og:url", content: "https://docs.zksync.io/" }],
     ["meta", { name: "og:image:alt", content: "zkSync — Accelerating the mass adoption of crypto for personal sovereignty" }],
     ["meta", { property: "og:title", content: "Welcome to our Docs | zkSync" }],
     [
@@ -63,19 +64,19 @@ export default defineUserConfig({
         content: "zkSync is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet.",
       },
     ],
-    ["meta", { name: "twitter:image", content: "https://docs.zksync.io/docs/share_image.png" }],
+    ["meta", { name: "twitter:image", content: "https://docs.zksync.io/share_image.png" }],
     ["meta", { name: "twitter:site", content: "@zksync" }],
     ["meta", { name: "twitter:creator", content: "@the_matter_labs" }],
     ["meta", { name: "twitter:image:alt", content: "zkSync — Accelerating the mass adoption of crypto for personal sovereignty" }],
 
-    ["link", { rel: "apple-touch-icon", sizes: "180x180", href: "/docs/apple-touch-icon.png" }],
-    ["link", { rel: "icon", type: "image/png", sizes: "32x32", href: "/docs/favicon-32x32.png" }],
-    ["link", { rel: "icon", type: "image/png", sizes: "16x16", href: "/docs/favicon-16x16.png" }],
-    ["link", { rel: "manifest", href: "/docs/site.webmanifest" }],
-    ["link", { rel: "mask-icon", href: "/docs/safari-pinned-tab.svg", color: "#1E69FF" }],
-    ["link", { rel: "shortcut icon", href: "/docs/favicon.ico" }],
+    ["link", { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" }],
+    ["link", { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" }],
+    ["link", { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" }],
+    ["link", { rel: "manifest", href: "/site.webmanifest" }],
+    ["link", { rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#1E69FF" }],
+    ["link", { rel: "shortcut icon", href: "/favicon.ico" }],
     ["meta", { name: "msapplication-TileColor", content: "#1E69FF" }],
-    ["meta", { name: "msapplication-config", content: "/docs/browserconfig.xml" }],
+    ["meta", { name: "msapplication-config", content: "/browserconfig.xml" }],
     ["meta", { name: "theme-color", content: "#1E69FF" }],
     ["meta", { name: "ahrefs-site-verification", content: "e7c4ecad46da6b349bd70530fe8c272d23dae4ec3095852db8a68155ce87324e" }],
 
