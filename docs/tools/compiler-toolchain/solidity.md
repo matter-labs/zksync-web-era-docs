@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Solidity Compiler | zkSync Era Docs
+      content: Solidity Compiler | zkSync Docs
 ---
 
 # Solidity

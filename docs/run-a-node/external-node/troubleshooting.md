@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Troubleshooting | zkSync Era Docs
+      content: Troubleshooting | zkSync Docs
 ---
 
 # Troubleshooting

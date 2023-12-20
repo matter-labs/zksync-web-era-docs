@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Rust SDK Contract Deployment and Interaction | zkSync Era Docs
+      content: Rust SDK Contract Deployment and Interaction | zkSync Docs
 ---
 
 # Rust SDK Contract Deployment and Interaction

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Developer Tools | zkSync Era Docs
+      content: Developer Tools | zkSync Docs
 ---
 
 # zkSync Era developer tools

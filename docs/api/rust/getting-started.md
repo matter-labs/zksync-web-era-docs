@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Rust SDK Getting Started | zkSync Era Docs
+      content: Rust SDK Getting Started | zkSync Docs
 ---
 
 # Getting started

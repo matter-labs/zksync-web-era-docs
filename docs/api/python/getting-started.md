@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Python SDK Getting Started | zkSync Era Docs
+      content: Python SDK Getting Started | zkSync Docs
 ---
 
 # Getting started
@@ -444,7 +444,7 @@ if __name__ == "__main__":
 
     print(f"Withdraw transaction hash: {withdraw_tx_hash.hex()}")
     print("Wait for withdraw transaction to be finalized on L2 network (11-24 hours)")
-    print("Read more about withdrawal delay: https://era.zksync.io/docs/dev/troubleshooting/withdrawal-delay.html")
+    print("Read more about withdrawal delay: https://docs.zksync.io/docs/dev/troubleshooting/withdrawal-delay.html")
     print("When withdraw transaction is finalized, execute finalize withdrawal"
           "with WITHDRAW_TX_HASH environment variable set")
 

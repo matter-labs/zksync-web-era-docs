@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Gated NFT Paymaster Tutorial | zkSync Era Docs
+      content: Gated NFT Paymaster Tutorial | zkSync Docs
 ---
 
 # Gated NFT paymaster
@@ -96,7 +96,7 @@ Let’s first break down the project structure within `/zksync`:
 └── yarn.lock
 ```
 
-The template provides a ready-to-use `hardhat.config.ts` file that targets zkSync Era Testnet. If you are unfamiliar with zkSync Era Hardhat configurations please refer to the documentation [here](https://era.zksync.io/docs/tools/hardhat/getting-started.html#hardhat-configuration).
+The template provides a ready-to-use `hardhat.config.ts` file that targets zkSync Era Testnet. If you are unfamiliar with zkSync Era Hardhat configurations please refer to the documentation [here](https://docs.zksync.io/docs/tools/hardhat/getting-started.html#hardhat-configuration).
 
 1. To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
 

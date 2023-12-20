@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Go SDK Deploy Paymaster Example | zkSync Era Docs
+      content: Go SDK Deploy Paymaster Example | zkSync Docs
 ---
 
 # Deploy paymaster

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: JS SDK Withdraw Example | zkSync Era Docs
+      content: JS SDK Withdraw Example | zkSync Docs
 ---
 
 # Withdrawal

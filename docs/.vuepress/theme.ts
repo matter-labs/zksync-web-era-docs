@@ -3,18 +3,18 @@ import { enSidebar } from "./sidebar/index.js";
 import { hopeTheme } from "vuepress-theme-hope";
 
 export default hopeTheme({
-  hostname: "https://era.zksync.io",
+  hostname: "https://docs.zksync.io",
 
   author: {
     name: "Matter Labs",
-    url: "https://github.com/matter-labs/zksync-web-v2-docs",
+    url: "https://github.com/matter-labs/zksync-web-era-docs",
   },
 
   iconAssets: "iconfont",
 
-  logo: "/zk-sync-era-line-light.svg",
+  logo: "/zksync_logo_black.svg",
 
-  repo: "matter-labs/zksync-web-v2-docs",
+  repo: "matter-labs/zksync-web-era-docs",
 
   docsDir: "docs",
 

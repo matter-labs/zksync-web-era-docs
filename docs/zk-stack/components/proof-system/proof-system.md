@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Proof System | zkSync Era Docs
+      content: Proof System | zkSync Docs
 ---
 
 # Proof System

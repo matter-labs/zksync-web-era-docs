@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: JS SDK Deposit Example | zkSync Era Docs
+      content: JS SDK Deposit Example | zkSync Docs
 ---
 
 # Deposit

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: LLVM Framework | zkSync Era Docs
+      content: LLVM Framework | zkSync Docs
 ---
 
 # LLVM Framework

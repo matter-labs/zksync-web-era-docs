@@ -20,10 +20,10 @@ export default defineUserConfig({
   dest: "dist/docs",
 
   base: "/docs/",
-  title: "Welcome to our Docs | zkSync Era Docs",
+  title: "Welcome to our Docs | zkSync Docs",
 
   head: [
-    ["link", { rel: "canonical", href: "https://era.zksync.io/docs/" }],
+    ["link", { rel: "canonical", href: "https://docs.zksync.io/docs/" }],
     ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
     ["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true }],
     ["link", { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" }],
@@ -37,33 +37,33 @@ export default defineUserConfig({
     ],
     [
       "meta",
-      { name: "description", content: "zkSync Era is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet" },
+      { name: "description", content: "zkSync is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet" },
     ],
     ["meta", { name: "author", content: "https://matter-labs.io" }],
 
-    ["meta", { name: "og:image", content: "https://era.zksync.io/docs/share_image.png" }],
-    ["meta", { property: "og:image", content: "https://era.zksync.io/docs/share_image.png" }],
-    ["meta", { name: "og:image:secure_url", content: "https://era.zksync.io/docs/share_image.png" }],
-    ["meta", { name: "og:url", content: "https://era.zksync.io/docs/" }],
+    ["meta", { name: "og:image", content: "https://docs.zksync.io/docs/share_image.png" }],
+    ["meta", { property: "og:image", content: "https://docs.zksync.io/docs/share_image.png" }],
+    ["meta", { name: "og:image:secure_url", content: "https://docs.zksync.io/docs/share_image.png" }],
+    ["meta", { name: "og:url", content: "https://docs.zksync.io/docs/" }],
     ["meta", { name: "og:image:alt", content: "zkSync — Accelerating the mass adoption of crypto for personal sovereignty" }],
-    ["meta", { property: "og:title", content: "Welcome to our Docs | zkSync Era" }],
+    ["meta", { property: "og:title", content: "Welcome to our Docs | zkSync" }],
     [
       "meta",
       {
         name: "og:description",
-        content: "zkSync Era is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet.",
+        content: "zkSync is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet.",
       },
     ],
     ["meta", { name: "twitter:card", content: "summary" }],
-    ["meta", { name: "twitter:title", content: "Welcome to our Docs | zkSync Era" }],
+    ["meta", { name: "twitter:title", content: "Welcome to our Docs | zkSync" }],
     [
       "meta",
       {
         name: "twitter:description",
-        content: "zkSync Era is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet.",
+        content: "zkSync is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet.",
       },
     ],
-    ["meta", { name: "twitter:image", content: "https://era.zksync.io/docs/share_image.png" }],
+    ["meta", { name: "twitter:image", content: "https://docs.zksync.io/docs/share_image.png" }],
     ["meta", { name: "twitter:site", content: "@zksync" }],
     ["meta", { name: "twitter:creator", content: "@the_matter_labs" }],
     ["meta", { name: "twitter:image:alt", content: "zkSync — Accelerating the mass adoption of crypto for personal sovereignty" }],

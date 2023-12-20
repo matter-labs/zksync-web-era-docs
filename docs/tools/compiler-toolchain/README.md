@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Compiler Toolchain | zkSync Era Docs
+      content: Compiler Toolchain | zkSync Docs
 ---
 
 # Compiler Toolchain

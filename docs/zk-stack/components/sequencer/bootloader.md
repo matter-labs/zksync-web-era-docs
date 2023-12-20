@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Bootloader | zkSync Era Docs
+      content: Bootloader | zkSync Docs
 ---
 
 # Bootloader

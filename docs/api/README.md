@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Web3 API & SDKs | zkSync Era Docs
+      content: Web3 API & SDKs | zkSync Docs
 ---
 
 # Contents

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Running Node | zkSync Era Docs
+      content: Running Node | zkSync Docs
 ---
 
 # Running Node

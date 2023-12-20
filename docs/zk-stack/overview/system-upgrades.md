@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: System Upgrades | zkSync Era Docs
+      content: System Upgrades | zkSync Docs
 ---
 
 # System Upgrades

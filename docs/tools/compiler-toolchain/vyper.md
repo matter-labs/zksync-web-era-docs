@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Vyper Compiler | zkSync Era Docs
+      content: Vyper Compiler | zkSync Docs
 ---
 
 # Vyper

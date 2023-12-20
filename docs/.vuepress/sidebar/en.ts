@@ -503,7 +503,7 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "zkSync Era",
+      text: "zkSync",
       // link: "/run-a-node/zksync-era/README.md",
       collapsible: true,
       children: [

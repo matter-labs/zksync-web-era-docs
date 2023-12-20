@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: System Contracts | zkSync Era Docs
+      content: System Contracts | zkSync Docs
 ---
 
 # System contracts

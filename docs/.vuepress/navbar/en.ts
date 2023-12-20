@@ -33,7 +33,7 @@ export const enNavbar = navbar([
   //   text: "Versions",
   //   children: [
   //     {
-  //       text: "zkSync Era",
+  //       text: "zkSync",
   //       link: "/dev/",
   //     },
   //     {
