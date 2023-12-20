@@ -8,7 +8,7 @@ head:
 # EN Observability
 
 The EN provides several options for setting up observability. Configuring logs and sentry is described in the
-[configuration](./02_configuration.md) section, so this section focuses on the exposed metrics.
+configuration section, so this section focuses on the exposed metrics.
 
 This section is written with the assumption that you're familiar with
 [Prometheus](https://prometheus.io/docs/introduction/overview/) and [Grafana](https://grafana.com/docs/).
@@ -58,4 +58,4 @@ After that, the EN has to sync with the main node. `server_block_number { stage=
 Once the node is synchronized, it is indicated by the `external_node_synced`.
 
 Metrics can be used to detect anomalies in configuration, which is described in more detail in the
-[next section](./05_troubleshooting.md).
+next section.

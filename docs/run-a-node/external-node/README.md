@@ -6,8 +6,8 @@ head:
 ---
 
 > 💡 Note
-> 
-> For local testing, we recommend setting up an in-memory node and forking mainnet. 
+>
+> For local testing, we recommend setting up an in-memory node and forking mainnet.
 
 # External Node Documentation
 
@@ -53,7 +53,7 @@ With the EN, you _can not_:
 - Generate proofs.
 - Submit data to L1.
 
-A more detailed overview of the EN's components is provided in the [components](./06_components.md) section.
+A more detailed overview of the EN's components is provided in the components section.
 
 ## API overview
 
@@ -139,8 +139,7 @@ Available methods:
 The `debug` namespace gives access to several non-standard RPC methods, which will allow developers to inspect and debug
 calls and transactions.
 
-This namespace is disabled by default and can be configured via setting `EN_API_NAMESPACES` as described in the
-[example config](prepared_configs/mainnet-config.env).
+This namespace is disabled by default and can be configured via setting `EN_API_NAMESPACES` as described in the example config.
 
 Available methods:
 

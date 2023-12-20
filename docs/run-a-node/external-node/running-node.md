@@ -7,8 +7,7 @@ head:
 
 # Running the External Node
 
-This section assumes that you have prepared a configuration file as described on the
-[previous page](./02_configuration.md).
+This section assumes that you have prepared a configuration file as described on the previous page.
 
 ## Preferred hardware configuration
 
@@ -29,7 +28,7 @@ namespace. If you want to clear some space and aren't using the `debug` namespac
 
 - clear it with a simple query `DELETE FROM call_traces;`
 - leave the `debug` namespace disabled via the `EN_API_NAMESPACES` env var as described in the
-  [example config](prepared_configs/mainnet-config.env).
+  example config.
 
 ## Infrastructure
 
@@ -81,5 +80,4 @@ If you've been running the EN for some time and are going to redeploy it using a
 - Restore with the new dump
 - Start the EN
 
-Monitoring the node behavior and analyzing the state it's in is covered in the
-[observability section](./04_observability.md).
+Monitoring the node behavior and analyzing the state it's in is covered in the observability section.

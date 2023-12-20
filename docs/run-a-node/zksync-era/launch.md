@@ -13,7 +13,7 @@ This document covers common scenarios of launching zkSync applications set local
 
 Prepare dev environment prerequisites: see
 
-[Installing dependencies](./setup-dev.md)
+Installing dependencies.
 
 ## Setup local dev environment
 
