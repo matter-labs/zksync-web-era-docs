@@ -372,6 +372,28 @@ export const enSidebar = sidebar({
             },
           ]
         },
+        {
+          text: "Compiler",
+          collapsible: true,
+          children: [
+            {
+              text: "Overview",
+              link: "/build/development/compiler/overview.md"
+            },
+            {
+              text: "Solidity",
+              link: "/build/development/compiler/solidity.md"
+            },
+            {
+              text: "Vyper",
+              link: "/build/development/compiler/vyper.md"
+            },
+            {
+              text: "LLVM",
+              link: "/build/development/compiler/LLVM.md"
+            },
+          ]
+        }
       ],
     },
     {
