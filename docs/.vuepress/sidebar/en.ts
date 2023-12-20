@@ -409,38 +409,21 @@ export const enSidebar = sidebar({
               text: "Spending Rules",
               link: "/build/guides/spending-rules/README.md"
             },
-            {
-              text: "Verify contract",
-              collapsible: true,
-              children: [
-                {
-                  text: "Verify Contracts with Hardhat",
-                  link: "/build/guides/verify-contracts.md"
-                }
-              ]
-            },
-            {
-              text: "Estimate Gas",
-              collapsible: true,
-              children: [
-                {
-                  text: "Estimate Gas",
-                  link: "/build/guides/estimate-gas.md"
-                }
-              ]
-            },
-            {
-              text: "Useful Addresses",
-              collapsible: true,
-              children: [
-                {
-                  text: "Useful Addresses",
-                  link: "/build/guides/useful-address/useful-address.md"
-                }
-              ]
-            }
+          
 
-          ]
+          ],
+        },
+        {
+          text: "Verify Contracts with Hardhat",
+          link: "/build/guides/verify-contracts.md"
+        },
+        {
+          text: "Estimate Gas",
+          link: "/build/guides/estimate-gas.md"
+        },
+        {
+          text: "Useful Addresses",
+          link: "/build/guides/useful-address/useful-address.md"
         }
       ]
     },
@@ -450,29 +433,51 @@ export const enSidebar = sidebar({
       collapsible: true,
       children: [
         {
-          text: "Daily spending limit account",
-          link: "/build/tutorials/aa-daily-spend-limit.md",
+          text: "Hello World",
+          link: "/build/building-on-zksync/hello-world.md"
+        },
+        {
+          text: "Transfer Token",
+          collapsible: true,
+          children: [
+            {
+              text: "Crosschain Communication",
+              link: ""
+            }
+          ]
+        },
+        {
+          text: "L1 <> L2 ",
+          link: "/build/tutorials/l1-l2-interop.md"
+        },
+        {
+          text: "L2 <> L2 (LayerZero)",
+          link: "https://layerzero.network/"
         },
         // {
-        //   text: "USDC paymaster tutorial with API3 dAPIs",
-        //   link: "/build/tutorials/api3-usd-paymaster-tutorial.md",
+        //   text: "Daily spending limit account",
+        //   link: "/build/tutorials/aa-daily-spend-limit.md",
         // },
-        {
-          text: "Cross-chain governance",
-          link: "/build/tutorials/cross-chain-tutorial.md",
-        },
-        {
-          text: "Account abstraction multisig",
-          link: "/build/tutorials/custom-aa-tutorial.md",
-        },
-        {
-          text: "Building a custom paymaster",
-          link: "/build/tutorials/custom-paymaster-tutorial.md",
-        },
-        {
-          text: "Gated NFT paymaster",
-          link: "/build/tutorials/gated-nft-paymaster-tutorial.md",
-        }
+        // // {
+        // //   text: "USDC paymaster tutorial with API3 dAPIs",
+        // //   link: "/build/tutorials/api3-usd-paymaster-tutorial.md",
+        // // },
+        // {
+        //   text: "Cross-chain governance",
+        //   link: "/build/tutorials/cross-chain-tutorial.md",
+        // },
+        // {
+        //   text: "Account abstraction multisig",
+        //   link: "/build/tutorials/custom-aa-tutorial.md",
+        // },
+        // {
+        //   text: "Building a custom paymaster",
+        //   link: "/build/tutorials/custom-paymaster-tutorial.md",
+        // },
+        // {
+        //   text: "Gated NFT paymaster",
+        //   link: "/build/tutorials/gated-nft-paymaster-tutorial.md",
+        // }
       ]
     },
     {
@@ -480,6 +485,26 @@ export const enSidebar = sidebar({
       // link: "/build/community/README.md",
       collapsible: true,
       children: [
+        {
+          text: "Support",
+          link: "/build/community/support.md"
+        },
+        {
+          text: "Showcase",
+          link: "/build/community/showcase.md"
+        },
+        {
+          text: "Tutorials (Community)",
+          link: "/build/community/community-tutorials.md"
+        },
+        {
+          text: "Ecosystem (Dappradar)",
+          link: "https://zksync.dappradar.com/"
+        },
+        {
+          text: "Gitbook",
+          link: ""
+        },
         {
           text: "Community Channels",
           link: "/build/community/community-channels.md"

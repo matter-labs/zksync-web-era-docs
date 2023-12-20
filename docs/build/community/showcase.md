@@ -2,10 +2,10 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: FAQ | zkSync Era Docs
+      content: Showcase | zkSync Era Docs
 ---
 
-# FAQ
+# Showcase
 
 :::warning
 This section is under development. Check back soon.
