@@ -54,7 +54,6 @@ export const enSidebar = sidebar({
       // link: "/build/development/README.md",
       collapsible: true,
       children: [
-        "/build/development/zksync-cli.md",
         {
           text: "Foundry",
           // link: "/build/development/foundry/README.md",
@@ -64,7 +63,7 @@ export const enSidebar = sidebar({
           ]
         },
         {
-          text: "Hardhat Plugins",
+          text: "Hardhat",
           // link: "/build/development/hardhat-plugins/README.md",
           collapsible: true,
           children: [
@@ -81,11 +80,9 @@ export const enSidebar = sidebar({
         {
           text: "Frontend",
           collapsible: true,
-          // link: "/build/development/frontend/README.md",
           children: [
             {
               text: "Frameworks",
-              // link: "/build/development/frontend/frameworks/README.md",
               collapsible: true,
               children: [
                 "/build/development/frontend/frameworks/wagmi.md",
@@ -93,7 +90,6 @@ export const enSidebar = sidebar({
             },
             {
               text: "Libraries",
-              // link: "/build/development/frontend/libraries/README.md",
               collapsible: true,
               children: [
                 "/build/development/frontend/libraries/viem.md",
@@ -101,7 +97,6 @@ export const enSidebar = sidebar({
             },
             {
               text: "Wallets",
-              // link: "/build/development/frontend/wallets/README.md",
               collapsible: true,
               children: [
                 "/build/development/frontend/wallets/wallet-connect.md",
@@ -111,13 +106,11 @@ export const enSidebar = sidebar({
         },
         {
           text: "SDKs",
-          // link: "/build/development/sdks/README.md",
           collapsible: true,
           children: [
             {
               text: "Javascript",
               collapsible: true,
-              // link: "/build/development/sdks/javascript/README.md",
               children: [
                 { 
                   text: "Ethers V5",
@@ -130,7 +123,6 @@ export const enSidebar = sidebar({
                 {
                   text: "API Reference",
                   collapsible: true,
-                  // link: "/build/development/sdks/javascript/api-reference/README.md",
                   children: [
                     {
                       text: "Overview",
@@ -138,7 +130,6 @@ export const enSidebar = sidebar({
                     },
                     {
                       text: "Provider",
-                      // link: "/build/development/sdks/javascript/api-reference/provider/README.md",
                       children: [
                         {
                           text: "Overview",
@@ -326,7 +317,6 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "In-Memory Node",
-              // link: "/build/development/test-and-debug/era-test-node/README.md",
               collapsible: true,
               children: [
                 {
@@ -339,7 +329,6 @@ export const enSidebar = sidebar({
                 },
                 {
                   text: "Usage Examples",
-                  // link: "/build/development/test-and-debug/era-test-node/usage-examples/README.md",
                   collapsible: true,
                   children: [
                     {
@@ -500,17 +489,19 @@ export const enSidebar = sidebar({
         },
         {
           text: "Transfer Token",
-          collapsible: true,
-          children: [
-            {
-              text: "Crosschain Communication",
-              link: "/build/building-on-zksync/cross-chain-tutorial.md"
-            }
-          ]
+          link: "/build/building-on-zksync/transfer-token.md"
+          // collapsible: true,
+          // children: [
+          //   {
+          //     text: "Crosschain Communication",
+          //     link: "/build/building-on-zksync/cross-chain-tutorial.md"
+          //   }
+          // ]
         },
         {
           text: "L1 <> L2 ",
-          link: "/build/tutorials/l1-l2-interop.md"
+          // link: "/build/tutorials/l1-l2-interop.md"
+          link: "/build/building-on-zksync/cross-chain-tutorial.md"
         },
         {
           text: "L2 <> L2 (LayerZero)",
