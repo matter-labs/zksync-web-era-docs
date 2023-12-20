@@ -38,7 +38,7 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             // "/build/quick-start/zksync-cli.md",
-            "/build/quick-start/hardhat-foundry.md", 
+            "/build/quick-start/hardhat.md", 
             {
               text: "Remix",
               link: "/build/quick-start/remix.md",
@@ -380,8 +380,67 @@ export const enSidebar = sidebar({
       collapsible: true,
       children: [
         {
-          text: "Get Started",
-          link: "/build/guides/get-started.md"
+          text: "Account Abstraction Cookbook",
+          collapsible: true,
+          children: [
+            {
+              text: "Paymaster",
+              collapsible: false,
+              children: [
+                {
+                  text: "Gasless",
+                  link: "/build/guides/paymasters/gasless.md",
+                },
+                {
+                  text: "AllowList",
+                  link: "/build/guides/paymasters/allowlist.md",
+                },
+                {
+                  text: "TimeBased",
+                  link: "/build/guides/paymasters/timebased.md",
+                },
+                {
+                  text: "ERC20Fixed",
+                  link: "/build/guides/paymasters/erc20fixed.md",
+                },
+              ]
+            },
+            {
+              text: "Spending Rules",
+              link: "/build/guides/spending-rules/README.md"
+            },
+            {
+              text: "Verify contract",
+              collapsible: true,
+              children: [
+                {
+                  text: "missing structure",
+                  link: ""
+                }
+              ]
+            },
+            {
+              text: "Estimate Gas",
+              collapsible: true,
+              children: [
+                {
+                  text: "missing structure",
+                  link: ""
+                }
+              ]
+            },
+            {
+              text: "Useful Addresses",
+              collapsible: true,
+              children: [
+                {
+                  text: "Useful Addresses",
+                  link: "/build/guides/useful-address/useful-address.md"
+                }
+              ]
+            }
+
+          ]
         }
       ]
     },
