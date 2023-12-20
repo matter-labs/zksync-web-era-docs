@@ -393,6 +393,28 @@ export const enSidebar = sidebar({
               link: "/build/development/compiler/LLVM.md"
             },
           ]
+        },
+        {
+          text: "Data & Analytics",
+          collapsible: true,
+          children: [
+            {
+              text: "Block Explorer",
+              link: ""
+            },
+            {
+              text: "Dune",
+              link: ""
+            },
+            {
+              text: "Oracles",
+              link: ""
+            },
+            {
+              text: "Indexers",
+              link: ""
+            },
+          ]
         }
       ],
     },
@@ -409,6 +431,18 @@ export const enSidebar = sidebar({
               text: "Paymaster",
               collapsible: false,
               children: [
+                {
+                  text: "Overview",
+                  link: "/build/guides/paymasters/README.md"
+                },
+                {
+                  text: "Building Custom Paymaster",
+                  link: "/build/guides/paymasters/custom-paymaster-tutorial.md"
+                },
+                {
+                  text: "NFT Gated Paymaster",
+                  link: "/build/guides/paymasters/gated-nft-paymaster-tutorial.md",
+                },
                 {
                   text: "Gasless",
                   link: "/build/guides/paymasters/gasless.md",
@@ -428,11 +462,17 @@ export const enSidebar = sidebar({
               ]
             },
             {
-              text: "Spending Rules",
-              link: "/build/guides/spending-rules/README.md"
+              text: "Daily Spending Limit Account",
+              link: "/build/guides/account-abstraction/daily-spending-limit.md"
             },
-          
-
+            {
+              text: "Account Abstraction Multisig",
+              link: "/build/guides/account-abstraction/custom-aa-tutorial.md"
+            }
+            // {
+            //   text: "Spending Rules",
+            //   link: "/build/guides/spending-rules/README.md"
+            // },
           ],
         },
         {
@@ -464,7 +504,7 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Crosschain Communication",
-              link: ""
+              link: "/build/building-on-zksync/cross-chain-tutorial.md"
             }
           ]
         },
@@ -525,7 +565,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "Gitbook",
-          link: ""
+          link: "https://matterlabs.gitbook.io/zksync-community-hub/"
         },
         {
           text: "Community Channels",

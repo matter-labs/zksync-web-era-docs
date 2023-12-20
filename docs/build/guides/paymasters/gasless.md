@@ -13,9 +13,9 @@ zkSync's native account abstraction allows contracts to cover transaction fees o
 
 This guide describes the process of setting up and deploying the **`GaslessPaymaster`** contract.
 
-{% hint style="info" %}
+:::info
 For detailed explanations of the IPaymaster interface please refer to the documentation [here](https://era.zksync.io/docs/reference/concepts/account-abstraction.html#ipaymaster-interface).
-{% endhint %}
+:::
 
 ### Prerequisites
 
@@ -37,8 +37,7 @@ Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/
 
 Using `zksync-cli` create a new project with the required dependencies and boilerplate paymaster implementations:
 
-<pre class="language-bash"><code class="lang-bash"><strong>npx zksync-cli@latest create-project gaslessPaymaster
-</strong></code></pre>
+`npx zksync-cli@latest create-project gaslessPaymaster`
 
 Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/GeneralPaymaster.sol`.&#x20;
 
@@ -57,9 +56,7 @@ Reviewing the `validateAndPayForPaymasterTransaction` function reveals its simpl
 
 Create a new file under `/deploy`, for example `deploy-gaslessPaymaster.ts`. Insert the provided script:
 
-<details>
-
-<summary>Deployment script</summary>
+Deployment script
 
 ```typescript
 import { Provider, Wallet } from "zksync-web3";
@@ -111,9 +108,9 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 </details>
 
-{% hint style="info" %}
+:::info
 Be sure to add your private key to the `.env` file.&#x20;
-{% endhint %}
+:::
 
 The provided script takes care of loading environment variables, setting up a deployment wallet with the private key specified in an `.env` file, contract deployment and funding the paymaster. You can adjust the amount of ETH to fund the paymaster to your needs.&#x20;
 
