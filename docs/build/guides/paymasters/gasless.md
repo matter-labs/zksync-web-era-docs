@@ -20,7 +20,7 @@ For detailed explanations of the IPaymaster interface please refer to the docume
 ### Prerequisites
 
 - **Knowledge Base**: You should be familiar with Solidity and Hardhat.
-- **Wallet Setup**: Have MetaMask installed and set up, ensuring there's a balance on the zkSync testnet.&#x20;
+- **Wallet Setup**: Have MetaMask installed and set up, ensuring there's a balance on the zkSync testnet.
 - **Tooling**: This guide utilizes [`zksync-cli`](../../../tooling/zksync-cli.md). Ensure you have it accessible or installed in your environment.
 
 ### Step 1 — Understanding the GaslessPaymaster contract
@@ -39,7 +39,7 @@ Using `zksync-cli` create a new project with the required dependencies and boile
 
 `npx zksync-cli@latest create-project gaslessPaymaster`
 
-Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/GeneralPaymaster.sol`.&#x20;
+Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/GeneralPaymaster.sol`.
 
 **Update the Environment File**:
 
@@ -48,7 +48,7 @@ Choose `Hardhat + Solidity` to setup the project repository. The contract for th
 
 ### Step 3 — Updating the contract
 
-No modifications are needed for gasless transactions since the provided `GeneralPaymaster` contract is already configured for this purpose. With no restrictions on its usage.&#x20;
+No modifications are needed for gasless transactions since the provided `GeneralPaymaster` contract is already configured for this purpose. With no restrictions on its usage.
 
 Reviewing the `validateAndPayForPaymasterTransaction` function reveals its simplicity: it only verifies that the paymaster holds sufficient ETH.
 
@@ -57,6 +57,8 @@ Reviewing the `validateAndPayForPaymasterTransaction` function reveals its simpl
 Create a new file under `/deploy`, for example `deploy-gaslessPaymaster.ts`. Insert the provided script:
 
 Deployment script
+
+<details>
 
 ```typescript
 import { Provider, Wallet } from "zksync-web3";

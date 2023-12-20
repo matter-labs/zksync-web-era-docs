@@ -19,38 +19,38 @@ implementation or a problem with configuration. This section tries to cover comm
 Panics is the Rust programming language notion of irrecoverable errors, and normally if panic happens, the application
 will immediately crash.
 
-- Panic matching `called Result::unwrap() on an Err value: Database(PgDatabaseError`: problem communicating with the
+- Panic matching `called Result::unwrap() on an Err value: Database(PgDatabaseError)`: problem communicating with the
   PostgreSQL, most likely some of the connections have died.
-- Panic matching `failed to init rocksdb: Error { message: "IO error: No space left on device`: more space on SSD is
+- Panic matching `failed to init rocksdb: Error { message: "IO error: No space left on device"}`: more space on SSD is
   required.
 - Anything that mentions "Poison Error": a "secondary" panic that may occur if one of the components panicked first. If
   you see this panic, look for a panic that happened shortly before it to find the real cause.
 
 Other kinds of panic aren't normally expected. While in most cases, the state will be recovered after a restart, please
-[report][contact_us] such cases to Matter Labs regardless.
+[report](https://zksync.io/contact) such cases to Matter Labs regardless.
 
 ## Genesis Issues
 
 The EN is supposed to start with an applied DB dump. If you see any genesis-related errors, it probably means the EN was
 started without an applied dump.
 
-[contact_us]: https://zksync.io/contact
+[contact_us](https://zksync.io/contact)
 
 ## Logs
 
 _Note: logs with the `error` level are reported to Sentry if it's configured. If you notice unneeded alerts there that
 you don't consider actionable, you may disable logs for a component by tweaking the configuration._
 
-| Level | Log substring                                         | Interpretation                                                                                           |
-| ----- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| ERROR | "One of the tokio actors unexpectedly finished"       | One of the components crashed, and the node is restarting.                                               |
-| WARN  | "Stop signal received, <component> is shutting down"  | Satellite log of the message above                                                                       |
-| ERROR | "A lot of requests to the remote API failed in a row" | The remote API used to update token lists is probably down. Logs should disappear once API is available. |
-| WARN  | "Server returned an error status code: 429"           | The main API rate limits are too strict. [Contact][contact_us] Matter Labs to discuss the situation.     |
-| WARN  | "Following transport error occurred"                  | There was a problem with fetching data from the main node.                                               |
-| WARN  | "Unable to get the gas price"                         | There was a problem with fetching data from the main node.                                               |
-| WARN  | "Consistency checker error"                           | There are problems querying L1, check the Web3 URL you specified in the config.                          |
-| WARN  | "Reorg detected"                                      | Reorg was detected on the main node, the EN will rollback and restart                                    |
+| Level | Log substring                                         | Interpretation                                                                                                      |
+| ----- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| ERROR | "One of the tokio actors unexpectedly finished"       | One of the components crashed, and the node is restarting.                                                          |
+| WARN  | "Stop signal received, <component\> is shutting down" | Satellite log of the message above                                                                                  |
+| ERROR | "A lot of requests to the remote API failed in a row" | The remote API used to update token lists is probably down. Logs should disappear once API is available.            |
+| WARN  | "Server returned an error status code: 429"           | The main API rate limits are too strict. [Contact](https://zksync.io/contact) Matter Labs to discuss the situation. |
+| WARN  | "Following transport error occurred"                  | There was a problem with fetching data from the main node.                                                          |
+| WARN  | "Unable to get the gas price"                         | There was a problem with fetching data from the main node.                                                          |
+| WARN  | "Consistency checker error"                           | There are problems querying L1, check the Web3 URL you specified in the config.                                     |
+| WARN  | "Reorg detected"                                      | Reorg was detected on the main node, the EN will rollback and restart                                               |
 
 Same as with panics, normally it's only a problem if a WARN+ level log appears many times in a row.
 
