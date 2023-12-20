@@ -414,8 +414,8 @@ export const enSidebar = sidebar({
               collapsible: true,
               children: [
                 {
-                  text: "missing structure",
-                  link: ""
+                  text: "Verify Contracts with Hardhat",
+                  link: "/build/guides/verify-contracts.md"
                 }
               ]
             },
@@ -424,8 +424,8 @@ export const enSidebar = sidebar({
               collapsible: true,
               children: [
                 {
-                  text: "missing structure",
-                  link: ""
+                  text: "Estimate Gas",
+                  link: "/build/guides/estimate-gas.md"
                 }
               ]
             },
