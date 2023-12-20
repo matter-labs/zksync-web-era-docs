@@ -85,7 +85,7 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Frameworks",
-              link: "/build/development/frontend/frameworks/README.md",
+              // link: "/build/development/frontend/frameworks/README.md",
               collapsible: true,
               children: [
                 "/build/development/frontend/frameworks/wagmi.md",
@@ -93,7 +93,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "Libraries",
-              link: "/build/development/frontend/libraries/README.md",
+              // link: "/build/development/frontend/libraries/README.md",
               collapsible: true,
               children: [
                 "/build/development/frontend/libraries/viem.md",
@@ -101,7 +101,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "Wallets",
-              link: "/build/development/frontend/wallets/README.md",
+              // link: "/build/development/frontend/wallets/README.md",
               collapsible: true,
               children: [
                 "/build/development/frontend/wallets/wallet-connect.md",
