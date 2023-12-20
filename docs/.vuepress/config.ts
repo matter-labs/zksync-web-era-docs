@@ -7,7 +7,6 @@ import { getDirname, path } from "@vuepress/utils";
 import * as dotenv from 'dotenv'
 import { seoPlugin } from "vuepress-plugin-seo2";
 import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
-import { redirectPlugin } from "vuepress-plugin-redirect";
 
 dotenv.config()
 
@@ -21,6 +20,7 @@ export default defineUserConfig({
   dest: "dist/",
 
   base: "/",
+
   title: "Welcome to our Docs | zkSync",
 
   head: [

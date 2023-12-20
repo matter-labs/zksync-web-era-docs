@@ -485,7 +485,7 @@ yarn dev
 
 This will start a local server running on `http://localhost:3000/`. You should see something that looks similar to:
 
-![starter frontend](../../assets/images/gated-tutorial.png)
+![starter frontend](../../../assets/images/gated-tutorial.png)
 
 ### Connecting our `WalletButton` component
 
