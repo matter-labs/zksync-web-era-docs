@@ -15,4 +15,4 @@ These tutorials were created with the goal of showcasing key features of zkSync 
 
 ## Community Tutorials
 
-These tutorials showcase the work of the community - in particular, how tools and services can be used to make building dApps on zkSync even easier. Make sure to visit the [homepage of the community tutorials section](./community-tutorials/README.md) to see the full list of tutorials.
+These tutorials showcase the work of the community - in particular, how tools and services can be used to make building dApps on zkSync even easier. Make sure to visit the [homepage of the community tutorials section](./community/community-tutorials.md) to see the full list of tutorials.
