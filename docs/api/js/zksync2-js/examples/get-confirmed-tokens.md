@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: JS SDK Get Tokens Example | zkSync Era Docs
+      content: JS SDK Get Tokens Example | zkSync Docs
 ---
 
 # Get all confirmed tokens on zkSync Era

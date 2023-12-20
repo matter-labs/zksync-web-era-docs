@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: hardhat-zksync-verify | zkSync Era Docs
+      content: hardhat-zksync-verify | zkSync Docs
 ---
 
 # `hardhat-zksync-verify`

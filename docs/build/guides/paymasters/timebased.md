@@ -1,0 +1,264 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: TimeBased | zkSync Era Docs
+---
+
+# TimeBased
+
+### Introduction
+
+zkSync brings forth the possibility to cover transaction fees on behalf of users through native account abstraction, promoting user experience. The `TimeBasedPaymaster` contract presented in this guide ensures transactions are validated based on the time they occur. By utilizing this guide, developers can set up, deploy, and test the `TimeBasedPaymaster` contract.
+
+{% hint style="info" %}
+For a more in-depth understanding of the IPaymaster interface, please refer to the official zkSync documentation [here](https://era.zksync.io/docs/reference/concepts/account-abstraction.html#ipaymaster-interface).
+{% endhint %}
+
+### Prerequisites
+
+- **Knowledge Base**: Familiarity with Solidity and Hardhat.
+- **Wallet Setup**: MetaMask installation with balance on zkSync testnet.
+- **Tooling**: Ensure you have `zksync-cli` either accessible or installed.
+
+### Step 1 — Understanding the TimeBasedPaymaster contract
+
+The `TimeBasedPaymaster` contract allows transactions within a specific timeframe to have the gas covered.&#x20;
+
+Key components:
+
+- **validateAndPayForPaymasterTransaction**: Validates the transaction time, checks if the transaction is within the defined time window, calculates the required ETH, and pays the bootloader.
+
+Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IPaymaster.sol) interface. We will be using `zksync-cli` to bootstrap the boilerplate code for this paymaster.
+
+### Step 2 — Environment setup
+
+Using `zksync-cli` create a new project with the required dependencies and boilerplate paymaster implementations:
+
+```bash
+npx zksync-cli@latest create-project timeBasedPaymaster
+```
+
+Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/GeneralPaymaster.sol`.&#x20;
+
+**Update the Environment File**:
+
+- Modify the `.env-example` file with your private key.
+- Ensure your account has a sufficient balance.
+
+### Step 3 — Updating the contract
+
+The intended objective of the `TimeBasedPaymaster` contract is to permit transactions only between a stipulated timeframe to cover the gas costs.&#x20;
+
+Include the validation logic in the `validateAndPayForPaymasterTransaction` function in the contract. Insert the following code under the `paymasterInputSelector == IPaymasterFlow.general.selector` condition check:
+
+```solidity
+uint256 startTime = (block.timestamp / 86400) * 86400 + 15 hours;
+ uint256 endTime = startTime + 20 minutes;
+
+ require(
+   block.timestamp >= startTime && block.timestamp <= endTime,
+   "Transactions can only be processed between 14:35 - 14:55"
+ );
+```
+
+During the validation step, the contract will check if the transaction is taking place between the specified time frame, if not the account will be required to pay their own gas costs. Specifically, this contract checks if the transaction takes place between 14:35 - 14:55 UTC.
+
+### Step 4 — Deploy the contract
+
+Create a new file under `/deploy`, for example `deploy-timeBasedPaymaster.ts`. Insert the provided script:
+
+<details>
+
+<summary>Deployment script</summary>
+
+```typescript
+import { Provider, Wallet } from "zksync-web3";
+import * as ethers from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+// load wallet private key from env file
+const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
+
+if (!PRIVATE_KEY) throw "⛔️ Private key not detected! Add it to the .env file!";
+
+export default async function (hre: HardhatRuntimeEnvironment) {
+  console.log(`Running deploy script for the TimeBasedPaymaster contract...`);
+  const provider = new Provider("https://testnet.era.zksync.dev");
+
+  const wallet = new Wallet(PRIVATE_KEY);
+  const deployer = new Deployer(hre, wallet);
+
+  const paymasterArtifact = await deployer.loadArtifact("TimeBasedPaymaster");
+  const deploymentFee = await deployer.estimateDeployFee(paymasterArtifact, []);
+  const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
+  console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
+  // Deploy the contract
+  const paymaster = await deployer.deploy(paymasterArtifact, []);
+  console.log(`Paymaster address: ${paymaster.address}`);
+  console.log("constructor args:" + paymaster.interface.encodeDeploy([]));
+
+  console.log("Funding paymaster with ETH");
+  // Supplying paymaster with ETH
+  await (
+    await deployer.zkWallet.sendTransaction({
+      to: paymaster.address,
+      value: ethers.utils.parseEther("0.005"),
+    })
+  ).wait();
+
+  let paymasterBalance = await provider.getBalance(paymaster.address);
+  console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
+
+  // Verify contract programmatically
+  //
+  // Contract MUST be fully qualified name (e.g. path/sourceName:contractName)
+  const contractFullyQualifedName = "contracts/paymasters/TimeBasedPaymaster.sol:TimeBasedPaymaster";
+  const verificationId = await hre.run("verify:verify", {
+    address: paymaster.address,
+    contract: contractFullyQualifedName,
+    constructorArguments: [],
+    bytecode: paymasterArtifact.bytecode,
+  });
+  console.log(`${contractFullyQualifedName} verified! VerificationId: ${verificationId}`);
+  console.log(`Done!`);
+}
+```
+
+</details>
+
+{% hint style="info" %}
+Be sure to add your private key to the `.env` file.&#x20;
+{% endhint %}
+
+The provided script takes care of loading environment variables, setting up a deployment wallet with the private key specified in an `.env` file, contract deployment and funding the paymaster. You can adjust the amount of ETH to fund the paymaster to your needs.&#x20;
+
+Compile the contract:
+
+```bash
+yarn hardhat compile
+```
+
+Deploy the contract:
+
+```bash
+yarn hardhat deploy-zksync --script timeBasedPaymaster.ts
+```
+
+### Step 5 — Testing the contract
+
+To verify the functionality of the TimeBased Paymaster contract, let's draft a quick test. Set it up by creating `timeBasedPaymaster.test.ts` in the `/test` directory and populating it with the provided script:
+
+<details>
+
+<summary>timeBasedPaymaster.test.ts</summary>
+
+```typescript
+import { expect } from "chai";
+import { Wallet, Provider, Contract, utils } from "zksync-web3";
+import hardhatConfig from "../hardhat.config";
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+import * as ethers from "ethers";
+
+import { deployContract, fundAccount, setupDeployer } from "./utils";
+
+import dotenv from "dotenv";
+dotenv.config();
+
+const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110";
+
+describe("TimeBasedPaymaster", function () {
+  let provider: Provider;
+  let wallet: Wallet;
+  let deployer: Deployer;
+  let userWallet: Wallet;
+  let paymaster: Contract;
+  let greeter: Contract;
+
+  before(async function () {
+    const deployUrl = hardhatConfig.networks.zkSyncTestnet.url;
+    [provider, wallet, deployer] = setupDeployer(deployUrl, PRIVATE_KEY);
+    userWallet = Wallet.createRandom();
+    console.log(`User wallet's address: ${userWallet.address}`);
+    userWallet = new Wallet(userWallet.privateKey, provider);
+    paymaster = await deployContract(deployer, "TimeBasedPaymaster", []);
+    greeter = await deployContract(deployer, "Greeter", ["Hi"]);
+    await fundAccount(wallet, paymaster.address, "3");
+  });
+
+  async function executeGreetingTransaction(user: Wallet) {
+    const gasPrice = await provider.getGasPrice();
+
+    const paymasterParams = utils.getPaymasterParams(paymaster.address, {
+      type: "General",
+      innerInput: new Uint8Array(),
+    });
+
+    const setGreetingTx = await greeter.connect(user).setGreeting("Hola, mundo!", {
+      maxPriorityFeePerGas: ethers.BigNumber.from(0),
+      maxFeePerGas: gasPrice,
+      gasLimit: 6000000,
+      customData: {
+        gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+        paymasterParams,
+      },
+    });
+
+    await setGreetingTx.wait();
+  }
+
+  it("should cost the user no gas during the time window", async function () {
+    // Arrange
+    const currentDate = new Date();
+    currentDate.setUTCHours(14);
+    currentDate.setUTCMinutes(1);
+    currentDate.setUTCSeconds(0);
+    currentDate.setUTCMilliseconds(0);
+    const targetTime = Math.floor(currentDate.getTime() / 1000);
+    await provider.send("evm_setNextBlockTimestamp", [targetTime]);
+
+    // Act
+    const initialBalance = await userWallet.getBalance();
+    await executeGreetingTransaction(userWallet);
+    await provider.send("evm_mine", []);
+    const newBalance = await userWallet.getBalance();
+
+    // Assert
+    expect(newBalance.toString()).to.equal(initialBalance.toString());
+    expect(await greeter.greet()).to.equal("Hola, mundo!");
+  });
+
+  it("should fail due to Paymaster validation error outside the time window", async function () {
+    // Arrange
+    let errorOccurred = false;
+
+    // Act
+    try {
+      await executeGreetingTransaction(wallet);
+    } catch (error) {
+      errorOccurred = true;
+      expect(error.message).to.include("Paymaster validation error");
+    }
+
+    // Assert
+    expect(errorOccurred).to.be.true;
+  });
+});
+```
+
+</details>
+
+This script tests whether the TimeBasedPaymaster contract permits a user to modify a message in the "Greeter" contract without incurring any gas charges at different times. The necessary paymaster parameters are provided when invoking the `setGreeting` method, showcasing our time based paymaster in action.
+
+```bash
+yarn hardhat test
+```
+
+#### Conclusion
+
+The `TimeBasedPaymaster` contract bestows a novel capability on zkSync, allowing developers to limit transactions gas coverage to a specific timeframe. This proves beneficial for scenarios demanding temporal restrictions. Further adaptability or protocol-specific validations can be incorporated as needed.

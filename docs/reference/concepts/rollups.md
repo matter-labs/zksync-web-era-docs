@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Intro to Rollups | zkSync Era Docs
+      content: Intro to Rollups | zkSync Docs
 ---
 
 # Intro to rollups

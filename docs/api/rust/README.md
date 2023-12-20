@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Rust SDK | zkSync Era Docs
+      content: Rust SDK | zkSync Docs
 ---
 
 # Rust SDK

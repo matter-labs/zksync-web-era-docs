@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: JS SDK Transfer Example | zkSync Era Docs
+      content: JS SDK Transfer Example | zkSync Docs
 ---
 
 # Transfer

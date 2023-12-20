@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Hyperscaling | zkSync Era Docs
+      content: Hyperscaling | zkSync Docs
 ---
 
 # Hyperscaling
@@ -56,7 +56,7 @@ Hyperbridging will consist of 7 steps.
 There are three types of bridges in this ecosystem. The enshrined L1-L2 bridge, the [zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf) shard bridges, and the hyperbridges will all operate with a similar set of interfaces.
 
 ::: tip L1-L2 interoperability
-You can learn more about L1-L2 bridging [here](https://era.zksync.io/docs/dev/how-to/send-message-l2-l1.html).
+You can learn more about L1-L2 bridging [here](https://docs.zksync.io/docs/dev/how-to/send-message-l2-l1.html).
 :::
 
 ZkPorter bridges will only appear for developers, as they connect the shards of the zkPorter VM they are atomic and asynchronous. Users will not notice them, it will be like using any other chain.
@@ -67,7 +67,7 @@ Besides cross-hyperchain calls, it will be also possible to execute cross-hyperc
 
 ### Hyperchain User Experience
 
-As we aim to onboard billions of users to Web3, user experience has to be a priority. Users will have wallets on different chains, unified by cross-hyperchain wallet management. This is still a hot research topic, as seen in Vitalik's [post](https://vitalik.ca/general/2023/06/20/deeperdive.html). These solutions will be integrated into [Account Abstractions](https://era.zksync.io/docs/reference/concepts/account-abstraction.html), which are natively supported on ZK Stack powered chains.
+As we aim to onboard billions of users to Web3, user experience has to be a priority. Users will have wallets on different chains, unified by cross-hyperchain wallet management. This is still a hot research topic, as seen in Vitalik's [post](https://vitalik.ca/general/2023/06/20/deeperdive.html). These solutions will be integrated into [Account Abstractions](https://docs.zksync.io/docs/reference/concepts/account-abstraction.html), which are natively supported on ZK Stack powered chains.
 
 The users' wallets will show all of their assets, and relayers will handle bridging, burning, and minting assets to be used at the destination. Hyperchains will have unique identifiers that, when paired with ENS, will make recipient addresses look like email addresses. Of course, the default will be the use of traditional Ethereum addresses together with the Hyperchain identifiers.
 

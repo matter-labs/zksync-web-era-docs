@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: hardhat-zksync-chai-matchers | zkSync Era Docs
+      content: hardhat-zksync-chai-matchers | zkSync Docs
 ---
 
 # `hardhat-zksync-chai-matchers`

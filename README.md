@@ -1,4 +1,4 @@
-# zkSync Era Documentation
+# zkSync Documentation
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/matter-labs/zksync-web-v2-docs?color=%234E529A&label=changelog)](CHANGELOG.md)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/matter-labs/zksync-wallet/blob/master/LICENSE-MIT) [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue)](https://github.com/matter-labs/zksync-wallet/blob/master/LICENSE-MIT)
@@ -9,7 +9,7 @@
 > zkEVM is a virtual machine that executes smart contracts in a way that is compatible with zero-knowledge-proof computation.
 > Our zkEVM keeps EVM semantics, but is also ZK-friendly and adopts a traditional register-based CPU architecture.
 
-[zkSync Era Docs](https://era.zksync.io/docs) contain up-to-date information about **zkSync Era**.
+[zkSync Docs](https://docs.zksync.io/docs) contain up-to-date information about **zkSync**.
 zkSync Era has built-in EVM compatibility which makes it a unified tool for releasing EVM-compatible ZK rollups.
 We call it [zkEVM](https://zksync.io/zkevm): web3, Layer 2, scaling functionality that preserves your battle-tested code and knowledge gained after years of working with Solidity.
 

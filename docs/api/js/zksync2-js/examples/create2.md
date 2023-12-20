@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: JS SDK Create2 Example | zkSync Era Docs
+      content: JS SDK Create2 Example | zkSync Docs
 ---
 
 # Deploy contract with CREATE2 opcode

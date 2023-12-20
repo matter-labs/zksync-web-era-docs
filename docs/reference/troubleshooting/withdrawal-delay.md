@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Withdrawal Delay | zkSync Era Docs
+      content: Withdrawal Delay | zkSync Docs
 ---
 
 # Withdrawal delay

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Hardhat Getting Started | zkSync Era Docs
+      content: Hardhat Getting Started | zkSync Docs
 ---
 
 # Getting started

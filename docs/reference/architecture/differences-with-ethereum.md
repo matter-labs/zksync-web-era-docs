@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Differences with Ethereum | zkSync Era Docs
+      content: Differences with Ethereum | zkSync Docs
 ---
 
 # Differences from Ethereum
@@ -162,7 +162,7 @@ contract Example {
 ### `TIMESTAMP`, `NUMBER`
 
 For more information about blocks on zkSync Era, including the differences between `block.timestamp` and `block.number`,
-check out the [blocks on zkSync Era documentation](../../reference/concepts/blocks.md#blocks-in-zksync-era).
+check out the [blocks on zkSync Documentation](../../reference/concepts/blocks.md#blocks-in-zksync-era).
 
 ::: note Changes From the Previous Protocol Version
 Modifications were performed on how certain block properties were implemented on zkSync Era. For details on the changes performed visit the [announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).

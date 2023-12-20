@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Advanced Topics | zkSync Era Docs
+      content: Advanced Topics | zkSync Docs
 ---
 
 # Advanced Topics

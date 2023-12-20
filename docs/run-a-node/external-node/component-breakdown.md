@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Component Breakdown | zkSync Era Docs
+      content: Component Breakdown | zkSync Docs
 ---
 
 # EN components
@@ -82,4 +82,3 @@ issue is resolved.
 The EN also exposes an additional server that returns HTTP 200 response when the EN is operating normally, and HTTP 503
 response when some of the health checks don't pass (e.g. when the EN is not fully initialized yet). This server can be
 used, for example, to implement the readiness probe in an orchestration solution you use.
-

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: JS SDK Deploy Token Example | zkSync Era Docs
+      content: JS SDK Deploy Token Example | zkSync Docs
 ---
 
 # Deploy token

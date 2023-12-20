@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: JS SDK Paymaster Utilities | zkSync Era Docs
+      content: JS SDK Paymaster Utilities | zkSync Docs
 ---
 
 # Paymaster utilities

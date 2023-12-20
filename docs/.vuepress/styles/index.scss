@@ -51,11 +51,6 @@
         text-align: inherit !important;
     }
     
-    
-    [data-theme="dark"] .sidebar a{
-        color: #FFFFFFCC !important;
-    }
-    
     [data-theme="dark"] #toc .toc-link {
         color: #FFFFFFCC !important;
     }
@@ -63,15 +58,29 @@
     #toc .toc-link {
         color: #2C3E50 !important;
     }
-    
+
     .sidebar a {
-        color: #2C3E50 !important;
+        color: #000 !important;
+    }
+
+    [data-theme="dark"] .sidebar a {
+        color: #FFFFFFCC !important;
     }
     
     [data-theme="dark"] li {
         color: #FFFFFFCC !important;
     }
     
+    .sidebar-links {
+        span.title {
+            font-size: 1rem !important;
+            font-weight: 700 !important;
+        }
+
+        .sidebar-link {
+            font-size: 1rem !important;
+        }
+    }
     * {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -124,18 +133,6 @@
             width: 100%;
             margin-bottom: 20px;
         }
-    }
-    
-    [data-theme="dark"] img[src*="/era-dark.svg"] {
-        content: url("/era-light.svg") !important;
-    }
-    
-    [data-theme="dark"] img[src*="/images/code-light.png"] {
-        content: url("/images/code-dark.png");
-    }
-    
-    [data-theme="light"] img[src*="/images/code-light.png"] {
-        content: url("/images/code-light.png");
     }
     
     #toc {
@@ -196,8 +193,6 @@
         border-top: none !important;
     }
     
-    
-    
     //Homepage Redesign
     $light-selector: 'html[data-theme="light"]';
     $dark-selector: 'html[data-theme="dark"]';
@@ -216,12 +211,12 @@
         color: $dark-text !important;
     }
     
-    [data-theme="light"] img[src*="/zk-sync-era-line-light.svg"] {
-        content: url("/zk-sync-era-line-dark.png");
+    [data-theme="light"] img[src*="/zksync_logo.svg"] {
+        content: url("/zksync_logo_black.svg");
     }
     
-    [data-theme="dark"] img[src*="/zk-sync-era-line-light.svg"] {
-        content: url("/zk-sync-era-line-light.svg");
+    [data-theme="dark"] img[src*="/zksync_logo_black.svg"] {
+        content: url("/zksync_logo.svg");
     }
     
     [data-theme="dark"] h3 {
@@ -323,15 +318,6 @@
     
     [data-theme="light"] .google-translate-select-dropdown__menu__item :hover {
         color: #1d2536 !important;
-    }
-    
-    [data-theme="light"] img[src*="../../assets/images/code-light.png"] {
-        content: url("../../assets/images/code-dark.png");
-        
-    }
-    
-    [data-theme="dark"] img[src*="../../assets/images/code-light.png"] {
-        content: url("../../assets/images/code-dark.png") !important;
     }
     
     @media all and (max-width: 400px) {

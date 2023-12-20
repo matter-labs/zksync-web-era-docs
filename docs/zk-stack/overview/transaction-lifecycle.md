@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Transaction Lifecycle | zkSync Era Docs
+      content: Transaction Lifecycle | zkSync Docs
 ---
 
 # Transaction Lifecycle

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: JS SDK L1/L2 Transactions | zkSync Era Docs
+      content: JS SDK L1/L2 Transactions | zkSync Docs
 ---
 
 # Accounts: L1->L2 transactions

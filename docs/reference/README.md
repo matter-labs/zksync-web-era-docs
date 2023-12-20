@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Technical Reference | zkSync Era Docs
+      content: Technical Reference | zkSync Docs
 ---
 
 # Technical reference

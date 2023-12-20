@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: JS SDK Migration | zkSync Era Docs
+      content: JS SDK Migration | zkSync Docs
 ---
 
 # Migration from `zksync-web3`

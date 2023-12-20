@@ -37,8 +37,8 @@ export const enSidebar = sidebar({
           // link: "/build/quick-start/deploy-contract.md", 
           collapsible: true,
           children: [
-            "/build/quick-start/zksync-cli.md",
-            "/build/quick-start/hardhat-foundry.md", 
+            // "/build/quick-start/zksync-cli.md",
+            "/build/quick-start/hardhat.md", 
             {
               text: "Remix",
               link: "/build/quick-start/remix.md",
@@ -54,7 +54,6 @@ export const enSidebar = sidebar({
       // link: "/build/development/README.md",
       collapsible: true,
       children: [
-        "/build/development/zksync-cli.md",
         {
           text: "Foundry",
           // link: "/build/development/foundry/README.md",
@@ -64,7 +63,7 @@ export const enSidebar = sidebar({
           ]
         },
         {
-          text: "Hardhat Plugins",
+          text: "Hardhat",
           // link: "/build/development/hardhat-plugins/README.md",
           collapsible: true,
           children: [
@@ -81,11 +80,9 @@ export const enSidebar = sidebar({
         {
           text: "Frontend",
           collapsible: true,
-          // link: "/build/development/frontend/README.md",
           children: [
             {
               text: "Frameworks",
-              link: "/build/development/frontend/frameworks/README.md",
               collapsible: true,
               children: [
                 "/build/development/frontend/frameworks/wagmi.md",
@@ -93,7 +90,6 @@ export const enSidebar = sidebar({
             },
             {
               text: "Libraries",
-              link: "/build/development/frontend/libraries/README.md",
               collapsible: true,
               children: [
                 "/build/development/frontend/libraries/viem.md",
@@ -101,7 +97,6 @@ export const enSidebar = sidebar({
             },
             {
               text: "Wallets",
-              link: "/build/development/frontend/wallets/README.md",
               collapsible: true,
               children: [
                 "/build/development/frontend/wallets/wallet-connect.md",
@@ -111,13 +106,11 @@ export const enSidebar = sidebar({
         },
         {
           text: "SDKs",
-          // link: "/build/development/sdks/README.md",
           collapsible: true,
           children: [
             {
               text: "Javascript",
               collapsible: true,
-              // link: "/build/development/sdks/javascript/README.md",
               children: [
                 { 
                   text: "Ethers V5",
@@ -130,7 +123,6 @@ export const enSidebar = sidebar({
                 {
                   text: "API Reference",
                   collapsible: true,
-                  // link: "/build/development/sdks/javascript/api-reference/README.md",
                   children: [
                     {
                       text: "Overview",
@@ -138,7 +130,6 @@ export const enSidebar = sidebar({
                     },
                     {
                       text: "Provider",
-                      // link: "/build/development/sdks/javascript/api-reference/provider/README.md",
                       children: [
                         {
                           text: "Overview",
@@ -243,50 +234,46 @@ export const enSidebar = sidebar({
               // link: "/build/development/sdks/go/README.md",
               children: [
                 {
-                  text: "Examples",
+                  text: "Custom Paymaster",
+                  collapsible: true,
                   children: [
                     {
-                      text: "Custom Paymaster",
-                      children: [
-                        {
-                          text: "Deploy Account",
-                          link: "/build/development/sdks/go/examples/custom-paymaster/deploy-account.md"
-                        },
-                        {
-                          text: "Deploy Token",
-                          link: "/build/development/sdks/go/examples/custom-paymaster/deploy-token.md"
-                        },
-                        {
-                          text: "Use Paymaster",
-                          link: "/build/development/sdks/go/examples/custom-paymaster/use-paymaster.md"
-                        },
-                      ]
+                      text: "Deploy Account",
+                      link: "/build/development/sdks/go/examples/custom-paymaster/deploy-account.md"
                     },
                     {
-                      text: "Go SDK Create Example",
-                      link: "/build/development/sdks/go/examples/create.md"
+                      text: "Deploy Token",
+                      link: "/build/development/sdks/go/examples/custom-paymaster/deploy-token.md"
                     },
                     {
-                      text: "Deploy contract with CREATE2 opcode",
-                      link: "/build/development/sdks/go/examples/create2.md"
-                    },
-                    {
-                      text: "Deposit",
-                      link: "/build/development/sdks/go/examples/deposit.md"
-                    },
-                    {
-                      text: "Get all confirmed tokens on zkSync Era",
-                      link: "/build/development/sdks/go/examples/get-confirmed-tokens.md"
-                    },
-                    {
-                      text: "Transfer",
-                      link: "/build/development/sdks/go/examples/transfer.md"
-                    },
-                    {
-                      text: "Withdraw",
-                      link: "/build/development/sdks/go/examples/withdraw.md"
+                      text: "Use Paymaster",
+                      link: "/build/development/sdks/go/examples/custom-paymaster/use-paymaster.md"
                     },
                   ]
+                },
+                {
+                  text: "Go SDK Create Example",
+                  link: "/build/development/sdks/go/examples/create.md"
+                },
+                {
+                  text: "Deploy contract with CREATE2 opcode",
+                  link: "/build/development/sdks/go/examples/create2.md"
+                },
+                {
+                  text: "Deposit",
+                  link: "/build/development/sdks/go/examples/deposit.md"
+                },
+                {
+                  text: "Get all confirmed tokens on zkSync Era",
+                  link: "/build/development/sdks/go/examples/get-confirmed-tokens.md"
+                },
+                {
+                  text: "Transfer",
+                  link: "/build/development/sdks/go/examples/transfer.md"
+                },
+                {
+                  text: "Withdraw",
+                  link: "/build/development/sdks/go/examples/withdraw.md"
                 },
               ]
             },
@@ -330,7 +317,6 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "In-Memory Node",
-              link: "/build/development/test-and-debug/era-test-node/README.md",
               collapsible: true,
               children: [
                 {
@@ -343,7 +329,6 @@ export const enSidebar = sidebar({
                 },
                 {
                   text: "Usage Examples",
-                  link: "/build/development/test-and-debug/era-test-node/usage-examples/README.md",
                   collapsible: true,
                   children: [
                     {
@@ -376,6 +361,50 @@ export const enSidebar = sidebar({
             },
           ]
         },
+        {
+          text: "Compiler",
+          collapsible: true,
+          children: [
+            {
+              text: "Overview",
+              link: "/build/development/compiler/overview.md"
+            },
+            {
+              text: "Solidity",
+              link: "/build/development/compiler/solidity.md"
+            },
+            {
+              text: "Vyper",
+              link: "/build/development/compiler/vyper.md"
+            },
+            {
+              text: "LLVM",
+              link: "/build/development/compiler/LLVM.md"
+            },
+          ]
+        },
+        {
+          text: "Data & Analytics",
+          collapsible: true,
+          children: [
+            {
+              text: "Block Explorer",
+              link: ""
+            },
+            {
+              text: "Dune",
+              link: ""
+            },
+            {
+              text: "Oracles",
+              link: ""
+            },
+            {
+              text: "Indexers",
+              link: ""
+            },
+          ]
+        }
       ],
     },
     {
@@ -384,8 +413,68 @@ export const enSidebar = sidebar({
       collapsible: true,
       children: [
         {
-          text: "Get Started",
-          link: "/build/guides/get-started.md"
+          text: "Account Abstraction Cookbook",
+          collapsible: true,
+          children: [
+            {
+              text: "Paymaster",
+              collapsible: false,
+              children: [
+                {
+                  text: "Overview",
+                  link: "/build/guides/paymasters/README.md"
+                },
+                {
+                  text: "Building Custom Paymaster",
+                  link: "/build/guides/paymasters/custom-paymaster-tutorial.md"
+                },
+                {
+                  text: "NFT Gated Paymaster",
+                  link: "/build/guides/paymasters/gated-nft-paymaster-tutorial.md",
+                },
+                {
+                  text: "Gasless",
+                  link: "/build/guides/paymasters/gasless.md",
+                },
+                {
+                  text: "AllowList",
+                  link: "/build/guides/paymasters/allowlist.md",
+                },
+                {
+                  text: "TimeBased",
+                  link: "/build/guides/paymasters/timebased.md",
+                },
+                {
+                  text: "ERC20Fixed",
+                  link: "/build/guides/paymasters/erc20fixed.md",
+                },
+              ]
+            },
+            {
+              text: "Daily Spending Limit Account",
+              link: "/build/guides/account-abstraction/daily-spending-limit.md"
+            },
+            {
+              text: "Account Abstraction Multisig",
+              link: "/build/guides/account-abstraction/custom-aa-tutorial.md"
+            }
+            // {
+            //   text: "Spending Rules",
+            //   link: "/build/guides/spending-rules/README.md"
+            // },
+          ],
+        },
+        {
+          text: "Verify Contracts with Hardhat",
+          link: "/build/guides/verify-contracts.md"
+        },
+        {
+          text: "Estimate Gas",
+          link: "/build/guides/estimate-gas.md"
+        },
+        {
+          text: "Useful Addresses",
+          link: "/build/guides/useful-address/useful-address.md"
         }
       ]
     },
@@ -395,29 +484,53 @@ export const enSidebar = sidebar({
       collapsible: true,
       children: [
         {
-          text: "Daily spending limit account",
-          link: "/build/tutorials/aa-daily-spend-limit.md",
+          text: "Hello World",
+          link: "/build/building-on-zksync/hello-world.md"
+        },
+        {
+          text: "Transfer Token",
+          link: "/build/building-on-zksync/transfer-token.md"
+          // collapsible: true,
+          // children: [
+          //   {
+          //     text: "Crosschain Communication",
+          //     link: "/build/building-on-zksync/cross-chain-tutorial.md"
+          //   }
+          // ]
+        },
+        {
+          text: "L1 <> L2 ",
+          // link: "/build/tutorials/l1-l2-interop.md"
+          link: "/build/building-on-zksync/cross-chain-tutorial.md"
+        },
+        {
+          text: "L2 <> L2 (LayerZero)",
+          link: "/build/tutorials/layer-zero.md"
         },
         // {
-        //   text: "USDC paymaster tutorial with API3 dAPIs",
-        //   link: "/build/tutorials/api3-usd-paymaster-tutorial.md",
+        //   text: "Daily spending limit account",
+        //   link: "/build/tutorials/aa-daily-spend-limit.md",
         // },
-        {
-          text: "Cross-chain governance",
-          link: "/build/tutorials/cross-chain-tutorial.md",
-        },
-        {
-          text: "Account abstraction multisig",
-          link: "/build/tutorials/custom-aa-tutorial.md",
-        },
-        {
-          text: "Building a custom paymaster",
-          link: "/build/tutorials/custom-paymaster-tutorial.md",
-        },
-        {
-          text: "Gated NFT paymaster",
-          link: "/build/tutorials/gated-nft-paymaster-tutorial.md",
-        }
+        // // {
+        // //   text: "USDC paymaster tutorial with API3 dAPIs",
+        // //   link: "/build/tutorials/api3-usd-paymaster-tutorial.md",
+        // // },
+        // {
+        //   text: "Cross-chain governance",
+        //   link: "/build/tutorials/cross-chain-tutorial.md",
+        // },
+        // {
+        //   text: "Account abstraction multisig",
+        //   link: "/build/tutorials/custom-aa-tutorial.md",
+        // },
+        // {
+        //   text: "Building a custom paymaster",
+        //   link: "/build/tutorials/custom-paymaster-tutorial.md",
+        // },
+        // {
+        //   text: "Gated NFT paymaster",
+        //   link: "/build/tutorials/gated-nft-paymaster-tutorial.md",
+        // }
       ]
     },
     {
@@ -425,6 +538,26 @@ export const enSidebar = sidebar({
       // link: "/build/community/README.md",
       collapsible: true,
       children: [
+        {
+          text: "Support",
+          link: "/build/community/support.md"
+        },
+        {
+          text: "Showcase",
+          link: "/build/community/showcase.md"
+        },
+        {
+          text: "Tutorials (Community)",
+          link: "/build/community/community-tutorials.md"
+        },
+        {
+          text: "Ecosystem (Dappradar)",
+          link: "https://zksync.dappradar.com/"
+        },
+        {
+          text: "Gitbook",
+          link: "https://matterlabs.gitbook.io/zksync-community-hub/"
+        },
         {
           text: "Community Channels",
           link: "/build/community/community-channels.md"
@@ -503,7 +636,7 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "zkSync Era",
+      text: "zkSync",
       // link: "/run-a-node/zksync-era/README.md",
       collapsible: true,
       children: [

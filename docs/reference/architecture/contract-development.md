@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Smart Contract Development | zkSync Era Docs
+      content: Smart Contract Development | zkSync Docs
 ---
 
 # Smart contract development

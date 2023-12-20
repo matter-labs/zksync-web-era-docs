@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Transactions | zkSync Era Docs
+      content: Transactions | zkSync Docs
 ---
 
 # Transactions

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Shared Bridges | zkSync Era Docs
+      content: Shared Bridges | zkSync Docs
 ---
 
 # Shared Bridges

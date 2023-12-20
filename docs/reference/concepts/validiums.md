@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Validiums | zkSync Era Docs
+      content: Validiums | zkSync Docs
 ---
 
 # Validiums

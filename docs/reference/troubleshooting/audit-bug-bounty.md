@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Audits and Bug Bounty Program | zkSync Era Docs
+      content: Audits and Bug Bounty Program | zkSync Docs
 ---
 
 # Audits and bug bounty program

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: In-memory Node | zkSync Era Docs
+      content: In-memory Node | zkSync Docs
 ---
 
 # In-memory node

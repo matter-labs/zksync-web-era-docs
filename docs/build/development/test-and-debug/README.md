@@ -5,7 +5,7 @@ head:
       content: Testing | zkSync Era Docs
 ---
 
-# 🧪 TEST & DEBUG
+# Testing
 
 zkSync Era provides two distinct testing environments for your development needs
 

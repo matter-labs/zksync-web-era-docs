@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Account Abstraction | zkSync Era Docs
+      content: Account Abstraction | zkSync Docs
 ---
 
 # Account abstraction

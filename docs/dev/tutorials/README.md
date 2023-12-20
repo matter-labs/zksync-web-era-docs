@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Matter Labs Tutorials | zkSync Era Docs
+      content: Matter Labs Tutorials | zkSync Docs
 ---
 
 # Tutorials by the zkSync Team

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Compiling non-inlinable Libraries | zkSync Era Docs
+      content: Compiling non-inlinable Libraries | zkSync Docs
 ---
 
 # Compiling non-inlinable libraries

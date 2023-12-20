@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: External Node | zkSync Era Docs
+      content: External Node | zkSync Docs
 ---
 
 > 💡 Note

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Go SDK Types | zkSync Era Docs
+      content: Go SDK Types | zkSync Docs
 ---
 
 # Types

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Hyperchain Permissions | zkSync Era Docs
+      content: Hyperchain Permissions | zkSync Docs
 ---
 
 # Hyperchain Permissions
