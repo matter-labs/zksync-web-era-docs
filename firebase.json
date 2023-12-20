@@ -375,12 +375,7 @@
         },
         {
           "source": "/",
-          "destination": "/docs/build",
-          "type": "302"
-        },
-        {
-          "source": "/docs",
-          "destination": "/docs/build/",
+          "destination": "/build",
           "type": "302"
         },
         {
