@@ -452,7 +452,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "L2 <> L2 (LayerZero)",
-          link: "https://layerzero.network/"
+          link: "/build/tutorials/layer-zero.md"
         },
         // {
         //   text: "Daily spending limit account",
