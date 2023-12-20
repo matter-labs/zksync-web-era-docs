@@ -243,50 +243,46 @@ export const enSidebar = sidebar({
               // link: "/build/development/sdks/go/README.md",
               children: [
                 {
-                  text: "Examples",
+                  text: "Custom Paymaster",
+                  collapsible: true,
                   children: [
                     {
-                      text: "Custom Paymaster",
-                      children: [
-                        {
-                          text: "Deploy Account",
-                          link: "/build/development/sdks/go/examples/custom-paymaster/deploy-account.md"
-                        },
-                        {
-                          text: "Deploy Token",
-                          link: "/build/development/sdks/go/examples/custom-paymaster/deploy-token.md"
-                        },
-                        {
-                          text: "Use Paymaster",
-                          link: "/build/development/sdks/go/examples/custom-paymaster/use-paymaster.md"
-                        },
-                      ]
+                      text: "Deploy Account",
+                      link: "/build/development/sdks/go/examples/custom-paymaster/deploy-account.md"
                     },
                     {
-                      text: "Go SDK Create Example",
-                      link: "/build/development/sdks/go/examples/create.md"
+                      text: "Deploy Token",
+                      link: "/build/development/sdks/go/examples/custom-paymaster/deploy-token.md"
                     },
                     {
-                      text: "Deploy contract with CREATE2 opcode",
-                      link: "/build/development/sdks/go/examples/create2.md"
-                    },
-                    {
-                      text: "Deposit",
-                      link: "/build/development/sdks/go/examples/deposit.md"
-                    },
-                    {
-                      text: "Get all confirmed tokens on zkSync Era",
-                      link: "/build/development/sdks/go/examples/get-confirmed-tokens.md"
-                    },
-                    {
-                      text: "Transfer",
-                      link: "/build/development/sdks/go/examples/transfer.md"
-                    },
-                    {
-                      text: "Withdraw",
-                      link: "/build/development/sdks/go/examples/withdraw.md"
+                      text: "Use Paymaster",
+                      link: "/build/development/sdks/go/examples/custom-paymaster/use-paymaster.md"
                     },
                   ]
+                },
+                {
+                  text: "Go SDK Create Example",
+                  link: "/build/development/sdks/go/examples/create.md"
+                },
+                {
+                  text: "Deploy contract with CREATE2 opcode",
+                  link: "/build/development/sdks/go/examples/create2.md"
+                },
+                {
+                  text: "Deposit",
+                  link: "/build/development/sdks/go/examples/deposit.md"
+                },
+                {
+                  text: "Get all confirmed tokens on zkSync Era",
+                  link: "/build/development/sdks/go/examples/get-confirmed-tokens.md"
+                },
+                {
+                  text: "Transfer",
+                  link: "/build/development/sdks/go/examples/transfer.md"
+                },
+                {
+                  text: "Withdraw",
+                  link: "/build/development/sdks/go/examples/withdraw.md"
                 },
               ]
             },
