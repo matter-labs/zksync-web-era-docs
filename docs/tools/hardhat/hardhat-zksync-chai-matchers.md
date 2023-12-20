@@ -18,6 +18,19 @@ Currently, it is used in combination with [local testing environment](../testing
 - In addition, the `options` argument from `changeEtherBalance`/`changeEtherBalances` now includes the `overrides` field in order to support `zksync-ethers` transfer methods with overrides.
   :::
 
+::: warning Version Compatibility Warning
+Ensure you are using the correct version of the plugin with ethers:
+
+- For plugin version **<1.0.0**:
+
+  - Compatible with ethers **v5**.
+
+- For plugin version **≥1.0.0**:
+  - Compatible with ethers **v6** (⭐ Recommended)
+
+Examples are adopted for plugin version **>=1.0.0**
+:::
+
 ## Installation
 
 Add the latest version of this plugin to your project with the following command:

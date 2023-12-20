@@ -11,6 +11,19 @@ This plugin is used to verify contracts on the zkSync Era network.
 
 [Changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-verify/CHANGELOG.md)
 
+::: warning Version Compatibility Warning
+Ensure you are using the correct version of the plugin with ethers:
+
+- For plugin version **<1.0.0**:
+
+  - Compatible with ethers **v5**.
+
+- For plugin version **≥1.0.0**:
+
+  - Compatible with ethers **v6** (⭐ Recommended)
+
+  :::
+
 ## Setup
 
 The [@matterlabs/hardhat-zksync-verify](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-verify) plugin is used in conjunction with [@nomicfoundation/hardhat-verify](https://www.npmjs.com/package/@nomicfoundation/hardhat-verify) and it supports backward compatibility.

@@ -18,6 +18,19 @@ To use the `hardhat-zksync-deploy` in your project, we recommend that:
 - You have a wallet with sufficient Sepolia or Goerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Use the [third party faucets](../../reference/troubleshooting/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
+::: warning Version Compatibility Warning
+Ensure you are using the correct version of the plugin with ethers:
+
+- For plugin version **<1.0.0**:
+
+  - Compatible with ethers **v5**.
+
+- For plugin version **≥1.0.0**:
+
+  - Compatible with ethers **v6** (⭐ Recommended)
+
+  :::
+
 ## Setup
 
 [@matterlabs/hardhat-zksync-deploy](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-deploy)

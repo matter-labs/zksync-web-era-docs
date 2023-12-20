@@ -11,6 +11,19 @@ The `hardhat-zksync-upgradable` plugin is a Hardhat plugin that supports end-to-
 
 The plugin is based on [@openzeppelin/hardhat-upgrades](https://www.npmjs.com/package/@openzeppelin/hardhat-upgrades) and [@openzeppelin/upgrades-core](https://www.npmjs.com/package/@openzeppelin/upgrades-core) plugins for deploying and managing upgradeable smart contracts on the Ethereum network. The `hardhat-zkSync-upgradable` plugin provides an easy-to-use interface for interacting with the [OpenZeppelin Upgrades Plugins](https://docs.openzeppelin.com/upgrades-plugins) within a Hardhat environment on zkSync.
 
+::: warning Version Compatibility Warning
+Ensure you are using the correct version of the plugin with ethers:
+
+- For plugin version **<1.0.0**:
+
+  - Compatible with ethers **v5**.
+
+- For plugin version **≥1.0.0**:
+  - Compatible with ethers **v6** (⭐ Recommended)
+
+Examples are adopted for plugin version **>=1.0.0**
+:::
+
 ## Installation
 
 :::warning Version Incompatibility
@@ -124,7 +137,7 @@ To deploy a simple upgradable contract on zkSync Era local setup, first create a
 ```typescript
 // mnemonic for local node rich wallet
 const testMnemonic = "stuff slice staff easily soup parent arm payment cotton trade scatter struggle";
-const zkWallet = Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0");
+const zkWallet = Wallet.fromMnemonic(testMnemonic);
 
 const deployer = new Deployer(hre, zkWallet);
 ```
