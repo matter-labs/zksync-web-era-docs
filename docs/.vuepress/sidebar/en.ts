@@ -37,7 +37,7 @@ export const enSidebar = sidebar({
           // link: "/build/quick-start/deploy-contract.md", 
           collapsible: true,
           children: [
-            "/build/quick-start/zksync-cli.md",
+            // "/build/quick-start/zksync-cli.md",
             "/build/quick-start/hardhat-foundry.md", 
             {
               text: "Remix",
@@ -326,7 +326,7 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "In-Memory Node",
-              link: "/build/development/test-and-debug/era-test-node/README.md",
+              // link: "/build/development/test-and-debug/era-test-node/README.md",
               collapsible: true,
               children: [
                 {
@@ -339,7 +339,7 @@ export const enSidebar = sidebar({
                 },
                 {
                   text: "Usage Examples",
-                  link: "/build/development/test-and-debug/era-test-node/usage-examples/README.md",
+                  // link: "/build/development/test-and-debug/era-test-node/usage-examples/README.md",
                   collapsible: true,
                   children: [
                     {
