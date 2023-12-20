@@ -20,7 +20,7 @@ export default defineUserConfig({
   dest: "dist/docs",
 
   base: "/docs/",
-  title: "Welcome to our Docs | zkSync Docs",
+  title: "Welcome to our Docs | zkSync",
 
   head: [
     ["link", { rel: "canonical", href: "https://docs.zksync.io/docs/" }],
