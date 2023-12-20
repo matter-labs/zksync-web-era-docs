@@ -14,8 +14,8 @@ This tutorial shows you how to build and deploy a 2-of-2 multi-signature account
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - A [Node.js](https://nodejs.org/en/download) installation.
 - For background learning, we recommend the following guides:
-  - Read about the [design](../../reference/concepts/account-abstraction.md) of the account abstraction protocol.
-  - Read the [introduction to the system contracts](../../reference/architecture/system-contracts.md).
+  - Read about the [design](./concepts/account-abstraction.md) of the account abstraction protocol.
+  - Read the [introduction to the system contracts](./architecture/system-contracts.md).
   - Read about [smart contract deployment](../../reference/architecture/contract-deployment.md) on zkSync Era.
   - Read the [gas estimation for transaction](../../reference/concepts/fee-model.md#gas-estimation-for-transactions) guide.
   - If you haven't already, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).

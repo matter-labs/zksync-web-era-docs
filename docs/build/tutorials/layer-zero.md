@@ -22,7 +22,7 @@ This guide aims to provide an insight into the LayerZero messaging service, whic
 
 LayerZero enables authentic and guaranteed message delivery between different blockchain networks with configurable trustlessness. Messages in LayerZero are managed by LayerZero Endpoints, which comprise versioned messaging libraries and a proxy to route messages to the appropriate library version. Message states are maintained across versions, allowing for seamless library upgrades.&#x20;
 
-Messages are sent from the [User Application (UA)](broken-reference) at source `srcUA` to the UA at the destination `dstUA`. Once the message is received by `dstUA`, the message is considered delivered (transitioning from `INFLIGHT` to either `SUCCESS` or `STORED`)
+Messages are sent from the User Application (UA) at source `srcUA` to the UA at the destination `dstUA`. Once the message is received by `dstUA`, the message is considered delivered (transitioning from `INFLIGHT` to either `SUCCESS` or `STORED`)
 
 More details can be found [here](https://layerzero.gitbook.io/docs/faq/messaging-properties).
 
