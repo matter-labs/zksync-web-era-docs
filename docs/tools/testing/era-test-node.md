@@ -81,37 +81,41 @@ Please note that the existing implementation does not facilitate communication w
 
 ## Forking networks
 
-To fork the testnet, use the following command:
+To fork the mainnet, use the following command:
 
 ```bash
-era_test_node fork testnet
+era_test_node fork mainnet
 ```
 
 :::tip
-You can also fork mainnet with `era_test_node fork mainnet`
+You can also fork the zkSync Sepolia testnet with `era_test_node fork sepolia-testnet`
 :::
 
-The expected output will be as follows:
+The expected output will be similar to the following:
 
 ```log
-12:34:56 [INFO] Creating fork from "https://sepolia.era.zksync.dev:443" L1 block: L1BatchNumber(128846) L2 block: 12088718 with timestamp 1695822231, L1 gas price 2500000014 and protocol version: Some(Version15)
-12:34:56 [INFO] Starting network with chain id: L2ChainId(260)
-12:34:56 [INFO] Rich Accounts
-12:34:56 [INFO] =============
-12:34:56 [INFO] Account #0: 0x36615Cf349d7F6344891B1e7CA7C72883F5dc049 (1_000_000_000_000 ETH)
-12:34:56 [INFO] Private Key: 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
-12:34:56 [INFO]
-12:34:56 [INFO] Account #1: 0xa61464658AfeAf65CccaaFD3a512b69A83B77618 (1_000_000_000_000 ETH)
-12:34:56 [INFO] Private Key: 0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3
+14:50:12  INFO Creating fork from "https://mainnet.era.zksync.io:443" L1 block: L1BatchNumber(356201) L2 block: 21979120 with timestamp 1703083811, L1 gas price 41757081846 and protocol version: Some(Version18)
+14:50:12  INFO Starting network with chain id: L2ChainId(260)
+14:50:12  INFO
+14:50:12  INFO Rich Accounts
+14:50:12  INFO =============
+14:50:16  INFO Account #0: 0xBC989fDe9e54cAd2aB4392Af6dF60f04873A033A (1_000_000_000_000 ETH)
+14:50:16  INFO Private Key: 0x3d3cbc973389cb26f657686445bcc75662b415b656078503592ac8c1abb8810e
+14:50:16  INFO Mnemonic: mass wild lava ripple clog cabbage witness shell unable tribe rubber enter
+14:50:16  INFO
+14:50:16  INFO Account #1: 0x55bE1B079b53962746B2e86d12f158a41DF294A6 (1_000_000_000_000 ETH)
+14:50:16  INFO Private Key: 0x509ca2e9e6acf0ba086477910950125e698d4ea70fa6f63e000c5a22bda9361c
+14:50:16  INFO Mnemonic: crumble clutch mammal lecture lazy broken nominee visit gentle gather gym erupt
 
 ...
 
-12:34:56 [INFO] Account #9: 0xE90E12261CCb0F3F7976Ae611A29e84a6A85f424 (1_000_000_000_000 ETH)
-12:34:56 [INFO] Private Key: 0x3eb15da85647edd9a1159a4a13b9e7c56877c4eb33f614546d4db06a51868b1c
-12:34:56 [INFO]
-12:34:56 [INFO] ========================================
-12:34:56 [INFO]   Node is ready at 127.0.0.1:8011
-12:34:56 [INFO] ========================================
+14:50:19  INFO Account #9: 0xe2b8Cb53a43a56d4d2AB6131C81Bd76B86D3AFe5 (1_000_000_000_000 ETH)
+14:50:19  INFO Private Key: 0xb0680d66303a0163a19294f1ef8c95cd69a9d7902a4aca99c05f3e134e68a11a
+14:50:19  INFO Mnemonic: increase pulp sing wood guilt cement satoshi tiny forum nuclear sudden thank
+14:50:19  INFO
+14:50:19  INFO ========================================
+14:50:19  INFO   Node is ready at 127.0.0.1:8011
+14:50:19  INFO ========================================
 ```
 
 This command starts the node, forked at the current head of the testnet.
@@ -129,14 +133,14 @@ If you wish to replay a remote transaction locally for deep debugging, use the f
 
 ```bash
 # Usage: era_test_node replay_tx <NETWORK> <TX>
-era_test_node replay_tx testnet 0x7f039bcbb1490b855be37e74cf2400503ad57f51c84856362f99b0cbf1ef478a
+era_test_node replay_tx sepolia-testnet 0x7119045573862797257e4441ff48bf5a3bc4d133a00d167c18dc955eda12cfac
 ```
 
 For more detailed transaction information, such as call traces, add the `--show-calls` flag. If you want to see ABI names, add the `--resolve-hashes` flag. Here's an example:
 
 ```bash
 # Usage: era_test_node replay_tx <NETWORK> <TX>
-era_test_node --show-calls=user --resolve-hashes replay_tx testnet 0x7f039bcbb1490b855be37e74cf2400503ad57f51c84856362f99b0cbf1ef478a
+era_test_node --show-calls=user --resolve-hashes replay_tx sepolia-testnet 0x7119045573862797257e4441ff48bf5a3bc4d133a00d167c18dc955eda12cfac
 ```
 
 Alternatively (if your node is already running) you can use `config_setShowCalls` and `config_setResolveHashes` RPC endpoints to configure these values. Here's an example:
@@ -159,55 +163,69 @@ curl --request POST \
 
 Here's an example of what you should expect to see when `show-calls` and `resolve-hashes` are configured:
 
-```bash
-Creating fork from "https://sepolia.era.zksync.dev:443" L1 block: L1BatchNumber(94420) L2 block: 8072359 with timestamp 1687337488 and L1 gas price 2500011172
-Starting network with chain id: L2ChainId(280)
+```log
+Creating fork from "https://sepolia.era.zksync.dev:443" L1 block: L1BatchNumber(4513) L2 block: 14945 with timestamp 1703064786, L1 gas price 61083275326 and protocol version: Some(Version19)
+Starting network with chain id: L2ChainId(300)
 Running 1 transactions (one per batch)
 
-Executing 0x7f039bcbb1490b855be37e74cf2400503ad57f51c84856362f99b0cbf1ef478a
+Validating 0x7119045573862797257e4441ff48bf5a3bc4d133a00d167c18dc955eda12cfac
+Executing 0x7119045573862797257e4441ff48bf5a3bc4d133a00d167c18dc955eda12cfac
+┌─────────────────────────┐
+│   TRANSACTION SUMMARY   │
+└─────────────────────────┘
 Transaction: SUCCESS
-Initiator: 0x55362182242a4de20ea8a0ec055b2134bb24e23d Payer: 0x55362182242a4de20ea8a0ec055b2134bb24e23d
-Gas Limit: 797128 used: 351250 refunded: 445878
+Initiator: 0x4eaf936c172b5e5511959167e8ab4f7031113ca3
+Payer: 0x4eaf936c172b5e5511959167e8ab4f7031113ca3
+Gas - Limit: 2_487_330 | Used: 969_330 | Refunded: 1_518_000
+Use --show-gas-details flag or call config_setShowGasDetails to display more info
 
 ==== Console logs:
 
-==== 18 call traces.  Use --show-calls flag to display more info.
-Call(Normal) 0x55362182242a4de20ea8a0ec055b2134bb24e23d           validateTransaction(bytes32, bytes32, tuple)   730485
-  Call(Normal) 0x0000000000000000000000000000000000000001                 0xbb1e83e6   698040
-Call(Normal) 0x55362182242a4de20ea8a0ec055b2134bb24e23d           payForTransaction(bytes32, bytes32, tuple)   703647
-Call(Normal) 0x55362182242a4de20ea8a0ec055b2134bb24e23d           executeTransaction(bytes32, bytes32, tuple)   647199
-    Call(Mimic) 0x6eef3310e09df3aa819cc2aa364d4f3ad2e6ffe3           swapExactETHForTokens(uint256,address[],address,uint256)   596358
-      Call(Normal) 0x053f26a020de152a947b8ba7d8974c85c5fc5b81           getPair(address,address)   577647
-      Call(Normal) 0xc0b7c869ba924c05f64333d9caa21f4424eb4b30           getReserves()   570402
-        Call(Mimic) 0x8a144308792a23aadb118286ac0dec646f638908           deposit()   534807
-      Call(Normal) 0x053f26a020de152a947b8ba7d8974c85c5fc5b81           getPair(address,address)   526050
-      Call(Normal) 0x8a144308792a23aadb118286ac0dec646f638908           transfer(address,uint256)   522900
-      Call(Normal) 0x053f26a020de152a947b8ba7d8974c85c5fc5b81           getPair(address,address)   497007
-      Call(Normal) 0xc0b7c869ba924c05f64333d9caa21f4424eb4b30           swap(uint256,uint256,address,bytes)   492660
-        Call(Normal) 0x880f03ca84e6cf0d0871c9818a2981debaba22b3           transfer(address,uint256)   465948
-        Call(Normal) 0x880f03ca84e6cf0d0871c9818a2981debaba22b3           balanceOf(address)   432495
-        Call(Normal) 0x8a144308792a23aadb118286ac0dec646f638908           balanceOf(address)   430290
+==== 22 call traces.  Use --show-calls flag or call config_setShowCalls to display more info.
+  Call(Normal) 0x4eaf936c172b5e5511959167e8ab4f7031113ca3           validateTransaction(bytes32, bytes32, tuple)   1830339
+    Call(Normal) 0x0000000000000000000000000000000000000001                 0x89c19e9b   1766835
+  Call(Normal) 0x4eaf936c172b5e5511959167e8ab4f7031113ca3           payForTransaction(bytes32, bytes32, tuple)   1789767
+  Call(Normal) 0x4eaf936c172b5e5511959167e8ab4f7031113ca3           executeTransaction(bytes32, bytes32, tuple)   1671012
+      Call(Mimic) 0x5d4fb5385ed95b65d1cd6a10ed9549613481ab2f           0x   1443393
 
-==== 9 events
-EthToken System Contract                   Transfer(address,address,uint256), 0x0000…e23d, 0x0000…8001
-EthToken System Contract                   Transfer(address,address,uint256), 0x0000…e23d, 0x0000…ffe3
-EthToken System Contract                   Transfer(address,address,uint256), 0x0000…ffe3, 0x0000…8908
-0x8a144308792a23aadb118286ac0dec646f638908 Deposit(address,uint256), 0x0000…ffe3
-0x8a144308792a23aadb118286ac0dec646f638908 Transfer(address,address,uint256), 0x0000…ffe3, 0x0000…4b30
-0x880f03ca84e6cf0d0871c9818a2981debaba22b3 Transfer(address,address,uint256), 0x0000…4b30, 0x0000…e23d
-0xc0b7c869ba924c05f64333d9caa21f4424eb4b30 Sync(uint112,uint112)
-0xc0b7c869ba924c05f64333d9caa21f4424eb4b30 Swap(address,uint256,uint256,uint256,uint256,address), 0x0000…ffe3, 0x0000…e23d
-EthToken System Contract                   Transfer(address,address,uint256), 0x0000…8001, 0x0000…e23d
+==== 4 events
+EthToken System Contract
+  Topics:
+    Transfer(address,address,uint256)
+    0x0000000000000000000000004eaf936c172b5e5511959167e8ab4f7031113ca3
+    0x0000000000000000000000000000000000000000000000000000000000008001
+  Data (Hex): 0x000000000000000000000000000000000000000000000000000c31dac51a6200
+
+EthToken System Contract
+  Topics:
+    Transfer(address,address,uint256)
+    0x0000000000000000000000000000000000000000000000000000000000008001
+    0x0000000000000000000000004eaf936c172b5e5511959167e8ab4f7031113ca3
+  Data (Hex): 0x0000000000000000000000000000000000000000000000000009fc4d1bd4ad00
+
+EthToken System Contract
+  Topics:
+    Transfer(address,address,uint256)
+    0x0000000000000000000000004eaf936c172b5e5511959167e8ab4f7031113ca3
+    0x0000000000000000000000005d4fb5385ed95b65d1cd6a10ed9549613481ab2f
+  Data (Hex): 0x0000000000000000000000000000000000000000000000000090f705956a4008
+
+EthToken System Contract
+  Topics:
+    Transfer(address,address,uint256)
+    0x0000000000000000000000000000000000000000000000000000000000008001
+    0x0000000000000000000000004eaf936c172b5e5511959167e8ab4f7031113ca3
+  Data (Hex): 0x000000000000000000000000000000000000000000000000000159273ab13800
 ```
 
 ## Sending network calls
 
-You can send network calls against a running `era-test-node`. You can check the testnet LINK balance or mainnet USDT using `curl` or [foundry-zksync](https://github.com/matter-labs/foundry-zksync).
+You can send network calls against a running `era-test-node`. You can check the Goerli testnet LINK balance or mainnet USDT using `curl` or [foundry-zksync](https://github.com/matter-labs/foundry-zksync).
 
 To get started, launch the local in-memory node:
 
 ```bash
-era_test_node fork testnet
+era_test_node fork goerli-testnet
 ```
 
 Next, use curl to send a network call:
@@ -295,25 +313,25 @@ yarn preprocess && yarn hardhat run ./scripts/compile-yul.ts
 To use the locally compiled bootloader and system contracts, run:
 
 ```bash
-RUST_LOG=vm=trace era_test_node --dev-use-local-contracts fork testnet
+RUST_LOG=vm=trace era_test_node --dev-use-local-contracts fork sepolia-testnet
 ```
 
 ## Use pre-configured rich wallets
 
 In-Memory node includes pre-configured "rich" accounts for testing:
 
-| account id                                 | private key                                                        |
-| ------------------------------------------ | ------------------------------------------------------------------ |
-| 0x36615Cf349d7F6344891B1e7CA7C72883F5dc049 | 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110 |
-| 0xa61464658AfeAf65CccaaFD3a512b69A83B77618 | 0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3 |
-| 0x0D43eB5B8a47bA8900d84AA36656c92024e9772e | 0xd293c684d884d56f8d6abd64fc76757d3664904e309a0645baf8522ab6366d9e |
-| 0xA13c10C0D5bd6f79041B9835c63f91de35A15883 | 0x850683b40d4a740aa6e745f889a6fdc8327be76e122f5aba645a5b02d0248db8 |
-| 0x8002cD98Cfb563492A6fB3E7C8243b7B9Ad4cc92 | 0xf12e28c0eb1ef4ff90478f6805b68d63737b7f33abfa091601140805da450d93 |
-| 0x4F9133D1d3F50011A6859807C837bdCB31Aaab13 | 0xe667e57a9b8aaa6709e51ff7d093f1c5b73b63f9987e4ab4aa9a5c699e024ee8 |
-| 0xbd29A1B981925B94eEc5c4F1125AF02a2Ec4d1cA | 0x28a574ab2de8a00364d5dd4b07c4f2f574ef7fcc2a86a197f65abaec836d1959 |
-| 0xedB6F5B4aab3dD95C7806Af42881FF12BE7e9daa | 0x74d8b3a188f7260f67698eb44da07397a298df5427df681ef68c45b34b61f998 |
-| 0xe706e60ab5Dc512C36A4646D719b889F398cbBcB | 0xbe79721778b48bcc679b78edac0ce48306a8578186ffcb9f2ee455ae6efeace1 |
-| 0xE90E12261CCb0F3F7976Ae611A29e84a6A85f424 | 0x3eb15da85647edd9a1159a4a13b9e7c56877c4eb33f614546d4db06a51868b1c |
+| Account Address                              | Private Key                                                          |
+| -------------------------------------------- | -------------------------------------------------------------------- |
+| `0x36615Cf349d7F6344891B1e7CA7C72883F5dc049` | `0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110` |
+| `0xa61464658AfeAf65CccaaFD3a512b69A83B77618` | `0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3` |
+| `0x0D43eB5B8a47bA8900d84AA36656c92024e9772e` | `0xd293c684d884d56f8d6abd64fc76757d3664904e309a0645baf8522ab6366d9e` |
+| `0xA13c10C0D5bd6f79041B9835c63f91de35A15883` | `0x850683b40d4a740aa6e745f889a6fdc8327be76e122f5aba645a5b02d0248db8` |
+| `0x8002cD98Cfb563492A6fB3E7C8243b7B9Ad4cc92` | `0xf12e28c0eb1ef4ff90478f6805b68d63737b7f33abfa091601140805da450d93` |
+| `0x4F9133D1d3F50011A6859807C837bdCB31Aaab13` | `0xe667e57a9b8aaa6709e51ff7d093f1c5b73b63f9987e4ab4aa9a5c699e024ee8` |
+| `0xbd29A1B981925B94eEc5c4F1125AF02a2Ec4d1cA` | `0x28a574ab2de8a00364d5dd4b07c4f2f574ef7fcc2a86a197f65abaec836d1959` |
+| `0xedB6F5B4aab3dD95C7806Af42881FF12BE7e9daa` | `0x74d8b3a188f7260f67698eb44da07397a298df5427df681ef68c45b34b61f998` |
+| `0xe706e60ab5Dc512C36A4646D719b889F398cbBcB` | `0xbe79721778b48bcc679b78edac0ce48306a8578186ffcb9f2ee455ae6efeace1` |
+| `0xE90E12261CCb0F3F7976Ae611A29e84a6A85f424` | `0x3eb15da85647edd9a1159a4a13b9e7c56877c4eb33f614546d4db06a51868b1c` |
 
 ## Writing and running tests locally
 
