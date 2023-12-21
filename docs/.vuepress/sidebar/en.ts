@@ -307,7 +307,7 @@ export const enSidebar = sidebar({
           link: "/build/development/web3-json-rpc.md"
         },
         {
-          text: "Node Providers",
+          text: "RPC Providers",
           link: "/build/development/node-providers.md"
         },
         {
@@ -389,15 +389,29 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Block Explorer",
-              link: ""
+              link: "/build/development/data-analytics/block-explorer.md"
             },
             {
               text: "Dune",
-              link: ""
+              link: "/build/development/data-analytics/dune.md"
             },
             {
               text: "Oracles",
-              link: ""
+              collapsible: true,
+              children: [
+                {
+                  text: "Overview",
+                  link: "/build/development/data-analytics/oracles/README.md"
+                },
+                {
+                  text: "Dia",
+                  link: "/build/development/data-analytics/oracles/dia.md"
+                },
+                {
+                  text: "Redstone",
+                  link: "/build/development/data-analytics/oracles/redstone.md"
+                }
+              ]
             },
             {
               text: "Indexers",
