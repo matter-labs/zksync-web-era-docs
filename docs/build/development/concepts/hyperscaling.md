@@ -17,7 +17,7 @@ Hyperchains are fractal-like instances of zkEVM running in parallel and with the
 
 <div  align="center">
 
-![hyperbridges](../../assets/images/hyperbridges.png)
+![hyperbridges](../../../assets/images/hyperbridges.png)
 Gray lines show proofs, orange lines the hyperbridges, which automatically connect all blue chains.
 
 </div>
@@ -49,7 +49,7 @@ Hyperbridging will consist of 7 steps.
 
 <div  align="center">
 
-![hyperscaling](../../assets/images/hyperscalingBridgingFull.png)
+![hyperscaling](../../../assets/images/hyperscalingBridgingFull.png)
 
 </div>
 
@@ -77,7 +77,7 @@ Bridging will be part of the protocol, so it will be built into the wallet along
 
 <div  align="center">
 
-![hyperscalingUniswap](../../assets/images/hyperscalingUniswap.png)
+![hyperscalingUniswap](../../../assets/images/hyperscalingUniswap.png)
 
 </div>
 
@@ -93,7 +93,7 @@ Simple proof aggregation treats the proofs of different Hyperchains as independe
 
 <div  align="center">
 
-![HyperscalingAggregation](../../assets/images/hyperscalingAggregation.png)
+![HyperscalingAggregation](../../../assets/images/hyperscalingAggregation.png)
 
 </div>
 
@@ -105,7 +105,7 @@ Here proof aggregation happens via the L2, as the proofs of different L2 blocks 
 
 <div  align="center">
 
-![hyperscalingL3Fast2Blocks](../../assets/images/hyperscalingL3Fast2Blocks.png)
+![hyperscalingL3Fast2Blocks](../../../assets/images/hyperscalingL3Fast2Blocks.png)
 
 </div>
 
@@ -115,7 +115,7 @@ Layered Aggregation combines the benefits of L3s with the benefits of simple agg
 
 <div  align="center">
 
-![hyperscalingLayeredAggregation](../../assets/images/hyperscalingLayeredAggregation.png)
+![hyperscalingLayeredAggregation](../../../assets/images/hyperscalingLayeredAggregation.png)
 
 </div>
 
@@ -127,7 +127,7 @@ For these rollups proof generation and settlement still happens as usual. This m
 
 <div  align="center">
 
-![hyperscalingFastEconomic](../../assets/images/hyperscalingFastEconomic.png)
+![hyperscalingFastEconomic](../../../assets/images/hyperscalingFastEconomic.png)
 
 </div>
 
@@ -139,7 +139,7 @@ All Hyperchains will be sovereign in the ecosystem. This means two things.
 
 <div  align="center">
 
-![hyperscalingSovereignty](../../assets/images/hyperscalingSovereignty.png)
+![hyperscalingSovereignty](../../../assets/images/hyperscalingSovereignty.png)
 
 </div>
 
@@ -195,7 +195,7 @@ Synchronicity is important as it enables atomic transactions between partitions,
 
 One prominent example of this is a combination of **[zkRollup + zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf)** (which will be part of the zkSync Era):
 
-![hyperscalingZKPorter](../../assets/images/hyperscalingZKPorter.png)
+![hyperscalingZKPorter](../../../assets/images/hyperscalingZKPorter.png)
 
 ### Privacy
 

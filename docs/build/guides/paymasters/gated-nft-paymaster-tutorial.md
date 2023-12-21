@@ -573,7 +573,7 @@ const initContracts = async (provider: Web3Provider, signer: Signer) => {
 
 We can now return to our running local page and click the 'Connect Wallet' button which should connect to your MetaMask account as depicted in the below image.
 
-![Connected wallet](../../assets/images/connected_wallet.png)
+![Connected wallet](../../../assets/images/connected_wallet.png)
 
 We have connected our wallet to our application but we now need to add our `GreeterMessage` and `Input` components.
 
@@ -602,7 +602,7 @@ import Input from "./components/Input";
 
 Now if we check our local page we can see our rendered Greeter message and Input box!
 
-![Greeter Message](../../assets/images/greeter_message.png)
+![Greeter Message](../../../assets/images/greeter_message.png)
 
 ### Fetching the Gas details and adding the `Modal` component
 
@@ -728,7 +728,7 @@ Navigate to `http://localhost:3000` and refresh the page. Click on "Connect Wall
 2. Click the "Change message" button
 3. If you have the right NFT you should be presented with the below image:
 
-![Checkout component](../../assets/images/checkout.png)
+![Checkout component](../../../assets/images/checkout.png)
 
 4. Enjoy a gasless transaction!
 

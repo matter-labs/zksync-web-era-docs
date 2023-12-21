@@ -15,7 +15,7 @@ Ethereum, currently processing around 12 transactions per second, must scale to 
 
 Hyperchains are fractal-like instances of zkEVM running in parallel and with the common settlement on the L1 mainnet. The name Hyperbridge comes from the traditional web, where users can navigate websites using hyperlinks. Similarly, our rollups will be connected with Hyperbridges.
 
-<div  align="center">
+<div align="center">
 
 ![hyperbridges](../../assets/images/hyperbridges.png)
 Gray lines show proofs, orange lines the hyperbridges, which automatically connect all blue chains.
