@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Go SDK Deploy Token Example | zkSync Era Docs
+      content: Go SDK Deploy Token Example | zkSync Docs
 ---
 
 # Deploy token

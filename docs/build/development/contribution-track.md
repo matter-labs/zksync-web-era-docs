@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Contribution Track | zkSync Era Docs
+      content: Contribution Track | zkSync Docs
 ---
 
 # Contributors Track Documentation

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Network and Chain | zkSync Era Docs
+      content: Network and Chain | zkSync Docs
 ---
 
 # Network and Chain

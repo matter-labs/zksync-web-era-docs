@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Showcase | zkSync Era Docs
+      content: Showcase | zkSync Docs
 ---
 
 # Showcase

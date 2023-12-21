@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: LayerZero | zkSync Era Docs
+      content: LayerZero | zkSync Docs
 ---
 
 # LayerZero

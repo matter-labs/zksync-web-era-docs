@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: ERC20Fixed | zkSync Era Docs
+      content: ERC20Fixed | zkSync Docs
 ---
 
 # ERC20Fixed

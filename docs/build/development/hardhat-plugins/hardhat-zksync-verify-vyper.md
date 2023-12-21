@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Hardhat zkSync Verify Vyper | zkSync Era Docs
+      content: Hardhat zkSync Verify Vyper | zkSync Docs
 ---
 
 # hardhat-zksync-verify-vyper

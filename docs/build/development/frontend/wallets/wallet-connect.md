@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: WalletConnect | zkSync Era Docs
+      content: WalletConnect | zkSync Docs
 ---
 
 # WalletConnect

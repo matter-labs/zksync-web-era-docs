@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Hello world | zkSync Era Docs
+      content: Hello world | zkSync Docs
 ---
 
 # Hello world

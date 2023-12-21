@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Spending Rules | zkSync Era Docs
+      content: Spending Rules | zkSync Docs
 ---
 
 # Spending Rules

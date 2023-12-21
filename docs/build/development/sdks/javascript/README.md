@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Javascript | zkSync Era Docs
+      content: Javascript | zkSync Docs
 ---
 
 # JavaScript

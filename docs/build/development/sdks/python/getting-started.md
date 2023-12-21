@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Python SDK Getting Started | zkSync Era Docs
+      content: Python SDK Getting Started | zkSync Docs
 ---
 
 # Getting started

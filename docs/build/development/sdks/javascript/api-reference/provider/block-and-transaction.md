@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Block and Transaction | zkSync Era Docs
+      content: Block and Transaction | zkSync Docs
 ---
 
 # Block and Transaction

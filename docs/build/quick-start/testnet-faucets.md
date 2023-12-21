@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Testnet Faucets | zkSync Era Docs
+      content: Testnet Faucets | zkSync Docs
 ---
 
 # Testnet Faucets

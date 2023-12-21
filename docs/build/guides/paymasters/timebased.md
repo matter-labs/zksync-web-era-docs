@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: TimeBased | zkSync Era Docs
+      content: TimeBased | zkSync Docs
 ---
 
 # TimeBased

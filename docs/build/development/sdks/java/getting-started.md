@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Java SDK Getting Started | zkSync Era Docs
+      content: Java SDK Getting Started | zkSync Docs
 ---
 
 # Getting started

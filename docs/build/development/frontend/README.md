@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Frontend | zkSync Era Docs
+      content: Frontend | zkSync Docs
 ---
 
 # Frontend

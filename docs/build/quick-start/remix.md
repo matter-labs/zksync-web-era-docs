@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Remix | zkSync Era Docs
+      content: Remix | zkSync Docs
 ---
 
 # Remix

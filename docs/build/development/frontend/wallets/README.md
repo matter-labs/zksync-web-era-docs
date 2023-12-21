@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Wallets | zkSync Era Docs
+      content: Wallets | zkSync Docs
 ---
 
 # Wallets

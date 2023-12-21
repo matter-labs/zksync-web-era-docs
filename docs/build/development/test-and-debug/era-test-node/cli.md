@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: CLI | zkSync Era Docs
+      content: CLI | zkSync Docs
 ---
 
 # CLI

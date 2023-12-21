@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Java SDK Accounts | zkSync Era Docs
+      content: Java SDK Accounts | zkSync Docs
 ---
 
 # Accounts

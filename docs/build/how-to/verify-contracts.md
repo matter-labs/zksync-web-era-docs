@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Verify Contracts with Hardhat | zkSync Era Docs
+      content: Verify Contracts with Hardhat | zkSync Docs
 ---
 
 # Verify Contracts with Hardhat

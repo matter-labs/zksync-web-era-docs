@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Daily Spending Limit Tutorial | zkSync Era Docs
+      content: Daily Spending Limit Tutorial | zkSync Docs
 ---
 
 # Daily spending limit account

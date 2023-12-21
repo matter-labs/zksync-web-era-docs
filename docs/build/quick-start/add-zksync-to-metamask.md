@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Add zkSync to MetaMask | zkSync Era Docs
+      content: Add zkSync to MetaMask | zkSync Docs
 ---
 
 # Add zkSync to MetaMask

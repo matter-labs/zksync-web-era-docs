@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Getting Started | zkSync Era Docs
+      content: Getting Started | zkSync Docs
 ---
 
 # Getting started

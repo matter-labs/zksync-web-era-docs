@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Gated NFT Paymaster Tutorial | zkSync Era Docs
+      content: Gated NFT Paymaster Tutorial | zkSync Docs
 ---
 
 # Gated NFT paymaster

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Testing | zkSync Era Docs
+      content: Testing | zkSync Docs
 ---
 
 # Testing

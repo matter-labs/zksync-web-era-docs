@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Portals | zkSync Era Docs
+      content: Portals | zkSync Docs
 ---
 
 # Portals

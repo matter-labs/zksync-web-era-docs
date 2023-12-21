@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Paymasters | zkSync Era Docs
+      content: Paymasters | zkSync Docs
 ---
 
 # Paymasters

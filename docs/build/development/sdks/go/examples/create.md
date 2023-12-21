@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Go SDK Create Example | zkSync Era Docs
+      content: Go SDK Create Example | zkSync Docs
 ---
 
 # Deploy contract with CREATE opcode

@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Ethers V5 | zkSync Era Docs
+      content: Ethers V5 | zkSync Docs
 ---
 
 # Ethers V5

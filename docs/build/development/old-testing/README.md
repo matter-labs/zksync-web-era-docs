@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Testing Strategies | zkSync Era Docs
+      content: Testing Strategies | zkSync Docs
 ---
 
 # Testing strategies for zkSync Era

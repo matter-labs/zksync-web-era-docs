@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Hardhat zkSync Upgradable | zkSync Era Docs
+      content: Hardhat zkSync Upgradable | zkSync Docs
 ---
 
 # hardhat-zksync-upgradable

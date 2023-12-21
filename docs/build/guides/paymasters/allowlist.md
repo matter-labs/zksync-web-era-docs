@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: AllowList | zkSync Era Docs
+      content: AllowList | zkSync Docs
 ---
 
 # AllowList

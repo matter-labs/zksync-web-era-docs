@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Foundry | zkSync Era Docs
+      content: Foundry | zkSync Docs
 ---
 
 # Foundry
