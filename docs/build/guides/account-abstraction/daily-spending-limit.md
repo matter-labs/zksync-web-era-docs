@@ -27,7 +27,7 @@ The daily limit feature prevents an account from spending more ETH than the limi
 - We encourage you to read [the basics of account abstraction on zkSync Era](../../../reference/concepts/account-abstraction.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
 
 ::: tip Local zkSync Testing with zksync-cli
-Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../development/zksync-cli/README.md).
 :::
 
 ## Complete Project
@@ -462,7 +462,7 @@ Let's create the account contract `Account.sol`, and the factory contract that d
 
 2. Copy/paste the code below.
 
-The account needs to implement the [IAccount](../../reference/concepts/account-abstraction.md#iaccount-interface) interface and inherits the `SpendLimit` contract we just created. Since we are building an account with signers, we should also implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
+The account needs to implement the [IAccount](../../development/concepts/account-abstraction.md#iaccount-interface) interface and inherits the `SpendLimit` contract we just created. Since we are building an account with signers, we should also implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
 The `isValidSignature` method will take care of verifying the signature and making sure the extracted address matches with the owner of the account.
 
@@ -847,7 +847,7 @@ Open up the [zkSync Era block explorer](https://sepolia.explorer.zksync.io) and 
 
 :::tip
 
-- For contract verification, please refer to [this section of the documentation](../how-to/verify-contracts.md).
+- For contract verification, please refer to [this section of the documentation](../../how-to/verify-contracts.md).
   :::
 
 ## Set the daily spending limit
@@ -1071,9 +1071,9 @@ Since `ONE_DAY` is set to 1 minute for this test in the `SpendLimit.sol` contrac
 
 ## Learn more
 
-- To find out more about L1->L2 interaction on zkSync Era, check out the [documentation](../../reference/concepts/l1-l2-interop.md).
-- To learn more about the zksync-web3 SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync Era Hardhat plugins, check out their [documentation](../../tools/hardhat).
+- To find out more about L1->L2 interaction on zkSync Era, check out the [documentation](../../development/concepts/l1-l2-interop.md).
+- To learn more about the zksync-web3 SDK, check out its [documentation](../../../api/js/README.md).
+- To learn more about the zkSync Era Hardhat plugins, check out their [documentation](../../development/hardhat-plugins/getting-started.md).
 
 ## Credits
 

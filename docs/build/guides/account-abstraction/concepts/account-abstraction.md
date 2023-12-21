@@ -10,7 +10,7 @@ head:
 ::: warning
 
 - Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`.
-- For more information, read the [changelog](../troubleshooting/changelog.md#hardhat-plugins-update-feb-24th-2023).
+- For more information, read the [changelog](../../../../reference/troubleshooting/changelog.md#hardhat-plugins-update-feb-24th-2023).
   :::
 
 ## Introduction
@@ -144,7 +144,7 @@ By default, calling `estimateGas` adds a constant to cover charging the fee and 
 
 ## Using the `SystemContractsCaller` library
 
-For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](../architecture/system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall`/`systemCallWithPropagatedRevert`/`systemCallWithReturndata` methods of the [SystemContractsCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/libraries/SystemContractsCaller.sol) library should be used.
+For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](../../../development/compiler/architecture/system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall`/`systemCallWithPropagatedRevert`/`systemCallWithReturndata` methods of the [SystemContractsCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/libraries/SystemContractsCaller.sol) library should be used.
 
 Using this library is practically a must when developing custom accounts since this is the only way to call non-view methods of the `NonceHolder` system contract. Also, you will have to use this library if you want to allow users to deploy contracts of their own. You can use the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/DefaultAccount.sol) of the EOA account as a reference.
 

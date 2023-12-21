@@ -23,9 +23,9 @@ To deploy a contract on Ethereum, a user sends a transaction to the zero address
 
 To deploy a contract on zkSync Era, a user calls the `create` function of the [ContractDeployer system contract](./system-contracts.md#contractdeployer) providing the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the transaction (as it's an [EIP712 transaction](../../reference/concepts/transactions.md#eip-712-0x71)). If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
-We recommend using the [hardhat-zksync-deploy](../../tools/hardhat/) plugin, to simplify the deployment process. It provides classes and methods to take care of all the deployment requirements, like generating the [bytecode hash of the contract](#format-of-bytecode-hash).
+We recommend using the [hardhat-zksync-deploy](../../hardhat-plugins/README.md) plugin, to simplify the deployment process. It provides classes and methods to take care of all the deployment requirements, like generating the [bytecode hash of the contract](#format-of-bytecode-hash).
 
-Here's a [step-by-step guide on how to use it](../../tools/hardhat/getting-started.md).
+Here's a [step-by-step guide on how to use it](../../hardhat-plugins/getting-started.md).
 
 ### Note on `factory_deps`
 

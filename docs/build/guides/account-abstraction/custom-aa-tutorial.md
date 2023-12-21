@@ -451,7 +451,7 @@ function payForTransaction(
 
 ### Implementing paymaster support
 
-While the account abstraction protocol enables arbitrary actions when interacting with the paymasters, there are some [common patterns](./reference/concepts/account-abstraction.md) with built-in support for EOAs. Unless you want to implement or restrict some specific paymaster use cases for your account, it is better to keep it consistent with EOAs.
+While the account abstraction protocol enables arbitrary actions when interacting with the paymasters, there are some [common patterns](./concepts/account-abstraction.md) with built-in support for EOAs. Unless you want to implement or restrict some specific paymaster use cases for your account, it is better to keep it consistent with EOAs.
 
 The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processes the paymaster parameters the same it's done in EOAs.
 

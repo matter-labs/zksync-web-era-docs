@@ -19,10 +19,10 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 - A [Node.js](https://nodejs.org/en/download) installation running Node.js version 16.
 - Some familiarity with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - Some background knowledge on the concepts covered by the tutorial would be helpful too. Have a look at the following docs:
-  - [Account abstraction protocol](../../reference/concepts/account-abstraction.md).
-  - [Introduction to system contracts](../../reference/architecture/system-contracts.md).
-  - [Smart contract deployment](../../reference/architecture/contract-deployment.md) on zkSync Era.
-  - [Gas estimation for transactions](../../reference/concepts/fee-model.md#gas-estimation-for-transactions) guide.
+  - [Account abstraction protocol](../account-abstraction/concepts/account-abstraction.md).
+  - [Introduction to system contracts](../../development/compiler/architecture/system-contracts.md).
+  - [Smart contract deployment](../../development/compiler/architecture/contract-deployment.md) on zkSync Era.
+  - [Gas estimation for transactions](../../development/concepts/fee-model.md#gas-estimation-for-transactions) guide.
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ## Complete project
@@ -195,7 +195,7 @@ require(success, "Failed to transfer tx fee to the bootloader. Paymaster balance
 ```
 
 ::: tip Validate all requirements first
-The [validation steps](../../reference/concepts/account-abstraction.md#the-validation-step) ensure that the paymaster won't throttle if the first storage read which has a different value from the execution on the API is a storage slot that belongs to the user.
+The [validation steps](../../development/concepts/account-abstraction.md#the-validation-step) ensure that the paymaster won't throttle if the first storage read which has a different value from the execution on the API is a storage slot that belongs to the user.
 
 This is why it is important to verify transaction prerequisites _before_ performing any logic and why we _first_ check that the user provided enough allowance before calling `transferFrom`.
 :::

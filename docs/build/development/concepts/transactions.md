@@ -89,7 +89,7 @@ zkSync Era supports the EIP-1559 transaction-type format but does nothing with t
 
 The Ethereum Improvement Proposal [EIP-712: Typed structured data hashing and signing](https://eips.ethereum.org/EIPS/eip-712) introduced hashing and signing of typed-structured data as well as bytestrings.
 
-EIP-712 transactions access zkSync-specific features such as [account abstraction](./account-abstraction.md) and [paymasters](../../dev/tutorials/custom-paymaster-tutorial.md). Furthermore, smart contracts must be deployed with the EIP-712 transaction type.
+EIP-712 transactions access zkSync-specific features such as [account abstraction](./account-abstraction.md) and [paymasters](../../tutorials/custom-paymaster-tutorial.md). Furthermore, smart contracts must be deployed with the EIP-712 transaction type.
 
 You can specify the additional fields, such as the custom signature for custom accounts or to choose the paymaster with EIP-712 transactions. These transactions have the same fields as standard Ethereum transactions, plus fields containing additional L2-specific data (`paymaster`, etc).
 
@@ -128,7 +128,7 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 | factoryDeps            | `bytes32[]` |
 | paymasterInput         | `bytes`     |
 
-These fields are handled by our [SDK](../../api/js/features.md).
+These fields are handled by our [SDK](../../../api/js/features.md).
 
 ### Priority: `0xff`
 
