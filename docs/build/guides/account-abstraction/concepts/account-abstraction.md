@@ -61,7 +61,7 @@ There needs to be a solution on the protocol level that is both cheap for users 
 
 The following protocol is used:
 
-- Before each transaction starts, the system queries the [NonceHolder](../architecture/system-contracts.md#nonceholder) to check whether the provided nonce has already been used or not.
+- Before each transaction starts, the system queries the [NonceHolder](../../../development/compiler/architecture/system-contracts.md#nonceholder) to check whether the provided nonce has already been used or not.
 - If the nonce has not been used yet, the transaction validation is run. The provided nonce is expected to be marked as "used" during this time.
 - After the validation, the system checks whether this nonce is now marked as used.
 
@@ -73,7 +73,7 @@ it is recommended to only use the `incrementMinNonceIfEquals` method, which prac
 
 ### Standardizing transaction hashes
 
-In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](../architecture/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA
+In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](../../../development/compiler/architecture/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA
 methods (in case the accounts may need this value for some reason). That's why all the methods of the `IAccount` and `IPaymaster` interfaces, which are described below,
 contain the hash of the transaction as well as the recommended signed digest (the digest that is signed by EOAs for this transaction).
 
@@ -83,7 +83,7 @@ Each account is recommended to implement the [IAccount](https://github.com/matte
 
 - `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) the method should revert. In case the call to this method succeeds, the implemented account logic is considered to accept the transaction, and the system will proceed with the transaction flow.
 - `executeTransaction` is mandatory and will be called by the system after the fee is charged from the user. This function should perform the execution of the transaction.
-- `payForTransaction` is optional and will be called by the system if the transaction has no paymaster, i.e. the account is willing to pay for the transaction. This method should be used to pay for the fees by the account. Note, that if your account will never pay any fees and will always rely on the [paymaster](#paymasters) feature, you don't have to implement this method. This method must send at least `tx.gasprice * tx.gasLimit` ETH to the [bootloader](../../../development/compiler//architecture/system-contracts.md#bootloader) address.
+- `payForTransaction` is optional and will be called by the system if the transaction has no paymaster, i.e. the account is willing to pay for the transaction. This method should be used to pay for the fees by the account. Note, that if your account will never pay any fees and will always rely on the [paymaster](#paymasters) feature, you don't have to implement this method. This method must send at least `tx.gasprice * tx.gasLimit` ETH to the [bootloader](../../../development/compiler/architecture/system-contracts.md#bootloader) address.
 - `prepareForPaymaster` is optional and will be called by the system if the transaction has a paymaster, i.e. there is a different address that pays the transaction fees for the user. This method should be used to prepare for the interaction with the paymaster. One of the notable [examples](#approval-based-paymaster-flow) where it can be helpful is to approve the ERC-20 tokens for the paymaster.
 - `executeTransactionFromOutside`, technically, is not mandatory, but it is _highly encouraged_, since there needs to be some way, in case of priority mode (e.g. if the operator is unresponsive), to be able to start transactions from your account from ``outside'' (basically this is the fallback to the standard Ethereum approach, where an EOA starts transaction from your smart contract).
 

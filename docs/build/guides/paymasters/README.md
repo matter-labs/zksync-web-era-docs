@@ -46,25 +46,13 @@ function approvalBased(
 
 ### Usage Guides
 
-{% content-ref url="gasless.md" %}
-[gasless.md](gasless.md)
-{% endcontent-ref %}
+- [gasless.md](gasless.md)
 
-{% content-ref url="allowlist.md" %}
-[allowlist.md](allowlist.md)
-{% endcontent-ref %}
+- [allowlist.md](allowlist.md)
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+- [erc20fixed.md](erc20fixed.md)
 
-{% content-ref url="erc20fixed.md" %}
-[erc20fixed.md](erc20fixed.md)
-{% endcontent-ref %}
-
-{% content-ref url="timebased.md" %}
-[timebased.md](timebased.md)
-{% endcontent-ref %}
+- [timebased.md](timebased.md)
 
 ### Contribute
 

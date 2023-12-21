@@ -11,26 +11,26 @@ head:
 
 zkSync offers native account abstraction enabling contracts to pay transaction fees on behalf of users. The **AllowlistPaymaster** contract is one such way to utilize this, paying fees for a specified list of approved users, hence enhancing user experience by alleviating gas cost concerns.
 
-This guide will outline the process of creating an AllowlistPaymaster contract to cover the gas fees of certain users. It provides an overview of the smart contract developed, and the steps required to deploy and operate it.&#x20;
+This guide will outline the process of creating an AllowlistPaymaster contract to cover the gas fees of certain users. It provides an overview of the smart contract developed, and the steps required to deploy and operate it.;
 
-{% hint style="info" %}
+:::info
 For detailed explanations of the IPaymaster interface please refer to the documentation [here](https://era.zksync.io/docs/reference/concepts/account-abstraction.html#ipaymaster-interface).
-{% endhint %}
+:::
 
 ### Prerequisites
 
 - **Knowledge Base**: You should be familiar with Solidity and Hardhat.
-- **Wallet Setup**: Have MetaMask installed and set up, ensuring there's a balance on the zkSync testnet.&#x20;
-- **Tooling**: This guide utilizes [`zksync-cli`](../../../tooling/zksync-cli.md). Ensure you have it accessible or installed in your environment.
+- **Wallet Setup**: Have MetaMask installed and set up, ensuring there's a balance on the zkSync testnet.;
+- **Tooling**: This guide utilizes [`zksync-cli`](../../development/zksync-cli/README.md). Ensure you have it accessible or installed in your environment.
 
 ### Step 1 — Understanding the AllowlistPaymaster contract
 
-The `AllowlistPaymaster` contract is designed to be owned by an account that controls its operations. It maintains a list of addresses which are allowed to have their gas fees paid for by this contract.&#x20;
+The `AllowlistPaymaster` contract is designed to be owned by an account that controls its operations. It maintains a list of addresses which are allowed to have their gas fees paid for by this contract.;
 
 Key components:
 
 - **allowList**: A mapping to track addresses that are allowed to utilize this Paymaster.
-- **validateAndPayForPaymasterTransaction**: The validation logic that checks if a given address is on the allow list.&#x20;
+- **validateAndPayForPaymasterTransaction**: The validation logic that checks if a given address is on the allow list.;
 - **setBatchAllowance**: Allows the owner to update the allowList in batches for efficiency.
 
 Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IPaymaster.sol) interface. We will be using `zksync-cli` to bootstrap the boilerplate code for this paymaster.
@@ -42,7 +42,7 @@ Using `zksync-cli` we will create a new project with the required dependencies a
 <pre class="language-bash"><code class="lang-bash"><strong>npx zksync-cli@latest create-project allowListPaymaster
 </strong></code></pre>
 
-Choose `Hardhat + Solidity` to setup our project repository. The contract we will be adjusting exists under `/contracts/GeneralPaymaster.sol`.&#x20;
+Choose `Hardhat + Solidity` to setup our project repository. The contract we will be adjusting exists under `/contracts/GeneralPaymaster.sol`.;
 
 **Update the Environment File**:
 
@@ -61,7 +61,7 @@ contract AllowlistPaymaster is IPaymaster, Ownable {
     event UpdateAllowlist(address _target, bool _allowed);
 ```
 
-The `allowList` mapping will be used to track addresses that are allowed to utilize this Paymaster, and we will emit an event whenever the list has been updated.&#x20;
+The `allowList` mapping will be used to track addresses that are allowed to utilize this Paymaster, and we will emit an event whenever the list has been updated.;
 
 Add a constructor method that adds the owner to the list:
 
@@ -84,7 +84,7 @@ bool isAllowed = allowList[userAddress];
 require(isAllowed, "Account is not in allow list");
 ```
 
-During the validation step, the contract will check if the address is included in our `allowList` mapping, if not the account will be required to pay their gas costs.&#x20;
+During the validation step, the contract will check if the address is included in our `allowList` mapping, if not the account will be required to pay their gas costs.;
 
 Next, we need to include the ability to update the `allowList` in batches. Add the following to the contract:
 
@@ -175,11 +175,11 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 </details>
 
-{% hint style="info" %}
-Be sure to add your private key to the `.env` file.&#x20;
-{% endhint %}
+:::info
+Be sure to add your private key to the `.env` file.;
+:::
 
-The provided script takes care of loading environment variables, setting up a deployment wallet with the private key specified in an `.env` file, contract deployment and funding the paymaster. You can adjust the amount of ETH to fund the paymaster to your needs.&#x20;
+The provided script takes care of loading environment variables, setting up a deployment wallet with the private key specified in an `.env` file, contract deployment and funding the paymaster. You can adjust the amount of ETH to fund the paymaster to your needs.;
 
 Compile the contract:
 

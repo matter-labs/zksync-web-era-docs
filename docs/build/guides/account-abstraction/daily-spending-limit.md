@@ -15,7 +15,7 @@ The daily limit feature prevents an account from spending more ETH than the limi
 
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - [Node.js](https://nodejs.org/en/download/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed on your machine.
-- If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+- If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the first section of the [quickstart tutorial](../../building-on-zksync/hello-world.md).
 - A wallet with sufficient Sepolia or Goerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
   - You can get Sepolia or Goerli ETH from the following faucets:
     - Chainstack [Sepolia faucet](https://faucet.chainstack.com/sepolia-testnet-faucet), [Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
@@ -40,7 +40,7 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 
 ## Project set up
 
-We will use the [zkSync Era Hardhat plugins](../../tools/hardhat/) to build, deploy, and interact with the smart contracts in this project.
+We will use the [zkSync Era Hardhat plugins](../../development//hardhat-plugins/getting-started.md) to build, deploy, and interact with the smart contracts in this project.
 
 1. Initiate a new project by running the command:
 
@@ -702,7 +702,7 @@ contract Account is IAccount, IERC1271, SpendLimit {
 :::warning Note 1
 
 - The formal ETH address on zkSync Era is `0x000000000000000000000000000000000000800a`.
-- Neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, that ([`zksync-web3` provides](../../api/js/utils.md#useful-addresses)) has a more user-friendly alias.
+- Neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, that ([`zksync-web3` provides](..//../building-on-zksync/useful-address.md#useful-addresses)) has a more user-friendly alias.
   :::
 
 :::warning Note 2

@@ -17,7 +17,7 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - A [Node.js](https://nodejs.org/en/download) installation running Node.js version 16.
-- Some familiarity with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+- Some familiarity with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../../building-on-zksync/hello-world.md).
 - Some background knowledge on the concepts covered by the tutorial would be helpful too. Have a look at the following docs:
   - [Account abstraction protocol](../account-abstraction/concepts/account-abstraction.md).
   - [Introduction to system contracts](../../development/compiler/architecture/system-contracts.md).
@@ -113,7 +113,7 @@ contract MyPaymaster is IPaymaster {
 
 :::info
 
-- Only the [bootloader](../../reference/architecture/system-contracts.md#bootloader) is allowed to call the `validateAndPayForPaymasterTransaction` and `postTransaction` functions.
+- Only the [bootloader](../../development/compiler/architecture/system-contracts.md#bootloader) is allowed to call the `validateAndPayForPaymasterTransaction` and `postTransaction` functions.
 - To implement that, the `onlyBootloader` modifier is used on these functions.
   :::
 
@@ -123,7 +123,7 @@ The paymaster pays the transaction fees and charges the user one unit of the `al
 
 The input that the paymaster receives is encoded in the `paymasterInput` within the `validateAndPayForPaymasterTransaction` function.
 
-As described in [the paymaster documentation](../../reference/concepts/account-abstraction.md#paymasters), there are standardized ways to encode user interactions with `paymasterInput`. To charge the user, we require that she has provided enough allowance of the ERC20 token to the paymaster contract. This allowance is done in the `approvalBased` flow behind the scenes.
+As described in [the paymaster documentation](../../development/concepts/account-abstraction.md#paymasters), there are standardized ways to encode user interactions with `paymasterInput`. To charge the user, we require that she has provided enough allowance of the ERC20 token to the paymaster contract. This allowance is done in the `approvalBased` flow behind the scenes.
 
 Firstly, we check that the `paymasterInput` is encoded as in the `approvalBased` flow, and that the token sent in `paymasterInput` is the one the paymaster accepts.
 
@@ -545,6 +545,6 @@ The wallet had 3 tokens after running the deployment script and, after sending t
 
 ## Learn more
 
-- Learn more about [L1->L2 interaction on zkSync](../../reference/concepts/l1-l2-interop.md).
-- Learn more about [the `zksync-web3` SDK](../../api/js).
-- Learn more about [the zkSync hardhat plugins](../../tools/hardhat).
+- Learn more about [L1->L2 interaction on zkSync](../../development/concepts/l1-l2-interop.md).
+- Learn more about [the `zksync-web3` SDK](../../../api/js).
+- Learn more about [the zkSync hardhat plugins](../../development/hardhat-plugins/getting-started.md).

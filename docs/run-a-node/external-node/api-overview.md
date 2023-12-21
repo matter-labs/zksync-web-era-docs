@@ -77,7 +77,7 @@ This is exclusively available on the WebSocket servers.
 
 ### **debug namespace**
 
-This namespace provides a set of non-standard RPC methods for developers to inspect and debug calls and transactions. By default, this namespace is disabled but can be activated using the `EN_API_NAMESPACES` setting. Please refer to the configuration section for more details.&#x20;
+This namespace provides a set of non-standard RPC methods for developers to inspect and debug calls and transactions. By default, this namespace is disabled but can be activated using the `EN_API_NAMESPACES` setting. Please refer to the configuration section for more details.;
 
 | Method                     | Notes |
 | -------------------------- | ----- |

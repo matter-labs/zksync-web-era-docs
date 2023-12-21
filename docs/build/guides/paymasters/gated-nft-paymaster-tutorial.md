@@ -27,12 +27,12 @@ You'll gain a thorough understanding of how to create, compile, and deploy smart
 
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - A [Node.js](https://nodejs.org/en/download) installation running Node.js version 16.
-- Some familiarity with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+- Some familiarity with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../../building-on-zksync/hello-world.md).
 - Some background knowledge on the concepts covered by the tutorial would be helpful too. Have a look at the following docs:
-  - [Account abstraction protocol](../../reference/concepts/account-abstraction.md).
-  - [Introduction to system contracts](../../reference/architecture/system-contracts.md).
-  - [Smart contract deployment](../../reference/architecture/contract-deployment.md) on zkSyn Era.
-  - [Gas estimation for transactions](../../reference/concepts/fee-model.md#gas-estimation-for-transactions) guide.
+  - [Account abstraction protocol](../../development/concepts/account-abstraction.md).
+  - [Introduction to system contracts](../../development/compiler/architecture/system-contracts.md).
+  - [Smart contract deployment](../../development/compiler/architecture/contract-deployment.md) on zkSyn Era.
+  - [Gas estimation for transactions](../../development/concepts/fee-model.md#gas-estimation-for-transactions) guide.
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ### Complete project
@@ -283,7 +283,7 @@ contract ERC721GatedPaymaster is IPaymaster, Ownable {
 
 :::info
 
-- Only the [bootloader](../../reference/architecture/system-contracts.md#bootloader) is allowed to call the `validateAndPayForPaymasterTransaction` and `postTransaction` functions.
+- Only the [bootloader](../../development/compiler/architecture/system-contracts.md#bootloader) is allowed to call the `validateAndPayForPaymasterTransaction` and `postTransaction` functions.
 - To implement that, the `onlyBootloader` modifier is used on these functions.
   :::
 
@@ -293,7 +293,7 @@ The paymaster pays the transaction fees only if the user possesses one of NFT's 
 
 The input that the paymaster receives is encoded in the `paymasterInput` within the `validateAndPayForPaymasterTransaction` function.
 
-As described in [the paymaster documentation](../../reference/concepts/account-abstraction.md#paymasters), there are standardized ways to encode user interactions with `paymasterInput`. To cover the gas costs of a user, we need to ensure the user has the appropriate NFT in their account.
+As described in [the paymaster documentation](../../development/concepts/account-abstraction.md#paymasters), there are standardized ways to encode user interactions with `paymasterInput`. To cover the gas costs of a user, we need to ensure the user has the appropriate NFT in their account.
 
 1. Firstly, we check that the `paymasterInput` is encoded and uses the `General` flow, and that the account address has a balance of at least 1 of the required NFTs.
 

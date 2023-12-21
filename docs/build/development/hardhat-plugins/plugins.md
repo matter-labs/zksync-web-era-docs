@@ -20,7 +20,6 @@ List of official plugins:
 - [hardhat-zksync-verify](./hardhat-zksync-verify.md)
 - [hardhat-zksync-verify-vyper](./hardhat-zksync-verify-vyper.md)
 - [hardhat-zksync-upgradable](./hardhat-zksync-upgradable.md)
-<!-- - [hardhat-zksync-ethers](./hardhat-zksync-ethers.md) -->
 
 ::: tip Popular Hardhat plugins
 

@@ -9,7 +9,7 @@ head:
 
 ### Introduction
 
-zkSync's native account abstraction allows contracts to cover transaction fees on behalf of users, significantly improving user experience. The **`GaslessPaymaster`** contract offers a method to deploy a universal paymaster which ensures transactions are gasless for users.&#x20;
+zkSync's native account abstraction allows contracts to cover transaction fees on behalf of users, significantly improving user experience. The **`GaslessPaymaster`** contract offers a method to deploy a universal paymaster which ensures transactions are gasless for users.;
 
 This guide describes the process of setting up and deploying the **`GaslessPaymaster`** contract.
 
@@ -21,7 +21,7 @@ For detailed explanations of the IPaymaster interface please refer to the docume
 
 - **Knowledge Base**: You should be familiar with Solidity and Hardhat.
 - **Wallet Setup**: Have MetaMask installed and set up, ensuring there's a balance on the zkSync testnet.
-- **Tooling**: This guide utilizes [`zksync-cli`](../../../tooling/zksync-cli.md). Ensure you have it accessible or installed in your environment.
+- **Tooling**: This guide utilizes [`zksync-cli`](../../development/zksync-cli/README.md). Ensure you have it accessible or installed in your environment.
 
 ### Step 1 — Understanding the GaslessPaymaster contract
 
@@ -111,10 +111,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 </details>
 
 :::info
-Be sure to add your private key to the `.env` file.&#x20;
+Be sure to add your private key to the `.env` file.;
 :::
 
-The provided script takes care of loading environment variables, setting up a deployment wallet with the private key specified in an `.env` file, contract deployment and funding the paymaster. You can adjust the amount of ETH to fund the paymaster to your needs.&#x20;
+The provided script takes care of loading environment variables, setting up a deployment wallet with the private key specified in an `.env` file, contract deployment and funding the paymaster. You can adjust the amount of ETH to fund the paymaster to your needs.;
 
 Compile the contract:
 
@@ -226,4 +226,4 @@ yarn hardhat test
 
 ### Conclusion
 
-The `GaslessPaymaster` contract provides an effortless way to cover gas fees, ensuring a seamless experience for users. It represents a breakthrough for dApps and businesses aiming to increase adoption by making user transactions gasless. You can add protocol specific validations for more control, an adaptation of which can be reviewed in the next section. &#x20;
+The `GaslessPaymaster` contract provides an effortless way to cover gas fees, ensuring a seamless experience for users. It represents a breakthrough for dApps and businesses aiming to increase adoption by making user transactions gasless. You can add protocol specific validations for more control, an adaptation of which can be reviewed in the next section.
