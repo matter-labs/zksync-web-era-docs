@@ -43,7 +43,7 @@ guides on that, [here's one example](https://www.docker.com/blog/how-to-use-the-
 Note however that if you run Postgres as a stand-alone Docker image (e.g. not in Docker-compose with a network shared
 between EN and Postgres), EN won't be able to access Postgres via `localhost` or `127.0.0.1` URLs. To make it work,
 you'll have to either run it with a `--network host` (on Linux) or use `host.docker.internal` instead of `localhost` in
-the EN configuration ([official docs][host_docker_internal]).
+the EN configuration (official docs).
 
 Besides running Postgres, you are expected to have a DB dump from a corresponding env. You can restore it using
 `pg_restore -O -C <DUMP_PATH> --dbname=<DB_URL>`.

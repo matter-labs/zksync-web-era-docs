@@ -80,6 +80,31 @@ Nuxt
 viem
 Wagmi
 
+// docs restructure
+NVME
+OTLP
+rocksdb
+multivm
+Reinitializing
+sqlx
+rustc
+ROCKSDB
+librocksdb
+CUDA
+gcloud
+rustc
+unsynchronized
+rustc
+abda
+edaf
+impls
+hdcaa
+emilluta
+zkevm
+cicruit
+Cuda
+cuda
+
 // Used programming language words
 printf
 charsets
