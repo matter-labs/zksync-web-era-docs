@@ -218,6 +218,30 @@
     [data-theme="dark"] img[src*="/zksync_logo_black.svg"] {
         content: url("/zksync_logo.svg");
     }
+
+    [data-theme="light"] img[src*="/images/x_logo.svg"] {
+        content: url("/images/x_logo_black.svg");
+    }
+    
+    [data-theme="dark"] img[src*="/images/x_logo_black.svg"] {
+        content: url("/images/x_logo.svg");
+    }
+
+    [data-theme="light"] img[src*="/images/discord_logo.svg"] {
+        content: url("/images/discord_logo_black.svg");
+    }
+    
+    [data-theme="dark"] img[src*="/images/discord_logo_black.svg"] {
+        content: url("/images/discord_logo.svg");
+    }
+
+    [data-theme="light"] img[src*="/images/github_logo.svg"] {
+        content: url("/images/github_logo_black.svg");
+    }
+    
+    [data-theme="dark"] img[src*="/images/github_logo_black.svg"] {
+        content: url("/images/github_logo.svg");
+    }
     
     [data-theme="dark"] h3 {
         color: $light-text !important;
