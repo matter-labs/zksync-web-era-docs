@@ -610,10 +610,10 @@ export const enSidebar = sidebar({
         }
       ]
     },
-    {
-      text: "Contribution Track",
-      link: "/build/development/contribution-track.md",
-    },
+    // {
+    //   text: "Contribution Track",
+    //   link: "/build/development/contribution-track.md",
+    // },
   //   {
   //     text: "How to",
   //     link: "/dev/how-to/README.md",
