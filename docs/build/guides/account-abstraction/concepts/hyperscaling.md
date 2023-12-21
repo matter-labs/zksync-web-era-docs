@@ -17,7 +17,7 @@ Hyperchains are fractal-like instances of zkEVM running in parallel and with the
 
 <div  align="center">
 
-![hyperbridges](../../assets/images/hyperbridges.png)
+![hyperbridges](../../../../assets/images/hyperbridges.png)
 Gray lines show proofs, orange lines the hyperbridges, which automatically connect all blue chains.
 
 </div>
