@@ -10,7 +10,7 @@ head:
 ::: warning
 
 - Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`.
-- For more information, read the [changelog](../troubleshooting/changelog.md#hardhat-plugins-update-feb-24th-2023).
+- For more information, read the [changelog](../../../reference/troubleshooting/changelog.md#hardhat-plugins-update-feb-24th-2023).
   :::
 
 ## Introduction
@@ -31,7 +31,7 @@ Accounts in zkSync Era can initiate transactions, like an EOA, but can also have
 Native Account Abstraction on zkSync Era fundamentally changes how accounts operate by introducing the concept of Smart Accounts and Paymasters. Smart Accounts are fully programmable, allowing for various customizations such as signature schemes, native multi-sig capabilities, spending limits, and application-specific restrictions.
 
 ::: info
-The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance accounts' flexibility and user experience, but they differ in key aspects; learn more [here](../architecture/differences-with-ethereum.md#native-aa-vs-eip-4337).
+The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance accounts' flexibility and user experience, but they differ in key aspects; learn more [here](../compiler/architecture/differences-with-ethereum.md#native-aa-vs-eip-4337).
 :::
 
 Paymasters, conversely, can sponsor transactions for users, enabling users to pay transaction fees in ERC20 tokens. This innovative approach to account management significantly enhances user experience, security, and flexibility, paving the way for broader adoption of blockchain technology.
@@ -61,7 +61,7 @@ There needs to be a solution on the protocol level that is both cheap for users 
 
 The following protocol is used:
 
-- Before each transaction starts, the system queries the [NonceHolder](../architecture/system-contracts.md#nonceholder) to check whether the provided nonce has already been used or not.
+- Before each transaction starts, the system queries the [NonceHolder](../compiler/architecture/system-contracts.md#nonceholder) to check whether the provided nonce has already been used or not.
 - If the nonce has not been used yet, the transaction validation is run. The provided nonce is expected to be marked as "used" during this time.
 - After the validation, the system checks whether this nonce is now marked as used.
 
@@ -73,7 +73,7 @@ it is recommended to only use the `incrementMinNonceIfEquals` method, which prac
 
 ### Standardizing transaction hashes
 
-In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](../architecture/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA
+In the future, it is planned to support efficient proofs of transaction inclusion on zkSync. This would require us to calculate the transaction's hash in the [bootloader](../compiler/architecture/system-contracts.md#bootloader). Since these calculations won't be free to the user, it is only fair to include the transaction's hash in the interface of the AA
 methods (in case the accounts may need this value for some reason). That's why all the methods of the `IAccount` and `IPaymaster` interfaces, which are described below,
 contain the hash of the transaction as well as the recommended signed digest (the digest that is signed by EOAs for this transaction).
 
@@ -83,7 +83,7 @@ Each account is recommended to implement the [IAccount](https://github.com/matte
 
 - `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) the method should revert. In case the call to this method succeeds, the implemented account logic is considered to accept the transaction, and the system will proceed with the transaction flow.
 - `executeTransaction` is mandatory and will be called by the system after the fee is charged from the user. This function should perform the execution of the transaction.
-- `payForTransaction` is optional and will be called by the system if the transaction has no paymaster, i.e. the account is willing to pay for the transaction. This method should be used to pay for the fees by the account. Note, that if your account will never pay any fees and will always rely on the [paymaster](#paymasters) feature, you don't have to implement this method. This method must send at least `tx.gasprice * tx.gasLimit` ETH to the [bootloader](../architecture/system-contracts.md#bootloader) address.
+- `payForTransaction` is optional and will be called by the system if the transaction has no paymaster, i.e. the account is willing to pay for the transaction. This method should be used to pay for the fees by the account. Note, that if your account will never pay any fees and will always rely on the [paymaster](#paymasters) feature, you don't have to implement this method. This method must send at least `tx.gasprice * tx.gasLimit` ETH to the [bootloader](../compiler/architecture/system-contracts.md#bootloader) address.
 - `prepareForPaymaster` is optional and will be called by the system if the transaction has a paymaster, i.e. there is a different address that pays the transaction fees for the user. This method should be used to prepare for the interaction with the paymaster. One of the notable [examples](#approval-based-paymaster-flow) where it can be helpful is to approve the ERC-20 tokens for the paymaster.
 - `executeTransactionFromOutside`, technically, is not mandatory, but it is _highly encouraged_, since there needs to be some way, in case of priority mode (e.g. if the operator is unresponsive), to be able to start transactions from your account from ``outside'' (basically this is the fallback to the standard Ethereum approach, where an EOA starts transaction from your smart contract).
 
@@ -144,7 +144,7 @@ By default, calling `estimateGas` adds a constant to cover charging the fee and 
 
 ## Using the `SystemContractsCaller` library
 
-For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](../architecture/system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall`/`systemCallWithPropagatedRevert`/`systemCallWithReturndata` methods of the [SystemContractsCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/libraries/SystemContractsCaller.sol) library should be used.
+For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](../compiler/architecture/system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall`/`systemCallWithPropagatedRevert`/`systemCallWithReturndata` methods of the [SystemContractsCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/libraries/SystemContractsCaller.sol) library should be used.
 
 Using this library is practically a must when developing custom accounts since this is the only way to call non-view methods of the `NonceHolder` system contract. Also, you will have to use this library if you want to allow users to deploy contracts of their own. You can use the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/DefaultAccount.sol) of the EOA account as a reference.
 
@@ -222,7 +222,7 @@ Currently, your transactions may pass through the API despite violating the requ
 
 ### Nonce holder contract
 
-For optimization purposes, both [tx nonce and the deployment nonce](../architecture/contract-deployment.md#differences-in-create-behaviour) are put in one storage slot inside the [NonceHolder](../architecture/system-contracts.md#nonceholder) system contracts.
+For optimization purposes, both [tx nonce and the deployment nonce](../compiler/architecture/contract-deployment.md#differences-in-create-behaviour) are put in one storage slot inside the [NonceHolder](../compiler/architecture/system-contracts.md#nonceholder) system contracts.
 In order to increment the nonce of your account, it is highly recommended to call the [incrementMinNonceIfEquals](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/INonceHolder.sol#L34) function and pass the value of the nonce provided in the transaction.
 
 This is one of the whitelisted calls, where the account logic is allowed to call outside smart contracts.
@@ -306,7 +306,7 @@ If you are developing a paymaster, you _should not_ trust the transaction sender
 
 #### Working with paymaster flows using `zksync-web3` SDK
 
-The `zksync-web3` SDK provides [methods](../../api/js/paymaster-utils.md) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
+The `zksync-web3` SDK provides [methods](../../../api/js/paymaster-utils.md) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
 
 ### Testnet paymaster
 
@@ -314,7 +314,7 @@ To ensure users experience paymasters on testnet, as well as keep supporting pay
 
 The paymaster supports only the [approval based](#approval-based-paymaster-flow) paymaster flow and requires that the `token` param is equal to the token being swapped and `minAllowance` to equal to least `tx.maxFeePerGas * tx.gasLimit`. In addition, the testnet paymaster does not make use of the `_innerInput` parameter, so nothing should be provided (empty `bytes`).
 
-An example of how to use testnet paymaster can be seen in the [quickstart](../../dev/building-on-zksync/hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
+An example of how to use testnet paymaster can be seen in the [quickstart](../../building-on-zksync/hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
 
 ## Signature validation
 

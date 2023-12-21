@@ -22,7 +22,7 @@ contain a minimal number of transactions ([or none at all](#empty-blocks)), and 
 
 ## Block Properties
 
-The following are the block properties returned when you use the `getBlock` method from the API using [any of our SDKs](../../api/README.md#sdks).
+The following are the block properties returned when you use the `getBlock` method from the API using [any of our SDKs](../sdks/README.md).
 
 | Parameter     | Description                                                                                                                               |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |

@@ -49,8 +49,8 @@ The following values are returned by any RPC call which outputs transaction deta
 Contract deployment is a special kind of transaction. A contract deployment creates a new contract account in the system. There are some differences for this kind of transaction between zkSync Era and Ethereum:
 
 - Ethereum: Contract deployment occurs when a user sends a transaction to the zero address `(0x000...000)` where the `data` field contains the contract bytecode concatenated with constructor parameters.
-- zkSync Era: To deploy a contract on zkSync, a user calls the `create` function of the [ContractDeployer](../architecture/system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode is added to the `factory_deps` field of [EIP-712 transaction types](#eip-712-0x71). If the contract is a factory (i.e. it can deploy other contracts), the bytecode of all child contracts should be included in `factory_deps`.
-- Find out more about [contract deployment](../architecture/contract-development.md) on zkSync Era.
+- zkSync Era: To deploy a contract on zkSync, a user calls the `create` function of the [ContractDeployer](../compiler/architecture/system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode is added to the `factory_deps` field of [EIP-712 transaction types](#eip-712-0x71). If the contract is a factory (i.e. it can deploy other contracts), the bytecode of all child contracts should be included in `factory_deps`.
+- Find out more about [contract deployment](../compiler/architecture/contract-development.md) on zkSync Era.
 
 ## Transaction types
 
@@ -132,7 +132,7 @@ These fields are handled by our [SDK](../../api/js/features.md).
 
 ### Priority: `0xff`
 
-Since Ethereum L1 has no concept of interacting with other layers, this is a zkSync Era specific transaction type related to [L1 -> L2 transactions](../../dev/how-to/send-transaction-l1-l2.md).
+Since Ethereum L1 has no concept of interacting with other layers, this is a zkSync Era specific transaction type related to [L1 -> L2 transactions](../../../dev/how-to/send-transaction-l1-l2.md).
 
 ## Transaction statuses
 
