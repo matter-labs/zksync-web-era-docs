@@ -369,7 +369,7 @@
       ],
       "redirects": [
         {
-          "source": "/docs/.*",
+          "regex": "/docs/.*",
           "destination": "/",
           "type": "302"
         },
