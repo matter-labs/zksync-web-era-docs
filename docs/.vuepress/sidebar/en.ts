@@ -415,7 +415,21 @@ export const enSidebar = sidebar({
             },
             {
               text: "Indexers",
-              link: ""
+              collapsible: true,
+              children: [
+                {
+                  text: "Data Indexers",
+                  link: "/build/development/data-analytics/data-indexers/README.md"
+                },
+                {
+                  text: "The Graph",
+                  link: "/build/development/data-analytics/data-indexers/the-graph.md"
+                },
+                {
+                  text: "Subquery",
+                  link: "/build/development/data-analytics/data-indexers/subquery.md"
+                }
+              ]
             },
           ]
         }
@@ -515,7 +529,21 @@ export const enSidebar = sidebar({
         {
           text: "L1 <> L2 ",
           // link: "/build/tutorials/l1-l2-interop.md"
-          link: "/build/building-on-zksync/cross-chain-tutorial.md"
+          collapsible: true,
+          children: [
+            {
+              text: "Cross-chain governance",
+              link: "/build/building-on-zksync/L1L2/cross-chain-tutorial.md"
+            },
+            {
+              text: "Send an L1 to L2 Transaction",
+              link: "/build/building-on-zksync/L1L2/send-transaction-l1-l2.md"
+            },
+            {
+              text: "Send an L2 to L1 message",
+              link: "/build/building-on-zksync/L1L2/send-message-l2-l1.md"
+            },
+          ]
         },
         {
           text: "L2 <> L2 (LayerZero)",
