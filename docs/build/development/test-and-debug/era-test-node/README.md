@@ -6,9 +6,9 @@ description: Use in-memory node for rapid development and testing.
 
 This documentation provides instructions on setting up and using the In-Memory Node, `era-test-node`, for local testing. It covers installation, network forking, transaction details viewing, replaying transactions, and testing local bootloader and system contracts.
 
-{% hint style="danger" %}
+:::warning
 Please keep in mind that `era-test-node` is still in its **alpha** stage, so some features might not be fully supported yet and may not work as fully intended. It is [open-sourced](https://github.com/matter-labs/era-test-node) and contributions are welcomed.
-{% endhint %}
+:::
 
 ### Understanding the In-Memory Node
 

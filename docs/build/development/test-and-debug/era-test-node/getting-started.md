@@ -18,13 +18,13 @@ After checking all these prerequisites, you should be ready to use the `era-test
 
 ### Quickstart
 
-{% hint style="info" %}
+:::info
 **Repository:** [**https://github.com/matter-labs/era-test-node**](https://github.com/matter-labs/era-test-node)
 
 **Learn to contribute:** [**CONTRIBUTING.md**](https://github.com/matter-labs/era-test-node/blob/main/.github/CONTRIBUTING.md)
 
 **Rust docs:** [**RUST Doc**](https://matter-labs.github.io/era-test-node/era_test_node/index.html)
-{% endhint %}
+:::info
 
 Begin by installing `era-test-node` using the command:
 
@@ -64,9 +64,9 @@ Private Key: 0x850683b40d4a740aa6e745f889a6fdc8327be76e122f5aba645a5b02d0248db8
 ========================================
 ```
 
-{% hint style="info" %}
+:::info
 When utilizing `era-test-node` with MetaMask, it's essential to note that any restart of the in-memory node will necessitate a reset of MetaMask's cached account data (nonce, etc). To do this, navigate to 'Settings', then 'Advanced', and finally, select 'Clear activity tab data'.
-{% endhint %}
+:::
 
 ### Network details
 

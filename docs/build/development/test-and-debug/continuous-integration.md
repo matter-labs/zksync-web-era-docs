@@ -1,5 +1,8 @@
 ---
-description: Use era-test-node for continuous integration.
+head:
+  - - meta
+    - name: "twitter:title"
+      content:Continuous Integration | zkSync Era Docs
 ---
 
 # Continuous Integration
@@ -8,9 +11,9 @@ A GitHub Action is available for integrating `era-test-node` into your CI/CD env
 
 You can find the GitHub Action in the marketplace [here](https://github.com/marketplace/actions/era-test-node-action).
 
-{% hint style="info" %}
+:::info
 In CI tests, use `127.0.0.1` as the URL in hardhat.config.ts or for the provider to avoid '**Cannot connect to network**' errors.
-{% endhint %}
+:::
 
 ### Configuration Options
 

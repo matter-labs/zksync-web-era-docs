@@ -87,7 +87,7 @@ Some features that will be released in future upgrades:
 zkSync [stands out remarkably](https://blog.matter-labs.io/evaluating-ethereum-l2-scaling-solutions-a-comparison-framework-b6b2f410f955) in security and usability among existing L2 scaling solutions.
 Thanks to the combination of cutting-edge cryptography and on-chain data availability, ZK rollups (the core network of zkSync) are the only L2 scaling solution that doesn't require any operational activity to keep the funds safe.
 For example, users can go offline and still be able to withdraw their assets safely when they come back, even if the ZK rollup validators are no longer around.
-For a comprehensive distinction between zkSync Era and Ethereum, read this [guide](../../reference/architecture/differences-with-ethereum.md).
+For a comprehensive distinction between zkSync Era and Ethereum, read this [guide](../../../development/compiler/architecture/differences-with-ethereum.md).
 
 ## zkSync Era user experience
 
@@ -101,11 +101,11 @@ For a comprehensive distinction between zkSync Era and Ethereum, read this [guid
 - Smart contracts can be written in Solidity or Vyper.
 - Most contracts work out of the box so migrating projects is seamless.
 - Web3 API compatibility enables support of most developer tools.
-- Use existing frameworks like [Hardhat](../../tools/hardhat/README.md) and [Foundry (alpha)](https://github.com/matter-labs/foundry-zksync).
-- Compile smart contracts with custom compilers: [zksolc and zkvyper](../../tools/compiler-toolchain/README.md).
-- Different [tools for testing locally](../../tools/testing/README.md).
+- Use existing frameworks like [Hardhat](../../../development/hardhat-plugins/getting-started.md) and [Foundry (alpha)](https://github.com/matter-labs/foundry-zksync).
+- Compile smart contracts with custom compilers: [zksolc and zkvyper](../../../../tools/compiler-toolchain/README.md).
+- Different [tools for testing locally](../../../development/test-and-debug/README.md).
 
 ## How to get started?
 
-- Begin by building a dApp in the [quickstart section](../../dev/building-on-zksync/hello-world.md).
-- See how to [connect your wallet and interact with zkSync Era](../../dev/building-on-zksync/interacting.md).
+- Begin by building a dApp in the [quickstart section](../../../building-on-zksync/hello-world.md).
+- See how to [connect your wallet and interact with zkSync Era](../../../building-on-zksync/interacting.md).

@@ -15,14 +15,14 @@ This tutorial shows you how to build and deploy a 2-of-2 multi-signature account
 - A [Node.js](https://nodejs.org/en/download) installation.
 - For background learning, we recommend the following guides:
   - Read about the [design](./concepts/account-abstraction.md) of the account abstraction protocol.
-  - Read the [introduction to the system contracts](./architecture/system-contracts.md).
-  - Read about [smart contract deployment](../../reference/architecture/contract-deployment.md) on zkSync Era.
-  - Read the [gas estimation for transaction](../../reference/concepts/fee-model.md#gas-estimation-for-transactions) guide.
-  - If you haven't already, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+  - Read the [introduction to the system contracts](../../development/compiler/architecture/system-contracts.md).
+  - Read about [smart contract deployment](../../development/compiler/architecture/contract-deployment.md) on zkSync Era.
+  - Read the [gas estimation for transaction](./concepts/fee-model.md#gas-estimation-for-transactions) guide.
+  - If you haven't already, please refer to the first section of the [quickstart tutorial](../../building-on-zksync/hello-world.md).
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ::: tip Local zkSync Testing with zksync-cli
-Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../development/zksync-cli/README.md).
 :::
 
 ## Complete project
@@ -106,9 +106,9 @@ export default config;
 
 ## Account abstraction
 
-Each account must implement the [IAccount](../../reference/concepts/account-abstraction.md#iaccount-interface) interface. Furthermore, since we are building an account with multiple signers, we should implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
+Each account must implement the [IAccount](./concepts/account-abstraction.md#iaccount-interface) interface. Furthermore, since we are building an account with multiple signers, we should implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
-The skeleton code for the contract is given below. Use it to perform next steps, or you can skip and use completed code from [Full example](../tutorials/custom-aa-tutorial.md#full-example) section.
+The skeleton code for the contract is given below. Use it to perform next steps, or you can skip and use completed code from [Full example](../../tutorials/custom-aa-tutorial.md#full-example) section.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -280,7 +280,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 ```
 
 :::tip
-The `onlyBootloader` modifier ensures that only the [bootloader](../../reference/architecture/system-contracts.md#bootloader) calls the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prepareForPaymaster` functions.
+The `onlyBootloader` modifier ensures that only the [bootloader](../../development/compiler/architecture/system-contracts.md#bootloader) calls the `validateTransaction`/`executeTransaction`/`payForTransaction`/`prepareForPaymaster` functions.
 :::
 
 The `executeTransactionFromOutside` function allows external users to initiate transactions from this account. We implement it by calling `validateTransaction` and `executeTransaction`.
@@ -363,12 +363,12 @@ The transaction validation process is responsible for validating the signature o
 
 :::info
 
-- There are some [limitations](../../reference/concepts/account-abstraction.md#limitations-of-the-verification-step) on this function.
+- There are some [limitations](./concepts/account-abstraction.md#limitations-of-the-verification-step) on this function.
   :::
 
 To increment the nonce, use the `incrementMinNonceIfEquals` function from the `NONCE_HOLDER_SYSTEM_CONTRACT` system contract. It takes the nonce of the transaction and checks whether it is the same as the provided one. If not, the transaction reverts; otherwise, the nonce increases.
 
-Even though the requirements above mean the accounts only touch their own storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](../../reference/concepts/account-abstraction.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happens to be in another contract.
+Even though the requirements above mean the accounts only touch their own storage slots, accessing your nonce in the `NONCE_HOLDER_SYSTEM_CONTRACT` is a [whitelisted](./concepts/account-abstraction.md#extending-the-set-of-slots-that-belong-to-a-user) case, since it behaves in the same way as your storage, it just happens to be in another contract.
 
 To call the `NONCE_HOLDER_SYSTEM_CONTRACT`, we add the following import:
 
@@ -451,7 +451,7 @@ function payForTransaction(
 
 ### Implementing paymaster support
 
-While the account abstraction protocol enables arbitrary actions when interacting with the paymasters, there are some [common patterns](../../reference/concepts/account-abstraction.md#built-in-paymaster-flows) with built-in support for EOAs. Unless you want to implement or restrict some specific paymaster use cases for your account, it is better to keep it consistent with EOAs.
+While the account abstraction protocol enables arbitrary actions when interacting with the paymasters, there are some [common patterns](./reference/concepts/account-abstraction.md) with built-in support for EOAs. Unless you want to implement or restrict some specific paymaster use cases for your account, it is better to keep it consistent with EOAs.
 
 The `TransactionHelper` library provides the `processPaymasterInput` which does exactly that: processes the paymaster parameters the same it's done in EOAs.
 
@@ -786,7 +786,7 @@ The contract is a factory that deploys the accounts.
 
 - To deploy the multisig smart contract, it is necessary to interact with the `DEPLOYER_SYSTEM_CONTRACT` and call the `create2Account` function.
 - If the code doesn't do this, you may see errors like `Validation revert: Sender is not an account`.
-- Read the documentation on using [`create2Account` during the deployment process](../../reference/concepts/account-abstraction.md#the-deployment-process) for more information.
+- Read the documentation on using [`create2Account` during the deployment process](./concepts/account-abstraction.md#the-deployment-process) for more information.
   :::
 
 2. Copy/paste the following code into the file.
@@ -827,7 +827,7 @@ contract AAFactory {
 }
 ```
 
-It's worth remembering that, on zkSync Era, [contract deployments](../../reference/architecture/contract-deployment.md) are not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via the `factoryDeps` field. Note that the `_aaBytecodeHash` must be formed in the following manner:
+It's worth remembering that, on zkSync Era, [contract deployments](../../development/compiler/architecture/contract-deployment.md) are not done via bytecode, but via bytecode hash. The bytecode itself is passed to the operator via the `factoryDeps` field. Note that the `_aaBytecodeHash` must be formed in the following manner:
 
 - Firstly, it is hashed with sha256.
 - Then, the first two bytes are replaced with the length of the bytecode in 32-byte words.
@@ -939,8 +939,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 :::tip
 
 - zkSync has different address derivation rules from Ethereum.
-- Always use the [`createAddress`](../../api/js/utils.md#createaddress) and [`create2Address`](../../api/js/utils.md#create2address) utility functions of the `zksync-web3` SDK.
-- Read the documentation for more information on [address derivation differences between Ethereum and zkSync](../../reference/architecture/differences-with-ethereum.md).
+- Always use the [`createAddress`](../../../api/js/utils.md#createaddress) and [`create2Address`](../../../api/js/utils.md#create2address) utility functions of the `zksync-web3` SDK.
+- Read the documentation for more information on [address derivation differences between Ethereum and zkSync](../../../reference/architecture/differences-with-ethereum.md).
   :::
 
 ### Start a transaction from the account
@@ -1165,6 +1165,6 @@ If you get an error `Not enough balance to cover the fee.`, try increasing the a
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../reference/concepts/l1-l2-interop.md).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../../reference/concepts/l1-l2-interop.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
 - To learn more about the zkSync Era Hardhat plugins, check out the [Hardhat documentation](../../tools/hardhat).

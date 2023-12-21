@@ -268,7 +268,7 @@ Unlike in the original EIP, paymasters are allowed to touch any storage slots. A
 - More than `X` minutes have passed since the verification has passed on the API nodes (the exact value of `X` will be defined later).
 - The order of slots being read is the same as during the run on the API node and the first slot whose value has changed is one of the user's slots. This is needed to protect the paymaster from malicious users (e.g. the user might have erased the allowance for the ERC20 token).
 
-### Built-in paymaster flows
+### Built in paymaster flows
 
 While some paymasters can trivially operate without any interaction from users (e.g. a protocol that always pays fees for their users), some require active participation from the transaction's sender. A notable example is a paymaster that swaps users' ERC20 tokens to ETH as it requires the user to set the necessary allowance to the paymaster.
 
