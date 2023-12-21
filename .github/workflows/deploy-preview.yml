@@ -22,7 +22,7 @@ jobs:
         run: |
           yarn set version 3.1.1
           yarn install
-      - name: "Generate rinkeby dist"
+      - name: "Generate preview dist"
         run: yarn run docs:build
 
       - name: "Deploy preview"
@@ -30,5 +30,5 @@ jobs:
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_AQWZX_ZKSYNC_V2_DOCS }}"
-          target: prod
+          target: staging
           projectId: aqwzx-zksync-v2-docs
