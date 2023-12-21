@@ -15,7 +15,7 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 ## Prerequisites
 
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
-- You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+- You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../../building-on-zksync/hello-world.md).
 - You already have some experience working with Ethereum.
 - A wallet with sufficient Sepolia or Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
   - You can get Sepolia or Goerli ETH from the following faucets:
@@ -27,7 +27,7 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ::: tip Local zkSync Testing with zksync-cli
-Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../development/zksync-cli/README.md).
 :::
 
 ### Complete project
@@ -401,7 +401,7 @@ Counter was deployed to 0x3c5A6AB2390F6217C78d2F6F403A9dFb7e7784FC
 ```
 
 ::: tip
-For more information about deploying contracts, check out the [quickstart tutorial](../building-on-zksync/hello-world.md) or the documentation for the zkSync [hardhat plugins](../../tools/hardhat/getting-started.md).
+For more information about deploying contracts, check out the [quickstart tutorial](../../building-on-zksync/hello-world.md) or the documentation for the zkSync [hardhat plugins](../../development/hardhat-plugins/getting-started.md).
 :::
 
 ## Read the counter value
@@ -599,7 +599,7 @@ main().catch((error) => {
 
 :::tip
 
-- Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../../reference/concepts/fee-model.md).
+- Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../../development/concepts/fee-model.md).
 - The fee also depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched from the L1 provider.
   :::
 
@@ -658,6 +658,6 @@ The counter value is 1
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../reference/concepts/l1-l2-interop.md).
-- To learn more about the `zksync-web3` SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../tools/hardhat).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../development/concepts/l1-l2-interop.md).
+- To learn more about the `zksync-web3` SDK, check out its [documentation](../../development/sdks/javascript/README.md).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](../../development/hardhat-plugins/getting-started.md).

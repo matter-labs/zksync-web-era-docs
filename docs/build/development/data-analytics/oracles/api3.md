@@ -19,8 +19,8 @@ For our paymaster, we'll integrate dAPIs to fetch live [ETH/USD](https://market.
 ### Prerequisites
 
 - **Knowledge Base**: Familiarity with deploying smart contracts.
-- **Wallet Setup**: Have MetaMask installed and set up, ensuring there's a balance on the zkSync Testnet.&#x20;
-- **Tooling**: This guide utilizes [`zksync-cli`](../zksync-cli.md). Ensure you have it accessible or installed in your environment.
+- **Wallet Setup**: Have MetaMask installed and set up, ensuring there's a balance on the zkSync Testnet.
+- **Tooling**: This guide utilizes [`zksync-cli`](../../zksync-cli/README.md). Ensure you have it accessible or installed in your environment.
 
 ### Step 1 — Understanding the **mockUSDCPaymaster contract**
 

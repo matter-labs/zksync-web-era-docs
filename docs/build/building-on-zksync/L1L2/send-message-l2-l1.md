@@ -221,7 +221,7 @@ Two transactions are required:
 - An L2 transaction which sends a message of arbitrary length.
 - An L1 read; implemented by a getter function on an L1 smart contract.
 
-1. Get a `Contract` object that represents the [`L1Messenger`](../../reference/architecture/system-contracts.md#l1messenger) contract.
+1. Get a `Contract` object that represents the [`L1Messenger`](../../development/compiler/architecture/system-contracts.md#l1messenger) contract.
 
 2. Transform the request into a raw bytes array.
 
@@ -255,7 +255,7 @@ function proveL2MessageInclusion(
 :::tip Parameter details
 
 - `_blockNumber`: L1 batch number in which the L2 block was included; retrievable using the `getBlock` method.
-- `_index`: Index of the L2 log in the block; returned as `id` by the [`zks_getL2ToL1LogProof`](../../api/api.md#zks-getl2tol1logproof) method.
+- `_index`: Index of the L2 log in the block; returned as `id` by the [`zks_getL2ToL1LogProof`](../../../api/api.md#zks-getl2tol1logproof) method.
 - `_message`: Parameter holding the message data. It should be an object containing:
   - `sender`: Address that sent the message from L2.
   - `data`: Message sent in bytes.
