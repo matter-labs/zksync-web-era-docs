@@ -537,7 +537,7 @@ Begin initializing the project with the following item options:
 
 In order to authenticate and deploy the generated subgraph, copy the deploy key studio account:
 
-![Copy deploy key from The Graph studio](deploy.png)
+![Copy deploy key from The Graph studio](../../../../assets/images/deploy.png)
 Copy deploy key from The Graph studio
 
 Run auth command:

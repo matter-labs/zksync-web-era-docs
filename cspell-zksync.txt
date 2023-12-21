@@ -104,6 +104,17 @@ zkevm
 cicruit
 Cuda
 cuda
+Ankr
+DRPC
+reliabile
+Oflatest
+IDIA
+USRC
+Pythnet
+Pyth
+subql
+incentivized
+retreives
 
 // Used programming language words
 printf
