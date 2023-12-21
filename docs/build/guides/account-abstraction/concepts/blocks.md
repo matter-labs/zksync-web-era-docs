@@ -22,20 +22,20 @@ contain a minimal number of transactions ([or none at all](#empty-blocks)), and 
 
 ## Block Properties
 
-The following are the block properties returned when you use the `getBlock` method from the API using [any of our SDKs](../../api/README.md#sdks).
+The following are the block properties returned when you use the `getBlock` method from the API using [any of our SDKs](../../../../api/README.md#sdks).
 
-| Parameter     | Description                                                                                                                               |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| hash          | The hash of the L2 block. null if pending                                                                                                 |
-| parentHash    | It refers to the hash of the parent block in L2.                                                                                          |
-| number        | The number of the current L2 block. null if pending. [More info on block.number](#block-number-and-timestamp-considerations)              |
-| timestamp     | The UNIX timestamp for when the L2 block was collated. [More info on block.timestamp](#block-number-and-timestamp-considerations)         |
-| nonce         | It's the most recent transaction based on the account's counter, which maintains track of how many transactions it does. null if pending. |
-| difficulty    | The current block difficulty returns 2500000000000000 (zkSync does not have proof of work consensus).                                     |
-| gasLimit      | The maximum gas allowed in this block encoded as a hexadecimal, always returns `2^32-1`.                                                  |
-| gasUsed       | The actual amount of gas used in this block.                                                                                              |
-| transactions  | An array of transaction objects - please see [interface TransactionResponse](../../api/js/providers.md#gettransaction) for exact shape    |
-| baseFeePerGas | The EIP1559-like baseFee for this block.                                                                                                  |
+| Parameter     | Description                                                                                                                                  |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| hash          | The hash of the L2 block. null if pending                                                                                                    |
+| parentHash    | It refers to the hash of the parent block in L2.                                                                                             |
+| number        | The number of the current L2 block. null if pending. [More info on block.number](#block-number-and-timestamp-considerations)                 |
+| timestamp     | The UNIX timestamp for when the L2 block was collated. [More info on block.timestamp](#block-number-and-timestamp-considerations)            |
+| nonce         | It's the most recent transaction based on the account's counter, which maintains track of how many transactions it does. null if pending.    |
+| difficulty    | The current block difficulty returns 2500000000000000 (zkSync does not have proof of work consensus).                                        |
+| gasLimit      | The maximum gas allowed in this block encoded as a hexadecimal, always returns `2^32-1`.                                                     |
+| gasUsed       | The actual amount of gas used in this block.                                                                                                 |
+| transactions  | An array of transaction objects - please see [interface TransactionResponse](../../../../api/js/providers.md#gettransaction) for exact shape |
+| baseFeePerGas | The EIP1559-like baseFee for this block.                                                                                                     |
 
 ## Processing times
 

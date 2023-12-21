@@ -49,8 +49,8 @@ The following values are returned by any RPC call which outputs transaction deta
 Contract deployment is a special kind of transaction. A contract deployment creates a new contract account in the system. There are some differences for this kind of transaction between zkSync Era and Ethereum:
 
 - Ethereum: Contract deployment occurs when a user sends a transaction to the zero address `(0x000...000)` where the `data` field contains the contract bytecode concatenated with constructor parameters.
-- zkSync Era: To deploy a contract on zkSync, a user calls the `create` function of the [ContractDeployer](../architecture/system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode is added to the `factory_deps` field of [EIP-712 transaction types](#eip-712-0x71). If the contract is a factory (i.e. it can deploy other contracts), the bytecode of all child contracts should be included in `factory_deps`.
-- Find out more about [contract deployment](../architecture/contract-development.md) on zkSync Era.
+- zkSync Era: To deploy a contract on zkSync, a user calls the `create` function of the [ContractDeployer](../../../development/compiler/architecture/system-contracts.md#contractdeployer) and provides the hash of the contract to be published, as well as the constructor arguments. The contract bytecode is added to the `factory_deps` field of [EIP-712 transaction types](#eip-712-0x71). If the contract is a factory (i.e. it can deploy other contracts), the bytecode of all child contracts should be included in `factory_deps`.
+- Find out more about [contract deployment](../../../development/compiler/architecture/contract-development.md) on zkSync Era.
 
 ## Transaction types
 
@@ -89,7 +89,7 @@ zkSync Era supports the EIP-1559 transaction-type format but does nothing with t
 
 The Ethereum Improvement Proposal [EIP-712: Typed structured data hashing and signing](https://eips.ethereum.org/EIPS/eip-712) introduced hashing and signing of typed-structured data as well as bytestrings.
 
-EIP-712 transactions access zkSync-specific features such as [account abstraction](./account-abstraction.md) and [paymasters](../../dev/tutorials/custom-paymaster-tutorial.md). Furthermore, smart contracts must be deployed with the EIP-712 transaction type.
+EIP-712 transactions access zkSync-specific features such as [account abstraction](./account-abstraction.md) and [paymasters](./custom-aa-tutorial.md). Furthermore, smart contracts must be deployed with the EIP-712 transaction type.
 
 You can specify the additional fields, such as the custom signature for custom accounts or to choose the paymaster with EIP-712 transactions. These transactions have the same fields as standard Ethereum transactions, plus fields containing additional L2-specific data (`paymaster`, etc).
 
@@ -128,11 +128,11 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 | factoryDeps            | `bytes32[]` |
 | paymasterInput         | `bytes`     |
 
-These fields are handled by our [SDK](../../api/js/features.md).
+These fields are handled by our [SDK](../../../development/sdks/javascript/README.md).
 
 ### Priority: `0xff`
 
-Since Ethereum L1 has no concept of interacting with other layers, this is a zkSync Era specific transaction type related to [L1 -> L2 transactions](../../dev/how-to/send-transaction-l1-l2.md).
+Since Ethereum L1 has no concept of interacting with other layers, this is a zkSync Era specific transaction type related to [L1 -> L2 transactions](../../../../dev/how-to/send-transaction-l1-l2.md).
 
 ## Transaction statuses
 

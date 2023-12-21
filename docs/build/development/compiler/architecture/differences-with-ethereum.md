@@ -11,7 +11,7 @@ zkSync Era handles nearly all smart contracts based on the Ethereum Virtual Mach
 minimizing the need for repeated security audits. Nevertheless, it's essential to recognize the following differences.
 
 :::tip Best practices
-It's highly recommended to review the best practices and key considerations for creating smart contracts on zkSync Era section [here](../../dev/building-on-zksync/best-practices.md).
+It's highly recommended to review the best practices and key considerations for creating smart contracts on zkSync Era section [here](../../../building-on-zksync/best-practices.md).
 :::
 
 ## EVM instructions
@@ -162,7 +162,7 @@ contract Example {
 ### `TIMESTAMP`, `NUMBER`
 
 For more information about blocks on zkSync Era, including the differences between `block.timestamp` and `block.number`,
-check out the [blocks on zkSync Documentation](../../reference/concepts/blocks.md#blocks-in-zksync-era).
+check out the [blocks on zkSync Documentation](../../concepts/blocks.md#blocks-in-zksync-era).
 
 ::: note Changes From the Previous Protocol Version
 Modifications were performed on how certain block properties were implemented on zkSync Era. For details on the changes performed visit the [announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).
