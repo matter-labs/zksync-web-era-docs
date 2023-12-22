@@ -21,7 +21,7 @@ transactions will depend on the volatile L1 gas prices and can not be simply har
 
 The transactions on zkSync depend on volatile L1 gas costs to publish the pubdata for batch,
 verify proofs, etc. For this reason, zkSync-specific EIP712 transactions contain the `gas_per_pubdata_limit` field in
-them, denoting the maximum price in _gas_ that the operator \*\*can charge from users for a single byte of pubdata.
+them, denoting the maximum price in _gas_ that the operator \_\_can charge from users for a single byte of pubdata.
 
 For Ethereum transactions which do not contain this field, it is enforced that the operator will not use a value
 larger value than a certain constant.
@@ -291,7 +291,7 @@ _tx_.*gasLimit* = *tx*.*actualGasLimit* + *overhead*\__gas_(_tx_)
 
 Note, that when the operator receives the transaction, it knows only _tx_._gasLimit_. The operator could derive the
 _overhead\*\*\_gas_(_tx_) and provide the bootloader with it. The bootloader will then derive
-_tx_.*actualGasLimit* = *tx*.*gasLimit* − *overhead*\*\*gas*(\_tx*) and use the formulas above to derive the overhead that
+_tx_.*actualGasLimit* = *tx*.*gasLimit* − *overhead*\_\_gas*(\_tx*) and use the formulas above to derive the overhead that
 the user should’ve paid under the derived _tx_._actualGasLimit_ to ensure that the operator does not overcharge the
 user.
 
