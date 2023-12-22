@@ -290,7 +290,7 @@ When a transaction is being estimated, the server returns the following gasLimit
 _tx_.*gasLimit* = *tx*.*actualGasLimit* + *overhead*\__gas_(_tx_)
 
 Note, that when the operator receives the transaction, it knows only _tx_._gasLimit_. The operator could derive the
-_overhead\*\*\_gas_(_tx_) and provide the bootloader with it. The bootloader will then derive
+_overhead\_\_\_gas_(_tx_) and provide the bootloader with it. The bootloader will then derive
 _tx_.*actualGasLimit* = *tx*.*gasLimit* − *overhead*\_\_gas*(\_tx*) and use the formulas above to derive the overhead that
 the user should’ve paid under the derived _tx_._actualGasLimit_ to ensure that the operator does not overcharge the
 user.
