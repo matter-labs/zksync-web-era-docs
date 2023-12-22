@@ -4,6 +4,7 @@ zkweb
 zksync
 zkscan
 zkscrypto
+zkstack
 libzkscrypto
 pubkey
 pubdata
@@ -62,6 +63,7 @@ pepe
 Arweave
 Streamr
 dutterbutter
+zeek
 
 // Used libraries
 numberish
@@ -137,6 +139,8 @@ porco
 rosso
 insize
 MLOAD
+psql
+jemalloc
 
 // ETC
 gitter
