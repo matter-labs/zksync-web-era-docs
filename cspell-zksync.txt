@@ -39,6 +39,7 @@ CHAINID
 PREVRANDAO
 sepolia
 Boojum
+permissioned
 
 // Names
 Vyper
