@@ -1,7 +1,7 @@
 ---
 head:
   - - meta
-    - name: "twitter:title"
+    - name: "bitget:title"
       content: Web3 API & SDKs | zkSync Era Docs
 ---
 
