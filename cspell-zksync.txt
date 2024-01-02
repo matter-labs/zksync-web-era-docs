@@ -150,6 +150,7 @@ Keyhash
 Armeabi
 scijava
 gluk
+satoshi
 
 bytecode
 timeframe
