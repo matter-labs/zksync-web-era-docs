@@ -185,10 +185,10 @@ On the testnet environment, we automatically finalize all withdrawals, i.e., for
 
 To build a custom bridge, create a regular Solidity contract which extends the correct interface for the layer. The interfaces provide access to the zkSync Era SDK deposit and withdraw implementations.
 
-- L1: [IL1Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/ethereum/contracts/bridge/interfaces/IL1Bridge.sol)
+- L1: [IL1Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/l1-contracts/contracts/bridge/interfaces/IL1Bridge.sol)
 
-  For more information, check out our example [L1 custom bridge implementation](https://github.com/matter-labs/era-contracts/blob/main/ethereum/contracts/bridge/L1ERC20Bridge.sol).
+  For more information, check out our example [L1 custom bridge implementation](https://github.com/matter-labs/era-contracts/blob/main/l1-contracts/contracts/bridge/L1ERC20Bridge.sol).
 
-- L2: [L2ERC20Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/zksync/contracts/bridge/L2ERC20Bridge.sol)
+- L2: [L2ERC20Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/l2-contracts/contracts/bridge/L2ERC20Bridge.sol)
 
-  For more information, check out our example [L2 custom bridge implementation](https://github.com/matter-labs/era-contracts/blob/main/zksync/contracts/bridge/L2ERC20Bridge.sol).
+  For more information, check out our example [L2 custom bridge implementation](https://github.com/matter-labs/era-contracts/blob/main/l2-contracts/contracts/bridge/L2ERC20Bridge.sol).
