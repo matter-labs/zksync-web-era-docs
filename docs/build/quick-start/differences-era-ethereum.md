@@ -2,10 +2,10 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Differences between Era and Ethereum | zkSync Docs
+      content: Differences between zkSync Era and Ethereum | zkSync Docs
 ---
 
-# Differences between Era and Ethereum
+# Differences between zkSync Era and Ethereum
 
 zkSync Era handles nearly all smart contracts based on the Ethereum Virtual Machine (EVM) and upholds high security standards,
 minimizing the need for repeated security audits. Nevertheless, it's essential to recognize the following differences.
