@@ -4,7 +4,6 @@ import { hopeTheme } from "vuepress-theme-hope";
 
 export default hopeTheme({
   hostname: "https://docs.zksync.io",
-
   author: {
     name: "Matter Labs",
     url: "https://github.com/matter-labs/zksync-web-era-docs",
