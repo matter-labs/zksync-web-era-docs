@@ -45,7 +45,7 @@ export const enSidebar = sidebar({
             }
           ] },
         { 
-          text: "Differences between Era and Ethereum", link: "/build/quick-start/differences-era-ethereum.md",
+          text: "Differences between zkSync Era and Ethereum", link: "/build/quick-start/differences-era-ethereum.md",
         },
       ]
     },
