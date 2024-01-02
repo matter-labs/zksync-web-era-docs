@@ -350,7 +350,29 @@
             min-width: none;
         }
     }
-    
+
+    .navbar {
+
+        .brand {
+          @media (max-width: 480px) {
+            overflow-x: hidden;
+            width: 50px;
+          }
+        }
+    }
+
+    #nav-screen {
+        .container {
+            justify-content: flex-start;
+            flex-direction: column;
+        }
+        .outlook-wrapper {
+            display: flex;
+            margin-top: 40px;
+            justify-content: flex-start;
+        }
+    }
+
     .card-container {
         display: flex;
         flex-direction: row;
