@@ -22,7 +22,7 @@ L1 to L2 communication is governed by the [`IZkSync.sol`](https://github.com/mat
 
 :::tip
 
-- If you prefer to learn-by-doing, the [cross chain governance tutorial](../../../building-on-zksync/cross-chain-tutorial.md) is a practical example of layer interoperability.
+- If you prefer to learn-by-doing, the [cross chain governance tutorial](../../../building-on-zksync/L1L2/cross-chain-tutorial.md) is a practical example of layer interoperability.
   :::
 
 ### Gas estimation

@@ -4,6 +4,7 @@ zkweb
 zksync
 zkscan
 zkscrypto
+zkstack
 libzkscrypto
 pubkey
 pubdata
@@ -38,6 +39,7 @@ CHAINID
 PREVRANDAO
 sepolia
 Boojum
+permissioned
 
 // Names
 Vyper
@@ -62,6 +64,7 @@ pepe
 Arweave
 Streamr
 dutterbutter
+zeek
 
 // Used libraries
 numberish
@@ -104,6 +107,17 @@ zkevm
 cicruit
 Cuda
 cuda
+Ankr
+DRPC
+reliabile
+Oflatest
+IDIA
+USRC
+Pythnet
+Pyth
+subql
+incentivized
+retreives
 
 // Used programming language words
 printf
@@ -126,6 +140,8 @@ porco
 rosso
 insize
 MLOAD
+psql
+jemalloc
 
 // ETC
 gitter
