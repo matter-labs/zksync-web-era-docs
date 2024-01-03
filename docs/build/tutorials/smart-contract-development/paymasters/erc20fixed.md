@@ -11,9 +11,9 @@ head:
 
 zkSync's native account abstraction allows contracts to cover transaction fees on behalf of users, significantly improving user experience. The **`ERC20FixedPaymaster`** contract, discussed in this guide, offers transactions gas coverage for accounts that have a balance of a specific ERC20 token.
 
-{% hint style="info" %}
+:::info
 For detailed explanations of the IPaymaster interface please refer to the documentation [here](https://era.zksync.io/docs/reference/concepts/account-abstraction.html#ipaymaster-interface).
-{% endhint %}
+:::
 
 ### **Prerequisites**
 
