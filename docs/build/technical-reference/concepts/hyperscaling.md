@@ -105,7 +105,7 @@ Here proof aggregation happens via the L2, as the proofs of different L2 blocks 
 
 <div  align="center">
 
-![hyperscalingL3Fast2Blocks](../../assets/images/hyperscalingL3Fast2Blocks.png)
+![hyperscalingL3Fast2Blocks](../../../assets/images/hyperscalingL3Fast2Blocks.png)
 
 </div>
 
