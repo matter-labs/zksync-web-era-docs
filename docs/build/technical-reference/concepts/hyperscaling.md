@@ -195,7 +195,7 @@ Synchronicity is important as it enables atomic transactions between partitions,
 
 One prominent example of this is a combination of **[zkRollup + zkPorter](https://blog.matter-labs.io/zkporter-a-breakthrough-in-l2-scaling-ed5e48842fbf)** (which will be part of the zkSync Era):
 
-![hyperscalingZKPorter](../../assets/images/hyperscalingZKPorter.png)
+![hyperscalingZKPorter](../../../assets/images/hyperscalingZKPorter.png)
 
 ### Privacy
 
