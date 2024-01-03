@@ -10,7 +10,7 @@ head:
 Withdrawing assets from Layer 2 (L2) back to Layer 1 (L1) is an essential procedure to retrieve your assets in zkSync. This guide outlines how to withdraw ETH using the zkSync Javascript SDK, ensuring a successful transfer of assets to L1. In zkSync, withdrawing involves burning tokens on L2 and unlocking the corresponding funds on the L1 bridge.
 
 :::info
-Use the **`zks_getBridgeContracts`** endpoint or **`getDefaultBridgeAddresses`** method to get the default bridge addresses.&#x20;
+Use the **`zks_getBridgeContracts`** endpoint or **`getDefaultBridgeAddresses`** method to get the default bridge addresses.
 :::
 
 <table><thead><tr><th width="148">Bridge Type</th><th width="101">Network</th><th width="226">L1 Address</th><th>L2 Address</th></tr></thead><tbody><tr><td>ERC-20 Default Bridge</td><td>Mainnet</td><td><code>0x57891966931eb4bb6fb81430e6ce0a03aabde063</code></td><td><code>0x11f943b2c77b743ab90f4a0ae7d5a4e7fca3e102</code></td></tr><tr><td>WETH Bridge</td><td>Mainnet</td><td><code>0x0000000000000000000000000000000000000000</code></td><td><code>0x0000000000000000000000000000000000000000</code></td></tr><tr><td>ERC-20 Default Bridge</td><td>Testnet</td><td><code>0x927ddfcc55164a59e0f33918d13a2d559bc10ce7</code></td><td><code>0x00ff932a6d70e2b8f1eb4919e1e09c1923e7e57b</code></td></tr><tr><td>WETH Bridge</td><td>Testnet</td><td><code>0x0000000000000000000000000000000000000000</code></td><td><code>0x0000000000000000000000000000000000000000</code></td></tr></tbody></table>

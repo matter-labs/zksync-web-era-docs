@@ -13,7 +13,7 @@ Welcome to the **IDE page**, a comprehensive hub dedicated to interacting with r
 
 #### Atlas IDE
 
-[**Atlas**](https://www.atlaszk.com/) provides a robust and user-friendly environment to write, test, and deploy your smart contracts in a matter of minutes. Discover the potential and get started with Atlas today and deploy your first contract on zkSync Era by following this [video tutorial](https://www.youtube.com/watch?v=TL-QnxoPyUY)!&#x20;
+[**Atlas**](https://www.atlaszk.com/) provides a robust and user-friendly environment to write, test, and deploy your smart contracts in a matter of minutes. Discover the potential and get started with Atlas today and deploy your first contract on zkSync Era by following this [video tutorial](https://www.youtube.com/watch?v=TL-QnxoPyUY)!
 
 ### Remix IDE (Coming Soon)
 

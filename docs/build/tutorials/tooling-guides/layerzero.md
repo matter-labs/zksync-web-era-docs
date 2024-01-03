@@ -20,7 +20,7 @@ This guide aims to provide an insight into the LayerZero messaging service, whic
 
 ### Step 1 — Understanding LayerZero messaging service
 
-LayerZero enables authentic and guaranteed message delivery between different blockchain networks with configurable trustlessness. Messages in LayerZero are managed by LayerZero Endpoints, which comprise versioned messaging libraries and a proxy to route messages to the appropriate library version. Message states are maintained across versions, allowing for seamless library upgrades.&#x20;
+LayerZero enables authentic and guaranteed message delivery between different blockchain networks with configurable trustlessness. Messages in LayerZero are managed by LayerZero Endpoints, which comprise versioned messaging libraries and a proxy to route messages to the appropriate library version. Message states are maintained across versions, allowing for seamless library upgrades.
 
 Messages are sent from the User Application (UA) at source `srcUA` to the UA at the destination `dstUA`. Once the message is received by `dstUA`, the message is considered delivered (transitioning from `INFLIGHT` to either `SUCCESS` or `STORED`)
 
@@ -47,13 +47,13 @@ yarn install
 
 ### Step 3 — Understanding OmniCounter
 
-OmniCounter is a smart contract that increments a counter on another chain via LayerZero messaging service.&#x20;
+OmniCounter is a smart contract that increments a counter on another chain via LayerZero messaging service.
 
 It utilizes `_lzSend()` within `incrementCounter()` to send messages, and `_nonblockingLzReceive()` to receive messages on the destination chain.
 
 ### Step 4 — Deploy OmniCounter
 
-Deploy OmniCounter contract on at least two different chains. In this example, we'll use zkSync Testnet and Optimism Testnet.&#x20;
+Deploy OmniCounter contract on at least two different chains. In this example, we'll use zkSync Testnet and Optimism Testnet.
 
 We will start with deploying on zkSync Testnet:
 

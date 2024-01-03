@@ -9,7 +9,7 @@ head:
 
 ### **Introduction**
 
-zkSync's native account abstraction allows contracts to cover transaction fees on behalf of users, significantly improving user experience. The **`ERC20FixedPaymaster`** contract, discussed in this guide, offers transactions gas coverage for accounts that have a balance of a specific ERC20 token.&#x20;
+zkSync's native account abstraction allows contracts to cover transaction fees on behalf of users, significantly improving user experience. The **`ERC20FixedPaymaster`** contract, discussed in this guide, offers transactions gas coverage for accounts that have a balance of a specific ERC20 token.
 
 {% hint style="info" %}
 For detailed explanations of the IPaymaster interface please refer to the documentation [here](https://era.zksync.io/docs/reference/concepts/account-abstraction.html#ipaymaster-interface).
@@ -23,7 +23,7 @@ For detailed explanations of the IPaymaster interface please refer to the docume
 
 ### **Step 1 — Understanding the ERC20FixedPaymaster contract**
 
-The `ERC20FixedPaymaster` contract allows transactions to have the gas covered in a specified ERC-20 token for accounts that hold a balance of a specific ERC20 token. For the purposes of this guide we will make use of the [DAI ERC-20 token](https://goerli.explorer.zksync.io/address/0x3e7676937A7E96CFB7616f255b9AD9FF47363D4b).&#x20;
+The `ERC20FixedPaymaster` contract allows transactions to have the gas covered in a specified ERC-20 token for accounts that hold a balance of a specific ERC20 token. For the purposes of this guide we will make use of the [DAI ERC-20 token](https://goerli.explorer.zksync.io/address/0x3e7676937A7E96CFB7616f255b9AD9FF47363D4b).
 
 **Key components**:
 
@@ -212,7 +212,7 @@ contract MyERC20 is ERC20 {
 
 </details>
 
-To further validate the operations of the ERC20FixedPaymaster contract, we've provided a test script. Create a file named `erc20FixedPaymaster.test.ts` within the `/test` directory, then populate it with the subsequent script:.&#x20;
+To further validate the operations of the ERC20FixedPaymaster contract, we've provided a test script. Create a file named `erc20FixedPaymaster.test.ts` within the `/test` directory, then populate it with the subsequent script:.
 
 <details>
 

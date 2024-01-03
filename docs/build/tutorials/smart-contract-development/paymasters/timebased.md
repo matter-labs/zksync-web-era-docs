@@ -23,7 +23,7 @@ For a more in-depth understanding of the IPaymaster interface, please refer to t
 
 ### Step 1 — Understanding the TimeBasedPaymaster contract
 
-The `TimeBasedPaymaster` contract allows transactions within a specific timeframe to have the gas covered.&#x20;
+The `TimeBasedPaymaster` contract allows transactions within a specific timeframe to have the gas covered.
 
 Key components:
 
@@ -39,7 +39,7 @@ Using `zksync-cli` create a new project with the required dependencies and boile
 npx zksync-cli@latest create-project timeBasedPaymaster
 ```
 
-Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/GeneralPaymaster.sol`.&#x20;
+Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/GeneralPaymaster.sol`.
 
 **Update the Environment File**:
 
@@ -48,7 +48,7 @@ Choose `Hardhat + Solidity` to setup the project repository. The contract for th
 
 ### Step 3 — Updating the contract
 
-The intended objective of the `TimeBasedPaymaster` contract is to permit transactions only between a stipulated timeframe to cover the gas costs.&#x20;
+The intended objective of the `TimeBasedPaymaster` contract is to permit transactions only between a stipulated timeframe to cover the gas costs.
 
 Include the validation logic in the `validateAndPayForPaymasterTransaction` function in the contract. Insert the following code under the `paymasterInputSelector == IPaymasterFlow.general.selector` condition check:
 
@@ -133,10 +133,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 </details>
 
 {% hint style="info" %}
-Be sure to add your private key to the `.env` file.&#x20;
+Be sure to add your private key to the `.env` file.
 {% endhint %}
 
-The provided script takes care of loading environment variables, setting up a deployment wallet with the private key specified in an `.env` file, contract deployment and funding the paymaster. You can adjust the amount of ETH to fund the paymaster to your needs.&#x20;
+The provided script takes care of loading environment variables, setting up a deployment wallet with the private key specified in an `.env` file, contract deployment and funding the paymaster. You can adjust the amount of ETH to fund the paymaster to your needs.
 
 Compile the contract:
 

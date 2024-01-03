@@ -30,7 +30,7 @@ The `mockUSDCPaymaster` contract offers a refined experience for users by allowi
 
 - **setDapiProxy**: A function to set the dAPI proxies for allowed tokens. The function stores the proxy addresses for USDC and ETH, which are then used to fetch real-time price data.
 - **readDapi**: A function that, given a dAPI proxy address, returns the real-time value. In the contract, it's used to fetch the current values of `USDC` and `ETH`.
-- **validateAndPayForPaymasterTransaction**: This function validates the transaction, ensures the received token makes the allowed token, fetches real-time ETH and USRC prices using dAPIs, and calculate the required ERC20 tokens equivalent to the value of required ETH.&#x20;
+- **validateAndPayForPaymasterTransaction**: This function validates the transaction, ensures the received token makes the allowed token, fetches real-time ETH and USRC prices using dAPIs, and calculate the required ERC20 tokens equivalent to the value of required ETH.
 
 Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IPaymaster.sol) interface. We will be using `zksync-cli` to bootstrap the boilerplate code for this paymaster.
 
@@ -41,7 +41,7 @@ Using `zksync-cli` create a new project with the required dependencies and boile
 <pre class="language-bash"><code class="lang-bash"><strong>npx zksync-cli@latest create-project mockUSDCPaymaster
 </strong></code></pre>
 
-Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/ApprovalPaymaster.sol`.&#x20;
+Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/ApprovalPaymaster.sol`.
 
 **Update the Environment File**:
 

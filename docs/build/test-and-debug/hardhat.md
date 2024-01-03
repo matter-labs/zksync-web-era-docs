@@ -7,7 +7,7 @@ head:
 
 # Hardhat
 
-### Introduction&#x20;
+### Introduction
 
 In the intricate world of decentralized applications, the margin for error is remarkably narrow. A single mistake in a contract can have catastrophic implications. The immutable nature of blockchain technology makes it imperative for developers to ensure their contracts operate flawlessly. For those seeking an efficient method to test and refine their contracts, this guide showcases how to utilize Hardhat and `era_test_node` for all testing needs.
 
@@ -26,13 +26,13 @@ Using `zksync-cli` create a new project with the required dependencies and boile
 
 Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/Greeter.sol`.
 
-Install dependencies:&#x20;
+Install dependencies:
 
 ```bash
 yarn install
 ```
 
-Add the following additional dependencies:&#x20;
+Add the following additional dependencies:
 
 {% code overflow="wrap" %}
 
@@ -58,7 +58,7 @@ Before running tests, a local zkSync Era node is required. If you are unfamiliar
 
 ### Step 3 - Running tests with Hardhat <a href="#writing-tests" id="writing-tests"></a>
 
-Under the `/test` directory there is a `main.test.ts` . The initial test checks if our `Greeter` contract returns the set greeting.&#x20;
+Under the `/test` directory there is a `main.test.ts` . The initial test checks if our `Greeter` contract returns the set greeting.
 
 ```typescript
 import { expect } from "chai";
@@ -111,7 +111,7 @@ $ yarn test
   1 passing (174ms)
 ```
 
-This means the test passed.&#x20;
+This means the test passed.
 
 ### Step 4 - Expanding test coverage
 
@@ -297,7 +297,7 @@ Here, we've declared our main test suite. Each test or nested suite inside provi
     it("Should emit an event when the greeting is changed", async function () { ... });
     ```
 
-    We test the emission of an event when the greeting changes in the contract making use of the `hardhat-zksync-chai-matchers`.&#x20;
+    We test the emission of an event when the greeting changes in the contract making use of the `hardhat-zksync-chai-matchers`.
 
 ### Conclusion
 
