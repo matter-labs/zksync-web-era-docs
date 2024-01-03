@@ -21,7 +21,7 @@ For detailed explanations of the IPaymaster interface please refer to the docume
 
 - **Knowledge Base**: You should be familiar with Solidity and Hardhat.
 - **Wallet Setup**: Have MetaMask installed and set up, ensuring there's a balance on the zkSync testnet.;
-- **Tooling**: This guide utilizes [`zksync-cli`](../../development/zksync-cli/README.md). Ensure you have it accessible or installed in your environment.
+- **Tooling**: This guide utilizes [`zksync-cli`](../../../tooling/zksync-cli/README.md). Ensure you have it accessible or installed in your environment.
 
 ### Step 1 — Understanding the AllowlistPaymaster contract
 

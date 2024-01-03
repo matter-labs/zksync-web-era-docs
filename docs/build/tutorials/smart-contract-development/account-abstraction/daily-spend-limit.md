@@ -15,7 +15,7 @@ The daily limit feature prevents an account from spending more ETH than the limi
 
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - [Node.js](https://nodejs.org/en/download/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed on your machine.
-- If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
+- If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the first section of the [quickstart tutorial](../../../quick-start/hello-world.md).
 - A wallet with sufficient Sepolia or Goerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
   - You can get Sepolia or Goerli ETH from the following faucets:
     - Chainstack [Sepolia faucet](https://faucet.chainstack.com/sepolia-testnet-faucet), [Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
@@ -24,10 +24,10 @@ The daily limit feature prevents an account from spending more ETH than the limi
     - Proof of work [Sepolia faucet](https://sepolia-faucet.pk910.de/), [Goerli faucet](https://goerli-faucet.pk910.de/)
   - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
-- We encourage you to read [the basics of account abstraction on zkSync Era](../../reference/concepts/account-abstraction.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
+- We encourage you to read [the basics of account abstraction on zkSync Era](../../../technical-reference/concepts/account-abstraction.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
 
 ::: tip Local zkSync Testing with zksync-cli
-Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../../tooling/zksync-cli/README.md).
 :::
 
 ## Complete Project
@@ -40,7 +40,7 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 
 ## Project set up
 
-We will use the [zkSync Era Hardhat plugins](../../tools/hardhat/) to build, deploy, and interact with the smart contracts in this project.
+We will use the [zkSync Era Hardhat plugins](../../../tooling/hardhat/getting-started.md) to build, deploy, and interact with the smart contracts in this project.
 
 1. Initiate a new project by running the command:
 
@@ -462,7 +462,7 @@ Let's create the account contract `Account.sol`, and the factory contract that d
 
 2. Copy/paste the code below.
 
-The account needs to implement the [IAccount](../../reference/concepts/account-abstraction.md#iaccount-interface) interface and inherits the `SpendLimit` contract we just created. Since we are building an account with signers, we should also implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
+The account needs to implement the [IAccount](../../../technical-reference/concepts/account-abstraction.md#iaccount-interface) interface and inherits the `SpendLimit` contract we just created. Since we are building an account with signers, we should also implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
 The `isValidSignature` method will take care of verifying the signature and making sure the extracted address matches with the owner of the account.
 
@@ -702,7 +702,7 @@ contract Account is IAccount, IERC1271, SpendLimit {
 :::warning Note 1
 
 - The formal ETH address on zkSync Era is `0x000000000000000000000000000000000000800a`.
-- Neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, that ([`zksync-web3` provides](../../api/js/utils.md#useful-addresses)) has a more user-friendly alias.
+- Neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, that ([`zksync-ethers` provides](../../../sdks/js/utils.md#useful-addresses)) has a more user-friendly alias.
   :::
 
 :::warning Note 2
@@ -847,7 +847,7 @@ Open up the [zkSync Era block explorer](https://sepolia.explorer.zksync.io) and 
 
 :::tip
 
-- For contract verification, please refer to [this section of the documentation](../how-to/verify-contracts.md).
+- For contract verification, please refer to [this section of the documentation](../../how-to/verify-contracts.md).
   :::
 
 ## Set the daily spending limit
@@ -1071,9 +1071,9 @@ Since `ONE_DAY` is set to 1 minute for this test in the `SpendLimit.sol` contrac
 
 ## Learn more
 
-- To find out more about L1->L2 interaction on zkSync Era, check out the [documentation](../../reference/concepts/l1-l2-interop.md).
-- To learn more about the zksync-web3 SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync Era Hardhat plugins, check out their [documentation](../../tools/hardhat).
+- To find out more about L1->L2 interaction on zkSync Era, check out the [documentation](../../../technical-reference/concepts/l1-l2-interop.md).
+- To learn more about the zksync-ethers SDK, check out its [documentation](../../../sdks/js/README.md).
+- To learn more about the zkSync Era Hardhat plugins, check out their [documentation](../../../tooling/hardhat/getting-started.md).
 
 ## Credits
 

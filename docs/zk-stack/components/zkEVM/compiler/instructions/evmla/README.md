@@ -14,7 +14,7 @@ required for generating the target bytecode.
 
 ## PUSH [$]
 
-The same as [datasize](yul.md#datasize).
+The same as [datasize](../yul/README.md#datasize).
 
 LLVM IR codegen references:
 
@@ -23,7 +23,7 @@ LLVM IR codegen references:
 
 ## PUSH #[$]
 
-The same as [dataoffset](yul.md#dataoffset).
+The same as [dataoffset](../yul/README.md#dataoffset).
 
 LLVM IR codegen references:
 
@@ -32,7 +32,7 @@ LLVM IR codegen references:
 
 ## ASSIGNIMMUTABLE
 
-The same as [setimmutable](yul.md#setimmutable).
+The same as [setimmutable](../yul/README.md#setimmutable).
 
 For more information, see the
 [zkSync Era documentation](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#setimmutable-loadimmutable).
@@ -44,7 +44,7 @@ LLVM IR codegen references:
 
 ## PUSHIMMUTABLE
 
-The same as [loadimmutable](yul.md#loadimmutable).
+The same as [loadimmutable](../yul/README.md#loadimmutable).
 
 For more information, see the
 [zkSync Era documentation](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#setimmutable-loadimmutable).
@@ -56,7 +56,7 @@ LLVM IR codegen references:
 
 ## PUSHLIB
 
-The same as [linkersymbol](yul.md#linkersymbol).
+The same as [linkersymbol](../yul/README.md#linkersymbol).
 
 For more information, see the
 [zkSync Era documentation](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#libraries).
