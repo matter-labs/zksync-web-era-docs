@@ -19,7 +19,7 @@ The toolchain consists of the following:
 
 1. [High-level source code compilers](#high-level-source-code-compilers): `solc` and `vyper`.
 2. [IR compilers, front ends to LLVM](#ir-compilers): `zksolc` and `zkvyper`.
-3. [The LLVM framework](./llvm.md) with a zkEVM back end which emits zkEVM text assembly.
+3. [The LLVM framework](../../build/development/compiler/compiler-toolchain/llvm.md) with a zkEVM back end which emits zkEVM text assembly.
 4. [The assembler](#assembler) which produces the zkEVM bytecode from text assembly.
 5. [Hardhat plugins](#hardhat-plugins) which set up the environment.
 
@@ -39,15 +39,15 @@ We are using two high-level source code compilers at the time of writing:
 - [vyper](https://github.com/vyperlang/vyper/releases): the official Vyper compiler. For more info, see the latest [Vyper documentation](https://docs.vyperlang.org/en/latest/index.html).
 
 ::: info Security and best practices
-Follow the [security considerations and best practices](../../building-on-zksync/best-practices.md) to build smart contracts on zkSync Era.
+Follow the [security considerations and best practices](../../build/quick-start/best-practices.md) to build smart contracts on zkSync Era.
 :::
 
 ## IR Compilers
 
 Our toolchain includes LLVM front ends, written in Rust, that process the output of high-level source code compilers:
 
-- [zksolc](https://github.com/matter-labs/zksolc-bin) which calls `solc` as a child process. For more info, see the latest [zksolc documentation](./solidity.md).
-- [zkvyper](https://github.com/matter-labs/zkvyper-bin): which calls `vyper` as a child process. For more info, see the latest [zkvyper documentation](./vyper.md).
+- [zksolc](https://github.com/matter-labs/zksolc-bin) which calls `solc` as a child process. For more info, see the latest [zksolc documentation](../../build/development/compiler/compiler-toolchain/solidity.md).
+- [zkvyper](https://github.com/matter-labs/zkvyper-bin): which calls `vyper` as a child process. For more info, see the latest [zkvyper documentation](../../build/development/compiler/compiler-toolchain/vyper.md).
 
 These IR compilers perform the following steps:
 
@@ -70,7 +70,7 @@ easier to maintain outside of the framework.
 
 ## Hardhat Plugins
 
-We recommend using our IR compilers via [their corresponding Hardhat plugins](../hardhat-plugins/README.md).
+We recommend using our IR compilers via [their corresponding Hardhat plugins](../tooling/hardhat/getting-started.md).
 Add these plugins to the Hardhat's config file to compile new projects or migrate
 existing ones to zkSync Era. For a lower-level approach, download our compiler binaries via the
 links above and use their CLI interfaces.
@@ -81,8 +81,8 @@ Add the plugins below to the Hardhat's config file to compile new projects or mi
 existing ones to zkSync Era. For a lower-level approach, download our compiler binaries
 [links above](#ir-compilers) and use their CLI interfaces.
 
-- [hardhat-zksync-solc documentation](../hardhat-plugins/hardhat-zksync-solc.md)
-- [hardhat-zksync-vyper documentation](../hardhat-plugins/hardhat-zksync-vyper.md)
+- [hardhat-zksync-solc documentation](../tooling/hardhat/hardhat-zksync-solc.md)
+- [hardhat-zksync-vyper documentation](../tooling/hardhat/hardhat-zksync-vyper.md)
 
 ::: warning
 

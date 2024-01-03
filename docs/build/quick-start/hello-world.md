@@ -32,7 +32,7 @@ This is what we're going to do:
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ::: tip Local zkSync Testing with zksync-cli
-Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tools/zksync-cli/README.md).
+Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../build/tooling/zksync-cli/README.md).
 :::
 
 ## Build and deploy the Greeter contract
@@ -52,7 +52,7 @@ npx zksync-cli create greeter-example --template hardhat_solidity
 This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract and all the zkSync plugins and configurations.
 
 ::: tip Hardhat plugins
-Learn more about the [zkSync Era plugins for Hardhat here](../../tools/hardhat/README.md)
+Learn more about the [zkSync Era plugins for Hardhat here](../../build/tooling/hardhat/getting-started.md)
 :::
 
 2. Navigate into the project directory:
@@ -104,7 +104,7 @@ contract Greeter {
 yarn hardhat compile
 ```
 
-3. The [zkSync-CLI](../../tools/zksync-cli/README.md) provides a deployment script in `/deploy/deploy.ts`:
+3. The [zkSync-CLI](../../build/tooling/zksync-cli/README.md) provides a deployment script in `/deploy/deploy.ts`:
 
 ```typescript
 import { deployContract } from "./utils";
@@ -239,7 +239,7 @@ Navigate to `http://localhost:8080/` in a browser to see the running application
 
 Enabling smart accounts allows you to onboard Argent account abstraction wallet users that have been using the first version of zkSync.
 
-- Use [this library](../../reference/concepts/account-abstraction.md#signature-validation) to verify your smart account compatibility.
+- Use [this library](../../build/technical-reference/concepts/account-abstraction.md#signature-validation) to verify your smart account compatibility.
 
 #### Externally owned accounts (EOAs)
 
@@ -252,7 +252,7 @@ Please note, that login functionality for "Hello, world" will be implemented in 
 ### Bridge funds to L2
 
 - Use [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
-- Use the [third party faucets](../../reference/troubleshooting/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
+- Use the [third party faucets](../../build/support/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
 
 :::warning
 When bridging from mainnet to a smart account (e.g. Argent) on zkSync Era, you must specify the address of your L2 wallet by clicking on **Deposit to another address on zkSync Era Mainnet**.
@@ -547,9 +547,9 @@ Read more about `wallet_requestPermissions`, in the [MetaMask documentation](htt
 
 ### Paying fees using testnet paymaster
 
-The zkSync Era account abstraction feature allows you to integrate [paymasters](../../reference/concepts/account-abstraction.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly.
+The zkSync Era account abstraction feature allows you to integrate [paymasters](../../build/technical-reference/concepts/account-abstraction.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly.
 
-We will use the [testnet paymaster](../../reference/concepts/account-abstraction.md#testnet-paymaster) that is provided on all zkSync Era testnets.
+We will use the [testnet paymaster](../../build/technical-reference/concepts/account-abstraction.md#testnet-paymaster) that is provided on all zkSync Era testnets.
 
 :::info
 **The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH.
@@ -628,7 +628,7 @@ async getOverrides() {
 }
 ```
 
-4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../reference/concepts/account-abstraction.md#testnet-paymaster) and return the needed overrides.
+4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../build/technical-reference/concepts/account-abstraction.md#testnet-paymaster) and return the needed overrides.
 
 Copy/paste the following complete function:
 
@@ -722,5 +722,5 @@ After the transaction is processed, the page updates the balances and the new gr
 ### Learn more
 
 - For an overview of security and best practices for developing on zkSync Era, refer to the [Security and best practices page](./best-practices.md).
-- To learn more about `zksync-web3` SDK, check out its [documentation](../../api/js).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../tools/hardhat).
+- To learn more about `zksync-web3` SDK, check out its [documentation](../../build/sdks/js/README.md).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](../../build/tooling/hardhat/getting-started.md).

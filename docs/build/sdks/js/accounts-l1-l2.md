@@ -9,7 +9,7 @@ head:
 
 This section explores the methods which allow the [account](./accounts.md) classes to send transactions from L1 to L2.
 
-If you want to get some background on how L1 -> L2 interaction works on zkSync, go through the [L1 to L2 interoperability doc](../../reference/concepts/l1-l2-interop.md).
+If you want to get some background on how L1 -> L2 interaction works on zkSync, go through the [L1 to L2 interoperability doc](../../technical-reference/concepts/l1-l2-interop.md).
 
 ## Supported classes
 

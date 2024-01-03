@@ -35,7 +35,7 @@ While `.call` offers more flexibility compared to `.send` or `.transfer`, develo
 
 ## Use the proxy pattern at the early stage of the protocol
 
-zkSync Era is based on the zk-friendly VM. Thus, we offer [a dedicated compiler](../../tools/compiler-toolchain/README.md) responsible for transforming conventional Solidity and Vyper code into zkEVM bytecode.
+zkSync Era is based on the zk-friendly VM. Thus, we offer [a dedicated compiler](../../build/development/compiler/compiler-toolchain/overview.md) responsible for transforming conventional Solidity and Vyper code into zkEVM bytecode.
 
 While we have extensive test coverage to ensure EVM compatibility, issues may still appear.
 We will implement the patches for these in a timely manner.
@@ -103,14 +103,14 @@ Use zkSync Era's native account abstraction support for signature validation ins
 We recommend not relying on the fact that an account has an ECDSA private key, since the account may be governed by
 multisig and use another signature scheme.
 
-Read more about [zkSync Era Account Abstraction support](../../reference/concepts/account-abstraction.md).
+Read more about [zkSync Era Account Abstraction support](../../build/technical-reference/concepts/account-abstraction.md).
 
 ## Use local testing environment
 
 For optimal development and testing of your contracts, it is highly recommended to perform local testing before deploying them to the mainnet. Local testing allows you to test your contracts in a controlled environment, providing benefits such as reduced network latency and cost.
 
-We provide [two different testing environments](../../tools/testing/README.md) designed for local testing purposes. These tools allow you to simulate the zkSync network locally, enabling you to validate your contracts effectively.
+We provide [two different testing environments](../../build/test-and-debug/README.md) designed for local testing purposes. These tools allow you to simulate the zkSync network locally, enabling you to validate your contracts effectively.
 
 By incorporating local testing into your development workflow, you can effectively verify the behavior and functionality of your contracts in a controlled environment, ensuring a smooth deployment process to the mainnet.
 
-For detailed instructions on configuring the local testing environment and performing tests using Mocha and Chai, refer to the dedicated [Testing](../../tools/testing/README.md) page.
+For detailed instructions on configuring the local testing environment and performing tests using Mocha and Chai, refer to the dedicated [Testing](../../build/test-and-debug/README.md) page.

@@ -29,17 +29,11 @@ Welcome to the Oracles page, a comprehensive hub dedicated to interacting with o
 
 ### Usage guides
 
-{% content-ref url="api3.md" %}
-[api3.md](api3.md)
-{% endcontent-ref %}
+- [api3.md](../tutorials/tooling-guides/api3.md)
 
-{% content-ref url="dia.md" %}
-[dia.md](dia.md)
-{% endcontent-ref %}
+- [dia.md](../tutorials/tooling-guides/dia.md)
 
-{% content-ref url="redstone.md" %}
-[redstone.md](redstone.md)
-{% endcontent-ref %}
+- [redstone.md](../tutorials/tooling-guides/redstone.md)
 
 ### Contribute
 

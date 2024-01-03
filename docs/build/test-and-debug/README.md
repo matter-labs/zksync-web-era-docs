@@ -54,10 +54,10 @@ Whether you're testing new contracts, debugging transactions, or prototyping, zk
 
 ## Using zkSync CLI for Easy Setup
 
-The [zkSync CLI](../zksync-cli/README.md) makes it simple for developers to work with both Dockerized Local Setup and In-Memory Node. Just use `zksync-cli dev start` to get your local development environment running and choose to use additional modules like Block Explorer, Wallet and Bridge.
+The [zkSync CLI](../../build/tooling/zksync-cli/README.md) makes it simple for developers to work with both Dockerized Local Setup and In-Memory Node. Just use `zksync-cli dev start` to get your local development environment running and choose to use additional modules like Block Explorer, Wallet and Bridge.
 
 ## zkSync Era local testing
 
-- [Dockerized testing](../old-testing/dockerized-testing.md)
-- [In-memory node testing](./era-test-node/README.md)
-- [zkSync CLI](../zksync-cli/README.md)
+- [Dockerized L1 - L2 Nodes](../../build/test-and-debug/dockerized-l1-l2-nodes.md)
+- [In-memory node testing](../../build/test-and-debug/era-test-node.md)
+- [zkSync CLI](../../build/tooling/zksync-cli/README.md)

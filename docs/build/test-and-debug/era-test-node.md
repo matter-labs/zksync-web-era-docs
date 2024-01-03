@@ -339,7 +339,7 @@ This section demonstrates how to author and execute tests locally against `era-t
 
 ### Project configuration
 
-1. Start by creating a new Hardhat project. If you need guidance, follow the [getting started guide](../../tools/hardhat/getting-started.md).
+1. Start by creating a new Hardhat project. If you need guidance, follow the [getting started guide](../../build/tooling/hardhat/getting-started.md).
 
 2. To incorporate the test libraries, execute:
 
