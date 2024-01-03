@@ -51,8 +51,6 @@ If there is no assembly example under an instruction, compile a reproducing cont
 add     r1, r2, r1
 ```
 
-
-
 # [MUL](https://www.evm.codes/#02?fork=shanghai)
 
 ### Differences from EVM
@@ -86,8 +84,6 @@ The snippet below returns the carry value.
 mul     r1, r2, r1, r2
 ```
 
-
-
 # [SUB](https://www.evm.codes/#03?fork=shanghai)
 
 ### LLVM IR
@@ -105,8 +101,6 @@ mul     r1, r2, r1, r2
 ```nasm
 sub     r1, r2, r1
 ```
-
-
 
 # [DIV](https://www.evm.codes/#04?fork=shanghai)
 
@@ -135,8 +129,6 @@ return:
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/arithmetic.rs#L73) is common for Yul and EVMLA representations.
 
 [LLVM IR instruction documentation](https://releases.llvm.org/15.0.0/docs/LangRef.html#udiv-instruction)
-
-
 
 # [SDIV](https://www.evm.codes/#05?fork=shanghai)
 
@@ -168,8 +160,6 @@ return:
 
 [LLVM IR instruction documentation](https://releases.llvm.org/15.0.0/docs/LangRef.html#sdiv-instruction)
 
-
-
 # [MOD](https://www.evm.codes/#06?fork=shanghai)
 
 ### Differences from EVM
@@ -197,8 +187,6 @@ return:
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/arithmetic.rs#L117) is common for Yul and EVMLA representations.
 
 [LLVM IR instruction documentation](https://releases.llvm.org/15.0.0/docs/LangRef.html#urem-instruction)
-
-
 
 # [SMOD](https://www.evm.codes/#07?fork=shanghai)
 
@@ -229,8 +217,6 @@ return:
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/arithmetic.rs#L236) is common for Yul and EVMLA representations.
 
 [LLVM IR instruction documentation](https://releases.llvm.org/15.0.0/docs/LangRef.html#srem-instruction)
-
-
 
 # [ADDMOD](https://www.evm.codes/#08?fork=shanghai)
 
@@ -264,8 +250,6 @@ return:
 ```
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/math.rs#L16) is common for Yul and EVMLA representations.
-
-
 
 # [MULMOD](https://www.evm.codes/#09?fork=shanghai)
 
@@ -305,8 +289,6 @@ slow:
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/math.rs#L43) is common for Yul and EVMLA representations.
 
-
-
 # [EXP](https://www.evm.codes/#0a?fork=shanghai)
 
 ### LLVM IR
@@ -337,8 +319,6 @@ exponent_loop_body:
 ```
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/math.rs#L70) is common for Yul and EVMLA representations.
-
-
 
 # [SIGNEXTEND](https://www.evm.codes/#0b?fork=shanghai)
 
@@ -401,8 +381,6 @@ add.lt  1, r0, r1
 st.1    128, r1
 ```
 
-
-
 # [GT](https://www.evm.codes/#11?fork=shanghai)
 
 ### LLVM IR
@@ -429,8 +407,6 @@ add     0, r0, r1
 add.gt  1, r0, r1
 st.1    128, r1
 ```
-
-
 
 # [SLT](https://www.evm.codes/#12?fork=shanghai)
 
@@ -471,8 +447,6 @@ add.ne  1, r0, r1
 st.1    128, r1
 ```
 
-
-
 # [SGT](https://www.evm.codes/#13?fork=shanghai)
 
 ### LLVM IR
@@ -512,8 +486,6 @@ add.ne  1, r0, r1
 st.1    128, r1
 ```
 
-
-
 # [EQ](https://www.evm.codes/#14?fork=shanghai)
 
 ### LLVM IR
@@ -540,8 +512,6 @@ add     0, r0, r1
 add.eq  1, r0, r1
 st.1    128, r1
 ```
-
-
 
 # [ISZERO](https://www.evm.codes/#15?fork=shanghai)
 
@@ -593,8 +563,6 @@ and     r1, r2, r1
 st.1    128, r1
 ```
 
-
-
 # [OR](https://www.evm.codes/#17?fork=shanghai)
 
 ### LLVM IR
@@ -618,8 +586,6 @@ ld      r1, r1
 or      r1, r2, r1
 st.1    128, r1
 ```
-
-
 
 # [XOR](https://www.evm.codes/#18?fork=shanghai)
 
@@ -645,8 +611,6 @@ xor     r1, r2, r1
 st.1    128, r1
 ```
 
-
-
 # [NOT](https://www.evm.codes/#19?fork=shanghai)
 
 ### LLVM IR
@@ -666,8 +630,6 @@ sub.s   1, r0, r2
 xor     r1, r2, r1
 st.1    128, r1
 ```
-
-
 
 # [BYTE](https://www.evm.codes/#1a?fork=shanghai)
 
@@ -693,8 +655,6 @@ return:
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/bitwise.rs#L229) is common for Yul and EVMLA representations.
 
-
-
 # [SHL](https://www.evm.codes/#1b?fork=shanghai)
 
 ### LLVM IR
@@ -717,8 +677,6 @@ return:
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/bitwise.rs#L67) is common for Yul and EVMLA representations.
 
-
-
 # [SHR](https://www.evm.codes/#1c?fork=shanghai)
 
 ### LLVM IR
@@ -740,8 +698,6 @@ return:
 ```
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/bitwise.rs#L111) is common for Yul and EVMLA representations.
-
-
 
 # [SAR](https://www.evm.codes/#1d?fork=shanghai)
 
@@ -828,8 +784,6 @@ This value is fetched with a native EraVM instruction.
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/yul/parser/statement/expression/function_call/mod.rs#L973) is common for Yul and EVMLA representations.
 
-
-
 # [BALANCE](https://www.evm.codes/#31?fork=shanghai)
 
 ### System Contract
@@ -843,8 +797,6 @@ On how the System Contract is called, see [this section](https://github.com/code
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/ether_gas.rs#L39) is common for Yul and EVMLA representations.
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
-
-
 
 # [ORIGIN](https://www.evm.codes/#32?fork=shanghai)
 
@@ -860,8 +812,6 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-
-
 # [CALLER](https://www.evm.codes/#33?fork=shanghai)
 
 This value is fetched with a native EraVM instruction.
@@ -870,8 +820,6 @@ This value is fetched with a native EraVM instruction.
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/yul/parser/statement/expression/function_call/mod.rs#L974) is common for Yul and EVMLA representations.
 
-
-
 # [CALLVALUE](https://www.evm.codes/#34?fork=shanghai)
 
 This value is fetched with a native EraVM instruction.
@@ -879,8 +827,6 @@ This value is fetched with a native EraVM instruction.
 ### LLVM IR
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/ether_gas.rs#L25) is common for Yul and EVMLA representations.
-
-
 
 # [CALLDATALOAD](https://www.evm.codes/#35?fork=shanghai)
 
@@ -912,8 +858,6 @@ ptr.add stack[@ptr_calldata], r0, r1                                            
 ld      r1, r1                                                                      ; loading the value to `r1`
 ```
 
-
-
 # [CALLDATASIZE](https://www.evm.codes/#36?fork=shanghai)
 
 Calldata size is stored in the fat pointer passed from the parent contract (see [CALLDATALOAD](#calldataload)).
@@ -943,8 +887,6 @@ and     @CPI0_0[0], r1, stack[@calldatasize]                                    
 CPI0_0:
     .cell 4294967295
 ```
-
-
 
 # [CALLDATACOPY](https://www.evm.codes/#37?fork=shanghai)
 
@@ -977,23 +919,17 @@ call void @llvm.memcpy.p1.p3.i256(ptr addrspace(1) align 1 inttoptr (i256 128 to
     jump.lt @.BB0_3             ; loop continuation branching
 ```
 
-
-
 # [CODECOPY](https://www.evm.codes/#38?fork=shanghai)
 
 See [the EraVM docs](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#codecopy).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/evmla/ethereal_ir/function/block/element/mod.rs#L856).
 
-
-
 # [CODESIZE](https://www.evm.codes/#39?fork=shanghai)
 
 See [the EraVM docs](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#codesize).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/evmla/ethereal_ir/function/block/element/mod.rs#L837).
-
-
 
 # [GASPRICE](https://www.evm.codes/#3a?fork=shanghai)
 
@@ -1009,8 +945,6 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-
-
 # [EXTCODESIZE](https://www.evm.codes/#3b?fork=shanghai)
 
 ### System Contract
@@ -1025,13 +959,9 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-
-
 # [EXTCODECOPY](https://www.evm.codes/#3c?fork=shanghai)
 
 Not supported. Triggers a compile-time error.
-
-
 
 # [RETURNDATASIZE](https://www.evm.codes/#3d?fork=shanghai)
 
@@ -1061,8 +991,6 @@ and     @CPI0_1[0], r1, r1                                      ; keeping the lo
 CPI0_1:
     .cell 4294967295
 ```
-
-
 
 # [RETURNDATACOPY](https://www.evm.codes/#3e?fork=shanghai)
 
@@ -1095,8 +1023,6 @@ call void @llvm.memcpy.p1.p3.i256(ptr addrspace(1) align 1 inttoptr (i256 128 to
     jump.lt @.BB0_3             ; loop continuation branching
 ```
 
-
-
 # [EXTCODEHASH](https://www.evm.codes/#3f?fork=shanghai)
 
 ### System Contract
@@ -1127,8 +1053,6 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-
-
 # [COINBASE](https://www.evm.codes/#41?fork=shanghai)
 
 ### System Contract
@@ -1142,8 +1066,6 @@ On how the System Contract is called, see [this section](https://github.com/code
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/context.rs#L150) is common for Yul and EVMLA representations.
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
-
-
 
 # [TIMESTAMP](https://www.evm.codes/#42?fork=shanghai)
 
@@ -1159,8 +1081,6 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-
-
 # [NUMBER](https://www.evm.codes/#43?fork=shanghai)
 
 ### System Contract
@@ -1175,13 +1095,11 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-
-
 # [PREVRANDAO](https://www.evm.codes/#44?fork=shanghai) | [DIFFICULTY](https://www.evm.codes/#44?fork=grayGlacier)
 
 ### System Contract
 
-This information is requested a System Contract called [SystemContext]https://github.com/code-423n4/2023-10-zksync/blob/main/code/system-contracts/contracts/SystemContext.sol).
+This information is requested a System Contract called [SystemContext]<https://github.com/code-423n4/2023-10-zksync/blob/main/code/system-contracts/contracts/SystemContext.sol>).
 
 On how the System Contract is called, see [this section](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/system_contracts.md#environmental-data-storage).
 
@@ -1190,8 +1108,6 @@ On how the System Contract is called, see [this section](https://github.com/code
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/context.rs#L133) is common for Yul and EVMLA representations.
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
-
-
 
 # [GASLIMIT](https://www.evm.codes/#45?fork=shanghai)
 
@@ -1207,8 +1123,6 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-
-
 # [CHAINID](https://www.evm.codes/#46?fork=shanghai)
 
 ### System Contract
@@ -1223,13 +1137,9 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-
-
 # [SELFBALANCE](https://www.evm.codes/#47?fork=shanghai)
 
 Implemented as [BALANCE](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/environment.md#balance) with an [ADDRESS](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/environment.md#address) as its argument.
-
-
 
 # [BASEFEE](https://www.evm.codes/#48?fork=shanghai)
 
@@ -1244,8 +1154,3 @@ On how the System Contract is called, see [this section](https://github.com/code
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/context.rs#L167) is common for Yul and EVMLA representations.
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
-
-
-
-
-

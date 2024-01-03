@@ -37,4 +37,3 @@ head:
 - [System Contracts](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/system_contracts.md)
 - [Exception Handling](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/exception_handling.md)
 - [EVMLA translator](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/evmla_translator.md)
-

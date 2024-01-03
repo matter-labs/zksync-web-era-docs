@@ -106,6 +106,3 @@ function ZKSYNC_CATCH_NEAR_CALL() {               // 07
 Having all the overhead above, the `catch` blocks are only generated if there is the EH function
 `ZKSYNC_CATCH_NEAR_CALL` defined in the contract. Otherwise there is no need to catch panics and they will be propagated
 to the callee contract automatically by the VM execution environment.
-
-
-

@@ -130,4 +130,3 @@ used for these cases:
    from the constructor.
 2. Allocating calldata and return data for calling the
    [System Contracts](https://era.zksync.io/docs/reference/architecture/system-contracts.html).
-
