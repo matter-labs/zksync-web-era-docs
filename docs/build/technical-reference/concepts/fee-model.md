@@ -63,7 +63,7 @@ Because the signature is unavailable prior to the transaction taking place, an i
 
 In the case of a custom account with multiple signers, the account may wish to simulate signature validation for all the provided signers.
 
-See the [DefaultAccount code](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/DefaultAccount.sol) for more information.
+See the [DefaultAccount code](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/DefaultAccount.sol) for more information.
 
 ### Account abstraction considerations
 
