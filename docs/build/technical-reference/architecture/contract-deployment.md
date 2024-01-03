@@ -11,7 +11,7 @@ In order to maintain the same level of security as the L1, the zkSync operator i
 
 These specific requirements ensure that the process of deploying smart contracts on zkEVM complies to a crucial rule: _the operator must be aware of the contract's code before deployment_. Consequently, deploying contracts can only be accomplished through EIP712 transactions, with the `factory_deps` field containing the bytecode provided.
 
-[Learn more about EIP712 transactions here](../../reference/concepts/transactions.md#eip-712-0x71).
+[Learn more about EIP712 transactions here](../../technical-reference/concepts/transactions.md#eip-712-0x71).
 
 ## Ethereum / zkSync differences in contract deployment
 
@@ -21,11 +21,11 @@ To deploy a contract on Ethereum, a user sends a transaction to the zero address
 
 **How deploying contracts works on zkSync.**
 
-To deploy a contract on zkSync Era, a user calls the `create` function of the [ContractDeployer system contract](./system-contracts.md#contractdeployer) providing the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the transaction (as it's an [EIP712 transaction](../../reference/concepts/transactions.md#eip-712-0x71)). If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
+To deploy a contract on zkSync Era, a user calls the `create` function of the [ContractDeployer system contract](./system-contracts.md#contractdeployer) providing the hash of the contract to be published, as well as the constructor arguments. The contract bytecode itself is supplied in the `factory_deps` field of the transaction (as it's an [EIP712 transaction](../../technical-reference/concepts/transactions.md#eip-712-0x71)). If the contract is a factory (i.e. it can deploy other contracts), these contracts' bytecodes should be included in the `factory_deps` as well.
 
-We recommend using the [hardhat-zksync-deploy](../../tools/hardhat/) plugin, to simplify the deployment process. It provides classes and methods to take care of all the deployment requirements, like generating the [bytecode hash of the contract](#format-of-bytecode-hash).
+We recommend using the [hardhat-zksync-deploy](../../tooling/hardhat/getting-started.md) plugin, to simplify the deployment process. It provides classes and methods to take care of all the deployment requirements, like generating the [bytecode hash of the contract](#format-of-bytecode-hash).
 
-Here's a [step-by-step guide on how to use it](../../tools/hardhat/getting-started.md).
+Here's a [step-by-step guide on how to use it](../../tooling/hardhat/getting-started.md).
 
 ### Note on `factory_deps`
 
@@ -38,7 +38,7 @@ Some examples of usage are:
 - The obvious one is when you deploy a contract, you need to provide its code in the `factory_deps` field.
 - On zkSync, factories (i.e. contracts that can deploy other contracts) do not store bytecodes of their dependencies, i.e. contracts that they can deploy. They only store their hashes. That's why you need to include _all_ the bytecodes of the dependencies in the `factory_deps` field.
 
-Both of these examples are already seamlessly done under the hood by our [hardhat-zksync-deploy](../../tools/hardhat/getting-started.md).
+Both of these examples are already seamlessly done under the hood by our [hardhat-zksync-deploy](../../tooling/hardhat/getting-started.md).
 
 Note that the factory deps do not necessarily have to be used by the transaction in any way. These are just markers that these bytecodes should be published on L1 with this transaction. If your contract contains a lot of various factory dependencies and they do not fit inside a single L1 block, you can split the list of factory dependencies between multiple transactions.
 

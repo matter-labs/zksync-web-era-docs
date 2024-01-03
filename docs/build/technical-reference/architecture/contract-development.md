@@ -11,13 +11,13 @@ zkSync Era allows developers to build projects using the same programming langua
 
 ::: tip Differences with Ethereum
 
-Although most smart contracts work out of the box, we **strongly recommend developers to read about the [differences between Ethereum and zkSync Era](./differences-with-ethereum.md)**, and test their projects using the [local setup](../../tools/testing/README.md) and in testnet.
+Although most smart contracts work out of the box, we **strongly recommend developers to read about the [differences between Ethereum and zkSync Era](./differences-with-ethereum.md)**, and test their projects using the [local setup](../../test-and-debug/README.md) and in testnet.
 
 :::
 
 ## Solidity support
 
-Currently, Solidity versions as old as `0.4.12` are supported, although **we strongly recommend using the latest supported revision of 0.8**, as older versions contain known bugs and [have limitations with our compiler](../../tools/compiler-toolchain/solidity.md#limitations).
+Currently, Solidity versions as old as `0.4.12` are supported, although **we strongly recommend using the latest supported revision of 0.8**, as older versions contain known bugs and [have limitations with our compiler](../../tooling/compiler-toolchain/solidity.md#limitations).
 
 Please read [this section of the docs](../../tools/compiler-toolchain/solidity.md#using-libraries) if your project uses libraries.
 

@@ -104,7 +104,7 @@ const committedEthBalance = await zkSyncWallet.getBalance(zksync.utils.ETH_ADDRE
 const finalizedEthBalance = await zkSyncWallet.getBalance(zksync.utils.ETH_ADDRESS, "finalized");
 ```
 
-You can read more about what committed and finalized blocks are [here](../../reference/concepts/blocks.md).
+You can read more about what committed and finalized blocks are [here](../../technical-reference/concepts/blocks.md).
 
 ## Performing a transfer
 
@@ -163,7 +163,7 @@ await withdrawL2.waitFinalize();
 
 ## Deploying a contract
 
-A guide on deploying smart contracts using our hardhat plugin is available [here](../../tools/hardhat/).
+A guide on deploying smart contracts using our hardhat plugin is available [here](../../tooling//hardhat/getting-started.md).
 
 ## Adding tokens to the standard bridge
 
