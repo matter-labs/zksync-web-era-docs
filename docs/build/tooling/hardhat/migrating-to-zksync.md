@@ -214,7 +214,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 
 ::: tip Test ETH
-Obtain [test ETH from third party faucets](../../reference/troubleshooting/faq.md#how-do-i-request-funds-for-testnet) or just bridge GöerliETH using [bridges](https://zksync.io/explore#bridges).
+Obtain [test ETH from third party faucets](../../support/faq.md#how-do-i-request-funds-for-testnet) or just bridge GöerliETH using [bridges](https://zksync.io/explore#bridges).
 :::
 
 Include your deployment script in the `deploy` folder and execute it running:

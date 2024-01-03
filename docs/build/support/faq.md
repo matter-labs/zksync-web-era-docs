@@ -151,7 +151,7 @@ To access the testnet funds (Sepolia or Goerli ETH) you can use one of the follo
 
 - [Chainstack's testnet faucet](https://faucet.chainstack.com/zksync-testnet-faucet)
 
-- [QuickNode] [Sepolia faucet](https://faucet.quicknode.com/ethereum/sepolia), [Goerli faucet](https://faucet.quicknode.com/ethereum/goerli)
+- QuickNode [Sepolia faucet](https://faucet.quicknode.com/ethereum/sepolia), [Goerli faucet](https://faucet.quicknode.com/ethereum/goerli)
 
 - Alchemy [Sepolia faucet](https://sepoliafaucet.com/), [Goerli faucet](https://goerlifaucet.com/)
 

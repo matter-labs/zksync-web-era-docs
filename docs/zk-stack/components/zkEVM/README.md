@@ -20,7 +20,7 @@ support EVM bytecode by running an efficient interpreter inside the zkEVM.
 
 The zkEVM has a lot of special features compared to the EVM that are needed for the rollup's STF, storage, gas metering,
 precompiles etc. These functions are either built into the zkEVM, or there are special
-[system contracts](./system_contracts.md) for them. The system contracts are deployed at predefined addresses, they are
+[system contracts](./compiler/system-contracts/README.md) for them. The system contracts are deployed at predefined addresses, they are
 called by the Bootloader, and they have special permissions compared to normal user contracts. These are not to be
 confused with the precompiles, which are also predeloyed contracts with special support from the
 zkEVM, but these contract do not have special permissions and are called by the users and not the Bootloader.
