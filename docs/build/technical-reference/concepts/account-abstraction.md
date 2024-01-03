@@ -306,7 +306,7 @@ If you are developing a paymaster, you _should not_ trust the transaction sender
 
 #### Working with paymaster flows using `zksync-web3` SDK
 
-The `zksync-web3` SDK provides [methods](../../api/js/paymaster-utils.md) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
+The `zksync-web3` SDK provides [methods](../../sdks/js/paymaster-utils.md) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
 
 ### Testnet paymaster
 
@@ -314,7 +314,7 @@ To ensure users experience paymasters on testnet, as well as keep supporting pay
 
 The paymaster supports only the [approval based](#approval-based-paymaster-flow) paymaster flow and requires that the `token` param is equal to the token being swapped and `minAllowance` to equal to least `tx.maxFeePerGas * tx.gasLimit`. In addition, the testnet paymaster does not make use of the `_innerInput` parameter, so nothing should be provided (empty `bytes`).
 
-An example of how to use testnet paymaster can be seen in the [quickstart](../../dev/building-on-zksync/hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
+An example of how to use testnet paymaster can be seen in the [quickstart](../../quick-start/hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
 
 ## Signature validation
 

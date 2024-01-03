@@ -17,12 +17,12 @@ Although most smart contracts work out of the box, we **strongly recommend devel
 
 ## Solidity support
 
-Currently, Solidity versions as old as `0.4.12` are supported, although **we strongly recommend using the latest supported revision of 0.8**, as older versions contain known bugs and [have limitations with our compiler](../../tooling/compiler-toolchain/solidity.md#limitations).
+Currently, Solidity versions as old as `0.4.12` are supported, although **we strongly recommend using the latest supported revision of 0.8**, as older versions contain known bugs and [have limitations with our compiler](../../development/compiler/compiler-toolchain/solidity.md#limitations).
 
-Please read [this section of the docs](../../tools/compiler-toolchain/solidity.md#using-libraries) if your project uses libraries.
+Please read [this section of the docs](../../development/compiler/compiler-toolchain/solidity.md#using-libraries) if your project uses libraries.
 
 ::: info Security and best practices
-Follow the [security considerations and best practices](../../dev/building-on-zksync/best-practices.md) to build smart contracts on zkSync Era.
+Follow the [security considerations and best practices](../../quick-start/best-practices.md) to build smart contracts on zkSync Era.
 :::
 
 ## Vyper support
@@ -38,9 +38,9 @@ Although you can write smart contracts in both Solidity and Vyper, compiling the
 
 **It's strongly recommended to use the latest version of the compiler available.**
 
-You can find more information about our compilers in the [Compiler toolchain section](../../tools/compiler-toolchain/README.md).
+You can find more information about our compilers in the [Compiler toolchain section](../../development/compiler/compiler-toolchain/README.md).
 
 **Learn more about how to install and configure the compiler Hardhat plugins in the links below:**
 
-- [hardhat-zksync-solc documentation](../../tools/hardhat/hardhat-zksync-solc.md)
-- [hardhat-zksync-vyper documentation](../../tools/hardhat/hardhat-zksync-vyper.md)
+- [hardhat-zksync-solc documentation](../../tooling/hardhat/hardhat-zksync-solc.md)
+- [hardhat-zksync-vyper documentation](../../tooling/hardhat/hardhat-zksync-vyper.md)

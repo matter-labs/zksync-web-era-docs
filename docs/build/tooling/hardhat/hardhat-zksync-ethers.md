@@ -44,7 +44,7 @@ This plugin creates no additional tasks.
 ## Environment extensions
 
 This plugins adds an zksync-ethers object to the Hardhat Runtime Environment.
-This object has the same API as [zksync-ethers](../../api/js/zksync2-js/getting-started.md), with some extra Hardhat-specific functionality.
+This object has the same API as [zksync-ethers](../../sdks/js/zksync-ethers/getting-started.md), with some extra Hardhat-specific functionality.
 
 ## Helpers
 

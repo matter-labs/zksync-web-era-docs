@@ -50,7 +50,7 @@ Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply exe
 
 ::: warning Important
 
-- Contracts must be compiled using the [official zkSync Era compilers](../compiler-toolchain/README.md), with their respective Hardhat plugins.
+- Contracts must be compiled using the [official zkSync Era compilers](../../development/compiler/compiler-toolchain/README.md), with their respective Hardhat plugins.
 - Contracts compiled with other compilers will fail to deploy to zkSync Era.
   :::
 
@@ -102,7 +102,7 @@ For local zkSync testing, modify `url` and `ethNetwork` in `hardhat.config.ts` t
 :::
 
 ::: tip Unit tests
-This template project includes a basic unit test in the `/test` folder that runs with the local-setup and can be executed with `yarn test`. Learn more about how to [start the local setup and write unit tests here](../testing/README.md).
+This template project includes a basic unit test in the `/test` folder that runs with the local-setup and can be executed with `yarn test`. Learn more about how to [start the local setup and write unit tests here](../../test-and-debug/README.md).
 :::
 
 The `zksolc` block contains the minimal configuration for the compiler.
@@ -115,7 +115,7 @@ zksolc: {
 ```
 
 ::: tip Advanced configuration
-To learn more about each specific property in the `hardhat.config.ts` file, check out the [plugins documentation](./plugins.md)
+To learn more about each specific property in the `hardhat.config.ts` file, check out the [plugins documentation](../hardhat/getting-started.md)
 :::
 
 ## Set your Private Key
@@ -317,5 +317,5 @@ The message now is Hello people!
 
 ## Learn more
 
-- To learn more about the zkSync Hardhat plugins check out the [plugins documentation](./plugins.md).
-- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-ethers Javascript SDK documentation](../../api/js) .
+- To learn more about the zkSync Hardhat plugins check out the [plugins documentation](../hardhat/getting-started.md).
+- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-ethers Javascript SDK documentation](../../sdks/js/README.md) .

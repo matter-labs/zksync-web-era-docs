@@ -11,7 +11,7 @@ This guide shows you how to migrate an existing Hardhat project to zkSync Era.
 
 ## Overview
 
-zkSync Era offers [multiple Hardhat plugins](./plugins.md) with different features. This guide details the one you need to migrate your project to zkSync Era.
+zkSync Era offers [multiple Hardhat plugins](../hardhat/getting-started.md) with different features. This guide details the one you need to migrate your project to zkSync Era.
 
 ::: warning Non-default paths are not supported yet
 
@@ -21,7 +21,7 @@ zkSync Era offers [multiple Hardhat plugins](./plugins.md) with different featur
 
 ## Install dependencies
 
-Although zkSync Era is [compatible with Solidity and Vyper](../../reference/architecture/contract-development.md), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the first step is to install the compiler and deployer Hardhat plugins:
+Although zkSync Era is [compatible with Solidity and Vyper](../../technical-reference/architecture/contract-development.md), the deployed bytecode and the deployment process is different from Ethereum or other EVM blockchains. So the first step is to install the compiler and deployer Hardhat plugins:
 
 ::: code-tabs
 
@@ -180,7 +180,7 @@ If your contracts import any non-inlineable libraries, you need to configure the
 `hardhat-deploy` version `^0.11.26` supports deployments on zkSync Era.
 :::
 
-To deploy your contracts you need to use the `Deployer` class from the `hardhat-zksync-deploy` plugin. This class takes care of all the specifics of [deploying contracts on zkSync](../../reference/architecture/contract-deployment.md).
+To deploy your contracts you need to use the `Deployer` class from the `hardhat-zksync-deploy` plugin. This class takes care of all the specifics of [deploying contracts on zkSync](../../technical-reference/architecture/contract-deployment.md).
 
 Here is a basic deployment script for a `Greeter` contract:
 

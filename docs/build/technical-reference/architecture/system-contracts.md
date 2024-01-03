@@ -12,7 +12,7 @@ To keep the zero-knowledge circuits as simple as possible and enable simple exte
 The code for the system contracts will not be public until it has gone through thorough testing. This section will only provide you with the knowledge needed to build on zkSync.
 
 ::: tip System contract addresses
-You can find the L1 system contract addresses in the [useful addresses page](../../dev/building-on-zksync/useful-address.md).
+You can find the L1 system contract addresses in the [useful addresses page](../../quick-start/useful-address.md).
 :::
 
 ## Interfaces

@@ -14,8 +14,8 @@ This plugin provides utilities for deploying smart contracts on zkSync Era with 
 To use the `hardhat-zksync-deploy` in your project, we recommend that:
 
 - You have a Node installation and `yarn` package manager.
-- You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../../dev/building-on-zksync/hello-world.md).
-- You have a wallet with sufficient Sepolia or Goerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Use the [third party faucets](../../reference/troubleshooting/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
+- You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../../quick-start/hello-world.md).
+- You have a wallet with sufficient Sepolia or Goerli `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Use the [third party faucets](../../support/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ## Setup
@@ -218,7 +218,7 @@ The deployment scripts must be placed in the `deploy` folder.
 ::: tip
 
 If network argument `--network` or `defaultNetwork` configuration are not specified, local setup with `http://localhost:8545` (Ethereum RPC URL) and `http://localhost:3050` (zkSync Era RPC URL), will be used. In this case zkSync Era network will not need to be configured in `hardhat.config.ts` file.
-For more details about a dockerized local setup, check out [Local testing](../testing/README.md).
+For more details about a dockerized local setup, check out [Local testing](../../test-and-debug/README.md).
 :::
 
 `yarn hardhat deploy-zksync:libraries --private-key <PRIVATE_KEY>` -- runs compilation and deployment of missing libraries (the list of all missing libraries is provided by the output of `@matterlabs/hardhat-zksync-solc` plugin).
