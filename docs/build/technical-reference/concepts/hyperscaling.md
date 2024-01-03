@@ -17,7 +17,7 @@ Hyperchains are fractal-like instances of zkEVM running in parallel and with the
 
 <div align="center">
 
-![hyperbridges](../../assets/images/hyperbridges.png)
+![hyperbridges](../../../assets/images/hyperbridges.png)
 Gray lines show proofs, orange lines the hyperbridges, which automatically connect all blue chains.
 
 </div>
@@ -49,7 +49,7 @@ Hyperbridging will consist of 7 steps.
 
 <div  align="center">
 
-![hyperscaling](../../assets/images/hyperscalingBridgingFull.png)
+![hyperscaling](../../../assets/images/hyperscalingBridgingFull.png)
 
 </div>
 
@@ -77,7 +77,7 @@ Bridging will be part of the protocol, so it will be built into the wallet along
 
 <div  align="center">
 
-![hyperscalingUniswap](../../assets/images/hyperscalingUniswap.png)
+![hyperscalingUniswap](../../../assets/images/hyperscalingUniswap.png)
 
 </div>
 
@@ -93,7 +93,7 @@ Simple proof aggregation treats the proofs of different Hyperchains as independe
 
 <div  align="center">
 
-![HyperscalingAggregation](../../assets/images/hyperscalingAggregation.png)
+![HyperscalingAggregation](../../../assets/images/hyperscalingAggregation.png)
 
 </div>
 
@@ -127,7 +127,7 @@ For these rollups proof generation and settlement still happens as usual. This m
 
 <div  align="center">
 
-![hyperscalingFastEconomic](../../assets/images/hyperscalingFastEconomic.png)
+![hyperscalingFastEconomic](../../../assets/images/hyperscalingFastEconomic.png)
 
 </div>
 

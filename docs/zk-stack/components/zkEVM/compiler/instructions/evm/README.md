@@ -828,7 +828,9 @@ This value is fetched with a native EraVM instruction.
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/ether_gas.rs#L25) is common for Yul and EVMLA representations.
 
-# [CALLDATALOAD](https://www.evm.codes/#35?fork=shanghai)
+# CALLDATALOAD
+
+[CALLDATALOAD](https://www.evm.codes/#35?fork=shanghai)
 
 Calldata is accessed with a generic memory access instruction, but the memory chunk itself is a reference
 to the calling contract's heap.
@@ -888,7 +890,9 @@ CPI0_0:
     .cell 4294967295
 ```
 
-# [CALLDATACOPY](https://www.evm.codes/#37?fork=shanghai)
+# CALLDATACOPY
+
+[CALLDATACOPY](https://www.evm.codes/#37?fork=shanghai)
 
 Unlike on EVM, on EraVM it is a simple loop over [CALLDATALOAD](#calldataload)).
 

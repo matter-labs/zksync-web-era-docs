@@ -23,7 +23,7 @@ The toolchain consists of the following:
 4. [The assembler](#assembler) which produces the zkEVM bytecode from text assembly.
 5. [Hardhat plugins](#hardhat-plugins) which set up the environment.
 
-![Compiler Toolchain Visualization](../../../assets/images/compiler-toolchain.png "Compiler Toolchain")
+![Compiler Toolchain Visualization](../../assets/images/compiler-toolchain.png "Compiler Toolchain")
 
 ## High-level Source Code Compilers
 

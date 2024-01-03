@@ -21,8 +21,6 @@ the [Shared Bridge](../../advanced-topics/shared-bridges.md) section. The Shared
 Technically, this L1 smart contract acts as a connector between Ethereum (L1) and a single L2. It checks the validity
 proof and data availability, handles L2 <-> L1 communication, finalizes L2 state transition, and more.
 
-<!-- ![diamondProxy.png](./img/diamondProxy.jpg) -->
-
 ### DiamondProxy
 
 The main contract uses [EIP-2535](https://eips.ethereum.org/EIPS/eip-2535) diamond proxy pattern. It is an in-house
@@ -243,8 +241,6 @@ Each upgrade consists of two steps:
 Please note, that both the Owner and Security council can cancel the upgrade before its execution.
 
 The diagram below outlines the complete journey from the initiation of an operation to its execution.
-
-<!-- ![governance.png](./img/governance.jpg) -->
 
 ## ValidatorTimelock
 
