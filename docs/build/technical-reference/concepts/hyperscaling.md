@@ -139,7 +139,7 @@ All Hyperchains will be sovereign in the ecosystem. This means two things.
 
 <div  align="center">
 
-![hyperscalingSovereignty](../../assets/images/hyperscalingSovereignty.png)
+![hyperscalingSovereignty](../../../assets/images/hyperscalingSovereignty.png)
 
 </div>
 
