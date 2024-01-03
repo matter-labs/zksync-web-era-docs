@@ -867,7 +867,7 @@ await txHandle.waitFinalize();
 
 Returns data from a specific transaction given by the transaction hash.
 
-Calls the [`getTransactionDetails`](../../api.md#zks-gettransactiondetails) JSON-RPC method.
+Calls the [`getTransactionDetails`](../../../api.md#zks-gettransactiondetails) JSON-RPC method.
 
 #### Inputs
 
@@ -1025,7 +1025,7 @@ console.log(`Gas for transfer tx: ${tx}`);
 
 Returns the chain id of the underlying L1.
 
-Calls the [`zks_L1ChainId`](../../api.md#zks-l1chainid) JSON-RPC method.
+Calls the [`zks_L1ChainId`](../../../api.md#zks-L1ChainId) JSON-RPC method.
 
 ```ts
 async l1ChainId(): Promise<number>

@@ -290,7 +290,7 @@ Used by `estimateDefaultBridgeDepositL2Gas` to estimate L2 gas required for toke
 
 ::: tip More info
 
-- See the [default bridges documentation](../../../reference/concepts/bridging-asset.md#default-bridges)
+- See the [default bridges documentation](../../../technical-reference/concepts/bridging-asset.md#default-bridges)
   :::
 
 #### Inputs
