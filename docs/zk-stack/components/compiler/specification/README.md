@@ -2,10 +2,10 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Compiler | zkSync Docs
+      content: Compiler Specification | zkSync Docs
 ---
 
-# Compiler
+# Compiler Specification
 
 ## Glossary
 

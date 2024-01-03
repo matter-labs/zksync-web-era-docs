@@ -35,7 +35,7 @@ While `.call` offers more flexibility compared to `.send` or `.transfer`, develo
 
 ## Use the proxy pattern at the early stage of the protocol
 
-zkSync Era is based on the zk-friendly VM. Thus, we offer [a dedicated compiler](../../build/development/compiler/compiler-toolchain/overview.md) responsible for transforming conventional Solidity and Vyper code into zkEVM bytecode.
+zkSync Era is based on the zk-friendly VM. Thus, we offer [a dedicated compiler](../../zk-stack/components/compiler/fe-equivalence/overview.md) responsible for transforming conventional Solidity and Vyper code into zkEVM bytecode.
 
 While we have extensive test coverage to ensure EVM compatibility, issues may still appear.
 We will implement the patches for these in a timely manner.

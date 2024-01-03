@@ -19,7 +19,7 @@ Although most smart contracts work out of the box, we **strongly recommend devel
 
 Currently, Solidity versions as old as `0.4.12` are supported, although **we strongly recommend using the latest supported revision of 0.8**, as older versions contain known bugs and [have limitations with our compiler](../../development/compiler/compiler-toolchain/solidity.md#limitations).
 
-Please read [this section of the docs](../../development/compiler/compiler-toolchain/solidity.md#using-libraries) if your project uses libraries.
+Please read [this section of the docs](../../docs/zk-stack/components/compiler/fe-equivalence/solidity.md#using-libraries) if your project uses libraries.
 
 ::: info Security and best practices
 Follow the [security considerations and best practices](../../quick-start/best-practices.md) to build smart contracts on zkSync Era.

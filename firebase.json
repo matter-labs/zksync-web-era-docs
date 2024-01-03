@@ -630,7 +630,12 @@
         },
         {
           "source": "/docs/api/compiler-toolchain{,/**}",
-          "destination": "/docs/tools/compiler-toolchain/",
+          "destination": "/docs/zk-stack/components/compiler/fe-equivalence/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/compiler-toolchain{,/**}",
+          "destination": "/docs/zk-stack/components/compiler/fe-equivalence/",
           "type": "302"
         },
         {

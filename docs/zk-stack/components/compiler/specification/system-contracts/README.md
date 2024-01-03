@@ -115,18 +115,17 @@ For reference, see
 [the LLVM IR codegen source code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/event.rs).
 
 ## Auxiliary Heap
-
-Both [zksolc](https://era.zksync.io/docs/tools/compiler-toolchain/solidity.html) and
-[zkvyper](https://era.zksync.io/docs/tools/compiler-toolchain/vyper.html) compilers for EraVM operate on
-[the IR level](https://era.zksync.io/docs/tools/compiler-toolchain/overview.html#ir-compilers), so they cannot control
+Both [zksolc](../../fe-equivalence/solidity.md) and
+[zkvyper](../../fe-equivalence/vyper.md) compilers for EraVM operate on
+[the IR level](../../fe-equivalence/overview.md#ir-compilers), so they cannot control
 the heap memory allocator which remains a responsibility of
-[the high-level source code compilers](https://era.zksync.io/docs/tools/compiler-toolchain/overview.html#high-level-source-code-compilers)
+[the high-level source code compilers](../../fe-equivalence/overview.md#high-level-source-code-compilers)
 emitting the IRs.
 
 However, the are several cases where EraVM needs to allocate memory on the heap and EVM does not. The auxiliary heap is
 used for these cases:
 
-1. [Returning immutables](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#setimmutable-loadimmutable)
+1. [Returning immutables](../../architecture/differences-with-ethereum.html#setimmutable-loadimmutable)
    from the constructor.
 2. Allocating calldata and return data for calling the
-   [System Contracts](https://era.zksync.io/docs/reference/architecture/system-contracts.html).
+   [System Contracts](../../architecture/system-contracts.md).
