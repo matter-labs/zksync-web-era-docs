@@ -115,7 +115,7 @@ Layered Aggregation combines the benefits of L3s with the benefits of simple agg
 
 <div  align="center">
 
-![hyperscalingLayeredAggregation](../../assets/images/hyperscalingLayeredAggregation.png)
+![hyperscalingLayeredAggregation](../../../assets/images/hyperscalingLayeredAggregation.png)
 
 </div>
 
