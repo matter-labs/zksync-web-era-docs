@@ -158,27 +158,27 @@ Visit [http://localhost:3000](http://localhost:3000) to interact with your local
 
 Navigate to the app at [http://localhost:3000](http://localhost:3000). Initially, you'll see a near-empty interface with a `+ Mint new NFT` link.
 
-![Stable marketplace](../../../../assets/images/redstone-stable-marketplace-app.png)
+![Stable marketplace](../../../assets/images/redstone-stable-marketplace-app.png)
 
 **Mint NFTs**
 
 1. Click `+ Mint new NFT` to create new NFTs.
 2. Post-minting, view your NFT in the left column.
 
-![My NFT's](../../../../assets/images/redstone-my-nfts.png)
+![My NFT's](../../../assets/images/redstone-my-nfts.png)
 
 **Post Sell Orders**
 
 1. Click `SELL` on any NFT, enter the USD value, and confirm the two prompted transactions for NFT transfer approval and marketplace order creation.
 
-![Sell NFT's](../../../../assets/images/redstone-orders.png)
+![Sell NFT's](../../../assets/images/redstone-orders.png)
 
 **Buy NFTs**
 
 1. Switch MetaMask accounts to buy an NFT.
 2. Optionally, open browser's developer tools on the network tab to observe network requests, including the two requests for ETH price data and crypto signatures before the buy transaction.
 
-![Buy NFT's](../../../../assets/images/redstone-requests.png)
+![Buy NFT's](../../../assets/images/redstone-requests.png)
 
 ### Conclusion
 

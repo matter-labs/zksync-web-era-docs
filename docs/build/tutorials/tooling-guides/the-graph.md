@@ -30,13 +30,13 @@ A subgraph extracts data from a blockchain, processing it and storing it so that
 
 Visit [https://thegraph.com/studio/](https://thegraph.com/studio/), connect your wallet. Next, click the button to create a new subgraph:
 
-![create-new-subgraph-zksync](../../../../assets/images/Screenshot-2023-09-25-4.34.png)
+![create-new-subgraph-zksync](../../../assets/images/Screenshot-2023-09-25-4.34.png)
 
 - [Create subgraph](https://thegraph.com/studio)
 
 Enter the name of the subgraph, and select the zkSync Era as the network:
 
-![Install graphcli](../../../../assets/images/Screenshot-2023-09-25-4.35.png)
+![Install graphcli](../../../assets/images/Screenshot-2023-09-25-4.35.png)
 
 Install the [@graphprotocol/graph-cli](https://www.npmjs.com/package/@graphprotocol/graph-cli):
 
@@ -531,13 +531,13 @@ Begin initializing the project with the following item options:
 - Indicate `true` to indexing events as entities
 - Approve the next steps and skip adding another contract
 
-![Example output from The Graph cli](../../../../assets/images/Screenshot-2023-09-25-4.57.45.png)
+![Example output from The Graph cli](../../../assets/images/Screenshot-2023-09-25-4.57.45.png)
 
 ### Step 4 — Authenticate and Deploy the Subgraph
 
 In order to authenticate and deploy the generated subgraph, copy the deploy key studio account:
 
-![Copy deploy key from The Graph studio](../../../../assets/images/deploy.png)
+![Copy deploy key from The Graph studio](../../../assets/images/deploy.png)
 Copy deploy key from The Graph studio
 
 Run auth command:
@@ -591,7 +591,7 @@ Please, make sure that local folder name matches name of the subgraph studio
 Visit the [studio](https://thegraph.com/studio/), select the **Playground** tab, and run the pre-loaded query:
 
 Running a query on our subgraph
-![Running a query on our subgraph](../../../../assets/images/query.png)
+![Running a query on our subgraph](../../../assets/images/query.png)
 
 To write a custom query, for example, to query the `approvals` table for a specific `owner` address:
 
