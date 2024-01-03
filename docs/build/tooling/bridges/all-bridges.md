@@ -7,8 +7,6 @@ head:
 
 # Bridges
 
-## Bridges Overview
-
 Bridges are pivotal in enhancing interoperability between different networks or layers, facilitating seamless asset and data transfer. In this section, we delve into various bridge solutions integrated within the zkSync ecosystem, providing developers and users with diverse options for cross-chain or cross-layer interactions.
 
 :::info
