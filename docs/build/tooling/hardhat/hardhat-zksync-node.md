@@ -78,7 +78,7 @@ Additionally, if either `--replay-tx` or `--fork-block-number` is specified, the
 
 ::: tip Learn More
 
-If you wish to learn more about replaying transactions or forking, check out the [In-memory node documentation](../testing/era-test-node.md).
+If you wish to learn more about replaying transactions or forking, check out the [In-memory node documentation](../../test-and-debug//era-test-node.md).
 
 :::
 

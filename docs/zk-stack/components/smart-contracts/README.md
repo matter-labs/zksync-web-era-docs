@@ -8,20 +8,20 @@ head:
 # Smart Contracts
 
 This document presumes familiarity with Rollups. For a better understanding, consider reading the overview
-[here](./overview.md).
+[here](../../overview/README.md).
 
 Rollups inherit security and decentralization guarantees from Ethereum, on which they store information about changes in
 their own state, providing validity proofs for state transition, implementing a communication mechanism, etc. In
 practice, all this is achieved by Smart Contracts built on top of Ethereum. This document details the architecture of
 the L2 contracts on Ethereum Layer 1. We also have contracts that support the hyperchain ecosystem, we cover those in
-the [Shared Bridge](./the_hyperchain/shared_bridge.md) section. The Shared Bridge relies on these individual contracts.
+the [Shared Bridge](../../advanced-topics/shared-bridges.md) section. The Shared Bridge relies on these individual contracts.
 
 ## Diamond
 
 Technically, this L1 smart contract acts as a connector between Ethereum (L1) and a single L2. It checks the validity
 proof and data availability, handles L2 <-> L1 communication, finalizes L2 state transition, and more.
 
-![diamondProxy.png](./img/diamondProxy.jpg)
+<!-- ![diamondProxy.png](./img/diamondProxy.jpg) -->
 
 ### DiamondProxy
 
@@ -244,7 +244,7 @@ Please note, that both the Owner and Security council can cancel the upgrade bef
 
 The diagram below outlines the complete journey from the initiation of an operation to its execution.
 
-![governance.png](./img/governance.jpg)
+<!-- ![governance.png](./img/governance.jpg) -->
 
 ## ValidatorTimelock
 

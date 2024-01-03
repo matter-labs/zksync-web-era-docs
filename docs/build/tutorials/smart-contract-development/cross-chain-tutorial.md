@@ -401,7 +401,7 @@ Counter was deployed to 0x3c5A6AB2390F6217C78d2F6F403A9dFb7e7784FC
 ```
 
 ::: tip
-For more information about deploying contracts, check out the [quickstart tutorial](../../building-on-zksync/hello-world.md) or the documentation for the zkSync [hardhat plugins](../../tooling/hardhat/getting-started.md).
+For more information about deploying contracts, check out the [quickstart tutorial](../../quick-start/hello-world.md) or the documentation for the zkSync [hardhat plugins](../../tooling/hardhat/getting-started.md).
 :::
 
 ## Read the counter value

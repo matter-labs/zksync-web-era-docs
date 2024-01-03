@@ -118,7 +118,7 @@ export default config;
 
 ### 4. Greeter contract compilation
 
-The [zkSync CLI](../../tools/zksync-cli/README.md) provides a `Greeter.sol` contract we will verify on zkSync Era.
+The [zkSync CLI](../../tooling/zksync-cli/README.md) provides a `Greeter.sol` contract we will verify on zkSync Era.
 
 Compile the contract using this command:
 
@@ -128,7 +128,7 @@ yarn hardhat compile
 
 ### 5. Deploy the Greeter contract
 
-The [zkSync CLI](../../tools/zksync-cli/README.md) provides a `deploy/deploy-greeter.ts` script that we will use to deploy the Greeter contract.
+The [zkSync CLI](../../tooling/zksync-cli/README.md) provides a `deploy/deploy-greeter.ts` script that we will use to deploy the Greeter contract.
 
 To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
 
