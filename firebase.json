@@ -39,11 +39,6 @@
           "type": "302"
         },
         {
-          "source": "/docs",
-          "destination": "/docs/build/",
-          "type": "302"
-        },
-        {
           "source": "/docs/dev/developer-guides/contracts/system-contracts.html",
           "destination": "/docs/reference/architecture/system-contracts.html",
           "type": "302"
@@ -371,11 +366,6 @@
         {
           "regex": "/docs/.*",
           "destination": "/",
-          "type": "302"
-        },
-        {
-          "source": "/",
-          "destination": "/build",
           "type": "302"
         },
         {
