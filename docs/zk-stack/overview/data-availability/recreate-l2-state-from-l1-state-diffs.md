@@ -36,10 +36,10 @@ cargo +nightly run -- reconstruct l1 --http-url https://eth.llamarpc.com
 
 Here's what a successful start of the tool will look like in your terminal:
 
-![L2 state reconstruction start](../../assets/images/l2-state-start.png)
+![L2 state reconstruction start](../../../assets/images/l2-state-start.png)
 
 Here's what the tool will look like as it's running:
 
-![L2 state reconstruction running](../../assets/images/l2-state-running.png)
+![L2 state reconstruction running](../../../assets/images/l2-state-running.png)
 
 Once the tool has finished syncing, you will only be warned if the published L2 state is not the same as the reconstructed L2 state. If the tool has finished syncing and you have not received any warnings, then the L2 state has been successfully reconstructed.
