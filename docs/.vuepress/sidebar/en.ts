@@ -1,645 +1,505 @@
 import { sidebar } from "vuepress-theme-hope";
 
 export const enSidebar = sidebar({
-  //The sidebar for developer guides
   "/build": [
-    // {
-    //   text: "Introduction",
-    //   link: "/build/",
-    // },
-    // {
-    //   text: "Getting started",
-    //   link: "/dev/building-on-zksync/hello-world.md",
-    //   children: [
-    //     "/dev/building-on-zksync/hello-world.md",
-    //     "/dev/building-on-zksync/interacting.md",
-    //     "/dev/building-on-zksync/best-practices.md",
-    //     "/dev/building-on-zksync/useful-address.md",
-    //   ],
-    // },
     {
       text: "Quick Start",
-      // link: "/build/quick-start/README.md",
-      collapsible: true,
-      children: [
-        { 
-          text: "Bridge funds", 
-          // link: "/build/quick-start/bridge-funds.md", 
-          collapsible: true,
-          children: [
-            "/build/quick-start/add-zksync-to-metamask.md",
-            "/build/quick-start/testnet-faucets.md",
-            "/build/quick-start/portals.md"
-          ] 
-        },
-        { 
-          text: "Deploy contract", 
-          // link: "/build/quick-start/deploy-contract.md", 
-          collapsible: true,
-          children: [
-            // "/build/quick-start/zksync-cli.md",
-            "/build/quick-start/hardhat.md", 
-            {
-              text: "Remix",
-              link: "/build/quick-start/remix.md",
-            }
-          ] },
-        { 
-          text: "Differences between zkSync Era and Ethereum", link: "/build/quick-start/differences-era-ethereum.md",
-        },
-      ]
-    },
-    {
-      text: "Development",
-      // link: "/build/development/README.md",
-      collapsible: true,
-      children: [
-        {
-          text: "Foundry",
-          // link: "/build/development/foundry/README.md",
-          collapsible: true,
-          children: [
-            "/build/development/foundry/get-started.md",
-          ]
-        },
-        {
-          text: "Hardhat",
-          // link: "/build/development/hardhat-plugins/README.md",
-          collapsible: true,
-          children: [
-            "/build/development/hardhat-plugins/hardhat-zksync-solc.md",
-            "/build/development/hardhat-plugins/hardhat-zksync-vyper.md",
-            "/build/development/hardhat-plugins/hardhat-zksync-deploy.md",
-            "/build/development/hardhat-plugins/hardhat-zksync-upgradable.md",
-            "/build/development/hardhat-plugins/hardhat-zksync-chai-matchers.md",
-            "/build/development/hardhat-plugins/hardhat-zksync-verify.md",
-            "/build/development/hardhat-plugins/hardhat-zksync-verify-vyper.md"
-          ]
-        },
-        "/build/development/IDEs.md",
-        {
-          text: "Frontend",
-          collapsible: true,
-          children: [
-            {
-              text: "Frameworks",
-              collapsible: true,
-              children: [
-                "/build/development/frontend/frameworks/wagmi.md",
-              ]
-            },
-            {
-              text: "Libraries",
-              collapsible: true,
-              children: [
-                "/build/development/frontend/libraries/viem.md",
-              ]
-            },
-            {
-              text: "Wallets",
-              collapsible: true,
-              children: [
-                "/build/development/frontend/wallets/wallet-connect.md",
-              ]
-            },
-          ]
-        },
-        {
-          text: "SDKs",
-          collapsible: true,
-          children: [
-            {
-              text: "Javascript",
-              collapsible: true,
-              children: [
-                { 
-                  text: "Ethers V5",
-                  link: "/build/development/sdks/javascript/ethers-v5.md"
-                },
-                { 
-                  text: "Ethers V6",
-                  link: "/build/development/sdks/javascript/ethers-v6.md"
-                },
-                {
-                  text: "API Reference",
-                  collapsible: true,
-                  children: [
-                    {
-                      text: "Overview",
-                      link: "/build/development/sdks/javascript/api-reference/README.md"
-                    },
-                    {
-                      text: "Provider",
-                      children: [
-                        {
-                          text: "Overview",
-                          link: "/build/development/sdks/javascript/api-reference/provider/README.md",
-                        },
-                        {
-                          text: "Account",
-                          link: "/build/development/sdks/javascript/api-reference/provider/account.md"
-                        },
-                        {
-                          text: "Block and Transaction",
-                          link: "/build/development/sdks/javascript/api-reference/provider/block-and-transaction.md"
-                        },
-                        {
-                          text: "Estimate Gas",
-                          link: "/build/development/sdks/javascript/api-reference/provider/estimate-gas.md"
-                        },
-                        {
-                          text: "Event and Log",
-                          link: "/build/development/sdks/javascript/api-reference/provider/event-and-log.md"
-                        },
-                        {
-                          text: "Network and Chain",
-                          link: "/build/development/sdks/javascript/api-reference/provider/network-and-chain.md"
-                        },
-                        {
-                          text: "Token and Contract",
-                          link: "/build/development/sdks/javascript/api-reference/provider/token-and-contract.md"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                // {
-                //   text: "Core Concepts",
-                //   link: "/build/development/sdks/javascript/core-concepts.md"
-                // }
-              ]
-            },
-            {
-              text: "Python",
-              collapsible: true,
-              // link: "/build/development/sdks/python/README.md",
-              children: [
-                {
-                  text: "Accounts: L1->L2 transactions",
-                  link: "/build/development/sdks/python/accounts-l1-l2.md"
-                },
-                {
-                  text: "Accounts",
-                  link: "/build/development/sdks/python/accounts.md"
-                },
-                {
-                  text: "API Reference",
-                  link: "/build/development/sdks/python/api-reference.md"
-                },
-                {
-                  text: "Contracts",
-                  link: "/build/development/sdks/python/contracts.md"
-                },
-                {
-                  text: "Core Concepts",
-                  link: "/build/development/sdks/python/core-concepts.md"
-                },
-                {
-                  text: "Getting Started",
-                  link: "/build/development/sdks/python/getting-started.md"
-                },
-                {
-                  text: "Paymaster utilities",
-                  link: "/build/development/sdks/python/paymaster-utils.md"
-                },
-                {
-                  text: "Providers",
-                  link: "/build/development/sdks/python/providers.md"
-                },
-                {
-                  text: "Python SDK Types",
-                  link: "/build/development/sdks/python/types.md"
-                },
-
-              ]
-            },
-            {
-              text: "Rust",
-              collapsible: true,
-              // link: "/build/development/sdks/rust/README.md",
-              children: [
-                {
-                  text: "Getting Started",
-                  link: "/build/development/sdks/rust/getting-started.md",
-                },
-                {
-                  text: "Rust SDK Contract Deployment and Interaction",
-                  link: "/build/development/sdks/rust/contract-deployment-and-interaction.md",
-                },
-              ]
-            },
-            {
-              text: "Go",
-              collapsible: true,
-              // link: "/build/development/sdks/go/README.md",
-              children: [
-                {
-                  text: "Custom Paymaster",
-                  collapsible: true,
-                  children: [
-                    {
-                      text: "Deploy Account",
-                      link: "/build/development/sdks/go/examples/custom-paymaster/deploy-account.md"
-                    },
-                    {
-                      text: "Deploy Token",
-                      link: "/build/development/sdks/go/examples/custom-paymaster/deploy-token.md"
-                    },
-                    {
-                      text: "Use Paymaster",
-                      link: "/build/development/sdks/go/examples/custom-paymaster/use-paymaster.md"
-                    },
-                  ]
-                },
-                {
-                  text: "Go SDK Create Example",
-                  link: "/build/development/sdks/go/examples/create.md"
-                },
-                {
-                  text: "Deploy contract with CREATE2 opcode",
-                  link: "/build/development/sdks/go/examples/create2.md"
-                },
-                {
-                  text: "Deposit",
-                  link: "/build/development/sdks/go/examples/deposit.md"
-                },
-                {
-                  text: "Get all confirmed tokens on zkSync Era",
-                  link: "/build/development/sdks/go/examples/get-confirmed-tokens.md"
-                },
-                {
-                  text: "Transfer",
-                  link: "/build/development/sdks/go/examples/transfer.md"
-                },
-                {
-                  text: "Withdraw",
-                  link: "/build/development/sdks/go/examples/withdraw.md"
-                },
-              ]
-            },
-            {
-              text: "Java",
-              collapsible: true,
-              // link: "/build/development/sdks/java/README.md",
-              children: [
-                {
-                  text: "Getting Started",
-                  link: "/build/development/sdks/java/getting-started.md"
-                },
-                {
-                  text: "Java SDK L1/L2 Transactions",
-                  link: "/build/development/sdks/java/accounts-l1-l2.md"
-                },
-                {
-                  text: "Accounts",
-                  link: "/build/development/sdks/java/accounts.md"
-                },
-                {
-                  text: "Providers",
-                  link: "/build/development/sdks/java/providers.md"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          text: "Web3 JSON-RPC",
-          link: "/build/development/web3-json-rpc.md"
-        },
-        {
-          text: "RPC Providers",
-          link: "/build/development/node-providers.md"
-        },
-        {
-          text: "Testing",
-          // link: "/build/development/test-and-debug/README.md",
-          collapsible: true,
-          children: [
-            {
-              text: "In-Memory Node",
-              collapsible: true,
-              children: [
-                {
-                  text: "Getting Started",
-                  link: "/build/development/test-and-debug/era-test-node/getting-started.md"
-                },
-                {
-                  text: "CLI",
-                  link: "/build/development/test-and-debug/era-test-node/cli.md"
-                },
-                {
-                  text: "Usage Examples",
-                  collapsible: true,
-                  children: [
-                    {
-                      text: "Forking",
-                      link: "/build/development/test-and-debug/era-test-node/usage-examples/forking.md"
-                    },
-                    {
-                      text: "Logging and Configuration",
-                      link: "/build/development/test-and-debug/era-test-node/usage-examples/logging-and-configuration.md"
-                    },
-                    {
-                      text: " Testing bootloader and system contracts",
-                      link: "/build/development/test-and-debug/era-test-node/usage-examples/testing-bootloader-and-system-contracts.md"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              text: "Foundry",
-              link: "/build/development/test-and-debug/era-test-node/foundry/README.md"
-            },
-            {
-              text: "Hardhat",
-              link: "/build/development/test-and-debug/era-test-node/hardhat/README.md"
-            },
-            {
-              text: "Continuous Integration (CI)",
-              link: "/build/development/test-and-debug/era-test-node/continuous-integration.md"
-            },
-          ]
-        },
-        {
-          text: "Compiler",
-          collapsible: true,
-          children: [
-            {
-              text: "Overview",
-              link: "/build/development/compiler/overview.md"
-            },
-            {
-              text: "Solidity",
-              link: "/build/development/compiler/solidity.md"
-            },
-            {
-              text: "Vyper",
-              link: "/build/development/compiler/vyper.md"
-            },
-            {
-              text: "LLVM",
-              link: "/build/development/compiler/LLVM.md"
-            },
-          ]
-        },
-        {
-          text: "Data & Analytics",
-          collapsible: true,
-          children: [
-            {
-              text: "Block Explorer",
-              link: "/build/development/data-analytics/block-explorer.md"
-            },
-            {
-              text: "Dune",
-              link: "/build/development/data-analytics/dune.md"
-            },
-            {
-              text: "Oracles",
-              collapsible: true,
-              children: [
-                {
-                  text: "Overview",
-                  link: "/build/development/data-analytics/oracles/README.md"
-                },
-                {
-                  text: "Dia",
-                  link: "/build/development/data-analytics/oracles/dia.md"
-                },
-                {
-                  text: "Redstone",
-                  link: "/build/development/data-analytics/oracles/redstone.md"
-                }
-              ]
-            },
-            {
-              text: "Indexers",
-              collapsible: true,
-              children: [
-                {
-                  text: "Data Indexers",
-                  link: "/build/development/data-analytics/data-indexers/README.md"
-                },
-                {
-                  text: "The Graph",
-                  link: "/build/development/data-analytics/data-indexers/the-graph.md"
-                },
-                {
-                  text: "Subquery",
-                  link: "/build/development/data-analytics/data-indexers/subquery.md"
-                }
-              ]
-            },
-          ]
-        }
-      ],
-    },
-    {
-      text: "Guides",
-      // link: "/build/guides/README.md",
-      collapsible: true,
-      children: [
-        {
-          text: "Account Abstraction Cookbook",
-          collapsible: true,
-          children: [
-            {
-              text: "Paymaster",
-              collapsible: false,
-              children: [
-                {
-                  text: "Overview",
-                  link: "/build/guides/paymasters/README.md"
-                },
-                {
-                  text: "Building Custom Paymaster",
-                  link: "/build/guides/paymasters/custom-paymaster-tutorial.md"
-                },
-                {
-                  text: "NFT Gated Paymaster",
-                  link: "/build/guides/paymasters/gated-nft-paymaster-tutorial.md",
-                },
-                {
-                  text: "Gasless",
-                  link: "/build/guides/paymasters/gasless.md",
-                },
-                {
-                  text: "AllowList",
-                  link: "/build/guides/paymasters/allowlist.md",
-                },
-                {
-                  text: "TimeBased",
-                  link: "/build/guides/paymasters/timebased.md",
-                },
-                {
-                  text: "ERC20Fixed",
-                  link: "/build/guides/paymasters/erc20fixed.md",
-                },
-              ]
-            },
-            {
-              text: "Daily Spending Limit Account",
-              link: "/build/guides/account-abstraction/daily-spending-limit.md"
-            },
-            {
-              text: "Account Abstraction Multisig",
-              link: "/build/guides/account-abstraction/custom-aa-tutorial.md"
-            }
-            // {
-            //   text: "Spending Rules",
-            //   link: "/build/guides/spending-rules/README.md"
-            // },
-          ],
-        },
-        {
-          text: "Verify Contracts with Hardhat",
-          link: "/build/guides/verify-contracts.md"
-        },
-        {
-          text: "Estimate Gas",
-          link: "/build/guides/estimate-gas.md"
-        },
-        {
-          text: "Useful Addresses",
-          link: "/build/guides/useful-address/useful-address.md"
-        }
-      ]
-    },
-    {
-      text: "Tutorials",
-      // link: "/build/tutorials/README.md",
       collapsible: true,
       children: [
         {
           text: "Hello World",
-          link: "/build/building-on-zksync/hello-world.md"
+          link: "/build/quick-start/hello-world.md"
         },
         {
-          text: "Transfer Token",
-          link: "/build/building-on-zksync/transfer-token.md"
-          // collapsible: true,
-          // children: [
-          //   {
-          //     text: "Crosschain Communication",
-          //     link: "/build/building-on-zksync/cross-chain-tutorial.md"
-          //   }
-          // ]
+          text: "Interacting w/ zkSync Era",
+          link: "/build/quick-start/interacting.md"
         },
         {
-          text: "L1 <> L2 ",
-          // link: "/build/tutorials/l1-l2-interop.md"
+          text: "Security and best practices",
+          link: "/build/quick-start/best-practices.md"
+        },
+        {
+          text: "Useful addresses",
+          link: "/build/quick-start/useful-address.md"
+        },
+        {
+          text: "Add zkSync to MetaMask",
+          link: "/build/quick-start/add-zksync-to-metamask.md"
+        },
+      ]
+    },
+    {
+      text: "Tutorials",
+      collapsible: true,
+      children: [
+        {
+          text: "Smart Contract Development",
           collapsible: true,
           children: [
             {
+              text: "Account Abstraction Examples",
+              collapsible: false,
+              children: [
+                {
+                  text: "Daily Spending Limit Account",
+                  link: "/build/smart-contract-development/account-abstraction/daily-spending-limit.md"
+                },
+                {
+                  text: "Account Abstraction Multisig",
+                  link: "/build/smart-contract-development/account-abstraction/custom-aa-tutorial.md"
+                },
+              ]
+            },
+            {
+              text: "Paymaster Examples",
+              collapsible: false,
+              children: [
+                {
+                  text: "Building a custom paymaster",
+                  link: "/build/smart-contract-development/paymasters/custom-paymaster-tutorial.md"
+                },
+                {
+                  text: "Gasless",
+                  link: "/build/smart-contract-development/paymasters/gasless.md",
+                },
+                {
+                  text: "AllowList",
+                  link: "/build/smart-contract-development/paymasters/allowlist.md",
+                },
+                {
+                  text: "TimeBased",
+                  link: "/build/smart-contract-development/paymasters/timebased.md",
+                },
+                {
+                  text: "ERC20Fixed",
+                  link: "/build/tutorials/smart-contract-development/paymasters/erc20fixed.md",
+                },
+              ]
+            },
+            {
               text: "Cross-chain governance",
-              link: "/build/building-on-zksync/L1L2/cross-chain-tutorial.md"
+              link: "/build/tutorials/smart-contract-development/cross-chain-tutorial.md"
+            },
+          ],
+        },
+        {
+          text: "dApp Development",
+          collapsible: true,
+          children: [
+            {
+              text: "Hello World w/ Front-End UI",
+              link: "/build/quick-start/hello-world.md"
+            },
+            {
+              text: "NFT Gated Paymaster",
+              link: "/build/tutorials/dapp-development/gated-nft-paymaster-tutorial.md",
+            },
+          ],
+        },
+        {
+          text: "Tooling Guides",
+          collapsible: true,
+          children: [
+            {
+              text: "WalletConnect",
+              link: "/build/tutorials/tooling-guides/wallet-connect.md"
+            },
+            {
+              text: "wagmi",
+              link: "/build/tutorials/tooling-guides/wagmi.md",
+            },
+            {
+              text: "API3",
+              link: "/build/tutorials/tooling-guides/api3.md",
+            },
+            {
+              text: "DIA",
+              link: "/build/tutorials/tooling-guides/dia.md",
+            },
+            {
+              text: "Redstone",
+              link: "/build/tutorials/tooling-guides/redstone.md",
+            },
+            {
+              text: "Dune Analytics",
+              link: "/build/tutorials/tooling-guides/dune-analytics.md",
+            },
+            {
+              text: "The Graph",
+              link: "/build/tutorials/tooling-guides/the-graph.md",
+            },
+            {
+              text: "SubQuery",
+              link: "/build/tutorials/tooling-guides/subquery.md",
+            },
+            {
+              text: "LayerZero",
+              link: "/build/tutorials/tooling-guides/layerzero.md",
+            },
+          ],
+        },
+        {
+          text: "How to",
+          collapsible: true,
+          children: [
+            {
+              text: "Estimate Gas",
+              link: "/build/tutorials/how-to/estimate-gas.md"
             },
             {
               text: "Send an L1 to L2 Transaction",
-              link: "/build/building-on-zksync/L1L2/send-transaction-l1-l2.md"
+              link: "/build/tutorials/how-to/send-transaction-l1-l2.md"
             },
             {
               text: "Send an L2 to L1 message",
-              link: "/build/building-on-zksync/L1L2/send-message-l2-l1.md"
+              link: "/build/tutorials/how-to/send-message-l2-l1.md"
+            },
+            {
+              text: "Transfer Token",
+              link: "/build/tutorials/how-to/transfer-token-l2.md"
+            },
+            {
+              text: "Verify Contracts with Hardhat",
+              link: "/build/tutorials/how-to/verify-contracts.md"
+            },
+          ],
+        },
+      ]
+    },
+    {
+      text: "Tooling",
+      collapsible: true,
+      children: [
+        {
+          text: "Block Explorer",
+          collapsible: true,
+          children: [
+            {
+              text: "Getting Started",
+              link: "/build/tooling/block-explorer/getting-started.md",
+            },
+            {
+              text: "Block Explorer menu",
+              link: "/build/tooling/block-explorer/block-explorer-menu",
+            },
+            {
+              text: "Contract verification",
+              link: "/build/tooling/block-explorer/contract-verification",
+            },
+            {
+              text: "Block Explorer API",
+              link: "/build/tooling/block-explorer/block-explorer-api",
+            },
+            {
+              text: "Other Block Explorers",
+              link: "/build/tooling/block-explorer/block-explorers.md",
+            },
+          ],
+        },
+        {
+          text: "zkSync Era CLI",
+          link: "/build/tooling/zksync-cli",
+        },
+        {
+          text: "Hardhat Plugins",
+          collapsible: true,
+          children: [
+            "/build/tooling/hardhat/getting-started.md",
+            "/build/tooling/hardhat/migrating-to-zksync.md",
+            "/build/tooling/hardhat/compiling-libraries",
+            "/build/tooling/hardhat/hardhat-zksync-solc.md",
+            "/build/tooling/hardhat/hardhat-zksync-vyper.md",
+            "/build/tooling/hardhat/hardhat-zksync-deploy.md",
+            "/build/tooling/hardhat/hardhat-zksync-upgradable.md",
+            "/build/tooling/hardhat/hardhat-zksync-chai-matchers.md",
+            "/build/tooling/hardhat/hardhat-zksync-verify.md",
+            "/build/tooling/hardhat/hardhat-zksync-verify-vyper.md",
+            "/build/tooling/hardhat/hardhat-zksync-toolbox.md",
+            "/build/tooling/hardhat/other-plugins.md",
+          ]
+        },
+        {
+          text: "Bridges",
+          collapsible: true,
+          children: [
+            {
+              text: "zkSync Bridges",
+              link: "/build/tooling/bridges/all-bridges.md",
+            },
+            {
+              text: "Deposit ETH to L2",
+              link: "/build/tooling/bridges/deposit-eth-to-l2.md",
+            },
+            {
+              text: "Deposit ERC-20 to L2",
+              link: "/build/tooling/bridges/deposit-erc-20-to-l2.md",
+            },
+            {
+              text: "Withdraw ETH to L1",
+              link: "/build/tooling/bridges/withdraw-eth-to-l1.md",
+            },
+            {
+              text: "Withdraw ERC-20 to L1",
+              link: "/build/tooling/bridges/withdraw-erc-20-to-l1.md",
             },
           ]
         },
         {
-          text: "L2 <> L2 (LayerZero)",
-          link: "/build/tutorials/layer-zero.md"
+          text: "Compiler Overview",
+          link: "/build/tooling/compiler-overview.md"
         },
-        // {
-        //   text: "Daily spending limit account",
-        //   link: "/build/tutorials/aa-daily-spend-limit.md",
-        // },
-        // // {
-        // //   text: "USDC paymaster tutorial with API3 dAPIs",
-        // //   link: "/build/tutorials/api3-usd-paymaster-tutorial.md",
-        // // },
-        // {
-        //   text: "Cross-chain governance",
-        //   link: "/build/tutorials/cross-chain-tutorial.md",
-        // },
-        // {
-        //   text: "Account abstraction multisig",
-        //   link: "/build/tutorials/custom-aa-tutorial.md",
-        // },
-        // {
-        //   text: "Building a custom paymaster",
-        //   link: "/build/tutorials/custom-paymaster-tutorial.md",
-        // },
-        // {
-        //   text: "Gated NFT paymaster",
-        //   link: "/build/tutorials/gated-nft-paymaster-tutorial.md",
-        // }
-      ]
+        {
+          text: "Cross Chain",
+          link: "/build/tooling/cross-chain.md"
+        },
+        {
+          text: "Data Indexers",
+          link: "/build/tooling/data-indexers.md"
+        },
+        {
+          text: "IDE",
+          link: "/build/tooling/ide.md"
+        },
+        {
+          text: "Monitoring",
+          link: "/build/tooling/monitoring.md"
+        },
+        {
+          text: "Network Faucets",
+          link: "/build/tooling/network-faucets.md"
+        },
+        {
+          text: "RPC Providers",
+          link: "/build/tooling/node-providers.md"
+        },
+        {
+          text: "Oracles",
+          link: "/build/tooling/oracles.md"
+        },
+        {
+          text: "Wallets",
+          link: "/build/tooling/wallets.md"
+        },
+        {
+          text: "NFT Marketplaces",
+          link: "/build/tooling/nft-marketplaces.md"
+        },
+      ],
     },
     {
-      text: "Community",
-      // link: "/build/community/README.md",
+      text: "Test & Debug",
       collapsible: true,
       children: [
         {
-          text: "Support",
-          link: "/build/community/support.md"
+          text: "Getting Started",
+          link: "/build/test-and-debug/getting-started.md"
         },
         {
-          text: "Showcase",
-          link: "/build/community/showcase.md"
+          text: "Docker L1 - L2 Nodes",
+          link: "/build/test-and-debug/dockerized-l1-l2-nodes.md"
         },
         {
-          text: "Tutorials (Community)",
-          link: "/build/community/community-tutorials.md"
+          text: "In-Memory Node",
+          link: "/build/test-and-debug/era-test-node.md"
         },
         {
-          text: "Ecosystem (Dappradar)",
-          link: "https://zksync.dappradar.com/"
+          text: "Continuous Integration (CI)",
+          link: "/build/test-and-debug/continuous-integration.md"
         },
         {
-          text: "Gitbook",
-          link: "https://matterlabs.gitbook.io/zksync-community-hub/"
+          text: "Hardhat",
+          link: "/build/test-and-debug/hardhat.md"
         },
+        {
+          text: "Foundry",
+          link: "/build/test-and-debug/foundry.md"
+        },
+      ]
+    },
+    {
+      text: "SDKs",
+      collapsible: true,
+      children: [
+        {
+          text: "JavaScript",
+          link: "/api/js",
+          children: [
+            {
+              text: "JavaScript Ethers V5",
+              collapsible: true,
+              // link: "/api/js",
+              children: [
+                "/api/js/getting-started",
+                "/api/js/providers",
+                "/api/js/accounts",
+                "/api/js/accounts-l1-l2",
+                "/api/js/contracts",
+                "/api/js/features",
+                "/api/js/utils",
+                "/api/js/paymaster-utils",
+                "/api/js/types",
+                "/api/js/front-end",
+              ],
+            },
+            {
+              text: "JavaScript Ethers V6",
+              collapsible: true,
+              // link: "/api/js/zksync2-js",
+              children: [
+                {
+                  text: "Getting started",
+                  link: "/api/js/zksync2-js/getting-started",
+                  collapsible: true,
+                  children: [
+                    "/api/js/zksync2-js/examples/deposit",
+                    "/api/js/zksync2-js/examples/transfer",
+                    "/api/js/zksync2-js/examples/withdraw",
+                    "/api/js/zksync2-js/examples/get-confirmed-tokens",
+                    "/api/js/zksync2-js/examples/create",
+                    "/api/js/zksync2-js/examples/create2",
+                    "/api/js/zksync2-js/examples/custom-paymaster/deploy-token",
+                    "/api/js/zksync2-js/examples/custom-paymaster/deploy-account",
+                    "/api/js/zksync2-js/examples/custom-paymaster/use-paymaster",
+                  ],
+                },
+                "/api/js/zksync2-js/providers",
+                "/api/js/zksync2-js/accounts",
+                "/api/js/zksync2-js/accounts-l1-l2",
+                "/api/js/zksync2-js/contracts",
+                "/api/js/zksync2-js/features",
+                "/api/js/zksync2-js/utils",
+                "/api/js/zksync2-js/paymaster-utils",
+                "/api/js/zksync2-js/types",
+                "/api/js/zksync2-js/front-end",
+                "/api/js/zksync2-js/migration"
+              ],
+            }
+          ]
+        },
+        {
+          text: "Python",
+          // link: "/api/python",
+          collapsible: true,
+          children: ["/api/python/getting-started", "/api/python/providers", "/api/python/accounts", "/api/python/accounts-l1-l2", "/api/python/contracts", "/api/python/types"],
+        },
+        {
+          text: "Go",
+          // link: "/api/go",
+          collapsible: true,
+          children: [
+            {
+              text: "Getting started",
+              link: "/api/go/getting-started",
+              collapsible: true,
+              children: [
+                "/api/go/examples/deposit",
+                "/api/go/examples/transfer",
+                "/api/go/examples/withdraw",
+                "/api/go/examples/get-confirmed-tokens",
+                "/api/go/examples/create",
+                "/api/go/examples/create2",
+                "/api/go/examples/custom-paymaster/deploy-token",
+                "/api/go/examples/custom-paymaster/deploy-account",
+                "/api/go/examples/custom-paymaster/use-paymaster",
+              ],
+            },
+    
+            "/api/go/clients",
+            "/api/go/accounts",
+            "/api/go/accounts-l1-l2",
+            "/api/go/contracts",
+            "/api/go/features",
+            "/api/go/paymaster-utils",
+            "/api/go/utils",
+            {
+              text: "Types",
+              link: "/api/go/types/intro",
+              collapsible: true,
+              children: ["/api/go/types/types", "/api/go/types/eip712", "/api/go/types/clients", "/api/go/types/accounts"],
+            },
+          ],
+        },
+        {
+          text: "Java", // required
+          collapsible: true,
+          // link: "/api/java/getting-started", // optional, which should be a absolute path.
+          children: ["/api/java", "/api/java/providers", "/api/java/accounts", "/api/java/accounts-l1-l2"],
+        },
+        {
+          text: "Rust", // required
+          collapsible: true,
+          // link: "/api/rust/getting-started", // optional, which should be a absolute path.
+          children: [
+            "/api/rust",
+            "/api/rust/getting-started",
+            "/api/rust/contract-deployment-and-interaction"
+          ],
+        },
+      ]
+    },
+    {
+      text: "🌐 API Reference",
+      link: "/build/api.md"
+    },
+    {
+      text: "Technical Reference",
+      collapsible: true,
+      children: [
+        {
+          text: "Concepts",
+          collapsible: true,
+          children: [
+            "/build/technical-reference/concepts/rollups.md",
+            "/build/technical-reference/concepts/zkSync.md",
+            "/build/technical-reference/concepts/validiums.md",
+            "/build/technical-reference/concepts/account-abstraction.md",
+            "/build/technical-reference/concepts/transactions.md",
+            "/build/technical-reference/concepts/blocks.md",
+            "/build/technical-reference/concepts/fee-model.md",
+            "/build/technical-reference/concepts/finality.md",
+            "/build/technical-reference/concepts/bridging-asset.md",
+            "/build/technical-reference/concepts/l1-l2-interop.md",
+          ],
+        },
+        {
+          text: "Architecture",
+          collapsible: true,
+          children: [
+            "/build/technical-reference/architecture/differences-with-ethereum.md",
+            "/build/technical-reference/architecture/system-contracts.md",
+            "/build/technical-reference/architecture/contract-development.md",
+            "/build/technical-reference/architecture/contract-deployment.md",
+            "/build/technical-reference/architecture/events.md",
+          ],
+        },
+      ]
+    },
+    {
+      text: "Support",
+      collapsible: true,
+      children: [
         {
           text: "Community Channels",
-          link: "/build/community/community-channels.md"
+          link: "/build/support/community-channels.md"
+        },
+        {
+          text: "Contribution Track",
+          link: "/build/support/contribution-track.md"
+        },
+        {
+          text: "Audits and bug bounty program",
+          link: "/build/support/audit-bug-bounty.md"
+        },
+        {
+          text: "Withdrawal Delay",
+          link: "/build/support/withdrawal-delay.md"
         },
         {
           text: "FAQs",
-          link: "/build/community/faq.md"
+          link: "/build/support/faq.md"
         }
       ]
     },
-    // {
-    //   text: "Contribution Track",
-    //   link: "/build/development/contribution-track.md",
-    // },
-  //   {
-  //     text: "How to",
-  //     link: "/dev/how-to/README.md",
-  //     children: [
-  //       "/dev/how-to/estimate-gas.md",
-  //       "/dev/how-to/send-transaction-l1-l2",
-  //       "/dev/how-to/send-message-l2-l1",
-  //       "/dev/how-to/transfer-token-l2",
-  //       "/dev/how-to/verify-contracts",
-  //     ],
-  //   },
-  //   {
-  //     text: "Tutorials",
-  //     link: "/dev/tutorials.md",
-  //     children: [
-  //       { text: "Community", link: "/dev/community-tutorials/README.md", children: [] },
-  //       { text: "zkSync Team", link: "/dev/tutorials/README.md", children: [
-  //         "/dev/tutorials/cross-chain-tutorial.md",
-  //         "/dev/tutorials/custom-aa-tutorial.md",
-  //         "/dev/tutorials/aa-daily-spend-limit.md",
-  //         "/dev/tutorials/custom-paymaster-tutorial.md",
-  //         "/dev/tutorials/api3-usd-paymaster-tutorial.md",
-  //         "/dev/tutorials/gated-nft-paymaster-tutorial.md",
-  //       ]},
-  //     ],
-  //   },
   ],
   "/run-a-node": [
     {
@@ -831,220 +691,5 @@ export const enSidebar = sidebar({
         },
       ]
     }
-  ],
-  "/reference": [
-    {
-      text: "Technical reference",
-      link: "/reference/",
-    },
-    {
-      text: "Concepts",
-      link: "/reference/concepts/rollups.md",
-      children: [
-        "/reference/concepts/rollups.md",
-        "/reference/concepts/zkSync.md",
-        "/reference/concepts/hyperscaling.md",
-        "/reference/concepts/validiums.md",
-        "/reference/concepts/account-abstraction.md",
-        "/reference/concepts/transactions.md",
-        "/reference/concepts/blocks.md",
-        "/reference/concepts/fee-model.md",
-        "/reference/concepts/finality.md",
-        "/reference/concepts/bridging-asset.md",
-        "/reference/concepts/l1-l2-interop.md",
-      ],
-    },
-    {
-      text: "Architecture",
-      link: "/reference/architecture/differences-with-ethereum.md",
-      children: [
-        "/reference/architecture/differences-with-ethereum.md",
-        "/reference/architecture/system-contracts.md",
-        "/reference/architecture/contract-development.md",
-        "/reference/architecture/contract-deployment.md",
-        "/reference/architecture/events.md",
-      ],
-    },
-    {
-      text: "Troubleshooting",
-      link: "/reference/troubleshooting/README.md",
-      children: [
-        "/reference/troubleshooting/changelog.md",
-        "/reference/troubleshooting/withdrawal-delay.md",
-        "/reference/troubleshooting/audit-bug-bounty.md",
-        "/reference/troubleshooting/docs-contribution/docs.md",
-        "/reference/troubleshooting/faq.md",
-      ],
-    },
-  ],
-  // The sidebar for Tools and SDKs
-  "/api": [
-    {
-      text: "Web3 JSON-RPC API", // required
-      link: "/api/api.md", // optional, which should be a absolute path.
-    },
-    {
-      text: "JavaScript SDK", // required
-      link: "/api/js", // optional, which should be a absolute path.
-      children: [
-        {
-          text: "JavaScript Ethers V5 SDK",
-          link: "/api/js",
-          children: [
-            "/api/js/getting-started",
-            "/api/js/providers",
-            "/api/js/accounts",
-            "/api/js/accounts-l1-l2",
-            "/api/js/contracts",
-            "/api/js/features",
-            "/api/js/utils",
-            "/api/js/paymaster-utils",
-            "/api/js/types",
-            "/api/js/front-end",
-          ],
-        },
-        {
-          text: "JavaScript Ethers V6 SDK",
-          link: "/api/js/zksync2-js",
-          children: [
-            {
-              text: "Getting started",
-              link: "/api/js/zksync2-js/getting-started",
-              collapsible: true,
-              children: [
-                "/api/js/zksync2-js/examples/deposit",
-                "/api/js/zksync2-js/examples/transfer",
-                "/api/js/zksync2-js/examples/withdraw",
-                "/api/js/zksync2-js/examples/get-confirmed-tokens",
-                "/api/js/zksync2-js/examples/create",
-                "/api/js/zksync2-js/examples/create2",
-                "/api/js/zksync2-js/examples/custom-paymaster/deploy-token",
-                "/api/js/zksync2-js/examples/custom-paymaster/deploy-account",
-                "/api/js/zksync2-js/examples/custom-paymaster/use-paymaster",
-              ],
-            },
-            "/api/js/zksync2-js/providers",
-            "/api/js/zksync2-js/accounts",
-            "/api/js/zksync2-js/accounts-l1-l2",
-            "/api/js/zksync2-js/contracts",
-            "/api/js/zksync2-js/features",
-            "/api/js/zksync2-js/utils",
-            "/api/js/zksync2-js/paymaster-utils",
-            "/api/js/zksync2-js/types",
-            "/api/js/zksync2-js/front-end",
-            "/api/js/zksync2-js/migration"
-          ],
-        }
-      ]
-    },
-    {
-      text: "Python SDK",
-      // link: "/api/python",
-      children: ["/api/python/getting-started", "/api/python/providers", "/api/python/accounts", "/api/python/accounts-l1-l2", "/api/python/contracts", "/api/python/types"],
-    },
-    {
-      text: "Go SDK",
-      // link: "/api/go",
-      children: [
-        {
-          text: "Getting started",
-          link: "/api/go/getting-started",
-          collapsible: true,
-          children: [
-            "/api/go/examples/deposit",
-            "/api/go/examples/transfer",
-            "/api/go/examples/withdraw",
-            "/api/go/examples/get-confirmed-tokens",
-            "/api/go/examples/create",
-            "/api/go/examples/create2",
-            "/api/go/examples/custom-paymaster/deploy-token",
-            "/api/go/examples/custom-paymaster/deploy-account",
-            "/api/go/examples/custom-paymaster/use-paymaster",
-          ],
-        },
-
-        "/api/go/clients",
-        "/api/go/accounts",
-        "/api/go/accounts-l1-l2",
-        "/api/go/contracts",
-        "/api/go/features",
-        "/api/go/paymaster-utils",
-        "/api/go/utils",
-        {
-          text: "Types",
-          link: "/api/go/types/intro",
-          collapsible: true,
-          children: ["/api/go/types/types", "/api/go/types/eip712", "/api/go/types/clients", "/api/go/types/accounts"],
-        },
-      ],
-    },
-    {
-      text: "Java SDK", // required
-      // link: "/api/java/getting-started", // optional, which should be a absolute path.
-      children: ["/api/java", "/api/java/providers", "/api/java/accounts", "/api/java/accounts-l1-l2"],
-    },
-    {
-      text: "Rust SDK", // required
-      link: "/api/rust/getting-started", // optional, which should be a absolute path.
-      children: [
-        "/api/rust",
-        "/api/rust/getting-started",
-        "/api/rust/contract-deployment-and-interaction"
-      ],
-    },
-  ],
-  // The sidebar for Tools and SDKs
-  "/tools": [
-    {
-      text: "Developer tools", // required
-      link: "/tools/", // optional, which should be a absolute path.
-      children: [],
-    },
-    {
-      text: "zkSync Era CLI", // required
-      link: "/tools/zksync-cli/", // optional, which should be a absolute path.
-      children: [],
-    },
-    {
-      text: "Hardhat", // required
-      link: "/tools/hardhat", // optional, which should be a absolute path.
-      children: [
-        "/tools/hardhat/getting-started",
-        "/tools/hardhat/migrating-to-zksync",
-        {
-          text: "Plugins", // required
-          link: "/tools/hardhat/plugins", // optional, which should be a absolute path.
-          collapsible: true,
-          children: [
-            "/tools/hardhat/hardhat-zksync-solc",
-            "/tools/hardhat/hardhat-zksync-vyper",
-            "/tools/hardhat/hardhat-zksync-upgradable",
-            "/tools/hardhat/hardhat-zksync-deploy",
-            "/tools/hardhat/hardhat-zksync-chai-matchers",
-            "/tools/hardhat/hardhat-zksync-verify",
-            "/tools/hardhat/hardhat-zksync-verify-vyper",
-            "/tools/hardhat/hardhat-zksync-node",
-            "/tools/hardhat/hardhat-zksync-ethers",
-            "/tools/hardhat/other-plugins",
-          ],
-        },
-        "/tools/hardhat/compiling-libraries",
-      ],
-    },
-    {
-      text: "Testing", // required
-      link: "/tools/testing/", // optional, which should be a absolute path.
-      children: ["/tools/testing/dockerized-testing.md", "/tools/testing/era-test-node.md"],
-    },
-    {
-      text: "Compiler Toolchain",
-      link: "/tools/compiler-toolchain",
-      children: ["/tools/compiler-toolchain/overview.md", "/tools/compiler-toolchain/solidity.md", "/tools/compiler-toolchain/vyper.md", "/tools/compiler-toolchain/llvm.md"],
-    },
-    {
-      text: "Block Explorer", // required
-      link: "/tools/block-explorer", // optional, which should be a absolute path.
-      children: ["/tools/block-explorer/block-explorer-menu", "/tools/block-explorer/contract-verification", "/tools/block-explorer/block-explorer-api"],
-    },
   ],
 });
