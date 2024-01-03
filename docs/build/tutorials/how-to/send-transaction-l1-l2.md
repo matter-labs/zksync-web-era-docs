@@ -82,7 +82,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
    :::
 
-4. Call the JSON-RPC method [`zks_estimateGasL1toL2`](../../../api/api.md#zks-estimategasl1tol2), wrapping the transaction data in a `CallRequest` JSON object parameter.
+4. Call the JSON-RPC method [`zks_estimateGasL1toL2`](../../api.md#zks-estimategasl1tol2), wrapping the transaction data in a `CallRequest` JSON object parameter.
 
    The method returns the amount of gas required for the transaction to succeed.
 
@@ -121,7 +121,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
    - The gas price returned at step 2 as `_gasPrice`.
    - The gas value returned at step 3 as `_l2GasLimit`.
-   - A constant representing how much gas is required to publish a byte of data from L1 to L2 as `_l2GasPerPubdataByteLimit`. At the time of writing, the JavaScript API provides this constant as [`REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT`](../../../api/js/utils.md#gas).
+   - A constant representing how much gas is required to publish a byte of data from L1 to L2 as `_l2GasPerPubdataByteLimit`. At the time of writing, the JavaScript API provides this constant as [`REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT`](../../sdks/js/utils.md#gas).
 
    ::: code-tabs
    @tab Solidity

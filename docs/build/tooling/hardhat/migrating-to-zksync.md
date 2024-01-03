@@ -250,7 +250,7 @@ import { utils, Provider, Contract, Wallet } from "zksync-ethers";
 
 You also need to use the `contract ABI` from the `artifacts-zk` folder to instantiate contracts.
 
-Apart from the same classes and methods provided by ethers, zksync-ethers includes additional methods for zksync-specific features. You can read more in the [`zksync-ethers` documentation](../../api/js/getting-started.md).
+Apart from the same classes and methods provided by ethers, zksync-ethers includes additional methods for zksync-specific features. You can read more in the [`zksync-ethers` documentation](../../sdks/js/getting-started.md).
 
 ## Verify contracts
 

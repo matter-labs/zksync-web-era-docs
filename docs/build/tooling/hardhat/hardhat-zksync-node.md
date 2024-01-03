@@ -7,7 +7,7 @@ head:
 
 # `hardhat-zksync-node`
 
-This plugin is used to provide a convenient way to run zkSync Era [In-memory node](../testing/era-test-node.md) locally using hardhat.
+This plugin is used to provide a convenient way to run zkSync Era [In-memory node](../../test-and-debug/era-test-node.md) locally using hardhat.
 
 ::: warning Platform Restrictions
 
