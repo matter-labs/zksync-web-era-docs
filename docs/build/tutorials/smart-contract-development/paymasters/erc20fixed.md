@@ -204,11 +204,7 @@ contract MyERC20 is ERC20 {
 }
 ```
 
-</details>
-
 To further validate the operations of the ERC20FixedPaymaster contract, we've provided a test script. Create a file named `erc20FixedPaymaster.test.ts` within the `/test` directory, then populate it with the subsequent script:.
-
-<details>
 
 #### erc20FixedPaymaster.test.ts
 
