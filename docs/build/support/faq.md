@@ -22,7 +22,7 @@ zkSync Era is a gigantic leap forward in Layer 2 technologies. It is a long-awai
 - **Certainty** - Unlike previous methods attempting to scale Ethereum which have in some cases offered weaker security guarantees than for L1 (e.g. sidechains, plasma, and optimistic) zkSync Era uses zero-knowledge proofs which offer _certainty_ of security.
 - **Future Proof** - Ecosystem projects that adopt zkSync Era now will enjoy all future improvements without the need to change their code, in particular coming from:
   - The prover technology: hardware acceleration and [new proof systems](https://zksync.mirror.xyz/HJ2Pj45EJkRdt5Pau-ZXwkV2ctPx8qFL19STM5jdYhc).
-  - The compiler: integration of LLVM-enabled modern programming languages. [Learn more about our compiler toolchain](../../zk-stack/components/compiler/fe-equivalence/overview.md/README.md).
+  - The compiler: integration of LLVM-enabled modern programming languages. [Learn more about our compiler toolchain](../../zk-stack/components/compiler/fe-equivalence/overview.md).
   - Other innovations like [Hyperchains, Hyperbridges and ZK Stack](../../build/technical-reference/concepts/hyperscaling.md).
 
 ## What is the zkEVM?

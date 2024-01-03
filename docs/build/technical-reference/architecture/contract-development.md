@@ -17,9 +17,11 @@ Although most smart contracts work out of the box, we **strongly recommend devel
 
 ## Solidity support
 
-Currently, Solidity versions as old as `0.4.12` are supported, although **we strongly recommend using the latest supported revision of 0.8**, as older versions contain known bugs and [have limitations with our compiler](../../development/compiler/compiler-toolchain/solidity.md#limitations).
+Currently, Solidity versions as old as `0.4.12` are supported, although **we strongly recommend using the latest supported revision of 0.8**, as older versions contain known bugs and [have limitations with our compiler](../../../zk-stack/components/compiler/fe-equivalence/solidity.md#limitations).
 
-Please read [this section of the docs](../../docs/zk-stack/components/compiler/fe-equivalence/solidity.md#using-libraries) if your project uses libraries.
+[test](../../../)
+
+Please read [this section of the docs](../../../zk-stack/components/compiler/fe-equivalence/solidity.md#using-libraries) if your project uses libraries.
 
 ::: info Security and best practices
 Follow the [security considerations and best practices](../../quick-start/best-practices.md) to build smart contracts on zkSync Era.
@@ -38,7 +40,7 @@ Although you can write smart contracts in both Solidity and Vyper, compiling the
 
 **It's strongly recommended to use the latest version of the compiler available.**
 
-You can find more information about our compilers in the [Compiler toolchain section](../../development/compiler/compiler-toolchain/README.md).
+You can find more information about our compilers in the [Compiler toolchain section](../../../zk-stack/components/compiler/fe-equivalence/README.md).
 
 **Learn more about how to install and configure the compiler Hardhat plugins in the links below:**
 

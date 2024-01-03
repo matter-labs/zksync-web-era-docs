@@ -7,10 +7,10 @@ head:
 
 # Compiler
 
-This section describes the EVM equivalence allowing developers to compile and deploy Solidity, Vyper, Yul and LLVM code to zkSync. It also goes into the architecture of that process. 
+This section describes the EVM equivalence allowing developers to compile and deploy Solidity, Vyper, Yul and LLVM code to zkSync. It also goes into the architecture of that process.
 
 We also include a specification of the compiler itself for those interested in deeper technical reference.
 
-* [Toolchain](./fe-equivalence/)
-* [Architecture](./architecture/)
-* [Specification](./specification/)
+- [Toolchain](./fe-equivalence/README.md)
+- [Architecture](./architecture/README.md)
+- [Specification](./specification/README.md)

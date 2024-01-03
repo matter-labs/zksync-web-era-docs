@@ -283,7 +283,7 @@ contract ERC721GatedPaymaster is IPaymaster, Ownable {
 
 :::info
 
-- Only the [bootloader](../../development/compiler/architecture/system-contracts.md#bootloader) is allowed to call the `validateAndPayForPaymasterTransaction` and `postTransaction` functions.
+- Only the [bootloader](../../../zk-stack/components/compiler/architecture/system-contracts.md#bootloader) is allowed to call the `validateAndPayForPaymasterTransaction` and `postTransaction` functions.
 - To implement that, the `onlyBootloader` modifier is used on these functions.
   :::
 

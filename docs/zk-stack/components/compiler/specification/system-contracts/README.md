@@ -115,6 +115,7 @@ For reference, see
 [the LLVM IR codegen source code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/event.rs).
 
 ## Auxiliary Heap
+
 Both [zksolc](../../fe-equivalence/solidity.md) and
 [zkvyper](../../fe-equivalence/vyper.md) compilers for EraVM operate on
 [the IR level](../../fe-equivalence/overview.md#ir-compilers), so they cannot control
@@ -125,7 +126,7 @@ emitting the IRs.
 However, the are several cases where EraVM needs to allocate memory on the heap and EVM does not. The auxiliary heap is
 used for these cases:
 
-1. [Returning immutables](../../architecture/differences-with-ethereum.html#setimmutable-loadimmutable)
+1. [Returning immutables](../../architecture/differences-with-ethereum.md#setimmutable-loadimmutable)
    from the constructor.
 2. Allocating calldata and return data for calling the
    [System Contracts](../../architecture/system-contracts.md).

@@ -50,7 +50,7 @@ Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply exe
 
 ::: warning Important
 
-- Contracts must be compiled using the [official zkSync Era compilers](../../development/compiler/compiler-toolchain/README.md), with their respective Hardhat plugins.
+- Contracts must be compiled using the [official zkSync Era compilers](../../../zk-stack/components/compiler/fe-equivalence/README.md), with their respective Hardhat plugins.
 - Contracts compiled with other compilers will fail to deploy to zkSync Era.
   :::
 

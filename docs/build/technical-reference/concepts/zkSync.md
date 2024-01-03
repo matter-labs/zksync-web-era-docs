@@ -102,7 +102,7 @@ For a comprehensive distinction between zkSync Era and Ethereum, read this [guid
 - Most contracts work out of the box so migrating projects is seamless.
 - Web3 API compatibility enables support of most developer tools.
 - Use existing frameworks like [Hardhat](../../tooling/hardhat/getting-started.md) and [Foundry (alpha)](https://github.com/matter-labs/foundry-zksync).
-- Compile smart contracts with custom compilers: [zksolc and zkvyper](../../zk-stack/components/compiler/fe-equivalence/).
+- Compile smart contracts with custom compilers: [zksolc and zkvyper](../../../zk-stack/components/compiler/fe-equivalence/README.md).
 - Different [tools for testing locally](../../test-and-debug/README.md).
 
 ## How to get started?

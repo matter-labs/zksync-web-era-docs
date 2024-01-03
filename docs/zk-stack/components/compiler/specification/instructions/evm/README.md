@@ -1826,11 +1826,11 @@ is common for Yul and EVMLA representations.
 
 ## [INVALID](https://www.evm.codes/#fe?fork=shanghai)
 
-This instruction is a [REVERT](#revert) with an empty data payload.
+This instruction is a REVERT with an empty data payload.
 
 ## LLVM IR
 
-The same as for [REVERT](#revert).
+The same as for REVERT.
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/return.rs#L115)
 is common for Yul and EVMLA representations.

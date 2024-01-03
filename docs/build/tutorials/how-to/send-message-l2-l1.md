@@ -221,7 +221,7 @@ Two transactions are required:
 - An L2 transaction which sends a message of arbitrary length.
 - An L1 read; implemented by a getter function on an L1 smart contract.
 
-1. Get a `Contract` object that represents the [`L1Messenger`](../../development/compiler/architecture/system-contracts.md#l1messenger) contract.
+1. Get a `Contract` object that represents the [`L1Messenger`](../../../zk-stack/components/compiler/architecture/system-contracts.md#l1messenger) contract.
 
 2. Transform the request into a raw bytes array.
 

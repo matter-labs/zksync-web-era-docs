@@ -19,7 +19,7 @@ The toolchain consists of the following:
 
 1. [High-level source code compilers](#high-level-source-code-compilers): `solc` and `vyper`.
 2. [IR compilers, front ends to LLVM](#ir-compilers): `zksolc` and `zkvyper`.
-3. [The LLVM framework](../../build/development/compiler/compiler-toolchain/llvm.md) with a zkEVM back end which emits zkEVM text assembly.
+3. [The LLVM framework](../../zk-stack/components/compiler/fe-equivalence/llvm.md) with a zkEVM back end which emits zkEVM text assembly.
 4. [The assembler](#assembler) which produces the zkEVM bytecode from text assembly.
 5. [Hardhat plugins](#hardhat-plugins) which set up the environment.
 
@@ -46,8 +46,8 @@ Follow the [security considerations and best practices](../../build/quick-start/
 
 Our toolchain includes LLVM front ends, written in Rust, that process the output of high-level source code compilers:
 
-- [zksolc](https://github.com/matter-labs/zksolc-bin) which calls `solc` as a child process. For more info, see the latest [zksolc documentation](../../build/development/compiler/compiler-toolchain/solidity.md).
-- [zkvyper](https://github.com/matter-labs/zkvyper-bin): which calls `vyper` as a child process. For more info, see the latest [zkvyper documentation](../../build/development/compiler/compiler-toolchain/vyper.md).
+- [zksolc](https://github.com/matter-labs/zksolc-bin) which calls `solc` as a child process. For more info, see the latest [zksolc documentation](../../zk-stack/components/compiler/fe-equivalence/solidity.md).
+- [zkvyper](https://github.com/matter-labs/zkvyper-bin): which calls `vyper` as a child process. For more info, see the latest [zkvyper documentation](../../zk-stack/components/compiler/fe-equivalence/vyper.md).
 
 These IR compilers perform the following steps:
 
