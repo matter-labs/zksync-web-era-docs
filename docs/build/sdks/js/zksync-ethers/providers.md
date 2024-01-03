@@ -173,7 +173,7 @@ console.log(`Gas for token approval using EIP-712 tx: ${tokenApprove}`);
 
 Returns an estimate of the amount of gas required to submit a transaction from L1 to L2 as a `bigint` object.
 
-Calls the [`zks_estimateL1ToL2`](../../api.md#zks-estimategasl1tol2) JSON-RPC method.
+Calls the [`zks_estimateL1ToL2`](../../../api.md#zks-estimategasl1tol2) JSON-RPC method.
 
 #### Inputs
 
@@ -333,7 +333,7 @@ console.log(`Gas L1 to L2: ${BigInt(gasL1ToL2)}`);
 
 Returns all balances for confirmed tokens given by an account address.
 
-Calls the [`zks_getAllAccountBalances`](../../api.md#zks-getallaccountbalances) JSON-RPC method.
+Calls the [`zks_getAllAccountBalances`](../../../api.md#zks-getallaccountbalances) JSON-RPC method.
 
 #### Inputs
 
@@ -417,7 +417,7 @@ console.log(`Block: ${toJSON(await provider.getBlock("latest", true))}`);
 
 Returns additional zkSync-specific information about the L2 block.
 
-Calls the [`zks_getBlockDetails`](../../api.md#zks-getblockdetails) JSON-RPC method.
+Calls the [`zks_getBlockDetails`](../../../api.md#zks-getblockdetails) JSON-RPC method.
 
 #### Inputs
 
@@ -444,7 +444,7 @@ console.log(`Block details: ${toJSON(await provider.getBlockDetails(90_000))}`);
 
 Returns bytecode of a transaction given by its hash.
 
-Calls the [`zks_getBytecodeByHash`](../../api.md#zks-getbytecodebyhash) JSON-RPC method.
+Calls the [`zks_getBytecodeByHash`](../../../api.md#zks-getbytecodebyhash) JSON-RPC method.
 
 #### Inputs
 
@@ -583,7 +583,7 @@ console.log(`Gas price: ${await provider.getGasPrice()}`);
 
 Returns the range of blocks contained within a batch given by batch number.
 
-Calls the [`zks_getL1BatchBlockRange`](../../api.md#zks-getl1batchblockrange) JSON-RPC method.
+Calls the [`zks_getL1BatchBlockRange`](../../../api.md#zks-getl1batchblockrange) JSON-RPC method.
 
 #### Inputs
 
@@ -611,7 +611,7 @@ console.log(`L1 batch block range: ${toJSON(await provider.getL1BatchBlockRange(
 
 Returns data pertaining to a given batch.
 
-Calls the [`zks_getL1BatchDetails`](../../api.md#zks-getl1batchdetails) JSON-RPC method.
+Calls the [`zks_getL1BatchDetails`](../../../api.md#zks-getl1batchdetails) JSON-RPC method.
 
 #### Inputs
 
@@ -639,7 +639,7 @@ console.log(`L1 batch details: ${toJSON(await provider.getL1BatchDetails(l1Batch
 
 Returns the latest L1 batch number.
 
-Calls the [`zks_getL1BatchNumber`](../../api.md#zks-l1batchnumber) JSON-RPC method.
+Calls the [`zks_getL1BatchNumber`](../../../api.md#zks-l1batchnumber) JSON-RPC method.
 
 ```ts
 async getL1BatchNumber(): Promise<number>
@@ -688,7 +688,7 @@ if (l1TxResponse) {
 
 Returns the proof for a transaction's L2 to L1 log sent via the L1Messenger system contract.
 
-Calls the [`zks_getL2ToL1LogProof`](../../api.md#zks-getl2tol1logproof) JSON-RPC method.
+Calls the [`zks_getL2ToL1LogProof`](../../../api.md#zks-getl2tol1logproof) JSON-RPC method.
 
 #### Inputs
 
@@ -742,7 +742,7 @@ console.log(`Logs: ${toJSON(await provider.getLogs({ fromBlock: 0, toBlock: 5, a
 
 Returns the main zkSync Era smart contract address.
 
-Calls the [`zks_getMainContract`](../../api.md#zks-getmaincontract) JSON-RPC method.
+Calls the [`zks_getMainContract`](../../../api.md#zks-getmaincontract) JSON-RPC method.
 
 ```ts
 async getMainContractAddress(): Promise<Address>
@@ -793,7 +793,7 @@ if (l1TxResponse) {
 
 Returns data of transactions in a block.
 
-Calls the [`zks_getRawBlockTransactions`](../../api.md#zks-getrawblocktransactions) JSON-RPC method.
+Calls the [`zks_getRawBlockTransactions`](../../../api.md#zks-getrawblocktransactions) JSON-RPC method.
 
 #### Inputs
 

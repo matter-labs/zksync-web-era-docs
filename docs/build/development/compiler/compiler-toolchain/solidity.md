@@ -120,4 +120,4 @@ The usage of libraries in Solidity is supported in zkSync Era with the following
 - If a Solidity library can be inlined (i.e. it only contains `private` or `internal` methods), it can be used without
   any additional configuration.
 - However, if a library contains at least one `public` or `external` method, it cannot be inlined and its address needs
-  to be passed explicitly to the compiler; see [compiling non-inlinable libraries](../../hardhat-plugins/compiling-libraries.md).
+  to be passed explicitly to the compiler; see [compiling non-inlinable libraries](../../../tooling/hardhat/compiling-libraries.md).

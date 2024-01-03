@@ -11,7 +11,7 @@ zkSync Era allows developers to build projects using the same programming langua
 
 ::: tip Differences with Ethereum
 
-Although most smart contracts work out of the box, we **strongly recommend developers to read about the [differences between Ethereum and zkSync Era](./differences-with-ethereum.md)**, and test their projects using the [local setup](../../test-and-debug/README.md) and in testnet.
+Although most smart contracts work out of the box, we **strongly recommend developers to read about the [differences between Ethereum and zkSync Era](./differences-with-ethereum.md)**, and test their projects using the [local setup](../../../test-and-debug/README.md) and in testnet.
 
 :::
 
@@ -22,7 +22,7 @@ Currently, Solidity versions as old as `0.4.12` are supported, although **we str
 Please read [this section of the docs](../../compiler/compiler-toolchain/solidity.md#using-libraries) if your project uses libraries.
 
 ::: info Security and best practices
-Follow the [security considerations and best practices](../../../building-on-zksync/best-practices.md) to build smart contracts on zkSync Era.
+Follow the [security considerations and best practices](../../../quick-start/best-practices.md) to build smart contracts on zkSync Era.
 :::
 
 ## Vyper support
@@ -42,5 +42,5 @@ You can find more information about our compilers in the [Compiler toolchain sec
 
 **Learn more about how to install and configure the compiler Hardhat plugins in the links below:**
 
-- [hardhat-zksync-solc documentation](../../hardhat-plugins/hardhat-zksync-solc.md)
-- [hardhat-zksync-vyper documentation](../../hardhat-plugins/hardhat-zksync-vyper.md)
+- [hardhat-zksync-solc documentation](../../../tooling/hardhat/hardhat-zksync-solc.md)
+- [hardhat-zksync-vyper documentation](../../../tooling/hardhat/hardhat-zksync-vyper.md)

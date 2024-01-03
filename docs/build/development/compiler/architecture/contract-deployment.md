@@ -25,7 +25,7 @@ To deploy a contract on zkSync Era, a user calls the `create` function of the [C
 
 We recommend using the [hardhat-zksync-deploy](../../hardhat-plugins/README.md) plugin, to simplify the deployment process. It provides classes and methods to take care of all the deployment requirements, like generating the [bytecode hash of the contract](#format-of-bytecode-hash).
 
-Here's a [step-by-step guide on how to use it](../../hardhat-plugins/getting-started.md).
+Here's a [step-by-step guide on how to use it](../../../tooling/hardhat/getting-started.md).
 
 ### Note on `factory_deps`
 
@@ -38,7 +38,7 @@ Some examples of usage are:
 - The obvious one is when you deploy a contract, you need to provide its code in the `factory_deps` field.
 - On zkSync, factories (i.e. contracts that can deploy other contracts) do not store bytecodes of their dependencies, i.e. contracts that they can deploy. They only store their hashes. That's why you need to include _all_ the bytecodes of the dependencies in the `factory_deps` field.
 
-Both of these examples are already seamlessly done under the hood by our [hardhat-zksync-deploy](../../hardhat-plugins/getting-started.md).
+Both of these examples are already seamlessly done under the hood by our [hardhat-zksync-deploy](../../../tooling/hardhat/hardhat-zksync-deploy.md).
 
 Note that the factory deps do not necessarily have to be used by the transaction in any way. These are just markers that these bytecodes should be published on L1 with this transaction. If your contract contains a lot of various factory dependencies and they do not fit inside a single L1 block, you can split the list of factory dependencies between multiple transactions.
 
@@ -72,11 +72,11 @@ For detailed information on smart contract vulnerabilities and security best pra
 
 - [Consensys smart contract best practices](https://consensys.github.io/smart-contract-best-practices/).
 - [Solidity docs security considerations](https://docs.soliditylang.org/en/latest/security-considerations.html).
-- [Security considerations and best practices on zkSync](../../../building-on-zksync/best-practices.md)
+- [Security considerations and best practices on zkSync](../../../quick-start/best-practices.md)
 
 ### Differences in `create()` behaviour
 
-To facilitate [support for account abstraction](../../concepts/account-abstraction.md), zkSync splits the nonce of each account into two parts: the deployment nonce and the transaction nonce. The deployment nonce represents the number of contracts the account has deployed using the `create()` opcode, while the transaction nonce is used for protecting against replay attacks for transactions.
+To facilitate [support for account abstraction](../../../technical-reference/concepts/account-abstraction.md), zkSync splits the nonce of each account into two parts: the deployment nonce and the transaction nonce. The deployment nonce represents the number of contracts the account has deployed using the `create()` opcode, while the transaction nonce is used for protecting against replay attacks for transactions.
 
 This distinction implies that, while the nonce on zkSync behaves similarly to Ethereum for smart contracts, calculating the address of a deployed contract for externally owned accounts (EOAs) is not as straightforward.
 
@@ -90,4 +90,4 @@ Deploying contracts on zkSync Era is also possible via L1-L2 communication.
 
 The [interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l1/contracts/zksync/interfaces/IMailbox.sol#L78) for submitting L1->L2 transactions accepts the list of all the factory dependencies required for this particular transaction. The logic for working with them is the same as for the default L2 deployments. The only difference is that since the user has already published the full preimage for the bytecodes on L1, there is no need to publish these bytecodes again on L1.
 
-To learn more about L1-L2 communication on zkSync Era, visit [this section of the docs](../../concepts/l1-l2-interop.md).
+To learn more about L1-L2 communication on zkSync Era, visit [this section of the docs](../../../technical-reference/concepts/l1-l2-interop.md).
