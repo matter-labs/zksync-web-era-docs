@@ -42,11 +42,11 @@ export const enSidebar = sidebar({
               children: [
                 {
                   text: "Daily Spending Limit Account",
-                  link: "/build/smart-contract-development/account-abstraction/daily-spending-limit.md"
+                  link: "/build/tutorials/smart-contract-development/account-abstraction/daily-spend-limit.md"
                 },
                 {
                   text: "Account Abstraction Multisig",
-                  link: "/build/smart-contract-development/account-abstraction/custom-aa-tutorial.md"
+                  link: "/build/tutorials/smart-contract-development/account-abstraction/custom-aa-tutorial.md"
                 },
               ]
             },
@@ -56,19 +56,19 @@ export const enSidebar = sidebar({
               children: [
                 {
                   text: "Building a custom paymaster",
-                  link: "/build/smart-contract-development/paymasters/custom-paymaster-tutorial.md"
+                  link: "/build/tutorials/smart-contract-development/paymasters/custom-paymaster-tutorial.md"
                 },
                 {
                   text: "Gasless",
-                  link: "/build/smart-contract-development/paymasters/gasless.md",
+                  link: "/build/tutorials/smart-contract-development/paymasters/gasless.md",
                 },
                 {
                   text: "AllowList",
-                  link: "/build/smart-contract-development/paymasters/allowlist.md",
+                  link: "/build/tutorials/smart-contract-development/paymasters/allowlist.md",
                 },
                 {
                   text: "TimeBased",
-                  link: "/build/smart-contract-development/paymasters/timebased.md",
+                  link: "/build/tutorials/smart-contract-development/paymasters/timebased.md",
                 },
                 {
                   text: "ERC20Fixed",

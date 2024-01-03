@@ -11,11 +11,13 @@ Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references
 
 ## Featured
 
-Era Test Node
+[Era Test Node](../build/test-and-debug/era-test-node.md)
 Elevate Test Quality and Debugging with Era Test Node
-Diverse Toolkit
-Explore and experiment with all your favourite Ethereum tooling and more.
-Paymasters & AA
+
+[Diverse Toolkit](../build/tooling/block-explorer/getting-started.html)
+Explore and experiment with all your favourite Ethereum tooling and more. You can start from the zkSync Block Explorer and explore from there!
+
+[Paymasters & AA]()
 Get Started with Paymasters and Account Abstraction Essentials
 
 ## Join a community

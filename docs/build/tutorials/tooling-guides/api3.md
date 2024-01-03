@@ -1,5 +1,8 @@
 ---
-description: Learn to use API3 data feeds for real-time price rates in a paymaster.
+head:
+  - - meta
+    - name: "twitter:title"
+      content: API3 | zkSync Docs
 ---
 
 # API3

@@ -1,5 +1,8 @@
 ---
-description: Fetch data using a decentralized network with SubQuery Network.
+head:
+  - - meta
+    - name: "twitter:title"
+      content: SubQuery | zkSync Docs
 ---
 
 # SubQuery

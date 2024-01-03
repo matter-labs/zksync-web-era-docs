@@ -80,9 +80,7 @@ require(
 
 Create a new file under `/deploy`, for example `deploy-erc20FixedPaymaster.ts`. Insert the provided script:
 
-<details>
-
-<summary>deploy-erc20FixedPaymaster.ts</summary>
+#### deploy-erc20FixedPaymaster.ts
 
 ```typescript
 import { Provider, Wallet } from "zksync-web3";
@@ -148,11 +146,9 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-</details>
-
-{% hint style="info" %}
+:::info
 Update the `TOKEN_ADDRESS` variable to the address of your preferred token.
-{% endhint %}
+:::
 
 Compile the contract:
 
@@ -170,9 +166,7 @@ yarn hardhat deploy --script erc20FixedPaymaster.ts
 
 To test the functionality, you can utilize a mock ERC-20 token contract. This will help confirm that the paymaster operates as expected. Inside the `/contracts/` directory, create a file named `ERC20.sol` and insert the following contract:
 
-<details>
-
-<summary>ERC20.sol</summary>
+#### ERC20.sol
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -216,7 +210,7 @@ To further validate the operations of the ERC20FixedPaymaster contract, we've pr
 
 <details>
 
-<summary>erc20FixedPaymaster.test.ts</summary>
+#### erc20FixedPaymaster.test.ts
 
 ```typescript
 import { expect } from "chai";
@@ -332,8 +326,6 @@ describe("ERC20fixedPaymaster", function () {
   });
 });
 ```
-
-</details>
 
 This particular script assesses the paymaster's ability to cover gas expenses for accounts, provided they hold a balance in the designated ERC20 token.
 

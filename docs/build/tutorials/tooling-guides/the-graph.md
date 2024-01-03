@@ -1,5 +1,8 @@
 ---
-description: Learn to use TheGraph to query zkSync chain data in real-time.
+head:
+  - - meta
+    - name: "twitter:title"
+      content: The Graph | zkSync Docs
 ---
 
 # The Graph

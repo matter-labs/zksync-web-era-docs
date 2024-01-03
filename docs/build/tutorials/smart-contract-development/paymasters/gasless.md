@@ -58,8 +58,6 @@ Create a new file under `/deploy`, for example `deploy-gaslessPaymaster.ts`. Ins
 
 Deployment script
 
-<details>
-
 ```typescript
 import { Provider, Wallet } from "zksync-web3";
 import * as ethers from "ethers";
@@ -108,8 +106,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-</details>
-
 :::info
 Be sure to add your private key to the `.env` file.;
 :::
@@ -132,9 +128,7 @@ yarn hardhat deploy-zksync --script gaslessPaymaster.ts
 
 To verify the functionality of the GaslessPaymaster contract, let's draft a quick test. Set it up by creating `gaslessTest.test.ts` in the `/test` directory and populating it with the provided script:
 
-<details>
-
-<summary>gasless.test.ts</summary>
+#### gasless.test.ts
 
 ```typescript
 import { expect } from "chai";
@@ -213,8 +207,6 @@ describe("GaslessPaymaster", function () {
   }
 });
 ```
-
-</details>
 
 This script tests whether the GaslessPaymaster contract permits a user to modify a message in the "Greeter" contract without incurring any gas charges. The necessary paymaster parameters are provided when invoking the `setGreeting` method, showcasing our gasless paymaster in action.
 

@@ -132,9 +132,9 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 </details>
 
-{% hint style="info" %}
+:::info
 Be sure to add your private key to the `.env` file.
-{% endhint %}
+:::
 
 The provided script takes care of loading environment variables, setting up a deployment wallet with the private key specified in an `.env` file, contract deployment and funding the paymaster. You can adjust the amount of ETH to fund the paymaster to your needs.
 
@@ -154,9 +154,7 @@ yarn hardhat deploy-zksync --script timeBasedPaymaster.ts
 
 To verify the functionality of the TimeBased Paymaster contract, let's draft a quick test. Set it up by creating `timeBasedPaymaster.test.ts` in the `/test` directory and populating it with the provided script:
 
-<details>
-
-<summary>timeBasedPaymaster.test.ts</summary>
+#### timeBasedPaymaster.test.ts
 
 ```typescript
 import { expect } from "chai";
@@ -250,8 +248,6 @@ describe("TimeBasedPaymaster", function () {
   });
 });
 ```
-
-</details>
 
 This script tests whether the TimeBasedPaymaster contract permits a user to modify a message in the "Greeter" contract without incurring any gas charges at different times. The necessary paymaster parameters are provided when invoking the `setGreeting` method, showcasing our time based paymaster in action.
 
