@@ -118,6 +118,68 @@ Pyth
 subql
 incentivized
 retreives
+Devs
+Ethersv
+satoshi
+Dappradar
+Zetta
+Zetta
+
+// NFT Marketplaces
+Kreatorland
+Tevaera
+ONFT
+Zonic
+
+// wallets
+Echoo
+Enkrypt
+Rabby
+Yasp
+
+// zkstack
+nocapture
+preds
+inttoptr
+syncvm
+preds
+syncvm
+nasm
+rodata
+ISZERO
+JUMPI
+ISZERO
+JUMPI
+ethir
+ptrtoint
+lshr
+preds
+inttoptr
+syncvm
+getu
+zext
+getu
+noprofile
+ptrtoint
+lshr
+syncvm
+umin
+nasm
+rodata
+iszero
+cccond
+ccret
+prodl
+prodeh
+interm
+prodm
+signv
+ashr
+noalias
+prode
+prodh
+Merklized
+reexecuted
 
 // Used programming language words
 printf
@@ -211,6 +273,8 @@ mundo
 ISTN
 Zerion
 Maverik
+freezability
+predeloyed
 
 // testing ci
 Omnibtc
