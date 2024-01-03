@@ -203,7 +203,7 @@ There are now two situations that can be observed:
 I.
 
 $$
-  EP_f > EP_{Max}
+  EP_f > EP_{Max}
 $$
 
 This means that the L1 gas price is so high that if we treated all the prices fairly, then the number of gas required to
@@ -211,7 +211,7 @@ publish guaranteed pubdata is too high, i.e. allowing at least _PG_ pubdata byte
 would to support _tx_._gasLimit_ greater that the maximum gas per transaction _TM_, allowing to run out of other finite
 resources.
 
-If $EP_f > EP_{Max}$, then the user needs to artificially increase the provided _Ef_ to bring the needed
+If $EP_f > EP_{Max}$, then the user needs to artificially increase the provided _Ef_ to bring the needed
 _tx_._gasPerPubdataByte_ to _EPmax_
 
 In this case we set the EIP1559 `baseFee` (_Base_):
@@ -224,7 +224,7 @@ Only transactions that have at least this high gasPrice will be allowed into the
 
 II.
 
-Otherwise, we keep $Base* = E_f$
+Otherwise, we keep $Base* = E_f$
 
 Note, that both cases are covered with the formula in case (1), i.e.:
 
@@ -283,15 +283,15 @@ _EO_(_tx_) — the number of L2 gas overhead the transaction should compensate f
 
 Then:
 
-_overhead_\__gas_(_tx_) = *EO*(_tx_) + *tx*.*gasPerPubdata* ⋅ *L_1_O*(_tx_)
+_overhead_\__gas_(_tx_) = _EO_(_tx_) + _tx_._gasPerPubdata_ ⋅ _L_1_O_(_tx_)
 
 When a transaction is being estimated, the server returns the following gasLimit:
 
-_tx_.*gasLimit* = *tx*.*actualGasLimit* + *overhead*\__gas_(_tx_)
+_tx_._gasLimit_ = _tx_._actualGasLimit_ + _overhead_\__gas_(_tx_)
 
 Note, that when the operator receives the transaction, it knows only _tx_._gasLimit_. The operator could derive the
 _overhead\_\_\_gas_(_tx_) and provide the bootloader with it. The bootloader will then derive
-_tx_.*actualGasLimit* = *tx*.*gasLimit* − *overhead*\_\_gas*(\_tx*) and use the formulas above to derive the overhead that
+_tx_._actualGasLimit_ = _tx_._gasLimit_ − _overhead_\_\_gas*(\_tx*) and use the formulas above to derive the overhead that
 the user should’ve paid under the derived _tx_._actualGasLimit_ to ensure that the operator does not overcharge the
 user.
 
@@ -318,10 +318,10 @@ Given the tx.gasLimit, it should find the maximal `overhead_gas(tx)`, such that 
 transaction, that is, if we denote by _Oop_ the overhead proposed by the operator, the following equation should hold:
 
 $$
-O_{op} ≤ overhead_gas(tx)
+O_{op} ≤ overhead_gas(tx)
 $$
 
-for the $tx.bodyGasLimit$ we use the $tx.bodyGasLimit$ = $tx.gasLimit − O_{op}$.
+for the $tx.bodyGasLimit$ we use the $tx.bodyGasLimit$ = $tx.gasLimit − O_{op}$.
 
 There are a few approaches that could be taken here:
 
@@ -333,15 +333,15 @@ There are a few approaches that could be taken here:
 Let’s rewrite the formula above the following way:
 
 $$
-O_{op} ≤ max(SO, MO(tx), EO(tx))
+O_{op} ≤ max(SO, MO(tx), EO(tx))
 $$
 
-So we need to find the maximal $O_{op}$, such that $O_{op} ≤ max(S_O, M_O(tx), E_O(tx))$. Note, that it means ensuring
+So we need to find the maximal $O_{op}$, such that $O_{op} ≤ max(S_O, M_O(tx), E_O(tx))$. Note, that it means ensuring
 that at least one of the following is true:
 
-1. $O_{op} ≤ S_O$
-2. $O_{op} ≤ M_O(tx)$
-3. $O_{op} ≤ E_O(tx)$
+1. $O_{op} ≤ S_O$
+2. $O_{op} ≤ M_O(tx)$
+3. $O_{op} ≤ E_O(tx)$
 
 So let’s find the largest _Oop_ for each of these and select the maximum one.
 
@@ -370,7 +370,7 @@ O_{op} \le \lceil \frac{(tx.ergsLimit - O_{op}) \cdot B_O}{T_M} \rceil   \\
 $$
 
 $$
-O_{op}  ≤ \lceil \frac{B_O \cdot (tx.ergsLimit - O_{op})}{T_M} \rceil
+O_{op}  ≤ \lceil \frac{B_O \cdot (tx.ergsLimit - O_{op})}{T_M} \rceil
 $$
 
 Note, that all numbers here are integers, so we can use the following substitution:
@@ -424,10 +424,10 @@ number by _pubdataused_. For now, this value can be provided by the operator.
 The fair price for a transaction is
 
 $$
-FairFee = E_f \cdot tx.computationalGas + EP_f \cdot pubdataused
+FairFee = E_f \cdot tx.computationalGas + EP_f \cdot pubdataused
 $$
 
-We can derive $tx.computationalGas = gasspent − pubdataused \cdot tx.gasPricePerPubdata$, where _gasspent_ is the number
+We can derive $tx.computationalGas = gasspent − pubdataused \cdot tx.gasPricePerPubdata$, where _gasspent_ is the number
 of gas spent for the transaction (can be trivially fetched in Solidity).
 
 Also, the _FairFee_ will include the actual overhead for batch that the users should pay for.
@@ -435,16 +435,16 @@ Also, the _FairFee_ will include the actual overhead for batch that the users sh
 The fee that the user has actually spent is:
 
 $$
-ActualFee = gasspent \cdot gasPrice
+ActualFee = gasspent \cdot gasPrice
 $$
 
 So we can derive the overpay as
 
 $$
-ActualFee − FairFee
+ActualFee − FairFee
 $$
 
-In order to keep the invariant of $gasUsed \cdot gasPrice = fee$ , we will formally refund
+In order to keep the invariant of $gasUsed \cdot gasPrice = fee$ , we will formally refund
 $\frac{ActualFee - FairFee}{Base}$ gas.
 
 At the moment, this counter is not accessible within the VM and so the operator is free to provide any refund it wishes
