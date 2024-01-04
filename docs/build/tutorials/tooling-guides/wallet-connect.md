@@ -9,7 +9,7 @@ head:
 
 Using WalletConnect with zkSync Era is fast and easy. Below is a quick example to get you started. Want to see it live in action? Check out the link below:
 
-{% embed url="https://codesandbox.io/p/sandbox/web3modal-v3-zksync-rslp8g?file=%2Findex.html" %}
+<https://codesandbox.io/p/sandbox/web3modal-v3-zksync-rslp8g?file=%2Findex.html>
 
 ### Introduction[​](https://docs.walletconnect.com/web3modal/react/about#introduction) <a href="#introduction" id="introduction"></a>
 

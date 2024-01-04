@@ -77,7 +77,7 @@ Jumpstart your projects with `npx zksync-cli create` using our updated templates
 #### For Frontend Development
 
 - **Frameworks**: Utilize templates for popular frameworks like Vue, React, Next.js, Nuxt, and Vite.
-- **Libraries & Tools**: Options include viem, Ethers, Web3Modal, RainbowKit.
+- **Libraries & Tools**: Options include Viem, Ethers, Web3Modal, RainbowKit.
 - **Resources**: [Frontend Templates on GitHub](https://github.com/matter-labs/zksync-frontend-templates#readme).
 
 #### For Smart Contracts
