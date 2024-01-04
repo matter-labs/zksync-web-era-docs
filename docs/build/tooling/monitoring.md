@@ -7,8 +7,6 @@ head:
 
 # Monitoring
 
-### Overview
-
 Monitoring is a crucial aspect of the development and maintenance phases for any blockchain network. It provides insights into the performance, health, and other operational aspects of the network and applications. In this section, we explore key tools that offer monitoring solutions, aiding developers in keeping a close watch on their projects within the zkSync ecosystem. These tools provide a platform for analytics, real-time monitoring, and data aggregation which are essential for making informed decisions.
 
 #### Dune Analytics

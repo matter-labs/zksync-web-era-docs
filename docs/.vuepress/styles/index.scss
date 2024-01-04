@@ -25,6 +25,7 @@
         position: relative;
         min-height: calc(100vh - 152px);
         padding-bottom: 152px;
+        background: #F7F9FC;
     }
     
     .footer-wrapper {
@@ -55,11 +56,19 @@
         color: #2C3E50 !important;
     }
 
-    [data-theme="dark"] .sidebar {
-        border-right: 1px solid rgba(38, 43, 51, 1);
+    .sidebar {
+        box-shadow: 0 0 0 0;
+    }
+
+    [data-theme="light"] .sidebar {
+        background: #E8ECF2;
+        border-right: 1px solid #DADDE5;
     }
 
     [data-theme="dark"] .sidebar {
+        border-right: 1px solid #3D424D;
+        background: #262B33;
+
         a {
             color: rgba(133, 140, 153, 1);
         }
@@ -73,6 +82,7 @@
                 color: white;
             }
         }
+        
 
     }
 
@@ -362,9 +372,29 @@
             min-width: none;
         }
     }
-    
+
+    [data-theme="dark"] .page {
+        background: #262B33;
+        // border-bottom: 1px solid #555A66;
+    }
+
+    [data-theme="light"] .page {
+        background: #F7F9FC;
+        // border-bottom: 1px solid #555A66;
+    }
+
+    .navbar {
+        box-shadow: 0 0 0 0;
+    }
+
     [data-theme="dark"] .navbar {
-        border-bottom: 1px solid rgba(38, 43, 51, 1);
+        background: #3D424D;
+        border-bottom: 1px solid #555A66;
+    }
+
+    [data-theme="light"] .navbar {
+        background: #FFF;
+        border-bottom: 1px solid #DADDE5
     }
     
     .navbar {
@@ -404,7 +434,7 @@
             -webkit-transition: .3s all ease;
             transition: .3s all ease;
             border-radius: 8px;
-            border: 1px solid hsla(0,0%,100%,.07);
+            border: 1px solid #DADDE5;
             h3 {
                 font-size: 18px;
                 font-weight: 500; 
@@ -446,19 +476,13 @@
     }
     
     [data-theme="dark"] .card-container .card .content {
-        border: 1px solid #393939;
         border-radius: 8px;
-        background-color: #252934;
-    }
-    
-    [data-theme="dark"] .card-container .card .content {
-        border: 1px solid #393939;
-        border-radius: 8px;
-        background-color: #252934;
+        border: 1px solid #555A66;
+        background: #3D424D;
     }
     
     [data-theme="light"] .card-container .card .content {
-        border: 1px solid #e5e7eb;
+        border: 1px solid #DADDE5;
         border-radius: 8px;
         background-color: $background-color;
     }
