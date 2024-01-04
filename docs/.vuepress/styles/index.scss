@@ -439,6 +439,8 @@
             transition: .3s all ease;
             border-radius: 8px;
             border: 1px solid #DADDE5;
+            background-color: #FFF;
+            height: fit-content;
             h3 {
                 font-size: 18px;
                 font-weight: 500; 
@@ -447,7 +449,6 @@
     }
     
     .card-container .card:hover {
-        // box-shadow: 0 0 8px 3px rgba(0,0,0,.15);
         transform: scale(1.025);
         opacity: 1;
         text-decoration: none !important;
@@ -457,7 +458,6 @@
     }
     
     .card-container .card .content {
-        flex-grow: 1;
         gap: 12px;
         padding: 20px;
     }
@@ -478,17 +478,17 @@
         font-size: 22px;
         font-weight: 700;
     }
+
+    [data-theme="dark"] .card {
+        background-color: #3D424D;
+    }
     
     [data-theme="dark"] .card-container .card .content {
         border-radius: 8px;
-        border: 1px solid #555A66;
-        background: #3D424D;
     }
     
     [data-theme="light"] .card-container .card .content {
-        border: 1px solid #DADDE5;
         border-radius: 8px;
-        background-color: $background-color;
     }
     
     .navbar .nav-item > .nav-link:hover::after, .navbar .nav-item > .nav-link.active::after {
