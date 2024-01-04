@@ -10,7 +10,7 @@ contributors: false
       <div class="landing">
          <div>
          <div class="hero-img">
-            <img  src="/full_logo_zksync-black.svg" 
+          <img  src="/full_logo_zksync-black.svg" 
                   alt="zkSync ERA documentation"
             >
          </div>

@@ -32,6 +32,14 @@
         background: #262B33;
     }
     
+    [data-theme="dark"] img[src*="/full_logo_zksync-white.svg"] {
+        content: url("/full_logo_zksync-white.svg");
+    }
+
+    [data-theme="light"] img[src*="/full_logo_zksync-black.svg"] {
+        content: url("/full_logo_zksync-black.svg");
+    }
+
     .footer-wrapper {
         position: absolute;
         bottom: 0;
@@ -84,10 +92,9 @@
         .sidebar-link {
             &.active {
                 color: white;
+                background: linear-gradient(90deg, rgba(23, 85, 244, 0), rgba(23, 85, 244, .5));
             }
         }
-        
-
     }
 
     .sidebar-links {
@@ -101,9 +108,9 @@
 
             &.active {
                 border-right: 2px solid #1755f4;
-                background: linear-gradient(90deg,rgba(23,85,244,0.1),rgba(23,85,244,.5));
+                background: linear-gradient(90deg, rgba(23, 85, 244, 0), rgba(23, 85, 244, .3));
                 border-left: none;
-                color: inherit;
+                color:inherit
             }
         }
     }
