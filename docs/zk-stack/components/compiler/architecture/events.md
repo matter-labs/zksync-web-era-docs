@@ -7,8 +7,6 @@ head:
 
 # Handling events
 
-## Overview
-
 Events are a mechanism to publish information to listeners outside the blockchain, given that smart contracts themselves can't read them.
 
 Blockchains are public by design, and therefore make all information available to the public, and any actions can be discovered by carefully looking into the transactions. Events are a shortcut for making specific information easily available for external systems; they let dApps keep track of, and respond to what's happening to a smart contract. They can also be searched for because they are indexable. Therefore, you should emit an event anytime something occurs in your smart contract that some system outside the blockchain should be aware of so that the outside system may listen for such occurrences.

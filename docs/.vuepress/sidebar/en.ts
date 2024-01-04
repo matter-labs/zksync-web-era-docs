@@ -41,6 +41,10 @@ export const enSidebar = sidebar({
               collapsible: false,
               children: [
                 {
+                  text: "Account Abstraction",
+                  link: "/build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md"
+                },
+                {
                   text: "Daily Spending Limit Account",
                   link: "/build/tutorials/smart-contract-development/account-abstraction/daily-spend-limit.md"
                 },
@@ -198,7 +202,11 @@ export const enSidebar = sidebar({
         },
         {
           text: "zkSync Era CLI",
-          link: "/build/tooling/zksync-cli",
+          collapsible: true,
+          children: [
+            "/build/tooling/zksync-cli/getting-started.md",
+            "/build/tooling/zksync-cli/examples/contract-interaction.md"
+          ]
         },
         {
           text: "Hardhat Plugins",
@@ -244,46 +252,53 @@ export const enSidebar = sidebar({
             },
           ]
         },
+        // {
+        //   text: "Compiler Overview",
+        //   link: "/build/tooling/compiler-overview.md"
+        // },
         {
-          text: "Compiler Overview",
-          link: "/build/tooling/compiler-overview.md"
+          text: "Community",
+          collapsible: true,
+          children: [
+            {
+              text: "Cross Chain",
+              link: "/build/tooling/cross-chain.md"
+            },
+            {
+              text: "Data Indexers",
+              link: "/build/tooling/data-indexers.md"
+            },
+            {
+              text: "Monitoring",
+              link: "/build/tooling/monitoring.md"
+            },
+            {
+              text: "Network Faucets",
+              link: "/build/tooling/network-faucets.md"
+            },
+            {
+              text: "RPC Providers",
+              link: "/build/tooling/node-providers.md"
+            },
+            {
+              text: "Oracles",
+              link: "/build/tooling/oracles.md"
+            },
+            {
+              text: "Wallets",
+              link: "/build/tooling/wallets.md"
+            },
+            {
+              text: "NFT Marketplaces",
+              link: "/build/tooling/nft-marketplaces.md"
+            },
+            {
+              text: "IDE",
+              link: "/build/tooling/ide.md"
+            },
+          ]
         },
-        {
-          text: "Cross Chain",
-          link: "/build/tooling/cross-chain.md"
-        },
-        {
-          text: "Data Indexers",
-          link: "/build/tooling/data-indexers.md"
-        },
-        {
-          text: "IDE",
-          link: "/build/tooling/ide.md"
-        },
-        {
-          text: "Monitoring",
-          link: "/build/tooling/monitoring.md"
-        },
-        {
-          text: "Network Faucets",
-          link: "/build/tooling/network-faucets.md"
-        },
-        {
-          text: "RPC Providers",
-          link: "/build/tooling/node-providers.md"
-        },
-        {
-          text: "Oracles",
-          link: "/build/tooling/oracles.md"
-        },
-        {
-          text: "Wallets",
-          link: "/build/tooling/wallets.md"
-        },
-        {
-          text: "NFT Marketplaces",
-          link: "/build/tooling/nft-marketplaces.md"
-        },
+    
       ],
     },
     {
@@ -462,7 +477,6 @@ export const enSidebar = sidebar({
             "/build/technical-reference/concepts/rollups.md",
             "/build/technical-reference/concepts/zkSync.md",
             "/build/technical-reference/concepts/validiums.md",
-            "/build/technical-reference/concepts/account-abstraction.md",
             "/build/technical-reference/concepts/transactions.md",
             "/build/technical-reference/concepts/blocks.md",
             "/build/technical-reference/concepts/fee-model.md",
