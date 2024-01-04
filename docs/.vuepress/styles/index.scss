@@ -398,13 +398,13 @@
         .card {
             flex: 1;
             margin: 10px;
-            display: flex;
+            display: block;
             min-width: 220px;
-            //box-shadow: 0 0 2px 2px rgba(0,0,0,.05);
             background: inherit;
             -webkit-transition: .3s all ease;
             transition: .3s all ease;
             border-radius: 8px;
+            border: 1px solid hsla(0,0%,100%,.07);
             h3 {
                 font-size: 18px;
                 font-weight: 500; 
@@ -413,7 +413,7 @@
     }
     
     .card-container .card:hover {
-        box-shadow: 0 0 8px 3px rgba(0,0,0,.15);
+        // box-shadow: 0 0 8px 3px rgba(0,0,0,.15);
         transform: scale(1.025);
         opacity: 1;
         text-decoration: none !important;
@@ -423,7 +423,6 @@
     }
     
     .card-container .card .content {
-        border: 1px solid hsla(0,0%,100%,.07);
         flex-grow: 1;
         gap: 12px;
         padding: 20px;
