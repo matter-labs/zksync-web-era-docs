@@ -32,12 +32,8 @@
         background: #262B33;
     }
     
-    [data-theme="dark"] img[src*="/full_logo_zksync-white.svg"] {
+    [data-theme="dark"] img[src*="/full_logo_zksync-black.svg"] {
         content: url("/full_logo_zksync-white.svg");
-    }
-
-    [data-theme="light"] img[src*="/full_logo_zksync-black.svg"] {
-        content: url("/full_logo_zksync-black.svg");
     }
 
     .footer-wrapper {
