@@ -19,7 +19,7 @@ export const enNavbar = navbar([
   }, 
   { 
     text: "Run a Node", 
-    link: "/run-a-node" 
+    link: "/infra" 
   }, 
   // { 
   //   text: "API/SDKs", 

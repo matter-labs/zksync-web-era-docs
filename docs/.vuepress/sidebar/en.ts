@@ -511,70 +511,65 @@ export const enSidebar = sidebar({
       ]
     },
   ],
-  "/run-a-node": [
+  "/infra": [
     {
       text: "Introduction",
-      link: "/run-a-node/README.md",
+      link: "/infra/README.md",
     },
     {
       text: "External Node (EN)",
-      // link: "/run-a-node/external-node/README.md",
+      // link: "/infra/external-node/README.md",
       collapsible: true,
       children: [
         {
           text: "Component Breakdown",
-          link: "/run-a-node/external-node/component-breakdown.md",
+          link: "/infra/external-node/component-breakdown.md",
         },
         {
           text: "Configuration",
-          link: "/run-a-node/external-node/configuration.md",
+          link: "/infra/external-node/configuration.md",
         },
         {
           text: "Running Node",
-          link: "/run-a-node/external-node/running-node.md",
+          link: "/infra/external-node/running-node.md",
         },
         {
           text: "API Overview",
-          link: "/run-a-node/external-node/api-overview.md",
+          link: "/infra/external-node/api-overview.md",
         },
         {
           text: "Observability",
-          link: "/run-a-node/external-node/observability.md",
+          link: "/infra/external-node/observability.md",
         },
         {
           text: "Troubleshooting",
-          link: "/run-a-node/external-node/troubleshooting.md",
+          link: "/infra/external-node/troubleshooting.md",
         }
       ],
     },
     {
       text: "zkSync",
-      // link: "/run-a-node/zksync-era/README.md",
+      // link: "/infra/zksync-era/README.md",
       collapsible: true,
       children: [
         {
           text: "Installation",
-          link: "/run-a-node/zksync-era/installation.md"
+          link: "/infra/zksync-era/installation.md"
         },
         {
           text: "Running Node",
-          link: "/run-a-node/zksync-era/running-node.md"
+          link: "/infra/zksync-era/running-node.md"
         },
         {
           text: "Development",
-          link: "/run-a-node/zksync-era/development.md"
+          link: "/infra/zksync-era/development.md"
         },
       ]
     },
-    {
-      text: "How to recreate L2 state from L1 state diffs",
-      link: "/run-a-node/recreate-l2-state-from-l1-state-diffs.md"
-    }
   ],
   "/zk-stack": [
     {
       text: "Overview",
-      // link: "/zk-stack/overview/README.md",
       collapsible: true,
       children: [
         {
