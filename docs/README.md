@@ -10,12 +10,12 @@ contributors: false
       <div class="landing">
          <div>
          <div class="hero-img">
-            <img  src="/era-dark.svg" 
+            <img  src="/full_logo_zksync-black.svg" 
                   alt="zkSync ERA documentation"
             >
          </div>
          <p class="intro-text" style="text-align:center">Welcome to zkSync Era docs!
-         <br>Guides, technical reference, and tutorials for building on zkSync Era.</p>
+         <br>All the information you need to build and deploy your project. Quickstart, Guides, Tutorials, and Developer tools.</p>
          </div>
       </div>
    </div>
@@ -24,93 +24,32 @@ contributors: false
 <section>
 
   <div class="card-container">
-    <a href="./dev/building-on-zksync/hello-world.html" class="card">
+    <a href="./build" class="card">
       <div class="content">
-        <h3>Getting started</h3>
-        <p>Build a smart contract app with zkSync Era.</p>
+        <img src="/images/landing/zkSyncDevs.png" 
+              alt="zkSync ERA documentation"
+        >
+        <h3>Build</h3>
+        <p>Find the Quickstart, Guides, Tutorials, and Developer tools you need to start with zkSync.</p>
       </div>
     </a>
-    <a href="./reference/architecture/differences-with-ethereum.html" class="card">
+    <a href="./zk-stack" class="card">
          <div class="content">
-            <h3>Era vs Ethereum</h3>
-            <p>Differences between zkSync Era and Ethereum.</p>
+          <img src="/images/landing/hyperchain.png" 
+              alt="zkStack"
+          >
+            <h3>zkStack</h3>
+            <p>Understand the protocol powering zkSync hyperchains, including zkSync Era.</p>
          </div>
     </a>
-    <a href="./reference/concepts/hyperscaling.html" class="card">
+    <a href="./infra" class="card">
       <div class="content">
-        <h3>Hyperscaling</h3>
-        <p>Scaling Ethereum beyond Era with hyperchains and ZK Stack.</p>
+      <img src="/images/landing/diverse-toolkit.png" 
+          alt="zkSync ERA documentation"
+      > 
+        <h3>Run a Node</h3>
+        <p>All the information you need to run a node for zkSync Era or your hyperchain. .</p>
       </div>
     </a>
-  </div>
-</section>
-<div class="cards-heading">
-   <span class="title-section">Developer Tools</span>
-</div>
-<section>
-  <div class="card-container">
-   <a href="./tools/" class="card">
-      <div class="content">
-        <h3>Tools overview</h3>
-        <p>Browse the most popular tools to build on zkSync Era.</p>
-      </div>
-    </a>
-   <a href="./tools/zksync-cli" class="card">
-      <div class="content">
-        <h3>zksync-cli</h3>
-        <p>A command-line tool to build and interact with zkSync Era.</p>
-      </div>
-    </a>
-   <a href="./tools/hardhat" class="card">
-      <div class="content">
-        <h3>Hardhat Plugins</h3>
-        <p>Explore Hardhat plugins for your Solidity and Vyper apps. </p>
-      </div>
-    </a>
-  </div>
-</section>
-<div class="cards-heading">
-   <span class="title-section">Tutorials</span>
-</div>
-<section>
-  <div class="card-container">
-   <a href="./dev/tutorials/cross-chain-tutorial.html" class="card">
-      <div class="content">
-        <h3>Cross-chain vote</h3>
-        <p>Use L1-L2 messages to cast a vote from Ethereum to zkSync Era.</p>
-      </div>
-   </a>
-   <a href="./dev/tutorials/custom-aa-tutorial.html" class="card">
-      <div class="content">
-        <h3>Multisig with AA</h3>
-        <p>Learn how to create a native multisig smart account on zkSync Era.</p>
-      </div>
-   </a>
-   <a href="./dev/tutorials/custom-paymaster-tutorial.html" class="card">
-         <div class="content">
-            <h3>Custom Paymaster</h3>
-            <p>Build your own paymaster to pay gas fees with ERC20 tokens.</p>
-         </div>
-    </a>
-  </div>
-</section>
-<div class="cards-heading">
-   <span class="title-section">Other Tools</span>
-</div>
-<section>
-  <div class="card-container">
-   <a href="https://portal.zksync.io/" class="card">
-      <div class="content">
-        <h3>Bridges & Wallets</h3>
-        <p>Bridge, deposit, and withdraw ERC20 tokens using native bridge or ecosystem partners.</p>
-      </div>
-   </a>
-   <a href="./api/tools/block-explorer/intro.html" class="card">
-      <div class="content">
-        <h3>Block Explorer</h3>
-        <p>Interact with zkSync Era blockchain. </p>
-      </div>
-   </a>
-  
   </div>
 </section>
