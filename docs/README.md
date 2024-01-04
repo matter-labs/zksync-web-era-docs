@@ -25,28 +25,28 @@ contributors: false
 
   <div class="card-container">
     <a href="./build" class="card">
+      <img src="/images/landing/zkSyncDevs.png" 
+            alt="zkSync ERA documentation"
+      >
       <div class="content">
-        <img src="/images/landing/zkSyncDevs.png" 
-              alt="zkSync ERA documentation"
-        >
         <h3>Build</h3>
         <p>Find the Quickstart, Guides, Tutorials, and Developer tools you need to start with zkSync.</p>
       </div>
     </a>
     <a href="./zk-stack" class="card">
+        <img src="/images/landing/hyperchain.png" 
+            alt="zkStack"
+        >
          <div class="content">
-          <img src="/images/landing/hyperchain.png" 
-              alt="zkStack"
-          >
             <h3>zkStack</h3>
             <p>Understand the protocol powering zkSync hyperchains, including zkSync Era.</p>
          </div>
     </a>
     <a href="./infra" class="card">
-      <div class="content">
       <img src="/images/landing/diverse-toolkit.png" 
           alt="zkSync ERA documentation"
       > 
+      <div class="content">
         <h3>Run a Node</h3>
         <p>All the information you need to run a node for zkSync Era or your hyperchain. .</p>
       </div>
