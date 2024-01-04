@@ -63,17 +63,18 @@ These are the addresses that have been deployed and integrated with the token br
 
 ## Sepolia Testnet contract addresses
 
-| Contract           | Address                                                                                                                             |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| DiamondInit        | [0x457701fDC6CaBc7D2EfB9b85f7faB0EE4bBD3c36](https://sepolia.etherscan.io/address/0x457701fDC6CaBc7D2EfB9b85f7faB0EE4bBD3c36#code)  |
-| DiamondProxy       | [0x9a6de0f62Aa270A8bCB1e2610078650D539B1Ef9](https://sepolia.etherscan.io/address/0x9a6de0f62Aa270A8bCB1e2610078650D539B1Ef9#code)  |
-| DiamondUpgrade     | [0xA6b2731c08385782fBaCfCcD63D3c7fc7b798E47](https://sepolia.etherscan.io/address/0xA6b2731c08385782fBaCfCcD63D3c7fc7b798E47#code)  |
-| ExecutorFacet      | [0xe6cc1455217a8BBCF2c663607A0b8c200B8732F1](https://sepolia.etherscan.io/address/0xe6cc1455217a8BBCF2c663607A0b8c200B8732F1#code)  |
-| GettersFacet       | [0x10f328c20dD2469b7e88f374B9794471599c1c8D](https://sepolia.etherscan.io/address/0x10f328c20dD2469b7e88f374B9794471599c1c8D#code)  |
-| Verifier           | [0xf07ea72e071bc21612449570C365Ff3DC9176Ecb](https://sepolia.etherscan.io/address/0xf07ea72e071bc21612449570C365Ff3DC9176Ecb#code)  |
-| MailboxFacet       | [0x2ed8eF54a16bBF721a318bd5a5C0F39Be70eaa65](https://sepolia.etherscan.io/address/0x2ed8eF54a16bBF721a318bd5a5C0F39Be70eaa65#code)  |
-| AllowList          | [0x7546a21cd4D74fc98Ef1A50145dfd8c043e2096F](https://sepolia.etherscan.io/address/0x7546a21cd4D74fc98Ef1A50145dfd8c043e2096F#code)  |
-| L2TestnetPaymaster | [0x3cb2b87d10ac01736a65688f3e0fb1b070b3eea3](https://sepolia.explorer.zksync.io/address/0x3cb2b87d10ac01736a65688f3e0fb1b070b3eea3) |
+| Contract           | Address                                                                                                                                  |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| DiamondInit        | [0x457701fDC6CaBc7D2EfB9b85f7faB0EE4bBD3c36](https://sepolia.etherscan.io/address/0x457701fDC6CaBc7D2EfB9b85f7faB0EE4bBD3c36#code)       |
+| DiamondProxy       | [0x9a6de0f62Aa270A8bCB1e2610078650D539B1Ef9](https://sepolia.etherscan.io/address/0x9a6de0f62Aa270A8bCB1e2610078650D539B1Ef9#code)       |
+| DiamondUpgrade     | [0xA6b2731c08385782fBaCfCcD63D3c7fc7b798E47](https://sepolia.etherscan.io/address/0xA6b2731c08385782fBaCfCcD63D3c7fc7b798E47#code)       |
+| ExecutorFacet      | [0xe6cc1455217a8BBCF2c663607A0b8c200B8732F1](https://sepolia.etherscan.io/address/0xe6cc1455217a8BBCF2c663607A0b8c200B8732F1#code)       |
+| GettersFacet       | [0x10f328c20dD2469b7e88f374B9794471599c1c8D](https://sepolia.etherscan.io/address/0x10f328c20dD2469b7e88f374B9794471599c1c8D#code)       |
+| Verifier           | [0xf07ea72e071bc21612449570C365Ff3DC9176Ecb](https://sepolia.etherscan.io/address/0xf07ea72e071bc21612449570C365Ff3DC9176Ecb#code)       |
+| MailboxFacet       | [0x2ed8eF54a16bBF721a318bd5a5C0F39Be70eaa65](https://sepolia.etherscan.io/address/0x2ed8eF54a16bBF721a318bd5a5C0F39Be70eaa65#code)       |
+| ValidatorTimeLock  | [0xec534db0f1b074d23445120ab386a9a4e5207f47](https://sepolia.etherscan.io/address/0xec534db0f1b074d23445120ab386a9a4e5207f47#code)       |
+| AllowList          | [0x7546a21cd4D74fc98Ef1A50145dfd8c043e2096F](https://sepolia.etherscan.io/address/0x7546a21cd4D74fc98Ef1A50145dfd8c043e2096F#code)       |
+| L2TestnetPaymaster | [0x3cb2b87d10ac01736a65688f3e0fb1b070b3eea3](https://sepolia.explorer.zksync.io/address/0x3cb2b87d10ac01736a65688f3e0fb1b070b3eea3#code) |
 
 ### Sepolia Testnet token bridge, contract addresses
 
