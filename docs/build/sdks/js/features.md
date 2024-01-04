@@ -73,13 +73,13 @@ Use custom signature `0x123456` for account, while using paymaster with address 
 
 ## Encoding paymaster params
 
-While the paymaster feature by itself does not impose any limitations on values of the `paymasterInput`, the Matter Labs team endorses certain types of [paymaster flows](../../technical-reference/concepts/account-abstraction.md#built-in-paymaster-flows) that are processable by EOAs.
+While the paymaster feature by itself does not impose any limitations on values of the `paymasterInput`, the Matter Labs team endorses certain types of [paymaster flows](../../tutorials/smart-contract-development/account-abstraction/account-abstraction.md#built-in-paymaster-flows) that are processable by EOAs.
 
 zkSync SDK provides a utility method that can be used to get the correctly formed `paymasterParams` object: [getPaymasterParams](./paymaster-utils.md#getpaymasterparams).
 
 ## See in action
 
-If you want to call the method `setGreeting` of an ethers `Contract` object called `greeter`, this would look the following way, while paying fees with the [testnet paymaster](../../technical-reference/concepts/account-abstraction.md#testnet-paymaster):
+If you want to call the method `setGreeting` of an ethers `Contract` object called `greeter`, this would look the following way, while paying fees with the [testnet paymaster](../../tutorials/smart-contract-development/account-abstraction/account-abstraction.md#testnet-paymaster):
 
 ```javascript
 // The `setGreeting` method has a single parameter -- new greeting

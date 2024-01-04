@@ -29,7 +29,7 @@ You'll gain a thorough understanding of how to create, compile, and deploy smart
 - A [Node.js](https://nodejs.org/en/download) installation running Node.js version 16.
 - Some familiarity with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../../quick-start/hello-world.md).
 - Some background knowledge on the concepts covered by the tutorial would be helpful too. Have a look at the following docs:
-  - [Account abstraction protocol](../../technical-reference/concepts/account-abstraction.md).
+  - [Account abstraction protocol](../../tutorials/smart-contract-development/account-abstraction/account-abstraction.md).
   - [Introduction to system contracts](../../technical-reference/architecture/system-contracts.md).
   - [Smart contract deployment](../../technical-reference/architecture/contract-deployment.md) on zkSyn Era.
   - [Gas estimation for transactions](../../technical-reference/concepts/fee-model.md#gas-estimation-for-transactions) guide.
@@ -293,7 +293,7 @@ The paymaster pays the transaction fees only if the user possesses one of NFT's 
 
 The input that the paymaster receives is encoded in the `paymasterInput` within the `validateAndPayForPaymasterTransaction` function.
 
-As described in [the paymaster documentation](../../technical-reference/concepts/account-abstraction.md#paymasters), there are standardized ways to encode user interactions with `paymasterInput`. To cover the gas costs of a user, we need to ensure the user has the appropriate NFT in their account.
+As described in [the paymaster documentation](../../tutorials/smart-contract-development/account-abstraction/account-abstraction.md#paymasters), there are standardized ways to encode user interactions with `paymasterInput`. To cover the gas costs of a user, we need to ensure the user has the appropriate NFT in their account.
 
 1. Firstly, we check that the `paymasterInput` is encoded and uses the `General` flow, and that the account address has a balance of at least 1 of the required NFTs.
 

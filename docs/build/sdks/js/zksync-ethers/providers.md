@@ -818,7 +818,7 @@ console.log(`Raw block transactions: ${toJSON(await provider.getRawBlockTransact
 
 ### `getTestnetPaymasterAddress`
 
-Returns the [testnet paymaster](../../../technical-reference/concepts/account-abstraction.md#paymasters) address if available, or null.
+Returns the [testnet paymaster](../../../tutorials/smart-contract-development/account-abstraction/account-abstraction.md#paymasters) address if available, or null.
 
 ```ts
 async getTestnetPaymasterAddress(): Promise<Address | null>

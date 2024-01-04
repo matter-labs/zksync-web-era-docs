@@ -103,7 +103,7 @@ Use zkSync Era's native account abstraction support for signature validation ins
 We recommend not relying on the fact that an account has an ECDSA private key, since the account may be governed by
 multisig and use another signature scheme.
 
-Read more about [zkSync Era Account Abstraction support](../../build/technical-reference/concepts/account-abstraction.md).
+Read more about [zkSync Era Account Abstraction support](../../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md).
 
 ## Use local testing environment
 

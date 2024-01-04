@@ -76,7 +76,7 @@ For detailed information on smart contract vulnerabilities and security best pra
 
 ### Differences in `create()` behaviour
 
-To facilitate [support for account abstraction](../../../../build/technical-reference/concepts/account-abstraction.md), zkSync splits the nonce of each account into two parts: the deployment nonce and the transaction nonce. The deployment nonce represents the number of contracts the account has deployed using the `create()` opcode, while the transaction nonce is used for protecting against replay attacks for transactions.
+To facilitate [support for account abstraction](../../../../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md), zkSync splits the nonce of each account into two parts: the deployment nonce and the transaction nonce. The deployment nonce represents the number of contracts the account has deployed using the `create()` opcode, while the transaction nonce is used for protecting against replay attacks for transactions.
 
 This distinction implies that, while the nonce on zkSync behaves similarly to Ethereum for smart contracts, calculating the address of a deployed contract for externally owned accounts (EOAs) is not as straightforward.
 

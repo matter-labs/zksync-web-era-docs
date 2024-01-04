@@ -68,7 +68,7 @@ The current version of zkSync Era solves the needs of most applications on Ether
 - Support for Ethereum cryptographic primitives: zkSync natively supports `keccak256`, `sha256`, and `ecrecover` via precompiles.
 - Hardhat plugin: Enables easy testing and development of smart contracts on zkSync.
 - L1 → L2 smart contract messaging: Allows developers to pass data from Ethereum to smart contracts on zkSync, providing the required information to run various smart contracts.
-- Native account abstraction: zkSync Era implements [account abstraction natively](./account-abstraction.md), which brings multiple UX improvements for all accounts.
+- Native account abstraction: zkSync Era implements [account abstraction natively](../../tutorials/smart-contract-development/account-abstraction/account-abstraction.md), which brings multiple UX improvements for all accounts.
 
 Some features that will be released in future upgrades:
 
@@ -93,7 +93,7 @@ For a comprehensive distinction between zkSync Era and Ethereum, read this [guid
 
 - Transactions have instant confirmations and fast finality on L1.
 - Transaction fees are extremely low.
-- Transaction fees can be conveniently paid with ERC20 tokens (e.g. USDC) thanks to [native account abstraction and paymasters](./account-abstraction.md).
+- Transaction fees can be conveniently paid with ERC20 tokens (e.g. USDC) thanks to [native account abstraction and paymasters](../../../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md).
 - Support for existing Ethereum-based wallets like Metamask, TrustWallet or Zerion.
 
 ## zkSync Era developer experience

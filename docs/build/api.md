@@ -656,7 +656,7 @@ curl -X POST -H "Content-Type: application/json" \
 
 ### `zks_getTestnetPaymaster`
 
-Returns the address of the [testnet paymaster](../build/technical-reference/concepts/account-abstraction.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
+Returns the address of the [testnet paymaster](../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md#testnet-paymaster): the paymaster that is available on testnets and enables paying fees in ERC-20 compatible tokens.
 
 #### Inputs
 
