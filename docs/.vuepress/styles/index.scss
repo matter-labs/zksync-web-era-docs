@@ -27,6 +27,10 @@
         padding-bottom: 152px;
         background: #F7F9FC;
     }
+
+    [data-theme="dark"] .theme-container {
+        background: #262B33;
+    }
     
     .footer-wrapper {
         position: absolute;
