@@ -11,9 +11,9 @@ head:
 
 zkSync brings forth the possibility to cover transaction fees on behalf of users through native account abstraction, promoting user experience. The `TimeBasedPaymaster` contract presented in this guide ensures transactions are validated based on the time they occur. By utilizing this guide, developers can set up, deploy, and test the `TimeBasedPaymaster` contract.
 
-{% hint style="info" %}
+:::info
 For a more in-depth understanding of the IPaymaster interface, please refer to the official zkSync documentation [here](https://era.zksync.io/docs/reference/concepts/account-abstraction.html#ipaymaster-interface).
-{% endhint %}
+:::
 
 ### Prerequisites
 

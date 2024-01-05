@@ -39,9 +39,9 @@ This script spins up three essential docker containers:
 2. **Local Geth node**: Acts as the Layer 1 (L1) for zkSync.
 3. **zkSync node**: The core component.
 
-{% hint style="info" %}
+:::info
 The first execution of the `start.sh` script should proceed without interruptions. If it halts unexpectedly, you might need to reset the local zkSync state and retry. The initialization might take up to 10 minutes initially.
-{% endhint %}
+:::
 
 ### **Understanding Network Details**
 

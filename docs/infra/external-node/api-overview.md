@@ -7,9 +7,9 @@ head:
 
 # API Overview
 
-{% hint style="info" %}
+:::info
 The API exposed by the EN is designed to be Web3-compliant. Any deviation from the Ethereum behavior is likely unintended, and we encourage users to report such discrepancies.
-{% endhint %}
+:::
 
 ### **eth namespace**
 
