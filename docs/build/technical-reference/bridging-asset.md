@@ -5,7 +5,7 @@ head:
       content: Bridging Assets | zkSync Docs
 ---
 
-# Bridging assets
+# Bridging Assets
 
 Users can deposit and withdraw assets from zkSync Era using any of the [multiple bridges](https://zksync.io/explore#bridges).
 

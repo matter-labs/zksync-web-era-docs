@@ -5,7 +5,7 @@ head:
       content: Contract Deployment | zkSync Docs
 ---
 
-# Contract deployment
+# Contract Deployment
 
 In order to maintain the same level of security as the L1, the zkSync operator is required to publish the code for each contract it deploys on the Ethereum chain. However, if multiple contracts are deployed using the same code, the operator only needs to publish it on Ethereum once. While the initial deployment of contracts can be relatively expensive, utilizing contract factories that deploy contracts with the same code multiple times can lead to huge savings compared to the L1.
 

@@ -5,7 +5,7 @@ head:
       content: zkSync Era Basics | zkSync Docs
 ---
 
-# zkSync Era basics
+# zkSync Era Overview
 
 ## Prerequisites
 

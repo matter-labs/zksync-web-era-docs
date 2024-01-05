@@ -2,12 +2,18 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Fee Mechanism | zkSync Docs
+      content: Fee Model | zkSync Docs
 ---
 
-# Fee mechanism
+# Fee Model
 
 zkSync Era's fee model is similar to Ethereum’s where `gas` is charged for computational cost, cost of publishing data on-chain and storage effects. However, zkSync Era includes additional costs for publishing to L1 and for proof generation.
+
+::: info Detailed information
+
+For a more detailed information about the fee mechanism, read the [details page in the ZK Stack section of the docs](../../zk-stack/concepts/fee-mechanism.md).
+
+:::
 
 Because the L1 gas price for publishing data (on L1) is so volatile, the amount of required L2 `gas` is variable.
 Therefore, for each block, the zkSync Era sequencer defines the following dynamic parameters:
@@ -15,21 +21,22 @@ Therefore, for each block, the zkSync Era sequencer defines the following dynami
 - `gasPrice`: the price, in gwei, of a unit of gas.
 - `gasPerPubdata`: the amount of `gas` for publishing one byte of data on Ethereum.
 
-:::warning Important
-
-- Only the L2 state storage slot updates are published on L1.
-- For example, if the same storage slot is updated 10 times in the same rollup batch, only the final update is published on Ethereum and there is therefore only one gas charge.
-  :::
-
-## Fee model overview
-
 In zkSync Era, unlike in Ethereum where each opcode has a fixed gas price, storage write charges remain dynamic due to the fluctuation of gas price on L1. Other opcode prices are constant, similar to Ethereum. See the [zkSync opcode documentation](https://github.com/matter-labs/era-zkevm_opcode_defs/blob/9307543b9ca51bd80d4f5c85d6eb80efd8b19bb2/src/lib.rs#L227) for an idea of how we calculate them.
 
 Like Ethereum, the most costly operation is a storage update. Execution of arithmetic operations is relatively cheap, as it involves computation alone and no storage changes.
 
-A considerable advantage we have over optimistic rollups is that, instead of publishing all transaction data to L1, zkSync Era only publishes state diffs, thus publishing significantly less data to L1. Another advantage is the cost-effective contract redeployment. An example is a DEX with a `PairFactory` contract for different `Pair` pools. The contract bytecode of `Pair` is only published when the first instance is deployed. After that, subsequent deployments only involve updating one storage slot which sets the contract code hash on the newly deployed `Pair` address.
+## State diffs vs transaction inputs
 
-### Design recommendations
+A considerable advantage we have over optimistic and most ZK rollups is that, instead of publishing all transaction data to L1, zkSync Era only publishes state diffs, thus publishing significantly less data to L1.
+
+:::info State diff example
+
+If an oracle updates a price in a contract using the same storage slot 10 times in the same rollup batch, only the final update is published on Ethereum and is therefore only charged once, making 9 of the 10 updates free.
+:::
+
+Another advantage is the cost-effective contract redeployment. An example is a DEX with a `PairFactory` contract for different `Pair` pools. The contract bytecode of `Pair` is only published when the first instance is deployed. After that, subsequent deployments only involve updating one storage slot which sets the contract code hash on the newly deployed `Pair` address.
+
+## Design recommendations
 
 - **Update storage slots as little as possible:** Check to see if your code can avoid unnecessary storage updates.
 - **Reuse as many storage slots as possible:** Only the final state diff is published on Ethereum.
@@ -39,7 +46,7 @@ A considerable advantage we have over optimistic rollups is that, instead of pub
 
 ## Gas estimation for transactions
 
-Ethereum has a constant of 21000 gas that covers the intrinsic costs of processing a transaction, i.e. checking the signature and updating the nonce for the account.
+Ethereum has a constant of `21000` gas that covers the intrinsic costs of processing a transaction, i.e. checking the signature and updating the nonce for the account.
 
 On zkSync Era this varies because we support custom and paymaster accounts. These accounts require a (usually) higher amount of gas than EOAs. zkSync Era provides functions for estimating the cost of a transaction regardless of the type of account.
 

@@ -5,7 +5,7 @@ head:
       content: Smart Contract Development | zkSync Docs
 ---
 
-# Smart contract development
+# Smart Contract Development
 
 zkSync Era allows developers to build projects using the same programming languages and tools used to build on Ethereum.
 

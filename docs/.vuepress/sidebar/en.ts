@@ -467,8 +467,8 @@ export const enSidebar = sidebar({
         "/build/technical-reference/bridging-asset.md",
         "/build/technical-reference/contract-development.md",
         "/build/technical-reference/contract-deployment.md",
-        "/build/technical-reference/events.md",
         "/build/technical-reference/fee-model.md",
+        "/build/technical-reference/events.md",
         "/build/technical-reference/l1-l2-interop.md",
       ]
     },
