@@ -67,7 +67,7 @@ Feel free to explore these repositories, and don't hesitate to contribute!
 
 #### Getting Started
 
-**1. Introduce Yourself on** [**zkSync Dev Discord**](https://discord.com/invite/QKSsp7tC2x)
+**1. Introduce Yourself on** [**zkSync Discord**](https://discord.com/invite/QKSsp7tC2x)
 
 - Join our Discord channel and say 'hi' in the `#introductions` thread. Share what interests you and what you're hoping to learn or contribute.
 
@@ -83,7 +83,7 @@ Feel free to explore these repositories, and don't hesitate to contribute!
 
 **4. Deploy Your First Contract Using** [**zkSync-CLI**](https://github.com/matter-labs/zksync-cli)
 
-- Familiarize yourself with the zkSync-CLI tool and deploy your first contract on the zkSync Era testnet. Checkout the zkSync-cli documentation [here](../../build/tooling/zksync-cli/README.md).
+- Familiarize yourself with the zkSync-CLI tool and deploy your first contract on the zkSync Era testnet. Checkout the zkSync-cli documentation [here](../../build/tooling/zksync-cli/getting-started.md).
 
 **5. Tackle a 'Good First Issue'**
 

@@ -25,8 +25,17 @@
         position: relative;
         min-height: calc(100vh - 152px);
         padding-bottom: 152px;
+        background: #F7F9FC;
+    }
+
+    [data-theme="dark"] .theme-container {
+        background: #262B33;
     }
     
+    [data-theme="dark"] img[src*="/full_logo_zksync-black.svg"] {
+        content: url("/full_logo_zksync-white.svg");
+    }
+
     .footer-wrapper {
         position: absolute;
         bottom: 0;
@@ -55,11 +64,19 @@
         color: #2C3E50 !important;
     }
 
-    [data-theme="dark"] .sidebar {
-        border-right: 1px solid rgba(38, 43, 51, 1);
+    .sidebar {
+        box-shadow: 0 0 0 0;
+    }
+
+    [data-theme="light"] .sidebar {
+        background: #E8ECF2;
+        border-right: 1px solid #DADDE5;
     }
 
     [data-theme="dark"] .sidebar {
+        border-right: 1px solid #3D424D;
+        background: #262B33;
+
         a {
             color: rgba(133, 140, 153, 1);
         }
@@ -71,9 +88,9 @@
         .sidebar-link {
             &.active {
                 color: white;
+                background: linear-gradient(90deg, rgba(23, 85, 244, 0), rgba(23, 85, 244, .5));
             }
         }
-
     }
 
     .sidebar-links {
@@ -87,9 +104,9 @@
 
             &.active {
                 border-right: 2px solid #1755f4;
-                background: linear-gradient(90deg,rgba(23,85,244,0.1),rgba(23,85,244,.5));
+                background: linear-gradient(90deg, rgba(23, 85, 244, 0), rgba(23, 85, 244, .3));
                 border-left: none;
-                color: inherit;
+                color:inherit
             }
         }
     }
@@ -362,9 +379,29 @@
             min-width: none;
         }
     }
-    
+
+    [data-theme="dark"] .page {
+        background: #262B33;
+        // border-bottom: 1px solid #555A66;
+    }
+
+    [data-theme="light"] .page {
+        background: #F7F9FC;
+        // border-bottom: 1px solid #555A66;
+    }
+
+    .navbar {
+        box-shadow: 0 0 0 0;
+    }
+
     [data-theme="dark"] .navbar {
-        border-bottom: 1px solid rgba(38, 43, 51, 1);
+        background: #3D424D;
+        border-bottom: 1px solid #555A66;
+    }
+
+    [data-theme="light"] .navbar {
+        background: #FFF;
+        border-bottom: 1px solid #DADDE5
     }
     
     .navbar {
@@ -389,22 +426,23 @@
     }
 
     .card-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        display: grid;
+        grid-auto-columns: min-content;
+        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
         box-sizing: border-box;
-        flex-flow: row wrap;
     
         .card {
             flex: 1;
-            margin: 10px;
-            display: flex;
+            display: block;
             min-width: 220px;
-            //box-shadow: 0 0 2px 2px rgba(0,0,0,.05);
             background: inherit;
             -webkit-transition: .3s all ease;
             transition: .3s all ease;
             border-radius: 8px;
+            border: 1px solid #DADDE5;
+            background-color: #FFF;
+            overflow: hidden;
             h3 {
                 font-size: 18px;
                 font-weight: 500; 
@@ -413,7 +451,6 @@
     }
     
     .card-container .card:hover {
-        box-shadow: 0 0 8px 3px rgba(0,0,0,.15);
         transform: scale(1.025);
         opacity: 1;
         text-decoration: none !important;
@@ -423,16 +460,15 @@
     }
     
     .card-container .card .content {
-        border: 1px solid hsla(0,0%,100%,.07);
-        flex-grow: 1;
         gap: 12px;
         padding: 20px;
+        min-height: 150px;
     }
     
     .cards-heading {
         margin-top: 40px;
         margin-bottom: 20px;
-        color: #1e69ff;
+        text-align: center;
     }
     
     .intro-text {
@@ -445,23 +481,17 @@
         font-size: 22px;
         font-weight: 700;
     }
-    
-    [data-theme="dark"] .card-container .card .content {
-        border: 1px solid #393939;
-        border-radius: 8px;
-        background-color: #252934;
+
+    [data-theme="dark"] .card {
+        background-color: #3D424D;
     }
     
     [data-theme="dark"] .card-container .card .content {
-        border: 1px solid #393939;
         border-radius: 8px;
-        background-color: #252934;
     }
     
     [data-theme="light"] .card-container .card .content {
-        border: 1px solid #e5e7eb;
         border-radius: 8px;
-        background-color: $background-color;
     }
     
     .navbar .nav-item > .nav-link:hover::after, .navbar .nav-item > .nav-link.active::after {

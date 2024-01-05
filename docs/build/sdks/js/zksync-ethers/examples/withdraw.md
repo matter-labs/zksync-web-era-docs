@@ -13,7 +13,7 @@ When it comes to withdrawals there are several notes that needs to be taken into
   - Executing withdrawal transaction on L2 which initiates submission to L1.
   - Executing finalize withdrawal after the withdrawal transaction is submitted to L1.
 - The duration for [submitting a withdrawal transaction to L1](../../../../support/withdrawal-delay.md) can last up to 24 hours.
-- On the testnet, withdrawals are [automatically finalized](../../../../technical-reference/concepts/bridging-asset.md#withdrawals-to-l1).
+- On the testnet, withdrawals are [automatically finalized](../../../../technical-reference/bridging-asset.md#withdrawals-to-l1).
   There is no need to execute finalize withdrawal step, otherwise, an error with code `jj` would occur.
 
 ## Withdraw ETH

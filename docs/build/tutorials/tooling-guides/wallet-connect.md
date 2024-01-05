@@ -7,19 +7,17 @@ head:
 
 # WalletConnect
 
-Using WalletConnect with zkSync Era is fast and easy. Below is a quick example to get you started. Want to see it live in action? Check out the link below:
+Using WalletConnect with zkSync Era is fast and easy. Below is a quick example to get you started.
 
-<https://codesandbox.io/p/sandbox/web3modal-v3-zksync-rslp8g?file=%2Findex.html>
+WalletConnect's [Web3Modal React](https://docs.walletconnect.com/web3modal/react/about#introduction) integrates with the Wagmi library, offering a suite of React Hooks to streamline your dapp development. This enables effortless message signing, smart contract interactions, and additional functionalities.
 
-### Introduction[​](https://docs.walletconnect.com/web3modal/react/about#introduction) <a href="#introduction" id="introduction"></a>
+::: info Don't have a project ID?
 
-Web3Modal React integrates with the Wagmi library, offering a suite of React Hooks to streamline your dapp development. This enables effortless message signing, smart contract interactions, and additional functionalities.
+Head over to [WalletConnect Cloud](https://cloud.walletconnect.com/sign-in) and create a new project now! This is a requirement for using WalletConnect.
 
-### Don't have a project ID?
+:::
 
-Head over to WalletConnect Cloud and create a new project now! This is a requirement for using WalletConnect.
-
-### Installation[​](https://docs.walletconnect.com/web3modal/react/about#installation) <a href="#installation" id="installation"></a>
+## Installation
 
 ::: code-tabs
 @tab yarn
@@ -36,7 +34,9 @@ npm install @web3modal/wagmi wagmi viem
 
 :::
 
-### Implementation[​](https://docs.walletconnect.com/web3modal/react/about#implementation) <a href="#implementation" id="implementation"></a>
+You can find more details about the installation in the [WalletConnect documentation](https://docs.walletconnect.com/web3modal/react/about#installation).
+
+## Implementation
 
 You can start Web3Modal configuration using either **default** or **custom** mode.
 
@@ -44,11 +44,9 @@ Default mode will implement WalletConnect, Browser Wallets (injected) and [Wagmi
 
 Start by importing `createWeb3Modal`, `defaultWagmiConfig` and wagmi packages, then create `wagmiConfig` using `defaultWagmiConfig` function as shown below. Finally, pass `wagmiConfig` to `createWeb3Modal`.
 
-<details>
+Find an example below:
 
-<summary>WalletConnect web3modal</summary>
-
-```tsx
+```ts
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createWeb3Modal, defaultWagmiConfig } from "@web3modal/wagmi/react";
@@ -99,4 +97,4 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 );
 ```
 
-</details>
+You can find more information about how to integrate Web3Modal in the [WalletConnect documentation](https://docs.walletconnect.com/web3modal/react/about#implementation).

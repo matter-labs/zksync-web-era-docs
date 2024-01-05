@@ -2,9 +2,9 @@
 
 This document presents a series of test examples centred around time manipulation in the zkSync Era environment. Each example highlights a unique scenario, ensuring developers understand how to simulate specific blockchain states.
 
-{% hint style="info" %}
+:::info
 To utilize these methods, you need to run tests against `era_test_node`.
-{% endhint %}
+:::
 
 ### **Mining a Single Block**
 

@@ -41,6 +41,10 @@ export const enSidebar = sidebar({
               collapsible: false,
               children: [
                 {
+                  text: "Account Abstraction",
+                  link: "/build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md"
+                },
+                {
                   text: "Daily Spending Limit Account",
                   link: "/build/tutorials/smart-contract-development/account-abstraction/daily-spend-limit.md"
                 },
@@ -121,10 +125,6 @@ export const enSidebar = sidebar({
               link: "/build/tutorials/tooling-guides/redstone.md",
             },
             {
-              text: "Dune Analytics",
-              link: "/build/tutorials/tooling-guides/dune-analytics.md",
-            },
-            {
               text: "The Graph",
               link: "/build/tutorials/tooling-guides/the-graph.md",
             },
@@ -142,6 +142,22 @@ export const enSidebar = sidebar({
           text: "How to",
           collapsible: true,
           children: [
+            {
+              text: "Deposit ETH",
+              link: "/build/tutorials/how-to/deposit-eth-to-l2.md"
+            },
+            {
+              text: "Withdraw ETH",
+              link: "/build/tutorials/how-to/withdraw-eth-to-l1.md"
+            },
+            {
+              text: "Deposit ERC20 tokens",
+              link: "/build/tutorials/how-to/deposit-erc-20-to-l2.md"
+            },
+            {
+              text: "Withdraw ERC20 tokens",
+              link: "/build/tutorials/how-to/withdraw-erc-20-to-l1.md"
+            },
             {
               text: "Estimate Gas",
               link: "/build/tutorials/how-to/estimate-gas.md"
@@ -198,7 +214,11 @@ export const enSidebar = sidebar({
         },
         {
           text: "zkSync Era CLI",
-          link: "/build/tooling/zksync-cli",
+          collapsible: true,
+          children: [
+            "/build/tooling/zksync-cli/getting-started.md",
+            "/build/tooling/zksync-cli/examples/contract-interaction.md"
+          ]
         },
         {
           text: "Hardhat Plugins",
@@ -218,72 +238,57 @@ export const enSidebar = sidebar({
             "/build/tooling/hardhat/other-plugins.md",
           ]
         },
+        // {
+        //   text: "Compiler Overview",
+        //   link: "/build/tooling/compiler-overview.md"
+        // },
         {
-          text: "Bridges",
+          text: "Community",
           collapsible: true,
           children: [
             {
-              text: "zkSync Bridges",
-              link: "/build/tooling/bridges/all-bridges.md",
+              text: "Bridges",
+              link: "/build/tooling/bridges.md",
             },
             {
-              text: "Deposit ETH to L2",
-              link: "/build/tooling/bridges/deposit-eth-to-l2.md",
+              text: "Cross Chain",
+              link: "/build/tooling/cross-chain.md"
             },
             {
-              text: "Deposit ERC-20 to L2",
-              link: "/build/tooling/bridges/deposit-erc-20-to-l2.md",
+              text: "Data Indexers",
+              link: "/build/tooling/data-indexers.md"
             },
             {
-              text: "Withdraw ETH to L1",
-              link: "/build/tooling/bridges/withdraw-eth-to-l1.md",
+              text: "Monitoring",
+              link: "/build/tooling/monitoring.md"
             },
             {
-              text: "Withdraw ERC-20 to L1",
-              link: "/build/tooling/bridges/withdraw-erc-20-to-l1.md",
+              text: "Network Faucets",
+              link: "/build/tooling/network-faucets.md"
+            },
+            {
+              text: "RPC Providers",
+              link: "/build/tooling/node-providers.md"
+            },
+            {
+              text: "Oracles",
+              link: "/build/tooling/oracles.md"
+            },
+            {
+              text: "Wallets",
+              link: "/build/tooling/wallets.md"
+            },
+            {
+              text: "NFT Marketplaces",
+              link: "/build/tooling/nft-marketplaces.md"
+            },
+            {
+              text: "IDE",
+              link: "/build/tooling/ide.md"
             },
           ]
         },
-        {
-          text: "Compiler Overview",
-          link: "/build/tooling/compiler-overview.md"
-        },
-        {
-          text: "Cross Chain",
-          link: "/build/tooling/cross-chain.md"
-        },
-        {
-          text: "Data Indexers",
-          link: "/build/tooling/data-indexers.md"
-        },
-        {
-          text: "IDE",
-          link: "/build/tooling/ide.md"
-        },
-        {
-          text: "Monitoring",
-          link: "/build/tooling/monitoring.md"
-        },
-        {
-          text: "Network Faucets",
-          link: "/build/tooling/network-faucets.md"
-        },
-        {
-          text: "RPC Providers",
-          link: "/build/tooling/node-providers.md"
-        },
-        {
-          text: "Oracles",
-          link: "/build/tooling/oracles.md"
-        },
-        {
-          text: "Wallets",
-          link: "/build/tooling/wallets.md"
-        },
-        {
-          text: "NFT Marketplaces",
-          link: "/build/tooling/nft-marketplaces.md"
-        },
+    
       ],
     },
     {
@@ -348,28 +353,28 @@ export const enSidebar = sidebar({
                   text: "Getting started",
                   collapsible: true,
                   children: [
-                    "/build/sdks/js/zksync2-js/getting-started",
-                    "/build/sdks/js/zksync2-js/examples/deposit",
-                    "/build/sdks/js/zksync2-js/examples/transfer",
-                    "/build/sdks/js/zksync2-js/examples/withdraw",
-                    "/build/sdks/js/zksync2-js/examples/get-confirmed-tokens",
-                    "/build/sdks/js/zksync2-js/examples/create",
-                    "/build/sdks/js/zksync2-js/examples/create2",
-                    "/build/sdks/js/zksync2-js/examples/custom-paymaster/deploy-token",
-                    "/build/sdks/js/zksync2-js/examples/custom-paymaster/deploy-account",
-                    "/build/sdks/js/zksync2-js/examples/custom-paymaster/use-paymaster",
+                    "/build/sdks/js/zksync-ethers/getting-started",
+                    "/build/sdks/js/zksync-ethers/examples/deposit",
+                    "/build/sdks/js/zksync-ethers/examples/transfer",
+                    "/build/sdks/js/zksync-ethers/examples/withdraw",
+                    "/build/sdks/js/zksync-ethers/examples/get-confirmed-tokens",
+                    "/build/sdks/js/zksync-ethers/examples/create",
+                    "/build/sdks/js/zksync-ethers/examples/create2",
+                    "/build/sdks/js/zksync-ethers/examples/custom-paymaster/deploy-token",
+                    "/build/sdks/js/zksync-ethers/examples/custom-paymaster/deploy-account",
+                    "/build/sdks/js/zksync-ethers/examples/custom-paymaster/use-paymaster",
                   ],
                 },
-                "/build/sdks/js/zksync2-js/providers",
-                "/build/sdks/js/zksync2-js/accounts",
-                "/build/sdks/js/zksync2-js/accounts-l1-l2",
-                "/build/sdks/js/zksync2-js/contracts",
-                "/build/sdks/js/zksync2-js/features",
-                "/build/sdks/js/zksync2-js/utils",
-                "/build/sdks/js/zksync2-js/paymaster-utils",
-                "/build/sdks/js/zksync2-js/types",
-                "/build/sdks/js/zksync2-js/front-end",
-                "/build/sdks/js/zksync2-js/migration"
+                "/build/sdks/js/zksync-ethers/providers",
+                "/build/sdks/js/zksync-ethers/accounts",
+                "/build/sdks/js/zksync-ethers/accounts-l1-l2",
+                "/build/sdks/js/zksync-ethers/contracts",
+                "/build/sdks/js/zksync-ethers/features",
+                "/build/sdks/js/zksync-ethers/utils",
+                "/build/sdks/js/zksync-ethers/paymaster-utils",
+                "/build/sdks/js/zksync-ethers/types",
+                "/build/sdks/js/zksync-ethers/front-end",
+                "/build/sdks/js/zksync-ethers/migration"
               ],
             }
           ]
@@ -448,40 +453,23 @@ export const enSidebar = sidebar({
       ]
     },
     {
-      text: "🌐 API Reference",
+      text: "API Reference",
       link: "/build/api.md"
     },
     {
-      text: "Technical Reference",
+      text: "Developer Reference",
       collapsible: true,
       children: [
-        {
-          text: "Concepts",
-          collapsible: true,
-          children: [
-            "/build/technical-reference/concepts/rollups.md",
-            "/build/technical-reference/concepts/zkSync.md",
-            "/build/technical-reference/concepts/validiums.md",
-            "/build/technical-reference/concepts/account-abstraction.md",
-            "/build/technical-reference/concepts/transactions.md",
-            "/build/technical-reference/concepts/blocks.md",
-            "/build/technical-reference/concepts/fee-model.md",
-            "/build/technical-reference/concepts/finality.md",
-            "/build/technical-reference/concepts/bridging-asset.md",
-            "/build/technical-reference/concepts/l1-l2-interop.md",
-          ],
-        },
-        {
-          text: "Architecture",
-          collapsible: true,
-          children: [
-            "/build/technical-reference/architecture/differences-with-ethereum.md",
-            "/build/technical-reference/architecture/system-contracts.md",
-            "/build/technical-reference/architecture/contract-development.md",
-            "/build/technical-reference/architecture/contract-deployment.md",
-            "/build/technical-reference/architecture/events.md",
-          ],
-        },
+        "/build/technical-reference/rollups.md",
+        "/build/technical-reference/zkSync.md",
+        "/build/technical-reference/differences-with-ethereum.md",
+        "/build/technical-reference/system-contracts.md",
+        "/build/technical-reference/bridging-asset.md",
+        "/build/technical-reference/contract-development.md",
+        "/build/technical-reference/contract-deployment.md",
+        "/build/technical-reference/fee-model.md",
+        "/build/technical-reference/events.md",
+        "/build/technical-reference/l1-l2-interop.md",
       ]
     },
     {
@@ -569,33 +557,37 @@ export const enSidebar = sidebar({
   ],
   "/zk-stack": [
     {
-      text: "Overview",
+      text: "Concepts",
       collapsible: true,
       children: [
         {
           text: "Transaction Lifecycle",
-          link: "/zk-stack/overview/transaction-lifecycle.md"
+          link: "/zk-stack/concepts/transaction-lifecycle.md"
         },
         {
           text: "Blocks",
-          link: "/zk-stack/overview/blocks.md"
+          link: "/zk-stack/concepts/blocks.md"
         },
         {
           text: "Fee Mechanism",
-          link: "/zk-stack/overview/fee-mechanism.md"
+          link: "/zk-stack/concepts/fee-mechanism.md"
         },
         {
           text: "Finality",
-          link: "/zk-stack/overview/finality.md"
+          link: "/zk-stack/concepts/finality.md"
         },
         {
           text: "System Upgrades",
-          link: "/zk-stack/overview/system-upgrades.md"
+          link: "/zk-stack/concepts/system-upgrades.md"
         },
         {
           text: "Hyperchains / Hyperscaling",
-          link: "/zk-stack/overview/hyperchains-hyperscaling.md"
+          link: "/zk-stack/concepts/hyperchains-hyperscaling.md"
         },
+        {
+          text: "Validiums",
+          link: "/zk-stack/concepts/validiums.md"
+        }
       ]
     },
     {

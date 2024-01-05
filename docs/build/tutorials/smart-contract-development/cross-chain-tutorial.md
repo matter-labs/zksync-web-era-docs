@@ -27,7 +27,7 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ::: tip Local zkSync Testing with zksync-cli
-Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tooling/zksync-cli/README.md).
+Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tooling/zksync-cli/getting-started.md).
 :::
 
 ### Complete project
@@ -59,15 +59,6 @@ mkdir L1-governance L2-counter
 ```sh
 npx hardhat
 ```
-
-:::info
-In case of question:
-Need to install the following packages:
-hardhat@_version_
-Ok to proceed? (y)
-
-- Press (y)
-  :::
 
 Select the option **Create a Typescript project** and accept the defaults for everything else.
 
@@ -599,11 +590,11 @@ main().catch((error) => {
 
 :::tip
 
-- Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../../technical-reference/concepts/fee-model.md).
+- Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../../technical-reference/fee-model.md).
 - The fee also depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched from the L1 provider.
   :::
 
-4. Run the script with the following command:
+1. Run the script with the following command:
 
 ::: code-tabs
 @tab yarn
@@ -658,6 +649,6 @@ The counter value is 1
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../technical-reference/concepts/l1-l2-interop.md).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../technical-reference/l1-l2-interop.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../sdks/js/README.md).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../tooling/hardhat/getting-started.md).

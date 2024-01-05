@@ -19,7 +19,7 @@ For detailed explanations of the IPaymaster interface please refer to the docume
 
 - **Knowledge Base**: You should be familiar with Solidity and Hardhat.
 - **Wallet Setup**: Ensure your zkSync testnet wallet holds a balance in both ETH and the specific ERC-20 token intended for the paymaster contract
-- **Tooling**: This guide utilizes [`zksync-cli`](../../../tooling/zksync-cli/README.md). Ensure you have it accessible or installed in your environment.
+- **Tooling**: This guide utilizes [`zksync-cli`](../../../tooling/zksync-cli/getting-started.md). Ensure you have it accessible or installed in your environment.
 
 ### **Step 1 — Understanding the ERC20FixedPaymaster contract**
 

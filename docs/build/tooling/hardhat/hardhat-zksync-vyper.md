@@ -26,14 +26,14 @@ Learn more about the latest updates in the [changelog](https://github.com/matter
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ::: tip Local zkSync Testing with zksync-cli
-Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tooling/zksync-cli/README.md).
+Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tooling/zksync-cli/getting-started.md).
 :::
 
 ## Set up
 
 ### 1. Scaffold a new project
 
-Use the [zkSync Era cli](../../tooling/zksync-cli/README.md) to set up a project.
+Use the [zkSync Era cli](../../tooling/zksync-cli/getting-started.md) to set up a project.
 
 ```sh
 npx zksync-cli@latest create project greeter-vyper-example --template hardhat_vyper
@@ -113,7 +113,7 @@ Any configuration parameters should be added inside a `zkvyper` property in the 
 
 ### 4. Create Vyper contract
 
-The [zkSync Era cli](../../tooling/zksync-cli/README.md) generates a `contracts` folder which includes a `Greeter.sol` contract.
+The [zkSync Era cli](../../tooling/zksync-cli/getting-started.md) generates a `contracts` folder which includes a `Greeter.sol` contract.
 
 - Delete `Greeter.sol` from the `contracts/` directory.
 - Add the equivalent `Greeter.vy` Vyper contract:

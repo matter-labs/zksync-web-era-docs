@@ -59,7 +59,7 @@ func GetGeneralPaymasterInput(paymasterInput types.GeneralPaymasterInput) ([]byt
 
 ### `GetPaymasterParams`
 
-Returns a correctly-formed `paymasterParams` object for common [paymaster flows](../../technical-reference/concepts/account-abstraction.md#built-in-paymaster-flows).
+Returns a correctly-formed `paymasterParams` object for common [paymaster flows](../../tutorials/smart-contract-development/account-abstraction/account-abstraction.md#built-in-paymaster-flows).
 
 #### Inputs
 

@@ -91,7 +91,7 @@ Separate facet, whose only function is providing `view` and `pure` methods. It a
 
 ### MailboxFacet
 
-The facet that handles L2 <-> L1 communication, an overview for which can be found in the [L1 / L2 Interoperability guide](../../../../build/technical-reference/concepts/l1-l2-interop.md).
+The facet that handles L2 <-> L1 communication, an overview for which can be found in the [L1 / L2 Interoperability guide](../../../../build/technical-reference/l1-l2-interop.md).
 
 The Mailbox only cares about transferring information from L2 to L1 and the other way but does not hold or transfer any assets (ETH, ERC20 tokens, or NFTs).
 

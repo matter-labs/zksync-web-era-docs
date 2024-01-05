@@ -28,9 +28,9 @@ The local testing process revolves around two principal options:
 - Use the **Dockerized local setup** for in-depth simulations and tests that necessitate L1 and L2 interaction. This complex and detailed setup mirrors how your contracts will function within the mainnet zkSync Era network.
 - Opt for the **In-Memory node** for swift testing, prototyping, or testing new changes via the local bootloader and system contracts. This setup facilitates forking the state from the mainnet or testnet, suitable for replaying transactions or observing the impact of modifications on existing contracts.
 
-{% hint style="danger" %}
+:::danger
 Being in its alpha stage, the In-Memory Node comes with some constraints and doesn't fully support all functionalities. For definitive testing, Dockerized Local Setup or a testnet is highly recommended.
-{% endhint %}
+:::
 
 #### Feature comparison
 

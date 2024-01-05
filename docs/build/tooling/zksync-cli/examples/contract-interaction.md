@@ -1,6 +1,13 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Contract interaction | zkSync Docs
+---
+
 # Contract interaction
 
-The [zksync-cli](../README.md) tool, now enhanced with `contract read` and `contract write` commands, offers efficient ways for developers to interact with smart contracts on zkSync. These commands automate tasks such as method verification, ABI handling, output decoding, and proxy contract processing.
+The [zksync-cli](../../zksync-cli/getting-started.md) tool, now enhanced with `contract read` and `contract write` commands, offers efficient ways for developers to interact with smart contracts on zkSync. These commands automate tasks such as method verification, ABI handling, output decoding, and proxy contract processing.
 
 ### Table of contents
 
