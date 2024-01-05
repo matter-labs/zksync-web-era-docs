@@ -60,15 +60,6 @@ mkdir L1-governance L2-counter
 npx hardhat
 ```
 
-:::info
-In case of question:
-Need to install the following packages:
-hardhat@_version_
-Ok to proceed? (y)
-
-- Press (y)
-  :::
-
 Select the option **Create a Typescript project** and accept the defaults for everything else.
 
 :::info
