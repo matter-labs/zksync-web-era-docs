@@ -9,16 +9,16 @@ head:
 
 ## SortDecommitments PI
 
-### [Input](https://github.com/matter-labs/era-zkevm_circuits/blob/main/src/sort_decommittment_requests/input.rs#L62)
+### [Input](https://github.com/matter-labs/era-zkevm_circuits/blob/main/src/sort_Decommitment_requests/input.rs#L62)
 
 ```rust
-pub struct CodeDecommittmentsDeduplicatorInputData<F: SmallField> {
+pub struct CodeDecommitmentsDeduplicatorInputData<F: SmallField> {
     pub initial_queue_state: QueueState<F, FULL_SPONGE_QUEUE_STATE_WIDTH>,
     pub sorted_queue_initial_state: QueueState<F, FULL_SPONGE_QUEUE_STATE_WIDTH>,
 }
 ```
 
-### [Output](https://github.com/matter-labs/era-zkevm_circuits/blob/main/src/sort_decommittment_requests/input.rs#L81)
+### [Output](https://github.com/matter-labs/era-zkevm_circuits/blob/main/src/sort_Decommitment_requests/input.rs#L81)
 
 ```rust
 pub struct CodeDecommittmentsDeduplicatorOutputData<F: SmallField> {
@@ -46,7 +46,7 @@ pub struct CodeDecommittmentsDeduplicatorFSMInputOutput<F: SmallField> {
 ## Main circuit logic
 
 This circuit handles the sorting and deduplication of code cancellation requests. Before starting, during the pre-start
-phase, the first decommiter queue is generated. To decommiter a code, the input will receive the hash root of the code,
+phase, the first decommitter queue is generated. To decommitter a code, the input will receive the hash root of the code,
 the length of the code, the code hash of the opcode, the number of opcodes and the code of the page. Next, it sorts the
 queue and, in the process, identifies and removes identical requests, serving as a filtering mechanism in case the same
 contract is called several times.
@@ -59,13 +59,13 @@ The detailed explanation of sorting and deduplicating can be found
 The circuit begins with allocating input part of the PI.
 
 ```rust
-let CodeDecommittmentsDeduplicatorInstanceWitness {
+let CodeDecommitmentsDeduplicatorInstanceWitness {
     closed_form_input,
     initial_queue_witness,
     sorted_queue_witness,
 } = witness;
 
-let mut structured_input = CodeDecommittmentsDeduplicatorInputOutput::alloc_ignoring_outputs(
+let mut structured_input = CodeDecommitmentsDeduplicatorInputOutput::alloc_ignoring_outputs(
     cs,
     closed_form_input.clone(),
 );
@@ -160,7 +160,7 @@ let mut first_encountered_timestamp = UInt32::conditionally_select(
 );
 ```
 
-### [Main part](https://github.com/matter-labs/era-zkevm_circuits/blob/main/src/sort_decommittment_requests/mod.rs#L234)
+### [Main part](https://github.com/matter-labs/era-zkevm_circuits/blob/main/src/sort_Decommitment_requests/mod.rs#L234)
 
 Here we implement the main logic of the circuit. We run a cycle where on each iteration we try to pop a new element.
 
@@ -216,7 +216,7 @@ let add_to_the_queue = Boolean::multi_and(cs, &[previous_is_non_trivial, complet
 result_queue.push(cs, record_to_add, add_to_the_queue);
 ```
 
-### [Final part](https://github.com/matter-labs/era-zkevm_circuits/blob/main/src/sort_decommittment_requests/mod.rs#L191C1-L191C1)
+### [Final part](https://github.com/matter-labs/era-zkevm_circuits/blob/main/src/sort_Decommitment_requests/mod.rs#L191C1-L191C1)
 
 We check that permutation accumulators are equal, if the queues are already empty.
 

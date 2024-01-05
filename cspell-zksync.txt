@@ -124,6 +124,7 @@ satoshi
 Dappradar
 Zetta
 Zetta
+Plonky
 
 // NFT Marketplaces
 Kreatorland
@@ -180,6 +181,24 @@ prode
 prodh
 Merklized
 reexecuted
+Arithmetization
+arithmetization
+satisfiability
+demultiplex
+Decommitments
+Decommittments
+decommitments
+decommittments
+Decommitment
+Decommittment
+decommitment
+decommittment
+Decommitter
+decommitter
+Demuxer
+decommit
+Deduplicator
+Binop
 
 // Used programming language words
 printf
@@ -204,6 +223,8 @@ insize
 MLOAD
 psql
 jemalloc
+recid
+plux
 
 // ETC
 gitter
@@ -240,6 +261,7 @@ Evmla
 UUPS
 Uups
 TLDR
+inversed
 
 // crypto events
 Edcon

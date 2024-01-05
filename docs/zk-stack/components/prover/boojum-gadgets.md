@@ -8,7 +8,7 @@ head:
 # Boojum Gadgets
 
 Gadgets in ZK programming are common arrangement of circuits abstracted for ease of use. Boojum gadgets are low-level implementations of tools for constraint systems. They consist of various types such as curves,
-hash functions, lookup tables, and different circuit types. 
+hash functions, lookup tables, and different circuit types.
 
 These gadgets are mostly a reference from
 [franklin-crypto](https://github.com/matter-labs/franklin-crypto), with additional hash functions added. These gadgets
@@ -94,8 +94,8 @@ Every type consists of a Variable (the number inside Variable is just the index)
 pub struct Variable(pub(crate) u64);
 ```
 
-which is represented in the current Field. Variable is quite diverse, and to have "good" alignment and size we manually
-do encoding management to be able to represent it as both copiable variable or witness.
+which is represented in the current Field. Variable is quite diverse. To have "good" alignment and size we manually
+do encoding management to be able to represent it as both a variable (that can be copied) or witness.
 
 The implementation of this circuit type itself is similar. We can also divide them into classes as main and dependent:
 Such type like U8-U512 decoding inside functions to Num<F> for using them in logical operations. As mentioned above, the
@@ -160,7 +160,7 @@ And here is the main functions:
 
 ```rust
 fn push(&mut self, value: Element) {
- // increment lenght
+ // increment length
  // head - hash(head, value)
  // witness.push_back(value.witness)
 }

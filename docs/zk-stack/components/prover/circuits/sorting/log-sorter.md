@@ -44,7 +44,7 @@ pub struct EventsDeduplicatorFSMInputOutput<F: SmallField> {
 
 ## Main circuit logic
 
-The main logic of this circuit is sorting and deduplicating logs from  `initial_log_queue_state`. The result is pushed to `final_queue_state`.
+The main logic of this circuit is sorting and deduplicating logs from `initial_log_queue_state`. The result is pushed to `final_queue_state`.
 
 With sorting, we get 2 queues – a simple one, and a sorted one.
 
@@ -57,7 +57,7 @@ let mut structured_input =
 
 Now the scheme is familiar.
 
-Check if we didn't take elements from the queue: 
+Check if we didn't take elements from the queue:
 
 ```rust
 unsorted_queue_from_passthrough_state.enforce_trivial_head(cs);
@@ -183,7 +183,7 @@ for el in input_commitment.iter() {
 }
 ```
 
-### Inner part:
+### Inner part
 
 Note: we have specific logic for rollback. When we have an event of some function and then that function makes a return then we should cancel this event. Inside the VM, we create exactly the same event: same key, block number, timestamp, etc. the only change is that the rollback flag is now true. In the inner part, first sort and look for these pairs and self-destruct them.
 
@@ -197,14 +197,14 @@ let mut previous_is_trivial = Boolean::multi_or(cs, &[no_work, is_start]);
 Additional checks for length. We should always check whether the sorted queue and the normal queue are of the same length.
 
 ```rust
-let unsorted_queue_lenght = Num::from_variable(unsorted_queue.length.get_variable());
-let intermediate_sorted_queue_lenght =
+let unsorted_queue_length = Num::from_variable(unsorted_queue.length.get_variable());
+let intermediate_sorted_queue_length =
     Num::from_variable(intermediate_sorted_queue.length.get_variable());
 
 Num::enforce_equal(
     cs,
-    &unsorted_queue_lenght,
-    &intermediate_sorted_queue_lenght,
+    &unsorted_queue_length,
+    &intermediate_sorted_queue_length,
 );
 ```
 
@@ -261,7 +261,7 @@ values_are_equal.conditionally_enforce_true(cs, should_enforce);
 let this_item_is_non_trivial_rollback =
     Boolean::multi_and(cs, &[sorted_item.rollback, should_pop]);
 let negate_previous_item_rollback = previous_item.rollback.negated(cs);
-let prevous_item_is_non_trivial_write = Boolean::multi_and(
+let previous_item_is_non_trivial_write = Boolean::multi_and(
     cs,
     &[negate_previous_item_rollback, negate_previous_is_trivial],
 );
@@ -269,7 +269,7 @@ let is_sequential_rollback = Boolean::multi_and(
     cs,
     &[
         this_item_is_non_trivial_rollback,
-        prevous_item_is_non_trivial_write,
+        previous_item_is_non_trivial_write,
     ],
 );
 same_log.conditionally_enforce_true(cs, is_sequential_rollback);

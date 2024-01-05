@@ -71,7 +71,7 @@ let mut structured_input =
     CodeDecommitterCycleInputOutput::alloc_ignoring_outputs(cs, closed_form_input.clone());
 ```
 
-We chose what `memory_queue` state and `deccomitments_queue` state to continue to work with.
+We chose what `memory_queue` state and `decommitments_queue` state to continue to work with.
 
 ```rust
 let requests_queue_state = QueueState::conditionally_select(

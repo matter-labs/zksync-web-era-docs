@@ -127,7 +127,7 @@ for _cycle_idx in 0..limit {
 The VM runs in cycles. For each cycle,
 
 1. Start in a prestate - perform all common operations for every opcode, namely deal with exceptions, resources, edge
-   cases like end of execution, select opcods, compute common values. Within the zkEVM framework, numerous entities
+   cases like end of execution, select opcodes, compute common values. Within the zkEVM framework, numerous entities
    identified as "opcodes" in the EVM paradigm are elegantly manifested as mere function calls. This modification is
    rooted in the succinct observation that, from the perspective of an external caller, an inlined function (analogous
    to an opcode) is inherently indistinguishable from an internal function call.
@@ -192,7 +192,7 @@ pub struct StateDiffsAccumulator<F: SmallField> {
     // other meta parameters of VM
     pub new_tx_number: Option<(Boolean<F>, UInt32<F>)>,
     pub new_ergs_per_pubdata: Option<(Boolean<F>, UInt32<F>)>,
-    // memory bouds
+    // memory bounds
     pub new_heap_bounds: Vec<(Boolean<F>, UInt32<F>)>,
     pub new_aux_heap_bounds: Vec<(Boolean<F>, UInt32<F>)>,
     // u128 special register, one from context, another from call/ret
