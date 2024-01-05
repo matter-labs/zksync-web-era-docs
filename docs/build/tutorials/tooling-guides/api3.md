@@ -53,23 +53,21 @@ Choose `Hardhat + Solidity` to setup the project repository. The contract for th
 
 **Add the required dependencies to the project:**
 
-{% tabs %}
-{% tab title="yarn" %}
+::: code-tabs
+
+@tab:active yarn
 
 ```bash
 yarn add -D @openzeppelin/contracts-upgradeable @api3/contracts
 ```
 
-{% endtab %}
-
-{% tab title="npm" %}
+@tab npm
 
 ```bash
 npm install @openzeppelin/contracts-upgradeable @api3/contracts
 ```
 
-{% endtab %}
-{% endtabs %}
+:::
 
 ### Step 3 - Implementing contracts
 

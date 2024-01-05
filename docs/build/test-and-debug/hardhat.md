@@ -34,13 +34,9 @@ yarn install
 
 Add the following additional dependencies:
 
-{% code overflow="wrap" %}
-
 ```bash
 yarn add -D @matterlabs/hardhat-zksync-chai-matchers @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers
 ```
-
-{% endcode %}
 
 Import `@matterlabs/hardhat-zksync-chai-matchers` into the `hardhat.config.ts` file:
 
