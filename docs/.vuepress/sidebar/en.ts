@@ -563,36 +563,36 @@ export const enSidebar = sidebar({
   ],
   "/zk-stack": [
     {
-      text: "Overview",
+      text: "Concepts",
       collapsible: true,
       children: [
         {
           text: "Transaction Lifecycle",
-          link: "/zk-stack/overview/transaction-lifecycle.md"
+          link: "/zk-stack/concepts/transaction-lifecycle.md"
         },
         {
           text: "Blocks",
-          link: "/zk-stack/overview/blocks.md"
+          link: "/zk-stack/concepts/blocks.md"
         },
         {
           text: "Fee Mechanism",
-          link: "/zk-stack/overview/fee-mechanism.md"
+          link: "/zk-stack/concepts/fee-mechanism.md"
         },
         {
           text: "Finality",
-          link: "/zk-stack/overview/finality.md"
+          link: "/zk-stack/concepts/finality.md"
         },
         {
           text: "System Upgrades",
-          link: "/zk-stack/overview/system-upgrades.md"
+          link: "/zk-stack/concepts/system-upgrades.md"
         },
         {
           text: "Hyperchains / Hyperscaling",
-          link: "/zk-stack/overview/hyperchains-hyperscaling.md"
+          link: "/zk-stack/concepts/hyperchains-hyperscaling.md"
         },
         {
           text: "Validiums",
-          link: "/zk-stack/overview/validiums.md"
+          link: "/zk-stack/concepts/validiums.md"
         }
       ]
     },

@@ -2,10 +2,10 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Overview | zkSync Docs
+      content: Overview | ZK Stack Docs
 ---
 
-# Overview
+# Concepts
 
 The goal of the ZK Stack is to power the internet of value. Value needs to be secured, and only blockchains are able
 provide the level of security that the internet needs. The ZK Stack can be used to launch zero-knowledge rollups, which
