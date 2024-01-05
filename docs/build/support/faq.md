@@ -136,7 +136,7 @@ Read more about [Hyperscalability and ZK Stack here](../../zk-stack/concepts/hyp
 
 ## Which Wallets are supported?
 
-At the moment, we support any Ethereum-based wallet like Metamask, BitKeep, TrustWallet or Zerion. You can add zkSync network to your Metamask manually by following the instructions in the [interacting with zkSync Era page](../../build/quick-start/interacting.md#connecting-to-zksync-era-on-metamask).
+At the moment, we support any Ethereum-based wallet like Metamask, BitKeep, TrustWallet or Zerion. You can add zkSync network to your Metamask manually by following the instructions in the [interacting with zkSync Era page](../../build/quick-start/add-zksync-to-metamask.md).
 
 ## Token Listing
 

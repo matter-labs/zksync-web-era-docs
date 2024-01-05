@@ -245,7 +245,7 @@ Enabling smart accounts allows you to onboard Argent account abstraction wallet 
 
 In order to interact with dApps built on zkSync, connect the MetaMask wallet to the zkSync Era Testnet.
 
-- Follow [this guide](./interacting.md#connecting-to-zksync-era-on-metamask) to connect Metamask to zkSync.
+- Follow [this guide](./add-zksync-to-metamask.md) to connect Metamask to zkSync.
 
 Please note, that login functionality for "Hello, world" will be implemented in the next steps.
 
