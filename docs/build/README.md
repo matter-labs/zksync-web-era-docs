@@ -16,7 +16,7 @@ Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references
   <div class="card-container">
       <a target="_blank" rel="noopener noreferrer" href="/build/test-and-debug/era-test-node.html" class="card">
         <img  
-          src="/images/landing/eta-test-node.png" 
+          src="/images/landing/era-test-node.png" 
           alt="zkSync ERA documentation"
         >
         <div class="content">
@@ -76,7 +76,7 @@ Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references
     </a>
     <a target="_blank" rel="noopener noreferrer" href="https://join.zksync.dev/" class="card">
       <img
-        src="/images/landing/dev-dis.png" 
+        src="/images/landing/dev-discord.png" 
         alt="zkSync Developers Discord"
       />
       <div class="content">
