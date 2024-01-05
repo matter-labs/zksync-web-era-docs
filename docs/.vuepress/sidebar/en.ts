@@ -143,6 +143,22 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             {
+              text: "Deposit ETH",
+              link: "/build/tutorials/how-to/deposit-eth-to-l2.md"
+            },
+            {
+              text: "Withdraw ETH",
+              link: "/build/tutorials/how-to/withdraw-eth-to-l1.md"
+            },
+            {
+              text: "Deposit ERC20 tokens",
+              link: "/build/tutorials/how-to/deposit-erc-20-to-l2.md"
+            },
+            {
+              text: "Withdraw ERC20 tokens",
+              link: "/build/tutorials/how-to/withdraw-erc-20-to-l1.md"
+            },
+            {
               text: "Estimate Gas",
               link: "/build/tutorials/how-to/estimate-gas.md"
             },
@@ -222,28 +238,6 @@ export const enSidebar = sidebar({
             "/build/tooling/hardhat/other-plugins.md",
           ]
         },
-        {
-          text: "Bridges",
-          collapsible: true,
-          children: [
-            {
-              text: "Deposit ETH to L2",
-              link: "/build/tooling/bridges/deposit-eth-to-l2.md",
-            },
-            {
-              text: "Deposit ERC-20 to L2",
-              link: "/build/tooling/bridges/deposit-erc-20-to-l2.md",
-            },
-            {
-              text: "Withdraw ETH to L1",
-              link: "/build/tooling/bridges/withdraw-eth-to-l1.md",
-            },
-            {
-              text: "Withdraw ERC-20 to L1",
-              link: "/build/tooling/bridges/withdraw-erc-20-to-l1.md",
-            },
-          ]
-        },
         // {
         //   text: "Compiler Overview",
         //   link: "/build/tooling/compiler-overview.md"
@@ -254,7 +248,7 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Bridges",
-              link: "/build/tooling/bridges/all-bridges.md",
+              link: "/build/tooling/bridges.md",
             },
             {
               text: "Cross Chain",
