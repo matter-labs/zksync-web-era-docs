@@ -453,7 +453,7 @@ export const enSidebar = sidebar({
       ]
     },
     {
-      text: "🌐 API Reference",
+      text: "API Reference",
       link: "/build/api.md"
     },
     {

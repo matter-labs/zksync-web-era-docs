@@ -6,49 +6,101 @@ contributors: false
 ---
 
 <div>
-   <div >
-      <div class="landing">
-         <div>
-         <div class="hero-img">
-          <img  src="/full_logo_zksync-black.svg" 
-                  alt="zkSync ERA documentation"
-            >
-         </div>
-         <p class="intro-text" style="text-align:center">Welcome to zkSync Era docs!
-         <br>All the information you need to build and deploy your project. Quickstart, Guides, Tutorials, and Developer tools.</p>
-         </div>
+  <div >
+    <div class="landing">
+      <div>
+        <div class="hero-img">
+          <img src="/full_logo_zksync-black.svg" alt="zkSync ERA documentation">
+        </div>
       </div>
-   </div>
+    </div>
+  </div>
 </div>
 
+<div class="cards-heading">
+   <span class="title-section">Featured</span>
+</div>
 <section>
-
   <div class="card-container">
     <a href="./build" class="card">
-      <img src="/images/landing/zkSyncDevs.png" 
-            alt="zkSync ERA documentation"
-      >
+      <img src="/images/landing/build.png" alt="build">
       <div class="content">
         <h3>Build</h3>
-        <p>Find the Quickstart, Guides, Tutorials, and Developer tools you need to start with zkSync.</p>
+        <p>Find quickstart guides, tutorials, and developer tools you need to get started.</p>
       </div>
     </a>
     <a href="./zk-stack" class="card">
-        <img src="/images/landing/hyperchain.png" 
-            alt="zkStack"
-        >
-         <div class="content">
-            <h3>zkStack</h3>
-            <p>Understand the protocol powering zkSync hyperchains, including zkSync Era.</p>
-         </div>
+      <img src="/images/landing/hyperchain.png" alt="zkStack">
+      <div class="content">
+        <h3>ZK Stack</h3>
+        <p>Understand the protocol powering zkSync hyperchains, including zkSync Era.</p>
+      </div>
     </a>
     <a href="./infra" class="card">
-      <img src="/images/landing/diverse-toolkit.png" 
-          alt="zkSync ERA documentation"
-      > 
+      <img src="/images/landing/run-a-node.png" alt="run a node">
       <div class="content">
         <h3>Run a Node</h3>
-        <p>All the information you need to run a node for zkSync Era or your hyperchain. .</p>
+        <p>All the information you need to run a node for zkSync Era or your hyperchain.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="cards-heading">
+   <span class="title-section">Join the Community</span>
+</div>
+
+<section>
+  <div class="card-container">
+    <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/zkSyncDevs" class="card">
+      <img src="/images/landing/zkSyncDevs.png" alt="zkSync Developers">
+      <div class="content">
+        <h3>𝕏 Developer Updates</h3>
+        <p>Developer and status updates for the zkSync Era network</p>
+      </div>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/zkSync-Community-Hub/zksync-developers/discussions" class="card">
+      <img src="/images/landing/dev-dis.png" alt="zkSync Developer Discussions">
+      <div class="content">
+        <h3>GitHub Discussions</h3>
+        <p>Have questions? Have a project to showcase? Join the discussion!</p>
+      </div>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" href="https://join.zksync.dev/" class="card">
+      <img src="/images/landing/dev-discord.png" alt="zkSync Developers Discord">
+      <div class="content">
+        <h3>zkSync Discord</h3>
+        <p>Connect with devs, share ideas, and collab on tough problems.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="cards-heading">
+   <span class="title-section">Discover, Inspire, Contribute</span>
+</div>
+
+<section>
+  <div class="card-container">
+    <a target="_blank" rel="noopener noreferrer" href="" class="card">
+      <img src="/images/landing/sepolia-migration.png" alt="Sepolia migration">
+      <div class="content">
+        <h3>Sepolia is Live!</h3>
+        <p>Announcing Sepolia testnet and deprecating Goerli.</p>
+      </div>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" href="https://www.npmjs.com/package/zksync-ethers" class="card">
+      <img src="/images/landing/eth-6.png" alt="zkSync Ethers V6 Support">
+      <div class="content">
+        <h3>Ethers V6 Support!</h3>
+        <p>Check out the latest release of zksync-ethers.</p>
+      </div>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/zksync/credo" class="card">
+      <img src="/images/landing/zk-credo.jpeg" alt="ZK Credo">
+      <div class="content">
+        <h3>ZK Credo</h3>
+        <p>Diver deeper into our mission of Freedom → Progress → Prosperity.</p>
       </div>
     </a>
   </div>

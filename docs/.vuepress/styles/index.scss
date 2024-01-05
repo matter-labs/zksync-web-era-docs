@@ -426,15 +426,14 @@
     }
 
     .card-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        display: grid;
+        grid-auto-columns: min-content;
+        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
         box-sizing: border-box;
-        flex-flow: row wrap;
     
         .card {
             flex: 1;
-            margin: 10px;
             display: block;
             min-width: 220px;
             background: inherit;
@@ -443,7 +442,6 @@
             border-radius: 8px;
             border: 1px solid #DADDE5;
             background-color: #FFF;
-            height: fit-content;
             overflow: hidden;
             h3 {
                 font-size: 18px;
@@ -464,11 +462,13 @@
     .card-container .card .content {
         gap: 12px;
         padding: 20px;
+        min-height: 150px;
     }
     
     .cards-heading {
         margin-top: 40px;
         margin-bottom: 20px;
+        text-align: center;
     }
     
     .intro-text {
