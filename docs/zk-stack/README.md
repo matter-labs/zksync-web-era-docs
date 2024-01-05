@@ -10,21 +10,8 @@ head:
 </div>
 <section>
   <div class="card-container">
-    <a
-      href="/zk-stack/components/getting-started.html"
-      class="card"
-    >
-      <img  
-        src="/images/landing/components.png" 
-        alt="zkSync Components"
-      >
-      <div class="content">
-        <h3>Components</h3>
-        <p>Explore the elements of the ZK Stack.</p>
-      </div>
-    </a>
-    <a
-      href="/zk-stack/running-a-hyperchain/getting-started.html"
+   <a
+      href="/zk-stack/running-a-hyperchain/locally.html"
       class="card"
     >
       <img
@@ -33,20 +20,33 @@ head:
       />
       <div class="content">
         <h3>Run a Hyperchain</h3>
-        <p>Get Started with Paymasters and Account Abstraction Essentials.</p>
+        <p>Quickly spin up a ZK Stack hyperchain on your own machine.</p>
       </div>
     </a>
     <a
-      href="/zk-stack/concepts/getting-started.html"
+      href="/zk-stack/components/sequencer-server/sequencer.html"
       class="card"
     >
       <img  
-        src="/images/landing/concepts.png" 
+        src="/images/landing/sequencer.png" 
+        alt="zkSync Sequencer"
+      >
+      <div class="content">
+        <h3>Sequencer</h3>
+        <p>Know more about how the ZK Stack sequencer works.</p>
+      </div>
+    </a>
+    <a
+      href="/zk-stack/components/prover/prover.html"
+      class="card"
+    >
+      <img  
+        src="/images/landing/prover.png" 
         alt="zkSync ERA documentation"
       >
       <div class="content">
-        <h3>Concepts</h3>
-        <p>Understand fundamental concepts underpinning ZK Stack.</p>
+        <h3>Prover</h3>
+        <p>Go deep on the cryptography of our state of the art prover, Boojum.</p>
       </div>
     </a>
   </div>
