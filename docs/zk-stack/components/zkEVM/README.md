@@ -13,7 +13,7 @@ execute smart contracts in Ethereum's state transition function. This STF needs 
 
 Rollups have a different set of requirements, they need to produce a proof that some client executed the STF correctly.
 This client is the [zkEVM](./vm-specification/README.md), it is made to run the STF efficiently. The STF is the
-[Bootloader](../../components/sequencer/bootloader.md).
+[Bootloader](./bootloader.md).
 
 The smart contracts are native zkEVM bytecode, zkEVM can execute these easily. In the future the ZK Stack will also
 support EVM bytecode by running an efficient interpreter inside the zkEVM.

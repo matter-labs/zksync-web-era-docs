@@ -20,7 +20,7 @@ This documentation explains the basics of the zkSync Era External Node.
 - The EN is a read-only replica of the main node. We are currently working on decentralizing our infrastructure by
   creating a consensus node. The EN is not going to be the consensus node.
 
-## What is the external node
+## What is the External Node?
 
 The external node (herein EN) is a read-replica of the main (centralized) node that can be run by external parties. It
 functions by fetching data from the zkSync API and re-applying transactions locally, starting from the genesis block.
@@ -30,7 +30,7 @@ as the main node did in the past.
 In Ethereum terms, the current state of the EN represents an archive node, providing access to the entire history of the
 blockchain.
 
-## High-level overview
+## High-level Overview
 
 At a high level, the EN can be seen as an application that has the following modules:
 
@@ -55,14 +55,14 @@ With the EN, you _can not_:
 
 A more detailed overview of the EN's components is provided in the components section.
 
-## API overview
+## API Overview
 
 API exposed by the EN strives to be Web3-compliant. If some method is exposed but behaves differently compared to
 Ethereum, it should be considered a bug. Please [report][contact_us] such cases.
 
 [contact_us]: https://zksync.io/contact
 
-### `eth` namespace
+### `eth_` Namespace
 
 Data getters in this namespace operate in the L2 space: require/return L2 block numbers, check balances in L2, etc.
 
@@ -116,7 +116,7 @@ Available methods:
 | `eth_subscribe`    | Maximum amount of subscriptions is configurable |
 | `eth_subscription` |                                                 |
 
-### `net` namespace
+### `net_` Namespace
 
 Available methods:
 
@@ -126,7 +126,7 @@ Available methods:
 | `net_peer_count` | Always returns 0     |
 | `net_listening`  | Always returns false |
 
-### `web3` namespace
+### `web3_` Namespace
 
 Available methods:
 
