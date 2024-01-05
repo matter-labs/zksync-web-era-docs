@@ -5,24 +5,49 @@ head:
       content: ZK Stack | zkSync Docs
 ---
 
-# ZK Stack
-
-# Introduction
-
-The goal of the ZK Stack is to power the internet of value. Value needs to be secured, and only blockchains are able
-provide the level of security that the internet needs. The ZK Stack can be used to launch zero-knowledge rollups, which
-are extra secure blockchains.
-
-ZK Rollups use advanced mathematics called zero-knowledge proofs to show that the execution of the rollup was done
-correctly. They also send ("roll up") their data to another chain, in our case this is Ethereum. The ZK Stack uses the
-zkEVM to execute transactions, making it Ethereum compatible.
-
-These two techniques allow the rollup to be verified externally. Unlike traditional blockchains, where you have to run a
-node to verify all transactions, the state of the rollup can be easily checked by external participants by validating
-the proof.
-
-These external validators of a rollup can be other rollups. This means we can connect rollups trustlessly, and create a
-network of rollups. This network is called the hyperchain.
-
-These specs will provide a high level overview of the zkEVM and a full specification of its more technical components,
-such as the prover, compiler, and the VM itself. We also specify the foundations of the hyperchain ecosystem.
+<div class="cards-heading">
+   <span class="title-section">ZK Stack</span>
+</div>
+<section>
+  <div class="card-container">
+    <a
+      href="/zk-stack/components/getting-started.html"
+      class="card"
+    >
+      <img  
+        src="/images/landing/components.png" 
+        alt="zkSync Components"
+      >
+      <div class="content">
+        <h3>Components</h3>
+        <p>Explore the elements of the ZK Stack.</p>
+      </div>
+    </a>
+    <a
+      href="/zk-stack/running-a-hyperchain/getting-started.html"
+      class="card"
+    >
+      <img
+        src="/images/landing/run-a-hyperchain.png" 
+        alt="zkSync ERA documentation"
+      />
+      <div class="content">
+        <h3>Run a Hyperchain</h3>
+        <p>Get Started with Paymasters and Account Abstraction Essentials.</p>
+      </div>
+    </a>
+    <a
+      href="/zk-stack/concepts/getting-started.html"
+      class="card"
+    >
+      <img  
+        src="/images/landing/concepts.png" 
+        alt="zkSync ERA documentation"
+      >
+      <div class="content">
+        <h3>Concepts</h3>
+        <p>Understand fundamental concepts underpinning ZK Stack.</p>
+      </div>
+    </a>
+  </div>
+</section>

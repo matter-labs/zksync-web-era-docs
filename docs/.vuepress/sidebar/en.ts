@@ -3,7 +3,7 @@ import { sidebar } from "vuepress-theme-hope";
 export const enSidebar = sidebar({
   "/build": [
     {
-      text: "Quick Start",
+      text: "Quickstart",
       collapsible: true,
       children: [
         {
@@ -561,6 +561,10 @@ export const enSidebar = sidebar({
       collapsible: true,
       children: [
         {
+          text: "Getting Started",
+          link: "/zk-stack/concepts/getting-started.md",
+        },
+        {
           text: "Transaction Lifecycle",
           link: "/zk-stack/concepts/transaction-lifecycle.md"
         },
@@ -596,6 +600,10 @@ export const enSidebar = sidebar({
       collapsible: true,
       children: [
         {
+          text: "Getting Started",
+          link: "/zk-stack/running-a-hyperchain/getting-started.md",
+        },
+        {
           text: "Locally",
           link: "/zk-stack/running-a-hyperchain/locally.md"
         },
@@ -609,7 +617,11 @@ export const enSidebar = sidebar({
       text: "Components",
       // link: "/zk-stack/components/README.md",
       collapsible: true,
-      children: [
+      children: [  
+        {
+          text: "Getting Started",
+          link: "/zk-stack/components/getting-started.md",
+        },
         {
           text: "Sequencer",
           // link: "/zk-stack/components/sequencer/README.md",
