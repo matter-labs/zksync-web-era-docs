@@ -11,8 +11,8 @@ zkSync Era supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en
 
 :::tip Tip
 
-- As long as code does not involve deploying new smart contracts, which can only be deployed using [EIP712 transactions](../zk-stack/overview/transaction-lifecycle.md#eip-712-0x71), _no changes to the codebase are needed_.
-- Read the documentation on [EIP-712 transactions](../zk-stack/overview/transaction-lifecycle.md#eip-712-0x71) for more information.
+- As long as code does not involve deploying new smart contracts, which can only be deployed using [EIP712 transactions](../zk-stack/concepts/transaction-lifecycle.md#eip-712-0x71), _no changes to the codebase are needed_.
+- Read the documentation on [EIP-712 transactions](../zk-stack/concepts/transaction-lifecycle.md#eip-712-0x71) for more information.
   :::
 
 ## RPC endpoint URLs

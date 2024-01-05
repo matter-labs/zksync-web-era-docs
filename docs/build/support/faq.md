@@ -23,7 +23,7 @@ zkSync Era is a gigantic leap forward in Layer 2 technologies. It is a long-awai
 - **Future Proof** - Ecosystem projects that adopt zkSync Era now will enjoy all future improvements without the need to change their code, in particular coming from:
   - The prover technology: hardware acceleration and [new proof systems](https://zksync.mirror.xyz/HJ2Pj45EJkRdt5Pau-ZXwkV2ctPx8qFL19STM5jdYhc).
   - The compiler: integration of LLVM-enabled modern programming languages. [Learn more about our compiler toolchain](../../zk-stack/components/compiler/fe-equivalence/overview.md).
-  - Other innovations like [Hyperchains, Hyperbridges and ZK Stack](../../zk-stack/overview/hyperchains-hyperscaling.md).
+  - Other innovations like [Hyperchains, Hyperbridges and ZK Stack](../../zk-stack/concepts/hyperchains-hyperscaling.md).
 
 ## What is the zkEVM?
 
@@ -131,7 +131,7 @@ Optimistic rollups suffer from the following key downsides:
   In contrast, zkSync Era is based on zero-knowledge proofs which have important characteristics that optimistic methods do not - they can hyperscale.
 
 ::: tip Hyperscalability
-Read more about [Hyperscalability and ZK Stack here](../../zk-stack/overview/hyperchains-hyperscaling.md).
+Read more about [Hyperscalability and ZK Stack here](../../zk-stack/concepts/hyperchains-hyperscaling.md).
 :::
 
 ## Which Wallets are supported?

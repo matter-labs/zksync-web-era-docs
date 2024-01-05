@@ -15,7 +15,7 @@ While zkSync Era is mostly Web3-compatible, it has some differences compared to 
 
 These require us to extend standard Ethereum transactions with new custom fields. Such extended transactions are called EIP-712 transactions
 since [EIP-712](https://eips.ethereum.org/EIPS/eip-712) is used to sign them. You can look at the internal structure of the EIP-712
-transactions [here](../../../zk-stack/overview/transaction-lifecycle.md#eip-712-0x71).
+transactions [here](../../../zk-stack/concepts/transaction-lifecycle.md#eip-712-0x71).
 
 This document will focus solely on how to pass these arguments to the SDK.
 

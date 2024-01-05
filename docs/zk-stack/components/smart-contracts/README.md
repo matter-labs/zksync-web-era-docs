@@ -8,7 +8,7 @@ head:
 # Smart Contracts
 
 This document presumes familiarity with Rollups. For a better understanding, consider reading the overview
-[here](../../overview/README.md).
+[here](../../concepts/README.md).
 
 Rollups inherit security and decentralization guarantees from Ethereum, on which they store information about changes in
 their own state, providing validity proofs for state transition, implementing a communication mechanism, etc. In
