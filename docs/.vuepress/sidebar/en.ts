@@ -600,8 +600,8 @@ export const enSidebar = sidebar({
           link: "/zk-stack/running-a-hyperchain/locally.md"
         },
         {
-          text: "In-Production",
-          link: "/zk-stack/running-a-hyperchain/in-production.md"
+          text: "In Production",
+          link: "/zk-stack/running-a-hyperchain/production.md"
         }
       ]
     },
