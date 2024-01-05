@@ -5,12 +5,12 @@ head:
       content: Build | zkSync Docs
 ---
 
-# Welcome Builders
+# Build
 
 Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references, and more.
 
 <div class="cards-heading">
-   <span class="title-section">Featured</span>
+   <span class="title-section">Getting Started</span>
 </div>
 <section>
   <div class="card-container">

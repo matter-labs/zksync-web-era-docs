@@ -502,7 +502,7 @@ export const enSidebar = sidebar({
   "/infra": [
     {
       text: "Introduction",
-      link: "/infra/README.md",
+      link: "/infra/introduction.md",
     },
     {
       text: "External Node (EN)",
