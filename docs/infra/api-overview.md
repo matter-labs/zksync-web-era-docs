@@ -2,71 +2,18 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: External Node | zkSync Docs
+      content: API Overview | zkSync Docs
 ---
 
-> 💡 Note
->
-> For local testing, we recommend setting up an in-memory node and forking mainnet.
+# API Overview
 
-# External Node Documentation
-
-This documentation explains the basics of the zkSync Era External Node.
-
-## Disclaimers
-
-- The external node is in the alpha phase, and should be used with caution.
-- While in alpha, the EN is dependent on a DB snapshot in order to run that is not yet publicly available.
-- The EN is a read-only replica of the main node. We are currently working on decentralizing our infrastructure by
-  creating a consensus node. The EN is not going to be the consensus node.
-
-## What is the External Node?
-
-The external node (herein EN) is a read-replica of the main (centralized) node that can be run by external parties. It
-functions by fetching data from the zkSync API and re-applying transactions locally, starting from the genesis block.
-The EN shares most of its codebase with the main node. Consequently, when it re-applies transactions, it does so exactly
-as the main node did in the past.
-
-In Ethereum terms, the current state of the EN represents an archive node, providing access to the entire history of the
-blockchain.
-
-## High-level Overview
-
-At a high level, the EN can be seen as an application that has the following modules:
-
-- API server that provides the publicly available Web3 interface.
-- Synchronization layer that interacts with the main node and retrieves transactions and blocks to re-execute.
-- Sequencer component that actually executes and persists transactions received from the synchronization layer.
-- Several checker modules that ensure the consistency of the EN state.
-
-With the EN, you are able to:
-
-- Locally recreate and verify the zkSync Era mainnet/testnet state.
-- Interact with the recreated state in a trustless way (in a sense that the validity is locally verified, and you should
-  not rely on a third-party API zkSync Era provides).
-- Use the Web3 API without having to query the main node.
-- Send L2 transactions (that will be proxied to the main node).
-
-With the EN, you _can not_:
-
-- Create L2 blocks or L1 batches on your own.
-- Generate proofs.
-- Submit data to L1.
-
-A more detailed overview of the EN's components is provided in the components section.
-
-## API Overview
-
-API exposed by the EN strives to be Web3-compliant. If some method is exposed but behaves differently compared to
-Ethereum, it should be considered a bug. Please [report][contact_us] such cases.
-
-[contact_us]: https://zksync.io/contact
+:::info
+The API exposed by the EN is designed to be Web3-compliant. Any deviation from the Ethereum behavior is likely unintended, and we encourage users to report such discrepancies.
+:::
 
 ### `eth_` Namespace
 
-Data getters in this namespace operate in the L2 space: require/return L2 block numbers, check balances in L2, etc.
-
-Available methods:
+Data getters in this namespace operate in the L2 domain. They deal with L2 block numbers, check balances in L2, and more.
 
 | Method                                    | Notes                                                                     |
 | ----------------------------------------- | ------------------------------------------------------------------------- |
@@ -105,11 +52,9 @@ Available methods:
 | `eth_getUncleCountByBlockNumber`          | Always returns zero                                                       |
 | `eth_mining`                              | Always returns false                                                      |
 
-### PubSub
+### **PubSub**
 
-Only available on the WebSocket servers.
-
-Available methods:
+This is exclusively available on the WebSocket servers.
 
 | Method             | Notes                                           |
 | ------------------ | ----------------------------------------------- |
@@ -117,8 +62,6 @@ Available methods:
 | `eth_subscription` |                                                 |
 
 ### `net_` Namespace
-
-Available methods:
 
 | Method           | Notes                |
 | ---------------- | -------------------- |
@@ -128,20 +71,13 @@ Available methods:
 
 ### `web3_` Namespace
 
-Available methods:
-
 | Method               | Notes |
 | -------------------- | ----- |
 | `web3_clientVersion` |       |
 
-### `debug` namespace
+### `debug_` Namespace\*\*
 
-The `debug` namespace gives access to several non-standard RPC methods, which will allow developers to inspect and debug
-calls and transactions.
-
-This namespace is disabled by default and can be configured via setting `EN_API_NAMESPACES` as described in the example config.
-
-Available methods:
+This namespace provides a set of non-standard RPC methods for developers to inspect and debug calls and transactions. By default, this namespace is disabled but can be activated using the `EN_API_NAMESPACES` setting. Please refer to the configuration section for more details.;
 
 | Method                     | Notes |
 | -------------------------- | ----- |
@@ -150,17 +86,31 @@ Available methods:
 | `debug_traceCall`          |       |
 | `debug_traceTransaction`   |       |
 
-### `zks` namespace
+### `zks` Namespace
 
-This namespace contains rollup-specific extensions to the Web3 API. Note that _only methods_ specified in the
-[documentation][zks_docs] are considered public. There may be other methods exposed in this namespace, but undocumented
-methods come without any kind of stability guarantees and can be changed or removed without notice.
+This namespace holds rollup-specific extensions to the Web3 API. Only the methods documented are deemed public. Other methods in this namespace, though exposed, are not stable and may change without notice.
 
-Always refer to the documentation linked above to see the list of stabilized methods in this namespace.
+| Method                        | Notes |
+| ----------------------------- | ----- |
+| `zks_estimateFee`             |       |
+| `zks_estimateGasL1ToL2`       |       |
+| `zks_getAllAccountBalances`   |       |
+| `zks_getBlockDetails`         |       |
+| `zks_getBridgeContracts`      |       |
+| `zks_getBytecodeByHash`       |       |
+| `zks_getConfirmedTokens`      |       |
+| `zks_getL1BatchBlockRange`    |       |
+| `zks_getL1BatchDetails`       |       |
+| `zks_getL2ToL1LogProof`       |       |
+| `zks_getL2ToL1MsgProof`       |       |
+| `zks_getMainContract`         |       |
+| `zks_getRawBlockTransactions` |       |
+| `zks_getTestnetPaymaster`     |       |
+| `zks_getTokenPrice`           |       |
+| `zks_getTransactionDetails`   |       |
+| `zks_L1BatchNumber`           |       |
+| `zks_L1ChainId`               |       |
 
-[zks_docs]: https://docs.zksync.io/api/api.html#zksync-specific-json-rpc-methods
+### `en` Namespace
 
-### `en` namespace
-
-This namespace contains methods that external nodes call on the main node while syncing. If this namespace is enabled,
-other ENs can sync from this node.
+This namespace includes methods that external nodes call on the main node during syncing. If this namespace is active, other ENs can sync using this node.

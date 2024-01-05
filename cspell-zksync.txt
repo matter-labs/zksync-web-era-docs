@@ -199,6 +199,12 @@ Demuxer
 decommit
 Deduplicator
 Binop
+mathbb
+Invb
+REDC
+skept
+ECADD
+ECMUL
 
 // Used programming language words
 printf

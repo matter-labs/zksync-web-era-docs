@@ -26,10 +26,10 @@ confused with the precompiles, which are also predeloyed contracts with special 
 zkEVM, but these contract do not have special permissions and are called by the users and not the Bootloader.
 
 The zkEVM also has user-facing features. For the best possible UX the ZK Stack supports native
-[account abstraction](../zkEVM/high_level/account_abstraction.md). This means users can fully customize how they pay the
+[account abstraction](../zkEVM/account-abstraction.md). This means users can fully customize how they pay the
 fees needed to execute their transactions.
 
 All transactions need to pay fees. The requirements to run a rollup are different than the ones needed to run Ethereum,
-so the ZK Stack has a different [fee model](../zkEVM/high_level/fee_model/fee_model.md). The fee model is designed to
+so the ZK Stack has a different [fee model](../../concepts/fee-mechanism.md). The fee model is designed to
 consider all the components that are needed to run the rollup: data and proof execution costs on L1, sequencer costs,
 and prover costs.
