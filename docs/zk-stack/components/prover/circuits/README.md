@@ -72,7 +72,7 @@ always use $n$ `MainVm` instances to handle up to $nx$ opcode executions.
 
 All circuits have the following PI structure:
 
-![Diagram of Public Inputs for Circuits](../../../assets/images/circuit-pi-diagram.png)
+![Diagram of Public Inputs for Circuits](../../../../assets/images/circuit-pi-diagram.png)
 
 | start flag               | Boolean that shows if this is the first instance of corresponding circuit type                                                                                                   |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -88,7 +88,7 @@ In terms of Arithmetization we don’t allocate all these fields like public inp
 would be computing commitment of type `[Num<F>; 4]` with poseidon2 and then allocating these 4 variables as public
 inputs.
 
-![Diagram showing computing commitments for efficient arithmetization](../../../assets/images/circuit-commitments.png)
+![Diagram showing computing commitments for efficient arithmetization](../../../../assets/images/circuit-commitments.png)
 
 The equality of corresponding parts in different circuits is done during aggregating base layer circuits. Aggregating is
 done by recursion level circuits that also verify base layer proofs. For now this is out of our scope, so we will focus
@@ -96,7 +96,7 @@ only on base layer.
 
 ## Overall View of Base Layer Circuits
 
-![Diagram showing how all base layer circuits fit together](../../../assets/images/base-layer-circuit-diagram.png)
+![Diagram showing how all base layer circuits fit together](../../../../assets/images/base-layer-circuit-diagram.png)
 
 ## Base Layer Circuits
 

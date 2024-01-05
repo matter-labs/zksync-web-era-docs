@@ -98,7 +98,7 @@ which is represented in the current Field. Variable is quite diverse. To have "g
 do encoding management to be able to represent it as both a variable (that can be copied) or witness.
 
 The implementation of this circuit type itself is similar. We can also divide them into classes as main and dependent:
-Such type like U8-U512 decoding inside functions to Num<F> for using them in logical operations. As mentioned above, the
+Such type like U8-U512 decoding inside functions to Num&lt;F&gt; for using them in logical operations. As mentioned above, the
 property of these types is to perform logical operations and allocate witnesses.
 
 Let's demonstrate this in a Boolean example:
