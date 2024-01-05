@@ -11,7 +11,7 @@ zkSync Era allows developers to build projects using the same programming langua
 
 ::: tip Differences with Ethereum
 
-Although most smart contracts work out of the box, we **strongly recommend developers to read about the [differences between Ethereum and zkSync Era](./differences-with-ethereum.md)**, and test their projects using the [local setup](../test-and-debug/README.md) and in testnet.
+Although most smart contracts work out of the box, we **strongly recommend developers to read about the [differences between Ethereum and zkSync Era](./differences-with-ethereum.md)**, and test their projects using the [local setup](../test-and-debug/getting-started.md) and in testnet.
 
 :::
 

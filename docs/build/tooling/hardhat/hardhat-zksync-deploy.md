@@ -218,7 +218,7 @@ The deployment scripts must be placed in the `deploy` folder.
 ::: tip
 
 If network argument `--network` or `defaultNetwork` configuration are not specified, local setup with `http://localhost:8545` (Ethereum RPC URL) and `http://localhost:3050` (zkSync Era RPC URL), will be used. In this case zkSync Era network will not need to be configured in `hardhat.config.ts` file.
-For more details about a dockerized local setup, check out [Local testing](../../test-and-debug/README.md).
+For more details about a dockerized local setup, check out [Local testing](../../test-and-debug/getting-started.md).
 :::
 
 `yarn hardhat deploy-zksync:libraries --private-key <PRIVATE_KEY>` -- runs compilation and deployment of missing libraries (the list of all missing libraries is provided by the output of `@matterlabs/hardhat-zksync-solc` plugin).
