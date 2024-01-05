@@ -5,6 +5,8 @@ head:
       content: External Node | zkSync Docs
 ---
 
+<<<<<<< Updated upstream
+
 > 💡 Note
 >
 > For local testing, we recommend setting up an in-memory node and forking mainnet.
@@ -162,5 +164,58 @@ Always refer to the documentation linked above to see the list of stabilized met
 
 ### `en` namespace
 
-This namespace contains methods that external nodes call on the main node while syncing. If this namespace is enabled,
+This namespace contains methods that external nodes call on the main node while syncing. If this namespace is enabled
 other ENs can sync from this node.
+=======
+
+# Run a Node
+
+Add a short description here about this "Run a Node tab"
+
+<div class="cards-heading">
+   <span class="title-section">Featured</span>
+</div>
+<section>
+  <div class="card-container">
+    <a
+      href="/infra/"
+      class="card"
+    >
+      <img  
+        src="/images/landing/lets-get-started.png" 
+        alt="Hello World Tutorial"
+      >
+      <div class="content">
+        <h3>Overview</h3>
+        <p>Learn more about our external node.</p>
+      </div>
+    </a>
+    <a
+      href="/infra/external-node/running-node.html"
+      class="card"
+    >
+      <img
+        src="/images/landing/run-a-node.png" 
+        alt="zkSync ERA documentation"
+      />
+      <div class="content">
+        <h3>Getting Started</h3>
+        <p>Run your own node at home.</p>
+      </div>
+    </a>
+    <a
+      href="/infra/external-node/component-breakdown.html"
+      class="card"
+    >
+      <img  
+        src="/images/landing/diverse-toolkit.png" 
+        alt="Diverse Toolkit"
+      >
+      <div class="content">
+        <h3>External Node Components</h3>
+        <p>Overview of the EN's main components.</p>
+      </div>
+    </a>
+  </div>
+</section>
+>>>>>>> Stashed changes

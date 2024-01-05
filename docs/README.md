@@ -82,21 +82,36 @@ contributors: false
 
 <section>
   <div class="card-container">
-    <a target="_blank" rel="noopener noreferrer" href="" class="card">
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://github.com/zkSync-Community-Hub/zksync-developers/discussions/228"
+      class="card"
+    >
       <img src="/images/landing/sepolia-migration.png" alt="Sepolia migration">
       <div class="content">
         <h3>Sepolia is Live!</h3>
         <p>Announcing Sepolia testnet and deprecating Goerli.</p>
       </div>
     </a>
-    <a target="_blank" rel="noopener noreferrer" href="https://www.npmjs.com/package/zksync-ethers" class="card">
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://www.npmjs.com/package/zksync-ethers"
+      class="card"
+    >
       <img src="/images/landing/eth-6.png" alt="zkSync Ethers V6 Support">
       <div class="content">
         <h3>Ethers V6 Support!</h3>
         <p>Check out the latest release of zksync-ethers.</p>
       </div>
     </a>
-    <a target="_blank" rel="noopener noreferrer" href="https://github.com/zksync/credo" class="card">
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://github.com/zksync/credo"
+      class="card"
+    >
       <img src="/images/landing/zk-credo.jpeg" alt="ZK Credo">
       <div class="content">
         <h3>ZK Credo</h3>

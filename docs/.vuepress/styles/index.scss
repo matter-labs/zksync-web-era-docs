@@ -372,13 +372,6 @@
     [data-theme="light"] .google-translate-select-dropdown__menu__item :hover {
         color: #1d2536 !important;
     }
-    
-    @media all and (max-width: 400px) {
-        .card-container {
-            flex-direction: column;
-            min-width: none;
-        }
-    }
 
     [data-theme="dark"] .page {
         background: #262B33;
@@ -443,9 +436,10 @@
             border: 1px solid #DADDE5;
             background-color: #FFF;
             overflow: hidden;
+
             h3 {
                 font-size: 18px;
-                font-weight: 500; 
+                font-weight: 600;
             }
         }
     }
@@ -470,6 +464,38 @@
         margin-bottom: 20px;
         text-align: center;
     }
+
+    @media all and (max-width: 500px) {
+        .landing {
+            .hero-img {
+                margin: 0 auto;
+
+                img {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .card-container {
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+
+            .card {
+                min-width: 120px;
+
+                .content {
+                    padding: 10px;
+
+                    h3 {
+                        font-size: 16px;
+                    }
+
+                    p {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
     
     .intro-text {
         font-size: 16px !important;
@@ -488,10 +514,12 @@
     
     [data-theme="dark"] .card-container .card .content {
         border-radius: 8px;
+        color: $light-text;
     }
     
     [data-theme="light"] .card-container .card .content {
         border-radius: 8px;
+        color: $dark-text;
     }
     
     .navbar .nav-item > .nav-link:hover::after, .navbar .nav-item > .nav-link.active::after {
@@ -634,6 +662,11 @@
         }
         .footer-links a{
             padding-top: 1rem;
+        }
+
+        .theme-container {
+            min-height: calc(100vh - 300px);
+            padding-bottom: 300px;
         }
     }
     @media(max-width: 574px){
