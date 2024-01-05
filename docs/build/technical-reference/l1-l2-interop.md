@@ -22,7 +22,7 @@ L1 to L2 communication is governed by the [`IZkSync.sol`](https://github.com/mat
 
 :::tip
 
-- If you prefer to learn-by-doing, the [cross chain governance tutorial](../../tutorials/smart-contract-development/cross-chain-tutorial.md) is a practical example of layer interoperability.
+- If you prefer to learn-by-doing, the [cross chain governance tutorial](../tutorials/smart-contract-development/cross-chain-tutorial.md) is a practical example of layer interoperability.
   :::
 
 ### Gas estimation
@@ -35,17 +35,17 @@ The SDK processes gas estimation for transactions implicitly. However, it is als
 - The transaction process requires the current L1 gas price, transaction base cost, and transaction gas limit which defines the maximum amount of gas a transaction can consume.
   :::
 
-- Find out [how to estimate gas](../../tutorials/how-to/estimate-gas.md) for different scenarios.
-- Find out [how to send a transaction from L1 to L2](../../tutorials/how-to/send-transaction-l1-l2.md) with zkSync Era.
+- Find out [how to estimate gas](../tutorials/how-to/estimate-gas.md) for different scenarios.
+- Find out [how to send a transaction from L1 to L2](../../build/tutorials/how-to/send-transaction-l1-l2.md) with zkSync Era.
 
 ## L2 to L1
 
 L2 to L1 communication is based on transferring the data as a message, and not on L1 transaction execution.
 
-- Find out [how to send a message from L2 to L1](../../tutorials/how-to/send-message-l2-l1.md) with zkSync Era.
+- Find out [how to send a message from L2 to L1](../tutorials/how-to/send-message-l2-l1.md) with zkSync Era.
 
 ## Priority queue
 
 1. All transactions types are supported by the priority queue.
 
-2. The priority queue must be fully permissionless to prevent malicious activity. For example, malicious users might send multiple transactions which push up the block gas limit to unworkable levels. To mitigate against this, submitting transactions to the priority queue is no longer free and users must pay a fee to the operator. To obtain the cost for sending an L2 to L1 message, please refer to [step 5 of how to send an L1 to L2 transaction](../../tutorials/how-to/send-transaction-l1-l2.md#step-by-step).
+2. The priority queue must be fully permissionless to prevent malicious activity. For example, malicious users might send multiple transactions which push up the block gas limit to unworkable levels. To mitigate against this, submitting transactions to the priority queue is no longer free and users must pay a fee to the operator. To obtain the cost for sending an L2 to L1 message, please refer to [step 5 of how to send an L1 to L2 transaction](../../build/tutorials/how-to/send-transaction-l1-l2.md#step-by-step).

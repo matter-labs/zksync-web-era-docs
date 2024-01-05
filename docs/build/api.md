@@ -11,8 +11,8 @@ zkSync Era supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en
 
 :::tip Tip
 
-- As long as code does not involve deploying new smart contracts, which can only be deployed using [EIP712 transactions](../build/technical-reference/concepts/transactions.md#transaction-types), _no changes to the codebase are needed_.
-- Read the documentation on [EIP-712 transactions](../build/technical-reference/concepts/transactions.md#eip-712-0x71) for more information.
+- As long as code does not involve deploying new smart contracts, which can only be deployed using [EIP712 transactions](../zk-stack/overview/transaction-lifecycle.md#eip-712-0x71), _no changes to the codebase are needed_.
+- Read the documentation on [EIP-712 transactions](../zk-stack/overview/transaction-lifecycle.md#eip-712-0x71) for more information.
   :::
 
 ## RPC endpoint URLs
@@ -547,12 +547,12 @@ Given a block, a sender, a message, and an optional message log index in the blo
 
 #### Inputs
 
-| Parameter       | Type      | Description                                                                                                                                                                                                                                   |
-| --------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| block           | `uint32`  | The number of the block where the message was emitted.                                                                                                                                                                                        |
-| sender          | `address` | The sender of the message (i.e. the account that called the L1Messenger system contract).                                                                                                                                                     |
-| msg             | `bytes32` | The keccak256 hash of the sent message.                                                                                                                                                                                                       |
-| l2_log_position | `uint256` | The index in the block of the event that was emitted by the [L1Messenger](../build/technical-reference/architecture/system-contracts.md#l1messenger) when submitting this message. If it is omitted, the proof for the first message returns. |
+| Parameter       | Type      | Description                                                                                                                                                                                                                      |
+| --------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| block           | `uint32`  | The number of the block where the message was emitted.                                                                                                                                                                           |
+| sender          | `address` | The sender of the message (i.e. the account that called the L1Messenger system contract).                                                                                                                                        |
+| msg             | `bytes32` | The keccak256 hash of the sent message.                                                                                                                                                                                          |
+| l2_log_position | `uint256` | The index in the block of the event that was emitted by the [L1Messenger](../build/technical-reference/system-contracts.md#l1messenger) when submitting this message. If it is omitted, the proof for the first message returns. |
 
 #### curl example
 
@@ -778,5 +778,5 @@ The WebSocket URL is `wss://sepolia.era.zksync.dev/ws`.
 
 ::: tip
 
-- Use the websocket endpoint to handle smart contract events, as detailed [in this section of the docs](../build/technical-reference/architecture/events.md).
+- Use the websocket endpoint to handle smart contract events, as detailed [in this section of the docs](../build/technical-reference/events.md).
   :::

@@ -23,7 +23,7 @@ Addresses of tokens on L2 will always differ from the same token L1 address.
 
 ## Default bridges
 
-You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../api.md#zks-getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../sdks/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
+You can get the default bridge addresses using the [`zks_getBridgeContracts`](../api.md#zks-getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../sdks/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
 
 ### Deposits (to L2)
 
@@ -43,7 +43,7 @@ You can find example scripts to deposit ETH and ERC20 tokens using the default b
 :::tip
 
 - To provide additional security during the Alpha phase, **withdrawals in zkSync Era take 24 hours**.
-- For more information, read the [withdrawal delay guide](../../support/withdrawal-delay.md).
+- For more information, read the [withdrawal delay guide](../support/withdrawal-delay.md).
   :::
 
 Users must call the `withdraw` method on the L2 bridge contract, which will trigger the following actions:
@@ -71,4 +71,4 @@ To build a custom bridge, create a regular Solidity contract which extends one o
 
 ## Adding Tokens to the Bridge UI
 
-No action is required to add tokens to the bridge UI. All tokens are automatically recognized based on user balances. If you desire for your token to display an icon or price, refer to the [Token Listing Guide](../../support/faq.md#token-listing).
+No action is required to add tokens to the bridge UI. All tokens are automatically recognized based on user balances. If you desire for your token to display an icon or price, refer to the [Token Listing Guide](../support/faq.md#token-listing).

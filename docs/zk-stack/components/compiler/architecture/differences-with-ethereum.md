@@ -162,7 +162,7 @@ contract Example {
 ### `TIMESTAMP`, `NUMBER`
 
 For more information about blocks on zkSync Era, including the differences between `block.timestamp` and `block.number`,
-check out the [blocks on zkSync Documentation](../../../../build/technical-reference/concepts/blocks.md).
+check out the [blocks on zkSync Documentation](../../../../zk-stack/overview/blocks.md).
 
 ::: note Changes From the Previous Protocol Version
 Modifications were performed on how certain block properties were implemented on zkSync Era. For details on the changes performed visit the [announcement on GitHub](https://github.com/zkSync-Community-Hub/zkync-developers/discussions/87).

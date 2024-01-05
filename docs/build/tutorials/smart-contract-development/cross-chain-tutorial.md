@@ -599,11 +599,11 @@ main().catch((error) => {
 
 :::tip
 
-- Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../../technical-reference/concepts/fee-model.md).
+- Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../../technical-reference/fee-model.md).
 - The fee also depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched from the L1 provider.
   :::
 
-4. Run the script with the following command:
+1. Run the script with the following command:
 
 ::: code-tabs
 @tab yarn
@@ -658,6 +658,6 @@ The counter value is 1
 
 ## Learn more
 
-- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../technical-reference/concepts/l1-l2-interop.md).
+- To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../technical-reference/l1-l2-interop.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../sdks/js/README.md).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../tooling/hardhat/getting-started.md).

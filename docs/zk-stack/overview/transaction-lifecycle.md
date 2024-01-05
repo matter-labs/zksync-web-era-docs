@@ -33,7 +33,7 @@ L1<>L2 communication. This method provides the rollup with censorship resistance
 allows trustless bridges to the L1.
 
 The sequencer collects transactions into blocks, similarly to Ethereum. To provide the
-best UX the protocol has small blocks with quick soft confirmations for the users. Unlike Ethereum, [the zkEVM does not just have blocks, but also batches](./blocks.md#l1-batch-vs-l2-block-aka-miniblock-vs-transaction), which are just a collection of blocks. A batch is the unit that the prover
+best UX the protocol has small blocks with quick soft confirmations for the users. Unlike Ethereum, [the zkEVM does not just have blocks, but also batches](./blocks.md#batch-vs-block-vs-transaction), which are just a collection of blocks. A batch is the unit that the prover
 processes.
 
 Before we submit a proof we send the data to L1. Instead of submitting the data of each
@@ -57,7 +57,7 @@ The following values are returned by any RPC call which outputs transaction deta
 
 - `is_l1_originated`: `bool`
 - `status`: `TransactionStatus`, one of `Pending`, `Included`, `Verified`, or `Failed`. See [Transaction statuses section](#transaction-statuses) below.
-- `fee`: `U256`. See the [fee mechanism documentation](./fee-model.md) for more information.
+- `fee`: `U256`. See the [fee mechanism documentation](./fee-mechanism.md) for more information.
 - `initiator_address`: `Address`
 - `received_at`: `DateTime<Utc>`
 - `eth_commit_tx_hash`: `Option<H256>`
@@ -66,7 +66,7 @@ The following values are returned by any RPC call which outputs transaction deta
 
 ::: info Contract deployment transactions
 
-Contract deployment transactions are different on zkSync as they involve interacting with the `ContractDeployer` system contract. Learn more about [contract deployment transactions here](../../build/technical-reference/architecture/contract-deployment.md).
+Contract deployment transactions are different on zkSync as they involve interacting with the `ContractDeployer` system contract. Learn more about [contract deployment transactions here](../../build/technical-reference/contract-deployment.md).
 
 :::
 
@@ -120,7 +120,7 @@ zkSync Era supports the EIP-1559 transaction-type format but does nothing with t
 
 The Ethereum Improvement Proposal [EIP-712: Typed structured data hashing and signing](https://eips.ethereum.org/EIPS/eip-712) introduced hashing and signing of typed-structured data as well as bytestrings.
 
-EIP-712 transactions access zkSync-specific features such as [account abstraction](../../tutorials/smart-contract-development/account-abstraction/account-abstraction.md) and [paymasters](../../tutorials/smart-contract-development/paymasters/custom-paymaster-tutorial.md). Furthermore, smart contracts must be deployed with the EIP-712 transaction type.
+EIP-712 transactions access zkSync-specific features such as [account abstraction](../../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md) and [paymasters](../../build/tutorials/smart-contract-development/paymasters/custom-paymaster-tutorial.md). Furthermore, smart contracts must be deployed with the EIP-712 transaction type.
 
 You can specify the additional fields, such as the custom signature for custom accounts or to choose the paymaster with EIP-712 transactions. These transactions have the same fields as standard Ethereum transactions, plus fields containing additional L2-specific data (`paymaster`, etc).
 
@@ -159,8 +159,8 @@ Instead of signing the RLP-encoded transaction, the user signs the following typ
 | factoryDeps            | `bytes32[]` |
 | paymasterInput         | `bytes`     |
 
-These fields are handled by our [SDK](../../sdks/js/features.md).
+These fields are handled by our SDKs.
 
 ### Priority: `0xff`
 
-Since Ethereum L1 has no concept of interacting with other layers, this is a zkSync Era specific transaction type related to [L1 -> L2 transactions](../../tutorials/how-to/send-transaction-l1-l2.md).
+Since Ethereum L1 has no concept of interacting with other layers, this is a zkSync Era specific transaction type related to [L1 -> L2 transactions](../../build/tutorials/how-to/send-transaction-l1-l2.md).

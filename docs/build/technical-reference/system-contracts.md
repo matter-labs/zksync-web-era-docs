@@ -12,7 +12,7 @@ To keep the zero-knowledge circuits as simple as possible and enable simple exte
 The code for the system contracts will not be public until it has gone through thorough testing. This section will only provide you with the knowledge needed to build on zkSync.
 
 ::: tip System contract addresses
-You can find the L1 system contract addresses in the [useful addresses page](../../quick-start/useful-address.md).
+You can find the L1 system contract addresses in the [useful addresses page](../quick-start/useful-address.md).
 :::
 
 ## Interfaces
@@ -91,7 +91,7 @@ Separate facet, whose only function is providing `view` and `pure` methods. It a
 
 ### MailboxFacet
 
-The facet that handles L2 <-> L1 communication, an overview for which can be found in the [L1 / L2 Interoperability guide](../concepts/l1-l2-interop.md).
+The facet that handles L2 <-> L1 communication, an overview for which can be found in the [L1 / L2 Interoperability guide](./l1-l2-interop.md).
 
 The Mailbox only cares about transferring information from L2 to L1 and the other way but does not hold or transfer any assets (ETH, ERC20 tokens, or NFTs).
 

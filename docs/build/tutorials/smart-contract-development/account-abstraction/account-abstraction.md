@@ -31,7 +31,7 @@ Accounts in zkSync Era can initiate transactions, like an EOA, but can also have
 Native Account Abstraction on zkSync Era fundamentally changes how accounts operate by introducing the concept of Smart Accounts and Paymasters. Smart Accounts are fully programmable, allowing for various customizations such as signature schemes, native multi-sig capabilities, spending limits, and application-specific restrictions.
 
 ::: info
-The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance accounts' flexibility and user experience, but they differ in key aspects; learn more [here](../../../technical-reference/architecture/differences-with-ethereum.md#native-aa-vs-eip-4337).
+The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance accounts' flexibility and user experience, but they differ in key aspects; learn more [here](../../../technical-reference/differences-with-ethereum.md#native-aa-vs-eip-4337).
 :::
 
 Paymasters, conversely, can sponsor transactions for users, enabling users to pay transaction fees in ERC20 tokens. This innovative approach to account management significantly enhances user experience, security, and flexibility, paving the way for broader adoption of blockchain technology.
@@ -83,7 +83,7 @@ Each account is recommended to implement the [IAccount](https://github.com/matte
 
 - `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) the method should revert. In case the call to this method succeeds, the implemented account logic is considered to accept the transaction, and the system will proceed with the transaction flow.
 - `executeTransaction` is mandatory and will be called by the system after the fee is charged from the user. This function should perform the execution of the transaction.
-- `payForTransaction` is optional and will be called by the system if the transaction has no paymaster, i.e. the account is willing to pay for the transaction. This method should be used to pay for the fees by the account. Note, that if your account will never pay any fees and will always rely on the [paymaster](#paymasters) feature, you don't have to implement this method. This method must send at least `tx.gasprice * tx.gasLimit` ETH to the [bootloader](../../../technical-reference/architecture/system-contracts.md#bootloader) address.
+- `payForTransaction` is optional and will be called by the system if the transaction has no paymaster, i.e. the account is willing to pay for the transaction. This method should be used to pay for the fees by the account. Note, that if your account will never pay any fees and will always rely on the [paymaster](#paymasters) feature, you don't have to implement this method. This method must send at least `tx.gasprice * tx.gasLimit` ETH to the [bootloader](../../../technical-reference/system-contracts.md#bootloader) address.
 - `prepareForPaymaster` is optional and will be called by the system if the transaction has a paymaster, i.e. there is a different address that pays the transaction fees for the user. This method should be used to prepare for the interaction with the paymaster. One of the notable [examples](#approval-based-paymaster-flow) where it can be helpful is to approve the ERC-20 tokens for the paymaster.
 - `executeTransactionFromOutside`, technically, is not mandatory, but it is _highly encouraged_, since there needs to be some way, in case of priority mode (e.g. if the operator is unresponsive), to be able to start transactions from your account from ``outside'' (basically this is the fallback to the standard Ethereum approach, where an EOA starts transaction from your smart contract).
 
@@ -222,7 +222,7 @@ Currently, your transactions may pass through the API despite violating the requ
 
 ### Nonce holder contract
 
-For optimization purposes, both [tx nonce and the deployment nonce](../../../../zk-stack/components/compiler/architecture/contract-deployment.md#differences-in-create-behaviour) are put in one storage slot inside the [NonceHolder](../../../technical-reference/architecture/system-contracts.md#nonceholder) system contracts.
+For optimization purposes, both [tx nonce and the deployment nonce](../../../../zk-stack/components/compiler/architecture/contract-deployment.md#differences-in-create-behaviour) are put in one storage slot inside the [NonceHolder](../../../technical-reference/system-contracts.md#nonceholder) system contracts.
 In order to increment the nonce of your account, it is highly recommended to call the [incrementMinNonceIfEquals](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/INonceHolder.sol#L34) function and pass the value of the nonce provided in the transaction.
 
 This is one of the whitelisted calls, where the account logic is allowed to call outside smart contracts.

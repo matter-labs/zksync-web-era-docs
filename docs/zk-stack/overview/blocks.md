@@ -18,7 +18,7 @@ into blocks & batches.
 On the other hand, L1 rollup blocks are **batches** of consecutive L2 blocks that contain all the transactions in the same order, from the first block to the last block in the batch.
 
 L1 batches, as the name suggests, are submitted to Ethereum. The main reason to have these different notions is that a block can
-contain a minimal number of transactions ([or none at all](#fictive-l2-block--finalizing-the-batch)), and thus be processed quickly, while in a batch we would like to include many transactions to spread the cost of interacting with L1 across all transactions.
+contain a minimal number of transactions (see fictive blocks below), and thus be processed quickly, while in a batch we would like to include many transactions to spread the cost of interacting with L1 across all transactions.
 
 ## Batch vs Block vs Transaction
 

@@ -68,7 +68,7 @@ The current version of zkSync Era solves the needs of most applications on Ether
 - Support for Ethereum cryptographic primitives: zkSync natively supports `keccak256`, `sha256`, and `ecrecover` via precompiles.
 - Hardhat plugin: Enables easy testing and development of smart contracts on zkSync.
 - L1 → L2 smart contract messaging: Allows developers to pass data from Ethereum to smart contracts on zkSync, providing the required information to run various smart contracts.
-- Native account abstraction: zkSync Era implements [account abstraction natively](../../tutorials/smart-contract-development/account-abstraction/account-abstraction.md), which brings multiple UX improvements for all accounts.
+- Native account abstraction: zkSync Era implements [account abstraction natively](../tutorials/smart-contract-development/account-abstraction/account-abstraction.md), which brings multiple UX improvements for all accounts.
 
 Some features that will be released in future upgrades:
 
@@ -87,13 +87,13 @@ Some features that will be released in future upgrades:
 zkSync [stands out remarkably](https://blog.matter-labs.io/evaluating-ethereum-l2-scaling-solutions-a-comparison-framework-b6b2f410f955) in security and usability among existing L2 scaling solutions.
 Thanks to the combination of cutting-edge cryptography and on-chain data availability, ZK rollups (the core network of zkSync) are the only L2 scaling solution that doesn't require any operational activity to keep the funds safe.
 For example, users can go offline and still be able to withdraw their assets safely when they come back, even if the ZK rollup validators are no longer around.
-For a comprehensive distinction between zkSync Era and Ethereum, read this [guide](../../technical-reference/architecture/differences-with-ethereum.md).
+For a comprehensive distinction between zkSync Era and Ethereum, read this [guide](../technical-reference/differences-with-ethereum.md).
 
 ## zkSync Era user experience
 
 - Transactions have instant confirmations and fast finality on L1.
 - Transaction fees are extremely low.
-- Transaction fees can be conveniently paid with ERC20 tokens (e.g. USDC) thanks to [native account abstraction and paymasters](../../../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md).
+- Transaction fees can be conveniently paid with ERC20 tokens (e.g. USDC) thanks to [native account abstraction and paymasters](../../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md).
 - Support for existing Ethereum-based wallets like Metamask, TrustWallet or Zerion.
 
 ## zkSync Era developer experience
@@ -101,11 +101,11 @@ For a comprehensive distinction between zkSync Era and Ethereum, read this [guid
 - Smart contracts can be written in Solidity or Vyper.
 - Most contracts work out of the box so migrating projects is seamless.
 - Web3 API compatibility enables support of most developer tools.
-- Use existing frameworks like [Hardhat](../../tooling/hardhat/getting-started.md) and [Foundry (alpha)](https://github.com/matter-labs/foundry-zksync).
-- Compile smart contracts with custom compilers: [zksolc and zkvyper](../../../zk-stack/components/compiler/fe-equivalence/README.md).
-- Different [tools for testing locally](../../test-and-debug/README.md).
+- Use existing frameworks like [Hardhat](../tooling/hardhat/getting-started.md) and [Foundry (alpha)](https://github.com/matter-labs/foundry-zksync).
+- Compile smart contracts with custom compilers: [zksolc and zkvyper](../../zk-stack/components/compiler/fe-equivalence/README.md).
+- Different [tools for testing locally](../test-and-debug/README.md).
 
 ## How to get started?
 
-- Begin by building a dApp in the [quickstart section](../../quick-start/hello-world.md).
-- See how to [connect your wallet and interact with zkSync Era](../../quick-start/interacting.md).
+- Begin by building a dApp in the [quickstart section](../quick-start/hello-world.md).
+- See how to [connect your wallet and interact with zkSync Era](../quick-start/add-zksync-to-metamask.md).

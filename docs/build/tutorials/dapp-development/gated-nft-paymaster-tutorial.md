@@ -30,9 +30,9 @@ You'll gain a thorough understanding of how to create, compile, and deploy smart
 - Some familiarity with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../../quick-start/hello-world.md).
 - Some background knowledge on the concepts covered by the tutorial would be helpful too. Have a look at the following docs:
   - [Account abstraction protocol](../../tutorials/smart-contract-development/account-abstraction/account-abstraction.md).
-  - [Introduction to system contracts](../../technical-reference/architecture/system-contracts.md).
-  - [Smart contract deployment](../../technical-reference/architecture/contract-deployment.md) on zkSyn Era.
-  - [Gas estimation for transactions](../../technical-reference/concepts/fee-model.md#gas-estimation-for-transactions) guide.
+  - [Introduction to system contracts](../../technical-reference/system-contracts.md).
+  - [Smart contract deployment](../../technical-reference/contract-deployment.md) on zkSyn Era.
+  - [Gas estimation for transactions](../../technical-reference/fee-model.md#gas-estimation-for-transactions) guide.
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ### Complete project

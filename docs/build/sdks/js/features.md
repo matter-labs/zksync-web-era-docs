@@ -13,7 +13,7 @@ While zkSync is mostly Web3-compatible, it has some differences compared to Ethe
 - Deployment transactions require the contracts' bytecode to be passed in a separate field.
 - The fee system is somewhat different.
 
-These require us to extend standard Ethereum transactions with new custom fields. Such extended transactions are called EIP712 transactions since [EIP712](https://eips.ethereum.org/EIPS/eip-712) is used to sign them. You can look at the internal structure of the EIP712 transactions [here](../../technical-reference/concepts/transactions.md#eip-712-0x71).
+These require us to extend standard Ethereum transactions with new custom fields. Such extended transactions are called EIP712 transactions since [EIP712](https://eips.ethereum.org/EIPS/eip-712) is used to sign them. You can look at the internal structure of the EIP712 transactions [here](../../../zk-stack/overview/transaction-lifecycle.md#eip-712-0x71).
 
 This document will focus solely on how to pass these arguments to the SDK.
 
