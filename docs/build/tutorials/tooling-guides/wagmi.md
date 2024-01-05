@@ -7,10 +7,10 @@ head:
 
 # Wagmi
 
-The `@wagmi/core` library provides a comprehensive VanillaJS toolkit for interacting with the zkSync Era. It simplifies wallet connections, balance retrieval, message signing, and contract interactions. For setup instructions, consult the official documentation [here](https://wagmi.sh/core/getting-started).
+The `@wagmi/core` library provides a comprehensive VanillaJS toolkit for interacting with zkSync Era. It simplifies wallet connections, balance retrieval, message signing, and contract interactions. For setup instructions, consult the official documentation [here](https://wagmi.sh/core/getting-started).
 
 :::info
-Wagmi hooks do not yet support Paymasters and Account Abstraction; development is in progress.
+Wagmi hooks do not yet support Paymasters and native Account Abstraction; development is in progress.
 :::
 
 Here are some common actions:

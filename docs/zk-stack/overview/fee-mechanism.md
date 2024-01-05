@@ -76,7 +76,7 @@ case of zkSync batches, here are the resources the protocol watches to decide wh
 Each transaction spends the batch overhead proportionally to how much of these resources it requires.
 
 Note that before the transaction is executed, the system can not know how many of these limited system resources the
-transaction will actually take. Therefore, we need to charge for the worst case and provide the refund at the end of the
+transaction will actually take. Therefore, we need to charge for the worst case and provide the [refund](#refunds) at the end of the
 transaction.
 
 ## `baseFee`
@@ -127,12 +127,12 @@ Another distinctive feature of the fee model used on zkSync is the abundance of 
 
 This is needed because of the relatively big upfront payments we discussed earlier required in zkSync to provide DDoS security.
 
-# Formulas and Constants for Calculating Fees
+## Formulas and Constants for Calculating Fees
 
 After determining price for each opcode in gas according to the model above, the following formulas are to be used for
 calculating `baseFee` and `gasPerPubdata` for a batch.
 
-## System-Wide Constants
+### System-Wide Constants
 
 These constants are to be hardcoded and can only be changed via either system contracts/bootloader or VM upgrade.
 
@@ -161,7 +161,7 @@ contain almost any arbitrary value depending on the capacity of batch that we wa
 `GUARANTEED_PUBDATA_PER_TX` (_PG_) — The guaranteed number of pubdata that should be possible to pay for in one zkSync
 batch. This is a number that should be enough for most reasonable cases.
 
-## Derived Constants
+### Derived Constants
 
 Some of the constants are derived from the system constants above:
 
@@ -172,7 +172,7 @@ $$
 EP_{Max} = \lfloor \frac{T_M}{P_G} \rfloor
 $$
 
-## Externally-Provided Batch Parameters
+### Externally-Provided Batch Parameters
 
 `L1_GAS_PRICE` (_L_1_P_) — The price for L1 gas in ETH.
 
@@ -190,7 +190,7 @@ price and (most importantly) the required `gas_price_per_pubdata` for transactio
 Both of the values above are currently provided by the operator. Later on, some decentralized/deterministic way to
 provide these prices will be utilized.
 
-## Determining `base_fee`
+### Determining `base_fee`
 
 When the batch opens, we can calculate the `FAIR_GAS_PER_PUBDATA_BYTE` (_EPf_) — “fair” gas per pubdata byte:
 
@@ -234,7 +234,7 @@ $$
 
 This is the base fee that will be always returned from the API via `eth_gasGasPrice`.
 
-## Overhead for a Transaction
+### Overhead for a Transaction
 
 Let’s define by _tx_._actualGasLimit_ as the actual gasLimit that is to be used for processing of the transaction
 (including the intrinsic costs). In this case, we will use the following formulas for calculating the upfront payment
@@ -295,7 +295,7 @@ _tx_._actualGasLimit_ = _tx_._gasLimit_ − _overhead_\_\_gas*(\_tx*) and use th
 the user should’ve paid under the derived _tx_._actualGasLimit_ to ensure that the operator does not overcharge the
 user.
 
-## _overhead_(_tx_)
+### _overhead_(_tx_)
 
 For the ease of integer calculation, we will use the following formulas to derive the _overhead_(_tx_):
 
@@ -310,7 +310,7 @@ Then, _overhead_\__gas_(_tx_) is the maximum of the following expressions:
 2. $M_O(tx) = \lceil \frac{B_O \cdot encodingLen(tx)}{B_M} \rceil$
 3. $E_O(tx) = \lceil \frac{B_O \cdot tx.gasBodyLimit}{T_M} \rceil$
 
-## Deriving `overhead_gas(tx)` from `tx.gasLimit`
+### Deriving `overhead_gas(tx)` from `tx.gasLimit`
 
 The task that the operator needs to do is the following:
 
@@ -399,7 +399,7 @@ $$
 
 Then, the operator can safely choose the largest one.
 
-#### Discounts by the operator
+### Discounts by the operator
 
 It is important to note that the formulas provided above are to withstand the worst-case scenario and these are the
 formulas used for L1->L2 transactions (since these are forced to be processed by the operator). However, in reality, the
@@ -409,7 +409,7 @@ the pubdata limit or the transactions’ slots limit. For this reason, the opera
 overhead. The only thing that the bootloader checks is that this overhead is _not larger_ than the maximal required one.
 But the operator is allowed to provide a lower overhead.
 
-#### Refunds
+### Refunds
 
 As you could see above, this fee model introduces quite some places where users may overpay for transactions:
 

@@ -467,35 +467,19 @@ export const enSidebar = sidebar({
       link: "/build/api.md"
     },
     {
-      text: "Technical Reference",
+      text: "Developer Reference",
       collapsible: true,
       children: [
-        {
-          text: "Concepts",
-          collapsible: true,
-          children: [
-            "/build/technical-reference/concepts/rollups.md",
-            "/build/technical-reference/concepts/zkSync.md",
-            "/build/technical-reference/concepts/validiums.md",
-            "/build/technical-reference/concepts/transactions.md",
-            "/build/technical-reference/concepts/blocks.md",
-            "/build/technical-reference/concepts/fee-model.md",
-            "/build/technical-reference/concepts/finality.md",
-            "/build/technical-reference/concepts/bridging-asset.md",
-            "/build/technical-reference/concepts/l1-l2-interop.md",
-          ],
-        },
-        {
-          text: "Architecture",
-          collapsible: true,
-          children: [
-            "/build/technical-reference/architecture/differences-with-ethereum.md",
-            "/build/technical-reference/architecture/system-contracts.md",
-            "/build/technical-reference/architecture/contract-development.md",
-            "/build/technical-reference/architecture/contract-deployment.md",
-            "/build/technical-reference/architecture/events.md",
-          ],
-        },
+        "/build/technical-reference/rollups.md",
+        "/build/technical-reference/zkSync.md",
+        "/build/technical-reference/differences-with-ethereum.md",
+        "/build/technical-reference/system-contracts.md",
+        "/build/technical-reference/bridging-asset.md",
+        "/build/technical-reference/contract-development.md",
+        "/build/technical-reference/contract-deployment.md",
+        "/build/technical-reference/events.md",
+        "/build/technical-reference/fee-model.md",
+        "/build/technical-reference/l1-l2-interop.md",
       ]
     },
     {
@@ -610,6 +594,10 @@ export const enSidebar = sidebar({
           text: "Hyperchains / Hyperscaling",
           link: "/zk-stack/overview/hyperchains-hyperscaling.md"
         },
+        {
+          text: "Validiums",
+          link: "/zk-stack/overview/validiums.md"
+        }
       ]
     },
     {
