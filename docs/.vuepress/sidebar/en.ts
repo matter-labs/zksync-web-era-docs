@@ -125,10 +125,6 @@ export const enSidebar = sidebar({
               link: "/build/tutorials/tooling-guides/redstone.md",
             },
             {
-              text: "Dune Analytics",
-              link: "/build/tutorials/tooling-guides/dune-analytics.md",
-            },
-            {
               text: "The Graph",
               link: "/build/tutorials/tooling-guides/the-graph.md",
             },
@@ -231,10 +227,6 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             {
-              text: "zkSync Bridges",
-              link: "/build/tooling/bridges/all-bridges.md",
-            },
-            {
               text: "Deposit ETH to L2",
               link: "/build/tooling/bridges/deposit-eth-to-l2.md",
             },
@@ -260,6 +252,10 @@ export const enSidebar = sidebar({
           text: "Community",
           collapsible: true,
           children: [
+            {
+              text: "Bridges",
+              link: "/build/tooling/bridges/all-bridges.md",
+            },
             {
               text: "Cross Chain",
               link: "/build/tooling/cross-chain.md"
@@ -363,28 +359,28 @@ export const enSidebar = sidebar({
                   text: "Getting started",
                   collapsible: true,
                   children: [
-                    "/build/sdks/js/zksync2-js/getting-started",
-                    "/build/sdks/js/zksync2-js/examples/deposit",
-                    "/build/sdks/js/zksync2-js/examples/transfer",
-                    "/build/sdks/js/zksync2-js/examples/withdraw",
-                    "/build/sdks/js/zksync2-js/examples/get-confirmed-tokens",
-                    "/build/sdks/js/zksync2-js/examples/create",
-                    "/build/sdks/js/zksync2-js/examples/create2",
-                    "/build/sdks/js/zksync2-js/examples/custom-paymaster/deploy-token",
-                    "/build/sdks/js/zksync2-js/examples/custom-paymaster/deploy-account",
-                    "/build/sdks/js/zksync2-js/examples/custom-paymaster/use-paymaster",
+                    "/build/sdks/js/zksync-ethers/getting-started",
+                    "/build/sdks/js/zksync-ethers/examples/deposit",
+                    "/build/sdks/js/zksync-ethers/examples/transfer",
+                    "/build/sdks/js/zksync-ethers/examples/withdraw",
+                    "/build/sdks/js/zksync-ethers/examples/get-confirmed-tokens",
+                    "/build/sdks/js/zksync-ethers/examples/create",
+                    "/build/sdks/js/zksync-ethers/examples/create2",
+                    "/build/sdks/js/zksync-ethers/examples/custom-paymaster/deploy-token",
+                    "/build/sdks/js/zksync-ethers/examples/custom-paymaster/deploy-account",
+                    "/build/sdks/js/zksync-ethers/examples/custom-paymaster/use-paymaster",
                   ],
                 },
-                "/build/sdks/js/zksync2-js/providers",
-                "/build/sdks/js/zksync2-js/accounts",
-                "/build/sdks/js/zksync2-js/accounts-l1-l2",
-                "/build/sdks/js/zksync2-js/contracts",
-                "/build/sdks/js/zksync2-js/features",
-                "/build/sdks/js/zksync2-js/utils",
-                "/build/sdks/js/zksync2-js/paymaster-utils",
-                "/build/sdks/js/zksync2-js/types",
-                "/build/sdks/js/zksync2-js/front-end",
-                "/build/sdks/js/zksync2-js/migration"
+                "/build/sdks/js/zksync-ethers/providers",
+                "/build/sdks/js/zksync-ethers/accounts",
+                "/build/sdks/js/zksync-ethers/accounts-l1-l2",
+                "/build/sdks/js/zksync-ethers/contracts",
+                "/build/sdks/js/zksync-ethers/features",
+                "/build/sdks/js/zksync-ethers/utils",
+                "/build/sdks/js/zksync-ethers/paymaster-utils",
+                "/build/sdks/js/zksync-ethers/types",
+                "/build/sdks/js/zksync-ethers/front-end",
+                "/build/sdks/js/zksync-ethers/migration"
               ],
             }
           ]

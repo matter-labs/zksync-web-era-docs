@@ -17,10 +17,6 @@ Here are some common actions:
 
 ### Connect Wallet
 
-<details>
-
-<summary>Connect Wallet</summary>
-
 ```typescript
 import { w3mConnectors, w3mProvider } from "@web3modal/ethereum";
 import { configureChains, createConfig } from "wagmi";
@@ -47,13 +43,7 @@ export const config = createConfig({
 export { chains };
 ```
 
-</details>
-
 ### Display Wallet Options
-
-<details>
-
-<summary>Display Wallet Options</summary>
 
 ```typescript
 import { useConnect } from "wagmi";
@@ -78,13 +68,7 @@ export function WalletOptions() {
 }
 ```
 
-</details>
-
 ### Fetch Account
-
-<details>
-
-<summary>Fetch Account</summary>
 
 ```typescript
 import { useAccount } from "wagmi";
@@ -96,13 +80,7 @@ export function Account() {
 }
 ```
 
-</details>
-
 ### Fetch Balance
-
-<details>
-
-<summary>Fetch Balance</summary>
 
 ```typescript
 import { useState } from "react";
@@ -156,13 +134,7 @@ export function FindBalance() {
 }
 ```
 
-</details>
-
 ### Fetch Block Number
-
-<details>
-
-<summary>Fetch Block Number</summary>
 
 ```typescript
 import { useBlockNumber } from "wagmi";
@@ -173,13 +145,7 @@ export function BlockNumber() {
 }
 ```
 
-</details>
-
 ### Send Transaction
-
-<details>
-
-<summary>Send Transaction</summary>
 
 ```typescript
 import { parseEther } from "viem";
@@ -226,13 +192,7 @@ export function SendTransaction() {
 }
 ```
 
-</details>
-
 ### Send Transaction (Prepared)
-
-<details>
-
-<summary>Send Transaction (Prepared)</summary>
 
 ```typescript
 import { useState } from "react";
@@ -287,13 +247,7 @@ export function SendTransactionPrepared() {
 }
 ```
 
-</details>
-
 ### Sign Message
-
-<details>
-
-<summary>Sign Message</summary>
 
 ```typescript
 import { useEffect, useState } from "react";
@@ -345,13 +299,7 @@ export function SignMessage() {
 }
 ```
 
-</details>
-
 ### Sign Typed Data
-
-<details>
-
-<summary>Sign Typed Data</summary>
 
 ```typescript
 import { useEffect, useState } from "react";
@@ -431,13 +379,7 @@ export function SignTypedData() {
 }
 ```
 
-</details>
-
 ### Read Contract
-
-<details>
-
-<summary>Read Contract</summary>
 
 ```typescript
 import { useState } from "react";
@@ -496,13 +438,7 @@ function BalanceOf() {
 }
 ```
 
-</details>
-
 ### Token
-
-<details>
-
-<summary>Token</summary>
 
 ```typescript
 import { useState } from "react";
@@ -531,13 +467,7 @@ export function Token() {
 }
 ```
 
-</details>
-
 ### Write Contract
-
-<details>
-
-<summary>Write Contract</summary>
 
 ```typescript
 import { BaseError } from "viem";
@@ -587,5 +517,3 @@ export function WriteContract() {
   );
 }
 ```
-
-</details>

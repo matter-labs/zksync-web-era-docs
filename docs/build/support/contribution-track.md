@@ -67,7 +67,7 @@ Feel free to explore these repositories, and don't hesitate to contribute!
 
 #### Getting Started
 
-**1. Introduce Yourself on** [**zkSync Dev Discord**](https://discord.com/invite/QKSsp7tC2x)
+**1. Introduce Yourself on** [**zkSync Discord**](https://discord.com/invite/QKSsp7tC2x)
 
 - Join our Discord channel and say 'hi' in the `#introductions` thread. Share what interests you and what you're hoping to learn or contribute.
 
