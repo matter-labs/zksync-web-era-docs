@@ -116,11 +116,11 @@ For reference, see
 
 ## Auxiliary Heap
 
-Both [zksolc](../../fe-equivalence/solidity.md) and
-[zkvyper](../../fe-equivalence/vyper.md) compilers for EraVM operate on
-[the IR level](../../fe-equivalence/overview.md#ir-compilers), so they cannot control
+Both [zksolc](../../toolchain/solidity.md) and
+[zkvyper](../../toolchain/vyper.md) compilers for EraVM operate on
+[the IR level](../../toolchain/overview.md#ir-compilers), so they cannot control
 the heap memory allocator which remains a responsibility of
-[the high-level source code compilers](../../fe-equivalence/overview.md#high-level-source-code-compilers)
+[the high-level source code compilers](../../toolchain/overview.md#high-level-source-code-compilers)
 emitting the IRs.
 
 However, the are several cases where EraVM needs to allocate memory on the heap and EVM does not. The auxiliary heap is
