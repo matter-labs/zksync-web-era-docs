@@ -16,15 +16,15 @@ head:
     >
       <img  
         src="/images/landing/lets-get-started.png" 
-        alt="Hello World Tutorial"
+        alt="Running an external node"
       >
       <div class="content">
-        <h3>Overview</h3>
+        <h3>Introduction</h3>
         <p>Learn more about our external node.</p>
       </div>
     </a>
     <a
-      href="/infra/external-node/running-node.html"
+      href="/infra/running-node.html"
       class="card"
     >
       <img
@@ -37,7 +37,7 @@ head:
       </div>
     </a>
     <a
-      href="/infra/external-node/component-breakdown.html"
+      href="/infra/component-breakdown.html"
       class="card"
     >
       <img  

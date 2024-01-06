@@ -505,39 +505,31 @@ export const enSidebar = sidebar({
       link: "/infra/introduction.md",
     },
     {
-      text: "External Node (EN)",
-      // link: "/infra/external-node/README.md",
-      collapsible: true,
-      children: [
-        {
-          text: "Component Breakdown",
-          link: "/infra/external-node/component-breakdown.md",
-        },
-        {
-          text: "Configuration",
-          link: "/infra/external-node/configuration.md",
-        },
-        {
-          text: "Running Node",
-          link: "/infra/external-node/running-node.md",
-        },
-        {
-          text: "API Overview",
-          link: "/infra/external-node/api-overview.md",
-        },
-        {
-          text: "Observability",
-          link: "/infra/external-node/observability.md",
-        },
-        {
-          text: "Troubleshooting",
-          link: "/infra/external-node/troubleshooting.md",
-        }
-      ],
-
-
+      text: "Component Breakdown",
+      link: "/infra/external-node/component-breakdown.md",
     },
-    
+    {
+      text: "Configuration",
+      link: "/infra/external-node/configuration.md",
+    },
+    {
+      text: "Running Node",
+      link: "/infra/external-node/running-node.md",
+    },
+    {
+      text: "API Overview",
+      link: "/infra/external-node/api-overview.md",
+    },
+    {
+      text: "Observability",
+      link: "/infra/external-node/observability.md",
+    },
+    {
+      text: "Troubleshooting",
+      link: "/infra/external-node/troubleshooting.md",
+    }
+
+  
     // {
     //   text: "zkSync",
     //   // link: "/infra/zksync-era/README.md",
@@ -608,7 +600,17 @@ export const enSidebar = sidebar({
         },
         {
           text: "Smart Contracts",
-          link: "/zk-stack/components/sequencer/smart-contracts.md"
+          link: "/zk-stack/components/smart-contracts.md"
+          
+        },
+        {
+          text: "Shared Bridges",
+          link: "/zk-stack/components/shared-bridges.md"
+          
+        },
+        {
+          text: "Sequencer / Server",
+          link: "/zk-stack/components/sequencer-server/README.md"
           
         },
         {
@@ -617,8 +619,8 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             {
-              text: "Sequencer",
-              link: "/zk-stack/components/sequencer/sequencer.md",
+              text: "Overview",
+              link: "/zk-stack/components/zkEVM/README.md",
             },
             {
               text: "Virtual Machine Specification",
@@ -760,6 +762,14 @@ export const enSidebar = sidebar({
               link: "/zk-stack/components/compiler/fe-equivalence.md"
             }
           ],
+        },
+        { 
+          text: "Fee Withdrawer",
+          link: "/zk-stack/components/fee-withdrawer.md"
+        },
+        { 
+          text: "Portal - Wallet + Bridge",
+          link: "/zk-stack/components/portal-wallet-bridge.md"
         },
         { 
           text: "Block Explorer",
