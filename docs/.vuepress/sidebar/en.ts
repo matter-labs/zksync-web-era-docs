@@ -534,26 +534,29 @@ export const enSidebar = sidebar({
           link: "/infra/external-node/troubleshooting.md",
         }
       ],
+
+
     },
-    {
-      text: "zkSync",
-      // link: "/infra/zksync-era/README.md",
-      collapsible: true,
-      children: [
-        {
-          text: "Installation",
-          link: "/infra/zksync-era/installation.md"
-        },
-        {
-          text: "Running Node",
-          link: "/infra/zksync-era/running-node.md"
-        },
-        {
-          text: "Development",
-          link: "/infra/zksync-era/development.md"
-        },
-      ]
-    },
+    
+    // {
+    //   text: "zkSync",
+    //   // link: "/infra/zksync-era/README.md",
+    //   collapsible: true,
+    //   children: [
+    //     {
+    //       text: "Installation",
+    //       link: "/infra/zksync-era/installation.md"
+    //     },
+    //     {
+    //       text: "Running Node",
+    //       link: "/infra/zksync-era/running-node.md"
+    //     },
+    //     {
+    //       text: "Development",
+    //       link: "/infra/zksync-era/development.md"
+    //     },
+    //   ]
+    // },
   ],
   "/zk-stack": [
     {
@@ -595,21 +598,6 @@ export const enSidebar = sidebar({
       ]
     },
     {
-      text: "Running a Hyperchain",
-      // link: "/zk-stack/running-a-hyperchain/README.md",
-      collapsible: true,
-      children: [
-        {
-          text: "Locally",
-          link: "/zk-stack/running-a-hyperchain/locally.md"
-        },
-        {
-          text: "In Production",
-          link: "/zk-stack/running-a-hyperchain/production.md"
-        }
-      ]
-    },
-    {
       text: "Components",
       // link: "/zk-stack/components/README.md",
       collapsible: true,
@@ -619,8 +607,13 @@ export const enSidebar = sidebar({
           link: "/zk-stack/components/getting-started.md",
         },
         {
-          text: "Sequencer",
-          // link: "/zk-stack/components/sequencer/README.md",
+          text: "Smart Contracts",
+          link: "/zk-stack/components/sequencer/smart-contracts.md"
+          
+        },
+        {
+          text: "zkEVM",
+          link: "/zk-stack/components/zkEVM/README.md",
           collapsible: true,
           children: [
             {
@@ -628,22 +621,41 @@ export const enSidebar = sidebar({
               link: "/zk-stack/components/sequencer/sequencer.md",
             },
             {
-              text: "Server",
-              link: "/zk-stack/components/sequencer/server.md"
-            },
-            {
-              text: "Out-of-Circuit VM",
-              link: "/zk-stack/components/sequencer/out-of-circuit-vm.md"
+              text: "Virtual Machine Specification",
+              // link: "/zk-stack/components/zkEVM/vm-specification",
+              collapsible: true,
+              children: [
+                {
+                  text: "VM Primer",
+                  link: "/zk-stack/components/zkEVM/vm-primer.md"
+                },
+                {
+                  text: "VM Formal Specification",
+                  link: "/zk-stack/components/zkEVM/formal-spec.md"
+                },
+              ]
             },
             {
               text: "Bootloader",
-              link: "/zk-stack/components/sequencer/bootloader.md"
+              link: "/zk-stack/components/zkevm/bootloader.md"
+            },
+            {
+              text: "System Contracts",
+              link: "/zk-stack/components/zkevm/system-contracts.md"
+            },
+            {
+              text: "Precompiles",
+              link: "/zk-stack/components/zkevm/precompiles.md"
+            },
+            {
+              text: "Account Abstraction",
+              link: "/zk-stack/components/zkevm/account-abstraction.md"
             }
           ]
         },
         {
-          text: "Proof System",
-          // link: "/zk-stack/components/proof-system/README.md",
+          text: "Prover",
+          link: "/zk-stack/components/prover/README.md",
           collapsible: true,
           children: [
             {
@@ -651,12 +663,86 @@ export const enSidebar = sidebar({
               link: "/zk-stack/components/proof-system/prover.md",
             },
             {
-              text: "In-Circuit VM",
-              link: "/zk-stack/components/proof-system/in-circuit-vm.md"
+              text: "ZK Terminology",
+              link: "/zk-stack/components/prover/zk-terminology.md"
             },
             {
-              text: "Proof System",
-              link: "/zk-stack/components/proof-system/proof-system.md"
+              text: "Getting Started",
+              link: "/zk-stack/components/prover/run-the-prover.md"
+            },
+            {
+              text: "Circuits",
+              link: "/zk-stack/components/prover/circuits/README.md",
+              collapsible: true,
+              children: [
+                {
+                  text: "CodeDecommitter",
+                  link: "/zk-stack/components/prover/circuits/code-decommitter.md"
+                },
+                {
+                  text: "DemuxLogQueue",
+                  link: "/zk-stack/components/prover/circuits/demux-log-queue.md"
+                },
+                {
+                  text: "ECRecover",
+                  link: "/zk-stack/components/prover/circuits/ecrecover.md"
+                },
+                {
+                  text: "KeccakRoundFunction",
+                  link: "/zk-stack/components/prover/circuits/keccak-round-function.md"
+                },
+                {
+                  text: "L1MessagesHasher",
+                  link: "/zk-stack/components/prover/circuits/l1-messages-hasher.md"
+                },
+                {
+                  text: "LogSorter",
+                  link: "/zk-stack/components/prover/circuits/log-sorter.md"
+                },
+                {
+                  text: "MainVM",
+                  link: "/zk-stack/components/prover/circuits/main-vm.md"
+                },
+                {
+                  text: "RAMPermutation",
+                  link: "/zk-stack/components/prover/circuits/ram-permutation.md"
+                },
+                {
+                  text: "Sha256RoundFunction",
+                  link: "/zk-stack/components/prover/circuits/sha256-round-function.md"
+                },
+                {
+                  text: "Sorting and Deduplicating",
+                  link: "/zk-stack/components/prover/circuits/sorting/README.md",
+                  collapsible: true,
+                  children: [
+                    {
+                      text: "SortDecommitments",
+                      link: "/zk-stack/components/prover/circuits/sorting/sort-decommitments.md"
+                    },
+                    {
+                      text: "StorageSorter",
+                      link: "/zk-stack/components/prover/circuits/sorting/storage-sorter.md"
+                    },
+                    {
+                      text: "LogSorter",
+                      link: "/zk-stack/components/prover/circuits/sorting/log-sorter.md"
+                    }
+                  ]
+                },
+                {
+                  text: "StorageApplication",
+                  link: "/zk-stack/components/prover/circuits/storage-application.md"
+                },
+              ],
+            },
+            {
+              text: "Boojum Gadgets",
+              link: "/zk-stack/components/prover/boojum-gadgets.md"
+            },
+            {
+              text: "Boojum Function: check_if_satisfied",
+              link: "/zk-stack/components/prover/boojum-function-check-if-satisfied.md"
             }
           ]
         },
@@ -677,32 +763,28 @@ export const enSidebar = sidebar({
         },
         { 
           text: "Block Explorer",
-          link: "/zk-stack/components/blockexplorer.md"
+          link: "/zk-stack/components/block-explorer.md"
         },
       ],
     },
     {
-      text: "Future / Advanced Topics",
-      // link: "/zk-stack/advanced-topics/README.md",
+      text: "Running a Hyperchain",
+      // link: "/zk-stack/running-a-hyperchain/README.md",
       collapsible: true,
       children: [
         {
-          text: "Decentralized Sequencer",
-          link: "/zk-stack/advanced-topics/decentralized-sequencer.md"
+          text: "Getting Started",
+          link: "/zk-stack/running-a-hyperchain/getting-started.md",
         },
         {
-          text: "Shared Bridges",
-          link: "/zk-stack/advanced-topics/shared-bridges.md"
+          text: "Locally",
+          link: "/zk-stack/running-a-hyperchain/locally.md"
         },
         {
-          text: "Hyperchain Permissions",
-          link: "/zk-stack/advanced-topics/hyperchain-permissions.md"
-        },
-        {
-          text: "Validium for Boojum",
-          link: "/zk-stack/advanced-topics/validium-for-boojum.md"
-        },
+          text: "In Production",
+          link: "/zk-stack/running-a-hyperchain/production.md"
+        }
       ]
-    }
+    },
   ],
 });

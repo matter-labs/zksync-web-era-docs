@@ -195,6 +195,8 @@ decommitment
 decommittment
 Decommitter
 decommitter
+decommitting
+decommits
 Demuxer
 decommit
 Deduplicator
@@ -205,6 +207,7 @@ REDC
 skept
 ECADD
 ECMUL
+
 
 // Used programming language words
 printf
