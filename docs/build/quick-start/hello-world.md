@@ -237,7 +237,7 @@ Navigate to `http://localhost:8080/` in a browser to see the running application
 
 #### Smart accounts
 
-Enabling smart accounts allows you to onboard Argent account abstraction wallet users that have been using the first version of zkSync.
+Enabling smart accounts allows you to onboard account abstraction wallet users that have been using the first version of zkSync.
 
 - Use [this library](../../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md#signature-validation) to verify your smart account compatibility.
 
@@ -255,7 +255,7 @@ Please note, that login functionality for "Hello, world" will be implemented in 
 - Use the [third party faucets](../../build/support/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
 
 :::warning
-When bridging from mainnet to a smart account (e.g. Argent) on zkSync Era, you must specify the address of your L2 wallet by clicking on **Deposit to another address on zkSync Era Mainnet**.
+When bridging from mainnet to a smart account (e.g. Clave) on zkSync Era, you must specify the address of your L2 wallet by clicking on **Deposit to another address on zkSync Era Mainnet**.
 :::
 
 ### Project structure

@@ -59,7 +59,7 @@ While maintaining maximum compatibility, the zkSync Era's zkEVM has significant 
   - Enable us to improve the efficiency over the original EVM bytecode because with LLVM we can take advantage of the many optimizations and tools available in this mature ecosystem.
   - Pave the way for us to add support for integrating codebases written in other programming languages with LLVM frontend. By doing so, developers can build dApps and use blockchains in ways that are currently not possible.
 - **Account Abstraction is implemented natively in our zkEVM**. This is a long-anticipated feature in the Ethereum dev community which improves developer adoption and user experience in a number of ways:
-  - Native support for smart contracts wallets (like Argent), which is critical for onboarding mainstream users.
+  - Native support for smart contracts wallets (like Clave), which is critical for onboarding mainstream users.
   - Much better UX for multisigs.
   - Transaction fees can be paid in any token using [paymasters](../../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md#paymasters).
   - Protocols can now subsidize gas for users from their smart contracts or even enable gasless transactions.

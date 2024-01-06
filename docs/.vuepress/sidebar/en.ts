@@ -213,7 +213,7 @@ export const enSidebar = sidebar({
           ],
         },
         {
-          text: "zkSync Era CLI",
+          text: "zkSync CLI",
           collapsible: true,
           children: [
             "/build/tooling/zksync-cli/getting-started.md",

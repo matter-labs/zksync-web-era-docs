@@ -9,11 +9,6 @@ head:
 
 The following wallets are known for their robustness, ease of use, and compatibility with zkSync Era. These wallets offer various features including, but not limited to, DeFi, NFT management, and multiple chain support.
 
-### Argent
-
-[Argent](https://www.argent.xyz/) allows you to buy, earn, stake, and trade on Ethereum Layer 2 with low fees and high security.\
-**Availability**: App store, Google Play
-
 ### BlockWallet
 
 [BlockWallet](https://blockwallet.io/networks/zksync-wallet) is designed for zkSync users seeking a decentralized wallet in a user-friendly package.\

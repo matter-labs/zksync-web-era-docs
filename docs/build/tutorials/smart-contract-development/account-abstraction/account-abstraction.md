@@ -318,7 +318,7 @@ An example of how to use testnet paymaster can be seen in the [quickstart](../..
 
 ## Signature validation
 
-Your project can start preparing for native AA support. We highly encourage you to do so, since it will allow you to onboard hundreds of thousands of users (e.g. Argent users that already use the first version of zkSync).
+Your project can start preparing for native AA support. We highly encourage you to do so, since it will allow you to onboard hundreds of thousands of users (many new Wallets are smart accounts by default, providing way smoother experience for users).
 We expect that in the future even more users will switch to smart wallets.
 
 One of the most notable differences between various types of accounts to be built is different signature schemes. We expect accounts to support the [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271) standard.
