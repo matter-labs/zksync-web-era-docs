@@ -14,8 +14,8 @@ Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references
 </div>
 <section>
   <div class="card-container">
-    <a
-      href="/build/quick-start/hello-world.html"
+    <RouterLink
+      to="/build/quick-start/hello-world"
       class="card"
     >
       <img  
@@ -26,9 +26,9 @@ Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references
         <h3>Hello World Quickstart</h3>
         <p>Deploy your first dApp to zkSync.</p>
       </div>
-    </a>
-    <a
-      href="/build/tutorials/smart-contract-development/paymasters/custom-paymaster-tutorial.html"
+    </RouterLink>
+    <RouterLink
+      to="/build/tutorials/smart-contract-development/paymasters/custom-paymaster-tutorial"
       class="card"
     >
       <img
@@ -39,9 +39,9 @@ Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references
         <h3>Paymasters & AA</h3>
         <p>Get Started with Paymasters and Account Abstraction Essentials.</p>
       </div>
-    </a>
-    <a
-      href="/build/test-and-debug/era-test-node.html"
+    </RouterLink>
+    <RouterLink
+      to="/build/test-and-debug/era-test-node"
       class="card"
     >
       <img  
@@ -52,9 +52,9 @@ Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references
         <h3>In Memory Node</h3>
         <p>Elevate Test Quality and Debug locally with the In Memory Node.</p>
       </div>
-    </a>
-    <a
-      href="/build/api.html"
+    </RouterLink>
+    <RouterLink
+      to="/build/api"
       class="card"
     >
       <img
@@ -65,9 +65,9 @@ Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references
         <h3>Web3 JSON-RPC API</h3>
         <p>Explore the API endpoints for the zkSync Era node.</p>
       </div>
-    </a>
-    <a
-      href="/build/support/faq.html"
+    </RouterLink>
+    <RouterLink
+      to="/build/support/faq"
       class="card"
     >
       <img  
@@ -78,6 +78,6 @@ Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references
         <h3>FAQs</h3>
         <p>Find some of the most common questions about zkSync Era.</p>
       </div>
-    </a>
+    </RouterLink>
   </div>
 </section>

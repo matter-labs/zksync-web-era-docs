@@ -10,8 +10,8 @@ head:
 </div>
 <section>
   <div class="card-container">
-    <a
-      href="/infra/introduction"
+    <RouterLink
+      to="/infra/introduction"
       class="card"
     >
       <img  
@@ -22,9 +22,9 @@ head:
         <h3>Introduction</h3>
         <p>Learn more about our external node.</p>
       </div>
-    </a>
-    <a
-      href="/infra/running-node.html"
+    </RouterLink>
+    <RouterLink
+      to="/infra/running-node"
       class="card"
     >
       <img
@@ -35,9 +35,9 @@ head:
         <h3>Getting Started</h3>
         <p>Run your own node at home.</p>
       </div>
-    </a>
-    <a
-      href="/infra/component-breakdown.html"
+    </RouterLink>
+    <RouterLink
+      to="/infra/component-breakdown"
       class="card"
     >
       <img  
@@ -48,6 +48,6 @@ head:
         <h3>External Node Components</h3>
         <p>Overview of the EN's main components.</p>
       </div>
-    </a>
+    </RouterLink>
   </div>
 </section>

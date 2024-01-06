@@ -22,27 +22,27 @@ contributors: false
 </div>
 <section>
   <div class="card-container">
-    <a href="./build" class="card">
+    <RouterLink to="/build" class="card">
       <img src="/images/landing/build.png" alt="build">
       <div class="content">
         <h3>Build</h3>
         <p>Find quickstart guides, tutorials, and developer tools you need to get started.</p>
       </div>
-    </a>
-    <a href="./zk-stack" class="card">
+    </RouterLink>
+    <RouterLink to="/zk-stack" class="card">
       <img src="/images/landing/hyperchain.png" alt="zkStack">
       <div class="content">
         <h3>ZK Stack</h3>
         <p>Understand the protocol powering zkSync hyperchains, including zkSync Era.</p>
       </div>
-    </a>
-    <a href="./infra" class="card">
+    </RouterLink>
+    <RouterLink to="/infra" class="card">
       <img src="/images/landing/run-a-node.png" alt="run a node">
       <div class="content">
         <h3>Run a Node</h3>
         <p>All the information you need to run a node for zkSync Era or your hyperchain.</p>
       </div>
-    </a>
+    </RouterLink>
   </div>
 </section>
 

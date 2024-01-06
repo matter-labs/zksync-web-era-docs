@@ -437,6 +437,10 @@
         gap: 10px;
         grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
         box-sizing: border-box;
+
+        a:hover {
+            text-decoration: none;
+        }
     
         .card {
             flex: 1;
@@ -536,7 +540,18 @@
     }
     
     .navbar .nav-item > .nav-link:hover::after, .navbar .nav-item > .nav-link.active::after {
-        bottom: -14px;
+        bottom: -6px;
+        height: 3px;
+    }
+
+    .navbar {
+        .nav-item {
+            line-height: 3rem;
+
+            .nav-link {
+                display: block;
+            }
+        }
     }
     
     .fade-slide-y-enter-active {

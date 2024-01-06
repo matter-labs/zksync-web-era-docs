@@ -10,8 +10,8 @@ head:
 </div>
 <section>
   <div class="card-container">
-   <a
-      href="/zk-stack/running-a-hyperchain/locally.html"
+    <RouterLink
+      to="/zk-stack/running-a-hyperchain/locally"
       class="card"
     >
       <img
@@ -22,9 +22,9 @@ head:
         <h3>Run a Hyperchain</h3>
         <p>Quickly spin up a ZK Stack hyperchain on your own machine.</p>
       </div>
-    </a>
-    <a
-      href="/zk-stack/components/sequencer-server/sequencer.html"
+    </RouterLink>
+    <RouterLink
+      to="/zk-stack/components/sequencer-server"
       class="card"
     >
       <img  
@@ -35,9 +35,9 @@ head:
         <h3>Sequencer</h3>
         <p>Know more about how the ZK Stack sequencer works.</p>
       </div>
-    </a>
-    <a
-      href="/zk-stack/components/prover/prover.html"
+    </RouterLink>
+    <RouterLink
+      to="/zk-stack/components/prover/prover"
       class="card"
     >
       <img  
@@ -48,6 +48,6 @@ head:
         <h3>Prover</h3>
         <p>Go deep on the cryptography of our state of the art prover, Boojum.</p>
       </div>
-    </a>
+    </RouterLink>
   </div>
 </section>
