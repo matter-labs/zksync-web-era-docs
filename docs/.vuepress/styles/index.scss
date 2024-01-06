@@ -507,13 +507,21 @@
 
                 .content {
                     padding: 10px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    min-height: 0;
 
                     h3 {
                         font-size: 16px;
+                        text-align: center;
+                        margin: 0 !important;
+                        padding: 0 !important;
                     }
 
                     p {
-                        font-size: 12px;
+                        display: none;
                     }
                 }
             }
