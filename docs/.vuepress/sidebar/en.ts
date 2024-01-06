@@ -327,7 +327,7 @@ export const enSidebar = sidebar({
       children: [
         {
           text: "JavaScript",
-          link: "/build/sdks/js",
+          collapsible: true,
           children: [
             {
               text: "JavaScript Ethers V5",

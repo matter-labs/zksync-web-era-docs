@@ -11,7 +11,7 @@ head:
 
 Welcome to the **IDE page**, a comprehensive hub dedicated to interacting with ready-to-use interactive developer environments using zkSync Era. Each guide has been curated to offer hands-on examples, ensuring that both newcomers and experienced developers can seamlessly get started with developing on zkSync Era.
 
-#### Atlas IDE
+### Atlas IDE
 
 [**Atlas**](https://www.atlaszk.com/) provides a robust and user-friendly environment to write, test, and deploy your smart contracts in a matter of minutes. Discover the potential and get started with Atlas today and deploy your first contract on zkSync Era by following this [video tutorial](https://www.youtube.com/watch?v=TL-QnxoPyUY)!
 

@@ -8,10 +8,6 @@ head:
 # Getting started
 
 ::: info
-Smart contract and account deployment using hardhat plugin is under development.
-:::
-
-::: info
 Take a look at [migration guide](migration.md) if you are migration from `zksync-web3`.
 :::
 

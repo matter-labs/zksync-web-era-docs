@@ -494,10 +494,9 @@
         }
 
         .card-container {
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 
             .card {
-                min-width: 120px;
 
                 .content {
                     padding: 10px;
