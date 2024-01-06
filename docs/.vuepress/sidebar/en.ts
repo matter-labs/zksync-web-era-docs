@@ -584,9 +584,23 @@ export const enSidebar = sidebar({
           link: "/zk-stack/concepts/hyperchains-hyperscaling.md"
         },
         {
-          text: "Validiums",
-          link: "/zk-stack/concepts/validiums.md"
-        }
+          text: "Data Availability",
+          collapsible: true,
+          children: [
+            {
+              text: "Overview",
+              link: "/zk-stack/concepts/data-availability"
+            },
+            {
+              text: "Recreating state form L1",
+              link: "/zk-stack/concepts/data-availability/recreate-l2-state-from-l1-state-diffs.md"
+            },
+            {
+              text: "Validiums",
+              link: "/zk-stack/concepts/validiums.md"
+            }
+          ]
+        },
       ]
     },
     {
@@ -599,12 +613,20 @@ export const enSidebar = sidebar({
           link: "/zk-stack/components/getting-started.md",
         },
         {
-          text: "Smart Contracts",
-          link: "/zk-stack/components/smart-contracts.md"
-          
+          text: "Smart & System Contracts",
+          collapsible: true,
+          children: [
+            {
+              text: "Smart Contracts",
+              link: "/zk-stack/components/smart-contracts",
+            },
+            { text: "System Contracts",
+            link: "/zk-stack/components/smart-contracts/system-contracts.md",
+           }  
+          ]
         },
         {
-          text: "Shared Bridges",
+          text: "Shared Bridge",
           link: "/zk-stack/components/shared-bridges.md"
           
         },
@@ -615,7 +637,6 @@ export const enSidebar = sidebar({
         },
         {
           text: "zkEVM",
-          link: "/zk-stack/components/zkEVM/README.md",
           collapsible: true,
           children: [
             {
@@ -623,27 +644,8 @@ export const enSidebar = sidebar({
               link: "/zk-stack/components/zkEVM/README.md",
             },
             {
-              text: "Virtual Machine Specification",
-              // link: "/zk-stack/components/zkEVM/vm-specification",
-              collapsible: true,
-              children: [
-                {
-                  text: "VM Primer",
-                  link: "/zk-stack/components/zkEVM/vm-primer.md"
-                },
-                {
-                  text: "VM Formal Specification",
-                  link: "/zk-stack/components/zkEVM/formal-spec.md"
-                },
-              ]
-            },
-            {
               text: "Bootloader",
               link: "/zk-stack/components/zkevm/bootloader.md"
-            },
-            {
-              text: "System Contracts",
-              link: "/zk-stack/components/zkevm/system-contracts.md"
             },
             {
               text: "Precompiles",
@@ -652,31 +654,47 @@ export const enSidebar = sidebar({
             {
               text: "Account Abstraction",
               link: "/zk-stack/components/zkevm/account-abstraction.md"
-            }
+            },
+            {
+              text: "Virtual Machine Specification",
+              collapsible: true,
+              children: [
+                {
+                  text: "VM Primer",
+                  link: "/zk-stack/components/zkEVM/vm-specification/vm-primer.md"
+                },
+                {
+                  text: "VM Formal Specification",
+                  link: "/zk-stack/components/zkEVM/vm-specification/formal-spec.md"
+                },
+              ]
+            },
           ]
         },
         {
           text: "Prover",
-          link: "/zk-stack/components/prover/README.md",
           collapsible: true,
           children: [
             {
-              text: "Prover",
-              link: "/zk-stack/components/proof-system/prover.md",
+              text: "Overview",
+              link: "/zk-stack/components/prover/prover.md",
             },
             {
               text: "ZK Terminology",
               link: "/zk-stack/components/prover/zk-terminology.md"
             },
             {
-              text: "Getting Started",
+              text: "Running the Prover",
               link: "/zk-stack/components/prover/run-the-prover.md"
             },
             {
               text: "Circuits",
-              link: "/zk-stack/components/prover/circuits/README.md",
               collapsible: true,
               children: [
+                {
+                  text: "Overview",
+                  link: "/zk-stack/components/prover/circuits/README.md",
+                },
                 {
                   text: "CodeDecommitter",
                   link: "/zk-stack/components/prover/circuits/code-decommitter.md"
@@ -715,9 +733,12 @@ export const enSidebar = sidebar({
                 },
                 {
                   text: "Sorting and Deduplicating",
-                  link: "/zk-stack/components/prover/circuits/sorting/README.md",
                   collapsible: true,
                   children: [
+                    {
+                      text: "Overview",
+                      link: "/zk-stack/components/prover/circuits/sorting/README.md",
+                    },
                     {
                       text: "SortDecommitments",
                       link: "/zk-stack/components/prover/circuits/sorting/sort-decommitments.md"
@@ -750,17 +771,24 @@ export const enSidebar = sidebar({
         },
         {
           text: "Compiler",
-          // link: "/zk-stack/components/compiler/README.md",
           collapsible: true,
           children: [
             {
               text: "Overview",
-              link: "/zk-stack/components/compiler/overview.md"
+              link: "/zk-stack/components/compiler/README.md"
             },
             {
-              text: "FE & Equivalence",
-              link: "/zk-stack/components/compiler/fe-equivalence.md"
-            }
+              text: "Architecture",
+              link: "/zk-stack/components/compiler/architecture"
+            },
+            {
+              text: "Toolchain",
+              link: "/zk-stack/components/compiler/toolchain"
+            },
+            {
+              text: "Specification",
+              link: "/zk-stack/components/compiler/specification"
+            },
           ],
         },
         { 
@@ -779,13 +807,8 @@ export const enSidebar = sidebar({
     },
     {
       text: "Running a Hyperchain",
-      // link: "/zk-stack/running-a-hyperchain/README.md",
       collapsible: true,
       children: [
-        {
-          text: "Getting Started",
-          link: "/zk-stack/running-a-hyperchain/getting-started.md",
-        },
         {
           text: "Locally",
           link: "/zk-stack/running-a-hyperchain/locally.md"

@@ -5,6 +5,8 @@ head:
       content: Portal - Wallet + Bridge | zkSync Docs
 ---
 
+# Portal + Bridge
+
 [The Portal](https://github.com/matter-labs/dapp-portal) is a dApp that allows you (and your users) to easily interact with your hyperchain.
 
 This includes:

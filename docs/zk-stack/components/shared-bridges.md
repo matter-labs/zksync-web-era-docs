@@ -2,10 +2,10 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Shared Bridges | zkSync Docs
+      content: Shared Bridge | zkSync Docs
 ---
 
-# Shared Bridges
+# Shared Bridge
 
 Ethereum's future is rollup-centric. This means breaking with the current paradigm of isolated EVM chains to
 infrastructure that is focused on an ecosystem of interconnected zkEVMs, which we call Hyperchains. This ecosystem

@@ -5,9 +5,9 @@ head:
       content: External Node | zkSync Docs
 ---
 
-> 💡 Note
->
-> For local testing, we recommend setting up an in-memory node and forking mainnet.
+:::info
+For local testing, we recommend setting up an in-memory node and forking mainnet.
+:::
 
 # External Node Documentation
 

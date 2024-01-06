@@ -32,7 +32,7 @@ head:
         alt="zkSync ERA documentation"
       />
       <div class="content">
-        <h3>Getting Started</h3>
+        <h3>Running</h3>
         <p>Run your own node at home.</p>
       </div>
     </RouterLink>

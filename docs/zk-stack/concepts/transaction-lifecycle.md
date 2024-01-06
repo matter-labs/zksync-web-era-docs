@@ -13,7 +13,9 @@ As stated in the introduction, the ZK Stack can be used to launch rollups. These
 needed to run it, these are the sequencer and the prover, they create blocks and proofs, and submit them to the L1
 contract.
 
-> Transactions are cryptographically signed instructions from accounts. An account will initiate a transaction to update the state of the Ethereum network. The simplest transaction is transferring ETH from one account to another. [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/)
+:::info
+Transactions are cryptographically signed instructions from accounts. An account will initiate a transaction to update the state of the Ethereum network. The simplest transaction is transferring ETH from one account to another. [Ethereum.org](https://ethereum.org/en/developers/docs/transactions/)
+:::
 
 A user submits their transaction to the sequencer. The job of the sequencer is to collect transactions and execute them
 using the zkEVM, and to provide a soft confirmation to the user that their transaction was executed. If the user chooses
