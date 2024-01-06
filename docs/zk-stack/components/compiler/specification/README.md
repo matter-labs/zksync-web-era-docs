@@ -7,6 +7,10 @@ head:
 
 # Compiler Specification
 
+This is a technical deep-dive into the specifics of how the compiler works. If you're looking to just deploy a contract, please visit ["Architecture"](../architecture/contract-development.md) to better understand the workflow or ["Toolchain"](../toolchain/overview.md) to understand the specifics around our Solidity, Vyper and LLVM compilers.
+
+If you're looking to go super deep into compiler technicals, read on.
+
 ## Glossary
 
 | Entity                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                |

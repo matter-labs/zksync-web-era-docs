@@ -38,7 +38,7 @@ Although you can write smart contracts in both Solidity and Vyper, compiling the
 
 **It's strongly recommended to use the latest version of the compiler available.**
 
-You can find more information about our compilers in the [Compiler toolchain section](../../zk-stack/components/compiler/toolchain/README.md).
+You can find more information about our compilers in the [Compiler toolchain section](../../zk-stack/components/compiler/toolchain/overview.md).
 
 **Learn more about how to install and configure the compiler Hardhat plugins in the links below:**
 

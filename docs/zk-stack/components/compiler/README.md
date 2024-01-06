@@ -11,6 +11,6 @@ This section describes the EVM equivalence allowing developers to compile and de
 
 We also include a specification of the compiler itself for those interested in deeper technical reference.
 
-- [Toolchain](./toolchain/README.md)
-- [Architecture](./architecture/README.md)
+- [Overview](./architecture/contract-deployment.md)
+- [Toolchain](./toolchain/overview.md)
 - [Specification](./specification/README.md)
