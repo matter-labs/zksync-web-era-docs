@@ -506,27 +506,27 @@ export const enSidebar = sidebar({
     },
     {
       text: "Component Breakdown",
-      link: "/infra/external-node/component-breakdown.md",
+      link: "/infra/component-breakdown.md",
     },
     {
       text: "Configuration",
-      link: "/infra/external-node/configuration.md",
+      link: "/infra/configuration.md",
     },
     {
       text: "Running Node",
-      link: "/infra/external-node/running-node.md",
+      link: "/infra/running-node.md",
     },
     {
       text: "API Overview",
-      link: "/infra/external-node/api-overview.md",
+      link: "/infra/api-overview.md",
     },
     {
       text: "Observability",
-      link: "/infra/external-node/observability.md",
+      link: "/infra/observability.md",
     },
     {
       text: "Troubleshooting",
-      link: "/infra/external-node/troubleshooting.md",
+      link: "/infra/troubleshooting.md",
     }
 
   
