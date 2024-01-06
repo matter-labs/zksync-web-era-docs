@@ -787,7 +787,7 @@ export const enSidebar = sidebar({
             },
             {
               text: "Specification",
-              link: "/zk-stack/components/compiler/specification"
+              link: "/zk-stack/components/compiler/specification/README.md"
             },
           ],
         },

@@ -497,6 +497,13 @@
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 
             .card {
+                display: flex;
+                flex-direction: row;
+
+                img {
+                    width: 100px;
+                    object-fit: cover;
+                }
 
                 .content {
                     padding: 10px;
