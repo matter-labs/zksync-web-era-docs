@@ -639,6 +639,3 @@ a transaction. In assembly, it is used as follows:
 3. In a called contract, access the context value through `context.get_context_u128 reg`.
 
 Context value can not be set in static mode.
-
-The system contract `MsgValueSimulator` ensures that whenever this context value is set to _C_, there are indeed _C_ wei
-transferred to the callee.
