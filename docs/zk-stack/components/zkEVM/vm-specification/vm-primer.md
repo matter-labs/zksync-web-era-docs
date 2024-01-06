@@ -640,5 +640,5 @@ a transaction. In assembly, it is used as follows:
 
 Context value can not be set in static mode.
 
-The system contract `MsgValueSimulator` ensures that whenever this context value is set to *C*, there are indeed *C* wei
+The system contract `MsgValueSimulator` ensures that whenever this context value is set to _C_, there are indeed _C_ wei
 transferred to the callee.
