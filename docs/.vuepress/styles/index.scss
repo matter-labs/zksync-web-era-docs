@@ -191,8 +191,20 @@
         font-size: 14px !important;
     }
     
-    hr{
+    hr {
         display: none !important;
+    }
+
+    .horizontal-rule {
+        display: block !important;
+        background-color: #EAEBEE;
+        border: none;
+        height: 1px;
+        margin: 28px 0;
+
+        [data-theme="dark"] & {
+            background-color: #404041;
+        }
     }
     
     tbody td a {

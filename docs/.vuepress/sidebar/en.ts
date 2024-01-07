@@ -91,10 +91,6 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             {
-              text: "Hello World w/ Front-End UI",
-              link: "/build/quick-start/hello-world.md"
-            },
-            {
               text: "NFT Gated Paymaster",
               link: "/build/tutorials/dapp-development/gated-nft-paymaster-tutorial.md",
             },
