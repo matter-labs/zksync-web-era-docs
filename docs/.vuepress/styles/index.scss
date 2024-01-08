@@ -6,12 +6,17 @@
     --pwa-popup-shadow: 0 4px 16px var(--pwa-popup-border-color);
     
     --pwa-popup-btn-text-color: white;
-    --pwa-popup-btn-bg-color: #3C72FE;
-    --pwa-popup-btn-hover-bg-color: #0759ff;
+    --pwa-popup-btn-bg-color: #1755F4;
+    --pwa-popup-btn-hover-bg-color: #1755F4;
 
     --google-translate-select-text-color-regular: #A1A7B3;
     --google-translate-select-fill-color-light: #555A66;
     --google-translate-select-border-color-light: #555A66;
+
+    [data-theme="dark"] & {
+        --pwa-popup-btn-bg-color: #4075FF;
+        --pwa-popup-btn-hover-bg-color: #4075FF;
+    }
     }
     
     body {
@@ -57,7 +62,11 @@
     }
     
     .copy-icon {
-        background: #3C72FE !important;
+        background: #1755F4 !important;
+        
+        [data-theme="dark"] & {
+            background: #4075FF !important;
+        }
     }
     
     .copyright {
@@ -344,11 +353,11 @@
     }
     
     [data-theme="light"] .font-icon {
-        color: #3C72FE !important;
+        color: #1755F4 !important;
     }
     
     [data-theme="dark"] .font-icon {
-        color: #3C72FE !important;
+        color: #4075FF !important;
     }
     
     .home.project .feature .font-icon {
@@ -602,7 +611,11 @@
     }
     
     .newsletter-button {
-        color: #3C72FE;
+        color: #1755F4;
+
+        [data-theme="dark"] & {
+            color: #4075FF;
+        }
     }
     
     .container{
