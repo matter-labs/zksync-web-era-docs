@@ -12,19 +12,6 @@ head:
 Such instructions are grouped into the following categories according to
 [the original reference](https://www.evm.codes/):
 
-- [Arithmetic](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/arithmetic.md)
-- [Logical](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/logical.md)
-- [Bitwise](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/bitwise.md)
-- [SHA3](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/sha3.md)
-- [Environment](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/environment.md)
-- [Block](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/block.md)
-- [Stack](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/stack.md)
-- [Memory](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/memory.md)
-- [Logging](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/logging.md)
-- [Call](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/call.md)
-- [Create](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/create.md)
-- [Return](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/return.md)
-
 ## EraVM Assembly
 
 Assembly emitted for LLVM standard library functions depends on available optimizations which differ between versions.
@@ -925,13 +912,13 @@ call void @llvm.memcpy.p1.p3.i256(ptr addrspace(1) align 1 inttoptr (i256 128 to
 
 ## [CODECOPY](https://www.evm.codes/#38?fork=shanghai)
 
-See [the EraVM docs](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#codecopy).
+See [Differences with Ethereum](../../../../../build/technical-reference/differences-with-ethereum.md#codecopy).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/evmla/ethereal_ir/function/block/element/mod.rs#L856).
 
 ## [CODESIZE](https://www.evm.codes/#39?fork=shanghai)
 
-See [the EraVM docs](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#codesize).
+See [Differences with Ethereum](../../../../../build/technical-reference/differences-with-ethereum.md#codesize).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/evmla/ethereal_ir/function/block/element/mod.rs#L837).
 
@@ -1362,13 +1349,13 @@ is common for Yul and EVMLA representations.
 
 ## [CODECOPY](https://www.evm.codes/#38?fork=shanghai)
 
-See [the EraVM docs](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#codecopy).
+See [Differences with Ethereum](../../../../../build/technical-reference/differences-with-ethereum.md#codecopy).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/evmla/ethereal_ir/function/block/element/mod.rs#L856).
 
 ## [CODESIZE](https://www.evm.codes/#39?fork=shanghai)
 
-See [the EraVM docs](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#codesize).
+See [Differences with Ethereum](../../../../../build/technical-reference/differences-with-ethereum.md#codesize).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/evmla/ethereal_ir/function/block/element/mod.rs#L837).
 
@@ -1792,7 +1779,7 @@ is common for Yul and EVMLA representations.
 ## [RETURN](https://www.evm.codes/#f3?fork=shanghai)
 
 This instruction works differently in deploy code. For more information, see
-[the zkSync Era documentation](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#return).
+[Differences from Ethereum](../../../../../build/technical-reference/differences-with-ethereum.md#return-stop).
 
 ## LLVM IR
 

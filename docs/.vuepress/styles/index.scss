@@ -415,6 +415,10 @@
     [data-theme="dark"] .navbar {
         background: #3D424D;
         border-bottom: 1px solid #555A66;
+
+        .nav-link {
+            color: white;
+        }
     }
 
     [data-theme="light"] .navbar {

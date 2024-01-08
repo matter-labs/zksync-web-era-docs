@@ -8,10 +8,10 @@ head:
 # System Contracts
 
 Many EVM instructions require special handling by the
-[System Contracts](https://era.zksync.io/docs/reference/architecture/system-contracts.html). Among them are: `ORIGIN`,
+[System Contracts](../specification/system-contracts.md). Among them are: `ORIGIN`,
 `CALLVALUE`, `BALANCE`, `CREATE`, `SHA3`, and others. To see the full detailed list of instructions requiring special
 handling, see
-[the EVM instructions reference](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm).
+[the EVM instructions reference](../specification/instructions/evm.md).
 
 There are several types of System Contracts from the perspective of how they are handled by the zkSync Era compilers:
 
@@ -59,9 +59,9 @@ For reference, see
 
 ### Contract Deployer
 
-See [handling CREATE](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#create-create2)
+See [handling CREATE](../../../../build/technical-reference/differences-with-ethereum.md#create-create2)
 and
-[dependency code substitution instructions](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#datasize-dataoffset-datacopy)
+[dependency code substitution instructions](../../../../build/technical-reference/differences-with-ethereum.md#datasize-dataoffset-datacopy)
 on zkSync Era documentation.
 
 For reference, see LLVM IR codegen for
@@ -94,7 +94,7 @@ For reference, see
 ### Simulator of Immutables
 
 See
-[handling immutables](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#setimmutable-loadimmutable)
+[handling immutables](../../../../build/technical-reference/differences-with-ethereum.md#setimmutable-loadimmutable)
 on zkSync Era documentation.
 
 For reference, see LLVM IR codegen for
@@ -116,17 +116,17 @@ For reference, see
 
 ## Auxiliary Heap
 
-Both [zksolc](../../toolchain/solidity.md) and
-[zkvyper](../../toolchain/vyper.md) compilers for EraVM operate on
-[the IR level](../../toolchain/overview.md#ir-compilers), so they cannot control
+Both [zksolc](../toolchain/solidity.md) and
+[zkvyper](../toolchain/vyper.md) compilers for EraVM operate on
+[the IR level](../toolchain/overview.md#ir-compilers), so they cannot control
 the heap memory allocator which remains a responsibility of
-[the high-level source code compilers](../../toolchain/overview.md#high-level-source-code-compilers)
+[the high-level source code compilers](../toolchain/overview.md#high-level-source-code-compilers)
 emitting the IRs.
 
 However, the are several cases where EraVM needs to allocate memory on the heap and EVM does not. The auxiliary heap is
 used for these cases:
 
-1. [Returning immutables](../../architecture/differences-with-ethereum.md#setimmutable-loadimmutable)
+1. [Returning immutables](../../../../build/technical-reference/differences-with-ethereum.md#setimmutable-loadimmutable)
    from the constructor.
 2. Allocating calldata and return data for calling the
-   [System Contracts](../../architecture/system-contracts.md).
+   [System Contracts](../specification/system-contracts.md).

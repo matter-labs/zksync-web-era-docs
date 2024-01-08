@@ -11,10 +11,10 @@ head:
 
 In this specification, instructions are grouped by their relevance to the EVM instruction set:
 
-- [Native EVM instructions](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/extensions/overview.md).
-- [Yul auxiliary instructions](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/yul.md).
-- [EVM legacy assembly auxiliary instructions](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evmla.md).
-- [zkSync Era extensions](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/extensions/overview.md).
+- [Native EVM instructions](./evm.md).
+- [Yul auxiliary instructions](./yul.md).
+- [EVM legacy assembly auxiliary instructions](./evmla.md).
+- [zkSync Era extensions](./extensions.md).
 
 Most of the EVM native instructions are represented in both Yul and EVM legacy assembly IRs. If they are not, it is
 stated explicitly in the description of each instruction.

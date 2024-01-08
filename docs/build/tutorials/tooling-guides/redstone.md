@@ -46,7 +46,7 @@ yarn install
 
 4\. Set Up Local zkSync Node:
 
-Set up a local zkSync node in a Dockerized setup following the instructions [here](https://era.zksync.io/docs/tools/testing/dockerized-testing.html).
+Set up a local zkSync node in a Dockerized setup following the instructions [here](../../test-and-debug/dockerized-l1-l2-nodes.md).
 
 ### Step 2 — Understanding the Contract Structure
 

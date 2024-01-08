@@ -75,7 +75,7 @@ Feel free to explore these repositories, and don't hesitate to contribute!
 
 - Keep up to date with the latest news, updates, and releases by following us on X.
 
-**3.Dive into our** [**official documentation**](https://era.zksync.io/docs/)
+**3.Dive into our** [**official documentation**](../../)
 
 - Immerse yourself in our comprehensive official documentation to acquire essential knowledge on zkSync. If you discover a typo, syntax error, or see room for improvement, submit a Pull Request to contribute to its enhancement.
 

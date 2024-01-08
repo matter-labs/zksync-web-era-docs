@@ -572,6 +572,10 @@ export const enSidebar = sidebar({
           link: "/zk-stack/concepts/finality.md"
         },
         {
+          text: "Account Abstraction",
+          link: "/zk-stack/concepts/account-abstraction.md"
+        },
+        {
           text: "System Upgrades",
           link: "/zk-stack/concepts/system-upgrades.md"
         },
@@ -601,7 +605,6 @@ export const enSidebar = sidebar({
     },
     {
       text: "Components",
-      // link: "/zk-stack/components/README.md",
       collapsible: true,
       children: [  
         {
@@ -646,10 +649,6 @@ export const enSidebar = sidebar({
             {
               text: "Precompiles",
               link: "/zk-stack/components/zkevm/precompiles.md"
-            },
-            {
-              text: "Account Abstraction",
-              link: "/zk-stack/components/zkevm/account-abstraction.md"
             },
             {
               text: "Virtual Machine Specification",
@@ -768,27 +767,15 @@ export const enSidebar = sidebar({
         {
           text: "Compiler",
           collapsible: true,
-          link: "/zk-stack/components/compiler/README.md",
           children: [
             {
-              text: "Differences with Ethereum",
-              link: "/zk-stack/components/compiler/architecture/differences-with-ethereum.md"
-            },
-            {
-              text: "Smart Contract Development",
-              link: "/zk-stack/components/compiler/architecture/contract-development.md"
-            },
-            {
-              text: "Smart Contract Deployment",
-              link: "/zk-stack/components/compiler/architecture/contract-deployment.md"
-            },
-            
-            {
               text: "Toolchain",
-              link: "/zk-stack/components/compiler/toolchain/overview.md",
               collapsible: true,
               children: [
-
+                {
+                  text: "Overview",
+                  link: "/zk-stack/components/compiler/toolchain/overview.md",
+                },
                 {
                   text: "Solidity",
                   link: "/zk-stack/components/compiler/toolchain/solidity.md"
@@ -805,43 +792,51 @@ export const enSidebar = sidebar({
             },
             {
               text: "Specification",
-              link: "/zk-stack/components/compiler/specification/README.md",
               collapsible: true,
               children: [
                 {
+                  text: "Overview",
+                  link: "/zk-stack/components/compiler/specification/README.md",
+                },
+                {
                   text: "Code Separation",
-                  link: "/zk-stack/components/compiler/specification/code-separation/README.md"
+                  link: "/zk-stack/components/compiler/specification/code-separation.md"
                 },
                 {
                   text: "System Contracts",
-                  link: "/zk-stack/components/compiler/specification/system-contracts/README.md"
+                  link: "/zk-stack/components/compiler/specification/system-contracts.md"
                 },
                 {
                   text: "Exception Handling",
-                  link: "/zk-stack/components/compiler/specification/exception-handling/README.md"
+                  link: "/zk-stack/components/compiler/specification/exception-handling.md"
                 },
                 {
                   text: "EVMLA Translator",
-                  link: "/zk-stack/components/compiler/specification/evmla-translator/README.md"
+                  link: "/zk-stack/components/compiler/specification/evmla-translator.md"
                 },
                 {
                   text: "Instructions",
-                  link: "/zk-stack/components/compiler/specification/instructions/README.md",
                   collapsible: true,
                   children: [
                     {
-                      text: "Yul",
-                      link: "/zk-stack/components/compiler/specification/instructions/yul/README.md"
-                      
+                      text: "Overview",
+                      link: "/zk-stack/components/compiler/specification/instructions/README.md",
+                    },
+                    {
+                      text: "EVM",
+                      link: "/zk-stack/components/compiler/specification/instructions/evm.md"
                     },
                     {
                       text: "EVMLA",
-                      link: "/zk-stack/components/compiler/specification/instructions/evmla/README.md"
-                      
+                      link: "/zk-stack/components/compiler/specification/instructions/evmla.md"
+                    },
+                    {
+                      text: "Yul",
+                      link: "/zk-stack/components/compiler/specification/instructions/yul.md"
                     },
                     {
                       text: "Extensions",
-                      link: "/zk-stack/components/compiler/specification/instructions/extensions/README.md"
+                      link: "/zk-stack/components/compiler/specification/instructions/extensions.md"
                       
                     },
                   ]
