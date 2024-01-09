@@ -40,7 +40,7 @@ It includes:
 
 - `Tree` and `TreeBackup` - Maintains a local RocksDB instance with the complete L2 storage tree, computing the latest state root hash.
 
-`StateKeeper` - Executes the transactions and saves sealed blocks to the local RocksDB instance.
+- `StateKeeper` - Executes the transactions and saves sealed blocks to the local RocksDB instance.
 
 ## Contract Verification API
 

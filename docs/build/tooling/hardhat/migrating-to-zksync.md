@@ -165,7 +165,7 @@ yarn hardhat compile --network zkSyncTestnet
 @tab npm
 
 ```bash
-yarn hardhat compile  --network zkSyncTestnet
+npm hardhat compile  --network zkSyncTestnet
 ```
 
 :::

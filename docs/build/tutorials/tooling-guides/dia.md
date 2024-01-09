@@ -11,7 +11,7 @@ head:
 
 In this guide, we'll create a simple contract that interacts with a DIA Oracle for decentralized price feeds on zkSync Testnet.
 
-DIA’s data and oracle infrastructure provides dApps on zkSync Era’s ecosystem with access to price feeds of over [3,000+ digital assets](https://app.diadata.org/price) and [18,000+ NFT collections](https://app.diadata.org/floor-price). Additionally, DIA offers access to distributed and verifiable [Random Number Generation — RNG](https://www.diadata.org/randomness/), Liquid Staked Tokens — LSTs price feeds, as well as a range of lending rates, foreign exchange rates, and other data feeds. With this wide range of data feeds, zkSync Era protocols can support a wider range of applications beyond just DeFi and NFTfi.
+DIA’s data and oracle infrastructure provides dApps on zkSync Era’s ecosystem with access to price feeds of over [3,000+ digital assets](https://app.diadata.org/price) and [18,000+ NFT collections](https://app.diadata.org/floor-price). Additionally, DIA offers access to distributed and verifiable [Random Number Generation — RNG](https://docs.diadata.org/products/randomness-oracle), Liquid Staked Tokens — LSTs price feeds, as well as a range of lending rates, foreign exchange rates, and other data feeds. With this wide range of data feeds, zkSync Era protocols can support a wider range of applications beyond just DeFi and NFTfi.
 
 For our purposes, we'll make use of their token price feeds to fetch live [ETH/USD](https://market.api3.org/dapis/zksync-goerli-testnet/ETH-USD) rates.
 
