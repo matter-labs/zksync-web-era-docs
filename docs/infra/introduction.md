@@ -158,7 +158,7 @@ methods come without any kind of stability guarantees and can be changed or remo
 
 Always refer to the documentation linked above to see the list of stabilized methods in this namespace.
 
-[zks_docs]: https://docs.zksync.io/api/api.html#zksync-specific-json-rpc-methods
+[zks_docs](../build/api.md#zksync-era-json-rpc-methods)
 
 ### `en` namespace
 
