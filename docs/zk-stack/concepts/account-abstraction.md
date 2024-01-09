@@ -8,7 +8,7 @@ head:
 # Account abstraction
 
 One of the other important features of zkSync is the support of account abstraction. It is highly recommended to read
-the documentation on our [AA protocol here](../../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md).
+the documentation on our [AA protocol here](../../build/developer-reference/account-abstraction.md).
 
 ### Account versioning
 

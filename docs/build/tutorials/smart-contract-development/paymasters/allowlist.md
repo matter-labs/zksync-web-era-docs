@@ -14,7 +14,7 @@ zkSync offers native account abstraction enabling contracts to pay transaction f
 This guide will outline the process of creating an AllowlistPaymaster contract to cover the gas fees of certain users. It provides an overview of the smart contract developed, and the steps required to deploy and operate it.;
 
 :::info
-For detailed explanations of the IPaymaster interface please refer to the documentation [here](../account-abstraction/account-abstraction.md#ipaymaster-interface).
+For detailed explanations of the IPaymaster interface please refer to the documentation [here](../../../developer-reference/account-abstraction.md#ipaymaster-interface).
 :::
 
 ### Prerequisites

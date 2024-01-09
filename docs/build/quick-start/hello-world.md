@@ -23,11 +23,7 @@ This is what we're going to do:
 - Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to latest use command `nvm use --lts`.
 - Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
 - A wallet with sufficient (Sepolia or Goerli) ETH on L1 to pay for bridging funds to zkSync and deploying smart contracts.
-  - You can get Sepolia or Goerli ETH from the following faucets:
-    - Chainstack [Sepolia faucet](https://faucet.chainstack.com/sepolia-testnet-faucet), [Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
-    - Alchemy [Sepolia faucet](https://sepoliafaucet.com/), [Goerli faucet](https://goerlifaucet.com/)
-    - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
-    - Proof of work [Sepolia faucet](https://sepolia-faucet.pk910.de/), [Goerli faucet](https://goerli-faucet.pk910.de/)
+  - You can get Sepolia or Goerli ETH from the [network faucets](../tooling/network-faucets.md).
 - ERC20 tokens on zkSync are required for the testnet paymaster. Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
@@ -239,7 +235,7 @@ Navigate to `http://localhost:8080/` in a browser to see the running application
 
 Enabling smart accounts allows you to onboard account abstraction wallet users that have been using the first version of zkSync.
 
-- Use [this library](../../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md#signature-validation) to verify your smart account compatibility.
+- Use [this library](../../build/developer-reference/account-abstraction.md#signature-validation) to verify your smart account compatibility.
 
 #### Externally owned accounts (EOAs)
 
@@ -547,9 +543,9 @@ Read more about `wallet_requestPermissions`, in the [MetaMask documentation](htt
 
 ### Paying fees using testnet paymaster
 
-The zkSync Era account abstraction feature allows you to integrate [paymasters](../../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly.
+The zkSync Era account abstraction feature allows you to integrate [paymasters](../../build/developer-reference/account-abstraction.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly.
 
-We will use the [testnet paymaster](../../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md#testnet-paymaster) that is provided on all zkSync Era testnets.
+We will use the [testnet paymaster](../../build/developer-reference/account-abstraction.md#testnet-paymaster) that is provided on all zkSync Era testnets.
 
 :::info
 **The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH.
@@ -628,7 +624,7 @@ async getOverrides() {
 }
 ```
 
-4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md#testnet-paymaster) and return the needed overrides.
+4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../build/developer-reference/account-abstraction.md#testnet-paymaster) and return the needed overrides.
 
 Copy/paste the following complete function:
 

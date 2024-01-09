@@ -5,7 +5,7 @@ head:
       content: Intro to Rollups | zkSync Docs
 ---
 
-# Intro to rollups
+# Intro to Rollups
 
 ## Introduction
 

@@ -517,7 +517,7 @@ async getPriorityOpResponse(l1TxResponse: ethers.providers.TransactionResponse):
 
 ### `getTestnetPaymasterAddress`
 
-Returns the [testnet paymaster](../../tutorials/smart-contract-development/account-abstraction/account-abstraction.md#paymasters) address if available, or null.
+Returns the [testnet paymaster](../../developer-reference/account-abstraction.md#paymasters) address if available, or null.
 
 ```typescript
 async getTestnetPaymasterAddress(): Promise<Address | null> {

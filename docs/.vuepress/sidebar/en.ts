@@ -459,6 +459,7 @@ export const enSidebar = sidebar({
         "/build/developer-reference/rollups.md",
         "/build/developer-reference/zkSync.md",
         "/build/developer-reference/differences-with-ethereum.md",
+        "/build/developer-reference/account-abstraction.md",
         "/build/developer-reference/system-contracts.md",
         "/build/developer-reference/bridging-asset.md",
         "/build/developer-reference/contract-development.md",
@@ -570,10 +571,6 @@ export const enSidebar = sidebar({
         {
           text: "Finality",
           link: "/zk-stack/concepts/finality.md"
-        },
-        {
-          text: "Account Abstraction",
-          link: "/zk-stack/concepts/account-abstraction.md"
         },
         {
           text: "System Upgrades",
