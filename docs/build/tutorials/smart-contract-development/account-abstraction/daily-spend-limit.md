@@ -16,8 +16,7 @@ The daily limit feature prevents an account from spending more ETH than the limi
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - [Node.js](https://nodejs.org/en/download/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed on your machine.
 - If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the first section of the [quickstart tutorial](../../../quick-start/hello-world.md).
-- A wallet with sufficient Sepolia or Goerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
-  - You can get Sepolia or Goerli ETH from the [network faucets](../../../tooling/network-faucets.md).
+- A wallet with sufficient Sepolia or Goerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts. You can get Sepolia or Goerli ETH from the [network faucets](../../../tooling/network-faucets.md).
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 - We encourage you to read [the basics of account abstraction on zkSync Era](../../../developer-reference/account-abstraction.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
 

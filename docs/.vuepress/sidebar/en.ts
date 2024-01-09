@@ -41,10 +41,6 @@ export const enSidebar = sidebar({
               collapsible: false,
               children: [
                 {
-                  text: "Account Abstraction",
-                  link: "/build/tutorials/smart-contract-development/account-abstraction/account-abstraction.md"
-                },
-                {
                   text: "Daily Spending Limit Account",
                   link: "/build/tutorials/smart-contract-development/account-abstraction/daily-spend-limit.md"
                 },

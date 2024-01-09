@@ -5,7 +5,7 @@ head:
       content: Account Abstraction | zkSync Docs
 ---
 
-# Account abstraction
+# Account Abstraction
 
 ::: warning
 

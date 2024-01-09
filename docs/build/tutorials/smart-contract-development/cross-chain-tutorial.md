@@ -17,8 +17,7 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../../quick-start/hello-world.md).
 - You already have some experience working with Ethereum.
-- A wallet with sufficient Sepolia or Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
-  - You can get Sepolia or Goerli ETH from the [network faucets](../../tooling/network-faucets.md).
+- A wallet with sufficient Sepolia or Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts. You can get Sepolia or Goerli ETH from the [network faucets](../../tooling/network-faucets.md).
   - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
