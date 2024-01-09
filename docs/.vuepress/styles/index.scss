@@ -110,6 +110,7 @@
         .sidebar-link {
             &.active {
                 color: white;
+                border-right: 2px solid #739AFF;
                 background: linear-gradient(90deg,rgba(115, 154, 255,.0),rgba(115, 154, 255,.5))
             }
         }
@@ -125,9 +126,9 @@
             font-size: 1rem !important;
 
             &.active {
-                border-right: 2px solid #1755f4;
                 background: linear-gradient(90deg, rgba(23, 85, 244, 0), rgba(23, 85, 244, .3));
                 border-left: none;
+                border-right: 2px solid #1755F4;
                 color:inherit
             }
         }
