@@ -82,7 +82,7 @@ zkSync is optimized to be EVM _compatible_ not EVM _equivalent_ for three primar
 Almost every smart contract written for EVM will be supported by zkSync Era and will hold all key security invariants so that no additional security re-auditing will be required in most cases.
 
 ::: info Differences with Ethereum
-You can find more information about the [differences between Ethereum and zkSync Era in this section of the docs](../../build/technical-reference/differences-with-ethereum.md).
+You can find more information about the [differences between Ethereum and zkSync Era in this section of the docs](../../build/developer-reference/differences-with-ethereum.md).
 :::
 
 There are a few other distinctions, for example, gas metering will be different (as is the case for other L2s as well). Some EVM’s cryptographic precompiles (notably pairings and RSA) won’t be available in the very first release but will be implemented soon after the launch, with pairing being a priority to allow both Hyperchains and protocols like Aztec/Dark Forest to be deployed without modifications too.

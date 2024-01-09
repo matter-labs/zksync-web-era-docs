@@ -63,7 +63,7 @@ The admin facet is controlled by two entities:
 ### MailboxFacet
 
 The facet that handles L2 <-> L1 communication, an overview for which can be found in
-[docs](../../../build/technical-reference/l1-l2-interop.md).
+[docs](../../../build/developer-reference/l1-l2-interop.md).
 
 The Mailbox performs three functions:
 

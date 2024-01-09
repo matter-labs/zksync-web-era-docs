@@ -68,7 +68,7 @@ The following values are returned by any RPC call which outputs transaction deta
 
 ::: info Contract deployment transactions
 
-Contract deployment transactions are different on zkSync as they involve interacting with the `ContractDeployer` system contract. Learn more about [contract deployment transactions here](../../build/technical-reference/contract-deployment.md).
+Contract deployment transactions are different on zkSync as they involve interacting with the `ContractDeployer` system contract. Learn more about [contract deployment transactions here](../../build/developer-reference/contract-deployment.md).
 
 :::
 

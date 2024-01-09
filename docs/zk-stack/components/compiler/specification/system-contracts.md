@@ -59,9 +59,9 @@ For reference, see
 
 ### Contract Deployer
 
-See [handling CREATE](../../../../build/technical-reference/differences-with-ethereum.md#create-create2)
+See [handling CREATE](../../../../build/developer-reference/differences-with-ethereum.md#create-create2)
 and
-[dependency code substitution instructions](../../../../build/technical-reference/differences-with-ethereum.md#datasize-dataoffset-datacopy)
+[dependency code substitution instructions](../../../../build/developer-reference/differences-with-ethereum.md#datasize-dataoffset-datacopy)
 on zkSync Era documentation.
 
 For reference, see LLVM IR codegen for
@@ -94,7 +94,7 @@ For reference, see
 ### Simulator of Immutables
 
 See
-[handling immutables](../../../../build/technical-reference/differences-with-ethereum.md#setimmutable-loadimmutable)
+[handling immutables](../../../../build/developer-reference/differences-with-ethereum.md#setimmutable-loadimmutable)
 on zkSync Era documentation.
 
 For reference, see LLVM IR codegen for
@@ -126,7 +126,7 @@ emitting the IRs.
 However, the are several cases where EraVM needs to allocate memory on the heap and EVM does not. The auxiliary heap is
 used for these cases:
 
-1. [Returning immutables](../../../../build/technical-reference/differences-with-ethereum.md#setimmutable-loadimmutable)
+1. [Returning immutables](../../../../build/developer-reference/differences-with-ethereum.md#setimmutable-loadimmutable)
    from the constructor.
 2. Allocating calldata and return data for calling the
    [System Contracts](../specification/system-contracts.md).

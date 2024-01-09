@@ -60,7 +60,7 @@ Additional zkEVM data inserted by `zksolc`:
 - `long_version`: the full `solc` version output.
 - `zk_version`: the `zksolc` version.
 - `contract/hash`: the hash of the zkEVM bytecode.
-- `contract/factory_dependencies`: bytecode hashes of contracts created in the current contract with `CREATE`. [More details here](../../../../build/technical-reference/contract-deployment.md#note-on-factory-deps).
+- `contract/factory_dependencies`: bytecode hashes of contracts created in the current contract with `CREATE`. [More details here](../../../../build/developer-reference/contract-deployment.md#note-on-factory-deps).
 
 Unsupported sections of the output JSON, ignored by `zksolc`:
 
@@ -80,7 +80,7 @@ used for configuration.
 Additional zkEVM data, inserted by `zksolc`:
 
 - `zk_version`: the version of `zksolc`.
-- `contract/factory_deps`: bytecode hashes of contracts created by the current contract with `CREATE`. [More details here](../../../../build/technical-reference/contract-deployment.md#note-on-factory-deps).
+- `contract/factory_deps`: bytecode hashes of contracts created by the current contract with `CREATE`. [More details here](../../../../build/developer-reference/contract-deployment.md#note-on-factory-deps).
 
 Unsupported combined JSON flags, rejected by `zksolc`:
 

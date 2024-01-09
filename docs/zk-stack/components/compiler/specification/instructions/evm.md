@@ -912,13 +912,13 @@ call void @llvm.memcpy.p1.p3.i256(ptr addrspace(1) align 1 inttoptr (i256 128 to
 
 ## [CODECOPY](https://www.evm.codes/#38?fork=shanghai)
 
-See [Differences with Ethereum](../../../../../build/technical-reference/differences-with-ethereum.md#codecopy).
+See [Differences with Ethereum](../../../../../build/developer-reference/differences-with-ethereum.md#codecopy).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/evmla/ethereal_ir/function/block/element/mod.rs#L856).
 
 ## [CODESIZE](https://www.evm.codes/#39?fork=shanghai)
 
-See [Differences with Ethereum](../../../../../build/technical-reference/differences-with-ethereum.md#codesize).
+See [Differences with Ethereum](../../../../../build/developer-reference/differences-with-ethereum.md#codesize).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/evmla/ethereal_ir/function/block/element/mod.rs#L837).
 
@@ -1349,13 +1349,13 @@ is common for Yul and EVMLA representations.
 
 ## [CODECOPY](https://www.evm.codes/#38?fork=shanghai)
 
-See [Differences with Ethereum](../../../../../build/technical-reference/differences-with-ethereum.md#codecopy).
+See [Differences with Ethereum](../../../../../build/developer-reference/differences-with-ethereum.md#codecopy).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/evmla/ethereal_ir/function/block/element/mod.rs#L856).
 
 ## [CODESIZE](https://www.evm.codes/#39?fork=shanghai)
 
-See [Differences with Ethereum](../../../../../build/technical-reference/differences-with-ethereum.md#codesize).
+See [Differences with Ethereum](../../../../../build/developer-reference/differences-with-ethereum.md#codesize).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/evmla/ethereal_ir/function/block/element/mod.rs#L837).
 
@@ -1779,7 +1779,7 @@ is common for Yul and EVMLA representations.
 ## [RETURN](https://www.evm.codes/#f3?fork=shanghai)
 
 This instruction works differently in deploy code. For more information, see
-[Differences from Ethereum](../../../../../build/technical-reference/differences-with-ethereum.md#return-stop).
+[Differences from Ethereum](../../../../../build/developer-reference/differences-with-ethereum.md#return-stop).
 
 ## LLVM IR
 

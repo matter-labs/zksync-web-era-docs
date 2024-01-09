@@ -35,17 +35,17 @@
       "redirects": [
         {
           "source": "/",
-          "destination": "/docs/",
+          "destination": "/",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/system-contracts.html",
-          "destination": "/docs/reference/architecture/system-contracts.html",
+          "destination": "/zk-stack/components/smart-contracts/system-contracts.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/transactions/blocks.html#blocks-in-zksync-2-0",
-          "destination": "/docs/reference/concepts/blocks.html#blocks-in-zksync-era",
+          "destination": "/zk-stack/concepts/blocks.html#l2-blocks-aka-miniblocks",
           "type": "302"
         },
         {
@@ -55,42 +55,42 @@
         },
         {
           "source": "/docs/dev/zksync-v2/aa.html",
-          "destination": "/docs/reference/concepts/account-abstraction.html",
+          "destination": "/zk-stack/concepts/account-abstraction.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/hello-world.html",
-          "destination": "/docs/dev/building-on-zksync/hello-world.html",
+          "destination": "/build/quick-start/hello-world.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-verification.html",
-          "destination": "/docs/dev/how-to/verify-contracts.html",
+          "destination": "/build/tooling/block-explorer/contract-verification.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contracts.html",
-          "destination": "/docs/reference/architecture/contract-development.html",
+          "destination": "/build/tutorials/how-to/verify-contracts.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-development.html",
-          "destination": "/docs/reference/architecture/contract-development.html",
+          "destination": "/build/technical-reference/contract-development.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/building-on-zksync/events.html",
-          "destination": "/docs/reference/architecture/events.html",
+          "destination": "/build/technical-reference/events.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contracts.html",
-          "destination": "/docs/reference/architecture/contract-development.html",
+          "destination": "/build/technical-reference/contract-development.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-deployment.html",
-          "destination": "/docs/reference/architecture/contract-deployment.html",
+          "destination": "/build/technical-reference/contract-development.html",
           "type": "302"
         },
         {

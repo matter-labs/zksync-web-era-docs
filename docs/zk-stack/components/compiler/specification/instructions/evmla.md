@@ -35,7 +35,7 @@ LLVM IR codegen references:
 The same as [setimmutable](./yul.md#setimmutable).
 
 For more information, see the
-[Differences with Ethereum](../../../../../build/technical-reference/differences-with-ethereum.md#setimmutable-loadimmutable).
+[Differences with Ethereum](../../../../../build/developer-reference/differences-with-ethereum.md#setimmutable-loadimmutable).
 
 LLVM IR codegen references:
 
@@ -47,7 +47,7 @@ LLVM IR codegen references:
 The same as [loadimmutable](./yul.md#loadimmutable).
 
 For more information, see the
-[Differences with Ethereum](../../../../../build/technical-reference/differences-with-ethereum.md#setimmutable-loadimmutable).
+[Differences with Ethereum](../../../../../build/developer-reference/differences-with-ethereum.md#setimmutable-loadimmutable).
 
 LLVM IR codegen references:
 
@@ -59,7 +59,7 @@ LLVM IR codegen references:
 The same as [linkersymbol](./yul.md#linkersymbol).
 
 For more information, see the
-[Differences with Ethereum](../../../../../build/technical-reference/differences-with-ethereum.md#libraries).
+[Differences with Ethereum](../../../../../build/developer-reference/differences-with-ethereum.md#libraries).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/yul/parser/statement/expression/function_call/mod.rs#L956).
 
