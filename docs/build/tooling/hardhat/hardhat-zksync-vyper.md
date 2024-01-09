@@ -17,7 +17,7 @@ Learn more about the latest updates in the [changelog](https://github.com/matter
 - Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to latest use command `nvm use --lts`.
 - Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
 - A wallet with sufficient Sepolia or Goerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
-  - You can get Sepolia or Goerli ETH from the [network faucets](../tooling/network-faucets.md).
+  - You can get Sepolia or Goerli ETH from the [network faucets](../../tooling/network-faucets.md).
   - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
