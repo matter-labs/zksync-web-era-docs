@@ -5,9 +5,8 @@ head:
       content: ZK Stack | zkSync Docs
 ---
 
-<div class="cards-heading">
-   <span class="title-section">ZK Stack</span>
-</div>
+# ZK Stack
+
 <section>
   <div class="card-container">
     <RouterLink

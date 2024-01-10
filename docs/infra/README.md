@@ -5,9 +5,8 @@ head:
       content: Run a Node | zkSync Docs
 ---
 
-<div class="cards-heading">
-   <span class="title-section">Run a Node</span>
-</div>
+# Run a Node
+
 <section>
   <div class="card-container">
     <RouterLink
