@@ -154,4 +154,4 @@ Deposit transaction sent 0xffb8e302430b0584e2e0104dd6295a03688c98ba7b6e9279b01db
 
 ### Conclusion
 
-By adhering to this guide, you have successfully deposited ERC-20 tokens from L1 to L2 using the zkSync Javascript SDK, making a significant stride towards interacting with the zkSync Layer 2 scaling solution.
+By adhering to this guide, you have successfully deposited ERC-20 tokens from L1 to L2 using the zkSync Javascript SDK, making a significant stride towards interacting with the zkSync Era.

@@ -150,4 +150,4 @@ Withdraw ERC-20 transaction sent 0x280a2168f464c93e8c56df3291076bbb6cff78ebdc30f
 
 ### Conclusion
 
-By following this guide, you have successfully withdrawn ERC-20 token from L2 to L1 using the zkSync Javascript SDK. This is a significant step towards managing your assets on the zkSync Layer 2 scaling solution.
+By following this guide, you have successfully withdrawn ERC-20 token from L2 to L1 using the zkSync Javascript SDK. This is a significant step towards managing your assets on the zkSync Era.

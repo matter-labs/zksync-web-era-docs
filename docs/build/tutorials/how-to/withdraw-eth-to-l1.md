@@ -149,4 +149,4 @@ Withdraw transaction sent 0x4905176d42b4c3b4ab10f611e688b2d849e761493f4583119b7c
 
 ### Conclusion
 
-By following this guide, you have successfully withdrawn ETH from L2 to L1 using the zkSync Javascript SDK. This is a significant step towards managing your assets on the zkSync Layer 2 scaling solution.
+By following this guide, you have successfully withdrawn ETH from L2 to L1 using the zkSync Javascript SDK. This is a significant step towards managing your assets on the zkSync Era.

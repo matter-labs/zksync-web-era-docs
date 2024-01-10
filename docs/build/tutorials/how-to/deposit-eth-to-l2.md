@@ -146,4 +146,4 @@ Please wait a few minutes for the deposit to be processed in L2
 
 ### Conclusion
 
-By following this guide, you have successfully deposited ETH from L1 to L2 using the zkSync Javascript SDK. This is a fundamental step towards interacting with the zkSync Layer 2 scaling solution.
+By following this guide, you have successfully deposited ETH from L1 to L2 using the zkSync Javascript SDK. This is a fundamental step towards interacting with the zkSync Era.
