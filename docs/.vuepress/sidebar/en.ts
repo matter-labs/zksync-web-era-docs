@@ -77,7 +77,7 @@ export const enSidebar = sidebar({
               ]
             },
             {
-              text: "Cross-chain governance",
+              text: "Cross-chain Governance",
               link: "/build/tutorials/smart-contract-development/cross-chain-tutorial.md"
             },
           ],
@@ -159,7 +159,7 @@ export const enSidebar = sidebar({
               link: "/build/tutorials/how-to/send-transaction-l1-l2.md"
             },
             {
-              text: "Send an L2 to L1 message",
+              text: "Send an L2 to L1 Message",
               link: "/build/tutorials/how-to/send-message-l2-l1.md"
             },
             {
@@ -239,7 +239,7 @@ export const enSidebar = sidebar({
         //   link: "/build/tooling/compiler-overview.md"
         // },
         {
-          text: "Community",
+          text: "Ecosystem",
           collapsible: true,
           children: [
             {
@@ -346,7 +346,7 @@ export const enSidebar = sidebar({
               collapsible: true,
               children: [
                 {
-                  text: "Getting started",
+                  text: "Getting Started",
                   collapsible: true,
                   children: [
                     "/build/sdks/js/zksync-ethers/getting-started",
@@ -392,7 +392,7 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             {
-              text: "Getting started",
+              text: "Getting Started",
               collapsible: true,
               children: [
                 "/build/sdks/go/getting-started",

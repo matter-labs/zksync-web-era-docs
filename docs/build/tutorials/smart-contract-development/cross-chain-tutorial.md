@@ -2,10 +2,10 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Cross-chain Governance Tutorial | zkSync Docs
+      content: Cross-chain Governance | zkSync Docs
 ---
 
-# Cross-chain governance
+# Cross-chain Governance
 
 This tutorial shows you how to implement communication between L1 and L2 with the following example:
 
