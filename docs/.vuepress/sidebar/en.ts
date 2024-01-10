@@ -12,7 +12,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "Interact with zkSync Era",
-          link: "/build/quick-start/interacting.md"
+          link: "/build/quick-start/interact.md"
         },
         {
           text: "Security and Best Practices",
