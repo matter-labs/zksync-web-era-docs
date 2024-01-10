@@ -7,10 +7,6 @@ head:
 
 # Interact with zkSync Era
 
-## Do I need experience with zkSync Lite?
-
-Some experience with zkSync Lite would be helpful to understand some core concepts, e.g. how finality works. From all other aspects, zkSync Era and zkSync Lite are very different systems, and experience with the latter is not needed to build on zkSync Era.
-
 ## What do I need to start building?
 
 All the existing SDKs for Ethereum will work out of the box and your users will have the same experience as on Ethereum. If you want to enable advanced zkSync features, like account abstraction, the zkSync SDK should be used.
