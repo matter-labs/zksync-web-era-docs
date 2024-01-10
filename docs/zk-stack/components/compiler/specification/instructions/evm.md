@@ -783,7 +783,7 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/ether_gas.rs#L39) is common for Yul and EVMLA representations.
 
-The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
+The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59) runtime function.
 
 ## [ORIGIN](https://www.evm.codes/#32?fork=shanghai)
 
@@ -797,7 +797,7 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/context.rs#L47) is common for Yul and EVMLA representations.
 
-The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
+The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59) runtime function.
 
 ## [CALLER](https://www.evm.codes/#33?fork=shanghai)
 
@@ -934,7 +934,7 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/context.rs#L30) is common for Yul and EVMLA representations.
 
-The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
+The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59) runtime function.
 
 ## [EXTCODESIZE](https://www.evm.codes/#3b?fork=shanghai)
 
@@ -948,7 +948,7 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/ext_code.rs#L11) is common for Yul and EVMLA representations.
 
-The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
+The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59) runtime function.
 
 ## [EXTCODECOPY](https://www.evm.codes/#3c?fork=shanghai)
 
@@ -1026,7 +1026,7 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/ext_code.rs#L29) is common for Yul and EVMLA representations.
 
-The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
+The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59) runtime function.
 
 ## Block
 
@@ -1042,7 +1042,7 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/context.rs#L47) is common for Yul and EVMLA representations.
 
-The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
+The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59) runtime function.
 
 ## [COINBASE](https://www.evm.codes/#41?fork=shanghai)
 
@@ -1056,7 +1056,7 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/context.rs#L150) is common for Yul and EVMLA representations.
 
-The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
+The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59) runtime function.
 
 ## [TIMESTAMP](https://www.evm.codes/#42?fork=shanghai)
 
@@ -1070,7 +1070,7 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/context.rs#L98) is common for Yul and EVMLA representations.
 
-The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
+The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59) runtime function.
 
 ## [NUMBER](https://www.evm.codes/#43?fork=shanghai)
 
@@ -1084,7 +1084,7 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/context.rs#L81) is common for Yul and EVMLA representations.
 
-The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
+The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59) runtime function.
 
 # [PREVRANDAO](https://www.evm.codes/#44?fork=shanghai) | [DIFFICULTY](https://www.evm.codes/#44?fork=grayGlacier)
 
@@ -1098,7 +1098,7 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/context.rs#L133) is common for Yul and EVMLA representations.
 
-The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
+The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59) runtime function.
 
 # [GASLIMIT](https://www.evm.codes/#45?fork=shanghai)
 
@@ -1112,7 +1112,7 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/context.rs#L13) is common for Yul and EVMLA representations.
 
-The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
+The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59) runtime function.
 
 ## [CHAINID](https://www.evm.codes/#46?fork=shanghai)
 
@@ -1126,7 +1126,7 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/context.rs#L64) is common for Yul and EVMLA representations.
 
-The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
+The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59) runtime function.
 
 ## [SELFBALANCE](https://www.evm.codes/#47?fork=shanghai)
 
@@ -1144,7 +1144,7 @@ On how the System Contract is called, see [this section](https://github.com/code
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/context.rs#L167) is common for Yul and EVMLA representations.
 
-The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
+The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59) runtime function.
 
 ## Calls
 
@@ -1212,7 +1212,7 @@ On how the System Contract is called, see
 is common for Yul and EVMLA representations.
 
 The request to the System Contract is done via the
-[SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs)
+[SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59)
 runtime function.
 
 ## [ORIGIN](https://www.evm.codes/#32?fork=shanghai)
@@ -1231,7 +1231,7 @@ On how the System Contract is called, see
 is common for Yul and EVMLA representations.
 
 The request to the System Contract is done via the
-[SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs)
+[SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59)
 runtime function.
 
 ## [CALLER](https://www.evm.codes/#33?fork=shanghai)
@@ -1375,7 +1375,7 @@ On how the System Contract is called, see
 is common for Yul and EVMLA representations.
 
 The request to the System Contract is done via the
-[SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs)
+[SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59)
 runtime function.
 
 ## [EXTCODESIZE](https://www.evm.codes/#3b?fork=shanghai)
@@ -1394,7 +1394,7 @@ On how the System Contract is called, see
 is common for Yul and EVMLA representations.
 
 The request to the System Contract is done via the
-[SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs)
+[SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59)
 runtime function.
 
 ## [EXTCODECOPY](https://www.evm.codes/#3c?fork=shanghai)
@@ -1479,7 +1479,7 @@ On how the System Contract is called, see
 is common for Yul and EVMLA representations.
 
 The request to the System Contract is done via the
-[SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs)
+[SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/llvm_runtime.rs#L59)
 runtime function.
 
 # Events
