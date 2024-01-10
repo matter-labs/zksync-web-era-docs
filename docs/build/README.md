@@ -28,6 +28,19 @@ Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references
       </div>
     </RouterLink>
     <RouterLink
+      to="/build/tooling/zksync-cli/getting-started"
+      class="card"
+    >
+      <img
+        src="/images/landing/zksync-cli.png" 
+        alt="zkSync ERA documentation"
+      />
+      <div class="content">
+        <h3>zkSync CLI</h3>
+        <p>Easily interact and develop applications with zkSync Era using the zkSync CLI.</p>
+      </div>
+    </RouterLink>
+    <RouterLink
       to="/build/tutorials/smart-contract-development/paymasters/custom-paymaster-tutorial"
       class="card"
     >

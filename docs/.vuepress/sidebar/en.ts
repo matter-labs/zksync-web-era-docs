@@ -208,7 +208,11 @@ export const enSidebar = sidebar({
           text: "zkSync CLI",
           collapsible: true,
           children: [
-            "/build/tooling/zksync-cli/getting-started.md",
+            {
+              text: "Getting Started",
+              link: "/build/tooling/zksync-cli/getting-started.md", 
+            }, 
+            "/build/tooling/zksync-cli/commands.md",
             "/build/tooling/zksync-cli/examples/contract-interaction.md"
           ]
         },
