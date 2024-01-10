@@ -2,10 +2,10 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Go SDK | zkSync Docs
+      content: Go | zkSync Docs
 ---
 
-# Go SDK
+# Go
 
 While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features, such as paying fees in other tokens, requires providing additional fields to those that Ethereum transactions have by default.
 

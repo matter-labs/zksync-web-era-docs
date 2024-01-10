@@ -582,7 +582,7 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Overview",
-              link: "/zk-stack/concepts/data-availability"
+              link: "/zk-stack/concepts/data-availability/README.md"
             },
             {
               text: "Recreating state form L1",

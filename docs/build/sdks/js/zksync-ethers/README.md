@@ -5,7 +5,7 @@ head:
       content: JS SDK | zkSync Docs
 ---
 
-# JavaScript Era SDK
+# JavaScript Ethers V6
 
 While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features like paying fees in other tokens requires providing additional fields to those that Ethereum transactions have by default.
 

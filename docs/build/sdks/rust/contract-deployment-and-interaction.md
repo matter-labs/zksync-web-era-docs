@@ -2,10 +2,10 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Rust SDK Contract Deployment and Interaction | zkSync Docs
+      content: Contract Deployment and Interaction | zkSync Docs
 ---
 
-# Rust SDK Contract Deployment and Interaction
+# Contract Deployment and Interaction
 
 This guide shows you how to deploy a smart contract to zkSync and call its methods using the [`zksync-web3-rs`][repo] SDK.
 
