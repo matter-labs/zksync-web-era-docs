@@ -153,7 +153,7 @@ Available methods:
 ### `zks` namespace
 
 This namespace contains rollup-specific extensions to the Web3 API. Note that _only methods_ specified in the
-[documentation][zks_docs] are considered public. There may be other methods exposed in this namespace, but undocumented
+documentation are considered public. There may be other methods exposed in this namespace, but undocumented
 methods come without any kind of stability guarantees and can be changed or removed without notice.
 
 Always refer to the documentation linked above to see the list of stabilized methods in this namespace.
