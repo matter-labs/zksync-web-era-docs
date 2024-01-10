@@ -22,7 +22,7 @@ This is what we're going to do:
 - Download and install [Node](https://nodejs.org/en/download).
 - Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to latest use command `nvm use --lts`.
 - Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
-- A wallet with sufficient (Sepolia or Goerli) ETH on L1 to pay for bridging funds to zkSync and deploying smart contracts. You can get Sepolia or Goerli ETH from the [network faucets](../tooling/network-faucets.md).
+- A wallet with sufficient (Sepolia or Goerli) ETH on L1 to pay for bridging funds to zkSync and deploying smart contracts. You can get Sepolia ETH from the [network faucets](../tooling/network-faucets.md).
 - ERC20 tokens on zkSync are required for the testnet paymaster. Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 

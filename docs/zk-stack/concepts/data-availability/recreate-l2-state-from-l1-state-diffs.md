@@ -5,7 +5,7 @@ head:
       content: Recreating L2 state from L1 Pubdata | zkSync Docs
 ---
 
-# Recreating L2 state from L1 Pubdata
+# Recreating L2 State from L1 Pubdata
 
 ## Prerequisites
 

@@ -11,15 +11,15 @@ export const enSidebar = sidebar({
           link: "/build/quick-start/hello-world.md"
         },
         {
-          text: "Interacting w/ zkSync Era",
+          text: "Interact with zkSync Era",
           link: "/build/quick-start/interacting.md"
         },
         {
-          text: "Security and best practices",
+          text: "Security and Best Practices",
           link: "/build/quick-start/best-practices.md"
         },
         {
-          text: "Useful addresses",
+          text: "Useful Addresses",
           link: "/build/quick-start/useful-address.md"
         },
         {
@@ -55,7 +55,7 @@ export const enSidebar = sidebar({
               collapsible: false,
               children: [
                 {
-                  text: "Building a custom paymaster",
+                  text: "Building a Custom Paymaster",
                   link: "/build/tutorials/smart-contract-development/paymasters/custom-paymaster-tutorial.md"
                 },
                 {
@@ -187,11 +187,11 @@ export const enSidebar = sidebar({
               link: "/build/tooling/block-explorer/getting-started.md",
             },
             {
-              text: "Block Explorer menu",
+              text: "Block Explorer Menu",
               link: "/build/tooling/block-explorer/block-explorer-menu",
             },
             {
-              text: "Contract verification",
+              text: "Contract Verification",
               link: "/build/tooling/block-explorer/contract-verification",
             },
             {
@@ -482,7 +482,7 @@ export const enSidebar = sidebar({
           link: "/build/support/contribution-track.md"
         },
         {
-          text: "Audits and bug bounty program",
+          text: "Audits and Bug Bounty Program",
           link: "/build/support/audit-bug-bounty.md"
         },
         {
@@ -589,7 +589,7 @@ export const enSidebar = sidebar({
               link: "/zk-stack/concepts/data-availability/README.md"
             },
             {
-              text: "Recreating state form L1",
+              text: "Recreating State form L1",
               link: "/zk-stack/concepts/data-availability/recreate-l2-state-from-l1-state-diffs.md"
             },
             {
