@@ -84,11 +84,11 @@ console.log(`Block: ${toJSON(await provider.getTransaction("0x9af27afed9a4dd018c
 
 Also, the following examples demonstrate how to:
 
-1. [Deposit ETH and tokens from Ethereum into zkSync Era](examples/deposit.md).
-2. [Transfer ETH and tokens on zkSync Era](examples/transfer.md).
-3. [Withdraw ETH and tokens from zkSync Era to Ethereum](examples/withdraw.md).
-4. [Get confirmed tokens on zkSync Era](examples/get-confirmed-tokens.md).
-5. [Use paymaster to pay fee with token](examples/custom-paymaster/use-paymaster.md).
+1. [Deposit ETH and tokens from Ethereum into zkSync Era](https://github.com/zksync-sdk/zksync2-examples/blob/main/js/src/01_deposit.ts)
+2. [Transfer ETH and tokens on zkSync Era](https://github.com/zksync-sdk/zksync2-examples/blob/main/js/src/02_transfer.ts)
+3. [Withdraw ETH and tokens from zkSync Era to Ethereum](https://github.com/zksync-sdk/zksync2-examples/blob/main/js/src/03_withdraw.ts)
+4. [Get confirmed tokens on zkSync Era](https://github.com/zksync-sdk/zksync2-examples/blob/main/js/src/08_get_confirmed_tokens.ts)
+5. [Use paymaster to pay fee with token](https://github.com/zksync-sdk/zksync2-examples/blob/main/js/src/19_use_paymaster.ts)
 
-Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-examples/tree/main/js). Examples are configured to
+Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-examples/tree/main/js/src). Examples are configured to
 interact with `zkSync Era`, `Sepolia` and `Goerli` test networks.

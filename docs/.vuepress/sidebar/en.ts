@@ -345,22 +345,7 @@ export const enSidebar = sidebar({
               text: "JavaScript Ethers V6",
               collapsible: true,
               children: [
-                {
-                  text: "Getting Started",
-                  collapsible: true,
-                  children: [
-                    "/build/sdks/js/zksync-ethers/getting-started",
-                    "/build/sdks/js/zksync-ethers/examples/deposit",
-                    "/build/sdks/js/zksync-ethers/examples/transfer",
-                    "/build/sdks/js/zksync-ethers/examples/withdraw",
-                    "/build/sdks/js/zksync-ethers/examples/get-confirmed-tokens",
-                    "/build/sdks/js/zksync-ethers/examples/create",
-                    "/build/sdks/js/zksync-ethers/examples/create2",
-                    "/build/sdks/js/zksync-ethers/examples/custom-paymaster/deploy-token",
-                    "/build/sdks/js/zksync-ethers/examples/custom-paymaster/deploy-account",
-                    "/build/sdks/js/zksync-ethers/examples/custom-paymaster/use-paymaster",
-                  ],
-                },
+                "/build/sdks/js/zksync-ethers/getting-started",
                 "/build/sdks/js/zksync-ethers/providers",
                 "/build/sdks/js/zksync-ethers/accounts",
                 "/build/sdks/js/zksync-ethers/accounts-l1-l2",
