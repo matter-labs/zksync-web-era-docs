@@ -14,7 +14,7 @@ Bridging is implemented by having two contracts
 communicating with each other using [L1 <-> L2 interoperability](./l1-l2-interop.md).
 
 Developers are free to build their own bridge for any token.
-However, we provide our default bridges (one for ETH and one for ERC20 tokens), which can be used for basic bridging
+However, we provide our default bridges (one for ETH and one for ERC20 tokens), which can be used for basic bridging.
 
 ::: warning
 
