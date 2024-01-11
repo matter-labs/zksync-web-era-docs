@@ -143,7 +143,7 @@ use zksync_web3_rs::zks_wallet::CallRequest;
 }
 ```
 
-## Updating the greeting message with `setGreeting`
+## Updating the Greeting Message with `setGreeting`
 
 In this section, we'll guide you through the process of updating the greeting message stored in the Greeter smart contract. The `setGreeting` method is used to change the `greeting`
 message. Since it alters the state of the contract on the blockchain, it requires a signed transaction.

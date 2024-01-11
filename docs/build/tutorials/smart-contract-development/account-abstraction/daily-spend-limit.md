@@ -32,7 +32,7 @@ Download the complete project [here](https://github.com/matter-labs/tutorials/tr
 This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/Atlas-labs-inc/zksync-daily-spend-limit&open=/scripts/main.ts&chainId=280).
 :::
 
-## Project set up
+## Project Set Up
 
 We will use the [zkSync Era Hardhat plugins](../../../tooling/hardhat/getting-started.md) to build, deploy, and interact with the smart contracts in this project.
 
@@ -116,7 +116,7 @@ The `SpendLimit` contract inherits from the `Account` contract as a module that 
 - Rejects token transfer if the daily spending limit has been exceeded.
 - Restores the available amount for spending after 24 hours.
 
-### Basic structure
+### Basic Structure
 
 Below you'll find the `SpendLimit` skeleton contract.
 
@@ -176,7 +176,7 @@ The roles of each variable in the struct are detailed in the comments.
 
 Note that the `limits` mapping uses the token address as its key. This means that users can set limits for ETH and any other ERC20 token.
 
-### Setting and removing the daily spending limit
+### Setting and Removing the Daily Spending Limit
 
 The code below sets and removes the limit.
 
@@ -247,7 +247,7 @@ Specifically, `setSpendingLimit` sets a non-zero daily spending limit for a give
 
 `_isValidUpdate` returns false if the spending limit is not enabled and also throws an `Invalid Update` error if the user has spent some amount in the day (the available amount is different from the limit) or the function is called before 24 hours have passed since the last update. This ensures that users can't freely modify (increase or remove) the daily limit to spend more.
 
-### Checking daily spending limit
+### Checking Daily Spending Limit
 
 The `_checkSpendingLimit` function is internally called by the account contract before executing the transaction.
 
@@ -314,7 +314,7 @@ limit.available -= _amount;
 - The `// L1 batch timestamp` comment will be explained below.
   :::
 
-### Full code for the `SpendLimit` contract
+### Full Code for the `SpendLimit` Contract
 
 1. In the folder `contracts`, add a file called `SpendLimit.sol`
 
@@ -446,7 +446,7 @@ contract SpendLimit {
 }
 ```
 
-### `Account` and `AAFactory` contracts
+### `Account` and `AAFactory` Contracts
 
 Let's create the account contract `Account.sol`, and the factory contract that deploys account contracts, in `AAFactory.sol`. As noted earlier, those two contracts are based on the implementations of [the multisig account abstraction tutorial](./custom-aa-tutorial.md). The main difference is that our account has a single signer.
 
@@ -751,7 +751,7 @@ contract AAFactory {
 }
 ```
 
-## Compile and deploy the smart contracts
+## Compile and Deploy the Smart Contracts
 
 1. Compile the contracts from the project root.
 
@@ -930,7 +930,7 @@ Available limit today:  500000000000000
 Time to reset limit:  1683027630
 ```
 
-## Perform ETH transfer
+## Perform ETH Transfer
 
 Let's test the `SpendLimit` contract works to make it refuses ETH transfers that exceed the daily limit.
 
@@ -1063,7 +1063,7 @@ Since `ONE_DAY` is set to 1 minute for this test in the `SpendLimit.sol` contrac
 - Insufficient balance in account contract: transactions may fail due to the lack of balance in the deployed account contract. Please transfer funds to the account using MetaMask or `wallet.sendTransaction()` method used in `deploy/deployFactoryAccount.ts`.
 - Transactions submitted in a close range of time will have the same `block.timestamp` as they can be added to the same L1 batch and might cause the spend limit to not work as expected.
 
-## Learn more
+## Learn More
 
 - To find out more about L1->L2 interaction on zkSync Era, check out the [documentation](../../../developer-reference/l1-l2-interop.md).
 - To learn more about the zksync-ethers SDK, check out its [documentation](../../../sdks/js/README.md).

@@ -5,7 +5,7 @@ head:
       content: Custom Paymaster Tutorial | zkSync Docs
 ---
 
-# Building a custom paymaster
+# Building a Custom Paymaster
 
 This tutorial shows you how to build a custom paymaster that allows users to pay fees with any ERC20 token. You will:
 
@@ -25,7 +25,7 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
   - [Gas estimation for transactions](../../../developer-reference/fee-model.md#gas-estimation-for-transactions) guide.
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
-## Complete project
+## Complete Project
 
 The tutorial code is available [here](https://github.com/matter-labs/tutorials/tree/main/custom-paymaster).
 
@@ -34,7 +34,7 @@ The tutorial code is available [here](https://github.com/matter-labs/tutorials/t
 This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/atlas-labs-inc/zksync-custom-paymaster&open=/scripts/main.ts&chainId=280)
 :::
 
-## Set up the project
+## Set Up the Project
 
 1. Initiate a new project by running the command:
 
@@ -56,7 +56,7 @@ cd custom-paymaster-tutorial
 
 ## Design
 
-### Paymaster Solidity contract
+### Paymaster Solidity Contract
 
 The contract code defines an ERC20 token and allows it to be used to pay the fees for transactions.
 
@@ -117,7 +117,7 @@ contract MyPaymaster is IPaymaster {
 - To implement that, the `onlyBootloader` modifier is used on these functions.
   :::
 
-### Parsing the paymaster input
+### Parsing the Paymaster Input
 
 The paymaster pays the transaction fees and charges the user one unit of the `allowedToken` in exchange.
 
@@ -200,7 +200,7 @@ The [validation steps](../../../developer-reference/account-abstraction.md#the-v
 This is why it is important to verify transaction prerequisites _before_ performing any logic and why we _first_ check that the user provided enough allowance before calling `transferFrom`.
 :::
 
-## Paymaster contract full code
+## Paymaster Contract Full Code
 
 Create the `contracts/MyPaymaster.sol` file and copy/paste the following:
 
@@ -325,7 +325,7 @@ contract MyPaymaster is IPaymaster {
 }
 ```
 
-## Create ERC20 contract
+## Create ERC20 Contract
 
 For the sake of simplicity we will use a modified OpenZeppelin ERC20 implementation:
 
@@ -360,7 +360,7 @@ contract MyERC20 is ERC20 {
 }
 ```
 
-## Compile and deploy the contracts
+## Compile and Deploy the Contracts
 
 The script below deploys the ERC20 contract and the paymaster contract. It also creates an empty wallet and mints some `MyERC20` tokens for the paymaster to use at a later step. In addition, the script sends `0.06ETH` to the paymaster contract so it can pay the transaction fees we send later on.
 
@@ -441,7 +441,7 @@ Done!
 - Make sure you delete the `artifacts-zk` and `cache-zk` folders before recompiling.
   :::
 
-## Using the paymaster
+## Using the Paymaster
 
 1. Create the `use-paymaster.ts` script in the `deploy` folder, replacing the parameter placeholders with the details from the previous deploy step.
 
@@ -538,12 +538,12 @@ ERC20 token balance of the the wallet after mint: 7
 
 The wallet had 3 tokens after running the deployment script and, after sending the transaction to `mint` 5 more tokens, the balance is 7 as 1 token was used to pay the transaction fee to the paymaster. The paymaster paid the fees for the mint transaction with ETH.
 
-## Common errors
+## Common Errors
 
 - If the `use-paymaster.ts` script fails with the error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer tx fee to the bootloader. Paymaster balance might not be enough.`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use [zkSync native bridge or ecosystem partners](https://zksync.io/explore#bridges) (make sure Goerli or Sepolia testnet supported by selected bridge).
 - If the `use-paymaster.ts` script fails when minting new ERC20 tokens with the error `Error: transaction failed`, and the transactions appear with status "Failed" in the [zkSync explorer](https://explorer.zksync.io/), please reach out to us on [our Discord](https://join.zksync.dev/). As a workaround, try including a specific `gasLimit` value in the transaction.
 
-## Learn more
+## Learn More
 
 - Learn more about [L1->L2 interaction on zkSync](../../../developer-reference/l1-l2-interop.md).
 - Learn more about [the `zksync-ethers` SDK](../../../sdks/js/README.md).

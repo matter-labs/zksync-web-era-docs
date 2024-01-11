@@ -5,7 +5,7 @@ head:
       content: Account Abstraction Multisig Tutorial | zkSync Docs
 ---
 
-# Account abstraction multisig
+# Account Abstraction Multisig
 
 This tutorial shows you how to build and deploy a 2-of-2 multi-signature account via a factory contract, then test it by sending a transaction.
 
@@ -25,7 +25,7 @@ This tutorial shows you how to build and deploy a 2-of-2 multi-signature account
 Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../../tooling/zksync-cli/getting-started.md).
 :::
 
-## Complete project
+## Complete Project
 
 Download the complete project [here](https://github.com/matter-labs/tutorials/tree/main/custom-aa).
 
@@ -33,7 +33,7 @@ Download the complete project [here](https://github.com/matter-labs/tutorials/tr
 This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/atlas-labs-inc/zksync-aa-multisig&open=/scripts/main.ts&chainId=280).
 :::
 
-## Set up
+## Set Up
 
 1. Initiate a new project by running the command:
 
@@ -104,7 +104,7 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-## Account abstraction
+## Account Abstraction
 
 Each account must implement the [IAccount](../../../developer-reference/account-abstraction.md#iaccount-interface) interface. Furthermore, since we are building an account with multiple signers, we should implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
@@ -287,7 +287,7 @@ The `executeTransactionFromOutside` function allows external users to initiate t
 
 In addition, `checkValidECDSASignatureFormat` and `extractECDSASignature` are helper functions for the `isValidSignature` implementation.
 
-### Signature validation
+### Signature Validation
 
 We import OpenZeppelin's `ECDSA` library to use for signature validation.
 
@@ -357,7 +357,7 @@ function isValidSignature(bytes32 _hash, bytes memory _signature)
 }
 ```
 
-### Transaction validation
+### Transaction Validation
 
 The transaction validation process is responsible for validating the signature of the transaction and incrementing the nonce.
 
@@ -432,7 +432,7 @@ function _validateTransaction(
 }
 ```
 
-### Paying fees for the transaction
+### Paying Fees for the Transaction
 
 This section explains the `payForTransaction` function.
 
@@ -449,7 +449,7 @@ function payForTransaction(
     }
 ```
 
-### Implementing paymaster support
+### Implementing Paymaster Support
 
 While the account abstraction protocol enables arbitrary actions when interacting with the paymasters, there are some [common patterns](../../../developer-reference/account-abstraction.md#built-in-paymaster-flows) with built-in support for EOAs. Unless you want to implement or restrict some specific paymaster use cases for your account, it is better to keep it consistent with EOAs.
 
@@ -466,7 +466,7 @@ function prepareForPaymaster(
     }
 ```
 
-### Transaction execution
+### Transaction Execution
 
 To implementing transaction execution, extract the transaction data and execute it:
 
@@ -518,7 +518,7 @@ function _executeTransaction(Transaction calldata _transaction) internal {
 - Therefore, it is highly recommended to put `require(success)` for the transaction, so that users get the best UX.
   :::
 
-### Full code of the TwoUserMultisig contract
+### Full Code of the TwoUserMultisig Contract
 
 1. Create a file `TwoUserMultisig.sol` in the `contracts` folder and copy/paste the code below into it.
 
@@ -776,7 +776,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
 }
 ```
 
-## The factory
+## The Factory
 
 1. Create a new Solidity file in the `contracts` folder called `AAFactory.sol`.
 
@@ -834,7 +834,7 @@ It's worth remembering that, on zkSync Era, [contract deployments](../../../deve
 
 This functionality is built into the SDK.
 
-## Deploy the factory
+## Deploy the Factory
 
 ::: tip
 Make sure you deposit funds on zkSync Era using [bridges](https://zksync.io/explore#bridges) before running the deployment script.
@@ -883,9 +883,9 @@ AA factory address: 0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627Ds
 
 Note that the address will be different for each run.
 
-## Working with accounts
+## Working with Accounts
 
-### Deploying an account
+### Deploying an Account
 
 Now, let's deploy an account and use it to initiate a new transaction.
 
@@ -943,7 +943,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 - Read the documentation for more information on [address derivation differences between Ethereum and zkSync](../../../developer-reference/differences-with-ethereum.md).
   :::
 
-### Start a transaction from the account
+### Start a Transaction from the Account
 
 Before the deployed account can submit transactions, we need to deposit some ETH to it for the transaction fees.
 
@@ -1037,7 +1037,7 @@ multisigBalance = await provider.getBalance(multisigAddress);
 console.log(`Multisig account balance is now ${multisigBalance.toString()}`);
 ```
 
-### Full example
+### Full Example
 
 1. Copy/paste the following code into the deployment file, replacing the `<FACTORY-ADDRESS>` and private key `<WALLET-PRIVATE-KEY>` placeholders with the relevant data.
 
@@ -1163,7 +1163,7 @@ The multisig's nonce after the first tx is 1
 If you get an error `Not enough balance to cover the fee.`, try increasing the amount of ETH sent to the multisig wallet so it has enough funds to pay for the transaction fees.
 :::
 
-## Learn more
+## Learn More
 
 - To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../../developer-reference/l1-l2-interop.md).
 - To learn more about the `zksync-web3` SDK, check out its [documentation](../../../sdks/js/README.md).

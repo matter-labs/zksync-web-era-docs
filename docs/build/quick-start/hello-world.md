@@ -5,7 +5,7 @@ head:
       content: Hello world | zkSync Docs
 ---
 
-# Hello world
+# Hello World
 
 This guide shows you how to deploy a smart contract to zkSync and build a dApp that interacts with it using the zkSync development toolbox.
 
@@ -448,7 +448,7 @@ After connecting the Metamask wallet to zkSync Era Testnet, you should see the f
 
 The **Select token** dropdown menu allows you to choose which token to pay fees with.
 
-### Retrieving token balance and transaction fee
+### Retrieving Token Balance and Transaction Fee
 
 The easiest way to retrieve the user's balance is to use the `Signer.getBalance` function.
 
@@ -494,7 +494,7 @@ It is possible to also click on the **Change greeting** button, but nothing will
 
 ![img](../../assets/images/start-2.png)
 
-### Updating the greeting
+### Updating the Greeting
 
 Update the function in `App.vue` with the following code:
 
@@ -540,7 +540,7 @@ Refresh your browser, or open the MetaMask extension on your browser and click _
 Read more about `wallet_requestPermissions`, in the [MetaMask documentation](https://docs.metamask.io/guide/rpc-api.html#wallet-requestpermissions).
 :::
 
-### Paying fees using testnet paymaster
+### Paying Fees using Testnet Paymaster
 
 The zkSync Era account abstraction feature allows you to integrate [paymasters](../../build/developer-reference/account-abstraction.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly.
 
@@ -696,7 +696,7 @@ const allowedTokens = require("./erc20.json");
 
 The `erc20.json` file contains a few tokens like DAI, USDC and wBTC.
 
-### Complete app
+### Complete Application
 
 Now you should be able to update the greeting message with ETH or any of the available tokens.
 
@@ -714,7 +714,7 @@ After the transaction is processed, the page updates the balances and the new gr
 
 **You've paid for this transaction with an ERC20 token using the testnet paymaster** 🎉
 
-### Learn more
+### Learn More
 
 - For an overview of security and best practices for developing on zkSync Era, refer to the [Security and best practices page](./best-practices.md).
 - To learn more about `zksync-web3` SDK, check out its [documentation](../../build/sdks/js/README.md).
