@@ -29,7 +29,7 @@ Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply exe
 
 Download the complete project [here](https://github.com/matter-labs/tutorials/tree/main/cross-chain).
 
-## Project set up
+## Project Setup
 
 Open a terminal window, create a new folder for the project tutorial, e.g. `mkdir cross-chain-tutorial`, and `cd` into the folder.
 

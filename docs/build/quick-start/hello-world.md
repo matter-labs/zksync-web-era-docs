@@ -203,13 +203,13 @@ Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search wi
 
 ## Build the front-end dApp
 
-### Set up the project
+### Setup the project
 
 :::info
 
 - We use the `Vue` web framework for the tutorial front end (the process is similar to other frameworks).
 - In order to focus on the `zksync-web3` SDK, we provide a prebuilt template.
-- Once set up, we add code that interacts with the smart contract we just deployed.
+- Once Setup, we add code that interacts with the smart contract we just deployed.
   :::
 
 1. Clone the template and `cd` into the folder.
@@ -244,7 +244,7 @@ In order to interact with dApps built on zkSync, connect the MetaMask wallet to 
 
 Please note, that login functionality for "Hello, world" will be implemented in the next steps.
 
-### Bridge funds to L2
+### Bridge Funds to L2
 
 - Use [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - Use the [third party faucets](../../build/support/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
@@ -253,7 +253,7 @@ Please note, that login functionality for "Hello, world" will be implemented in 
 When bridging from mainnet to a smart account (e.g. Clave) on zkSync Era, you must specify the address of your L2 wallet by clicking on **Deposit to another address on zkSync Era Mainnet**.
 :::
 
-### Project structure
+### Project Structure
 
 In the `./src/App.vue` file, in the `methods:` section, you will see template code that stores the application.
 
@@ -299,7 +299,7 @@ const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract addres
 const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
 ```
 
-### Add the libraries
+### Add the Libraries
 
 1. From the `greeter-tutorial-starter` root, install the dependencies.
 
@@ -320,7 +320,7 @@ const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract addres
 const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
 ```
 
-### Add the ABI and contract address
+### Add the ABI and Contract Address
 
 :::info
 
@@ -413,7 +413,7 @@ initializeProviderAndSigner() {
 },
 ```
 
-### Retrieving the greeting
+### Retrieving the Greeting
 
 Fill in the function to retrieve the greeting from the smart contract:
 

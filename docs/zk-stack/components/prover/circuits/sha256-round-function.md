@@ -233,7 +233,7 @@ pub struct Sha256PrecompileCallParams<F: SmallField> {
 }
 ```
 
-Set up `timestamp:`
+Setup `timestamp:`
 
 ```rust
 state.timestamp_to_use_for_read = UInt32::conditionally_select(

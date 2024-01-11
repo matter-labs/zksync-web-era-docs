@@ -23,7 +23,7 @@ For detailed explanations of the IPaymaster interface please refer to the docume
 - **Wallet Setup**: Have MetaMask installed and set up, ensuring there's a balance on the zkSync testnet.
 - **Tooling**: This guide utilizes [`zksync-cli`](../../../tooling/zksync-cli/getting-started.md). Ensure you have it accessible or installed in your environment.
 
-### Step 1 — Understanding the GaslessPaymaster contract
+### Step 1 — Understanding the GaslessPaymaster Contract
 
 The `GaslessPaymaster` contract ensures that transaction fees are handled automatically without user intervention.
 
@@ -33,7 +33,7 @@ Key components:
 
 Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IPaymaster.sol) interface. We will be using `zksync-cli` to bootstrap the boilerplate code for this paymaster.
 
-### Step 2 — Environment setup
+### Step 2 — Environment Setup
 
 Using `zksync-cli` create a new project with the required dependencies and boilerplate paymaster implementations:
 
@@ -46,13 +46,13 @@ Choose `Hardhat + Solidity` to setup the project repository. The contract for th
 - Modify the `.env-example` file with your private key.
 - Ensure your account has a sufficient balance.
 
-### Step 3 — Updating the contract
+### Step 3 — Updating the Contract
 
 No modifications are needed for gasless transactions since the provided `GeneralPaymaster` contract is already configured for this purpose. With no restrictions on its usage.
 
 Reviewing the `validateAndPayForPaymasterTransaction` function reveals its simplicity: it only verifies that the paymaster holds sufficient ETH.
 
-### Step 4 — Deploy the contract
+### Step 4 — Deploy the Contract
 
 Create a new file under `/deploy`, for example `deploy-gaslessPaymaster.ts`. Insert the provided script:
 
@@ -124,7 +124,7 @@ Once compiled, deploy using:
 yarn hardhat deploy-zksync --script gaslessPaymaster.ts
 ```
 
-### Step 5 — Testing the contract
+### Step 5 — Testing the Contract
 
 To verify the functionality of the GaslessPaymaster contract, let's draft a quick test. Set it up by creating `gaslessTest.test.ts` in the `/test` directory and populating it with the provided script:
 

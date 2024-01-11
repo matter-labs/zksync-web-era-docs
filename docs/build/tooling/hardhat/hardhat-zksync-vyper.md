@@ -24,7 +24,7 @@ Learn more about the latest updates in the [changelog](https://github.com/matter
 Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tooling/zksync-cli/getting-started.md).
 :::
 
-## Set up
+## Setup
 
 ### 1. Scaffold a new project
 

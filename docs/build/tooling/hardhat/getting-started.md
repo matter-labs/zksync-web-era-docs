@@ -26,7 +26,7 @@ Learn more about [other plugins from the community](./other-plugins.md) that you
 
 To learn more about Hardhat itself, check out [its official documentation](https://hardhat.org/getting-started/).
 
-This tutorial shows you how to set up a zkSync Era Solidity project with Hardhat using the [zkSync CLI](../zksync-cli/getting-started.md).
+This tutorial shows you how to Setup a zkSync Era Solidity project with Hardhat using the [zkSync CLI](../zksync-cli/getting-started.md).
 
 If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zksync-vyper.md) or [this example](https://github.com/matter-labs/hardhat-zksync/tree/main/examples/vyper-example) in GitHub!
 

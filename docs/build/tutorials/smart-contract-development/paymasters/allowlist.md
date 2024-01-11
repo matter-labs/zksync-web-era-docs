@@ -23,7 +23,7 @@ For detailed explanations of the IPaymaster interface please refer to the docume
 - **Wallet Setup**: Have MetaMask installed and set up, ensuring there's a balance on the zkSync testnet.;
 - **Tooling**: This guide utilizes [`zksync-cli`](../../../tooling/zksync-cli/getting-started.md). Ensure you have it accessible or installed in your environment.
 
-### Step 1 — Understanding the AllowlistPaymaster contract
+### Step 1 — Understanding the AllowlistPaymaster Contract
 
 The `AllowlistPaymaster` contract is designed to be owned by an account that controls its operations. It maintains a list of addresses which are allowed to have their gas fees paid for by this contract.;
 
@@ -35,7 +35,7 @@ Key components:
 
 Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IPaymaster.sol) interface. We will be using `zksync-cli` to bootstrap the boilerplate code for this paymaster.
 
-### Step 2 — Environment setup
+### Step 2 — Environment Setup
 
 Using `zksync-cli` we will create a new project with the required dependencies and boilerplate paymaster implementations:
 
@@ -49,7 +49,7 @@ Choose `Hardhat + Solidity` to setup our project repository. The contract we wil
 - Modify the `.env-example` file with your private key.
 - Ensure your account has a sufficient balance.
 
-### Step 3 — Updating the contract
+### Step 3 — Updating the Contract
 
 Using the `GeneralPaymaster.sol` contract, add the `allowList` mapping and event emit line to the contract:
 
@@ -116,13 +116,9 @@ function _setAllowance(address _target, bool _allowed) internal {
 
 The contract checks if the number of addresses in `_targets` matches the number of permissions in `_allowances`. If they don't match, it reverts the transaction with an error message. For each address, it sets its allowance using the `_setAllowance` function. Fetching the current allowance status of the `_target` address, compares the current status with the new status `_allowed`. If the statuses differ, it updates the `allowList` mapping with the new status.
 
-### Step 4 — Deploy the contract
+### Step 4 — Deploy the Contract
 
 Create a new file under `/deploy`, for example `deploy-allowListPaymaster.ts`. Insert the provided script:
-
-<details>
-
-<summary>Deployment script</summary>
 
 ```typescript
 import { Provider, Wallet } from "zksync-web3";
@@ -172,8 +168,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Done!`);
 }
 ```
-
-</details>
 
 :::info
 Be sure to add your private key to the `.env` file.;

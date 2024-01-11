@@ -44,7 +44,7 @@ cd tutorials/tutorials/zkSync-RedStone-stable-price-marketplace-tutorial/code
 yarn install
 ```
 
-4\. Set Up Local zkSync Node:
+4\. Setup Local zkSync Node:
 
 Set up a local zkSync node in a Dockerized setup following the instructions [here](../../test-and-debug/dockerized-l1-l2-nodes.md).
 

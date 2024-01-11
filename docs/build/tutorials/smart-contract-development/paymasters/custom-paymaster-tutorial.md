@@ -34,7 +34,7 @@ The tutorial code is available [here](https://github.com/matter-labs/tutorials/t
 This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/atlas-labs-inc/zksync-custom-paymaster&open=/scripts/main.ts&chainId=280)
 :::
 
-## Set Up the Project
+## Setup the Project
 
 1. Initiate a new project by running the command:
 

@@ -31,7 +31,7 @@ Key components:
 
 Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IPaymaster.sol) interface. We will be using `zksync-cli` to bootstrap the boilerplate code for this paymaster.
 
-### Step 2 — Environment setup
+### Step 2 — Environment Setup
 
 Using `zksync-cli` create a new project with the required dependencies and boilerplate paymaster implementations:
 
@@ -46,7 +46,7 @@ Choose `Hardhat + Solidity` to setup the project repository. The contract for th
 - Modify the `.env-example` file with your private key.
 - Ensure your account has a sufficient balance.
 
-### Step 3 — Updating the contract
+### Step 3 — Updating the Contract
 
 The intended objective of the `TimeBasedPaymaster` contract is to permit transactions only between a stipulated timeframe to cover the gas costs.
 
@@ -64,13 +64,9 @@ uint256 startTime = (block.timestamp / 86400) * 86400 + 15 hours;
 
 During the validation step, the contract will check if the transaction is taking place between the specified time frame, if not the account will be required to pay their own gas costs. Specifically, this contract checks if the transaction takes place between 14:35 - 14:55 UTC.
 
-### Step 4 — Deploy the contract
+### Step 4 — Deploy the Contract
 
 Create a new file under `/deploy`, for example `deploy-timeBasedPaymaster.ts`. Insert the provided script:
-
-<details>
-
-<summary>Deployment script</summary>
 
 ```typescript
 import { Provider, Wallet } from "zksync-web3";
@@ -130,8 +126,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-</details>
-
 :::info
 Be sure to add your private key to the `.env` file.
 :::
@@ -150,7 +144,7 @@ Deploy the contract:
 yarn hardhat deploy-zksync --script timeBasedPaymaster.ts
 ```
 
-### Step 5 — Testing the contract
+### Step 5 — Testing the Contract
 
 To verify the functionality of the TimeBased Paymaster contract, let's draft a quick test. Set it up by creating `timeBasedPaymaster.test.ts` in the `/test` directory and populating it with the provided script:
 

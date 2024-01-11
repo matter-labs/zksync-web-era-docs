@@ -257,7 +257,7 @@ flag, enforce sponges. There are only 2 outcomes:
 - do not use sponges and only rely on src0/dst0
 - can not have src0/dst0 in memory, but use sponges (UMA, near_call, far call, ret)
 
-No longer in the cyclical part `VM` we set up different queues:
+No longer in the cyclical part `VM` we Setup different queues:
 
 1. Memory:
 

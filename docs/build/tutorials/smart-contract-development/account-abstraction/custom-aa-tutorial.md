@@ -33,7 +33,7 @@ Download the complete project [here](https://github.com/matter-labs/tutorials/tr
 This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/atlas-labs-inc/zksync-aa-multisig&open=/scripts/main.ts&chainId=280).
 :::
 
-## Set Up
+## Setup
 
 1. Initiate a new project by running the command:
 

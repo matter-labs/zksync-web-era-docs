@@ -21,7 +21,7 @@ You can visit the `era-test-node` repository [here](https://github.com/matter-la
 
 ## Running with `zksync-cli`
 
-You can set up In-Memory Node quickly with `npx zksync-cli dev start`. Note: at the moment this method won't allow you to use additional features like forking networks or replaying transactions.
+You can Setup In-Memory Node quickly with `npx zksync-cli dev start`. Note: at the moment this method won't allow you to use additional features like forking networks or replaying transactions.
 
 ## Installing and setting up `era-test-node`
 
