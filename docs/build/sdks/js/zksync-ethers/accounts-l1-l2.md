@@ -17,7 +17,7 @@ Full examples of actions below are available on the [getting started](./getting-
 
 `Wallet`, `L1Signer` and `L1VoidSigner` objects provide a deposit workflow. For more information, please refer to the method specification [`Deposit`](accounts.md#deposit).
 
-For a complete example of how to execute the deposit workflow, take a look at the following: [Deposit ETH and ERC20 token](examples/deposit.md).
+For a complete example of how to execute the deposit workflow, take a look at the following: [Deposit ETH and ERC20 token](https://github.com/zksync-sdk/zksync2-examples/blob/main/js/src/01_deposit.ts).
 
 ## Request execute
 
@@ -43,4 +43,4 @@ method specification [`getBaseCost`](accounts.md#getbasecost).
 
 `Wallet`, `Signer` and `L2VoidSigner` objects provide a withdrawal workflow. For more information, please refer to the method specification [`Deposit`](accounts.md#deposit).
 
-For a complete example of how to execute the deposit workflow, take a look at the following: [Withdraw ETH and ERC20 token](examples/withdraw.md).
+For a complete example of how to execute the deposit workflow, take a look at the following: [Withdraw ETH and ERC20 token](https://github.com/zksync-sdk/zksync2-examples/blob/main/js/src/03_withdraw.ts).
