@@ -11,7 +11,7 @@ head:
 
 Bridging is implemented by having two contracts
 (one deployed to L1, and the second deployed to L2)
-communicating with each other using [L1 <-> L2 interoperability](./l1-l2-interop.md).
+communicating with each other using [L1 <-> L2 interoperability](../../build/developer-reference/l1-l2-interop.md).
 
 Developers are free to build their own bridge for any token.
 However, we provide our default bridges (one for ETH and one for ERC20 tokens), which can be used for basic bridging.
@@ -24,11 +24,11 @@ Addresses of tokens on L2 will always differ from the same token L1 address. Als
 
 ## Default bridges
 
-You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../api/api.md#zks-getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../api/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
+You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../build/api.md#zks-getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../build/sdks/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
 
 ### Adding Tokens to the Bridge UI
 
-No action is required to add tokens to the bridge UI. All tokens are automatically recognized based on user balances. If you desire for your token to display an icon or price, refer to the [Token Listing Guide](../troubleshooting/faq.md#token-listing).
+No action is required to add tokens to the bridge UI. All tokens are automatically recognized based on user balances. If you desire for your token to display an icon or price, refer to the [Token Listing Guide](../../build/support/faq.md#token-listing).
 
 ### Deposits (to L2)
 
@@ -152,7 +152,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-To run this script, configure your `hardhat.config.ts` file as explained in this [guide](../../tools/hardhat/hardhat-zksync-deploy.md), or use the command `npx zksync-cli create --template hardhat_solidity` to scaffold a new project.
+To run this script, configure your `hardhat.config.ts` file as explained in this [guide](../../build/tooling/hardhat/hardhat-zksync-deploy.md), or use the command `npx zksync-cli create --template hardhat_solidity` to scaffold a new project.
 
 Once your `hardhat.config.ts` file is configured, place the script files in the `deploy` folder and run them with the following command:
 
@@ -167,7 +167,7 @@ The log message described above is not yet fully supported by our SDK but is ava
 :::tip
 
 - To provide additional security during the Alpha phase, **withdrawals in zkSync Era take 24 hours**.
-- For more information, read the [withdrawal delay guide](../troubleshooting/withdrawal-delay.md).
+- For more information, read the [withdrawal delay guide](../../build/support/withdrawal-delay.md).
   :::
 
 Users must call the `withdraw` method on the L2 bridge contract, which will trigger the following actions:
