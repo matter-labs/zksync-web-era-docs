@@ -10,7 +10,7 @@ head:
 Bridges are pivotal in enhancing interoperability between different networks or layers, facilitating seamless asset and data transfer. In this section, we delve into various bridge solutions integrated within the zkSync ecosystem, providing developers and users with diverse options for cross-chain or cross-layer interactions.
 
 :::info
-For an extended list of bridging options within the zkSync ecosystem, feel free to explore the [bridges](https://zksync.dappradar.com/ecosystem?category-de=bridges.) category on Dappradar.
+For an extended list of bridging options within the zkSync ecosystem, feel free to explore the [bridges](https://zksync.dappradar.com/ecosystem?category-de=bridges) category on Dappradar.
 :::
 
 ### **zkSync Portal Bridge**
