@@ -74,7 +74,7 @@ Jumpstart your projects with `npx zksync-cli create` using our updated templates
 
 ### 🔗 Use custom Chain or RPC URLs
 
-By default zkSync CLI supports zkSync Goerli Testnet, zkSync Mainnet as well as local development networks. However, you can specify custom RPC URLs using `--rpc` and `--l1-rpc` options.
+By default zkSync CLI supports zkSync Sepolia Testnet, zkSync Mainnet as well as local development networks. However, you can specify custom RPC URLs using `--rpc` and `--l1-rpc` options.
 
 Example: `npx zksync-cli bridge deposit --rpc=http://... --l1-rpc=http://...`
 
