@@ -261,6 +261,7 @@ USDCUSD
 ETHUS
 USDCUS
 ETHUSD
+MCRN
 Arbitrum
 Adamantium
 Immunefi
