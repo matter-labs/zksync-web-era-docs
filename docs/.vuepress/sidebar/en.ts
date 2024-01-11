@@ -538,8 +538,8 @@ export const enSidebar = sidebar({
       collapsible: true,
       children: [
         {
-          text: "Getting Started",
-          link: "/zk-stack/concepts/getting-started.md",
+          text: "Overview",
+          link: "/zk-stack/concepts/overview.md",
         },
         {
           text: "Transaction Lifecycle",
@@ -571,7 +571,7 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Overview",
-              link: "/zk-stack/concepts/data-availability/README.md"
+              link: "/zk-stack/concepts/data-availability/overview.md"
             },
             {
               text: "Recreating State form L1",
@@ -590,8 +590,8 @@ export const enSidebar = sidebar({
       collapsible: true,
       children: [  
         {
-          text: "Getting Started",
-          link: "/zk-stack/components/getting-started.md",
+          text: "Overview",
+          link: "/zk-stack/components/overview.md",
         },
         {
           text: "Smart & System Contracts",
@@ -623,7 +623,7 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Overview",
-              link: "/zk-stack/components/zkEVM/getting-started.md",
+              link: "/zk-stack/components/zkEVM/overview.md",
             },
             {
               text: "Bootloader",
@@ -655,7 +655,7 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Overview",
-              link: "/zk-stack/components/prover/prover.md",
+              link: "/zk-stack/components/prover/overview.md",
             },
             {
               text: "ZK Terminology",
@@ -671,7 +671,7 @@ export const enSidebar = sidebar({
               children: [
                 {
                   text: "Overview",
-                  link: "/zk-stack/components/prover/circuits/getting-started.md",
+                  link: "/zk-stack/components/prover/circuits/overview.md",
                 },
                 {
                   text: "CodeDecommitter",
@@ -715,7 +715,7 @@ export const enSidebar = sidebar({
                   children: [
                     {
                       text: "Overview",
-                      link: "/zk-stack/components/prover/circuits/sorting/README.md",
+                      link: "/zk-stack/components/prover/circuits/sorting/overview.md",
                     },
                     {
                       text: "SortDecommitments",
@@ -779,7 +779,7 @@ export const enSidebar = sidebar({
               children: [
                 {
                   text: "Overview",
-                  link: "/zk-stack/components/compiler/specification/README.md",
+                  link: "/zk-stack/components/compiler/specification/overview.md",
                 },
                 {
                   text: "Code Separation",
@@ -803,7 +803,7 @@ export const enSidebar = sidebar({
                   children: [
                     {
                       text: "Overview",
-                      link: "/zk-stack/components/compiler/specification/instructions/README.md",
+                      link: "/zk-stack/components/compiler/specification/instructions/overview.md",
                     },
                     {
                       text: "EVM",

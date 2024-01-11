@@ -5,7 +5,7 @@ head:
       content: Getting Started | zkSync Docs
 ---
 
-# Getting Started
+# Overview
 
 ZK Stack is a modular framework for building sovereign ZK-powered Ethereum rollups (called hyperchains); it is a modular, open-source framework that is both free and designed to build custom hyperchains (ZK-powered L2s and L3s), based on the code of zkSync Era, the first hyperchain.
 
