@@ -599,10 +599,11 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Smart Contracts",
-              link: "/zk-stack/components/smart-contracts",
+              link: "/zk-stack/components/smart-contracts/smart-contracts.md",
             },
-            { text: "System Contracts",
-            link: "/zk-stack/components/smart-contracts/system-contracts.md",
+            { 
+              text: "System Contracts",
+              link: "/zk-stack/components/smart-contracts/system-contracts.md",
            }  
           ]
         },
@@ -613,7 +614,7 @@ export const enSidebar = sidebar({
         },
         {
           text: "Sequencer / Server",
-          link: "/zk-stack/components/sequencer-server/README.md"
+          link: "/zk-stack/components/sequencer-server.md"
           
         },
         {
@@ -622,7 +623,7 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Overview",
-              link: "/zk-stack/components/zkEVM/README.md",
+              link: "/zk-stack/components/zkEVM/getting-started.md",
             },
             {
               text: "Bootloader",
@@ -670,7 +671,7 @@ export const enSidebar = sidebar({
               children: [
                 {
                   text: "Overview",
-                  link: "/zk-stack/components/prover/circuits/README.md",
+                  link: "/zk-stack/components/prover/circuits/getting-started.md",
                 },
                 {
                   text: "CodeDecommitter",
