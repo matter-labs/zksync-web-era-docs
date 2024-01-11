@@ -37,18 +37,20 @@ that the L1 client won't exceed any limits (e.g. in case you use Infura).
 
 The dockerized version of the server exposes the following ports:
 
-- HTTP JSON-RPC: 3060
-- WebSocket JSON-RPC: 3061
-- Prometheus listener: 3322
-- Healthcheck server: 3081
+- HTTP JSON-RPC: `3060`
+- WebSocket JSON-RPC: `3061`
+- Prometheus listener: `3322`
+- Healthcheck server: `3081`
 
 While the configuration variables for them exist, you are not expected to change them unless you want to use the EN
 outside of provided docker environment (not supported at the time of writing).
 
+:::info
 **NOTE**: if the Prometheus port is configured, it must be [scraped](https://prometheus.io/docs/introduction/overview/)
 periodically to avoid a memory leak due to a
 [bug in an external metrics library](https://github.com/metrics-rs/metrics/issues/245). If you are not intending to use
 the metrics, leave this port not configured, and the metrics won't be collected.
+:::
 
 ## API limits
 
