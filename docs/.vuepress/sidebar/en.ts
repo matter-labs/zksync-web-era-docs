@@ -234,10 +234,6 @@ export const enSidebar = sidebar({
             "/build/tooling/hardhat/other-plugins.md",
           ]
         },
-        // {
-        //   text: "Compiler Overview",
-        //   link: "/build/tooling/compiler-overview.md"
-        // },
         {
           text: "Ecosystem",
           collapsible: true,
@@ -413,7 +409,7 @@ export const enSidebar = sidebar({
           ],
         },
         {
-          text: "Java", // required
+          text: "Java",
           collapsible: true,
           children: [
             "/build/sdks/java",
@@ -510,27 +506,6 @@ export const enSidebar = sidebar({
       text: "Troubleshooting",
       link: "/infra/troubleshooting.md",
     }
-
-  
-    // {
-    //   text: "zkSync",
-    //   // link: "/infra/zksync-era/README.md",
-    //   collapsible: true,
-    //   children: [
-    //     {
-    //       text: "Installation",
-    //       link: "/infra/zksync-era/installation.md"
-    //     },
-    //     {
-    //       text: "Running Node",
-    //       link: "/infra/zksync-era/running-node.md"
-    //     },
-    //     {
-    //       text: "Development",
-    //       link: "/infra/zksync-era/development.md"
-    //     },
-    //   ]
-    // },
   ],
   "/zk-stack": [
     {
