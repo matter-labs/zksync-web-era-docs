@@ -17,8 +17,9 @@ We also [compress](https://github.com/matter-labs/zksync-era/blob/main/docs/spe
 
 By posting all the data to L1, we can [reconstruct](https://github.com/matter-labs/zksync-era/blob/main/docs/specs/data_availability/reconstruction.md) the state of the chain from the data on L1. This is a key security property of the rollup.
 
-> :bulb:
-> If the chain chooses not to post this data, it becomes a validium. This makes transactions there much cheaper, but less secure. Because we use state diffs to post data, we can combine the rollup and validium features, by separating storage slots that need to post data from the ones that don't. This construction combines the benefits of rollups and validiums, and it is called a [zkPorter](https://github.com/matter-labs/zksync-era/blob/main/docs/specs/data_availability/validium_zk_porter.md).
+:::info
+If the chain chooses not to post this data, it becomes a validium. This makes transactions there much cheaper, but less secure. Because we use state diffs to post data, we can combine the rollup and validium features, by separating storage slots that need to post data from the ones that don't. This construction combines the benefits of rollups and validiums, and it is called a [zkPorter](https://github.com/matter-labs/zksync-era/blob/main/docs/specs/data_availability/validium_zk_porter.md).
+:::
 
 ## Recreating L2 State From L1 Pubdata
 
