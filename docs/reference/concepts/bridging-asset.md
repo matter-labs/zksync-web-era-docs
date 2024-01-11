@@ -14,11 +14,11 @@ Bridging is implemented by having two contracts
 communicating with each other using [L1 <-> L2 interoperability](./l1-l2-interop.md).
 
 Developers are free to build their own bridge for any token.
-However, we provide our default bridges (one for ETH and one for ERC20 tokens), which can be used for basic bridging.
+However, we provide our default bridges (one for ETH and one for ERC20 tokens), which can be used for basic bridging, i.e. 
 
 ::: warning
 
-Addresses of tokens on L2 will always differ from the same token L1 address.
+Addresses of tokens on L2 will always differ from the same token L1 address. Also note, that tokens bridged via the default bridge only support standard ERC20 functionality, i.e. rebase tokens and other custom behavior are not supported.
 
 :::
 
