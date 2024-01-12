@@ -25,11 +25,11 @@ This tutorial shows you how to implement communication between L1 and L2 with th
 Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../tooling/zksync-cli/getting-started.md).
 :::
 
-### Complete project
+### Complete Project
 
 Download the complete project [here](https://github.com/matter-labs/tutorials/tree/main/cross-chain).
 
-## Project set up
+## Project Setup
 
 Open a terminal window, create a new folder for the project tutorial, e.g. `mkdir cross-chain-tutorial`, and `cd` into the folder.
 
@@ -45,7 +45,7 @@ mkdir L1-governance L2-counter
 - The `L2-counter` code includes all zkSync dependencies and configurations for L2.
   :::
 
-## L1 governance
+## L1 Governance
 
 1. `cd` into `L1-governance`.
 
@@ -82,7 +82,7 @@ npm i -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts
 
 :::
 
-### Create L1 governance contract
+### Create L1 Governance Contract
 
 :::tip
 Make sure you're still in the `L1-governance` folder.
@@ -125,7 +125,7 @@ contract Governance {
 }
 ```
 
-### Deploy L1 governance contract
+### Deploy L1 Governance Contract
 
 1. Create the file `L1-Governance/goerli.json`, or `L1-Governance/sepolia.json` and copy/paste the code below, filling in the relevant values. Find node provider urls [here](https://chainlist.org/chain/5). You have to connect your wallet to the network and add the network to the wallet in advance.
 
@@ -240,7 +240,7 @@ Governance contract was successfully deployed at 0xf28Df77fa8ff56cA3084bd11c1CAF
 
 Save the address to use in a later step.
 
-## L2 counter
+## L2 Counter
 
 Now that we have an address for the L1 governance contract, we can build, deploy, and test the counter contract on L2.
 
@@ -266,7 +266,7 @@ rm -rf ./contracts/Greeter.sol
 rm -rf ./deploy/deploy-greeter.ts && rm -rf ./deploy/use-greeter.ts
 ```
 
-### Create L2 counter contract
+### Create L2 Counter Contract
 
 1. In the `L2-counter/contracts/` directory, create a new file `Counter.sol`.
 
@@ -315,7 +315,7 @@ npx hardhat compile
 
 :::
 
-### Deploy L2 counter contract
+### Deploy L2 Counter Contract
 
 1. Copy/paste the following code into `L2-counter/deploy/deploy.ts`, replacing `<GOVERNANCE-ADDRESS>` with the address of the Governance contract we just deployed, and `<WALLET-PRIVATE-KEY>` with your private key:
 
@@ -390,7 +390,7 @@ Counter was deployed to 0x3c5A6AB2390F6217C78d2F6F403A9dFb7e7784FC
 For more information about deploying contracts, check out the [quickstart tutorial](../../quick-start/hello-world.md) or the documentation for the zkSync [hardhat plugins](../../tooling/hardhat/getting-started.md).
 :::
 
-## Read the counter value
+## Read the Counter Value
 
 Now both contracts are deployed, we can create a script to retrieve the value of the counter.
 
@@ -448,7 +448,7 @@ The output should be:
 The counter value is 0
 ```
 
-## Call L2 contract from L1
+## Call L2 Contract from L1
 
 Now, let's call the `increment` method on Layer 2 from Layer 1.
 
@@ -587,7 +587,8 @@ main().catch((error) => {
 
 - Executing transactions from L1 requires the caller to pay a fee to the L2 operator. The fee depends on the length of the calldata and the `gasLimit`. This is similar to the `gasLimit` on Ethereum. You can read more about the [zkSync fee model here](../../developer-reference/fee-model.md).
 - The fee also depends on the gas price that is used during the transaction call. So to have a predictable fee for the call, the gas price should be fetched from the L1 provider.
-  :::
+
+:::
 
 1. Run the script with the following command:
 
@@ -642,7 +643,7 @@ You should see an incremented value in the output:
 The counter value is 1
 ```
 
-## Learn more
+## Learn More
 
 - To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../developer-reference/l1-l2-interop.md).
 - To learn more about the `zksync-ethers` SDK, check out its [documentation](../../sdks/js/README.md).

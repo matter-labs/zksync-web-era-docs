@@ -7,8 +7,6 @@ head:
 
 # Instructions
 
-# Instructions
-
 In this specification, instructions are grouped by their relevance to the EVM instruction set:
 
 - [Native EVM instructions](./evm.md).

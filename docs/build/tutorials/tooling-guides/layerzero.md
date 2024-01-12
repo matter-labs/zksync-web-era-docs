@@ -9,7 +9,7 @@ head:
 
 ### Introduction
 
-This guide aims to provide an insight into the LayerZero messaging service, which is an omnichain interoperability protocol designed for lightweight message passing across chains, and how to set up and utilize the OmniCounter contract to demonstrate cross-chain message passing. Below is a table showcasing the zkSync Era and zkSync (Testnet) endpoint details for LayerZero:
+This guide aims to provide an insight into the LayerZero messaging service, which is an omnichain interoperability protocol designed for lightweight message passing across chains, and how to Setup and utilize the OmniCounter contract to demonstrate cross-chain message passing. Below is a table showcasing the zkSync Era and zkSync (Testnet) endpoint details for LayerZero:
 
 <table><thead><tr><th width="176">Network</th><th width="91.33333333333331">ChainID</th><th>Endpoint</th></tr></thead><tbody><tr><td>zkSync Era</td><td>165</td><td>0x9b896c0e23220469C7AE69cb4BbAE391eAa4C8da</td></tr><tr><td>zkSync Testnet</td><td>10165</td><td>0x093D2CF57f764f09C3c2Ac58a42A2601B8C79281</td></tr></tbody></table>
 

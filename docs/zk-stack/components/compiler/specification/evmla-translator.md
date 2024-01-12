@@ -22,7 +22,7 @@ dynamic jumps and add the necessary metadata.
 Below you can see a minimal example of a Solidity contract and its EVM legacy assembly translated to LLVM IR which is
 eventually compiled to EraVM assembly.
 
-### Source Code
+## Source Code
 
 ```solidity
 contract Example {
@@ -33,74 +33,76 @@ contract Example {
 
 ```
 
-### EVM Legacy Assembly
+## EVM Legacy Assembly
 
 Produced by the upstream Solidity compiler v0.7.6.
 
-```evm
-000     PUSH           80
-001     PUSH           40
-002     MSTORE
-003     CALLVALUE
-004     DUP1
-005     ISZERO
-006     PUSH [tag]     1
-007     JUMPI
-008     PUSH           0
-009     DUP1
-010     REVERT
-011 Tag 1
-012     JUMPDEST
-013     POP
-014     PUSH           4
-015     CALLDATASIZE
-016     LT
-017     PUSH [tag]     2
-018     JUMPI
-019     PUSH           0
-020     CALLDATALOAD
-021     PUSH           E0
-022     SHR
-023     DUP1
-024     PUSH           5A8AC02D
-025     EQ
-026     PUSH [tag]     3
-027     JUMPI
-028 Tag 2
-029     JUMPDEST
-030     PUSH           0
-031     DUP1
-032     REVERT
-033 Tag 3
-034     JUMPDEST
-035     PUSH [tag]     4
-036     PUSH [tag]     5
-037     JUMP           [in]
-038 Tag 4
-039     JUMPDEST
-040     PUSH           40
-041     DUP1
-042     MLOAD
-043     SWAP2
-044     DUP3
-045     MSTORE
-046     MLOAD
-047     SWAP1
-048     DUP2
-049     SWAP1
-050     SUB
-051     PUSH           20
-052     ADD
-053     SWAP1
-054     RETURN
-055 Tag 5
-056     JUMPDEST
-057     PUSH           2A
-058     SWAP1
-059     JUMP           [out]
-```
+| Line | Instruction  | Value/Tag |
+| ---- | ------------ | --------- |
+| 000  | PUSH         | 80        |
+| 001  | PUSH         | 40        |
+| 002  | MSTORE       |           |
+| 003  | CALLVALUE    |           |
+| 004  | DUP1         |           |
+| 005  | ISZERO       |           |
+| 006  | PUSH         | [tag] 1   |
+| 007  | JUMPI        |           |
+| 008  | PUSH         | 0         |
+| 009  | DUP1         |           |
+| 010  | REVERT       |           |
+| 011  | Tag 1        |           |
+| 012  | JUMPDEST     |           |
+| 013  | POP          |           |
+| 014  | PUSH         | 4         |
+| 015  | CALLDATASIZE |           |
+| 016  | LT           |           |
+| 017  | PUSH         | [tag] 2   |
+| 018  | JUMPI        |           |
+| 019  | PUSH         | 0         |
+| 020  | CALLDATALOAD |           |
+| 021  | PUSH         | E0        |
+| 022  | SHR          |           |
+| 023  | DUP1         |           |
+| 024  | PUSH         | 5A8AC02D  |
+| 025  | EQ           |           |
+| 026  | PUSH         | [tag] 3   |
+| 027  | JUMPI        |           |
+| 028  | Tag 2        |           |
+| 029  | JUMPDEST     |           |
+| 030  | PUSH         | 0         |
+| 031  | DUP1         |           |
+| 032  | REVERT       |           |
+| 033  | Tag 3        |           |
+| 034  | JUMPDEST     |           |
+| 035  | PUSH         | [tag] 4   |
+| 036  | PUSH         | [tag] 5   |
+| 037  | JUMP         | [in]      |
+| 038  | Tag 4        |           |
+| 039  | JUMPDEST     |           |
+| 040  | PUSH         | 40        |
+| 041  | DUP1         |           |
+| 042  | MLOAD        |           |
+| 043  | SWAP2        |           |
+| 044  | DUP3         |           |
+| 045  | MSTORE       |           |
+| 046  | MLOAD        |           |
+| 047  | SWAP1        |           |
+| 048  | DUP2         |           |
+| 049  | SWAP1        |           |
+| 050  | SUB          |           |
+| 051  | PUSH         | 20        |
+| 052  | ADD          |           |
+| 053  | SWAP1        |           |
+| 054  | RETURN       |           |
+| 055  | Tag 5        |           |
+| 056  | JUMPDEST     |           |
+| 057  | PUSH         | 2A        |
+| 058  | SWAP1        |           |
+| 059  | JUMP         | [out]     |
 
-### EthIR
+````
+
+## EthIR
 
 EthIR (Ethereal IR) is a special IR used by our translator to represent EVM legacy assembly and prepare it for the
 translation to LLVM IR. The IR solves several purposes:
@@ -225,7 +227,7 @@ block_rt_5/0: (predecessors: rt_3/0)    // Runtime Code Tag 5, Instance 0.
     SWAP1                                                                           [ V_SHR | 2A | T_4 ]
 // JUMP [out] is usually a return statement
     JUMP           [out]                                                            [ V_SHR | 2A ] - [ T_4 ]
-```
+````
 
 ### Unoptimized LLVM IR
 

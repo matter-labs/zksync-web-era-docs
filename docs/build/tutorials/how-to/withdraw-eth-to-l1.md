@@ -33,7 +33,7 @@ Withdrawing assets from L2 to L1 involves the following steps:
 During the Alpha phase, **withdrawals in zkSync Era take 24 hours** for additional security.
 :::
 
-### Step 2: Set Up Environment
+### Step 2: Setup Environment
 
 Create a new directory for your withdrawal scripts and navigate into it:
 

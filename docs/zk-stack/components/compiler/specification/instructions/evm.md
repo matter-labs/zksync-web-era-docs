@@ -20,7 +20,7 @@ If there is no assembly example under an instruction, compile a reproducing cont
 
 # Arithmetic
 
-# [ADD](https://www.evm.codes/#01?fork=shanghai)
+## [ADD](https://www.evm.codes/#01?fork=shanghai)
 
 ### LLVM IR
 
@@ -38,7 +38,7 @@ If there is no assembly example under an instruction, compile a reproducing cont
 add     r1, r2, r1
 ```
 
-# [MUL](https://www.evm.codes/#02?fork=shanghai)
+## [MUL](https://www.evm.codes/#02?fork=shanghai)
 
 ### Differences from EVM
 
@@ -71,7 +71,7 @@ The snippet below returns the carry value.
 mul     r1, r2, r1, r2
 ```
 
-# [SUB](https://www.evm.codes/#03?fork=shanghai)
+## [SUB](https://www.evm.codes/#03?fork=shanghai)
 
 ### LLVM IR
 
@@ -89,7 +89,7 @@ mul     r1, r2, r1, r2
 sub     r1, r2, r1
 ```
 
-# [DIV](https://www.evm.codes/#04?fork=shanghai)
+## [DIV](https://www.evm.codes/#04?fork=shanghai)
 
 ### Differences from EVM
 
@@ -117,7 +117,7 @@ return:
 
 [LLVM IR instruction documentation](https://releases.llvm.org/15.0.0/docs/LangRef.html#udiv-instruction)
 
-# [SDIV](https://www.evm.codes/#05?fork=shanghai)
+## [SDIV](https://www.evm.codes/#05?fork=shanghai)
 
 ### LLVM IR
 
@@ -175,7 +175,7 @@ return:
 
 [LLVM IR instruction documentation](https://releases.llvm.org/15.0.0/docs/LangRef.html#urem-instruction)
 
-# [SMOD](https://www.evm.codes/#07?fork=shanghai)
+## [SMOD](https://www.evm.codes/#07?fork=shanghai)
 
 ### LLVM IR
 
@@ -205,7 +205,7 @@ return:
 
 [LLVM IR instruction documentation](https://releases.llvm.org/15.0.0/docs/LangRef.html#srem-instruction)
 
-# [ADDMOD](https://www.evm.codes/#08?fork=shanghai)
+## [ADDMOD](https://www.evm.codes/#08?fork=shanghai)
 
 ### LLVM IR
 
@@ -238,7 +238,7 @@ return:
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/math.rs#L16) is common for Yul and EVMLA representations.
 
-# [MULMOD](https://www.evm.codes/#09?fork=shanghai)
+## [MULMOD](https://www.evm.codes/#09?fork=shanghai)
 
 ### LLVM IR
 
@@ -276,7 +276,7 @@ slow:
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/math.rs#L43) is common for Yul and EVMLA representations.
 
-# [EXP](https://www.evm.codes/#0a?fork=shanghai)
+## [EXP](https://www.evm.codes/#0a?fork=shanghai)
 
 ### LLVM IR
 
@@ -307,7 +307,7 @@ exponent_loop_body:
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/math.rs#L70) is common for Yul and EVMLA representations.
 
-# [SIGNEXTEND](https://www.evm.codes/#0b?fork=shanghai)
+## [SIGNEXTEND](https://www.evm.codes/#0b?fork=shanghai)
 
 ### LLVM IR
 
@@ -341,7 +341,7 @@ return:
 
 # Logical
 
-# [LT](https://www.evm.codes/#10?fork=shanghai)
+## [LT](https://www.evm.codes/#10?fork=shanghai)
 
 ### LLVM IR
 
@@ -368,7 +368,7 @@ add.lt  1, r0, r1
 st.1    128, r1
 ```
 
-# [GT](https://www.evm.codes/#11?fork=shanghai)
+## [GT](https://www.evm.codes/#11?fork=shanghai)
 
 ### LLVM IR
 
@@ -395,7 +395,7 @@ add.gt  1, r0, r1
 st.1    128, r1
 ```
 
-# [SLT](https://www.evm.codes/#12?fork=shanghai)
+## [SLT](https://www.evm.codes/#12?fork=shanghai)
 
 ### LLVM IR
 
@@ -434,7 +434,7 @@ add.ne  1, r0, r1
 st.1    128, r1
 ```
 
-# [SGT](https://www.evm.codes/#13?fork=shanghai)
+## [SGT](https://www.evm.codes/#13?fork=shanghai)
 
 ### LLVM IR
 
@@ -473,7 +473,7 @@ add.ne  1, r0, r1
 st.1    128, r1
 ```
 
-# [EQ](https://www.evm.codes/#14?fork=shanghai)
+## [EQ](https://www.evm.codes/#14?fork=shanghai)
 
 ### LLVM IR
 
@@ -500,7 +500,7 @@ add.eq  1, r0, r1
 st.1    128, r1
 ```
 
-# [ISZERO](https://www.evm.codes/#15?fork=shanghai)
+## [ISZERO](https://www.evm.codes/#15?fork=shanghai)
 
 ### LLVM IR
 
@@ -526,7 +526,7 @@ st.1    128, r1
 
 # Bitwise
 
-# [AND](https://www.evm.codes/#16?fork=shanghai)
+## [AND](https://www.evm.codes/#16?fork=shanghai)
 
 ### LLVM IR
 
@@ -550,7 +550,7 @@ and     r1, r2, r1
 st.1    128, r1
 ```
 
-# [OR](https://www.evm.codes/#17?fork=shanghai)
+## [OR](https://www.evm.codes/#17?fork=shanghai)
 
 ### LLVM IR
 
@@ -574,7 +574,7 @@ or      r1, r2, r1
 st.1    128, r1
 ```
 
-# [XOR](https://www.evm.codes/#18?fork=shanghai)
+## [XOR](https://www.evm.codes/#18?fork=shanghai)
 
 ### LLVM IR
 
@@ -598,7 +598,7 @@ xor     r1, r2, r1
 st.1    128, r1
 ```
 
-# [NOT](https://www.evm.codes/#19?fork=shanghai)
+## [NOT](https://www.evm.codes/#19?fork=shanghai)
 
 ### LLVM IR
 
@@ -618,7 +618,7 @@ xor     r1, r2, r1
 st.1    128, r1
 ```
 
-# [BYTE](https://www.evm.codes/#1a?fork=shanghai)
+## [BYTE](https://www.evm.codes/#1a?fork=shanghai)
 
 ### LLVM IR
 
@@ -642,7 +642,7 @@ return:
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/bitwise.rs#L229) is common for Yul and EVMLA representations.
 
-# [SHL](https://www.evm.codes/#1b?fork=shanghai)
+## [SHL](https://www.evm.codes/#1b?fork=shanghai)
 
 ### LLVM IR
 
@@ -664,7 +664,7 @@ return:
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/bitwise.rs#L67) is common for Yul and EVMLA representations.
 
-# [SHR](https://www.evm.codes/#1c?fork=shanghai)
+## [SHR](https://www.evm.codes/#1c?fork=shanghai)
 
 ### LLVM IR
 
@@ -686,7 +686,7 @@ return:
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/bitwise.rs#L111) is common for Yul and EVMLA representations.
 
-# [SAR](https://www.evm.codes/#1d?fork=shanghai)
+## [SAR](https://www.evm.codes/#1d?fork=shanghai)
 
 ### LLVM IR
 
@@ -713,7 +713,7 @@ return:
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/bitwise.rs#L157) is common for Yul and EVMLA representations.
 
-# [SHA3](https://www.evm.codes/#20?fork=shanghai)
+## [SHA3](https://www.evm.codes/#20?fork=shanghai)
 
 ### System Contract
 
@@ -1705,7 +1705,7 @@ st.1    128, r1
 
 Heap memory load operation is modeled with a native EraVM instruction.
 
-## LLVM IR
+### LLVM IR
 
 ```llvm
 %value = load i256, ptr addrspace(1) %pointer, align 1
@@ -1716,7 +1716,7 @@ is common for Yul and EVMLA representations.
 
 [LLVM IR instruction documentation](https://releases.llvm.org/15.0.0/docs/LangRef.html#load-instruction)
 
-## EraVM Assembly
+### EraVM Assembly
 
 ```nasm
 ld.1    r1, r2
@@ -1726,7 +1726,7 @@ ld.1    r1, r2
 
 Heap memory load operation is modeled with a native EraVM instruction.
 
-## LLVM IR
+### LLVM IR
 
 ```llvm
 store i256 128, ptr addrspace(1) inttoptr (i256 64 to ptr addrspace(1)), align 1
@@ -1737,7 +1737,7 @@ is common for Yul and EVMLA representations.
 
 [LLVM IR instruction documentation](https://releases.llvm.org/15.0.0/docs/LangRef.html#store-instruction)
 
-## EraVM Assembly
+### EraVM Assembly
 
 ```nasm
 st.1    r1, r2
@@ -1745,7 +1745,7 @@ st.1    r1, r2
 
 ## [MSTORE8](https://www.evm.codes/#53?fork=shanghai)
 
-## LLVM IR
+### LLVM IR
 
 ```llvm
 define void @__mstore8(i256 addrspace(1)* nocapture nofree noundef dereferenceable(32) %addr, i256 %val) #2 {
@@ -1769,7 +1769,7 @@ is common for Yul and EVMLA representations.
 
 This instruction is a [RETURN](#return) with an empty data payload.
 
-## LLVM IR
+### LLVM IR
 
 The same as for [RETURN](#return).
 
@@ -1781,7 +1781,7 @@ is common for Yul and EVMLA representations.
 This instruction works differently in deploy code. For more information, see
 [Differences from Ethereum](../../../../../build/developer-reference/differences-with-ethereum.md#return-stop).
 
-## LLVM IR
+### LLVM IR
 
 ```llvm
 define void @__return(i256 %0, i256 %1, i256 %2) "noinline-oz" #5 personality i32()* @__personality {
@@ -1797,7 +1797,7 @@ is common for Yul and EVMLA representations.
 
 ## [REVERT](https://www.evm.codes/#fd?fork=shanghai)
 
-## LLVM IR
+### LLVM IR
 
 ```llvm
 define void @__revert(i256 %0, i256 %1, i256 %2) "noinline-oz" #5 personality i32()* @__personality {
@@ -1815,16 +1815,16 @@ is common for Yul and EVMLA representations.
 
 This instruction is a REVERT with an empty data payload.
 
-## LLVM IR
+### LLVM IR
 
 The same as for REVERT.
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/return.rs#L115)
 is common for Yul and EVMLA representations.
 
-# [SHA3](https://www.evm.codes/#20?fork=shanghai)
+## [SHA3](https://www.evm.codes/#20?fork=shanghai)
 
-## System Contract
+### System Contract
 
 This instruction is handled by a System Contract called
 [Keccak256](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/precompiles/Keccak256.yul), which is
@@ -1833,7 +1833,7 @@ a wrapper around the EraVM precompile.
 On how the System Contract is called, see
 [this section](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/system_contracts.md).
 
-## LLVM IR
+### LLVM IR
 
 ```llvm
 define i256 @__sha3(i8 addrspace(1)* nocapture nofree noundef %0, i256 %1, i1 %throw_at_failure) "noinline-oz" #1 personality i32()* @__personality {

@@ -16,7 +16,7 @@ head:
   - Use the [Macaron Swap](https://macaronswap.finance/swap) if you need to swap Sepolia ETH for `MCRN` token.
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
-## Set up
+## Setup
 
 ### 1. Create a project folder and `cd` into it
 

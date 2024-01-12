@@ -7,8 +7,6 @@ head:
 
 # API3
 
-### Introduction
-
 In this guide, we'll create a paymaster on zkSync Era, enabling transactions to be paid using the `mockUSDC` ERC20 token, all while harnessing API3's dAPIs for accurate, decentralized price feeds.
 
 [API3➚](https://api3.org/) offers decentralized API services to blockchain platforms. API3 empowers smart contracts with its data feeds, termed [dAPIs➚](https://docs.api3.org/guides/dapis/subscribing-self-funded-dapis/). These dAPIs, sourced from first-party oracles, constantly relay signed, updated on-chain data.

@@ -17,7 +17,7 @@ Developers are free to build their own [custom bridge for any token](#custom-bri
 
 ::: warning
 
-Addresses of tokens on L2 will always differ from the same token L1 address.
+Addresses of tokens on L2 will always differ from the same token L1 address. Also note, that tokens bridged via the default bridge only support standard ERC20 functionality, i.e. rebase tokens and other custom behavior are not supported.
 
 :::
 

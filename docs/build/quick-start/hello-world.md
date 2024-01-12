@@ -5,7 +5,7 @@ head:
       content: Hello world | zkSync Docs
 ---
 
-# Hello world
+# Hello World
 
 This guide shows you how to deploy a smart contract to zkSync and build a dApp that interacts with it using the zkSync development toolbox.
 
@@ -22,7 +22,7 @@ This is what we're going to do:
 - Download and install [Node](https://nodejs.org/en/download).
 - Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to latest use command `nvm use --lts`.
 - Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
-- A wallet with sufficient (Sepolia or Goerli) ETH on L1 to pay for bridging funds to zkSync and deploying smart contracts. You can get Sepolia ETH from the [network faucets](../tooling/network-faucets.md).
+- A wallet with sufficient Sepolia ETH on L1 to pay for bridging funds to zkSync and deploying smart contracts. You can get Sepolia ETH from the [network faucets](../tooling/network-faucets.md).
 - ERC20 tokens on zkSync are required for the testnet paymaster. Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
@@ -177,7 +177,7 @@ yarn hardhat deploy-zksync --script deploy.ts
 ::: tip Request-Rate Exceeded message
 
 - This message is caused by using the default RPC endpoints provided by ethers.
-- To avoid this, use your own Goerli or Sepolia RPC endpoint.
+- To avoid this, use your own Sepolia RPC endpoint.
 - Find multiple [node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
   :::
 
@@ -203,7 +203,7 @@ Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search wi
 
 ## Build the front-end dApp
 
-### Set up the project
+### Setup the project
 
 :::info
 
@@ -244,7 +244,7 @@ In order to interact with dApps built on zkSync, connect the MetaMask wallet to 
 
 Please note, that login functionality for "Hello, world" will be implemented in the next steps.
 
-### Bridge funds to L2
+### Bridge Funds to L2
 
 - Use [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - Use the [third party faucets](../../build/support/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
@@ -253,7 +253,7 @@ Please note, that login functionality for "Hello, world" will be implemented in 
 When bridging from mainnet to a smart account (e.g. Clave) on zkSync Era, you must specify the address of your L2 wallet by clicking on **Deposit to another address on zkSync Era Mainnet**.
 :::
 
-### Project structure
+### Project Structure
 
 In the `./src/App.vue` file, in the `methods:` section, you will see template code that stores the application.
 
@@ -299,7 +299,7 @@ const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract addres
 const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
 ```
 
-### Add the libraries
+### Add the Libraries
 
 1. From the `greeter-tutorial-starter` root, install the dependencies.
 
@@ -320,7 +320,7 @@ const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract addres
 const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
 ```
 
-### Add the ABI and contract address
+### Add the ABI and Contract Address
 
 :::info
 
@@ -413,7 +413,7 @@ initializeProviderAndSigner() {
 },
 ```
 
-### Retrieving the greeting
+### Retrieving the Greeting
 
 Fill in the function to retrieve the greeting from the smart contract:
 
@@ -448,7 +448,7 @@ After connecting the Metamask wallet to zkSync Era Testnet, you should see the f
 
 The **Select token** dropdown menu allows you to choose which token to pay fees with.
 
-### Retrieving token balance and transaction fee
+### Retrieving Token Balance and Transaction Fee
 
 The easiest way to retrieve the user's balance is to use the `Signer.getBalance` function.
 
@@ -494,7 +494,7 @@ It is possible to also click on the **Change greeting** button, but nothing will
 
 ![img](../../assets/images/start-2.png)
 
-### Updating the greeting
+### Updating the Greeting
 
 Update the function in `App.vue` with the following code:
 
@@ -540,7 +540,7 @@ Refresh your browser, or open the MetaMask extension on your browser and click _
 Read more about `wallet_requestPermissions`, in the [MetaMask documentation](https://docs.metamask.io/guide/rpc-api.html#wallet-requestpermissions).
 :::
 
-### Paying fees using testnet paymaster
+### Paying Fees using Testnet Paymaster
 
 The zkSync Era account abstraction feature allows you to integrate [paymasters](../../build/developer-reference/account-abstraction.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly.
 
@@ -696,7 +696,7 @@ const allowedTokens = require("./erc20.json");
 
 The `erc20.json` file contains a few tokens like DAI, USDC and wBTC.
 
-### Complete app
+### Complete Application
 
 Now you should be able to update the greeting message with ETH or any of the available tokens.
 
@@ -714,7 +714,7 @@ After the transaction is processed, the page updates the balances and the new gr
 
 **You've paid for this transaction with an ERC20 token using the testnet paymaster** 🎉
 
-### Learn more
+### Learn More
 
 - For an overview of security and best practices for developing on zkSync Era, refer to the [Security and best practices page](./best-practices.md).
 - To learn more about `zksync-ethers` SDK, check out its [documentation](../../build/sdks/js/README.md).

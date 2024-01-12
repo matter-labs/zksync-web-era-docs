@@ -46,7 +46,7 @@
         {
           "name": "zksync-cli",
           "category": "Dev tools",
-          "description": "Quickly set up local zkSync dev environment, scaffold projects, and interact with Era seamlessly from your terminal",
+          "description": "Quickly setup local zkSync dev environment, scaffold projects, and interact with Era seamlessly from your terminal",
           "logo": "cli-logo.png",
           "url": "https://docs.zksync.io/build/development/zksync-cli/"
         },

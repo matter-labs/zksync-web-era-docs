@@ -5,7 +5,7 @@ head:
       content: Gated NFT Paymaster Tutorial | zkSync Docs
 ---
 
-# Gated NFT paymaster
+# Gated NFT Paymaster
 
 Discover how to construct a tailored paymaster that enables users to sidestep gas fees when they own a particular NFT. By the end of this tutorial, you'll:
 
@@ -35,13 +35,13 @@ You'll gain a thorough understanding of how to create, compile, and deploy smart
   - [Gas estimation for transactions](../../developer-reference/fee-model.md#gas-estimation-for-transactions) guide.
 - You should also know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
-### Complete project
+### Complete Project
 
 Download the complete project [here](https://github.com/matter-labs/tutorials/tree/main/gated-nft).
 
 ## Build time
 
-### Step 1 — Setup the project
+### Step 1 — Setup the Project
 
 :::info
 
@@ -75,9 +75,9 @@ Your project structure should now resemble:
 
 The project makes use of Yarn workspaces so we can seamlessly manage our dependencies between our frontend and smart contracts. While `/frontend` houses React components, styles, and logic, `/zksync` contains everything related to smart contract development and deployment. This tutorial will start in the `/zksync` directory as we need to write, compile and deploy our contracts before we can interact with them!
 
-## Step 2 — Contract development
+## Step 2 — Contract Development
 
-### Implementing `ERC721.sol` mint function
+### Implementing `ERC721.sol` Mint Function
 
 :::tip
 📍 Quick Tip: Always be in the `/zksync` directory for this phase.
@@ -202,7 +202,7 @@ function mint(address recipient, string memory stoneName) public onlyOwner {
 
 We have now fully implemented our `mint` function on the `ERC721.sol` contract. We can now proceed to implement the validation logic on the `ERC721GatedPaymaster.sol` contract. Let's open that file up and move to the next steps.
 
-### Implementing `validateAndPayForPaymasterTransaction` function
+### Implementing `validateAndPayForPaymasterTransaction` Function
 
 The skeleton contract looks like this:
 
@@ -287,7 +287,7 @@ contract ERC721GatedPaymaster is IPaymaster, Ownable {
 - To implement that, the `onlyBootloader` modifier is used on these functions.
   :::
 
-#### Parsing the paymaster input
+#### Parsing the Paymaster Input
 
 The paymaster pays the transaction fees only if the user possesses one of NFT's from our previous contract.
 
@@ -382,7 +382,7 @@ function validateAndPayForPaymasterTransaction(
 
 Amazing! We have successfully written the smart contracts lets proceed to deploy them using the deployment scripts provided.
 
-#### Contract deployment
+#### Contract Deployment
 
 The deployment scripts provided will deploy the `ERC721.sol`, `ERC721GatedPaymaster.sol`, and `Greeter.sol` contracts. You will need to provide the deployment script with an address to receive the NFT which we will be required to make use of the paymaster. But before we deploy the contracts we first need to compile the contracts.
 
@@ -446,7 +446,7 @@ Done!
 
 We have successfully compiled and deployed our smart contracts to zkSync Era Testnet! Let's move over to the `/frontend` directory to interact with these smart contracts.
 
-## Step 3 — Frontend development
+## Step 3 — Frontend Development
 
 :::tip
 📍 Quick Tip: Always be in the `/frontend` directory for this phase.
@@ -487,7 +487,7 @@ This will start a local server running on `http://localhost:3000/`. You should s
 
 ![starter frontend](../../../assets/images/gated-tutorial.png)
 
-### Connecting our `WalletButton` component
+### Connecting our `WalletButton` Component
 
 The first component we are going to interact with is the `WalletButton` component.
 
@@ -577,7 +577,7 @@ We can now return to our running local page and click the 'Connect Wallet' butto
 
 We have connected our wallet to our application but we now need to add our `GreeterMessage` and `Input` components.
 
-### Importing the `GreeterMessage` and `Input` components
+### Importing the `GreeterMessage` and `Input` Components
 
 1. Navigate to `app/page.tsx`
 
@@ -604,7 +604,7 @@ Now if we check our local page we can see our rendered Greeter message and Input
 
 ![Greeter Message](../../../assets/images/greeter_message.png)
 
-### Fetching the Gas details and adding the `Modal` component
+### Fetching the Gas details and adding the `Modal` Component
 
 1. Navigate to `app/components/Input.tsx` component
 
@@ -644,7 +644,7 @@ async function getEstimate() {
 
 This will open the `Modal` component once the "Change message" button is clicked.
 
-### Setting up our paymaster hook
+### Setup our Paymaster Hook
 
 We are ready to implement our paymaster hook which will be used if the connected wallet possesses one of the applicable NFT's we minted earlier.
 
@@ -720,7 +720,7 @@ const updateGreeting = async ({ message }: GreeterData) => {
 
 Amazing we have successfully implemented all our frontend requirements! Now its time to test the application.
 
-## Step 4 — Test the application
+## Step 4 — Test the Application
 
 Navigate to `http://localhost:3000` and refresh the page. Click on "Connect Wallet" to link your MetaMask account. Ensure you connect the address that received the minted NFT during contract deployment; otherwise, you'll bear the gas fees!
 

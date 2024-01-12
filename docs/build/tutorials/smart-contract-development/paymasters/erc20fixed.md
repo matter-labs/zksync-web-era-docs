@@ -7,7 +7,7 @@ head:
 
 # ERC20Fixed
 
-### **Introduction**
+### Introduction
 
 zkSync's native account abstraction allows contracts to cover transaction fees on behalf of users, significantly improving user experience. The **`ERC20FixedPaymaster`** contract, discussed in this guide, offers transactions gas coverage for accounts that have a balance of a specific ERC20 token.
 
@@ -15,7 +15,7 @@ zkSync's native account abstraction allows contracts to cover transaction fees o
 For detailed explanations of the IPaymaster interface please refer to the documentation [here](../../../developer-reference/account-abstraction.md#ipaymaster-interface).
 :::
 
-### **Prerequisites**
+### Prerequisites
 
 - **Knowledge Base**: You should be familiar with Solidity and Hardhat.
 - **Wallet Setup**: Ensure your zkSync testnet wallet holds a balance in both ETH and the specific ERC-20 token intended for the paymaster contract
@@ -46,7 +46,7 @@ Choose `Hardhat + Solidity` to setup our project repository. The contract we wil
 - Modify the `.env-example` file with your private key.
 - Ensure your account has a sufficient balance.
 
-### **Step 3 — Updating the contract**
+### Step 3 — Updating the Contract
 
 No modifications are needed for ERC20Fixed paymaster since the provided `ApprovalPaymaster` contract is already configured for this purpose.
 
@@ -76,7 +76,7 @@ require(
 );
 ```
 
-### **Step 4 — Deploy the contract**
+### Step 4 — Deploy the Contract
 
 Create a new file under `/deploy`, for example `deploy-erc20FixedPaymaster.ts`. Insert the provided script:
 
@@ -162,7 +162,7 @@ Deploy the contract:
 yarn hardhat deploy --script erc20FixedPaymaster.ts
 ```
 
-### **Step 5 — Testing the contract**
+### Step 5 — Testing the Contract
 
 To test the functionality, you can utilize a mock ERC-20 token contract. This will help confirm that the paymaster operates as expected. Inside the `/contracts/` directory, create a file named `ERC20.sol` and insert the following contract:
 
@@ -331,6 +331,6 @@ To execute test:
 yarn hardhat test
 ```
 
-**Conclusion**
+### Conclusion
 
 The `ERC20FixedPaymaster` contract introduces an efficient mechanism, allowing developers to cover gas fees for users holding a specific ERC20 token with that ERC20 token. This improves UX for dApps, making it easier for users to interact without worrying about gas fees. Further customizations or protocol-specific validations can be added as necessary.

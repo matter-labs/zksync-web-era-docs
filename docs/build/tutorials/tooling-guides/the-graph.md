@@ -16,7 +16,7 @@ In this guide, you will learn how to deploy a subgraph that tracks a specific ad
 ### Prerequisites
 
 - **Knowledge Base**: Familiarity with Typescript.
-- **Wallet Setup**: Have MetaMask installed and set up, ensuring there's a balance on the zkSync Testnet.
+- **Wallet Setup**: Have MetaMask installed and Setup, ensuring there's a balance on the zkSync Testnet.
 - **Tooling**: This guide utilizes `@graphprotocol/graph-cli`. Ensure you have it accessible or installed in your environment.
 
 ### Step 1 — Understanding subgraphs

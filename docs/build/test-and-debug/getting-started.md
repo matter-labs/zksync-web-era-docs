@@ -16,7 +16,7 @@ zkSync Era provides two distinct testing environments for your development needs
 
 Each solution boasts unique characteristics tailored to diverse use cases. This guide aims to unpack the intricacies of these tools, aiding you in selecting the setup best suited for your development workflow.
 
-## In-Memory node vs Dockerized local setup
+## In-Memory node vs Dockerized Local Setup
 
 The local testing process revolves around two principal options:
 

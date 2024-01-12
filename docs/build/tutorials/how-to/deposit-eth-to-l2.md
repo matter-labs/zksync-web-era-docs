@@ -34,9 +34,9 @@ Depositing assets from L1 to L2 involves calling the [`deposit`](https://github.
 
 This structured flow ensures a secure and orderly transfer of assets from L1 to L2, paving the way for further interactions on the Layer 2 network.
 
-### Step 2: Set Up Environment
+### Step 2: Setup Environment
 
-Set up the node script:
+Setup the node script:
 
 ::: code-tabs
 @tab:active yarn
