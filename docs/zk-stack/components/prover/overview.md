@@ -41,7 +41,9 @@ Here are the different repositories we use:
 ZK circuits get their name from Arithmetic Circuits, which look like this (see picture). You can read the circuit by
 starting at the bottom with the inputs, and following the arrows, computing each operation as you go.
 
-![Arithmetic Circuit Diagram](../../../assets/images/circuit.png)
+<p >
+<img src="../../../assets/images/circuit.png" alt="Arithmetic Circuit Diagram" style="background-color: white;align:center">
+</p>
 
 The prover will prove that the circuit is “satisfied” by the inputs, meaning every step is computed correctly, leading
 to a correct output.

@@ -69,7 +69,7 @@ copy a value `X` to `Y` .
 
 Commonly, instructions accept two inputs and one output operands, following the schema:
 
-![arithmetic opcode.png](../../../../assets/images/arithmetic_opcode.png)
+<img src="../../../../assets/images/arithmetic_opcode.png" style="align:center">
 
 The first operand can be taken from:
 
