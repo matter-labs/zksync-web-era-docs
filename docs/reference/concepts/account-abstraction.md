@@ -34,7 +34,7 @@ Native Account Abstraction on zkSync Era fundamentally changes how accounts oper
 The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance accounts' flexibility and user experience, but they differ in key aspects; learn more [here](../architecture/differences-with-ethereum.md#native-aa-vs-eip-4337).
 :::
 
-Paymasters, conversely, can sponsor transactions for users, enabling users to pay transaction fees in ERC20 tokens. This innovative approach to account management significantly enhances user experience, security, and flexibility, paving the way for broader adoption of blockchain technology.
+Paymasters, conversely, can sponsor transactions for users, enabling users to pay transaction fees in ERC20 tokens. This innovative approach to account management significantly enhances user experience, security, and flexibility, paving the way for a broader adoption of blockchain technology.
 
 ## Prerequisites
 
