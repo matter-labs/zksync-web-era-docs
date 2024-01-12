@@ -107,12 +107,6 @@ precompile call with the padded data. All other hashing work will be done in the
 the crypto part of the precompiles expects to work with padded data. This means that a bug in applying padding may lead
 to an unprovable transaction.
 
-## EcAdd & EcMul
-
-These precompiles simulate the behaviour of the EVM's EcAdd and EcMul precompiles and are fully implemented in Yul
-without circuit counterparts. You can read more about them
-[here](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/Smart%20contract%20Section/Elliptic%20curve%20precompiles.md).
-
 ## L2EthToken & MsgValueSimulator
 
 Unlike Ethereum, zkEVM does not have any notion of any special native token. That’s why we have to simulate operations
