@@ -45,7 +45,7 @@ export default hopeTheme({
         <a href="https://zksync.io/explore#bridges" target="_blank">Bridges & Wallets</a>
         <a href="https://github.com/zkSync-Community-Hub/zkync-developers/discussions" target="_blank">GitHub Discussions</a>
         <a href="https://ecosystem.zksync.io/" target="_blank">Ecosystem</a>
-        <a href="https://lite.docs.zksync.io/" target="_blank">zkSync Lite Docs (Deprecated)</a>
+        <a href="https://docs.lite.zksync.io/" target="_blank">zkSync Lite Docs (Deprecated)</a>
       </div>
 
   <p>Made with ❤️ by <a href='https://matter-labs.io/'> Matter Labs</a></p>
