@@ -33,7 +33,7 @@ The `mockUSDCPaymaster` contract offers a refined experience for users by allowi
 - **readDapi**: A function that, given a dAPI proxy address, returns the real-time value. In the contract, it's used to fetch the current values of `USDC` and `ETH`.
 - **validateAndPayForPaymasterTransaction**: This function validates the transaction, ensures the received token makes the allowed token, fetches real-time ETH and USRC prices using dAPIs, and calculate the required ERC20 tokens equivalent to the value of required ETH.
 
-Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IPaymaster.sol) interface. We will be using `zksync-cli` to bootstrap the boilerplate code for this paymaster.
+Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/era-contracts/blob/main/l2-contracts/contracts/interfaces/IPaymaster.sol) interface. We will be using `zksync-cli` to bootstrap the boilerplate code for this paymaster.
 
 ### Step 2 — Environment setup
 

@@ -5,7 +5,7 @@ head:
       content: System Contracts | zkSync Docs
 ---
 
-# System Contracts
+# System Contracts Operations
 
 Many EVM instructions require special handling by the
 [System Contracts](../specification/system-contracts.md). Among them are: `ORIGIN`,
@@ -28,7 +28,7 @@ Such storage contracts are accessed with static calls in order to retrieve value
 environmental entities: `CHAINID`, `DIFFICULTY`, `BLOCKHASH`, etc.
 
 One good example of such contract is
-[SystemContext](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/SystemContext.sol) that provides
+[SystemContext](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/SystemContext.sol) that provides
 the majority of the environmental data.
 
 Since EVM is not using external calls for these instructions, we must use [the auxiliary heap](#auxiliary-heap) for
@@ -72,7 +72,7 @@ and
 ### Ether Value Simulator
 
 EraVM does not support passing Ether natively, so this is handled by a special System Contract called
-[MsgValueSimulator](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/MsgValueSimulator.sol).
+[MsgValueSimulator](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/MsgValueSimulator.sol).
 
 An external call is redirected through the simulator if the following conditions are met:
 

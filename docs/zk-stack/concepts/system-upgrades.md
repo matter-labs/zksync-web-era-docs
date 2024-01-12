@@ -9,7 +9,7 @@ head:
 
 ## Update Process
 
-[System contracts](https://github.com/matter-labs/era-system-contracts) handle core functionalities and play a critical role in maintaining the integrity of our protocol. To
+[System contracts](https://github.com/matter-labs/era-contracts) handle core functionalities and play a critical role in maintaining the integrity of our protocol. To
 ensure the highest level of security and reliability, these system contracts undergo an audit before any release.
 
 Here is an overview of the release process of the system contracts which is aimed to preserve agility and clarity on the
@@ -17,12 +17,12 @@ order of the upgrades:
 
 ### `main` branch
 
-[The `main` branch](https://github.com/matter-labs/era-system-contracts/blob/main/README.md) contains the latest code that is ready to be deployed into production. It reflects the most stable and
+[The `main` branch](https://github.com/matter-labs/era-contracts/blob/main/README.md) contains the latest code that is ready to be deployed into production. It reflects the most stable and
 audited version of the protocol.
 
 ### `dev` branch
 
-[The `dev` branch](https://github.com/matter-labs/era-system-contracts/blob/dev/README.md) is for active development & the latest code changes. Whenever a new PR with system contract changes is
+[The `dev` branch](https://github.com/matter-labs/era-contracts/blob/dev/README.md) is for active development & the latest code changes. Whenever a new PR with system contract changes is
 created it should be based on the `dev` branch.
 
 ### Creating a new release

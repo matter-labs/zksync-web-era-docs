@@ -9,9 +9,9 @@ head:
 
 zkSync Era's fee model is similar to Ethereum’s where `gas` is charged for computational cost, cost of publishing data on-chain and storage effects. However, zkSync Era includes additional costs for publishing to L1 and for proof generation.
 
-::: info Detailed information
+::: info More in ZK Stack docs
 
-For a more detailed information about the fee mechanism, read the [details page in the ZK Stack section of the docs](../../zk-stack/concepts/fee-mechanism.md).
+You can find more details about the Fee model Contracts [the concepts section of the ZK Stack documentation](../../zk-stack/concepts/fee-mechanism.md).
 
 :::
 

@@ -33,7 +33,7 @@ Key components:
 - **validateAndPayForPaymasterTransaction**: The validation logic that checks if a given address is on the allow list.;
 - **setBatchAllowance**: Allows the owner to update the allowList in batches for efficiency.
 
-Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IPaymaster.sol) interface. We will be using `zksync-cli` to bootstrap the boilerplate code for this paymaster.
+Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/era-contracts/blob/main/l2-contracts/contracts/interfaces/IPaymaster.sol) interface. We will be using `zksync-cli` to bootstrap the boilerplate code for this paymaster.
 
 ### Step 2 — Environment Setup
 

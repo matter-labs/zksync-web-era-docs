@@ -16,7 +16,7 @@ Instead, you can send arbitrary-length messages from zkSync Era to Ethereum, and
 - A message is like an event on Ethereum.
 - The difference is that a message publishes data on L1.
 
-- [Solidity representation](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/Storage.sol#L58):
+- [Solidity representation](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/l1-contracts/contracts/zksync/Storage.sol#L60):
   `solidity
 struct L2Message {
         address sender;
@@ -225,9 +225,9 @@ Two transactions are required:
 
 2. Transform the request into a raw bytes array.
 
-3. Use the [`sendToL1`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L5) function from the [`IL1Messenger.sol`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L4) interface, passing the message as a raw bytes array.
+3. Use the [`sendToL1`](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/interfaces/IL1Messenger.sol#L44) function from the [`IL1Messenger.sol`](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/interfaces/IL1Messenger.sol) interface, passing the message as a raw bytes array.
 
-Each sent message emits an [`L1MessageSent`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/IL1Messenger.sol#L8) event.
+Each sent message emits an [`L1MessageSent`](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/interfaces/IL1Messenger.sol#L38) event.
 
 ```solidity
 event L1MessageSent(address indexed _sender, bytes32 indexed _hash, bytes _message);
@@ -239,7 +239,7 @@ function sendToL1(bytes memory _message) external returns (bytes32);
 
 ## Prove the result
 
-The [`proveL2MessageInclusion`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/facets/Mailbox.sol#L46) function returns a boolean parameter indicating whether the message was sent successfully to L1.
+The [`proveL2MessageInclusion`](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/l1-contracts/contracts/zksync/facets/Mailbox.sol#L35) function returns a boolean parameter indicating whether the message was sent successfully to L1.
 
 ```solidity
 function proveL2MessageInclusion(

@@ -79,7 +79,7 @@ contain the hash of the transaction as well as the recommended signed digest (th
 
 ### IAccount interface
 
-Each account is recommended to implement the [IAccount](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IAccount.sol) interface. It contains the following five methods:
+Each account is recommended to implement the [IAccount](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/interfaces/IAccount.sol) interface. It contains the following five methods:
 
 - `validateTransaction` is mandatory and will be used by the system to determine if the AA logic agrees to proceed with the transaction. In case the transaction is not accepted (e.g. the signature is wrong) the method should revert. In case the call to this method succeeds, the implemented account logic is considered to accept the transaction, and the system will proceed with the transaction flow.
 - `executeTransaction` is mandatory and will be called by the system after the fee is charged from the user. This function should perform the execution of the transaction.
@@ -92,14 +92,14 @@ Each account is recommended to implement the [IAccount](https://github.com/matte
 Like in EIP4337, our account abstraction protocol supports paymasters: accounts that can compensate for other accounts' transactions execution. You can read more about them
 [here](#paymasters).
 
-Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IPaymaster.sol) interface. It contains the following two methods:
+Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/interfaces/IPaymaster.sol) interface. It contains the following two methods:
 
 - `validateAndPayForPaymasterTransaction` is mandatory and will be used by the system to determine if the paymaster approves paying for this transaction. If the paymaster is willing to pay for the transaction, this method must send at least `tx.gasprice * tx.gasLimit` to the operator. It should return the `context` that will be one of the call parameters to the `postTransaction` method.
 - `postTransaction` is optional and is called after the transaction executes. Note that unlike EIP4337, there _is no guarantee that this method will be called_. In particular, this method won't be called if the transaction fails with `out of gas` error. It takes four parameters: the context returned by `validateAndPayForPaymasterTransaction`, the transaction itself, a flag that indicates whether the transaction execution succeeded, and the maximum amount of gas the paymaster might be refunded with.
 
 ### Reserved fields of the `Transaction` struct with special meaning
 
-Note that each of the methods above accept the [Transaction](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/libraries/TransactionHelper.sol#L76) struct.
+Note that each of the methods above accept the [Transaction](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/libraries/TransactionHelper.sol) struct.
 While some of its fields are self-explanatory, there are also 6 `reserved` fields, the meaning of each is defined by the transaction's type. We decided to not give these fields names, since they might be unneeded in some future transaction types. For now, the convention is:
 
 - `reserved[0]` is the nonce.
@@ -144,9 +144,9 @@ By default, calling `estimateGas` adds a constant to cover charging the fee and 
 
 ## Using the `SystemContractsCaller` library
 
-For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](./system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall`/`systemCallWithPropagatedRevert`/`systemCallWithReturndata` methods of the [SystemContractsCaller](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/libraries/SystemContractsCaller.sol) library should be used.
+For the sake of security, both `NonceHolder` and the `ContractDeployer` system contracts can only be called with a special `isSystem` flag. You can read more about it [here](./system-contracts.md#protected-access-to-some-of-the-system-contracts). To make a call with this flag, the `systemCall`/`systemCallWithPropagatedRevert`/`systemCallWithReturndata` methods of the [SystemContractsCaller](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/libraries/SystemContractsCaller.sol) library should be used.
 
-Using this library is practically a must when developing custom accounts since this is the only way to call non-view methods of the `NonceHolder` system contract. Also, you will have to use this library if you want to allow users to deploy contracts of their own. You can use the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/DefaultAccount.sol) of the EOA account as a reference.
+Using this library is practically a must when developing custom accounts since this is the only way to call non-view methods of the `NonceHolder` system contract. Also, you will have to use this library if you want to allow users to deploy contracts of their own. You can use the [implementation](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/DefaultAccount.sol) of the EOA account as a reference.
 
 ## Extending EIP4337
 
@@ -177,7 +177,7 @@ In the future, we might even allow time-bound transactions, e.g. allow checking 
 
 As already mentioned above, each account should implement the [IAccount](#iaccount-interface) interface.
 
-An example of the implementation of the AA interface is the [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/DefaultAccount.sol#L17) of the EOA account.
+An example of the implementation of the AA interface is the [implementation](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/DefaultAccount.sol) of the EOA account.
 Note that this account, just like standard EOA accounts on Ethereum, successfully returns empty value whenever it is called by an external address, while this may not be the behaviour that you would like for your account.
 
 ### EIP1271
@@ -223,7 +223,7 @@ Currently, your transactions may pass through the API despite violating the requ
 ### Nonce holder contract
 
 For optimization purposes, both [tx nonce and the deployment nonce](./contract-deployment.md#differences-in-create-behaviour) are put in one storage slot inside the [NonceHolder](./system-contracts.md#nonceholder) system contracts.
-In order to increment the nonce of your account, it is highly recommended to call the [incrementMinNonceIfEquals](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l2/system-contracts/interfaces/INonceHolder.sol#L34) function and pass the value of the nonce provided in the transaction.
+In order to increment the nonce of your account, it is highly recommended to call the [incrementMinNonceIfEquals](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/NonceHolder.sol#L110) function and pass the value of the nonce provided in the transaction.
 
 This is one of the whitelisted calls, where the account logic is allowed to call outside smart contracts.
 

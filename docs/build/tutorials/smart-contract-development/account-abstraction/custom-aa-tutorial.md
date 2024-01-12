@@ -376,7 +376,7 @@ import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 :::info
 
 - The non-view functions of the `NONCE_HOLDER_SYSTEM_CONTRACT` are called if the `isSystem` flag is on.
-- Use the [systemCallWithPropagatedRevert](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/libraries/SystemContractsCaller.sol#L75) function of the `SystemContractsCaller` library.
+- Use the [systemCallWithPropagatedRevert](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/libraries/SystemContractsCaller.sol#L150) function of the `SystemContractsCaller` library.
 - Import this library also:
   `solidity
 // to call non-view function of system contracts

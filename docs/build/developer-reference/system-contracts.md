@@ -9,59 +9,22 @@ head:
 
 To keep the zero-knowledge circuits as simple as possible and enable simple extensions, a large chunk of the logic of zkSync was moved to the so-called "system contracts" – a set of contracts that have special privileges and serve special purposes, e.g. deployment of contracts, making sure that the user pays only once for publishing contracts' calldata, etc.
 
-The code for the system contracts will not be public until it has gone through thorough testing. This section will only provide you with the knowledge needed to build on zkSync.
+You can find the code of the system contracts in [the following repository in GitHub](https://github.com/matter-labs/era-contracts).
 
-::: tip System contract addresses
-You can find the L1 system contract addresses in the [useful addresses page](../quick-start/useful-address.md).
+## L1 Smart Contracts
+
+::: info More in ZK Stack docs
+
+You can find more details about the L1 Smart Contracts in [the components section of the ZK Stack documentation](../../zk-stack/components/smart-contracts/smart-contracts.md).
+
 :::
-
-## Interfaces
-
-The addresses and the interfaces of the L2 system contracts can be found [here](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/Constants.sol).
-
-This section will describe the semantic meaning of some of the most popular system contracts.
-
-### ContractDeployer
-
-[Interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IContractDeployer.sol#L5)
-
-This contract is used to deploy new smart contracts. Its job is to make sure that the bytecode for each deployed contract is known. This contract also defines the derivation
-address. Whenever a contract is deployed, it emits the `ContractDeployed` event.
-
-In the future, we will add a description of how to interact directly with this contract.
-
-### L1Messenger
-
-[Interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IL1Messenger.sol#L5)
-
-This contract is used to send messages from zkSync to Ethereum. For each message sent, the `L1MessageSent` event is emitted.
-
-### NonceHolder
-
-[Interface](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/INonceHolder.sol#L13)
-
-This contract stores account nonces. The account nonces are stored in a single place for efficiency ([the tx nonce and the deployment nonce](./contract-deployment.md#differences-in-create-behaviour) are stored in a single place) and also for the ease of the operator.
-
-### Bootloader
-
-For greater extensibility and to lower overhead, some parts of the protocol (e.g. account abstraction rules) have moved to an ephemeral contract called a _bootloader_. We call it ephemeral since it is never deployed and cannot be called. It does, however, have a formal [address](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/Constants.sol#L34) that is used by `msg.sender` when calling other contracts.
-
-The bootloader is now available and open source in the codebase.
-
-#### Protected access to some of the system contracts
-
-Some of the system contracts have an impact on the account that may not be expected on Ethereum. For instance, on Ethereum the only way an EOA could increase its nonce is by sending a transaction. Also, sending a transaction could only increase nonce by 1 at a time. On zkSync nonces are implemented via the [NonceHolder](#nonceholder) system contract and, if naively implemented, the users could be allowed to increment their nonces by calling this contract. That's why the calls to most of the non-view methods of the nonce holder were restricted to be called only with a special `isSystem` flag, so that interactions with important system contracts could be consciously managed by the developer of the account.
-
-The same applies to the [ContractDeployer](#contractdeployer) system contract. This means that, for instance, you would need to explicitly allow your users to deploy contracts, as it is done in the DefaultAccount's [implementation](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/DefaultAccount.sol#L126).
-
-## L1 Smart contracts
 
 ### Diamond
 
 Technically, this L1 smart contract acts as a connector between Ethereum (L1) and zkSync (L2).
 This contract checks the validity proof and data availability, handles L2 <-> L1 communication, finalizes L2 state transition, and more.
 
-There are also important contracts deployed on the L2 that can also execute logic called _system contracts_.
+There are also important contracts deployed on the L2 that can also execute logic that we refer to as [System Contracts](#l2-system-contracts).
 Using L2 <-> L1 communication can affect both the L1 and the L2.
 
 ### DiamondProxy
@@ -77,6 +40,10 @@ One of the differences from the reference implementation is the ability to freez
 Each of the facets has an associated parameter that indicates if it is possible to freeze access to the facet.
 
 Privileged actors can freeze the **diamond** (not a specific facet!) and all facets with the marker `isFreezable` should be inaccessible until the governor unfreezes the diamond.
+
+::: tip System contract addresses
+You can find the L1 system contract addresses in the [useful addresses page](../quick-start/useful-address.md).
+:::
 
 ### DiamondInit
 
@@ -140,3 +107,44 @@ When a block is committed, we process L2 -> L1 logs. Here are the invariants tha
 - Several (or none) logs from the `L2_BOOTLOADER_ADDRESS` with the `key == canonicalTxHash` where `canonicalTxHash` is a hash of processed L1 -> L2 transaction.
 - Several (of none) logs from the `L2_TO_L1_MESSENGER` with the `key == hashedMessage` where `hashedMessage` is a hash of an arbitrary-length message that is sent from L2.
 - Several (or none) logs from other addresses with arbitrary parameters.
+
+## L2 System Contracts
+
+::: info More in ZK Stack docs
+
+You can find more details about the System Contracts in [the components section of the ZK Stack documentation](../../zk-stack/components/smart-contracts/system-contracts.md).
+
+:::
+
+The addresses and the interfaces of the L2 system contracts can be found [here](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/Constants.sol).
+
+This section will describe the semantic meaning of some of the most popular system contracts.
+
+### ContractDeployer
+
+[Interface](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/interfaces/IContractDeployer.sol)
+
+This contract is used to deploy new smart contracts. Its job is to make sure that the bytecode for each deployed contract is known. This contract also defines the derivation
+address. Whenever a contract is deployed, it emits the `ContractDeployed` event.
+
+### L1Messenger
+
+[Interface](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/interfaces/IL1Messenger.sol)
+
+This contract is used to send messages from zkSync to Ethereum. For each message sent, the `L1MessageSent` event is emitted.
+
+### NonceHolder
+
+[Interface](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/interfaces/INonceHolder.sol)
+
+This contract stores account nonces. The account nonces are stored in a single place for efficiency ([the tx nonce and the deployment nonce](./contract-deployment.md#differences-in-create-behaviour) are stored in a single place) and also for the ease of the operator.
+
+### Bootloader
+
+For greater extensibility and to lower overhead, some parts of the protocol (e.g. account abstraction rules) have moved to an ephemeral contract called a _bootloader_. We call it ephemeral since it is never deployed and cannot be called. It does, however, have a formal [address](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/Constants.sol#L35) that is used by `msg.sender` when calling other contracts.
+
+#### Protected access to some of the system contracts
+
+Some of the system contracts have an impact on the account that may not be expected on Ethereum. For instance, on Ethereum the only way an EOA could increase its nonce is by sending a transaction. Also, sending a transaction could only increase nonce by 1 at a time. On zkSync nonces are implemented via the [NonceHolder](#nonceholder) system contract and, if naively implemented, the users could be allowed to increment their nonces by calling this contract. That's why the calls to most of the non-view methods of the nonce holder were restricted to be called only with a special `isSystem` flag, so that interactions with important system contracts could be consciously managed by the developer of the account.
+
+The same applies to the [ContractDeployer](#contractdeployer) system contract. This means that, for instance, you would need to explicitly allow your users to deploy contracts, as it is done in the DefaultAccount's [implementation](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/DefaultAccount.sol#L125).

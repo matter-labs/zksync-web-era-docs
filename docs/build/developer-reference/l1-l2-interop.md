@@ -18,7 +18,7 @@ Many use cases require multi-layer interoperability, such as:
 
 ## L1 to L2 communication
 
-L1 to L2 communication is governed by the [`IZkSync.sol`](https://github.com/matter-labs/v2-testnet-contracts/blob/b8449bf9c819098cc8bfee0549ff5094456be51d/l1/contracts/zksync/interfaces/IZkSync.sol#L4) inherited interfaces.
+L1 to L2 communication is governed by the [`IZkSync.sol`](https://github.com/matter-labs/era-contracts/blob/main/l1-contracts/contracts/zksync/interfaces/IZkSync.sol) inherited interfaces.
 
 :::tip
 

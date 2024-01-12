@@ -31,7 +31,7 @@ Key components:
 
 - **validateAndPayForPaymasterTransaction**: This function validates the transaction, calculates the required ETH based on gas limits, and transfers the fees to the bootloader.
 
-Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/v2-testnet-contracts/blob/main/l2/system-contracts/interfaces/IPaymaster.sol) interface. We will be using `zksync-cli` to bootstrap the boilerplate code for this paymaster.
+Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/era-contracts/blob/main/l2-contracts/contracts/interfaces/IPaymaster.sol) interface. We will be using `zksync-cli` to bootstrap the boilerplate code for this paymaster.
 
 ### Step 2 — Environment Setup
 

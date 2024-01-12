@@ -248,10 +248,10 @@ This section is not required for Boojum understanding but for those willing to a
 deployed at the time of this writing.
 
 Note that the hash of the transaction is calculated before the transaction is executed:
-[https://github.com/matter-labs/era-system-contracts/blob/3e954a629ad8e01616174bde2218241b360fda0a/bootloader/bootloader.yul#L1055](https://github.com/matter-labs/era-system-contracts/blob/3e954a629ad8e01616174bde2218241b360fda0a/bootloader/bootloader.yul#L1055)
+[https://github.com/matter-labs/era-contracts/blob/main/system-contracts/bootloader/bootloader.yul#L1055](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/bootloader/bootloader.yul#L1055)
 
 And then we publish its hash on L1 via a _system_ L2→L1 log:
-[https://github.com/matter-labs/era-system-contracts/blob/3e954a629ad8e01616174bde2218241b360fda0a/bootloader/bootloader.yul#L1133](https://github.com/matter-labs/era-system-contracts/blob/3e954a629ad8e01616174bde2218241b360fda0a/bootloader/bootloader.yul#L1133)
+[https://github.com/matter-labs/era-contracts/blob/main/system-contracts/bootloader/bootloader.yul#L1133](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/bootloader/bootloader.yul#L1133)
 
 In the new upgrade system, the `priorityOperationsRollingHash` is calculated on L2 and so if something in the middle
 changes the implementation of `Keccak256`, it may lead to the full `priorityOperationsRollingHash` be maliciously

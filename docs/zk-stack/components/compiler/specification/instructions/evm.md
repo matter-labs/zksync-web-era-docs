@@ -717,7 +717,7 @@ return:
 
 ### System Contract
 
-This instruction is handled by a System Contract called [Keccak256](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/precompiles/Keccak256.yul),
+This instruction is handled by a System Contract called [Keccak256](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/precompiles/Keccak256.yul),
 which is a wrapper around the EraVM precompile.
 
 On how the System Contract is called, see [this section](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/system_contracts.md).
@@ -1827,7 +1827,7 @@ is common for Yul and EVMLA representations.
 ### System Contract
 
 This instruction is handled by a System Contract called
-[Keccak256](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/precompiles/Keccak256.yul), which is
+[Keccak256](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/precompiles/Keccak256.yul), which is
 a wrapper around the EraVM precompile.
 
 On how the System Contract is called, see

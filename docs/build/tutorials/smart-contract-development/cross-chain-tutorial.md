@@ -61,10 +61,10 @@ Select the option **Create a Typescript project** and accept the defaults for ev
 To interact with the zkSync bridge contract using Solidity, you need the zkSync contract interface. There are two ways to get it:
 
 - Import it from the `@matterlabs/zksync-contracts` npm package (preferred).
-- Download it from the [contracts repo](https://github.com/matter-labs/v2-testnet-contracts).
+- Download it from the [contracts repo](https://github.com/matter-labs/era-contracts).
   :::
 
-3. Install the following dependencies:
+1. Install the following dependencies:
 
 Make sure you use actual node (lts version) and actual npm version
 ::: code-tabs

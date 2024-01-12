@@ -581,7 +581,7 @@ There are three types of behaviour triggered by execution failures.
 ### Bootloader
 
 Bootloader is a system contract in charge of block construction
-(**[sources](https://github.com/matter-labs/era-system-contracts/blob/main/bootloader/bootloader.yul)**).
+(**[sources](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/bootloader/bootloader.yul)**).
 
 Formally, bootloader is assigned an address BOOTLOADER_SYSTEM_CONTRACT_ADDRESS = $2^{15}+1$, but zkEVM decommits its
 code directly by its hash.
