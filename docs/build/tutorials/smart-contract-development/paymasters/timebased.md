@@ -73,7 +73,7 @@ Create a new file under `/deploy`, for example `deploy-timeBasedPaymaster.ts`. I
 <summary>Deployment script</summary>
 
 ```typescript
-import { Provider, Wallet } from "zksync-web3";
+import { Provider, Wallet } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -158,7 +158,7 @@ To verify the functionality of the TimeBased Paymaster contract, let's draft a q
 
 ```typescript
 import { expect } from "chai";
-import { Wallet, Provider, Contract, utils } from "zksync-web3";
+import { Wallet, Provider, Contract, utils } from "zksync-ethers";
 import hardhatConfig from "../hardhat.config";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 import * as ethers from "ethers";

@@ -320,7 +320,7 @@ npx hardhat compile
 1. Copy/paste the following code into `L2-counter/deploy/deploy.ts`, replacing `<GOVERNANCE-ADDRESS>` with the address of the Governance contract we just deployed, and `<WALLET-PRIVATE-KEY>` with your private key:
 
 ```typescript
-import { utils, Wallet } from "zksync-web3";
+import { utils, Wallet } from "zksync-ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
@@ -403,7 +403,7 @@ Now both contracts are deployed, we can create a script to retrieve the value of
 4. Create a `/L2-counter/scripts/display-value.ts` file and paste in the following code, adding the counter contract address:
 
 ```ts
-import { Contract, Provider } from "zksync-web3";
+import { Contract, Provider } from "zksync-ethers";
 
 const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
 const COUNTER_ABI = require("./counter.json");
@@ -518,7 +518,7 @@ You have to copy only abi content from the file after the keyword abi, an exampl
 
 ```ts
 import { BigNumber, Contract, ethers, Wallet } from "ethers";
-import { Provider, utils } from "zksync-web3";
+import { Provider, utils } from "zksync-ethers";
 const GOVERNANCE_ABI = require("./governance.json");
 const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
 const COUNTER_ABI = require("./counter.json");
@@ -645,5 +645,5 @@ The counter value is 1
 ## Learn more
 
 - To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../developer-reference/l1-l2-interop.md).
-- To learn more about the `zksync-web3` SDK, check out its [documentation](../../sdks/js/README.md).
+- To learn more about the `zksync-ethers` SDK, check out its [documentation](../../sdks/js/README.md).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../tooling/hardhat/getting-started.md).

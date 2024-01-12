@@ -55,7 +55,7 @@ Here's how you can use `estimateGas` to estimate the gas for a deposit transacti
 @tab JS
 
 ```typescript
-import { Provider } from "zksync-web3";
+import { Provider } from "zksync-ethers";
 import { utils } from "ethers";
 
 const provider = new Provider("https://testnet.era.zksync.dev");
@@ -133,7 +133,7 @@ Returns a `Promise` that resolves to a `BigNumber` representing the estimated ga
 Here's how you can use `estimateGasL1` to estimate the gas for a transaction from L1 to L2:
 
 ```typescript
-import { Provider, utils } from "zksync-web3";
+import { Provider, utils } from "zksync-ethers";
 import { utils } from "ethers";
 
 // Initialize a new Provider instance
@@ -197,7 +197,7 @@ Returns a `Promise` that resolves to a `BigNumber` representing the estimated ga
 Here's how you can use `estimateGasTransfer` to estimate the gas for a token transfer transaction:
 
 ```typescript
-import { Provider } from "zksync-web3";
+import { Provider } from "zksync-ethers";
 import { BigNumber } from "ethers";
 
 // Initialize a new Provider instance
@@ -264,7 +264,7 @@ Returns a `Promise` that resolves to a `BigNumber` representing the estimated ga
 Here's how you can use `estimateGasWithdraw` to estimate the gas for a token withdrawal transaction:
 
 ```typescript
-import { Provider } from "zksync-web3";
+import { Provider } from "zksync-ethers";
 import { BigNumber } from "ethers";
 
 // Initialize a new Provider instance
@@ -334,7 +334,7 @@ Returns a `Promise` that resolves to a `BigNumber` representing the estimated ga
 Here's how you can use `estimateL1ToL2Execute` to estimate the gas for an L1 to L2 operation:
 
 ```typescript
-typescriptCopy codeimport { Provider } from "zksync-web3";
+typescriptCopy codeimport { Provider } from "zksync-ethers";
 import { BigNumber } from "ethers";
 
 // Initialize a new Provider instance

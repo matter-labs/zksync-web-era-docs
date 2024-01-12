@@ -191,10 +191,10 @@ The process of deploying account logic is very similar to the one of deploying a
 In order to protect smart contracts that do not want to be treated as an account, a different method of the deployer system contract should be used to do it.
 Instead of using `create`/`create2`, you should use the `createAccount`/`create2Account` methods of the deployer system contract.
 
-Here is an example of how to deploy account logic using the `zksync-web3` SDK:
+Here is an example of how to deploy account logic using the `zksync-ethers` SDK (v5):
 
 ```ts
-import { ContractFactory } from "zksync-web3";
+import { ContractFactory } from "zksync-ethers";
 
 const contractFactory = new ContractFactory(abi, bytecode, initiator, "createAccount");
 const aa = await contractFactory.deploy(...args);
@@ -232,10 +232,10 @@ This is one of the whitelisted calls, where the account logic is allowed to call
 For now, only EIP712 transactions are supported. To submit a transaction from a specific account, you should provide the `from` field of the transaction as the address of the sender and the `customSignature` field of the `customData` with the signature for the account.
 
 ```ts
-import { utils } from "zksync-web3";
+import { utils } from "zksync-ethers";
 
-// here the `tx` is a `TransactionRequest` object from `zksync-web3` SDK.
-// and the zksyncProvider is the `Provider` object from `zksync-web3` SDK connected to zkSync network.
+// here the `tx` is a `TransactionRequest` object from `zksync-ethers` SDK.
+// and the zksyncProvider is the `Provider` object from `zksync-ethers` SDK connected to zkSync network.
 tx.from = aaAddress;
 tx.customData = {
   ...tx.customData,
@@ -304,9 +304,9 @@ The EOA will ensure that the allowance of the `_token` towards the paymaster is 
 
 If you are developing a paymaster, you _should not_ trust the transaction sender to behave honestly (e.g. provide the required allowance with the `approvalBased` flow). These flows serve mostly as instructions to EOAs and the requirements should always be double-checked by the paymaster.
 
-#### Working with paymaster flows using `zksync-web3` SDK
+#### Working with paymaster flows using `zksync-ethers` SDK
 
-The `zksync-web3` SDK provides [methods](../../build/sdks/js/paymaster-utils.md) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
+The `zksync-ethers` SDK provides [methods](../../build/sdks/js/paymaster-utils.md) for encoding correctly formatted paymaster params for all of the built-in paymaster flows.
 
 ### Testnet paymaster
 

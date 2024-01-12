@@ -349,7 +349,7 @@ Create a new file under `/deploy`, for example `deploy-mockUSDCPaymaster.ts`. In
 <summary>Deployment script</summary>
 
 ```typescript
-import { Wallet } from "zksync-web3";
+import { Wallet } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -446,7 +446,7 @@ Create a new file under `/deploy`, for example `use-mockUSDCPaymaster.ts`. Inser
 <summary>use-mockUSDCPaymaster.ts</summary>
 
 ```typescript
-import { ContractFactory, Provider, utils, Wallet } from "zksync-web3";
+import { ContractFactory, Provider, utils, Wallet } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";

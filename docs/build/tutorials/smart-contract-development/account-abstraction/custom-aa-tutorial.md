@@ -41,13 +41,9 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 npx zksync-cli create custom-aa-tutorial --template hardhat_solidity
 ```
 
-:::tip
-The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
-:::
-
 This creates a new zkSync Era project called `custom-aa-tutorial` with a basic `Greeter` contract.
 
-2. Navigate into the project directory:
+1. Navigate into the project directory:
 
 ```sh
 cd custom-aa-tutorial
@@ -843,7 +839,7 @@ Make sure you deposit funds on zkSync Era using [bridges](https://zksync.io/expl
 1. In the `deploy` folder, create the file `deploy-factory.ts` and copy/paste the following code, replacing `<WALLET_PRIVATE_KET>` with your private key.
 
 ```ts
-import { utils, Wallet } from "zksync-web3";
+import { utils, Wallet } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -898,7 +894,7 @@ This section assumes you have an EOA account with sufficient funds on zkSync Era
 The call to the `deployAccount` function deploys the AA.
 
 ```ts
-import { utils, Wallet, Provider, EIP712Signer, types } from "zksync-web3";
+import { utils, Wallet, Provider, EIP712Signer, types } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
@@ -1042,7 +1038,7 @@ console.log(`Multisig account balance is now ${multisigBalance.toString()}`);
 1. Copy/paste the following code into the deployment file, replacing the `<FACTORY-ADDRESS>` and private key `<WALLET-PRIVATE-KEY>` placeholders with the relevant data.
 
 ```ts
-import { utils, Wallet, Provider, EIP712Signer, types } from "zksync-web3";
+import { utils, Wallet, Provider, EIP712Signer, types } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
@@ -1166,5 +1162,5 @@ If you get an error `Not enough balance to cover the fee.`, try increasing the a
 ## Learn more
 
 - To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../../developer-reference/l1-l2-interop.md).
-- To learn more about the `zksync-web3` SDK, check out its [documentation](../../../sdks/js/README.md).
+- To learn more about the `zksync-ethers` SDK, check out its [documentation](../../../sdks/js/README.md).
 - To learn more about the zkSync Era Hardhat plugins, check out the [Hardhat documentation](../../../tooling/hardhat/getting-started.md).

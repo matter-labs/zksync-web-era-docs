@@ -44,7 +44,7 @@ Set up the node script:
 ```bash
 mkdir deposit-erc20-script && cd deposit-erc20-script
 yarn init -y
-yarn add typescript ts-node ethers@^5.7.2 zksync-web3 dotenv
+yarn add typescript ts-node ethers@^5.7.2 zksync-ethers@5 dotenv
 ```
 
 @tab npm
@@ -52,7 +52,7 @@ yarn add typescript ts-node ethers@^5.7.2 zksync-web3 dotenv
 ```bash
 mkdir deposit-erc20-script && cd deposit-erc20-script
 npm init -y
-npm i typescript ts-node ethers@^5.7.2 zksync-web3 dotenv
+npm i typescript ts-node ethers@^5.7.2 zksync-ethers@5 dotenv
 ```
 
 :::
@@ -71,7 +71,7 @@ Create a new file `deposit-erc20.ts` and insert the below code:
 #### ERC-20 deposit script
 
 ```typescript
-import { Wallet, Provider, utils } from "zksync-web3";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import * as ethers from "ethers";
 
 // load env file

@@ -106,7 +106,7 @@ signer.getAddress();
 
 ### Creating wallet from a private key
 
-The `Wallet` object from `zksync-web3` can be created from an Ethereum private key.
+The `Wallet` object from `zksync-ethers` can be created from an Ethereum private key.
 [Example](getting-started.md#zksync-era-wallet)
 
 #### Inputs and outputs

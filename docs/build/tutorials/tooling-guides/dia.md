@@ -111,7 +111,7 @@ Create a new file under `/deploy`, for example `deploy-oracle.ts`. Insert the pr
 The deployment script
 
 ```typescript
-import { Wallet, utils } from "zksync-web3";
+import { Wallet, utils } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -170,7 +170,7 @@ yarn hardhat deploy-zksync --script deploy-oracle.ts
 To interact with contract, create a new file under `/deploy`, for example `use-oracle.ts`. Insert the provided script:
 
 ```typescript
-import { Provider } from "zksync-web3";
+import { Provider } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 

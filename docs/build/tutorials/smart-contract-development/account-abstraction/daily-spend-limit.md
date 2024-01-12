@@ -42,13 +42,9 @@ We will use the [zkSync Era Hardhat plugins](../../../tooling/hardhat/getting-st
 npx zksync-cli create custom-spendlimit-tutorial --template hardhat_solidity
 ```
 
-:::tip
-The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
-:::
-
 This creates a new zkSync Era project called `custom-spendlimit-tutorial` with a basic `Greeter` contract.
 
-2. Navigate into the project directory:
+1. Navigate into the project directory:
 
 ```sh
 cd custom-spendlimit-tutorial
@@ -764,7 +760,7 @@ yarn hardhat compile
 The script deploys the factory, creates a new smart contract account, and funds it with some ETH.
 
 ```typescript
-import { utils, Wallet, Provider } from "zksync-web3";
+import { utils, Wallet, Provider } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -853,7 +849,7 @@ Open up the [zkSync Era block explorer](https://sepolia.explorer.zksync.io) and 
 To enable the daily spending limit, we execute the `setSpendingLimit` function with two parameters: token address and limit amount. The token address is `ETH_ADDRESS` and the limit parameter is `0.0005` in the example below (and can be any amount).
 
 ```typescript
-import { utils, Wallet, Provider, Contract, EIP712Signer, types } from "zksync-web3";
+import { utils, Wallet, Provider, Contract, EIP712Signer, types } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
@@ -937,7 +933,7 @@ Let's test the `SpendLimit` contract works to make it refuses ETH transfers that
 1. Create `transferETH.ts` and copy/paste the example code below, replacing the placeholder constants as before and adding an account address for `RECEIVER_ACCOUNT`.
 
 ```typescript
-import { utils, Wallet, Provider, Contract, EIP712Signer, types } from "zksync-web3";
+import { utils, Wallet, Provider, Contract, EIP712Signer, types } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 

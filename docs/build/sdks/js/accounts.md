@@ -17,7 +17,7 @@ head:
 
 ### Creating wallet from a private key
 
-Just like `ethers.Wallet`, the `Wallet` object from `zksync-web3` can be created from Ethereum private key.
+Just like `ethers.Wallet`, the `Wallet` object from `zksync-ethers` can be created from Ethereum private key.
 
 ```typescript
   constructor Wallet(
@@ -38,7 +38,7 @@ Just like `ethers.Wallet`, the `Wallet` object from `zksync-web3` can be created
 > Example
 
 ```typescript
-import { Wallet, Provider, utils } from "zksync-web3";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -70,7 +70,7 @@ Wallet.connect(provider: Provider): Wallet
 > Example
 
 ```typescript
-import { Wallet, Provider } from "zksync-web3";
+import { Wallet, Provider } from "zksync-ethers";
 
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
 
@@ -96,7 +96,7 @@ Wallet.connectToL1(provider: ethers.providers.Provider): Wallet
 > Example
 
 ```typescript
-import { Wallet } from "zksync-web3";
+import { Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
@@ -127,7 +127,7 @@ async getMainContract(): Promise<IZkSync>
 > Example
 
 ```typescript
-import { Wallet, Provider } from "zksync-web3";
+import { Wallet, Provider } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -157,7 +157,7 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 > Example
 
 ```typescript
-import { Wallet, Provider } from "zksync-web3";
+import { Wallet, Provider } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -192,7 +192,7 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 > Example
 
 ```typescript
-import { Wallet, Provider } from "zksync-web3";
+import { Wallet, Provider } from "zksync-ethers";
 import { ethers, utils } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -232,7 +232,7 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 > Example
 
 ```typescript
-import { Wallet, Provider } from "zksync-web3";
+import { Wallet, Provider } from "zksync-ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
@@ -270,7 +270,7 @@ async transfer(tx: {
 > Example
 
 ```typescript
-import { Wallet, Provider } from "zksync-web3";
+import { Wallet, Provider } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -326,7 +326,7 @@ You can get an `ethers.Wallet` object with the same private key with `ethWallet(
 > Example
 
 ```typescript
-import { Wallet, Provider, utils } from "zksync-web3";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
@@ -347,7 +347,7 @@ The methods of this class are mostly used internally. The examples of using this
 This class is to be used in a browser environment. The easiest way to construct it is to use the `getSigner` method of the `Web3Provider`. This structure extends `ethers.providers.JsonRpcSigner` and so supports all the methods available for it.
 
 ```typescript
-import { Web3Provider } from "zksync-web3";
+import { Web3Provider } from "zksync-ethers";
 
 const provider = new Web3Provider(window.ethereum);
 const signer = provider.getSigner();
@@ -370,7 +370,7 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<Big
 > Example
 
 ```typescript
-import { Web3Provider } from "zksync-web3";
+import { Web3Provider } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new Web3Provider(window.ethereum);
@@ -402,7 +402,7 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 > Example
 
 ```typescript
-import { Web3Provider } from "zksync-web3";
+import { Web3Provider } from "zksync-ethers";
 
 const provider = new Web3Provider(window.ethereum);
 const signer = provider.getSigner();
@@ -438,7 +438,7 @@ async transfer(tx: {
 > Example
 
 ```typescript
-import { Wallet, Web3Provider } from "zksync-web3";
+import { Wallet, Web3Provider } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new Web3Provider(window.ethereum);
@@ -460,7 +460,7 @@ This class is to be used in a browser environment to do zkSync-related operation
 The easiest way to construct it is from an `Web3Provider` object.
 
 ```typescript
-import { Web3Provider, Provider, L1Signer } from "zksync-web3";
+import { Web3Provider, Provider, L1Signer } from "zksync-ethers";
 
 const provider = new ethers.Web3Provider(window.ethereum);
 const zksyncProvider = new Provider("https://sepolia.era.zksync.dev");
@@ -498,7 +498,7 @@ there is no separate Ether bridge contract, [Main contract](./accounts.md#gettin
 > Example
 
 ```typescript
-import { Web3Provider, Provider, L1Signer } from "zksync-web3";
+import { Web3Provider, Provider, L1Signer } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new ethers.Web3Provider(window.ethereum);
@@ -526,7 +526,7 @@ async getBalanceL1(token?: Address, blockTag?: ethers.providers.BlockTag): Promi
 > Example
 
 ```typescript
-import { Web3Provider, Provider, L1Signer } from "zksync-web3";
+import { Web3Provider, Provider, L1Signer } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new ethers.Web3Provider(window.ethereum);

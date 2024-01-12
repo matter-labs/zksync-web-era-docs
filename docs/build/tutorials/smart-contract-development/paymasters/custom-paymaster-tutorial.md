@@ -42,13 +42,9 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 npx zksync-cli create custom-paymaster-tutorial --template hardhat_solidity
 ```
 
-:::tip
-The current version of `zksync-web3` uses `ethers v5.7.x` as a peer dependency. An update compatible with `ethers v6.x.x` will be released soon.
-:::
-
 This creates a new zkSync Era project called `custom-paymaster-tutorial` with a basic `Greeter` contract.
 
-2. Navigate into the project directory:
+1. Navigate into the project directory:
 
 ```sh
 cd custom-paymaster-tutorial
@@ -450,7 +446,7 @@ Make sure you use the private key of the wallet created by the previous script a
 :::
 
 ```ts
-import { utils, Wallet } from "zksync-web3";
+import { utils, Wallet } from "zksync-ethers";
 import { getWallet, getProvider } from "./utils";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";

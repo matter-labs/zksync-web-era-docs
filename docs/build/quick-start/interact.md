@@ -24,4 +24,4 @@ Before diving into the technical details, we highly recommend checking out our [
 Check out our step-by-step [quickstart guide](../../build/quick-start/hello-world.md), where you will learn:
 
 - How to install zkSync hardhat plugin and deploy smart contracts with it.
-- How to build the front-end for your dApp using the `zksync-web3` library.
+- How to build the front-end for your dApp using the `zksync-ethers` library.

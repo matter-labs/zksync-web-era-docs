@@ -125,7 +125,7 @@ Create a new file under `/deploy`, for example `deploy-allowListPaymaster.ts`. I
 <summary>Deployment script</summary>
 
 ```typescript
-import { Provider, Wallet } from "zksync-web3";
+import { Provider, Wallet } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";

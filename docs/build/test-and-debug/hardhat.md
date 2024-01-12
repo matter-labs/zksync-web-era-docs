@@ -15,14 +15,15 @@ In the intricate world of decentralized applications, the margin for error is re
 
 Writing automated tests when building smart contracts is of crucial importance.
 
-To test our contract, we are going to use Hardhat, and `era_test_node` for rapid local development. In our tests we're going to use `zksync-web3` to interact with the Greeter contract, and we'll use [Mocha](https://mochajs.org/) as our test runner.
+To test our contract, we are going to use Hardhat, and `era_test_node` for rapid local development. In our tests we're going to use `zksync-ethers` to interact with the Greeter contract, and we'll use [Mocha](https://mochajs.org/) as our test runner.
 
 ### Step 2 — Environment setup
 
 Using `zksync-cli` create a new project with the required dependencies and boilerplate paymaster implementations:
 
-<pre class="language-bash"><code class="lang-bash"><strong>npx zksync-cli@latest create-project test-greeter
-</strong></code></pre>
+```bash
+npx zksync-cli@latest create-project test-greeter
+```
 
 Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/Greeter.sol`.
 
@@ -58,7 +59,7 @@ Under the `/test` directory there is a `main.test.ts` . The initial test checks 
 
 ```typescript
 import { expect } from "chai";
-import { Wallet, Provider, Contract } from "zksync-web3";
+import { Wallet, Provider, Contract } from "zksync-ethers";
 import * as hre from "hardhat";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 import { zkSyncTestnet } from "../hardhat.config";
@@ -128,7 +129,7 @@ Let's refactor our test file with the provided script:
 
 ```typescript
 import { expect } from "chai";
-import { Wallet, Provider, Contract } from "zksync-web3";
+import { Wallet, Provider, Contract } from "zksync-ethers";
 import * as hre from "hardhat";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 import { zkSyncTestnet } from "../hardhat.config";
@@ -230,7 +231,7 @@ $ yarn test
 
 ```typescript
 import { expect } from "chai";
-import { Wallet, Provider, Contract } from "zksync-web3";
+import { Wallet, Provider, Contract } from "zksync-ethers";
 import * as hre from "hardhat";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 import { zkSyncTestnet } from "../hardhat.config";
@@ -239,7 +240,7 @@ import { zkSyncTestnet } from "../hardhat.config";
 This section imports all necessary utilities and configurations needed to run our tests.
 
 - `expect` from Chai provides assertion functionalities for our tests.
-- `Wallet`, `Provider`, and `Contract` from `zksync-web3` help us with zkSync functionalities like creating wallets and interacting with contracts.
+- `Wallet`, `Provider`, and `Contract` from `zksync-ethers` help us with zkSync functionalities like creating wallets and interacting with contracts.
 - `hre` and `Deployer` give us hardhat specific functionalities for deploying and interacting with our contract.
 - `zkSyncTestnet` from our hardhat configuration provides network details of our running `era_test_node.`
 
@@ -285,7 +286,7 @@ Here, we've declared our main test suite. Each test or nested suite inside provi
     it("Should fail when insufficient funds", async function () { ... });
     ```
 
-    Here, we simulate a scenario where an empty wallet (with no funds) tries to set a new greeting. We make use of the `connect` method on your `zksync-web3` `Contract` object to connect it to a different account.
+    Here, we simulate a scenario where an empty wallet (with no funds) tries to set a new greeting. We make use of the `connect` method on your `zksync-ethers` `Contract` object to connect it to a different account.
 
 5.  **Event Emission**:
 

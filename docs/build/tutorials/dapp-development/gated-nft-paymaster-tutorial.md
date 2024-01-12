@@ -46,7 +46,7 @@ Download the complete project [here](https://github.com/matter-labs/tutorials/tr
 :::info
 
 - This tutorial uses `React` and `Next.js` for the frontend framework (though the principles apply to other frameworks too).
-- We've provided a template for a hassle-free start. The primary focus is on mastering the `zksync-web3` SDK and paymaster validations.
+- We've provided a template for a hassle-free start. The primary focus is on mastering the `zksync-ethers` SDK and paymaster validations.
   :::
 
 1. Clone the template and `cd` into the folder.

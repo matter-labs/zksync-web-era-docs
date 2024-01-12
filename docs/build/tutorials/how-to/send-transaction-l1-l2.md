@@ -307,7 +307,7 @@ const L2_RPC_ENDPOINT = "<insert network config here>"; //url from instruction a
 @tab TypeScript
 
 ```js
-import { Contract, Wallet, Provider } from "zksync-web3";
+import { Contract, Wallet, Provider } from "zksync-ethers";
 import * as ethers from "ethers";
 
 // load env file

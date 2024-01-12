@@ -63,7 +63,7 @@ yarn add -D @matterlabs/zksync-contracts
 4. Import the zkSync Era library or contract containing the required functionality.
 
 ```sh
-yarn add zksync-web3 ethers@5 typescript @types/node ts-node
+yarn add zksync-ethers@5 ethers@5 typescript @types/node ts-node
 ```
 
 5. In the root folder add `.env` file with private key of wallet to use
@@ -77,7 +77,7 @@ yarn add zksync-web3 ethers@5 typescript @types/node ts-node
 ```ts
 // The following script sends a message from L2 to L1, retrieves the message proof, and validates that the message received in L1 came from an L2 block.
 import * as ethers from "ethers";
-import { Provider, utils, Wallet } from "zksync-web3";
+import { Provider, utils, Wallet } from "zksync-ethers";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -260,7 +260,7 @@ function proveL2MessageInclusion(
   - `sender`: Address that sent the message from L2.
   - `data`: Message sent in bytes.
   - `txNumberInBlock`: Index of the transaction in the L2 block; returned as `transactionIndex` with [`getTransactionReceipt`](https://docs.ethers.org/v5/single-page/#/v5/api/providers/provider/-%23-Provider-getTransactionReceipt) on an Ethers `Provider` object.
-- `_proof`: Merkle proof of the message inclusion; retrieved by observing Ethereum or using the `zks_getL2ToL1LogProof` method of the zksync-web3 API.
+- `_proof`: Merkle proof of the message inclusion; retrieved by observing Ethereum or using the `zks_getL2ToL1LogProof` method of the zksync web3 API.
   :::
 
 ## Example

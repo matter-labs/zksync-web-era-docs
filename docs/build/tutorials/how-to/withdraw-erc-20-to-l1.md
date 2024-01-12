@@ -43,7 +43,7 @@ Create a new directory for your withdrawal scripts and navigate into it:
 ```bash
 mkdir withdraw-erc20-script && cd withdraw-erc20-script
 yarn init -y
-yarn add typescript ts-node ethers@^5.7.2 zksync-web3 dotenv
+yarn add typescript ts-node ethers@^5.7.2 zksync-ethers@5 dotenv
 ```
 
 @tab npm
@@ -51,7 +51,7 @@ yarn add typescript ts-node ethers@^5.7.2 zksync-web3 dotenv
 ```bash
 mkdir withdraw-erc20-script && cd withdraw-erc20-script
 npm init -y
-npm i typescript ts-node ethers@^5.7.2 zksync-web3 dotenv
+npm i typescript ts-node ethers@^5.7.2 zksync-ethers@5 dotenv
 ```
 
 :::
@@ -70,7 +70,7 @@ Create a new file `withdraw-erc20.ts` and insert the following code. This script
 #### withdraw-erc20.ts script
 
 ```typescript
-import { Wallet, Provider, utils } from "zksync-web3";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import * as ethers from "ethers";
 
 // load env file

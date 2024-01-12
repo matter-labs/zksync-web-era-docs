@@ -8,7 +8,7 @@ head:
 # Getting started
 
 ::: info
-Take a look at [migration guide](migration.md) if you are migration from `zksync-web3`.
+Take a look at [migration guide](migration.md) if you are migrating from `zksync-web3`.
 :::
 
 This is a short introduction to `zksync-ethers` SDK, but covers many of the most common operations that developers require and provides a

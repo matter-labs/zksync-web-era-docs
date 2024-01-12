@@ -208,7 +208,7 @@ Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search wi
 :::info
 
 - We use the `Vue` web framework for the tutorial front end (the process is similar to other frameworks).
-- In order to focus on the `zksync-web3` SDK, we provide a prebuilt template.
+- In order to focus on the `zksync-ethers` SDK, we provide a prebuilt template.
 - Once set up, we add code that interacts with the smart contract we just deployed.
   :::
 
@@ -304,14 +304,14 @@ const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
 1. From the `greeter-tutorial-starter` root, install the dependencies.
 
 ```sh
-yarn add ethers@^5.7.2 zksync-web3
+yarn add ethers@^5.7.2 zksync-ethers@5
 ```
 
 2. Add the library imports under `<script>` in`App.vue`.
 
 ```js
 <script>
-import {} from "zksync-web3";
+import {} from "zksync-ethers";
 import {} from "ethers";
 
 // eslint-disable-next-line
@@ -395,7 +395,7 @@ In this function we should:
 2. Import the necessary dependencies under the imports from before:
 
 ```javascript
-import { Contract, Web3Provider, Provider } from "zksync-web3";
+import { Contract, Web3Provider, Provider } from "zksync-ethers";
 ```
 
 3. Initialise the provider, signer, and contract instances like this:
@@ -579,10 +579,10 @@ async getOverrides() {
 It is recommended to retrieve the testnet paymaster's address before each interaction as it may change.
 :::
 
-2. Add `utils` to the same import from `zksync-web3` SDK as before:
+2. Add `utils` to the same import from `zksync-ethers` SDK as before:
 
 ```javascript
-import { Contract, Web3Provider, Provider, utils } from "zksync-web3";
+import { Contract, Web3Provider, Provider, utils } from "zksync-ethers";
 ```
 
 3. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token to ETH at a 1:1 rate, the amount is the same as the ETH amount in wei:
@@ -717,5 +717,5 @@ After the transaction is processed, the page updates the balances and the new gr
 ### Learn more
 
 - For an overview of security and best practices for developing on zkSync Era, refer to the [Security and best practices page](./best-practices.md).
-- To learn more about `zksync-web3` SDK, check out its [documentation](../../build/sdks/js/README.md).
+- To learn more about `zksync-ethers` SDK, check out its [documentation](../../build/sdks/js/README.md).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../build/tooling/hardhat/getting-started.md).
