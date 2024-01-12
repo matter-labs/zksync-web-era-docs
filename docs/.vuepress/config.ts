@@ -21,7 +21,7 @@ export default defineUserConfig({
 
   base: "/",
 
-  title: "Welcome to our Docs | zkSync",
+  title: "Welcome to our Docs - All information you need about zkSync and ZK Stack",
 
   head: [
     ["link", { rel: "canonical", href: "https://docs.zksync.io/" }],
@@ -33,12 +33,12 @@ export default defineUserConfig({
       {
         name: "keywords",
         content:
-          "Documentation, Developers, Era, zkSync, Matter Labs, rollup, ZK rollup, zero confirmation, ZKP, zero-knowledge proofs, Ethereum, crypto, blockchain, permissionless, L2, secure payments, scalable",
+          "Documentation, Developers, Era, zkSync, ZK Stack, Matter Labs, rollup, ZK rollup, zero confirmation, ZKP, zero-knowledge proofs, Ethereum, crypto, blockchain, permissionless, L2, secure payments, scalable",
       },
     ],
     [
       "meta",
-      { name: "description", content: "zkSync is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet" },
+      { name: "description", content: "zkSync Docs bring you all information you need about our protocol, APIs, SDKs, ZK Stack, and hyperchains. Start with our guides and tutorials, or go deep into our architecture and protocol specification." },
     ],
     ["meta", { name: "author", content: "https://matter-labs.io" }],
 
@@ -47,21 +47,21 @@ export default defineUserConfig({
     ["meta", { name: "og:image:secure_url", content: "https://docs.zksync.io/share_image.png" }],
     ["meta", { name: "og:url", content: "https://docs.zksync.io/" }],
     ["meta", { name: "og:image:alt", content: "zkSync — Accelerating the mass adoption of crypto for personal sovereignty" }],
-    ["meta", { property: "og:title", content: "Welcome to our Docs | zkSync" }],
+    ["meta", { property: "og:title", content: "Welcome to our Docs - All information you need about zkSync and ZK Stack" }],
     [
       "meta",
       {
         name: "og:description",
-        content: "zkSync is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet.",
+        content: "zkSync Docs bring you all information you need about our protocol, APIs, SDKs, ZK Stack, and hyperchains. Start with our guides and tutorials, or go deep into our architecture and protocol specification.",
       },
     ],
     ["meta", { name: "twitter:card", content: "summary" }],
-    ["meta", { name: "twitter:title", content: "Welcome to our Docs | zkSync" }],
+    ["meta", { name: "twitter:title", content: "Welcome to our Docs - All information you need about zkSync and ZK Stack" }],
     [
       "meta",
       {
         name: "twitter:description",
-        content: "zkSync is a user-centric zk rollup platform from Matter Labs. It is a scaling solution for Ethereum, already live on Ethereum mainnet.",
+        content: "zkSync Docs bring you all information you need about our protocol, APIs, SDKs, ZK Stack, and hyperchains. Start with our guides and tutorials, or go deep into our architecture and protocol specification.",
       },
     ],
     ["meta", { name: "twitter:image", content: "https://docs.zksync.io/share_image.png" }],
