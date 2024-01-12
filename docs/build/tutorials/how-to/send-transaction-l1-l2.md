@@ -59,7 +59,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 3. Apply an alias to the addresses in the request if the sender address is a contract.
 
-   If the sender is an EOA, no aliasing is required. Aliasing is implemented by the [`applyL1ToL2Alias`](https://github.com/matter-labs/era-contracts/blob/87cd8d7b0f8c02e9672c0603a821641a566b5dd8/l1-contracts/contracts/vendor/AddressAliasHelper.sol#L28) Solidity function and called by the [JavaScript SDK](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/utils.ts#L374).
+   If the sender is an EOA, no aliasing is required. Aliasing is implemented by the [`applyL1ToL2Alias`](https://github.com/matter-labs/era-contracts/blob/87cd8d7b0f8c02e9672c0603a821641a566b5dd8/l1-contracts/contracts/vendor/AddressAliasHelper.sol#L28) Solidity function and called by the [JavaScript SDK](https://github.com/zksync-sdk/zksync-ethers/blob/28d83cd7f0a8e2978c73f79867143c8e5e7e005f/src/utils.ts#L381).
 
    ::: code-tabs
    @tab Solidity

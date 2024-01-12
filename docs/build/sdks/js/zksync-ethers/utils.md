@@ -284,45 +284,6 @@ Returns the hash of an EIP712 transaction.
 function eip712TxHash(transaction: any, ethSignature?: EthereumSignature);
 ```
 
-### `estimateCustomBridgeDepositL2Gas`
-
-Used by `estimateDefaultBridgeDepositL2Gas` to estimate L2 gas required for token bridging via a custom ERC20 bridge.
-
-::: tip More info
-
-- See the [default bridges documentation](../../../developer-reference/bridging-asset.md#default-bridges)
-  :::
-
-#### Inputs
-
-| Parameter            | Type           | Description                                 |
-| -------------------- | -------------- | ------------------------------------------- |
-| `providerL2`         | `Provider`     | zkSync provider.                            |
-| `l1BridgeAddress`    | `Address`      | L1 bridge address.                          |
-| `l2BridgeAddress`    | `Address`      | L2 bridge address.                          |
-| `token`              | `Address`      | Token address.                              |
-| `amount`             | `BigNumberish` | Deposit amount.                             |
-| `to`                 | `Address`      | Recipient address.                          |
-| `bridgeData`         | `BytesLike`    | Bridge data.                                |
-| `from?`              | `Address`      | Sender address (optional).                  |
-| `gasPerPubdataByte?` | `BigNumberish` | Current gas per byte of pubdata (optional). |
-| `l2Value?`           | `BigNumberish` | L2 value (optional).                        |
-
-```ts
-export async function estimateCustomBridgeDepositL2Gas(
-  providerL2: Provider,
-  l1BridgeAddress: Address,
-  l2BridgeAddress: Address,
-  token: Address,
-  amount: BigNumberish,
-  to: Address,
-  bridgeData: BytesLike,
-  from?: Address,
-  gasPerPubdataByte?: BigNumberish,
-  l2Value?: BigNumberish
-): Promise<bigint>;
-```
-
 ### `estimateDefaultBridgeDepositL2Gas`
 
 Returns an estimation of L2 gas required for token bridging via the default ERC20 bridge.
@@ -386,29 +347,6 @@ Returns the calldata sent by an L1 ERC20 bridge to its L2 counterpart during tok
 
 ```ts
 export async function getERC20BridgeCalldata(l1TokenAddress: string, l1Sender: string, l2Receiver: string, amount: BigNumberish, bridgeData: BytesLike): Promise<string>;
-```
-
-### `getERC20DefaultBridgeData`
-
-Returns the data needed for correct initialization of an L1 token counterpart on L2.
-
-#### Inputs
-
-| Parameter        | Type       | Description          |
-| ---------------- | ---------- | -------------------- |
-| `l1TokenAddress` | `Address`  | Token address on L1. |
-| `provider`       | `Provider` | Ethers provider.     |
-
-#### Outputs
-
-An ABI-encoded array of:
-
-- `nameBytes`: `bytes` object representation of token name.
-- `symbolBytes`: `bytes` object representation of token symbol.
-- `decimalBytes`: `bytes` object representation of token decimal representation.
-
-```ts
-export async function getERC20DefaultBridgeData(l1TokenAddress: string, provider: ethers.providers.Provider): Promise<string>;
 ```
 
 ### `getL2HashFromPriorityOp`
@@ -565,20 +503,6 @@ export async function isTypedDataSignatureCorrect(
   signature: SignatureLike
 ): Promise<boolean>;
 ```
-
-### `parseTransaction`
-
-Common parsing transaction function used by internal teams.
-
-Please see the [utilities library definition](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) for more
-info.
-
-### `serialize`
-
-Common serialize function used by internal teams.
-
-Please see the [utilities library definition](https://github.com/matter-labs/zksync-2-dev/blob/94701bd2fbc590f733346934cfbccae08fc62f1a/sdk/zksync-web3.js/src/utils.ts) for more
-info.
 
 ### `sleep`
 
