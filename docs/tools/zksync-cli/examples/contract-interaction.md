@@ -25,7 +25,7 @@ The `npx zksync-cli contract read` command executes read-only methods on contrac
 
 ### Read Options
 
-You do not need to specify options bellow, you will be prompted to enter them if they are not specified.
+You do not need to specify options below, you will be prompted to enter them if they are not specified.
 
 - `--chain <chain-name>`: Select the chain to use
 - `--rpc <url>`: Provide RPC URL instead of selecting a chain
