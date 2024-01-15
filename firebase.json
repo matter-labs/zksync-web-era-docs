@@ -620,7 +620,7 @@
         },
         {
           "source": "/docs/api/hardhat{,/**}",
-          "destination": "/build/tooling/hardhat/getting-started.md",
+          "destination": "/build/tooling/hardhat/getting-started.html",
           "type": "302"
         },
         // {
