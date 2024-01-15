@@ -1389,13 +1389,13 @@
           "type": "302"
         },
         {
-          "regex": "/docs/.*",
-          "destination": "/",
+          "regex": "/docs/dev/.*",
+          "destination": "/build",
           "type": "302"
         },
         {
-          "regex": "/docs/dev/.*",
-          "destination": "/build",
+          "regex": "/docs/.*",
+          "destination": "/",
           "type": "302"
         },
         {
