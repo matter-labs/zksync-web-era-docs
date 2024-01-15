@@ -623,16 +623,6 @@
           "destination": "/build/tooling/hardhat/getting-started.html",
           "type": "302"
         },
-        // {
-        //   "source": "/docs/api/compiler-toolchain{,/**}",
-        //   "destination": "/zk-stack/components/compiler/toolchain/overview.html",
-        //   "type": "302"
-        // },
-        // {
-        //   "source": "/docs/tools/compiler-toolchain{,/**}",
-        //   "destination": "/zk-stack/components/compiler/toolchain/overview.html",
-        //   "type": "302"
-        // },
         {
           "source": "/docs/api/tools/zksync-cli{,/**}",
           "destination": "/build/tooling/zksync-cli/getting-started.html",
