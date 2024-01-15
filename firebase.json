@@ -215,7 +215,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/videos.html",
-          "destination": "/zk-stack/README.html",
+          "destination": "/zk-stack/",
           "type": "302"
         },
         {
@@ -299,7 +299,7 @@
           "type": "301"
         },
         {
-          "source": "/docs/api/compiler-toolchain{,/**}",
+          "source": "/docs/api/compiler-toolchain/",
           "destination": "/zk-stack/components/compiler/toolchain/overview.html",
           "type": "302"
         },
@@ -545,7 +545,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/videos.html",
-          "destination": "/zk-stack/README.html",
+          "destination": "/zk-stack/",
           "type": "302"
         },
         {
@@ -735,7 +735,7 @@
         },
         {
           "source": "/docs/api/java/",
-          "destination": "/build/sdks/java/README.html",
+          "destination": "/build/sdks/java/",
           "type": "302"
         },
         {
@@ -1386,6 +1386,11 @@
         {
           "source": "/docs/api/js/zksync2-js/examples/custom-paymaster/use-paymaster.html",
           "destination": "/build/sdks/js/zksync-ethers/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/interacting.html",
+          "destination": "/build/quick-start/interact.html",
           "type": "302"
         },
         {
