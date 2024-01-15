@@ -815,7 +815,7 @@
         },
         {
           "source": "/docs/api/python/",
-          "destination": "/build/sdks/python/README.html",
+          "destination": "/build/sdks/python/getting-started.html",
           "type": "302"
         },
         {
