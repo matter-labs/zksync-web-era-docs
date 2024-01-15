@@ -1250,7 +1250,7 @@
         },
         {
           "source": "/docs/api/js/zksync2-js/",
-          "destination": "/build/sdks/js/zksync-ethers/",
+          "destination": "/build/sdks/js/zksync-ethers/getting-started.html",
           "type": "302"
         },
         {
