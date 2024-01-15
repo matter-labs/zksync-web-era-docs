@@ -1392,6 +1392,11 @@
           "regex": "/docs/.*",
           "destination": "/",
           "type": "302"
+        },
+        {
+          "source": "/docs",
+          "destination": "/",
+          "type": "302"
         }
       ]
     }
