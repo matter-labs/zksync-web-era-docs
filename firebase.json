@@ -920,7 +920,7 @@
         },
         {
           "source": "/docs/dev/tutorials/",
-          "destination": "/build/README.html",
+          "destination": "/build/",
           "type": "302"
         },
         {
@@ -1391,6 +1391,11 @@
         {
           "regex": "/docs/.*",
           "destination": "/",
+          "type": "302"
+        },
+        {
+          "regex": "/docs/dev/.*",
+          "destination": "/build",
           "type": "302"
         },
         {
