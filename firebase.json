@@ -364,11 +364,6 @@
       ],
       "redirects": [
         {
-          "regex": "/docs/.*",
-          "destination": "/",
-          "type": "302"
-        },
-        {
           "source": "/docs/dev/developer-guides/contracts/system-contracts.html",
           "destination": "/zk-stack/components/smart-contracts/system-contracts.html",
           "type": "302"
@@ -1391,6 +1386,11 @@
         {
           "source": "/docs/api/js/zksync2-js/examples/custom-paymaster/use-paymaster.html",
           "destination": "/build/sdks/js/zksync-ethers/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "regex": "/docs/.*",
+          "destination": "/",
           "type": "302"
         }
       ]
