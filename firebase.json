@@ -760,7 +760,7 @@
         },
         {
           "source": "/docs/api/js/",
-          "destination": "/build/sdks/js/providers.html",
+          "destination": "/build/sdks/js/getting-started.html",
           "type": "302"
         },
         {
