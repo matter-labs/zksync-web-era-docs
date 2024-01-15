@@ -659,7 +659,7 @@
           "type": "302"
         },
         {
-          "source": "/docs/api/",
+          "source": "/docs/api/{,/**}",
           "destination": "/build/api.html",
           "type": "302"
         },
