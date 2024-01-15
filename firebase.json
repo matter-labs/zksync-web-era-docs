@@ -670,7 +670,7 @@
         },
         {
           "source": "/docs/dev/",
-          "destination": "/build/README.html",
+          "destination": "/build/",
           "type": "302"
         },
         {
@@ -815,7 +815,7 @@
         },
         {
           "source": "/docs/api/python/",
-          "destination": "/build/sdks/python/getting-started.html",
+          "destination": "/build/sdks/python/",
           "type": "302"
         },
         {
@@ -855,7 +855,7 @@
         },
         {
           "source": "/docs/api/rust/",
-          "destination": "/build/sdks/rust/getting-started.html",
+          "destination": "/build/sdks/rust/",
           "type": "302"
         },
         {
@@ -1260,7 +1260,7 @@
         },
         {
           "source": "/docs/api/js/zksync2-js/",
-          "destination": "/build/sdks/js/zksync-ethers/README.html",
+          "destination": "/build/sdks/js/zksync-ethers/",
           "type": "302"
         },
         {
