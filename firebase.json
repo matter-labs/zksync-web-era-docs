@@ -299,7 +299,7 @@
           "type": "301"
         },
         {
-          "source": "/docs/api/compiler-toolchain/",
+          "source": "/docs/api/compiler-toolchain{,/**}",
           "destination": "/zk-stack/components/compiler/toolchain/overview.html",
           "type": "302"
         },
