@@ -45,7 +45,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/transactions/blocks.html#blocks-in-zksync-2-0",
-          "destination": "/zk-stack/concepts/blocks.md#l2-blocks-aka-miniblocks",
+          "destination": "/zk-stack/concepts/blocks.html#l2-blocks-aka-miniblocks",
           "type": "302"
         },
         {
@@ -210,7 +210,7 @@
         },
         {
           "source": "/docs/reference/concepts/bridging/l1-l2-interop.html",
-          "destination": "/build/developer-reference/l1-l2-interop.md",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
           "type": "302"
         },
         {
@@ -290,7 +290,7 @@
         },
         {
           "source": "/docs/api/hardhat{,/**}",
-          "destination": "/build/tooling/hardhat/getting-started.md",
+          "destination": "/build/tooling/hardhat/getting-started.html",
           "type": "302"
         },
         {
@@ -420,7 +420,7 @@
         },
         {
           "source": "/docs/reference/concepts/bridging/l1-l2-interop.html",
-          "destination": "/build/developer-reference/l1-l2-interop.md",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
           "type": "302"
         },
         {
@@ -480,7 +480,7 @@
         },
         {
           "source": "/docs/dev/developer-guides/transactions/blocks.html",
-          "destination": "/zk-stack/concepts/blocks.md",
+          "destination": "/zk-stack/concepts/blocks.html",
           "type": "302"
         },
         {
@@ -540,7 +540,7 @@
         },
         {
           "source": "/docs/reference/concepts/bridging/l1-l2-interop.html",
-          "destination": "/build/developer-reference/l1-l2-interop.md",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
           "type": "302"
         },
         {
@@ -690,7 +690,7 @@
         },
         {
           "source": "/docs/api/go/",
-          "destination": "/build/sdks/go/getting-started.md",
+          "destination": "/build/sdks/go/getting-started.html",
           "type": "302"
         },
         {
@@ -705,7 +705,7 @@
         },
         {
           "source": "/docs/api/go/clients.html",
-          "destination": "/build/sdks/go/clients.md",
+          "destination": "/build/sdks/go/clients.html",
           "type": "302"
         },
         {
@@ -880,7 +880,7 @@
         },
         {
           "source": "/docs/dev/building-on-zksync/useful-address.html",
-          "destination": "/build/quick-start/useful-address.md",
+          "destination": "/build/quick-start/useful-address.html",
           "type": "302"
         },
         {
