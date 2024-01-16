@@ -1594,6 +1594,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference",
+          "destination": "/build/developer-reference/rollups.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/tools/",
           "destination": "/build/tooling/zksync-cli/getting-started.html",
           "type": "302"
