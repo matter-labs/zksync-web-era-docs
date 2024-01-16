@@ -313,4 +313,4 @@ The message now is Hello people!
 ## Learn more
 
 - To learn more about the zkSync Hardhat plugins check out the [plugins documentation](../hardhat/getting-started.md).
-- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-ethers Javascript SDK documentation](../../sdks/js/README.md) .
+- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-ethers Javascript SDK documentation](../../sdks/js/zksync-ethers/getting-started.md) .

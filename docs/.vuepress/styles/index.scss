@@ -1,4 +1,14 @@
-// place your custom styles here
+@use "sass:map";
+@import "palette.scss";
+
+$light-selector: 'html[data-theme="light"]';
+$dark-selector: 'html[data-theme="dark"]';
+$light-text: #fff;
+$dark-text: #2c3e50;
+$dark-background-color: #1d2536;
+$background-color: #fff;
+$border-color: #e5e7eb;
+
 :root {
     --pwa-popup-text-color: #2C3E50;
     --pwa-popup-bg-color: #ffffff;
@@ -77,14 +87,6 @@
         hyphens: none !important;
         text-align: inherit !important;
     }
-    
-    [data-theme="dark"] #toc .toc-link {
-        color: #FFFFFFCC !important;
-    }
-    
-    #toc .toc-link {
-        color: #2C3E50 !important;
-    }
 
     .sidebar {
         box-shadow: 0 0 0 0;
@@ -124,6 +126,7 @@
 
         .sidebar-link {
             font-size: 1rem !important;
+            padding-left: 2.5rem;
 
             &.active {
                 background: linear-gradient(90deg, rgba(23, 85, 244, 0), rgba(23, 85, 244, .3));
@@ -132,7 +135,17 @@
                 color:inherit
             }
         }
+
+        .sidebar-group .sidebar-group {
+            padding-left: 0.8em;
+        }
     }
+
+    // Direct links in the root of side nav should not be indented
+    .sidebar > .sidebar-links > li > .sidebar-link {
+        padding-left: 1.3rem;
+    }
+
     * {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -187,13 +200,67 @@
         }
     }
     
+    // Table of Contents
     #toc {
-        padding: 0 9rem !important;
-    }
-    
-    @media screen and (max-width: 1600px) {
-        #toc {
-            padding: 0 4rem !important;
+        padding: 0 0 0 2rem;
+        max-width: calc(50vw - 50% - 6rem); // Fill right-side of content
+
+        .toc-wrapper {
+            max-height: 68vh;
+        }
+
+        .toc-list::before {
+            background: map.get($text-color, "light");
+            
+            [data-theme="dark"] & {
+                background: map.get($text-color, "dark");
+            }
+        }
+
+        .toc-link {
+            color: $dark-text;
+
+            [data-theme="dark"] & {
+                color: $light-text;
+            }
+            
+            &.level2 {
+                font-weight: bold;
+            }
+
+            &.level3 {
+                padding-left: 12px;
+            }
+        }
+
+        .toc-item {
+            &::before {
+                transition: all 1s;
+            }
+
+            &.active {
+                .toc-link {
+                    font-weight: normal;
+                    color: map.get($theme-color, "light");
+                    
+                    [data-theme="dark"] & {
+                        color: map.get($theme-color, "dark");
+                    }
+
+                    &.level2 {
+                        font-weight: bold;
+                    }
+                }
+
+                &::before {
+                    content: "->";
+                    color: map.get($theme-color, "light");
+                    
+                    [data-theme="dark"] & {
+                        color: map.get($theme-color, "dark");
+                    }
+                }
+            }
         }
     }
     
@@ -257,16 +324,7 @@
         border-top: none !important;
     }
     
-    //Homepage Redesign
-    $light-selector: 'html[data-theme="light"]';
-    $dark-selector: 'html[data-theme="dark"]';
-    
-    $light-text: #fff;
-    $dark-text: #2c3e50;
-    $dark-background-color: #1d2536;
-    $background-color: #fff;
-    $border-color: #e5e7eb;
-    
+    //Homepage Redesign    
     [data-theme="dark"] a.title {
         color: $light-text !important;
     }

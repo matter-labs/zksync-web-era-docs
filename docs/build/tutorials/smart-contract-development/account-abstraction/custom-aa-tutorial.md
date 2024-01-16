@@ -1162,5 +1162,5 @@ If you get an error `Not enough balance to cover the fee.`, try increasing the a
 ## Learn More
 
 - To learn more about L1->L2 interaction on zkSync, check out the [documentation](../../../developer-reference/l1-l2-interop.md).
-- To learn more about the `zksync-ethers` SDK, check out its [documentation](../../../sdks/js/README.md).
+- To learn more about the `zksync-ethers` SDK, check out its [documentation](../../../sdks/js/zksync-ethers/getting-started.md).
 - To learn more about the zkSync Era Hardhat plugins, check out the [Hardhat documentation](../../../tooling/hardhat/getting-started.md).
