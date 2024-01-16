@@ -194,6 +194,11 @@
           "type": "302"
         },
         {
+          "source": "/dev/developer-guides/transactions/fee-model.html",
+          "destination": "/build/developer-reference/fee-model.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/reference/concepts/transactions/fee-model.html",
           "destination": "/build/developer-reference/fee-model.html",
           "type": "302"
@@ -1265,6 +1270,11 @@
         },
         {
           "source": "/docs/dev/developer-guides/transactions/fee-model.html",
+          "destination": "/build/developer-reference/fee-model.html",
+          "type": "302"
+        },
+        {
+          "source": "/dev/developer-guides/transactions/fee-model.html",
           "destination": "/build/developer-reference/fee-model.html",
           "type": "302"
         },
