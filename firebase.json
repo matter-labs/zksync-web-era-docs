@@ -204,6 +204,11 @@
           "type": "302"
         },
         {
+          "source": "/dev/developer-guides/transactions/fee-model.html#refunds",
+          "destination": "/build/developer-reference/fee-model.html#refunds",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/developer-guides/bridging/bridging-asset.html",
           "destination": "/build/developer-reference/bridging-asset.html",
           "type": "302"
@@ -1276,6 +1281,11 @@
         {
           "source": "/dev/developer-guides/transactions/fee-model.html",
           "destination": "/build/developer-reference/fee-model.html",
+          "type": "302"
+        },
+        {
+          "source": "/dev/developer-guides/transactions/fee-model.html#refunds",
+          "destination": "/build/developer-reference/fee-model.html#refunds",
           "type": "302"
         },
         {
