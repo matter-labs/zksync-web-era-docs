@@ -1,4 +1,4 @@
-# zkSync Era Documentation
+# zkSync Documentation
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/matter-labs/zksync-web-v2-docs?color=%234E529A&label=changelog)](CHANGELOG.md)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/matter-labs/zksync-wallet/blob/master/LICENSE-MIT) [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue)](https://github.com/matter-labs/zksync-wallet/blob/master/LICENSE-MIT)
@@ -9,7 +9,7 @@
 > zkEVM is a virtual machine that executes smart contracts in a way that is compatible with zero-knowledge-proof computation.
 > Our zkEVM keeps EVM semantics, but is also ZK-friendly and adopts a traditional register-based CPU architecture.
 
-[zkSync Era Docs](https://era.zksync.io/docs) contain up-to-date information about **zkSync Era**.
+[zkSync Docs](https://docs.zksync.io) contain up-to-date information about **zkSync**.
 zkSync Era has built-in EVM compatibility which makes it a unified tool for releasing EVM-compatible ZK rollups.
 We call it [zkEVM](https://zksync.io/zkevm): web3, Layer 2, scaling functionality that preserves your battle-tested code and knowledge gained after years of working with Solidity.
 
@@ -72,25 +72,25 @@ If `lint:spell` doesn't recognize a word, and you’re sure that it’s correct,
 To add a new tutorial:
 
 - Fork the repository and create a new branch locally to add your changes.
-- Add the tutorial markdown file inside the `docs/dev/tutorials` folder.
+- Add the tutorial markdown file inside the `build/tutorials` folder.
 - Give the file an SEO-friendly name, as it is included in the live URL.
-- In the `docs/.vuepress/sidebar/en.ts` file, add the tutorial inside this block:
+- In the `.vuepress/sidebar/en.ts` file, add the tutorial inside this block:
 
 ```js
 {
   text: "Tutorials",
   link: "/dev/tutorials",
   children: [
-        "/dev/tutorials/cross-chain-tutorial.md",
-        "/dev/tutorials/custom-aa-tutorial.md",
-        "/dev/tutorials/aa-daily-spend-limit.md",
-        "/dev/tutorials/custom-paymaster-tutorial.md",
+        "/build/tutorials/cross-chain-tutorial.md",
+        "/build/tutorials/custom-aa-tutorial.md",
+        "/build/tutorials/aa-daily-spend-limit.md",
+        "/build/tutorials/custom-paymaster-tutorial.md",
         // ADD YOUR FILE HERE
   ],
 },
 ```
 
-- If your tutorial contains images, make sure to compress them using https://squoosh.app/ before adding them to the `docs/assets/images` folder.
+- If your tutorial contains images, make sure to compress them using https://squoosh.app/ before adding them to the `assets/images` folder.
 - Finally, create a PR.
 
 ### Deployment

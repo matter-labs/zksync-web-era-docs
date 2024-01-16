@@ -15,6 +15,7 @@ node_modules/
 
 # production
 build
+!docs/build
 dist
 .idea
 lib

@@ -34,18 +34,8 @@
       ],
       "redirects": [
         {
-          "source": "/",
-          "destination": "/docs/",
-          "type": "302"
-        },
-        {
           "source": "/docs/dev/developer-guides/contracts/system-contracts.html",
-          "destination": "/docs/reference/architecture/system-contracts.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/developer-guides/transactions/blocks.html#blocks-in-zksync-2-0",
-          "destination": "/docs/reference/concepts/blocks.html#blocks-in-zksync-era",
+          "destination": "/zk-stack/components/smart-contracts/system-contracts.html",
           "type": "302"
         },
         {
@@ -54,278 +44,1033 @@
           "type": "302"
         },
         {
+          "source": "/contact.html",
+          "destination": "https://zksync.io/contact",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/zksync-v2/aa.html",
-          "destination": "/docs/reference/concepts/account-abstraction.html",
+          "destination": "/zk-stack/concepts/account-abstraction.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/hello-world.html",
-          "destination": "/docs/dev/building-on-zksync/hello-world.html",
+          "destination": "/build/quick-start/hello-world.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-verification.html",
-          "destination": "/docs/dev/how-to/verify-contracts.html",
+          "destination": "/build/tooling/block-explorer/contract-verification.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contracts.html",
-          "destination": "/docs/reference/architecture/contract-development.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/building-on-zksync/contracts/contract-development.html",
-          "destination": "/docs/reference/architecture/contract-development.html",
+          "destination": "/zk-stack/components/smart-contracts/smart-contracts.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/building-on-zksync/events.html",
-          "destination": "/docs/reference/architecture/events.html",
+          "destination": "/build/developer-reference/events.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contracts.html",
-          "destination": "/docs/reference/architecture/contract-development.html",
+          "destination": "/build/developer-reference/contract-development.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-deployment.html",
-          "destination": "/docs/reference/architecture/contract-deployment.html",
+          "destination": "/build/developer-reference/contract-deployment.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/bridging/l1-l2.html",
-          "destination": "/docs/reference/concepts/l1-l2-interop.html",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/bridging/l2-l1.html",
-          "destination": "/docs/reference/concepts/l1-l2-interop.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/building-on-zksync/bridging/l1-l2-interop.html",
-          "destination": "/docs/reference/concepts/l1-l2-interop.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/fundamentals/testnet.html",
-          "destination": "/docs/dev/building-on-zksync/interacting.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/fundamentals/faq.html",
-          "destination": "/docs/reference/troubleshooting/faq.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/hardhat/hardhat-zksync-verify.html",
-          "destination": "/docs/tools/hardhat/hardhat-zksync-verify.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/fundamentals/interacting.html",
-          "destination": "/docs/dev/building-on-zksync/interacting.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/fundamentals/rollups.html",
-          "destination": "/docs/reference/concepts/rollups.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/fundamentals/zkSync.html",
-          "destination": "/docs/reference/concepts/zkSync.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/fundamentals/hyperscaling.html",
-          "destination": "/docs/reference/concepts/hyperscaling.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/developer-guides/transactions/transactions.html",
-          "destination": "/docs/reference/concepts/transactions.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/developer-guides/transactions/blocks.html",
-          "destination": "/docs/reference/concepts/blocks.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/reference/concepts/transactions/blocks.html",
-          "destination": "/docs/reference/concepts/blocks.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/developer-guides/finality.html",
-          "destination": "/docs/reference/concepts/finality.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/developer-guides/system-contracts.html",
-          "destination": "/docs/reference/architecture/system-contracts.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/reference/architecture/contracts/system-contracts.html",
-          "destination": "/docs/reference/architecture/system-contracts.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/developer-guides/aa.html",
-          "destination": "/docs/reference/concepts/account-abstraction.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/reference/concepts/aa.html",
-          "destination": "/docs/reference/concepts/account-abstraction.html",
-          "type": "301"
-        },
-        {
-          "source": "/docs/dev/developer-guides/transactions/fee-model.html",
-          "destination": "/docs/reference/concepts/fee-model.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/reference/concepts/transactions/fee-model.html",
-          "destination": "/docs/reference/concepts/fee-model.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/developer-guides/bridging/bridging-asset.html",
-          "destination": "/docs/reference/concepts/bridging-asset.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/reference/concepts/bridging/bridging-asset.html",
-          "destination": "/docs/reference/concepts/bridging-asset.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
-          "destination": "/docs/reference/concepts/l1-l2-interop.html",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/reference/concepts/bridging/l1-l2-interop.html",
-          "destination": "/docs/reference/concepts/l1-l2-interop.html",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
           "type": "302"
         },
         {
-          "source": "/docs/dev/developer-guides/videos.html",
-          "destination": "/docs/reference/",
+          "source": "/docs/dev/building-on-zksync/bridging/l1-l2-interop.html",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
           "type": "302"
         },
         {
-          "source": "/docs/dev/building-on-zksync/contracts/contract-development.html",
-          "destination": "/docs/reference/architecture/contract-development.html",
+          "source": "/docs/dev/fundamentals/testnet.html",
+          "destination": "/build/quick-start/interact.html",
           "type": "302"
         },
         {
-          "source": "/docs/reference/architecture/contracts/contract-development.html",
-          "destination": "/docs/reference/architecture/contract-development.html",
+          "source": "/docs/dev/fundamentals/faq.html",
+          "destination": "/build/support/faq.html",
           "type": "302"
         },
         {
-          "source": "/docs/dev/building-on-zksync/contracts/differences-with-ethereum.html",
-          "destination": "/docs/reference/architecture/differences-with-ethereum.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
-          "destination": "/docs/reference/architecture/contract-deployment.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/reference/architecture/contracts/contract-deployment.html",
-          "destination": "/docs/reference/architecture/contract-deployment.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/building-on-zksync/contracts/contract-verification.html",
-          "destination": "/docs/dev/how-to/verify-contracts.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/building-on-zksync/events.html",
-          "destination": "/docs/reference/architecture/events.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/troubleshooting/important-links.html",
-          "destination": "/docs/reference/troubleshooting/",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/troubleshooting/changelog.html",
-          "destination": "/docs/reference/troubleshooting/changelog.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/troubleshooting/withdrawal-delay.html",
-          "destination": "/docs/reference/troubleshooting/withdrawal-delay.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/troubleshooting/audit-bug-bounty.html",
-          "destination": "/docs/reference/troubleshooting/audit-bug-bounty.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/troubleshooting/docs-contribution/docs.html",
-          "destination": "/docs/reference/troubleshooting/docs-contribution/docs.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/troubleshooting/docs-contribution/community-resources.html",
-          "destination": "/docs/reference/",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/troubleshooting/faq.html",
-          "destination": "/docs/reference/troubleshooting/faq.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/hardhat{,/**}",
-          "destination": "/docs/tools/hardhat/",
+          "source": "/docs/api/hardhat/hardhat-zksync-verify.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-verify.html",
           "type": "302"
         },
         {
           "source": "/docs/tools/hardhat/testing.html",
-          "destination": "/docs/tools/testing/",
+          "destination": "/build/test-and-debug/hardhat.html",
           "type": "301"
         },
         {
-          "source": "/docs/api/compiler-toolchain{,/**}",
-          "destination": "/docs/tools/compiler-toolchain/",
+          "source": "/docs/dev/fundamentals/interacting.html",
+          "destination": "/build/quick-start/interact.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/fundamentals/rollups.html",
+          "destination": "/build/developer-reference/rollups.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/fundamentals/zkSync.html",
+          "destination": "/build/developer-reference/zkSync.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/fundamentals/hyperscaling.html",
+          "destination": "/zk-stack/concepts/hyperchains-hyperscaling.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/developer-guides/transactions/transactions.html",
+          "destination": "/zk-stack/concepts/transaction-lifecycle.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/transactions/transactions.html",
+          "destination": "/zk-stack/concepts/transaction-lifecycle.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/developer-guides/transactions/blocks.html",
+          "destination": "/zk-stack/concepts/blocks.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/transactions/blocks.html",
+          "destination": "/zk-stack/concepts/blocks.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/developer-guides/finality.html",
+          "destination": "/zk-stack/concepts/finality.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/developer-guides/system-contracts.html",
+          "destination": "/build/developer-reference/system-contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contracts/system-contracts.html",
+          "destination": "/zk-stack/components/smart-contracts/system-contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/developer-guides/aa.html",
+          "destination": "/build/developer-reference/account-abstraction.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/aa.html",
+          "destination": "/build/developer-reference/account-abstraction.html",
+          "type": "301"
+        },
+        {
+          "source": "/docs/dev/developer-guides/transactions/fee-model.html",
+          "destination": "/build/developer-reference/fee-model.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/transactions/fee-model.html",
+          "destination": "/build/developer-reference/fee-model.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/developer-guides/bridging/bridging-asset.html",
+          "destination": "/build/developer-reference/bridging-asset.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/bridging/bridging-asset.html",
+          "destination": "/build/developer-reference/bridging-asset.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/bridging/l1-l2-interop.html",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/developer-guides/videos.html",
+          "destination": "/zk-stack/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/contracts/contract-development.html",
+          "destination": "/build/developer-reference/contract-development.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contracts/contract-development.html",
+          "destination": "/build/developer-reference/contract-development.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/contracts/differences-with-ethereum.html",
+          "destination": "/build/developer-reference/differences-with-ethereum.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
+          "destination": "/build/developer-reference/contract-deployment.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contracts/contract-deployment.html",
+          "destination": "/build/developer-reference/contract-deployment.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/contracts/contract-verification.html",
+          "destination": "/build/tooling/block-explorer/contract-verification.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/events.html",
+          "destination": "/build/developer-reference/events.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/troubleshooting/important-links.html",
+          "destination": "/build/support/community-channels.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/troubleshooting/changelog.html",
+          "destination": "/build/support/faq.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/troubleshooting/withdrawal-delay.html",
+          "destination": "/build/support/withdrawal-delay.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/troubleshooting/audit-bug-bounty.html",
+          "destination": "/build/support/audit-bug-bounty.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/troubleshooting/docs-contribution/docs.html",
+          "destination": "/build/support/contribution-track.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/troubleshooting/docs-contribution/community-resources.html",
+          "destination": "/build/support/community-channels.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/troubleshooting/faq.html",
+          "destination": "/build/support/faq.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/hardhat{,/**}",
+          "destination": "/build/tooling/hardhat/getting-started.html",
           "type": "302"
         },
         {
           "source": "/docs/api/tools/zksync-cli{,/**}",
-          "destination": "/docs/tools/zksync-cli/",
+          "destination": "/build/tooling/zksync-cli/getting-started.html",
           "type": "302"
         },
         {
           "source": "/docs/api/tools/block-explorer{,/**}",
-          "destination": "/docs/tools/block-explorer/",
+          "destination": "/build/tooling/block-explorer/getting-started.html",
           "type": "302"
         },
         {
           "source": "/docs/api/tools/block-explorer/contract-verification.html#enter-contract-details",
-          "destination": "/docs/tools/block-explorer/contract-verification.html#enter-contract-details",
+          "destination": "/build/tooling/block-explorer/contract-verification.html#user-interface",
           "type": "302"
         },
         {
           "source": "/docs/api/tools{,/**}",
-          "destination": "/docs/tools/",
+          "destination": "/build/tooling/zksync-cli/getting-started.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/community-tutorials/the-graph-tutorial.html",
-          "destination": "https://github.com/zkSync-Community-Hub/tutorials/blob/main/tutorials/the-graph/TUTORIAL.md",
+          "destination": "/build/tutorials/tooling-guides/the-graph.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/",
+          "destination": "/build/api.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/api.html",
+          "destination": "/build/api.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/",
+          "destination": "/build/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials.html",
+          "destination": "/build/quick-start/hello-world.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/",
+          "destination": "/build/developer-reference/rollups.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/",
+          "destination": "/build/tooling/zksync-cli/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/",
+          "destination": "/build/sdks/go/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/accounts-l1-l2.html",
+          "destination": "/build/sdks/go/accounts-l1-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/accounts.html",
+          "destination": "/build/sdks/go/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/clients.html",
+          "destination": "/build/sdks/go/clients.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/contracts.html",
+          "destination": "/build/sdks/go/contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/features.html",
+          "destination": "/build/sdks/go/features.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/getting-started.html",
+          "destination": "/build/sdks/go/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/paymaster-utils.html",
+          "destination": "/build/sdks/go/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/utils.html",
+          "destination": "/build/sdks/go/utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/java/",
+          "destination": "/build/sdks/java/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/java/accounts-l1-l2.html",
+          "destination": "/build/sdks/java/accounts-l1-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/java/accounts.html",
+          "destination": "/build/sdks/java/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/java/getting-started.html",
+          "destination": "/build/sdks/java/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/java/providers.html",
+          "destination": "/build/sdks/java/providers.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/",
+          "destination": "/build/sdks/js/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/accounts-l1-l2.html",
+          "destination": "/build/sdks/js/accounts-l1-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/accounts.html",
+          "destination": "/build/sdks/js/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/contracts.html",
+          "destination": "/build/sdks/js/contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/features.html",
+          "destination": "/build/sdks/js/features.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/front-end.html",
+          "destination": "/build/sdks/js/front-end.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/getting-started.html",
+          "destination": "/build/sdks/js/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/paymaster-utils.html",
+          "destination": "/build/sdks/js/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/providers.html",
+          "destination": "/build/sdks/js/providers.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/types.html",
+          "destination": "/build/sdks/js/types.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/utils.html",
+          "destination": "/build/sdks/js/utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/",
+          "destination": "/build/sdks/python/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/accounts-l1-l2.html",
+          "destination": "/build/sdks/python/accounts-l1-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/accounts.html",
+          "destination": "/build/sdks/python/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/contracts.html",
+          "destination": "/build/sdks/python/contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/getting-started.html",
+          "destination": "/build/sdks/python/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/paymaster-utils.html",
+          "destination": "/build/sdks/python/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/providers.html",
+          "destination": "/build/sdks/python/providers.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/types.html",
+          "destination": "/build/sdks/python/types.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/rust/",
+          "destination": "/build/sdks/rust/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/rust/contract-deployment-and-interaction.html",
+          "destination": "/build/sdks/rust/contract-deployment-and-interaction.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/rust/getting-started.html",
+          "destination": "/build/sdks/rust/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/best-practices.html",
+          "destination": "/build/quick-start/best-practices.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/hello-world.html",
+          "destination": "/build/quick-start/hello-world.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/useful-address.html",
+          "destination": "/build/quick-start/useful-address.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/community-tutorials/",
+          "destination": "/build/tutorials/tooling-guides/wallet-connect.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to/",
+          "destination": "/build/tutorials/how-to/deposit-eth-to-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to/estimate-gas.html",
+          "destination": "/build/tutorials/how-to/estimate-gas.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to/send-message-l2-l1.html",
+          "destination": "/build/tutorials/how-to/send-message-l2-l1.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to/send-transaction-l1-l2.html",
+          "destination": "/build/tutorials/how-to/send-transaction-l1-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to/transfer-token-l2.html",
+          "destination": "/build/tutorials/how-to/transfer-token-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to/verify-contracts.html",
+          "destination": "/build/tutorials/how-to/verify-contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/",
+          "destination": "/build/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/aa-daily-spend-limit.html",
+          "destination": "/build/tutorials/smart-contract-development/account-abstraction/daily-spend-limit.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/api3-usd-paymaster-tutorial.html",
+          "destination": "/build/tutorials/tooling-guides/api3.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/cross-chain-tutorial.html",
+          "destination": "/build/tutorials/smart-contract-development/cross-chain-tutorial.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/custom-aa-tutorial.html",
+          "destination": "/build/tutorials/smart-contract-development/account-abstraction/custom-aa-tutorial.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/custom-paymaster-tutorial.html",
+          "destination": "/build/tutorials/smart-contract-development/paymasters/custom-paymaster-tutorial.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/gated-nft-paymaster-tutorial.html",
+          "destination": "/build/tutorials/dapp-development/gated-nft-paymaster-tutorial.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contract-deployment.html",
+          "destination": "/build/developer-reference/contract-deployment.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contract-development.html",
+          "destination": "/build/developer-reference/contract-development.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/differences-with-ethereum.html",
+          "destination": "/build/developer-reference/differences-with-ethereum.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/events.html",
+          "destination": "/build/developer-reference/events.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/system-contracts.html",
+          "destination": "/zk-stack/components/smart-contracts/system-contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/account-abstraction.html",
+          "destination": "/build/developer-reference/account-abstraction.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/blocks.html",
+          "destination": "/zk-stack/concepts/blocks.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/bridging-asset.html",
+          "destination": "/build/developer-reference/bridging-asset.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/fee-model.html",
+          "destination": "/build/developer-reference/fee-model.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/finality.html",
+          "destination": "/zk-stack/concepts/finality.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/hyperscaling.html",
+          "destination": "/zk-stack/concepts/hyperchains-hyperscaling.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/l1-l2-interop.html",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/rollups.html",
+          "destination": "/build/developer-reference/rollups.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/transactions.html",
+          "destination": "/zk-stack/concepts/transaction-lifecycle.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/validiums.html",
+          "destination": "/zk-stack/concepts/validiums.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/zkSync.html",
+          "destination": "/build/developer-reference/zkSync.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/troubleshooting/",
+          "destination": "/build/support/faq.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/troubleshooting/audit-bug-bounty.html",
+          "destination": "/build/support/audit-bug-bounty.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/troubleshooting/changelog.html",
+          "destination": "/build/support/faq.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/troubleshooting/faq.html",
+          "destination": "/build/support/faq.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/troubleshooting/withdrawal-delay.html",
+          "destination": "/build/support/withdrawal-delay.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/block-explorer/",
+          "destination": "/build/tooling/block-explorer/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/block-explorer/block-explorer-api.html",
+          "destination": "/build/tooling/block-explorer/block-explorer-api.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/block-explorer/block-explorer-menu.html",
+          "destination": "/build/tooling/block-explorer/block-explorer-menu.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/block-explorer/contract-verification.html",
+          "destination": "/build/tooling/block-explorer/contract-verification.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/compiler-toolchain/",
+          "destination": "/zk-stack/components/compiler/toolchain/overview.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/compiler-toolchain/llvm.html",
+          "destination": "/zk-stack/components/compiler/toolchain/llvm.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/compiler-toolchain/overview.html",
+          "destination": "/zk-stack/components/compiler/toolchain/overview.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/compiler-toolchain/solidity.html",
+          "destination": "/zk-stack/components/compiler/toolchain/solidity.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/compiler-toolchain/vyper.html",
+          "destination": "/zk-stack/components/compiler/toolchain/vyper.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/",
+          "destination": "/build/tooling/hardhat/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/compiling-libraries.html",
+          "destination": "/build/tooling/hardhat/compiling-libraries.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/getting-started.html",
+          "destination": "/build/tooling/hardhat/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-chai-matchers.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-chai-matchers.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-deploy.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-deploy.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-ethers.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-ethers.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-node.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-node.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-solc.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-solc.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-upgradable.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-upgradable.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-verify-vyper.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-verify-vyper.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-verify.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-verify.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-vyper.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-vyper.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/migrating-to-zksync.html",
+          "destination": "/build/tooling/hardhat/migrating-to-zksync.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/other-plugins.html",
+          "destination": "/build/tooling/hardhat/other-plugins.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/plugins.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-toolbox.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/plugins.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-toolbox.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/testing/",
+          "destination": "/build/test-and-debug/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/testing/dockerized-testing.html",
+          "destination": "/build/test-and-debug/dockerized-l1-l2-nodes.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/testing/era-test-node.html",
+          "destination": "/build/test-and-debug/era-test-node.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/zksync-cli/",
+          "destination": "/build/tooling/zksync-cli/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/create.html",
+          "destination": "/build/sdks/go/examples/create.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/create2.html",
+          "destination": "/build/sdks/go/examples/create2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/deposit.html",
+          "destination": "/build/sdks/go/examples/deposit.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/get-confirmed-tokens.html",
+          "destination": "/build/sdks/go/examples/get-confirmed-tokens.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/transfer.html",
+          "destination": "/build/sdks/go/examples/transfer.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/withdraw.html",
+          "destination": "/build/sdks/go/examples/withdraw.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/accounts.html",
+          "destination": "/build/sdks/go/types/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/clients.html",
+          "destination": "/build/sdks/go/types/clients.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/eip712.html",
+          "destination": "/build/sdks/go/types/eip712.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/intro.html",
+          "destination": "/build/sdks/go/types/intro.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/types.html",
+          "destination": "/build/sdks/go/types/types.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/",
+          "destination": "/build/sdks/js/zksync-ethers/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/accounts-l1-l2.html",
+          "destination": "/build/sdks/js/zksync-ethers/accounts-l1-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/accounts.html",
+          "destination": "/build/sdks/js/zksync-ethers/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/contracts.html",
+          "destination": "/build/sdks/js/zksync-ethers/contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/features.html",
+          "destination": "/build/sdks/js/zksync-ethers/features.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/front-end.html",
+          "destination": "/build/sdks/js/zksync-ethers/front-end.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/getting-started.html",
+          "destination": "/build/sdks/js/zksync-ethers/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/migration.html",
+          "destination": "/build/sdks/js/zksync-ethers/migration.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/paymaster-utils.html",
+          "destination": "/build/sdks/js/zksync-ethers/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/providers.html",
+          "destination": "/build/sdks/js/zksync-ethers/providers.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/types.html",
+          "destination": "/build/sdks/js/zksync-ethers/types.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/utils.html",
+          "destination": "/build/sdks/js/zksync-ethers/utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/troubleshooting/docs-contribution/docs.html",
+          "destination": "/build/support/contribution-track.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/zksync-cli/examples/contract-interaction.html",
+          "destination": "/build/tooling/zksync-cli/examples/contract-interaction.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/custom-paymaster/deploy-account.html",
+          "destination": "/build/sdks/go/examples/custom-paymaster/deploy-account.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/custom-paymaster/deploy-token.html",
+          "destination": "/build/sdks/go/examples/custom-paymaster/deploy-token.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/custom-paymaster/use-paymaster.html",
+          "destination": "/build/sdks/go/examples/custom-paymaster/use-paymaster.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/create.html",
+          "destination": "/build/sdks/js/zksync-ethers/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/create2.html",
+          "destination": "/build/sdks/js/zksync-ethers/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/deposit.html",
+          "destination": "/build/sdks/js/zksync-ethers/accounts-l1-l2.html#deposit",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/get-confirmed-tokens.html",
+          "destination": "/build/sdks/js/zksync-ethers/accounts.html#getallbalances",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/transfer.html",
+          "destination": "/build/sdks/js/zksync-ethers/accounts.html#transfer",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/withdraw.html",
+          "destination": "/build/sdks/js/zksync-ethers/accounts.html#withdraw",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/custom-paymaster/deploy-account.html",
+          "destination": "/build/sdks/js/zksync-ethers/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/custom-paymaster/deploy-token.html",
+          "destination": "/build/sdks/js/zksync-ethers/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/custom-paymaster/use-paymaster.html",
+          "destination": "/build/sdks/js/zksync-ethers/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/interacting.html",
+          "destination": "/build/quick-start/interact.html",
+          "type": "302"
+        },
+        {
+          "regex": "/docs/dev/.*",
+          "destination": "/build",
+          "type": "302"
+        },
+        {
+          "regex": "/docs/.*",
+          "destination": "/",
+          "type": "302"
+        },
+        {
+          "source": "/docs",
+          "destination": "/",
           "type": "302"
         }
       ]
@@ -364,13 +1109,8 @@
       ],
       "redirects": [
         {
-          "source": "/",
-          "destination": "/docs/",
-          "type": "302"
-        },
-        {
           "source": "/docs/dev/developer-guides/contracts/system-contracts.html",
-          "destination": "/docs/reference/architecture/system-contracts.html",
+          "destination": "/zk-stack/components/smart-contracts/system-contracts.html",
           "type": "302"
         },
         {
@@ -379,283 +1119,1033 @@
           "type": "302"
         },
         {
+          "source": "/contact.html",
+          "destination": "https://zksync.io/contact",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/zksync-v2/aa.html",
-          "destination": "/docs/reference/concepts/account-abstraction.html",
+          "destination": "/zk-stack/concepts/account-abstraction.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/hello-world.html",
-          "destination": "/docs/dev/building-on-zksync/hello-world.html",
+          "destination": "/build/quick-start/hello-world.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-verification.html",
-          "destination": "/docs/dev/how-to/verify-contracts.html",
+          "destination": "/build/tooling/block-explorer/contract-verification.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contracts.html",
-          "destination": "/docs/reference/architecture/contract-development.html",
+          "destination": "/zk-stack/components/smart-contracts/smart-contracts.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/building-on-zksync/events.html",
-          "destination": "/docs/reference/architecture/events.html",
+          "destination": "/build/developer-reference/events.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contracts.html",
-          "destination": "/docs/reference/architecture/contract-development.html",
+          "destination": "/build/developer-reference/contract-development.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/contracts/contract-deployment.html",
-          "destination": "/docs/reference/architecture/contract-deployment.html",
+          "destination": "/build/developer-reference/contract-deployment.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/bridging/l1-l2.html",
-          "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/bridging/l2-l1.html",
-          "destination": "/docs/reference/concepts/bridging/l1-l2-interop.html#l2-to-l1",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/reference/concepts/bridging/l1-l2-interop.html",
-          "destination": "/docs/reference/concepts/l1-l2-interop.html",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/bridging/l1-l2-interop.html",
-          "destination": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/fundamentals/testnet.html",
-          "destination": "/docs/dev/building-on-zksync/interacting.html",
+          "destination": "/build/quick-start/interact.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/fundamentals/faq.html",
-          "destination": "/docs/reference/troubleshooting/faq.html",
+          "destination": "/build/support/faq.html",
           "type": "302"
         },
         {
           "source": "/docs/api/hardhat/hardhat-zksync-verify.html",
-          "destination": "/docs/tools/hardhat/hardhat-zksync-verify.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-verify.html",
           "type": "302"
         },
         {
           "source": "/docs/tools/hardhat/testing.html",
-          "destination": "/docs/tools/testing/",
+          "destination": "/build/test-and-debug/hardhat.html",
           "type": "301"
         },
         {
           "source": "/docs/dev/fundamentals/interacting.html",
-          "destination": "/docs/dev/building-on-zksync/interacting.html",
+          "destination": "/build/quick-start/interact.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/fundamentals/rollups.html",
-          "destination": "/docs/reference/concepts/rollups.html",
+          "destination": "/build/developer-reference/rollups.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/fundamentals/zkSync.html",
-          "destination": "/docs/reference/concepts/zkSync.html",
+          "destination": "/build/developer-reference/zkSync.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/fundamentals/hyperscaling.html",
-          "destination": "/docs/reference/concepts/hyperscaling.html",
+          "destination": "/zk-stack/concepts/hyperchains-hyperscaling.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/transactions/transactions.html",
-          "destination": "/docs/reference/concepts/transactions.html",
+          "destination": "/zk-stack/concepts/transaction-lifecycle.html",
           "type": "302"
         },
         {
           "source": "/docs/reference/concepts/transactions/transactions.html",
-          "destination": "/docs/reference/concepts/transactions.html",
+          "destination": "/zk-stack/concepts/transaction-lifecycle.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/transactions/blocks.html",
-          "destination": "/docs/reference/concepts/blocks.html",
+          "destination": "/zk-stack/concepts/blocks.html",
           "type": "302"
         },
         {
           "source": "/docs/reference/concepts/transactions/blocks.html",
-          "destination": "/docs/reference/concepts/blocks.html",
+          "destination": "/zk-stack/concepts/blocks.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/finality.html",
-          "destination": "/docs/reference/concepts/finality.html",
+          "destination": "/zk-stack/concepts/finality.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/system-contracts.html",
-          "destination": "/docs/reference/architecture/system-contracts.html",
+          "destination": "/build/developer-reference/system-contracts.html",
           "type": "302"
         },
         {
           "source": "/docs/reference/architecture/contracts/system-contracts.html",
-          "destination": "/docs/reference/architecture/system-contracts.html",
+          "destination": "/zk-stack/components/smart-contracts/system-contracts.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/aa.html",
-          "destination": "/docs/reference/concepts/account-abstraction.html",
+          "destination": "/build/developer-reference/account-abstraction.html",
           "type": "302"
         },
         {
           "source": "/docs/reference/concepts/aa.html",
-          "destination": "/docs/reference/concepts/account-abstraction.html",
+          "destination": "/build/developer-reference/account-abstraction.html",
           "type": "301"
         },
         {
           "source": "/docs/dev/developer-guides/transactions/fee-model.html",
-          "destination": "/docs/reference/concepts/fee-model.html",
+          "destination": "/build/developer-reference/fee-model.html",
           "type": "302"
         },
         {
           "source": "/docs/reference/concepts/transactions/fee-model.html",
-          "destination": "/docs/reference/concepts/fee-model.html",
+          "destination": "/build/developer-reference/fee-model.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/bridging/bridging-asset.html",
-          "destination": "/docs/reference/concepts/bridging/bridging-asset.html",
+          "destination": "/build/developer-reference/bridging-asset.html",
           "type": "302"
         },
         {
           "source": "/docs/reference/concepts/bridging/bridging-asset.html",
-          "destination": "/docs/reference/concepts/bridging-asset.html",
+          "destination": "/build/developer-reference/bridging-asset.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/bridging/l1-l2-interop.html",
-          "destination": "/docs/reference/concepts/bridging/l1-l2-interop.html",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/reference/concepts/bridging/l1-l2-interop.html",
-          "destination": "/docs/reference/concepts/l1-l2-interop.html",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/developer-guides/videos.html",
-          "destination": "/docs/reference/",
+          "destination": "/zk-stack/",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-development.html",
-          "destination": "/docs/reference/architecture/contract-development.html",
+          "destination": "/build/developer-reference/contract-development.html",
           "type": "302"
         },
         {
           "source": "/docs/reference/architecture/contracts/contract-development.html",
-          "destination": "/docs/reference/architecture/contract-development.html",
+          "destination": "/build/developer-reference/contract-development.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/differences-with-ethereum.html",
-          "destination": "/docs/reference/architecture/differences-with-ethereum.html",
+          "destination": "/build/developer-reference/differences-with-ethereum.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-deployment.html",
-          "destination": "/docs/reference/architecture/contract-deployment.html",
+          "destination": "/build/developer-reference/contract-deployment.html",
           "type": "302"
         },
         {
           "source": "/docs/reference/architecture/contracts/contract-deployment.html",
-          "destination": "/docs/reference/architecture/contract-deployment.html",
+          "destination": "/build/developer-reference/contract-deployment.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/contracts/contract-verification.html",
-          "destination": "/docs/dev/how-to/verify-contracts.html",
+          "destination": "/build/tooling/block-explorer/contract-verification.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/building-on-zksync/events.html",
-          "destination": "/docs/reference/architecture/events.html",
+          "destination": "/build/developer-reference/events.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/troubleshooting/important-links.html",
-          "destination": "/docs/reference/troubleshooting/",
+          "destination": "/build/support/community-channels.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/troubleshooting/changelog.html",
-          "destination": "/docs/reference/troubleshooting/changelog.html",
+          "destination": "/build/support/faq.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/troubleshooting/withdrawal-delay.html",
-          "destination": "/docs/reference/troubleshooting/withdrawal-delay.html",
+          "destination": "/build/support/withdrawal-delay.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/troubleshooting/audit-bug-bounty.html",
-          "destination": "/docs/reference/troubleshooting/audit-bug-bounty.html",
+          "destination": "/build/support/audit-bug-bounty.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/troubleshooting/docs-contribution/docs.html",
-          "destination": "/docs/reference/troubleshooting/docs-contribution/docs.html",
+          "destination": "/build/support/contribution-track.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/troubleshooting/docs-contribution/community-resources.html",
-          "destination": "/docs/reference/",
+          "destination": "/build/support/community-channels.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/troubleshooting/faq.html",
-          "destination": "/docs/reference/troubleshooting/faq.html",
+          "destination": "/build/support/faq.html",
           "type": "302"
         },
         {
           "source": "/docs/api/hardhat{,/**}",
-          "destination": "/docs/tools/hardhat/",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/compiler-toolchain{,/**}",
-          "destination": "/docs/tools/compiler-toolchain/",
+          "destination": "/build/tooling/hardhat/getting-started.html",
           "type": "302"
         },
         {
           "source": "/docs/api/tools/zksync-cli{,/**}",
-          "destination": "/docs/tools/zksync-cli/",
+          "destination": "/build/tooling/zksync-cli/getting-started.html",
           "type": "302"
         },
         {
           "source": "/docs/api/tools/block-explorer{,/**}",
-          "destination": "/docs/tools/block-explorer/",
+          "destination": "/build/tooling/block-explorer/getting-started.html",
           "type": "302"
         },
         {
           "source": "/docs/api/tools/block-explorer/contract-verification.html#enter-contract-details",
-          "destination": "/docs/tools/block-explorer/contract-verification.html#enter-contract-details",
+          "destination": "/build/tooling/block-explorer/contract-verification.html#user-interface",
           "type": "302"
         },
         {
           "source": "/docs/api/tools{,/**}",
-          "destination": "/docs/tools/",
+          "destination": "/build/tooling/zksync-cli/getting-started.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/community-tutorials/the-graph-tutorial.html",
-          "destination": "https://github.com/zkSync-Community-Hub/tutorials/blob/main/tutorials/the-graph/TUTORIAL.md",
+          "destination": "/build/tutorials/tooling-guides/the-graph.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/",
+          "destination": "/build/api.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/api.html",
+          "destination": "/build/api.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/",
+          "destination": "/build/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials.html",
+          "destination": "/build/quick-start/hello-world.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/",
+          "destination": "/build/developer-reference/rollups.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/",
+          "destination": "/build/tooling/zksync-cli/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/",
+          "destination": "/build/sdks/go/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/accounts-l1-l2.html",
+          "destination": "/build/sdks/go/accounts-l1-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/accounts.html",
+          "destination": "/build/sdks/go/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/clients.html",
+          "destination": "/build/sdks/go/clients.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/contracts.html",
+          "destination": "/build/sdks/go/contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/features.html",
+          "destination": "/build/sdks/go/features.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/getting-started.html",
+          "destination": "/build/sdks/go/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/paymaster-utils.html",
+          "destination": "/build/sdks/go/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/utils.html",
+          "destination": "/build/sdks/go/utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/java/",
+          "destination": "/build/sdks/java/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/java/accounts-l1-l2.html",
+          "destination": "/build/sdks/java/accounts-l1-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/java/accounts.html",
+          "destination": "/build/sdks/java/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/java/getting-started.html",
+          "destination": "/build/sdks/java/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/java/providers.html",
+          "destination": "/build/sdks/java/providers.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/",
+          "destination": "/build/sdks/js/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/accounts-l1-l2.html",
+          "destination": "/build/sdks/js/accounts-l1-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/accounts.html",
+          "destination": "/build/sdks/js/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/contracts.html",
+          "destination": "/build/sdks/js/contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/features.html",
+          "destination": "/build/sdks/js/features.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/front-end.html",
+          "destination": "/build/sdks/js/front-end.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/getting-started.html",
+          "destination": "/build/sdks/js/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/paymaster-utils.html",
+          "destination": "/build/sdks/js/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/providers.html",
+          "destination": "/build/sdks/js/providers.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/types.html",
+          "destination": "/build/sdks/js/types.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/utils.html",
+          "destination": "/build/sdks/js/utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/",
+          "destination": "/build/sdks/python/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/accounts-l1-l2.html",
+          "destination": "/build/sdks/python/accounts-l1-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/accounts.html",
+          "destination": "/build/sdks/python/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/contracts.html",
+          "destination": "/build/sdks/python/contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/getting-started.html",
+          "destination": "/build/sdks/python/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/paymaster-utils.html",
+          "destination": "/build/sdks/python/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/providers.html",
+          "destination": "/build/sdks/python/providers.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/python/types.html",
+          "destination": "/build/sdks/python/types.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/rust/",
+          "destination": "/build/sdks/rust/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/rust/contract-deployment-and-interaction.html",
+          "destination": "/build/sdks/rust/contract-deployment-and-interaction.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/rust/getting-started.html",
+          "destination": "/build/sdks/rust/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/best-practices.html",
+          "destination": "/build/quick-start/best-practices.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/hello-world.html",
+          "destination": "/build/quick-start/hello-world.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/useful-address.html",
+          "destination": "/build/quick-start/useful-address.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/community-tutorials/",
+          "destination": "/build/tutorials/tooling-guides/wallet-connect.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to/",
+          "destination": "/build/tutorials/how-to/deposit-eth-to-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to/estimate-gas.html",
+          "destination": "/build/tutorials/how-to/estimate-gas.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to/send-message-l2-l1.html",
+          "destination": "/build/tutorials/how-to/send-message-l2-l1.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to/send-transaction-l1-l2.html",
+          "destination": "/build/tutorials/how-to/send-transaction-l1-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to/transfer-token-l2.html",
+          "destination": "/build/tutorials/how-to/transfer-token-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to/verify-contracts.html",
+          "destination": "/build/tutorials/how-to/verify-contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/",
+          "destination": "/build/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/aa-daily-spend-limit.html",
+          "destination": "/build/tutorials/smart-contract-development/account-abstraction/daily-spend-limit.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/api3-usd-paymaster-tutorial.html",
+          "destination": "/build/tutorials/tooling-guides/api3.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/cross-chain-tutorial.html",
+          "destination": "/build/tutorials/smart-contract-development/cross-chain-tutorial.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/custom-aa-tutorial.html",
+          "destination": "/build/tutorials/smart-contract-development/account-abstraction/custom-aa-tutorial.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/custom-paymaster-tutorial.html",
+          "destination": "/build/tutorials/smart-contract-development/paymasters/custom-paymaster-tutorial.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/gated-nft-paymaster-tutorial.html",
+          "destination": "/build/tutorials/dapp-development/gated-nft-paymaster-tutorial.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contract-deployment.html",
+          "destination": "/build/developer-reference/contract-deployment.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/contract-development.html",
+          "destination": "/build/developer-reference/contract-development.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/differences-with-ethereum.html",
+          "destination": "/build/developer-reference/differences-with-ethereum.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/events.html",
+          "destination": "/build/developer-reference/events.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/architecture/system-contracts.html",
+          "destination": "/zk-stack/components/smart-contracts/system-contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/account-abstraction.html",
+          "destination": "/build/developer-reference/account-abstraction.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/blocks.html",
+          "destination": "/zk-stack/concepts/blocks.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/bridging-asset.html",
+          "destination": "/build/developer-reference/bridging-asset.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/fee-model.html",
+          "destination": "/build/developer-reference/fee-model.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/finality.html",
+          "destination": "/zk-stack/concepts/finality.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/hyperscaling.html",
+          "destination": "/zk-stack/concepts/hyperchains-hyperscaling.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/l1-l2-interop.html",
+          "destination": "/build/developer-reference/l1-l2-interop.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/rollups.html",
+          "destination": "/build/developer-reference/rollups.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/transactions.html",
+          "destination": "/zk-stack/concepts/transaction-lifecycle.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/validiums.html",
+          "destination": "/zk-stack/concepts/validiums.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/concepts/zkSync.html",
+          "destination": "/build/developer-reference/zkSync.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/troubleshooting/",
+          "destination": "/build/support/faq.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/troubleshooting/audit-bug-bounty.html",
+          "destination": "/build/support/audit-bug-bounty.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/troubleshooting/changelog.html",
+          "destination": "/build/support/faq.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/troubleshooting/faq.html",
+          "destination": "/build/support/faq.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/troubleshooting/withdrawal-delay.html",
+          "destination": "/build/support/withdrawal-delay.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/block-explorer/",
+          "destination": "/build/tooling/block-explorer/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/block-explorer/block-explorer-api.html",
+          "destination": "/build/tooling/block-explorer/block-explorer-api.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/block-explorer/block-explorer-menu.html",
+          "destination": "/build/tooling/block-explorer/block-explorer-menu.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/block-explorer/contract-verification.html",
+          "destination": "/build/tooling/block-explorer/contract-verification.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/compiler-toolchain/",
+          "destination": "/zk-stack/components/compiler/toolchain/overview.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/compiler-toolchain/llvm.html",
+          "destination": "/zk-stack/components/compiler/toolchain/llvm.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/compiler-toolchain/overview.html",
+          "destination": "/zk-stack/components/compiler/toolchain/overview.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/compiler-toolchain/solidity.html",
+          "destination": "/zk-stack/components/compiler/toolchain/solidity.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/compiler-toolchain/vyper.html",
+          "destination": "/zk-stack/components/compiler/toolchain/vyper.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/",
+          "destination": "/build/tooling/hardhat/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/compiling-libraries.html",
+          "destination": "/build/tooling/hardhat/compiling-libraries.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/getting-started.html",
+          "destination": "/build/tooling/hardhat/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-chai-matchers.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-chai-matchers.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-deploy.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-deploy.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-ethers.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-ethers.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-node.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-node.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-solc.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-solc.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-upgradable.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-upgradable.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-verify-vyper.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-verify-vyper.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-verify.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-verify.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/hardhat-zksync-vyper.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-vyper.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/migrating-to-zksync.html",
+          "destination": "/build/tooling/hardhat/migrating-to-zksync.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/other-plugins.html",
+          "destination": "/build/tooling/hardhat/other-plugins.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/plugins.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-toolbox.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat/plugins.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync-toolbox.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/testing/",
+          "destination": "/build/test-and-debug/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/testing/dockerized-testing.html",
+          "destination": "/build/test-and-debug/dockerized-l1-l2-nodes.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/testing/era-test-node.html",
+          "destination": "/build/test-and-debug/era-test-node.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/zksync-cli/",
+          "destination": "/build/tooling/zksync-cli/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/create.html",
+          "destination": "/build/sdks/go/examples/create.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/create2.html",
+          "destination": "/build/sdks/go/examples/create2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/deposit.html",
+          "destination": "/build/sdks/go/examples/deposit.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/get-confirmed-tokens.html",
+          "destination": "/build/sdks/go/examples/get-confirmed-tokens.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/transfer.html",
+          "destination": "/build/sdks/go/examples/transfer.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/withdraw.html",
+          "destination": "/build/sdks/go/examples/withdraw.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/accounts.html",
+          "destination": "/build/sdks/go/types/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/clients.html",
+          "destination": "/build/sdks/go/types/clients.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/eip712.html",
+          "destination": "/build/sdks/go/types/eip712.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/intro.html",
+          "destination": "/build/sdks/go/types/intro.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/types.html",
+          "destination": "/build/sdks/go/types/types.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/",
+          "destination": "/build/sdks/js/zksync-ethers/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/accounts-l1-l2.html",
+          "destination": "/build/sdks/js/zksync-ethers/accounts-l1-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/accounts.html",
+          "destination": "/build/sdks/js/zksync-ethers/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/contracts.html",
+          "destination": "/build/sdks/js/zksync-ethers/contracts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/features.html",
+          "destination": "/build/sdks/js/zksync-ethers/features.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/front-end.html",
+          "destination": "/build/sdks/js/zksync-ethers/front-end.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/getting-started.html",
+          "destination": "/build/sdks/js/zksync-ethers/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/migration.html",
+          "destination": "/build/sdks/js/zksync-ethers/migration.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/paymaster-utils.html",
+          "destination": "/build/sdks/js/zksync-ethers/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/providers.html",
+          "destination": "/build/sdks/js/zksync-ethers/providers.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/types.html",
+          "destination": "/build/sdks/js/zksync-ethers/types.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/utils.html",
+          "destination": "/build/sdks/js/zksync-ethers/utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/troubleshooting/docs-contribution/docs.html",
+          "destination": "/build/support/contribution-track.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/zksync-cli/examples/contract-interaction.html",
+          "destination": "/build/tooling/zksync-cli/examples/contract-interaction.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/custom-paymaster/deploy-account.html",
+          "destination": "/build/sdks/go/examples/custom-paymaster/deploy-account.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/custom-paymaster/deploy-token.html",
+          "destination": "/build/sdks/go/examples/custom-paymaster/deploy-token.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/custom-paymaster/use-paymaster.html",
+          "destination": "/build/sdks/go/examples/custom-paymaster/use-paymaster.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/create.html",
+          "destination": "/build/sdks/js/zksync-ethers/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/create2.html",
+          "destination": "/build/sdks/js/zksync-ethers/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/deposit.html",
+          "destination": "/build/sdks/js/zksync-ethers/accounts-l1-l2.html#deposit",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/get-confirmed-tokens.html",
+          "destination": "/build/sdks/js/zksync-ethers/accounts.html#getallbalances",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/transfer.html",
+          "destination": "/build/sdks/js/zksync-ethers/accounts.html#transfer",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/withdraw.html",
+          "destination": "/build/sdks/js/zksync-ethers/accounts.html#withdraw",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/custom-paymaster/deploy-account.html",
+          "destination": "/build/sdks/js/zksync-ethers/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/custom-paymaster/deploy-token.html",
+          "destination": "/build/sdks/js/zksync-ethers/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js/examples/custom-paymaster/use-paymaster.html",
+          "destination": "/build/sdks/js/zksync-ethers/paymaster-utils.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/building-on-zksync/interacting.html",
+          "destination": "/build/quick-start/interact.html",
+          "type": "302"
+        },
+        {
+          "regex": "/docs/dev/.*",
+          "destination": "/build",
+          "type": "302"
+        },
+        {
+          "regex": "/docs/.*",
+          "destination": "/",
+          "type": "302"
+        },
+        {
+          "source": "/docs",
+          "destination": "/",
           "type": "302"
         }
       ]
