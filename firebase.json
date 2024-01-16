@@ -49,6 +49,51 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/architecture/differences-with-ethereum.html",
+          "destination": "/build/developer-reference/differences-with-ethereum.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/",
+          "destination": "/build",
+          "type": "302"
+        },
+        {
+          "source": "/userdocs",
+          "destination": "https://docs.lite.zksync.io/userdocs",
+          "type": "302"
+        },
+        {
+          "source": "/userdocs/",
+          "destination": "https://docs.lite.zksync.io/userdocs",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/zksync-cli",
+          "destination": "/build/tooling/zksync-cli/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat",
+          "destination": "/build/tooling/hardhat/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/cross-chain-tutorial.html",
+          "destination": "/build/tutorials/smart-contract-development/cross-chain-tutorial.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/custom-aa-tutorial.html",
+          "destination": "/build/tutorials/smart-contract-development/account-abstraction/custom-aa-tutorial.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools/block-explorer/intro.html",
+          "destination": "/build/tooling/block-explorer/getting-started.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/zksync-v2/aa.html",
           "destination": "/zk-stack/concepts/account-abstraction.html",
           "type": "302"
@@ -349,11 +394,6 @@
           "type": "302"
         },
         {
-          "source": "/docs/tools/",
-          "destination": "/build/tooling/zksync-cli/getting-started.html",
-          "type": "302"
-        },
-        {
           "source": "/docs/api/go/",
           "destination": "/build/sdks/go/getting-started.html",
           "type": "302"
@@ -599,16 +639,6 @@
           "type": "302"
         },
         {
-          "source": "/docs/dev/tutorials/cross-chain-tutorial.html",
-          "destination": "/build/tutorials/smart-contract-development/cross-chain-tutorial.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/tutorials/custom-aa-tutorial.html",
-          "destination": "/build/tutorials/smart-contract-development/account-abstraction/custom-aa-tutorial.html",
-          "type": "302"
-        },
-        {
           "source": "/docs/dev/tutorials/custom-paymaster-tutorial.html",
           "destination": "/build/tutorials/smart-contract-development/paymasters/custom-paymaster-tutorial.html",
           "type": "302"
@@ -626,11 +656,6 @@
         {
           "source": "/docs/reference/architecture/contract-development.html",
           "destination": "/build/developer-reference/contract-development.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/reference/architecture/differences-with-ethereum.html",
-          "destination": "/build/developer-reference/differences-with-ethereum.html",
           "type": "302"
         },
         {
@@ -1124,6 +1149,51 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/architecture/differences-with-ethereum.html",
+          "destination": "/build/developer-reference/differences-with-ethereum.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/",
+          "destination": "/build",
+          "type": "302"
+        },
+        {
+          "source": "/userdocs",
+          "destination": "https://docs.lite.zksync.io/userdocs",
+          "type": "302"
+        },
+        {
+          "source": "/userdocs/",
+          "destination": "https://docs.lite.zksync.io/userdocs",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/zksync-cli",
+          "destination": "/build/tooling/zksync-cli/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/hardhat",
+          "destination": "/build/tooling/hardhat/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/cross-chain-tutorial.html",
+          "destination": "/build/tutorials/smart-contract-development/cross-chain-tutorial.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials/custom-aa-tutorial.html",
+          "destination": "/build/tutorials/smart-contract-development/account-abstraction/custom-aa-tutorial.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/tools/block-explorer/intro.html",
+          "destination": "/build/tooling/block-explorer/getting-started.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/zksync-v2/aa.html",
           "destination": "/zk-stack/concepts/account-abstraction.html",
           "type": "302"
@@ -1424,11 +1494,6 @@
           "type": "302"
         },
         {
-          "source": "/docs/tools/",
-          "destination": "/build/tooling/zksync-cli/getting-started.html",
-          "type": "302"
-        },
-        {
           "source": "/docs/api/go/",
           "destination": "/build/sdks/go/getting-started.html",
           "type": "302"
@@ -1674,16 +1739,6 @@
           "type": "302"
         },
         {
-          "source": "/docs/dev/tutorials/cross-chain-tutorial.html",
-          "destination": "/build/tutorials/smart-contract-development/cross-chain-tutorial.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/dev/tutorials/custom-aa-tutorial.html",
-          "destination": "/build/tutorials/smart-contract-development/account-abstraction/custom-aa-tutorial.html",
-          "type": "302"
-        },
-        {
           "source": "/docs/dev/tutorials/custom-paymaster-tutorial.html",
           "destination": "/build/tutorials/smart-contract-development/paymasters/custom-paymaster-tutorial.html",
           "type": "302"
@@ -1701,11 +1756,6 @@
         {
           "source": "/docs/reference/architecture/contract-development.html",
           "destination": "/build/developer-reference/contract-development.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/reference/architecture/differences-with-ethereum.html",
-          "destination": "/build/developer-reference/differences-with-ethereum.html",
           "type": "302"
         },
         {
