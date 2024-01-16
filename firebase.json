@@ -59,6 +59,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/tools",
+          "destination": "/build",
+          "type": "302"
+        },
+        {
           "source": "/userdocs",
           "destination": "https://docs.lite.zksync.io/userdocs",
           "type": "302"
@@ -479,6 +484,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/api/java",
+          "destination": "/build/sdks/java/",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/java/accounts-l1-l2.html",
           "destination": "/build/sdks/java/accounts-l1-l2.html",
           "type": "302"
@@ -685,6 +695,11 @@
         },
         {
           "source": "/docs/dev/tutorials/",
+          "destination": "/build/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials",
           "destination": "/build/",
           "type": "302"
         },
@@ -1239,6 +1254,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/tools",
+          "destination": "/build",
+          "type": "302"
+        },
+        {
           "source": "/userdocs",
           "destination": "https://docs.lite.zksync.io/userdocs",
           "type": "302"
@@ -1599,11 +1619,6 @@
           "type": "302"
         },
         {
-          "source": "/docs/tools/",
-          "destination": "/build/tooling/zksync-cli/getting-started.html",
-          "type": "302"
-        },
-        {
           "source": "/docs/api/go/",
           "destination": "/build/sdks/go/getting-started.html",
           "type": "302"
@@ -1655,6 +1670,11 @@
         },
         {
           "source": "/docs/api/java/",
+          "destination": "/build/sdks/java/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/java",
           "destination": "/build/sdks/java/",
           "type": "302"
         },
@@ -1865,6 +1885,11 @@
         },
         {
           "source": "/docs/dev/tutorials/",
+          "destination": "/build/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials",
           "destination": "/build/",
           "type": "302"
         },
