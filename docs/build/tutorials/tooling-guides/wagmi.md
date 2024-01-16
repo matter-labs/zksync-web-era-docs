@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: wagmi | zkSync Docs
+      content: Wagmi | zkSync Docs
 ---
 
 # Wagmi
