@@ -65,6 +65,10 @@ $ yarn ci:build
 
 If `lint:spell` doesn't recognize a word, and you’re sure that it’s correct, consider adding it to `cspell-zksync.txt`.
 
+## Search
+
+We use Algolia to index our documentation. Know more about it [here](https://algolia.com). Dashboard is [here](https://dashboard.algolia.com/), and [Crawler Admin](https://crawler.algolia.com/) is here.
+
 ## Contributions
 
 ### Adding new tutorials
