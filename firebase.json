@@ -339,6 +339,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/troubleshooting/withdrawal-delay.html#withdrawal-delay",
+          "destination": "/build/support/withdrawal-delay.html#withdrawal-delay",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/troubleshooting/audit-bug-bounty.html",
           "destination": "/build/support/audit-bug-bounty.html",
           "type": "302"
@@ -1541,6 +1546,11 @@
         {
           "source": "/docs/dev/troubleshooting/withdrawal-delay.html",
           "destination": "/build/support/withdrawal-delay.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/reference/troubleshooting/withdrawal-delay.html#withdrawal-delay",
+          "destination": "/build/support/withdrawal-delay.html#withdrawal-delay",
           "type": "302"
         },
         {

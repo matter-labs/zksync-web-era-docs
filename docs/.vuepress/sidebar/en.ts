@@ -101,7 +101,7 @@ export const enSidebar = sidebar({
               link: "/build/tutorials/tooling-guides/wallet-connect.md"
             },
             {
-              text: "wagmi",
+              text: "Wagmi",
               link: "/build/tutorials/tooling-guides/wagmi.md",
             },
             {
