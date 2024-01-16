@@ -59,6 +59,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/tools",
+          "destination": "/build",
+          "type": "302"
+        },
+        {
           "source": "/userdocs",
           "destination": "https://docs.lite.zksync.io/userdocs",
           "type": "302"
@@ -239,8 +244,23 @@
           "type": "302"
         },
         {
+          "source": "/docs/dev/developer-guides/transactions/fee-model.html#refunds",
+          "destination": "/build/developer-reference/fee-model.html#refunds",
+          "type": "302"
+        },
+        {
+          "source": "/dev/developer-guides/transactions/fee-model.html",
+          "destination": "/build/developer-reference/fee-model.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/reference/concepts/transactions/fee-model.html",
           "destination": "/build/developer-reference/fee-model.html",
+          "type": "302"
+        },
+        {
+          "source": "/dev/developer-guides/transactions/fee-model.html#refunds",
+          "destination": "/build/developer-reference/fee-model.html#refunds",
           "type": "302"
         },
         {
@@ -374,12 +394,22 @@
           "type": "302"
         },
         {
+          "source": "/docs/api",
+          "destination": "/build/api.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/api.html",
           "destination": "/build/api.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/",
+          "destination": "/build/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev",
           "destination": "/build/",
           "type": "302"
         },
@@ -394,7 +424,17 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference",
+          "destination": "/build/developer-reference/rollups.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/go/",
+          "destination": "/build/sdks/go/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go",
           "destination": "/build/sdks/go/getting-started.html",
           "type": "302"
         },
@@ -444,6 +484,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/api/java",
+          "destination": "/build/sdks/java/",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/java/accounts-l1-l2.html",
           "destination": "/build/sdks/java/accounts-l1-l2.html",
           "type": "302"
@@ -465,6 +510,11 @@
         },
         {
           "source": "/docs/api/js/",
+          "destination": "/build/sdks/js/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js",
           "destination": "/build/sdks/js/getting-started.html",
           "type": "302"
         },
@@ -524,6 +574,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/api/python",
+          "destination": "/build/sdks/python/",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/python/accounts-l1-l2.html",
           "destination": "/build/sdks/python/accounts-l1-l2.html",
           "type": "302"
@@ -564,6 +619,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/api/rust",
+          "destination": "/build/sdks/rust/",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/rust/contract-deployment-and-interaction.html",
           "destination": "/build/sdks/rust/contract-deployment-and-interaction.html",
           "type": "302"
@@ -594,7 +654,17 @@
           "type": "302"
         },
         {
+          "source": "/docs/dev/community-tutorials",
+          "destination": "/build/tutorials/tooling-guides/wallet-connect.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/how-to/",
+          "destination": "/build/tutorials/how-to/deposit-eth-to-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to",
           "destination": "/build/tutorials/how-to/deposit-eth-to-l2.html",
           "type": "302"
         },
@@ -625,6 +695,11 @@
         },
         {
           "source": "/docs/dev/tutorials/",
+          "destination": "/build/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials",
           "destination": "/build/",
           "type": "302"
         },
@@ -729,6 +804,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/troubleshooting",
+          "destination": "/build/support/faq.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/reference/troubleshooting/audit-bug-bounty.html",
           "destination": "/build/support/audit-bug-bounty.html",
           "type": "302"
@@ -749,7 +829,17 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/troubleshooting/withdrawal-delay.html#withdrawal-delay",
+          "destination": "/build/support/withdrawal-delay.html#withdrawal-delay",
+          "type": "302"
+        },
+        {
           "source": "/docs/tools/block-explorer/",
+          "destination": "/build/tooling/block-explorer/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/block-explorer",
           "destination": "/build/tooling/block-explorer/getting-started.html",
           "type": "302"
         },
@@ -770,6 +860,11 @@
         },
         {
           "source": "/docs/tools/compiler-toolchain/",
+          "destination": "/zk-stack/components/compiler/toolchain/overview.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/compiler-toolchain",
           "destination": "/zk-stack/components/compiler/toolchain/overview.html",
           "type": "302"
         },
@@ -879,6 +974,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/tools/testing",
+          "destination": "/build/test-and-debug/getting-started.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/tools/testing/dockerized-testing.html",
           "destination": "/build/test-and-debug/dockerized-l1-l2-nodes.html",
           "type": "302"
@@ -950,6 +1050,11 @@
         },
         {
           "source": "/docs/api/js/zksync2-js/",
+          "destination": "/build/sdks/js/zksync-ethers/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js",
           "destination": "/build/sdks/js/zksync-ethers/getting-started.html",
           "type": "302"
         },
@@ -1159,6 +1264,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/tools",
+          "destination": "/build",
+          "type": "302"
+        },
+        {
           "source": "/userdocs",
           "destination": "https://docs.lite.zksync.io/userdocs",
           "type": "302"
@@ -1339,6 +1449,21 @@
           "type": "302"
         },
         {
+          "source": "/docs/dev/developer-guides/transactions/fee-model.html#refunds",
+          "destination": "/build/developer-reference/fee-model.html#refunds",
+          "type": "302"
+        },
+        {
+          "source": "/dev/developer-guides/transactions/fee-model.html",
+          "destination": "/build/developer-reference/fee-model.html",
+          "type": "302"
+        },
+        {
+          "source": "/dev/developer-guides/transactions/fee-model.html#refunds",
+          "destination": "/build/developer-reference/fee-model.html#refunds",
+          "type": "302"
+        },
+        {
           "source": "/docs/reference/concepts/transactions/fee-model.html",
           "destination": "/build/developer-reference/fee-model.html",
           "type": "302"
@@ -1419,6 +1544,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/dev/troubleshooting/withdrawal-delay.html#withdrawal-delay",
+          "destination": "/build/support/withdrawal-delay.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/troubleshooting/audit-bug-bounty.html",
           "destination": "/build/support/audit-bug-bounty.html",
           "type": "302"
@@ -1474,12 +1604,22 @@
           "type": "302"
         },
         {
+          "source": "/docs/api",
+          "destination": "/build/api.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/api.html",
           "destination": "/build/api.html",
           "type": "302"
         },
         {
           "source": "/docs/dev/",
+          "destination": "/build/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev",
           "destination": "/build/",
           "type": "302"
         },
@@ -1494,7 +1634,17 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference",
+          "destination": "/build/developer-reference/rollups.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/go/",
+          "destination": "/build/sdks/go/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go",
           "destination": "/build/sdks/go/getting-started.html",
           "type": "302"
         },
@@ -1544,6 +1694,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/api/java",
+          "destination": "/build/sdks/java/",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/java/accounts-l1-l2.html",
           "destination": "/build/sdks/java/accounts-l1-l2.html",
           "type": "302"
@@ -1565,6 +1720,11 @@
         },
         {
           "source": "/docs/api/js/",
+          "destination": "/build/sdks/js/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js",
           "destination": "/build/sdks/js/getting-started.html",
           "type": "302"
         },
@@ -1624,6 +1784,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/api/python",
+          "destination": "/build/sdks/python/",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/python/accounts-l1-l2.html",
           "destination": "/build/sdks/python/accounts-l1-l2.html",
           "type": "302"
@@ -1664,6 +1829,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/api/rust",
+          "destination": "/build/sdks/rust/",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/rust/contract-deployment-and-interaction.html",
           "destination": "/build/sdks/rust/contract-deployment-and-interaction.html",
           "type": "302"
@@ -1694,7 +1864,17 @@
           "type": "302"
         },
         {
+          "source": "/docs/dev/community-tutorials",
+          "destination": "/build/tutorials/tooling-guides/wallet-connect.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/how-to/",
+          "destination": "/build/tutorials/how-to/deposit-eth-to-l2.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/how-to",
           "destination": "/build/tutorials/how-to/deposit-eth-to-l2.html",
           "type": "302"
         },
@@ -1725,6 +1905,11 @@
         },
         {
           "source": "/docs/dev/tutorials/",
+          "destination": "/build/",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/tutorials",
           "destination": "/build/",
           "type": "302"
         },
@@ -1829,6 +2014,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/troubleshooting",
+          "destination": "/build/support/faq.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/reference/troubleshooting/audit-bug-bounty.html",
           "destination": "/build/support/audit-bug-bounty.html",
           "type": "302"
@@ -1849,7 +2039,17 @@
           "type": "302"
         },
         {
+          "source": "/docs/reference/troubleshooting/withdrawal-delay.html#withdrawal-delay",
+          "destination": "/build/support/withdrawal-delay.html#withdrawal-delay",
+          "type": "302"
+        },
+        {
           "source": "/docs/tools/block-explorer/",
+          "destination": "/build/tooling/block-explorer/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/block-explorer",
           "destination": "/build/tooling/block-explorer/getting-started.html",
           "type": "302"
         },
@@ -1870,6 +2070,11 @@
         },
         {
           "source": "/docs/tools/compiler-toolchain/",
+          "destination": "/zk-stack/components/compiler/toolchain/overview.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/compiler-toolchain",
           "destination": "/zk-stack/components/compiler/toolchain/overview.html",
           "type": "302"
         },
@@ -1979,6 +2184,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/tools/testing",
+          "destination": "/build/test-and-debug/getting-started.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/tools/testing/dockerized-testing.html",
           "destination": "/build/test-and-debug/dockerized-l1-l2-nodes.html",
           "type": "302"
@@ -2050,6 +2260,11 @@
         },
         {
           "source": "/docs/api/js/zksync2-js/",
+          "destination": "/build/sdks/js/zksync-ethers/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/js/zksync2-js",
           "destination": "/build/sdks/js/zksync-ethers/getting-started.html",
           "type": "302"
         },
