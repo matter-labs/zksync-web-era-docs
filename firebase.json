@@ -59,6 +59,16 @@
           "type": "302"
         },
         {
+          "source": "/userdocs",
+          "destination": "https://docs.lite.zksync.io/userdocs",
+          "type": "302"
+        },
+        {
+          "source": "/userdocs/",
+          "destination": "https://docs.lite.zksync.io/userdocs",
+          "type": "302"
+        },
+        {
           "source": "/docs/tools/zksync-cli",
           "destination": "/build/tooling/zksync-cli/getting-started.html",
           "type": "302"
@@ -1146,6 +1156,16 @@
         {
           "source": "/docs/tools/",
           "destination": "/build",
+          "type": "302"
+        },
+        {
+          "source": "/userdocs",
+          "destination": "https://docs.lite.zksync.io/userdocs",
+          "type": "302"
+        },
+        {
+          "source": "/userdocs/",
+          "destination": "https://docs.lite.zksync.io/userdocs",
           "type": "302"
         },
         {
