@@ -389,6 +389,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/api",
+          "destination": "/build/api.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/api.html",
           "destination": "/build/api.html",
           "type": "302"
@@ -1589,8 +1594,8 @@
           "type": "302"
         },
         {
-          "source": "/docs/reference",
-          "destination": "/build/developer-reference/rollups.html",
+          "source": "/docs/tools/",
+          "destination": "/build/tooling/zksync-cli/getting-started.html",
           "type": "302"
         },
         {
