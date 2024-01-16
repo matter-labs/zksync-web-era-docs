@@ -244,6 +244,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/dev/developer-guides/transactions/fee-model.html#refunds",
+          "destination": "/build/developer-reference/fee-model.html#refunds",
+          "type": "302"
+        },
+        {
           "source": "/dev/developer-guides/transactions/fee-model.html",
           "destination": "/build/developer-reference/fee-model.html",
           "type": "302"
@@ -1525,6 +1530,11 @@
         },
         {
           "source": "/docs/dev/troubleshooting/withdrawal-delay.html",
+          "destination": "/build/support/withdrawal-delay.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/dev/troubleshooting/withdrawal-delay.html#withdrawal-delay",
           "destination": "/build/support/withdrawal-delay.html",
           "type": "302"
         },
