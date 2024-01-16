@@ -979,6 +979,11 @@
           "type": "302"
         },
         {
+          "source": "/docs/tools/testing",
+          "destination": "/build/test-and-debug/getting-started.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/tools/testing/dockerized-testing.html",
           "destination": "/build/test-and-debug/dockerized-l1-l2-nodes.html",
           "type": "302"
@@ -2180,6 +2185,11 @@
         },
         {
           "source": "/docs/tools/testing/",
+          "destination": "/build/test-and-debug/getting-started.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/tools/testing",
           "destination": "/build/test-and-debug/getting-started.html",
           "type": "302"
         },
