@@ -41,6 +41,19 @@ Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references
       </div>
     </RouterLink>
     <RouterLink
+      to="/build/tooling/network-faucets"
+      class="card"
+    >
+      <img
+        src="/images/landing/network-faucet.png" 
+        alt="zkSync ERA Network Faucets"
+      />
+      <div class="content">
+        <h3>Testnet Faucets</h3>
+        <p>Access testnet funds using one of our 3rd party faucets.</p>
+      </div>
+    </RouterLink>
+    <RouterLink
       to="/build/tutorials/smart-contract-development/paymasters/custom-paymaster-tutorial"
       class="card"
     >
