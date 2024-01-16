@@ -23,7 +23,7 @@ head:
       </div>
     </RouterLink>
     <RouterLink
-      to="/zk-stack/components/sequencer-server/README.md"
+      to="/zk-stack/components/sequencer-server"
       class="card"
     >
       <img  
@@ -36,7 +36,7 @@ head:
       </div>
     </RouterLink>
     <RouterLink
-      to="/zk-stack/components/prover/prover"
+      to="/zk-stack/components/prover/overview"
       class="card"
     >
       <img  
