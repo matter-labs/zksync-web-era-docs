@@ -22,11 +22,11 @@ When it comes to withdrawals there are several notes that needs to be taken into
 This is an example of how to withdraw ETH from zkSync Era network (L2) to Ethereum network (L1):
 
 ```ts
-import { Provider, types, utils, Wallet } from "zksync2-js";
+import { Provider, types, utils, Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
@@ -55,16 +55,16 @@ main()
 This is an example of how to withdraw tokens from zkSync Era network (L2) to Ethereum network (L1):
 
 ```ts
-import { Provider, types, Wallet } from "zksync2-js";
+import { Provider, types, Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 async function main() {
-  const token = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B";
+  const token = "0x6a4Fb925583F7D4dF82de62d98107468aE846FD1";
 
   console.log(`L2 balance before withdrawal: ${await wallet.getBalance()}`);
   console.log(`L1 balance before withdrawal: ${await wallet.getBalanceL1()}`);
@@ -88,18 +88,18 @@ main()
 ## Finalize withdrawal
 
 ```ts
-import { Provider, types, Wallet } from "zksync2-js";
+import { Provider, types, Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const WITHDRAW_TX = process.env.WITHDRAW_TX;
 
 async function main() {
-  if (!wallet.isWithdrawalFinalized(WITHDRAW_TX)) {
+  if (!(await wallet.isWithdrawalFinalized(WITHDRAW_TX))) {
     const finalizeWithdrawTx = await wallet.finalizeWithdrawal(WITHDRAW_TX);
     const receipt = await finalizeWithdrawTx.wait();
     console.log(`Tx: ${receipt.hash}`);

@@ -138,19 +138,26 @@ Read more about [Hyperscalability and ZK Stack here](../concepts/hyperscaling.md
 
 At the moment, we support any Ethereum-based wallet like Metamask, BitKeep, TrustWallet or Zerion. You can add zkSync network to your Metamask manually by following the instructions in the [interacting with zkSync Era page](../../dev/building-on-zksync/interacting.md#connecting-to-zksync-era-on-metamask).
 
+## Token Listing
+
+We source our token information from [Coingecko](https://www.coingecko.com/en/categories/zksync-ecosystem).
+
+- **Adding a Token**: all tokens are identified automatically. If you wish to include a logo, pricing, or other details for your token, ensure it is listed on Coingecko. Once listed, these details will automatically appear on Block Explorer and Bridge. It may take up to 24 hours for updates to be reflected.
+- **Top Tokens List**: Tokens are arranged in descending order based on liquidity. We do not control the order of the tokens.
+
 ## How do I Request Funds for Testnet?
 
-To access the testnet funds (Goerli ETH) you can use one of the following third party faucets:
+To access the testnet funds (Sepolia or Goerli ETH) you can use one of the following third party faucets:
 
 - [Chainstack's testnet faucet](https://faucet.chainstack.com/zksync-testnet-faucet)
 
-- [QuickNode faucet](https://faucet.quicknode.com/ethereum/goerli)
+- [QuickNode] [Sepolia faucet](https://faucet.quicknode.com/ethereum/sepolia), [Goerli faucet](https://faucet.quicknode.com/ethereum/goerli)
 
-- [Alchemy Goerli faucet](https://goerlifaucet.com/)
+- Alchemy [Sepolia faucet](https://sepoliafaucet.com/), [Goerli faucet](https://goerlifaucet.com/)
 
 - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
 
-- [PoW faucet](https://goerli-faucet.pk910.de/).
+- Proof of work [Sepolia faucet](https://sepolia-faucet.pk910.de/), [Goerli faucet](https://goerli-faucet.pk910.de/)
 
 ## How long does it take to complete a deposit transaction?
 

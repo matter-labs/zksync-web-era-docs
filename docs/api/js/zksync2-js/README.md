@@ -9,7 +9,7 @@ head:
 
 While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features like paying fees in other tokens requires providing additional fields to those that Ethereum transactions have by default.
 
-To provide easy access to all the features of zkSync Era, the `zksync2-js` JavaScript SDK was created, which is based on the sixth version of the `ethers.js` library. This section serves as its
+To provide easy access to all the features of zkSync Era, the `zksync-ethers` JavaScript SDK was created, which is based on the sixth version of the `ethers.js` library. This section serves as its
 reference.
 
 ## Contents

@@ -133,8 +133,8 @@ const zkSyncTestnet =
         zksync: true,
       }
     : {
-        url: "https://testnet.era.zksync.dev",
-        ethNetwork: "goerli",
+        url: "https://sepolia.era.zksync.dev",
+        ethNetwork: "sepolia",
         zksync: true,
       };
 
@@ -164,7 +164,7 @@ module.exports = {
 
 ```ts
 import { expect } from "chai";
-import { Wallet, Provider, Contract } from "zksync-web3";
+import { Wallet, Provider, Contract } from "zksync-ethers";
 import * as hre from "hardhat";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 

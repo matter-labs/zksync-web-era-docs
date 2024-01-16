@@ -7,9 +7,9 @@ head:
 
 # Migration from `zksync-web3`
 
-This guide provides some high-level differences between `zksync-web3` and `zksync2-js` for those who are familiar with
-`zksync-web3` and need a quick primer. `zksync2-js` has several differences since it's using `ethers.js v6`, compared to
-`zksync-web3`, which uses `ethers.js v5`. Before continuing to get to know the changes made in `zksync2-js`, you should
+This guide provides some high-level differences between `zksync-web3` and `zksync-ethers` for those who are familiar with
+`zksync-web3` and need a quick primer. `zksync-ethers` has several differences since it's using `ethers.js v6`, compared to
+`zksync-web3`, which uses `ethers.js v5`. Before continuing to get to know the changes made in `zksync-ethers`, you should
 read the [migration guide](https://docs.ethers.org/v6/migrating/) from `ethers.js v5` to `ethers.js v6`.
 
 Differences:

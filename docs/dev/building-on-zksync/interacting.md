@@ -49,10 +49,23 @@ In order to add the zkSync Era alpha mainnet network to your wallet, you will ne
 - Block Explorer URL: `https://explorer.zksync.io/`
 - WebSocket URL: `wss://mainnet.era.zksync.io/ws`
 
-#### Testnet network info
+#### Sepolia testnet network info
+
+- Network Name: `zkSync Era Sepolia Testnet`
+- RPC URL: `https://sepolia.era.zksync.dev`
+- Chain ID: `300`
+- Currency Symbol: `ETH`
+- Block Explorer URL: `https://sepolia.explorer.zksync.io/`
+- WebSocket URL: `wss://sepolia.era.zksync.dev/ws`
+
+#### Goerli testnet network info
+
+:::warning
+Goerli testnet will be deprecated in January 2024.
+:::
 
 - Network Name: `zkSync Era Testnet`
-- RPC URL: `https://testnet.era.zksync.dev`
+- RPC URL: `https://zksync2-testnet.zksync.dev`
 - Chain ID: `280`
 - Currency Symbol: `ETH`
 - Block Explorer URL: `https://goerli.explorer.zksync.io/`

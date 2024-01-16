@@ -7,6 +7,10 @@ head:
 
 # USDC paymaster tutorial with API3 dAPIs
 
+::: warning
+This tutorial is currently operational exclusively on the Goerli testnet. Stay tuned for upcoming support for the Sepolia network.
+:::
+
 This tutorial shows you how to build a custom paymaster that allows users to pay fees with a `mockUSDC` ERC20 token. You will:
 
 - Create a paymaster that takes `mockUSDC` as gas to cover the transaction cost.
@@ -21,11 +25,11 @@ This tutorial shows you how to build a custom paymaster that allows users to pay
 - You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
 - You already have some experience working with Ethereum.
 - A wallet with sufficient Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
-  - You can get Göerli ETH from the following faucets:
-    - [Chainstack Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
-    - [Alchemy Goerli faucet](https://goerlifaucet.com/)
+  - You can get Goerli ETH from the following faucets:
+    - Chainstack [Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
+    - Alchemy [Goerli faucet](https://goerlifaucet.com/)
     - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
-    - [Proof of work faucet](https://goerli-faucet.pk910.de/)
+    - Proof of work [Goerli faucet](https://goerli-faucet.pk910.de/)
   - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
@@ -41,12 +45,12 @@ API3 data feeds are known as [dAPIs➚](https://docs.api3.org/guides/dapis/subsc
 
 Within a paymaster, price oracles provide price data on-chain for execution.
 
-For this paymaster tutorial, we use dAPIs to get the price of [ETH/USD](https://market.api3.org/dapis/zksync-goerli-testnet/ETH-USD) and [USDC/USD](https://market.api3.org/dapis/zksync-goerli-testnet/USDC-USD) datafeeds, and then calculate gas in USDC value so that users can pay for their transactions with USDC.
+For this paymaster tutorial, we use dAPIs to get the price of ETH/USD and USDC/USD datafeeds, and then calculate gas in USDC value so that users can pay for their transactions with USDC.
 
 ::: info
 
 - If you want to use an ERC20 token other than USDC, change the dAPIs used in the paymaster.
-- For example, if you want to use DAI, use the [DAI/USD](https://market.api3.org/dapis/zksync-goerli-testnet/DAI-USD) dAPI instead of USDC/USD.
+- For example, if you want to use DAI, use the DAI/USD dAPI instead of USDC/USD.
   :::
 
 ## Complete project
@@ -76,7 +80,7 @@ cd paymaster-dapi
 4. Add the project dependencies:
 
 ```sh
-yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts @openzeppelin/contracts-upgradeable @api3/contracts
+yarn add -D @api3/contracts
 ```
 
 ## Design
@@ -572,7 +576,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 To configure your private key, copy the `.env.example` file, rename the copy to `.env`, and add your wallet private key.
 
 ```text
-WALLET_PRIVATE_KEY=abcdef12345....
+PRIVATE_KEY=abcdef12345....
 ```
 
 ### 3. Compile and deploy
@@ -581,7 +585,7 @@ From the project root, run the following:
 
 ```sh
 yarn hardhat compile
-yarn hardhat deploy-zksync --script deploy-paymaster.ts
+yarn hardhat deploy-zksync --script deploy-paymaster.ts --network zkSyncTestnetGoerli
 ```
 
 The output should be like this (your values will be different):
@@ -651,7 +655,7 @@ function getGreeter(hre: HardhatRuntimeEnvironment, wallet: Wallet) {
 // ⚠️ Never commit private keys to file tracking history, or your account could be compromised.
 const EMPTY_WALLET_PRIVATE_KEY = process.env.EMPTY_WALLET_PRIVATE_KEY || "";
 export default async function (hre: HardhatRuntimeEnvironment) {
-  const provider = new Provider("https://testnet.era.zksync.dev");
+  const provider = new Provider("https://testnet.era.zksync.dev/");
   const emptyWallet = new Wallet(EMPTY_WALLET_PRIVATE_KEY, provider);
 
   // Obviously this step is not required, but it is here purely to demonstrate that indeed the wallet has no ether.
@@ -746,7 +750,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ### 2. Run the script
 
 ```sh
-yarn hardhat deploy-zksync --script use-paymaster.ts
+yarn hardhat deploy-zksync --script use-paymaster.ts --network zkSyncTestnetGoerli
 ```
 
 The output should look something like this:

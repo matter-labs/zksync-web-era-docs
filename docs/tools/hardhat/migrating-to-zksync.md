@@ -50,7 +50,7 @@ import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
 ```
 
-Networks on zkSync Era require two different URL endpoints: one for layer 1 (Ethereum or Goerli), and one for layer 2 (zkSync). This is how you add the zkSync Era testnet to your list of networks in the `hardhat.config.ts`:
+Networks on zkSync Era require two different URL endpoints: one for layer 1 (Ethereum or Sepolia), and one for layer 2 (zkSync). This is how you add the zkSync Era testnet to your list of networks in the `hardhat.config.ts`:
 
 ```typescript
 const config: HardhatUserConfig = {
@@ -59,8 +59,8 @@ const config: HardhatUserConfig = {
       zksync: false,
     },
     zkSyncTestnet: {
-      url: "https://testnet.era.zksync.dev",
-      ethNetwork: "goerli", // or a Goerli RPC endpoint from Infura/Alchemy/Chainstack etc.
+      url: "https://sepolia.era.zksync.dev",
+      ethNetwork: "sepolia", // or a Sepolia RPC endpoint from Infura/Alchemy/Chainstack etc.
       zksync: true,
     },
   },
@@ -90,17 +90,17 @@ To configure the `hardhat.config.ts` file to target both zkSync Era and other ne
 
 1. In your `hardhat.config.ts`, configure the zkSync Era network with `zksync: true`.
 2. Configure all other networks with `zksync: false`.
-3. Run the compilation or deployment scripts with the network flag: `yarn hardhat compile --network zkSyncTestnet` for zkSync Era network or `yarn hardhat compile --network goerli` for other networks, e.g goerli.
+3. Run the compilation or deployment scripts with the network flag: `yarn hardhat compile --network zkSyncTestnet` for zkSync Era network or `yarn hardhat compile --network sepolia` for other networks, e.g sepolia.
 
 ```typescript
 networks: {
-    goerli: {
-      url: "https://goerli.infura.io/v3/<API_KEY>", // The Ethereum Web3 RPC URL.
+    sepolia: {
+      url: "https://sepolia.infura.io/v3/<API_KEY>", // The Ethereum Web3 RPC URL.
       zksync: false, // Set to false to target other networks.
     },
     zkSyncTestnet: {
-      url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
-      ethNetwork: "goerli", // The identifier of the network (e.g. `mainnet` or `goerli`)
+      url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
+      ethNetwork: "sepolia", // The identifier of the network (e.g. `mainnet` or `sepolia`)
     zksync: true, // Set to true to target zkSync Era.
     }
 },
@@ -127,8 +127,8 @@ const config: HardhatUserConfig = {
     hardhat: {
       zksync: false,
     },
-    goerli: {
-      url: "https://goerli.com/api/abcdef12345",
+    sepolia: {
+      url: "https://sepolia.com/api/abcdef12345",
       zksync: false,
     },
     mainnet: {
@@ -136,8 +136,8 @@ const config: HardhatUserConfig = {
       zksync: false,
     },
     zkSyncTestnet: {
-      url: "https://testnet.era.zksync.dev",
-      ethNetwork: "goerli", // or a Goerli RPC endpoint from Infura/Alchemy/Chainstack etc.
+      url: "https://sepolia.era.zksync.dev",
+      ethNetwork: "sepolia", // or a Sepolia RPC endpoint from Infura/Alchemy/Chainstack etc.
       zksync: true,
     },
   },
@@ -185,7 +185,7 @@ To deploy your contracts you need to use the `Deployer` class from the `hardhat-
 Here is a basic deployment script for a `Greeter` contract:
 
 ```typescript
-import { utils, Wallet } from "zksync-web3";
+import { utils, Wallet } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -209,7 +209,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const greeterContract = await deployer.deploy(artifact, [greeting]);
 
   // Show the contract info.
-  console.log(`${artifact.contractName} was deployed to ${greeterContract.address}`);
+  console.log(`${artifact.contractName} was deployed to ${await greeterContract.getAddress()}`);
 }
 ```
 
@@ -241,16 +241,16 @@ Check out a detailed [approach](./hardhat-zksync-deploy.md) on how to use `hardh
 
 ## Frontend integration
 
-You can interact with your contracts using the `zksync-web3` Javascript library. This SDK has been built on top of ethers and uses the same classes (`Provider`, `Contract`, `Wallet`) so in a lot of cases, you just need to import these classes from `zksync-web3` instead of `ethers`:
+You can interact with your contracts using the `zksync-ethers` Javascript library. This SDK has been built on top of ethers and uses the same classes (`Provider`, `Contract`, `Wallet`) so in a lot of cases, you just need to import these classes from `zksync-ethers` instead of `ethers`:
 
 ```typescript
 //import { utils, Provider, Contract, Wallet } from "ethers";
-import { utils, Provider, Contract, Wallet } from "zksync-web3";
+import { utils, Provider, Contract, Wallet } from "zksync-ethers";
 ```
 
 You also need to use the `contract ABI` from the `artifacts-zk` folder to instantiate contracts.
 
-Apart from the same classes and methods provided by ethers, zksync-web3 includes additional methods for zksync-specific features. You can read more in the [`zksync-web3` documentation](../../api/js/getting-started.md).
+Apart from the same classes and methods provided by ethers, zksync-ethers includes additional methods for zksync-specific features. You can read more in the [`zksync-ethers` documentation](../../api/js/getting-started.md).
 
 ## Verify contracts
 

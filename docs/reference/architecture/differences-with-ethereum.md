@@ -112,7 +112,7 @@ changes, and then calls the callee.
 ### `MSTORE`, `MLOAD`
 
 Unlike EVM, where the memory growth is in words, on zkEVM the memory growth is counted in bytes. For example, if you write
-`mstore(100, 0)` the `msize` on zkEVM will be `132`, but on the EVM is will be `160`. Note, that also unlike EVM which
+`mstore(100, 0)` the `msize` on zkEVM will be `132`, but on the EVM it will be `160`. Note, that also unlike EVM which
 has quadratic growth for memory payments, on zkEVM the fees are charged linearly at a rate of `1` erg per byte.
 
 The other thing is that our compiler can sometimes optimize unused memory reads/writes. This can lead to different `msize`

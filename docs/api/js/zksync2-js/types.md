@@ -200,6 +200,7 @@ Enumerated list of networks and their ids.
 - Ropsten = `3`
 - Rinkeby = `4`
 - Goerli = `5`
+- Sepolia = `6`,
 - localhost = `9`
 
 ## `PaymasterInput`
@@ -281,5 +282,5 @@ Non-enumerated enum list of transaction statuses.
 - Finalized = `finalized`
 
 :::tip More info
-Find the code definition of the types above on the [zkSync Era Github repo.](https://github.com/zksync-sdk/zksync2-js/blob/main/src/types.ts)
+Find the code definition of the types above on the [zkSync Era Github repo.](https://github.com/zksync-sdk/zksync-ethers/blob/main/src/types.ts)
 :::

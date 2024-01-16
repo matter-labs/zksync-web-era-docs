@@ -136,7 +136,7 @@ Since Ethereum L1 has no concept of interacting with other layers, this is a zkS
 
 ## Transaction statuses
 
-Transactions in the [block explorer](https://explorer.zksync.io/transactions/) are always in one of the following statuses:
+Transactions are always in one of the following statuses:
 
 - `Pending`: In the mempool but not yet included in a block.
 - `Included`: Included in a block but the batch containing the block has not yet been committed.

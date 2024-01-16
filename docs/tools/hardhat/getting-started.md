@@ -18,6 +18,7 @@ zkSync Era has the following official plugins for Hardhat:
 - [@matterlabs/hardhat-zksync-verify](./hardhat-zksync-verify.md) - used to verify smart contracts.
 - [@matterlabs/hardhat-zksync-verify-vyper](./hardhat-zksync-verify-vyper.md) - used to verify vyper smart contracts.
 - [@matterlabs/hardhat-zksync-upgradable](./hardhat-zksync-upgradable.md) - used to deploy, update, and verify proxy smart contracts.
+- [@matterlabs/hardhat-zksync-ethers](./hardhat-zksync-ethers.md) - wrapper around zksync-ethers with some extra Hardhat-specific functionality.
 
 ::: tip Additional plugins
 Learn more about [other plugins from the community](./other-plugins.md) that you can use with zkSync Era.
@@ -34,12 +35,12 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - A Node and `yarn` package manager installed.
 - You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [quickstart tutorial](../../dev/building-on-zksync/hello-world.md).
-- A wallet with sufficient Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
-  - You can get Göerli ETH from the following faucets:
-    - [Chainstack Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
-    - [Alchemy Goerli faucet](https://goerlifaucet.com/)
+- A wallet with sufficient Sepolia or Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
+  - You can get Sepolia or Goerli ETH from the following faucets:
+    - Chainstack [Sepolia faucet](https://faucet.chainstack.com/sepolia-testnet-faucet), [Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
+    - Alchemy [Sepolia faucet](https://sepoliafaucet.com/), [Goerli faucet](https://goerlifaucet.com/)
     - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
-    - [Proof of work faucet](https://goerli-faucet.pk910.de/)
+    - Proof of work [Sepolia faucet](https://sepolia-faucet.pk910.de/), [Goerli faucet](https://goerli-faucet.pk910.de/)
   - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
@@ -90,8 +91,8 @@ const zkSyncTestnet =
         zksync: true,
       }
     : {
-        url: "https://testnet.era.zksync.dev",
-        ethNetwork: "goerli",
+        url: "https://sepolia.era.zksync.dev",
+        ethNetwork: "sepolia",
         zksync: true,
       };
 ```
@@ -155,7 +156,7 @@ The `artifacts-zk` and `cache-zk` folders are included in the `.gitignore` file.
 The `deploy-greeter.ts` script is in the `deploy` folder. This script uses the `Deployer` class from the `hardhat-zksync-deploy` package to deploy the `Greeter.sol` contract.
 
 ```typescript
-import { Wallet, utils } from "zksync-web3";
+import { Wallet, utils } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
@@ -195,7 +196,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
   // `greeting` is an argument for contract constructor.
-  const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
+  const parsedFee = ethers.formatEther(deploymentFee);
   console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
 
   const greeterContract = await deployer.deploy(artifact, [greeting]);
@@ -204,7 +205,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log("constructor args:" + greeterContract.interface.encodeDeploy([greeting]));
 
   // Show the contract info.
-  const contractAddress = greeterContract.address;
+  const contractAddress = await greeterContract.getAddress();
   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 }
 ```
@@ -233,7 +234,7 @@ Greeter was deployed to 0x46f1d2d8A16DBD8b47e9D61175a826ac667288Be4D1293a22E8
 ::: warning Request-Rate Exceeded message
 
 - This message is caused by using the default RPC endpoints provided by ethers.
-- To avoid this, use your own Goerli RPC endpoint in the `hardhat.config.ts` file.
+- To avoid this, use your own Sepolia RPC endpoint in the `hardhat.config.ts` file.
 - Find multiple [node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
   :::
 
@@ -244,7 +245,7 @@ The template project contains another script to interact with the contract.
 1. Enter the address of the deployed Greeter contract in the `CONTRACT_ADDRESS` variable of the `use-greeter.ts` script:
 
 ```typescript
-import { Provider } from "zksync-web3";
+import { Provider } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
@@ -317,4 +318,4 @@ The message now is Hello people!
 ## Learn more
 
 - To learn more about the zkSync Hardhat plugins check out the [plugins documentation](./plugins.md).
-- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-web3 Javascript SDK documentation](../../api/js) .
+- If you want to know more about how to interact with zkSync using Javascript, check out the [zksync-ethers Javascript SDK documentation](../../api/js) .

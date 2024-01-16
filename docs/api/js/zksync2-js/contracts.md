@@ -7,7 +7,7 @@ head:
 
 # Contracts
 
-`zksync2-js` does not implement any new `Contract` class, since `ethers.Contract` fully works out of the box. However, for convenience, the library still re-exports this class.
+`zksync-ethers` does not implement any new `Contract` class, since `ethers.Contract` fully works out of the box. However, for convenience, the library still re-exports this class.
 
 Since deploying smart contracts on zkSync has some differences from deploying on Ethereum, there is a need for a specific `ContractFactory` method. It supports the same interface as `ethers.ContractFactory`.
 

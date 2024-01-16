@@ -18,7 +18,7 @@ However, we provide our default bridges (one for ETH and one for ERC20 tokens), 
 
 ::: warning
 
-Addresses of tokens on L2 will always differ from the same token L1 address.
+Addresses of tokens on L2 will always differ from the same token L1 address. Also note, that tokens bridged via the default bridge only support standard ERC20 functionality, i.e. rebase tokens and other custom behavior are not supported.
 
 :::
 
@@ -26,11 +26,9 @@ Addresses of tokens on L2 will always differ from the same token L1 address.
 
 You can get the default bridge addresses using the [`zks_getBridgeContracts`](../../api/api.md#zks-getbridgecontracts) endpoint or [`getDefaultBridgeAddresses`](../../api/js/providers.md#getdefaultbridgeaddresses) method of `Provider`. Similar methods are available in the other SDKs.
 
-### Add tokens to the bridge
+### Adding Tokens to the Bridge UI
 
-While the zkSync standard bridge can be used without permission from a smart contract perspective, the UI only displays tokens that have been added to our SDK.
-
-If you would like to add a token, submit a request by filling out the [token request form](https://5p68rkvrcqg.typeform.com/to/NbYpe2pw). Our team will review your request, and get back to you if we have any outstanding questions before adding the token to our list.
+No action is required to add tokens to the bridge UI. All tokens are automatically recognized based on user balances. If you desire for your token to display an icon or price, refer to the [Token Listing Guide](../troubleshooting/faq.md#token-listing).
 
 ### Deposits (to L2)
 
@@ -187,10 +185,10 @@ On the testnet environment, we automatically finalize all withdrawals, i.e., for
 
 To build a custom bridge, create a regular Solidity contract which extends the correct interface for the layer. The interfaces provide access to the zkSync Era SDK deposit and withdraw implementations.
 
-- L1: [IL1Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/ethereum/contracts/bridge/interfaces/IL1Bridge.sol)
+- L1: [IL1Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/l1-contracts/contracts/bridge/interfaces/IL1Bridge.sol)
 
-  For more information, check out our example [L1 custom bridge implementation](https://github.com/matter-labs/era-contracts/blob/main/ethereum/contracts/bridge/L1ERC20Bridge.sol).
+  For more information, check out our example [L1 custom bridge implementation](https://github.com/matter-labs/era-contracts/blob/main/l1-contracts/contracts/bridge/L1ERC20Bridge.sol).
 
-- L2: [L2ERC20Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/zksync/contracts/bridge/L2ERC20Bridge.sol)
+- L2: [L2ERC20Bridge.sol](https://github.com/matter-labs/era-contracts/blob/main/l2-contracts/contracts/bridge/L2ERC20Bridge.sol)
 
-  For more information, check out our example [L2 custom bridge implementation](https://github.com/matter-labs/era-contracts/blob/main/zksync/contracts/bridge/L2ERC20Bridge.sol).
+  For more information, check out our example [L2 custom bridge implementation](https://github.com/matter-labs/era-contracts/blob/main/l2-contracts/contracts/bridge/L2ERC20Bridge.sol).

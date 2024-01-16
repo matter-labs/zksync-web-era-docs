@@ -7,7 +7,7 @@ head:
 
 # Utilities
 
-The [utilities library](https://github.com/zksync-sdk/zksync2-js/blob/main/src/utils.ts) contains essential utilities for building on zkSync Era.
+The [utilities library](https://github.com/zksync-sdk/zksync-ethers/blob/main/src/utils.ts) contains essential utilities for building on zkSync Era.
 
 :::info
 
@@ -21,7 +21,7 @@ The [utilities library](https://github.com/zksync-sdk/zksync2-js/blob/main/src/u
 Access the library by importing it into your scripts.
 
 ```typescript
-import { utils } from "zksync2-js";
+import { utils } from "zksync-ethers";
 ```
 
 ## Constants
@@ -306,6 +306,7 @@ Used by `estimateDefaultBridgeDepositL2Gas` to estimate L2 gas required for toke
 | `bridgeData`         | `BytesLike`    | Bridge data.                                |
 | `from?`              | `Address`      | Sender address (optional).                  |
 | `gasPerPubdataByte?` | `BigNumberish` | Current gas per byte of pubdata (optional). |
+| `l2Value?`           | `BigNumberish` | L2 value (optional).                        |
 
 ```ts
 export async function estimateCustomBridgeDepositL2Gas(
@@ -317,7 +318,8 @@ export async function estimateCustomBridgeDepositL2Gas(
   to: Address,
   bridgeData: BytesLike,
   from?: Address,
-  gasPerPubdataByte?: BigNumberish
+  gasPerPubdataByte?: BigNumberish,
+  l2Value?: BigNumberish
 ): Promise<bigint>;
 ```
 

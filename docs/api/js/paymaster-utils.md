@@ -7,7 +7,7 @@ head:
 
 # Paymaster utilities
 
-The [paymaster utilities library](https://github.com/matter-labs/zksync-era/blob/main/sdk/zksync-web3.js/src/paymaster-utils.ts) contains essential utilities for using paymasters on zkSync Era.
+The [paymaster utilities library](https://github.com/zksync-sdk/zksync-ethers/blob/ethers-v5/src/paymaster-utils.ts) contains essential utilities for using paymasters on zkSync Era.
 
 ## Contract interfaces
 
@@ -18,7 +18,7 @@ The [paymaster utilities library](https://github.com/matter-labs/zksync-era/blob
 - This method is deprecated in favor of [utils.PAYMASTER_FLOW_ABI](./utils.md#paymasterflow).
   :::
 
-Constant ABI definition for the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob/36fe0fd11aeb2cfe88139e7e09d59a25366668d6/zksync/contracts/interfaces/IPaymasterFlow.sol).
+Constant ABI definition for the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob/87cd8d7b0f8c02e9672c0603a821641a566b5dd8/l2-contracts/contracts/interfaces/IPaymasterFlow.sol).
 
 ```typescript
 export const IPaymasterFlow = new ethers.utils.Interface(require("../../abi/IPaymasterFlow.json").abi);

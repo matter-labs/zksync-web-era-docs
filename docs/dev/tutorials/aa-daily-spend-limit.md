@@ -16,12 +16,12 @@ The daily limit feature prevents an account from spending more ETH than the limi
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - [Node.js](https://nodejs.org/en/download/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed on your machine.
 - If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the first section of the [quickstart tutorial](../building-on-zksync/hello-world.md).
-- A wallet with sufficient Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
-  - You can get Göerli ETH from the following faucets:
-    - [Chainstack Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
-    - [Alchemy Goerli faucet](https://goerlifaucet.com/)
+- A wallet with sufficient Sepolia or Goerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts.
+  - You can get Sepolia or Goerli ETH from the following faucets:
+    - Chainstack [Sepolia faucet](https://faucet.chainstack.com/sepolia-testnet-faucet), [Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
+    - Alchemy [Sepolia faucet](https://sepoliafaucet.com/), [Goerli faucet](https://goerlifaucet.com/)
     - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
-    - [Proof of work faucet](https://goerli-faucet.pk910.de/)
+    - Proof of work [Sepolia faucet](https://sepolia-faucet.pk910.de/), [Goerli faucet](https://goerli-faucet.pk910.de/)
   - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 - We encourage you to read [the basics of account abstraction on zkSync Era](../../reference/concepts/account-abstraction.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
@@ -98,13 +98,13 @@ const config: HardhatUserConfig = {
   defaultNetwork: "zkSyncTestnet",
   networks: {
     zkSyncTestnet: {
-      url: "https://testnet.era.zksync.dev",
-      ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
+      url: "https://sepolia.era.zksync.dev",
+      ethNetwork: "sepolia", // Can also be the RPC URL of the network (e.g. `https://sepolia.infura.io/v3/<API_KEY>`)
       zksync: true,
     },
   },
   solidity: {
-    version: "0.8.17",
+    version: "0.8.20",
   },
 };
 
@@ -765,7 +765,7 @@ contract AAFactory {
 yarn hardhat compile
 ```
 
-2. Create a file `deploy/deployFactoryAccount.ts` and copy/paste the code below, replacing `<DEPLOYER_PRIVATE_KEY>` with your own.
+2. Create a file named `deploy/deployFactoryAccount.ts`. Then, copy and paste the following code into it. Remember to add your `DEPLOYER_PRIVATE_KEY` to the .env file.
 
 The script deploys the factory, creates a new smart contract account, and funds it with some ETH.
 
@@ -775,10 +775,16 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+const DEPLOYER_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
+
 export default async function (hre: HardhatRuntimeEnvironment) {
   // @ts-ignore target zkSyncTestnet in config file which can be testnet or local
   const provider = new Provider(hre.config.networks.zkSyncTestnet.url);
-  const wallet = new Wallet("<DEPLOYER_PRIVATE_KEY>", provider);
+  const wallet = new Wallet(DEPLOYER_PRIVATE_KEY, provider);
   const deployer = new Deployer(hre, wallet);
   const factoryArtifact = await deployer.loadArtifact("AAFactory");
   const aaArtifact = await deployer.loadArtifact("Account");
@@ -837,7 +843,7 @@ Funding smart contract account with some ETH
 Done!
 ```
 
-Open up the [zkSync Era block explorer](https://goerli.explorer.zksync.io/) and search for the deployed Account contract address in order to track transactions and changes in the balance.
+Open up the [zkSync Era block explorer](https://sepolia.explorer.zksync.io) and search for the deployed Account contract address in order to track transactions and changes in the balance.
 
 :::tip
 
@@ -848,7 +854,7 @@ Open up the [zkSync Era block explorer](https://goerli.explorer.zksync.io/) and 
 
 1. Create the file `setLimit.ts` in the `deploy` folder and copy/paste the example code below.
 
-2. Replace `<DEPLOYED_ACCOUNT_ADDRESS>` and `<DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY>` with the output from the previous section.
+2. Replace `<DEPLOYED_ACCOUNT_ADDRESS>` and `<DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY>` with the output from the previous section in your `.env` file.
 
 To enable the daily spending limit, we execute the `setSpendingLimit` function with two parameters: token address and limit amount. The token address is `ETH_ADDRESS` and the limit parameter is `0.0005` in the example below (and can be any amount).
 
@@ -857,14 +863,20 @@ import { utils, Wallet, Provider, Contract, EIP712Signer, types } from "zksync-w
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
-const ETH_ADDRESS = "0x000000000000000000000000000000000000800A";
-const ACCOUNT_ADDRESS = "<DEPLOYED_ACCOUNT_ADDRESS>";
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+// load the values into .env file after deploying the FactoryAccount
+const DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY = process.env.DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY || "";
+const ETH_ADDRESS = process.env.ETH_ADDRESS || "";
+const ACCOUNT_ADDRESS = process.env.DEPLOYED_ACCOUNT_ADDRESS || "";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   // @ts-ignore target zkSyncTestnet in config file which can be testnet or local
   const provider = new Provider(hre.config.networks.zkSyncTestnet.url);
 
-  const owner = new Wallet("<DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY>", provider);
+  const owner = new Wallet(DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY, provider);
 
   const accountArtifact = await hre.artifacts.readArtifact("Account");
   const account = new Contract(ACCOUNT_ADDRESS, accountArtifact.abi, owner);
@@ -928,30 +940,35 @@ Time to reset limit:  1683027630
 
 Let's test the `SpendLimit` contract works to make it refuses ETH transfers that exceed the daily limit.
 
-1. Create `transferETH.ts` and copy/paste the example code below, replacing the placeholder constants as before and adding an account address for `<RECEIVER_ACCOUNT>`.
+1. Create `transferETH.ts` and copy/paste the example code below, replacing the placeholder constants as before and adding an account address for `RECEIVER_ACCOUNT`.
 
 ```typescript
 import { utils, Wallet, Provider, Contract, EIP712Signer, types } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
-const ETH_ADDRESS = "0x000000000000000000000000000000000000800A";
-const ACCOUNT_ADDRESS = "<DEPLOYED_ACCOUNT_ADDRESS>";
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+// load the values into .env file after deploying the FactoryAccount
+const DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY = process.env.DEPLOYED_ACCOUNT_OWNER_PRIV;
+const ETH_ADDRESS = process.env.ETH_ADDRESS || "";
+const ACCOUNT_ADDRESS = process.env.DEPLOYED_ACCOUNT_ADDRESS || "";
+const RECEIVER_ACCOUNT = process.env.RECEIVER_ACCOUNT || "";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   // @ts-ignore target zkSyncTestnet in config file which can be testnet or local
   const provider = new Provider(hre.config.networks.zkSyncTestnet.url);
 
-  const owner = new Wallet("<DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY>", provider);
+  const owner = new Wallet(DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY, provider);
 
-  // account that will receive the ETH transfer
-  const receiver = "<RECEIVER_ACCOUNT>";
   // ⚠️ update this amount to test if the limit works; 0.00051 fails but 0.00049 succeeds
   const transferAmount = "0.00051";
 
   let ethTransferTx = {
     from: ACCOUNT_ADDRESS,
-    to: receiver,
+    to: RECEIVER_ACCOUNT, // account that will receive the ETH transfer
     chainId: (await provider.getNetwork()).chainId,
     nonce: await provider.getTransactionCount(ACCOUNT_ADDRESS),
     type: 113,

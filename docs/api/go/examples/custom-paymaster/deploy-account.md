@@ -8,7 +8,7 @@ head:
 # Deploy paymaster
 
 Deploy the paymaster account, which will receive the token deployed in the [previous](deploy-token.md) step and pay the fee in ETH for the account that
-sends the token. The token address on testnet that is deployed in previous step is `0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B`
+sends the token. The token address on testnet that is deployed in previous step is `0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150`
 
 ## Deploy paymaster with CREATE opcode
 
@@ -29,8 +29,8 @@ import (
 func main() {
 	var (
 		PrivateKey     = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
-		TokenAddress   = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B" // Crown token which can be minted for free
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
+		TokenAddress   = "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150" // Crown token which can be minted for free
 	)
 
 	// Connect to zkSync network
@@ -101,7 +101,7 @@ import (
 func main() {
 	var (
 		PrivateKey        = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
 		TokenAddress      = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B" // Crown token which can be minted for free
 	)
 

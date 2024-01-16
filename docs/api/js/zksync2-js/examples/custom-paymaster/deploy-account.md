@@ -8,18 +8,18 @@ head:
 # Deploy paymaster
 
 Deploy the paymaster account, which will receive the token deployed in the [previous](deploy-token.md) step and pay the fee in ETH for the account that
-sends the token. The token address on testnet that is deployed in previous step is `0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B`
+sends the token. The token address on testnet that is deployed in previous step is `0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150`
 
 ## Deploy paymaster with CREATE opcode
 
 ```ts
-import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
+import { Provider, types, Wallet, ContractFactory } from "zksync-ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider);
 
-const tokenAddress = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B";
+const tokenAddress = "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150";
 
 async function main() {
   const conf = require("../../solidity/custom_paymaster/paymaster/build/Paymaster.json");
@@ -41,14 +41,14 @@ main()
 ## Deploy paymaster with CREATE2 opcode
 
 ```ts
-import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
+import { Provider, types, Wallet, ContractFactory } from "zksync-ethers";
 import { ethers } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider);
 
-const tokenAddress = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B";
+const tokenAddress = "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150";
 
 async function main() {
   const conf = require("../../solidity/custom_paymaster/paymaster/build/Paymaster.json");

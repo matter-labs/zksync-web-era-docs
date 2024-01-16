@@ -42,7 +42,7 @@ import (
 func main() {
 	var (
 		PrivateKey     = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
 	)
 
 	// Connect to zkSync network
@@ -154,7 +154,7 @@ import (
 func main() {
 	var (
 		PrivateKey     = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
 	)
 
 	// Connect to zkSync network
@@ -288,7 +288,7 @@ import (
 func main() {
 	var (
 		PrivateKey        = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
 	)
 
 	// Connect to zkSync network

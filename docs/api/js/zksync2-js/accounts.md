@@ -7,7 +7,7 @@ head:
 
 # Accounts: overview
 
-`zksync2-js` exports following classes that can sign transactions on zkSync:
+`zksync-ethers` exports following classes that can sign transactions on zkSync:
 
 - `Wallet` class is an extension of the `ethers.Wallet` with additional zkSync features.
 - `EIP712Signer` class that is used to sign `EIP712`_-typed_ zkSync transactions.
@@ -32,13 +32,13 @@ constructor(privateKey: string | ethers.SigningKey, providerL2?: Provider, provi
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 ```
 
@@ -60,12 +60,12 @@ static fromMnemonic(mnemonic: string, provider?: ethers.Provider): Wallet
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const MNEMONIC = "stuff slice staff easily soup parent arm payment cotton hammer scatter struggle";
 
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = Wallet.fromMnemonic(MNEMONIC, ethProvider);
 ```
 
@@ -88,7 +88,7 @@ static override async fromEncryptedJson(json: string, password: string | Uint8Ar
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import * as fs from "fs";
 
 const wallet = await Wallet.fromEncryptedJson(fs.readFileSync("wallet.json", "utf8"), "password");
@@ -112,7 +112,7 @@ static override fromEncryptedJsonSync(json: string, password: string | Uint8Arra
 #### Example
 
 ```ts
-import { Wallet } from "zksync2-js";
+import { Wallet } from "zksync-ethers";
 import * as fs from "fs";
 
 const wallet = Wallet.fromEncryptedJsonSync(fs.readFileSync("tests/files/wallet.json", "utf8"), "password");
@@ -135,11 +135,11 @@ Wallet.connect(provider:Provider): Wallet
 #### Example
 
 ```ts
-import { Wallet, Provider, types } from "zksync2-js";
+import { Wallet, Provider, types } from "zksync-ethers";
 
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const wallet = unconnectedWallet.connect(provider);
 ```
 
@@ -166,12 +166,12 @@ Wallet.connectToL1(provider: ethers.Provider): Wallet
 #### Example
 
 ```ts
-import { Wallet } from "zksync2-js";
+import { Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const unconnectedWallet = new Wallet(PRIVATE_KEY);
 
-const ethProvider = ethers.getDefaultProvider("goerli");
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = unconnectedWallet.connectToL1(ethProvider);
 ```
 
@@ -192,13 +192,13 @@ async getMainContract(): Promise<IZkSync>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 console.log(`Main contract: ${await wallet.getMainContract()}`);
@@ -221,13 +221,13 @@ there is no separate Ether bridge contract, [Main contract](./accounts.md#getmai
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const l1BridgeContracts = await wallet.getL1BridgeContracts();
@@ -244,13 +244,13 @@ async getL2BridgeContracts(): Promise<{ erc20: IL2Bridge }>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const l2BridgeContracts = await wallet.getL2BridgeContracts();
@@ -267,13 +267,13 @@ async getAddress(): Promise<Address>;
 ### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 console.log(`Address: ${await wallet.getAddress()}`);
@@ -297,13 +297,13 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<big
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_L2_ADDRESS = "0x0faF6df7054946141266420b43783387A78d82A9";
@@ -329,13 +329,13 @@ async getBalanceL1(token?: Address, blockTag?: BlockTag): Promise<bigint>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_L1_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -354,13 +354,13 @@ async getAllBalances(): Promise<BalancesMap>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const allBalances = await wallet.getAllBalances();
@@ -383,13 +383,13 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 console.log(`Nonce: ${await wallet.getNonce()}`);
@@ -406,13 +406,13 @@ async getDeploymentNonce(): Promise<bigint>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 console.log(`Nonce: ${await wallet.getDeploymentNonce()}`);
@@ -429,13 +429,13 @@ ethWallet(): ethers.Wallet
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const ethWallet = wallet.ethWallet();
@@ -462,13 +462,13 @@ async l2TokenAddress(token: Address): Promise<string>
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_L1_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -493,13 +493,13 @@ override async populateTransaction(transaction: TransactionRequest): Promise<Tra
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const recipient = Wallet.createRandom();
@@ -535,13 +535,13 @@ async transfer(tx: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const recipient = Wallet.createRandom();
@@ -579,13 +579,13 @@ async getAllowanceL1(
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_L1_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -615,13 +615,13 @@ async approveERC20(
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -656,13 +656,13 @@ async getBaseCost(params: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 console.log(`Base cost: ${await wallet.getBaseCost({ gasLimit: 100_000 })}`);
@@ -713,13 +713,13 @@ async deposit(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -780,13 +780,13 @@ async getDepositTx(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -833,13 +833,13 @@ async estimateGasDeposit(transaction:
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -879,13 +879,13 @@ async getFullRequiredDepositFee(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";
@@ -915,13 +915,13 @@ async claimFailedDeposit(depositHash: BytesLike): Promise<ethers.ContractTransac
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const FAILED_DEPOSIT_HASH = "<FAILED_DEPOSIT_TX_HASH>";
@@ -956,13 +956,13 @@ async withdraw(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const USDC_ADDRESS = "0x0faF6df7054946141266420b43783387A78d82A9";
@@ -991,13 +991,13 @@ async finalizeWithdrawal(withdrawalHash: BytesLike, index: number = 0, overrides
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const WITHDRAWAL_HASH = "<WITHDRAWAL_TX_HASH>";
@@ -1039,14 +1039,14 @@ async requestExecute(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 const CONTRACT_ADDRESS = "<CONTRACT_ADDRESS>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const gasPrice = await wallet.providerL1.getGasPrice();
@@ -1123,14 +1123,14 @@ async getRequestExecuteTx(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 const CONTRACT_ADDRESS = "<CONTRACT_ADDRESS>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const gasPrice = await wallet.providerL1.getGasPrice();
@@ -1205,14 +1205,14 @@ async estimateGasRequestExecute(transaction: {
 #### Example
 
 ```ts
-import { Wallet, Provider, utils } from "zksync2-js";
+import { Wallet, Provider, utils } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 const CONTRACT_ADDRESS = "<CONTRACT_ADDRESS>";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 const gasPrice = await wallet.providerL1.getGasPrice();
@@ -1304,7 +1304,7 @@ This class is to be used in a browser environment. The easiest way to construct 
 extends `ethers.JsonRpcSigner` and so supports all the methods available for it.
 
 ```ts
-import { BrowserProvider } from "zksync2-js";
+import { BrowserProvider } from "zksync-ethers";
 
 const provider = new BrowserProvider(window.ethereum);
 const signer = provider.getSigner();
@@ -1328,7 +1328,7 @@ async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<big
 #### Example
 
 ```ts
-import { BrowserProvider } from "zksync2-js";
+import { BrowserProvider } from "zksync-ethers";
 
 const provider = new BrowserProvider(window.ethereum);
 const signer = provider.getSigner();
@@ -1358,7 +1358,7 @@ async getNonce(blockTag?: BlockTag): Promise<number>
 #### Example
 
 ```ts
-import { BrowserProvider } from "zksync2-js";
+import { BrowserProvider } from "zksync-ethers";
 
 const provider = new BrowserProvider(window.ethereum);
 const signer = provider.getSigner();
@@ -1394,7 +1394,7 @@ async transfer(tx: {
 #### Example
 
 ```ts
-import { BrowserProvider } from "zksync2-js";
+import { BrowserProvider } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new BrowserProvider(window.ethereum);
@@ -1416,11 +1416,11 @@ available for it.
 The easiest way to construct it is from an `BrowserProvider` object.
 
 ```ts
-import { Provider, L1Signer, types } from "zksync2-js";
+import { Provider, L1Signer, types } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new ethers.BrowserProvider(window.ethereum);
-const zksyncProvider = Provider.getDefaultProvider(types.Network.Goerli);
+const zksyncProvider = Provider.getDefaultProvider(types.Network.Sepolia);
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 ```
 
@@ -1435,11 +1435,11 @@ async getMainContract(): Promise<Contract>
 #### Example
 
 ```ts
-import { Provider, L1Signer, types } from "zksync2-js";
+import { Provider, L1Signer, types } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new ethers.BrowserProvider(window.ethereum);
-const zksyncProvider = Provider.getDefaultProvider(types.Network.Goerli);
+const zksyncProvider = Provider.getDefaultProvider(types.Network.Sepolia);
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 
 const mainContract = await signer.getMainContract();
@@ -1463,11 +1463,11 @@ there is no separate Ether bridge contract, [Main contract](./accounts.md#getmai
 ### Example
 
 ```ts
-import { Provider, L1Signer, types } from "zksync2-js";
+import { Provider, L1Signer, types } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new ethers.BrowserProvider(window.ethereum);
-const zksyncProvider = Provider.getDefaultProvider(types.Network.Goerli);
+const zksyncProvider = Provider.getDefaultProvider(types.Network.Sepolia);
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 
 const l1BridgeContracts = await signer.getL1BridgeContracts();
@@ -1491,11 +1491,11 @@ async getBalanceL1(token?: Address, blockTag?: BlockTag): Promise<bigint>
 #### Example
 
 ```ts
-import { Provider, L1Signer, types } from "zksync2-js";
+import { Provider, L1Signer, types } from "zksync-ethers";
 import { ethers } from "ethers";
 
 const provider = new ethers.BrowserProvider(window.ethereum);
-const zksyncProvider = Provider.getDefaultProvider(types.Network.Goerli);
+const zksyncProvider = Provider.getDefaultProvider(types.Network.Sepolia);
 const signer = L1Signer.from(provider.getSigner(), zksyncProvider);
 
 const USDC_ADDRESS = "0x5C221E77624690fff6dd741493D735a17716c26B";

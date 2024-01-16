@@ -32,5 +32,4 @@ Our docs are open source so feel free to suggest new topics, add new content, or
 - [Account abstraction multisig](./tutorials/custom-aa-tutorial.md): create a native multisig smart contract account.
 - [Daily spending limit account](./tutorials/aa-daily-spend-limit.md): create a smart contract account with a daily spending limit.
 - [Building a custom paymaster](./tutorials/custom-paymaster-tutorial.md): build a paymaster that allows users to pay gas fees with an ERC20 token.
-- [USDC paymaster tutorial with API3](./tutorials/api3-usd-paymaster-tutorial.md): build a paymaster that allows users to pay gas fees with USDC using API3 dAPIs.
 - [Gated NFT paymaster](./tutorials/gated-nft-paymaster-tutorial.md): build a paymaster that allows users to pay 0 gas fees when owning a particular NFT.

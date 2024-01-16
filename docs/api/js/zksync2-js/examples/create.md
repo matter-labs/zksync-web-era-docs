@@ -22,10 +22,10 @@ Those files are used in the following examples.
 ## Deploy contract
 
 ```ts
-import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
+import { Provider, types, Wallet, ContractFactory } from "zksync-ethers";
 import { Contract, Typed } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider);
 
@@ -56,10 +56,10 @@ main()
 ## Deploy contract with constructor
 
 ```ts
-import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
+import { Provider, types, Wallet, ContractFactory } from "zksync-ethers";
 import { Contract } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider);
 
@@ -90,10 +90,10 @@ main()
 ## Deploy contract with dependencies
 
 ```ts
-import { Provider, types, Wallet, ContractFactory } from "zksync2-js";
+import { Provider, types, Wallet, ContractFactory } from "zksync-ethers";
 import { Contract } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider);
 

@@ -22,12 +22,13 @@ This is what we're going to do:
 - Download and install [Node](https://nodejs.org/en/download).
 - Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to latest use command `nvm use --lts`.
 - Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
-- A wallet with sufficient Göerli `ETH` on L1 to pay for bridging funds to zkSync and deploying smart contracts. You can get Göerli ETH from the following faucets:
-  - [Chainstack Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
-  - [Alchemy Goerli faucet](https://goerlifaucet.com/)
-  - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
-  - [Proof of work faucet](https://goerli-faucet.pk910.de/)
-- ERC20 tokens on zkSync are required for the testnet paymaster. Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync. Use any Goerli swap to get the ERC 20 token you need in exchange for testnet `ETH` - for example [Maverik Testnet Swap](https://testnet.mav.xyz/?chain=5).
+- A wallet with sufficient (Sepolia or Goerli) ETH on L1 to pay for bridging funds to zkSync and deploying smart contracts.
+  - You can get Sepolia or Goerli ETH from the following faucets:
+    - Chainstack [Sepolia faucet](https://faucet.chainstack.com/sepolia-testnet-faucet), [Goerli faucet](https://faucet.chainstack.com/goerli-faucet/)
+    - Alchemy [Sepolia faucet](https://sepoliafaucet.com/), [Goerli faucet](https://goerlifaucet.com/)
+    - [Paradigm Goerli faucet](https://faucet.paradigm.xyz/)
+    - Proof of work [Sepolia faucet](https://sepolia-faucet.pk910.de/), [Goerli faucet](https://goerli-faucet.pk910.de/)
+- ERC20 tokens on zkSync are required for the testnet paymaster. Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 
 ::: tip Local zkSync Testing with zksync-cli
@@ -103,93 +104,102 @@ contract Greeter {
 yarn hardhat compile
 ```
 
-3. The [zkSync-CLI](../../tools/zksync-cli/README.md) also provides a deployment script in `/deploy/deploy-greeter.ts`:
+3. The [zkSync-CLI](../../tools/zksync-cli/README.md) provides a deployment script in `/deploy/deploy.ts`:
 
 ```typescript
-import { Wallet, utils } from "zksync-web3";
-import * as ethers from "ethers";
-import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+import { deployContract } from "./utils";
 
-// load env file
-import dotenv from "dotenv";
-dotenv.config();
+// An example of a basic deploy script
+// It will deploy a Greeter contract to selected network
+// as well as verify it on Block Explorer if possible for the network
+export default async function () {
+  const contractArtifactName = "Greeter";
+  const constructorArguments = ["Hi there!"];
+  await deployContract(contractArtifactName, constructorArguments);
+}
+```
 
-// load wallet private key from env file
-const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
+that utilizes the `utils/deployContract` function for deploying contracts:
 
-if (!PRIVATE_KEY) throw "⛔️ Private key not detected! Add it to the .env file!";
+```typescript
+export const deployContract = async (contractArtifactName: string, constructorArguments?: any[], options?: DeployContractOptions) => {
+  const log = (message: string) => {
+    if (!options?.silent) console.log(message);
+  };
 
-// An example of a deploy script that will deploy and call a simple contract.
-export default async function (hre: HardhatRuntimeEnvironment) {
-  console.log(`Running deploy script for the Greeter contract`);
+  log(`\nStarting deployment process of "${contractArtifactName}"...`);
 
-  // Initialize the wallet.
-  const wallet = new Wallet(PRIVATE_KEY);
-
-  // Create deployer object and load the artifact of the contract you want to deploy.
+  const wallet = options?.wallet ?? getWallet();
   const deployer = new Deployer(hre, wallet);
-  const artifact = await deployer.loadArtifact("Greeter");
+  const artifact = await deployer.loadArtifact(contractArtifactName).catch((error) => {
+    if (error?.message?.includes(`Artifact for contract "${contractArtifactName}" not found.`)) {
+      console.error(error.message);
+      throw `⛔️ Please make sure you have compiled your contracts or specified the correct contract name!`;
+    } else {
+      throw error;
+    }
+  });
 
   // Estimate contract deployment fee
-  const greeting = "Hi there!";
-  const deploymentFee = await deployer.estimateDeployFee(artifact, [greeting]);
+  const deploymentFee = await deployer.estimateDeployFee(artifact, constructorArguments || []);
+  log(`Estimated deployment cost: ${formatEther(deploymentFee)} ETH`);
 
-  // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
-  // `greeting` is an argument for contract constructor.
-  const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
-  console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
+  // Check if the wallet has enough balance
+  await verifyEnoughBalance(wallet, deploymentFee);
 
-  const greeterContract = await deployer.deploy(artifact, [greeting]);
+  // Deploy the contract to zkSync
+  const contract = await deployer.deploy(artifact, constructorArguments);
 
-  //obtain the Constructor Arguments
-  console.log("Constructor args:" + greeterContract.interface.encodeDeploy([greeting]));
+  const constructorArgs = contract.interface.encodeDeploy(constructorArguments);
+  const fullContractSource = `${artifact.sourceName}:${artifact.contractName}`;
 
-  // Show the contract info.
-  const contractAddress = greeterContract.address;
-  console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
+  // Display contract deployment info
+  log(`\n"${artifact.contractName}" was successfully deployed:`);
+  log(` - Contract address: ${contract.address}`);
+  log(` - Contract source: ${fullContractSource}`);
+  log(` - Encoded constructor arguments: ${constructorArgs}\n`);
 
-  // verify contract for testnet & mainnet
-  if (process.env.NODE_ENV != "test") {
-    // Contract MUST be fully qualified name (e.g. path/sourceName:contractName)
-    const contractFullyQualifedName = "contracts/Greeter.sol:Greeter";
-
-    // Verify contract programmatically
-    const verificationId = await hre.run("verify:verify", {
-      address: contractAddress,
-      contract: contractFullyQualifedName,
-      constructorArguments: [greeting],
+  if (!options?.noVerify && hre.network.config.verifyURL) {
+    log(`Requesting contract verification...`);
+    await verifyContract({
+      address: contract.address,
+      contract: fullContractSource,
+      constructorArguments: constructorArgs,
       bytecode: artifact.bytecode,
     });
-  } else {
-    console.log(`Contract not verified, deployed locally.`);
   }
-}
+
+  return contract;
+};
 ```
 
 Run the deployment script with:
 
 ```sh
-yarn hardhat deploy-zksync --script deploy-greeter.ts
+yarn hardhat deploy-zksync --script deploy.ts
 ```
 
 ::: tip Request-Rate Exceeded message
 
 - This message is caused by using the default RPC endpoints provided by ethers.
-- To avoid this, use your own Goerli RPC endpoint.
+- To avoid this, use your own Goerli or Sepolia RPC endpoint.
 - Find multiple [node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
   :::
 
 You should see something like this:
 
 ```txt
-Running deploy script for the Greeter contract
-The deployment is estimated to cost 0.0265726735 ETH
-constructor args:0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000094869207468657265210000000000000000000000000000000000000000000000
-Greeter was deployed to 0xE84774C41F096Ba5BafA1439cEE787D9dD1A6b72
-Your verification ID is: 26642
+Starting deployment process of "Greeter"...
+Estimated deployment cost: 0.0001089505 ETH
+
+"Greeter" was successfully deployed:
+ - Contract address: 0xB127802183DEA4458D92CAF1319574d7e6534B8b
+ - Contract source: contracts/Greeter.sol:Greeter
+ - Encoded constructor arguments: 0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000094869207468657265210000000000000000000000000000000000000000000000
+
+Requesting contract verification...
+Your verification ID is: 47094
 Contract successfully verified on zkSync block explorer!
-contracts/Greeter.sol:Greeter verified! VerificationId: 26642
 ```
 
 **Congratulations! You have deployed and verified a smart contract to zkSync Era Testnet** 🎉
@@ -398,7 +408,7 @@ import { Contract, Web3Provider, Provider } from "zksync-web3";
 
 ```javascript
 initializeProviderAndSigner() {
-    this.provider = new Provider('https://testnet.era.zksync.dev');
+    this.provider = new Provider('https://sepolia.era.zksync.dev');
     // Note that we still need to get the Metamask signer
     this.signer = (new Web3Provider(window.ethereum)).getSigner();
     this.contract = new Contract(
@@ -424,7 +434,7 @@ The function looks like this:
 
 ```javascript
 initializeProviderAndSigner() {
-    this.provider = new Provider('https://testnet.era.zksync.dev');
+    this.provider = new Provider('https://sepolia.era.zksync.dev');
     // Note that we still need to get the Metamask signer
     this.signer = (new Web3Provider(window.ethereum)).getSigner();
     this.contract = new Contract(

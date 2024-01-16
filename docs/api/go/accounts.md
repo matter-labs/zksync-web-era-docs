@@ -550,9 +550,9 @@ RequestExecute(auth *TransactOpts, tx RequestExecuteTransaction) (*types.Transac
 #### Example
 
 ```go
-to := common.HexToAddress("<Receipt address>")
+contractAddress := common.HexToAddress("<Contract address>")
 requestExecuteTx, err := wallet.RequestExecute(nil, accounts.RequestExecuteTransaction{
-	ContractAddress:   to,
+	ContractAddress:   contractAddress,
 	L2Value:           big.NewInt(7_000_000_000),
 	L2GasLimit:        big.NewInt(90_000),
 	GasPerPubdataByte: utils.RequiredL1ToL2GasPerPubdataLimit,
@@ -582,9 +582,9 @@ EstimateGasRequestExecute(ctx context.Context, msg RequestExecuteCallMsg) (uint6
 #### Example
 
 ```go
-to := common.HexToAddress("<Receipt address>")
+contractAddress := common.HexToAddress("<Contract address>")
 gas, err := wallet.EstimateGasRequestExecute(context.Background(), accounts.RequestExecuteCallMsg{
-	ContractAddress:   to,
+	ContractAddress:   contractAddress,
 	L2Value:           big.NewInt(7_000_000_000),
 	L2GasLimit:        big.NewInt(90_000),
 	GasPerPubdataByte: utils.RequiredL1ToL2GasPerPubdataLimit,

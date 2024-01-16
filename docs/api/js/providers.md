@@ -9,7 +9,7 @@ head:
 
 A Web3 Provider object provides application-layer access to underlying blockchain networks.
 
-The [`zksync-web3`](https://www.npmjs.com/package/zksync-web3) library supports provider methods from the [`ethers.js`](https://docs.ethers.io/v5/api/providers) library and supplies additional functionality.
+The [`zksync-ethers`](https://www.npmjs.com/package/zksync-ethers/v/5.0.0) library supports provider methods from the [`ethers.js`](https://docs.ethers.io/v5/api/providers) library and supplies additional functionality.
 
 Two providers are available:
 
@@ -19,7 +19,7 @@ Two providers are available:
 :::tip
 
 - Use the [`Web3Provider`](#web3provider) for browser integrations.
-- Access the latest [provider.ts code](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/provider.ts) in the zkSync Era GitHub repo.
+- Access the latest [provider.ts code](https://github.com/zksync-sdk/zksync-ethers/blob/ethers-v5/src/provider.ts) in the zkSync Era GitHub repo.
   :::
 
 ## `Provider`
@@ -61,8 +61,8 @@ constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish
 #### Example
 
 ```typescript
-import { Provider } from "zksync-web3";
-const provider = new Provider("https://testnet.era.zksync.dev");
+import { Provider } from "zksync-ethers";
+const provider = new Provider("https://sepolia.era.zksync.dev");
 ```
 
 ### `estimateFee`
@@ -97,7 +97,7 @@ Calls the [`zks_estimateL1ToL2`](../api.md#zks-estimategasl1tol2) JSON-RPC metho
 
 Returns the gas estimation for a transfer transaction.
 
-Calls internal method [`getTransferTx`](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/provider.ts#L428) to get the transfer transaction and sends it to the [`estimateGas`](#estimategas) method.
+Calls internal method [`getTransferTx`](https://github.com/zksync-sdk/zksync-ethers/blob/ethers-v5/src/utils.ts) to get the transfer transaction and sends it to the [`estimateGas`](#estimategas) method.
 
 #### Inputs
 
@@ -126,7 +126,7 @@ async estimateGasTransfer(transaction: {
 
 Returns the gas estimation for a withdrawal transaction.
 
-Calls internal method [`getWithdrawTx`](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/provider.ts#L372) to get the withdrawal transaction and sends it to the [`estimateGas`](#estimategas) method.
+Calls internal method [`getWithdrawTx`](https://github.com/zksync-sdk/zksync-ethers/blob/59f2df60900b644669ec7a4cfc25e72c337a6325/src/provider.ts#L682) to get the withdrawal transaction and sends it to the [`estimateGas`](#estimategas) method.
 
 #### Inputs
 
@@ -246,9 +246,9 @@ override async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: 
 #### Example
 
 ```typescript
-import { Provider } from "zksync-web3";
+import { Provider } from "zksync-ethers";
 
-const provider = new Provider("https://testnet.era.zksync.dev");
+const provider = new Provider("https://sepolia.era.zksync.dev");
 
 //Find the USDC ADDRESS in https://zksync2-testnet.zkscan.io/address/0x0faF6df7054946141266420b43783387A78d82A9/transactions
 const USDC_L2_ADDRESS = "<USDC_L2_ADDRESS>";
@@ -276,42 +276,6 @@ Calls the [`zks_getBlockDetails`](../api.md#zks-getblockdetails) JSON-RPC method
 Returns an array of `TransactionResponse` objects.
 
 [Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-getBlockWithTransactions)
-
-### `getConfirmedTokens`
-
-Returns [address, symbol, name, and decimal] information of all tokens within a range of ids given by parameters `from` and `limit`.
-
-Calls the [`zks_getConfirmedTokens`](../api.md#zks-getconfirmedtokens) JSON-RPC method.
-
-:::tip Tip
-
-- **Confirmed** in the function name means any token bridged to zkSync Era via the official bridge.
-  :::
-
-The tokens are returned in alphabetical order by their symbol. This means the token id is its position in an alphabetically sorted array of tokens.
-
-#### Inputs
-
-| Name  | Description                                                                                     |
-| ----- | ----------------------------------------------------------------------------------------------- |
-| start | The token id from which to start returning the information about the tokens. Zero _by default_. |
-| limit | The number of tokens to be returned from the API. 255 _by default_.                             |
-
-```typescript
-async getConfirmedTokens(start: number = 0, limit: number = 255): Promise<Token[]> {
-    const tokens: Token[] = await this.send('zks_getConfirmedTokens', [start, limit]);
-    return tokens.map((token) => ({ address: token.l2Address, ...token }));
-}
-```
-
-#### Example
-
-```typescript
-import { Provider } from "zksync-web3";
-const provider = new Provider("https://testnet.era.zksync.dev");
-
-console.log(await provider.getConfirmedTokens());
-```
 
 ### `getContractAccountInfo`
 
@@ -566,9 +530,9 @@ async getTestnetPaymasterAddress(): Promise<Address | null> {
 #### Example
 
 ```typescript
-import { Provider } from "zksync-web3";
+import { Provider } from "zksync-ethers";
 
-const provider = new Provider("https://testnet.era.zksync.dev");
+const provider = new Provider("https://sepolia.era.zksync.dev");
 
 console.log(await provider.getTestnetPaymasterAddress());
 ```
@@ -594,8 +558,8 @@ override async getTransaction(hash: string | Promise<string>): Promise<Transacti
 #### Example
 
 ```typescript
-import { Provider } from "zksync-web3";
-const provider = new Provider("https://testnet.era.zksync.dev");
+import { Provider } from "zksync-ethers";
+const provider = new Provider("https://sepolia.era.zksync.dev");
 
 const TX_HASH = "<YOUR_TX_HASH_ADDRESS>";
 const txHandle = await provider.getTransaction(TX_HASH);
@@ -648,8 +612,8 @@ async getTransactionStatus(txHash: string) {
 #### Example
 
 ```typescript
-import { Provider } from "zksync-web3";
-const provider = new Provider("https://testnet.era.zksync.dev");
+import { Provider } from "zksync-ethers";
+const provider = new Provider("https://sepolia.era.zksync.dev");
 
 const TX_HASH = "YOUR_TX_HASH_ADDRESS";
 console.log(await provider.getTransactionStatus(TX_HASH));
@@ -762,7 +726,7 @@ constructor(provider: ExternalProvider, network?: ethers.providers.Networkish) {
 #### Example
 
 ```typescript
-import { Web3Provider } from "zksync-web3";
+import { Web3Provider } from "zksync-ethers";
 
 const provider = new Web3Provider(window.ethereum);
 ```
@@ -793,7 +757,7 @@ Override of [Ethers implementation](https://docs.ethers.org/v5/api/providers/jso
 #### Example
 
 ```typescript
-import { Web3Provider } from "zksync-web3";
+import { Web3Provider } from "zksync-ethers";
 
 const provider = new Web3Provider(window.ethereum);
 const signer = provider.getSigner();

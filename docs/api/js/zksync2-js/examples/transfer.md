@@ -12,11 +12,11 @@ head:
 Here is an example on how to transfer ETH on zkSync Era network.
 
 ```ts
-import { Provider, types, Wallet } from "zksync2-js";
+import { Provider, types, Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
@@ -49,16 +49,16 @@ main()
 Here is an example on how to transfer tokens on zkSync Era network.
 
 ```ts
-import { Provider, types, Wallet } from "zksync2-js";
+import { Provider, types, Wallet } from "zksync-ethers";
 import { ethers } from "ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
-const ethProvider = ethers.getDefaultProvider("goerli");
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
 
 async function main() {
-  const token = "0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B";
+  const token = "0x6a4Fb925583F7D4dF82de62d98107468aE846FD1";
   const receiver = "0x81E9D85b65E9CC8618D85A1110e4b1DF63fA30d9";
 
   console.log(`Account1 balance before transfer: ${await wallet.getBalance()}`);

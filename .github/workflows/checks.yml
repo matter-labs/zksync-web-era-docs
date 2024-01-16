@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: ["lts/*"]
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - name: Use Node.js ${{ matrix.node-version }}
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: ["lts/*"]
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - name: Use Node.js ${{ matrix.node-version }}
@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
         matrix:
-          node-version: [18.x]
+          node-version: ["lts/*"]
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - name: Use Node.js ${{ matrix.node-version }}
@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
         matrix:
-          node-version: [18.x]
+          node-version: ["lts/*"]
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - name: Use Node.js ${{ matrix.node-version }}

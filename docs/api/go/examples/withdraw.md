@@ -25,7 +25,6 @@ This is an example of how to withdraw ETH from zkSync Era network (L2) to Ethere
 package main
 
 import (
-	"context"
 	"fmt"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
@@ -40,8 +39,8 @@ import (
 func main() {
 	var (
 		PrivateKey        = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
-		EthereumProvider  = "https://rpc.ankr.com/eth_goerli"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
+		EthereumProvider  = "https://rpc.ankr.com/eth_sepolia"
 	)
 
 	// Connect to zkSync network
@@ -61,7 +60,7 @@ func main() {
 	// Create wallet
 	wallet, err := accounts.NewWallet(common.Hex2Bytes(PrivateKey), &client, ethClient)
 	if err != nil {
-		log.Fatal(err)
+		log.Panic(err)
 	}
 
 	// Perform withdrawal
@@ -71,22 +70,9 @@ func main() {
 		Token:  utils.EthAddress,
 	})
 	if err != nil {
-		panic(err)
+		log.Panic(err)
 	}
 	fmt.Println("Withdraw transaction: ", tx.Hash())
-
-	// Wait until transaction is finalized
-	_, err = client.WaitFinalized(context.Background(), tx.Hash())
-	if err != nil {
-		log.Panic(err)
-	}
-
-	// Perform finalize withdrawal
-	finalizeWithdrawTx, err := wallet.FinalizeWithdraw(nil, tx.Hash(), 0)
-	if err != nil {
-		log.Panic(err)
-	}
-	fmt.Println("Finalize withdraw transaction: ", finalizeWithdrawTx.Hash())
 }
 ```
 
@@ -103,7 +89,6 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/zksync-sdk/zksync2-go/accounts"
 	"github.com/zksync-sdk/zksync2-go/clients"
-	"github.com/zksync-sdk/zksync2-go/utils"
 	"log"
 	"math/big"
 	"os"
@@ -112,8 +97,9 @@ import (
 func main() {
 	var (
 		PrivateKey        = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
-		EthereumProvider  = "https://rpc.ankr.com/eth_goerli"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
+		EthereumProvider  = "https://rpc.ankr.com/eth_sepolia"
+		TokenL2Address    = common.HexToAddress("0x6a4Fb925583F7D4dF82de62d98107468aE846FD1")
 	)
 
 	// Connect to zkSync network
@@ -136,18 +122,17 @@ func main() {
 		log.Panic(err)
 	}
 
-	// Perform withdrawal
+	// Perform withdraw
 	tx, err := wallet.Withdraw(nil, accounts.WithdrawalTransaction{
 		To:     wallet.Address(),
-		Amount: big.NewInt(1_000_000_000),
-		Token:  utils.EthAddress,
+		Amount: big.NewInt(1),
+		Token:  TokenL2Address,
 	})
 	if err != nil {
 		log.Panic(err)
 	}
 	fmt.Println("Withdraw transaction: ", tx.Hash())
 }
-
 ```
 
 ## Finalize withdrawal
@@ -170,8 +155,8 @@ import (
 func main() {
 	var (
 		PrivateKey        = os.Getenv("PRIVATE_KEY")
-		ZkSyncEraProvider = "https://testnet.era.zksync.dev"
-		EthereumProvider  = "https://rpc.ankr.com/eth_goerli"
+		ZkSyncEraProvider = "https://sepolia.era.zksync.dev"
+		EthereumProvider  = "https://rpc.ankr.com/eth_sepolia"
 		WithdrawTx        = common.HexToHash("<Withdraw tx hash>")
 	)
 
