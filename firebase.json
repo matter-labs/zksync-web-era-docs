@@ -1552,7 +1552,8 @@
           "source": "/docs/reference/troubleshooting/withdrawal-delay.html#withdrawal-delay",
           "destination": "/build/support/withdrawal-delay.html#withdrawal-delay",
           "type": "302"
-        }
+        },
+        {
           "source": "/docs/dev/troubleshooting/withdrawal-delay.html#withdrawal-delay",
           "destination": "/build/support/withdrawal-delay.html",
           "type": "302"
