@@ -15,7 +15,7 @@ export default hopeTheme({
 
   repo: "matter-labs/zksync-web-era-docs",
 
-  docsDir: "/",
+  docsDir: "/docs/",
 
   pageInfo: ["Original", "Category"],
 
@@ -48,7 +48,7 @@ export default hopeTheme({
         <a href="https://docs.lite.zksync.io/" target="_blank">zkSync Lite Docs (Deprecated)</a>
       </div>
 
-  <p>Made with ❤️ by <a href='https://matter-labs.io/'> Matter Labs</a></p>
+  <p>Made with ❤️ by <a href='https://matter-labs.io/'>Matter Labs</a></p>
   
   `,
 
