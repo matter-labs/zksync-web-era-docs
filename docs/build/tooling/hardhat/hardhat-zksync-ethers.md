@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: hardhat-zksync-ethers | zkSync Docs
+---
+
 # `hardhat-zksync-ethers`
 
 :::warning SDK Deprecation Notice
