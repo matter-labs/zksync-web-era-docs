@@ -49,6 +49,8 @@ jobs:
           cf_auth: ${{ secrets.CLOUDFLARE_AUTH_KEY }}
           hosts: |
             docs.zksync.io
+            era.zksync.io
+            v2-docs.zksync.io
 
       # TODO: Implement reindex task tracking instead of blindly exiting on task submit
       - name: Trigger Algolia reindex
