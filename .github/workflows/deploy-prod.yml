@@ -42,6 +42,16 @@ jobs:
           projectId: aqwzx-zksync-v2-docs
           channelID: live
 
+      - name: Purge cf cache
+        uses: nathanvaughn/actions-cloudflare-purge@db8c58f61ba4c3ec77229c8fa14ddebb3b59932f # v3.1.0
+        with:
+          cf_zone: ${{ secrets.CLOUDFLARE_ZONE }}
+          cf_auth: ${{ secrets.CLOUDFLARE_AUTH_KEY }}
+          hosts: |
+            docs.zksync.io
+            era.zksync.io
+            v2-docs.zksync.io
+
       # TODO: Implement reindex task tracking instead of blindly exiting on task submit
       - name: Trigger Algolia reindex
         run: |
