@@ -7,7 +7,7 @@ head:
 
 # Send an L1 to L2 transaction
 
-The [zkSync Era smart contracts](https://github.com/matter-labs/era-contracts/tree/main/ethereum/contracts/zksync) allow the sender to request transactions on Ethereum L1 and pass data to zkSync Era L2.
+The [zkSync Era smart contracts](https://github.com/matter-labs/era-contracts/tree/main/l1-contracts/contracts/zksync) allow the sender to request transactions on Ethereum L1 and pass data to zkSync Era L2.
 
 ## Common use cases
 
@@ -59,7 +59,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 3. Apply an alias to the addresses in the request if the sender address is a contract.
 
-   If the sender is an EOA, no aliasing is required. Aliasing is implemented by the [`applyL1ToL2Alias`](https://github.com/matter-labs/era-contracts/blob/41c25aa16d182f757c3fed1463c78a81896f65e6/ethereum/contracts/vendor/AddressAliasHelper.sol#L28) Solidity function and called by the [JavaScript SDK](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/utils.ts#L374).
+   If the sender is an EOA, no aliasing is required. Aliasing is implemented by the [`applyL1ToL2Alias`](https://github.com/matter-labs/era-contracts/blob/87cd8d7b0f8c02e9672c0603a821641a566b5dd8/l1-contracts/contracts/vendor/AddressAliasHelper.sol#L28) Solidity function and called by the [JavaScript SDK](https://github.com/matter-labs/zksync-era/blob/48fe6e27110c1fe1a438c5375fb256890e8017b1/sdk/zksync-web3.js/src/utils.ts#L374).
 
    ::: code-tabs
    @tab Solidity
@@ -117,7 +117,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
    :::
 
-5. Get the base cost by calling the [`l2TransactionBaseCost`](https://github.com/matter-labs/era-contracts/blob/3a4506522aaef81485d8abb96f5a6394bd2ba69e/ethereum/contracts/zksync/interfaces/IMailbox.sol#L130) function with:
+5. Get the base cost by calling the [`l2TransactionBaseCost`](https://github.com/matter-labs/era-contracts/blob/87cd8d7b0f8c02e9672c0603a821641a566b5dd8/l1-contracts/contracts/zksync/interfaces/IMailbox.sol#L131) function with:
 
    - The gas price returned at step 2 as `_gasPrice`.
    - The gas value returned at step 3 as `_l2GasLimit`.
@@ -169,7 +169,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
    }
    ```
 
-7. Send the transaction, including the gas price and base cost in the value parameters, by calling the [`requestL2Transaction`](https://github.com/matter-labs/era-contracts/blob/3a4506522aaef81485d8abb96f5a6394bd2ba69e/ethereum/contracts/zksync/interfaces/IMailbox.sol#L120) function.
+7. Send the transaction, including the gas price and base cost in the value parameters, by calling the [`requestL2Transaction`](https://github.com/matter-labs/era-contracts/blob/87cd8d7b0f8c02e9672c0603a821641a566b5dd8/l1-contracts/contracts/zksync/interfaces/IMailbox.sol#L121) function.
 
    Include the gas limit value from step 3 as `_l2GasLimit` and the `REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT` constant as `_l2GasPerPubdataByteLimit`.
 

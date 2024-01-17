@@ -14,7 +14,7 @@ The [paymaster utilities library](https://github.com/zksync-sdk/zksync2-go/blob/
 ### `IPaymasterFlow`
 
 Constant ABI definition for
-the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob/36fe0fd11aeb2cfe88139e7e09d59a25366668d6/zksync/contracts/interfaces/IPaymasterFlow.sol).
+the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob/87cd8d7b0f8c02e9672c0603a821641a566b5dd8/l2-contracts/contracts/interfaces/IPaymasterFlow.sol).
 
 ```go
 IPaymasterFlow := abi.JSON(strings.NewReader(paymasterflow.IPaymasterFlowMetaData.ABI));
