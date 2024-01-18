@@ -33,9 +33,6 @@ You can setup In-Memory Node quickly with `npx zksync-cli dev start`. Note: at t
    tar xz -f /path/to/downloaded/binary/era_test_node.tar.gz -C /usr/local/bin/
    chmod +x /usr/local/bin/era_test_node
    ```
-Some configurations may require the use of `sudo`.  On macOS, the binary may need to have its quarantine attribute cleared: 
-
-```xattr -d com.apple.quarantine /usr/local/bin/era_test_node```
 
 3. Start the node:
 
@@ -434,3 +431,18 @@ yarn test
 ```
 
 Well done! You've successfully run your first local tests with zkSync Era and `era-test-node`.
+
+## Troubleshooting
+
+If running `era_test_node run` provides the following error:
+
+```console:no-line-numbers
+“era_test_node” can’t be opened because Apple cannot check it for malicious software.
+This software needs to be updated. Contact the developer for more information.
+```
+
+You may require the use of `sudo`. On macOS, the binary may need to have its quarantine attribute cleared:
+
+```bash
+xattr -d com.apple.quarantine /usr/local/bin/era_test_node
+```
