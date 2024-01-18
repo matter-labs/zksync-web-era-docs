@@ -97,7 +97,7 @@ class Deployer {
 
   /**
     * Sends a deploy transaction to the zkSync network.
-    * For now it uses defaults values for the transaction parameters:
+    * For now it uses default values for the transaction parameters:
     *
     * @param artifact The previously loaded artifact object.
     * @param constructorArguments The list of arguments to be passed to the contract constructor.
@@ -163,7 +163,7 @@ This plugin facilitates the compilation and deployment of missing libraries for 
 Starting from version 1.13.14, the zksolc compiler has been enhanced to identify missing libraries.
 :::
 
-Complex library dependecy tree is also supported. It ensures libraries are compiled and deployed in a structured manner, starting from the most foundational library to the topmost dependent one.
+Complex library dependency tree is also supported. It ensures libraries are compiled and deployed in a structured manner, starting from the most foundational library to the topmost dependent one.
 
 Example:
 

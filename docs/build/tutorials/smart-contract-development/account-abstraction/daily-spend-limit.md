@@ -928,7 +928,7 @@ Time to reset limit:  1683027630
 
 ## Perform ETH Transfer
 
-Let's test the `SpendLimit` contract works to make it refuses ETH transfers that exceed the daily limit.
+Let's test the `SpendLimit` contract works to make it refuse ETH transfers that exceed the daily limit.
 
 1. Create `transferETH.ts` and copy/paste the example code below, replacing the placeholder constants as before and adding an account address for `RECEIVER_ACCOUNT`.
 

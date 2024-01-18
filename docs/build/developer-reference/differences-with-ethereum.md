@@ -89,7 +89,7 @@ Since the bytecode differs from Ethereum as zkSync uses a modified version of th
 For calls, you specify a memory slice to write the return data to, e.g. `out` and `outsize` arguments for
 `call(g, a, v, in, insize, out, outsize)`. In EVM, if `outsize != 0`, the allocated memory will grow to `out + outsize`
 (rounded up to the words) regardless of the `returndatasize`. On zkSync Era, `returndatacopy`, similar to `calldatacopy`,
-is implemented as a cycle iterating over return data with a few additional checks and trigerring a panic if
+is implemented as a cycle iterating over return data with a few additional checks and triggering a panic if
 `out + outsize > returndatasize` to simulate the same behavior as in EVM.
 
 Thus, unlike EVM where memory growth occurs before the call itself, on zkSync Era, the necessary copying of return data
