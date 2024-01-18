@@ -5,7 +5,7 @@ head:
       content: JS SDK Getting Started | zkSync Docs
 ---
 
-# Getting started
+# Getting Started
 
 ::: warning
 

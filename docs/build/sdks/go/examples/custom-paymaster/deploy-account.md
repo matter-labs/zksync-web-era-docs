@@ -5,7 +5,7 @@ head:
       content: Go SDK Deploy Paymaster Example | zkSync Docs
 ---
 
-# Deploy paymaster
+# Deploy Paymaster
 
 Deploy the paymaster account, which will receive the token deployed in the [previous](deploy-token.md) step and pay the fee in ETH for the account that
 sends the token. The token address on testnet that is deployed in previous step is `0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150`

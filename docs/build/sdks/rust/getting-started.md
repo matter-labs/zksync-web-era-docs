@@ -5,7 +5,7 @@ head:
       content: Rust SDK Getting Started | zkSync Docs
 ---
 
-# Getting started
+# Getting Started
 
 ## Concept
 

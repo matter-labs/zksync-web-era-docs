@@ -5,7 +5,7 @@ head:
       content: JS SDK L1/L2 Transactions | zkSync Docs
 ---
 
-# Accounts: L1<->L2 transactions
+# Accounts: L1<->L2 Transactions
 
 This section explores the methods which allow the [account](./accounts.md) to send transactions among both L1 to L2 networks.
 

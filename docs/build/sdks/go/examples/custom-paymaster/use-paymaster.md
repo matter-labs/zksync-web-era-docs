@@ -5,7 +5,7 @@ head:
       content: Go SDK Use Paymaster Example | zkSync Docs
 ---
 
-# Use paymaster
+# Use Paymaster
 
 This example demonstrates how to use a paymaster to facilitate fee payment with an ERC20 token.
 The user initiates a mint transaction that is configured to be paid with an ERC20 token through the paymaster.
