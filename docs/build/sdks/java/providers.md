@@ -55,10 +55,10 @@ public class Main {
 
 #### Inputs and outputs
 
-| Name    | Description                                                                   |
-| ------- | ----------------------------------------------------------------------------- |
-| address | The user address with balances to check.                                      |
-| returns | 'ZksAccountBalances': List of all balances where account has non-zero value.  |
+| Name    | Description                                                                  |
+| ------- | ---------------------------------------------------------------------------- |
+| address | The user address with balances to check.                                     |
+| returns | 'ZksAccountBalances': List of all balances where account has non-zero value. |
 
 ### `zksGetConfirmedTokens`
 
