@@ -7,7 +7,7 @@ head:
 
 # Community plugins
 
-The following plugins were created by the community and tested on zkSync Era. Feel free to suggest new plugins by [creating a PR for this page](https://github.com/matter-labs/zksync-web-era-docs/blob/main/docs/tools/hardhat/other-plugins.md).
+The following plugins were created by the community and tested on zkSync Era. Feel free to suggest new plugins by [creating a issue(feat request) at this page](https://github.com/matter-labs/hardhat-zksync/issues/new?assignees=&labels=feat&projects=&template=feature_report.md&title=).
 
 ## Supported plugins
 

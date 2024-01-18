@@ -7,6 +7,12 @@ head:
 
 # Migration guide
 
+::: warning Windows as platform
+If you are using Windows, we strongly recommend you use Windows Subsystem for Linux (also known as WSL 2). You can use `Hardhat` and `zkSync plugins` without it, but it will work better if you use it.
+
+To install Node.js using WSL 2, please read this [guide](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl)
+:::
+
 This guide shows you how to migrate an existing Hardhat project to zkSync Era.
 
 ## Overview
@@ -214,7 +220,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 
 ::: tip Test ETH
-Obtain [test ETH from third party faucets](../../support/faq.md#how-do-i-request-funds-for-testnet) or just bridge GöerliETH using [bridges](https://zksync.io/explore#bridges).
+Obtain [test ETH from third party faucets](../../support/faq.md#how-do-i-request-funds-for-testnet) or just bridge Seploia ETH using [bridges](https://zksync.io/explore#bridges).
 :::
 
 Include your deployment script in the `deploy` folder and execute it running:

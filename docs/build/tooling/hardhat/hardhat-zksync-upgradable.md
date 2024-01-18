@@ -14,9 +14,7 @@ The plugin is based on [@openzeppelin/hardhat-upgrades](https://www.npmjs.com/pa
 ## Installation
 
 :::warning Version Incompatibility
-Current version of the upgradable plugin does not support the latest versions of the `@openzeppelin/hardhat-upgrades` and `@openzeppelin/upgrades-core` packages. <br>
-
-We are working on this and we will update the plugin as soon as our changes are compatible with those latest versions.
+Current version of the upgradable plugin does not support the latest version of the `@openzeppelin/upgrades-core` packages. <br>
 :::
 
 [@matterlabs/hardhat-zksync-upgradable](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-upgradable)
@@ -56,13 +54,13 @@ const config: HardhatUserConfig = {
   },
   defaultNetwork: "zkSyncNetwork",
   networks: {
-    sepolia: {
+    ethNetwork: {
       zksync: false,
       url: "http://localhost:8545",
     },
     zkSyncNetwork: {
       zksync: true,
-      ethNetwork: "sepolia",
+      ethNetwork: "ethNetwork",
       url: "http://localhost:3050",
     },
   },

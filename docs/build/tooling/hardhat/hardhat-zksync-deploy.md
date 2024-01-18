@@ -15,8 +15,15 @@ To use the `hardhat-zksync-deploy` in your project, we recommend that:
 
 - You have a Node installation and `yarn` package manager.
 - You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../../quick-start/hello-world.md).
-- You have a wallet with sufficient Sepolia `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Use the [network faucets](../../tooling/network-faucets.md) to get some test tokens in your account.
-- You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
+- A wallet with sufficient Sepolia `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts on testent. You can get Sepolia ETH from the [network faucets](../../tooling/network-faucets.md).
+  - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
+- You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
+
+::: tip Deploying on local node
+
+When deploying smart contracts on a local node, a wallet with Seploia ETH is not required. Instead, you can utilize [zksync-cli](../zksync-cli/getting-started.md) for this purpose.
+
+:::
 
 ## Setup
 
@@ -127,12 +134,6 @@ class Deployer {
 To see an example script of how to use a `Deployer` class to deploy a contract, check out the [deployment section of the quickstart](./getting-started.md#compile-and-deploy-a-contract).
 
 ### Configuration
-
-::: warning API changes in v0.6.x
-
-- We advise developers to upgrade to the most recent version of this package.
-
-:::
 
 In the `hardhat.config.ts` file, specify zkSync Era and Ethereum networks in the `networks` object.
 
@@ -257,4 +258,12 @@ yarn hardhat deploy-zksync:libraries --private-key 0x7726827caac94a7f9e1b160f7ea
 
 ::: tip
 In Typescript projects `--exported-config-object <object name>` argument can be provided optionally. Plugin will try to resolve config by `HardhatUserConfig` type.
+:::
+
+::: warning Hardhat library auto-population
+
+Using `export default {}` for the Hardhat config is not supported for library auto-population. Instead, you should use `export const config = {}`, and make sure to add `export default config;` at the bottom of the file.
+
+The default object name is `config`, but you can replace it with a different object name using the `--exported-config-object <object name>` command. This allows you to customize the exported object for your Hardhat configuration.
+
 :::

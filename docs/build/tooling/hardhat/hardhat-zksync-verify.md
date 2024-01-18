@@ -11,6 +11,14 @@ This plugin is used to verify contracts on the zkSync Era network.
 
 [Changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-verify/CHANGELOG.md)
 
+::: warning Unknown zksolc version
+
+If you encounter this error, it suggests that the backend verification system does not currently support the latest version of the zksolc compiler. In such cases, it may require some time for the backend to be updated to accommodate the latest compiler version.
+
+As a temporary solution, please use previous versions of the compiler until the backend verification system is updated to support the latest version.
+
+:::
+
 ## Setup
 
 The [@matterlabs/hardhat-zksync-verify](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-verify) plugin is used in conjunction with [@nomicfoundation/hardhat-verify](https://www.npmjs.com/package/@nomicfoundation/hardhat-verify) and it supports backward compatibility.
