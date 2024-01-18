@@ -25,7 +25,7 @@ head:
 
 ### DRPC
 
-[DRPC](https://drpc.org/) offers access to distributed network of independent third-party partners and public nodes for Base. They provide a free tier that allows for an unlimited amount of requests over public nodes, or a paid tier which provides access to all providers, as well as other additional features.
+[DRPC](https://drpc.org/public-endpoints/zksync) offers access to distributed network of independent third-party partners and public nodes for Base. They provide a free tier that allows for an unlimited amount of requests over public nodes, or a paid tier which provides access to all providers, as well as other additional features.
 
 ### Quicknode
 

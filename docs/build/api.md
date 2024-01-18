@@ -597,6 +597,113 @@ curl -X POST -H "Content-Type: application/json" \
 }
 ```
 
+### `zks_getProof`
+
+Returns Merkle proofs for one or more storage values at the specified account along with a Merkle proof of their authenticity. This allows to verify that the values have not been tampered with.
+
+This RPC method is similar to `eth_getProof` in Ethereum, but there are notable differences caused by different Merkle tree construction:
+
+- The point in time at which the requested values with proofs are returned is specified as an L1 batch number, rather than a block number.
+- The Merkle tree is constructed in a different way, and so proofs need to be verified differently. In Ethereum, the Merkle tree of the system state is a two-level hexadecimal trie (the upper level corresponds to accounts, the lower – to storage slots within the account). In Era, the Merkle tree is one level full binary tree with 256-bit keys (see its specification below).
+- Because of the flat tree, account-level values in Ethereum are stored using special account and storage key combinations. For example, the code hash for account address A is stored at account `0x0000000000000000000000000000000000008002` and storage key pad_address(A), where pad_address pads the address from the start with 12 zero bytes.
+
+**zkSync Era Merkle tree specification:**
+
+- The Merkle tree is one-level full binary tree with 256-bit keys and 40-byte values.
+- Tree keys are computed as `reversed(blake2s256([0_u8; 12] ++ account_address ++ storage_key))`, where:
+  - `account_address` is a 20-byte account address,
+  - `storage_key` is a 32-byte key in the account storage
+  - `++` is byte concatenation
+  - `reversed` is a function reversing the order of bytes in the provided bytes sequence.
+- Tree values are `big_endian(leaf_index) ++ storage_value`, where:
+  - `leaf_index` is a 64-bit 1-based enumeration index of the entry. Indices are assigned in the order entries are filled.
+  - `storage_value` is a 32-byte value of the slot.
+- If a tree entry is vacant, it is considered to have `[0_u8; 40]` value (i.e., 40 zero bytes).
+- Tree leaves are hashed using `blake2s256` hash function without a tag. E.g., a hash of a vacant leaf is `blake2s256([0_u8; 40])`.
+- Internal tree nodes are hashed using `blake2s256` hash function without a tag: `blake2s256(left_child_hash ++ right_child_hash)`.
+
+#### Inputs
+
+| Parameter     | Type      | Description                                                                                     |
+| ------------- | --------- | ----------------------------------------------------------------------------------------------- |
+| address       | `Address` | The account to fetch storage values and proofs for.                                             |
+| keys          | `H256[]`  | Vector of storage keys in the account.                                                          |
+| l1BatchNumber | `number`  | Number of the L1 batch specifying the point in time at which the requested values are returned. |
+
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc": "2.0", "id": 1, "method": "zks_getProof", "params": ["0x0000000000000000000000000000000000008003", ["0x8b65c0cf1012ea9f393197eb24619fd814379b298b238285649e14f936a5eb12"], 354895 ] }' "https://mainnet.era.zksync.io"
+```
+
+#### Output
+
+An object with the following fields:
+
+- `address`: account address
+- `storageProof`: proof for each of the requested keys in the order at which they were requested.
+
+Each `storageProof` is an object with the following fields:
+
+| Field   | Type     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `key`   | `H256`   | the requested storage key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `value` | `H256`   | the storage value at address + key at `l1BatchNumber`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `index` | `u64`    | 1-based integer enumeration index of the tree entry (see the tree spec above)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `proof` | `H256[]` | sequence of zero or more 32-byte hashes that form a Merkle path for key in the Merkle tree. Hashes are listed using the root-to-leaf ordering. The root hash is excluded; it is published on L1 as a part of L1 batch commit data. If there are less than 256 hashes in proof (which is overwhelmingly likely), then hashes are omitted from the end of the Merkle path. All omitted hashes are hashes of the entirely empty subtrees of the corresponding height. For example, if `proof` has 255 hashes, then the single omitted hash is `empty_value_hash = blake2s256([0_u8; 40])`. If `proof` has 254 hashes, then the 2 omitted hashes are `blake2s256(empty_value_hash ++ empty_value_hash)`, `empty_value_hash`, etc. |
+
+For each `StorageProof`, it is possible to restore the Merkle tree root hash and compare it to the reference value published on L1. If the hashes match, the value authenticity is proven.
+
+Example output:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "address": "0x0000000000000000000000000000000000008003",
+    "storageProof": [
+      {
+        "key": "0x8b65c0cf1012ea9f393197eb24619fd814379b298b238285649e14f936a5eb12",
+        "proof": [
+          "0xe3e8e49a998b3abf8926f62a5a832d829aadc1b7e059f1ea59ffbab8e11edfb7",
+          "0x9bebfa036e85a6ffb6bf447a9c7d41af176642c6aaf5cfbc97128f4f10d8a25a",
+          "0xcca89548554c0402d1ad9d40f58357dd63f9a8797312764a7a2117fdf3c3cf27",
+          "0xb300d43e85e6985e813e1d6f9231e14e3d0b150a177ca4b84b14f56a40d7460e",
+          "0x85d3157d7a7437390e78db2b43ab66f46543ba54bae5a6d4165fc6c0a731369c",
+          "0xa76e30d2ea9e9fc1842273540126743c1eed6ebab3468cc0e73ceb48b60bbbc5",
+          "0xe870299d2381b56dc3a01dfd12c71662aedffa74686d56b35199352761b7d7e5",
+          "0x95ddfc7d513311b3ac273699246ea095495f4155253de3e7d34e0a3643c5fbd8",
+          "0x31110aa2a06a06bbc692255235eb69188e9a29d20548057f76f6a3068e1a0506",
+          "0x9cfb69d119d1e7a4dc671e99d4ecc8f0cc5a7ed5e2225106949d6ac7d17ba8a2",
+          "0x92fe999cb989e97693398f4a6bb7c3db3cb35e256e2a0a3c1bbb6772e2dc8df8",
+          "0xaa6feb7cb008ee03c6a3aa05920f4d2258a21aede994c5f190c4828cff12c672",
+          "0x1d4e754ebcfe090aa99541027a44622c48faa5aa0ce44e74764296a307f11a9a",
+          "0x1618d709ec45a19f4c4decc234965d9d56e5630bfb03de0b8efab3b0d3fdd5c3",
+          "0x9eca9d5f3d18e7a7006e1a7dae94756b95b1e498b638a9b16e08a123aafab1fb",
+          "0xb270c37699110bb9c32218d5da501b945ecef12cf200f32d606a8b250aa5b13a",
+          "0x027f56999d7c97c5ed711f38972ae251bfff9ef450a12024e8680dadfe8d1952",
+          "0x67ebd9c0e1dd1e1b8a2039d5a761f99aa16845ba6ced8243dad2cfbf32fd1e35",
+          "0x6b349489a60360783e70d701549e8ef90ddab85352e3810c6a70c5c3493c7b58",
+          "0xf3f33bc89d6cf6a79aff4fa51cb8d98b0437c0ee49c2c4fcb8745ee4e6478274",
+          "0x0269c9296ebf77ac4603fb5040455f88ccacb7f186e56029f209c383d8d4128c",
+          "0xa557bd43406ed8e6fedf52a8d5fadd97c4be39ec43862e95b8761cd3f58b89ee",
+          "0xc461d0f39807b910e8fa76107e99f99f346a3f3e7faa40343ee2ddf53c4e6b4d",
+          "0xf7fd5de13defb75017e587a4c2e58c33f7118f066367868e8a7e5b1ee2800260",
+          "0x42c0e6cfbd0f0bc0505538ec04c120a21477c109b0a576247d7d45919d400ede",
+          "0x9cb345b482f45358dd0a57afce927d7b85756f6d49c2ae0dc7f7908fb27d3cc2",
+          "0x0a39e3389d2437d160f3d95cdf30f61c1afd52a2f82cafd2ac32a6b6ea823e9b",
+          "0x9ebd7b37a21fb0c74d0040a941038887caf4e4c7dfaa182b82915cacc6191025",
+          "0x4550ab30af8c76557a74d051eb43a964889d383d6da343c6a4f4799595d86f9c"
+        ],
+        "value": "0x0000000000000000000000000000000000000000000000000000000000000060",
+        "index": 27900957
+      }
+    ]
+  },
+  "id": 1
+}
+```
+
 ### `zks_getRawBlockTransactions`
 
 Returns data of transactions in a block.

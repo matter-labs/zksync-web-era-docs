@@ -24,7 +24,6 @@ export default defineUserConfig({
   title: "Welcome to our Docs - All information you need about zkSync and ZK Stack",
 
   head: [
-    ["link", { rel: "canonical", href: "https://docs.zksync.io/" }],
     ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
     ["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true }],
     ["link", { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" }],
@@ -117,7 +116,10 @@ export default defineUserConfig({
   },
 
   plugins: [
-    seoPlugin,
+    seoPlugin({
+      hostname: "https://docs.zksync.io",
+      canonical: "https://docs.zksync.io",
+    }),
     pwaPlugin({
       update: "force",
     }),
