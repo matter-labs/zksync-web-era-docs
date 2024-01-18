@@ -2,10 +2,10 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Swift SDK Getting Started | zkSync Era Docs
+      content: Swift SDK Getting Started | zkSync Docs
 ---
 
-# Getting started
+# Getting Started
 
 This is a short introduction to `zksync2-swift` SDK, but covers many of the most common operations that developers require and provides a
 starting point for those newer to zkSync Era.
@@ -52,22 +52,17 @@ To install zkSync via Swift Package Manager, add zkSync2 to the Package Dependen
 Once you have integrated zkSync2 dependencies, connect to zkSync using the endpoint of the operator node.
 
 ```swift
-let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://testnet.era.zksync.dev")!)
+let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://sepolia.era.zksync.dev")!)
 ```
 
 ## Connecting to Ethereum
 
-Also connect to Ethereum using the endpoint of the eth_goerli node.
+Also connect to Ethereum using the endpoint of the eth_sepolia node.
 
 ```swift
-let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_goerli")!)
+let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_sepolia")!)
 
 let credentials = Credentials(<WALLET_PRIVATE_KEY>)
 let keystoreManager = KeystoreManager([credentials])
 ethereum.addKeystoreManager(keystoreManager)
 ```
-
-## Examples
-
-Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-examples/tree/main/swift). Examples are configured to
-interact with `zkSync Era` and `Goerli` test networks.

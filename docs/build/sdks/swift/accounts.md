@@ -2,13 +2,15 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Swift SDK Accounts | zkSync Era Docs
+      content: Swift SDK Accounts | zkSync Docs
 ---
 
-# Accounts: Overview
+# Accounts
+
+## Overview
 
 The `accounts` package provides abstractions that wrap operations that interact with an account. An account typically contains a private
-key, allowing it to sign various types of payloads. There are the following interfaces that provide account operations for different
+key, allowing it to sign various types of payloads. These are the following interfaces that provide account operations for different
 purposes:
 
 - `Signer` provides support for signing EIP-712 transactions as well as other types of transactions
@@ -18,7 +20,7 @@ purposes:
   associated account.
 - `Adapter` consists of `AdapterL1`, `AdapterL2`, and `Deployer` interfaces.
 
-There are the following objects that provide account operations:
+These are the following objects that provide account operations:
 
 - `BaseSigner` implements the `Signer` interface.
 - `WalletL1` implements the `AdapterL1` interface.
@@ -63,9 +65,9 @@ Returns the private key associated with the signer.
 signer.credentials.privateKey: Data
 ```
 
-Signs the given hash using the signer's private key and returns the signature. The hash should be the 32-byte hash of the data to be signed.
-
 ### `SignHash`
+
+Signs the given hash using the signer's private key and returns the signature. The hash should be the 32-byte hash of the data to be signed.
 
 ```swift
 signer.signMessage(message)
@@ -95,8 +97,8 @@ WalletL1(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
 ```swift
 let credentials = Credentials(<WALLET_PRIVATE_KEY>)
 let chainId = try! zkSync.web3.eth.getChainIdPromise().wait()
-let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://testnet.era.zksync.dev")!)
-let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_goerli")!)
+let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://sepolia.era.zksync.dev")!)
+let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_sepolia")!)
 let signer = BaseSigner(credentials, chainId: chainId)
 let wallet = WalletL1(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
 ```
@@ -155,10 +157,10 @@ Returns the amount of approved tokens for a specific L1 bridge.
 
 #### Inputs
 
-| Parameter       | Type             | Description     |
-| --------------- | ---------------- | --------------- |
-| `token`         | `Token`          | Token.          |
-| `bridgeAddress` | `EthereumAddress | Bridge address. |
+| Parameter       | Type              | Description     |
+| --------------- | ----------------- | --------------- |
+| `token`         | `Token`           | Token.          |
+| `bridgeAddress` | `EthereumAddress` | Bridge address. |
 
 ```swift
 func allowanceL1(token: Token, bridgeAddress: EthereumAddress) async -> BigUInt
@@ -230,14 +232,8 @@ _ = try! await walletL1.deposit(
 ### `ClaimFailedDeposit`
 
 Withdraws funds from the initiated deposit, which failed when finalizing on L2. If the deposit L2 transaction has failed, it sends an L1
-transaction calling ClaimFailedDeposit method of the L1 bridge, which results in returning L1 tokens back to the depositor, otherwise throws
+transaction calling `ClaimFailedDeposit` method of the L1 bridge, which results in returning L1 tokens back to the depositor, otherwise throws
 the error.
-
-#### Inputs
-
-| Parameter     | Type          | Description                                    |
-| ------------- | ------------- | ---------------------------------------------- |
-| `depositHash` | `common.Hash` | The L2 transaction hash of the failed deposit. |
 
 ```swift
 func claimFailedDeposit(_ l1BridgeAddress: String, depositSender: String, l1Token: String, l2TxHash: Data, l2BlockNumber: BigUInt, l2MessageIndex: BigUInt, l2TxNumberInBlock: UInt, proof: [Data]) async throws -> TransactionSendingResult
@@ -279,8 +275,8 @@ WalletL2(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
 ```swift
 let credentials = Credentials(<WALLET_PRIVATE_KEY>)
 let chainId = try! zkSync.web3.eth.getChainIdPromise().wait()
-let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://testnet.era.zksync.dev")!)
-let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_goerli")!)
+let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://sepolia.era.zksync.dev")!)
+let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_sepolia")!)
 let signer = BaseSigner(credentials, chainId: chainId)
 let wallet = WalletL2(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
 ```
@@ -668,8 +664,8 @@ WalletL2(zkSync, ethClient: ethClient, web3: web, ethSigner: signer)
 ```swift
 let credentials = Credentials(<WALLET_PRIVATE_KEY>)
 let chainId = try! zkSync.web3.eth.getChainIdPromise().wait()
-let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://testnet.era.zksync.dev")!)
-let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_goerli")!)
+let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://sepolia.era.zksync.dev")!)
+let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_sepolia")!)
 let signer = BaseSigner(credentials, chainId: chainId)
 let wallet = Wallet(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
 ```

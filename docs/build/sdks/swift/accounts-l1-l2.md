@@ -2,14 +2,14 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Swift SDK L1/L2 Transactions | zkSync Era Docs
+      content: Swift SDK L1/L2 Transactions | zkSync Docs
 ---
 
-# Accounts: L1<->L2 transactions
+# Accounts: L1<->L2 Transactions
 
 This section explores the methods which allow the [account](./accounts.md) to send transactions among both L1 to L2 networks.
 
-If you want some background on how L1<->L2 interaction works on zkSync, go through the [introduction](../../reference/concepts/l1-l2-interop.md).
+If you want some background on how L1<->L2 interaction works on zkSync, go through the [introduction](../../developer-reference/l1-l2-interop.md).
 
 Full examples of actions below are available on the [getting started](./getting-started.md) page.
 
@@ -34,4 +34,4 @@ method specification [`BaseCost`](accounts.md#basecost).
 
 ## Withdrawal
 
-`WalletL2` and `Wallet` objects provide a withdrawal workflow. For more information, please refer to the method specification [`Deposit`](accounts.md#deposit).
+`WalletL2` and `Wallet` objects provide a withdrawal workflow. For more information, please refer to the method specification [`Withdraw`](accounts.md#withdraw).

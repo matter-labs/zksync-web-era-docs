@@ -2,19 +2,19 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Swift SDK Paymaster Utilities | zkSync Era Docs
+      content: Swift SDK Paymaster Utilities | zkSync Docs
 ---
 
-# Paymaster utilities
+# Paymaster Utilities
 
-The [paymaster utilities library](https://github.com/zksync-sdk/zksync2-swift/blob/main/utils/paymaster.swift) contains essential utilities for using paymasters on zkSync Era.
+The [paymaster utilities library](https://github.com/zksync-sdk/zksync2-swift/blob/main/Sources/ZkSync2/Utils/Paymaster.swift) contains essential utilities for using paymasters on zkSync Era.
 
 ## Contract interfaces
 
 ### `IPaymasterFlow`
 
 Constant ABI definition for
-the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob/36fe0fd11aeb2cfe88139e7e09d59a25366668d6/zksync/contracts/interfaces/IPaymasterFlow.sol).
+the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob/f06a58360a2b8e7129f64413998767ac169d1efd/zksync/contracts/interfaces/IPaymasterFlow.sol).
 
 ## Functions
 
