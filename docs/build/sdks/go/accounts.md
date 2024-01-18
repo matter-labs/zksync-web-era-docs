@@ -5,7 +5,9 @@ head:
       content: Go SDK Accounts | zkSync Docs
 ---
 
-# Accounts: Overview
+# Accounts
+
+## Overview
 
 The `accounts` package provides abstractions that wrap operations that interact with an account. An account typically contains a private
 key, allowing it to sign various types of payloads. There are the following interfaces that provide account operations for different

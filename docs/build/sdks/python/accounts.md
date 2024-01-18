@@ -5,7 +5,9 @@ head:
       content: Python SDK Accounts | zkSync Docs
 ---
 
-# Accounts: overview
+# Accounts
+
+## Overview
 
 The zkSync Python SDK has a method that generates a signature and a method that verifies messages.
 

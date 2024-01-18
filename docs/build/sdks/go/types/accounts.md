@@ -5,7 +5,7 @@ head:
       content: Go SDK Accounts Package | zkSync Docs
 ---
 
-# `accounts` package
+# `accounts` Package
 
 ### `CallOpts`
 

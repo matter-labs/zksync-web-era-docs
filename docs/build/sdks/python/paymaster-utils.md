@@ -5,7 +5,7 @@ head:
       content: Python SDK Paymaster Utilities | zkSync Docs
 ---
 
-# Paymaster utilities
+# Paymaster Utilities
 
 The [paymaster utilities library](https://github.com/zksync-sdk/zksync2-go/blob/main/utils/paymaster.go) contains essential utilities for using paymasters on zkSync Era.
 

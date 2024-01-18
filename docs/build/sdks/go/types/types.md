@@ -5,7 +5,7 @@ head:
       content: Go SDK Types Package | zkSync Docs
 ---
 
-# `types` package
+# `types` Package
 
 ### `AccountAbstractionVersion`
 

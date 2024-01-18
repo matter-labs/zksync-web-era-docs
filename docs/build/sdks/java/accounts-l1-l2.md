@@ -5,7 +5,7 @@ head:
       content: Java SDK L1/L2 Transactions | zkSync Docs
 ---
 
-# Accounts: L1->L2 transactions
+# Accounts: L1->L2 Transactions
 
 This section explores the methods which allow the [account](./accounts.md) classes to send transactions from L1 to L2.
 

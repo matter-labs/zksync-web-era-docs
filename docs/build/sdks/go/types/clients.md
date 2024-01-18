@@ -5,7 +5,7 @@ head:
       content: Go SDK Clients Package | zkSync Docs
 ---
 
-# `clients` package
+# `clients` Package
 
 ### `BlockRange`
 

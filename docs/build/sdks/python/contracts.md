@@ -5,7 +5,7 @@ head:
       content: Python SDK Contract | zkSync Docs
 ---
 
-# Contract interfaces
+# Contract Interfaces
 
 There is a set of system contract that helps with the interaction with zkSync Era network. Most of them are called using abi.
 

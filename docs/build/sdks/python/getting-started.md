@@ -5,7 +5,7 @@ head:
       content: Python SDK Getting Started | zkSync Docs
 ---
 
-# Getting started
+# Getting Started
 
 In this guide we will demonstrate how to:
 

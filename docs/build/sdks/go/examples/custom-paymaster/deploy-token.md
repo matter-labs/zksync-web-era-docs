@@ -5,7 +5,7 @@ head:
       content: Go SDK Deploy Token Example | zkSync Docs
 ---
 
-# Deploy token
+# Deploy Token
 
 Deploy the token which will be used to pay transaction fee.
 

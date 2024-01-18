@@ -5,7 +5,7 @@ head:
       content: Go SDK Features | zkSync Docs
 ---
 
-# zkSync Era features
+# zkSync Era Features
 
 While zkSync Era is mostly Web3-compatible, it has some differences compared to Ethereum. The major of those are:
 
