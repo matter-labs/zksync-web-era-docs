@@ -10,13 +10,6 @@ head:
 All the types which are used in the SDK are referenced here:
 
 ```py
-from dataclasses import dataclass
-from decimal import Decimal
-from eth_typing import HexStr, Hash32
-from typing import Union, NewType, Dict, List, Any
-from hexbytes import HexBytes
-from enum import Enum
-
 ADDRESS_DEFAULT = HexStr("0x" + "0" * 40)
 
 TokenAddress = NewType('token_address', HexStr)
@@ -63,14 +56,6 @@ class Token:
 
 
 @dataclass
-class Fee:
-    gas_limit: int = 0
-    max_fee_per_erg: int = 0
-    max_priority_fee_per_erg : int = 0
-    gas_per_pub_data_limit: int = 0
-
-
-@dataclass
 class BridgeAddresses:
     l1_eth_default_bridge: HexStr
     l2_eth_default_bridge: HexStr
@@ -82,5 +67,125 @@ class BridgeAddresses:
 class PaymasterParams(dict):
     paymaster: HexStr
     paymaster_input: bytes
+```
 
+# Transaction
+
+```py
+Transaction = TypedDict(
+    "Transaction",
+    {
+        "chain_id": int,
+        "nonce": int,
+        "from": HexStr,
+        "to": HexStr,
+        "gas": int,
+        "gasPrice": int,
+        "maxPriorityFeePerGas": int,
+        "value": int,
+        "data": HexStr,
+        "transactionType": int,
+        "accessList": Optional[AccessList],
+        "eip712Meta": EIP712Meta,
+    },
+    total=False,
+)
+```
+
+# Fee
+
+```python
+@dataclass
+class Fee:
+    gas_limit: int = 0
+    max_fee_per_erg: int = 0
+    max_priority_fee_per_erg : int = 0
+    gas_per_pub_data_limit: int = 0
+```
+
+# TransferTransaction
+
+```python
+@dataclass
+class TransferTransaction:
+    to: HexStr
+    amount: int = 0
+    token_address: HexStr = None
+    chain_id: int = None
+    nonce: int = None
+    gas_limit: int = 0
+    gas_price: int = 0
+    max_priority_fee_per_gas = 100_000_000
+    gas_per_pub_data: int = 50000
+```
+
+# WithdrawTransaction
+
+```python
+@dataclass
+class WithdrawTransaction:
+    token: HexStr
+    amount: int
+    to: HexStr = None
+    bridge_address: HexStr = None
+    options: TransactionOptions = None
+```
+
+# L1BridgeContracts
+
+```python
+@dataclass
+class L1BridgeContracts:
+    erc20: Contract
+    weth: Contract
+```
+
+# TransactionOptions
+
+```python
+@dataclass
+class TransactionOptions:
+    chain_id: int = None
+    nonce: int = None
+    value: int = None
+    gas_price: int = None
+    max_fee_per_gas: int = None
+    max_priority_fee_per_gas: int = None
+    gas_limit: int = None
+```
+
+# DepositTransaction
+
+```python
+@dataclass
+class DepositTransaction:
+    token: HexStr
+    amount: int = None
+    to: HexStr = None
+    operator_tip: int = 0
+    bridge_address: HexStr = None
+    approve_erc20: bool = False
+    l2_gas_limit: int = None
+    gas_per_pubdata_byte: int = DEPOSIT_GAS_PER_PUBDATA_LIMIT
+    custom_bridge_data: bytes = None
+    refund_recipient: HexStr = None
+    l2_value: int = 0
+    options: TransactionOptions = None
+```
+
+# RequestExecuteCallMsg
+
+```python
+@dataclass
+class RequestExecuteCallMsg:
+    contract_address: HexStr
+    call_data: Union[bytes, HexStr]
+    from_: HexStr = None
+    l2_gas_limit: int = 0
+    l2_value: int = 0
+    factory_deps: List[bytes] = None
+    operator_tip: int = 0
+    gas_per_pubdata_byte: int = DEPOSIT_GAS_PER_PUBDATA_LIMIT
+    refund_recipient: HexStr = None
+    options: TransactionOptions = None
 ```

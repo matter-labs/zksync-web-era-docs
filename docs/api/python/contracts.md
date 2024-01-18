@@ -7,47 +7,19 @@ head:
 
 # Contract interfaces
 
-There is a set of system contract that helps with the interaction with zkSync Era network.<br>
-The following are the contracts:
+There is a set of system contract that helps with the interaction with zkSync Era network. Most of them are called using abi.
 
-- NonceHolder
-- ERC20Contract & ERC20FunctionEncoder
-- ContractDeployer
-
-### NonceHolder
-
-The `NonceHolder` system contract handles the deployment of nonce, it's useful for precomputing address of contract that is going to be deployed in the network.<br>
-
-To construct it, you need the `account` and `Web3` object with the integrated zksync module.
+> Example
 
 ```python
-from zksync2.manage_contracts.nonce_holder import NonceHolder
-from eth_account import Account
-from eth_account.signers.local import LocalAccount
+from web3 import Web3
+
+from zksync2.manage_contracts.utils import zksync_abi_default
 from zksync2.module.module_builder import ZkSyncBuilder
 
-zksync_web3 = ZkSyncBuilder.build("ZKSYNC_NETWORK_URL")
-account: LocalAccount = Account.from_key("PRIVATE_KEY")
-nonce_holder = NonceHolder(zksync_web3, account)
+zksync = ZkSyncBuilder.build(self.env.zksync_server)
+zksync_contract = self.eth_web3.eth.contract(Web3.to_checksum_address(zksync.zksync.main_contract_address), abi=zksync_abi_default())
 ```
-
-Methods:
-
-| Method                     | Parameters | Return value | Description                                                           |
-| -------------------------- | ---------- | ------------ | --------------------------------------------------------------------- |
-| get_account_nonce          | -          | Nonce        | Returns account nonce.                                                |
-| get_deployment_nonce       | -          | Nonce        | Return the current deployment nonce that is going to be used.         |
-| increment_deployment_nonce | Address    | Nothing      | Manually increments deployment nonce by the provided account address. |
-
-### ERC20Contract
-
-This is a system contract that is used internally as a part of the implementation methods of `EthereumProvider`<br>
-
-A more interesting type includes the `ERC20FunctionEncoder`. It's used to provide method encoding in the case of sending non-native tokens inside the network.
-
-Construction needs only Web3 object with appended zksync module(ZkSyncBuilder)
-
-It has only 1 single method: `python encode_method` with arguments of function name, and its args
 
 ### ContractDeployer
 
