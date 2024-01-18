@@ -30,7 +30,7 @@ The base property that is used directly with account is: `Account.address`.
 
 Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync Ethereum smart contract.
 
-```typescript
+```python
 def approve_erc20(self,
     token: HexStr,
     amount: int,
@@ -50,7 +50,7 @@ def approve_erc20(self,
 
 > Example
 
-```typescript
+```python
 from eth_account import Account
 from eth_account.signers.local import LocalAccount
 from web3 import Web3

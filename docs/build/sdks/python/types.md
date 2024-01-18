@@ -9,7 +9,7 @@ head:
 
 All the types which are used in the SDK are referenced here:
 
-```py
+```python
 ADDRESS_DEFAULT = HexStr("0x" + "0" * 40)
 
 TokenAddress = NewType('token_address', HexStr)
@@ -71,7 +71,7 @@ class PaymasterParams(dict):
 
 # Transaction
 
-```py
+```python
 Transaction = TypedDict(
     "Transaction",
     {

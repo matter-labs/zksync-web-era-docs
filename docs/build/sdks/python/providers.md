@@ -294,7 +294,7 @@ def zks_get_l2_to_l1_msg_proof(self,
 Returns the [testnet paymaster](../../reference/concepts/account-abstraction.md#paymasters) address if available, or null.
 
 ```python
-1def zks_get_testnet_paymaster_address(self) -> HexStr:
+def zks_get_testnet_paymaster_address(self) -> HexStr:
     return Web3.to_checksum_address(self._zks_get_testnet_paymaster_address())
 ```
 
@@ -362,7 +362,7 @@ Only works for tokens bridged on default zkSync Era bridges.
 | ----- | ------------------------------- |
 | token | The address of the token on L1. |
 
-```typescript
+```python
 def l2_token_address(self, token: HexStr) -> HexStr:
     if is_eth(token):
         return ADDRESS_DEFAULT
