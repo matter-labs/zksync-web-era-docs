@@ -12,7 +12,7 @@ Discover how to construct a tailored paymaster that enables users to sidestep ga
 - Write a `mint` function for the `ERC721.sol` contract.
 - Design and implement the validation logic for the `ERC721GatedPaymaster.sol` contract.
 - Deploy `Greeter.sol`, `ERC721.sol`, and `ERC721GatedPaymaster.sol` contracts.
-- Connect our frontend application with users MetaMask wallets.
+- Connect our frontend application with users' MetaMask wallets.
 - Initialize our contracts to facilitate interaction on the client side.
 - Fetch data to display in a React component.
 - Harness the capabilities of our paymaster based on NFT possession.
@@ -380,7 +380,7 @@ function validateAndPayForPaymasterTransaction(
 }
 ```
 
-Amazing! We have successfully written the smart contracts lets proceed to deploy them using the deployment scripts provided.
+Amazing! We have successfully written the smart contracts let's proceed to deploy them using the deployment scripts provided.
 
 #### Contract Deployment
 
@@ -398,7 +398,7 @@ The output of the command should resemble the following:
 Successfully compiled 43 Solidity files
 ```
 
-2. Deploy the contracts to zkSync Era Testnet. This will also programatically verify the contracts on zkSync Era Testnet.
+2. Deploy the contracts to zkSync Era Testnet. This will also programmatically verify the contracts on zkSync Era Testnet.
 
 ```bash
 yarn deploy:contracts
@@ -499,7 +499,7 @@ cd app/components/WalletButton.tsx
 
 2. Let implement the requirements for the `connectWallet` function
 
-The `connectWallet` function requirements indicates that we need to ensure we are connected to the correct network, connect to the users MetaMask account, store some variables using React's Context API, and then call `initContracts` function to instantiate our contracts. Lets proceed to do that:
+The `connectWallet` function requirements indicates that we need to ensure we are connected to the correct network, connect to the users MetaMask account, store some variables using React's Context API, and then call `initContracts` function to instantiate our contracts. Let's proceed to do that:
 
 ```typescript
 const connectWallet = async () => {
