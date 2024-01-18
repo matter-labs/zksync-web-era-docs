@@ -29,7 +29,9 @@
     "misc",
     "fullstack",
     "softwareTerms",
-    "zksync"
+    "zksync",
+    "nuxt",
+    "viem"
 ],
 "dictionaryDefinitions": [
     {

@@ -4,6 +4,7 @@ zkweb
 zksync
 zkscan
 zkscrypto
+zkstack
 libzkscrypto
 pubkey
 pubdata
@@ -36,6 +37,9 @@ tokenomics
 validator's
 CHAINID
 PREVRANDAO
+sepolia
+Boojum
+permissioned
 
 // Names
 Vyper
@@ -60,6 +64,7 @@ pepe
 Arweave
 Streamr
 dutterbutter
+zeek
 
 // Used libraries
 numberish
@@ -74,6 +79,135 @@ zkforge
 zkcast
 Eigen
 IPFS
+Nuxt
+viem
+Wagmi
+
+// docs restructure
+NVME
+OTLP
+rocksdb
+multivm
+Reinitializing
+sqlx
+rustc
+ROCKSDB
+librocksdb
+CUDA
+gcloud
+rustc
+unsynchronized
+rustc
+abda
+edaf
+impls
+hdcaa
+emilluta
+zkevm
+cicruit
+Cuda
+cuda
+Ankr
+DRPC
+reliabile
+Oflatest
+IDIA
+USRC
+Pythnet
+Pyth
+subql
+incentivized
+retreives
+Devs
+Ethersv
+satoshi
+Dappradar
+Zetta
+Zetta
+Plonky
+
+// NFT Marketplaces
+Kreatorland
+Tevaera
+ONFT
+Zonic
+
+// wallets
+Echoo
+Enkrypt
+Rabby
+Yasp
+
+// zkstack
+nocapture
+preds
+inttoptr
+syncvm
+preds
+syncvm
+nasm
+rodata
+ISZERO
+JUMPI
+ISZERO
+JUMPI
+ethir
+ptrtoint
+lshr
+preds
+inttoptr
+syncvm
+getu
+zext
+getu
+noprofile
+ptrtoint
+lshr
+syncvm
+umin
+nasm
+rodata
+iszero
+cccond
+ccret
+prodl
+prodeh
+interm
+prodm
+signv
+ashr
+noalias
+prode
+prodh
+Merklized
+reexecuted
+Arithmetization
+arithmetization
+satisfiability
+demultiplex
+Decommitments
+Decommittments
+decommitments
+decommittments
+Decommitment
+Decommittment
+decommitment
+decommittment
+Decommitter
+decommitter
+decommitting
+decommits
+Demuxer
+decommit
+Deduplicator
+Binop
+mathbb
+Invb
+REDC
+skept
+ECADD
+ECMUL
+
 
 // Used programming language words
 printf
@@ -96,6 +230,10 @@ porco
 rosso
 insize
 MLOAD
+psql
+jemalloc
+recid
+plux
 
 // ETC
 gitter
@@ -123,6 +261,7 @@ USDCUSD
 ETHUS
 USDCUS
 ETHUSD
+MCRN
 Arbitrum
 Adamantium
 Immunefi
@@ -132,6 +271,7 @@ Evmla
 UUPS
 Uups
 TLDR
+inversed
 
 // crypto events
 Edcon
@@ -164,3 +304,10 @@ Hola
 mundo
 ISTN
 Zerion
+Maverik
+freezability
+predeloyed
+
+// testing ci
+Omnibtc
+Owlto
