@@ -83,10 +83,3 @@ existing ones to zkSync Era. For a lower-level approach, download our compiler b
 
 - [hardhat-zksync-solc documentation](../../../../build/tooling/hardhat/hardhat-zksync-solc.md)
 - [hardhat-zksync-vyper documentation](../../../../build/tooling/hardhat/hardhat-zksync-vyper.md)
-
-::: warning
-
-- Using compilers running in Docker images is no longer supported.
-- Instead, use the `compilerSource: "binary"` in the Hardhat config file to use the compiler binary.
-- To compile with binaries, use `zksolc <contract>.sol --bin`.
-  :::

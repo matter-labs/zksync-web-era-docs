@@ -38,21 +38,18 @@ support some configuration settings which are only relevant to the EVM architect
 
 Additional zkEVM data is supported by `zksolc` but is omitted when passed to `solc`:
 
-- `settings/optimizer/enabled`: enables the LLVM optimizer. You can disable it for prototyping and debugging.
 - `settings/optimizer/mode`: sets the optimization mode. Available values: `0`, `1`, `2`, `3`, `s`, `z`. The default
   setting is `3`. See [LLVM optimizer](./llvm.md#optimizer).
+- `settings/optimizer/fallback_to_optimizing_for_size`: tries to compile again in `z` mode if the bytecode is too large for zkEVM.
 
 Unsupported sections of the input JSON, ignored by `zksolc`:
 
 - `sources/<file>/urls`
 - `sources/destructible`
 - `settings/stopAfter`
-- `settings/remappings`
-- `settings/optimizer/*`: the `solc` optimizer is always enabled and is not configurable.
 - `settings/evmVersion`
 - `settings/debug`
-- `settings/metadata`: we request metadata with default settings for consistency.
-- `settings/outputSelection/def`
+- `settings/metadata`: for zkEVM you can only append `keccak256` metadata hash to the bytecode.
 - `settings/modelChecker`
 
 Additional zkEVM data inserted by `zksolc`:

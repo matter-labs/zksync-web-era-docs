@@ -5,7 +5,7 @@ head:
       content: System Contracts | zkSync Docs
 ---
 
-# System Contracts Operations
+# System Contracts Usage
 
 Many EVM instructions require special handling by the
 [System Contracts](../specification/system-contracts.md). Among them are: `ORIGIN`,

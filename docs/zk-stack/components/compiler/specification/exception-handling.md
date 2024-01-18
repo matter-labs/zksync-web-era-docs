@@ -12,14 +12,13 @@ This document explains some peculiarities of the exception handling (EH) in zkEV
 In a nutshell, there are two exception handling mechanisms in zkEVM: contract-level and function-level. The former is
 more common to general-purpose languages, and the latter was inherited from the EVM architecture.
 
-|                                                        | Contract Level          | Function Level                                 |
-| ------------------------------------------------------ | ----------------------- | ---------------------------------------------- |
-| Yul examples                                           | revert(0, 0)            | verbatim("throw")                              |
-| Native to                                              | EVM                     | General-purpose languages                      |
-| Handled by                                             | zkEVM                   | Compiler                                       |
-| Catchable                                              | By the calling contract | By the calling function                        |
-| Efficient                                              | Yes                     | Huge size impact due to numerous catch blocks. |
-| Extra cycles are needed for propagating the exception. |
+|              | Contract Level          | Function Level                                                                                        |
+| ------------ | ----------------------- | ----------------------------------------------------------------------------------------------------- |
+| Yul examples | revert(0, 0)            | verbatim("throw")                                                                                     |
+| Native to    | EVM                     | General-purpose languages                                                                             |
+| Handled by   | zkEVM                   | Compiler                                                                                              |
+| Catchable    | By the calling contract | By the calling function                                                                               |
+| Efficient    | Yes                     | Huge size impact due to numerous catch blocks. Extra cycles are needed for propagating the exception. |
 
 ## Contract Level
 
@@ -103,6 +102,6 @@ function ZKSYNC_CATCH_NEAR_CALL() {               // 07
 }
 ```
 
-Having all the overhead above, the `catch` blocks are only generated if there is the EH function
+Having all the overhead above, the `catch` blocks are only generated if there is an EH function called
 `ZKSYNC_CATCH_NEAR_CALL` defined in the contract. Otherwise there is no need to catch panics and they will be propagated
-to the callee contract automatically by the VM execution environment.
+to the callee contract automatically by the VM.
