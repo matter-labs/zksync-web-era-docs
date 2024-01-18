@@ -26,120 +26,206 @@ account: LocalAccount = Account.from_key("PRIVATE_KEY")
 
 The base property that is used directly with account is: `Account.address`.
 
-## Depositing tokens to zkSync Era
+## Approving deposit of tokens
 
-Returns the transaction receipt of the deposit.
+Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync Ethereum smart contract.
 
-```py
-
-def deposit(self, l2_receiver: HexStr, l1_token: HexStr, amount: int) -> txn_receipt
-
+```python
+def approve_erc20(self,
+    token: HexStr,
+    amount: int,
+    bridge_address: HexStr = None,
+    gas_limit: int = None) -> TxReceipt:
 ```
 
-### Arguments
+### Inputs and outputs
 
-| Name        | Description                                               |
-| ----------- | --------------------------------------------------------- |
-| l2_receiver | The address that will receive the deposited tokens on L2. |
-| l1_token    | The address of the deposited L1 ERC20 token.              |
-| amount      | The amount of the token to be deposited.                  |
+| Name           | Description                                    |
+| -------------- | ---------------------------------------------- |
+| token          | The Ethereum address of the token.             |
+| amount         | The amount of the token to be approved.        |
+| bridge_address | Custom address of l1 bridge (optional).        |
+| gas_limit      | Gas limit (optional).                          |
+| returns        | `ethers.providers.TransactionResponse` object. |
 
 > Example
 
-```py
+```python
+from eth_account import Account
+from eth_account.signers.local import LocalAccount
+from web3 import Web3
+from zksync2.account.wallet import Wallet
+from zksync2.module.module_builder import ZkSyncBuilder
 
-def deposit(self, l2_receiver: HexStr, l1_token: HexStr, amount: int):
-        tx = self.contract.functions.deposit(l2_receiver,
-                                             l1_token,
-                                             amount).build_transaction(
-            {
-                "chainId": self.web3.eth.chain_id,
-                "from": self.account.address,
-                "nonce": self._get_nonce(),
-                "gas": self.gas_provider.gas_limit(),
-                "gasPrice": self.gas_provider.gas_price(),
-                "value": amount
-            })
-        signed_tx = self.account.sign_transaction(tx)
-        txn_hash = self.web3.eth.send_raw_transaction(signed_tx.rawTransaction)
-        txn_receipt = self.web3.eth.wait_for_transaction_receipt(txn_hash)
-        return txn_receipt
+ZKSYNC_PROVIDER = "https://sepolia.era.zksync.dev"
+ETH_PROVIDER = "https://rpc.ankr.com/eth_sepolia"
 
+zk_web3 = ZkSyncBuilder.build(ZKSYNC_PROVIDER)
+eth_web3 = Web3(Web3.HTTPProvider(ETH_PROVIDER))
+
+account: LocalAccount = Account.from_key("PRIVATE_KEY")
+wallet = Wallet(zksync, eth_web3, account)
+
+amount_usdc = 5
+is_approved = wallet.approve_erc20("USDC_ADDRESS", amount_usdc)
+
+await txHandle.wait();
 ```
 
-## Claim failed deposit
+## Depositing tokens to zkSync
+
+```python
+def deposit(self, transaction: DepositTransaction):
+```
+
+#### Inputs and outputs
+
+| Name        | Description                                           |
+| ----------- | ----------------------------------------------------- |
+| transaction | [`Deposittransaction`](./types.md#deposittransaction) |
+| returns     | `Hash` of the transaction.                            |
+
+> Example
+
+```python
+from eth_account import Account
+from eth_account.signers.local import LocalAccount
+from web3 import Web3
+from zksync2.account.wallet import Wallet
+from zksync2.module.module_builder import ZkSyncBuilder
+from zksync2.core.types import TransactionOptions, DepositTransaction, ADDRESS_DEFAULT
+
+
+ZKSYNC_PROVIDER = "https://sepolia.era.zksync.dev"
+ETH_PROVIDER = "https://rpc.ankr.com/eth_sepolia"
+
+zk_web3 = ZkSyncBuilder.build(ZKSYNC_PROVIDER)
+eth_web3 = Web3(Web3.HTTPProvider(ETH_PROVIDER))
+
+account: LocalAccount = Account.from_key("PRIVATE_KEY")
+wallet = Wallet(zksync, eth_web3, account)
+
+USDC_ADDRESS = "<USDC_ADDRESS>";
+l1_hash_usdc = wallet.deposit(DepositTransaction(Web3.to_checksum_address(USDC_ADDRESS),
+                                            amount_usdc,
+                                            account.address,
+                                            approve_erc20=True))
+
+l1_tx_receipt_usdc = self.eth_web3.eth.wait_for_transaction_receipt(l1_hash_usdc)
+
+l1_hash_eth = self.wallet.deposit(DepositTransaction(token=Token.create_eth().l1_address,
+                                        amount=amount,
+                                        to=self.wallet.address))
+
+l1_tx_receipt_usdc = self.eth_web3.eth.wait_for_transaction_receipt(l1_hash_eth)
+
+await ethDepositHandle.wait();
+```
+
+## Adding native token to zkSync
+
+New tokens are added automatically the first time they are deposited.
+
+## Finalizing withdrawals
+
+Withdrawals are executed in 2 steps - initiated on L2 and finalized on L1.
+
+```python
+def finalize_withdrawal(self, withdraw_hash, index: int = 0):
+```
+
+#### Inputs and outputs
+
+| Name           | Description                                                                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| withdrawalHash | Hash of the L2 transaction where the withdrawal was initiated.                                                                            |
+| index          | In case there were multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize (defaults to 0). |
+
+## Force-executing transactions on L2
+
+### Getting the base cost for L2 transaction
+
+```python
+def get_base_cost(self,
+                    l2_gas_limit: int,
+                    gas_per_pubdata_byte: int = DEPOSIT_GAS_PER_PUBDATA_LIMIT,
+                    gas_price: int = None):
+```
+
+#### Inputs and outputs
+
+| Name                 | Description                                                                           |
+| -------------------- | ------------------------------------------------------------------------------------- |
+| l2_gas_limit         | The `gasLimit` for the L2 contract call.                                              |
+| gas_per_pubdata_byte | The L2 gas price for each published L1 calldata byte.                                 |
+| gas_price            | The L1 gas price of the L1 transaction that will send the request for an execute call |
+| returns              | The base cost in ETH for requesting the L2 contract call.                             |
+
+## Claim Failed Deposit
 
 The `claimFailedDeposit` method withdraws funds from the initiated deposit, which failed when finalizing on L2.  
 If the deposit L2 transaction has failed, it sends an L1 transaction calling `claimFailedDeposit` method of the L1 bridge, which results in returning L1 tokens back to the depositor, otherwise throws the error.
 
-```py
-
- def claim_failed_deposit(self, deposit_sender: HexStr,
-                             l1_token: HexStr,
-                             l2tx_hash,
-                             l2_block_number: int,
-                             l2_msg_index: int,
-                             merkle_proof: List[bytes]) -> TxReceipt
-
+```python
+def claim_failed_deposit(self, deposit_hash: HexStr):
 ```
 
-### Arguments
+### Input Parameters
 
-| Name            | Description                                                                          |
-| --------------- | ------------------------------------------------------------------------------------ |
-| deposit_sender  | The address of the deposit initiator.                                                |
-| l2tx_hash       | The L2 transaction hash of the failed deposit finalization.                          |
-| l1_token        | The address of the deposited L1 ERC20 token.                                         |
-| l2_block_number | The L2 block number where the deposit finalization was processed.                    |
-| l2_msg_index    | The position in the L2 logs Merkle tree of the l2Log that was sent with the message. |
-| merkle_proof    | The Merkle proof of the processing L1 -> L2 transaction with deposit finalization    |
+| Parameter   | Type     | Description                                    |
+| ----------- | -------- | ---------------------------------------------- |
+| depositHash | `HexStr` | The L2 transaction hash of the failed deposit. |
 
-## Finalizing withdrawals
+### Requesting transaction execution
 
-Withdrawals are executed in 2 steps - initiated on L2 and finalized on L1, this method returns the transaction receipt of the withdrawals.
-
-```py
-
-def finalize_withdrawal(self,
-                            l2_block_number: int,
-                            l2_msg_index: int,
-                            msg: bytes,
-                            merkle_proof: List[bytes]) -> txn_receipt
-
+```python
+def request_execute(self, transaction: RequestExecuteCallMsg):
+    transaction = self.get_request_execute_transaction(transaction)
+    tx = self.contract.functions.requestL2Transaction(transaction.contract_address,
+                                                          transaction.call_data,
+                                                          transaction.l2_value,
+                                                          transaction.l2_gas_limit,
+                                                          transaction.gas_per_pubdata_byte,
+                                                          transaction.factory_deps,
+                                                          transaction.refund_recipient).build_transaction(prepare_transaction_options(transaction.options, transaction.from_))
+    signed_tx = self._l1_account.sign_transaction(tx)
+    return self._eth_web3.eth.send_raw_transaction(signed_tx.rawTransaction)
 ```
 
-### Arguments
+#### Inputs and outputs
 
-| Name            | Description                                                                          |
-| --------------- | ------------------------------------------------------------------------------------ |
-| l2_block_number | The L2 block number where the deposit finalization was processed.                    |
-| l2_msg_index    | The position in the L2 logs Merkle tree of the l2Log that was sent with the message. |
-| l2_msg_index    | The position in the L2 logs Merkle tree of the l2Log that was sent with the message. |
-| merkle_proof    | The Merkle proof of the processing L1 -> L2 transaction with deposit finalization    |
+| Name        | Description                                                        |
+| ----------- | ------------------------------------------------------------------ |
+| transaction | [`RequestExecuteCallMsg`](./types.md#requestexecutecallmsg) object |
+| returns     | `Hash`.                                                            |
 
 > Example
 
-```py
+```python
+from eth_account import Account
+from eth_account.signers.local import LocalAccount
+from web3 import Web3
+from eth_typing import HexStr
+from zksync2.account.wallet import Wallet
+from zksync2.module.module_builder import ZkSyncBuilder
+from zksync2.core.types import TransactionOptions, DepositTransaction, ADDRESS_DEFAULT, RequestExecuteCallMsg
 
-def finalize_withdrawal(self,
-                        l2_block_number: int,
-                        l2_msg_index: int,
-                        msg: bytes,
-                        merkle_proof: List[bytes]):
-    tx = self.contract.functions.finalizeWithdrawal(l2_block_number,
-                                                    l2_msg_index,
-                                                    msg,
-                                                    merkle_proof).build_transaction(
-        {
-            "chainId": self.web3.eth.chain_id,
-            "from": self.account.address,
-            "nonce": self._get_nonce(),
-            "gas": self.gas_provider.gas_limit(),
-            "gasPrice": self.gas_provider.gas_price()
-        })
-    signed_tx = self.account.sign_transaction(tx)
-    txn_hash = self.web3.eth.send_raw_transaction(signed_tx.rawTransaction)
-    txn_receipt = self.web3.eth.wait_for_transaction_receipt(txn_hash)
-    return txn_receipt
 
+ZKSYNC_PROVIDER = "https://sepolia.era.zksync.dev"
+ETH_PROVIDER = "https://rpc.ankr.com/eth_sepolia"
+
+zk_web3 = ZkSyncBuilder.build(ZKSYNC_PROVIDER)
+eth_web3 = Web3(Web3.HTTPProvider(ETH_PROVIDER))
+
+account: LocalAccount = Account.from_key("PRIVATE_KEY")
+wallet = Wallet(zksync, eth_web3, account)
+
+amount = 7_000_000_000
+l2_balance_before = self.wallet.get_balance()
+
+l1_tx_receipt = self.wallet.request_execute(RequestExecuteCallMsg(contract_address=Web3.to_checksum_address(self.zksync.zksync.main_contract_address),call_data=HexStr("0x"),l2_value=amount,l2_gas_limit=900_000))
+
+l2_hash = self.zksync.zksync.get_l2_hash_from_priority_op(l1_tx_receipt, self.zksync_contract)
+self.zksync.zksync.wait_for_transaction_receipt(l2_hash)
+l2_balance_after = self.wallet.get_balance()
 ```
