@@ -1,3 +1,10 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: hardhat-zksync-ethers | zkSync Docs
+---
+
 # `hardhat-zksync-ethers`
 
 :::warning SDK Deprecation Notice
@@ -5,6 +12,19 @@ The `zksync2-js` SDK is now deprecated. \
 In line with this, the `hardhat-zksync-zksync2js` package will also be deprecated. \
 Moving forward, this package will be renamed to `hardhat-zksync-ethers` and will utilize the newly introduced `zksync-ethers` SDK. \
 Please update your dependencies accordingly to ensure compatibility and continued support.
+:::
+
+::: warning Version Compatibility Warning
+Ensure you are using the correct version of the plugin with ethers:
+
+- For plugin version **<1.0.0**:
+
+  - Compatible with ethers **v5**.
+
+- For plugin version **≥1.0.0**:
+  - Compatible with ethers **v6** (⭐ Recommended)
+
+Examples are adopted for plugin version **>=1.0.0**
 :::
 
 ## Installation
