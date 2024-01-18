@@ -431,3 +431,18 @@ yarn test
 ```
 
 Well done! You've successfully run your first local tests with zkSync Era and `era-test-node`.
+
+## Troubleshooting
+
+If running `era_test_node run` provides the following error:
+
+```console:no-line-numbers
+“era_test_node” can’t be opened because Apple cannot check it for malicious software.
+This software needs to be updated. Contact the developer for more information.
+```
+
+You may require the use of `sudo`. On macOS, the binary may need to have its quarantine attribute cleared:
+
+```bash
+xattr -d com.apple.quarantine /usr/local/bin/era_test_node
+```
