@@ -147,15 +147,7 @@ We source our token information from [Coingecko](https://www.coingecko.com/en/ca
 
 ## How do I Request Funds for Testnet?
 
-To access the testnet funds Sepolia, you can use one of the following third party faucets:
-
-- [Chainstack's testnet faucet](https://faucet.chainstack.com/zksync-testnet-faucet)
-
-- QuickNode [Sepolia faucet](https://faucet.quicknode.com/ethereum/sepolia)
-
-- Alchemy [Sepolia faucet](https://sepoliafaucet.com/)
-
-- Proof of work [Sepolia faucet](https://sepolia-faucet.pk910.de/)
+To access Sepolia testnet funds, [you can use one of our third party faucets](../tooling/network-faucets.md).
 
 ## How long does it take to complete a deposit transaction?
 
