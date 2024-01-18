@@ -1,2 +1,17 @@
 // you can change colors here
-$theme-color: #1e69ff;
+$theme-color: (
+    light: #1755F4,
+    dark: #739AFF,
+);
+$bg-color: (
+    light: #fff,
+    dark: rgba(17, 20, 26, 1),
+);
+$border-color: (
+    light:#302d28,
+    dark: rgba(38, 43, 51, 1),
+);
+$text-color: (
+    light: #2c3e50,
+    dark: rgba(190, 194, 204, 1),
+);
