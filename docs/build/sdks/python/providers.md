@@ -79,13 +79,13 @@ Returns an estimate(`int`) of the amount of gas required to submit a transaction
 
 Returns an estimate of the amount of gas required to submit a transaction from L1 to L2 as a `int` object.
 
-Calls the [`zks_estimateL1ToL2`](../api.md#zks-estimategasl1tol2) JSON-RPC method.
+Calls the [`zks_estimateL1ToL2`](../../api.md#zks-estimategasl1tol2) JSON-RPC method.
 
 ### `estimateGasTransfer`
 
 Returns the gas estimation for a transfer transaction.
 
-Calls internal method [`getTransferTx`](https://github.com/zksync-sdk/zksync-ethers/blob/ethers-v5/src/utils.ts) to get the transfer transaction and sends it to the [`eth_estimate_gas`](#eth_estimate_gas) method.
+Calls internal method [`getTransferTx`](https://github.com/zksync-sdk/zksync-ethers/blob/ethers-v5/src/utils.ts) to get the transfer transaction and sends it to the [`eth_estimate_gas`](#eth-estimate-gas) method.
 
 #### Inputs
 
@@ -129,7 +129,7 @@ def zks_estimate_l1_to_l2_execute(self, transaction: Transaction) -> int:
 
 Returns all balances for confirmed tokens given by an account address.
 
-Calls the [`zks_getAllAccountBalances`](../api.md#zks-getallaccountbalances) JSON-RPC method.
+Calls the [`zks_getAllAccountBalances`](../../api.md#zks-getallaccountbalances) JSON-RPC method.
 
 ### `zks_get_balance`
 
@@ -182,7 +182,7 @@ Returns block from the network.Throws `BlockNotFound` error if the block is not 
 
 Returns additional zkSync-specific information about the L2 block.
 
-Calls the [`zks_getBlockDetails`](../api.md#zks-getblockdetails) JSON-RPC method.
+Calls the [`zks_getBlockDetails`](../../api.md#zks-getblockdetails) JSON-RPC method.
 
 ### `getContractAccountInfo`
 
@@ -218,7 +218,7 @@ def zks_get_bridge_contracts(self) -> BridgeAddresses:
 
 Returns the range of blocks contained within a batch given by batch number.
 
-Calls the [`zks_getL1BatchBlockRange`](../api.md#zks-getl1batchblockrange) JSON-RPC method.
+Calls the [`zks_getL1BatchBlockRange`](../../api.md#zks-getl1batchblockrange) JSON-RPC method.
 
 ```python
 def zks_get_l1_batch_block_range(self, l1_batch_number: int) -> BlockRange:
@@ -229,13 +229,13 @@ def zks_get_l1_batch_block_range(self, l1_batch_number: int) -> BlockRange:
 
 Returns data pertaining to a given batch.
 
-Calls the [`zks_getL1BatchDetails`](../api.md#zks-getl1batchdetails) JSON-RPC method.
+Calls the [`zks_getL1BatchDetails`](../../api.md#zks-getl1batchdetails) JSON-RPC method.
 
 ### `zks_l1_batch_number`
 
 Returns the latest L1 batch number.
 
-Calls the [`zks_getL1BatchNumber`](../api.md#zks-l1batchnumber) JSON-RPC method.
+Calls the [`zks_getL1BatchNumber`](../../api.md#zks-l1batchnumber) JSON-RPC method.
 
 ### `getL2TransactionFromPriorityOp`
 
@@ -259,13 +259,13 @@ def get_l2_transaction_from_priority_op(self, tx_receipt, main_contract: Contrac
 
 Returns the proof for a transaction's L2 to L1 log sent via the L1Messenger system contract.
 
-Calls the [`zks_getL2ToL1LogProof`](../api.md#zks-getl2tol1logproof) JSON-RPC method.
+Calls the [`zks_getL2ToL1LogProof`](../../api.md#zks-getl2tol1logproof) JSON-RPC method.
 
 ### `zks_main_contract`
 
 Returns the main zkSync Era smart contract address.
 
-Calls the [`zks_getMainContract`](../api.md#zks-getmaincontract) JSON-RPC method.
+Calls the [`zks_getMainContract`](../../api.md#zks-getmaincontract) JSON-RPC method.
 
 ```python
 def zks_main_contract(self) -> HexStr:
@@ -278,7 +278,7 @@ def zks_main_contract(self) -> HexStr:
 
 Returns the proof for a message sent via the L1Messenger system contract.
 
-Calls the [`zks_getL2ToL1MsgProof`](../api.md#zks-getl2tol1msgproof) JSON-RPC method.
+Calls the [`zks_getL2ToL1MsgProof`](../../api.md#zks-getl2tol1msgproof) JSON-RPC method.
 
 ```python
 def zks_get_l2_to_l1_msg_proof(self,
@@ -291,7 +291,7 @@ def zks_get_l2_to_l1_msg_proof(self,
 
 ### `zks_get_testnet_paymaster_address`
 
-Returns the [testnet paymaster](../../reference/concepts/account-abstraction.md#paymasters) address if available, or null.
+Returns the [testnet paymaster](../../quick-start/useful-address.md#sepolia-contract-addresses) address if available, or null.
 
 ```python
 def zks_get_testnet_paymaster_address(self) -> HexStr:
@@ -302,7 +302,7 @@ def zks_get_testnet_paymaster_address(self) -> HexStr:
 
 Returns data from a specific transaction given by the transaction hash.
 
-Calls the [`getTransactionDetails`](../api.md#zks-gettransactiondetails) JSON-RPC method.
+Calls the [`getTransactionDetails`](../../api.md#zks-gettransactiondetails) JSON-RPC method.
 
 ### `eth_get_transaction_receipt`
 
@@ -312,7 +312,7 @@ Returns the transaction receipt from a given hash number.
 
 Returns the chain id of the underlying L1.
 
-Calls the [`zks_L1ChainId`](../api.md#zks-l1chainid) JSON-RPC method.
+Calls the [`zks_L1ChainId`](../../api.md#zks-l1chainid) JSON-RPC method.
 
 ### `l1TokenAddress`
 
