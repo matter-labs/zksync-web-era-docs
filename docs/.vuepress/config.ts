@@ -24,7 +24,6 @@ export default defineUserConfig({
   title: "Welcome to our Docs - All information you need about zkSync and ZK Stack",
 
   head: [
-    ["link", { rel: "canonical", href: "https://docs.zksync.io/" }],
     ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
     ["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true }],
     ["link", { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" }],
@@ -88,20 +87,9 @@ export default defineUserConfig({
         let contributors = document.querySelectorAll('.contributor');
         let contributorArr = Array.from(contributors);
         let topFive = contributorArr.slice(0, 5);
+        console.log(topFive, contributorArr)
       
-        topFive.forEach(function(contributor) {
-          contributor.textContent = contributor.textContent.replace(',', '');
-        });
-      
-        let lastComma = contributorArr[4];
-        lastComma.textContent = lastComma.textContent.replace(',', '');
-      
-        let updatedList = topFive.map(function(contributor) {
-          return contributor.textContent;
-        }).join(', ');
-          
-        let contributorsDiv = document.querySelector('.contributors');
-        contributorsDiv.innerHTML = '<span class="label">Contributors: </span>' + updatedList;
+        
       
       });
 
@@ -117,7 +105,10 @@ export default defineUserConfig({
   },
 
   plugins: [
-    seoPlugin,
+    seoPlugin({
+      hostname: "https://docs.zksync.io",
+      canonical: "https://docs.zksync.io",
+    }),
     pwaPlugin({
       update: "force",
     }),
