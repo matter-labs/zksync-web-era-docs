@@ -9,10 +9,9 @@ head:
 
 In this specification, instructions are grouped by their relevance to the EVM instruction set:
 
-- [Native EVM instructions](./evm.md).
+- [Native EVM instructions](./evm/overview.md).
 - [Yul auxiliary instructions](./yul.md).
 - [EVM legacy assembly auxiliary instructions](./evmla.md).
-- [zkSync Era extensions](./extensions.md).
 
 Most of the EVM native instructions are represented in both Yul and EVM legacy assembly IRs. If they are not, it is
 stated explicitly in the description of each instruction.
@@ -43,15 +42,11 @@ In Solidity we have introduced **call simulations**. They are not actual calls, 
 translator with the needed instruction, depending on the constant address. This way the Solidity compiler is not
 optimizing them out and is not emitting compilation errors.
 
-To see the list of available instructions, visit this page:
-
-[zkSync Era Extension Simulation (call)](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/extensions/call.md)
+The reference of such extensions is coming soon.
 
 ### The Yul Mode
 
 The non-call zkSync-specific instructions are only available in the Yul mode of **zksolc**.  
 To have better compatibility, they are implemented as `verbatim` instructions with some predefined keys.
 
-To see the list of available instructions, visit this page:
-
-[zkSync Era Extension Simulation (verbatim)](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/extensions/verbatim.md)
+The reference of such extensions is coming soon.

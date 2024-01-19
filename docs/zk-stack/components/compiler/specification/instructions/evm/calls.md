@@ -1,0 +1,28 @@
+---
+head:
+  - - meta
+    - name: "twitter:title"
+      content: Calls | zkSync Docs
+---
+
+# Call Instructions
+
+All EVM call instructions are handled similarly.
+
+The call type is encoded on the assembly level, so we will describe the common handling workflow, mentioning distinctions if there are any.
+
+For more information, see the [zkSync Era documentation](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#call-staticcall-delegatecall).
+
+## [CALL](https://www.evm.codes/#f1?fork=shanghai)
+
+[The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/call.rs#L530) is common for Yul and EVMLA representations.
+
+The code checks if the call is non-static and the Ether value is non-zero. If so, the call is redirected to the [MsgValueSimulator](../../system_contracts.md#ether-value-simulator).
+
+## [DELEGATECALL](https://www.evm.codes/#f4?fork=shanghai)
+
+[The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/call.rs#L530) is common for Yul and EVMLA representations.
+
+## [STATICCALL](https://www.evm.codes/#fa?fork=shanghai)
+
+[The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/call.rs#L530) is common for Yul and EVMLA representations.
