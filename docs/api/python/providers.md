@@ -85,7 +85,7 @@ Calls the [`zks_estimateL1ToL2`](../api.md#zks-estimategasl1tol2) JSON-RPC metho
 
 Returns the gas estimation for a transfer transaction.
 
-Calls internal method [`getTransferTx`](https://github.com/zksync-sdk/zksync-ethers/blob/ethers-v5/src/utils.ts) to get the transfer transaction and sends it to the [`eth_estimate_gas`](#eth_estimate_gas) method.
+Calls internal method `getTransferTx` to get the transfer transaction and sends it to the `eth_estimate_gas` method.
 
 #### Inputs
 
