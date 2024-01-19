@@ -8,7 +8,7 @@ head:
 # Getting started
 
 ::: warning Windows as platform
-If you are using Windows, we strongly recommend you use Windows Subsystem for Linux (also known as WSL 2). You can use `Hardhat` and `zkSync plugins` without it, but it will work better if you use it.
+If you are using Windows, we strongly recommend you use Windows Subsystem for Linux (also known as WSL 2). You can use `Hardhat` and `Hardhat zkSync plugins` without it, but it will work better if you use it.
 
 To install Node.js using WSL 2, please read this [guide](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl)
 :::
@@ -39,7 +39,7 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 ## Prerequisites
 
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
-- A Node and `yarn` package manager installed.
+- You have a Node installation and `yarn` or `npm` package manager.
 - You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the
 - A wallet with sufficient Sepolia or Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts. You can get Sepolia ETH from the [network faucets](../../tooling/network-faucets.md).
   - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
@@ -166,10 +166,6 @@ Smart contracts belong in the `contracts` folder.
 
 #### 1. To compile the contract, run
 
-###### Solidity project
-
-The template project contains a simple `Greeter.sol` contract and a script to deploy it.
-
 ```sh
 yarn hardhat compile
 ```
@@ -179,22 +175,8 @@ You'll see the following output:
 ```text
 Compiling 1 Solidity file
 Successfully compiled 1 Solidity file
+// Successfully compiled 1 Vyper file - Vyper project
 ✨  Done in 1.09s.
-```
-
-###### Vyper project
-
-The template project contains a simple `Greeter.vy` contract and a script to deploy it.
-
-```sh
-yarn hardhat compile
-```
-
-You'll see the following output:
-
-```text
-Successfully compiled 1 Vyper file
-✨  Done in 2.09s.
 ```
 
 The `artifacts-zk` and `cache-zk` folders appear in the root directory (instead of the regular Hardhat's `artifacts` and `cache`). These folders contain the compilation artifacts (including contract's ABIs) and compiler cache files.
@@ -307,7 +289,7 @@ dotenv.config();
 // load contract artifact. Make sure to compile first! - Solidity Project
 import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.sol/Greeter.json";
 // load contract artifact. Make sure to compile first! - Vyper Project
-import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.vy/Greeter.json";
+//import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.vy/Greeter.json";
 
 const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
 

@@ -35,7 +35,7 @@ yarn add -D @matterlabs/hardhat-zksync-verify @nomicfoundation/hardhat-verify
 @tab npm
 
 ```bash
-npm i -D @matterlabs/hardhat-zksync-verify @nomicfoundation/hardhat-verify
+npm i -D @matterlabs/hardhat-zksync-verify
 ```
 
 :::

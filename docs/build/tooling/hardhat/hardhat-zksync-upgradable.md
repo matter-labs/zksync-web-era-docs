@@ -24,13 +24,13 @@ Current version of the upgradable plugin does not support the latest version of 
 @tab:active yarn
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/contracts @openzeppelin/contracts-upgradeable
+yarn add -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/upgrades-core @openzeppelin/contracts-upgradeable
 ```
 
 @tab npm
 
 ```bash
-npm i -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/contracts @openzeppelin/contracts-upgradeable
+npm i -D @matterlabs/hardhat-zksync-upgradable
 ```
 
 :::
@@ -580,16 +580,18 @@ async function main() {
   const beacon = await hre.zkUpgrades.deployBeacon(deployer.zkWallet, contract);
   await beacon.waitForDeployment();
 
-  const boxBeaconProxy = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, await beacon.getAddress(), contract, [42]);
+  const beaconAddress = await beacon.getAddress();
+
+  const boxBeaconProxy = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, beaconAddress, contract, [42]);
   await boxBeaconProxy.waitForDeployment();
 
   // upgrade beacon
   const boxV2Implementation = await deployer.loadArtifact("BoxV2");
-  await hre.zkUpgrades.upgradeBeacon(deployer.zkWallet, await beacon.getAddress(), boxV2Implementation);
-  console.log("Successfully upgraded beacon Box to BoxV2 on address: ", await beacon.getAddress());
+  await hre.zkUpgrades.upgradeBeacon(deployer.zkWallet, beaconAddress, boxV2Implementation);
+  console.info(chalk.green("Successfully upgraded beacon Box to BoxV2 on address: ", beaconAddress));
 
   const attachTo = new zk.ContractFactory<any[], Contract>(boxV2Implementation.abi, boxV2Implementation.bytecode, deployer.zkWallet, deployer.deploymentType);
-  const upgradedBox = await attachTo.attach(await boxBeaconProxy.getAddress());
+  const upgradedBox = attachTo.attach(await boxBeaconProxy.getAddress());
 
   upgradedBox.connect(zkWallet);
   // wait some time before the next call

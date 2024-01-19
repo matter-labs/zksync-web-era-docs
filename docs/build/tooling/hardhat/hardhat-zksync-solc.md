@@ -15,7 +15,7 @@ Learn more about the latest updates in the [changelog](https://github.com/matter
 
 To use the `hardhat-zksync-solc` in your project, we recommend that:
 
-- You have a Node installation and `yarn` package manager.
+- You have a Node installation and `yarn` or `npm` package manager.
 
 ## Installation
 
@@ -122,12 +122,10 @@ For Solidity versions older than 0.8, only this compilation mode is available an
 ### Compiler informations
 
 The zksolc compilers are stored in the cache folder with the path `{cache}/hardhat-nodejs/compilers-v2/zksolc`. In this location, you can inspect the locally stored compiler versions.
-`{cache}` path related to the platform:
 
-- Linux/Mac: ~/.cache/
-- Windows: Users\\{user}\AppData\Local\
+`{cache}` it a placeholder for a path that is resolved by Hardhat
 
-The `compilerVersion.json` file functions as a JSON object used by the plugin to get the latest available version and the minimum required compiler version. This file undergoes invalidation every 24 hours, subsequently being updated with fresh information. This approach is implemented to establish a caching mechanism, avoiding the risk of encountering GitHub throttling issues during fetching new releases.
+The `compilerVersion.json` file is used by the plugin to get the latest available version and the minimum required compiler version. This file undergoes invalidation every 24 hours (currently), subsequently being updated with fresh information. This approach is implemented to provide a caching mechanism, avoiding the risk of encountering GitHub throttling issues during fetching new releases.
 
 ### Network configuration
 
@@ -181,3 +179,8 @@ This error is returned when the version defined in the `hardhat.config.ts` file 
 #### Why is there an `unexpected end of JSON input` compilation error?
 
 This is an error that is usually thrown when compiling a large smart contract codebase.
+
+If you encounter such an error, please do the following:
+
+- Update the @matterlabs/hardhat-zksync-solc library and try to re-compile the smart contracts afterwards.
+- If after the recompilation you get the Library not found error, then you should follow the instructions from here.

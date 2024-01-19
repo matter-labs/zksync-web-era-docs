@@ -8,7 +8,7 @@ head:
 # Migration guide
 
 ::: warning Windows as platform
-If you are using Windows, we strongly recommend you use Windows Subsystem for Linux (also known as WSL 2). You can use `Hardhat` and `zkSync plugins` without it, but it will work better if you use it.
+If you are using Windows, we strongly recommend you use Windows Subsystem for Linux (also known as WSL 2). You can use `Hardhat` and `Hardhat zkSync plugins` without it, but it will work better if you use it.
 
 To install Node.js using WSL 2, please read this [guide](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl)
 :::
