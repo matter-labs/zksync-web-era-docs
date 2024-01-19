@@ -83,7 +83,7 @@ Error in plugin @matterlabs/hardhat-zksync-solc: LLVM("Library `contracts/MiniMa
 
 ```
 
-The error indicates that the compilation process is expecting the address of the MiniMath library, but it is not being provided. To resolve this issue, ensure that you include the address of the MiniMath library during the compilation process.
+The error indicates that the compilation process is expecting the address of the MiniMath library, but it is not being provided.
 
 To resolve the error, it's necessary to manually resolve the libraries. For detailed instructions, please refer to [this section](#_automatic-deployment).
 
@@ -92,7 +92,7 @@ To resolve the error, it's necessary to manually resolve the libraries. For deta
 ### Automatic deployment
 
 ::: note
-This approach is effective only with specific plugins versions:
+This approach is effective only with specific plugin versions:
 
 - `hardhat-zksync-solc` >= 0.4.2
 - `hardhat-zksync-deploy` >= 0.6.5
