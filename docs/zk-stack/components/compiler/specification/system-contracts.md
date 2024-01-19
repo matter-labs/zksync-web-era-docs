@@ -82,11 +82,16 @@ Calls to the simulator require extra data passed via ABI using registers:
 
 1. Ether value.
 2. The address of the contract to call.
-3. The system call bit, which is only set if a call to the [ContractDeployer](#contract-deployer) is being redirected,
-   that is `CREATE` or `CREATE2` is called with non-zero Ether.
+3. The [system call bit](https://matter-labs.github.io/eravm-spec/spec.html#to_system), which is only set if a call to the [ContractDeployer](#contract-deployer) is being redirected, that is `CREATE` or `CREATE2` is called with non-zero Ether.
 
-For reference, see
-[the LLVM IR codegen source code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/call.rs#L530).
+Passing Ether value in EraVM is implemented by using a combination of:
+
+- a special 128-bit register [`context_u128`](https://matter-labs.github.io/eravm-spec/spec.html#gs_context_u128) which is a part of the EraVM [transient state](https://matter-labs.github.io/eravm-spec/spec.html#StateDefinitions);
+- an [immutable value of `context_u128`](https://matter-labs.github.io/eravm-spec/spec.html#ecf_context_u128_value) captured in the stack frame in a moment of a call.
+
+The process of setting up a value and capturing it is described in details in the section [Context Register of the EraVM specification](https://matter-labs.github.io/eravm-spec/spec.html#StateDefinitions).
+
+For reference, see [the LLVM IR codegen source code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/call.rs#L530).
 
 ### Simulator of Immutables
 
@@ -122,3 +127,10 @@ used for these cases:
 1. [Returning immutables](../../../../build/developer-reference/differences-with-ethereum.md#setimmutable-loadimmutable)
    from the constructor.
 2. Allocating calldata and return data for calling the System Contracts.
+
+While the ordinary heap contains calldata and return data for calls to **user contracts**, auxiliary heap contains calldata
+and return data for calls to **System Contracts**. This ensures better compatibility with EVM as users should be able to call
+EraVM-specific System Contracts in a transparent way, without System Contracts affecting calldata or return data.
+This prevents situations where calling System Contracts interferes with the heap layout expected by the contract developer.
+
+For more details on the heaps, refer to the EraVM specification, which describes [types of heaps](https://matter-labs.github.io/eravm-spec/spec.html#data_page_params), their connections to the [stack frames and memory growth](https://matter-labs.github.io/eravm-spec/spec.html#ctx_heap_page_id), and their role in [communication between contracts](https://matter-labs.github.io/eravm-spec/spec.html#MemoryForwarding).

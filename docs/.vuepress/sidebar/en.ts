@@ -849,7 +849,7 @@ export const enSidebar = sidebar({
                       ]
                     },
                     {
-                      text: "EVM Assembly",
+                      text: "EVM Legacy Assembly",
                       link: "/zk-stack/components/compiler/specification/instructions/evmla.md"
                     },
                     {

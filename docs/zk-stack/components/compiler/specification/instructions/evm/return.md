@@ -47,6 +47,11 @@ entry:
 }
 ```
 
+### EraVM
+
+See also EraVM instruction: `revert`[ when returning from near calls](https://matter-labs.github.io/eravm-spec/spec.html#NearRevertDefinition)
+and [when returning from far calls]((<https://matter-labs.github.io/eravm-spec/spec.html#FarRevertDefinition>).
+
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/return.rs#L86) is common for Yul and EVMLA representations.
 
 ## [INVALID](https://www.evm.codes/#fe?fork=shanghai)
@@ -58,3 +63,10 @@ This instruction is a [REVERT](#revert) with an empty data payload.
 The same as for [REVERT](#revert).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/return.rs#L115) is common for Yul and EVMLA representations.
+
+### EraVM
+
+See also EraVM instruction: `revert`[ when returning from near calls](https://matter-labs.github.io/eravm-spec/spec.html#NearRevertDefinition)
+and [when returning from far calls]((<https://matter-labs.github.io/eravm-spec/spec.html#FarRevertDefinition>).
+
+[The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/return.rs#L86) is common for Yul and EVMLA representations.

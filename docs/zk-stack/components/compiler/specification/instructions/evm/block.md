@@ -115,7 +115,7 @@ Implemented as [BALANCE](./environment.md#balance) with an [ADDRESS](./environme
 
 This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/system-contracts/blob/main/contracts/SystemContext.sol).
 
-On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
 
 ### LLVM IR
 

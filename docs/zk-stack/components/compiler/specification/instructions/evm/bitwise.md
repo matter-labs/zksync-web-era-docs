@@ -31,6 +31,8 @@ and     r1, r2, r1
 st.1    128, r1
 ```
 
+[EraVM instruction: `and`](https://matter-labs.github.io/eravm-spec/spec.html#AndDefinition)
+
 ## [OR](https://www.evm.codes/#17?fork=shanghai)
 
 ### LLVM IR
@@ -54,6 +56,8 @@ ld      r1, r1
 or      r1, r2, r1
 st.1    128, r1
 ```
+
+[EraVM instruction: `or`](https://matter-labs.github.io/eravm-spec/spec.html#AndDefinition)
 
 ## [XOR](https://www.evm.codes/#18?fork=shanghai)
 
@@ -79,6 +83,8 @@ xor     r1, r2, r1
 st.1    128, r1
 ```
 
+[EraVM instruction: `xor`](https://matter-labs.github.io/eravm-spec/spec.html#XorDefinition)
+
 ## [NOT](https://www.evm.codes/#19?fork=shanghai)
 
 ### LLVM IR
@@ -98,6 +104,8 @@ sub.s   1, r0, r2
 xor     r1, r2, r1
 st.1    128, r1
 ```
+
+[EraVM instruction: `xor`](https://matter-labs.github.io/eravm-spec/spec.html#XorDefinition)
 
 ## [BYTE](https://www.evm.codes/#1a?fork=shanghai)
 
@@ -166,6 +174,8 @@ return:
 ```
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/bitwise.rs#L111) is common for Yul and EVMLA representations.
+
+[EraVM instruction: `xor`](https://matter-labs.github.io/eravm-spec/spec.html#XorDefinition)
 
 ## [SAR](https://www.evm.codes/#1d?fork=shanghai)
 

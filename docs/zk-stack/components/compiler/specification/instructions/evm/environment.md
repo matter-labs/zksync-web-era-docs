@@ -9,7 +9,7 @@ head:
 
 ## [ADDRESS](https://www.evm.codes/#30?fork=shanghai)
 
-This value is fetched with a native EraVM instruction.
+This value is fetched with a native [EraVM instruction: `context.this`](https://matter-labs.github.io/eravm-spec/spec.html#ContextDefinitions).
 
 ### LLVM IR
 
@@ -45,7 +45,7 @@ The request to the System Contract is done via the [SystemRequest](https://githu
 
 ## [CALLER](https://www.evm.codes/#33?fork=shanghai)
 
-This value is fetched with a native EraVM instruction.
+This value is fetched with a native [EraVM instruction: `context.caller`](https://matter-labs.github.io/eravm-spec/spec.html#ContextDefinitions).
 
 ### LLVM IR
 
@@ -53,7 +53,7 @@ This value is fetched with a native EraVM instruction.
 
 ## [CALLVALUE](https://www.evm.codes/#34?fork=shanghai)
 
-This value is fetched with a native EraVM instruction.
+This value is fetched with a native [EraVM instruction: `context.get_context_u128`](https://matter-labs.github.io/eravm-spec/spec.html#ContextDefinitions).
 
 ### LLVM IR
 
@@ -89,6 +89,10 @@ ptr.add stack[@ptr_calldata], r0, r1                                            
 ld      r1, r1                                                                      ; loading the value to `r1`
 ```
 
+- [EraVM instruction: `ptr.add`](https://matter-labs.github.io/eravm-spec/spec.html#PtrAddDefinition)
+- [EraVM fat pointers](https://matter-labs.github.io/eravm-spec/spec.html#PointerDefinitions)
+- [EraVM memory forwarding mechanism](https://matter-labs.github.io/eravm-spec/spec.html#MemoryForwarding)
+
 ## [CALLDATASIZE](https://www.evm.codes/#36?fork=shanghai)
 
 Calldata size is stored in the fat pointer passed from the parent contract (see [CALLDATALOAD](#calldataload)).
@@ -118,6 +122,10 @@ and     @CPI0_0[0], r1, stack[@calldatasize]                                    
 CPI0_0:
     .cell 4294967295
 ```
+
+- [EraVM instruction: `ptr.add`](https://matter-labs.github.io/eravm-spec/spec.html#PtrAddDefinition)
+- [EraVM fat pointers](https://matter-labs.github.io/eravm-spec/spec.html#PointerDefinitions)
+- [EraVM memory forwarding mechanism](https://matter-labs.github.io/eravm-spec/spec.html#MemoryForwarding)
 
 ## [CALLDATACOPY](https://www.evm.codes/#37?fork=shanghai)
 
@@ -149,6 +157,10 @@ call void @llvm.memcpy.p1.p3.i256(ptr addrspace(1) align 1 inttoptr (i256 128 to
     sub.s!  2, r2, r3           ; checking the bounds
     jump.lt @.BB0_3             ; loop continuation branching
 ```
+
+- [EraVM instruction: `ptr.add`](https://matter-labs.github.io/eravm-spec/spec.html#PtrAddDefinition)
+- [EraVM fat pointers](https://matter-labs.github.io/eravm-spec/spec.html#PointerDefinitions)
+- [EraVM memory forwarding mechanism](https://matter-labs.github.io/eravm-spec/spec.html#MemoryForwarding)
 
 ## [CODECOPY](https://www.evm.codes/#38?fork=shanghai)
 
@@ -223,6 +235,8 @@ CPI0_1:
     .cell 4294967295
 ```
 
+[EraVM instruction: `call`](https://matter-labs.github.io/eravm-spec/spec.html#NearCallDefinition)
+
 ## [RETURNDATACOPY](https://www.evm.codes/#3e?fork=shanghai)
 
 Unlike on EVM, on EraVM it is a simple loop over memory operations on 256-bit values.
@@ -253,6 +267,9 @@ call void @llvm.memcpy.p1.p3.i256(ptr addrspace(1) align 1 inttoptr (i256 128 to
     sub.s!  2, r2, r3           ; checking the bounds
     jump.lt @.BB0_3             ; loop continuation branching
 ```
+
+- [EraVM instruction: `jump`](https://matter-labs.github.io/eravm-spec/spec.html#JumpDefinition)
+- [EraVM instruction predication](https://matter-labs.github.io/eravm-spec/spec.html#Predication)
 
 ## [EXTCODEHASH](https://www.evm.codes/#3f?fork=shanghai)
 

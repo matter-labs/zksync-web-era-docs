@@ -9,22 +9,22 @@ head:
 
 This document explains some peculiarities of the exception handling (EH) in zkEVM architecture.
 
-In a nutshell, there are two exception handling mechanisms in zkEVM: contract-level and function-level. The former is
-more common to general-purpose languages, and the latter was inherited from the EVM architecture.
+In a nutshell, there are two EH mechanisms in zkEVM: contract-level and function-level.
+The former was inherited from the EVM architecture, and the latter is more common to general-purpose languages.
 
-|              | Contract Level          | Function Level                                                                                        |
-| ------------ | ----------------------- | ----------------------------------------------------------------------------------------------------- |
-| Yul examples | revert(0, 0)            | verbatim("throw")                                                                                     |
-| Native to    | EVM                     | General-purpose languages                                                                             |
-| Handled by   | zkEVM                   | Compiler                                                                                              |
-| Catchable    | By the calling contract | By the calling function                                                                               |
-| Efficient    | Yes                     | Huge size impact due to numerous catch blocks. Extra cycles are needed for propagating the exception. |
+|              | Contract Level  | Function Level                                                                                        |
+| ------------ | --------------- | ----------------------------------------------------------------------------------------------------- |
+| Yul Example  | revert(0, 0)    | verbatim("throw")                                                                                     |
+| Native to    | EVM             | General-purpose languages                                                                             |
+| Handled by   | zkEVM           | Compiler                                                                                              |
+| Catchable by | Caller contract | Caller function                                                                                       |
+| Efficient    | Yes             | Huge size impact due to numerous catch blocks. Extra cycles are needed for propagating the exception. |
 
 ## Contract Level
 
 This type of exceptions is inherited from the EVM architecture. On EVM, such instructions as `REVERT` and `INVALID`,
-immediately terminate the contract execution and return the control to the callee. It is impossible to catch them within
-the contract, and it can be only done on the callee side with checking the call status code.
+immediately terminate the contract execution and return the control to the callee. It is impossible to catch them
+within the contract, and it can be only done on the callee side with checking the call status code.
 
 ```solidity
 // callee
@@ -42,35 +42,34 @@ if iszero(success) {
 }
 ```
 
-zkEVM behaves exactly the same. The VM automatically unwinds the call stack up to the uppermost function frame of the
-contract, leaving no possibility to catch and handle it on the way.
+zkEVM behaves exactly the same. The VM automatically unwinds the call stack up to the uppermost function frame
+of the contract, leaving no possibility to catch and handle it on the way.
 
-These types of exceptions are more efficient, as you can revert at any point of the execution without propagating the
-control flow all the way up to the uppermost function frame.
+These types of exceptions are more efficient, as you can revert at any point of the execution without propagating
+the control flow all the way up to the uppermost function frame.
+
+### Implementation
+
+In EraVM, contracts call each other using [`far_call` instruction](https://matter-labs.github.io/eravm-spec/spec.html#FarCalls).
+It [accepts the address of the exception handler](https://matter-labs.github.io/eravm-spec/spec.html#OpFarCall) as one of its arguments.
 
 ## Function Level
 
-This type of exceptions is more common to general-purpose languages like C++. That is why it was easy to support within
-the LLVM framework, even though it is not supported by the smart contract languages we work with. That is also one of
-the reasons why the two EH mechanisms are handled separately and barely interact in the high-level code.
+This type of exceptions is more common to general-purpose languages like C++. That is why it was easy to support
+within the LLVM framework, even though it is not supported by the smart contract languages we work with.
+That is also one of the reasons why the two EH mechanisms are handled separately and barely interact in the high-level code.
 
 In general-purpose languages a set of EH tools is usually available, e.g. `try` , `throw`, and `catch` keywords that
-define which piece of code may throw and how the exception must be handled. However, these tools are not available in
-Solidity and its EVM Yul dialect, so some extensions have been added in the zkEVM Yul dialect compiled by zksolc, but
-there are limitations, some of which are dictated by the nature of smart contracts:
+define which piece of code may throw and how the exception must be handled. However, these tools are not available
+in Solidity and its EVM Yul dialect, so some extensions have been added in the zkEVM Yul dialect compiled by zksolc,
+but there are limitations, some of which are dictated by the nature of smart contracts:
 
-1. Every function beginning with `ZKSYNC_NEAR_CALL` is implicitly wrapped with `try`. If there is an exception handler
-   defined, the following will happen:
+1. Every function beginning with `ZKSYNC_NEAR_CALL` is implicitly wrapped with `try`. If there is an exception handler defined, the following will happen:
    - A panic will be caught by the caller of such function.
-   - The control will be transferred to EH function. There can be only one EH function and it must be named
-     `ZKSYNC_CATCH_NEAR_CALL`. It is not very efficient, because all functions must have an LLVM IR `catch` block that
-     will catch and propagate the exception and call the EH function.
+   - The control will be transferred to EH function. There can be only one EH function and it must be named `ZKSYNC_CATCH_NEAR_CALL`. It is not very efficient, because all functions must have an LLVM IR `catch` block that will catch and propagate the exception and call the EH function.
    - When the EH function has finished executing, the caller of `ZKSYNC_NEAR_CALL` receives the control back.
-2. Every operation is `throw`. Since any instruction can panic due to out-of-gas, all of them can throw. It is another
-   thing reducing the potential for optimizations.
-3. The `catch` block is represented by the `ZKSYNC_CATCH_NEAR_CALL` function in Yul. A panic in `ZKSYNC_NEAR_CALL` will
-   make **their caller** catch the exception and call the EH function. After the EH function is executed, the control is
-   returned to the caller of `ZKSYNC_NEAR_CALL`.
+2. Every operation is `throw`. Since any instruction can panic due to out-of-gas, all of them can throw. It is another thing reducing the potential for optimizations.
+3. The `catch` block is represented by the `ZKSYNC_CATCH_NEAR_CALL` function in Yul. A panic in `ZKSYNC_NEAR_CALL` will make **their caller** catch the exception and call the EH function. After the EH function is executed, the control is returned to the caller of `ZKSYNC_NEAR_CALL`.
 
 ```solidity
 // Follow the numbers for the order of execution. The call order is:
@@ -102,6 +101,29 @@ function ZKSYNC_CATCH_NEAR_CALL() {               // 07
 }
 ```
 
-Having all the overhead above, the `catch` blocks are only generated if there is an EH function called
-`ZKSYNC_CATCH_NEAR_CALL` defined in the contract. Otherwise there is no need to catch panics and they will be propagated
-to the callee contract automatically by the VM.
+Having all the overhead above, the `catch` blocks are only generated if there is the EH function `ZKSYNC_CATCH_NEAR_CALL`
+defined in the contract. Otherwise there is no need to catch panics and they will be propagated to the callee contract
+automatically by the VM execution environment.
+
+### Implementation
+
+In EraVM, there are two ways of implementing contract-local function calls:
+
+1. Saving the return address and using a [`jump`](https://matter-labs.github.io/eravm-spec/spec.html#JumpDefinition) instruction to call; using [`jump`](https://matter-labs.github.io/eravm-spec/spec.html#JumpDefinition) instruction with saved return address to return.
+2. Using
+   [`call`](https://matter-labs.github.io/eravm-spec/spec.html#NearCallDefinition)
+   instruction to call; using one of `ret` instructions with modifiers
+   [`ok`](https://matter-labs.github.io/eravm-spec/spec.html#NearRetDefinition),
+   [`revert`](https://matter-labs.github.io/eravm-spec/spec.html#NearRevertDefinition), or
+   [`panic`](https://matter-labs.github.io/eravm-spec/spec.html#step_oppanic) to return.
+
+Using `jump` is more lightweight and cheaper, but using `call`/`ret` is more feature-rich:
+
+1. In case of panic or revert, the storage effects and queues of this function are rolled back.
+2. It is possible to pass a portion of available gas; the unused gas will be returned to the caller, unless the function panicked.
+3. It is possible to set up a custom exception handler.
+
+Prefixing Yul function name with `ZKSYNC_NEAR_CALL_` allows to use this
+additional, platform-specific functionality, implemented by the `call`
+instruction. For other functions, the choice between `call`/`ret` or `jump` is
+up to the compiler.

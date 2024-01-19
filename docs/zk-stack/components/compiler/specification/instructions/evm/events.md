@@ -17,6 +17,8 @@ The words must contain data in the following order:
 
 Each write operation can contain some subsequent data from its next step. If only one word remains, the second input is zero.
 
+See [EraVM instruction: `log.event`](https://matter-labs.github.io/eravm-spec/spec.html#EventDefinition)
+
 ## [LOG0](https://www.evm.codes/#a0?fork=shanghai) - [LOG4](https://www.evm.codes/#a4?fork=shanghai)
 
 ### System Contract

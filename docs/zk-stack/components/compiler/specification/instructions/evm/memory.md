@@ -27,6 +27,8 @@ Heap memory load operation is modeled with a native EraVM instruction.
 ld.1    r1, r2
 ```
 
+See [EraVM instruction: `st.1`](https://matter-labs.github.io/eravm-spec/spec.html#LoadDefinition)
+
 ## [MSTORE](https://www.evm.codes/#52?fork=shanghai)
 
 Heap memory load operation is modeled with a native EraVM instruction.
@@ -46,6 +48,8 @@ store i256 128, ptr addrspace(1) inttoptr (i256 64 to ptr addrspace(1)), align 1
 ```nasm
 st.1    r1, r2
 ```
+
+See [EraVM instruction: `st.1`](https://matter-labs.github.io/eravm-spec/spec.html#StoreDefinition)
 
 ## [MSTORE8](https://www.evm.codes/#53?fork=shanghai)
 
