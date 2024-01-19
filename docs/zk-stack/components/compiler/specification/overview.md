@@ -7,9 +7,7 @@ head:
 
 # Compiler Specification
 
-This is a technical deep-dive into the specifics of how the compiler works. If you're looking to just deploy a contract, please visit ["Contract deployment"](../../../../build/developer-reference/contract-development.md) to better understand the workflow or ["Toolchain"](../toolchain/overview.md) to understand the specifics around our Solidity, Vyper and LLVM compilers.
-
-If you're looking to go super deep into compiler technicals, read on.
+This is a technical deep-dive into the specifics of how the compiler works. If you're looking to just deploy a contract, please visit ["Contract deployment"](../../../../build/developer-reference/contract-development.md#smart-contract-development) to better understand the workflow or ["Toolchain"](../toolchain/overview.md#compiler-toolchain-overview) to understand the specifics around our Solidity, Vyper and LLVM compilers.
 
 ## Glossary
 
@@ -37,7 +35,7 @@ If you're looking to go super deep into compiler technicals, read on.
 
 ## Concepts
 
-- [Code Separation](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/code_separation.md)
-- [System Contracts](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/system_contracts.md)
-- [Exception Handling](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/exception_handling.md)
-- [EVMLA translator](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/evmla_translator.md)
+- [Code Separation](./code-separation.md)
+- [System Contracts](./system-contracts.md)
+- [Exception Handling](./exception-handling.md)
+- [EVMLA translator](./evmla-translator.md)

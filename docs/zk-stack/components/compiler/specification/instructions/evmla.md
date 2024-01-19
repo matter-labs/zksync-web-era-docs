@@ -5,8 +5,6 @@ head:
       content: EVMLA | zkSync Docs
 ---
 
-# EVMLA
-
 # EVM Legacy Assembly Auxiliary Instructions
 
 These instructions do not have a direct representation in EVM or EraVM. Instead, they perform auxiliary operations

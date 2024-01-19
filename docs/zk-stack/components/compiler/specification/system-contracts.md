@@ -7,9 +7,8 @@ head:
 
 # System Contracts Usage
 
-Many EVM instructions require special handling by the
-[System Contracts](../specification/system-contracts.md). Among them are: `ORIGIN`,
-`CALLVALUE`, `BALANCE`, `CREATE`, `SHA3`, and others. To see the full detailed list of instructions requiring special
+Many EVM instructions require special handling by the System Contracts. Among them are: `ORIGIN`,
+`CALLVALUE`, `BALANCE`, `CREATE`, `SHA3`, and others. To see the full detailed list of instructions that require special
 handling, see
 [the EVM instructions reference](../specification/instructions/evm.md).
 
@@ -39,7 +38,7 @@ Steps to handle such instructions:
 1. Store the calldata for the System Contract call on the auxiliary heap.
 2. Call the System Contract with a static call.
 3. Check the return status code of the call.
-4. [Revert or throw](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/exception_handling.md)
+4. [Revert or throw](./exception_handling.md)
    if the status code is zero.
 5. Read the ABI data and extract the result. All such System Contracts return a single 256-bit value.
 6. Return the value as the result of the original instruction.
@@ -76,12 +75,10 @@ EraVM does not support passing Ether natively, so this is handled by a special S
 
 An external call is redirected through the simulator if the following conditions are met:
 
-1. The
-   [call](https://github.com/code-423n4/2023-10-zksync/blob/main/docs/VM%20Section/How%20compiler%20works/instructions/evm/call.md)
-   has the Ether value parameter.
+1. The [call](./instructions/evm.md#call) has the Ether value parameter.
 2. The Ether value is non-zero.
 
-The call to the simulator requires extra data passed via ABI using registers:
+Calls to the simulator require extra data passed via ABI using registers:
 
 1. Ether value.
 2. The address of the contract to call.
@@ -93,8 +90,7 @@ For reference, see
 
 ### Simulator of Immutables
 
-See
-[handling immutables](../../../../build/developer-reference/differences-with-ethereum.md#setimmutable-loadimmutable)
+See [handling immutables](../../../../build/developer-reference/differences-with-ethereum.md#setimmutable-loadimmutable)
 on zkSync Era documentation.
 
 For reference, see LLVM IR codegen for
@@ -105,7 +101,7 @@ and
 ### Event Handler
 
 Event payloads are sent to a special System Contract called
-[EventWriter](https://github.com/code-423n4/2023-10-zksync/blob/main/code/system-contracts/contracts/EventWriter.yul).
+[EventWriter](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/EventWriter.yul).
 Like on EVM, the payload consists of topics and data:
 
 1. The topics with a length-prefix are passed via ABI using registers.
@@ -116,17 +112,13 @@ For reference, see
 
 ## Auxiliary Heap
 
-Both [zksolc](../toolchain/solidity.md) and
-[zkvyper](../toolchain/vyper.md) compilers for EraVM operate on
-[the IR level](../toolchain/overview.md#ir-compilers), so they cannot control
-the heap memory allocator which remains a responsibility of
-[the high-level source code compilers](../toolchain/overview.md#high-level-source-code-compilers)
-emitting the IRs.
+Both [zksolc](../toolchain/solidity.md) and [zkvyper](../toolchain/vyper.md) compilers for EraVM operate on
+[the IR level](../toolchain/overview.md#ir-compilers), so they cannot control the heap memory allocator which remains a responsibility of
+[the high-level source code compilers](../toolchain/overview.md#high-level-source-code-compilers) emitting the IRs.
 
-However, the are several cases where EraVM needs to allocate memory on the heap and EVM does not. The auxiliary heap is
+However, there are several cases where EraVM needs to allocate memory on the heap and EVM does not. The auxiliary heap is
 used for these cases:
 
 1. [Returning immutables](../../../../build/developer-reference/differences-with-ethereum.md#setimmutable-loadimmutable)
    from the constructor.
-2. Allocating calldata and return data for calling the
-   [System Contracts](../specification/system-contracts.md).
+2. Allocating calldata and return data for calling the System Contracts.

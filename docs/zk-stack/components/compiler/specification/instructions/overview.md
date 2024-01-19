@@ -5,7 +5,7 @@ head:
       content: Instructions | zkSync Docs
 ---
 
-# Instructions
+# Instruction Reference
 
 In this specification, instructions are grouped by their relevance to the EVM instruction set:
 

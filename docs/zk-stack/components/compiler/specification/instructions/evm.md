@@ -5,8 +5,6 @@ head:
       content: EVM | zkSync Docs
 ---
 
-# EVM
-
 # Native EVM Instructions
 
 Such instructions are grouped into the following categories according to
