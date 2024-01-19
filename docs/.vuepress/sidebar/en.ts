@@ -230,6 +230,7 @@ export const enSidebar = sidebar({
             "/build/tooling/hardhat/hardhat-zksync-chai-matchers.md",
             "/build/tooling/hardhat/hardhat-zksync-verify.md",
             "/build/tooling/hardhat/hardhat-zksync-verify-vyper.md",
+            "/build/tooling/hardhat/hardhat-zksync-ethers.md",
             "/build/tooling/hardhat/hardhat-zksync-toolbox.md",
             "/build/tooling/hardhat/hardhat-zksync-node.md",
             "/build/tooling/hardhat/other-plugins.md",
@@ -413,17 +414,26 @@ export const enSidebar = sidebar({
           text: "Java",
           collapsible: true,
           children: [
-            "/build/sdks/java",
+            "/build/sdks/java/getting-started",
             "/build/sdks/java/providers",
             "/build/sdks/java/accounts",
             "/build/sdks/java/accounts-l1-l2"
           ],
         },
         {
+          text: "Swift",
+          collapsible: true,
+          children: [
+            "/build/sdks/swift/getting-started",
+            "/build/sdks/swift/accounts",
+            "/build/sdks/swift/accounts-l1-l2",
+            "/build/sdks/swift/paymaster-utils"
+          ],
+        },
+        {
           text: "Rust",
           collapsible: true,
           children: [
-            "/build/sdks/rust",
             "/build/sdks/rust/getting-started",
             "/build/sdks/rust/contract-deployment-and-interaction"
           ],

@@ -19,6 +19,19 @@ As a temporary solution, please use previous versions of the compiler until the 
 
 :::
 
+::: warning Version Compatibility Warning
+Ensure you are using the correct version of the plugin with ethers:
+
+- For plugin version **<1.0.0**:
+
+  - Compatible with ethers **v5**.
+
+- For plugin version **≥1.0.0**:
+
+  - Compatible with ethers **v6** (⭐ Recommended)
+
+  :::
+
 ## Setup
 
 The [@matterlabs/hardhat-zksync-verify](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-verify) plugin is used in conjunction with [@nomicfoundation/hardhat-verify](https://www.npmjs.com/package/@nomicfoundation/hardhat-verify) and it supports backward compatibility.

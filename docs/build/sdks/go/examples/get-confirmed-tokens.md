@@ -5,7 +5,7 @@ head:
       content: Go SDK Get Tokens Example | zkSync Docs
 ---
 
-# Get all confirmed tokens on zkSync Era
+# Get All Confirmed Tokens on zkSync Era
 
 Following example shows how to get all confirmed tokens on zkSync Era.
 

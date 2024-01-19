@@ -115,7 +115,7 @@ contributors: false
       <img src="/images/landing/zk-credo.jpeg" alt="ZK Credo">
       <div class="content">
         <h3>ZK Credo</h3>
-        <p>Diver deeper into our mission of Freedom → Progress → Prosperity.</p>
+        <p>Dive deeper into our mission of Freedom → Progress → Prosperity.</p>
       </div>
     </a>
   </div>

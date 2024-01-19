@@ -5,7 +5,7 @@ head:
       content: Go SDK Create Example | zkSync Docs
 ---
 
-# Deploy contract with CREATE opcode
+# Deploy Contract with CREATE Opcode
 
 With zkSync Era contract can be deployed using the CREATE by simply building the contract into a binary format and deploying it to the
 zkSync Era network.

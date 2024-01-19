@@ -5,7 +5,7 @@ head:
       content: JS SDK Types | zkSync Docs
 ---
 
-# Types and interfaces
+# Types and Interfaces
 
 ## `AccountAbstractionVersion`
 

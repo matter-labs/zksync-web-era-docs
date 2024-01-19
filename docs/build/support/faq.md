@@ -147,15 +147,7 @@ We source our token information from [Coingecko](https://www.coingecko.com/en/ca
 
 ## How do I Request Funds for Testnet?
 
-To access the testnet funds Sepolia, you can use one of the following third party faucets:
-
-- [Chainstack's testnet faucet](https://faucet.chainstack.com/zksync-testnet-faucet)
-
-- QuickNode [Sepolia faucet](https://faucet.quicknode.com/ethereum/sepolia)
-
-- Alchemy [Sepolia faucet](https://sepoliafaucet.com/)
-
-- Proof of work [Sepolia faucet](https://sepolia-faucet.pk910.de/)
+To access Sepolia testnet funds, [you can use one of our third party faucets](../tooling/network-faucets.md).
 
 ## How long does it take to complete a deposit transaction?
 
@@ -169,7 +161,7 @@ Our [Block Explorer](https://explorer.zksync.io) will show everything you may ne
 
 The contract address derivation formula is different from the regular EVM approach. Even if a contract is deployed from the same account address with the same nonce, the zkSync Era contract address will not be the same as it is in another EVM network. This means, for example, that no one will be able to claim an existing Ethereum address of your protocol to try to trick users into interacting with a malicious version of it.
 
-## What is the storage limit for smart contract on zkSync Era?
+## What is the storage limit for smart contracts on zkSync Era?
 
 The current limit is 3600000000 gas.
 

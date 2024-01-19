@@ -5,7 +5,7 @@ head:
       content: Go SDK Features | zkSync Docs
 ---
 
-# zkSync Era features
+# zkSync Era Features
 
 While zkSync Era is mostly Web3-compatible, it has some differences compared to Ethereum. The major of those are:
 
@@ -21,7 +21,7 @@ This document will focus solely on how to pass these arguments to the SDK.
 
 ## EIP-712 Metadata
 
-[`EIP712Meta`](types/types.md#eip712meta) contains EIP-712 transaction metadata. Following objects contain `EIP712Meta` and provides working with
+[`EIP712Meta`](types/types.md#eip712meta) contains EIP-712 transaction metadata. The following objects contain `EIP712Meta` and provides working with
 EIP-712 transactions:
 
 - [`types.CallMsg`](types/types.md#callmsg)

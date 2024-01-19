@@ -5,7 +5,7 @@ head:
       content: JS SDK Front-end Integration | zkSync Docs
 ---
 
-# Front-end integration
+# Front-end Integration
 
 This section describes how to make the most of zkSync to provide the best UX.
 

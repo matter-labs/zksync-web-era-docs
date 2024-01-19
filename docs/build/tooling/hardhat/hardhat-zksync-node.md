@@ -15,6 +15,17 @@ The zkSync Era In-memory node binaries are not supported on Windows at the momen
 
 :::
 
+::: warning Version Compatibility Warning
+Ensure you are using the correct version of the plugin with ethers:
+
+- For plugin version **<1.0.0**:
+
+  - Compatible with ethers **v5**.
+
+- For plugin version **≥1.0.0**:
+  - Compatible with ethers **v6** (⭐ Recommended)
+    :::
+
 ## Installation
 
 [@matterlabs/hardhat-zksync-node](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-node)

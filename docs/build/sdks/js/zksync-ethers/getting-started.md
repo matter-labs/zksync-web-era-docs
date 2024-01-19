@@ -5,7 +5,7 @@ head:
       content: JS SDK Getting Started | zkSync Docs
 ---
 
-# Getting started
+# Getting Started
 
 ::: info
 Take a look at [migration guide](migration.md) if you are migrating from `zksync-web3`.

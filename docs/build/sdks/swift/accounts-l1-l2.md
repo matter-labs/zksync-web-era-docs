@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Go SDK L1/L2 Transactions | zkSync Docs
+      content: Swift SDK L1/L2 Transactions | zkSync Docs
 ---
 
 # Accounts: L1<->L2 Transactions
@@ -16,8 +16,6 @@ Full examples of actions below are available on the [getting started](./getting-
 ## Deposit
 
 `WalletL1` and `Wallet` objects provide a deposit workflow. For more information, please refer to the method specification [`Deposit`](accounts.md#deposit).
-
-For a complete example of how to execute the deposit workflow, take a look at the following: [Deposit ETH and ERC20 token](examples/deposit.md).
 
 ## Request execute
 
@@ -34,13 +32,6 @@ method specification [`BaseCost`](accounts.md#basecost).
 `WalletL1` and `Wallet` objects provide a claim fail deposit workflow. For more information, please refer to the method specification
 [`ClaimFailedDeposit`](accounts.md#claimfaileddeposit).
 
-## Finalize withdraw
-
-`WalletL1` and `Wallet` objects provide a finalize withdraw workflow. For more information, please refer to the method specification
-[`FinalizeWithdraw`](accounts.md#finalizewithdraw).
-
 ## Withdrawal
 
-`WalletL2` and `Wallet` objects provide a withdrawal workflow. For more information, please refer to the method specification [`Deposit`](accounts.md#deposit).
-
-For a complete example of how to execute the deposit workflow, take a look at the following: [Withdraw ETH and ERC20 token](examples/withdraw.md).
+`WalletL2` and `Wallet` objects provide a withdrawal workflow. For more information, please refer to the method specification [`Withdraw`](accounts.md#withdraw).

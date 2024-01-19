@@ -5,7 +5,7 @@ head:
       content: Go SDK Getting Started | zkSync Docs
 ---
 
-# Getting started
+# Getting Started
 
 This is a short introduction to `zksync2-go` SDK, but covers many of the most common operations that developers require and provides a
 starting point for those newer to zkSync Era.

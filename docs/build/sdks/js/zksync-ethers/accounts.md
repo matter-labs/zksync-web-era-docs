@@ -5,7 +5,9 @@ head:
       content: JS SDK Accounts | zkSync Docs
 ---
 
-# Accounts: overview
+# Accounts
+
+## Overview
 
 `zksync-ethers` exports following classes that can sign transactions on zkSync:
 

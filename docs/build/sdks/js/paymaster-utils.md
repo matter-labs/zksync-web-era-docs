@@ -5,7 +5,7 @@ head:
       content: JS SDK Paymaster Utilities | zkSync Docs
 ---
 
-# Paymaster utilities
+# Paymaster Utilities
 
 The [paymaster utilities library](https://github.com/zksync-sdk/zksync-ethers/blob/ethers-v5/src/paymaster-utils.ts) contains essential utilities for using paymasters on zkSync Era.
 

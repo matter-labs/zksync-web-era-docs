@@ -5,7 +5,9 @@ head:
       content: Go SDK Accounts | zkSync Docs
 ---
 
-# Accounts: Overview
+# Accounts
+
+## Overview
 
 The `accounts` package provides abstractions that wrap operations that interact with an account. An account typically contains a private
 key, allowing it to sign various types of payloads. There are the following interfaces that provide account operations for different
@@ -394,7 +396,7 @@ fmt.Println("L1 deposit transaction: ", tx.Hash())
 
 ### `EstimateGasDeposit`
 
-Estimates the amount of gas required for a deposit transaction on L1 network. Gas of approving ERC20 token is not included in estimation.
+Estimates the amount of gas required for a deposit transaction on L1 network. Gas of approving ERC20 token is not included in the estimation.
 
 #### Inputs
 
@@ -456,11 +458,11 @@ Proves the inclusion of the L2 -> L1 withdrawal message.
 
 #### Inputs
 
-| Parameter        | Type                                                         | Description                                                                                                                |
-| ---------------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| `auth`           | [`*TransactOpts`](types/accounts.md#transactopts) (optional) | Transaction options.                                                                                                       |
-| `withdrawalHash` | `common.Hash`                                                | Hash of the L2 transaction where the withdrawal was initiated.                                                             |
-| `index`          | `int`                                                        | In case there where multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize. |
+| Parameter        | Type                                                         | Description                                                                                                               |
+| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| `auth`           | [`*TransactOpts`](types/accounts.md#transactopts) (optional) | Transaction options.                                                                                                      |
+| `withdrawalHash` | `common.Hash`                                                | Hash of the L2 transaction where the withdrawal was initiated.                                                            |
+| `index`          | `int`                                                        | In case there were multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize. |
 
 ```go
 FinalizeWithdraw(auth *TransactOpts, withdrawalHash common.Hash, index int) (*types.Transaction, error)
