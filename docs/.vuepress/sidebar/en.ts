@@ -831,6 +831,10 @@ export const enSidebar = sidebar({
                           link: "/zk-stack/components/compiler/specification/instructions/evm/memory.md",
                         },
                         {
+                          text: "Storage",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/storage.md",
+                        },
+                        {
                           text: "Events",
                           link: "/zk-stack/components/compiler/specification/instructions/evm/events.md",
                         },

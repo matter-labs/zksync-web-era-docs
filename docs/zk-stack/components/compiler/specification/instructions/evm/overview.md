@@ -17,6 +17,7 @@ Such instructions are grouped into the following categories according to [the or
 - [Block](./block.md)
 - [Stack](./stack.md)
 - [Memory](./memory.md)
+- [Storage](./storage.md)
 - [Logging](./logging.md)
 - [Calls](./calls.md)
 - [Create](./create.md)
