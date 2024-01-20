@@ -56,7 +56,7 @@ and [when returning from far calls](https://matter-labs.github.io/eravm-spec/spe
 
 ## [INVALID](https://www.evm.codes/#fe?fork=shanghai)
 
-This instruction is a [REVERT](#revert) with an empty data payload.
+This instruction is a [REVERT](#revert) with an empty data payload, but it also burns all the available gas.
 
 ### LLVM IR
 
