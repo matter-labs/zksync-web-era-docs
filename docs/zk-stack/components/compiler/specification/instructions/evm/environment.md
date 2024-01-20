@@ -19,9 +19,9 @@ This value is fetched with a native [EraVM instruction: `context.this`](https://
 
 ### System Contract
 
-This information is requested a System Contract called [L2EthToken](https://github.com/matter-labs/system-contracts/blob/main/contracts/L2EthToken.sol).
+This information is requested a System Contract called [L2EthToken](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/L2EthToken.sol).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
 
 ### LLVM IR
 
@@ -33,9 +33,9 @@ The request to the System Contract is done via the [SystemRequest](https://githu
 
 ### System Contract
 
-This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/system-contracts/blob/main/contracts/SystemContext.sol).
+This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/SystemContext.sol).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
 
 ### LLVM IR
 
@@ -178,9 +178,9 @@ See [the EraVM docs](https://era.zksync.io/docs/reference/architecture/differenc
 
 ### System Contract
 
-This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/system-contracts/blob/main/contracts/SystemContext.sol).
+This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/SystemContext.sol).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
 
 ### LLVM IR
 
@@ -192,9 +192,9 @@ The request to the System Contract is done via the [SystemRequest](https://githu
 
 ### System Contract
 
-This information is requested a System Contract called [AccountCodeStorage](https://github.com/matter-labs/system-contracts/blob/main/contracts/AccountCodeStorage.sol).
+This information is requested a System Contract called [AccountCodeStorage](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/AccountCodeStorage.sol).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
 
 ### LLVM IR
 
@@ -275,9 +275,9 @@ call void @llvm.memcpy.p1.p3.i256(ptr addrspace(1) align 1 inttoptr (i256 128 to
 
 ### System Contract
 
-This information is requested a System Contract called [AccountCodeStorage](https://github.com/matter-labs/system-contracts/blob/main/contracts/AccountCodeStorage.sol).
+This information is requested a System Contract called [AccountCodeStorage](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/AccountCodeStorage.sol).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
 
 ### LLVM IR
 

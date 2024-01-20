@@ -14,7 +14,7 @@ head:
 This instruction is handled by a System Contract called [Keccak256](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/precompiles/Keccak256.yul),
 which is a wrapper around the EraVM precompile.
 
-On how the System Contract is called, see [this section](../../system_contracts.md#keccak256-hash-function).
+On how the System Contract is called, see [this section](../../system-contracts.md#keccak256-hash-function).
 
 ### LLVM IR
 

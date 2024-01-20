@@ -11,9 +11,9 @@ head:
 
 ### System Contract
 
-This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/system-contracts/blob/main/contracts/SystemContext.sol).
+This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/SystemContext.sol).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
 
 ### LLVM IR
 
@@ -25,9 +25,9 @@ The request to the System Contract is done via the [SystemRequest](https://githu
 
 ### System Contract
 
-This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/system-contracts/blob/main/contracts/SystemContext.sol).
+This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/SystemContext.sol).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
 
 ### LLVM IR
 
@@ -39,9 +39,9 @@ The request to the System Contract is done via the [SystemRequest](https://githu
 
 ### System Contract
 
-This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/system-contracts/blob/main/contracts/SystemContext.sol).
+This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/SystemContext.sol).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
 
 ### LLVM IR
 
@@ -53,9 +53,9 @@ The request to the System Contract is done via the [SystemRequest](https://githu
 
 ### System Contract
 
-This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/system-contracts/blob/main/contracts/SystemContext.sol).
+This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/SystemContext.sol).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
 
 ### LLVM IR
 
@@ -67,9 +67,9 @@ The request to the System Contract is done via the [SystemRequest](https://githu
 
 ### System Contract
 
-This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/system-contracts/blob/main/contracts/SystemContext.sol).
+This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/SystemContext.sol).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
 
 ### LLVM IR
 
@@ -81,9 +81,9 @@ The request to the System Contract is done via the [SystemRequest](https://githu
 
 ### System Contract
 
-This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/system-contracts/blob/main/contracts/SystemContext.sol).
+This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/SystemContext.sol).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
 
 ### LLVM IR
 
@@ -95,9 +95,9 @@ The request to the System Contract is done via the [SystemRequest](https://githu
 
 ### System Contract
 
-This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/system-contracts/blob/main/contracts/SystemContext.sol).
+This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/SystemContext.sol).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
 
 ### LLVM IR
 
@@ -113,9 +113,9 @@ Implemented as [BALANCE](./environment.md#balance) with an [ADDRESS](./environme
 
 ### System Contract
 
-This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/system-contracts/blob/main/contracts/SystemContext.sol).
+This information is requested a System Contract called [SystemContext](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/SystemContext.sol).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#environmental-data-storage).
+On how the System Contract is called, see [this section](../../system-contracts.md#environmental-data-storage).
 
 ### LLVM IR
 

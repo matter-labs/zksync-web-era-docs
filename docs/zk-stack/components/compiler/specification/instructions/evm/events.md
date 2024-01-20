@@ -23,8 +23,8 @@ See [EraVM instruction: `log.event`](https://matter-labs.github.io/eravm-spec/sp
 
 ### System Contract
 
-This information is requested a System Contract called [EventWriter](https://github.com/matter-labs/system-contracts/blob/main/contracts/EventWriter.sol).
+This information is requested a System Contract called [EventWriter](https://github.com/matter-labs/era-system-contracts/blob/main/contracts/EventWriter.yul).
 
-On how the System Contract is called, see [this section](../../system_contracts.md#event-handler).
+On how the System Contract is called, see [this section](../../system-contracts.md#event-handler).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/event.rs#L20) is common for Yul and EVMLA representations.

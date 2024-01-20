@@ -16,7 +16,7 @@ required for generating the target bytecode.
 
 Unlike on EVM, on EraVM target this instruction returns the size of the header part of the calldata sent to the
 [ContractDeployer](../system-contracts.md#contract-deployer).
-For more information, see [CREATE](./evm.md#create).
+For more information, see [CREATE](./evm/create.md).
 
 LLVM IR codegen references:
 
@@ -30,7 +30,7 @@ LLVM IR codegen references:
 Unlike on EVM, on EraVM target this instruction has nothing to do with the offset. Instead, it returns the bytecode hash
 of the contract referenced by the Yul object identifier. Since our compiler translates instructions without analyzing
 the surrounding context, it is not possible to get the bytecode hash from anywhere else in [datacopy](#datacopy). For
-more information, see [CREATE](./evm.md#create).
+more information, see [CREATE](./evm/create.md).
 
 LLVM IR codegen references:
 
@@ -42,7 +42,7 @@ LLVM IR codegen references:
 [datacopy](https://docs.soliditylang.org/en/latest/yul.html#datasize-dataoffset-datacopy)
 
 Unlike on EVM, on EraVM target this instruction copies the bytecode hash passed as [dataoffset](#dataoffset) to the
-destination. For more information, see [CREATE](./evm.md#create).
+destination. For more information, see [CREATE](./evm/create.md).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/yul/parser/statement/expression/function_call/mod.rs#L938).
 

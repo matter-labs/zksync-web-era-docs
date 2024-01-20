@@ -10,7 +10,7 @@ head:
 Many EVM instructions require special handling by the System Contracts. Among them are: `ORIGIN`,
 `CALLVALUE`, `BALANCE`, `CREATE`, `SHA3`, and others. To see the full detailed list of instructions that require special
 handling, see
-[the EVM instructions reference](../specification/instructions/evm.md).
+[the EVM instructions reference](../specification/instructions/evm/overview.md).
 
 There are several types of System Contracts from the perspective of how they are handled by the zkSync Era compilers:
 
@@ -38,7 +38,7 @@ Steps to handle such instructions:
 1. Store the calldata for the System Contract call on the auxiliary heap.
 2. Call the System Contract with a static call.
 3. Check the return status code of the call.
-4. [Revert or throw](./exception_handling.md)
+4. [Revert or throw](./exception-handling.md)
    if the status code is zero.
 5. Read the ABI data and extract the result. All such System Contracts return a single 256-bit value.
 6. Return the value as the result of the original instruction.
@@ -75,7 +75,7 @@ EraVM does not support passing Ether natively, so this is handled by a special S
 
 An external call is redirected through the simulator if the following conditions are met:
 
-1. The [call](./instructions/evm.md#call) has the Ether value parameter.
+1. The [call](./instructions/evm/calls.md#call) has the Ether value parameter.
 2. The Ether value is non-zero.
 
 Calls to the simulator require extra data passed via ABI using registers:

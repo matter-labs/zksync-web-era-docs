@@ -17,7 +17,7 @@ For more information, see the [zkSync Era documentation](https://era.zksync.io/d
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/call.rs#L530) is common for Yul and EVMLA representations.
 
-The code checks if the call is non-static and the Ether value is non-zero. If so, the call is redirected to the [MsgValueSimulator](../../system_contracts.md#ether-value-simulator).
+The code checks if the call is non-static and the Ether value is non-zero. If so, the call is redirected to the [MsgValueSimulator](../../system-contracts.md#ether-value-simulator).
 
 - [EraVM instruction: `call` (near call)](https://matter-labs.github.io/eravm-spec/spec.html#NearCallDefinition)
 - [EraVM instruction: `far_call`](https://matter-labs.github.io/eravm-spec/spec.html#FarCalls)

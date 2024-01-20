@@ -66,7 +66,7 @@ The same as for [REVERT](#revert).
 
 ### EraVM
 
-See also EraVM instruction: `revert`[ when returning from near calls](https://matter-labs.github.io/eravm-spec/spec.html#NearRevertDefinition)
-and [when returning from far calls]((<https://matter-labs.github.io/eravm-spec/spec.html#FarRevertDefinition>).
+See also EraVM instruction: `revert`[ when returning from near calls](https://matter-labs.github.io/eravm-spec/spec.md#NearRevertDefinition)
+and [when returning from far calls]((<https://matter-labs.github.io/eravm-spec/spec.md#FarRevertDefinition>).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/return.rs#L86) is common for Yul and EVMLA representations.
