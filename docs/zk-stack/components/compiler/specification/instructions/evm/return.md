@@ -47,12 +47,12 @@ entry:
 }
 ```
 
+[The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/return.rs#L86) is common for Yul and EVMLA representations.
+
 ### EraVM
 
-See also EraVM instruction: `revert`[ when returning from near calls](https://matter-labs.github.io/eravm-spec/spec.html#NearRevertDefinition)
-and [when returning from far calls]((<https://matter-labs.github.io/eravm-spec/spec.html#FarRevertDefinition>).
-
-[The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/return.rs#L86) is common for Yul and EVMLA representations.
+See also EraVM instruction `revert`: [when returning from near calls](https://matter-labs.github.io/eravm-spec/spec.html#NearRevertDefinition)
+and [when returning from far calls](https://matter-labs.github.io/eravm-spec/spec.html#FarRevertDefinition).
 
 ## [INVALID](https://www.evm.codes/#fe?fork=shanghai)
 
@@ -68,5 +68,3 @@ The same as for [REVERT](#revert).
 
 See also EraVM instruction `revert`: [when returning from near calls](https://matter-labs.github.io/eravm-spec/spec.html#NearRevertDefinition)
 and [when returning from far calls](https://matter-labs.github.io/eravm-spec/spec.html#FarRevertDefinition).
-
-[The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/return.rs#L86) is common for Yul and EVMLA representations.
