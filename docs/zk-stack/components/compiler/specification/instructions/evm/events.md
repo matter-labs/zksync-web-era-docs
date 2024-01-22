@@ -19,7 +19,9 @@ Each write operation can contain some subsequent data from its next step. If onl
 
 See [EraVM instruction: `log.event`](https://matter-labs.github.io/eravm-spec/spec.html#EventDefinition)
 
-## [LOG0](https://www.evm.codes/#a0?fork=shanghai) - [LOG4](https://www.evm.codes/#a4?fork=shanghai)
+## LOGN
+
+Original [EVM](https://www.evm.codes/#a0?fork=shanghai) instructions.
 
 ### System Contract
 

@@ -7,7 +7,9 @@ head:
 
 # Block Instructions
 
-## [BLOCKHASH](https://www.evm.codes/#40?fork=shanghai)
+## BLOCKHASH
+
+Original [EVM](https://www.evm.codes/#40?fork=shanghai) instruction.
 
 ### System Contract
 
@@ -21,7 +23,9 @@ On how the System Contract is called, see [this section](../../system-contracts.
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-## [COINBASE](https://www.evm.codes/#41?fork=shanghai)
+## COINBASE
+
+Original [EVM](https://www.evm.codes/#41?fork=shanghai) instruction.
 
 ### System Contract
 
@@ -35,7 +39,9 @@ On how the System Contract is called, see [this section](../../system-contracts.
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-## [TIMESTAMP](https://www.evm.codes/#42?fork=shanghai)
+## TIMESTAMP
+
+Original [EVM](https://www.evm.codes/#42?fork=shanghai) instruction.
 
 ### System Contract
 
@@ -49,7 +55,9 @@ On how the System Contract is called, see [this section](../../system-contracts.
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-## [NUMBER](https://www.evm.codes/#43?fork=shanghai)
+## NUMBER
+
+Original [EVM](https://www.evm.codes/#43?fork=shanghai) instruction.
 
 ### System Contract
 
@@ -63,7 +71,11 @@ On how the System Contract is called, see [this section](../../system-contracts.
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-## [PREVRANDAO](https://www.evm.codes/#44?fork=shanghai) | [DIFFICULTY](https://www.evm.codes/#44?fork=grayGlacier)
+## PREVRANDAO
+
+Original [EVM](https://www.evm.codes/#44?fork=shanghai) instruction. | DIFFICULTY
+
+Original [EVM](https://www.evm.codes/#44?fork=grayGlacier)
 
 ### System Contract
 
@@ -77,7 +89,9 @@ On how the System Contract is called, see [this section](../../system-contracts.
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-## [GASLIMIT](https://www.evm.codes/#45?fork=shanghai)
+## GASLIMIT
+
+Original [EVM](https://www.evm.codes/#45?fork=shanghai) instruction.
 
 ### System Contract
 
@@ -91,7 +105,9 @@ On how the System Contract is called, see [this section](../../system-contracts.
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-## [CHAINID](https://www.evm.codes/#46?fork=shanghai)
+## CHAINID
+
+Original [EVM](https://www.evm.codes/#46?fork=shanghai) instruction.
 
 ### System Contract
 
@@ -105,11 +121,15 @@ On how the System Contract is called, see [this section](../../system-contracts.
 
 The request to the System Contract is done via the [SystemRequest](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/context/function/runtime/system_request.rs) runtime function.
 
-## [SELFBALANCE](https://www.evm.codes/#47?fork=shanghai)
+## SELFBALANCE
+
+Original [EVM](https://www.evm.codes/#47?fork=shanghai) instruction.
 
 Implemented as [BALANCE](./environment.md#balance) with an [ADDRESS](./environment.md#address) as its argument.
 
-## [BASEFEE](https://www.evm.codes/#48?fork=shanghai)
+## BASEFEE
+
+Original [EVM](https://www.evm.codes/#48?fork=shanghai) instruction.
 
 ### System Contract
 

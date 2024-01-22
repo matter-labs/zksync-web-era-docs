@@ -7,7 +7,9 @@ head:
 
 # Return Instructions
 
-## [STOP](https://www.evm.codes/#00?fork=shanghai)
+## STOP
+
+Original [EVM](https://www.evm.codes/#00?fork=shanghai) instruction.
 
 This instruction is a [RETURN](#return) with an empty data payload.
 
@@ -17,7 +19,9 @@ The same as for [RETURN](#return).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/return.rs#L103) is common for Yul and EVMLA representations.
 
-## [RETURN](https://www.evm.codes/#f3?fork=shanghai)
+## RETURN
+
+Original [EVM](https://www.evm.codes/#f3?fork=shanghai) instruction.
 
 This instruction works differently in deploy code. For more information, see [the zkSync Era documentation](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#return).
 
@@ -34,7 +38,9 @@ entry:
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/return.rs#L16) is common for Yul and EVMLA representations.
 
-## [REVERT](https://www.evm.codes/#fd?fork=shanghai)
+## REVERT
+
+Original [EVM](https://www.evm.codes/#fd?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -54,7 +60,9 @@ entry:
 See also EraVM instruction `revert`: [when returning from near calls](https://matter-labs.github.io/eravm-spec/spec.html#NearRevertDefinition)
 and [when returning from far calls](https://matter-labs.github.io/eravm-spec/spec.html#FarRevertDefinition).
 
-## [INVALID](https://www.evm.codes/#fe?fork=shanghai)
+## INVALID
+
+Original [EVM](https://www.evm.codes/#fe?fork=shanghai) instruction.
 
 This instruction is a [REVERT](#revert) with an empty data payload, but it also burns all the available gas.
 

@@ -7,7 +7,9 @@ head:
 
 # Storage Instructions
 
-## [SLOAD](https://www.evm.codes/#54?fork=shanghai)
+## SLOAD
+
+Original [EVM](https://www.evm.codes/#54?fork=shanghai) instruction.
 
 Storage load operation is modeled with a native EraVM instruction.
 
@@ -25,7 +27,9 @@ Storage load operation is modeled with a native EraVM instruction.
 sload   r1, r2
 ```
 
-## [SSTORE](https://www.evm.codes/#55?fork=shanghai)
+## SSTORE
+
+Original [EVM](https://www.evm.codes/#55?fork=shanghai) instruction.
 
 Storage store operation is modeled with a native EraVM instruction.
 

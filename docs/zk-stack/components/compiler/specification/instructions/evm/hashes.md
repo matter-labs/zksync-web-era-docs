@@ -7,7 +7,9 @@ head:
 
 # Hash Instructions
 
-## [SHA3](https://www.evm.codes/#20?fork=shanghai)
+## SHA3
+
+Original [EVM](https://www.evm.codes/#20?fork=shanghai) instruction.
 
 ### System Contract
 

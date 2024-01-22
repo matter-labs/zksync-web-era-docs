@@ -7,7 +7,9 @@ head:
 
 # Memory Instructions
 
-## [MLOAD](https://www.evm.codes/#51?fork=shanghai)
+## MLOAD
+
+Original [EVM](https://www.evm.codes/#51?fork=shanghai) instruction.
 
 Heap memory load operation is modeled with a native EraVM instruction.
 
@@ -29,7 +31,9 @@ ld.1    r1, r2
 
 See [EraVM instruction: `st.1`](https://matter-labs.github.io/eravm-spec/spec.html#LoadDefinition)
 
-## [MSTORE](https://www.evm.codes/#52?fork=shanghai)
+## MSTORE
+
+Original [EVM](https://www.evm.codes/#52?fork=shanghai) instruction.
 
 Heap memory load operation is modeled with a native EraVM instruction.
 
@@ -51,7 +55,9 @@ st.1    r1, r2
 
 See [EraVM instruction: `st.1`](https://matter-labs.github.io/eravm-spec/spec.html#StoreDefinition)
 
-## [MSTORE8](https://www.evm.codes/#53?fork=shanghai)
+## MSTORE8
+
+Original [EVM](https://www.evm.codes/#53?fork=shanghai) instruction.
 
 ### LLVM IR
 

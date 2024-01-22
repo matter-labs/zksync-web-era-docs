@@ -13,7 +13,9 @@ The call type is encoded on the assembly level, so we will describe the common h
 
 For more information, see the [zkSync Era documentation](https://era.zksync.io/docs/reference/architecture/differences-with-ethereum.html#call-staticcall-delegatecall).
 
-## [CALL](https://www.evm.codes/#f1?fork=shanghai)
+## CALL
+
+Original [EVM](https://www.evm.codes/#f1?fork=shanghai) instruction.
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/call.rs#L530) is common for Yul and EVMLA representations.
 
@@ -22,13 +24,17 @@ The code checks if the call is non-static and the Ether value is non-zero. If so
 - [EraVM instruction: `call` (near call)](https://matter-labs.github.io/eravm-spec/spec.html#NearCallDefinition)
 - [EraVM instruction: `far_call`](https://matter-labs.github.io/eravm-spec/spec.html#FarCalls)
 
-## [DELEGATECALL](https://www.evm.codes/#f4?fork=shanghai)
+## DELEGATECALL
+
+Original [EVM](https://www.evm.codes/#f4?fork=shanghai) instruction.
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/call.rs#L530) is common for Yul and EVMLA representations.
 
 [EraVM instruction: `far_call`](https://matter-labs.github.io/eravm-spec/spec.html#FarCalls)
 
-## [STATICCALL](https://www.evm.codes/#fa?fork=shanghai)
+## STATICCALL
+
+Original [EVM](https://www.evm.codes/#fa?fork=shanghai) instruction.
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/call.rs#L530) is common for Yul and EVMLA representations.
 

@@ -7,7 +7,9 @@ head:
 
 # Bitwise Instructions
 
-## [AND](https://www.evm.codes/#16?fork=shanghai)
+## AND
+
+Original [EVM](https://www.evm.codes/#16?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -33,7 +35,9 @@ st.1    128, r1
 
 [EraVM instruction: `and`](https://matter-labs.github.io/eravm-spec/spec.html#AndDefinition)
 
-## [OR](https://www.evm.codes/#17?fork=shanghai)
+## OR
+
+Original [EVM](https://www.evm.codes/#17?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -59,7 +63,9 @@ st.1    128, r1
 
 [EraVM instruction: `or`](https://matter-labs.github.io/eravm-spec/spec.html#AndDefinition)
 
-## [XOR](https://www.evm.codes/#18?fork=shanghai)
+## XOR
+
+Original [EVM](https://www.evm.codes/#18?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -85,7 +91,9 @@ st.1    128, r1
 
 [EraVM instruction: `xor`](https://matter-labs.github.io/eravm-spec/spec.html#XorDefinition)
 
-## [NOT](https://www.evm.codes/#19?fork=shanghai)
+## NOT
+
+Original [EVM](https://www.evm.codes/#19?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -107,7 +115,9 @@ st.1    128, r1
 
 [EraVM instruction: `xor`](https://matter-labs.github.io/eravm-spec/spec.html#XorDefinition)
 
-## [BYTE](https://www.evm.codes/#1a?fork=shanghai)
+## BYTE
+
+Original [EVM](https://www.evm.codes/#1a?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -131,7 +141,9 @@ return:
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/bitwise.rs#L229) is common for Yul and EVMLA representations.
 
-## [SHL](https://www.evm.codes/#1b?fork=shanghai)
+## SHL
+
+Original [EVM](https://www.evm.codes/#1b?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -153,7 +165,9 @@ return:
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-llvm-context/blob/main/src/eravm/evm/bitwise.rs#L67) is common for Yul and EVMLA representations.
 
-## [SHR](https://www.evm.codes/#1c?fork=shanghai)
+## SHR
+
+Original [EVM](https://www.evm.codes/#1c?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -177,7 +191,9 @@ return:
 
 [EraVM instruction: `xor`](https://matter-labs.github.io/eravm-spec/spec.html#XorDefinition)
 
-## [SAR](https://www.evm.codes/#1d?fork=shanghai)
+## SAR
+
+Original [EVM](https://www.evm.codes/#1d?fork=shanghai) instruction.
 
 ### LLVM IR
 

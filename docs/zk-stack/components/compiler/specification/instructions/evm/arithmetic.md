@@ -7,7 +7,9 @@ head:
 
 # Arithmetic Instructions
 
-## [ADD](https://www.evm.codes/#01?fork=shanghai)
+## ADD
+
+Original [EVM](https://www.evm.codes/#01?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -27,7 +29,9 @@ add     r1, r2, r1
 
 For more detail, see the [EraVM specification reference](https://matter-labs.github.io/eravm-spec/spec.html#AddDefinition)
 
-## [MUL](https://www.evm.codes/#02?fork=shanghai)
+## MUL
+
+Original [EVM](https://www.evm.codes/#02?fork=shanghai) instruction.
 
 ### Differences from EVM
 
@@ -62,7 +66,9 @@ mul     r1, r2, r1, r2
 
 For more detail, see the [EraVM specification reference](https://matter-labs.github.io/eravm-spec/spec.html#MulDefinition)
 
-## [SUB](https://www.evm.codes/#03?fork=shanghai)
+## SUB
+
+Original [EVM](https://www.evm.codes/#03?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -82,7 +88,9 @@ sub     r1, r2, r1
 
 For more detail, see the [EraVM specification reference](https://matter-labs.github.io/eravm-spec/spec.html#SubDefinition)
 
-## [DIV](https://www.evm.codes/#04?fork=shanghai)
+## DIV
+
+Original [EVM](https://www.evm.codes/#04?fork=shanghai) instruction.
 
 ### Differences from EVM
 
@@ -112,7 +120,9 @@ return:
 
 For more detail, see the [EraVM specification reference](https://matter-labs.github.io/eravm-spec/spec.html#DivDefinition)
 
-## [SDIV](https://www.evm.codes/#05?fork=shanghai)
+## SDIV
+
+Original [EVM](https://www.evm.codes/#05?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -144,7 +154,9 @@ return:
 
 EraVM does not have a similar instruction.
 
-## [MOD](https://www.evm.codes/#06?fork=shanghai)
+## MOD
+
+Original [EVM](https://www.evm.codes/#06?fork=shanghai) instruction.
 
 ### Differences from EVM
 
@@ -174,7 +186,9 @@ return:
 
 For more detail, see the [EraVM specification reference](https://matter-labs.github.io/eravm-spec/spec.html#DivDefinition)
 
-## [SMOD](https://www.evm.codes/#07?fork=shanghai)
+## SMOD
+
+Original [EVM](https://www.evm.codes/#07?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -206,7 +220,9 @@ return:
 
 EraVM does not have a similar instruction.
 
-## [ADDMOD](https://www.evm.codes/#08?fork=shanghai)
+## ADDMOD
+
+Original [EVM](https://www.evm.codes/#08?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -241,7 +257,9 @@ return:
 
 EraVM does not have a similar instruction.
 
-## [MULMOD](https://www.evm.codes/#09?fork=shanghai)
+## MULMOD
+
+Original [EVM](https://www.evm.codes/#09?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -281,7 +299,9 @@ slow:
 
 EraVM does not have a similar instruction.
 
-## [EXP](https://www.evm.codes/#0a?fork=shanghai)
+## EXP
+
+Original [EVM](https://www.evm.codes/#0a?fork=shanghai) instruction.
 
 ### LLVM IR
 
@@ -314,7 +334,9 @@ exponent_loop_body:
 
 EraVM does not have a similar instruction.
 
-## [SIGNEXTEND](https://www.evm.codes/#0b?fork=shanghai)
+## SIGNEXTEND
+
+Original [EVM](https://www.evm.codes/#0b?fork=shanghai) instruction.
 
 ### LLVM IR
 

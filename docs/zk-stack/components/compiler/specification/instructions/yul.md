@@ -12,7 +12,7 @@ required for generating the target bytecode.
 
 ## datasize
 
-[datasize](https://docs.soliditylang.org/en/latest/yul.html#datasize-dataoffset-datacopy)
+Original [Yul](https://docs.soliditylang.org/en/latest/yul.html#datasize-dataoffset-datacopy) auxiliary instruction.
 
 Unlike on EVM, on EraVM target this instruction returns the size of the header part of the calldata sent to the
 [ContractDeployer](../system-contracts.md#contract-deployer).
@@ -25,7 +25,7 @@ LLVM IR codegen references:
 
 ## dataoffset
 
-[dataoffset](https://docs.soliditylang.org/en/latest/yul.html#datasize-dataoffset-datacopy)
+Original [Yul](https://docs.soliditylang.org/en/latest/yul.html#datasize-dataoffset-datacopy) auxiliary instruction.
 
 Unlike on EVM, on EraVM target this instruction has nothing to do with the offset. Instead, it returns the bytecode hash
 of the contract referenced by the Yul object identifier. Since our compiler translates instructions without analyzing
@@ -39,7 +39,7 @@ LLVM IR codegen references:
 
 ## datacopy
 
-[datacopy](https://docs.soliditylang.org/en/latest/yul.html#datasize-dataoffset-datacopy)
+Original [Yul](https://docs.soliditylang.org/en/latest/yul.html#datasize-dataoffset-datacopy) auxiliary instruction.
 
 Unlike on EVM, on EraVM target this instruction copies the bytecode hash passed as [dataoffset](#dataoffset) to the
 destination. For more information, see [CREATE](./evm/create.md).
@@ -48,12 +48,11 @@ destination. For more information, see [CREATE](./evm/create.md).
 
 ## setimmutable
 
-[setimmutable](https://docs.soliditylang.org/en/latest/yul.html#setimmutable-loadimmutable)
+Original [Yul](https://docs.soliditylang.org/en/latest/yul.html#setimmutable-loadimmutable) auxiliary instruction.
 
 Writes immutables to the auxiliary heap.
 
-For more information, see the
-[Differences with Ethereum](../../../../../build/developer-reference/differences-with-ethereum.md#setimmutable-loadimmutable).
+For more information, see the [Differences with Ethereum](../../../../../build/developer-reference/differences-with-ethereum.md#setimmutable-loadimmutable).
 
 LLVM IR codegen references:
 
@@ -62,13 +61,11 @@ LLVM IR codegen references:
 
 ## loadimmutable
 
-[loadimmutable](https://docs.soliditylang.org/en/latest/yul.html#setimmutable-loadimmutable)
+Original [Yul](https://docs.soliditylang.org/en/latest/yul.html#setimmutable-loadimmutable) auxiliary instruction.
 
-Reads immutables from the
-[ImmutableSimulator](../system-contracts.md#simulator-of-immutables).
+Reads immutables from the [ImmutableSimulator](../system-contracts.md#simulator-of-immutables).
 
-For more information, see the
-[Differences with Ethereum](../../../../../build/developer-reference/differences-with-ethereum.md#setimmutable-loadimmutable).
+For more information, see the [Differences with Ethereum](../../../../../build/developer-reference/differences-with-ethereum.md#setimmutable-loadimmutable).
 
 LLVM IR codegen references:
 
@@ -77,7 +74,7 @@ LLVM IR codegen references:
 
 ## linkersymbol
 
-[linkersymbol](https://docs.soliditylang.org/en/latest/yul.html#linkersymbol)
+Original [Yul](https://docs.soliditylang.org/en/latest/yul.html#linkersymbol) auxiliary instruction.
 
 Returns the address of a deployable library. The address must be passed to `zksolc` with the `--libraries` option,
 otherwise a compile-time error will be produced.
@@ -91,13 +88,17 @@ For more information, see the
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/yul/parser/statement/expression/function_call/mod.rs#L956).
 
-## [memoryguard](https://docs.soliditylang.org/en/latest/yul.html#memoryguard)
+## memoryguard
+
+Original [Yul](https://docs.soliditylang.org/en/latest/yul.html#memoryguard) auxiliary instruction.
 
 Is a Yul optimizer hint which is not used by our compiler. Instead, its only argument is simply unwrapped and returned.
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/yul/parser/statement/expression/function_call/mod.rs#L968).
 
-## [verbatim](https://docs.soliditylang.org/en/latest/yul.html#verbatim)
+## verbatim
+
+Original [Yul](https://docs.soliditylang.org/en/latest/yul.html#verbatim) auxiliary instruction.
 
 Unlike on EVM, on EraVM target this instruction has nothing to do with inserting of EVM bytecode. Instead, it is used to implement
 [EraVM Yul Extensions](../instructions/overview.md#yul-extensions) available in the system mode. In order to compile a Yul contract
