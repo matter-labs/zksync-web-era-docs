@@ -109,29 +109,31 @@ For Solidity versions older than 0.8, only this compilation mode is available an
 
 :::
 
-For usage of zkVM compiler, `eraVersion` should be added inside `solidity` property in the `hardhat.config.ts` file:
+### zkSync Era Solidity compiler
+
+Due to the identified limitations in the [Solidity compiler](https://docs.zksync.io/zk-stack/components/compiler/toolchain/solidity.html#limitations), our team has developed a new [zkSync Era compiler](https://github.com/matter-labs/era-solidity) known as EraVM, which effectively addresses and resolves these constraints.
+
+For usage of EraVM compiler, `eraVersion` should be added inside `solidity` property in the `hardhat.config.ts` file:
 
 ```typescript
 solidity: {
     version: "0.8.17",
-    eraVersion: "1.0.0" //optional. Compile contracts with zkVM compiler
+    eraVersion: "1.0.0" //optional. Compile contracts with EraVM compiler
 },
 
 ```
 
-- `eraVersion` (optional) is field used to specify version of zkVM compiler
+- `eraVersion` - (optional) field used to specify version of EraVM compiler
 
-More info about zkVM compilers can be found in [the following repository](https://github.com/matter-labs/era-solidity).
+::: warning eraVersion usage
 
-::: warning `eraVersion` usage
-
-Using 'latest' as the field value is not supported. Instead, the 'eraVersion' field must be filled with a specific version.
+Using latest as the field value is not supported. Instead, the eraVersion field must be filled with a specific version.
 
 :::
 
-::: warning zkVM compiler usage
+::: warning EraVM compiler usage
 
-To use the zkVM compiler, the zkSolc compiler version must be equal to or greater than 1.3.22.
+To use the EraVM compiler, the zksolc compiler version must be equal to or greater than 1.3.22.
 
 :::
 
