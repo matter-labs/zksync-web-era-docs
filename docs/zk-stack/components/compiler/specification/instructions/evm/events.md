@@ -19,7 +19,7 @@ Each write operation can contain some subsequent data from its next step. If onl
 
 See [EraVM instruction: `log.event`](https://matter-labs.github.io/eravm-spec/spec.html#EventDefinition)
 
-## LOGN
+## LOG0 - LOG4
 
 Original [EVM](https://www.evm.codes/#a0?fork=shanghai) instructions.
 

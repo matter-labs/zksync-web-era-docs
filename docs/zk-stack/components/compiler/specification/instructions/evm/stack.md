@@ -29,7 +29,7 @@ Is not available in Yul.
 
 Ignored in EVMLA. See [EVM Legacy Assembly Translator](../../evmla-translator.md) for more information.
 
-## PUSH, PUSHN
+## PUSH - PUSH32
 
 Original [EVM](https://www.evm.codes/#5f?fork=shanghai) instructions.
 
@@ -39,7 +39,7 @@ For EVMLA, see [EVM Legacy Assembly Translator](../../evmla-translator.md).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/evmla/assembly/instruction/stack.rs#L10).
 
-## DUPN
+## DUP1 - DUP16
 
 Original [EVM](https://www.evm.codes/#80?fork=shanghai) instructions.
 
@@ -49,7 +49,7 @@ For EVMLA, see [EVM Legacy Assembly Translator](../../evmla-translator.md).
 
 [The LLVM IR generator code](https://github.com/matter-labs/era-compiler-solidity/blob/main/src/evmla/assembly/instruction/stack.rs#L48).
 
-## SWAPN
+## SWAP1 - SWAP16
 
 Original [EVM](https://www.evm.codes/#90?fork=shanghai) instructions.
 
