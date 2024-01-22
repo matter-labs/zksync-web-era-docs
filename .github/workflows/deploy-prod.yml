@@ -20,7 +20,7 @@ jobs:
         uses: c-hive/gha-yarn-cache@d528cd63c28aed0a9f44b1cada95050d7aa95c2e # v2 # using cache
 
       - name: "Setup node@14"
-        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4
+        uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4
         with:
           node-version: "lts/*"
 
@@ -34,11 +34,6 @@ jobs:
           RUDDERSTACK_WRITE_KEY: "${{ secrets.RUDDERSTACK_WRITE_KEY }}"
           RUDDERSTACK_DATA_PLANE_URL: "${{ secrets.RUDDERSTACK_DATA_PLANE_URL }}"
 
-
-      - name: "Copy 404"
-        run: |
-          cp ./dist/docs/404.html ./dist/404.html
-
       - uses: matter-labs/action-hosting-deploy@main
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
@@ -46,6 +41,16 @@ jobs:
           target: prod
           projectId: aqwzx-zksync-v2-docs
           channelID: live
+
+      - name: Purge cf cache
+        uses: nathanvaughn/actions-cloudflare-purge@db8c58f61ba4c3ec77229c8fa14ddebb3b59932f # v3.1.0
+        with:
+          cf_zone: ${{ secrets.CLOUDFLARE_ZONE }}
+          cf_auth: ${{ secrets.CLOUDFLARE_AUTH_KEY }}
+          hosts: |
+            docs.zksync.io
+            era.zksync.io
+            v2-docs.zksync.io
 
       # TODO: Implement reindex task tracking instead of blindly exiting on task submit
       - name: Trigger Algolia reindex
