@@ -125,7 +125,13 @@ More info about zkVm compilers can be found in [the following repository](https:
 
 ::: warning `eraVersion` usage
 
-The use of the `latest` field value is not supported. Instead, the `eraVersion` field must be filled with a specific version.
+Using 'latest' as the field value is not supported. Instead, the 'eraVersion' field must be filled with a specific version.
+
+:::
+
+::: warning zkVm compiler usage
+
+To use the zkVm compiler, the zkSolc compiler version must be equal to or greater than 1.3.22.
 
 :::
 
