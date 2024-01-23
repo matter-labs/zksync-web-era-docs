@@ -792,20 +792,73 @@ export const enSidebar = sidebar({
                     },
                     {
                       text: "EVM",
-                      link: "/zk-stack/components/compiler/specification/instructions/evm.md"
+                      collapsible: true,
+                      children: [
+                        {
+                          text: "Overview",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/overview.md",
+                        },
+                        {
+                          text: "Arithmetic",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/arithmetic.md",
+                        },
+                        {
+                          text: "Logical",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/logical.md",
+                        },
+                        {
+                          text: "Bitwise",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/bitwise.md",
+                        },
+                        {
+                          text: "Hashes",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/hashes.md",
+                        },
+                        {
+                          text: "Environment",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/environment.md",
+                        },
+                        {
+                          text: "Block",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/block.md",
+                        },
+                        {
+                          text: "Stack",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/stack.md",
+                        },
+                        {
+                          text: "Memory",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/memory.md",
+                        },
+                        {
+                          text: "Storage",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/storage.md",
+                        },
+                        {
+                          text: "Events",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/events.md",
+                        },
+                        {
+                          text: "Calls",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/calls.md",
+                        },
+                        {
+                          text: "CREATE",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/create.md",
+                        },
+                        {
+                          text: "Return",
+                          link: "/zk-stack/components/compiler/specification/instructions/evm/return.md",
+                        },
+                      ]
                     },
                     {
-                      text: "EVMLA",
+                      text: "EVM Legacy Assembly",
                       link: "/zk-stack/components/compiler/specification/instructions/evmla.md"
                     },
                     {
                       text: "Yul",
                       link: "/zk-stack/components/compiler/specification/instructions/yul.md"
-                    },
-                    {
-                      text: "Extensions",
-                      link: "/zk-stack/components/compiler/specification/instructions/extensions.md"
-                      
                     },
                   ]
                 }
