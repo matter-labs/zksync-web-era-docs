@@ -182,5 +182,5 @@ This is an error that is usually thrown when compiling a large smart contract co
 
 If you encounter such an error, please do the following:
 
-- Update the @matterlabs/hardhat-zksync-solc library and try to re-compile the smart contracts afterwards.
-- If after the recompilation you get the Library not found error, then you should follow the instructions from here.
+- Update the `@matterlabs/hardhat-zksync-solc` library and try to re-compile the smart contracts afterwards.
+- If after the recompilation you get the `Library not found` error, then you should follow the instructions from [here](./compiling-libraries.md).
