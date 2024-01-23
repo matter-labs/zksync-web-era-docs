@@ -123,7 +123,7 @@ For Solidity versions older than 0.8, only this compilation mode is available an
 
 The zksolc compilers are stored in the cache folder with the path `{cache}/hardhat-nodejs/compilers-v2/zksolc`. In this location, you can inspect the locally stored compiler versions.
 
-`{cache}` it a placeholder for a path that is resolved by Hardhat
+`{cache}` is a placeholder for a path that is resolved by Hardhat
 
 The `compilerVersion.json` file is used by the plugin to get the latest available version and the minimum required compiler version. This file undergoes invalidation every 24 hours (currently), subsequently being updated with fresh information. This approach is implemented to provide a caching mechanism, avoiding the risk of encountering GitHub throttling issues during fetching new releases.
 
