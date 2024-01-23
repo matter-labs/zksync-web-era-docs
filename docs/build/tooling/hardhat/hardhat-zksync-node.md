@@ -24,7 +24,8 @@ Ensure you are using the correct version of the plugin with ethers:
 
 - For plugin version **≥1.0.0**:
   - Compatible with ethers **v6** (⭐ Recommended)
-    :::
+
+:::
 
 ## Installation
 

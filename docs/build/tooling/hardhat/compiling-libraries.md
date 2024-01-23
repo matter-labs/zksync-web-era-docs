@@ -69,8 +69,8 @@ To compile and deploy libraries, please run: `yarn hardhat deploy-zksync:librari
 For more details on how to use deploy-zksync:libraries task from hardhat-zksync-deploy plugin, visit: https://era.zksync.io/docs/tools/hardhat/hardhat-zksync-deploy.html.
 ```
 
-To address the error, you can follow the instructions provided in the output, which is the recommended approach. For more details, please refer to [this section](#_automatic-deployment).
-Alternatively, if you prefer a manual resolution for the libraries, you can find detailed instructions in [this section](#_manual-deployment).
+To address the error, you can follow the instructions provided in the output, which is the recommended approach. For more details, please refer to [this section](#automatic-deployment).
+Alternatively, if you prefer a manual resolution for the libraries, you can find detailed instructions in [this section](#manual-deployment).
 
 Choose the method that best suits your preferences or requirements.
 
@@ -85,7 +85,7 @@ Error in plugin @matterlabs/hardhat-zksync-solc: LLVM("Library `contracts/MiniMa
 
 The error indicates that the compilation process is expecting the address of the MiniMath library, but it is not being provided.
 
-To resolve the error, it's necessary to manually resolve the libraries. For detailed instructions, please refer to [this section](#_automatic-deployment).
+To resolve the error, it's necessary to manually resolve the libraries. For detailed instructions, please refer to [this section](#automatic-deployment).
 
 ## Non-inline libraries deployment
 

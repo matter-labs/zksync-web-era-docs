@@ -18,7 +18,7 @@ List of contained plugins:
 
 ::: tip Popular Hardhat plugins
 
-List of all official plugins you can find [here](./getting-started.md/#). Also, zkSync support some of other [popular plugins](./other-plugins.md) that can be used.
+List of all official plugins you can find [here](./getting-started.md). Also, zkSync support some of other [popular plugins](./other-plugins.md) that can be used.
 
 :::
 
