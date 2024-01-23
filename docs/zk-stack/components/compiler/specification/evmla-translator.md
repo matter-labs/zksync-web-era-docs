@@ -11,9 +11,9 @@ There are two Solidity IRs used in our pipeline: Yul and EVM legacy assembly. Th
 Solidity, more precisely <=0.7.
 
 EVM legacy assembly is very challenging to translate to LLVM IR, since it obfuscates the control flow of the program and
-uses a lot of dynamic jumps. Most of the jumps can be translated to static ones by using a static analysis of the
-program, but some of them are impossible to resolve statically. For example, internal function pointers can be written
-to memory or storage and then loaded and called. Recursion is another case we have skipped for now, as there is another
+uses a lot of dynamic jumps. Most of the jumps can be translated to static ones by using a static analysis of EVM assembly,
+but some of jumps are impossible to resolve statically. For example, internal function pointers can be written
+to memory or storage, and then loaded and called. Recursion is another case we have skipped for now, as there is another
 stack frame allocated on every iteration, preventing the static analyzer from resolving the jumps.
 
 Both issues are being worked on in our fork of the Solidity compiler, where we are changing the codegen to remove the
@@ -30,13 +30,13 @@ contract Example {
     result = 42;
   }
 }
-
 ```
 
 ## EVM Legacy Assembly
 
 Produced by the upstream Solidity compiler v0.7.6.
 
+```evm
 | Line | Instruction  | Value/Tag |
 | ---- | ------------ | --------- |
 | 000  | PUSH         | 80        |
@@ -99,8 +99,7 @@ Produced by the upstream Solidity compiler v0.7.6.
 | 057  | PUSH         | 2A        |
 | 058  | SWAP1        |           |
 | 059  | JUMP         | [out]     |
-
-````
+```
 
 ## EthIR
 
@@ -227,7 +226,7 @@ block_rt_5/0: (predecessors: rt_3/0)    // Runtime Code Tag 5, Instance 0.
     SWAP1                                                                           [ V_SHR | 2A | T_4 ]
 // JUMP [out] is usually a return statement
     JUMP           [out]                                                            [ V_SHR | 2A ] - [ T_4 ]
-````
+```
 
 ### Unoptimized LLVM IR
 
