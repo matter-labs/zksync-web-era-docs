@@ -2,10 +2,8 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: EVMLA | zkSync Docs
+      content: EVM Legacy Assembly | zkSync Docs
 ---
-
-# EVMLA
 
 # EVM Legacy Assembly Auxiliary Instructions
 
