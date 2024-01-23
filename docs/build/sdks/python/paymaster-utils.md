@@ -7,7 +7,7 @@ head:
 
 # Paymaster Utilities
 
-The [paymaster utilities library](https://github.com/zksync-sdk/zksync2-go/blob/main/utils/paymaster.go) contains essential utilities for using paymasters on zkSync Era.
+The [paymaster utilities library](https://github.com/zksync-sdk/zksync2-python/blob/master/zksync2/manage_contracts/paymaster_utils.py) contains essential utilities for using paymasters on zkSync Era.
 
 ## Contract interfaces
 
@@ -61,4 +61,4 @@ paymaster_params = PaymasterParams(**{
 ```
 
 Find out more about the [`PaymasterParams` type](./types.md).
-Check out the [example](getting-started.md#use-paymaster) how to use paymaster.
+Check out the [example](https://github.com/zksync-sdk/zksync2-examples/blob/main/python/15_use_paymaster.py) how to use paymaster.
