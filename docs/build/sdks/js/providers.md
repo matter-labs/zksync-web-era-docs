@@ -9,7 +9,8 @@ head:
 
 A Web3 Provider object provides application-layer access to underlying blockchain networks.
 
-The [`zksync-ethers`](https://www.npmjs.com/package/zksync-ethers/v/5.0.0) library supports provider methods from the [`ethers.js`](https://docs.ethers.io/v5/api/providers) library and supplies additional functionality.
+The [`zksync-ethers`](https://www.npmjs.com/package/zksync-ethers/v/5.0.0) library supports provider methods from the [`ethers.js`](https://docs.ethers.io/v5/api/providers) library and
+supplies additional functionality.
 
 Two providers are available:
 
@@ -42,26 +43,14 @@ Returns a zkSync Era `Provider` object.
 | `network?` | `ethers.providers.Networkish`                                                          | Network name (optional)    |
 
 ```ts
-constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish) {
-    super(url, network);
-    this.pollingInterval = 500;
-
-    const blockTag = this.formatter.blockTag.bind(this.formatter);
-    this.formatter.blockTag = (tag: any) => {
-        if (tag == 'committed' || tag == 'finalized') {
-            return tag;
-        }
-        return blockTag(tag);
-    };
-    this.contractAddresses = {};
-    this.formatter.transaction = parseTransaction;
-}
+constructor(url?: ConnectionInfo | string, network?: ethers.providers.Networkish)
 ```
 
 #### Example
 
-```typescript
+```ts
 import { Provider } from "zksync-ethers";
+
 const provider = new Provider("https://sepolia.era.zksync.dev");
 ```
 
@@ -76,22 +65,110 @@ Returns an estimated [`Fee`](./types.md#fee) for requested transaction.
 | `transaction` | [`TransactionRequest`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionRequest) | Transaction request. |
 
 ```ts
-async estimateFee(transaction: TransactionRequest): Promise<Fee> {
-    return await this.send("zks_estimateFee", [transaction]);
-}
+async estimateFee(transaction: TransactionRequest): Promise<Fee>
+```
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const fee = await provider.estimateFee({
+  from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+  to: "0xa61464658AfeAf65CccaaFD3a512b69A83B77618",
+  value: `0x${BigNumber.from(7_000_000_000).toString(16)}`,
+});
+console.log(`Fee: ${toJSON(fee)}`);
 ```
 
 ### `estimateGas`
 
 Returns an estimate of the amount of gas required to submit a transaction to the network.
 
-[Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-estimateGas)
+| Parameter     | Type                 | Description          |
+| ------------- | -------------------- | -------------------- |
+| `transaction` | `TransactionRequest` | Transaction request. |
+
+```ts
+async estimateGas(transaction: utils.Deferrable<TransactionRequest>): Promise<BigNumber>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const gasTokenApprove = await provider.estimateGas({
+  from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+  to: "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150",
+  data: utils.IERC20.encodeFunctionData("approve", [RECEIVER, 1]),
+});
+console.log(`Gas for token approval tx: ${gasTokenApprove}`);
+```
+
+```ts
+import { Provider, types } from "zksync-ethers";
+import { ethers, BigNumber } from "ethers";
+
+const ADDRESS = "<ADDRESS>";
+const RECEIVER = "<RECEIVER>";
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const tokenAddress = "0xA70dF8446A6AeA0017D60e97e816e141aa28759b"; // Crown token which can be minted for free
+const paymasterAddress = "0x57F48f0d845E0ed7C9Bf066cEbFF64FbeBE6AFEF"; // Paymaster for Crown token
+
+const paymasterParams = utils.getPaymasterParams(paymasterAddress, {
+  type: "ApprovalBased",
+  token: tokenAddress,
+  minimalAllowance: BigNumber.from(1),
+  innerInput: new Uint8Array(),
+});
+
+const tokenApprove = await provider.estimateGas({
+  from: ADDRESS,
+  to: tokenAddress,
+  data: utils.IERC20.encodeFunctionData("approve", [RECEIVER, 1]),
+  customData: {
+    gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+    paymasterParams,
+  },
+});
+console.log(`Gas for token approval using EIP-712 tx: ${tokenApprove}`);
+```
 
 ### `estimateGasL1`
 
 Returns an estimate of the amount of gas required to submit a transaction from L1 to L2 as a `BigNumber` object.
 
 Calls the [`zks_estimateL1ToL2`](../../api.md#zks-estimategasl1tol2) JSON-RPC method.
+
+#### Inputs
+
+| Parameter     | Type                                                  | Description          |
+| ------------- | ----------------------------------------------------- | -------------------- |
+| `transaction` | [`TransactionRequest`](./types.md#transactionrequest) | Transaction request. |
+
+```ts
+async estimateGasL1(transaction: TransactionRequest): Promise<BigNumber>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const gasL1 = await provider.estimateGasL1({
+  from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+  to: await provider.getMainContractAddress(),
+  value: 7_000_000_000,
+  customData: {
+    gasPerPubdata: 800,
+  },
+});
+console.log(`L1 gas: ${BigNumber.from(gasL1)}`);
+```
 
 ### `estimateGasTransfer`
 
@@ -101,13 +178,13 @@ Calls internal method [`getTransferTx`](https://github.com/zksync-sdk/zksync-eth
 
 #### Inputs
 
-| Parameter    | Type                   | Description                              |
-| ------------ | ---------------------- | ---------------------------------------- |
-| `token`      | Address string         | Token address.                           |
-| `amount`     | `BigNumberish`         | Amount of token.                         |
-| `from?`      | Address string         | From address (optional).                 |
-| `to?`        | Address string         | To address (optional).                   |
-| `overrides?` | `ethers.CallOverrides` | Ethers call overrides object (optional). |
+| Parameter    | Type                   | Description                                                                                           |
+| ------------ | ---------------------- | ----------------------------------------------------------------------------------------------------- |
+| `token`      | `Address`              | Token address.                                                                                        |
+| `amount`     | `BigNumberish`         | Amount of token.                                                                                      |
+| `from?`      | `Address`              | From address (optional).                                                                              |
+| `to?`        | `Address`              | To address (optional).                                                                                |
+| `overrides?` | `ethers.CallOverrides` | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
 
 ```ts
 async estimateGasTransfer(transaction: {
@@ -116,28 +193,41 @@ async estimateGasTransfer(transaction: {
     from?: Address;
     token?: Address;
     overrides?: ethers.CallOverrides;
-}): Promise<BigNumber> {
-    const transferTx = await this.getTransferTx(transaction);
-    return await this.estimateGas(transferTx);
-}
+}): Promise<BigNumber>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const gasTransfer = await provider.estimateGasTransfer({
+  token: utils.ETH_ADDRESS,
+  amount: 7_000_000_000,
+  to: "0xa61464658AfeAf65CccaaFD3a512b69A83B77618",
+  from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+});
+console.log(`Gas for transfer tx: ${gasTransfer}`);
 ```
 
 ### `estimateGasWithdraw`
 
 Returns the gas estimation for a withdrawal transaction.
 
-Calls internal method [`getWithdrawTx`](https://github.com/zksync-sdk/zksync-ethers/blob/59f2df60900b644669ec7a4cfc25e72c337a6325/src/provider.ts#L682) to get the withdrawal transaction and sends it to the [`estimateGas`](#estimategas) method.
+Calls internal method [`getWithdrawTx`](#getwithdrawtx) to get the
+withdrawal transaction and sends it to the [`estimateGas`](#estimategas) method.
 
 #### Inputs
 
-| Parameter        | Type                   | Description                              |
-| ---------------- | ---------------------- | ---------------------------------------- |
-| `token`          | Address string         | Token address.                           |
-| `amount`         | `BigNumberish`         | Amount of token.                         |
-| `from?`          | Address string         | From address (optional).                 |
-| `to?`            | Address string         | To address (optional).                   |
-| `bridgeAddress?` | Address string         | Bridge address (optional).               |
-| `overrides?`     | `ethers.CallOverrides` | Ethers call overrides object (optional). |
+| Parameter        | Type                   | Description                                                                                           |
+| ---------------- | ---------------------- | ----------------------------------------------------------------------------------------------------- |
+| `token`          | `Address`              | Token address.                                                                                        |
+| `amount`         | `BigNumberish`         | Amount of token.                                                                                      |
+| `from?`          | `Address`              | From address (optional).                                                                              |
+| `to?`            | `Address`              | To address (optional).                                                                                |
+| `bridgeAddress?` | `Address`              | Bridge address (optional).                                                                            |
+| `overrides?`     | `ethers.CallOverrides` | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
 
 ```ts
 async estimateGasWithdraw(transaction: {
@@ -147,10 +237,21 @@ async estimateGasWithdraw(transaction: {
     to?: Address;
     bridgeAddress?: Address;
     overrides?: ethers.CallOverrides;
-}): Promise<BigNumber> {
-    const withdrawTx = await this.getWithdrawTx(transaction);
-    return await this.estimateGas(withdrawTx);
-}
+}): Promise<BigNumber>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const gasWithdraw = await provider.estimateGasWithdraw({
+  token: utils.ETH_ADDRESS,
+  amount: 7_000_000,
+  to: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+  from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+});
 ```
 
 ### `estimateL1ToL2Execute`
@@ -159,15 +260,15 @@ Returns gas estimation for an L1 to L2 execute operation.
 
 #### Inputs
 
-| Parameter            | Type                      | Description                                                      |
-| -------------------- | ------------------------- | ---------------------------------------------------------------- |
-| `contractAddress`    | Address string            | Address of contract.                                             |
-| `calldata`           | `BytesLike`               | The transaction call data.                                       |
-| `caller?`            | Address string            | Caller address (optional).                                       |
-| `l2Value?`           | `BigNumberish`            | Current L2 gas value (optional).                                 |
-| `factoryDeps?`       | `BytesLike[]`             | Byte array containing contract bytecode.                         |
-| `gasPerPubdataByte?` | `BigNumberish`            | Constant representing current amount of gas per byte (optional). |
-| `overrides?`         | `ethers.PayableOverrides` | Ethers payable overrides object (optional).                      |
+| Parameter            | Type                      | Description                                                                                           |
+| -------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `contractAddress`    | `Address`                 | Address of contract.                                                                                  |
+| `calldata`           | `BytesLike`               | The transaction call data.                                                                            |
+| `caller?`            | `Address`                 | Caller address (optional).                                                                            |
+| `l2Value?`           | `BigNumberish`            | Current L2 gas value (optional).                                                                      |
+| `factoryDeps?`       | `BytesLike[]`             | Byte array containing contract bytecode.                                                              |
+| `gasPerPubdataByte?` | `BigNumberish`            | Constant representing current amount of gas per byte (optional).                                      |
+| `overrides?`         | `ethers.PayableOverrides` | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
 
 ```ts
 async estimateL1ToL2Execute(transaction: {
@@ -178,31 +279,22 @@ async estimateL1ToL2Execute(transaction: {
     factoryDeps?: ethers.BytesLike[];
     gasPerPubdataByte?: BigNumberish;
     overrides?: ethers.PayableOverrides;
-}): Promise<BigNumber> {
-    transaction.gasPerPubdataByte ??= REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT;
+}): Promise<BigNumber>
+```
 
-    // If the `from` address is not provided, we use a random address, because
-    // due to storage slot aggregation, the gas estimation will depend on the address
-    // and so estimation for the zero address may be smaller than for the sender.
-    transaction.caller ??= ethers.Wallet.createRandom().address;
+#### Example
 
-    const customData = {
-        gasPerPubdataByte: transaction.gasPerPubdataByte
-    };
-    if (transaction.factoryDeps) {
-        Object.assign(customData, { factoryDeps: transaction.factoryDeps });
-    }
+```ts
+import { Provider, types } from "zksync-ethers";
 
-    const fee = await this.estimateGasL1({
-        from: transaction.caller,
-        data: transaction.calldata,
-        to: transaction.contractAddress,
-        value: transaction.l2Value,
-        customData
-    });
-
-    return fee;
-}
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const gasL1ToL2 = await provider.estimateL1ToL2Execute({
+  contractAddress: await provider.getMainContractAddress(),
+  calldata: "0x",
+  caller: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+  l2Value: 7_000_000_000,
+});
+console.log(`Gas L1 to L2: ${BigNumber.from(gasL1ToL2)}`);
 ```
 
 ### `getAllAccountBalances`
@@ -210,6 +302,28 @@ async estimateL1ToL2Execute(transaction: {
 Returns all balances for confirmed tokens given by an account address.
 
 Calls the [`zks_getAllAccountBalances`](../../api.md#zks-getallaccountbalances) JSON-RPC method.
+
+#### Inputs
+
+| Parameter | Type      | Description      |
+| --------- | --------- | ---------------- |
+| `address` | `Address` | Account address. |
+
+```ts
+async getAllAccountBalances(address: Address): Promise<BalancesMap>
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const balances = await provider.getAllAccountBalances("0x36615Cf349d7F6344891B1e7CA7C72883F5dc049");
+console.log(`All balances: ${toJSON(balances)}`);
+```
 
 ### `getBalance`
 
@@ -219,51 +333,46 @@ When block and token are not supplied, `committed` and `ETH` are the default val
 
 #### Inputs
 
-| Name          | Description                                                                |
-| ------------- | -------------------------------------------------------------------------- |
-| address       | User's address.                                                            |
-| blockTag?     | Block tag for getting the balance on. Latest `committed` block is default. |
-| tokenAddress? | The address of the token. ETH is default.                                  |
-|               |
+| Parameter       | Type       | Description                                                                           |
+| --------------- | ---------- | ------------------------------------------------------------------------------------- |
+| `address`       | `Address`  | Account address.                                                                      |
+| `blockTag?`     | `BlockTag` | Block tag for getting the balance on. Latest `committed` block is default (optional). |
+| `tokenAddress?` | `Address`  | Token address. ETH is default (optional).                                             |
 
-```typescript
-override async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address) {
-    const tag = this.formatter.blockTag(blockTag);
-    if (tokenAddress == null || isETH(tokenAddress)) {
-        // requesting ETH balance
-        return await super.getBalance(address, tag);
-    } else {
-        try {
-            let token = IERC20MetadataFactory.connect(tokenAddress, this);
-            return await token.balanceOf(address, { blockTag: tag });
-        } catch {
-            return BigNumber.from(0);
-        }
-    }
-}
+```ts
+async getBalance(address: Address, blockTag?: BlockTag, tokenAddress?: Address)
 ```
 
 #### Example
 
-```typescript
-import { Provider } from "zksync-ethers";
+```ts
+import { Provider, types } from "zksync-ethers";
 
-const provider = new Provider("https://sepolia.era.zksync.dev");
-
-//Find the USDC ADDRESS in https://zksync2-testnet.zkscan.io/address/0x0faF6df7054946141266420b43783387A78d82A9/transactions
-const USDC_L2_ADDRESS = "<USDC_L2_ADDRESS>";
-// Get the USDC balance from your account using your address. Get your address from https://zksync2-testnet.zkscan.io/txs
-console.log(await provider.getBalance("<YOUR_ADDRESS>", "latest", USDC_L2_ADDRESS));
-
-// Getting ETH balance
-console.log(await provider.getBalance("<YOUR_ADDRESS>"));
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049";
+const tokenAddress = "0xA70dF8446A6AeA0017D60e97e816e141aa28759b"; // Crown token which can be minted for free
+console.log(`ETH balance: ${await provider.getBalance(account)}`);
+console.log(`Token balance: ${await provider.getBalance(account, "latest", tokenAddres)}`);
 ```
 
 ### `getBlock`
 
 Returns block from the network, or false if there is no block.
 
-[Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-getBlock)
+```ts
+async getBlock(blockHashOrBlockTag: BlockTag | string | Promise<BlockTag | string>): Promise<Block>
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(`Block: ${toJSON(await provider.getBlock("latest", true))}`);
+```
 
 ### `getBlockDetails`
 
@@ -271,11 +380,57 @@ Returns additional zkSync-specific information about the L2 block.
 
 Calls the [`zks_getBlockDetails`](../../api.md#zks-getblockdetails) JSON-RPC method.
 
-### `getBlockWithTransactions`
+#### Inputs
 
-Returns an array of `TransactionResponse` objects.
+| Parameter | Type     | Description   |
+| --------- | -------- | ------------- |
+| `number`  | `number` | Block number. |
 
-[Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-getBlockWithTransactions)
+```ts
+async getBlockDetails(number:number): Promise<BlockDetails>
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(`Block details: ${toJSON(await provider.getBlockDetails(90_000))}`);
+```
+
+### `getBytecodeByHash`
+
+Returns bytecode of a contract given by its hash.
+
+Calls the [`zks_getBytecodeByHash`](../../api.md#zks-getbytecodebyhash) JSON-RPC method.
+
+#### Inputs
+
+| Parameter      | Type        | Description    |
+| -------------- | ----------- | -------------- |
+| `bytecodeHash` | `BytesLike` | Bytecode hash. |
+
+```ts
+async getBytecodeByHash(bytecodeHash: BytesLike): Promise<Uint8Array>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+// Bytecode hash can be computed by following these steps:
+// const testnetPaymasterBytecode = await provider.getCode(await provider.getTestnetPaymasterAddress());
+// const testnetPaymasterBytecodeHash = ethers.utils.hexlify(utils.hashBytecode(testnetPaymasterBytecode));
+
+const testnetPaymasterBytecodeHash = "0x010000f16d2b10ddeb1c32f2c9d222eb1aea0f638ec94a81d4e916c627720e30";
+
+const provider = Provider.getDefaultProvider(types.Network.Goerli);
+console.log(`Bytecode: ${await provider.getBytecodeByHash(testnetPaymasterBytecodeHash)}`);
+```
 
 ### `getContractAccountInfo`
 
@@ -283,107 +438,128 @@ Returns the version of the supported account abstraction and nonce ordering from
 
 #### Inputs
 
-| Name    | Description      |
-| ------- | ---------------- |
-| address | Contract address |
+| Parameter | Type      | Description       |
+| --------- | --------- | ----------------- |
+| `address` | `Address` | Contract address. |
 
-```typescript
-async getContractAccountInfo(address: Address): Promise<ContractAccountInfo> {
-    const deployerContract = new Contract(CONTRACT_DEPLOYER_ADDRESS, CONTRACT_DEPLOYER, this);
-    const data = await deployerContract.getAccountInfo(address);
+```ts
+async getContractAccountInfo(address:Address): Promise<ContractAccountInfo>
+```
 
-    return {
-        supportedAAVersion: data.supportedAAVersion,
-        nonceOrdering: data.nonceOrdering
-    };
-}
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const tokenAddress = "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150"; // Crown token which can be minted for free
+console.log(`Contract account info: ${toJSON(await provider.getContractAccountInfo(tokenAddress))}`);
 ```
 
 ### `getDefaultBridgeAddresses`
 
 Returns the addresses of the default zkSync Era bridge contracts on both L1 and L2.
 
-```typescript
-async getDefaultBridgeAddresses() {
-    if (!this.contractAddresses.erc20BridgeL1) {
-        let addresses = await this.send('zks_getBridgeContracts', []);
-        this.contractAddresses.erc20BridgeL1 = addresses.l1Erc20DefaultBridge;
-        this.contractAddresses.erc20BridgeL2 = addresses.l2Erc20DefaultBridge;
-    }
-    return {
-        erc20L1: this.contractAddresses.erc20BridgeL1,
-        erc20L2: this.contractAddresses.erc20BridgeL2
-    };
-}
+```ts
+async getDefaultBridgeAddresses():  Promise<{erc20L1: string, erc20L2: string, wethL1: string, wethL2: string}>;
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(`Default bridges: ${toJSON(await provider.getDefaultBridgeAddresses())}`);
 ```
 
 ### `getDefaultProvider`
 
 Static method which returns a Provider object from the RPC URL or localhost.
 
+#### Inputs
+
+| Parameter       | Type                                  | Description                                       |
+| --------------- | ------------------------------------- | ------------------------------------------------- |
+| `zksyncNetwork` | [`ZkSyncNetwork`](./types.md#network) | Type of zkSync network. `Localhost` _by default_. |
+
 ```ts
-static getDefaultProvider() {
-    return new Provider(process.env.ZKSYNC_WEB3_API_URL || 'http://localhost:3050');
-}
+static getDefaultProvider(zksyncNetwork: ZkSyncNetwork = ZkSyncNetwork.Localhost)
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const providerMainnet = Provider.getDefaultProvider(types.Network.Mainnet);
+const providerTestnet = Provider.getDefaultProvider(types.Network.Sepolia);
+const providerLocalnet = Provider.getDefaultProvider(types.Network.Localhost);
 ```
 
 ### `getFilterChanges`
 
 Returns an array of logs by calling Ethereum method [`eth_getFilterChanges`.](https://ethereum.github.io/execution-apis/api-documentation/)
 
+#### Inputs
+
+| Parameter | Type        | Description   |
+| --------- | ----------- | ------------- |
+| `idx`     | `BigNumber` | Filter index. |
+
+```ts
+async getFilterChanges(idx: BigNumber): Promise<Array<Log | string>>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const filter = await provider.newFilter({
+  address: utils.L2_ETH_TOKEN_ADDRESS,
+  topics: [ethers.id("Transfer(address,address,uint256)")],
+});
+const result = await provider.getFilterChanges(filter);
+```
+
 ### `getFormatter`
 
 Static utility method that returns a `Formatter` object for processing readable block data.
 
 ```ts
-static override getFormatter(): Formatter {
-    if (defaultFormatter == null) {
-        defaultFormatter = new Formatter();
-        const number = defaultFormatter.number.bind(defaultFormatter);
-        const boolean = defaultFormatter.boolean.bind(defaultFormatter);
-        const hash = defaultFormatter.hash.bind(defaultFormatter);
-        const address = defaultFormatter.address.bind(defaultFormatter);
+static override getFormatter(): Formatter
+```
 
-        defaultFormatter.formats.receiptLog.l1BatchNumber = Formatter.allowNull(number);
+#### Example
 
-        (defaultFormatter.formats as any).l2Tol1Log = {
-            blockNumber: number,
-            blockHash: hash,
-            l1BatchNumber: Formatter.allowNull(number),
-            transactionIndex: number,
-            shardId: number,
-            isService: boolean,
-            sender: address,
-            key: hash,
-            value: hash,
-            transactionHash: hash,
-            logIndex: number
-        };
+```ts
+import { Provider, types } from "zksync-ethers";
 
-        defaultFormatter.formats.receipt.l1BatchNumber = Formatter.allowNull(number);
-        defaultFormatter.formats.receipt.l1BatchTxIndex = Formatter.allowNull(number);
-        defaultFormatter.formats.receipt.l2ToL1Logs = Formatter.arrayOf((value) =>
-            Formatter.check((defaultFormatter.formats as any).l2Tol1Log, value)
-        );
-
-        defaultFormatter.formats.block.l1BatchNumber = Formatter.allowNull(number);
-        defaultFormatter.formats.block.l1BatchTimestamp = Formatter.allowNull(number);
-        defaultFormatter.formats.blockWithTransactions.l1BatchNumber = Formatter.allowNull(number);
-        defaultFormatter.formats.blockWithTransactions.l1BatchTimestamp = Formatter.allowNull(number);
-        defaultFormatter.formats.transaction.l1BatchNumber = Formatter.allowNull(number);
-        defaultFormatter.formats.transaction.l1BatchTxIndex = Formatter.allowNull(number);
-
-        defaultFormatter.formats.filterLog.l1BatchNumber = Formatter.allowNull(number);
-    }
-    return defaultFormatter;
-}
+const formatter = Provider.getFormatter();
 ```
 
 ### `getGasPrice`
 
 Returns an estimate (best guess) of the gas price to use in a transaction.
 
-[Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-getGasPrice)
+```ts
+async getGasPrice(): Promise<BigNumber>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(`Gas price: ${await provider.getGasPrice()}`);
+```
 
 ### `getL1BatchBlockRange`
 
@@ -391,14 +567,26 @@ Returns the range of blocks contained within a batch given by batch number.
 
 Calls the [`zks_getL1BatchBlockRange`](../../api.md#zks-getl1batchblockrange) JSON-RPC method.
 
-```typescript
-async getL1BatchBlockRange(l1BatchNumber: number): Promise<[number, number] | null> {
-    const range = await this.send('zks_getL1BatchBlockRange', [l1BatchNumber]);
-    if (range == null) {
-        return null;
-    }
-    return [parseInt(range[0], 16), parseInt(range[1], 16)];
-}
+#### Inputs
+
+| Parameter       | Type     | Description      |
+| --------------- | -------- | ---------------- |
+| `l1BatchNumber` | `number` | L1 batch number. |
+
+```ts
+async getL1BatchBlockRange(l1BatchNumber: number): Promise<[number, number] | null>
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const l1BatchNumber = await provider.getL1BatchNumber();
+console.log(`L1 batch block range: ${toJSON(await provider.getL1BatchBlockRange(l1BatchNumber))}`);
 ```
 
 ### `getL1BatchDetails`
@@ -407,36 +595,74 @@ Returns data pertaining to a given batch.
 
 Calls the [`zks_getL1BatchDetails`](../../api.md#zks-getl1batchdetails) JSON-RPC method.
 
+#### Inputs
+
+| Parameter | Type     | Description      |
+| --------- | -------- | ---------------- |
+| `number`  | `number` | L1 batch number. |
+
+```ts
+async getL1BatchDetails(number: number): Promise<BatchDetails>
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const l1BatchNumber = await provider.getL1BatchNumber();
+console.log(`L1 batch details: ${toJSON(await provider.getL1BatchDetails(l1BatchNumber))}`);
+```
+
 ### `getL1BatchNumber`
 
 Returns the latest L1 batch number.
 
 Calls the [`zks_getL1BatchNumber`](../../api.md#zks-l1batchnumber) JSON-RPC method.
 
+```ts
+async getL1BatchNumber(): Promise<number>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(`L1 batch number: ${await provider.getL1BatchNumber()}`);
+```
+
 ### `getL2TransactionFromPriorityOp`
 
-Returns a transaction object from a given Ethers [`TransactionResponse`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionResponse) object.
+Returns a L2 transaction from L1 transaction response.
 
 #### Inputs
 
-| Name         | Description                          |
-| ------------ | ------------------------------------ |
-| l1TxResponse | Ethers `TransactionResponse` object. |
+| Parameter      | Type                                                                                                   | Description              |
+| -------------- | ------------------------------------------------------------------------------------------------------ | ------------------------ |
+| `l1TxResponse` | [`TransactionResponse`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionResponse) | L1 transaction response. |
 
 ```ts
-async getL2TransactionFromPriorityOp(
-    l1TxResponse: ethers.providers.TransactionResponse
-): Promise<TransactionResponse> {
-    const receipt = await l1TxResponse.wait();
-    const l2Hash = getL2HashFromPriorityOp(receipt, await this.getMainContractAddress());
+async getL2TransactionFromPriorityOp(l1TxResponse: ethers.TransactionResponse): Promise<TransactionResponse>
+```
 
-    let status = null;
-    do {
-        status = await this.getTransactionStatus(l2Hash);
-        await sleep(this.pollingInterval);
-    } while (status == TransactionStatus.NotFound);
+#### Example
 
-    return await this.getTransaction(l2Hash);
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
+const l1Tx = "0xcca5411f3e514052f4a4ae1c2020badec6e0998adb52c09959c5f5ff15fba3a8";
+const l1TxResponse = await ethProvider.getTransaction(l1Tx);
+if (l1TxResponse) {
+  console.log(`Tx: ${toJSON(await provider.getL2TransactionFromPriorityOp(l1TxResponse))}`);
 }
 ```
 
@@ -446,9 +672,55 @@ Returns the proof for a transaction's L2 to L1 log sent via the L1Messenger syst
 
 Calls the [`zks_getL2ToL1LogProof`](../../api.md#zks-getl2tol1logproof) JSON-RPC method.
 
+#### Inputs
+
+| Parameter | Type        | Description                                                      |
+| --------- | ----------- | ---------------------------------------------------------------- |
+| `txHash`  | `BytesLike` | Hash of the L2 transaction the L2 to L1 log was produced within. |
+| `index?`  | `number`    | The index of the L2 to L1 log in the transaction (optional).     |
+
+```ts
+async getLogProof(txHash: BytesLike, index ? : number): Promise<MessageProof | null>
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+// Any L2 -> L1 transaction can be used.
+// In this case, withdrawal transaction is used.
+const tx = "0x2a1c6c74b184965c0cb015aae9ea134fd96215d2e4f4979cfec12563295f610e";
+console.log(`Log ${toJSON(await provider.getLogProof(tx, 0))}`);
+```
+
 ### `getLogs`
 
 Returns an array of all logs that match a filter with a given id by calling Ethereum method [`eth_getLogs.`](https://ethereum.github.io/execution-apis/api-documentation/)
+
+#### Inputs
+
+| Parameter | Type                                                                        | Description   |
+| --------- | --------------------------------------------------------------------------- | ------------- |
+| `filter`  | [`Filter`] or [`FilterByBlockHash`] or `Promise<Filter, FilterByBlockHash>` | Filter query. |
+
+```ts
+getLogs(filter: Filter | FilterByBlockHash | Promise<Filter | FilterByBlockHash>): Promise<Array<Log>>
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(`Logs: ${toJSON(await provider.getLogs({ fromBlock: 0, toBlock: 5, address: utils.L2_ETH_TOKEN_ADDRESS }))}`);
+```
 
 ### `getMainContractAddress`
 
@@ -456,85 +728,93 @@ Returns the main zkSync Era smart contract address.
 
 Calls the [`zks_getMainContract`](../../api.md#zks-getmaincontract) JSON-RPC method.
 
-```typescript
-async getMainContractAddress(): Promise<Address> {
-    if (!this.contractAddresses.mainContract) {
-        this.contractAddresses.mainContract = await this.send('zks_getMainContract', []);
-    }
-    return this.contractAddresses.mainContract;
-}
+```ts
+async getMainContractAddress(): Promise<Address>
 ```
 
-### `getMessageProof`
+#### Example
 
-Returns the proof for a message sent via the L1Messenger system contract.
+Helper function: [toJSON](#tojson).
 
-Calls the [`zks_getL2ToL1MsgProof`](../../api.md#zks-getl2tol1msgproof) JSON-RPC method.
+```ts
+import { Provider, types } from "zksync-ethers";
 
-```typescript
-async getMessageProof(
-    blockNumber: ethers.BigNumberish,
-    sender: Address,
-    messageHash: BytesLike,
-    logIndex?: number
-): Promise<MessageProof | null> {
-    return await this.send('zks_getL2ToL1MsgProof', [
-        BigNumber.from(blockNumber).toNumber(),
-        sender,
-        ethers.utils.hexlify(messageHash),
-        logIndex
-    ]);
-}
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(`Main contract: ${await provider.getMainContractAddress()}`);
 ```
 
 ### `getPriorityOpResponse`
 
-Returns an Ethers [`TransactionResponse`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionResponse) as a `PriorityOpResponse` object.
+Returns a [`TransactionResponse`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionResponse) as a `PriorityOpResponse` object.
 
 #### Inputs
 
-| Name         | Description                          |
-| ------------ | ------------------------------------ |
-| l1TxResponse | Ethers `TransactionResponse` object. |
+| Parameter      | Type                                                                                                   | Description              |
+| -------------- | ------------------------------------------------------------------------------------------------------ | ------------------------ |
+| `l1TxResponse` | [`TransactionResponse`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionResponse) | L1 transaction response. |
 
 ```ts
-async getPriorityOpResponse(l1TxResponse: ethers.providers.TransactionResponse): Promise<PriorityOpResponse> {
-    const l2Response = { ...l1TxResponse } as PriorityOpResponse;
+async getPriorityOpResponse(l1TxResponse: ethers.TransactionResponse): Promise<PriorityOpResponse>
+```
 
-    l2Response.waitL1Commit = l2Response.wait;
-    l2Response.wait = async () => {
-        const l2Tx = await this.getL2TransactionFromPriorityOp(l1TxResponse);
-        return await l2Tx.wait();
-    };
-    l2Response.waitFinalize = async () => {
-        const l2Tx = await this.getL2TransactionFromPriorityOp(l1TxResponse);
-        return await l2Tx.waitFinalize();
-    };
+#### Example
 
-    return l2Response;
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
+const l1Tx = "0xcca5411f3e514052f4a4ae1c2020badec6e0998adb52c09959c5f5ff15fba3a8";
+const l1TxResponse = await ethProvider.getTransaction(l1Tx);
+if (l1TxResponse) {
+  console.log(`Tx: ${toJSON(await provider.getPriorityOpResponse(l1TxResponse))}`);
 }
+```
+
+### `getRawBlockTransactions`
+
+Returns data of transactions in a block.
+
+Calls the [`zks_getRawBlockTransactions`](../../api.md#zks-getrawblocktransactions) JSON-RPC method.
+
+#### Inputs
+
+| Parameter | Type     | Description   |
+| --------- | -------- | ------------- |
+| `number`  | `number` | Block number. |
+
+```ts
+async getRawBlockTransactions(number: number): Promise<RawBlockTransaction[]>
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Goerli);
+console.log(`Raw block transactions: ${toJSON(await provider.getRawBlockTransactions(90_000))}`);
 ```
 
 ### `getTestnetPaymasterAddress`
 
 Returns the [testnet paymaster](../../developer-reference/account-abstraction.md#paymasters) address if available, or null.
 
-```typescript
-async getTestnetPaymasterAddress(): Promise<Address | null> {
-    // Unlike contract's addresses, the testnet paymaster is not cached, since it can be trivially changed
-    // on the fly by the server and should not be relied to be constant
-    return await this.send('zks_getTestnetPaymaster', []);
-}
+```ts
+async getTestnetPaymasterAddress(): Promise<Address | null>
 ```
 
 #### Example
 
-```typescript
-import { Provider } from "zksync-ethers";
+```ts
+import { Provider, types } from "zksync-ethers";
 
-const provider = new Provider("https://sepolia.era.zksync.dev");
-
-console.log(await provider.getTestnetPaymasterAddress());
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(`Testnet paymaster: ${await provider.getTestnetPaymasterAddress()}`);
 ```
 
 ### `getTransaction`
@@ -543,23 +823,20 @@ Returns a specified L2 transaction response object by overriding the [Ethers imp
 
 #### Inputs
 
-| Name | Description |
-| ---- | ----------- |
-| hash | string      |
+| Parameter | Type     | Description       |
+| --------- | -------- | ----------------- |
+| `txHash`  | `string` | Transaction hash. |
 
 ```typescript
-override async getTransaction(hash: string | Promise<string>): Promise<TransactionResponse> {
-    hash = await hash;
-    const tx = await super.getTransaction(hash);
-    return tx ? this._wrapTransaction(tx, hash) : null;
-}
+override async getTransaction(hash: string | Promise<string>): Promise<TransactionResponse>
 ```
 
 #### Example
 
-```typescript
-import { Provider } from "zksync-ethers";
-const provider = new Provider("https://sepolia.era.zksync.dev");
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 
 const TX_HASH = "<YOUR_TX_HASH_ADDRESS>";
 const txHandle = await provider.getTransaction(TX_HASH);
@@ -576,11 +853,56 @@ Returns data from a specific transaction given by the transaction hash.
 
 Calls the [`getTransactionDetails`](../../api.md#zks-gettransactiondetails) JSON-RPC method.
 
+#### Inputs
+
+| Parameter | Type        | Description       |
+| --------- | ----------- | ----------------- |
+| `txHash`  | `BytesLike` | Transaction hash. |
+
+```ts
+async getTransactionDetails(txHash: BytesLike): Promise<TransactionDetails>
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+
+const TX_HASH = "<YOUR_TX_HASH_ADDRESS>";
+console.log(`Transaction details: ${toJSON(await provider.getTransactionDetails(TX_HASH))}`);
+```
+
 ### `getTransactionReceipt`
 
 Returns the transaction receipt from a given hash number.
 
 [Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-getTransactionReceipt)
+
+#### Inputs
+
+| Parameter | Type     | Description       |
+| --------- | -------- | ----------------- |
+| `txHash`  | `string` | Transaction hash. |
+
+```ts
+async getTransactionReceipt(transactionHash: string | Promise<string>): Promise<TransactionReceipt>
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const TX_HASH = "<YOUR_TX_HASH_ADDRESS>";
+console.log(`Transaction receipt: ${toJSON(await provider.getTransactionReceipt(TX_HASH))}`);
+```
 
 ### `getTransactionStatus`
 
@@ -588,35 +910,99 @@ Returns the status of a specified transaction.
 
 #### Inputs
 
-| Name   | Description |
-| ------ | ----------- |
-| txHash | string      |
+| Parameter | Type     | Description       |
+| --------- | -------- | ----------------- |
+| `txHash`  | `string` | Transaction hash. |
 
-```typescript
-async getTransactionStatus(txHash: string) {
-    const tx = await this.getTransaction(txHash);
-    if (tx == null) {
-        return TransactionStatus.NotFound;
-    }
-    if (tx.blockNumber == null) {
-        return TransactionStatus.Processing;
-    }
-    const verifiedBlock = await this.getBlock('finalized');
-    if (tx.blockNumber <= verifiedBlock.number) {
-        return TransactionStatus.Finalized;
-    }
-    return TransactionStatus.Committed;
-}
+```ts
+async getTransactionStatus(txHash: string): Promise<TransactionStatus>
 ```
 
 #### Example
 
-```typescript
-import { Provider } from "zksync-ethers";
-const provider = new Provider("https://sepolia.era.zksync.dev");
+Helper function: [toJSON](#tojson).
 
-const TX_HASH = "YOUR_TX_HASH_ADDRESS";
-console.log(await provider.getTransactionStatus(TX_HASH));
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+
+const TX_HASH = "<YOUR_TX_HASH_ADDRESS>";
+console.log(`Transaction status: ${toJSON(await provider.getTransactionStatus(TX_HASH))}`);
+```
+
+### `getTransferTx`
+
+Returns the populated transfer transaction.
+
+#### Inputs
+
+| Parameter    | Type                   | Description                                                                                           |
+| ------------ | ---------------------- | ----------------------------------------------------------------------------------------------------- |
+| `token`      | `Address`              | Token address.                                                                                        |
+| `amount`     | `BigNumberish`         | Amount of token.                                                                                      |
+| `from?`      | `Address`              | From address (optional).                                                                              |
+| `to?`        | `Address`              | To address (optional).                                                                                |
+| `overrides?` | `ethers.CallOverrides` | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+
+```ts
+async getTransferTx(transaction: {
+  to: Address;
+  amount: BigNumberish;
+  from ? : Address;
+  token ? : Address;
+  overrides?: ethers.CallOverrides;
+}): Promise<EthersTransactionRequest>
+```
+
+#### Example
+
+```ts
+const tx = await provider.getTransferTx({
+  token: utils.ETH_ADDRESS,
+  amount: 7_000_000_000,
+  to: "0xa61464658AfeAf65CccaaFD3a512b69A83B77618",
+  from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+});
+console.log(`Gas for transfer tx: ${tx}`);
+```
+
+### `getWithdrawTx`
+
+Returns the populated withdrawal transaction.
+
+#### Inputs
+
+| Parameter        | Type                   | Description                                                                                           |
+| ---------------- | ---------------------- | ----------------------------------------------------------------------------------------------------- |
+| `token`          | `Address`              | Token address.                                                                                        |
+| `amount`         | `BigNumberish`         | Amount of token.                                                                                      |
+| `from?`          | `Address`              | From address (optional).                                                                              |
+| `to?`            | `Address`              | To address (optional).                                                                                |
+| `bridgeAddress?` | `Address`              | Bridge address (optional).                                                                            |
+| `overrides?`     | `ethers.CallOverrides` | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+
+```ts
+async getWithdrawTx(transaction: {
+  token: Address;
+  amount: BigNumberish;
+  from ? : Address;
+  to ? : Address;
+  bridgeAddress ? : Address;
+  overrides?: ethers.CallOverrides;
+}): Promise<EthersTransactionRequest>
+```
+
+#### Example
+
+```ts
+const tx = await provider.getWithdrawTx({
+  token: utils.ETH_ADDRESS,
+  amount: 7_000_000_000,
+  to: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+  from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+});
+console.log(`Gas for withdrawal tx: ${tx}`);
 ```
 
 ### `l1ChainId`
@@ -624,6 +1010,19 @@ console.log(await provider.getTransactionStatus(TX_HASH));
 Returns the chain id of the underlying L1.
 
 Calls the [`zks_L1ChainId`](../../api.md#zks-l1chainid) JSON-RPC method.
+
+```ts
+async l1ChainId(): Promise<number>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(`L1 chain ID: ${await provider.l1ChainId()}`);
+```
 
 ### `l1TokenAddress`
 
@@ -635,20 +1034,21 @@ Only works for tokens bridged on default zkSync Era bridges.
 
 #### Inputs
 
-| Name  | Description                     |
-| ----- | ------------------------------- |
-| token | The address of the token on L2. |
+| Parameter | Type      | Description                     |
+| --------- | --------- | ------------------------------- |
+| `token`   | `Address` | The address of the token on L2. |
 
-```typescript
-async l1TokenAddress(token: Address) {
-    if (token == ETH_ADDRESS) {
-        return ETH_ADDRESS;
-    } else {
-        const erc20BridgeAddress = (await this.getDefaultBridgeAddresses()).erc20L2;
-        const erc20Bridge = IL2BridgeFactory.connect(erc20BridgeAddress, this);
-        return await erc20Bridge.l1TokenAddress(token);
-    }
-}
+```ts
+async l1TokenAddress(token: Address): Promise<string>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(`L1 token address: ${await provider.l1TokenAddress("0x3e7676937A7E96CFB7616f255b9AD9FF47363D4b")}`);
 ```
 
 ### `l2TokenAddress`
@@ -661,37 +1061,118 @@ Only works for tokens bridged on default zkSync Era bridges.
 
 #### Inputs
 
-| Name  | Description                     |
-| ----- | ------------------------------- |
-| token | The address of the token on L1. |
+| Parameter | Type      | Description                     |
+| --------- | --------- | ------------------------------- |
+| `token`   | `Address` | The address of the token on L1. |
 
-```typescript
-async l2TokenAddress(token: Address) {
-    if (token == ETH_ADDRESS) {
-        return ETH_ADDRESS;
-    } else {
-        const erc20BridgeAddress = (await this.getDefaultBridgeAddresses()).erc20L2;
-        const erc20Bridge = IL2BridgeFactory.connect(erc20BridgeAddress, this);
-        return await erc20Bridge.l2TokenAddress(token);
-    }
-}
+```ts
+async l2TokenAddress(token: Address): Promise<string>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(`L2 token address: ${await provider.l2TokenAddress("0x5C221E77624690fff6dd741493D735a17716c26B")}`);
 ```
 
 ### `newBlockFilter`
 
 Returns a new block filter by calling Ethereum method [`eth_newBlockFilter.`](https://ethereum.github.io/execution-apis/api-documentation/)
 
+```ts
+async newBlockFilter(): Promise<BigNumber>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(`New block filter: ${await provider.newBlockFilter()}`);
+```
+
 ### `newFilter`
 
 Returns a new filter by calling Ethereum method [`eth_newFilter`](https://ethereum.github.io/execution-apis/api-documentation/) and passing a filter object.
 
+#### Inputs
+
+| Parameter | Type                                                            | Description   |
+| --------- | --------------------------------------------------------------- | ------------- |
+| `filter`  | [`EventFilter`](types.md#eventfilter) or `Promise<EventFilter>` | Filter query. |
+
+```ts
+async newFilter(filter: EventFilter | Promise<EventFilter>): Promise<Number>
+```
+
+#### Example
+
+```ts
+import { Provider, types, utils } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(
+  `New filter: ${await provider.newFilter({
+    fromBlock: 0,
+    toBlock: 5,
+    address: utils.L2_ETH_TOKEN_ADDRESS,
+  })}`
+);
+```
+
 ### `newPendingTransactionFilter`
 
-Returns a new pending transaction filter by calling Ethereum method [`eth_newPendingTransactionFilter`](https://ethereum.github.io/execution-apis/api-documentation/) and passing a filter object.
+Returns a new pending transaction filter by calling Ethereum method [`eth_newPendingTransactionFilter`](https://ethereum.github.io/execution-apis/api-documentation/) and passing a
+filter object.
+
+```ts
+async newPendingTransactionsFilter(): Promise<BigNumber>
+```
+
+#### Example
+
+```ts
+import { Provider, types } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+console.log(`New pending transaction filter: ${await provider.newPendingTransactionsFilter()}`);
+```
 
 ### `sendTransaction`
 
 Override of [Ethers implementation.](https://docs.ethers.org/v5/api/providers/provider/#Provider-sendTransaction)
+
+#### Inputs
+
+| Parameter    | Type                          | Description         |
+| ------------ | ----------------------------- | ------------------- |
+| `transction` | `string` or `Promise<string>` | Signed transaction. |
+
+```ts
+async sendTransaction(transaction: string | Promise<string>): Promise<TransactionResponse>
+```
+
+#### Example
+
+```ts
+import { Provider, types, Wallet } from "zksync-ethers";
+
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const wallet = new Wallet(PRIVATE_KEY, provider);
+
+const signedTx = await wallet.signTransaction({
+  to: "0xa61464658AfeAf65CccaaFD3a512b69A83B77618",
+  value: ethers.utils.parseEther("0.01"),
+});
+
+const tx = await provider.sendTransction(signedTx);
+console.log(tx.hash);
+```
 
 ## `Web3Provider`
 
@@ -701,31 +1182,20 @@ Use this provider for Web3 browser wallet integrations for easy compatibility wi
 
 Returns a provider object by extending the constructor of the `Provider` class and accepting an `ExternalProvider` instead of a node URL.
 
-#### Inputs and outputs
+#### Inputs
 
-| Name     | Description                                                                                                                                                                            |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| provider | The [`ethers.providers.ExternalProvider`](https://docs.ethers.org/v5/api/providers/other/#Web3Provider--ExternalProvider) class instance. For instance, Metamask is `window.ethereum`. |
-| network? | The description of the network.                                                                                                                                                        |
+| Parameter  | Type                                                                                                  | Description                                                                                          |
+| ---------- | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `provider` | [`ExternalProvider`](https://docs.ethers.org/v5/api/providers/other/#Web3Provider--ExternalProvider)) | The `ethers.providers.ExternalProvider` class instance. For instance, Metamask is `window.ethereum`. |
+| `network?` | `Networkish`                                                                                          | The description of the network (optional).                                                           |
 
 ```typescript
-constructor(provider: ExternalProvider, network?: ethers.providers.Networkish) {
-    if (provider == null) {
-        throw new Error('missing provider');
-    }
-    if (!provider.request) {
-        throw new Error('provider must implement eip-1193');
-    }
-
-    let path = provider.host || provider.path || (provider.isMetaMask ? 'metamask' : 'eip-1193:');
-    super(path, network);
-    this.provider = provider;
-}
+constructor(provider: ExternalProvider, network?: ethers.providers.Networkish)
 ```
 
 #### Example
 
-```typescript
+```ts
 import { Web3Provider } from "zksync-ethers";
 
 const provider = new Web3Provider(window.ethereum);
@@ -735,28 +1205,46 @@ const provider = new Web3Provider(window.ethereum);
 
 Returns gas estimate by overriding the zkSync Era [`estimateGas`](#estimategas) method.
 
-#### Inputs and outputs
+#### Inputs
 
-| Name        | Description                                     |
-| ----------- | ----------------------------------------------- |
-| transaction | Deferrable object of `TransactionRequest` type. |
+| Parameter     | Type                 | Description          |
+| ------------- | -------------------- | -------------------- |
+| `transaction` | `TransactionRequest` | Transaction request. |
 
-```typescript
-override async estimateGas(transaction: ethers.utils.Deferrable<TransactionRequest>) {
-    const gas: BigNumber = await super.estimateGas(transaction);
-    const metamaskMinimum = BigNumber.from(21000);
-    const isEIP712 = transaction.customData != null || transaction.type == EIP712_TX_TYPE;
-    return gas.gt(metamaskMinimum) || isEIP712 ? gas : metamaskMinimum;
-}
+```ts
+override async estimateGas(transaction: ethers.utils.Deferrable<TransactionRequest>)
+```
+
+#### Example
+
+```ts
+import { Web3Provider } from "zksync-ethers";
+
+const provider = new Web3Provider(window.ethereum);
+const gas = await provider.estimateGas({
+  to: "<RECEIVER>",
+  amount: ethers.parseEther("0.01"),
+});
+console.log(`Gas: ${gas}`);
 ```
 
 ### `getSigner`
 
 Override of [Ethers implementation](https://docs.ethers.org/v5/api/providers/jsonrpc-provider/#JsonRpcProvider-getSigner).
 
+#### Inputs
+
+| Parameter         | Type                 | Description                          |
+| ----------------- | -------------------- | ------------------------------------ |
+| `addressOrIndex?` | `number` or `string` | Account address or index (optional). |
+
+```ts
+getSigner(addressOrIndex?: number | string): Signer
+```
+
 #### Example
 
-```typescript
+```ts
 import { Web3Provider } from "zksync-ethers";
 
 const provider = new Web3Provider(window.ethereum);
@@ -767,26 +1255,28 @@ const signer = provider.getSigner();
 
 Returns a provider request object by overriding the [Ethers implementation](https://docs.ethers.org/v5/api/providers/jsonrpc-provider/#JsonRpcProvider-send).
 
-#### Inputs and outputs
+#### Inputs
 
-| Name    | Description                   |
-| ------- | ----------------------------- |
-| method  | Request method name as string |
-| params? | Optional array of any type    |
+| Parameter | Type         | Description                        |
+| --------- | ------------ | ---------------------------------- |
+| `method`  | `Address`    | Request method name as string.     |
+| `params?` | `Array<any>` | Parameters of any type (optional). |
 
-```typescript
-override async send(method: string, params?: Array<any>): Promise<any> {
-    params ??= [];
-    // Metamask complains about eth_sign (and on some versions hangs)
-    if (method == 'eth_sign' && (this.provider.isMetaMask || this.provider.isStatus)) {
-        // https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_sign
-        method = 'personal_sign';
-        params = [params[1], params[0]];
+```ts
+async send(method: string, params?: Array<any>): Promise <any>
+```
+
+## Appendix
+
+### toJSON
+
+```ts
+function toJSON(object: any): string {
+  return JSON.stringify(object, (key, value) => {
+    if (typeof value === "bigint") {
+      return value.toString(); // Convert BigInt to string
     }
-    return await this.provider.request({ method, params });
-}
-
-override getSigner(addressOrIndex?: number | string): Signer {
-    return Signer.from(super.getSigner(addressOrIndex) as any);
+    return value;
+  });
 }
 ```
