@@ -77,11 +77,11 @@ Creates a `Wallet` from encrypted `json` file using provided `password`.
 
 #### Inputs
 
-| Parameter   | Type                     | Description                                                                                                   |
-| ----------- | ------------------------ | ------------------------------------------------------------------------------------------------------------- |
-| `json`      | `string`                 | Encrypted json file.                                                                                          |
-| `password`  | `string` or `Uint8Array` | Password for encrypted json file.                                                                             |
-| `callback?` | `ProgressCallback`       | If callback is provided, it is called periodically during decryption so that any UI can be updated (optinal). |
+| Parameter   | Type                     | Description                                                                                                    |
+| ----------- | ------------------------ | -------------------------------------------------------------------------------------------------------------- |
+| `json`      | `string`                 | Encrypted json file.                                                                                           |
+| `password`  | `string` or `Uint8Array` | Password for encrypted json file.                                                                              |
+| `callback?` | `ProgressCallback`       | If callback is provided, it is called periodically during decryption so that any UI can be updated (optional). |
 
 ```ts
 static async fromEncryptedJson(json: string, password: string | Uint8Array, callback? : ProgressCallback): Promise<Wallet>
@@ -642,7 +642,7 @@ Returns the amount of approved tokens for a specific L1 bridge.
 | ---------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `token`          | `Address`  | The Ethereum address of the token.                                                                                                        |
 | `bridgeAddress?` | `Address`  | The address of the bridge contract to be used. Defaults to the default zkSync bridge, either `L1EthBridge` or `L1Erc20Bridge` (optional). |
-| `blockTag?`      | `BlockTag` | In which blcok an allowance should be checked on. `committed`, i.e. the latest processed one is the default option (optional).            |
+| `blockTag?`      | `BlockTag` | In which block an allowance should be checked on. `committed`, i.e. the latest processed one is the default option (optional).            |
 
 ```ts
 async getAllowanceL1(
@@ -1750,7 +1750,7 @@ Returns the amount of approved tokens for a specific L1 bridge.
 | ---------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `token`          | `Address`  | The Ethereum address of the token.                                                                                                        |
 | `bridgeAddress?` | `Address`  | The address of the bridge contract to be used. Defaults to the default zkSync bridge, either `L1EthBridge` or `L1Erc20Bridge` (optional). |
-| `blockTag?`      | `BlockTag` | In which blcok an allowance should be checked on. `committed`, i.e. the latest processed one is the default option (optional).            |
+| `blockTag?`      | `BlockTag` | In which block an allowance should be checked on. `committed`, i.e. the latest processed one is the default option (optional).            |
 
 ```ts
 async getAllowanceL1(

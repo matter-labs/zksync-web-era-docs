@@ -1148,9 +1148,9 @@ Override of [Ethers implementation.](https://docs.ethers.org/v5/api/providers/pr
 
 #### Inputs
 
-| Parameter    | Type                          | Description         |
-| ------------ | ----------------------------- | ------------------- |
-| `transction` | `string` or `Promise<string>` | Signed transaction. |
+| Parameter     | Type                          | Description         |
+| ------------- | ----------------------------- | ------------------- |
+| `transaction` | `string` or `Promise<string>` | Signed transaction. |
 
 ```ts
 async sendTransaction(transaction: string | Promise<string>): Promise<TransactionResponse>
@@ -1170,7 +1170,7 @@ const signedTx = await wallet.signTransaction({
   value: ethers.utils.parseEther("0.01"),
 });
 
-const tx = await provider.sendTransction(signedTx);
+const tx = await provider.sendTransaction(signedTx);
 console.log(tx.hash);
 ```
 

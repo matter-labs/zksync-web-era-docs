@@ -643,7 +643,7 @@ Returns the amount of approved tokens for a specific L1 bridge.
 | ---------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `token`          | `Address`  | The Ethereum address of the token.                                                                                                        |
 | `bridgeAddress?` | `Address`  | The address of the bridge contract to be used. Defaults to the default zkSync bridge, either `L1EthBridge` or `L1Erc20Bridge` (optional). |
-| `blockTag?`      | `BlockTag` | In which blcok an allowance should be checked on. `committed`, i.e. the latest processed one is the default option (optional).            |
+| `blockTag?`      | `BlockTag` | In which block an allowance should be checked on. `committed`, i.e. the latest processed one is the default option (optional).            |
 
 ```ts
 async getAllowanceL1(
@@ -1749,7 +1749,7 @@ Returns the amount of approved tokens for a specific L1 bridge.
 | ---------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `token`          | `Address`  | The Ethereum address of the token.                                                                                                        |
 | `bridgeAddress?` | `Address`  | The address of the bridge contract to be used. Defaults to the default zkSync bridge, either `L1EthBridge` or `L1Erc20Bridge` (optional). |
-| `blockTag?`      | `BlockTag` | In which blcok an allowance should be checked on. `committed`, i.e. the latest processed one is the default option (optional).            |
+| `blockTag?`      | `BlockTag` | In which block an allowance should be checked on. `committed`, i.e. the latest processed one is the default option (optional).            |
 
 ```ts
 async getAllowanceL1(

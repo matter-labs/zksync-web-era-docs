@@ -720,7 +720,7 @@ Serializes an EIP712 transaction and include a signature if is provided. Throws 
 | Parameter     | Type              | Description                                                            |
 | ------------- | ----------------- | ---------------------------------------------------------------------- |
 | `transaction` | `TransactionLike` | Transaction that needs to be serialized.                               |
-| `signature?`  | `SignatureLike`   | Ethers signature that needs to be inlcuded in transactions (optional). |
+| `signature?`  | `SignatureLike`   | Ethers signature that needs to be included in transactions (optional). |
 
 ```ts
 export function serializeEip712(transaction: TransactionLike, signature?: ethers.SignatureLike): string;
