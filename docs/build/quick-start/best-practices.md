@@ -77,7 +77,7 @@ require(gasleft() >= ((safeTxGas * 64) / 63).max(safeTxGas + 2500) + 500, "GS010
 {
     uint256 gasUsed = gasleft();
     // If the gasPrice is 0 we assume that nearly all available gas can be used (it is always more than safeTxGas)
-    // We only substract 2500 (compared to the 3000 before) to ensure that the amount passed is still higher than safeTxGas
+    // We only subtract 2500 (compared to the 3000 before) to ensure that the amount passed is still higher than safeTxGas
     success = execute(to, value, data, operation, gasPrice == 0 ? (gasleft() - 2500) : safeTxGas);
     gasUsed = gasUsed.sub(gasleft());
 
