@@ -1079,7 +1079,7 @@ const finalizeWithdrawHandle = await wallet.finalizeWithdrawal(WITHDRAWAL_HASH);
 
 ### `isWithdrawalFinalized`
 
-Returns weather the withdrawal transaction is finalized on the L1 network.
+Returns whether the withdrawal transaction is finalized on the L1 network.
 
 #### Inputs
 
