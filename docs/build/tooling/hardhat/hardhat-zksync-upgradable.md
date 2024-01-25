@@ -9,7 +9,7 @@ head:
 
 The `hardhat-zksync-upgradable` plugin is a Hardhat plugin that supports end-to-end pipelines for deploying and updating upgradable smart contracts on the zkSync Era network.
 
-The plugin is based on [@openzeppelin/hardhat-upgrades](https://www.npmjs.com/package/@openzeppelin/hardhat-upgrades) and [@openzeppelin/upgrades-core](https://www.npmjs.com/package/@openzeppelin/upgrades-core) plugins for deploying and managing upgradeable smart contracts on the Ethereum network. The `hardhat-zkSync-upgradable` plugin provides an easy-to-use interface for interacting with the [OpenZeppelin Upgrades Plugins](https://docs.openzeppelin.com/upgrades-plugins) within a Hardhat environment on zkSync.
+The plugin is based on [@openzeppelin/upgrades-core](https://www.npmjs.com/package/@openzeppelin/upgrades-core) plugin for deploying and managing upgradeable smart contracts on the Ethereum network. The `hardhat-zksync-upgradable` plugin provides an easy-to-use interface for interacting with the [OpenZeppelin Upgrades Plugins](https://docs.openzeppelin.com/upgrades-plugins) within a Hardhat environment on zkSync.
 
 ::: warning Version Compatibility Warning
 Ensure you are using the correct version of the plugin with ethers:
@@ -30,7 +30,19 @@ Examples are adopted for plugin version **>=1.0.0**
 Current version of the upgradable plugin does not support the latest version of the `@openzeppelin/upgrades-core` packages. <br>
 :::
 
+:::warning @matterlabs/zksync-contracts Usage
+The `hardhat-zksync-upgradable` plugin is currently incompatible with the latest versions of `@openzeppelin/contracts` and `@openzeppelin/contracts-upgradeable` due to a dependency usage in the `@matterlabs/zksync-contracts` package. <br>
+
+Supported Versions:
+
+- `@openzeppelin/contracts`: "^4.9.5",
+- `@openzeppelin/contracts-upgradeable`: "^4.9.5"
+
+:::
+
 [@matterlabs/hardhat-zksync-upgradable](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-upgradable)
+
+Add the latest version of this plugin to your project with the following command:
 
 ::: code-tabs
 
