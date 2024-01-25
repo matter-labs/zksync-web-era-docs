@@ -708,7 +708,7 @@ tx: types.TransactionLike = {
 
 ### `serializeEip712`
 
-Serializes an EIP712 transaction and include a signature if is provided. Throws an error if:
+Serializes an EIP712 transaction and include a signature if it is provided. Throws an error if:
 
 - `transaction.customData.customSignature` is an empty `string`. The transaction should be signed and the
   `transaction.customData.customSignature` field should be populated with the signature. It should not be specified if the transaction is not signed.
