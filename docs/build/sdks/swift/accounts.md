@@ -348,7 +348,7 @@ func allBalances(_ address: String) async throws -> Dictionary<String, String>
 #### Example
 
 ```swift
-try await walletL2.allBalances(addres: <ADDRESS>)
+try await walletL2.allBalances(address: <ADDRESS>)
 ```
 
 ### `Withdraw`
