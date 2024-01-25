@@ -1,9 +1,10 @@
 name: "Deploy preview"
-"on":
-  pull_request
+on:
+  pull_request:
+  workflow_dispatch:
 jobs:
   build_and_preview:
-    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     outputs:
       output_urls: "${{ steps.preview_deploy.outputs.urls }}"
