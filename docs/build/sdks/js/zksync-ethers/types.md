@@ -261,7 +261,6 @@ Interface representation of raw block with transactions
   - `value`: `BigInt`;
 - `received_timestamp_ms`: `number`;
 - `raw_bytes`: `string`;
-  }
 
 ## `Signature`
 
