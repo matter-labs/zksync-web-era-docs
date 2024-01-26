@@ -234,7 +234,7 @@ AllowanceL1(opts *CallOpts, token common.Address, bridgeAddress common.Address) 
 ```go
 ZkSyncEraProvider := "https://testnet.era.zksync.dev"
 // The Crown token on testnet
-TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+TokenAddress := common.HexToAddress("0x927488F48ffbc32112F1fF721759649A89721F8F")
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
@@ -301,7 +301,7 @@ ApproveERC20(auth *TransactOpts, token common.Address, amount *big.Int, bridgeAd
 ```go
 ZkSyncEraProvider := "https://testnet.era.zksync.dev"
 // The Crown token on testnet
-TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+TokenAddress := common.HexToAddress("0x927488F48ffbc32112F1fF721759649A89721F8F")
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
@@ -971,7 +971,7 @@ CallContract(ctx context.Context, msg CallMsg, blockNumber *big.Int) ([]byte, er
 
 ```go
 // The Crown token on testnet
-TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+TokenAddress := common.HexToAddress("0x927488F48ffbc32112F1fF721759649A89721F8F")
 
 tokenAbi, err := erc20.IERC20MetaData.GetAbi()
 if err != nil {
@@ -1020,9 +1020,9 @@ PopulateTransaction(ctx context.Context, tx Transaction) (*zkTypes.Transaction71
 
 ```go
 // The Crown token on testnet
-TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+TokenAddress := common.HexToAddress("0x927488F48ffbc32112F1fF721759649A89721F8F")
 // Paymaster for Crown token on testnet
-PaymasterAddress := common.HexToAddress("0xd660c2F92d3d0634e5A20f26821C43F1b09298fe")
+PaymasterAddress := common.HexToAddress("0x13D0D8550769f59aa241a41897D4859c87f7Dd46")
 ReceiptAddress := common.HexToAddress("0xa61464658AfeAf65CccaaFD3a512b69A83B77618")
 
 abi, err := erc20.IERC20MetaData.GetAbi()
@@ -1062,9 +1062,9 @@ SignTransaction(tx *zkTypes.Transaction712) ([]byte, error)
 
 ```go
 // The Crown token on testnet
-TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+TokenAddress := common.HexToAddress("0x927488F48ffbc32112F1fF721759649A89721F8F")
 // Paymaster for Crown token on testnet
-PaymasterAddress := common.HexToAddress("0xd660c2F92d3d0634e5A20f26821C43F1b09298fe")
+PaymasterAddress := common.HexToAddress("0x13D0D8550769f59aa241a41897D4859c87f7Dd46")
 ReceiptAddress := common.HexToAddress("0xa61464658AfeAf65CccaaFD3a512b69A83B77618")
 
 abi, err := erc20.IERC20MetaData.GetAbi()
@@ -1109,9 +1109,9 @@ SendTransaction(ctx context.Context, tx *Transaction) (common.Hash, error)
 
 ```go
 // The Crown token on testnet
-TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+TokenAddress := common.HexToAddress("0x927488F48ffbc32112F1fF721759649A89721F8F")
 // Paymaster for Crown token on testnet
-PaymasterAddress := common.HexToAddress("0xd660c2F92d3d0634e5A20f26821C43F1b09298fe")
+PaymasterAddress := common.HexToAddress("0x13D0D8550769f59aa241a41897D4859c87f7Dd46")
 ReceiptAddress := common.HexToAddress("0xa61464658AfeAf65CccaaFD3a512b69A83B77618")
 
 abi, err := erc20.IERC20MetaData.GetAbi()
@@ -1247,7 +1247,7 @@ DeployAccount(auth *TransactOpts, tx Create2Transaction) (common.Hash, error)
 
 ```go
 # Crown token on testnet
-TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+TokenAddress := common.HexToAddress("0x927488F48ffbc32112F1fF721759649A89721F8F")
 
 _, paymasterAbi, bytecode, err := utils.ReadStandardJson("Paymaster.json")
 if err != nil {
@@ -1291,7 +1291,7 @@ DeployAccountWithCreate(auth *TransactOpts, tx CreateTransaction) (common.Hash, 
 
 ```go
 # Crown token on testnet
-TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+TokenAddress := common.HexToAddress("0x927488F48ffbc32112F1fF721759649A89721F8F")
 
 _, paymasterAbi, bytecode, err := utils.ReadStandardJson("Paymaster.json")
 if err != nil {

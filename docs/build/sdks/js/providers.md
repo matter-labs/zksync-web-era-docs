@@ -115,8 +115,8 @@ import { ethers, BigNumber } from "ethers";
 const ADDRESS = "<ADDRESS>";
 const RECEIVER = "<RECEIVER>";
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
-const tokenAddress = "0xA70dF8446A6AeA0017D60e97e816e141aa28759b"; // Crown token which can be minted for free
-const paymasterAddress = "0x57F48f0d845E0ed7C9Bf066cEbFF64FbeBE6AFEF"; // Paymaster for Crown token
+const tokenAddress = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
+const paymasterAddress = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
 
 const paymasterParams = utils.getPaymasterParams(paymasterAddress, {
   type: "ApprovalBased",
@@ -350,7 +350,7 @@ import { Provider, types } from "zksync-ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const account = "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049";
-const tokenAddress = "0xA70dF8446A6AeA0017D60e97e816e141aa28759b"; // Crown token which can be minted for free
+const tokenAddress = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
 console.log(`ETH balance: ${await provider.getBalance(account)}`);
 console.log(`Token balance: ${await provider.getBalance(account, "latest", tokenAddres)}`);
 ```
@@ -454,7 +454,7 @@ Helper function: [toJSON](#tojson).
 import { Provider, types } from "zksync-ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
-const tokenAddress = "0x765F5AF819D818a8e8ee6ff63D8d0e8056DBE150"; // Crown token which can be minted for free
+const tokenAddress = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
 console.log(`Contract account info: ${toJSON(await provider.getContractAccountInfo(tokenAddress))}`);
 ```
 
