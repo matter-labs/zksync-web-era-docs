@@ -212,6 +212,15 @@ npx hardhat run SCRIPT_FILE
 - This provider is configured in the hardhat config file, by stating the RPC url of the network to connect to.
   :::
 
+### Openzeppelin Version
+
+The plugin does not work with the latest versions due to a blocker on the `@matterlab/zksync-contracts` package.The solution is to change the development dependencies to the previous version in your `package.json`.
+
+```
+ "@openzeppelin/contracts": "^4.9.5",
+ "@openzeppelin/contracts-upgradeable": "^4.9.5",
+```
+
 ### Hardhat config
 
 ```typescript

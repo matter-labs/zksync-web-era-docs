@@ -29,7 +29,7 @@ This plugin was [updated to support zkSync Era](https://github.com/wighawag/hard
 
 Automatically generate TypeScript bindings for smart contracts.
 
-[More infomation](https://www.npmjs.com/package/@typechain/hardhat)
+[More information](https://www.npmjs.com/package/@typechain/hardhat)
 
 ### openzeppelin/hardhat-upgrades
 
