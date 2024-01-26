@@ -75,7 +75,7 @@ l1_chain_id = 9
 Here, the trait `ZKSProvider` extended the `Provider<Http>` struct adding zkSync Era specific functionality.
 In this case, the method `.get_chainid()` comes from `ethers` while the method `get_l1_chain_id` comes from the `ZKSProvider` and hits an era-specific API.
 
-## Conecting to Ethereum layer-1
+## Connecting to Ethereum layer-1
 
 To perform operations that interact with both layers, we will also need to instantiate a provider for the Ethereum layer-1 associated with our zkSync Era blockchain.
 

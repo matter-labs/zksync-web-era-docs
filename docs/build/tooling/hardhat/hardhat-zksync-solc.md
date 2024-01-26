@@ -109,6 +109,34 @@ For Solidity versions older than 0.8, only this compilation mode is available an
 
 :::
 
+### zkSync Era Solidity compiler
+
+Due to [the identified limitations](https://docs.zksync.io/zk-stack/components/compiler/toolchain/solidity.html#limitations) of the [upstream Solidity compiler](https://github.com/ethereum/solidity), our team has developed [a new edition](https://github.com/matter-labs/era-solidity) of the compiler, which effectively addresses and resolves these constraints.
+
+For usage of EraVM compiler, `eraVersion` should be added inside `solidity` property in the `hardhat.config.ts` file:
+
+```typescript
+solidity: {
+    version: "0.8.17",
+    eraVersion: "1.0.0" //optional. Compile contracts with EraVM compiler
+},
+
+```
+
+- `eraVersion` - (optional) field used to specify version of EraVM compiler
+
+::: warning eraVersion usage
+
+Using latest as the field value is not supported. Instead, the eraVersion field must be filled with a specific version.
+
+:::
+
+::: warning EraVM compiler usage
+
+To use the EraVM compiler, the zksolc compiler version must be equal to or greater than 1.3.22.
+
+:::
+
 ### Network configuration
 
 Configure the `zksync` parameter in the networks to enable the zksolc compiler:
