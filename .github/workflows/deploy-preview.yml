@@ -3,7 +3,6 @@ name: "Deploy preview"
   pull_request
 jobs:
   build_and_preview:
-    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     outputs:
       output_urls: "${{ steps.preview_deploy.outputs.urls }}"
