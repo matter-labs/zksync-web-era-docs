@@ -105,6 +105,10 @@ export const enSidebar = sidebar({
               link: "/build/tutorials/tooling-guides/wagmi.md",
             },
             {
+              text: "viem",
+              link: "/build/tutorials/tooling-guides/viem.md",
+            },
+            {
               text: "API3",
               link: "/build/tutorials/tooling-guides/api3.md",
             },
