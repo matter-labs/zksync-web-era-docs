@@ -220,7 +220,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 
 ::: tip Test ETH
-Obtain [test ETH from third party faucets](../../support/faq.md#how-do-i-request-funds-for-testnet) or just bridge Sepolia ETH using [bridges](https://zksync.io/explore#bridges).
+To obtain Sepolia ETH please refer to the [network faucets page](../network-faucets.md) for more info. <br>
+To transfer Sepolia ETH to zkSync testnet use [bridges](https://zksync.io/explore#bridges).
 :::
 
 Include your deployment script in the `deploy` folder and execute it running:

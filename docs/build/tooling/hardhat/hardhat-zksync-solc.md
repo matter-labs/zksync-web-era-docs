@@ -75,6 +75,7 @@ zksolc: {
       optimizer: {
         enabled: true, // optional. True by default
         mode: '3' // optional. 3 by default, z to optimize bytecode size
+        fallback_to_optimizing_for_size: false, // optional. Try to recompile with optimizer mode "z" if the bytecode is too large
       },
       experimental: {
         dockerImage: '', // deprecated
@@ -102,12 +103,13 @@ zksolc: {
 - `optimizer` - Compiler optimizations:
   - `enabled`: `true` (default) or `false`.
   - `mode`: `3` (default) recommended for most projects. Mode `z` reduces bytecode size for large projects that make heavy use of `keccak` and far calls.
+  - `fallback_to_optimizing_for_size` (optional) indicates that the compiler will try to recompile with optimizer mode "z" if the bytecode is too large.
 - `metadata`: Metadata settings. If the option is omitted, the metadata hash appends by default:
   - `bytecodeHash`: Can only be `none`. It removes metadata hash from the bytecode.
 - `dockerImage` and `tag` are deprecated options used to identify the name of the compiler docker image.
 - `contractsToCompile` (optional) field is utilized to compile only the specified contracts. The contract names do not necessarily need to be written in full qualified form. The plugin will perform an include operation, attempting to match the provided contract names.
 
-::: warning `forceEvmla` usage
+::: warning forceEvmla usage
 
 Setting the `forceEvmla` field to true can have the following negative impacts:
 
@@ -116,6 +118,12 @@ Setting the `forceEvmla` field to true can have the following negative impacts:
 - Possible contract size and performance impact.
 
 For Solidity versions older than 0.8, only this compilation mode is available and it is used by default.
+
+:::
+
+::: warning fallback_to_optimizing_for_size usage
+
+`fallback_to_optimizing_for_size` option is supported for zksolc compiler version 1.3.21 or higher.
 
 :::
 

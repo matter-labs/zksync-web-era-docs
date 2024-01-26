@@ -56,8 +56,8 @@ zkvyper: {
       // compilerPath: "zkvyper", // optional field with the path to the `zkvyper` binary.
       libraries: {}, // optional. References to non-inlinable libraries
       optimizer: {
-        enabled: true, // optional. True by default
         mode: '3' // optional. 3 by default, z to optimize bytecode size
+        fallback_to_optimizing_for_size: false, // optional. Try to recompile with optimizer mode "z" if the bytecode is too large
       },
       experimental: {
         dockerImage: '', // deprecated
@@ -76,10 +76,16 @@ zkvyper: {
 - `version`: The `zkvyper` compiler version. Default value is `latest`. Find the latest compiler versions in the [zkvyper repo](https://github.com/matter-labs/zkvyper-bin).
 - `compilerSource`: Indicates the compiler source and can be either `binary`. (A `docker` option is no longer recommended). If there is no previous installation, the plugin automatically downloads one.
 - `optimizer` - Compiler optimizations:
-  - `enabled`: `true` (default) or `false`.
   - `mode`: `3` (default) recommended for most projects. Mode `z` reduces bytecode size for large projects that make heavy use of `keccak` and far calls.
+  - `fallback_to_optimizing_for_size` (optional) indicates that the compiler will try to recompile with optimizer mode "z" if the bytecode is too large.
 - `compilerPath`: Optional field with the path to the `zkvyper` binary. By default, the binary in `$PATH` is used.
 - `libraries`: Define any non-inlinable libraries your contracts use as dependencies here. Learn more about [compiling libraries](./compiling-libraries.md).
+
+::: warning fallback_to_optimizing_for_size usage
+
+`fallback_to_optimizing_for_size` option is supported for zkvyper compiler version 1.3.15 or higher.
+
+:::
 
 ## Commands
 

@@ -27,17 +27,7 @@ Examples are adopted for plugin version **>=1.0.0**
 ## Installation
 
 :::warning Version Incompatibility
-Current version of the upgradable plugin does not support the latest version of the `@openzeppelin/upgrades-core` packages. <br>
-:::
-
-:::warning @matterlabs/zksync-contracts Usage
-The `hardhat-zksync-upgradable` plugin is currently incompatible with the latest versions of `@openzeppelin/contracts` and `@openzeppelin/contracts-upgradeable` due to a dependency usage in the `@matterlabs/zksync-contracts` package. <br>
-
-Supported Versions:
-
-- `@openzeppelin/contracts`: "^4.9.5",
-- `@openzeppelin/contracts-upgradeable`: "^4.9.5"
-
+Current version of the upgradable plugin does not support the latest version of the `@openzeppelin/upgrades-core` package.
 :::
 
 [@matterlabs/hardhat-zksync-upgradable](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-upgradable)
