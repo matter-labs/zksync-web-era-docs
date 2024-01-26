@@ -41,9 +41,9 @@ After installation, initialize a new project with `zkforge init <project_name>`,
 
 ### Project Configuration using `foundry.toml`
 
-Foundry is designed to be very configurable. You can configure Foundry using a file called [`foundry.toml`](./crates/config) in the root of your project, or any other parent directory. See [config package](./crates/config/README.md#all-options) for all available options.
+Foundry is designed to be very configurable. You can configure Foundry using a file called `foundry.toml` in the root of your project, or any other parent directory.
 
-Configuration can be arbitrarily namespaced by profiles. The default profile is named `default` (see ["Default Profile"](./crates/config/README.md#default-profile)).
+Configuration can be arbitrarily namespaced by profiles. The default profile is named `default`.
 
 You can select another profile using the `FOUNDRY_PROFILE` environment variable. You can also override parts of your configuration using `FOUNDRY_` or `DAPP_` prefixed environment variables, like `FOUNDRY_SRC`.
 
