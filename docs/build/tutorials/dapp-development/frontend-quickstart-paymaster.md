@@ -322,9 +322,9 @@ Read more about `wallet_requestPermissions`, in the [MetaMask documentation](htt
 
 ## Pay Fees with ERC20 Tokens
 
-zkSync Era has native account abstraction, a feature that allows application developers to integrate [paymasters](../../build/developer-reference/account-abstraction.md#paymasters) that can pay the fees on behalf of the users, or allow fees to be paid with ERC20 tokens.
+zkSync Era has native account abstraction, a feature that allows application developers to integrate [paymasters](../../../build/developer-reference/account-abstraction.md#paymasters) that can pay the fees on behalf of the users, or allow fees to be paid with ERC20 tokens.
 
-We will use the [testnet paymaster](../../build/developer-reference/account-abstraction.md#testnet-paymaster) that is provided on all zkSync Era testnets.
+We will use the [testnet paymaster](../../../build/developer-reference/account-abstraction.md#testnet-paymaster) that is provided on all zkSync Era testnets.
 
 :::tip About the testnet paymaster
 **The testnet paymaster allows users to pay fees in any ERC20 token with a fixed exchange rate of 1:1 - Token:ETH**, i.e. one unit of the token for one wei of ETH.
@@ -399,7 +399,7 @@ async getOverrides() {
 }
 ```
 
-4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../build/developer-reference/account-abstraction.md#testnet-paymaster) and return the needed overrides.
+4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../../build/developer-reference/account-abstraction.md#testnet-paymaster) and return the needed overrides.
 
 Copy/paste the following complete function:
 
@@ -481,11 +481,11 @@ Now you should be able to update the greeting message with ETH or any of the ava
 
 1. Select one of the ERC20 tokens to see the estimated fee:
 
-![img](../../assets/images/start-6.jpeg)
+![img](../../../../assets/images/start-6.jpeg)
 
 2. Click on the `Change greeting` button to update the message. Since the `paymasterParams` were supplied, the transaction will be an `EIP712` ([more on EIP712 here](https://eips.ethereum.org/EIPS/eip-712)):
 
-![img](../../assets/images/start-4.png)
+![img](../../../../assets/images/start-4.png)
 
 3. Click "Sign" to send the transaction.
 
@@ -501,6 +501,6 @@ After the transaction is processed, the page updates the balances and the new gr
 
 ## Next steps
 
-- For an overview of security and best practices for developing on zkSync Era, refer to the [Security and best practices page](./best-practices.md).
-- To learn more about `zksync-ethers` SDK, check out its [documentation](../../build/sdks/js/zksync-ethers/getting-started.md).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../build/tooling/hardhat/getting-started.md).
+- For an overview of security and best practices for developing on zkSync Era, refer to the [Security and best practices page](../../quick-start/best-practices.md).
+- To learn more about `zksync-ethers` SDK, check out its [documentation](../../../build/sdks/js/zksync-ethers/getting-started.md).
+- To learn more about the zkSync hardhat plugins, check out their [documentation](../../../build/tooling/hardhat/getting-started.md).
