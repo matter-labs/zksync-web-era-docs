@@ -105,7 +105,7 @@ export const enSidebar = sidebar({
               link: "/build/tutorials/tooling-guides/wagmi.md",
             },
             {
-              text: "viem",
+              text: "Viem",
               link: "/build/tutorials/tooling-guides/viem.md",
             },
             {
