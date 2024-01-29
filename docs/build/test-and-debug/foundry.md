@@ -100,7 +100,7 @@ Compile with default settings or specify `zksolc` version:
 
 ```sh
 zkforge zk-build
-zkforge zkb --use-zksolc 1.3.21
+zkforge zkb
 ```
 
 ### Deployment with `zkforge zk-create`
@@ -124,7 +124,7 @@ zkforge zk-create <CONTRACT> [OPTIONS] --rpc-url <RPC-URL> --chain <CHAIN-ID> --
 Deploy `Greeter.sol` to zkSync testnet:
 
 ```bash
-zkforge zkc src/Greeter.sol:Greeter --constructor-args "Hello zkSync" --private-key <PRIVATE_KEY> --rpc-url https://zksync2-testnet.zksync.dev:443 --chain 280
+zkforge zkc src/Greeter.sol:Greeter --constructor-args "Hello zkSync" --private-key <PRIVATE_KEY> --rpc-url https://sepolia.era.zksync.dev --chain 300
 ```
 
 ### Deploying Factory Contracts
@@ -134,7 +134,7 @@ To deploy contracts like `SimpleFactory.sol`, use the `is-system` flag and place
 **Compile `SimpleFactory.sol`:**
 
 ```bash
-zkforge zk-build
+zkforge zk-build --is-system=true
 ```
 
 **Deploy `SimpleFactory.sol`:**
@@ -174,10 +174,10 @@ Chain IDs help identify the specific blockchain network you're interacting with.
   - **Command:**
 
     ```sh
-    zkcast chain-id --rpc-url https://zksync2-testnet.zksync.dev:443
+    zkcast chain-id --rpc-url https://sepolia.era.zksync.dev
     ```
 
-  - **Expected Output:** This will return the chain ID of the zkSync testnet, typically `280`.
+  - **Expected Output:** This will return the chain ID of the zkSync testnet, typically `300`.
 
 ### Retrieving Client Information
 
@@ -186,7 +186,7 @@ Knowing your client version can be essential for compatibility and troubleshooti
 - **Command:**
 
   ```sh
-  zkcast client --rpc-url https://zksync2-testnet.zksync.dev:443
+  zkcast client --rpc-url https://sepolia.era.zksync.dev
   ```
 
 - **Expected Output:** A string indicating the client version, like `zkSync/v2.0`.
@@ -198,10 +198,10 @@ To check the balance of an account on Layer 2 (L2):
 - **Command:**
 
   ```sh
-  zkcast balance 0x42C7eF198f8aC9888E2B1b73e5B71f1D4535194A --rpc-url https://zksync2-testnet.zksync.dev:443
+  zkcast balance 0x8b1d48a69ACEbC6eb201e2F4d162A002203Bfe8E --rpc-url https://sepolia.era.zksync.dev
   ```
 
-- **Expected Output:** The ETH balance of the specified account, e.g., `447551277794355871`.
+- **Expected Output:** The ETH balance of the specified account, e.g., `530378345265523336`.
 
 ### Obtaining Gas Price
 
@@ -210,10 +210,10 @@ Understanding the current gas price is vital for transaction cost estimation:
 - **Command:**
 
   ```sh
-  zkcast gas-price --rpc-url https://zksync2-testnet.zksync.dev:443
+  zkcast gas-price --rpc-url https://sepolia.era.zksync.dev
   ```
 
-- **Expected Output:** The current gas price on the network, such as `250000000`.
+- **Expected Output:** The current gas price on the network, such as `100000000`.
 
 ### Fetching Latest Block Details
 
@@ -222,7 +222,7 @@ Fetching the latest block details can provide insights into the blockchain's cur
 - **Command:**
 
   ```sh
-  zkcast block latest --rpc-url https://zksync2-testnet.zksync.dev:443
+  zkcast block latest --rpc-url https://sepolia.era.zksync.dev
   ```
 
 - **Expected Output:** Detailed information about the latest block, including base fee per gas, block number, and more.
