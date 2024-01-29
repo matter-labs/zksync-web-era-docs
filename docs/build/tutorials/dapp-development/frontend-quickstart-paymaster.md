@@ -481,11 +481,11 @@ Now you should be able to update the greeting message with ETH or any of the ava
 
 1. Select one of the ERC20 tokens to see the estimated fee:
 
-![img](../../../../assets/images/start-6.jpeg)
+![img](../../../assets/images/start-6.jpeg)
 
 2. Click on the `Change greeting` button to update the message. Since the `paymasterParams` were supplied, the transaction will be an `EIP712` ([more on EIP712 here](https://eips.ethereum.org/EIPS/eip-712)):
 
-![img](../../../../assets/images/start-4.png)
+![img](../../../assets/images/start-4.png)
 
 3. Click "Sign" to send the transaction.
 
