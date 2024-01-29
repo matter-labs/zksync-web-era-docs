@@ -5,76 +5,70 @@ head:
       content: Hello world | zkSync Docs
 ---
 
-# Hello World
+# Quickstart: hello devs! hello zkSync
 
-This guide shows you how to deploy a smart contract to zkSync and build a dApp that interacts with it using the zkSync development toolbox.
+![](../../assets/images/cli-doc-6.gif)
+
+This guide shows you how to deploy and interact with a smart contract on zkSync in less than 5 minutes. It will help you get familiar with the zkSync development toolbox.
 
 This is what we're going to do:
 
-- Build, deploy, and verify a smart contract on zkSync Era testnet that stores a greeting message.
-- Build a dApp that retrieves and updates the greeting message.
-- Allow users to change the greeting message on the smart contract via the app.
-- Show you how to [implement the testnet paymaster](#paying-fees-using-testnet-paymaster) that allows users to pay transaction fees with ERC20 tokens instead of ETH.
+- Fund your wallet with zkSync testnet ETH.
+- Use [zksync-cli](../tooling/zksync-cli/getting-started.md) to scaffold a new project.
+- Build a smart contract that stores a greeting message and deploy it to zkSync Era testnet.
+- Run a script to retrieve and update the greeting message using [zksync-ethers](../sdks/js/getting-started.md).
 
 ## Prerequisites
 
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
-- Download and install [Node](https://nodejs.org/en/download).
-- Download and install [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to change the running Node version to latest use command `nvm use --lts`.
+- Download and install [Node.js](https://nodejs.org/en/download).
 - Use the `yarn` or `npm` package manager. We recommend using `yarn`. To install `yarn`, follow the [Yarn installation guide](https://yarnpkg.com/getting-started/install).
-- A wallet with sufficient Sepolia ETH on L1 to pay for bridging funds to zkSync and deploying smart contracts. You can get Sepolia ETH from the [network faucets](../tooling/network-faucets.md).
-- ERC20 tokens on zkSync are required for the testnet paymaster. Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
-- You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
+- Learn how to [get your private key from your Metamask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key) as we'll use it to deploy a contract.
 
-::: tip Local zkSync Testing with zksync-cli
-Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../build/tooling/zksync-cli/getting-started.md).
-:::
+## Fund your wallet
 
-## Build and deploy the Greeter contract
+You can get testnet ETH directly into zkSync testnet using the [following faucet provided by LearnWeb3](https://learnweb3.io/faucets/zksync_sepolia/).
+
+Another option is to [get SepoliaETH from any of the following faucets](../tooling/network-faucets.md) and bridge it to zkSync Sepolia testnet using the [zkSync bridge](https://portal.zksync.io/bridge/?network=sepolia).
+
+You can check the balance of your account in the [zkSync Sepolia explorer](https://sepolia.explorer.zksync.io/).
+
+## Create the project
 
 ::: info Project available in Atlas IDE
-This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/matter-labs/zksync-hardhat-template&open=Greeter.sol&chainId=280).
+This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser.
+
+[Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/matter-labs/zksync-hardhat-template&open=Greeter.sol&chainId=300).
 :::
 
-### Initialize the project
-
-1. Scaffold a new project by running the command:
+Run the following command in your terminal to create a new project using zkSync CLI.
 
 ```sh
-npx zksync-cli create greeter-example --template hardhat_solidity
+npx zksync-cli create hello-zksync
 ```
 
-This creates a new zkSync Era project called `greeter-example` with a basic `Greeter` contract and all the zkSync plugins and configurations.
+It will give you options for different types of projects but for this tutorial choose the the following:
 
-::: tip Hardhat plugins
-Learn more about the [zkSync Era plugins for Hardhat here](../../build/tooling/hardhat/getting-started.md)
-:::
-
-2. Navigate into the project directory:
-
-```sh
-cd greeter-example
+```bash
+? What type of project do you want to create? Contracts
+? Template: Hardhat + Solidity
+? Private key of the wallet responsible for deploying contracts (optional) ***************************************************
+? Package manager: yarn
 ```
 
-3. Configure Your Private Key:
+The private key of your wallet will be included in the `.env` file of the project and won't be pushed to GitHub.
 
-Rename the `.env.example` file to `.env` and then enter your private key:
+The project structure is pretty straight forward:
 
-```text
-WALLET_PRIVATE_KEY=YourPrivateKeyHere...
-```
+- `hardhat.config.ts` contains the general configuration for Hardhat and the zkSync plugins, which are already imported and setup.
+- `/contracts` contains smart contracts. zkSync-CLI provides common examples like an ERC20, an NFT, and the Greeter contract that we'll use later on.
+- `/deploy` contains the deployment scripts.
 
-Your private key will be used for paying the costs of deploying the smart contract.
-
-### Compile and deploy the Greeter contract
-
-We store all the smart contracts' `*.sol` files in the `contracts` folder. The `deploy` folder contains all scripts related to deployments.
-
-1. The included `contracts/Greeter.sol` contract has following code:
+For this tutorial we'll focus on the `/contracts/Greeter.sol` contract:
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.8;
+pragma solidity ^0.8.0;
 
 contract Greeter {
     string private greeting;
@@ -93,15 +87,63 @@ contract Greeter {
 }
 ```
 
-2. Compile the contract with the following command:
+As you can see, it a simple Solidity contract with two methods to read a message, `greet()`, and modify it, `setGreeting()`.
 
-```sh
-yarn hardhat compile
+::: tip Takeway
+
+zkSync is EVM compatible. You can write smart contracts with Solidity or Vyper and use existing popular libraries like OpenZeppelin.
+
+:::
+
+## Compile the contract
+
+Smart contracts deployed to zkSync must be compiled using our custom compilers:
+
+- `zksolc` for Solidity contracts.
+- `zkvyper` for Vyper contracts.
+
+As this is a Solidity project, it already has the `hardhat-zksync-solc` plugin installed and configured so there's nothing you need to setup. To compile the contracts in the project run the following command:
+
+::: code-tabs
+
+@tab:active yarn
+
+```bash
+yarn compile
 ```
 
-3. The [zkSync-CLI](../../build/tooling/zksync-cli/getting-started.md) provides a deployment script in `/deploy/deploy.ts`:
+@tab npm
 
-```typescript
+```bash
+npm run compile
+```
+
+:::
+
+You'll get the following output:
+
+```sh
+Compiling contracts for zkSync Era with zksolc v1.3.21 and solc v0.8.17
+Compiling 46 Solidity files
+Successfully compiled 46 Solidity files
+✨  Done in 21.55s.
+```
+
+The compiled artifacts will be located in the `/artifacts-zk` folder. These artifacts are similar to the ones generated by the Solidity compiler. For example, the ABI of the Greeter contract will be located in `/artifacts-zk/contracts/Greeter.sol/Greeter.json`.
+
+::: tip Takeway
+
+Smart contracts deployed to zkSync must be compiled using `zksolc` or `zkvyper` as they generate a custom bytecode compatible with zkSync's ZKEVM.
+
+:::
+
+The configuration for the `zksolc` compiler is located in the `zksolc` section of the `hardhat.config.ts` file. You can find more info about the compiler settings in the [hardhat-zksync-solc plugin](../tooling/hardhat/hardhat-zksync-solc.md) and the [compiler section](../../zk-stack/components/compiler/specification/overview.md) of the ZK Stack documentation.
+
+## Deploy and verify
+
+The project also contains a script to deploy and verify the contract in `/deploy/deploy.ts`. Under the hood, this script uses `hardhat-zksync-deploy` and `hardhat-zksync-verify` for deployment and contract verification.
+
+```ts
 import { deployContract } from "./utils";
 
 // An example of a basic deploy script
@@ -114,608 +156,139 @@ export default async function () {
 }
 ```
 
-that utilizes the `utils/deployContract` function for deploying contracts:
+To execute it, just run:
 
-```typescript
-export const deployContract = async (contractArtifactName: string, constructorArguments?: any[], options?: DeployContractOptions) => {
-  const log = (message: string) => {
-    if (!options?.silent) console.log(message);
-  };
+::: code-tabs
 
-  log(`\nStarting deployment process of "${contractArtifactName}"...`);
+@tab:active yarn
 
-  const wallet = options?.wallet ?? getWallet();
-  const deployer = new Deployer(hre, wallet);
-  const artifact = await deployer.loadArtifact(contractArtifactName).catch((error) => {
-    if (error?.message?.includes(`Artifact for contract "${contractArtifactName}" not found.`)) {
-      console.error(error.message);
-      throw `⛔️ Please make sure you have compiled your contracts or specified the correct contract name!`;
-    } else {
-      throw error;
-    }
-  });
-
-  // Estimate contract deployment fee
-  const deploymentFee = await deployer.estimateDeployFee(artifact, constructorArguments || []);
-  log(`Estimated deployment cost: ${formatEther(deploymentFee)} ETH`);
-
-  // Check if the wallet has enough balance
-  await verifyEnoughBalance(wallet, deploymentFee);
-
-  // Deploy the contract to zkSync
-  const contract = await deployer.deploy(artifact, constructorArguments);
-
-  const constructorArgs = contract.interface.encodeDeploy(constructorArguments);
-  const fullContractSource = `${artifact.sourceName}:${artifact.contractName}`;
-
-  // Display contract deployment info
-  log(`\n"${artifact.contractName}" was successfully deployed:`);
-  log(` - Contract address: ${contract.address}`);
-  log(` - Contract source: ${fullContractSource}`);
-  log(` - Encoded constructor arguments: ${constructorArgs}\n`);
-
-  if (!options?.noVerify && hre.network.config.verifyURL) {
-    log(`Requesting contract verification...`);
-    await verifyContract({
-      address: contract.address,
-      contract: fullContractSource,
-      constructorArguments: constructorArgs,
-      bytecode: artifact.bytecode,
-    });
-  }
-
-  return contract;
-};
+```bash
+yarn deploy
 ```
 
-Run the deployment script with:
+@tab npm
+
+```bash
+npm run deploy
+```
+
+:::
+
+You'll get the following output:
 
 ```sh
-yarn hardhat deploy-zksync --script deploy.ts
-```
-
-::: tip Request-Rate Exceeded message
-
-- This message is caused by using the default RPC endpoints provided by ethers.
-- To avoid this, use your own Sepolia RPC endpoint.
-- Find multiple [node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
-  :::
-
-You should see something like this:
-
-```txt
 Starting deployment process of "Greeter"...
-Estimated deployment cost: 0.0001089505 ETH
+Estimated deployment cost: 0.0000648863 ETH
 
 "Greeter" was successfully deployed:
- - Contract address: 0xB127802183DEA4458D92CAF1319574d7e6534B8b
+ - Contract address: 0x0BaF96A7f137B05d0D35b76d59B16c86C1791D8D
  - Contract source: contracts/Greeter.sol:Greeter
  - Encoded constructor arguments: 0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000094869207468657265210000000000000000000000000000000000000000000000
 
 Requesting contract verification...
-Your verification ID is: 47094
-Contract successfully verified on zkSync block explorer!
+Your verification ID is: 1781
 ```
 
-**Congratulations! You have deployed and verified a smart contract to zkSync Era Testnet** 🎉
+Congratulations! You just deployed a smart contract to zkSync Sepolia testnet. You can find it in the [zkSync Sepolia explorer](https://sepolia.explorer.zksync.io/) by searching the contract address.
 
-Now visit the [zkSync block explorer](https://explorer.zksync.io/) and search with the contract address to confirm the deployment.
+In addition, the deployment script verified the contract automatically so you can see the source code in the contract tab of the block explorer.
 
-## Build the front-end dApp
+## Interact with the contract
 
-### Setup the project
+The project also comes with a script to interact with the contract in `/deploy/interact.ts`.
+Add the address of the Greeter contract yuo just deployed in the `CONTRACT_ADDRESS` variable inside the `/deploy/interact.ts` file:
 
-:::info
+```ts
+import * as hre from "hardhat";
+import { getWallet } from "./utils";
+import { ethers } from "ethers";
 
-- We use the `Vue` web framework for the tutorial front end (the process is similar to other frameworks).
-- In order to focus on the `zksync-ethers` SDK, we provide a prebuilt template.
-- Once set up, we add code that interacts with the smart contract we just deployed.
-  :::
+// Address of the contract to interact with
+const CONTRACT_ADDRESS = "";
+if (!CONTRACT_ADDRESS) throw "⛔️ Provide address of the contract to interact with!";
 
-1. Clone the template and `cd` into the folder.
+// An example of a script to interact with the contract
+export default async function () {
+  console.log(`Running script to interact with contract ${CONTRACT_ADDRESS}`);
 
-```sh
-git clone https://github.com/matter-labs/tutorials
-cd tutorials/hello-world/frontend
+  // Load compiled contract info
+  const contractArtifact = await hre.artifacts.readArtifact("Greeter");
+
+  // Initialize contract instance for interaction
+  const contract = new ethers.Contract(
+    CONTRACT_ADDRESS,
+    contractArtifact.abi,
+    getWallet() // Interact with the contract on behalf of this wallet
+  );
+
+  // Run contract read function
+  const response = await contract.greet();
+  console.log(`Current message is: ${response}`);
+
+  // Run contract write function
+  const transaction = await contract.setGreeting("Hello people!");
+  console.log(`Transaction hash of setting new message: ${transaction.hash}`);
+
+  // Wait until transaction is processed
+  await transaction.wait();
+
+  // Read message after transaction
+  console.log(`The message now is: ${await contract.greet()}`);
+}
 ```
 
-2. Spin up the project.
+As you can see, we're simply using `ethers` to interact with our contract. zkSync is EVM compatible so you can use existing tools and libraries like `Hardhat`, `ethers`, `web3.js`, and users can use their existing wallets like Metamask, Rabby or Zerion.
+
+::: tip Takeaway
+
+Existing libraries like `ethers` and `web3.js` can be used to interact with smart contracts deployed on zkSync.
+
+:::
+
+To execute the `/deploy/interact.ts` script, run:
+
+::: code-tabs
+
+@tab:active yarn
 
 ```bash
-yarn
-yarn serve
+yarn interact
 ```
 
-Navigate to `http://localhost:8080/` in a browser to see the running application.
+@tab npm
 
-### Connect accounts to the dApp
+```bash
+npm run interact
+```
 
-#### Smart accounts
-
-Enabling smart accounts allows you to onboard account abstraction wallet users that have been using the first version of zkSync.
-
-- Use [this library](../../build/developer-reference/account-abstraction.md#signature-validation) to verify your smart account compatibility.
-
-#### Externally owned accounts (EOAs)
-
-In order to interact with dApps built on zkSync, connect the MetaMask wallet to the zkSync Era Testnet.
-
-- Follow [this guide](./add-zksync-to-metamask.md) to connect Metamask to zkSync.
-
-Please note, that login functionality for "Hello, world" will be implemented in the next steps.
-
-### Bridge Funds to L2
-
-- Use [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
-- Use the [third party faucets](../../build/support/faq.md#how-do-i-request-funds-for-testnet) to get some test tokens in your account.
-
-:::warning
-When bridging from mainnet to a smart account (e.g. Clave) on zkSync Era, you must specify the address of your L2 wallet by clicking on **Deposit to another address on zkSync Era Mainnet**.
 :::
 
-### Project Structure
-
-In the `./src/App.vue` file, in the `methods:` section, you will see template code that stores the application.
-
-Most of the code is provided. You have to complete the TODO: sections.
-
-```javascript
-methods: {
-  initializeProviderAndSigner() {
-    // TODO: initialize provider and signer based on `window.ethereum`
-  },
-
-  async getGreeting() {
-    // TODO: return the current greeting
-    return "";
-  },
-
-  async getFee() {
-    // TODO: return formatted fee
-    return "";
-  },
-
-  async getBalance() {
-    // Return formatted balance
-    return "";
-  },
-  async getOverrides() {
-    if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
-      // TODO: Return data for the paymaster
-    }
-
-    return {};
-  },
-...
-```
-
-Beneath the `<script>` tag, there are placeholders for the address of your deployed `Greeter` contract: `GREETER_CONTRACT_ADDRESS`, and the path to its ABI: `GREETER_CONTRACT_ABI`.
-
-```javascript
-<script>
-// eslint-disable-next-line
-const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract address here
-// eslint-disable-next-line
-const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
-```
-
-### Add the Libraries
-
-1. From the `greeter-tutorial-starter` root, install the dependencies.
+You'll get the following output:
 
 ```sh
-yarn add ethers@^5.7.2 zksync-ethers@5
+Running script to interact with contract 0x0BaF96A7f137B05d0D35b76d59B16c86C1791D8D
+Current message is: Hi there!
+Transaction hash of setting new message: 0x7a534857cfcd6df7e3eaf40a79a2c88f2e36bb60ce6f2399345e5431362b04eb
+The message now is: Hello people!
+✨  Done in 4.13s.
 ```
 
-2. Add the library imports under `<script>` in`App.vue`.
+Congratulations! You've retrieved and updated the message on the `Greeter` contract. You can see the transaction [in the block explorer](https://sepolia.explorer.zksync.io/) by searching the transaction hash.
 
-```js
-<script>
-import {} from "zksync-ethers";
-import {} from "ethers";
+## Takeaways
 
-// eslint-disable-next-line
-const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract address here
-// eslint-disable-next-line
-const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
-```
+Here are the main things that you sho
 
-### Add the ABI and Contract Address
+- zkSync is EVM compatible and you can write smart contracts in Solidity or Vyper, use Hardhat, libraries like Ethers and Web3.js, or wallets like Metamask or Rabby.
+- zkSync CLI provides a quick way to scaffold different types of projects thanks to its multiple templates.
+- Contracts deployed to zkSync are compiled using `zksolc` or `zkvyper` as they generate a special bytecode for zkSync's ZKEVM.
 
-:::info
+## Next steps
 
-- To interact with a smart contract deployed to zkSync, we need its ABI.
-- ABI stands for Application Binary Interface and is json which describes the contract's variable and function, names and types.
-  :::
+This was your first step towards becoming a zkSync developer. Here is what you can do next:
 
-1. Create the `./src/abi.json` file. You may find one in the repo, but it's good practice to use the one you created instead.
-
-2. Copy/paste the contract's ABI from the `./artifacts-zk/contracts/Greeter.sol/Greeter.json` file in the hardhat project folder from the previous section into `abi.json`. The file should look something like this:
-
-```json
-[
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "_greeting",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "inputs": [],
-    "name": "greet",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "_greeting",
-        "type": "string"
-      }
-    ],
-    "name": "setGreeting",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  }
-]
-```
-
-3. Set the `GREETER_CONTRACT_ABI` to require the ABI file, and add the Greeter contract address.
-
-```js
-// eslint-disable-next-line
-const GREETER_CONTRACT_ADDRESS = "0x...";
-// eslint-disable-next-line
-const GREETER_CONTRACT_ABI = require("./abi.json");
-```
-
-### Working with a Web3 Provider
-
-1. Go to the `initializeProviderAndSigner` function in `./src/App.vue`. This function is called after the connection to Metamask is successful.
-
-In this function we should:
-
-- Initialize a `Web3Provider` and a `Signer` to interact with zkSync.
-- Initialize the `Contract` object to interact with the `Greeter` contract we just deployed.
-
-2. Import the necessary dependencies under the imports from before:
-
-```javascript
-import { Contract, Web3Provider, Provider } from "zksync-ethers";
-```
-
-3. Initialise the provider, signer, and contract instances like this:
-
-```javascript
-initializeProviderAndSigner() {
-    this.provider = new Provider('https://sepolia.era.zksync.dev');
-    // Note that we still need to get the Metamask signer
-    this.signer = (new Web3Provider(window.ethereum)).getSigner();
-    this.contract = new Contract(
-        GREETER_CONTRACT_ADDRESS,
-        GREETER_CONTRACT_ABI,
-        this.signer
-    );
-},
-```
-
-### Retrieving the Greeting
-
-Fill in the function to retrieve the greeting from the smart contract:
-
-```javascript
-async getGreeting() {
-    // Smart contract calls work the same way as in `ethers`
-    return await this.contract.greet();
-},
-```
-
-The function looks like this:
-
-```javascript
-initializeProviderAndSigner() {
-    this.provider = new Provider('https://sepolia.era.zksync.dev');
-    // Note that we still need to get the Metamask signer
-    this.signer = (new Web3Provider(window.ethereum)).getSigner();
-    this.contract = new Contract(
-        GREETER_CONTRACT_ADDRESS,
-        GREETER_CONTRACT_ABI,
-        this.signer
-    );
-},
-async getGreeting() {
-    return await this.contract.greet();
-},
-```
-
-After connecting the Metamask wallet to zkSync Era Testnet, you should see the following page:
-
-![img](../../assets/images/start-1.png)
-
-The **Select token** dropdown menu allows you to choose which token to pay fees with.
-
-### Retrieving Token Balance and Transaction Fee
-
-The easiest way to retrieve the user's balance is to use the `Signer.getBalance` function.
-
-1. Add the necessary dependencies to the same place you added imports before:
-
-```javascript
-// `ethers` is only used in this tutorial for its utility functions
-import { ethers } from "ethers";
-```
-
-2. Implement the function:
-
-```javascript
-async getBalance() {
-    // Getting the balance for the signer in the selected token
-    const balanceInUnits = await this.signer.getBalance(this.selectedToken.l2Address);
-    // To display the number of tokens in the human-readable format, we need to format them,
-    // e.g. if balanceInUnits returns 500000000000000000 wei of ETH, we want to display 0.5 ETH the user
-    return ethers.utils.formatUnits(balanceInUnits, this.selectedToken.decimals);
-},
-```
-
-3. Estimate the fee:
-
-```javascript
-async getFee() {
-    // Getting the amount of gas (gas) needed for one transaction
-    const feeInGas = await this.contract.estimateGas.setGreeting(this.newGreeting);
-    // Getting the gas price per one erg. For now, it is the same for all tokens.
-    const gasPriceInUnits = await this.provider.getGasPrice();
-
-    // To display the number of tokens in the human-readable format, we need to format them,
-    // e.g. if feeInGas*gasPriceInUnits returns 500000000000000000 wei of ETH, we want to display 0.5 ETH the user
-    return ethers.utils.formatUnits(feeInGas.mul(gasPriceInUnits), this.selectedToken.decimals);
-},
-```
-
-Now, when you select the token to pay the fee, the balance and the expected fee for the transaction are available.
-
-Click **Refresh** to recalculate the fee. The fee depends on the length of the message we want to store as the greeting.
-
-It is possible to also click on the **Change greeting** button, but nothing will happen yet as we haven't implemented the function.
-
-![img](../../assets/images/start-2.png)
-
-### Updating the Greeting
-
-Update the function in `App.vue` with the following code:
-
-```javascript
-async changeGreeting() {
-    this.txStatus = 1;
-    try {
-        const txHandle = await this.contract.setGreeting(this.newGreeting, await this.getOverrides());
-
-        this.txStatus = 2;
-
-        // Wait until the transaction is committed
-        await txHandle.wait();
-        this.txStatus = 3;
-
-        // Update greeting
-        this.greeting = await this.getGreeting();
-
-        this.retreivingFee = true;
-        this.retreivingBalance = true;
-        // Update balance and fee
-        this.currentBalance = await this.getBalance();
-        this.currentFee = await this.getFee();
-    } catch (e) {
-        alert(JSON.stringify(e));
-    }
-
-    this.txStatus = 0;
-    this.retreivingFee = false;
-    this.retreivingBalance = false;
-},
-```
-
-Now you can add a new greeting message and send it to the contract via a transaction with MetaMask. You will see the Greeter message change on the front end.
-
-You now have a fully functional Greeter-dApp! However, it does not yet leverage any zkSync-specific features.
-
-::: warning
-Do you see a **wallet_requestPermissions** error?
-
-Refresh your browser, or open the MetaMask extension on your browser and click _Next_ or _Cancel_ to resolve it.
-
-Read more about `wallet_requestPermissions`, in the [MetaMask documentation](https://docs.metamask.io/guide/rpc-api.html#wallet-requestpermissions).
-:::
-
-### Paying Fees using Testnet Paymaster
-
-The zkSync Era account abstraction feature allows you to integrate [paymasters](../../build/developer-reference/account-abstraction.md#paymasters) that can pay the fees entirely for you, or swap your tokens on the fly.
-
-We will use the [testnet paymaster](../../build/developer-reference/account-abstraction.md#testnet-paymaster) that is provided on all zkSync Era testnets.
-
-:::info
-**The testnet paymaster allows users to pay fees in any ERC20 token** with the exchange rate of Token:ETH of 1:1, i.e. one unit of the token for one wei of ETH.
-
-This means that transaction fees in tokens with fewer decimals than ETH will be bigger; for example, USDC which has only 6 decimals. This is a known behaviour of the testnet paymaster, which was built for demonstration purposes only.
-:::
-
-::: warning Paymasters on mainnet
-The testnet [paymaster](https://docs.zksync.io/dev/tutorials/custom-paymaster-tutorial.html#building-custom-paymaster) is purely for demonstrating this feature and won't be available on mainnet.
-
-When integrating your protocol on mainnet, you should follow the documentation of the paymaster you use, or create your own.
-:::
-
-The `getOverrides` function returns an empty object when users decide to pay with Ether but, when users select the ERC20 option, it should return the paymaster address and all
-the information required by it. This is how to do it:
-
-1. To retrieve the address of the testnet paymaster from the zkSync provider, add a new function `getOverrides`:
-
-```javascript
-async getOverrides() {
-  if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
-    const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
-
-    // ..
-  }
-
-  return {};
-}
-```
-
-:::info
-It is recommended to retrieve the testnet paymaster's address before each interaction as it may change.
-:::
-
-2. Add `utils` to the same import from `zksync-ethers` SDK as before:
-
-```javascript
-import { Contract, Web3Provider, Provider, utils } from "zksync-ethers";
-```
-
-3. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token to ETH at a 1:1 rate, the amount is the same as the ETH amount in wei:
-
-```javascript
-async getOverrides() {
-  if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
-    const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
-
-    const gasPrice = await this.provider.getGasPrice();
-    // estimate gasLimit via paymaster
-    const paramsForFeeEstimation = utils.getPaymasterParams(
-          testnetPaymaster,
-          {
-            type: "ApprovalBased",
-            minimalAllowance: ethers.BigNumber.from("1"),
-            token: this.selectedToken.l2Address,
-            innerInput: new Uint8Array(),
-          }
-        );
-
-        // estimate gasLimit via paymaster
-        const gasLimit = await this.contract.estimateGas.setGreeting(
-          this.newGreeting,
-          {
-            customData: {
-              gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
-              paymasterParams: paramsForFeeEstimation,
-            },
-          }
-        );
-    const fee = gasPrice.mul(gasLimit);
-
-    // ..
-  }
-
-  return {};
-}
-```
-
-4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../build/developer-reference/account-abstraction.md#testnet-paymaster) and return the needed overrides.
-
-Copy/paste the following complete function:
-
-```javascript
-async getOverrides() {
-  if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
-    const testnetPaymaster =
-      await this.provider.getTestnetPaymasterAddress();
-
-    const gasPrice = await this.provider.getGasPrice();
-
-    // estimate gasLimit via paymaster
-    const paramsForFeeEstimation = utils.getPaymasterParams(
-      testnetPaymaster,
-      {
-        type: "ApprovalBased",
-        minimalAllowance: ethers.BigNumber.from("1"),
-        token: this.selectedToken.l2Address,
-        innerInput: new Uint8Array(),
-      }
-    );
-
-    // estimate gasLimit via paymaster
-    const gasLimit = await this.contract.estimateGas.setGreeting(
-      this.newGreeting,
-      {
-        customData: {
-          gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
-          paymasterParams: paramsForFeeEstimation,
-        },
-      }
-    );
-
-    const fee = gasPrice.mul(gasLimit.toString());
-
-    const paymasterParams = utils.getPaymasterParams(testnetPaymaster, {
-      type: "ApprovalBased",
-      token: this.selectedToken.l2Address,
-      minimalAllowance: fee,
-      // empty bytes as testnet paymaster does not use innerInput
-      innerInput: new Uint8Array(),
-    });
-
-    return {
-      maxFeePerGas: gasPrice,
-      maxPriorityFeePerGas: ethers.BigNumber.from(0),
-      gasLimit,
-      customData: {
-        gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
-        paymasterParams,
-      },
-    };
-  }
-
-  return {};
-},
-```
-
-5. To use a list of ERC20 tokens, change the following line:
-
-```javascript
-const allowedTokens = require("./eth.json");
-```
-
-to the following one:
-
-```javascript
-const allowedTokens = require("./erc20.json");
-```
-
-The `erc20.json` file contains a few tokens like DAI, USDC and wBTC.
-
-### Complete Application
-
-Now you should be able to update the greeting message with ETH or any of the available tokens.
-
-1. Select one of the ERC20 tokens to see the estimated fee:
-
-![img](../../assets/images/start-6.jpeg)
-
-2. Click on the `Change greeting` button to update the message. Since the `paymasterParams` were supplied, the transaction will be an `EIP712` ([more on EIP712 here](https://eips.ethereum.org/EIPS/eip-712)):
-
-![img](../../assets/images/start-4.png)
-
-3. Click "Sign" to send the transaction.
-
-After the transaction is processed, the page updates the balances and the new greeting can be viewed.
-
-**You've paid for this transaction with an ERC20 token using the testnet paymaster** 🎉
-
-### Learn More
-
-- For an overview of security and best practices for developing on zkSync Era, refer to the [Security and best practices page](./best-practices.md).
-- To learn more about `zksync-ethers` SDK, check out its [documentation](../../build/sdks/js/zksync-ethers/getting-started.md).
-- To learn more about the zkSync hardhat plugins, check out their [documentation](../../build/tooling/hardhat/getting-started.md).
+- Create a frontend for this contract following the [Frontend quickstart](../tutorials/dapp-development/frontend-quickstart-paymaster.md)
+- Join our [developer community in GitHub](https://github.com/zkSync-Community-Hub/zksync-developers/discussions), where you can ask questions and help other developers.
+- Read the [Security and best practices](./best-practices.md) to keep you apps secure.
+- Learn about the [differences between Ethereum and zkSync](../developer-reference/differences-with-ethereum.md).
+- If you have a project, check out our [migration guide](../tooling/hardhat/migrating-to-zksync.md).
