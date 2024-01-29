@@ -39,13 +39,13 @@ Add the latest version of this plugin to your project with the following command
 @tab:active yarn
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/upgrades-core @openzeppelin/contracts-upgradeable
+yarn add -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/upgrades-core @openzeppelin/contracts-upgradeable@4.9.5 @openzeppelin/contracts@4.9.5
 ```
 
 @tab npm
 
 ```bash
-npm i -D @matterlabs/hardhat-zksync-upgradable
+npm i -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/contracts-upgradeable@4.9.5 @openzeppelin/contracts@4.9.5
 ```
 
 :::
