@@ -40,7 +40,7 @@ const client = createPublicClient({
 
 :::
 
-## Reading data zkSync
+## Reading data from zkSync
 
 With your client set up, access zkSync data using Public Actions. These actions correspond to Ethereum RPC methods. Since zkSync supports the standard Ethereum JSON-RPC API you can make use of these methods.
 
