@@ -144,6 +144,17 @@ Interface representation of transaction fee.
 - `maxPriorityFeePerGas`: `BigInt`;
 - `maxFeePerGas`: `BigInt`;
 
+## `FinalizeWithdrawalParams`
+
+Interface representation of finalize withdrawal parameters.
+
+- `l1BatchNumber`: `number | null`;
+- `l2MessageIndex`: `number`;
+- `l2TxNumberInBlock`: `number | null`;
+- `message`: `any`;
+- `sender`: `string`;
+- `proof`: `string[]`;
+
 ## `FullDepositFee`
 
 Interface representation of full deposit fee containing various mandatory and optional fields.
@@ -221,6 +232,35 @@ Type defining a paymaster by address and the bytestream input.
 Interface representation of priority op response that extends [`TransactionResponse`](#transactionresponse) and adds a function that waits to commit a layer 1 transaction, including when given on optional confirmation number.
 
 - `waitL1Commit(confirmation?: number)`: `Promise<providers.TransactionReceipt>`;
+
+## `RawBlockTransaction`
+
+Interface representation of raw block with transactions
+
+- `common_data`:
+  - `L2`:
+    - `nonce`: `number`;
+    - `fee`:
+      - `gas_limit`: `BigInt`;
+      - `max_fee_per_gas`: `BigInt`;
+      - `max_priority_fee_per_gas`: `BigInt`;
+      - `gas_per_pubdata_limit`: `BigInt`;
+    - `initiatorAddress`: `Address`;
+    - `signature`: `Uint8Array`;
+    - `transactionType`: `string`;
+    - `input`
+      - `hash`: `string`;
+      - `data`: `Uint8Array`;
+    - `paymasterParams`:
+      - `paymaster`: `Address`;
+      - `paymasterInput`: `Uint8Array`;
+- `execute`:
+  - `calldata`: `string`;
+  - `contractAddress`: `Address`;
+  - `factoryDeps`: `BytesLike[]`;
+  - `value`: `BigInt`;
+- `received_timestamp_ms`: `number`;
+- `raw_bytes`: `string`;
 
 ## `Signature`
 
