@@ -92,7 +92,7 @@ const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
 
 ## Install zksync-ethers
 
-1. From the `hello-world/frontend` root directoy, install the `zksync-ethers` library by running the following command in your terminal:
+1. From the `hello-world/frontend` root directory, install the `zksync-ethers` library by running the following command in your terminal:
 
 ::: code-tabs
 
@@ -329,7 +329,7 @@ We will use the [testnet paymaster](../../../build/developer-reference/account-a
 :::tip About the testnet paymaster
 **The testnet paymaster allows users to pay fees in any ERC20 token with a fixed exchange rate of 1:1 - Token:ETH**, i.e. one unit of the token for one wei of ETH.
 
-This means that transaction fees in tokens with fewer decimals than ETH will be bigger; for example, USDC which has only 6 decimals. This is a known behaviour of the testnet paymaster, which was built for demostration purposes only.
+This means that transaction fees in tokens with fewer decimals than ETH will be bigger; for example, USDC which has only 6 decimals. This is a known behaviour of the testnet paymaster, which was built for demonstration purposes only.
 
 As the name suggests, the testnet paymaster is only available on testnet. When integrating your protocol on mainnet, you should follow the documentation of the paymaster you use, or create your own.
 
