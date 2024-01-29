@@ -75,7 +75,7 @@ To utilize zkSync's native account abstraction and Paymasters, extend the Wallet
 
 ### 1. Set up your Client & Transport
 
-Initialize your [Client](/docs/clients/intro) with a [Transport](/docs/clients/intro) & [zkSync Chain](https://viem.sh/docs/chains/zksync), then extend it with zkSync EIP712 actions:
+Initialize your [Client](https://viem.sh/docs/clients/intro#clients) with a [Transport](https://viem.sh/docs/clients/intro#transports) & [zkSync Chain](https://viem.sh/docs/chains/zksync), then extend it with zkSync EIP712 actions:
 
 ```javascript
 import 'viem/window'
@@ -107,8 +107,8 @@ const walletClient = createWalletClient({
 
 const paymasterAddress = '0xFD9aE5ebB0F6656f4b77a0E99dCbc5138d54b0BA';
 const params = utils.getPaymasterParams(paymasterAddress, {
-        type: "General",
-        innerInput: new Uint8Array(),
+  type: "General",
+  innerInput: new Uint8Array(),
 });
 
 const hash = await walletClient.sendTransaction({
@@ -147,8 +147,8 @@ const walletClient = createWalletClient({
 
 const paymasterAddress = '0xFD9aE5ebB0F6656f4b77a0E99dCbc5138d54b0BA';
 const params = utils.getPaymasterParams(paymasterAddress, {
-        type: "General",
-        innerInput: new Uint8Array(),
+  type: "General",
+  innerInput: new Uint8Array(),
 });
 
 const hash = await walletClient.writeContract({
