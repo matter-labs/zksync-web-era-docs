@@ -69,7 +69,7 @@ const client = createWalletClient({
 client.sendTransaction({ ... })
 ```
 
-## Sending Transactions using a Paymaster
+## Writing to a contract using a Paymaster
 
 To utilize zkSync's native account abstraction and Paymasters, extend the Wallet client with `eip712WalletActions`:
 
@@ -89,48 +89,11 @@ const walletClient = createWalletClient({
 }).extend(eip712WalletActions())
 ```
 
-### 2. Use Actions
+### 2. Interact with Contracts
 
-After setting up, send transactions on zkSync using a [paymaster](https://docs.zksync.io/build/developer-reference/account-abstraction.html#paymasters):
+To interact with zkSync contracts using a paymaster, ensure your paymaster is deployed and has sufficient funds. For more on paymasters, refer to the zkSync [paymasters](https://docs.zksync.io/build/developer-reference/account-abstraction.html#paymasters) documentation.
 
-```javascript
-import 'viem/window'
-import { createWalletClient, custom } from 'viem'
-import { zkSync } from 'viem/chains'
-import { eip712WalletActions } from 'viem/zksync'
-import { utils } from 'zksync-ethers'
-
-const walletClient = createWalletClient({
-  chain: zkSync,
-  transport: custom(window.ethereum!),
-}).extend(eip712WalletActions())
-
-const paymasterAddress = '0xFD9aE5ebB0F6656f4b77a0E99dCbc5138d54b0BA';
-const params = utils.getPaymasterParams(paymasterAddress, {
-  type: "General",
-  innerInput: new Uint8Array(),
-});
-
-const hash = await walletClient.sendTransaction({
-  account: '0xA0Cf798816D4b9b9866b5330EEa46a18382f251e',
-  to: '0x70997970c51812dc3a010c7d01b50e0d17dc79c8',
-  value: 1000000000000000000n,
-  paymaster: paymasterAddress,
-  paymasterInput: params.paymasterInput as `0x${string}`,
-})
-
-console.log("Hash: ", hash);
-```
-
-:::info
-
-Ensure the paymaster is deployed and funded on the target network. See [Paymasters](https://docs.zksync.io/build/developer-reference/account-abstraction.html#paymasters) for more details.
-
-:::
-
-#### To write contracts
-
-To interact with smart contracts, use the following method:
+Here's how to call a contract function using a paymaster:
 
 ```javascript
 import 'viem/window'
@@ -157,9 +120,13 @@ const hash = await walletClient.writeContract({
   functionName: 'mint',
   args: [69420],
   paymaster: paymasterAddress,
-  paymasterInput: params.paymasterInput as `0x${string}`,
+  paymasterInput: params.paymasterInput,
 })
 ```
+
+**Note:** Ensure the paymaster contract is properly set up and funded on your target zkSync network.
+
+For a live example, check out this [StackBlitz demo](https://stackblitz.com/edit/github-aa4rfx?file=index.tsx).
 
 ## Interacting with smart contracts
 
