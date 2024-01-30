@@ -7,8 +7,6 @@ head:
 
 # Code Separation
 
-# Deploy and Runtime Code Separation
-
 On both EVM and EraVM the code is separated into two parts: deploy code and runtime code. The deploy code is executed
 only once, when the contract is deployed. The runtime code is executed every time the contract is called. However, on
 EraVM the deploy code and runtime code are deployed together, and they are not split into two separate chunks of

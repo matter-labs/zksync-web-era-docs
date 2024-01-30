@@ -76,7 +76,7 @@ contract DIAOracle{
     uint128 public timestampOflatestPrice;
 
     /**
-    * @dev A function that retreives the price and the corresponding timestamp
+    * @dev A function that retrieves the price and the corresponding timestamp
     * from the DIA oracle and saves them in storage variables.
     * @param key - A string specifying the asset.
     */

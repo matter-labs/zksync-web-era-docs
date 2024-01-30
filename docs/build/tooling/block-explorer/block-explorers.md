@@ -7,6 +7,8 @@ head:
 
 # Block Explorers
 
+A full list of zkSync block explorers can be found on [Block Explorers page](https://zksync.io/explore#explorers).
+
 ### zkSync Era Official Block Explorer
 
 The official zkSync Era [block explorer](https://explorer.zksync.io/) provides insight to activities on-chain, contract verification, and debugging assistance:

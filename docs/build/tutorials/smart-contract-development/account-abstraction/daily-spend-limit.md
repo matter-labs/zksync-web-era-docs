@@ -963,7 +963,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     nonce: await provider.getTransactionCount(ACCOUNT_ADDRESS),
     type: 113,
     customData: {
-      ergsPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+      gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
     } as types.Eip712Meta,
 
     value: ethers.utils.parseEther(transferAmount),

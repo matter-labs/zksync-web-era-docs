@@ -230,7 +230,7 @@ yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
 @tab npm
 
 ```bash
-yarn hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
+npm hardhat deploy-zksync --script SCRIPT_FILENAME.ts --network zkSyncTestnet
 ```
 
 :::
