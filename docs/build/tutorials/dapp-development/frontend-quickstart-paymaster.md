@@ -51,43 +51,44 @@ Navigate to `http://localhost:8080/` in a browser to see the application running
 We'll only work in the `<script>` section of the `./src/App.vue` file. Some methods are already provided while other have to be implemented. We'll go through these ones one by one:
 
 ```javascript
-methods: {
-  initializeProviderAndSigner() {
+// METHODS TO BE IMPLEMENTED
+  const initializeProviderAndSigner= async ()=>{
     // TODO: initialize provider and signer based on `window.ethereum`
-  },
+  }
 
-  async getGreeting() {
+  const getGreeting = async ()=> {
     // TODO: return the current greeting
     return "";
-  },
+  }
 
-  async getFee() {
+  const getFee = async() => {
     // TODO: return formatted fee
     return "";
-  },
+  }
 
-  async getBalance() {
-    // Return formatted balance
+  const getBalance = async()=> {
+    // TODO: Return formatted balance
     return "";
-  },
-  async getOverrides() {
-    if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
+  }
+  const getOverrides = async() => {
+    if (selectedToken.value.l2Address != ETH_ADDRESS) {
       // TODO: Return data for the paymaster
     }
 
     return {};
-  },
+  }
 ...
 ```
 
-Beneath the `<script>` tag, there are placeholder variables for the address of your deployed `Greeter` contract, `GREETER_CONTRACT_ADDRESS`, and the path to its ABI, `GREETER_CONTRACT_ABI`.
+At the top of the `<script>` tag, there are also placeholder variables for the address of your deployed `Greeter` contract, `GREETER_CONTRACT_ADDRESS`, and the path to its ABI, `GREETER_CONTRACT_ABI`.
 
-```javascript
-<script>
-// eslint-disable-next-line
+```ts
+<script setup lang="ts" >
+import { ref, onMounted } from 'vue'
+// TODO: import ethers and zksync-ethers
+
 const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract address here
-// eslint-disable-next-line
-const GREETER_CONTRACT_ABI = []; // TODO: Complete and import the ABI
+import * as GREETER_CONTRACT_ABI from './abi.json' // TODO: Complete and import the ABI
 ```
 
 ## Install zksync-ethers
@@ -110,14 +111,14 @@ npm install zksync-ethers
 
 :::
 
-1. Add the library imports under at the top of the `./src/App.vue` file.
+2. Add the library imports under at the top of the `./src/App.vue` file.
 
 ```ts
+<script setup lang="ts" >
+import { ref, onMounted } from 'vue'
+
 import {} from "zksync-ethers";
 import {} from "ethers";
-
-const GREETER_CONTRACT_ADDRESS = ""; // TODO: insert the Greeter contract address here
-import * as GREETER_CONTRACT_ABI from "./abi.json"; // TODO: Complete and import the ABI
 ```
 
 ## Add the Contract Info
@@ -175,7 +176,7 @@ import * as GREETER_CONTRACT_ABI from "./abi.json"; // TODO: Complete and import
 ]
 ```
 
-1. The `GREETER_CONTRACT_ABI` variable already imports the `abi.json` file so there's nothing else you need to do:
+3. The `GREETER_CONTRACT_ABI` variable already imports the `abi.json` file so there's nothing else you need to do:
 
 ```ts
 import * as GREETER_CONTRACT_ABI from "./abi.json"; // TODO: Complete and import the ABI
@@ -183,50 +184,52 @@ import * as GREETER_CONTRACT_ABI from "./abi.json"; // TODO: Complete and import
 
 ## Initialise Provider and Signer
 
-1. Go to the `initializeProviderAndSigner` function in `./src/App.vue`. This function is called after the connection to Metamask is successful.
-
-In this function we should:
+The `initializeProviderAndSigner` function in `./src/App.vue` is called right after the connection to Metamask is successful. In this function we should:
 
 - Initialize a `BrowserProvider` and a `Signer` to interact with zkSync.
-- Initialize the `Contract` object to interact with the `Greeter` contract we just deployed.
+- Initialize the `Contract` object to interact with the `Greeter` contract we deployed previously.
 
-2. Import the necessary classes from `zksync-ethers` in the imports we added previously:
+1. Import the necessary classes from `zksync-ethers` in the import statement we added previously:
 
 ```javascript
 import { Contract, BrowserProvider, Provider } from "zksync-ethers";
 ```
 
-3. Initialise the provider, signer, and contract instances like this:
+2. Initialise the provider, signer, and contract instances like this:
 
 ```javascript
-initializeProviderAndSigner() {
-    this.provider = new Provider('https://sepolia.era.zksync.dev');
-    // Note that we still need to get the Metamask signer
-    this.signer = (new Web3Provider(window.ethereum)).getSigner();
-    this.contract = new Contract(
-        GREETER_CONTRACT_ADDRESS,
-        GREETER_CONTRACT_ABI,
-        this.signer
-    );
-},
+const initializeProviderAndSigner = async () => {
+  provider = new Provider("https://sepolia.era.zksync.dev");
+  // Note that we still need to get the Metamask signer
+  signer = await new BrowserProvider(window.ethereum).getSigner();
+  contract = new Contract(GREETER_CONTRACT_ADDRESS, GREETER_CONTRACT_ABI, signer);
+};
 ```
+
+::: info zksync-ethers classes
+
+Note that classes like `Contract` and `Provider` have the same constructor parameters in `zksync-ethers`.
+
+`zksync-ethers` extends the existing classes from `ethers` with zksync-specific methods so, unless you're using any of those features, you won't need to do any changes in your code.
+
+:::
 
 ## Retrieve the Greeting
 
 Fill in the function to retrieve the greeting from the smart contract:
 
 ```javascript
-async getGreeting() {
-    // Smart contract calls work the same way as in `ethers`
-    return await this.contract.greet();
-},
+const getGreeting = async () => {
+  // Smart contract calls work the same way as in `ethers`
+  return await contract.greet();
+};
 ```
 
-After connecting the Metamask wallet to zkSync Era Testnet, you should see the following page:
+Now if you go back to your browser, after connecting the Metamask wallet to zkSync Era Testnet, you should see the following page:
 
 !['Retrieve message from contract'](../../../assets/images/start-1.png)
 
-The **Select token** dropdown menu allows you to choose which token to pay fees with. We'll enable this feature later.
+The "select token" dropdown menu allows you to choose which token to pay fees with. We'll enable this feature later.
 
 ## Check Balance and Estimate Fee
 
@@ -242,75 +245,78 @@ import { ethers } from "ethers";
 2. Implement the `getBalance()` function as shown below:
 
 ```javascript
-async getBalance() {
-    // Getting the balance for the signer in the selected token
-    const balanceInUnits = await this.signer.getBalance(this.selectedToken.l2Address);
-    // To display the number of tokens in the human-readable format, we need to format them,
-    // e.g. if balanceInUnits returns 500000000000000000 wei of ETH, we want to display 0.5 ETH the user
-    return ethers.utils.formatUnits(balanceInUnits, this.selectedToken.decimals);
-},
+const getBalance = async () => {
+  // Getting the balance for the signer in the selected token
+  const balanceInUnits = await signer.getBalance(selectedToken.value.l2Address);
+  // To display the number of tokens in the human-readable format, we need to format them,
+  // e.g. if balanceInUnits returns 500000000000000000 wei of ETH, we want to display 0.5 ETH the user
+  return ethers.formatUnits(balanceInUnits, selectedToken.value.decimals);
+};
 ```
 
-1. Implement the `getFee()` method that will estimate how much will it cost to update the message in the `Greeter.sol` contract calling the `setGreeting` method:
+3. Implement the `getFee()` method that will estimate how much will it cost to update the message in the `Greeter.sol` contract calling the `setGreeting` method:
 
 ```javascript
-async getFee() {
-    // Getting the amount of gas (gas) needed for one transaction
-    const feeInGas = await this.contract.estimateGas.setGreeting(this.newGreeting);
-    // Getting the gas price per one erg. For now, it is the same for all tokens.
-    const gasPriceInUnits = await this.provider.getGasPrice();
+const getFee = async () => {
+  // Getting the amount of gas (gas) needed for one transaction
+  const feeInGas = await contract.setGreeting.estimateGas(newGreeting.value);
+  // Getting the gas price per one erg. For now, it is the same for all tokens.
+  const gasPriceInUnits = await provider.getGasPrice();
 
-    // To display the number of tokens in the human-readable format, we need to format them,
-    // e.g. if feeInGas*gasPriceInUnits returns 500000000000000000 wei of ETH, we want to display 0.5 ETH the user
-    return ethers.utils.formatUnits(feeInGas.mul(gasPriceInUnits), this.selectedToken.decimals);
-},
+  // To display the number of tokens in the human-readable format, we need to format them,
+  // e.g. if feeInGas*gasPriceInUnits returns 500000000000000000 wei of ETH, we want to display 0.5 ETH the user
+  return ethers.formatUnits(feeInGas * gasPriceInUnits, selectedToken.value.decimals);
+};
 ```
 
 Now, when you select the token to pay the fee, both the account balance and the expected fee for the transaction will be displayed.
 
-Click **Refresh** to recalculate the fee. Note that the fee depends on the length of the message that we want to store in the contract.
-
-It is possible to also click on the **Change greeting** button, but nothing will happen yet as we haven't implemented the function. Let's implement that next.
+Enter the message you want to save and click **Refresh** to recalculate the fee. Note that the fee depends on the length of the message that we want to store in the contract.
 
 ![Estimate transaction fee](../../../assets/images/start-2.png)
 
+It is possible to also click on the **Change greeting** button, but nothing will happen yet as we haven't implemented the function. Let's implement that next.
+
 ## Update the Greeting
 
-Update the function in `./src/App.vue` with the following code:
+Update the `changeGreeting` function in `./src/App.vue` with the following code:
 
 ```javascript
-async changeGreeting() {
-    this.txStatus = 1;
-    try {
-        const txHandle = await this.contract.setGreeting(this.newGreeting, await this.getOverrides());
+const changeGreeting = async () => {
+  txStatus.value = 1;
+  try {
+    const overrides = await getOverrides();
+    const txHandle = await contract.setGreeting(newGreeting.value, overrides);
 
-        this.txStatus = 2;
+    txStatus.value = 2;
 
-        // Wait until the transaction is committed
-        await txHandle.wait();
-        this.txStatus = 3;
+    // Wait until the transaction is committed
+    await txHandle.wait();
+    txStatus.value = 3;
 
-        // Update greeting
-        this.greeting = await this.getGreeting();
+    // Update greeting
+    greeting.value = await getGreeting();
 
-        this.retreivingFee = true;
-        this.retreivingBalance = true;
-        // Update balance and fee
-        this.currentBalance = await this.getBalance();
-        this.currentFee = await this.getFee();
-    } catch (e) {
-        alert(JSON.stringify(e));
-    }
+    retrievingFee.value = true;
+    retrievingBalance.value = true;
+    // Update balance and fee
+    currentBalance.value = await getBalance();
+    currentFee.value = await getFee();
+  } catch (e) {
+    console.error(e);
+    alert(e);
+  }
 
-    this.txStatus = 0;
-    this.retreivingFee = false;
-    this.retreivingBalance = false;
-},
+  txStatus.value = 0;
+  retrievingFee.value = false;
+  retrievingBalance.value = false;
+  newGreeting.value = "";
+};
 ```
 
-Now you can update the greeting message in the contract via a transaction sent with Metamask. You will see the Greeter message change on the app.
+Now you can update the greeting message in the contract via a transaction sent with Metamask. Once the transaction is processed, you will see the Greeter message change on the app.
 
-Congrats! You now have a fully functional Greeter-dApp! However, it does not yet leverage any zkSync-specific features.
+Congrats! You now have a fully functional Greeter-dApp! However, it does not yet leverage any zkSync-specific features. Let's fix that by integrating a paymaster!
 
 ::: warning
 Do you see a **wallet_requestPermissions** error?
@@ -322,7 +328,13 @@ Read more about `wallet_requestPermissions`, in the [MetaMask documentation](htt
 
 ## Pay Fees with ERC20 Tokens
 
-zkSync Era has native account abstraction, a feature that allows application developers to integrate [paymasters](../../../build/developer-reference/account-abstraction.md#paymasters) that can pay the fees on behalf of the users, or allow fees to be paid with ERC20 tokens.
+zkSync Era has native account abstraction, a feature that allows application developers to integrate paymasters. You can find more information about paymasters in [this section of our docs](<(../../../build/developer-reference/account-abstraction.md#paymasters)>) but the TL;DR is the following:
+
+- Paymasters are smart contracts that alter the fee mechanism of the protocol.
+- The paymaster contract pays the transaction fees with ETH using its own balance.
+- Instead of forcing users to just pay transaction fees with ETH, the paymaster contract logic dictates what can be done.
+- From a user's point of view, paymasters can allow users to pay gas fess with ERC20 tokens or even allow gasless transactions.
+- To integrate a paymaster in your app, transactions must include specific parameters as transaction overrides in a custom property called `paymasterParams`
 
 We will use the [testnet paymaster](../../../build/developer-reference/account-abstraction.md#testnet-paymaster) that is provided on all zkSync Era testnets.
 
@@ -335,21 +347,21 @@ As the name suggests, the testnet paymaster is only available on testnet. When i
 
 :::
 
-The `getOverrides` function returns an empty object when users decide to pay with Ether but, when users select the ERC20 option, it should return the paymaster address and all the information required by it. This is how to do it:
+The `getOverrides` function returns an empty object when users decide to pay with Ether but, when users select the ERC20 option, it should return the paymaster address and all the information required to interact with it. Let's see how it's done.
 
-1. To retrieve the address of the testnet paymaster from the zkSync provider, add the following to the `getOverrides` function:
+1. To retrieve the address of the testnet paymaster we'll use the `getTestnetPaymasterAddress` method from the zkSync provider. This is one of the zksync-specific methods provided by `zksync-ethers`:
 
 ```javascript
-async getOverrides() {
-  if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
+const getOverrides = async () => {
+  if (selectedToken.value.l2Address != ETH_ADDRESS) {
     // retrieve the testnet paymaster address
-    const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
+    const testnetPaymaster = await provider.getTestnetPaymasterAddress();
 
     // ..
   }
 
   return {};
-}
+};
 ```
 
 2. Import `utils` from `zksync-ethers` SDK as we'll need to use some of its methods next:
@@ -365,29 +377,29 @@ async getOverrides() {
   if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
     const testnetPaymaster = await this.provider.getTestnetPaymasterAddress();
 
-    const gasPrice = await this.provider.getGasPrice();
-    // estimate gasLimit via paymaster
-    const paramsForFeeEstimation = utils.getPaymasterParams(
-          testnetPaymaster,
-          {
-            type: "ApprovalBased",
-            minimalAllowance: ethers.BigNumber.from("1"),
-            token: this.selectedToken.l2Address,
-            innerInput: new Uint8Array(),
-          }
-        );
+    const gasPrice = await provider.getGasPrice();
 
-        // estimate gasLimit via paymaster
-        const gasLimit = await this.contract.estimateGas.setGreeting(
-          this.newGreeting,
-          // add paymaster params in transaction overrides
-          {
-            customData: {
-              gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
-              paymasterParams: paramsForFeeEstimation,
-            },
-          }
-        );
+    // define paymaster parameters for gas estimation
+    const paramsForFeeEstimation = utils.getPaymasterParams(
+      testnetPaymaster,
+      {
+        type: "ApprovalBased",
+        minimalAllowance: BigInt("1"),
+        token: selectedToken.value.l2Address,
+        innerInput: new Uint8Array(),
+      }
+    );
+
+    // estimate gasLimit via paymaster
+    const gasLimit = await contract.setGreeting.estimateGas(
+      newGreeting.value,
+      {
+        customData: {
+          gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+          paymasterParams: paramsForFeeEstimation,
+        },
+      }
+    );
     // fee calculated in ETH will be the same in
     // ERC20 token using the testnet paymaster
     const fee = gasPrice.mul(gasLimit);
@@ -401,43 +413,38 @@ async getOverrides() {
 
 4. Now, what is left is to encode the paymasterInput following the [protocol requirements](../../../build/developer-reference/account-abstraction.md#testnet-paymaster) and return the needed overrides.
 
-Copy/paste the following complete function:
+This will be the complete function:
 
 ```javascript
-async getOverrides() {
-  if (this.selectedToken.l1Address != ETH_L1_ADDRESS) {
-    const testnetPaymaster =
-      await this.provider.getTestnetPaymasterAddress();
+const getOverrides = async () => {
+  if (selectedToken.value.l2Address != ETH_ADDRESS) {
+    const testnetPaymaster = await provider.getTestnetPaymasterAddress();
 
-    const gasPrice = await this.provider.getGasPrice();
+    const gasPrice = await provider.getGasPrice();
 
-    // estimate gasLimit via paymaster
-    const paramsForFeeEstimation = utils.getPaymasterParams(
-      testnetPaymaster,
-      {
-        type: "ApprovalBased",
-        minimalAllowance: ethers.BigNumber.from("1"),
-        token: this.selectedToken.l2Address,
-        innerInput: new Uint8Array(),
-      }
-    );
+    // define paymaster parameters for gas estimation
+    const paramsForFeeEstimation = utils.getPaymasterParams(testnetPaymaster, {
+      type: "ApprovalBased",
+      minimalAllowance: BigInt("1"),
+      token: selectedToken.value.l2Address,
+      innerInput: new Uint8Array(),
+    });
 
     // estimate gasLimit via paymaster
-    const gasLimit = await this.contract.estimateGas.setGreeting(
-      this.newGreeting,
-      {
-        customData: {
-          gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
-          paymasterParams: paramsForFeeEstimation,
-        },
-      }
-    );
+    const gasLimit = await contract.setGreeting.estimateGas(newGreeting.value, {
+      customData: {
+        gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+        paymasterParams: paramsForFeeEstimation,
+      },
+    });
 
-    const fee = gasPrice.mul(gasLimit.toString());
+    // fee calculated in ETH will be the same in
+    // ERC20 token using the testnet paymaster
+    const fee = gasPrice * gasLimit;
 
     const paymasterParams = utils.getPaymasterParams(testnetPaymaster, {
       type: "ApprovalBased",
-      token: this.selectedToken.l2Address,
+      token: selectedToken.value.l2Address,
       // provide estimated fee as allowance
       minimalAllowance: fee,
       // empty bytes as testnet paymaster does not use innerInput
@@ -446,7 +453,7 @@ async getOverrides() {
 
     return {
       maxFeePerGas: gasPrice,
-      maxPriorityFeePerGas: ethers.BigNumber.from(0),
+      maxPriorityFeePerGas: BigInt(1),
       gasLimit,
       customData: {
         gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
@@ -456,24 +463,22 @@ async getOverrides() {
   }
 
   return {};
-},
+};
 ```
 
 The `ApprovalBased` type in the `paymasterParams` indicates that this paymaster allows ERC20 tokens. Behind the scenes, zkSync will take care of approve the ERC20 spending.
 
-5. To use a list of ERC20 tokens, change the following line:
+5. To enable the use a list of ERC20 tokens, change the following line:
 
 ```javascript
-const allowedTokens = require("./eth.json");
+import allowedTokens from "./eth.json"; // change to "./erc20.json" to use ERC20 tokens
 ```
 
-to the following one:
+to the following, which uses a list of predefined ERC20 tokens including DAI, USDC and [the TEST token](https://sepolia.explorer.zksync.io/address/0x7E2026D8f35872923F5459BbEDDB809F6aCEfEB3#contract):
 
 ```javascript
-const allowedTokens = require("./erc20.json");
+import allowedTokens from "./erc20.json"; // change to "./erc20.json" to use ERC20 tokens
 ```
-
-The `erc20.json` file contains a few tokens like DAI, USDC and wBTC.
 
 ## Complete Application
 
@@ -483,7 +488,7 @@ Now you should be able to update the greeting message with ETH or any of the ava
 
 ![img](../../../assets/images/start-6.jpeg)
 
-2. Click on the `Change greeting` button to update the message. Since the `paymasterParams` were supplied, the transaction will be an `EIP712` ([more on EIP712 here](https://eips.ethereum.org/EIPS/eip-712)):
+2. Click on the `Change greeting` button to update the message. Since the `paymasterParams` were supplied, the transaction will be an `EIP712` ([more on EIP712 here](https://eips.ethereum.org/EIPS/eip-712)) so it'll look slightly different in your wallet:
 
 ![img](../../../assets/images/start-4.png)
 
@@ -495,7 +500,7 @@ After the transaction is processed, the page updates the balances and the new gr
 
 ## Takeaways
 
-- `zksync-ether` is a Javascript library that extends `ethers` with zksync-specific methods.
+- `zksync-ethers` is a Javascript library that extends `ethers` with zksync-specific methods.
 - Paymasters allow users to pay transaction fees in ERC20 tokens or gasless.
 - Paymasters can be easily integrated in frontend applications by including additional transaction parameters.
 
