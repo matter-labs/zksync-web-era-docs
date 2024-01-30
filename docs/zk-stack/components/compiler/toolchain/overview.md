@@ -39,7 +39,7 @@ We are using two high-level source code compilers at the time of writing:
 - [vyper](https://github.com/vyperlang/vyper/releases): the official Vyper compiler. For more info, see the latest [Vyper documentation](https://docs.vyperlang.org/en/latest/index.html).
 
 ::: info Security and best practices
-Follow the [security considerations and best practices](../../../../build/quick-start/best-practices.md) to build smart contracts on zkSync Era.
+Follow the [security considerations and best practices](../../../../build/quick-start/best-practices.md#security-and-best-practices) to build smart contracts on zkSync Era.
 :::
 
 ## IR Compilers
@@ -64,13 +64,13 @@ and remove unsupported feature artifacts.
 
 ## Assembler
 
-The [assembler](https://github.com/matter-labs/era-zkevm-assembly), which is written in Rust, compiles zkEVM assembly
+The [assembler](https://github.com/matter-labs/era-zkEVM-assembly), which is written in Rust, compiles zkEVM assembly
 to zkEVM bytecode. This tool is not a part of our LLVM back end as it uses several cryptographic libraries which are
 easier to maintain outside of the framework.
 
 ## Hardhat Plugins
 
-We recommend using our IR compilers via [their corresponding Hardhat plugins]../../../../build/tooling/hardhat/getting-started.md).
+We recommend using our IR compilers via [their corresponding Hardhat plugins](../../../../build/tooling/hardhat/getting-started.md).
 Add these plugins to the Hardhat's config file to compile new projects or migrate
 existing ones to zkSync Era. For a lower-level approach, download our compiler binaries via the
 links above and use their CLI interfaces.
@@ -83,10 +83,3 @@ existing ones to zkSync Era. For a lower-level approach, download our compiler b
 
 - [hardhat-zksync-solc documentation](../../../../build/tooling/hardhat/hardhat-zksync-solc.md)
 - [hardhat-zksync-vyper documentation](../../../../build/tooling/hardhat/hardhat-zksync-vyper.md)
-
-::: warning
-
-- Using compilers running in Docker images is no longer supported.
-- Instead, use the `compilerSource: "binary"` in the Hardhat config file to use the compiler binary.
-- To compile with binaries, use `zksolc <contract>.sol --bin`.
-  :::
