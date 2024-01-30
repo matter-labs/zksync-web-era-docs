@@ -196,7 +196,7 @@ In addition, the deployment script verified the contract automatically so you ca
 ## Interact with the contract
 
 The project also comes with a script to interact with the contract in `/deploy/interact.ts`.
-Add the address of the Greeter contract yuo just deployed in the `CONTRACT_ADDRESS` variable inside the `/deploy/interact.ts` file:
+Add the address of the Greeter contract you just deployed in the `CONTRACT_ADDRESS` variable inside the `/deploy/interact.ts` file:
 
 ```ts
 import * as hre from "hardhat";
@@ -277,9 +277,7 @@ Congratulations! You've retrieved and updated the message on the `Greeter` contr
 
 ## Takeaways
 
-Here are the main things that you sho
-
-- zkSync is EVM compatible and you can write smart contracts in Solidity or Vyper, use Hardhat, libraries like Ethers and Web3.js, or wallets like Metamask or Rabby.
+- zkSync is EVM compatible and you can write smart contracts in Solidity or Vyper, use Hardhat, libraries like Ethers and Web3.js, or wallets like Metamask and Rabby.
 - zkSync CLI provides a quick way to scaffold different types of projects thanks to its multiple templates.
 - Contracts deployed to zkSync are compiled using `zksolc` or `zkvyper` as they generate a special bytecode for zkSync's ZKEVM.
 
@@ -287,7 +285,7 @@ Here are the main things that you sho
 
 This was your first step towards becoming a zkSync developer. Here is what you can do next:
 
-- Create a frontend for this contract following the [Frontend quickstart](../tutorials/dapp-development/frontend-quickstart-paymaster.md)
+- Create a frontend for this contract following the [Frontend quickstart](../tutorials/dapp-development/frontend-quickstart-paymaster.md).
 - Join our [developer community in GitHub](https://github.com/zkSync-Community-Hub/zksync-developers/discussions), where you can ask questions and help other developers.
 - Read the [Security and best practices](./best-practices.md) to keep you apps secure.
 - Learn about the [differences between Ethereum and zkSync](../developer-reference/differences-with-ethereum.md).
