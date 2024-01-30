@@ -328,7 +328,7 @@ Read more about `wallet_requestPermissions`, in the [MetaMask documentation](htt
 
 ## Pay Fees with ERC20 Tokens
 
-zkSync Era has native account abstraction, a feature that allows application developers to integrate paymasters. You can find more information about paymasters in [this section of our docs](<(../../../build/developer-reference/account-abstraction.md#paymasters)>) but the TL;DR is the following:
+zkSync Era has native account abstraction, a feature that allows application developers to integrate paymasters. You can find more information about paymasters in [this section of our docs](../../../build/developer-reference/account-abstraction.md#paymasters) but the TL;DR is the following:
 
 - Paymasters are smart contracts that alter the fee mechanism of the protocol.
 - The paymaster contract pays the transaction fees with ETH using its own balance.
