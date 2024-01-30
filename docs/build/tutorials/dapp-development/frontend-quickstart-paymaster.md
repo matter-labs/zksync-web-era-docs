@@ -509,4 +509,4 @@ After the transaction is processed, the page updates the balances and the new gr
 - For an overview of security and best practices for developing on zkSync Era, refer to the [Security and best practices page](../../quick-start/best-practices.md).
 - To learn more about `zksync-ethers` SDK, check out its [documentation](../../../build/sdks/js/zksync-ethers/getting-started.md).
 - To learn more about the zkSync hardhat plugins, check out their [documentation](../../../build/tooling/hardhat/getting-started.md).
-- If you have a project, check out our [migration guide](../tooling/hardhat/migrating-to-zksync.md).
+- If you have a project, check out our [migration guide](../../tooling/hardhat/migrating-to-zksync.md).
