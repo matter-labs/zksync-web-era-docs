@@ -7,29 +7,36 @@ head:
 
 # viem
 
-[viem](https://viem.sh/) is a TypeScript interface for Ethereum that now includes support for zkSync, offering low-level stateless primitives for interacting with both Ethereum and zkSync networks. You can use viem to interact seamlessly with smart contracts deployed on zkSync. For more information on zkSync specific support please refer to viem documentation [here](https://viem.sh/docs/chains/zksync).
+[viem](https://viem.sh/) is a TypeScript interface for Ethereum that now includes support for zkSync, offering low-level stateless primitives for interacting with both Ethereum and zkSync. You can use viem to interact seamlessly with smart contracts deployed on zkSync. For more information on zkSync specific support please refer to viem documentation [here](https://viem.sh/docs/chains/zksync).
 
 You can use viem to interact with smart contracts deployed on zkSync.
 
-## Install
+## Installation
 
-To get started, install viem by running the following command:
+Start by adding Viem to your project. Open your terminal and execute the following command:
 
 ```bash
 npm install --save viem
 ```
 
-## Setup
+This command installs the latest version of Viem and adds it to your project's dependencies.
+
+## Initial Setup
+
+### Client Configuration
 
 Before using viem, you need to setup a [Client](https://viem.sh/docs/clients/intro.html) with a chosen [Transport](https://viem.sh/docs/clients/intro.html) and [Chain](https://viem.sh/docs/clients/chains.html).
+
+#### Example
 
 ```javascript
 import { createPublicClient, http } from "viem";
 import { zkSyncSepoliaTestnet } from "viem/chains";
 
+// Initialize the Viem client
 const client = createPublicClient({
-  chain: zkSyncSepoliaTestnet,
-  transport: http(),
+  chain: zkSyncSepoliaTestnet, // Specify the zkSync network
+  transport: http(), // Define the transport method
 });
 ```
 
@@ -40,108 +47,146 @@ const client = createPublicClient({
 
 :::
 
-## Reading data from zkSync
+### Reading Data
 
-With your client set up, access zkSync data using Public Actions. These actions correspond to Ethereum RPC methods. Since zkSync supports the standard Ethereum JSON-RPC API you can make use of these methods.
+Access zkSync data by invoking Public Actions that mirror Ethereum RPC methods.
 
-For example, you can use the `getBlockNumber` client method to get the latest block:
+#### Fetch the Latest Block Number
 
 ```javascript
 const blockNumber = await client.getBlockNumber();
+console.log(`Current block number: ${blockNumber}`);
 ```
 
-## Writing data to zkSync
+### Writing Data
 
-To write data to zkSync, create a Wallet client (`createWalletClient`) and specify an [`Account`](https://ethereum.org/en/developers/docs/accounts/).
+To write data, such as sending transactions, you need to set up a Wallet client.
+
+#### Sending Transactions
 
 ```javascript
-import { createWalletClient, custom } from 'viem'
-import { zkSyncSepoliaTestnet } from 'viem/chains'
+import { createWalletClient, custom } from "viem";
+import { zkSyncSepoliaTestnet } from "viem/chains";
 
-const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
+// Request account access from the Ethereum provider
+const [account] = await window.ethereum.request({ method: "eth_requestAccounts" });
 
+// Configure the wallet client
 const client = createWalletClient({
   account,
   chain: zkSyncSepoliaTestnet,
-  transport: custom(window.ethereum)
-})
+  transport: custom(window.ethereum),
+});
 
-client.sendTransaction({ ... })
+// Example transaction
+client.sendTransaction({
+  /* transaction details */
+});
 ```
 
-## Writing to a contract using a Paymaster
+## Advanced Usage
 
-To utilize zkSync's native account abstraction and Paymasters, extend the Wallet client with `eip712WalletActions`:
+### Utilizing Paymasters
 
-### 1. Set up your Client & Transport
+[Paymasters](https://docs.zksync.io/build/developer-reference/account-abstraction.html#paymasters) cover transaction fees, facilitating a smoother user experience. To utilize zkSync's native account abstraction and Paymasters, extend the Wallet client with `eip712WalletActions`:
 
-Initialize your [Client](https://viem.sh/docs/clients/intro#clients) with a [Transport](https://viem.sh/docs/clients/intro#transports) & [zkSync Chain](https://viem.sh/docs/chains/zksync), then extend it with zkSync EIP712 actions:
+#### Setup
 
 ```javascript
-import 'viem/window'
-import { createWalletClient, custom } from 'viem'
-import { zkSync } from 'viem/chains'
-import { eip712WalletActions } from 'viem/zksync'
+import 'viem/window';
+import { createWalletClient, custom } from 'viem';
+import { zkSync } from 'viem/chains';
+import { eip712WalletActions } from 'viem/zksync';
 
+// Initialize and extend the wallet client
 const walletClient = createWalletClient({
   chain: zkSync,
   transport: custom(window.ethereum!),
-}).extend(eip712WalletActions())
+}).extend(eip712WalletActions());
 ```
 
-### 2. Interact with Contracts
-
-To interact with zkSync contracts using a paymaster, ensure your paymaster is deployed and has sufficient funds. For more on paymasters, refer to the zkSync [paymasters](https://docs.zksync.io/build/developer-reference/account-abstraction.html#paymasters) documentation.
-
-Here's how to call a contract function using a paymaster:
+#### Sending a Transaction with a Paymaster
 
 ```javascript
-import 'viem/window'
-import { createWalletClient, custom, parseAbi } from 'viem'
-import { zkSync } from 'viem/chains'
-import { eip712WalletActions } from 'viem/zksync'
-import { utils } from 'zksync-ethers'
+import { utils } from "zksync-ethers";
 
-const walletClient = createWalletClient({
-  account: '0x',
-  chain: zkSync,
-  transport: custom(window.ethereum!),
-}).extend(eip712WalletActions())
-
-const paymasterAddress = '0xFD9aE5ebB0F6656f4b77a0E99dCbc5138d54b0BA';
+const paymasterAddress = "<DEPLOYED_PAYMASTER_ADDRESS>"; // Replace with your paymaster address
 const params = utils.getPaymasterParams(paymasterAddress, {
   type: "General",
   innerInput: new Uint8Array(),
 });
 
-const hash = await walletClient.writeContract({
-  address: '0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2',
-  abi: parseAbi(['function mint(uint32 tokenId) nonpayable']),
-  functionName: 'mint',
-  args: [69420],
+// Send the transaction example
+const hash = await walletClient.sendTransaction({
+  account: "0xA0Cf798816D4b9b9866b5330EEa46a18382f251e",
+  to: "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+  value: 1000000000000000000n,
   paymaster: paymasterAddress,
   paymasterInput: params.paymasterInput,
-})
+});
 ```
 
-**Note:** Ensure the paymaster contract is properly set up and funded on your target zkSync network.
+:::info
 
-For a live example, check out this [StackBlitz demo](https://stackblitz.com/edit/github-aa4rfx?file=index.tsx).
+**Note:** Ensure your paymaster contract is set up and funded appropriately.
 
-## Interacting with smart contracts
+:::
 
-Interact with zkSync smart contracts by creating a Contract instance with [`getContract`](https://viem.sh/docs/contract/getContract.html), passing the ABI, address, and Client:
+For a live example, check out this [StackBlitz demo](https://stackblitz.com/edit/github-zfdhx8-ju8urb?file=index.tsx). Remember to replace `PAYMASTER_CONTRACT_ADDRESS` with your own!
+
+### Contract Interactions with Paymasters
+
+#### Contract Function Call
+
+```javascript
+import { utils } from "zksync-ethers";
+
+const paymasterAddress = "<DEPLOYED_PAYMASTER_ADDRESS>"; // Replace with actual address
+
+// Set up paymaster parameters
+const params = utils.getPaymasterParams(paymasterAddress, {
+  type: "General",
+  innerInput: new Uint8Array(),
+});
+
+// Call the contract function
+const hash = await walletClient.writeContract({
+  address: "0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2",
+  abi: parseAbi(["function setGreeting(string _greeting) nonpayable"]),
+  functionName: "setGreeting",
+  args: ["zkSync!"],
+  paymaster: paymasterAddress,
+  paymasterInput: params.paymasterInput,
+});
+```
+
+:::info
+
+**Note:** Ensure your paymaster contract is set up and funded appropriately.
+
+:::
+
+For a live example, check out this [StackBlitz demo](https://stackblitz.com/edit/github-aa4rfx?file=index.tsx). Remember to replace `PAYMASTER_CONTRACT_ADDRESS` with your own!
+
+### Smart Contract Interactions
+
+Interact with smart contracts by creating a Contract instance, providing ABI, address, and the client.
+
+#### Example
 
 ```javascript
 import { getContract } from "viem";
-import { wagmiAbi } from "./abi";
-import { publicClient } from "./client";
+import { yourContractAbi } from "./abi"; // Your contract's ABI
+import { client } from "./client"; // Your initialized Viem client
 
+// Initialize the contract instance
 const contract = getContract({
-  address: "CONTRACT_ADDRESS",
-  abi: wagmiAbi,
-  publicClient,
+  address: "YOUR_CONTRACT_ADDRESS", // Replace with your contract's address
+  abi: yourContractAbi,
+  client,
 });
 
+// Interact with your contract
 const result = await contract.read.totalSupply();
+console.log(`Total Supply: ${result}`);
 ```
