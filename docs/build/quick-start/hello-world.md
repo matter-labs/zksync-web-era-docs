@@ -56,7 +56,11 @@ It will give you options for different types of projects but for this tutorial c
 ? Package manager: yarn
 ```
 
+::: info
+
 The private key of your wallet will be included in the `.env` file of the project and won't be pushed to GitHub.
+
+:::
 
 The project structure is pretty straight forward:
 
