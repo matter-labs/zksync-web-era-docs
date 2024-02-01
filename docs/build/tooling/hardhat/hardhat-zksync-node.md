@@ -24,7 +24,8 @@ Ensure you are using the correct version of the plugin with ethers:
 
 - For plugin version **≥1.0.0**:
   - Compatible with ethers **v6** (⭐ Recommended)
-    :::
+
+:::
 
 ## Installation
 
@@ -37,7 +38,7 @@ Add the latest version of this plugin to your project with the following command
 @tab:active yarn
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-node
+yarn add -D @matterlabs/hardhat-zksync-node zksync-ethers ethers
 ```
 
 @tab npm
