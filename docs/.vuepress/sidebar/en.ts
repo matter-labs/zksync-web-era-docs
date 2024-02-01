@@ -109,6 +109,10 @@ export const enSidebar = sidebar({
               link: "/build/tutorials/tooling-guides/wagmi.md",
             },
             {
+              text: "Viem",
+              link: "/build/tutorials/tooling-guides/viem.md",
+            },
+            {
               text: "API3",
               link: "/build/tutorials/tooling-guides/api3.md",
             },
@@ -236,6 +240,7 @@ export const enSidebar = sidebar({
             "/build/tooling/hardhat/hardhat-zksync-verify-vyper.md",
             "/build/tooling/hardhat/hardhat-zksync-ethers.md",
             "/build/tooling/hardhat/hardhat-zksync-toolbox.md",
+            "/build/tooling/hardhat/hardhat-zksync-node.md",
             "/build/tooling/hardhat/other-plugins.md",
           ]
         },
