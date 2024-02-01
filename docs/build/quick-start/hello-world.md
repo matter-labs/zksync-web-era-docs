@@ -7,6 +7,10 @@ head:
 
 # Quickstart: hello devs! hello zkSync
 
+<div class="time-label-wrapper">
+  <p>⏱️ Time to complete: &lt;5 minutes</p>
+</div>
+
 ![zksync hello world tutorial](../../assets/images/cli-doc-6.gif)
 
 This guide shows you how to deploy and interact with a smart contract on zkSync in less than 5 minutes. It will help you get familiar with the zkSync development toolbox.
