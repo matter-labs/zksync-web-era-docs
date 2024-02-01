@@ -32,7 +32,7 @@ The official zkSync Era [block explorer](https://explorer.zksync.io/) provides i
 
 #### Blockscout for zkSync Sepolia testnet
 
-The [zkSync Sepolia testnet explorer by Blockscout](https://zksync-sepolia.blockscout.com/) details comprehensive data about transactions, blocks, batches, wallets, tokens, and smart contracts on the Sepolia tesenet.
+The [zkSync Sepolia testnet explorer by Blockscout](https://zksync-sepolia.blockscout.com/) details comprehensive data about transactions, blocks, batches, wallets, tokens, and smart contracts on the Sepolia testnet.
 
 ### Hyperscan
 
