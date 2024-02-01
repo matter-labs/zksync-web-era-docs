@@ -87,7 +87,8 @@ interface FactoryOptions {
   wallet?: zk.Wallet;
 }
 
-function provider: () => zk.Provider;
+function providerL2: () => zk.Provider;
+function providerL1: () => ethers.Provider;
 function getWallet: (privateKeyOrIndex?: string | number) => zk.Wallet;
 function getContractFactory: (name: string, wallet?: zk.Wallet, deploymentType?: DeploymentType) => Promise<zk.ContractFactory>;
 function getContractFactory: (abi: any[], bytecode: ethers.BytesLike,wallet?: Wallet,deploymentType?: DeploymentType) => Promise<zk.ContractFactory>;
@@ -102,7 +103,8 @@ function loadArtifact: (name: string) => Promise<ZkSyncArtifact>;
 function deployContract: (artifact: ZkSyncArtifact, constructorArguments: any[], wallet?: zk.Wallet, overrides?: ethers.Overrides, additionalFactoryDeps?: ethers.BytesLike[]) => Promise<zk.Contract>;
 ```
 
-- `provider()` - returns a `zk.Provider` automatically connected to the selected network.
+- `providerL2()` - retruns a `zk.Provider` for L2, automatically connected to the selected network.
+- `providerL1()` - retruns a `ethers.Provider` for L1, automatically connected to the selected network.
 - `getWallet(privateKeyOrIndex?: string | number)` - returns `zk.Wallet` for the given private key or index. If the network is set to local and the private key is not provided, the method will return a wallet for rich accounts with the default index of `0` or the specified index. If the `accounts` object is set in the hardhat config and the private key is not specified, the method will return the wallet for the given account with the default index `0` or for the specified index.
 - `getWallets()` - returns all wallets of type `zk.Wallet`. If the network is set to local, the method will return wallets for rich accounts. If the `accounts` object is set in the hardhat config for the used network, the method will return the wallets for the provided accounts.
 - `getContractFactory(name: string, wallet?: zk.Wallet, deploymentType?: DeploymentType)` - returns a `zk.ContractFactory` for provided artifact name.
@@ -129,7 +131,10 @@ Task usage:
 
 ```ts
 task("getFeeData", "Returns a fee data.").setAction(async (hre) => {
-  return await hre.zksyncEthers.provider.getFeeData();
+  const feeDataL2 = await hre.zksyncEthers.providerL2.getFeeData();
+  const feeDataL1 = await this.env.zksyncEthers.providerL1.getFeeData();
+
+  return { feeDataL2, feeDataL1 };
 });
 ```
 
@@ -140,12 +145,11 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.info(chalk.yellow(`Running deploy`));
 
   //automatically connected to the selected network
-  const gasPrice = await hre.zksyncEthers.provider.send("eth_gasPrice", []);
-  assert.strictEqual("0xee6b280", gasPrice);
+  const gasPrice = await hre.zksyncEthers.providerL2.send("eth_gasPrice", []);
 
-  //getContractFactory with default wallet
+  //getContractFactory with default wallet, deploy contract and set new greeting message
   const greeterFactory = await hre.zksyncEthers.getContractFactory("Greeter");
-  const greeter = (await greeterFactory.deploy("Hello, world!")) as zk.Contract;
+  const greeter = await greeterFactory.deploy("Hello, world!");
 
   console.info(chalk.green(`Greeter deployed to: ${await greeter.getAddress()}`));
 
@@ -155,7 +159,21 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   await tx.wait();
   console.info(chalk.green(`Greeter greeting set to: ${await greeter.greet()}`));
 
+  // deploy with provided wallet using loadArtifact and deployContract
   const wallet = await hre.zksyncEthers.getWallet("0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110");
   console.info(chalk.green(`Wallet address: ${await wallet.getAddress()}`));
+
+  // deposit ETH from L1 to L2 to cover costs of deployment
+  const depositHandle = await wallet.deposit({
+    to: wallet.address,
+    token: utils.ETH_ADDRESS,
+    amount: ethers.parseEther("0.001"),
+  });
+  await depositHandle.wait();
+
+  const artifact = await hre.zksyncEthers.loadArtifact("Greeter");
+  const greets = await hre.zksyncEthers.deployContract(artifact, ["Hello, world!"], wallet);
+  console.info(chalk.green(`Greeter deployed to: ${await greets.getAddress()}`));
+  console.info(chalk.green(`Greeter greeting set to: ${await greets.greet()}`));
 }
 ```
