@@ -40,6 +40,6 @@ head:
 | Mainnet                                                                                              | Testnet                                                                                                              |
 | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | [https://mainnet.era.zksync.io](https://mainnet.era.zksync.io)                                       | [https://sepolia.era.zksync.dev](https://sepolia.era.zksync.dev)                                                     |
-| [https://zksync.drpc.org](https://zksync.drpc.org)                                                   | [https://zksync-era-testnet.blockpi.network/v1/rpc/public](https://zksync-era-testnet.blockpi.network/v1/rpc/public) |
+| [https://zksync.drpc.org](https://zksync.drpc.org)                                                   | [https://zksync-era-sepolia.blockpi.network/v1/rpc/public](https://zksync-era-sepolia.blockpi.network/v1/rpc/public) |
 | [https://zksync.meowrpc.com](https://zksync.meowrpc.com)                                             |                                                                                                                      |
 | [https://zksync-era.blockpi.network/v1/rpc/public](https://zksync-era.blockpi.network/v1/rpc/public) |                                                                                                                      |
