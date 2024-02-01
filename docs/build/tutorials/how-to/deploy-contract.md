@@ -7,7 +7,9 @@ head:
 
 # Deploying Smart Contracts
 
-These plugins provide utilities for deploying smart contracts on zkSync Era networks.
+The deployment process involves writing, testing, compiling, and then publishing a smart contract to a blockchain network, where it becomes live and executable.
+
+In this tutorial, we explain step-by-step how to create, compile and deploy a simple smart contract on zkSync network using two different plugins:
 
 - [hardhat-zksync-deploy](deploy-contract.md#deployment-using-hardhat-zksync-deploy) plugin.
 - [hardhat-zksync-ethers](deploy-contract.md#deployment-using-hardhat-zksync-ethers) plugin.
@@ -112,12 +114,9 @@ const config: HardhatUserConfig = {
     },
     defaultNetwork:'zkTestnet',
     networks: {
-        sepolia: {
-            url: 'https://sepolia.infura.io/v3/<API_KEY>' // you can use either the URL of the Ethereum Web3 RPC, or the identifier of the network (e.g. `mainnet` or `rinkeby`)
-        },
         zkTestnet: {
-            url: 'https://sepolia.era.zksync.dev', // you should use the URL of the zkSync network RPC
-            ethNetwork: 'sepolia',
+            url: 'https://sepolia.era.zksync.dev',
+            ethNetwork: 'https://sepolia.infura.io/v3/<API_KEY>',
             zksync: true
         },
     },
@@ -129,10 +128,16 @@ const config: HardhatUserConfig = {
 
 In the configuration above we have some important fields such as:
 
-1. **zksolc** - this is the configuration for zk solc compiler. We are using default settings with `latest` version and `enabled` optimizer.
-2. **defaultNetwork** - set to `zkTestnet` so we dont have to type `--network NETWORK_NAME` later in our command when running our scripts.
-3. **networks** - section where we define which networks we can use in our development. Only one network is used at the time.
-4. **solidity** - version of `solc` compiler we want to use.
+- **zksolc** - this is the configuration for zksolc compiler.
+- **defaultNetwork** - set to `zkTestnet` so we dont have to type `--network NETWORK_NAME` later in our command when running our scripts.
+- **networks** - section where we define which networks we can use in our development. Only one network is used at the time.
+- **solidity** - config for setting solc version that will be used
+
+In our `zkTestnet` we have:
+
+- `url` - JSON-RPC API for L2 network (zkSync Era network)
+- `ethNetwork` - JSON-RPC API for L1 network (Ethereum)
+- `zksync` - if set to `true`, it targets zkSync Era
 
 To compile contracts run command:
 
@@ -248,7 +253,8 @@ npm i -D @matterlabs/hardhat-zksync-ethers
 
 ## Configuration
 
-Use the similar configuration for our **hardhat.config.ts** as shown [here.](deploy-contract.md#configuration) with one additional feature.We have added **accounts** section so you can have array of private keys.
+Use the similar configuration for our **hardhat.config.ts** as shown [here.](deploy-contract.md#configuration) with one additional feature.  
+We have added **accounts** section so you can have array of private keys which help you deploy contracts and interact with the network.
 
 With this change we remove the need for Wallet in our scripts.
 
@@ -272,7 +278,7 @@ We also use the same steps as shown above in this [section.](deploy-contract.md#
 `Note:` **hardhat-zksync-ethers** does not require `deploy` folder.
 This is because we run our scripts with `hardhat run SCRIPT_NAME` command, instead of using `hardhat deploy-zksync`
 
-For this example we will name the deploy script for example: `deploy-contract.ts` and put it in `scripts` folder.
+In this example, we'll name the deployment script `deploy-contract.ts` and place it in the `scripts` folder.
 
 Our **hardhat-zksync-ethers** compatible deploy script is shown below:
 
@@ -302,6 +308,9 @@ main().catch(error => {
     process.exitCode = 1;
 });
 ```
+
+As you can see we are not required to create the `Wallet` object.  
+Wallet is constructed in the background by using the first private key set in `accounts` section.
 
 Now run command:
 

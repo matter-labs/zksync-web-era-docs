@@ -171,7 +171,7 @@ export const enSidebar = sidebar({
               link: "/build/tutorials/how-to/verify-contracts.md"
             },
             {
-              text: "Deploy Contract Using Hardhat Plugins",
+              text: "Deploy Contracts Using Hardhat Plugins",
               link: "/build/tutorials/how-to/deploy-contract.md"
             },
           ],
