@@ -30,6 +30,10 @@ The official zkSync Era [block explorer](https://explorer.zksync.io/) provides i
 
 [Blockscout](https://zksync.blockscout.com/) is a blockchain explorer for inspecting, analyzing, and interacting with zkSync.
 
+#### Blockscout for zkSync Sepolia testnet
+
+The [zkSync Sepolia testnet explorer by Blockscout](https://zksync-sepolia.blockscout.com/) details comprehensive data about transactions, blocks, batches, wallets, tokens, and smart contracts on the Sepolia tesenet.
+
 ### Hyperscan
 
 Routescan's zkSync Explorer, [Hyperscan](https://hyperscan.xyz/), allows you to explore and search for transactions, addresses, tokens, prices and other activities taking place on zkSync.
