@@ -278,14 +278,9 @@ export const enSidebar = sidebar({
             {
               text: "IDE",
               link: "/build/tooling/ide.md"
-            },
-            {
-              text: "Sepolia Explorers",
-              link: "/build/tooling/sepolia-explorers.md"
             }
           ]
         },
-    
       ],
     },
     {
