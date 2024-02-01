@@ -11,6 +11,12 @@ This plugin is used to provide a convenient interface for compiling Solidity sma
 
 Learn more about the latest updates in the [changelog](https://github.com/matter-labs/hardhat-zksync/blob/main/packages/hardhat-zksync-solc/CHANGELOG.md)
 
+## Prerequisite
+
+To use the `hardhat-zksync-solc` in your project, we recommend that:
+
+- You have a Node installation and `yarn` or `npm` package manager.
+
 ## Installation
 
 [@matterlabs/hardhat-zksync-solc](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-solc)
@@ -51,6 +57,8 @@ Version 0.4.0 introduced a default configuration making all parameters optional.
 
 Version 0.4.2 introduced a mode that detects non-inlinable libraries that are missing and that are required for the compilation of contracts. This feature works with the `hardhat-zksync-deploy` plugin, specifically the `deploy-zksync:libraries` task, to compile and deploy the missing libraries. There are no new commands, just follow the instructions logged by the `yarn hardhat compile` output.
 
+Upon encountering missing non-inline libraries during the compilation process, the compiler logged steps to follow, while compilation is not valid. This results with empty `artifacts-zk` and `cache-zk` folders.
+
 :::
 
 Any configuration parameters should be added inside a `zksolc` property in the `hardhat.config.ts` file:
@@ -67,11 +75,13 @@ zksolc: {
       optimizer: {
         enabled: true, // optional. True by default
         mode: '3' // optional. 3 by default, z to optimize bytecode size
+        fallback_to_optimizing_for_size: false, // optional. Try to recompile with optimizer mode "z" if the bytecode is too large
       },
       experimental: {
         dockerImage: '', // deprecated
         tag: ''   // deprecated
       },
+      contractsToCompile: [] //optional. Compile only specific contracts
     }
 },
 
@@ -93,11 +103,13 @@ zksolc: {
 - `optimizer` - Compiler optimizations:
   - `enabled`: `true` (default) or `false`.
   - `mode`: `3` (default) recommended for most projects. Mode `z` reduces bytecode size for large projects that make heavy use of `keccak` and far calls.
+  - `fallback_to_optimizing_for_size` (optional) indicates that the compiler will try to recompile with optimizer mode "z" if the bytecode is too large.
 - `metadata`: Metadata settings. If the option is omitted, the metadata hash appends by default:
   - `bytecodeHash`: Can only be `none`. It removes metadata hash from the bytecode.
 - `dockerImage` and `tag` are deprecated options used to identify the name of the compiler docker image.
+- `contractsToCompile` (optional) field is utilized to compile only the specified contracts. The contract names do not necessarily need to be written in full qualified form. The plugin will perform an include operation, attempting to match the provided contract names.
 
-::: warning `forceEvmla` usage
+::: warning forceEvmla usage
 
 Setting the `forceEvmla` field to true can have the following negative impacts:
 
@@ -108,6 +120,20 @@ Setting the `forceEvmla` field to true can have the following negative impacts:
 For Solidity versions older than 0.8, only this compilation mode is available and it is used by default.
 
 :::
+
+::: warning fallback_to_optimizing_for_size usage
+
+`fallback_to_optimizing_for_size` option is supported for zksolc compiler version 1.3.21 or higher.
+
+:::
+
+### Compiler informations
+
+The zksolc compilers are stored in the cache folder with the path `{cache}/hardhat-nodejs/compilers-v2/zksolc`. In this location, you can inspect the locally stored compiler versions.
+
+`{cache}` is a placeholder for a path that is resolved by Hardhat
+
+The `compilerVersion.json` file is used by the plugin to get the latest available version and the minimum required compiler version. This file undergoes invalidation every 24 hours (currently), subsequently being updated with fresh information. This approach is implemented to provide a caching mechanism, avoiding the risk of encountering GitHub throttling issues during fetching new releases.
 
 ### zkSync Era Solidity compiler
 
@@ -184,7 +210,7 @@ To understand what the factory dependencies are, read more about them in the [We
 
 #### Error in plugin @matterlabs/hardhat-zksync-solc: Invalid zksolc compiler version
 
-This error is returned when the version defined in the `hardhat.config.ts` file is lower than the minimal required (versions are defined [here](https://github.com/matter-labs/zksolc-bin/blob/main/version.json)). Update the version to solve the issue.
+This error is returned when the version defined in the `hardhat.config.ts` file is lower than the minimal required (versions are defined in file [compilerVersion.json](#compiler-informations)). Update the version to solve the issue.
 
 #### Why is there an `unexpected end of JSON input` compilation error?
 
