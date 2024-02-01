@@ -182,7 +182,7 @@ CallContractL2(ctx context.Context, msg zkTypes.CallMsg, blockNumber *big.Int) (
 
 ```go
 // The Crown token on testnet
-TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+TokenAddress := common.HexToAddress("0x927488F48ffbc32112F1fF721759649A89721F8F")
 
 tokenAbi, err := erc20.IERC20MetaData.GetAbi()
 if err != nil {
@@ -264,9 +264,9 @@ EstimateGasL2(ctx context.Context, msg zkTypes.CallMsg) (uint64, error)
 
 ```go
 // The Crown token on testnet
-TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+TokenAddress := common.HexToAddress("0x927488F48ffbc32112F1fF721759649A89721F8F")
 // Paymaster for Crown token on testnet
-PaymasterAddress := common.HexToAddress("0xd660c2F92d3d0634e5A20f26821C43F1b09298fe")
+PaymasterAddress := common.HexToAddress("0x13D0D8550769f59aa241a41897D4859c87f7Dd46")
 ReceiptAddress := common.HexToAddress("0xa61464658AfeAf65CccaaFD3a512b69A83B77618")
 
 abi, err := erc20.IERC20MetaData.GetAbi()
@@ -326,9 +326,9 @@ SendRawTransaction(ctx context.Context, tx []byte) (common.Hash, error)
 
 ```go
 // The Crown token on testnet
-TokenAddress := common.HexToAddress("0xCd9BDa1d0FC539043D4C80103bdF4f9cb108931B")
+TokenAddress := common.HexToAddress("0x927488F48ffbc32112F1fF721759649A89721F8F")
 // Paymaster for Crown token on testnet
-PaymasterAddress := common.HexToAddress("0xd660c2F92d3d0634e5A20f26821C43F1b09298fe")
+PaymasterAddress := common.HexToAddress("0x13D0D8550769f59aa241a41897D4859c87f7Dd46")
 ReceiptAddress := common.HexToAddress("0xa61464658AfeAf65CccaaFD3a512b69A83B77618")
 
 w, err := accounts.NewWallet(common.Hex2Bytes(<private key>), &client, nil)
@@ -543,7 +543,7 @@ ContractAccountInfo(ctx context.Context, address common.Address) (*zkTypes.Contr
 
 ```go
 // Paymaster for Crown token on testnet
-PaymasterAddress := common.HexToAddress("0xd660c2F92d3d0634e5A20f26821C43F1b09298fe")
+PaymasterAddress := common.HexToAddress("0x13D0D8550769f59aa241a41897D4859c87f7Dd46")
 accountInfo, err := client.ContractAccountInfo(context.Background(), PaymasterAddress)
 if err != nil {
 	log.Panic()

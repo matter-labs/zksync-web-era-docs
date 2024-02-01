@@ -7,21 +7,15 @@ head:
 
 # Paymaster Utilities
 
-The [paymaster utilities library](https://github.com/zksync-sdk/zksync-ethers/blob/ethers-v5/src/paymaster-utils.ts) contains essential utilities for using paymasters on zkSync Era.
+The [paymaster utilities library](https://github.com/zksync-sdk/zksync-ethers/blob/main/src/paymaster-utils.ts) contains essential utilities for using paymasters on zkSync Era.
 
 ## Contract interfaces
 
-### `IPaymasterFlow` Deprecated
-
-::: warning Deprecated
-
-- This method is deprecated in favor of [utils.PAYMASTER_FLOW_ABI](./utils.md#paymasterflow).
-  :::
-
-Constant ABI definition for the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob/87cd8d7b0f8c02e9672c0603a821641a566b5dd8/l2-contracts/contracts/interfaces/IPaymasterFlow.sol).
+Constant ABI definition for
+the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob/583cb674a2b942dda34e9f46edb5a9f5b696b90a/l2-contracts/contracts/interfaces/IPaymasterFlow.sol).
 
 ```typescript
-export const IPaymasterFlow = new ethers.utils.Interface(require("../../abi/IPaymasterFlow.json").abi);
+export const PAYMASTER_FLOW_ABI = new ethers.Interface(require("../abi/IPaymasterFlow.json"));
 ```
 
 ## Functions
@@ -32,14 +26,12 @@ Returns encoded input for an approval-based paymaster.
 
 #### Inputs
 
-| Parameter        | Type                                 | Description                      |
-| ---------------- | ------------------------------------ | -------------------------------- |
-| `paymasterInput` | `ApprovalBasedPaymasterInput` object | The input data to the paymaster. |
+| Parameter        | Type                                                                    | Description                      |
+| ---------------- | ----------------------------------------------------------------------- | -------------------------------- |
+| `paymasterInput` | [`ApprovalBasedPaymasterInput`](./types.md#approvalbasedpaymasterinput) | The input data to the paymaster. |
 
 ```ts
-export function getApprovalBasedPaymasterInput(paymasterInput: ApprovalBasedPaymasterInput): BytesLike {
-  return IPaymasterFlow.encodeFunctionData("approvalBased", [paymasterInput.token, paymasterInput.minimalAllowance, paymasterInput.innerInput]);
-}
+export function getApprovalBasedPaymasterInput(paymasterInput: ApprovalBasedPaymasterInput): BytesLike;
 ```
 
 ### `getGeneralPaymasterInput`
@@ -48,14 +40,12 @@ As above but for general-based paymaster.
 
 #### Inputs
 
-| Parameter        | Type                           | Description                      |
-| ---------------- | ------------------------------ | -------------------------------- |
-| `paymasterInput` | `GeneralPaymasterInput` object | The input data to the paymaster. |
+| Parameter        | Type                                                        | Description                      |
+| ---------------- | ----------------------------------------------------------- | -------------------------------- |
+| `paymasterInput` | [`GeneralPaymasterInput`](./types.md#generalpaymasterinput) | The input data to the paymaster. |
 
 ```ts
-export function getGeneralPaymasterInput(paymasterInput: GeneralPaymasterInput): BytesLike {
-  return IPaymasterFlow.encodeFunctionData("general", [paymasterInput.innerInput]);
-}
+export function getGeneralPaymasterInput(paymasterInput: GeneralPaymasterInput): BytesLike;
 ```
 
 ### `getPaymasterParams`
@@ -64,13 +54,36 @@ Returns a correctly-formed `paymasterParams` object for common [paymaster flows]
 
 #### Inputs
 
-| Parameter          | Type                    | Description                       |
-| ------------------ | ----------------------- | --------------------------------- |
-| `paymasterAddress` | `Address` string        | The non-zero `paymaster` address. |
-| `paymasterInput`   | `PaymasterInput` object | The input data to the paymaster.  |
+| Parameter          | Type                                          | Description                       |
+| ------------------ | --------------------------------------------- | --------------------------------- |
+| `paymasterAddress` | `Address`                                     | The non-zero `paymaster` address. |
+| `paymasterInput`   | [`PaymasterInput`](./types.md#paymasterinput) | The input data to the paymaster.  |
 
 ```typescript
 export function getPaymasterParams(paymasterAddress: Address, paymasterInput: PaymasterInput): PaymasterParams;
 ```
 
 Find out more about the [`PaymasterInput` type](./types.md).
+
+#### Examples
+
+Creating `General` paymaster parameters.
+
+```ts
+const paymasterAddress = "0x0a67078A35745947A37A552174aFe724D8180c25";
+const paymasterParams = utils.getPaymasterParams(paymasterAddress, {
+  type: "General",
+  innerInput: new Uint8Array(),
+});
+```
+
+Creating `ApprovalBased` paymaster parameters.
+
+```ts
+const result = utils.getPaymasterParams("0x0a67078A35745947A37A552174aFe724D8180c25", {
+  type: "ApprovalBased",
+  token: "0x65C899B5fb8Eb9ae4da51D67E1fc417c7CB7e964",
+  minimalAllowance: BigInt(1),
+  innerInput: new Uint8Array(),
+});
+```

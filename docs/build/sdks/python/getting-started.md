@@ -11,12 +11,12 @@ head:
 
 While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features, like account abstraction, requires providing additional fields to those that Ethereum transactions have by default.
 
-To provide easy access to all the features of zkSync Era, the `zksync2-python` Python SDK was created, which is made in a way that has an interface very similar to those of
-[web3.py](https://web3py.readthedocs.io/en/latest/index.html). In fact, `web3.py` is a peer dependency of our library and most of the objects exported by `zksync2-python` inherit from the corresponding `web3.py` objects and override only the fields that need to be changed.
+To provide easy access to all the features of zkSync Era, the `zksync2` Python SDK was created, which is made in a way that has an interface very similar to those of
+[web3.py](https://web3py.readthedocs.io/en/latest/index.html). In fact, `web3.py` is a peer dependency of our library and most of the objects exported by `zksync2` inherit from the corresponding `web3.py` objects and override only the fields that need to be changed.
 
 ## Prerequisites
 
-- Python: >=3.9 ([installation guide](https://www.python.org/downloads/))
+- Python: >=3.8 ([installation guide](https://www.python.org/downloads/))
 - Pip: 23.1.2 ([installation guide](https://pip.pypa.io/en/stable/installation/))
 
 ## Adding dependencies
