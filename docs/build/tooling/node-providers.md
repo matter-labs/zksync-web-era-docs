@@ -11,7 +11,7 @@ head:
 
 [Ankr](https://www.ankr.com/rpc/base/) provides private and public RPC endpoints for Base, powered by a globally distributed and decentralized network of nodes. They offer free and [paid plans](https://www.ankr.com/rpc/pricing/) with increased request limits.
 
-### BlockPi
+### BlockPI
 
 [BlockPI](https://blockpi.io/) is a high-quality, robust, and efficient RPC service network that provides access to Base nodes with [free and paid plans](https://docs.blockpi.io/documentations/pricing).
 
