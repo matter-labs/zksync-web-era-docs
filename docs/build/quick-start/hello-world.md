@@ -5,7 +5,7 @@ head:
       content: Hello world | zkSync Docs
 ---
 
-# Quickstart: hello devs! hello zkSync
+# Quickstart: hello world! hello zkSync
 
 <div class="time-label-wrapper">
   <p>⏱️ Time to complete: &lt;5 minutes</p>
