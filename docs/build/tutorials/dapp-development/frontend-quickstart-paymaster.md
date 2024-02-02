@@ -227,7 +227,7 @@ const getGreeting = async () => {
 
 Now if you go back to your browser, after connecting the Metamask wallet to zkSync Era Testnet, you should see the following page:
 
-!['Retrieve message from contract'](../../../assets/images/start-1.png)
+!['Retrieve message from contract'](../../../assets/images/quickstart-hello-nofee.jpg)
 
 The "select token" dropdown menu allows you to choose which token to pay fees with. We'll enable this feature later.
 
@@ -273,7 +273,7 @@ Now, when you select the token to pay the fee, both the account balance and the 
 
 Enter the message you want to save and click **Refresh** to recalculate the fee. Note that the fee depends on the length of the message that we want to store in the contract.
 
-![Estimate transaction fee](../../../assets/images/start-2.png)
+![Estimate transaction fee](../../../assets/images/quickstart-hello.jpg)
 
 It is possible to also click on the **Change greeting** button, but nothing will happen yet as we haven't implemented the function. Let's implement that next.
 
@@ -486,7 +486,7 @@ Now you should be able to update the greeting message with ETH or any of the ava
 
 1. Select one of the ERC20 tokens to see the estimated fee:
 
-![img](../../../assets/images/start-6.jpeg)
+![img](../../../assets/images/quickstart-dai-fees.jpg)
 
 2. Click on the `Change greeting` button to update the message. Since the `paymasterParams` were supplied, the transaction will be an `EIP712` ([more on EIP712 here](https://eips.ethereum.org/EIPS/eip-712)) so it'll look slightly different in your wallet:
 
