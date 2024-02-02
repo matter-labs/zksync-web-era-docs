@@ -5,7 +5,7 @@ head:
       content: Test Contracts on zkSync with Hardhat | zkSync Docs
 ---
 
-# Tutorial to show testing phase of smart contracts with Hardhat plugins
+# Test smart contracts with Hardhat plugins
 
 This tutorial provides a step-by-step guide on testing smart contracts using the **hardhat-zksync-chai-matchers** plugin in conjunction with the **zkSync Era Test Node** on your local machine. To facilitate this process of running tests on the **zkSync Era Test Node**, you'll also utilize the **hardhat-zksync-node** plugin.
 
@@ -19,7 +19,7 @@ This tutorial provides a step-by-step guide on testing smart contracts using the
 
 ## Integration with hardhat-zksync-node plugin
 
-This plugin is used to provide a convenient way to run [zkSync Era Test Node](../../test-and-debug/era-test-node.md) locally using hardhat.
+In this tutorial, the contract functionality is tested using the [zkSync Era Test Node](../../test-and-debug/era-test-node.md). To start local node we use a **hardhat-zksync-node** plugin to integrate this functionality within the Hardhat project.
 
 ### Installation
 
@@ -54,6 +54,12 @@ You can now safely run the **zkSync Era Test Node** with the following command, 
 ```bash
 yarn hardhat node-zksync
 ```
+
+::: note Test if all is ok
+
+We'll want to verify the correctness of our installations and test if we can run a **zkSync Era Test Node**, without further use of this command in the tutorial.
+
+:::
 
 You should see output similar to this:
 
@@ -118,12 +124,11 @@ To set up the environment for using chai matchers and writing tests, you'll need
 2. Create a folder named **contracts**.
 3. Inside the **contracts** folder, create a file named **Greeter.sol**.
 
-Now we should add some code to our new **Greeter.sol** file:
+Now we should add some code to the new **Greeter.sol** file:
 
 ```bash
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
-pragma abicoder v2;
 
 contract Greeter {
     string private greeting;
@@ -259,9 +264,9 @@ describe("Greeter", function () {
   let contract: Contract;
 
   before(async function () {
-    // Take provider as ZkSyncProviderAdapter provided by hardhat-zksync-node plugin, for more info check plugin documentation.
-    provider = (hre.network.provider as ZkSyncProviderAdapter)._zkSyncProvider;
-    // To ensure proper testing, we need to deploy our contract on the zkSync Era Node, for more info check hardhat-zksync-deploy plugin documentation.
+    // Creation of a provider from a network URL adjusted specifically for the zkSync Era Test Node.
+    provider = new Provider(hre.network.config.url);
+    // To ensure proper testing, we need to deploy our contract on the zkSync Era Test Node, for more info check hardhat-zksync-deploy plugin documentation.
     deployer = new Deployer(hre, new Wallet(RICH_PRIVATE_KEY));
     artifact = await deployer.loadArtifact('Greeter');
     contract = await deployer.deploy(artifact, ['Hello, world!']);
@@ -305,9 +310,7 @@ yarn hardhat compile
 
 :::
 
-All test cases pass for the deployed contract is a crucial step in validating the functionality and correctness of your smart contract. Once all tests pass successfully, you can be confident that the smart contract functions are properly written and ready for use in a production environment. This comprehensive testing process helps to identify and address any potential bugs or issues before deploying the contract in a real-world scenario.
-
-**hardhat-zksync-node** plugin override the default behavior of the hardhat test task to start the **zkSync Era Test Node** before running tests and refreshes a `era_test_node.log` to indicate the node's activity and transactions made during the tests. Every time you re-run the `test` command, this content of `era_test_node.log` is refreshed.
+The **hardhat-zksync-node** plugin overrides the default behavior of the Hardhat **test** task. It starts the **zkSync Era Test Node** before running tests, executes the tests, and then automatically shuts down the node after the test cases are completed. Additionally, the plugin generates a log file named `era_test_node.log`, which indicates the node's activity and transactions made during the tests. Whenever you re-run the **test** command, the content of `era_test_node.log` is refreshed.
 This setup ensures that your tests are executed against a controlled environment, mimicking the behavior of a live network but in a local sandboxed context. It's a common practice to ensure that smart contracts behave as expected under various conditions before deploying them to a live network.
 
 `era_test_node.log` file example:
