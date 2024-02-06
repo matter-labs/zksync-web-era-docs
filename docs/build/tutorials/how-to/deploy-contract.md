@@ -9,10 +9,10 @@ head:
 
 Deploying smart contracts to the zkSync network involves a series of steps that leverage the capabilities of Hardhat together with the `hardhat-zksync-deploy` and `hardhat-zksync-ethers` plugins.
 
-In this tutorial, we detail the step-by-step procedure to deploy a smart contract on the zkSync network, utilizing the following tools:
+In this tutorial, we detail the step-by-step procedure to deploy a smart contract on the zkSync network, utilizing the following hardhat plugin:
 
-- [hardhat-zksync-deploy](deploy-contract.md#deployment-using-hardhat-zksync-deploy) plugin.
-- [hardhat-zksync-ethers](deploy-contract.md#deployment-using-hardhat-zksync-ethers) plugin.
+- [hardhat-zksync-deploy](deploy-contract.md#deployment-using-hardhat-zksync-deploy)
+- [hardhat-zksync-ethers](deploy-contract.md#deployment-using-hardhat-zksync-ethers)
 
 # Prerequisites
 
@@ -24,13 +24,13 @@ In this tutorial, we detail the step-by-step procedure to deploy a smart contrac
 
 # Deployment using hardhat-zksync-deploy
 
-This tutorial demonstrates how to deploy your contract on zkSync network using hardhat-zksync-deploy plugin.
+This tutorial demonstrates how to deploy contracts on zkSync network using hardhat-zksync-deploy plugin.
 
 Check **hardhat-zksync-deploy** documentation [here](../../tooling/hardhat/hardhat-zksync-deploy.md).
 
 ## Installation
 
-In the root of your project, run command:
+To install the **hardhat-zksync-deploy** plugin and additional necessary packages, execute the following command:
 
 :::code-tabs
 
@@ -48,7 +48,7 @@ npm i -D @matterlabs/hardhat-zksync-deploy
 
 :::
 
-Dont forget to import the package in the **hardhat.config.ts** file:
+Once installed, add the plugin at the top of the **hardhat.config.ts** file.
 
 ```bash
 import "@matterlabs/hardhat-zksync-deploy";
@@ -56,7 +56,13 @@ import "@matterlabs/hardhat-zksync-deploy";
 
 # Deployment process
 
-For the following examples, we use the simple `SimpleStorage` smart contract:
+For the following examples, we use the simple `SimpleStorage` smart contract.
+
+1. Navigate to the root of your project.
+2. Create a folder named **contracts**.
+3. Inside the **contracts** folder, create a file named **SimpleStorage.sol**.
+
+Now we should add some code to the new **SimpleStorage.sol** file:
 
 ## Simple Storage Contract
 
@@ -79,11 +85,29 @@ contract SimpleStorage {
 }
 ```
 
-Exact file location: `/contracts/SimpleStorage.sol`
-
 ## Compilation
 
 Before we continue with the deployment, we must include **hardhat-zksync-solc** plugin in order to compile our contracts.
+
+::: code-tabs
+@tab:active yarn
+
+```bash
+yarn add -D @matterlabs/hardhat-zksync-solc
+```
+
+@tab npm
+
+```bash
+npm i -D @matterlabs/hardhat-zksync-solc
+```
+
+:::
+Add the plugin at the top of the **hardhat.config.ts** file:
+
+```bash
+import "@matterlabs/hardhat-zksync-solc";
+```
 
 Read more about **hardhat-zksync-solc** plugin [here.](../../tooling/hardhat/hardhat-zksync-solc.md)
 
@@ -96,7 +120,7 @@ import "@matterlabs/hardhat-zksync-solc";
 import "@matterlabs/hardhat-zksync-deploy";
 ```
 
-Your **hardhat.config.ts** file should look something like this:
+With the previous steps completed, your **hardhat.config.ts** file should now be properly configured to include settings for deploy contracts.
 
 ```bash
 import "@matterlabs/hardhat-zksync-solc";
@@ -105,19 +129,13 @@ import { HardhatUserConfig } from "hardhat/config";
 
 const config: HardhatUserConfig = {
     zksolc: {
-        version: 'latest',
-        settings: {
-            optimizer: {
-                enabled: true,
-            },
-        }
     },
     defaultNetwork:'zkTestnet',
     networks: {
         zkTestnet: {
-            url: 'https://sepolia.era.zksync.dev',
-            ethNetwork: 'https://sepolia.infura.io/v3/<API_KEY>',
-            zksync: true
+            url: 'https://sepolia.era.zksync.dev', // The RPC URL of zkSync Era network.
+            ethNetwork: 'https://sepolia.infura.io/v3/<API_KEY>', // The Ethereum Web3 RPC URL.
+            zksync: true // Flag that targets zkSync Era.
         },
     },
     solidity: {
@@ -128,18 +146,14 @@ const config: HardhatUserConfig = {
 
 In the configuration above we have some important fields such as:
 
-- **zksolc** - settings applied to the `zksolc` compiler.
-- **defaultNetwork** - removes the requirement for specifying `--network NETWORK_NAME` in a command when running our scripts.
-- **networks** - section where we define which networks we can use in our development. Only one network is used at the time.
-- **solidity** - settings applied to the `solc` compiler.
+- **zksolc** - configuration section enabling adjustment and customization of the zk compiler.
+- **defaultNetwork** - configuration section for specifying which network to use when running hardhat tasks.
+- **networks** - configuration section where we define which networks we can use in our development. Only one network is used at the time.
+- **solidity** - configuration section enabling adjustment and customization of the solc compiler.
 
-In our `zkTestnet` network we have:
+Find more details about available configuration options in the [official documentation.](../../tooling/hardhat/hardhat-zksync-solc.md#configuration)
 
-- `url` - The RPC URL of zkSync Era network.
-- `ethNetwork` - The Ethereum Web3 RPC URL.
-- `zksync` - Flag that if set to `true`, targets zkSync Era.
-
-To compile contracts run command:
+Execute the following command in your terminal to run the compilation:
 
 ```bash
 yarn hardhat compile
@@ -154,14 +168,16 @@ Successfully compiled 1 Solidity file
 Done in 0.69s.
 ```
 
-In the root of your project you will see two new folders:
-`artifacts-zk` and `cache-zk`.
+In the root of your project you will see two new folders that represent zksolc compilation result:
 
-Now we can continue with deployment process.
+- `artifacts-zk`
+- `cache-zk`.
 
-- Create new folder called `deploy` in the root of your project.
-- In `deploy` folder, create script called `deploy-my-contract.ts`
-- Make sure to add **PRIVATE_KEY** in your file.
+Here are the steps to create deploy scritps with **hardhat-zksync-deploy** plugin.
+
+1. Navigate to your project's root directory.
+2. Create a new folder named **deploy**.
+3. Inside the **deploy** folder, create a file named **deploy-my-contract.ts**.
 
 ## Deploy script
 
@@ -200,21 +216,19 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
 ```
 
-and now run command to deploy on `Sepolia` test-net as thats our selected network in **hardhat.config.ts**:
+To deploy contract on `zkSync Sepolia testnet` that we already specified as default network in our **hardhat.config.ts**, run command:
 
 ```bash
 yarn hardhat deploy-zksync
 ```
 
-`Note:` If you remember, in our **hardhat.config.ts** we mentioned that `defaultNetwork` is zkTestnet, and for that reason we dont need to specify `--network` option after `deploy-zksync`.
-
-Otherwise, if you prefer explicitly typing network name, you can do:
+If you prefer to explicitly select network name within a command, you can run:
 
 ```bash
 yarn hardhat deploy-zksync --network zkTestnet
 ```
 
-After successful deployment, your output should look something like this:
+After successful deployment, your console output should look something like this:
 
 ```
 Running deploy script for the SimpleStorage contract
@@ -229,11 +243,11 @@ Check your deployed contract on Sepolia testnet [block explorer.](https://sepoli
 
 With similar steps as above, we will now use **hardhat-zksync-ethers** to deploy our contracts.
 
-- Recommendation: Start with a freshly configured TypeScript project.
+**hardhat-zksync-ethers** plugin is a wrapper around [zksync-ethers](https://www.npmjs.com/package/zksync-ethers) sdk that gives additional methods to use for faster development.
 
 ## Installation
 
-In the root of your project, run command :
+In the root directory of your project, execute this command:
 
 :::code-tabs
 
@@ -253,10 +267,8 @@ npm i -D @matterlabs/hardhat-zksync-ethers
 
 ## Configuration
 
-Use the similar configuration for our **hardhat.config.ts** as shown [here.](deploy-contract.md#configuration) with one additional feature.  
-We have added **accounts** section so you can have array of private keys which help you deploy contracts and interact with the network.
-
-With this change we remove the need for Wallet in our scripts.
+To deploy contracts with **hardhat-zskync-ethers**, use the similar configuration for our **hardhat.config.ts** as shown [here.](deploy-contract.md#configuration)
+The **accounts** section enables to specify wallet private keys which help us deploy contracts with automatically populated wallet within **hardhat-zksync-ethers** plugin, but it can still be manually created for our use-cases.
 
 ```bash
 {
@@ -269,7 +281,7 @@ With this change we remove the need for Wallet in our scripts.
 
 # Deployment process
 
-For the following examples, we use same SimpleStorage smart contract as shown [here](deploy-contract.md#simple-storage-contract), and place it in `/contracts` folder.
+For the following examples, we use same SimpleStorage smart contract as shown [here](deploy-contract.md#simple-storage-contract).
 
 ## Compilation
 
@@ -309,18 +321,16 @@ main().catch(error => {
 });
 ```
 
-As you can see we are not required to create the `Wallet` object.  
+`Note:` As you can see we are not required to create the `Wallet` object.  
 Wallet is constructed in the background by using the first private key set in `accounts` section.
 
-Now run command:
+To deploy contract, execute command:
 
 ```bash
 yarn hardhat run scripts/deploy-contract.ts
 ```
 
-to deploy your contract.
-
-After successful execution, you should see result like this:
+After successful execution, your console output should look something like this:
 
 ```
 Running deploy
@@ -330,4 +340,4 @@ Done in 5.73s.
 
 # Conclusion
 
-By following this guide, you can successfully deploy your contracts using both **hardhat-zksync-deploy** and **hardhat-zksync-ethers** plugins.
+By following this guide, you can successfully deploy contracts using both **hardhat-zksync-deploy** and **hardhat-zksync-ethers** plugins.
