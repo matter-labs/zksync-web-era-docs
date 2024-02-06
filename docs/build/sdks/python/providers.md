@@ -9,14 +9,14 @@ head:
 
 A Web3 Provider object provides application-layer access to underlying blockchain networks.
 
-The [`zksync2-python`](https://pypi.org/project/zksync2/) library supports provider methods from the [`web3py`](https://web3py.readthedocs.io/en/stable/providers.html) library and supplies additional functionality.
+The [`zksync2`](https://pypi.org/project/zksync2/) library supports provider methods from the [`web3.py`](https://web3py.readthedocs.io/en/stable/providers.html) library and supplies additional functionality.
 
 ## `Provider`
 
 :::info
 
 - This doc details zkSync Era specific methods.
-- Web3py implementations link to the [Web3[y] Providers documentation](https://web3py.readthedocs.io/en/stable/providers.html).
+- `web3.py` implementations link to the [web3.py Providers documentation](https://web3py.readthedocs.io/en/stable/providers.html).
   :::
 
 ### `init`
@@ -73,7 +73,7 @@ Returns an estimate(`int`) of the amount of gas required to submit a transaction
 | Parameter | Type | Description |
 | ------------- | ---------------------------------------------------------------------------------------------------- | -------------------- |
 | `transaction` | [`Transaction`](./types.md#transaction) | Transaction request. |
-[Web3py implementation.](https://web3py.readthedocs.io/en/stable/web3.eth.html#web3.eth.Eth.estimate_gas)
+[web3.py implementation.](https://web3py.readthedocs.io/en/stable/web3.eth.html#web3.eth.Eth.estimate_gas)
 
 ### `zks_estimate_gas_l1_to_l2`
 
@@ -144,7 +144,6 @@ When block and token are not supplied, `committed` and `ETH` are the default val
 | address       | User's address.                                                            |
 | block_tag     | Block tag for getting the balance on. Latest `committed` block is default. |
 | token_address | The address of the token. ETH is default.                                  |
-|               |
 
 ```python
     def zks_get_balance(self, address: HexStr, block_tag = ZkBlockParams.COMMITTED.value, token_address: HexStr = None) -> int:
@@ -176,7 +175,7 @@ eth_balance = zksync_web3.zksync.zks_get_balance("<YOUR_ADDRESS>")
 
 Returns block from the network.Throws `BlockNotFound` error if the block is not found
 
-[Web3py implementation.](https://web3py.readthedocs.io/en/stable/web3.eth.html#web3.eth.Eth.get_block)
+[web3.py implementation.](https://web3py.readthedocs.io/en/stable/web3.eth.html#web3.eth.Eth.get_block)
 
 ### `zks_get_block_details`
 

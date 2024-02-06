@@ -9,7 +9,7 @@ head:
 
 The `hardhat-zksync-upgradable` plugin is a Hardhat plugin that supports end-to-end pipelines for deploying and updating upgradable smart contracts on the zkSync Era network.
 
-The plugin is based on [@openzeppelin/hardhat-upgrades](https://www.npmjs.com/package/@openzeppelin/hardhat-upgrades) and [@openzeppelin/upgrades-core](https://www.npmjs.com/package/@openzeppelin/upgrades-core) plugins for deploying and managing upgradeable smart contracts on the Ethereum network. The `hardhat-zkSync-upgradable` plugin provides an easy-to-use interface for interacting with the [OpenZeppelin Upgrades Plugins](https://docs.openzeppelin.com/upgrades-plugins) within a Hardhat environment on zkSync.
+The plugin is based on [@openzeppelin/upgrades-core](https://www.npmjs.com/package/@openzeppelin/upgrades-core) plugin for deploying and managing upgradeable smart contracts on the Ethereum network. The `hardhat-zksync-upgradable` plugin provides an easy-to-use interface for interacting with the [OpenZeppelin Upgrades Plugins](https://docs.openzeppelin.com/upgrades-plugins) within a Hardhat environment on zkSync.
 
 ::: warning Version Compatibility Warning
 Ensure you are using the correct version of the plugin with ethers:
@@ -27,25 +27,25 @@ Examples are adopted for plugin version **>=1.0.0**
 ## Installation
 
 :::warning Version Incompatibility
-Current version of the upgradable plugin does not support the latest versions of the `@openzeppelin/hardhat-upgrades` and `@openzeppelin/upgrades-core` packages. <br>
-
-We are working on this and we will update the plugin as soon as our changes are compatible with those latest versions.
+Current version of the upgradable plugin does not support the latest version of the `@openzeppelin/upgrades-core` package.
 :::
 
 [@matterlabs/hardhat-zksync-upgradable](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-upgradable)
+
+Add the latest version of this plugin to your project with the following command:
 
 ::: code-tabs
 
 @tab:active yarn
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/contracts @openzeppelin/contracts-upgradeable
+yarn add -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/upgrades-core @openzeppelin/contracts-upgradeable@4.9.5 @openzeppelin/contracts@4.9.5
 ```
 
 @tab npm
 
 ```bash
-npm i -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/contracts @openzeppelin/contracts-upgradeable
+npm i -D @matterlabs/hardhat-zksync-upgradable @openzeppelin/contracts-upgradeable@4.9.5 @openzeppelin/contracts@4.9.5
 ```
 
 :::
@@ -69,13 +69,13 @@ const config: HardhatUserConfig = {
   },
   defaultNetwork: "zkSyncNetwork",
   networks: {
-    sepolia: {
+    ethNetwork: {
       zksync: false,
       url: "http://localhost:8545",
     },
     zkSyncNetwork: {
       zksync: true,
-      ethNetwork: "sepolia",
+      ethNetwork: "ethNetwork",
       url: "http://localhost:3050",
     },
   },
@@ -604,16 +604,18 @@ async function main() {
   const beacon = await hre.zkUpgrades.deployBeacon(deployer.zkWallet, contract);
   await beacon.waitForDeployment();
 
-  const boxBeaconProxy = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, await beacon.getAddress(), contract, [42]);
+  const beaconAddress = await beacon.getAddress();
+
+  const boxBeaconProxy = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, beaconAddress, contract, [42]);
   await boxBeaconProxy.waitForDeployment();
 
   // upgrade beacon
   const boxV2Implementation = await deployer.loadArtifact("BoxV2");
-  await hre.zkUpgrades.upgradeBeacon(deployer.zkWallet, await beacon.getAddress(), boxV2Implementation);
-  console.log("Successfully upgraded beacon Box to BoxV2 on address: ", await beacon.getAddress());
+  await hre.zkUpgrades.upgradeBeacon(deployer.zkWallet, beaconAddress, boxV2Implementation);
+  console.info(chalk.green("Successfully upgraded beacon Box to BoxV2 on address: ", beaconAddress));
 
   const attachTo = new zk.ContractFactory<any[], Contract>(boxV2Implementation.abi, boxV2Implementation.bytecode, deployer.zkWallet, deployer.deploymentType);
-  const upgradedBox = await attachTo.attach(await boxBeaconProxy.getAddress());
+  const upgradedBox = attachTo.attach(await boxBeaconProxy.getAddress());
 
   upgradedBox.connect(zkWallet);
   // wait some time before the next call

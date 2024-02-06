@@ -87,6 +87,10 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             {
+              text: "Quickstart Frontend with Paymaster",
+              link: "/build/tutorials/dapp-development/frontend-quickstart-paymaster.md",
+            },
+            {
               text: "NFT Gated Paymaster",
               link: "/build/tutorials/dapp-development/gated-nft-paymaster-tutorial.md",
             },
@@ -103,6 +107,10 @@ export const enSidebar = sidebar({
             {
               text: "Wagmi",
               link: "/build/tutorials/tooling-guides/wagmi.md",
+            },
+            {
+              text: "Viem",
+              link: "/build/tutorials/tooling-guides/viem.md",
             },
             {
               text: "API3",
@@ -236,6 +244,7 @@ export const enSidebar = sidebar({
             "/build/tooling/hardhat/hardhat-zksync-verify-vyper.md",
             "/build/tooling/hardhat/hardhat-zksync-ethers.md",
             "/build/tooling/hardhat/hardhat-zksync-toolbox.md",
+            "/build/tooling/hardhat/hardhat-zksync-node.md",
             "/build/tooling/hardhat/other-plugins.md",
           ]
         },
