@@ -83,9 +83,9 @@ Since we've confirmed that the **zkSync Era Test Node** is functioning properly 
 
 Read more about **hardhat-zksync-node** [here.](../../tooling/hardhat/hardhat-zksync-node.md)
 
-## Integration with hardhat-zksync-chai-mathcers plugin
+## Integration with hardhat-zksync-chai-matchers plugin
 
-To leverage zkSync-specific capabilities within the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts, it's necessary to use the **hardhat-zksync-chai-mathcers** plugin.
+To leverage zkSync-specific capabilities within the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts, it's necessary to use the **hardhat-zksync-chai-matchers** plugin.
 
 ### Installation
 
