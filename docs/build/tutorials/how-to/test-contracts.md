@@ -21,6 +21,12 @@ This tutorial provides a step-by-step guide on testing smart contracts using the
 
 In this tutorial, the contract functionality is tested using the [zkSync Era Test Node](../../test-and-debug/era-test-node.md). To start local node we use a **hardhat-zksync-node** plugin to integrate this functionality within the Hardhat project.
 
+:::warning zkSync Era Test Node alpha phase
+
+During the alpha phase, zkSync Era Test Nodes are currently undergoing development, wherein certain functionalities might not be fully supported or operational.
+
+:::
+
 ### Installation
 
 To install the **hardhat-zksync-node** plugin and additional necessary packages, execute the following command:
