@@ -7,9 +7,9 @@ head:
 
 # Deploying Smart Contracts
 
-The deployment process involves writing, testing, compiling, and then publishing a smart contract to a blockchain network, where it becomes live and executable.
+Deploying smart contracts to the zkSync network involves a series of steps that leverage the capabilities of Hardhat together with the `hardhat-zksync-deploy` and `hardhat-zksync-ethers` plugins.
 
-In this tutorial, we explain step-by-step how to create, compile and deploy a simple smart contract on zkSync network using two different plugins:
+In this tutorial, we detail the step-by-step procedure to deploy a smart contract on the zkSync network, utilizing the following tools:
 
 - [hardhat-zksync-deploy](deploy-contract.md#deployment-using-hardhat-zksync-deploy) plugin.
 - [hardhat-zksync-ethers](deploy-contract.md#deployment-using-hardhat-zksync-ethers) plugin.
@@ -128,16 +128,16 @@ const config: HardhatUserConfig = {
 
 In the configuration above we have some important fields such as:
 
-- **zksolc** - this is the configuration for zksolc compiler.
-- **defaultNetwork** - set to `zkTestnet` so we dont have to type `--network NETWORK_NAME` later in our command when running our scripts.
+- **zksolc** - settings applied to the `zksolc` compiler.
+- **defaultNetwork** - removes the requirement for specifying `--network NETWORK_NAME` in a command when running our scripts.
 - **networks** - section where we define which networks we can use in our development. Only one network is used at the time.
-- **solidity** - config for setting solc version that will be used
+- **solidity** - settings applied to the `solc` compiler.
 
-In our `zkTestnet` we have:
+In our `zkTestnet` network we have:
 
-- `url` - JSON-RPC API for L2 network (zkSync Era network)
-- `ethNetwork` - JSON-RPC API for L1 network (Ethereum)
-- `zksync` - if set to `true`, it targets zkSync Era
+- `url` - The RPC URL of zkSync Era network.
+- `ethNetwork` - The Ethereum Web3 RPC URL.
+- `zksync` - Flag that if set to `true`, targets zkSync Era.
 
 To compile contracts run command:
 
