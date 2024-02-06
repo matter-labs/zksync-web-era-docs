@@ -36,7 +36,7 @@ Each paymaster should implement the `IPaymaster` interface. We will be using `zk
 Using `zksync-cli` create a new project with required dependencies:
 
 ```bash
-npx hardhat@latest create-project erc20FixedPaymaster
+`npx zksync-cli@latest create-project erc20FixedPaymaster
 ```
 
 Choose `Hardhat + Solidity` to setup our project repository. The contract we will be adjusting exists under `/contracts/ApprovalPaymaster.sol` and can be renamed to `ERC20fixedPaymaster.`
