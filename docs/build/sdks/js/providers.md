@@ -773,6 +773,54 @@ if (l1TxResponse) {
 }
 ```
 
+### `getProof`
+
+Returns Merkle [`proofs`](./types.md#storageproof) for one or more storage values at the specified account along with a Merkle proof of their authenticity.
+
+Calls the [`zks_getProof`](../../api.md#zks-getproof) JSON-RPC method.
+
+#### Inputs
+
+| Parameter       | Type       | Description                                                                                     |
+| --------------- | ---------- | ----------------------------------------------------------------------------------------------- |
+| `address`       | `Address`  | The account to fetch storage values and proofs for.                                             |
+| `keys`          | `string[]` | Vector of storage keys in the account.                                                          |
+| `l1BatchNumber` | `number`   | Number of the L1 batch specifying the point in time at which the requested values are returned. |
+
+```ts
+async getProof(address: Address, keys: string[], l1BatchNumber: number): Promise<StorageProof>
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types, utils } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const address = "0x082b1BB53fE43810f646dDd71AA2AB201b4C6b04";
+
+// fetchin the storage proof for rawHonce storage slot in NonceHolder system contract
+// mapping(uint256 => uint256) internal rawNonces;
+
+// Ensure the address is a 256-bit number by padding it
+// because rawNonces uses uint256 for mapping addresses and their nonces
+const addressPadded = ethers.utils.hexZeroPad(wallet.address, 32);
+
+// Convert the slot number to a hex string and pad it to 32 bytes
+const slotPadded = ethers.utils.hexZeroPad(ethers.utils.hexlify(0), 32);
+
+// Concatenate the padded address and slot number
+const concatenated = addressPadded + slotPadded.slice(2); // slice to remove '0x' from the slotPadded
+
+// Hash the concatenated string using Keccak-256
+const storageKey = ethers.utils.keccak256(concatenated);
+const l1BatchNumber = await provider.getL1BatchNumber();
+const storageProof = await provider.getProof(utils.NONCE_HOLDER_ADDRESS, [storageKey], l1BatchNumber);
+console.log(`Storage proof: ${toJSON(storageProof)}`);
+```
+
 ### `getRawBlockTransactions`
 
 Returns data of transactions in a block.
