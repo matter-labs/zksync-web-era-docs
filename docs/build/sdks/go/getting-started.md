@@ -102,15 +102,14 @@ fmt.Printf("%+v\n", transactionByHash)
 
 Also, the following examples demonstrate how to:
 
-1. [Deposit ETH and tokens from Ethereum into zkSync Era](examples/deposit.md).
-2. [Transfer ETH and tokens on zkSync Era](examples/transfer.md).
-3. [Withdraw ETH and tokens from zkSync Era to Ethereum](examples/withdraw.md).
-4. [Get confirmed tokens on zkSync Era](examples/get-confirmed-tokens.md).
-5. [Deploy a smart contract using CREATE opcode](examples/create.md).
-6. [Deploy a smart contract using CREATE2 opcode](examples/create2.md).
-7. [Deploy custom token on zkSync Era](examples/custom-paymaster/deploy-token.md).
-8. [Deploy smart account](examples/custom-paymaster/deploy-account.md).
-9. [Use paymaster to pay fee with token](examples/custom-paymaster/use-paymaster.md).
+1. [Deposit ETH and tokens from Ethereum into zkSync Era](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/01_deposit.go).
+2. [Transfer ETH and tokens on zkSync Era](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/02_transfer.go).
+3. [Withdraw ETH and tokens from zkSync Era to Ethereum](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/03_withdraw.go).
+4. [Deploy a smart contract using CREATE opcode](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/09_deploy_create.go).
+5. [Deploy a smart contract using CREATE2 opcode](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/12_deploy_create2.go).
+6. [Deploy custom token on zkSync Era](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/15_deploy_token_create.go).
+7. [Deploy smart account](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/17_deploy_create_account.go).
+8. [Use paymaster to pay fee with token](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/19_use_paymaster.go).
 
 Full code for all examples is available [here](https://github.com/zksync-sdk/zksync2-examples/tree/main/go). Examples are configured to
 interact with `zkSync Era`, and `Sepolia` test networks.

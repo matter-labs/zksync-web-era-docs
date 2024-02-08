@@ -73,4 +73,4 @@ func GetPaymasterParams(paymasterAddress common.Address, paymasterInput types.Pa
 ```
 
 Find out more about the [`PaymasterInput` type](types/types.md).
-Check out the [example](examples/custom-paymaster/use-paymaster.md) how to use paymaster.
+Check out the [example](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/19_use_paymaster.go) how to use paymaster.
