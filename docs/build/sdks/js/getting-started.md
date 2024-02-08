@@ -7,166 +7,73 @@ head:
 
 # Getting Started
 
-::: warning
+This is a short introduction to `zksync-ethers` SDK, but covers many of the most common operations that developers require and provides a
+starting point for those newer to zkSync Era.
 
-- Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`.
-- For more information, read the [changelog].
-  :::
+## Getting zksync-ethers
 
-## Concept
+### Prerequisites
 
-While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features, like account abstraction, requires providing additional fields to those that Ethereum transactions have by default.
+- Node: >=v18 ([installation guide](https://nodejs.org/en/download/package-manager))
 
-To provide easy access to all the features of zkSync Era, the `zksync-ethers` JavaScript SDK was created, which is made in a way that has an interface very similar to those of
-[ethers](https://docs.ethers.io/v5/). In fact, `ethers` is a peer dependency of our library and most of the objects exported by `zksync-ethers` (e.g. `Wallet`, `Provider` etc.)
-inherit from the corresponding `ethers` objects and override only the fields that need to be changed.
-
-The library is made in such a way that after replacing `ethers` with `zksync-ethers` most client apps will work out of box.
-
-## Adding dependencies
+In order to install SDK for zkSync Era, run the command below in your terminal.
 
 ```bash
 yarn add zksync-ethers@5
 yarn add ethers@5 # ethers is a peer dependency of zksync-ethers
 ```
 
-Then you can import all the content of the `ethers` library and the `zksync-ethers` library with the following statement:
+## Overview
 
-```typescript
-import * as zksync from "zksync-ethers";
-import * as ethers from "ethers";
+While most of the existing SDKs should work out of the box, deploying smart contracts or using unique zkSync features, like account abstraction, requires providing additional
+fields to those that Ethereum transactions have by default.
+
+To begin, it is useful to have a basic understanding of the types of objects available and what they are responsible for, at a high level:
+
+- `Provider` provides connection to the zkSync Era blockchain, which allows querying the blockchain state, such as account, block or transaction details,
+  querying event logs or evaluating read-only code using call. Additionally, the client facilitates writing to the blockchain by sending
+  transactions.
+- `Wallet` wraps all operations that interact with an account. An account generally has a private key, which can be used to sign a variety of
+  types of payloads. It provides easy usage of the most common features.
+
+## Examples
+
+The following examples could be easily run by writing the code snippets in a file and executing them as follows:
+
+```shell
+npx ts-node src/zksync.ts
 ```
 
-## Connecting to zkSync
+Connect to the zkSync Era network:
 
-To interact with the zkSync network users need to know the endpoint of the operator node.
+```ts
+import { Provider, utils, types } from "zksync-ethers";
+import { ethers } from "ethers";
 
-```typescript
-// Currently, only one environment is supported.
-import { Wallet, Provider } from "zksync-ethers";
-
-const provider = new Provider("https://sepolia.era.zksync.dev");
-// Private key of the account to connect
-const wallet = new Wallet("<WALLET-PRIVATE-KEY>").connect(provider);
-```
-
-**Note:** Currently, `Sepolia` and `Goerli` networks are supported.
-
-Some operations require access to the Ethereum network. `ethers` library should be used to interact with
-Ethereum.
-
-```typescript
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const ethProvider = ethers.getDefaultProvider("sepolia");
 ```
 
-## Creating a wallet
+Get the network (helper function [toJSON](./providers.md#tojson)):
 
-To control your account in zkSync, use the `zksync.Wallet` object. It can sign transactions with keys stored in
-`ethers.Wallet` and send transaction to the zkSync network using `zksync.Provider`.
-
-```typescript
-// Derive zksync.Wallet from ethereum private key.
-// zkSync's wallets support all of the methods of ethers' wallets.
-// Also, both providers are optional and can be connected to later via `connect` and `connectToL1`.
-const zkSyncWallet = new zksync.Wallet(PRIVATE_KEY, zkSyncProvider, ethProvider);
+```ts
+console.log(`Network: ${toJSON(await provider.getNetwork())}`);
 ```
 
-## Depositing funds
+Get the latest block number:
 
-Let's deposit `1.0 ETH` to our zkSync account.
-
-```typescript
-const deposit = await zkSyncWallet.deposit({
-  token: zksync.utils.ETH_ADDRESS,
-  amount: ethers.utils.parseEther("1.0"),
-});
+```ts
+console.log(`Block number: ${await provider.getBlockNumber()}`);
 ```
 
-**NOTE:** Each token inside zkSync has an address. If `ERC-20` tokens are being bridged, you should supply the token's L1 address in the `deposit` function, or zero address (`0x0000000000000000000000000000000000000000`) if you want to deposit ETH. Note, that for the `ERC-20` tokens the address of their corresponding L2 token will be different from the one on Ethereum.
+Get the block by hash (helper function [toJSON](./providers.md#tojson)):
 
-After the transaction is submitted to the Ethereum node, its status can be tracked using the transaction handle:
-
-```typescript
-// Await processing of the deposit on L1
-const ethereumTxReceipt = await deposit.waitL1Commit();
-
-// Await processing the deposit on zkSync
-const depositReceipt = await deposit.wait();
+```ts
+console.log(`Block: ${toJSON(await provider.getBlock("b472c070c9e121ba42702f6c322b7b266e287a4d8b5fa426ed265b105430c397", true))}`);
 ```
 
-## Checking zkSync account balance
+Get the transaction by hash (helper function [toJSON](./providers.md#tojson)):
 
-```typescript
-// Retrieving the current (committed) zkSync ETH balance of an account
-const committedEthBalance = await zkSyncWallet.getBalance(zksync.utils.ETH_ADDRESS);
-
-// Retrieving the ETH balance of an account in the last finalized zkSync block.
-const finalizedEthBalance = await zkSyncWallet.getBalance(zksync.utils.ETH_ADDRESS, "finalized");
+```ts
+console.log(`Block: ${toJSON(await provider.getTransaction("0x9af27afed9a4dd018c0625ea1368afb8ba08e4cfb69b3e76dfb8521c8a87ecfc"))}`);
 ```
-
-You can read more about what committed and finalized blocks are [here](../../../zk-stack/concepts/blocks.md)
-
-## Performing a transfer
-
-Now, let's create a second wallet and transfer some funds into it. Note that it is possible to send assets to any fresh Ethereum
-account, without preliminary registration!
-
-```typescript
-const zkSyncWallet2 = new zksync.Wallet(PRIVATE_KEY2, zkSyncProvider, ethProvider);
-```
-
-Let's transfer `1 ETH` to another account:
-
-The `transfer` method is a helper method that enables transferring `ETH` or any `ERC-20` token within a single interface.
-
-```typescript
-const amount = ethers.utils.parseEther("1.0");
-
-const transfer = await zkSyncWallet.transfer({
-  to: zkSyncWallet2.address,
-  token: zksync.utils.ETH_ADDRESS,
-  amount,
-});
-```
-
-To track the status of this transaction:
-
-```typescript
-// Await commitment
-const committedTxReceipt = await transfer.wait();
-
-// Await finalization on L1
-const finalizedTxReceipt = await transfer.waitFinalize();
-```
-
-## Withdrawing funds
-
-There are two ways to withdraw funds from zkSync to Ethereum, calling the operation through L2 or L1. If the
-withdrawal operation is called through L1, then the operator has a period of time during which he must process
-the transaction, otherwise `PriorityMode` will be turned on. This ensures that the operator cannot stage the
-transaction. But in most cases, a call via L2 is sufficient.
-
-```typescript
-const withdrawL2 = await zkSyncWallet.withdraw({
-  token: zksync.utils.ETH_ADDRESS,
-  amount: ethers.utils.parseEther("0.5"),
-});
-```
-
-Assets will be withdrawn to the target wallet(if do not define the `to` address in the `withdraw` method's argument - the sender address will be chosen as a destination) after the validity proof of the zkSync block with this transaction is generated and verified by the mainnet contract.
-
-It is possible to wait until the validity proof verification is complete:
-
-```typescript
-await withdrawL2.waitFinalize();
-```
-
-## Deploying a contract
-
-A guide on deploying smart contracts using our hardhat plugin is available [here](../../tooling//hardhat/getting-started.md).
-
-## Adding tokens to the standard bridge
-
-Adding tokens to the zkSync standard bridge can be done in a permissionless way. After adding a token to zkSync, it can be used in all types of transactions.
-
-The documentation on adding tokens to zkSync can be found [here](./accounts-l1-l2.md#adding-native-token-to-zksync).

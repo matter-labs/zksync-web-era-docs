@@ -7,6 +7,12 @@ head:
 
 # Getting started
 
+::: warning Windows as platform
+If you are using Windows, we strongly recommend you use Windows Subsystem for Linux (also known as WSL 2). You can use `Hardhat` and `Hardhat zkSync plugins` without it, but it will work better if you use it.
+
+To install Node.js using WSL 2, please read this [guide](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl)
+:::
+
 [Hardhat](https://hardhat.org) is an Ethereum development environment, designed for easy smart contract development in Solidity. One of its most prominent features is extendability: you can easily add new plugins to your hardhat project.
 
 zkSync Era has the following official plugins for Hardhat:
@@ -19,6 +25,7 @@ zkSync Era has the following official plugins for Hardhat:
 - [@matterlabs/hardhat-zksync-verify-vyper](./hardhat-zksync-verify-vyper.md) - used to verify vyper smart contracts.
 - [@matterlabs/hardhat-zksync-upgradable](./hardhat-zksync-upgradable.md) - used to deploy, update, and verify proxy smart contracts.
 - [@matterlabs/hardhat-zksync-ethers](./hardhat-zksync-ethers.md) - wrapper around zksync-ethers with some extra Hardhat-specific functionality.
+- [@matterlabs/hardhat-zksync-node](./hardhat-zksync-node.md) - used to run the zkSync era-test-node locally.
 
 ::: tip Additional plugins
 Learn more about [other plugins from the community](./other-plugins.md) that you can use with zkSync Era.
@@ -33,7 +40,7 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 ## Prerequisites
 
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
-- A Node and `yarn` package manager installed.
+- You have a Node installation and `yarn` or `npm` package manager.
 - You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the
 - A wallet with sufficient Sepolia or Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts. You can get Sepolia ETH from the [network faucets](../../tooling/network-faucets.md).
   - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
@@ -53,8 +60,16 @@ Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply exe
 
 To create a new project run the CLI's `create` command, passing a project name:
 
+#### Solidity project
+
 ```sh
 npx zksync-cli create demo --template hardhat_solidity
+```
+
+#### Vyper project
+
+```sh
+npx zksync-cli create demo --template hardhat_vyper
 ```
 
 This command creates a `demo` folder and clones a Hardhat template project inside it. The downloaded project is already configured and contains all the required plugins.
@@ -69,10 +84,42 @@ The `hardhat.config.ts` file contains some zkSync-Era-specific configurations:
 
 The zkSync Era deployment and compiler plugin imports.
 
+###### Solidity project
+
 ```typescript
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
+......
 ```
+
+The `zksolc` block contains the minimal configuration for the compiler.
+
+```typescript
+zksolc: {
+  version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
+  settings: {},
+},
+```
+
+###### Vyper project
+
+```typescript
+import "@nomiclabs/hardhat-vyper";
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-vyper";
+......
+```
+
+The `zkvyper` block contains the minimal configuration for the compiler.
+
+```typescript
+zkvyper: {
+  version: "latest", // Uses latest available in https://github.com/matter-labs/zkvyper-bin/
+  settings: {},
+},
+```
+
+#### Network
 
 The network endpoints of the `zkSyncTestnet` network change dynamically for local tests.
 
@@ -100,15 +147,6 @@ For local zkSync testing, modify `url` and `ethNetwork` in `hardhat.config.ts` t
 This template project includes a basic unit test in the `/test` folder that runs with the local-setup and can be executed with `yarn test`. Learn more about how to [start the local setup and write unit tests here](../../test-and-debug/getting-started.md).
 :::
 
-The `zksolc` block contains the minimal configuration for the compiler.
-
-```typescript
-zksolc: {
-  version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
-  settings: {},
-},
-```
-
 ::: tip Advanced configuration
 To learn more about each specific property in the `hardhat.config.ts` file, check out the [plugins documentation](../hardhat/getting-started.md)
 :::
@@ -125,9 +163,9 @@ Your private key will be used for paying the costs of deploying the smart contra
 
 ## Compile and deploy a contract
 
-Smart contracts belong in the `contracts` folder. The template project contains a simple `Greeter.sol` contract and a script to deploy it.
+Smart contracts belong in the `contracts` folder.
 
-1. To compile the contract, run:
+#### 1. To compile the contract, run
 
 ```sh
 yarn hardhat compile
@@ -138,6 +176,7 @@ You'll see the following output:
 ```text
 Compiling 1 Solidity file
 Successfully compiled 1 Solidity file
+// Successfully compiled 1 Vyper file - Vyper project
 ✨  Done in 1.09s.
 ```
 
@@ -148,7 +187,7 @@ The `artifacts-zk` and `cache-zk` folders are included in the `.gitignore` file.
 
 :::
 
-The `deploy-greeter.ts` script is in the `deploy` folder. This script uses the `Deployer` class from the `hardhat-zksync-deploy` package to deploy the `Greeter.sol` contract.
+The `deploy-greeter.ts` script is in the `deploy` folder. This script uses the `Deployer` class from the `hardhat-zksync-deploy` package to deploy the `Greeter.sol`/`Greeter.vy` contract.
 
 ```typescript
 import { Wallet, utils } from "zksync-ethers";
@@ -205,7 +244,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 }
 ```
 
-2. To execute the deployment script run:
+#### 2. To execute the deployment script run
 
 ```sh
 yarn hardhat deploy-zksync --script deploy-greeter.ts
@@ -248,8 +287,10 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import dotenv from "dotenv";
 dotenv.config();
 
-// load contract artifact. Make sure to compile first!
+// load contract artifact. Make sure to compile first! - Solidity Project
 import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.sol/Greeter.json";
+// load contract artifact. Make sure to compile first! - Vyper Project
+//import * as ContractArtifact from "../artifacts-zk/contracts/Greeter.vy/Greeter.json";
 
 const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
 
