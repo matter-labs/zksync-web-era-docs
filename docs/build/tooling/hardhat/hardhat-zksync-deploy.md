@@ -13,10 +13,15 @@ This plugin provides utilities for deploying smart contracts on zkSync Era with 
 
 To use the `hardhat-zksync-deploy` in your project, we recommend that:
 
-- You have a Node installation and `yarn` package manager.
+- You have a Node installation and `yarn` or `npm` package manager.
 - You are already familiar with deploying smart contracts on zkSync Era. If not, please refer to the first section of the [quickstart tutorial](../../quick-start/hello-world.md).
-- You have a wallet with sufficient Sepolia `ETH` on L1 to pay for bridging funds to zkSync as well as deploying smart contracts. Use the [network faucets](../../tooling/network-faucets.md) to get some test tokens in your account.
-- You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
+- A wallet with sufficient Sepolia `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts on testnet. You can get Sepolia ETH from the [network faucets](../../tooling/network-faucets.md).
+  - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
+- You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
+
+::: tip Local zkSync Testing with zksync-cli
+Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../zksync-cli/getting-started.md).
+:::
 
 ::: warning Version Compatibility Warning
 Ensure you are using the correct version of the plugin with ethers:
@@ -141,12 +146,6 @@ To see an example script of how to use a `Deployer` class to deploy a contract, 
 
 ### Configuration
 
-::: warning API changes in v0.6.x
-
-- We advise developers to upgrade to the most recent version of this package.
-
-:::
-
 In the `hardhat.config.ts` file, specify zkSync Era and Ethereum networks in the `networks` object.
 
 ```typescript
@@ -270,4 +269,12 @@ yarn hardhat deploy-zksync:libraries --private-key 0x7726827caac94a7f9e1b160f7ea
 
 ::: tip
 In Typescript projects `--exported-config-object <object name>` argument can be provided optionally. Plugin will try to resolve config by `HardhatUserConfig` type.
+:::
+
+::: warning Hardhat library auto-population
+
+Using `export default {}` for the Hardhat config is currently not supported for library auto-population. Instead, you should use `export const config = {}`, and make sure to add `export default config;` at the bottom of the file.
+
+The default object name is `config`, but you can replace it with a different object name using the `--exported-config-object <object name>` command. This allows you to customize the exported object for your Hardhat configuration.
+
 :::

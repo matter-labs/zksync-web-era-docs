@@ -303,6 +303,7 @@ Zerion
 Maverik
 freezability
 predeloyed
+Aave
 
 // testing ci
 Omnibtc
