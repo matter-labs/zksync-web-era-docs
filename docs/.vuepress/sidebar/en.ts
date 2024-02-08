@@ -236,6 +236,20 @@ export const enSidebar = sidebar({
           ]
         },
         {
+          text: "Foundry",
+          collapsible: true,
+          children: [
+            {
+              text: "Overview",
+              link: "/build/tooling/foundry/overview.md", 
+            },
+            {
+              text: "Getting Started",
+              link: "/build/tooling/foundry/getting-started.md", 
+            },
+          ]
+        },
+        {
           text: "Ecosystem",
           collapsible: true,
           children: [
