@@ -82,6 +82,9 @@ IPFS
 Nuxt
 viem
 Wagmi
+zkbuild
+zkout
+zkcreate
 
 // docs restructure
 NVME

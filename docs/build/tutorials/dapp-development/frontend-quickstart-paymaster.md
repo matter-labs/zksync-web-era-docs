@@ -41,7 +41,7 @@ cd tutorials/hello-world/frontend
 
 ```bash
 yarn
-yarn serve
+yarn dev
 ```
 
 Navigate to `http://localhost:8080/` in a browser to see the application running.
