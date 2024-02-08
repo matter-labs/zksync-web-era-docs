@@ -73,7 +73,7 @@ zkforge zkbuild [OPTIONS]
 
 **Key Compiler Options:**
 
-- `--use-zksolc <ZK_SOLC_VERSION>`: Specify the solc version or a local solc path.
+- `--use-zksolc <ZK_SOLC_VERSION>`: Specify the zksolc version or a local zksolc path.
 - `--is-system <SYSTEM_MODE>`: Enables system contract compilation mode (`true`/`false`).
 - `--force-evmla <FORCE_EVMLA>`: Switch to the EVM legacy assembly pipeline.
 - `--fallback-oz <FALLBACK_OZ>`: Recompile with `-Oz` if bytecode is too large.
