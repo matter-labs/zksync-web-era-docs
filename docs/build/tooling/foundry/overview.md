@@ -36,7 +36,7 @@ head:
 
 While `foundry-zksync` is **alpha stage**, there are some limitations to be aware of, but not limited to:
 
-- **Cheat Codes Support**: Not all cheat codes are fully supported. [View the list of supported cheat codes](./SUPPORTED_CHEATCODES.md).
+- **Cheat Codes Support**: Not all cheat codes are fully supported. [View the list of supported cheat codes](https://github.com/matter-labs/foundry-zksync/blob/main/SUPPORTED_CHEATCODES.md).
 - **Compile Time**: Some users may experience slow compiling.
 - **Specific Foundry Features**: Currently features such as `coverage`, `--gas-report` or `--verify` may not work as intended. We are actively working on providing support for these feature types.
 - **Compiling Libraries**: Compiling non-inlinable libraries requires deployment and adding to configuration. For more information please refer to [official docs](https://era.zksync.io/docs/tools/hardhat/compiling-libraries.html).
