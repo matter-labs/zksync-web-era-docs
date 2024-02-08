@@ -63,7 +63,7 @@ Besides cross-hyperchain calls, it will be also possible to execute cross-hyperc
 
 ### Hyperchain User Experience
 
-As we aim to onboard billions of users to Web3, user experience has to be a priority. Users will have wallets on different chains, unified by cross-hyperchain wallet management. This is still a hot research topic, as seen in Vitalik's [post](https://vitalik.ca/general/2023/06/20/deeperdive.html). These solutions will be integrated into Account Abstractions, which are natively supported on ZK Stack powered chains.
+As we aim to onboard billions of users to Web3, user experience has to be a priority. Users will have wallets on different chains, unified by cross-hyperchain wallet management. This is still a hot research topic, as seen in Vitalik's [post](https://vitalik.eth.limo/general/2023/06/20/deeperdive.html). These solutions will be integrated into Account Abstractions, which are natively supported on ZK Stack powered chains.
 
 The users' wallets will show all of their assets, and relayers will handle bridging, burning, and minting assets to be used at the destination. Hyperchains will have unique identifiers that, when paired with ENS, will make recipient addresses look like email addresses. Of course, the default will be the use of traditional Ethereum addresses together with the Hyperchain identifiers.
 
