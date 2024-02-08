@@ -17,7 +17,10 @@ Full examples of actions below are available on the [getting started](./getting-
 
 `WalletL1` and `Wallet` objects provide a deposit workflow. For more information, please refer to the method specification [`Deposit`](accounts.md#deposit).
 
-For a complete example of how to execute the deposit workflow, take a look at the following: [Deposit ETH and ERC20 token](examples/deposit.md).
+For a comprehensive example demonstrating the deposit workflow, refer to the following:
+
+- [Deposit ETH](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/01_deposit.go).
+- [Deposit ERC20 tokens](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/05_deposit_token.go).
 
 ## Request execute
 
@@ -43,4 +46,7 @@ method specification [`BaseCost`](accounts.md#basecost).
 
 `WalletL2` and `Wallet` objects provide a withdrawal workflow. For more information, please refer to the method specification [`Deposit`](accounts.md#deposit).
 
-For a complete example of how to execute the deposit workflow, take a look at the following: [Withdraw ETH and ERC20 token](examples/withdraw.md).
+For a complete example of how to execute the deposit workflow, take a look at the following:
+
+- [Withdraw ETH](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/03_withdraw.go).
+- [Withdraw ERC20 token](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/07_withdraw_token.go).

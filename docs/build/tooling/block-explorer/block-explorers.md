@@ -20,19 +20,30 @@ The official zkSync Era [block explorer](https://explorer.zksync.io/) provides i
 
 ### Etherscan - zkSync Era Explorer
 
-[Etherscan](https://era.zksync.network/) allows you to explore and search the zkSync Era network for transactions, addresses, tokens, prices and other activities taking place on the Network.
+Etherscan allows you to explore and search the zkSync Era network for transactions, addresses, tokens, prices and other activities taking place on the Network.
+
+- [Etherscan Mainnet](https://era.zksync.network/)
+- [Etherscan Testnet](https://sepolia-era.zksync.network/)
 
 ### L2Scan
 
-[L2Scan](https://zksync-era.l2scan.co/) is the open source block explorer for zkSync by the Unifra team.
+L2Scan is the open source block explorer for zkSync by the Unifra team
+
+- [L2Scan Mainnet](https://zksync-era.l2scan.co/)
+- [L2Scan Testnet](https://zksync-era-sepolia.l2scan.co/)
 
 ### Blockscout
 
-[Blockscout](https://zksync.blockscout.com/) is a blockchain explorer for inspecting, analyzing, and interacting with zkSync.
+Blockscout is a blockchain explorer for inspecting, analyzing, and interacting with zkSync.
+
+- [Blockscout Mainnet](https://zksync.blockscout.com/)
+- [Blockscout Testnet](https://zksync-sepolia.blockscout.com/)
 
 ### Hyperscan
 
-Routescan's zkSync Explorer, [Hyperscan](https://hyperscan.xyz/), allows you to explore and search for transactions, addresses, tokens, prices and other activities taking place on zkSync.
+Routescan's zkSync Explorer allows you to explore and search for transactions, addresses, tokens, prices and other activities taking place on zkSync.
+
+- [Hyperscan](https://hyperscan.xyz/)
 
 ### zkScan Lite
 

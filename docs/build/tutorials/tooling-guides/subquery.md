@@ -238,4 +238,4 @@ You should now see the results displayed below in the GraphQL playground, and yo
 
 Congratulations! You have successfully set up a SubQuery project running locally, ready to handle GraphQL API requests pertaining to data transfers.
 
-To ensure your SubQuery project operates efficiently and to sidestep common pitfalls, delve into the [Project Optimization](https://doc.subquery.network/projectoptimisation.html) section. Happy querying!
+To ensure your SubQuery project operates efficiently and to sidestep common pitfalls, delve into the [Project Optimization](https://academy.subquery.network/build/optimisation.html) section. Happy querying!
