@@ -301,10 +301,9 @@ export const enSidebar = sidebar({
             {
               text: "IDE",
               link: "/build/tooling/ide.md"
-            },
+            }
           ]
         },
-
       ],
     },
     {
