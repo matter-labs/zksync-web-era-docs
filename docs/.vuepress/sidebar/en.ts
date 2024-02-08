@@ -87,6 +87,10 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             {
+              text: "Quickstart Frontend with Paymaster",
+              link: "/build/tutorials/dapp-development/frontend-quickstart-paymaster.md",
+            },
+            {
               text: "NFT Gated Paymaster",
               link: "/build/tutorials/dapp-development/gated-nft-paymaster-tutorial.md",
             },
@@ -238,6 +242,20 @@ export const enSidebar = sidebar({
             "/build/tooling/hardhat/hardhat-zksync-toolbox.md",
             "/build/tooling/hardhat/hardhat-zksync-node.md",
             "/build/tooling/hardhat/other-plugins.md",
+          ]
+        },
+        {
+          text: "Foundry",
+          collapsible: true,
+          children: [
+            {
+              text: "Overview",
+              link: "/build/tooling/foundry/overview.md", 
+            },
+            {
+              text: "Getting Started",
+              link: "/build/tooling/foundry/getting-started.md", 
+            },
           ]
         },
         {

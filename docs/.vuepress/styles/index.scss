@@ -513,6 +513,16 @@ $border-color: #e5e7eb;
         }
     }
 
+    .time-label-wrapper 
+    {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .time-label-wrapper p{
+        margin: 0;
+    }
+
     .card-container {
         display: grid;
         grid-auto-columns: min-content;

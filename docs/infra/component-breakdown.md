@@ -60,7 +60,7 @@ the root hashes for the latest available L1 batch do not match, the Reorg Detect
 responsible for the divergence. Subsequently, it rolls back the local state and restarts the node. Upon restart, the EN
 resumes normal operation.
 
-[finality]: https://docs.zksync.io/dev/developer-guides/finality.html
+[finality]: https://docs.zksync.io/zk-stack/concepts/finality.html
 
 ## Consistency Checker
 
