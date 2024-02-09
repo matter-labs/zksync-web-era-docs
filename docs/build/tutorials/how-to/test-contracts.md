@@ -134,14 +134,14 @@ Now we should add some code to the new **Greeter.sol** file:
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 contract Greeter {
-    string private greeting;
-    bool private isGreetingInitialized;
+      string private greeting;
+    bool private greetingSetted;
     constructor(string memory _greeting) {
         greeting = _greeting;
-        isGreetingInitialized = true;
+        greetingSetted = false;
     }
     function greet() public view returns (string memory) {
         return greeting;
@@ -149,10 +149,10 @@ contract Greeter {
     function setGreeting(string memory _greeting) public {
         require(bytes(_greeting).length > 0, "Greeting must not be empty");
         greeting = _greeting;
-        isGreetingInitialized = true;
+        greetingSetted = true;
     }
-    function isGreetingSet() public view returns (bool) {
-        return isGreetingInitialized;
+    function isGreetingSetted() public view returns (bool) {
+        return greetingSetted;
     }
 }
 ```
@@ -222,22 +222,22 @@ With the previous steps completed, your **hardhat.config.ts** file should now be
 ```javascript
 import { HardhatUserConfig } from "hardhat/config";
 
-import "@matterlabs/hardhat-zksync-solc"
-import "@matterlabs/hardhat-zksync-deploy"
-import "@matterlabs/hardhat-zksync-node"
-import "@nomicfoundation/hardhat-chai-matchers"
-import "@matterlabs/hardhat-zksync-chai-matchers"
+import "@matterlabs/hardhat-zksync-solc";
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-node";
+import "@nomicfoundation/hardhat-chai-matchers";
+import "@matterlabs/hardhat-zksync-chai-matchers";
 
 const config: HardhatUserConfig = {
-  zksolc:{
-    version: "latest"
+  zksolc: {
+    version: "latest",
   },
   solidity: "0.8.19",
-  networks:{
-    hardhat:{
-      zksync:true
-    }
-  }
+  networks: {
+    hardhat: {
+      zksync: true,
+    },
+  },
 };
 export default config;
 ```
@@ -248,7 +248,7 @@ Here are the steps to create test cases with the **hardhat-zksync-chai-matchers*
 2. Create a new folder named **test**.
 3. Inside the **test** folder, create a file named **test.ts**.
 
-Once you've completed these steps, you'll be ready to write your tests using the **hardhat-zksync-chai-matchers** plugin. <br>
+Once you've completed these steps, you'll be ready to write your tests using the **hardhat-zksync-chai-matchers** plugin.
 
 Here's a brief example showcasing the functionalities of our contract:
 
@@ -257,11 +257,11 @@ import * as hre from "hardhat";
 import { expect } from "chai";
 import { Wallet, Provider, Contract } from "zksync-ethers";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
-import { ZkSyncArtifact } from '@matterlabs/hardhat-zksync-deploy/src/types';
+import { ZkSyncArtifact } from "@matterlabs/hardhat-zksync-deploy/src/types";
 import { ZkSyncProviderAdapter } from "@matterlabs/hardhat-zksync-node";
 import "@matterlabs/hardhat-zksync-node/dist/type-extensions";
 
-const RICH_PRIVATE_KEY = '0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110';
+const RICH_PRIVATE_KEY = "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110";
 
 describe("Greeter", function () {
   let provider: Provider;
@@ -274,19 +274,19 @@ describe("Greeter", function () {
     provider = new Provider(hre.network.config.url);
     // To ensure proper testing, we need to deploy our contract on the zkSync Era Test Node, for more info check hardhat-zksync-deploy plugin documentation.
     deployer = new Deployer(hre, new Wallet(RICH_PRIVATE_KEY));
-    artifact = await deployer.loadArtifact('Greeter');
-    contract = await deployer.deploy(artifact, ['Hello, world!']);
+    artifact = await deployer.loadArtifact("Greeter");
+    contract = await deployer.deploy(artifact, ["Hello, world!"]);
   });
-  it('should work on Era Test node', async function () {
+  it("should work on Era Test node", async function () {
     const netVersion = await provider.send("net_version", []);
     expect(netVersion === 260);
-  })
+  });
   it("greet should return a string", async function () {
-    expect(await contract.greet()).to.be.a('string');
+    expect(await contract.greet()).to.be.a("string");
   });
   it("is deployed address valid", async function () {
     expect(await contract.getAddress()).to.be.properAddress;
-  })
+  });
   it("greet should say Hello", async function () {
     expect(await contract.greet()).to.match(/^Hello/);
   });
@@ -294,10 +294,10 @@ describe("Greeter", function () {
     await expect(contract.setGreeting("")).to.be.revertedWith("Greeting must not be empty");
   });
   it("isGreetingSet should return true after setting greeting", async function () {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    expect(await contract.isGreetingSetted()).to.be.false;
     const tx = await contract.setGreeting("Test");
     await tx.wait();
-    expect(await contract.isGreetingSet()).to.be.true;
+    expect(await contract.isGreetingSetted()).to.be.true;
   });
 });
 ```
