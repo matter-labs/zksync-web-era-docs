@@ -266,6 +266,17 @@ Interface representation of raw block with transactions
 
 0x-prefixed, hex-encoded, ECDSA signature as string.
 
+## `StorageProof`
+
+Interace representation of Merkle proofs for storage values.
+
+- `address`: `string`;
+- `storageProof` (Array):
+  - `key`: `string`;
+  - `value`: `string`;
+  - `index`: `number`;
+  - `proof`: `string[]`;
+
 ## `Token`
 
 Interface representation of token containing various fields.
