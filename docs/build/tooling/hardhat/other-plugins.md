@@ -7,7 +7,7 @@ head:
 
 # Community plugins
 
-The following plugins were created by the community and tested on zkSync Era. Feel free to suggest new plugins by [creating a PR for this page](https://github.com/matter-labs/zksync-web-era-docs/blob/main/docs/tools/hardhat/other-plugins.md).
+The following plugins were created by the community and tested on zkSync Era. Feel free to suggest new plugins by [creating a issue(feat request) at this page](https://github.com/matter-labs/hardhat-zksync/issues/new?assignees=&labels=feat&projects=&template=feature_report.md&title=).
 
 ## Supported plugins
 
@@ -64,5 +64,5 @@ This plugin adds new methods that interact with the Hardhat network used for tes
 However, we do not recommend using the Hardhat network for testing contracts that will be deployed on zkSync Era. We recommend instead using the [in-memory node](../../test-and-debug/era-test-node.md) or the [docker setup to test your contracts](../../test-and-debug/dockerized-l1-l2-nodes.md) as they will give you the same results as our testnet/mainnet.
 
 ::: warning
-The additional methods provided by this plugin are not compatible with the zkSync Era in-memory node or docker setup yet.
+The additional methods provided by this plugin are not compatible with the zkSync Era in-memory node or docker setup yet. Currently, we are working on adapting our in-memory node to ensure compatibility with hardhat-network-helpers.
 :::
