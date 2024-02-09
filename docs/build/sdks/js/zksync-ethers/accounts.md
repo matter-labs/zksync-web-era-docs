@@ -592,39 +592,71 @@ For convenience, the `Wallet` class has `transfer` method, which can transfer `E
 
 #### Inputs
 
-| Parameter       | Type                                                                     | Description                                                                                           |
-| --------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `tx.to`         | `Address`                                                                | The address of the recipient.                                                                         |
-| `tx.amount`     | `BigNumberish`                                                           | The amount of the token to transfer (optional).                                                       |
-| `tx.token?`     | `Address`                                                                | The address of the token. `ETH` by default (optional).                                                |
-| `tx.overrides?` | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| Parameter                      | Type                                                                     | Description                                                                                           |
+| ------------------------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `transaction.to`               | `Address`                                                                | The address of the recipient.                                                                         |
+| `transaction.amount`           | `BigNumberish`                                                           | The amount of the token to transfer (optional).                                                       |
+| `transaction.token?`           | `Address`                                                                | The address of the token. `ETH` by default (optional).                                                |
+| `transaction.paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams)                          | Paymaster parameters (optional).                                                                      |
+| `transaction.overrides?`       | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
 
 ```ts
-async transfer(tx: {
+async transfer(transaction: {
   to: Address;
   amount: BigNumberish;
   token?: Address;
+  paymasterParams?: PaymasterParams;
   overrides?: ethers.Overrides;
 }): Promise<TransactionResponse>
 ```
 
-#### Example
+#### Examples
+
+Transfer ETH.
 
 ```ts
 import { Wallet, Provider, utils } from "zksync-ethers";
-import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
-const ethProvider = ethers.getDefaultProvider("sepolia");
-const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
+const wallet = new Wallet(PRIVATE_KEY, provider);
 
 const recipient = Wallet.createRandom();
 
 const transferHandle = await wallet.transfer({
   to: recipient.address,
   amount: ethers.parseEther("0.01"),
+});
+
+const tx = await transferHandle.wait();
+
+console.log(`The sum of ${tx.value} ETH was transferred to ${tx.to}`);
+```
+
+Transfer ETH using paymaster to facilitate fee payment with an ERC20 token.
+
+```ts
+import { Wallet, Provider, utils } from "zksync-ethers";
+
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
+const token = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
+const paymaster = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const wallet = new Wallet(PRIVATE_KEY, provider);
+
+const recipient = Wallet.createRandom();
+
+const transferHandle = await wallet.transfer({
+  to: recipient.address,
+  amount: ethers.parseEther("0.01"),
+  paymasterParams: utils.getPaymasterParams(paymaster, {
+    type: "ApprovalBased",
+    token: token,
+    minimalAllowance: 1,
+    innerInput: new Uint8Array(),
+  }),
 });
 
 const tx = await transferHandle.wait();
@@ -1008,13 +1040,14 @@ L1 network.
 
 #### Inputs
 
-| Parameter                    | Type                                                                     | Description                                                                                           |
-| ---------------------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `transaction.token`          | `Address`                                                                | The address of the token. `ETH` by default.                                                           |
-| `transaction.amount`         | `BigNumberish`                                                           | The amount of the token to withdraw.                                                                  |
-| `transaction.to?`            | `Address`                                                                | The address of the recipient on L1 (optional).                                                        |
-| `transaction.bridgeAddress?` | `Address`                                                                | The address of the bridge contract to be used (optional).                                             |
-| `transaction.overrides?`     | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| Parameter                      | Type                                                                     | Description                                                                                           |
+| ------------------------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `transaction.token`            | `Address`                                                                | The address of the token. `ETH` by default.                                                           |
+| `transaction.amount`           | `BigNumberish`                                                           | The amount of the token to withdraw.                                                                  |
+| `transaction.to?`              | `Address`                                                                | The address of the recipient on L1 (optional).                                                        |
+| `transaction.bridgeAddress?`   | `Address`                                                                | The address of the bridge contract to be used (optional).                                             |
+| `transaction.paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams)                          | Paymaster parameters (optional).                                                                      |
+| `transaction.overrides?`       | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
 
 ```ts
 async withdraw(transaction: {
@@ -1022,26 +1055,52 @@ async withdraw(transaction: {
   amount: BigNumberish;
   to?: Address;
   bridgeAddress?: Address;
+  paymasterParams?: PaymasterParams;
   overrides?: ethers.Overrides;
 }): Promise<TransactionResponse>
 ```
 
-#### Example
+#### Examples
+
+Withdraw ETH.
 
 ```ts
 import { Wallet, Provider, utils } from "zksync-ethers";
-import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
-const ethProvider = ethers.getDefaultProvider("sepolia");
-const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
+const wallet = new Wallet(PRIVATE_KEY, provider);
 
 const tokenL2 = "0x6a4Fb925583F7D4dF82de62d98107468aE846FD1";
 const tokenWithdrawHandle = await wallet.withdraw({
   token: tokenL2,
-  amount: "10000000",
+  amount: 10_000_000,
+});
+```
+
+Withdraw ETH using paymaster to facilitate fee payment with an ERC20 token.
+
+```ts
+import { Wallet, Provider, utils } from "zksync-ethers";
+
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
+const token = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
+const paymaster = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const wallet = new Wallet(PRIVATE_KEY, provider);
+
+const tokenL2 = "0x6a4Fb925583F7D4dF82de62d98107468aE846FD1";
+const tokenWithdrawHandle = await wallet.withdraw({
+  token: tokenL2,
+  amount: 10_000_000,
+  paymasterParams: utils.getPaymasterParams(paymaster, {
+    type: "ApprovalBased",
+    token: token,
+    minimalAllowance: 1,
+    innerInput: new Uint8Array(),
+  }),
 });
 ```
 
@@ -1534,23 +1593,27 @@ But for convenience, the `Wallet` class has `transfer` method, which can transfe
 
 #### Inputs
 
-| Parameter    | Type                                                                     | Description                                                                                           |
-| ------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `tx.to`      | `Address`                                                                | The address of the recipient.                                                                         |
-| `tx.amount`  | `BigNumberish`                                                           | The amount of the token to transfer.                                                                  |
-| `token?`     | `Address`                                                                | The address of the token. `ETH` by default.                                                           |
-| `overrides?` | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| Parameter                      | Type                                                                     | Description                                                                                                |
+| ------------------------------ | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `transaction.to`               | `Address`                                                                | The address of the recipient.                                                                              |
+| `transaction.amount`           | `BigNumberish`                                                           | The amount of the token to transfer.                                                                       |
+| `transaction.token?`           | `Address`                                                                | The address of the token. `ETH` by default.                                                                |
+| `transaction.paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams)                          | Paymaster parameters (optional).                                                                           |
+| `transaction.overrides?`       | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, <br/>`gasPrice`, `value`, etc (optional). |
 
 ```ts
-async transfer(tx: {
+async transfer(transaction: {
   to: Address;
   amount: BigNumberish;
   token ? : Address;
+  paymasterParams?: PaymasterParams;
   overrides ? : ethers.Overrides;
 }): Promise<ethers.ContractTransaction>
 ```
 
-#### Example
+#### Examples
+
+Transfer ETH.
 
 ```ts
 import { BrowserProvider } from "zksync-ethers";
@@ -1567,6 +1630,32 @@ const transferHandle = signer.transfer({
 });
 ```
 
+Transfer ETH using paymaster to facilitate fee payment with an ERC20 token.
+
+```ts
+import { BrowserProvider } from "zksync-ethers";
+import { ethers } from "ethers";
+
+const token = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
+const paymaster = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
+
+const provider = new BrowserProvider(window.ethereum);
+const signer = provider.getSigner();
+
+const recipient = Wallet.createRandom();
+
+const transferHandle = signer.transfer({
+  to: recipient.address,
+  amount: ethers.parseEther("0.01"),
+  paymasterParams: utils.getPaymasterParams(paymaster, {
+    type: "ApprovalBased",
+    token: token,
+    minimalAllowance: 1,
+    innerInput: new Uint8Array(),
+  }),
+});
+```
+
 ### `withdraw`
 
 Initiates the withdrawal process which withdraws ETH or any ERC20 token from the associated account on L2 network to the target account on
@@ -1574,13 +1663,14 @@ L1 network.
 
 #### Inputs
 
-| Parameter                    | Type                                                                     | Description                                                                                           |
-| ---------------------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `transaction.token`          | `Address`                                                                | The address of the token. `ETH` by default.                                                           |
-| `transaction.amount`         | `BigNumberish`                                                           | The amount of the token to withdraw.                                                                  |
-| `transaction.to?`            | `Address`                                                                | The address of the recipient on L1 (optional).                                                        |
-| `transaction.bridgeAddress?` | `Address`                                                                | The address of the bridge contract to be used (optional).                                             |
-| `overrides?`                 | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| Parameter                      | Type                                                                     | Description                                                                                           |
+| ------------------------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `transaction.token`            | `Address`                                                                | The address of the token. `ETH` by default.                                                           |
+| `transaction.amount`           | `BigNumberish`                                                           | The amount of the token to withdraw.                                                                  |
+| `transaction.to?`              | `Address`                                                                | The address of the recipient on L1 (optional).                                                        |
+| `transaction.bridgeAddress?`   | `Address`                                                                | The address of the bridge contract to be used (optional).                                             |
+| `transaction.paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams)                          | Paymaster parameters (optional).                                                                      |
+| `overrides?`                   | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
 
 ```ts
 async withdraw(transaction: {
@@ -1588,11 +1678,14 @@ async withdraw(transaction: {
   amount: BigNumberish;
   to?: Address;
   bridgeAddress?: Address;
+  paymasterParams?: PaymasterParams;
   overrides?: ethers.Overrides;
 }): Promise<TransactionResponse>
 ```
 
-#### Example
+#### Examples
+
+Withdraw ETH.
 
 ```ts
 import { BrowserProvider } from "zksync-ethers";
@@ -1604,7 +1697,32 @@ const signer = provider.getSigner();
 const tokenL2 = "0x6a4Fb925583F7D4dF82de62d98107468aE846FD1";
 const tokenWithdrawHandle = await signer.withdraw({
   token: tokenL2,
-  amount: "10000000",
+  amount: 10_000_000,
+});
+```
+
+Withdraw ETH using paymaster to facilitate fee payment with an ERC20 token.
+
+```ts
+import { BrowserProvider } from "zksync-ethers";
+import { ethers } from "ethers";
+
+const token = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
+const paymaster = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
+
+const provider = new BrowserProvider(window.ethereum);
+const signer = provider.getSigner();
+
+const tokenL2 = "0x6a4Fb925583F7D4dF82de62d98107468aE846FD1";
+const tokenWithdrawHandle = await signer.withdraw({
+  token: tokenL2,
+  amount: 10_000_000,
+  paymasterParams: utils.getPaymasterParams(paymaster, {
+    type: "ApprovalBased",
+    token: token,
+    minimalAllowance: 1,
+    innerInput: new Uint8Array(),
+  }),
 });
 ```
 
