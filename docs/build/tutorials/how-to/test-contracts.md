@@ -69,7 +69,7 @@ We'll want to verify the correctness of our installations and test if we can run
 
 You should see output similar to this:
 
-```
+```log
 09:04:44  INFO Account #9: 0xe2b8Cb53a43a56d4d2AB6131C81Bd76B86D3AFe5 (1_000_000_000_000 ETH)
 09:04:44  INFO Private Key: 0xb0680d66303a0163a19294f1ef8c95cd69a9d7902a4aca99c05f3e134e68a11a
 09:04:44  INFO Mnemonic: increase pulp sing wood guilt cement satoshi tiny forum nuclear sudden thank
@@ -132,7 +132,7 @@ To set up the environment for using chai matchers and writing tests, you'll need
 
 Now we should add some code to the new **Greeter.sol** file:
 
-```bash
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
@@ -219,7 +219,7 @@ Learn more about the **hardhat-zksync-deploy** plugin [here.](../../tooling/hard
 
 With the previous steps completed, your **hardhat.config.ts** file should now be properly configured to include settings for local testing.
 
-```bash
+```javascript
 import { HardhatUserConfig } from "hardhat/config";
 
 import "@matterlabs/hardhat-zksync-solc"
@@ -252,7 +252,7 @@ Once you've completed these steps, you'll be ready to write your tests using the
 
 Here's a brief example showcasing the functionalities of our contract:
 
-```bash
+```typescript
 import * as hre from "hardhat";
 import { expect } from "chai";
 import { Wallet, Provider, Contract } from "zksync-ethers";
