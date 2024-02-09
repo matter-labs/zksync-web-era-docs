@@ -222,8 +222,8 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Getting Started",
-              link: "/build/tooling/zksync-cli/getting-started.md", 
-            }, 
+              link: "/build/tooling/zksync-cli/getting-started.md",
+            },
             "/build/tooling/zksync-cli/commands.md",
             "/build/tooling/zksync-cli/examples/contract-interaction.md"
           ]
@@ -246,6 +246,20 @@ export const enSidebar = sidebar({
             "/build/tooling/hardhat/hardhat-zksync-toolbox.md",
             "/build/tooling/hardhat/hardhat-zksync-node.md",
             "/build/tooling/hardhat/other-plugins.md",
+          ]
+        },
+        {
+          text: "Foundry",
+          collapsible: true,
+          children: [
+            {
+              text: "Overview",
+              link: "/build/tooling/foundry/overview.md", 
+            },
+            {
+              text: "Getting Started",
+              link: "/build/tooling/foundry/getting-started.md", 
+            },
           ]
         },
         {
@@ -291,10 +305,9 @@ export const enSidebar = sidebar({
             {
               text: "IDE",
               link: "/build/tooling/ide.md"
-            },
+            }
           ]
         },
-    
       ],
     },
     {
@@ -386,22 +399,7 @@ export const enSidebar = sidebar({
           text: "Go",
           collapsible: true,
           children: [
-            {
-              text: "Getting Started",
-              collapsible: true,
-              children: [
-                "/build/sdks/go/getting-started",
-                "/build/sdks/go/examples/deposit",
-                "/build/sdks/go/examples/transfer",
-                "/build/sdks/go/examples/withdraw",
-                "/build/sdks/go/examples/get-confirmed-tokens",
-                "/build/sdks/go/examples/create",
-                "/build/sdks/go/examples/create2",
-                "/build/sdks/go/examples/custom-paymaster/deploy-token",
-                "/build/sdks/go/examples/custom-paymaster/deploy-account",
-                "/build/sdks/go/examples/custom-paymaster/use-paymaster",
-              ],
-            },
+            "/build/sdks/go/getting-started",
             "/build/sdks/go/clients",
             "/build/sdks/go/accounts",
             "/build/sdks/go/accounts-l1-l2",
@@ -586,7 +584,7 @@ export const enSidebar = sidebar({
     {
       text: "Components",
       collapsible: true,
-      children: [  
+      children: [
         {
           text: "Overview",
           link: "/zk-stack/components/overview.md",
@@ -599,21 +597,21 @@ export const enSidebar = sidebar({
               text: "Smart Contracts",
               link: "/zk-stack/components/smart-contracts/smart-contracts.md",
             },
-            { 
+            {
               text: "System Contracts",
               link: "/zk-stack/components/smart-contracts/system-contracts.md",
-           }  
+           }
           ]
         },
         {
           text: "Shared Bridge",
           link: "/zk-stack/components/shared-bridges.md"
-          
+
         },
         {
           text: "Sequencer / Server",
           link: "/zk-stack/components/sequencer-server.md"
-          
+
         },
         {
           text: "zkEVM",
@@ -879,15 +877,15 @@ export const enSidebar = sidebar({
             }
           ],
         },
-        { 
+        {
           text: "Fee Withdrawer",
           link: "/zk-stack/components/fee-withdrawer.md"
         },
-        { 
+        {
           text: "Portal - Wallet + Bridge",
           link: "/zk-stack/components/portal-wallet-bridge.md"
         },
-        { 
+        {
           text: "Block Explorer",
           link: "/zk-stack/components/block-explorer.md"
         },

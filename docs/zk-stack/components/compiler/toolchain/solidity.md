@@ -41,6 +41,7 @@ Additional zkEVM data is supported by `zksolc` but is omitted when passed to `so
 - `settings/optimizer/mode`: sets the optimization mode. Available values: `0`, `1`, `2`, `3`, `s`, `z`. The default
   setting is `3`. See [LLVM optimizer](./llvm.md#optimizer).
 - `settings/optimizer/fallback_to_optimizing_for_size`: tries to compile again in `z` mode if the bytecode is too large for zkEVM.
+- `settings/optimizer/disable_system_request_memoization`: disables the memoization of data received in requests to System Contracts.
 
 Unsupported sections of the input JSON, ignored by `zksolc`:
 
