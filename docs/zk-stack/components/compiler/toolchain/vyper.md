@@ -45,3 +45,8 @@ Other output formats are available via the `-f` option. Check out `vyper --help`
 ## Limitations
 
 Versions from 0.3.4 to 0.3.8 are not supported. The only supported versions are 0.3.3, 0.3.9, 0.3.10.
+
+Also, since there is no separation of deploy and runtime code on EraVM, the following Vyper built-ins are not supported:
+
+- `create_copy_of`
+- `create_from_blueprint`
