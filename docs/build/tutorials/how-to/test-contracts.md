@@ -137,11 +137,11 @@ Now we should add some code to the new **Greeter.sol** file:
 pragma solidity ^0.8.17;
 
 contract Greeter {
-      string private greeting;
-    bool private greetingSetted;
+    string private greeting;
+    bool private greetingChanged;
     constructor(string memory _greeting) {
         greeting = _greeting;
-        greetingSetted = false;
+        greetingChanged = false;
     }
     function greet() public view returns (string memory) {
         return greeting;
@@ -149,10 +149,10 @@ contract Greeter {
     function setGreeting(string memory _greeting) public {
         require(bytes(_greeting).length > 0, "Greeting must not be empty");
         greeting = _greeting;
-        greetingSetted = true;
+        greetingChanged = true;
     }
-    function isGreetingSetted() public view returns (bool) {
-        return greetingSetted;
+    function isGreetingChanged() public view returns (bool) {
+        return greetingChanged;
     }
 }
 ```
@@ -293,11 +293,12 @@ describe("Greeter", function () {
   it("setGreeting should throw when passed an invalid argument", async function () {
     await expect(contract.setGreeting("")).to.be.revertedWith("Greeting must not be empty");
   });
-  it("isGreetingSet should return true after setting greeting", async function () {
-    expect(await contract.isGreetingSetted()).to.be.false;
-    const tx = await contract.setGreeting("Test");
+  it("isGreetingChanged should return true after setting greeting", async function () {
+    expect(await contract.isGreetingChanged()).to.be.false;
+    const tx = await contract.setGreeting("Changed");
     await tx.wait();
-    expect(await contract.isGreetingSetted()).to.be.true;
+    expect(await contract.greet()).to.match(/^Changed/);
+    expect(await contract.isGreetingChanged()).to.be.true;
   });
 });
 ```
