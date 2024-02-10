@@ -269,7 +269,7 @@ Greeter was deployed to 0x46f1d2d8A16DBD8b47e9D61175a826ac667288Be4D1293a22E8
 
 - This message is caused by using the default RPC endpoints provided by ethers.
 - To avoid this, use your own Sepolia RPC endpoint in the `hardhat.config.ts` file.
--  multiple [node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
+- Find multiple [node providers here](https://github.com/arddluma/awesome-list-rpc-nodes-providers).
   :::
 
 ## Interact with the contract
