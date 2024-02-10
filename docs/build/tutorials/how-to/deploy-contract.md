@@ -168,9 +168,7 @@ In the root of your project you will see two new folders that represent zksolc c
 - `artifacts-zk`
 - `cache-zk`
 
-### Deploy script
-
-Here are the steps to create deploy scritps with **hardhat-zksync-deploy** plugin:
+Here are the steps to create deploy script with **hardhat-zksync-deploy** plugin.
 
 1. Navigate to your project's root directory.
 2. Create a new folder named **deploy**.
@@ -269,9 +267,8 @@ import "@matterlabs/hardhat-zksync-ethers";
 
 ### Configuration
 
-To deploy contracts with **hardhat-zskync-ethers**, use the similar configuration for our **hardhat.config.ts** as shown [here.](deploy-contract.md#configuration)
-
-In addition to existed configuration add the `accounts` section to the `zkTestnet` network settings in the **hardhat.config.ts** file. This section allows you to specify wallet private keys, enabling the deployment of contracts with automatically populated wallets within the **hardhat-zksync-ethers** plugin. However, you can still manually create a wallet for certain use cases.
+To deploy contracts with **hardhat-zksync-ethers**, use the similar configuration for our **hardhat.config.ts** as shown [here.](deploy-contract.md#configuration)
+The **accounts** section enables to specify wallet private keys which help us deploy contracts with automatically populated wallet within **hardhat-zksync-ethers** plugin, but it can still be manually created for other use cases.
 
 ```bash
 {
@@ -284,7 +281,7 @@ In addition to existed configuration add the `accounts` section to the `zkTestne
 
 ### Deployment process
 
-For the following examples, we use same **SimpleStorage.sol** smart contract as shown [here](deploy-contract.md#simple-storage-contract).
+For the following examples, we use same **SimpleStorage.sol** smart contract as shown [here](deploy-contract.md#create-a-new-smart-contract).
 
 ### Compilation
 
