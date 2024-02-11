@@ -484,6 +484,76 @@
           "type": "302"
         },
         {
+          "source": "/docs/api/go/types/accounts.html",
+          "destination": "/build/sdks/go/types/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/clients.html",
+          "destination": "/build/sdks/go/types/clients.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/eip712.html",
+          "destination": "/build/sdks/go/types/eip712.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/intro.html",
+          "destination": "/build/sdks/go/types/intro.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/types.html",
+          "destination": "/build/sdks/go/types/types.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/create.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/create2.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/deposit.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/get-confirmed-tokens.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/transfer.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/withdraw.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/custom-paymaster/deploy-account.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/custom-paymaster/deploy-token.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/custom-paymaster/use-paymaster.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/java/",
           "destination": "/build/sdks/java/",
           "type": "302"
@@ -999,61 +1069,6 @@
           "type": "302"
         },
         {
-          "source": "/docs/api/go/examples/create.html",
-          "destination": "/build/sdks/go/examples/create.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/create2.html",
-          "destination": "/build/sdks/go/examples/create2.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/deposit.html",
-          "destination": "/build/sdks/go/examples/deposit.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/get-confirmed-tokens.html",
-          "destination": "/build/sdks/go/examples/get-confirmed-tokens.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/transfer.html",
-          "destination": "/build/sdks/go/examples/transfer.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/withdraw.html",
-          "destination": "/build/sdks/go/examples/withdraw.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/types/accounts.html",
-          "destination": "/build/sdks/go/types/accounts.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/types/clients.html",
-          "destination": "/build/sdks/go/types/clients.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/types/eip712.html",
-          "destination": "/build/sdks/go/types/eip712.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/types/intro.html",
-          "destination": "/build/sdks/go/types/intro.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/types/types.html",
-          "destination": "/build/sdks/go/types/types.html",
-          "type": "302"
-        },
-        {
           "source": "/docs/api/js/zksync2-js/",
           "destination": "/build/sdks/js/zksync-ethers/getting-started.html",
           "type": "302"
@@ -1126,21 +1141,6 @@
         {
           "source": "/docs/tools/zksync-cli/examples/contract-interaction.html",
           "destination": "/build/tooling/zksync-cli/examples/contract-interaction.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/custom-paymaster/deploy-account.html",
-          "destination": "/build/sdks/go/examples/custom-paymaster/deploy-account.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/custom-paymaster/deploy-token.html",
-          "destination": "/build/sdks/go/examples/custom-paymaster/deploy-token.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/custom-paymaster/use-paymaster.html",
-          "destination": "/build/sdks/go/examples/custom-paymaster/use-paymaster.html",
           "type": "302"
         },
         {
@@ -1699,6 +1699,76 @@
           "type": "302"
         },
         {
+          "source": "/docs/api/go/types/accounts.html",
+          "destination": "/build/sdks/go/types/accounts.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/clients.html",
+          "destination": "/build/sdks/go/types/clients.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/eip712.html",
+          "destination": "/build/sdks/go/types/eip712.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/intro.html",
+          "destination": "/build/sdks/go/types/intro.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/types/types.html",
+          "destination": "/build/sdks/go/types/types.html",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/create.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/create2.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/deposit.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/get-confirmed-tokens.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/transfer.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/withdraw.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/custom-paymaster/deploy-account.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/custom-paymaster/deploy-token.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
+          "source": "/docs/api/go/examples/custom-paymaster/use-paymaster.html",
+          "destination": "/build/sdks/go/getting-started.html#examples",
+          "type": "302"
+        },
+        {
           "source": "/docs/api/java/",
           "destination": "/build/sdks/java/",
           "type": "302"
@@ -2214,61 +2284,6 @@
           "type": "302"
         },
         {
-          "source": "/docs/api/go/examples/create.html",
-          "destination": "/build/sdks/go/examples/create.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/create2.html",
-          "destination": "/build/sdks/go/examples/create2.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/deposit.html",
-          "destination": "/build/sdks/go/examples/deposit.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/get-confirmed-tokens.html",
-          "destination": "/build/sdks/go/examples/get-confirmed-tokens.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/transfer.html",
-          "destination": "/build/sdks/go/examples/transfer.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/withdraw.html",
-          "destination": "/build/sdks/go/examples/withdraw.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/types/accounts.html",
-          "destination": "/build/sdks/go/types/accounts.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/types/clients.html",
-          "destination": "/build/sdks/go/types/clients.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/types/eip712.html",
-          "destination": "/build/sdks/go/types/eip712.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/types/intro.html",
-          "destination": "/build/sdks/go/types/intro.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/types/types.html",
-          "destination": "/build/sdks/go/types/types.html",
-          "type": "302"
-        },
-        {
           "source": "/docs/api/js/zksync2-js/",
           "destination": "/build/sdks/js/zksync-ethers/getting-started.html",
           "type": "302"
@@ -2341,21 +2356,6 @@
         {
           "source": "/docs/tools/zksync-cli/examples/contract-interaction.html",
           "destination": "/build/tooling/zksync-cli/examples/contract-interaction.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/custom-paymaster/deploy-account.html",
-          "destination": "/build/sdks/go/examples/custom-paymaster/deploy-account.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/custom-paymaster/deploy-token.html",
-          "destination": "/build/sdks/go/examples/custom-paymaster/deploy-token.html",
-          "type": "302"
-        },
-        {
-          "source": "/docs/api/go/examples/custom-paymaster/use-paymaster.html",
-          "destination": "/build/sdks/go/examples/custom-paymaster/use-paymaster.html",
           "type": "302"
         },
         {
