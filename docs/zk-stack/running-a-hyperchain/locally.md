@@ -9,7 +9,7 @@ head:
 
 ## Development dependencies
 
-Ensure you have followed <a href="https://github.com/matter-labs/zksync-era/blob/main/docs/guides/setup-dev.md" target="_blank">these instructions</a> to set up dependencies on your machine (don't worry about the Environment section for now).
+Ensure you have followed [these instructions](https://github.com/matter-labs/zksync-era/blob/main/docs/guides/setup-dev.md) to set up dependencies on your machine (don't worry about the Environment section for now).
 
 ## Deploying Locally
 
@@ -45,7 +45,7 @@ zk
 
 :::warning
 
-The commands above are not just running docker containers, but are actually building the code from the repo to spin up your hyperchain. For this reason the process might take some time. If you just want to run docker containers to play around with a zkSync chain, you can use zksync-cli dev. Learn more here.
+The commands above are not just running docker containers, but are actually building the code from the repo to spin up your hyperchain. For this reason the process might take some time. If you just want to run docker containers to play around with a zkSync chain, you can use `npx zksync-cli dev`. Learn more [here](../../build/tooling/zksync-cli/getting-started.md).
 :::
 
 Your hyperchain is now deployed to the base chain (most likely a local geth docker container) and configured. You can find all configuration in a new `.env` file created on `<project root>/etc/env/<your_chain_name_slug>.env`, and if you deployed test tokens, their addresses will be available at `<project root>/etc/tokens/<the_l1_identifier>.json`
@@ -56,29 +56,29 @@ Your hyperchain is now deployed to the base chain (most likely a local geth dock
 zk server --components "http_api,eth,state_keeper,housekeeper"
 ```
 
-2. You can now run transactions and start playing with your hyperchain by using the RPC available at<http://localhost:3050>.
+2. You can now run transactions and start playing with your hyperchain by using the RPC available at <http://localhost:3050>.
 
-   - Don't forget to deposit some ETH and fund your accounts on your hyperchain. To do so follow these instructions ->
+   - Don't forget to deposit some ETH and fund your accounts on your hyperchain. To do so follow the instructions below for [Using your hyperchain](#using-your-hyperchain).
 
 ## Using your hyperchain
 
-During the `zk stack init` configurator, you have a choice of what base layer to deploy the hyperchain onto: local geth node, or an Ethereum testnet. The first step to start interacting with your hyperchain is to fund an account (or a few). This means you need some funds on the base layer ->
+During the `zk stack init` configurator, you have a choice of what base layer to deploy the hyperchain onto: local geth node, or an Ethereum testnet. The first step to start interacting with your hyperchain is to fund an account (or a few). This means you need some funds on the base layer.
 
-### Base layer is the local geth node (<a href="https://hub.docker.com/r/matterlabs/geth" target="_blank">@matterlabs/geth:latest</a>)
+### Base layer is the local geth node ([@matterlabs/geth:latest](https://hub.docker.com/r/matterlabs/geth))
 
-You will have a set of addresses that have 100 ETH each. You can find the list here and use these addresses to deposit into your hyperchain.
+You will have a set of addresses that have 100 ETH each. You can find the list [here](https://github.com/matter-labs/local-setup/blob/main/rich-wallets.json) and use these addresses to deposit into your hyperchain.
 
 ### Base layer is an Ethereum network (e.g., Goerli, Sepolia)
 
 In this case, you need to have an account on the base layer with ETH (which, for sure, you have given the deployer, governor, and operator needed ETH to go through the deployment process). You can use any of these wallets (or any other you have funds) to deposit into your hyperchain.
 
-Once you have the accounts with funds on the base layer, you can do a deposit (and any further interactions) in 3 ways ->
+Once you have the accounts with funds on the base layer, you can do a deposit (and any further interactions) in 3 ways:
 
 ## Using your hyperchain RPC
 
-Your server contains both HTTPS as well as WebSocket (WS) services that are fully web3 compatible (and contain some extra ZK Stack functionalities). Learn more about it <a href="https://docs.zksync.io/build/api.html" target="_blank">here</a>.
+Your server contains both HTTPS as well as WebSocket (WS) services that are fully web3 compatible (and contain some extra ZK Stack functionalities). Learn more about it [here](../../build/api.md).
 
-### Using <a href="https://github.com/matter-labs/zksync-cli" target="_blank">zksync-cli</a>
+### Using [zksync-cli](https://github.com/matter-labs/zksync-cli)
 
 When executing any command with zksync-cli, you can specify RPC urls for both L1 and L2 if you choose “localnet” as your network. An example deposit command would look like:
 
@@ -86,7 +86,7 @@ When executing any command with zksync-cli, you can specify RPC urls for both L1
 npx zksync-cli@latest bridge deposit --rpc=http://localhost:3050 --l1-rpc=http://localhost:8545 --zeek
 ```
 
-### Using <a href="https://github.com/matter-labs/dapp-portal" target="_blank">dApp portal</a>
+### Using [dApp portal](https://github.com/matter-labs/dapp-portal)
 
 You can run the Portal module locally, and point it to your hyperchain configuration. It comes with scripts that help pulling the hyperchain configuration from your zksync-era repo and adapting to portal needs. Learn more here. An example command would look like:
 
@@ -95,11 +95,11 @@ npm run hyperchain:migrate ../zksync-era
 npm run dev:node:hyperchain
 ```
 
-### Using <a href="https://github.com/matter-labs/block-explorer" target="_blank">Block Explorer</a>
+### Using [Block Explorer](https://github.com/matter-labs/block-explorer)
 
-Block explorer contains three components (<a href="https://github.com/matter-labs/block-explorer/tree/main/packages/worker" target="_blank">Worker</a>, <a href="https://github.com/matter-labs/block-explorer/tree/main/packages/api" target="_blank">API</a>, and <a href="https://github.com/matter-labs/block-explorer/tree/main/packages/app" target="_blank">App</a>), which you can run all together locally and connect to your hyperchain. For that, you need to set up all the necessary environment and configuration files with your hyperchain settings. You can use a script to build them. See <a href="https://github.com/matter-labs/block-explorer#%EF%B8%8F-setting-up-env-variables" target="_blank">setting up env variables</a>.
+Block explorer contains three components [Worker](https://github.com/matter-labs/block-explorer/tree/main/packages/worker), [API](https://github.com/matter-labs/block-explorer/tree/main/packages/api), and [App](https://github.com/matter-labs/block-explorer/tree/main/packages/app), which you can run all together locally and connect to your hyperchain. For that, you need to set up all the necessary environment and configuration files with your hyperchain settings. You can use a script to build them. See [setting up env variables](https://github.com/matter-labs/block-explorer#%EF%B8%8F-setting-up-env-variables).
 
-Once you have your <a href="https://github.com/matter-labs/zksync-era" target="_blank">zksync-era</a> repo set up locally, you can run the following command to build environment and configuration files for block explorer based on your <a href="https://github.com/matter-labs/zksync-er" target="_blank">zksync-era</a> repo configuration:
+Once you have your [zksync-era](https://github.com/matter-labs/zksync-era) repo set up locally, you can run the following command to build environment and configuration files for block explorer based on your [zksync-era](https://github.com/matter-labs/zksync-era) repo configuration:
 
 ```bash
 zk server --components "http_api,eth,state_keeper,housekeeper"
@@ -143,7 +143,7 @@ The docker compose file assumes you will be running all components in the same m
 
 - For now, it is only possible to deploy a hyperchain as an L2, but soon it will also work as L3s.
 
-- When running the default matterlabs/geth, you have a set of rich wallets available to you. You can check them <a href="https://github.com/matter-labs/local-setup/blob/main/rich-wallets.json" target="_blank">here</a>.
+- When running the default matterlabs/geth, you have a set of rich wallets available to you. You can check them [here](https://github.com/matter-labs/local-setup/blob/main/rich-wallets.json).
 
 - If you want to have a custom local base chain, you must ensure you have a database for your hyperchain, as well as the local RPC for your L1.
 
@@ -153,7 +153,7 @@ The docker compose file assumes you will be running all components in the same m
 docker-compose -f docker-compose-zkstack-common.yml up -d postgres
 ```
 
-in case you don't want to use the docker Postgres database above but another one you already have locally, make sure its version is 14 and it is running and accepts connections at `postgres://postgres@localhost/zksync_local`. You can test with:
+In case you don't want to use the docker Postgres database above but another one you already have locally, make sure its version is 14 and it is running and accepts connections at `postgres://postgres@localhost/zksync_local`. You can test with:
 
 ```bash
 psql -h localhost -U postgres -d postgres -c 'SELECT 1;'
