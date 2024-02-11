@@ -53,7 +53,7 @@ zk
 The commands above are not just running docker containers, but are actually building the code from the repo to spin up your hyperchain. For this reason the process might take some time. If you just want to run docker containers to play around with a zkSync chain, you can use `npx zksync-cli dev`. Learn more [here](../../build/tooling/zksync-cli/getting-started.md).
 :::
 
-## Congrats, your hyperchain is now deployed
+### Your hyperchain is now deployed
 
 Your hyperchain is now deployed to the base chain (most likely a local geth docker container) and configured. You can find all configuration in a new `.env` file created on `<project root>/etc/env/<your_chain_name_slug>.env`, and if you deployed test tokens, their addresses will be available at `<project root>/etc/tokens/<the_l1_identifier>.json`
 
