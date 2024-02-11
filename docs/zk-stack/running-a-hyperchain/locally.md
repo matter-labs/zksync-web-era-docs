@@ -7,6 +7,11 @@ head:
 
 # Getting Started with ZK Stack
 
+:::warning
+
+ZK Stack is still under development. We advise you to only use for local and testnet deployments.
+:::
+
 ## Development dependencies
 
 Ensure you have followed [these instructions](https://github.com/matter-labs/zksync-era/blob/main/docs/guides/setup-dev.md) to set up dependencies on your machine (don't worry about the Environment section for now).
@@ -58,7 +63,7 @@ zk server --components "http_api,eth,state_keeper,housekeeper"
 
 2. You can now run transactions and start playing with your hyperchain by using the RPC available at <http://localhost:3050>.
 
-   - Don't forget to deposit some ETH and fund your accounts on your hyperchain. To do so follow the instructions below for [Using your hyperchain](#using-your-hyperchain).
+   - Don't forget to deposit some ETH and fund your accounts on your hyperchain. To do so follow the instructions for [Using your hyperchain](#using-your-hyperchain).
 
 ## Using your hyperchain
 
