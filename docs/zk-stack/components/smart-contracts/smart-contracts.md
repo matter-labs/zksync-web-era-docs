@@ -172,7 +172,7 @@ Implementation detail - function returns a magic value just like it is designed 
 
 Bridges are completely separate contracts from the Diamond. They are a wrapper for L1 <-> L2 communication on contracts
 on both L1 and L2. Upon locking assets on L1, a request is sent to mint these bridged assets on L2. Upon burning assets
-on L2, a request is sent to unlock them on L2.
+on L2, a request is sent to unlock them on L1.
 
 Unlike the native Ether bridging, all other assets can be bridged by the custom implementation relying on the trustless
 L1 <-> L2 communication.
@@ -221,7 +221,7 @@ The owner of the L2WethBridge and L2Weth contracts is the Governance contract.
 
 ## Governance
 
-This contract manages calls for all governed zkEVM contracts on L1 and L2. Mostly, it is used for upgradability an
+This contract manages calls for all governed zkEVM contracts on L1 and L2. Mostly, it is used for upgradability and
 changing critical system parameters. The contract has minimum delay settings for the call execution.
 
 Each upgrade consists of two steps:
