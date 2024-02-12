@@ -112,6 +112,12 @@ Smart contracts deployed to zkSync must be compiled using our custom compilers:
 
 As this is a Solidity project, it already has the `hardhat-zksync-solc` plugin installed and configured so there's nothing you need to setup. To compile the contracts in the project, run the following command:
 
+1. Navigate into the project directory:
+
+```sh
+cd hello-zksync
+```
+
 ::: code-tabs
 
 @tab:active yarn
