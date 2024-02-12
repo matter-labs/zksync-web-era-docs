@@ -321,8 +321,8 @@ An example of how to use testnet paymaster can be seen in the [frontend quicksta
 While the paymaster pays the fees for the user, it also consumes additional gas compared to a normal transaction, which includes: 
 
 1. Computation inside the paymaster's `validateAndPayForPaymasterTransaction` as well as `postTransaction`.
-2. Assigning and spending the allowance for the ERC20 tokens by the user.
-3. Paymaster sending funds to the bootloader.
+2. Paymaster sending funds to the bootloader.
+3. Assigning and spending the allowance for the ERC20 tokens by the user. (optional)
 
 While the (1) is usually quite negligible (it, of course, depends on the implementation of each individual paymaster), (3) is roughly similar to what the user would pay in a transaction if it was to be spent by the user on its own, the (2) is unique for the paymaster operations, i.e. it is effectively an additional slot that is affected. Especially if the user grants allowance for the first time, since it would require 32 bytes to publish the storage key identifier, which may amount to roughly 400k gas under 50 gwei L1 gas price. Note, that even though the usual flow is "grant `X` allowance to the paymaster + paymaster spends all allowance", which means that the slot is zeroed out at the end of the execution, the cost for write is pre-charged during execution. In other words, we firstly charge for pubdata required for updating the allowance and if the slot has been zeroed out by the end of the transaction, the user will be refunded, but only at the end of the transaction.
 
