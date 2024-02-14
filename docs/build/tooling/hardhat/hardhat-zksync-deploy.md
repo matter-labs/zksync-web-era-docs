@@ -444,6 +444,10 @@ For the specific scripts, we observe that `001_deploy.ts` and `002_deploys.ts` a
 2. `002_deploy.ts`: This script needs to be executed second because it is tagged with `second`, and `001_deploy.ts` depends on that script.
 3. `001_deploy.ts`: Although this script has a higher priority than `002_deploy.ts`, it depends on the latter, so it will be executed last.
 
+:::note deafult values
+The default value for **tags** is `default`, and the default value for **priority** is `500`.
+:::
+
 ## Compilation and Deployment Support for Missing Libraries
 
 This plugin facilitates the compilation and deployment of missing libraries for users. By leveraging the `@matterlabs/hardhat-zksync-solc` plugin, users can obtain a file that not only contains specifics about the missing libraries for compilation but also showcases how they interlink with other dependent libraries. For more information about missing libraries during the compilation process, please refer to [this link](./compiling-libraries.md).
