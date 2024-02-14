@@ -606,7 +606,7 @@ async function main() {
 
   const beaconAddress = await beacon.getAddress();
 
-  const boxBeaconProxy = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, beaconAddress, contract, []);
+  const boxBeaconProxy = await hre.zkUpgrades.deployBeaconProxy(deployer.zkWallet, beaconAddress, contract, [42]);
   await boxBeaconProxy.waitForDeployment();
 
   // upgrade beacon
@@ -620,6 +620,8 @@ async function main() {
   upgradedBox.connect(zkWallet);
   // wait some time before the next call
   await new Promise((resolve) => setTimeout(resolve, 2000));
+  const value = await upgradedBox.retrieve();
+  console.log("New box value is", value);
 }
 
 main().catch((error) => {
