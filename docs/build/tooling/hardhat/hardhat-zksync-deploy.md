@@ -241,14 +241,12 @@ The described objects work together to provide users with a better deployment ex
    *
    * @param artifact The previously loaded artifact object.
    * @param constructorArguments The list of arguments to be passed to the contract constructor.
-   * @param zkWallet The account that initiates the deployment transaction
    *
    * @returns Calculated fee in ETH wei.
    */
   public async estimateDeployFee(
     artifact: ZkSyncArtifact,
     constructorArguments: any[]
-    zkWallet?: zk.Wallet,
   ): Promise<ethers.BigNumber>
 
   /**
@@ -258,7 +256,6 @@ The described objects work together to provide users with a better deployment ex
     * @param artifact The previously loaded artifact object.
     * @param constructorArguments The list of arguments to be passed to the contract constructor.
     * @param forceDeploy Override cached deployment of the contract on the same network.
-    * @param zkWallet Optional object that represent account that are used in the deployment transaction.
     * @param overrides Optional object with additional deploy transaction parameters.
     * @param additionalFactoryDeps Additional contract bytecodes to be added to the factory dependencies list.
     * The fee amount is requested automatically from the zkSync Era server.
@@ -269,22 +266,40 @@ The described objects work together to provide users with a better deployment ex
     artifact: ZkSyncArtifact,
     constructorArguments: any[],
     forceDeploy: boolean = false,
-    zkWallet?: zk.Wallet,
     overrides?: Overrides,
     additionalFactoryDeps?: ethers.BytesLike[],
   ): Promise<zk.Contract>
 
 
   /**
+    * Set a new Wallet
+    *
+    * @param wallet object to be used in further deployment actions
+    *
+  */
+  public async setWallet(
+    wallet: zk.Wallet
+  ): void
+
+  /**
     * Returns a new Wallet connected to the selected network
     *
-    * @param privateKeyOrAccountNumber Private key or index of the account
+    * @param privateKeyOrAccountNumber Optional private key or index of the account
     *
-    * @returns A wallet object.
+    * @returns A wallet object. If param is not provided, default wallet will be returned.
   */
   public async getWallet(
-    privateKeyOrAccountNumber: string | number
+    privateKeyOrAccountNumber?: string | number
   ): Promise<zk.Wallet>
+
+    /**
+   * Extracts factory dependencies from the artifact.
+   *
+   * @param artifact Artifact to extract dependencies from
+   *
+   * @returns Factory dependencies in the format expected by SDK.
+   */
+  async extractFactoryDeps(artifact: ZkSyncArtifact): Promise<string[]>
 ```
 
 ### Tranistion from `Deployer` object to the `hre.deployer`
@@ -302,9 +317,9 @@ const artifact = await hre.deployer.loadArtifact("ContractName");
 const contract = await hre.deployer.deploy(artifact, []);
 ```
 
-### Usage of the getWallet
+### Usage of the getWallet and setWallet
 
-To simplify and improve the user experience, you can use the `getWallet` method provided by `hre.deployer` to generate a new wallet for deployment if that is needed.
+To simplify and improve the user experience, you can use the `getWallet` and `setWallet` methods provided by `hre.deployer` to generate a new wallet for deployment if that is needed and to change current wallet.
 
 ```typescript
 // To get the wallet for index 2 of the network accounts object inside hardhat.config.ts
@@ -312,8 +327,11 @@ const wallet = await hre.deployer.getWallet(2);
 // To get the wallet for the provided private key
 const wallet = await hre.deployer.getWallet("0x28a574ab2de8a00364d5dd4b07c4f2f574ef7fcc2a86a197f65abaec836d1959");
 
+// Set a new wallet
+hre.deployer.setWallet(wallet);
+
 const artifact = await hre.deployer.loadArtifact("ContractName");
-const contract = await hre.deployer.deploy(artifact, [], false, wallet);
+const contract = await hre.deployer.deploy(artifact, [], false);
 ```
 
 ## Caching mechanism
