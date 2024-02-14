@@ -36,6 +36,14 @@ Ensure you are using the correct version of the plugin with ethers:
 
   :::
 
+::: tip New feature support
+To use new features like the deployer extension inside Hardhat Runtime Environment (HRE), caching mechanism, and support for script paths, tags, dependencies, and priority, the plugin versions should be as follows:
+
+- For **v6**, the version should be **1.2.0** or higher.
+- For **v5**, the version should be **0.8.0** or higher.
+
+  :::
+
 ## Setup
 
 [@matterlabs/hardhat-zksync-deploy](https://www.npmjs.com/package/@matterlabs/hardhat-zksync-deploy)
@@ -58,9 +66,32 @@ npm i -D @matterlabs/hardhat-zksync-deploy
 
 :::
 
-### Exports
+## Network Configuration
 
-#### `Deployer`
+In the `hardhat.config.ts` file, specify zkSync Era and Ethereum networks in the `networks` object.
+
+```typescript
+networks: {
+    sepolia: {
+      url: "https://sepolia.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL (optional).
+    },
+    zkTestnet: {
+      url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
+      ethNetwork: "sepolia", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `sepolia`)
+      zksync: true
+    }
+},
+// defaultNetwork: "zkTestnet", // optional (if not set, use '--network zkTestnet')
+```
+
+- `zkTestnet` is an arbitrary zkSync Era network name. You can select this as the default network using the `defaultNetwork` property.
+- `url` is a field containing the URL of the zkSync Era node in case of the zkSync Era network (with `zksync` flag set to `true`), or the URL of the Ethereum node. This field is required for all zkSync Era and Ethereum networks used by this plugin.
+- `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `sepolia`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
+- `zksync` is a flag that indicates if the network is zkSync Era. This field needs to be set to `true` for all zkSync Era networks; it is `false` by default.
+
+# Usage in deployment scripts
+
+## `Deployer` export
 
 The main export of this plugin is the `Deployer` class. It is used to wrap a `zksync-ethers` Wallet instance and provides a convenient interface to deploy smart contracts and account abstractions. It's main methods are:
 
@@ -119,6 +150,7 @@ class Deployer {
     *
     * @param artifact The previously loaded artifact object.
     * @param constructorArguments The list of arguments to be passed to the contract constructor.
+    * @param forceDeploy Override cached deployment of the contract on the same network.
     * @param overrides Optional object with additional deploy transaction parameters.
     * @param additionalFactoryDeps Additional contract bytecodes to be added to the factory dependencies list.
     * The fee amount is requested automatically from the zkSync Era server.
@@ -128,6 +160,7 @@ class Deployer {
   public async deploy(
     artifact: ZkSyncArtifact,
     constructorArguments: any[],
+    forceDeploy: boolean = false,
     overrides?: Overrides,
     additionalFactoryDeps?: ethers.BytesLike[],
   ): Promise<zk.Contract>
@@ -144,11 +177,20 @@ class Deployer {
 
 To see an example script of how to use a `Deployer` class to deploy a contract, check out the [deployment section of the quickstart](./getting-started.md#compile-and-deploy-a-contract).
 
+## Environment extensions
+
+The plugin adds a deployer extension object to the Hardhat Runtime Environment (HRE), which allows us to access it using `hre.deployer`.
+
 ### Configuration
 
-In the `hardhat.config.ts` file, specify zkSync Era and Ethereum networks in the `networks` object.
+The configuration is extended to support automatic deployment without the need for manually creating a wallet. To achieve that, the `hardhat.config.ts` file needs to be extended by adding a `deployerAccounts` object, and specific network in the `networks` section need to be extended by adding `accounts` information.
 
 ```typescript
+/// ADDITON
+deployerAccounts: {
+    'zkTestnet': 1, // The default index of the account for the specified network.
+    //default: 0 // The default value for not specified networks. Automatically set by plugin to the index 0.
+},
 networks: {
     sepolia: {
       url: "https://sepolia.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL (optional).
@@ -156,18 +198,253 @@ networks: {
     zkTestnet: {
       url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
       ethNetwork: "sepolia", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `sepolia`)
-      zksync: true
+      zksync: true,
+      /// ADDITON
+      accounts: ['0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3', '0x28a574ab2de8a00364d5dd4b07c4f2f574ef7fcc2a86a197f65abaec836d1959'] // The private keys for the accounts used in the deployment process.
     }
 },
-// defaultNetwork: "zkTestnet", // optional (if not set, use '--network zkTestnet')
 ```
 
-- `zkTestnet` is an arbitrary zkSync Era network name. You can select this as the default network using the `defaultNetwork` property.
-- `url` is a field containing the URL of the zkSync Era node in case of the zkSync Era network (with `zksync` flag set to `true`), or the URL of the Ethereum node. This field is required for all zkSync Era and Ethereum networks used by this plugin.
-- `ethNetwork` is a field with the URL of the Ethereum node. You can also provide network name (e.g. `sepolia`) as the value of this field. In this case, the plugin will either use the URL of the appropriate Ethereum network configuration (from the `networks` section), or the default `ethers` provider for the network if the configuration is not provided. This field is required for all zkSync networks used by this plugin.
-- `zksync` is a flag that indicates if the network is zkSync Era. This field needs to be set to `true` for all zkSync Era networks; it is `false` by default.
+- `deployerAccounts` represents an object where the default index of the accounts is provided and automatically used in the deployment scripts. If the network name is not specified inside the object, the default index of the account will be 0.
+- `accounts` represents a list of the private keys for the accounts used in the deployment process.
 
-### Compilation and Deployment Support for Missing Libraries
+The described objects work together to provide users with a better deployment experience, eliminating the need for manual wallet initialization.
+
+:::tip Accounts on zkSync Era Test Node or zksync-cli Local Node
+
+`accounts` object will be automaticly be populated with rich accounts if networks is zkSync Era Test Node or zksync-cli Local Node
+
+:::
+
+### Methods
+
+```typescript
+  /**
+   * Loads an artifact and verifies that it was compiled by `zksolc`.
+   *
+   * @param contractNameOrFullyQualifiedName The name of the contract.
+   *   It can be a bare contract name (e.g. "Token") if it's
+   *   unique in your project, or a fully qualified contract name
+   *   (e.g. "contract/token.sol:Token") otherwise.
+   *
+   * @throws Throws an error if a non-unique contract name is used,
+   *   indicating which fully qualified names can be used instead.
+   *
+   * @throws Throws an error if an artifact was not compiled by `zksolc`.
+   */
+  public async loadArtifact(
+    contractNameOrFullyQualifiedName: string
+  ): Promise<ZkSyncArtifact>
+
+  /**
+   * Estimates the price of calling a deploy transaction in a certain fee token.
+   *
+   * @param artifact The previously loaded artifact object.
+   * @param constructorArguments The list of arguments to be passed to the contract constructor.
+   * @param zkWallet The account that initiates the deployment transaction
+   *
+   * @returns Calculated fee in ETH wei.
+   */
+  public async estimateDeployFee(
+    artifact: ZkSyncArtifact,
+    constructorArguments: any[]
+    zkWallet?: zk.Wallet,
+  ): Promise<ethers.BigNumber>
+
+  /**
+    * Sends a deploy transaction to the zkSync network.
+    * For now it uses default values for the transaction parameters:
+    *
+    * @param artifact The previously loaded artifact object.
+    * @param constructorArguments The list of arguments to be passed to the contract constructor.
+    * @param forceDeploy Override cached deployment of the contract on the same network.
+    * @param zkWallet Optional object that represent account that are used in the deployment transaction.
+    * @param overrides Optional object with additional deploy transaction parameters.
+    * @param additionalFactoryDeps Additional contract bytecodes to be added to the factory dependencies list.
+    * The fee amount is requested automatically from the zkSync Era server.
+    *
+    * @returns A contract object.
+    */
+  public async deploy(
+    artifact: ZkSyncArtifact,
+    constructorArguments: any[],
+    forceDeploy: boolean = false,
+    zkWallet?: zk.Wallet,
+    overrides?: Overrides,
+    additionalFactoryDeps?: ethers.BytesLike[],
+  ): Promise<zk.Contract>
+
+
+  /**
+    * Returns a new Wallet connected to the selected network
+    *
+    * @param privateKeyOrAccountNumber Private key or index of the account
+    *
+    * @returns A wallet object.
+  */
+  public async getWallet(
+    privateKeyOrAccountNumber: string | number
+  ): Promise<zk.Wallet>
+```
+
+### Tranistion from `Deployer` object to the `hre.deployer`
+
+With transition, the deployment logic remains the same, but instead of instantiating a `Deployer` class, you directly access the deployer object provided by `hre.deployer`. This simplifies the deployment process and enhances the developer experience.
+
+```typescript
+// Using Deploy exports for the deployment
+const wallet = new zk.Wallet("PRIVATE_KEY");
+const deployer = new Deployer(hre, zkWallet);
+const artifact = await deployer.loadArtifact("ContractName");
+const contract = await deployer.deploy(artifact, []);
+// Using hre.deployer with connected wallet provided by hardhat.config.ts configuration
+const artifact = await hre.deployer.loadArtifact("ContractName");
+const contract = await hre.deployer.deploy(artifact, []);
+```
+
+### Usage of the getWallet
+
+To simplify and improve the user experience, you can use the `getWallet` method provided by `hre.deployer` to generate a new wallet for deployment if that is needed.
+
+```typescript
+// To get the wallet for index 2 of the network accounts object inside hardhat.config.ts
+const wallet = await hre.deployer.getWallet(2);
+// To get the wallet for the provided private key
+const wallet = await hre.deployer.getWallet("0x28a574ab2de8a00364d5dd4b07c4f2f574ef7fcc2a86a197f65abaec836d1959");
+
+const artifact = await hre.deployer.loadArtifact("ContractName");
+const contract = await hre.deployer.deploy(artifact, [], false, wallet);
+```
+
+## Caching mechanism
+
+The `hardhat-zksync-deploy` plugin supports a caching mechanism for contracts deployed on the same network, and by default, this feature is enabled for every deployment unless specified otherwise.
+For each deployment within your project, a new `deployments` folder is created. Inside this folder, you can find subfolders for each network specified in the `hardhat.config.ts` file. Each network folder contains JSON files named after deployed contracts where caching purposes information are stored, and additionally, a `.chainId` file contains the chainId specific to that network.
+
+The third parameter for each `deploy` call using the `Deployer` object or `hre.deployer` represents the `forceDeploy` parameter. This parameter enables you to specify whether the deployment should use the cached mechanism or be forcefully executed, overriding existing cached deployment.
+
+```typescript
+// Using Deploy exports for the deployment
+const wallet = new zk.Wallet("PRIVATE_KEY");
+const deployer = new Deployer(hre, zkWallet);
+const artifact = await deployer.loadArtifact("ContractName");
+const contract = await deployer.deploy(artifact, [], true); // forcefully executed
+// Using hre.deployer with connected wallet provided by hardhat.config.ts configuration
+const artifact = await hre.deployer.loadArtifact("ContractName");
+const contract = await hre.deployer.deploy(artifact, [], true); // forcefully executed
+```
+
+## Scripts configuration
+
+Scripts used for deployments have additional features that can provide the better experience and efficiency of the deployment process.
+
+### Deployment scripts path
+
+Configuring a scripts path can be achieved in two ways:
+
+- setting up global paths used for all networks.
+- configuring network-specific paths used exclusively for each network. This kind of paths overrides a global paths.
+
+#### Global Deployment Paths
+
+To configure global paths, the `hardhat.config.ts` configuration needs to be extended with a `deployPaths` property inside the `paths` section.
+
+```typescript
+paths: {
+  //single deployment directory
+  deployPaths: "deploy-zkSync";
+  //multiple deployment directories
+  deployPaths: ["deploy", "deploy-zkSync"];
+}
+```
+
+- `deployPaths` Specify deployment directories, you can use either a single object or an array structure.
+
+:::note deafult path
+
+The default path, if not explicitly set, is the `deploy` folder inside the project's root directory.
+
+:::
+
+#### Network-Specific Deployment Paths
+
+To configure network-specific paths, the `hardhat.config.ts` configuration needs to be extended with a `deployPaths` property inside the network object inside `networks` section.
+
+```typescript
+networks: {
+    sepolia: {
+      url: "https://sepolia.infura.io/v3/<API_KEY>"
+    },
+    zkTestnet: {
+      url: "https://sepolia.era.zksync.dev",
+      ethNetwork: "sepolia",
+      //single deployment directory
+      deployPaths: 'deploy-zkSync'
+      //multiple deployment directories
+      deployPaths: ['deploy', 'deploy-zkSync']
+      zksync: true
+    }
+}
+```
+
+::: note override of global paths
+
+Network-specific paths will override a global path, ensuring that only scripts within the directories configured for the specific network are executed.
+
+:::
+
+### Deployment scripts tags, dependencies and priority
+
+Deployment scripts can be tagged, allowing for easy categorization and organization. Dependencies between scripts can be specified to ensure proper execution order, and priority levels can be assigned to determine the sequence in which scripts are run.
+
+- `tags` An array of strings representing tags that can be assigned to scripts for categorization and organization.
+- `dependencies` An array of scripts tags specifying the dependencies of a script, ensuring proper execution order based on their dependencies.
+- `priority` An integer value indicating the priority level of a script, determining the sequence in which scripts are executed.
+
+Examples:
+
+```typescript
+// Script 001_deploy.ts
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+
+const deployScript = async function (_: HardhatRuntimeEnvironment) {
+  console.log("Deploy script");
+};
+
+export default deployScript;
+deployScript.priority = 800;
+deployScript.tags = ["first"];
+deployScript.dependencies = ["second"];
+
+// Script 002_deploy.ts
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+
+const deployScript = async function (_: HardhatRuntimeEnvironment) {
+  console.log("Deploy script");
+};
+
+export default deployScript;
+deployScript.priority = 650;
+deployScript.tags = ["second"];
+
+// Script 003_deploy.ts
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+
+const deployScript = async function (_: HardhatRuntimeEnvironment) {
+  console.log("Deploy script");
+};
+
+export default deployScript;
+deployScript.priority = 1000;
+```
+
+For the specific scripts, we observe that `001_deploy.ts` and `002_deploys.ts` are tagged, and `001_deploy.ts` depends on deployment scripts with the tag `second`. Additionally, a priority is set for all three scripts. As a result, when starting the deployment process (running scripts), the order of script execution will be as follows:
+
+1. `003_deploys.ts`: This script has the highest priority and is not dependent on any other script.
+2. `002_deploy.ts`: This script needs to be executed second because it is tagged with `second`, and `001_deploy.ts` depends on that script.
+3. `001_deploy.ts`: Although this script has a higher priority than `002_deploy.ts`, it depends on the latter, so it will be executed last.
+
+## Compilation and Deployment Support for Missing Libraries
 
 This plugin facilitates the compilation and deployment of missing libraries for users. By leveraging the `@matterlabs/hardhat-zksync-solc` plugin, users can obtain a file that not only contains specifics about the missing libraries for compilation but also showcases how they interlink with other dependent libraries. For more information about missing libraries during the compilation process, please refer to [this link](./compiling-libraries.md).
 
@@ -216,15 +493,12 @@ zksolc: {
 
 For a step-by-step guide on how to deploy missing libraries, see the `deploy-zksync:libraries` command below.
 
-### Commands
+## Commands
 
-`yarn hardhat deploy-zksync` -- runs through all the scripts in the `deploy` folder.
+`yarn hardhat deploy-zksync` -- runs through all the scripts.
 
-::: tip
-The deployment scripts must be placed in the `deploy` folder.
-:::
-
-- To run a specific script, add the `--script` argument, e.g. `hardhat deploy-zksync --script 001_deploy.ts`. This runs script `./deploy/001_deploy.ts`.
+- To run a specific script, add the `--script` argument, e.g. `hardhat deploy-zksync --script 001_deploy.ts`. Runs script with name `001_deploy.ts`.
+- To run a scripts with specific tags add the `--tags` argument, e.g `hardhat deploy-zksync --tags all`. Run all scripts with tag `all`.
 - To run on a specific zkSync Era network, use the standard Hardhat `--network` argument, e.g. `--network zkTestnet`. The network with the name `zkTestnet` needs to be configured in the `hardhat.config.ts` file, with all required fields stated above, or specify `defaultNetwork` in `hardhat.config.ts` file.
 
 ::: tip
@@ -233,16 +507,25 @@ If network argument `--network` or `defaultNetwork` configuration are not specif
 For more details about a dockerized local setup, check out [Local testing](../../test-and-debug/getting-started.md).
 :::
 
-`yarn hardhat deploy-zksync:libraries --private-key <PRIVATE_KEY>` -- runs compilation and deployment of missing libraries (the list of all missing libraries is provided by the output of `@matterlabs/hardhat-zksync-solc` plugin).
+`yarn hardhat deploy-zksync:libraries` -- runs compilation and deployment of missing libraries (the list of all missing libraries is provided by the output of `@matterlabs/hardhat-zksync-solc` plugin).
 
-- `--private-key <PRIVATE_KEY>` - A required argument. Libraries are deployed using the provided private key.
+The account used for deployment will be the one specified by the `deployerAccount` configuration inside the hardhat.config.ts file.
+
+- `--private-key-or-index <PRIVATE_KEY_OR_INDEX>` - An optional argument, libraries are deployed either using the provided private key or by default using the account specified by its index in the accounts array for the specified network.
 - `--no-auto-populate-config` - Flag which disables the auto-population of the hardhat config file. Enabled by default.
 - `--external-config-object-path <file path>` - Specifies the path to the file containing the zksolc configuration. If not set, it defaults to the Hardhat configuration file path. Works only if auto-population is enabled.
 - `--exported-config-object <object name>` - Specifies the name of the user's Hardhat config object within the Hardhat configuration file. Primarily for auto-population. Defaults to `config`.
 - `--compile-all-contracts` - Compile all contracts with deployed libraries. Disabled by default.
 
-```
-yarn hardhat deploy-zksync:libraries --private-key 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
+```bash
+// Automatically using the account.
+yarn hardhat deploy-zksync:libraries
+
+// Specifying a private key for the deployment.
+yarn hardhat deploy-zksync:libraries --private-key-or-index 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
+
+// Specifying a accounts index for the deployment.
+yarn hardhat deploy-zksync:libraries --private-key-or-index 2
 ```
 
 Example of using the `--exported-config-object <object name>` argument:
