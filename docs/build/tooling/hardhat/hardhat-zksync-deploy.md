@@ -237,6 +237,16 @@ The described objects work together to provide users with a better deployment ex
   ): Promise<ZkSyncArtifact>
 
   /**
+   * Set deployment type
+   *
+   * @param deployment type for future deployments
+   *
+   */
+  public setDeploymentType(
+    deploymentType: zk.types.DeploymentType
+  ): void
+
+  /**
    * Estimates the price of calling a deploy transaction in a certain fee token.
    *
    * @param artifact The previously loaded artifact object.
@@ -277,7 +287,7 @@ The described objects work together to provide users with a better deployment ex
     * @param wallet object to be used in further deployment actions
     *
   */
-  public async setWallet(
+  public setWallet(
     wallet: zk.Wallet
   ): void
 
