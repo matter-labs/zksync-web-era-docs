@@ -212,7 +212,7 @@ The described objects work together to provide users with a better deployment ex
 
 :::tip Accounts on zkSync Era Test Node or zksync-cli Local Node
 
-`accounts` object will be automaticly be populated with rich accounts if networks is zkSync Era Test Node or zksync-cli Local Node
+`accounts` object will be automaticly be populated with rich accounts if used network is zkSync Era Test Node or zksync-cli Local Node
 
 :::
 
@@ -360,7 +360,7 @@ paths: {
 
 - `deployPaths` Specify deployment directories, you can use either a single object or an array structure.
 
-:::note deafult path
+:::note default path
 
 The default path, if not explicitly set, is the `deploy` folder inside the project's root directory.
 
@@ -551,7 +551,7 @@ module.exports = someObject;
 ```
 
 ```bash
-yarn hardhat deploy-zksync:libraries --private-key 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110 --exported-config-object someObject
+yarn hardhat deploy-zksync:libraries --exported-config-object someObject
 ```
 
 ::: tip
