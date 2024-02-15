@@ -28,7 +28,7 @@ In this tutorial we're going to:
 
 ## Setup the project
 
-We're going use the [Vue.js web framework](https://vuejs.org/) to build this app although the process is similar with other frameworks like [React](https://react.dev/). In addition, we're going to use the `zksync-ethers` SDK, which extends `ethers` with zksync-specific features. In order to focus on `zksync-ethers`, we provide a prebuilt template project with most of the frontend code. We'll just need to implement the methods to interact with the smart contracts. Let's start!
+We're going use the [Vue.js web framework](https://vuejs.org/) to build this app although the process is similar to other frameworks like [React](https://react.dev/). In addition, we're going to use the `zksync-ethers` SDK, which extends `ethers` with zksync-specific features. In order to focus on `zksync-ethers`, we provide a pre-built template project with most of the frontend code. We'll just need to implement the methods to interact with the smart contracts. Let's start!
 
 1. Clone the template project and `cd` into the folder.
 
