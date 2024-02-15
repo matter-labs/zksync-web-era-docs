@@ -49,8 +49,8 @@ We also ensure that transactions do not exceed the limits of the memory space al
 
 ## Transaction Types and Validation
 
-While the main transaction format is the internal []`Transaction`
-format](<https://github.com/code-423n4/2023-10-zksync/blob/ef99273a8fdb19f5912ca38ba46d6bd02071363d/code/system-contracts/contracts/libraries/TransactionHelper.sol#L25>),
+While the main transaction format is the internal [`Transaction`
+format](https://github.com/code-423n4/2023-10-zksync/blob/ef99273a8fdb19f5912ca38ba46d6bd02071363d/code/system-contracts/contracts/libraries/TransactionHelper.sol#L25),
 it is a struct that is used to represent various kinds of transactions types. It contains a lot of `reserved` fields
 that could be used depending in the future types of transactions without need for AA to change the interfaces of their
 contracts.
