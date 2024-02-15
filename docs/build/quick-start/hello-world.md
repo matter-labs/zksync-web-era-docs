@@ -295,6 +295,6 @@ This was your first step towards becoming a zkSync developer. Here is what you c
 
 - Create a frontend for this contract following the [Frontend quickstart](../tutorials/dapp-development/frontend-quickstart-paymaster.md).
 - Join our [developer community in GitHub](https://github.com/zkSync-Community-Hub/zksync-developers/discussions), where you can ask questions and help other developers.
-- Read the [Security and best practices](./best-practices.md) to keep you apps secure.
+- Read the [Security and best practices](./best-practices.md) to keep your apps secure.
 - Learn about the [differences between Ethereum and zkSync](../developer-reference/differences-with-ethereum.md).
 - If you have a project, check out our [migration guide](../tooling/hardhat/migrating-to-zksync.md).
