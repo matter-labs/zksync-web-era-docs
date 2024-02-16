@@ -2,35 +2,44 @@ import { navbar } from "vuepress-theme-hope";
 
 export const enNavbar = navbar([
   { 
-    text: "Home", 
-    link: "/" 
+    text: "Build", 
+    link: "/build" 
   },
-  
+  // { 
+  //   text: "Build", 
+  //   link: "/build" 
+  // },
+  // { 
+  //   text: "Technical Reference", 
+  //   link: "/reference/" 
+  // }, 
   { 
-    text: "Developer docs", 
-    link: "/dev/" 
-  },
-
+    text: "ZK Stack", 
+    link: "/zk-stack" 
+  }, 
   { 
-    text: "Tools and SDK", 
-    link: "/api/" 
-  },
-  { 
-    text: "Contacts and Links", 
-    link: "/contact.html" 
-  },
-
-  {
-    text: "Versions",
-    children: [
-      {
-        text: "zkSync Era",
-        link: "/dev/",
-      },
-      {
-        text: "zkSync Lite",
-        link: "https://docs.zksync.io",
-      },
-    ],
-  }
+    text: "Run a Node", 
+    link: "/infra" 
+  }, 
+  // { 
+  //   text: "API/SDKs", 
+  //   link: "/api/" 
+  // },
+  // { 
+  //   text: "Tools", 
+  //   link: "/tools/" 
+  // },
+  // {
+  //   text: "Versions",
+  //   children: [
+  //     {
+  //       text: "zkSync",
+  //       link: "/dev/",
+  //     },
+  //     {
+  //       text: "zkSync Lite",
+  //       link: "https://docs.zksync.io",
+  //     },
+  //   ],
+  // }
 ]);

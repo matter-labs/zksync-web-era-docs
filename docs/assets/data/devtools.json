@@ -1,0 +1,290 @@
+{
+  "toolsByCategory": [
+    {
+      "category": "SDKs",
+      "tools": [
+        {
+          "name": "Javascript SDK",
+          "category": "SDK",
+          "description": "Extends ethers including zksync-specific methods and utilities.",
+          "logo": "js-logo.svg",
+          "url": "https://docs.zksync.io/build/development/sdks/javascript"
+        },
+        {
+          "name": "Python SDK",
+          "category": "SDK",
+          "description": "Extends web3.py including zksync-specific methods and utilities.",
+          "logo": "python-logo.svg",
+          "url": "https://docs.zksync.io/build/development/sdks/python"
+        },
+        {
+          "name": "Go SDK",
+          "category": "SDK",
+          "description": "Extends go-ethereum including zksync-specific methods and utilities.",
+          "logo": "go-logo.svg",
+          "url": "https://docs.zksync.io/build/development/sdks/go"
+        },
+        {
+          "name": "Java SDK",
+          "category": "SDK",
+          "description": "Extends web3j including zksync-specific methods and utilities.",
+          "logo": "java-logo.svg",
+          "url": "https://docs.zksync.io/build/development/sdks/java"
+        },
+        {
+          "name": "Rust SDK",
+          "category": "SDK",
+          "description": "Extends ethers-rs including zksync-specific methods and utilities.",
+          "logo": "rust-logo.svg",
+          "url": "https://docs.zksync.io/build/development/sdks/rust"
+        }
+      ]
+    },
+    {
+      "category": "Toolchains, frameworks and IDEs",
+      "tools": [
+        {
+          "name": "zksync-cli",
+          "category": "Dev tools",
+          "description": "Quickly setup local zkSync dev environment, scaffold projects, and interact with Era seamlessly from your terminal",
+          "logo": "cli-logo.png",
+          "url": "https://docs.zksync.io/build/development/zksync-cli/"
+        },
+        {
+          "name": "Atlas ZK",
+          "category": "Dev tools",
+          "description": "Write, test, and deploy smart contracts from your browser.",
+          "logo": "atlaszk-logo.jpg",
+          "url": "https://www.atlaszk.com/"
+        },
+        {
+          "name": "Foundry",
+          "category": "Framework",
+          "description": "Fork from the popular toolkit with zkSync-specific features.",
+          "logo": "foundry-logo.png",
+          "url": "https://github.com/matter-labs/foundry-zksync"
+        },
+        {
+          "name": "Hardhat",
+          "category": "Framework",
+          "description": "Official Hardhat plugins to enhance the developer experience on Era.",
+          "logo": "hardhat-logo.png",
+          "url": "https://docs.zksync.io/build/development/hardhat-plugins"
+        },
+        {
+          "name": "Openzeppelin",
+          "category": "Dev tools",
+          "description": "Battle tested smart contracts to kickstart your project.",
+          "logo": "oz-logo.png",
+          "url": "https://www.openzeppelin.com/contracts"
+        },
+        {
+          "name": "Particle Network",
+          "category": "Dev tools",
+          "description": "Full-stack infrastructure and tools to simplify web3.",
+          "logo": "particle-logo.png",
+          "url": "https://particle.network/"
+        },
+        {
+          "name": "Thirdweb",
+          "category": "Dev tools",
+          "description": "SDKs, smart contracts, tools, and infrastructure for web3.",
+          "logo": "thirdweb-logo.svg",
+          "url": "https://thirdweb.com/"
+        }
+      ]
+    },
+    {
+      "category": "Testing and debugging",
+      "tools": [
+        {
+          "name": "In-memory node",
+          "category": "Testing",
+          "description": "Super fast node built in Rust for local testing and debugging.",
+          "logo": "memory-node-logo.png",
+          "url": "https://docs.zksync.io/build/development/test-and-debug/era-test-node"
+        },
+        {
+          "name": "Docker setup",
+          "category": "Testing",
+          "description": "Simulate your own testnet locally running an L1 and L2 nodes.",
+          "logo": "docker-setup-logo.png",
+          "url": "https://docs.zksync.io/build/development/test-and-debug/dockerized-l1-l2-nodes"
+        }
+      ]
+    },
+    {
+      "category": "Node Providers",
+      "tools": [
+        {
+          "name": "Ankr",
+          "category": "RPC ",
+          "logo": "ankr-logo.png",
+          "url": "https://www.ankr.com/rpc/zksync_era/"
+        },
+        {
+          "name": "BlockPi",
+          "category": "RPC ",
+          "logo": "blockpi-logo.jpg",
+          "url": "https://docs.blockpi.io/documentations/api-reference/zksync-era"
+        },
+        {
+          "name": "Chainbase",
+          "category": "RPC ",
+          "logo": "chainbase-logo.png",
+          "url": "https://chainbase.com/chainNetwork/zkSync"
+        },
+        {
+          "name": "Chainstack",
+          "category": "RPC ",
+          "logo": "chainstack-logo.png",
+          "url": "https://chainstack.com/build-better-with-zksync-era/"
+        },
+        {
+          "name": "DRPC",
+          "category": "RPC ",
+          "logo": "drpc-logo.jpg",
+          "url": "https://drpc.org/"
+        },
+        {
+          "name": "Quicknode",
+          "category": "RPC ",
+          "logo": "quicknode-logo.png",
+          "url": "https://www.quicknode.com/chains/zksync"
+        },
+        {
+          "name": "Unifra",
+          "category": "RPC ",
+          "logo": "unifra-logo.jpg",
+          "url": "https://unifra.readme.io/reference/zksync-api"
+        }
+      ]
+    },
+    {
+      "category": "Ecosystem primitives",
+      "tools": [
+        {
+          "name": "1inch",
+          "category": "DeFi",
+          "logo": "1inch-logo.webp",
+          "url": "https://app.1inch.io/#/324/simple/swap/ETH"
+        },
+        {
+          "name": "Herodotus",
+          "category": "Storage Proofs",
+          "logo": "herodotus-logo.jpeg",
+          "url": "https://www.herodotus.dev/"
+        },
+        {
+          "name": "LayerZero",
+          "category": "Messaging",
+          "logo": "layerzero-logo.png",
+          "url": "https://layerzero.network/"
+        },
+        {
+          "name": "Safe",
+          "category": "Custody",
+          "logo": "safe-logo.png",
+          "url": "https://app.safe.global/welcome"
+        },
+        {
+          "name": "Snapshot",
+          "category": "Governance",
+          "logo": "snapshot-logo.jpg",
+          "url": "https://snapshot.org/#/"
+        },
+        {
+          "name": "Uniswap",
+          "category": "DeFi",
+          "logo": "uniswap-logo.png",
+          "url": "#",
+          "soon": true
+        }
+      ]
+    },
+    {
+      "category": "Data Indexers",
+      "tools": [
+        {
+          "name": "Flair",
+          "category": "Indexing",
+          "description": "Real-time and historical custom data indexing for any evm chain",
+          "logo": "flair-logo.jpeg",
+          "url": "https://flair.dev"
+        },
+        {
+          "name": "SubQuery",
+          "category": "Indexing",
+          "description": "Fast, reliable, decentralised, and customised APIs for your web3 project.",
+          "logo": "subquery-logo.svg",
+          "url": "https://subquery.network/"
+        }
+      ]
+    },
+    {
+      "category": "Analytics and APIs",
+      "tools": [
+        {
+          "name": "Chainbase",
+          "category": "APIs",
+          "logo": "chainbase-logo.png",
+          "url": "https://chainbase.com/chainNetwork/zkSync"
+        },
+        {
+          "name": "Chainlink",
+          "category": "APIs",
+          "logo": "chainlink-logo.png",
+          "url": "https://chain.link/",
+          "soon": false
+        },
+        {
+          "name": "Covalent",
+          "category": "APIs",
+          "logo": "covalent-logo.png",
+          "url": "https://www.covalenthq.com/docs/networks/zksync-era/"
+        },
+        {
+          "name": "theGraph",
+          "category": "APIs",
+          "logo": "graph-logo.png",
+          "url": "https://thegraph.com/"
+        },
+        {
+          "name": "ZettaBlock",
+          "category": "APIs",
+          "logo": "zettablock-logo.jpeg",
+          "url": "https://www.zettablock.com/"
+        }
+      ]
+    },
+    {
+      "category": "Oracles",
+      "tools": [
+        {
+          "name": "DIA",
+          "category": "Oracle",
+          "logo": "dia-logo.png",
+          "url": "https://www.diadata.org/"
+        },
+        {
+          "name": "Gelato",
+          "category": "Oracle",
+          "logo": "gelato-logo.jpg",
+          "url": "https://gelato.network/"
+        },
+        {
+          "name": "Pyth",
+          "category": "Oracle",
+          "logo": "pyth-logo.jpg",
+          "url": "https://pyth.network/"
+        },
+        {
+          "name": "Redstone",
+          "category": "Oracle",
+          "logo": "redstone-logo.png",
+          "url": "https://redstone.finance/"
+        }
+      ]
+    }
+  ]
+}
