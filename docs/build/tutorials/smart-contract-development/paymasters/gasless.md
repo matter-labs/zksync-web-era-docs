@@ -37,7 +37,7 @@ Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/
 
 Using `zksync-cli` create a new project with the required dependencies and boilerplate paymaster implementations:
 
-`npx zksync-cli@latest create-project gaslessPaymaster`
+`npx zksync-cli create gaslessPaymaster`
 
 Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/GeneralPaymaster.sol`.
 

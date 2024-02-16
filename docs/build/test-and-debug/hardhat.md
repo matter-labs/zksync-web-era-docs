@@ -22,7 +22,7 @@ To test our contract, we are going to use Hardhat, and `era_test_node` for rapid
 Using `zksync-cli` create a new project with the required dependencies and boilerplate paymaster implementations:
 
 ```bash
-npx zksync-cli@latest create-project test-greeter
+npx zksync-cli create test-greeter
 ```
 
 Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/Greeter.sol`.
