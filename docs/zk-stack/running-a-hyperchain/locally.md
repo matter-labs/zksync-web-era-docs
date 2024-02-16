@@ -92,7 +92,7 @@ Your server contains both HTTPS as well as WebSocket (WS) services that are full
 zkSync CLI allows you to easily interact and develop applications on your hyperchain. When executing any command with zksync-cli, you can specify RPC urls for both L1 and L2. Your local server contains RPCs for both. An example deposit command via the bridge would look like:
 
 ```bash
-npx zksync-cli@latest bridge deposit --rpc=http://localhost:3050 --l1-rpc=http://localhost:8545 --zeek
+npx zksync-cli bridge deposit --rpc=http://localhost:3050 --l1-rpc=http://localhost:8545 --zeek
 ```
 
 ### Using [Portal](https://github.com/matter-labs/dapp-portal)
