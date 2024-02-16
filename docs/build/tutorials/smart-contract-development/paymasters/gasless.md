@@ -160,7 +160,7 @@ dotenv.config();
 // test pk rich wallet from in-memory node
 const PRIVATE_KEY = "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110";
 
-describe("GaslessPaymaster", function () {
+describe.only("GaslessPaymaster", function () {
   let provider: Provider;
   let wallet: Wallet;
   let deployer: Deployer;
