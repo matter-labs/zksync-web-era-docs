@@ -76,7 +76,7 @@ Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references
       >
       <div class="content">
         <h3>In Memory Node</h3>
-        <p>Elevate Test Quality and Debug locally with the In Memory Node.</p>
+        <p>Elevate, Test Quality and Debug locally with the In Memory Node.</p>
       </div>
     </RouterLink>
     <RouterLink
