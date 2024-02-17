@@ -51,7 +51,7 @@ Run the following command in your terminal to create a new project using zkSync 
 npx zksync-cli create hello-zksync
 ```
 
-It will give you options for different types of projects but for this tutorial choose the the following:
+It will give you options for different types of projects but for this tutorial choose the following:
 
 ```bash
 ? What type of project do you want to create? Contracts
@@ -66,7 +66,7 @@ The private key of your wallet will be included in the `.env` file of the projec
 
 :::
 
-The project structure is pretty straight forward:
+The project structure is pretty straightforward:
 
 - `hardhat.config.ts` contains the general configuration for Hardhat and the zkSync plugins, which are already imported and setup.
 - `/contracts` contains smart contracts. `zksync-cli` provides common examples like an ERC20, an NFT, and the Greeter contract that we'll use later on.
