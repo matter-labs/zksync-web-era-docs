@@ -48,7 +48,7 @@ Choose `Hardhat + Solidity` to setup our project repository. The contract we wil
 
 ### Step 3 — Updating the Contract
 
-No modifications are needed for ERC20Fixed paymaster since the provided `ApprovalPaymaster` contract is already configured for this purpose.
+No modifications are needed for `ERC20FixedPaymaster` since the provided `ApprovalPaymaster` contract is already configured for this purpose.
 
 Reviewing the `validateAndPayForPaymasterTransaction` function reveals its simplicity: it verifies if the token is correct, the user holds the token and has provided enough allowance.
 
