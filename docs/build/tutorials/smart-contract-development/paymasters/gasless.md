@@ -166,7 +166,7 @@ describe.only("GaslessPaymaster", function () {
   let deployer: Deployer;
   let emptyWallet: Wallet;
   let userWallet: Wallet;
-  let ownerInitialBalance: ethers.BigNumber;
+  let ownerInitialBalance: BigInt;
   let paymaster: Contract;
   let greeter: Contract;
   let paymasterAddress: string;
@@ -196,7 +196,6 @@ describe.only("GaslessPaymaster", function () {
       maxPriorityFeePerGas: BigInt(0),
       maxFeePerGas: gasPrice,
       gasLimit: 6000000,
-      nonce: await user.getNonce(),
       customData: {
         gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
         paymasterParams,
