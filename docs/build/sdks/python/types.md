@@ -56,17 +56,19 @@ class Token:
 
 
 @dataclass
+class PaymasterParams(dict):
+    paymaster: HexStr
+    paymaster_input: bytes
+```
+
+# BridgeAddresses
+```python
+@dataclass
 class BridgeAddresses:
     l1_eth_default_bridge: HexStr
     l2_eth_default_bridge: HexStr
     l1_erc20_default_bridge: HexStr
     l2_erc20_default_bridge: HexStr
-
-
-@dataclass
-class PaymasterParams(dict):
-    paymaster: HexStr
-    paymaster_input: bytes
 ```
 
 # Transaction
@@ -188,4 +190,55 @@ class RequestExecuteCallMsg:
     gas_per_pubdata_byte: int = DEPOSIT_GAS_PER_PUBDATA_LIMIT
     refund_recipient: HexStr = None
     options: TransactionOptions = None
+```
+
+# PaymasterParams
+
+```python
+@dataclass
+class PaymasterParams:
+    paymaster: HexStr
+    paymaster_input: bytes
+```
+
+# BlockDetails
+```python
+@dataclass
+class BlockDetails:
+    commit_tx_hash: str
+    committed_at: datetime
+    execute_tx_hash: str
+    executed_at: datetime
+    l1_tx_count: int
+    l2_tx_count: int
+    number: int
+    prove_tx_hash: str
+    proven_at: datetime
+    root_hash: str
+    status: str
+    timestamp: int
+```
+
+# ContractAccountInfo
+
+```python
+@dataclass
+class ContractAccountInfo:
+    account_abstraction_version: AccountAbstractionVersion
+    account_nonce_ordering: AccountNonceOrdering
+```
+
+# AccountAbstractionVersion
+
+```python
+class AccountAbstractionVersion(Enum):
+    NONE = 0
+    VERSION_1 = 1
+```
+
+# AccountNonceOrdering
+```python
+class AccountNonceOrdering(Enum):
+    Sequential = 0
+    Arbitrary = 1
 ```
