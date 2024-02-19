@@ -27,7 +27,8 @@ git clone https://github.com/matter-labs/zksync-era
 2. Add `ZKSYNC_HOME` to your path (e.g. `~/.bash_profile`, `~/.zshrc` ) - don't forget to source your profile file again (or restart your terminal):
 
 ```bash
-export ZKSYNC_HOME=/path/to/zksync/repo/you/cloned export PATH=$ZKSYNC_HOME/bin:$PATH
+export ZKSYNC_HOME=/path/to/zksync/repo/you/cloned
+export PATH=$ZKSYNC_HOME/bin:$PATH
 ```
 
 3. Build latest version of zk tools by just running `zk` on the root of the project.
