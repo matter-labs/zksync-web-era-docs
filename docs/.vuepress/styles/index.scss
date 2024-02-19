@@ -28,7 +28,7 @@ $border-color: #e5e7eb;
         --pwa-popup-btn-hover-bg-color: #4075FF;
     }
     }
-    
+
     body {
         overflow-x: hidden !important;
         font-family: "Inter" !important;
@@ -79,6 +79,14 @@ $border-color: #e5e7eb;
         }
     }
     
+    .add-network {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 8px;
+        gap: 4px;
+    }
+
     .copyright {
         display: none;
     }
@@ -363,6 +371,10 @@ $border-color: #e5e7eb;
     
     [data-theme="dark"] img[src*="/images/github_logo_black.svg"] {
         content: url("/images/github_logo.svg");
+    }
+
+    img[src*="/images/metamask_logo.svg"] {
+        content: url("/images/metamask_logo.svg");
     }
     
     [data-theme="dark"] h3 {
