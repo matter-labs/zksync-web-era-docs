@@ -39,7 +39,7 @@ Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/
 
 Using `zksync-cli` create a new project with the required dependencies and boilerplate paymaster implementations:
 
-<pre class="language-bash"><code class="lang-bash"><strong>npx zksync-cli@latest create-project mockUSDCPaymaster
+<pre class="language-bash"><code class="lang-bash"><strong>npx zksync-cli create mockUSDCPaymaster
 </strong></code></pre>
 
 Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/ApprovalPaymaster.sol`.
