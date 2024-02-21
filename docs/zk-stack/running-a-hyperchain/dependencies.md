@@ -60,6 +60,9 @@ Note: currently official site proposes using Docker Desktop for Linux, which is 
 want to only have CLI tool, you need the `docker-ce` package and you can follow
 [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04) for Ubuntu.
 
+Alpine Linux is known to be one of the easiest ways of running Docker. You can follow
+[this guide](https://wiki.alpinelinux.org/wiki/Docker#Installation) for installing Docker in Alpine Linux.
+
 Installing `docker` via `snap` or from the default repository can cause troubles.
 
 You need to install both `docker` and `docker-compose`.
