@@ -30,10 +30,10 @@ Before using the zkSync plugin for Web3.js, you need to [initialize Web3 with a 
 #### Example
 
 ```javascript
-import { Web3 } from 'web3';
-import { ZkSyncPlugin } from 'web3-plugin-zksync';
+import { Web3 } from "web3";
+import { ZkSyncPlugin } from "web3-plugin-zksync";
 
-const zkSyncRpcUrl: string = 'https://sepolia.era.zksync.dev';
+const zkSyncRpcUrl: string = "https://sepolia.era.zksync.dev";
 
 console.log(`📞 Connecting to zkSync Era [${zkSyncRpcUrl}]`);
 const web3: Web3 = new Web3(zkSyncRpcUrl);
