@@ -27,7 +27,8 @@ git clone https://github.com/matter-labs/zksync-era
 2. Add `ZKSYNC_HOME` to your path (e.g. `~/.bash_profile`, `~/.zshrc` ) - don't forget to source your profile file again (or restart your terminal):
 
 ```bash
-export ZKSYNC_HOME=/path/to/zksync/repo/you/cloned export PATH=$ZKSYNC_HOME/bin:$PATH
+export ZKSYNC_HOME=/path/to/zksync/repo/you/cloned
+export PATH=$ZKSYNC_HOME/bin:$PATH
 ```
 
 3. Build latest version of zk tools by just running `zk` on the root of the project.
@@ -144,7 +145,7 @@ There are two options for running the Boojum prover: in GPU, or in CPU.
 
 The docker compose file assumes you will be running all components in the same machine. The current minimum requirements for a low TPS scenario are:
 
-- 16 GB VRAM NVIDIA GPU
+- 6 GB VRAM NVIDIA GPU
 - 16 Core CPU
 - 64 GB of RAM
 - 300 GB of Disk Space (SSD preferred)
