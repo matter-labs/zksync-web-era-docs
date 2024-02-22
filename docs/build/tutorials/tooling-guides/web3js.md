@@ -59,7 +59,7 @@ console.log(`Current block number: ${blockNumber}`);
 
 ### zkSync L2-Specific JSON-RPC API
 
-The zkSync plugin for Web3.js implements the L2-specific [zkSync JSON-RPC API](https://docs.zksync.io/build/api.html).
+The zkSync plugin for Web3.js implements the zkSync-specific methods from the `zks_` namespace of the [JSON-RPC API](https://docs.zksync.io/build/api.html#zksync-era-json-rpc-methods).
 
 #### Fetch the Main Contract Address
 
