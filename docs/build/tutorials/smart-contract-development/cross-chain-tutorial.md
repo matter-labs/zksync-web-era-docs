@@ -71,13 +71,13 @@ Make sure you use actual node (lts version) and actual npm version
 @tab yarn
 
 ```sh
-yarn add -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts @nomicfoundation/hardhat-ethers
+yarn add -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts @nomicfoundation/hardhat-ethers @typechain/ethers-v6 @typechain/hardhat typechain ethers
 ```
 
 @tab npm
 
 ```sh
-npm i -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts @nomicfoundation/hardhat-ethers
+npm i -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts @nomicfoundation/hardhat-ethers @typechain/ethers-v6 @typechain/hardhat typechain ethers
 ```
 
 :::
@@ -92,9 +92,11 @@ The following Solidity code defines the Governance smart contract.
 
 The constructor sets the contract creator as the single governor. The `callZkSync` function calls a transaction on L2 which can only be called by the governor.
 
-1. `cd` into the `contracts\` folder and remove any files already there, if any.
+1. Remove existing `/test` directory and any contracts that exist in `/contracts`.
 
-2. Create a file called `Governance.sol` and copy/paste the code below into it.
+2. `cd` into the `contracts\` folder.
+
+3. Create a file called `Governance.sol` and copy/paste the code below into it.
 
 ```sol
 // SPDX-License-Identifier: Unlicense
