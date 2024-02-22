@@ -54,7 +54,7 @@ Include the validation logic in the `validateAndPayForPaymasterTransaction` func
 
 ```solidity
 uint256 startTime = (block.timestamp / 86400) * 86400 + 15 hours;
- uint256 endTime = startTime + 20 minutes;
+uint256 endTime = startTime + 20 minutes;
 
  require(
    block.timestamp >= startTime && block.timestamp <= endTime,
