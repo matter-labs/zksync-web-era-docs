@@ -145,7 +145,7 @@ There are two options for running the Boojum prover: in GPU, or in CPU.
 
 The docker compose file assumes you will be running all components in the same machine. The current minimum requirements for a low TPS scenario are:
 
-- 16 GB VRAM NVIDIA GPU
+- 6 GB VRAM NVIDIA GPU
 - 16 Core CPU
 - 64 GB of RAM
 - 300 GB of Disk Space (SSD preferred)
