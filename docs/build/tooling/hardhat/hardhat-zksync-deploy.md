@@ -409,7 +409,7 @@ Network-specific paths will override a global path, ensuring that only scripts w
 Deployment scripts can be tagged, allowing for easy categorization and organization. Dependencies between scripts can be specified to ensure proper execution order, and priority levels can be assigned to determine the sequence in which scripts are run.
 
 - `tags` An array of strings representing lables that can be assigned to scripts for categorization and organization.
-- `dependencies` An array of scripts tags specifying the dependencies of a script, ensuring proper execution order based on their dependencies.
+- `dependencies` An array of script tags specifying the dependencies of a script, ensuring proper execution order based on their dependencies.
 - `priority` An integer value indicating the priority level of a script, determining the sequence in which scripts are executed. If a script has a higher value for priority field, it will be executed first unless it depends on another script.
 
 Examples:
