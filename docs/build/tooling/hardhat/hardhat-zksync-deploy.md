@@ -186,7 +186,7 @@ const config: HardhatUserConfig = {
       url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
       ethNetwork: "sepolia", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `sepolia`)
       zksync: true,
-      // ADDITON
+      // ADDITION
       accounts: ['0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3', '0x28a574ab2de8a00364d5dd4b07c4f2f574ef7fcc2a86a197f65abaec836d1959'] // The private keys for the accounts used in the deployment process.
       accounts: {
           mnemonic: 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle'
@@ -201,7 +201,7 @@ const config: HardhatUserConfig = {
 
 :::tip Accounts on zkSync Era Test Node or zksync-cli Local Node
 
-`accounts` object will be automaticly be populated with rich accounts if used network is zkSync Era Test Node or zksync-cli Local Node
+`accounts` object will be automatically be populated with rich accounts if used network is zkSync Era Test Node or zksync-cli Local Node
 
 :::
 
@@ -209,7 +209,7 @@ To establish a default index per network, which is by default `0`, you can inclu
 
 ```typescript
 const config: HardhatUserConfig = {
-  // ADDITON
+  // ADDITION
   deployerAccounts: {
     'zkTestnet': 1, // The default index of the account for the specified network.
     //default: 0 // The default value for not specified networks. Automatically set by plugin to the index 0.
@@ -272,7 +272,7 @@ Methods available for use in `hre.deployer` are the same as those available in t
   ): Promise<zk.Wallet>
 ```
 
-### Tranistion from `Deployer` object to the `hre.deployer`
+### Transition from `Deployer` object to the `hre.deployer`
 
 The deployment logic remains the same, but instead of instantiating a `Deployer` class, you directly access the deployer object provided by `hre.deployer`. This simplifies the deployment process and enhances the developer experience.
 
@@ -322,7 +322,7 @@ const config: HardhatUserConfig = {
       url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
       ethNetwork: "sepolia", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `sepolia`)
       zksync: true,
-      // ADDITON
+      // ADDITION
       forceDeploy: true, // Specify is deploy proccess will use cache mechanism or it will force deploy of the contracts
     },
   },
@@ -350,7 +350,7 @@ To enable the plugin's usage of global custom deploy scripts, specify the direct
 
 ```typescript
 const config: HardhatUserConfig = {
-  // ADDITON
+  // ADDITION
   paths: {
     deployPaths: "deploy-zkSync", //single deployment directory
     deployPaths: ["deploy", "deploy-zkSync"], //multiple deployment directories
@@ -389,7 +389,7 @@ const config: HardhatUserConfig = {
     zkTestnet: {
       url: "https://sepolia.era.zksync.dev",
       ethNetwork: "sepolia",
-      // ADDITON
+      // ADDITION
       deployPaths: "deploy-zkSync", //single deployment directory
       deployPaths: ["deploy", "deploy-zkSync"], //multiple deployment directories
       zksync: true,
