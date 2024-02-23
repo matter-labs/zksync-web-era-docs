@@ -113,6 +113,10 @@ export const enSidebar = sidebar({
               link: "/build/tutorials/tooling-guides/viem.md",
             },
             {
+              text: "Web3.js",
+              link: "/build/tutorials/tooling-guides/web3js.md",
+            },
+            {
               text: "API3",
               link: "/build/tutorials/tooling-guides/api3.md",
             },
@@ -250,11 +254,11 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Overview",
-              link: "/build/tooling/foundry/overview.md", 
+              link: "/build/tooling/foundry/overview.md",
             },
             {
               text: "Getting Started",
-              link: "/build/tooling/foundry/getting-started.md", 
+              link: "/build/tooling/foundry/getting-started.md",
             },
           ]
         },
