@@ -16,7 +16,7 @@ By default your server is available at <http://localhost:3050> - but if you depl
 When executing any command with zksync-cli, you can specify RPC urls for both L1 and L2 if you choose “localnet” as your network. An example deposit command would look like:
 
 ```bash
-npx zksync-cli@latest bridge deposit --rpc=http://localhost:3050 --l1-rpc=http://localhost:8545 --zeek
+npx zksync-cli bridge deposit --rpc=http://localhost:3050 --l1-rpc=http://localhost:8545 --zeek
 ```
 
 ## Using dApp Portal
