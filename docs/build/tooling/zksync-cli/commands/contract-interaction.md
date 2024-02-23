@@ -97,6 +97,7 @@ You will be prompted to select a chain, contract address, and method.
 Next you need to select a **method (function) to call**.
 
 - In case your contract is verified it will automatically identify the ABI:
+
   ```bash
   ? Contract method to call
     ────────── Provided contract ──────────
@@ -108,10 +109,13 @@ Next you need to select a **method (function) to call**.
     ───────────────────────────────────────
     Type method manually
   ```
+
 - Otherwise you'll have to enter method signature manually, for example `balanceOf(address)`.
+
   ```bash
   ? Enter method to call: balanceOf(address)
   ```
+
 - Alternatively, you can specify the ABI file manually using the `--abi` option. [See example](#using-local-abi-file)
 
 After that, you will be prompted to enter **arguments** for the method, one by one.
@@ -167,6 +171,7 @@ You will be prompted to select a chain, contract address, and method.
 Next you need to select a **method (function) to call**.
 
 - In case your contract is verified it will automatically identify the ABI:
+
   ```bash
   ? Contract method to call
     ────────── Provided contract ──────────
@@ -175,10 +180,13 @@ Next you need to select a **method (function) to call**.
     ───────────────────────────────────────
     Type method manually
   ```
+
 - Otherwise you'll have to enter method signature manually, for example `transfer(address,uint256)`.
+
   ```bash
   ? Enter method to call: transfer(address,uint256)
   ```
+
 - Alternatively, you can specify the ABI file manually using the `--abi` option. [See example](#using-local-abi-file)
 
 After that, you will be prompted to enter **arguments** for the method, one by one.
@@ -228,9 +236,11 @@ This command allows you to encode contract method signature and arguments into r
 You will need to select a **method (function) to encode**.
 
 - Enter method signature manually, for example `transfer(address,uint256)`.
+
   ```bash
   ? Enter method to call: transfer(address,uint256)
   ```
+
 - Alternatively, you can specify the ABI file using the `--abi` option. [See example](#using-local-abi-file)
 
 ```bash

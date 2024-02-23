@@ -37,6 +37,7 @@ d. **Clean npm Cache**
 e. **Use the Latest Version**
 
 - As a quick fix, or if the above steps don't resolve the issue, use `npx zksync-cli@latest [command]`, for example, `npx zksync-cli@latest dev start`.
+
 </details>
 
 <br />
@@ -47,6 +48,7 @@ e. **Use the Latest Version**
 If `npx zksync-cli` is not running the latest version:
 
 - Refer to the guide above to check and update your zkSync CLI version.
+
 </details>
 
 <br />
@@ -58,6 +60,7 @@ If you receive a `command not found: npx` error, it means Node.js is not install
 
 - Install Node.js from [https://nodejs.org/](https://nodejs.org/). This will also install `npm` and `npx`.
 - After installation, restart your terminal and try running `npx zksync-cli` again.
+
 </details>
 
 For all other issues, we encourage you to seek help or report them in our [GitHub Discussions](https://github.com/zkSync-Community-Hub/zksync-developers/discussions/new?category=general&title=[zksync-cli]%20<Title>).
