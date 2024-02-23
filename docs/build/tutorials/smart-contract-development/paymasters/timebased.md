@@ -279,7 +279,7 @@ describe.only("TimeBasedPaymaster", function () {
 This script tests whether the TimeBasedPaymaster contract permits a user to modify a message in the "Greeter" contract without incurring any gas charges at different times. The necessary paymaster parameters are provided when invoking the `setGreeting` method, showcasing our time based paymaster in action.
 
 ```bash
-yarn hardhat test --network inMemoryNode
+yarn hardhat test --network hardhat
 ```
 
 #### Conclusion

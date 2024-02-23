@@ -364,7 +364,7 @@ This particular script assesses the paymaster's ability to cover gas expenses fo
 To execute test:
 
 ```bash
-yarn hardhat test --network inMemoryNode
+yarn hardhat test --network hardhat
 ```
 
 ### Conclusion

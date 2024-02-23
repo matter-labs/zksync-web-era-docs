@@ -235,7 +235,7 @@ This script tests whether the GaslessPaymaster contract permits a user to modify
 To execute test:
 
 ```bash
-yarn hardhat test --network inMemoryNode
+yarn hardhat test --network hardhat
 ```
 
 ### Conclusion
