@@ -220,8 +220,44 @@ export const enSidebar = sidebar({
               text: "Getting Started",
               link: "/build/tooling/zksync-cli/getting-started.md",
             },
-            "/build/tooling/zksync-cli/commands.md",
-            "/build/tooling/zksync-cli/examples/contract-interaction.md"
+            {
+              text: "Commands",
+              collapsible: false,
+              children: [
+                {
+                  text: "Start Node Locally",
+                  link: "/build/tooling/zksync-cli/commands/local-node.md",
+                },
+                {
+                  text: "Create a Project",
+                  link: "/build/tooling/zksync-cli/commands/create.md",
+                },
+                {
+                  text: "Contract Interaction",
+                  link: "/build/tooling/zksync-cli/commands/contract-interaction.md",
+                },
+                {
+                  text: "Transaction Info",
+                  link: "/build/tooling/zksync-cli/commands/transaction-info.md",
+                },
+                {
+                  text: "Wallet Functionality",
+                  link: "/build/tooling/zksync-cli/commands/wallet.md",
+                },
+                {
+                  text: "Bridge Operations",
+                  link: "/build/tooling/zksync-cli/commands/bridge.md",
+                },
+                {
+                  text: "Custom Chains",
+                  link: "/build/tooling/zksync-cli/commands/custom-chains.md",
+                },
+              ]
+            },
+            {
+              text: "Troubleshooting",
+              link: "/build/tooling/zksync-cli/troubleshooting.md",
+            },
           ]
         },
         {
