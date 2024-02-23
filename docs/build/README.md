@@ -37,7 +37,7 @@ Find user guides, code samples, SDKs & toolkits, tutorials, API & CLI references
       />
       <div class="content">
         <h3>zkSync CLI</h3>
-        <p>Local development, contract interaction, custom chains and more</p>
+        <p>Local development, contract interaction, custom chains and more.</p>
       </div>
     </RouterLink>
     <RouterLink
