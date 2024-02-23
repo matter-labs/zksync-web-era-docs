@@ -36,7 +36,7 @@ Ensure you are using the correct version of the plugin with ethers:
 
   :::
 
-::: tip New feature support
+::: tip Deployer extension inside Hardhat Runtime Environment (HRE)
 To use new features like the deployer extension inside Hardhat Runtime Environment (HRE), caching mechanism, and support for script paths, tags, dependencies, and priority, the plugin versions should be as follows:
 
 - For **v6**, the version should be **1.2.0** or higher.
@@ -142,7 +142,7 @@ class Deployer {
   public async estimateDeployFee(
     artifact: ZkSyncArtifact,
     constructorArguments: any[]
-  ): Promise<ethers.BigNumber>
+  ): Promise<bigint>
 
   /**
     * Sends a deploy transaction to the zkSync network.
@@ -150,7 +150,6 @@ class Deployer {
     *
     * @param artifact The previously loaded artifact object.
     * @param constructorArguments The list of arguments to be passed to the contract constructor.
-    * @param forceDeploy Override cached deployment of the contract on the same network.
     * @param overrides Optional object with additional deploy transaction parameters.
     * @param additionalFactoryDeps Additional contract bytecodes to be added to the factory dependencies list.
     * The fee amount is requested automatically from the zkSync Era server.
@@ -160,7 +159,6 @@ class Deployer {
   public async deploy(
     artifact: ZkSyncArtifact,
     constructorArguments: any[],
-    forceDeploy: boolean = false,
     overrides?: Overrides,
     additionalFactoryDeps?: ethers.BytesLike[],
   ): Promise<zk.Contract>
@@ -174,15 +172,13 @@ The plugin adds a deployer extension object to the Hardhat Runtime Environment (
 
 ### Configuration
 
-The configuration is extended to support automatic deployment without the need for manually creating a wallet. To achieve that, the `hardhat.config.ts` file needs to be extended by adding a `deployerAccounts` object, and specific network in the `networks` section need to be extended by adding `accounts` information.
+To extend the configuration to support automatic deployment inside scripts without the need for manually creating a wallet, you can add an `accounts` field to the specific network configuration in the `networks` section of the `hardhat.config.ts` file. This accounts field can support an array of private keys or a mnemonic object.
+
+If the `accounts` section contains an array of private keys, the deploy method will use index `0` by default unless another wallet is explicitly set in the script.
 
 ```typescript
-/// ADDITON
-deployerAccounts: {
-    'zkTestnet': 1, // The default index of the account for the specified network.
-    //default: 0 // The default value for not specified networks. Automatically set by plugin to the index 0.
-},
-networks: {
+const config: HardhatUserConfig = {
+  networks: {
     sepolia: {
       url: "https://sepolia.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL (optional).
     },
@@ -190,22 +186,54 @@ networks: {
       url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
       ethNetwork: "sepolia", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `sepolia`)
       zksync: true,
-      /// ADDITON
+      // ADDITON
       accounts: ['0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3', '0x28a574ab2de8a00364d5dd4b07c4f2f574ef7fcc2a86a197f65abaec836d1959'] // The private keys for the accounts used in the deployment process.
+      accounts: {
+          mnemonic: 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle'
+      }
+      // Mnemonic used in the deployment process
     }
-},
+  },
+};
 ```
 
-- `deployerAccounts` represents an object where the default index of the accounts is provided and automatically used in the deployment scripts. If the network name is not specified inside the object, the default index of the account will be 0.
-- `accounts` represents a list of the private keys for the accounts used in the deployment process.
-
-The described objects work together to provide users with a better deployment experience, eliminating the need for manual wallet initialization.
+- `accounts` represents a list of the private keys or mnemonic object for the account used in the deployment process.
 
 :::tip Accounts on zkSync Era Test Node or zksync-cli Local Node
 
 `accounts` object will be automaticly be populated with rich accounts if used network is zkSync Era Test Node or zksync-cli Local Node
 
 :::
+
+To establish a default index per network, which is by default `0`, you can include a `deployerAccounts` section in your `hardhat.config.ts` file. This enables the plugin to utilize the designated default indexes when accessing `deploy` method in deployment scripts, thereby granting greater control over the selection of the deployment account for each network.
+
+```typescript
+const config: HardhatUserConfig = {
+  // ADDITON
+  deployerAccounts: {
+    'zkTestnet': 1, // The default index of the account for the specified network.
+    //default: 0 // The default value for not specified networks. Automatically set by plugin to the index 0.
+  },
+  networks: {
+    sepolia: {
+      url: "https://sepolia.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL (optional).
+    },
+    zkTestnet: {
+      url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
+      ethNetwork: "sepolia", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `sepolia`)
+      zksync: true,
+      accounts: ['0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3', '0x28a574ab2de8a00364d5dd4b07c4f2f574ef7fcc2a86a197f65abaec836d1959']  // The private keys for the accounts used in the deployment process.
+      accounts: {
+          mnemonic: 'stuff slice staff easily soup parent arm payment cotton trade scatter struggle'
+      }  // Mnemonic used in the deployment process
+    }
+  },
+};
+```
+
+- `deployerAccounts` represents an object where the default index of the accounts is provided and automatically used in the deployment scripts. If the network name is not specified inside the object, the default index of the account will be `0`. We can change and deafult index for not specified networks if we override `default` name with index that we want.
+
+The described objects work together to provide users with a better deployment experience, eliminating the need for manual wallet initialization.
 
 ### Methods
 
@@ -246,7 +274,7 @@ Methods available for use in `hre.deployer` are the same as those available in t
 
 ### Tranistion from `Deployer` object to the `hre.deployer`
 
-With transition, the deployment logic remains the same, but instead of instantiating a `Deployer` class, you directly access the deployer object provided by `hre.deployer`. This simplifies the deployment process and enhances the developer experience.
+The deployment logic remains the same, but instead of instantiating a `Deployer` class, you directly access the deployer object provided by `hre.deployer`. This simplifies the deployment process and enhances the developer experience.
 
 ```typescript
 // Using Deploy exports for the deployment
@@ -254,6 +282,7 @@ const wallet = new zk.Wallet("PRIVATE_KEY");
 const deployer = new Deployer(hre, zkWallet);
 const artifact = await deployer.loadArtifact("ContractName");
 const contract = await deployer.deploy(artifact, []);
+
 // Using hre.deployer with connected wallet provided by hardhat.config.ts configuration
 const artifact = await hre.deployer.loadArtifact("ContractName");
 const contract = await hre.deployer.deploy(artifact, []);
@@ -273,26 +302,36 @@ const wallet = await hre.deployer.getWallet("0x28a574ab2de8a00364d5dd4b07c4f2f57
 hre.deployer.setWallet(wallet);
 
 const artifact = await hre.deployer.loadArtifact("ContractName");
-const contract = await hre.deployer.deploy(artifact, [], false);
+const contract = await hre.deployer.deploy(artifact, []);
 ```
 
 ## Caching mechanism
 
-The `hardhat-zksync-deploy` plugin supports a caching mechanism for contracts deployed on the same network, and by default, this feature is enabled for every deployment unless specified otherwise.
+The `hardhat-zksync-deploy` plugin supports a caching mechanism for contracts deployed on the same network, and by default, this feature is enabled for every deployment with specific network unless specified otherwise.
 For each deployment within your project, a new `deployments` folder is created. Inside this folder, you can find subfolders for each network specified in the `hardhat.config.ts` file. Each network folder contains JSON files named after deployed contracts where caching purposes information are stored, and additionally, a `.chainId` file contains the chainId specific to that network.
 
-The third parameter for each `deploy` call using the `Deployer` object or `hre.deployer` represents the `forceDeploy` parameter. This parameter enables you to specify whether the deployment should use the cached mechanism or be forcefully executed, overriding existing cached deployment.
+To explicitly use a cache mechanism or force deploy for a specific network in your `hardhat.config.ts` file, you would indeed need to set the `forceDeploy` flag for that network in the networks section.
 
 ```typescript
-// Using Deploy exports for the deployment
-const wallet = new zk.Wallet("PRIVATE_KEY");
-const deployer = new Deployer(hre, zkWallet);
-const artifact = await deployer.loadArtifact("ContractName");
-const contract = await deployer.deploy(artifact, [], true); // forcefully executed
-// Using hre.deployer with connected wallet provided by hardhat.config.ts configuration
-const artifact = await hre.deployer.loadArtifact("ContractName");
-const contract = await hre.deployer.deploy(artifact, [], true); // forcefully executed
+const config: HardhatUserConfig = {
+  networks: {
+    sepolia: {
+      url: "https://sepolia.infura.io/v3/<API_KEY>", // The Ethereum Web3 RPC URL (optional).
+    },
+    zkTestnet: {
+      url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
+      ethNetwork: "sepolia", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `sepolia`)
+      zksync: true,
+      // ADDITON
+      forceDeploy: true, // Specify is deploy proccess will use cache mechanism or it will force deploy of the contracts
+    },
+  },
+};
 ```
+
+If the `forceDeploy` flag is set to `true` for a specific network in your hardhat.config.ts file, it indicates that the deployment process will force deploy contracts to that network, bypassing any cache mechanism.
+
+Conversely, if the `forceDeploy` flag is set to `false` or not specified for a network, `hardhat-zksync-deploy` will use caching mechanism during deployment. This means it will check whether the contracts have changed since the last deployment, and if not, it will reuse the already deployed contracts instead of redeploying them.
 
 ## Scripts configuration
 
@@ -307,14 +346,25 @@ Configuring a scripts path can be achieved in two ways:
 
 #### Global Deployment Paths
 
-To configure global paths, the `hardhat.config.ts` configuration needs to be extended with a `deployPaths` property inside the `paths` section.
+To enable the plugin's usage of global custom deploy scripts, specify the directory path containing these scripts within the `deployPaths` section nested inside the `paths` section of your `hardhat.config.ts` file.
 
 ```typescript
-paths: {
-  //single deployment directory
-  deployPaths: "deploy-zkSync";
-  //multiple deployment directories
-  deployPaths: ["deploy", "deploy-zkSync"];
+const config: HardhatUserConfig = {
+  // ADDITON
+  paths: {
+    deployPaths: "deploy-zkSync", //single deployment directory
+    deployPaths: ["deploy", "deploy-zkSync"], //multiple deployment directories
+  }
+  networks: {
+    sepolia: {
+      url: "https://sepolia.infura.io/v3/<API_KEY>" // The Ethereum Web3 RPC URL (optional).
+    },
+    zkTestnet: {
+      url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
+      ethNetwork: "sepolia", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `sepolia`)
+      zksync: true,
+    }
+  },
 }
 ```
 
@@ -331,20 +381,21 @@ The default path, if not explicitly set, is the `deploy` folder inside the proje
 To configure network-specific paths, the `hardhat.config.ts` configuration needs to be extended with a `deployPaths` property inside the network object inside `networks` section.
 
 ```typescript
-networks: {
+const config: HardhatUserConfig = {
+  networks: {
     sepolia: {
-      url: "https://sepolia.infura.io/v3/<API_KEY>"
+      url: "https://sepolia.infura.io/v3/<API_KEY>",
     },
     zkTestnet: {
       url: "https://sepolia.era.zksync.dev",
       ethNetwork: "sepolia",
-      //single deployment directory
-      deployPaths: 'deploy-zkSync'
-      //multiple deployment directories
-      deployPaths: ['deploy', 'deploy-zkSync']
-      zksync: true
-    }
-}
+      // ADDITON
+      deployPaths: "deploy-zkSync", //single deployment directory
+      deployPaths: ["deploy", "deploy-zkSync"], //multiple deployment directories
+      zksync: true,
+    },
+  },
+};
 ```
 
 ::: note override of global paths
@@ -353,13 +404,13 @@ Network-specific paths will override a global path, ensuring that only scripts w
 
 :::
 
-### Deployment scripts tags, dependencies and priority
+### Deployment scripts, tags, dependencies and priority
 
 Deployment scripts can be tagged, allowing for easy categorization and organization. Dependencies between scripts can be specified to ensure proper execution order, and priority levels can be assigned to determine the sequence in which scripts are run.
 
-- `tags` An array of strings representing tags that can be assigned to scripts for categorization and organization.
+- `tags` An array of strings representing lables that can be assigned to scripts for categorization and organization.
 - `dependencies` An array of scripts tags specifying the dependencies of a script, ensuring proper execution order based on their dependencies.
-- `priority` An integer value indicating the priority level of a script, determining the sequence in which scripts are executed.
+- `priority` An integer value indicating the priority level of a script, determining the sequence in which scripts are executed. If a script has a higher value for priority field, it will be executed first unless it depends on another script.
 
 Examples:
 
@@ -405,7 +456,7 @@ For the specific scripts, we observe that `001_deploy.ts` and `002_deploys.ts` a
 3. `001_deploy.ts`: Although this script has a higher priority than `002_deploy.ts`, it depends on the latter, so it will be executed last.
 
 :::note default values
-The default value for **tags** is `default`, and the default value for **priority** is `500`.
+The default value for **tags** is `default`, and the default value for **priority** is `0`.
 :::
 
 ## Compilation and Deployment Support for Missing Libraries
@@ -473,7 +524,7 @@ For more details about a dockerized local setup, check out [Local testing](../..
 
 `yarn hardhat deploy-zksync:libraries` -- runs compilation and deployment of missing libraries (the list of all missing libraries is provided by the output of `@matterlabs/hardhat-zksync-solc` plugin).
 
-The account used for deployment will be the one specified by the `deployerAccount` configuration inside the hardhat.config.ts file.
+The account used for deployment will be the one specified by the `deployerAccount` configuration within the `hardhat.config.ts` file. If no such configuration is present, the account with index `0` will be used.
 
 - `--private-key-or-index <PRIVATE_KEY_OR_INDEX>` - An optional argument, libraries are deployed either using the provided private key or by default using the account specified by its index in the accounts array for the specified network.
 - `--no-auto-populate-config` - Flag which disables the auto-population of the hardhat config file. Enabled by default.
