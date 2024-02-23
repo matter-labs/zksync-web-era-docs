@@ -36,7 +36,7 @@ Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/
 Using `zksync-cli` create a new project with the required dependencies and boilerplate paymaster implementations:
 
 ```bash
-npx zksync-cli@latest create-project timeBasedPaymaster
+npx zksync-cli create timeBasedPaymaster
 ```
 
 Choose the following options:

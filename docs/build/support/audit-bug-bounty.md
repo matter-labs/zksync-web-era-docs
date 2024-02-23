@@ -39,11 +39,7 @@ Here is the list of **completed audits**:
 - [ZK Proof System](https://github.com/HalbornSecurity/PublicReports/blob/master/ZK%20Audits/MatterLabs_zkSync_Era_Circuits_Zero_Knowledge_Security_Audit_Report_Halborn_Final..pdf), Halborn, from 2023-01-09 to 2023-03-08.
 - [Smart Contract Security Assessment](https://github.com/HalbornSecurity/PublicReports/blob/master/Solidity%20Smart%20Contract%20Audits/MatterLabs_Verifier_Smart_Contract_Security_Assessment_Report_Halborn_Final.pdf), Halborn, from July 12th, 2023 - July 20th, 2023.
 - [SNARK Wrapper](https://github.com/spearbit/portfolio/blob/master/pdfs/Matter-labs-snark-wrapper-Spearbit-Security-Review.pdf), Spearbit, November 2023
-
-We've also scheduled the following audits:
-
-- Layer 1 and Layer 2 Smart Contracts, Nov 2023, more details to follow.
-- ZK Proof System, Nov 2023, more details to follow.
+- [EIP-4844 Support](https://blog.openzeppelin.com/eip-4844-support-audit), OpenZeppelin, February 2024
 
 ## Bug Bounty Program
 
