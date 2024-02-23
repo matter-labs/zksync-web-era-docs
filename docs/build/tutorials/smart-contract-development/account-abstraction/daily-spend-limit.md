@@ -839,7 +839,7 @@ You should see something like this:
 
 ```txt
 AA factory address: 0x0d3205bc8134A11f9402fBA01947Bf377FaE4C39
-SC Account owner pk:  0xzze1f87c5e575dsb6b35axxe70ftu93fs53bytr4592f6ng25f3v1a4f6fsd3vz
+SC Account owner pk:  0x4ze1f87c5e575dsb6b35afe70ftu93fs53bca24592f6ng25f3v1a4f6fsd3vz
 SC Account deployed on address 0x29d0D17857bdA971F40FF11145859eED7bD15c00
 Funding smart contract account with some ETH
 Done!
