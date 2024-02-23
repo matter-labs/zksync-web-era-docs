@@ -62,7 +62,13 @@ rm -rf ./deploy/*
 yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts@4.9.5
 ```
 
-6. Include the `isSystem: true` setting in the `zksolc` section of the `hardhat.config.ts` configuration file to allow interaction with system contracts:
+5. Include the `isSystem: true` setting in the `zksolc` section of the `hardhat.config.ts` configuration file to allow interaction with system contracts:
+
+::: warning
+
+This project does not use the latest version available of `@openzeppelin/contracts`. Mae sure you install the specific version mentioned above.
+
+:::
 
 ```ts
 import { HardhatUserConfig } from "hardhat/config";
@@ -88,7 +94,7 @@ const config: HardhatUserConfig = {
     },
   },
   solidity: {
-    version: "0.8.17",
+    version: "0.8.20",
   },
 };
 

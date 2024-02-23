@@ -7,21 +7,21 @@ head:
 
 # Daily spending limit account
 
-This tutorial shows you how to create a smart contract account with a daily spending limit using the zkSync Era account abstraction support.
+This tutorial shows you how to create a smart contract account with a daily spending limit using the zkSync Era native account abstraction.
 
-The daily limit feature prevents an account from spending more ETH than the limit set by its owner.
+The daily limit feature prevents an account from spending more ETH than the limit set by the account's owner.
 
 ## Prerequisites
 
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - [Node.js](https://nodejs.org/en/download/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed on your machine.
-- If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the first section of the [quickstart tutorial](../../../quick-start/hello-world.md).
-- A wallet with sufficient Sepolia or Goerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts. You can get Sepolia ETH from the [network faucets](../../../tooling/network-faucets.md).
+- If you are not already familiar with deploying smart contracts on zkSync Era, please refer to the [quickstart tutorial](../../../quick-start/hello-world.md).
+- A wallet with sufficient Sepolia `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts. You can get Sepolia ETH from the [network faucets](../../../tooling/network-faucets.md).
 - You know [how to get your private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
 - We encourage you to read [the basics of account abstraction on zkSync Era](../../../developer-reference/account-abstraction.md) and complete the [multisig account tutorial](./custom-aa-tutorial.md) before attempting this tutorial.
 
 ::: tip Local zkSync Testing with zksync-cli
-Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../../tooling/zksync-cli/getting-started.md).
+Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply execute `npx zksync-cli@latest dev start` to initialize a local zkSync development environment, which includes local Ethereum and zkSync nodes. This method allows you to test contracts without requesting external testnet funds. Explore more in the [zksync-cli documentation](../../../tooling/zksync-cli/getting-started.md).
 :::
 
 ## Complete Project
@@ -42,7 +42,7 @@ We will use the [zkSync Era Hardhat plugins](../../../tooling/hardhat/getting-st
 npx zksync-cli create custom-spendlimit-tutorial --template hardhat_solidity
 ```
 
-This creates a new zkSync Era project called `custom-spendlimit-tutorial` with a basic `Greeter` contract.
+This creates a new zkSync Era project called `custom-spendlimit-tutorial` with a with a few example contracts.
 
 1. Navigate into the project directory:
 
@@ -50,51 +50,60 @@ This creates a new zkSync Era project called `custom-spendlimit-tutorial` with a
 cd custom-spendlimit-tutorial
 ```
 
-3. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
+3. For the purposes of this tutorial, we don't need the example contracts related files. So, proceed by removing all the files inside the `/contracts` and `/deploy` folders manually or by running the following commands::
 
 ```sh
-rm -rf ./contracts/Greeter.sol
+rm -rf ./contracts/*
+rm -rf ./deploy/*
 ```
 
-4. Similarly, remove the deploy scripts associated with the Greeter contract:
+4. Add the zkSync and OpenZeppelin contract libraries:
 
 ```sh
-rm -rf ./deploy/deploy-greeter.ts && rm -rf ./deploy/use-greeter.ts
+yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts@4.9.5
 ```
 
-5. Add the zkSync and OpenZeppelin contract libraries:
+::: warning
+This project does not use the latest version available of `@openzeppelin/contracts`. Mae sure you install the specific version mentioned above.
+:::
 
-```sh
-yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
-```
-
-6. Include the `isSystem: true` setting in the `hardhat.config.ts` configuration file to allow interaction with system contracts:
+5. Include the `isSystem: true` setting in the `zksolc` section of the `hardhat.config.ts` configuration file to allow interaction with system contracts:
 
 ```typescript
 import { HardhatUserConfig } from "hardhat/config";
 
+import "@matterlabs/hardhat-zksync-node";
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
-
 import "@matterlabs/hardhat-zksync-verify";
 
 const config: HardhatUserConfig = {
-  zksolc: {
-    version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
-    settings: {
-      isSystem: true, // make sure to include this line
-    },
-  },
-  defaultNetwork: "zkSyncTestnet",
+  defaultNetwork: "zkSyncSepoliaTestnet",
   networks: {
-    zkSyncTestnet: {
+    zkSyncSepoliaTestnet: {
       url: "https://sepolia.era.zksync.dev",
-      ethNetwork: "sepolia", // Can also be the RPC URL of the network (e.g. `https://sepolia.infura.io/v3/<API_KEY>`)
+      ethNetwork: "sepolia",
       zksync: true,
+      verifyURL: "https://explorer.sepolia.era.zksync.dev/contract_verification",
+    },
+    inMemoryNode: {
+      url: "http://127.0.0.1:8011",
+      ethNetwork: "localhost", // in-memory node doesn't support eth node; removing this line will cause an error
+      zksync: true,
+    },
+    hardhat: {
+      zksync: true,
+    },
+    // Additional networks
+  },
+  zksolc: {
+    version: "latest",
+    settings: {
+      isSystem: true, // ⚠️ Make sure to include this line
     },
   },
   solidity: {
-    version: "0.8.20",
+    version: "0.8.17",
   },
 };
 
@@ -321,7 +330,8 @@ limit.available -= _amount;
 - The value of the `ONE_DAY` variable is set to `1 minutes` instead of `24 hours`.
 - This is just for testing purposes (we don't want to wait a full day to see if it works!).
 - Don't forget to change the value before deploying the contract.
-  :::
+
+:::
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -452,7 +462,7 @@ Let's create the account contract `Account.sol`, and the factory contract that d
 
 2. Copy/paste the code below.
 
-The account needs to implement the [IAccount](../../../developer-reference/account-abstraction.md#iaccount-interface) interface and inherits the `SpendLimit` contract we just created. Since we are building an account with signers, we should also implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
+The account implements the [IAccount](../../../developer-reference/account-abstraction.md#iaccount-interface) interface and inherits the `SpendLimit` contract we just created. Since we are building an account with signers, we should also implement [EIP1271](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/83277ff916ac4f58fec072b8f28a252c1245c2f1/contracts/interfaces/IERC1271.sol#L12).
 
 The `isValidSignature` method will take care of verifying the signature and making sure the extracted address matches with the owner of the account.
 
@@ -693,13 +703,15 @@ contract Account is IAccount, IERC1271, SpendLimit {
 
 - The formal ETH address on zkSync Era is `0x000000000000000000000000000000000000800a`.
 - Neither the well-known `0xEee...EEeE` used by protocols as a placeholder on Ethereum, nor the zero address `0x000...000`, that ([`zksync-ethers` provides](../../../sdks/js/utils.md#useful-addresses)) has a more user-friendly alias.
-  :::
 
-:::warning Note 2
+:::
+
+:::info Note 2
 
 - `SpendLimit` is token-agnostic.
 - This means an extension is also possible: add a check for whether or not the execution is an ERC20 transfer by extracting the function selector in bytes from transaction calldata.
-  :::
+
+:::
 
 #### `AAFactory.sol`
 
@@ -772,15 +784,15 @@ dotenv.config();
 const DEPLOYER_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  // @ts-ignore target zkSyncTestnet in config file which can be testnet or local
-  const provider = new Provider(hre.config.networks.zkSyncTestnet.url);
+  // @ts-ignore target zkSyncSepoliaTestnet in config file which can be testnet or local
+  const provider = new Provider(hre.config.networks.zkSyncSepoliaTestnet.url);
   const wallet = new Wallet(DEPLOYER_PRIVATE_KEY, provider);
   const deployer = new Deployer(hre, wallet);
   const factoryArtifact = await deployer.loadArtifact("AAFactory");
   const aaArtifact = await deployer.loadArtifact("Account");
 
   // Bridge funds if the wallet on zkSync doesn't have enough funds.
-  // const depositAmount = ethers.utils.parseEther('0.1');
+  // const depositAmount = ethers.parseEther('0.1');
   // const depositHandle = await deployer.zkWallet.deposit({
   //   to: deployer.zkWallet.address,
   //   token: utils.ETH_ADDRESS,
@@ -789,20 +801,20 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // await depositHandle.wait();
 
   const factory = await deployer.deploy(factoryArtifact, [utils.hashBytecode(aaArtifact.bytecode)], undefined, [aaArtifact.bytecode]);
+  const factoryAddress = await factory.getAddress();
+  console.log(`AA factory address: ${factoryAddress}`);
 
-  console.log(`AA factory address: ${factory.address}`);
-
-  const aaFactory = new ethers.Contract(factory.address, factoryArtifact.abi, wallet);
+  const aaFactory = new ethers.Contract(factoryAddress, factoryArtifact.abi, wallet);
 
   const owner = Wallet.createRandom();
   console.log("SC Account owner pk: ", owner.privateKey);
 
-  const salt = ethers.constants.HashZero;
+  const salt = ethers.ZeroHash;
   const tx = await aaFactory.deployAccount(salt, owner.address);
   await tx.wait();
 
-  const abiCoder = new ethers.utils.AbiCoder();
-  const accountAddress = utils.create2Address(factory.address, await aaFactory.aaBytecodeHash(), salt, abiCoder.encode(["address"], [owner.address]));
+  const abiCoder = new ethers.AbiCoder();
+  const accountAddress = utils.create2Address(factoryAddress, await aaFactory.aaBytecodeHash(), salt, abiCoder.encode(["address"], [owner.address]));
 
   console.log(`SC Account deployed on address ${accountAddress}`);
 
@@ -810,7 +822,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   await (
     await wallet.sendTransaction({
       to: accountAddress,
-      value: ethers.utils.parseEther("0.02"),
+      value: ethers.parseEther("0.02"),
     })
   ).wait();
   console.log(`Done!`);
@@ -826,11 +838,12 @@ yarn hardhat deploy-zksync --script deployFactoryAccount.ts
 You should see something like this:
 
 ```txt
-AA factory address: 0x56DD798Fa6934E3133b0b78A47B41E07ef1c9114
-SC Account owner pk:  0x4d788b20f88040698acfcd195e877770d53eb70da1839c726a005ba556e6ffa6
-SC Account deployed on address 0xb6Ed219bf1e40AF0b6D22d248FEa63076E064d3b
+AA factory address: 0x0d3205bc8134A11f9402fBA01947Bf377FaE4C39
+SC Account owner pk:  0xzze1f87c5e575dsb6b35axxe70ftu93fs53bytr4592f6ng25f3v1a4f6fsd3vz
+SC Account deployed on address 0x29d0D17857bdA971F40FF11145859eED7bD15c00
 Funding smart contract account with some ETH
 Done!
+✨  Done in 10.85s.
 ```
 
 Open up the [zkSync Era block explorer](https://sepolia.explorer.zksync.io) and search for the deployed Account contract address in order to track transactions and changes in the balance.
@@ -859,19 +872,19 @@ dotenv.config();
 
 // load the values into .env file after deploying the FactoryAccount
 const DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY = process.env.DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY || "";
-const ETH_ADDRESS = process.env.ETH_ADDRESS || "";
+const ETH_ADDRESS = process.env.ETH_ADDRESS || "0x000000000000000000000000000000000000800A";
 const ACCOUNT_ADDRESS = process.env.DEPLOYED_ACCOUNT_ADDRESS || "";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  // @ts-ignore target zkSyncTestnet in config file which can be testnet or local
-  const provider = new Provider(hre.config.networks.zkSyncTestnet.url);
+  // @ts-ignore target zkSyncSepoliaTestnet in config file which can be testnet or local
+  const provider = new Provider(hre.config.networks.zkSyncSepoliaTestnet.url);
 
   const owner = new Wallet(DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY, provider);
 
   const accountArtifact = await hre.artifacts.readArtifact("Account");
   const account = new Contract(ACCOUNT_ADDRESS, accountArtifact.abi, owner);
 
-  let setLimitTx = await account.populateTransaction.setSpendingLimit(ETH_ADDRESS, ethers.utils.parseEther("0.0005"));
+  let setLimitTx = await account.setSpendingLimit.populateTransaction(ETH_ADDRESS, ethers.parseEther("0.0005"));
 
   setLimitTx = {
     ...setLimitTx,
@@ -882,7 +895,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     customData: {
       gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
     } as types.Eip712Meta,
-    value: ethers.BigNumber.from(0),
+    value: BigInt(0),
   };
 
   setLimitTx.gasPrice = await provider.getGasPrice();
@@ -890,7 +903,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   const signedTxHash = EIP712Signer.getSignedDigest(setLimitTx);
 
-  const signature = ethers.utils.arrayify(ethers.utils.joinSignature(owner._signingKey().signDigest(signedTxHash)));
+  const signature = ethers.concat([ethers.Signature.from(owner.signingKey.sign(signedTxHash)).serialized]);
 
   setLimitTx.customData = {
     ...setLimitTx.customData,
@@ -898,7 +911,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   };
 
   console.log("Setting limit for account...");
-  const sentTx = await provider.sendTransaction(utils.serialize(setLimitTx));
+  const sentTx = await provider.broadcastTransaction(types.Transaction.from(setLimitTx).serialized);
 
   await sentTx.wait();
 
@@ -923,7 +936,7 @@ Setting limit for account...
 Account limit enabled?:  true
 Account limit:  500000000000000
 Available limit today:  500000000000000
-Time to reset limit:  1683027630
+Time to reset limit:  1708688165
 ```
 
 ## Perform ETH Transfer
@@ -942,14 +955,14 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // load the values into .env file after deploying the FactoryAccount
-const DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY = process.env.DEPLOYED_ACCOUNT_OWNER_PRIV;
-const ETH_ADDRESS = process.env.ETH_ADDRESS || "";
+const DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY = process.env.DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY || "";
+const ETH_ADDRESS = process.env.ETH_ADDRESS || "0x000000000000000000000000000000000000800A";
 const ACCOUNT_ADDRESS = process.env.DEPLOYED_ACCOUNT_ADDRESS || "";
 const RECEIVER_ACCOUNT = process.env.RECEIVER_ACCOUNT || "";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  // @ts-ignore target zkSyncTestnet in config file which can be testnet or local
-  const provider = new Provider(hre.config.networks.zkSyncTestnet.url);
+  // @ts-ignore target zkSyncSepoliaTestnet in config file which can be testnet or local
+  const provider = new Provider(hre.config.networks.zkSyncSepoliaTestnet.url);
 
   const owner = new Wallet(DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY, provider);
 
@@ -966,13 +979,13 @@ export default async function (hre: HardhatRuntimeEnvironment) {
       gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
     } as types.Eip712Meta,
 
-    value: ethers.utils.parseEther(transferAmount),
+    value: ethers.parseEther(transferAmount),
     gasPrice: await provider.getGasPrice(),
-    gasLimit: ethers.BigNumber.from(20000000), // constant 20M since estimateGas() causes an error and this tx consumes more than 15M at most
+    gasLimit: BigInt(20000000), // constant 20M since estimateGas() causes an error and this tx consumes more than 15M at most
     data: "0x",
   };
   const signedTxHash = EIP712Signer.getSignedDigest(ethTransferTx);
-  const signature = ethers.utils.arrayify(ethers.utils.joinSignature(owner._signingKey().signDigest(signedTxHash)));
+  const signature = ethers.concat([ethers.Signature.from(owner.signingKey.sign(signedTxHash)).serialized]);
 
   ethTransferTx.customData = {
     ...ethTransferTx.customData,
@@ -997,7 +1010,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // actually do the ETH transfer
   console.log("Sending ETH transfer from smart contract account");
-  const sentTx = await provider.sendTransaction(utils.serialize(ethTransferTx));
+  const sentTx = await provider.broadcastTransaction(types.Transaction.from(ethTransferTx).serialized);
   await sentTx.wait();
   console.log(`ETH transfer tx hash is ${sentTx.hash}`);
 
@@ -1023,13 +1036,16 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 yarn hardhat deploy-zksync --script deploy/transferETH.ts
 ```
 
-You should see an error message. Although the error message doesn't give us the specifics, we know it failed because the amount exceeded the limit.
+You should see an error message with the following content so we know it failed because the amount exceeded the limit.
 
 ```shell
 An unexpected error occurred:
-
 Error: transaction failed...
+
+shortMessage: 'execution reverted: "Exceed daily limit"'
 ```
+
+You can also search the transaction in the explorer to see the error reason.
 
 After the error, we can rerun the code with a different ETH amount that doesn't exceed the limit, say "0.00049", to see if the `SpendLimit` contract doesn't refuse the amount lower than the limit.
 
@@ -1037,21 +1053,21 @@ If the transaction succeeds, the output should look something like this:
 
 ```shell
 Account ETH limit is:  500000000000000
-Available today:  499780000000000
-L1 timestamp:  1683111266
-Limit will reset on timestamp:  1683111958
+Available today:  494900000000000
+Limit will reset on timestamp:  1708689912
 Sending ETH transfer from smart contract account
-ETH transfer tx hash is 0x90f1ca06e6b407dfba75da2b0e9a7d06909c1c7d702f9da44fa5124ae5864dfc
+ETH transfer tx hash is 0x6e7742e6555a88ca1489a06992711d413a12358f77c611cca96aba112ced812b
 Transfer completed and limits updated!
 Account limit:  500000000000000
-Available today:  499670000000000
-Limit will reset on timestamp:: 1683111958
+Available today:  449000000000000
+Limit will reset on timestamp: 1708690236
+Current timestamp:  1708690185
 Reset time was not updated as not enough time has passed
 ```
 
 The `available` value in the `Limit` struct updates to the initial limit minus the amount we transferred.
 
-Since `ONE_DAY` is set to 1 minute for this test in the `SpendLimit.sol` contract, you should expect it to reset after 60 seconds. However, we're using `block.timestamp` so the limit is only reset after a new L2 block is collated (around 2-3 seconds).
+Since `ONE_DAY` is set to 1 minute for this test in the `SpendLimit.sol` contract, you should expect it to reset after 60 seconds.
 
 ## Common Errors
 
