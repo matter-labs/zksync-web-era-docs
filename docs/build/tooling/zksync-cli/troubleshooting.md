@@ -15,23 +15,28 @@ Encountering issues with zkSync CLI? Here are some common problems and step-by-s
 If you encounter an `unknown command` error, follow these steps:
 
 a. **Check the zkSync CLI Version**
-   - Run `npx zksync-cli --version` to check your current version.
-   - Compare it with the latest version available on [npm](https://www.npmjs.com/package/zksync-cli).
-   - If your version is lower than the one on npm, follow the steps below. If your version is up-to-date, it's possible that the command was moved or renamed. Use `npx zksync-cli help` for a list of current commands or refer to the documentation.
+
+- Run `npx zksync-cli --version` to check your current version.
+- Compare it with the latest version available on [npm](https://www.npmjs.com/package/zksync-cli).
+- If your version is lower than the one on npm, follow the steps below. If your version is up-to-date, it's possible that the command was moved or renamed. Use `npx zksync-cli help` for a list of current commands or refer to the documentation.
 
 b. **Verify Local Installation**
-   - Use `npm list zksync-cli` to check if `zksync-cli` is installed in the current directory or any parent directories from where you are running your terminal.
-   - If it is indeed installed, make sure to uninstall it by running `npm uninstall zksync-cli` in its installation location. Remove all instances of `zksync-cli` until none are found by `npm list zksync-cli`.
+
+- Use `npm list zksync-cli` to check if `zksync-cli` is installed in the current directory or any parent directories from where you are running your terminal.
+- If it is indeed installed, make sure to uninstall it by running `npm uninstall zksync-cli` in its installation location. Remove all instances of `zksync-cli` until none are found by `npm list zksync-cli`.
 
 c. **Verify Global Installation**
-   - Use `npm list -g zksync-cli` to check if `zksync-cli` is installed globally.
-   - If it is installed globally, uninstall it using `npm uninstall -g zksync-cli`.
+
+- Use `npm list -g zksync-cli` to check if `zksync-cli` is installed globally.
+- If it is installed globally, uninstall it using `npm uninstall -g zksync-cli`.
 
 d. **Clean npm Cache**
-   - Run `npm cache clean --force`.
+
+- Run `npm cache clean --force`.
 
 e. **Use the Latest Version**
-   - As a quick fix, or if the above steps don't resolve the issue, use `npx zksync-cli@latest [command]`, for example, `npx zksync-cli@latest dev start`.
+
+- As a quick fix, or if the above steps don't resolve the issue, use `npx zksync-cli@latest [command]`, for example, `npx zksync-cli@latest dev start`.
 </details>
 
 <br />

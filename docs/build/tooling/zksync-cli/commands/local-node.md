@@ -56,10 +56,10 @@ Before beginning, ensure you have installed:
 ## Troubleshooting
 
 If modules malfunction, e.g., failing to start:
+
 1. Use `npx zksync-cli dev stop` to cease all operations.
 2. Reinstall the problematic module with `npx zksync-cli dev clean [module name]`, viewable via `npx zksync-cli dev modules`.
 3. Restart with `npx zksync-cli dev start`. Check Docker container logs for detailed errors, accessible through Docker Desktop.
 4. Persisting issues? Please report them in our [GitHub discussions](https://github.com/zkSync-Community-Hub/zksync-developers/discussions/new?category=general&title=[zksync-cli]%20<Title>).
 
 For additional assistance, refer to our [troubleshooting guide](../../zksync-cli/troubleshooting.md).
-
