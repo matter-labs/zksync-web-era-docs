@@ -834,7 +834,7 @@ This functionality is built into the SDK.
 ## Deploy the Factory
 
 ::: tip
-Make sure you deposit funds on zkSync Era using [on of the available bridges](https://zksync.io/explore#bridges) before running the deployment script.
+Make sure you deposit funds on zkSync Era using [one of the available bridges](https://zksync.io/explore#bridges) before running the deployment script.
 :::
 
 1. In the `deploy` folder, create the file `deploy-factory.ts` and copy/paste the following code, replacing `<WALLET_PRIVATE_KET>` with your private key.
@@ -928,7 +928,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Getting the address of the deployed contract account
   // Always use the JS utility methods
   const abiCoder = new ethers.AbiCoder();
-  // const multisigAddress = '0x5C9d4d089d25bE4e38356AAe47f880946749C1eA'
   const multisigAddress = utils.create2Address(
     AA_FACTORY_ADDRESS,
     await aaFactory.aaBytecodeHash(),
