@@ -314,11 +314,6 @@ require(limit.available >= _amount, 'Exceed daily limit');
 limit.available -= _amount;
 ```
 
-:::tip
-
-- The `// L1 batch timestamp` comment will be explained below.
-  :::
-
 ### Full Code for the `SpendLimit` Contract
 
 1. In the folder `contracts`, add a file called `SpendLimit.sol`
