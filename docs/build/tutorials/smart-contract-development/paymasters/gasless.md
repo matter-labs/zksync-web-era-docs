@@ -135,7 +135,7 @@ yarn hardhat compile
 Once compiled, deploy using:
 
 ```bash
-yarn hardhat deploy-zksync --script gaslessPaymaster.ts
+yarn hardhat deploy-zksync --script deploy-gaslessPaymaster.ts
 ```
 
 ### Step 5 — Testing the Contract
