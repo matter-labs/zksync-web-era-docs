@@ -259,7 +259,7 @@ describe.only("ERC20fixedPaymaster", function () {
     // deploy contracts
     token = await deployContract(deployer, "MyERC20", ["MyToken", "MyToken", 18]);
     tokenAddress = await token.getAddress();
-    paymaster = await deployContract(deployer, "ApprovalPaymaster", [token.address]);
+    paymaster = await deployContract(deployer, "ApprovalPaymaster", [tokenAddress]);
     paymasterAddress = await paymaster.getAddress();
     greeter = await deployContract(deployer, "Greeter", ["Hi"]);
     greeterAddress = await greeter.getAddress();
