@@ -1028,7 +1028,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 2. Run the script to attempt to make a transfer.
 
 ```shell
-yarn hardhat deploy-zksync --script deploy/transferETH.ts
+yarn hardhat deploy-zksync --script transferETH.ts
 ```
 
 You should see an error message with the following content so we know it failed because the amount exceeded the limit.
