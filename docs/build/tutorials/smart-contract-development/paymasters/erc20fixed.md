@@ -270,11 +270,10 @@ describe.only("ERC20fixedPaymaster", function () {
 
   async function executeGreetingTransaction(user: Wallet) {
     const gasPrice = await provider.getGasPrice();
-    const token_address = token.address.toString();
 
     const paymasterParams = utils.getPaymasterParams(paymasterAddress, {
       type: "ApprovalBased",
-      token: token_address,
+      token: tokenAddress,
       minimalAllowance: BigInt(1),
       // empty bytes as testnet paymaster does not use innerInput
       innerInput: new Uint8Array(),
