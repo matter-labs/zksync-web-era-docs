@@ -368,20 +368,22 @@ import * as ethers from "ethers";
 
 export default async function () {
   const erc20 = await deployContract("MyERC20", ["MyToken", "MyToken", 18]);
+  const erc20Address = await erc20.getAddress();
   const paymaster = await deployContract("MyPaymaster", [erc20.address]);
+  const paymasterAddress = await paymaster.getAddress();
 
   // Supplying paymaster with ETH
   console.log("Funding paymaster with ETH...");
   const wallet = getWallet();
   await (
     await wallet.sendTransaction({
-      to: paymaster.address,
+      to: paymasterAddress,
       value: ethers.utils.parseEther("0.06"),
     })
   ).wait();
 
   const provider = getProvider();
-  const paymasterBalance = await provider.getBalance(paymaster.address);
+  const paymasterBalance = await provider.getBalance(paymasterAddress;
   console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
 
   // Supplying the ERC20 tokens to the wallet:
