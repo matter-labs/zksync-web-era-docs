@@ -485,14 +485,14 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   });
 
   // Estimate gas fee for mint transaction
-  const gasLimit = await erc20.estimateGas.mint(wallet.address, 5, {
+  const gasLimit = await erc20.mint.estimateGas(wallet.address, 5, {
     customData: {
       gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
       paymasterParams: paymasterParams,
     },
   });
 
-  const fee = gasPrice.mul(gasLimit.toString());
+  const fee = gasPrice * gasLimit;
   console.log("Transaction fee estimation is :>> ", fee.toString());
 
   console.log(`Minting 5 tokens for the wallet via paymaster...`);
