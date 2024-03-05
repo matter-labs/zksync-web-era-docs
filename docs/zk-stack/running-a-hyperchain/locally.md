@@ -106,7 +106,7 @@ The dApp Portal module allows you to:
 You can run the Portal module locally, and point it to your hyperchain configuration. It comes with scripts that help pulling the hyperchain configuration from your zksync-era repo and adapting to portal needs. Learn more [here](https://github.com/matter-labs/dapp-portal). An example command would look like:
 
 ```bash
-npm run hyperchain:migrate ../zksync-era
+npm run hyperchain:configure ../zksync-era
 npm run dev:node:hyperchain
 ```
 
