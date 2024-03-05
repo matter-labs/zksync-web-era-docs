@@ -168,7 +168,18 @@ To see an example script of how to use a `Deployer` class to deploy a contract, 
 
 ::: note contractNameOrArtifact parameter within the deploy method
 
-In the method description, it's evident that contractNameOrArtifact can accept two types of objects. One type represents a loaded artifact, while the other type is a string representing a contract name, which the deploy method will internally convert to the corresponding artifact.
+In the method description, it's evident that `contractNameOrArtifact` can accept two types of objects. One type represents a loaded artifact, while the other type is a string representing a contract name, which the `deploy` method will internally convert to the corresponding artifact.
+
+```typescript
+const wallet = new zk.Wallet("PRIVATE_KEY");
+const deployer = new Deployer(hre, zkWallet);
+............
+// Provided previously loaded artifact
+const artifact = await deployer.loadArtifact("ContractName");
+const contract = await deployer.deploy(artifact);
+// Provided contract name
+const contract = await deployer.deploy("ContractName");
+```
 
 :::
 
@@ -579,12 +590,4 @@ yarn hardhat deploy-zksync:libraries --exported-config-object someObject
 
 ::: tip
 In Typescript projects `--exported-config-object <object name>` argument can be provided optionally. Plugin will try to resolve config by `HardhatUserConfig` type.
-:::
-
-::: warning Hardhat library auto-population
-
-Using `export default {}` for the Hardhat config is currently not supported for library auto-population. Instead, you should use `export const config = {}`, and make sure to add `export default config;` at the bottom of the file.
-
-The default object name is `config`, but you can replace it with a different object name using the `--exported-config-object <object name>` command. This allows you to customize the exported object for your Hardhat configuration.
-
 :::
