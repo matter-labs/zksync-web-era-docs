@@ -38,7 +38,7 @@ Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/
 Using `zksync-cli` create a new project with the required dependencies and boilerplate paymaster implementations.
 
 ```sh
-npx zksync-cli@latest create gaslessPaymaster
+npx zksync-cli create gaslessPaymaster
 ```
 
 Choose the following options:
