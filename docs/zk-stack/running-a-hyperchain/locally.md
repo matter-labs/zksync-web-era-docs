@@ -114,19 +114,51 @@ You can now navigate to the displayed Portal URL (typically <http://localhost:30
 
 ### Using [Block Explorer](https://github.com/matter-labs/block-explorer)
 
-A free open source block explorer is included with your hyperchain, and is accessible after running the local server. By default, you can access front-end `App` at <http://localhost:3010> in your browser. `API` should be available at <http://localhost:3020>, `Worker` at <http://localhost:3001> and `Data Fetcher` at <http://localhost:3040>.
+A free open source block explorer is available for your hyperchain. Block explorer contains three components [Worker](https://github.com/matter-labs/block-explorer/tree/main/packages/worker), [API](https://github.com/matter-labs/block-explorer/tree/main/packages/api), and [App](https://github.com/matter-labs/block-explorer/tree/main/packages/app), which you can run all together locally and connect to your hyperchain.
 
-#### Editing environment & configuration files for block-explorer
-
-Block explorer contains three components [Worker](https://github.com/matter-labs/block-explorer/tree/main/packages/worker), [API](https://github.com/matter-labs/block-explorer/tree/main/packages/api), and [App](https://github.com/matter-labs/block-explorer/tree/main/packages/app), which you can run all together locally and connect to your hyperchain. For that, you need to set up all the necessary environment and configuration files with your hyperchain settings. You can use a script to build them. See [setting up env variables](https://github.com/matter-labs/block-explorer#%EF%B8%8F-setting-up-env-variables).
-
-Once you have your [zksync-era](https://github.com/matter-labs/zksync-era) repo set up locally, you can run the following command to build environment and configuration files for block explorer based on your [zksync-era](https://github.com/matter-labs/zksync-era) repo configuration:
+Make sure you have your [zksync-era](https://github.com/matter-labs/zksync-era) repo set up locally and the `zk server` is running. The wizard in this guide allows you to run the server in the end. If you chose not to, you’re still able to run it by executing:
 
 ```bash
 zk server --components "http_api,eth,state_keeper,housekeeper"
 ```
 
-The script generates all the necessary configuration files for block-explorer, which you can edit if you need any changes.
+### Running block explorer locally
+
+#### Install block explorer
+
+Clone & install the block explorer repository:
+
+```bash
+cd /path/to/where/you/clone/repos
+git clone https://github.com/matter-labs/block-explorer.git
+cd block-explorer
+npm install
+```
+
+#### Setting up env variables
+
+Next you need to set up all the necessary environment and configuration files with your hyperchain settings. You can use a script to set them up:
+
+```bash
+npm run hyperchain:configure
+```
+
+#### Run block explorer
+
+Afterwards you can run the block explorer:
+
+```bash
+# if you are running block explorer for the first time
+npm run db:create
+```
+
+```bash
+npm run dev
+```
+
+#### Verify block explorer is up and running
+
+By default, you can access front-end `App` at <http://localhost:3010> in your browser. `API` should be available at <http://localhost:3020>, `Worker` at <http://localhost:3001> and `Data Fetcher` at <http://localhost:3040>.
 
 ## Enabling Boojum prover
 
