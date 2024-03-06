@@ -25,7 +25,7 @@ For detailed explanations of the IPaymaster interface please refer to the docume
 
 ### Step 1 — Understanding the AllowlistPaymaster Contract
 
-The `AllowlistPaymaster` contract is designed to be owned by an account that controls its operations. It maintains a list of addresses which are allowed to have their gas fees paid for by this contract.;
+The `AllowlistPaymaster` contract is designed to be owned by an account that controls its operations. It maintains a list of addresses which are allowed to have their gas fees paid for by this contract.
 
 Key components:
 
@@ -39,19 +39,33 @@ Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/
 
 Using `zksync-cli` we will create a new project with the required dependencies and boilerplate paymaster implementations:
 
-<pre class="language-bash"><code class="lang-bash"><strong>npx zksync-cli create allowListPaymaster
-</strong></code></pre>
+```sh
+npx zksync-cli@latest create gaslessPaymaster
+```
 
-Choose `Hardhat + Solidity` to setup our project repository. The contract we will be adjusting exists under `/contracts/GeneralPaymaster.sol`.;
+Choose the following options:
+
+```sh
+? What type of project do you want to create? Contracts
+? Ethereum framework Ethers v6
+? Template Hardhat + Solidity
+? Private key of the wallet responsible for deploying contracts (optional)
+? Package manager yarn
+```
+
+The contract for this guide exists under `/contracts/GeneralPaymaster.sol`.
 
 **Update the Environment File**:
 
-- Modify the `.env-example` file with your private key.
-- Ensure your account has a sufficient balance.
+If you didn't enter your wallet private key in the CLI prompt, enter it in the `.env` file.
+
+Ensure your account has a sufficient balance.
 
 ### Step 3 — Updating the Contract
 
-Using the `GeneralPaymaster.sol` contract, add the `allowList` mapping and event emit line to the contract:
+For convenience, rename the `GeneralPaymaster.sol` contract to `AllowlistPaymaster.sol` also changing the name of the contract in the source file.
+
+Add the `allowList` mapping and event emit line to the contract:
 
 ```solidity
 contract AllowlistPaymaster is IPaymaster, Ownable {
@@ -61,7 +75,7 @@ contract AllowlistPaymaster is IPaymaster, Ownable {
     event UpdateAllowlist(address _target, bool _allowed);
 ```
 
-The `allowList` mapping will be used to track addresses that are allowed to utilize this Paymaster, and we will emit an event whenever the list has been updated.;
+The `allowList` mapping will be used to track addresses that are allowed to utilize this Paymaster, and we will emit an event whenever the list has been updated.
 
 Add a constructor method that adds the owner to the list:
 
@@ -72,7 +86,7 @@ constructor() {
 }
 ```
 
-We need to include the validation logic in the `validateAndPayForPaymasterTransaction` function in the contract. Insert the following code under the `paymasterInputSelector == IPaymasterFlow.general.selector` condition check:
+We need to include the validation logic in the `validateAndPayForPaymasterTransaction` function in the contract. Insert the following code under the `if(paymasterInputSelector == IPaymasterFlow.general.selector){` condition check:
 
 ```solidity
 // extract the address from the Transaction object
@@ -84,9 +98,9 @@ bool isAllowed = allowList[userAddress];
 require(isAllowed, "Account is not in allow list");
 ```
 
-During the validation step, the contract will check if the address is included in our `allowList` mapping, if not the account will be required to pay their gas costs.;
+During the validation step, the contract will check if the address is included in our `allowList` mapping, if not the account will be required to pay their gas costs.
 
-Next, we need to include the ability to update the `allowList` in batches. Add the following to the contract:
+Next, we need to include the ability to update the `allowList` in batches. Add the following function to the contract:
 
 ```solidity
 function setBatchAllowance(
@@ -137,7 +151,7 @@ if (!PRIVATE_KEY) throw "⛔️ Private key not detected! Add it to the .env fil
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the AllowlistPaymaster contract...`);
-  const provider = new Provider("https://testnet.era.zksync.dev");
+  const provider = new Provider("https://sepolia.era.zksync.dev");
 
   // The wallet that will deploy the token and the paymaster
   // It is assumed that this wallet already has sufficient funds on zkSync
@@ -147,23 +161,24 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Deploying the paymaster
   const paymasterArtifact = await deployer.loadArtifact("AllowlistPaymaster");
   const deploymentFee = await deployer.estimateDeployFee(paymasterArtifact, []);
-  const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
+  const parsedFee = ethers.formatEther(deploymentFee.toString());
   console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
   // Deploy the contract
   const paymaster = await deployer.deploy(paymasterArtifact, []);
-  console.log(`Paymaster address: ${paymaster.address}`);
+  const paymasterAddress = await paymaster.getAddress();
+  console.log(`Paymaster address: ${paymasterAddress}`);
   console.log(`Contract owner added to allow list: ${wallet.address}`);
 
   console.log("Funding paymaster with ETH");
   // Supplying paymaster with ETH
   await (
     await deployer.zkWallet.sendTransaction({
-      to: paymaster.address,
-      value: ethers.utils.parseEther("0.005"),
+      to: paymasterAddress,
+      value: ethers.parseEther("0.005"),
     })
   ).wait();
 
-  let paymasterBalance = await provider.getBalance(paymaster.address);
+  let paymasterBalance = await provider.getBalance(paymasterAddress);
   console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
   console.log(`Done!`);
 }
@@ -184,7 +199,7 @@ yarn hardhat compile
 Once compiled, deploy using:
 
 ```bash
-yarn hardhat deploy-zksync --script allowListPaymaster.ts
+yarn hardhat deploy-zksync --script deploy-allowListPaymaster.ts
 ```
 
 ### Step 5 — Managing the Allowlist
