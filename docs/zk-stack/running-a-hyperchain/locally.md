@@ -122,19 +122,11 @@ Make sure you have your [zksync-era](https://github.com/matter-labs/zksync-era) 
 zk server --components "http_api,eth,state_keeper,housekeeper"
 ```
 
-Running the `zk server` builds environment and configuration files for block explorer based on your [zksync-era](https://github.com/matter-labs/zksync-era) repo configuration, which you can edit if you need any changes.
-
-### Running block explorer in docker
-
-Docker makes it easy to run the block explorer quickly. To run the block explorer in docker, please follow the readme for [Block Explorer](https://github.com/matter-labs/block-explorer).
-
-If you need to modify the block explorer, you can run it locally instead.
-
 ### Running block explorer locally
 
 #### Install block explorer
 
-Clone & install the block explorer:
+Clone & install the block explorer repository:
 
 ```bash
 cd /path/to/where/you/clone/repos
@@ -145,7 +137,7 @@ npm install
 
 #### Setting up env variables
 
-Next you need to set up all the necessary environment and configuration files with your hyperchain settings. You can use a script to build them:
+Next you need to set up all the necessary environment and configuration files with your hyperchain settings. You can use a script to set them up:
 
 ```bash
 npm run hyperchain:configure
