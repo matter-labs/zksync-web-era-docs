@@ -22,7 +22,7 @@ Here are some contract addresses that may be useful and/or of interest to those 
 | GettersFacet      | [0xF3ACF6a03ea4a914B78Ec788624B25ceC37c14A4](https://etherscan.io/address/0xF3ACF6a03ea4a914B78Ec788624B25ceC37c14A4#code) |
 | Verifier          | [0xB465882F67d236DcC0D090F78ebb0d838e9719D8](https://etherscan.io/address/0xB465882F67d236DcC0D090F78ebb0d838e9719D8#code) |
 | MailboxFacet      | [0x63b5EC36B09384fFA7106A80Ec7cfdFCa521fD08](https://etherscan.io/address/0x63b5EC36B09384fFA7106A80Ec7cfdFCa521fD08#code) |
-| ValidatorTimelock | [0xa0425d71cb1d6fb80e65a5361a04096e0672de03](https://etherscan.io/address/0xa0425d71cb1d6fb80e65a5361a04096e0672de03)      |
+| ValidatorTimelock | [0xa8cb082a5a689e0d594d7da1e2d72a3d63adc1bd](https://etherscan.io/address/0xa8cb082a5a689e0d594d7da1e2d72a3d63adc1bd)      |
 | AllowList         | [0x0C0dC1171258694635AA50cec5845aC1031cA6d7](https://etherscan.io/address/0x0C0dC1171258694635AA50cec5845aC1031cA6d7#code) |
 
 ### Mainnet token bridge contract addresses
@@ -52,7 +52,7 @@ Here are some contract addresses that may be useful and/or of interest to those 
 | GettersFacet       | [0x10f328c20dD2469b7e88f374B9794471599c1c8D](https://sepolia.etherscan.io/address/0x10f328c20dD2469b7e88f374B9794471599c1c8D#code)       |
 | Verifier           | [0xf07ea72e071bc21612449570C365Ff3DC9176Ecb](https://sepolia.etherscan.io/address/0xf07ea72e071bc21612449570C365Ff3DC9176Ecb#code)       |
 | MailboxFacet       | [0x2ed8eF54a16bBF721a318bd5a5C0F39Be70eaa65](https://sepolia.etherscan.io/address/0x2ed8eF54a16bBF721a318bd5a5C0F39Be70eaa65#code)       |
-| ValidatorTimeLock  | [0xec534db0f1b074d23445120ab386a9a4e5207f47](https://sepolia.etherscan.io/address/0xec534db0f1b074d23445120ab386a9a4e5207f47#code)       |
+| ValidatorTimeLock  | [0x8CaC0a609A314E4161b8070cdEe065060B2486A1](https://sepolia.etherscan.io/address/0x8CaC0a609A314E4161b8070cdEe065060B2486A1#code)       |
 | AllowList          | [0x7546a21cd4D74fc98Ef1A50145dfd8c043e2096F](https://sepolia.etherscan.io/address/0x7546a21cd4D74fc98Ef1A50145dfd8c043e2096F#code)       |
 | L2TestnetPaymaster | [0x3cb2b87d10ac01736a65688f3e0fb1b070b3eea3](https://sepolia.explorer.zksync.io/address/0x3cb2b87d10ac01736a65688f3e0fb1b070b3eea3#code) |
 
