@@ -44,7 +44,7 @@ Note that the factory deps do not necessarily have to be used by the transaction
 
 For example, let's say that you want to deploy contract `A` which can also deploy contracts `B` and `C`. This means that you will have three factory dependencies for your deployment transaction: `A`,`B` and `C`. If the pubdata required to publish all of them is too large to fit into one block, you can send a dummy transaction with only factory dependencies `A` and `B` (assuming their combined length is small enough) and do the actual deploy with a second transaction while providing the bytecode of contract `C` as a factory dependency for it. Note that if some contract _on its own_ is larger than the allowed limit per block, this contract has to be split into smaller ones.
 
-### Format of bytecode hash
+### Contract size limit and format of bytecode hash
 
 Each zkEVM bytecode must adhere to the following format:
 
