@@ -22,7 +22,7 @@ Here are some contract addresses that may be useful and/or of interest to those 
 | GettersFacet      | [0xF3ACF6a03ea4a914B78Ec788624B25ceC37c14A4](https://etherscan.io/address/0xF3ACF6a03ea4a914B78Ec788624B25ceC37c14A4#code) |
 | Verifier          | [0xB465882F67d236DcC0D090F78ebb0d838e9719D8](https://etherscan.io/address/0xB465882F67d236DcC0D090F78ebb0d838e9719D8#code) |
 | MailboxFacet      | [0x63b5EC36B09384fFA7106A80Ec7cfdFCa521fD08](https://etherscan.io/address/0x63b5EC36B09384fFA7106A80Ec7cfdFCa521fD08#code) |
-| ValidatorTimelock | [0xa8cb082a5a689e0d594d7da1e2d72a3d63adc1bd](https://etherscan.io/address/0xa8cb082a5a689e0d594d7da1e2d72a3d63adc1bd)      |
+| ValidatorTimelock | [0xa8cb082a5a689e0d594d7da1e2d72a3d63adc1bd](https://etherscan.io/address/0xa8cb082a5a689e0d594d7da1e2d72a3d63adc1bd#code) |
 | AllowList         | [0x0C0dC1171258694635AA50cec5845aC1031cA6d7](https://etherscan.io/address/0x0C0dC1171258694635AA50cec5845aC1031cA6d7#code) |
 
 ### Mainnet token bridge contract addresses
