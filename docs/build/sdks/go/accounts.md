@@ -122,7 +122,7 @@ NewWalletL1FromSigner(signer *Signer, clientL1 *ethclient.Client, clientL2 *clie
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
 ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
-EthereumProvider := "https://rpc.ankr.com/eth_spolia"
+EthereumProvider := "https://rpc.ankr.com/eth_sepolia"
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
