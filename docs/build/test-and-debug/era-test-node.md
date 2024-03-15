@@ -220,12 +220,12 @@ EthToken System Contract
 
 ## Sending network calls
 
-You can send network calls against a running `era-test-node`. You can check the Goerli testnet LINK balance or mainnet USDT using `curl` or [foundry-zksync](https://github.com/matter-labs/foundry-zksync).
+You can send network calls against a running `era-test-node`. You can check the Sepolia testnet LINK balance or mainnet USDT using `curl` or [foundry-zksync](https://github.com/matter-labs/foundry-zksync).
 
 To get started, launch the local in-memory node:
 
 ```bash
-era_test_node fork goerli-testnet
+era_test_node fork sepolia-testnet
 ```
 
 Next, use curl to send a network call:

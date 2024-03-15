@@ -121,8 +121,8 @@ NewWalletL1FromSigner(signer *Signer, clientL1 *ethclient.Client, clientL2 *clie
 
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
-ZkSyncEraProvider := "https://testnet.era.zksync.dev"
-EthereumProvider := "https://rpc.ankr.com/eth_goerli"
+ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
+EthereumProvider := "https://rpc.ankr.com/eth_spolia"
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
@@ -1364,8 +1364,8 @@ func NewRandomWallet(chainId int64, clientL2 *clients.Client, clientL1 *ethclien
 
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
-ZkSyncEraProvider := "https://testnet.era.zksync.dev"
-EthereumProvider := "https://rpc.ankr.com/eth_goerli"
+ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
+EthereumProvider := "https://rpc.ankr.com/eth_sepolia"
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
@@ -1455,8 +1455,8 @@ ConnectL1(client *ethclient.Client) (*Wallet, error)
 
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
-ZkSyncEraProvider := "https://testnet.era.zksync.dev"
-EthereumProvider := "https://rpc.ankr.com/eth_goerli"
+ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
+EthereumProvider := "https://rpc.ankr.com/eth_sepolia"
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
