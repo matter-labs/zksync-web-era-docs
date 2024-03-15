@@ -72,15 +72,15 @@ zk server --components "http_api,eth,state_keeper,housekeeper"
 
 ### Funding accounts
 
-During the `zk stack init` configurator, you have a choice of what base layer to deploy the hyperchain onto: the local geth node, or an Ethereum network (e.g., Sepolia, Goerli). The first step to start interacting with your hyperchain is to fund an account (or a few). This means you need some funds on the base layer.
+During the `zk stack init` configurator, you have a choice of what base layer to deploy the hyperchain onto: the local geth node, or an Ethereum network (e.g., Sepolia). The first step to start interacting with your hyperchain is to fund an account (or a few). This means you need some funds on the base layer.
 
 #### Base layer is the local geth node ([@matterlabs/geth:latest](https://hub.docker.com/r/matterlabs/geth))
 
 - If you chose to deploy on local geth node, you will have a set of addresses that have 100 ETH each. You can find the list [here](https://github.com/matter-labs/local-setup/blob/main/rich-wallets.json) and use these addresses to deposit into your hyperchain via the bridge.
 
-#### Base layer is an Ethereum network (e.g., Sepolia, Goerli)
+#### Base layer is an Ethereum network (e.g., Sepolia)
 
-- If you chose to deploy on an Ethereum network (e.g., Sepolia, Goerli), you need to have an account on the base layer with ETH. You can use the deployer, governor, or operator wallets setup during the the deployment process, or any other one you have funds, to deposit into your hyperchain via the bridge.
+- If you chose to deploy on an Ethereum network (e.g., Sepolia), you need to have an account on the base layer with ETH. You can use the deployer, governor, or operator wallets setup during the the deployment process, or any other one you have funds, to deposit into your hyperchain via the bridge.
 
 Once you have the accounts with funds on the L1 base layer, you can do a deposit via the bridge to your hyperchain, and any further interactions with your hyperchain.
 
