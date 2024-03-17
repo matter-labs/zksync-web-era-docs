@@ -13,7 +13,7 @@ head:
 
 ### BlockPI
 
-[BlockPI](https://blockpi.io/) is a high-quality, robust, and efficient RPC service network that provides access to zkSync nodes with [free and paid plans](https://docs.blockpi.io/documentations/pricing).
+[BlockPI](https://blockpi.io/zksync) is a high-quality, robust, and efficient RPC service network that provides access to zkSync nodes with [free and paid plans](https://docs.blockpi.io/documentations/pricing).
 
 ### Chainstack
 
