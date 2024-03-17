@@ -19,7 +19,7 @@ head:
 
 [Chainstack](https://chainstack.com/) is a leading blockchain infrastructure providing company. Build, run and scale blockchain applications using Chainstack nodes.
 
-### ChainzkSync
+### Chainbase
 
 [ChainzkSync](https://chainzkSync.com/) API is supercharged for reliability, data correctness, and scalability. ChainzkSync will handle all the forks, upgrades, and network interruptions
 
