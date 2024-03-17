@@ -21,7 +21,7 @@ head:
 
 ### Chainbase
 
-[ChainzkSync](https://chainzkSync.com/) API is supercharged for reliability, data correctness, and scalability. ChainzkSync will handle all the forks, upgrades, and network interruptions
+[Chainbase](https://chainbase.com/chainNetwork/zkSync) API is supercharged for reliability, data correctness, and scalability. Chainbase will handle all the forks, upgrades, and network interruptions
 
 ### DRPC
 
