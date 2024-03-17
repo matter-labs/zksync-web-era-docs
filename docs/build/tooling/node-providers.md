@@ -9,7 +9,7 @@ head:
 
 ### Ankr
 
-[Ankr](https://www.ankr.com/rpc/zksync/) provides private and public RPC endpoints for zkSync, powered by a globally distributed and decentralized network of nodes. They offer free and [paid plans](https://www.ankr.com/rpc/pricing/) with increased request limits.
+[Ankr](https://www.ankr.com/rpc/zksync_era/) provides private and public RPC endpoints for zkSync, powered by a globally distributed and decentralized network of nodes. They offer free and [paid plans](https://www.ankr.com/rpc/pricing/) with increased request limits.
 
 ### BlockPI
 
