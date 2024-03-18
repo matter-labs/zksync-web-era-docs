@@ -864,6 +864,7 @@ $border-color: #e5e7eb;
             color: white;
             text-decoration: underline;
         }
+        padding: 0 4px;
     }
 
     .navbar {
@@ -882,5 +883,19 @@ $border-color: #e5e7eb;
 
         .theme-container {
             margin-top: 40px;
+        }
+    }
+
+     @media(max-width: 500px){
+        #temp-banner {
+            height: 60px;
+        }
+
+        .navbar {
+            top: 60px;
+        }
+
+        .theme-container {
+            margin-top: 60px;
         }
     }
