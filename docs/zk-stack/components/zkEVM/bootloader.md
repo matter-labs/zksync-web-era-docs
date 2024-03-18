@@ -160,7 +160,7 @@ These will not be published to L1, but will be used to verify the correctness of
 (i.e. we’ll need only 4 bytes to include key) that turn into 0 (i.e. they’ll need only 1 byte to describe it).
 
 However, each of these writes in the uncompressed form will be represented as 272 byte state diff entry and so we get the number
-of diffs is `120k / 5 = 24k`. This means that they will have accoomdate `24k * 272 = 6528000` bytes of calldata for the
+of diffs is `120k / 5 = 24k`. This means that they will have accommodate `24k * 272 = 6528000` bytes of calldata for the
 uncompressed state diffs. Adding 120k on top leaves us with roughly `6650000` bytes needed for calldata. `207813` slots
 are needed to accommodate this amount of data. We round up to `208000` slots to give space for constant-size factors for
 ABI-encoding, like offsets, lengths, etc.
