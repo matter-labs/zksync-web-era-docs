@@ -27,11 +27,6 @@ to the method specification [`requestExecute`](accounts.md#requestexecute).
 `Wallet` and `L1Signer` objects provide an option to calculate base cost for L2 transaction. For more information, please refer to the
 method specification [`getBaseCost`](accounts.md#getbasecost).
 
-## Finalize withdraw
-
-`Wallet` and `L1Signer` objects provide a finalize withdraw workflow. For more information, please refer to the method specification
-[`finalizeWithdrawal`](accounts.md#finalizewithdrawal).
-
 ## Withdrawal
 
 `Wallet` and `Signer` objects provide a withdrawal workflow. For more information, please refer to the method specification [`Deposit`](accounts.md#deposit).

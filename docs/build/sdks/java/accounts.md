@@ -42,7 +42,7 @@ Returns L1 bridge contracts.
 
 :::note
 
-There is no separate Ether bridge contract, [Main contract](./accounts.md#maincontract) is used instead.
+There is no separate Ether bridge contract, [Main contract](./accounts.md#getMainContract) is used instead.
 
 :::
 
