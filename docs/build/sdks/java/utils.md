@@ -144,7 +144,7 @@ BigInteger value = BigInteger.valueOf(99);
 
 try {
   WalletUtils.checkBaseCost(baseCost, value);
-} catch (Esception e) {
+} catch (Exception e) {
   // e.message = `The base cost of performing the priority operation is higher than the provided value parameter for the transaction: baseCost: ${baseCost}, provided value: ${value}`,
 }
 ```
@@ -253,16 +253,7 @@ Returns true if account abstraction EIP712 signature is correct.
 | ----------- | -------------- | ------------------ |
 | `domain`    | `Eip712Domain` | Domain data.       |
 | `typedData` | `S`            | Structurable data. |
-| `singature` | `String`       | Signature.         |
-
-| Parameter   | Type                          | Description                                            |
-| ----------- | ----------------------------- | ------------------------------------------------------ |
-| `provider`  | `Provider`                    | Provider.                                              |
-| `address`   | `string`                      | Sender address.                                        |
-| `domain`    | `TypedDataDomain`             | Domain data.                                           |
-| `types`     | `Map<string, TypedDataField>` | Map of records pointing from field name to field type. |
-| `value`     | `Record<string, any>`         | A single record value.                                 |
-| `signature` | `SignatureLike`               | Ethers signature.                                      |
+| `signature` | `String`       | Signature.         |
 
 #### Example
 

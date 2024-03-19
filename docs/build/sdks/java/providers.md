@@ -170,7 +170,7 @@ public class Main {
       String mainContractAddress = zksync.zksMainContract().sendAsync().join()
 
       BigInteger estimatedGas = zksync.estimateGasL1(mainContractAddress, Numeric.hexStringToByteArray("0x"), "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049", null, BigInteger.
-      valueOf(7_000_000_000L), null, null, null, nulla).
+      valueOf(7_000_000_000L), null, null, null, null).
       send().
       getAmountUsed();
     }
@@ -269,7 +269,7 @@ import io.zksync.methods.response.ZkTransactionReceipt;
 public class Main {
     public static void main(String ...args) {
         BigInteger l1BatchNumber = zkSync.getL1BatchNumber().send().getL1BatchNumber();
-        BlockRange blockaRange = zkSync.getL1BatchBlockRange(l1BatchNumber).send().getResult();
+        BlockRange blockRange = zkSync.getL1BatchBlockRange(l1BatchNumber).send().getResult();
     }
 }
 ```
@@ -296,7 +296,7 @@ import io.zksync.methods.response.ZkTransactionReceipt;
 public class Main {
     public static void main(String ...args) {
         BigInteger l1BatchNumber = zkSync.getL1BatchNumber().send().getL1BatchNumber();
-        BatchDetails blockaRange = zkSync.getL1BatchBlockRange(l1BatchNumber).send().getResult();
+        BatchDetails blockRange = zkSync.getL1BatchBlockRange(l1BatchNumber).send().getResult();
     }
 }
 ```
