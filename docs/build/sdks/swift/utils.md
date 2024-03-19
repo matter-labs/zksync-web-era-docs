@@ -36,18 +36,6 @@ static let L1_TO_L2_ALIAS_OFFSET = "0x1111000000000000000000000000000000001111"
 
 Used to when scaling gas limit for l1 transactions
 
-```swift
-static let L1_FEE_ESTIMATION_COEF_NUMERATOR = BigUInt(12)
-```
-
-#### L1 fee estimation denominator
-
-Used to when scaling gas limit for l1 transactions
-
-```swift
-static let L1_FEE_ESTIMATION_COEF_DENOMINATOR = BigUInt(10)
-```
-
 #### IERC20
 
 For interacting with native tokens.
