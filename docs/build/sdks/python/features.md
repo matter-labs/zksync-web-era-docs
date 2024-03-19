@@ -14,19 +14,19 @@ While zkSync is mostly Web3-compatible, it has some differences compared to Ethe
 - The fee system is somewhat different.
 
 These require us to extend standard Ethereum transactions with new custom fields. Such extended transactions are called EIP712 transactions since
-[EIP712](https://eips.ethereum.org/EIPS/eip-712) is used to sign them. You can look at the internal structure of the EIP712 transactions [here](../../../../zk-stack/concepts/transaction-lifecycle.md#eip-712-0x71).
+[EIP712](https://eips.ethereum.org/EIPS/eip-712) is used to sign them. You can look at the internal structure of the EIP712 transactions.
 
 This document will focus solely on how to pass these arguments to the SDK.
 
 ## Encoding paymaster params
 
-While the paymaster feature by itself does not impose any limitations on values of the `paymasterInput`, the Matter Labs team endorses certain types of [paymaster flows](../../../developer-reference/account-abstraction.md#built-in-paymaster-flows) that are processable by EOAs.
+While the paymaster feature by itself does not impose any limitations on values of the `paymasterInput`, the Matter Labs team endorses certain types of paymaster flows that are processable by EOAs.
 
 zkSync SDK provides a utility method that can be used to get the correctly formed `paymasterParams` object: [PaymasterFlowEncoder](./paymaster-utils.md#encodeapprovalbased).
 
 ## See in action
 
-If you want to call the method `setGreeting` of a contract called `greeter`, this would look the following way, while paying fees with the [testnet paymaster](../../../developer-reference/account-abstraction.md#testnet-paymaster):
+If you want to call the method `setGreeting` of a contract called `greeter`, this would look the following way, while paying fees with the testnet paymaster:
 
 ```python
 greeting = "new greeting"
@@ -56,5 +56,3 @@ signed_message = signer.sign_typed_data(tx_712.to_eip712_struct())
 msg = tx_712.encode(signed_message)
 tx_hash = web3.zksync.send_raw_transaction(msg)
 ```
-
-You can also check out our [tutorial](../../../quick-start/hello-world.md) on the full-fledged mini-dApp, where users can choose token to pay the fee.

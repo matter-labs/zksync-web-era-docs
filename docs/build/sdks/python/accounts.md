@@ -96,7 +96,7 @@ if __name__ == "__main__":
   wallet = Wallet(zk_web3, eth_web3, account)
 ```
 
-### `main_contract`
+### `mainContract`
 
 #### Inputs and outputs
 
@@ -161,7 +161,7 @@ l1_bridge_contracts = wallet.get_l1_bridge_contracts()
 
 :::note
 
-there is no separate Ether bridge contract, [Main contract](./accounts.md#getting-the-zksync-l1-smart-contract) is used instead.
+there is no separate Ether bridge contract, [Main contract](./accounts.md#mainContract) is used instead.
 
 :::
 
@@ -189,7 +189,6 @@ wallet = Wallet(zk_web3, eth_web3, account)
 
 l2_bridge_contracts = await wallet.get_l2_bridge_contracts()
 ```
-
 
 ### `get_balance`
 
@@ -272,7 +271,7 @@ Returns all balances for confirmed tokens given by an account address.
 #### Inputs and outputs
 
 | Name    | Description                                     |
-| ------- |-------------------------------------------------|
+| ------- | ----------------------------------------------- |
 | returns | `ZksAccountBalances` with all account balances. |
 
 #### Example
@@ -307,7 +306,7 @@ Returns account's deployment nonce number.
 #### Inputs and outputs
 
 | Name    | Description                  |
-| ------- |------------------------------|
+| ------- | ---------------------------- |
 | returns | The deployment nonce number. |
 
 #### Example
@@ -345,7 +344,7 @@ Only works for tokens bridged on default zkSync Era bridges.
 #### Inputs
 
 | Parameter | Type      | Description                     |
-|-----------| --------- |---------------------------------|
+| --------- | --------- | ------------------------------- |
 | `address` | `Address` | The address of the token on L2. |
 
 #### Example
@@ -436,11 +435,11 @@ if __name__ == "__main__":
 
   account: LocalAccount = Account.from_key("PRIVATE_KEY")
   wallet = Wallet(zk_web3, eth_web3, account)
-  
+
   paymaster_address = zk_web3.to_checksum_address("0x13D0D8550769f59aa241a41897D4859c87f7Dd46")
   token_address = zk_web3.to_checksum_address("0x927488F48ffbc32112F1fF721759649A89721F8F")
 
-  
+
   paymaster_params = PaymasterParams(
             **{
                 "paymaster": paymaster_address,
@@ -466,16 +465,16 @@ if __name__ == "__main__":
   )
 ```
 
-### `get_allowance_l1`
+### `getAllowanceL1`
 
 Returns the amount of approved tokens for a specific L1 bridge.
 
 #### Inputs
 
-| Parameter        | Type       | Description                                                                                                                               |
-| ---------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `token`          | `Address`  | The Ethereum address of the token.                                                                                                        |
-| `bridge_address` | `Address`  | The address of the bridge contract to be used. Defaults to the default zkSync bridge, either `L1EthBridge` or `L1Erc20Bridge` (optional). |
+| Parameter        | Type      | Description                                                                                                                               |
+| ---------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `token`          | `Address` | The Ethereum address of the token.                                                                                                        |
+| `bridge_address` | `Address` | The address of the bridge contract to be used. Defaults to the default zkSync bridge, either `L1EthBridge` or `L1Erc20Bridge` (optional). |
 
 #### Example
 
@@ -508,12 +507,12 @@ Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync 
 
 #### Inputs
 
-| Parameter        | Type      | Description                                                                                          |
-|------------------|-----------| ---------------------------------------------------------------------------------------------------- |
-| `token`          | `Address` | The Ethereum address of the token.                                                                   |
-| `amount`         | `int`     | The amount of the token to be approved.                                                              |
+| Parameter        | Type      | Description                                                                                                                               |
+| ---------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `token`          | `Address` | The Ethereum address of the token.                                                                                                        |
+| `amount`         | `int`     | The amount of the token to be approved.                                                                                                   |
 | `bridge_address` | `Address` | The address of the bridge contract to be used. Defaults to the default zkSync bridge, either `L1EthBridge` or `L1Erc20Bridge` (optional). |
-| `gas_limit`      | `int`     |                                                                |
+| `gas_limit`      | `int`     |                                                                                                                                           |
 
 #### Example
 
@@ -540,17 +539,17 @@ if __name__ == "__main__":
   result = wallet.approve_erc20(HexStr(l1_address), 10000000)
 ```
 
-### `get_base_cost`
+### `getBaseCost`
 
 Returns base cost for L2 transaction.
 
 #### Inputs
 
-| Name               | Type  | Description                                                                                       |
-| ------------------ |-------| ------------------------------------------------------------------------------------------------- |
-| `l2_gas_limit`   | `int` | The `l2_gas_limit` for the L2 contract call.                                                          |
+| Name                   | Type  | Description                                                                                       |
+| ---------------------- | ----- | ------------------------------------------------------------------------------------------------- |
+| `l2_gas_limit`         | `int` | The `l2_gas_limit` for the L2 contract call.                                                      |
 | `gas_per_pubdata_byte` | `int` | The L2 gas price for each published L1 calldata byte (optional).                                  |
-| `gas_price` | `int` | The L1 gas price of the L1 transaction that will send the request for an execute call (optional). |
+| `gas_price`            | `int` | The L1 gas price of the L1 transaction that will send the request for an execute call (optional). |
 
 #### Example
 
@@ -581,7 +580,7 @@ Transfers the specified token from the associated account on the L1 network to t
 ETH or any ERC20 token. For ERC20 tokens, enough approved tokens must be associated with the specified L1 bridge (default one or the one
 defined in `transaction.bridge_address`). In this case, `transaction.approve_erc20` can be enabled to perform token approval. If there are
 already enough approved tokens for the L1 bridge, token approval will be skipped. To check the amount of approved tokens for a specific bridge,
-use the [`get_allowance_l1`](#get_allowance_l1) method.
+use the [`get_allowance_l1`](#getallowancel1) method.
 
 #### Inputs
 
@@ -631,8 +630,8 @@ Returns populated deposit transaction.
 
 #### Inputs
 
-| Name        | Description                                         |
-| ----------- | --------------------------------------------------- |
+| Name        | Description                                           |
+| ----------- | ----------------------------------------------------- |
 | transaction | [`Deposittransaction`](./types.md#deposittransaction) |
 
 #### Example
@@ -672,8 +671,8 @@ Estimates the amount of gas required for a deposit transaction on L1 network. Ga
 
 #### Inputs
 
-| Name        | Description                                        |
-| ----------- | -------------------------------------------------- |
+| Name        | Description                                           |
+| ----------- | ----------------------------------------------------- |
 | transaction | [`Deposittransaction`](./types.md#deposittransaction) |
 
 #### Example
@@ -707,17 +706,15 @@ estimated_gas_eth = wallet.estimate_gas_deposit(DepositTransaction(token=ADDRESS
                                         to=wallet.address))
 ```
 
-### `get_full_required_deposit_fee`
+### `getFullRequiredDepositFee`
 
 Retrieves the full needed ETH fee for the deposit. Returns the L1 fee and the L2 fee [`FullDepositFee`](./types.md#fulldepositfee).
 
 #### Inputs
 
-
-| Name        | Description                                        |
-| ----------- | -------------------------------------------------- |
+| Name        | Description                                           |
+| ----------- | ----------------------------------------------------- |
 | transaction | [`Deposittransaction`](./types.md#deposittransaction) |
-
 
 #### Example
 
@@ -742,7 +739,7 @@ wallet = Wallet(zk_web3, eth_web3, account)
 full_deposit_fee_eth = wallet.get_full_required_deposit_fee(DepositTransaction(token=ADDRESS_DEFAULT, to=wallet.address))
 ```
 
-### `claim_failed_deposit`
+### `claimFailedDeposit`
 
 The `claim_failed_deposit` method withdraws funds from the initiated deposit, which failed when finalizing on L2.  
 If the deposit L2 transaction has failed, it sends an L1 transaction calling `claimFailedDeposit` method of the L1 bridge, which results in
@@ -751,7 +748,7 @@ returning L1 tokens back to the depositor, otherwise throws the error.
 #### Inputs
 
 | Parameter   | Type     | Description                                    |
-| ----------- |----------| ---------------------------------------------- |
+| ----------- | -------- | ---------------------------------------------- |
 | depositHash | `HexStr` | The L2 transaction hash of the failed deposit. |
 
 #### Example
@@ -784,7 +781,7 @@ L1 network.
 #### Inputs
 
 | Name        | Description                                             |
-| ----------- |---------------------------------------------------------|
+| ----------- | ------------------------------------------------------- |
 | transaction | [`WithdrawTransaction`](./types.md#withdrawTransaction) |
 
 #### Example
@@ -863,16 +860,16 @@ withdraw_receipt = zk_web3.zksync.wait_for_transaction_receipt(
 )
 ```
 
-### `finalize_withdrawal`
+### `finalizeWithdrawal`
 
 Proves the inclusion of the L2 -> L1 withdrawal message.
 
 #### Inputs
 
-| Name             | Type     | Description                                                                                                                                         |
-| ---------------- |----------| --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name            | Type     | Description                                                                                                                                         |
+| --------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `withdraw_hash` | `HexStr` | Hash of the L2 transaction where the withdrawal was initiated.                                                                                      |
-| `index?`         | `number` | In case there were multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize. Defaults to 0 (optional). |
+| `index?`        | `number` | In case there were multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize. Defaults to 0 (optional). |
 
 #### Example
 
@@ -903,7 +900,7 @@ Returns whether the withdrawal transaction is finalized on the L1 network.
 #### Inputs
 
 | Name            | Type     | Description                                                                                                                                         |
-| --------------- |----------| --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `withdraw_hash` | `HexStr` | Hash of the L2 transaction where the withdrawal was initiated.                                                                                      |
 | `index`         | `number` | In case there were multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize. Defaults to 0 (optional). |
 
@@ -929,7 +926,7 @@ wallet = Wallet(zk_web3, eth_web3, account)
 withdraw_tx_hash = wallet.is_withdrawal_finalized("<WITHDRAWAL_TX_HASH>")
 ```
 
-### `request_execute`
+### `requestExecute`
 
 Request execution of L2 transaction from L1. Return hash of the transaction
 
@@ -1044,4 +1041,3 @@ l2_balance_before = wallet.get_balance()
 estimated_gas = wallet.estimate_gas_request_execute(RequestExecuteCallMsg(contract_address=Web3.to_checksum_address(zk_web3.zksync.main_contract_address),
                                                                                      call_data=HexStr("0x"),l2_value=amount,l2_gas_limit=900_000))
 ```
-

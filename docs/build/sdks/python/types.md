@@ -62,6 +62,7 @@ class PaymasterParams(dict):
 ```
 
 # BridgeAddresses
+
 ```python
 @dataclass
 class BridgeAddresses:
@@ -202,6 +203,7 @@ class PaymasterParams:
 ```
 
 # BlockDetails
+
 ```python
 @dataclass
 class BlockDetails:
@@ -237,8 +239,22 @@ class AccountAbstractionVersion(Enum):
 ```
 
 # AccountNonceOrdering
+
 ```python
 class AccountNonceOrdering(Enum):
     Sequential = 0
     Arbitrary = 1
+```
+
+# FullDepositFee
+
+```python
+@dataclass
+class FullDepositFee:
+    base_cost: int
+    l1_gas_limit: int
+    l2_gas_limit: int
+    max_fee_per_gas: int = None
+    max_priority_fee_per_gas: int = None
+    gas_price: int = None
 ```

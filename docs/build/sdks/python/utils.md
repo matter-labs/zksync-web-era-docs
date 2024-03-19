@@ -53,6 +53,7 @@ Bridge interface ABIs for L1 and L2.
 ```python
 def l1_bridge_abi_default():
 ```
+
 ```python
 def l2_bridge_abi_default():
 ```
@@ -153,7 +154,7 @@ DEPOSIT_GAS_PER_PUBDATA_LIMIT = 800;
 
 ## Functions
 
-### `apply_l1_to_l2_alias`
+### `applyL1ToL2Alias`
 
 Converts the address that submitted a transaction to the inbox on L1 to the `msg.sender` viewed on L2.
 
@@ -192,8 +193,8 @@ Returns the calldata sent by an L1 ERC20 bridge to its L2 counterpart during tok
 
 #### Inputs
 
-| Parameter        | Type       | Description          |
-|------------------|------------|----------------------|
+| Parameter        | Type       | Description     |
+| ---------------- | ---------- | --------------- |
 | `token_contract` | `Contract` | Token contract. |
 
 ```python
@@ -207,7 +208,7 @@ Returns true if token represents ETH on L1 or L2.
 #### Inputs
 
 | Parameter | Type     | Description        |
-| --------- |----------| ------------------ |
+| --------- | -------- | ------------------ |
 | `token`   | `HexStr` | The token address. |
 
 ```python
@@ -221,7 +222,7 @@ is_l1_eth = is_eth(ADDRESS_DEFAULT); // true
 is_l2_eth = is_eth(L2_ETH_TOKEN_ADDRESS); // true
 ```
 
-### `undo_l1_to_l2_alias`
+### `undoL1ToL2Alias`
 
 Converts and returns the `msg.sender` viewed on L2 to the address that submitted a transaction to the inbox on L1.
 

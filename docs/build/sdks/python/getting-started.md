@@ -52,7 +52,7 @@ block_number = zk_web3.zksync.block_number
 Get the transaction by hash:
 
 ```ts
-transaction = zksync_web3.zksync.eth_get_transaction_by_hash(hash)
+transaction = zksync_web3.zksync.eth_get_transaction_by_hash(hash);
 ```
 
 Also, the following examples demonstrate how to:

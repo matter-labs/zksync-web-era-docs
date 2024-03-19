@@ -29,7 +29,6 @@ Returns a zkSync Era `Provider` object.
 | --------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | `web3`    | string or [`ConnectionInfo`](https://web3py.readthedocs.io/en/stable/providers.html#provider-via-environment-variable) | Network RPC URL (optional) |
 
-
 #### Example
 
 ```python
@@ -196,11 +195,9 @@ Returns [`BlockDetails`](types.md#blockdetails) additional zkSync-specific infor
 
 Calls the [`zks_getBlockDetails`](../../api.md#zks-getblockdetails) JSON-RPC method.
 
-
 | Name  | Description   |
-|-------|---------------|
+| ----- | ------------- |
 | block | Block number. |
-
 
 #### Example
 
@@ -246,9 +243,9 @@ Calls the [`zks_getL1BatchBlockRange`](../../api.md#zks-getl1batchblockrange) JS
 
 #### Inputs
 
-| Name | Description           |
-|----|-----------------------|
-| l1_batch_number   |  |
+| Name            | Description |
+| --------------- | ----------- |
+| l1_batch_number |             |
 
 ```python
 zksync_web3 = ZkSyncBuilder.build("https://sepolia.era.zksync.dev")
@@ -269,6 +266,7 @@ zksync_web3 = ZkSyncBuilder.build("https://sepolia.era.zksync.dev")
 l1_batch_number = zksync_web3.zksync.zks_l1_batch_number()
 batch_details = zksync_web3.zksync.zks_get_l1_batch_details(l1_batch_number)
 ```
+
 ### `zks_l1_batch_number`
 
 Returns the latest L1 batch number.
@@ -307,16 +305,17 @@ Calls the [`zks_getL2ToL1LogProof`](../../api.md#zks-getl2tol1logproof) JSON-RPC
 
 #### Inputs
 
-| Name          | Description                |
-| ------------- |----------------------------|
-| tx_hash    | Transaction hash.          |
-| index | Log index. Default is None |
+| Name    | Description                |
+| ------- | -------------------------- |
+| tx_hash | Transaction hash.          |
+| index   | Log index. Default is None |
 
 ```python
 zksync_web3 = ZkSyncBuilder.build("https://sepolia.era.zksync.dev")
 
 proof: ZksMessageProof = zksync_web3.zksync.zks_get_log_proof(hex_hash)
 ```
+
 ### `zks_main_contract`
 
 Returns the main zkSync Era smart contract address.
@@ -366,9 +365,9 @@ Calls the [`getTransactionDetails`](../../api.md#zks-gettransactiondetails) JSON
 
 #### Inputs
 
-| Name          | Description                |
-| ------------- |----------------------------|
-| tx_hash    | Transaction hash.          |
+| Name    | Description       |
+| ------- | ----------------- |
+| tx_hash | Transaction hash. |
 
 #### Example
 
@@ -384,9 +383,9 @@ Returns the transaction receipt from a given hash number.
 
 #### Inputs
 
-| Name          | Description                |
-| ------------- |----------------------------|
-| tx_hash    | Transaction hash.          |
+| Name    | Description       |
+| ------- | ----------------- |
+| tx_hash | Transaction hash. |
 
 #### Examples
 
@@ -395,6 +394,7 @@ zksync_web3 = ZkSyncBuilder.build("https://sepolia.era.zksync.dev")
 
 transaction_receipt = zksync_web3.zksync.eth_get_transaction_receipt(tx_hash)
 ```
+
 ### `zks_l1_chain_id`
 
 Returns the chain id of the underlying L1.
