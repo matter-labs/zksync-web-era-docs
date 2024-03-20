@@ -129,22 +129,13 @@ contract Governance {
 
 ### Deploy L1 Governance Contract
 
-1. Create the file `L1-Governance/goerli.json`, or `L1-Governance/sepolia.json` and copy/paste the code below, filling in the relevant values. Find node provider urls [here](https://chainlist.org/chain/5). You have to connect your wallet to the network and add the network to the wallet in advance.
+1. Create the file `L1-Governance/sepolia.json` and copy/paste the code below, filling in the relevant values. Find node provider urls [here](https://chainlist.org/chain/11155111). You have to connect your wallet to the network and add the network to the wallet in advance.
 
 `L1-Governance/sepolia.json` file
 
 ```json
 {
   "nodeUrl": "<SEPOLIA NODE URL>",
-  "deployerPrivateKey": "<YOUR PRIVATE KEY>"
-}
-```
-
-`L1-Governance/goerli.json` file,
-
-```json
-{
-  "nodeUrl": "<GOERLI NODE URL>",
   "deployerPrivateKey": "<YOUR PRIVATE KEY>"
 }
 ```
@@ -157,8 +148,6 @@ import { HardhatUserConfig } from "hardhat/config";
 
 // import file with Sepolia params
 const sepolia = require("./sepolia.json");
-// Or, import file with Göerli params
-// const goerli = require("./goerli.json");
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -170,11 +159,6 @@ const config: HardhatUserConfig = {
       url: sepolia.nodeUrl,
       accounts: [sepolia.deployerPrivateKey],
     },
-    // Or Göerli network
-    // goerli: {
-    //   url: goerli.nodeUrl,
-    //   accounts: [goerli.deployerPrivateKey],
-    // },
   },
 };
 
@@ -357,7 +341,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 ```
 
 ::: tip Deposit funds during deployment
-The deployment script contains a deposit from Sepolia, or Goerli to zkSync Era testnet, which can take a few minutes to finish. If your wallet already has funds in L2, you can skip that part to save you some time.
+The deployment script contains a deposit from Sepolia to zkSync Era testnet, which can take a few minutes to finish. If your wallet already has funds in L2, you can skip that part to save you some time.
 :::
 
 2. Now deploy the contract from the `L2-counter/` folder root to zkSync:
@@ -512,7 +496,7 @@ You have to copy only abi content from the file after the keyword abi, an exampl
 - GOVERNANCE-ADDRESS: the address of the contract deployed in L1.
 - COUNTER-ADDRESS: the address of the contract deployed in L2.
 - WALLET-PRIVATE-KEY: the private key of your account.
-- RPC-URL: the same url you used in the `sepolia.json` or `goerli.json` file.
+- RPC-URL: the same url you used in the `sepolia.json` file.
 
 ```ts
 import { Contract, Wallet, Interface } from "ethers";
