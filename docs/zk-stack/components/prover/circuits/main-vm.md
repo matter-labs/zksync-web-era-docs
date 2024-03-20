@@ -247,7 +247,7 @@ pub struct StateDiffsAccumulator<F: SmallField> {
 There will be no implementation details here because the code is commented step by step and is understandable. Short
 description:
 
-Apply opcodes, for DST0 it's possible to have opcode-constrainted updates only into registers, apply
+Apply opcodes, for DST0 it's possible to have opcode-constrained updates only into registers, apply
 `StateDiffsAccumulator`, update the memory, update the registers, apply changes to VM state, such as ergs left, etc.
 push data to queues for other circuits. If an event has rollback then create the same event data but with `rollback`
 flag, enforce sponges. There are only 2 outcomes:

@@ -127,7 +127,7 @@ For Solidity versions older than 0.8, only this compilation mode is available an
 
 :::
 
-### Compiler informations
+### Compiler information
 
 The zksolc compilers are stored in the cache folder with the path `{cache}/hardhat-nodejs/compilers-v2/zksolc`. In this location, you can inspect the locally stored compiler versions.
 
