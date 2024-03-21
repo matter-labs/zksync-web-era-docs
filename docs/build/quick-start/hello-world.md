@@ -55,6 +55,7 @@ It will give you options for different types of projects but for this tutorial c
 
 ```bash
 ? What type of project do you want to create? Contracts
+? Ethereum framework: Ethers v6
 ? Template: Hardhat + Solidity
 ? Private key of the wallet responsible for deploying contracts (optional) ***************************************************
 ? Package manager: yarn

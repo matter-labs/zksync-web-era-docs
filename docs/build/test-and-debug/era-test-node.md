@@ -220,36 +220,36 @@ EthToken System Contract
 
 ## Sending network calls
 
-You can send network calls against a running `era-test-node`. You can check the Goerli testnet LINK balance or mainnet USDT using `curl` or [foundry-zksync](https://github.com/matter-labs/foundry-zksync).
+You can send network calls against a running `era-test-node`. You can check the Sepolia testnet LINK balance or mainnet USDT using `curl` or [foundry-zksync](https://github.com/matter-labs/foundry-zksync).
 
 To get started, launch the local in-memory node:
 
 ```bash
-era_test_node fork goerli-testnet
+era_test_node fork sepolia-testnet
 ```
 
 Next, use curl to send a network call:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0x40609141Db628BeEE3BfAB8034Fc2D8278D0Cc78", "data":"0x06fdde03"}, "latest"],"id":1}' http://localhost:8011
+curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0xe1134444211593Cfda9fc9eCc7B43208615556E2", "data":"0x313ce567"}, "latest"],"id":1}' http://localhost:8011
 ```
 
 Here's an example of what you should expect to see:
 
 ```bash
-{"jsonrpc":"2.0","result":"0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000018436861696e4c696e6b20546f6b656e2028676f65726c69290000000000000000","id":1}
+{"jsonrpc":"2.0","result":"0x0000000000000000000000000000000000000000000000000000000000000012","id":1}
 ```
 
 Or, if you prefer, use [`foundry-zksync`](https://github.com/matter-labs/foundry-zksync). Make sure to install and configure `foundry-zksync` before proceeding (for installation instructions, please see this [link](https://github.com/matter-labs/foundry-zksync/tree/main#foundry-with-zksync-era-v01)):
 
 ```bash
-zkcast call 0x40609141Db628BeEE3BfAB8034Fc2D8278D0Cc78 "name()(string)" --rpc-url http://localhost:8011
+zkcast call 0xe1134444211593Cfda9fc9eCc7B43208615556E2 "name()(string)" --rpc-url http://localhost:8011
 ```
 
 Here's an example of what you should expect to see:
 
 ```bash
-ChainLink Token (goerli)
+Uniswap
 ```
 
 Retrieve the balance of a particular contract:
