@@ -25,7 +25,7 @@ Welcome to the Oracles page, a comprehensive hub dedicated to interacting with o
 
 ### Usage guides
 
-- [redstone](../tutorials/tooling-guides/redstone.md)
+- [Redstone](../tutorials/tooling-guides/redstone.md)
 
 ### Contribute
 
