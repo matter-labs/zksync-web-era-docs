@@ -33,10 +33,10 @@ Download the complete project [here](https://github.com/matter-labs/tutorials/tr
 
 Open a terminal window, create a new folder for the project tutorial, e.g. `mkdir cross-chain-tutorial`, and `cd` into the folder.
 
-Now create separate folders to store contracts and scripts on L1 and L2.
+Now create separate folders to store contracts and scripts on L1 and L2. For now we will start with L1-governance folder.
 
 ```sh
-mkdir L1-governance L2-counter
+mkdir L1-governance
 ```
 
 ::: note
@@ -71,13 +71,13 @@ Make sure you use actual node (lts version) and actual npm version
 @tab yarn
 
 ```sh
-yarn add -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts @nomiclabs/hardhat-ethers @nomiclabs/hardhat-waffle ethereum-waffle
+yarn add -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts @nomicfoundation/hardhat-ethers @typechain/ethers-v6 @typechain/hardhat typechain ethers
 ```
 
 @tab npm
 
 ```sh
-npm i -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts @nomiclabs/hardhat-ethers @nomiclabs/hardhat-waffle ethereum-waffle
+npm i -D typescript ts-node @openzeppelin/contracts @matterlabs/zksync-contracts @nomicfoundation/hardhat-ethers @typechain/ethers-v6 @typechain/hardhat typechain ethers
 ```
 
 :::
@@ -92,9 +92,11 @@ The following Solidity code defines the Governance smart contract.
 
 The constructor sets the contract creator as the single governor. The `callZkSync` function calls a transaction on L2 which can only be called by the governor.
 
-1. `cd` into the `contracts\` folder and remove any files already there, if any.
+1. Remove existing `/test` directory and any contracts that exist in `/contracts`.
 
-2. Create a file called `Governance.sol` and copy/paste the code below into it.
+2. `cd` into the `contracts\` folder.
+
+3. Create a file called `Governance.sol` and copy/paste the code below into it.
 
 ```sol
 // SPDX-License-Identifier: Unlicense
@@ -127,7 +129,7 @@ contract Governance {
 
 ### Deploy L1 Governance Contract
 
-1. Create the file `L1-Governance/goerli.json`, or `L1-Governance/sepolia.json` and copy/paste the code below, filling in the relevant values. Find node provider urls [here](https://chainlist.org/chain/5). You have to connect your wallet to the network and add the network to the wallet in advance.
+1. Create the file `L1-Governance/sepolia.json` and copy/paste the code below, filling in the relevant values. Find node provider urls [here](https://chainlist.org/chain/11155111). You have to connect your wallet to the network and add the network to the wallet in advance.
 
 `L1-Governance/sepolia.json` file
 
@@ -138,30 +140,18 @@ contract Governance {
 }
 ```
 
-`L1-Governance/goerli.json` file,
-
-```json
-{
-  "nodeUrl": "<GOERLI NODE URL>",
-  "deployerPrivateKey": "<YOUR PRIVATE KEY>"
-}
-```
-
 2. Replace the code in `hardhat.config.ts` with the following:
 
 ```ts
+import "@nomicfoundation/hardhat-ethers";
 import { HardhatUserConfig } from "hardhat/config";
-import "@nomiclabs/hardhat-waffle";
 
 // import file with Sepolia params
 const sepolia = require("./sepolia.json");
 
-// Or, import file with Göerli params
-// const goerli = require("./goerli.json");
-
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.19",
+    version: "0.8.20",
   },
   networks: {
     // Sepolia network
@@ -169,11 +159,6 @@ const config: HardhatUserConfig = {
       url: sepolia.nodeUrl,
       accounts: [sepolia.deployerPrivateKey],
     },
-    // Or Göerli network
-    // goerli: {
-    //   url: goerli.nodeUrl,
-    //   accounts: [goerli.deployerPrivateKey],
-    // },
   },
 };
 
@@ -195,9 +180,9 @@ async function main() {
   const Governance = await ethers.getContractFactory("Governance");
 
   const contract = await Governance.deploy();
-  await contract.deployed();
+  const receipt = await contract.deploymentTransaction()?.wait();
 
-  console.log(`Governance contract was successfully deployed at ${contract.address}`);
+  console.log(`Governance contract was successfully deployed at ${receipt?.contractAddress}`);
 }
 
 // We recommend always using this async/await pattern to properly handle errors.
@@ -244,10 +229,10 @@ Save the address to use in a later step.
 
 Now that we have an address for the L1 governance contract, we can build, deploy, and test the counter contract on L2.
 
-1. `cd` into `/L2-counter` and initialize the project:
+1. `cd` out of `L1-governance` and initialize the `L2-counter` project:
 
 ```sh
-npx zksync-cli create . --template hardhat_solidity
+npx zksync-cli create L2-counter --template hardhat_solidity
 ```
 
 ::: tip
@@ -277,7 +262,7 @@ This contract contains the address of the governance contract deployed previousl
 ```sol
 // SPDX-License-Identifier: Unlicense
 
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.20;
 
 contract Counter {
     uint256 public value = 0;
@@ -323,6 +308,9 @@ npx hardhat compile
 import { utils, Wallet } from "zksync-ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
 
 // Insert the address of the governance contract
 const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
@@ -331,35 +319,29 @@ const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
 export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the Counter contract`);
 
+  const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
+  if (!PRIVATE_KEY) throw "⛔️ Private key not detected! Add it to the .env file!";
   // Initialize the wallet.
-  const wallet = new Wallet("<WALLET-PRIVATE-KEY>");
+  const wallet = new Wallet(PRIVATE_KEY);
 
   // Create deployer object and load the artifact of the contract you want to deploy.
   const deployer = new Deployer(hre, wallet);
   const artifact = await deployer.loadArtifact("Counter");
 
-  // Deposit some funds to L2 to be able to perform deposits.
-  const deploymentFee = await deployer.estimateDeployFee(artifact, [utils.applyL1ToL2Alias(GOVERNANCE_ADDRESS)]);
-  const depositHandle = await deployer.zkWallet.deposit({
-    to: deployer.zkWallet.address,
-    token: utils.ETH_ADDRESS,
-    amount: deploymentFee.mul(2),
-  });
-  // Wait until the deposit is processed on zkSync
-  await depositHandle.wait();
-
   // Deploy this contract. The returned object will be of a `Contract` type, similar to the ones in `ethers`.
   // The address of the governance is an argument for contract constructor.
   const counterContract = await deployer.deploy(artifact, [utils.applyL1ToL2Alias(GOVERNANCE_ADDRESS)]);
 
+  const receipt = await counterContract.deploymentTransaction()?.wait();
+
   // Show the contract info.
-  const contractAddress = counterContract.address;
+  const contractAddress = receipt?.contractAddress;
   console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 }
 ```
 
 ::: tip Deposit funds during deployment
-The deployment script contains a deposit from Sepolia, or Goerli to zkSync Era testnet, which can take a few minutes to finish. If your wallet already has funds in L2, you can skip that part to save you some time.
+The deployment script contains a deposit from Sepolia to zkSync Era testnet, which can take a few minutes to finish. If your wallet already has funds in L2, you can skip that part to save you some time.
 :::
 
 2. Now deploy the contract from the `L2-counter/` folder root to zkSync:
@@ -514,21 +496,29 @@ You have to copy only abi content from the file after the keyword abi, an exampl
 - GOVERNANCE-ADDRESS: the address of the contract deployed in L1.
 - COUNTER-ADDRESS: the address of the contract deployed in L2.
 - WALLET-PRIVATE-KEY: the private key of your account.
-- RPC-URL: the same url you used in the `sepolia.json` or `goerli.json` file.
+- RPC-URL: the same url you used in the `sepolia.json` file.
 
 ```ts
-import { BigNumber, Contract, ethers, Wallet } from "ethers";
+import { Contract, Wallet, Interface } from "ethers";
 import { Provider, utils } from "zksync-ethers";
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
 const GOVERNANCE_ABI = require("./governance.json");
 const GOVERNANCE_ADDRESS = "<GOVERNANCE-ADDRESS>";
 const COUNTER_ABI = require("./counter.json");
 const COUNTER_ADDRESS = "<COUNTER-ADDRESS>";
 
+const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
+if (!PRIVATE_KEY) throw "⛔️ Private key not detected! Add it to the .env file!";
+// Initialize the wallet.
+
 async function main() {
   // Enter your Ethereum L1 provider RPC URL.
-  const l1Provider = new ethers.providers.JsonRpcProvider("<RPC-URL>");
+  const l1Provider = new Provider("<L1-RPC-URL>");
   // Set up the Governor wallet to be the same as the one that deployed the governance contract.
-  const wallet = new ethers.Wallet("<YOUR-PRIVATE-KEY>", l1Provider);
+  const wallet = new Wallet(PRIVATE_KEY, l1Provider);
   // Set a constant that accesses the Layer 1 contract.
   const govcontract = new Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, wallet);
 
@@ -539,9 +529,9 @@ async function main() {
   // Get the `Contract` object of the zkSync bridge.
   const zkSyncContract = new Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
 
-  // Encoding the L2 transaction is done in the same way as it is done on Ethereum.
+  // Encoding the L1 transaction is done in the same way as it is done on Ethereum.
   // Use an Interface which gives access to the contract functions.
-  const counterInterface = new ethers.utils.Interface(COUNTER_ABI);
+  const counterInterface = new Interface(COUNTER_ABI);
   const data = counterInterface.encodeFunctionData("increment", []);
 
   // The price of an L1 transaction depends on the gas price used.
@@ -555,7 +545,7 @@ async function main() {
     caller: utils.applyL1ToL2Alias(GOVERNANCE_ADDRESS),
   });
   // baseCost takes the price and limit and formats the total in wei.
-  // For more information on `REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT` see the [fee model documentation](../../reference/concepts/fee-model.md).
+  // For more information on `REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT` see the [fee model documentation](../developer-guides/transactions/fee-model.md).
   const baseCost = await zkSyncContract.l2TransactionBaseCost(gasPrice, gasLimit, utils.REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT);
 
   // !! If you don't include the gasPrice and baseCost in the transaction, a re-estimation of fee may generate errors.

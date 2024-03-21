@@ -44,11 +44,15 @@ npx zksync-cli create custom-paymaster-tutorial --template hardhat_solidity
 
 This creates a new zkSync Era project called `custom-paymaster-tutorial` with a basic `Greeter` contract.
 
-1. Navigate into the project directory:
+2. Navigate into the project directory:
 
 ```sh
 cd custom-paymaster-tutorial
 ```
+
+::: info
+The template project includes multiple example contracts. Feel free to delete them.
+:::
 
 ## Design
 
@@ -358,9 +362,9 @@ contract MyERC20 is ERC20 {
 
 ## Compile and Deploy the Contracts
 
-The script below deploys the ERC20 contract and the paymaster contract. It also creates an empty wallet and mints some `MyERC20` tokens for the paymaster to use at a later step. In addition, the script sends `0.06ETH` to the paymaster contract so it can pay the transaction fees we send later on.
+The script below deploys the ERC20 contract and the paymaster contract. It also mints some `MyERC20` tokens into the account we use to deploy the contracts to use them with the paymaster at a later step. In addition, the script sends `0.06ETH` to the paymaster contract so it can pay the transaction fees we send later on.
 
-1. In the `deploy` folder, create the file `deploy-paymaster.ts` and copy/paste the following, replacing `<PRIVATE-KEY>` with your own:
+1. In the `deploy` folder, create the file `deploy-paymaster.ts` and copy/paste the following. Make sure the private key of the account used to deploy the contracts is configured in the `.env` file of the project.:
 
 ```ts
 import { deployContract, getWallet, getProvider } from "./utils";
@@ -368,20 +372,23 @@ import * as ethers from "ethers";
 
 export default async function () {
   const erc20 = await deployContract("MyERC20", ["MyToken", "MyToken", 18]);
-  const paymaster = await deployContract("MyPaymaster", [erc20.address]);
+  const erc20Address = await erc20.getAddress();
+  const paymaster = await deployContract("MyPaymaster", [erc20Address]);
+
+  const paymasterAddress = await paymaster.getAddress();
 
   // Supplying paymaster with ETH
   console.log("Funding paymaster with ETH...");
   const wallet = getWallet();
   await (
     await wallet.sendTransaction({
-      to: paymaster.address,
-      value: ethers.utils.parseEther("0.06"),
+      to: paymasterAddress,
+      value: ethers.parseEther("0.06"),
     })
   ).wait();
 
   const provider = getProvider();
-  const paymasterBalance = await provider.getBalance(paymaster.address);
+  const paymasterBalance = await provider.getBalance(paymasterAddress);
   console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
 
   // Supplying the ERC20 tokens to the wallet:
@@ -479,20 +486,20 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     type: "ApprovalBased",
     token: TOKEN_ADDRESS,
     // set minimalAllowance as we defined in the paymaster contract
-    minimalAllowance: ethers.BigNumber.from(1),
+    minimalAllowance: BigInt("1"),
     // empty bytes as testnet paymaster does not use innerInput
     innerInput: new Uint8Array(),
   });
 
   // Estimate gas fee for mint transaction
-  const gasLimit = await erc20.estimateGas.mint(wallet.address, 5, {
+  const gasLimit = await erc20.mint.estimateGas(wallet.address, 5, {
     customData: {
       gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
       paymasterParams: paymasterParams,
     },
   });
 
-  const fee = gasPrice.mul(gasLimit.toString());
+  const fee = gasPrice * gasLimit;
   console.log("Transaction fee estimation is :>> ", fee.toString());
 
   console.log(`Minting 5 tokens for the wallet via paymaster...`);
@@ -536,7 +543,7 @@ The wallet had 3 tokens after running the deployment script and, after sending t
 
 ## Common Errors
 
-- If the `use-paymaster.ts` script fails with the error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer tx fee to the bootloader. Paymaster balance might not be enough.`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use [zkSync native bridge or ecosystem partners](https://zksync.io/explore#bridges) (make sure Goerli or Sepolia testnet supported by selected bridge).
+- If the `use-paymaster.ts` script fails with the error `Failed to submit transaction: Failed to validate the transaction. Reason: Validation revert: Paymaster validation error: Failed to transfer tx fee to the bootloader. Paymaster balance might not be enough.`, please try sending additional ETH to the paymaster so it has enough funds to pay for the transaction. You can use [zkSync native bridge or ecosystem partners](https://zksync.io/explore#bridges) (make sure Sepolia testnet is supported by selected bridge).
 - If the `use-paymaster.ts` script fails when minting new ERC20 tokens with the error `Error: transaction failed`, and the transactions appear with status "Failed" in the [zkSync explorer](https://explorer.zksync.io/), please reach out to us on [our Discord](https://join.zksync.dev/). As a workaround, try including a specific `gasLimit` value in the transaction.
 
 ## Learn More
