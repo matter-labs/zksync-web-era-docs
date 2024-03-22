@@ -14,6 +14,11 @@ head:
 - `Wallet` class is an extension of the `ethers.Wallet` with additional zkSync features.
 - `EIP712Signer` class that is used to sign `EIP712`_-typed_ zkSync transactions.
 - `Signer` and `L1Signer` classes, which should be used for browser integration.
+- `VoidSigner` and `L1VoidSigner` classes, which should be used for designed to allow an address to
+  be used in any API which accepts a `Signer`, but for which there are no credentials available to perform any actual signing.
+- `SmartAccount` which provides better support for account abstraction. There are following factory classes:
+  - `ECDSASmartAccount`: uses a single ECDSA key for signing payload.
+  - `MultisigECDSASmartAccount`: uses multiple ECDSA keys for signing payloads.
 
 ## `Wallet`
 
@@ -786,7 +791,7 @@ use the [`allowanceL1`](#getallowancel1) method.
 | Parameter                        | Type                      | Description                                                                                                                                                                                                                            |
 | -------------------------------- | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `transaction.token`              | `Address`                 | The address of the token to deposit. `ETH` by default.                                                                                                                                                                                 |
-| `transaction.amount`             | `BigNumberish`            | The amount of the token to withdraw.                                                                                                                                                                                                   |
+| `transaction.amount`             | `BigNumberish`            | The amount of the token to deposit.                                                                                                                                                                                                    |
 | `transaction.to?`                | `Address`                 | The address that will receive the deposited tokens on L2 (optional).                                                                                                                                                                   |
 | `transaction.operatorTip?`       | `BigNumberish`            | (_currently is not used_) If the ETH value passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction (optional). |
 | `transaction.bridgeAddress?`     | `Address`                 | The address of the bridge contract to be used. Defaults to the default zkSync bridge (either `L1EthBridge` or `L1Erc20Bridge`) (optional).                                                                                             |
@@ -857,7 +862,7 @@ Returns populated deposit transaction.
 | Parameter                        | Type                      | Description                                                                                                                                                                                                                                 |
 | -------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `transaction.token`              | `Address`                 | The address of the token to deposit. `ETH` by default.                                                                                                                                                                                      |
-| `transaction.amount`             | `BigNumberish`            | The amount of the token to withdraw.                                                                                                                                                                                                        |
+| `transaction.amount`             | `BigNumberish`            | The amount of the token to deposit.                                                                                                                                                                                                         |
 | `transaction.to?`                | `Address`                 | The address that will receive the deposited tokens on L2 (optional).                                                                                                                                                                        |
 | `transaction.operatorTip?`       | `BigNumberish`            | (_currently is not used_) If the ETH value passed with the transaction is not explicitly stated in the overrides, <br/>this field will be equal to the tip the operator will receive on top of the base cost of the transaction (optional). |
 | `transaction.bridgeAddress?`     | `Address`                 | The address of the bridge contract to be used. Defaults to the default zkSync bridge (either `L1EthBridge` or `L1Erc20Bridge`) (optional).                                                                                                  |
@@ -910,7 +915,7 @@ Estimates the amount of gas required for a deposit transaction on L1 network. Ga
 | Parameter                        | Type                      | Description                                                                                                                                                                                                                                 |
 | -------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `transaction.token`              | `Address`                 | The address of the token to deposit. `ETH` by default.                                                                                                                                                                                      |
-| `transaction.amount`             | `BigNumberish`            | The amount of the token to withdraw.                                                                                                                                                                                                        |
+| `transaction.amount`             | `BigNumberish`            | The amount of the token to deposit.                                                                                                                                                                                                         |
 | `transaction.to?`                | `Address`                 | The address that will receive the deposited tokens on L2 (optional).                                                                                                                                                                        |
 | `transaction.operatorTip?`       | `BigNumberish`            | (_currently is not used_) If the ETH value passed with the transaction is not explicitly stated in the overrides, <br/>this field will be equal to the tip the operator will receive on top of the base cost of the transaction (optional). |
 | `transaction.bridgeAddress?`     | `Address`                 | The address of the bridge contract to be used. Defaults to the default zkSync bridge (either `L1EthBridge` or `L1Erc20Bridge`) (optional).                                                                                                  |
@@ -1968,7 +1973,7 @@ use the [`allowanceL1`](#getallowancel1) method.
 | Parameter                        | Type                      | Description                                                                                                                                                                                                                                 |
 | -------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `transaction.token`              | `Address`                 | The address of the token to deposit. `ETH` by default.                                                                                                                                                                                      |
-| `transaction.amount`             | `BigNumberish`            | The amount of the token to withdraw.                                                                                                                                                                                                        |
+| `transaction.amount`             | `BigNumberish`            | The amount of the token to deposit.                                                                                                                                                                                                         |
 | `transaction.to?`                | `Address`                 | The address that will receive the deposited tokens on L2 (optional).                                                                                                                                                                        |
 | `transaction.operatorTip?`       | `BigNumberish`            | (_currently is not used_) If the ETH value passed with the transaction is not explicitly stated in the overrides, <br/>this field will be equal to the tip the operator will receive on top of the base cost of the transaction (optional). |
 | `transaction.bridgeAddress?`     | `Address`                 | The address of the bridge contract to be used. Defaults to the default zkSync bridge (either `L1EthBridge` or `L1Erc20Bridge`) (optional).                                                                                                  |
@@ -2037,7 +2042,7 @@ Returns populated deposit transaction.
 | Parameter                        | Type                      | Description                                                                                                                                                                                                                                 |
 | -------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `transaction.token`              | `Address`                 | The address of the token to deposit. `ETH` by default.                                                                                                                                                                                      |
-| `transaction.amount`             | `BigNumberish`            | The amount of the token to withdraw.                                                                                                                                                                                                        |
+| `transaction.amount`             | `BigNumberish`            | The amount of the token to deposit.                                                                                                                                                                                                         |
 | `transaction.to?`                | `Address`                 | The address that will receive the deposited tokens on L2 (optional).                                                                                                                                                                        |
 | `transaction.operatorTip?`       | `BigNumberish`            | (_currently is not used_) If the ETH value passed with the transaction is not explicitly stated in the overrides, <br/>this field will be equal to the tip the operator will receive on top of the base cost of the transaction (optional). |
 | `transaction.bridgeAddress?`     | `Address`                 | The address of the bridge contract to be used. Defaults to the default zkSync bridge (either `L1EthBridge` or `L1Erc20Bridge`) (optional).                                                                                                  |
@@ -2088,7 +2093,7 @@ Estimates the amount of gas required for a deposit transaction on L1 network. Ga
 | Parameter                        | Type                      | Description                                                                                                                                                                                                                                 |
 | -------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `transaction.token`              | `Address`                 | The address of the token to deposit. `ETH` by default.                                                                                                                                                                                      |
-| `transaction.amount`             | `BigNumberish`            | The amount of the token to withdraw.                                                                                                                                                                                                        |
+| `transaction.amount`             | `BigNumberish`            | The amount of the token to deposit.                                                                                                                                                                                                         |
 | `transaction.to?`                | `Address`                 | The address that will receive the deposited tokens on L2 (optional).                                                                                                                                                                        |
 | `transaction.operatorTip?`       | `BigNumberish`            | (_currently is not used_) If the ETH value passed with the transaction is not explicitly stated in the overrides, <br/>this field will be equal to the tip the operator will receive on top of the base cost of the transaction (optional). |
 | `transaction.bridgeAddress?`     | `Address`                 | The address of the bridge contract to be used. Defaults to the default zkSync bridge (either `L1EthBridge` or `L1Erc20Bridge`) (optional).                                                                                                  |
@@ -2535,4 +2540,588 @@ const executeTx = await signer.getRequestExecuteTx({
     value: txCostPrice,
   },
 });
+```
+
+## `SmartAccount`
+
+A `SmartAccount` is a signer which can be configured to sign various payloads using a provided secret.
+The secret can be in any form, allowing for flexibility when working with different account implementations.
+The `SmartAccount` is bound to a specific address and provides the ability to define custom method for populating transactions
+and custom signing method used for signing messages, typed data, and transactions.
+It is compatible with [ethers.ContractFactory](https://docs.ethers.org/v5/api/contract/contract-factory/#ContractFactory) for deploying contracts/accounts,
+as well as with [ethers.Contract](https://docs.ethers.org/v5/api/contract/contract/)
+for interacting with contracts/accounts using provided ABI along with custom transaction signing logic.
+
+### `constructor`
+
+Creates a `SmartAccount` instance with provided `signer` and `provider`.
+By default, uses [`signPayloadWithECDSA`](./smart-account-utils.md#signpayloadwithecdsa) and [`populateTransactionECDSA`](./smart-account-utils.md#populatetransactionecdsa).
+
+#### Inputs
+
+| Parameter  | Type                                                  | Description                                         |
+| ---------- | ----------------------------------------------------- | --------------------------------------------------- |
+| `signer`   | [`SmartAccountSigner`](./types.md#smartaccountsigner) | Contains necessary properties for signing payloads. |
+| `provider` | [`Provider`](./providers.md#provider)                 | The provider to connect to (optional).              |
+
+```ts
+constructor(signer: SmartAccountSigner, provider: Provider)
+```
+
+#### Example
+
+```ts
+import { SmartAccount, Provider, types } from "zksync-ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+```
+
+### `connect`
+
+Creates a new instance of `SmartAccount` connected to a provider.
+
+#### Inputs
+
+| Parameter  | Type                                  | Description                                    |
+| ---------- | ------------------------------------- | ---------------------------------------------- |
+| `provider` | [`Provider`](./providers.md#provider) | The provider to connect the `SmartAccount` to. |
+
+```ts
+connect(provider: Provider): SmartAccount
+```
+
+#### Example
+
+```ts
+import { Wallet, Provider, types } from "zksync-ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const sepoliaProvider = Provider.getDefaultProvider(types.Network.Sepolia);
+const sepoliaAccount = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, sepoliaProvider);
+
+const mainnetProvider = Provider.getDefaultProvider(types.Network.Mainnet);
+const mainnetAccount = sepoliaAccount.connect(mainnetProvider);
+```
+
+### `getAddress`
+
+Returns the address of the account.
+
+```ts
+getAddress(): Promise<string>
+```
+
+#### Example
+
+```ts
+import { SmartAccount, Provider, types } from "zksync-ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const address = await account.getAddress();
+```
+
+### `getBalance`
+
+Returns the balance of the account.
+
+#### Inputs
+
+| Parameter  | Type       | Description                                                                      |
+| ---------- | ---------- | -------------------------------------------------------------------------------- |
+| `token`    | `Address`  | The token address to query balance for. Defaults to the native token (optional). |
+| `blockTag` | `BlockTag` | The block tag to get the balance at. Defaults to `committed`.                    |
+
+```ts
+async getBalance(token?: Address, blockTag: BlockTag = 'committed'): Promise<BigNumber>
+```
+
+#### Example
+
+```ts
+import { SmartAccount, Provider, types } from "zksync-ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const balance = await account.getBalance();
+```
+
+### `getAllBalances`
+
+Returns all token balances of the account.
+
+```ts
+async getAllBalances(): Promise<BalancesMap>
+```
+
+#### Example
+
+```ts
+import { SmartAccount, Provider, types } from "zksync-ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const balances = await account.getAllBalances();
+```
+
+### `getDeploymentNonce`
+
+Returns the deployment nonce of the account.
+
+```ts
+async getDeploymentNonce(): Promise<BigNumber>
+```
+
+#### Example
+
+```ts
+import { SmartAccount, Provider, types } from "zksync-ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const nonce = await account.getDeploymentNonce();
+```
+
+### `getNonce`
+
+Get the number of transactions ever sent for account, which is used as the `nonce` when sending a transaction.
+
+#### Inputs
+
+| Parameter   | Type       | Description                                     |
+| ----------- | ---------- | ----------------------------------------------- |
+| `blockTag?` | `BlockTag` | The block tag to get the balance at (optional). |
+
+```ts
+async getNonce(blockTag?: BlockTag): Promise<number>
+```
+
+#### Example
+
+```ts
+import { SmartAccount, Provider, types } from "zksync-ethers";
+import { ethers } from "ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const nonce = await account.getNonce();
+```
+
+### `populateTransaction`
+
+Populates the transaction `tx` using the provided [`TransactionBuilder`](./types.md#transactionbuilder) function.
+If `tx.from` is not set, it sets the value from the `getAddress` method which can
+be utilized in the [`TransactionBuilder`](./types.md#transactionbuilder) function.
+
+#### Inputs
+
+| Parameter | Type                                                  | Description                                 |
+| --------- | ----------------------------------------------------- | ------------------------------------------- |
+| `tx`      | [`TransactionRequest`](./types.md#transactionrequest) | The transaction that needs to be populated. |
+
+```ts
+async populateTransaction(tx: TransactionRequest): Promise<TransactionLike>
+```
+
+#### Example
+
+```ts
+import { SmartAccount, Provider, types, utils } from "zksync-ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const populatedTx = await account.populateTransaction({
+  type: utils.EIP712_TX_TYPE,
+  to: "<RECEIVER>",
+  value: 7_000_000_000,
+});
+```
+
+### `signTransaction`
+
+Signs the transaction `tx` using the provided [`PayloadSigner`](./types.md#payloadsigner) function,
+returning the fully signed transaction. The `populateTransaction` method
+is called first to ensure that all necessary properties for the transaction to be valid
+have been populated.
+
+#### Inputs
+
+| Parameter | Type                                                  | Description                              |
+| --------- | ----------------------------------------------------- | ---------------------------------------- |
+| `tx`      | [`TransactionRequest`](./types.md#transactionrequest) | The transaction that needs to be signed. |
+
+```ts
+async signTransaction(tx: TransactionRequest): Promise<string>
+```
+
+#### Example
+
+```ts
+import { SmartAccount, Provider, types } from "zksync-ethers";
+import { ethers } from "ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const signedTx = await account.signTransaction({
+  to: "<RECEIVER>",
+  value: ethers.utils.parseEther("1"),
+});
+```
+
+### `sendTransaction`
+
+Sends `tx` to the Network. The `signTransaction`
+is called first to ensure transaction is properly signed.
+
+#### Inputs
+
+| Parameter | Type                                                  | Description                            |
+| --------- | ----------------------------------------------------- | -------------------------------------- |
+| `tx`      | [`TransactionRequest`](./types.md#transactionrequest) | The transaction that needs to be sent. |
+
+```ts
+async sendTransaction(tx: TransactionRequest): Promise<TransactionResponse>
+```
+
+#### Example
+
+```ts
+import { SmartAccount, Provider, types } from "zksync-ethers";
+import { ethers } from "ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const signedTx = await account.sendTransaction({
+  to: "<RECEIVER>",
+  value: ethers.utils.parseEther("1"),
+});
+```
+
+### `signMessage`
+
+Signs a `message` using the provided [`PayloadSigner`](./types.md#payloadsigner) function.
+
+#### Inputs
+
+| Parameter | Type                     | Description                          |
+| --------- | ------------------------ | ------------------------------------ |
+| `message` | `string` or `Uint8Array` | The message that needs to be signed. |
+
+```ts
+signMessage(message: string | Uint8Array): Promise<string>
+```
+
+#### Example
+
+```ts
+import { SmartAccount, Provider, types } from "zksync-ethers";
+import { ethers } from "ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const signedMessage = await account.signMessage("Hello World!");
+```
+
+### `_signTypedData`
+
+Signs a typed data using the provided [`PayloadSigner`](./types.md#payloadsigner) function.
+
+#### Inputs
+
+| Parameter | Type                                      | Description                                              |
+| --------- | ----------------------------------------- | -------------------------------------------------------- |
+| `domain`  | `ethers.TypedDataDomain`                  | The domain data.                                         |
+| `types`   | `Record<string, ethers.TypedDataField[]>` | A map of records pointing from field name to field type. |
+| `value`   | `Record<string, any>`                     | A single record value.                                   |
+
+```ts
+async signTypedData(
+  domain: ethers.TypedDataDomain,
+  types: Record<string, ethers.TypedDataField[]>,
+  value: Record<string, any>
+): Promise<string>
+```
+
+#### Example
+
+```ts
+import { SmartAccount, Provider, types } from "zksync-ethers";
+import { ethers } from "ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const signedTypedData = await account._signTypedData(
+  { name: "Example", version: "1", chainId: 270 },
+  {
+    Person: [
+      { name: "name", type: "string" },
+      { name: "age", type: "uint8" },
+    ],
+  },
+  { name: "John", age: 30 }
+);
+```
+
+### `withdraw`
+
+Initiates the withdrawal process which withdraws ETH or any ERC20 token from the associated account on L2 network to the target account on
+L1 network.
+
+#### Inputs
+
+| Parameter                      | Type                                            | Description                                                                                           |
+| ------------------------------ | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `transaction.token`            | `Address`                                       | The address of the token. `ETH` by default.                                                           |
+| `transaction.amount`           | `BigNumberish`                                  | The amount of the token to withdraw.                                                                  |
+| `transaction.to?`              | `Address`                                       | The address of the recipient on L1 (optional).                                                        |
+| `transaction.bridgeAddress?`   | `Address`                                       | The address of the bridge contract to be used (optional).                                             |
+| `transaction.paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams) | Paymaster parameters (optional).                                                                      |
+| `transaction.overrides?`       | `ethers.CallOverrides`                          | Transaction's overrides which may be used to pass L2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+
+```ts
+async withdraw(transaction: {
+    token: Address;
+    amount: BigNumberish;
+    to?: Address;
+    bridgeAddress?: Address;
+    paymasterParams?: PaymasterParams;
+    overrides?: ethers.CallOverrides;
+}): Promise<TransactionResponse>
+```
+
+#### Examples
+
+Withdraw ETH.
+
+```ts
+import { SmartAccount, Provider, types, utils } from "zksync-ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const tokenWithdrawHandle = await account.withdraw({
+  token: utils.ETH_ADDRESS,
+  amount: 10_000_000,
+});
+```
+
+Withdraw ETH using paymaster to facilitate fee payment with an ERC20 token.
+
+```ts
+import { SmartAccount, Provider, types, utils } from "zksync-ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const token = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
+const paymaster = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const tokenWithdrawHandle = await account.withdraw({
+  token: utils.ETH_ADDRESS,
+  amount: 10_000_000,
+  paymasterParams: utils.getPaymasterParams(paymaster, {
+    type: "ApprovalBased",
+    token: token,
+    minimalAllowance: 1,
+    innerInput: new Uint8Array(),
+  }),
+});
+```
+
+### `transfer`
+
+Transfer ETH or any ERC20 token within the same interface.
+
+| Parameter                      | Type                                            | Description                                                                                           |
+| ------------------------------ | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `transaction.to`               | `Address`                                       | The address of the recipient.                                                                         |
+| `transaction.amount`           | `BigNumberish`                                  | The amount of the token to transfer.                                                                  |
+| `transaction.token?`           | `Address`                                       | The address of the token. `ETH` by default (optional).                                                |
+| `transaction.paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams) | Paymaster parameters (optional).                                                                      |
+| `transaction.overrides?`       | `ethers.CallOverrides`                          | Transaction's overrides which may be used to pass L2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+
+```ts
+async transfer(transaction: {
+    to: Address;
+    amount: BigNumberish;
+    token?: Address;
+    overrides?: ethers.CallOverrides;
+}): Promise<TransactionResponse>
+```
+
+#### Examples
+
+Transfer ETH.
+
+```ts
+import { SmartAccount, Wallet, Provider, types } from "zksync-ethers";
+import { ethers } from "ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const transferHandle = await account.transfer({
+  token: utils.ETH_ADDRESS,
+  to: Wallet.createRandom().address,
+  amount: ethers.parseEther("0.01"),
+});
+
+const tx = await transferHandle.wait();
+
+console.log(`The sum of ${tx.value} ETH was transferred to ${tx.to}`);
+```
+
+Transfer ETH using paymaster to facilitate fee payment with an ERC20 token.
+
+```ts
+import { SmartAccount, Wallet, Provider, utils } from "zksync-ethers";
+import { ethers } from "ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const token = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
+const paymaster = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = new SmartAccount({ address: ADDRESS, secret: PRIVATE_KEY }, provider);
+
+const transferHandle = await account.transfer({
+  to: Wallet.createRandom().address,
+  amount: ethers.parseEther("0.01"),
+  paymasterParams: utils.getPaymasterParams(paymaster, {
+    type: "ApprovalBased",
+    token: token,
+    minimalAllowance: 1,
+    innerInput: new Uint8Array(),
+  }),
+});
+
+const tx = await transferHandle.wait();
+
+console.log(`The sum of ${tx.value} ETH was transferred to ${tx.to}`);
+```
+
+## `ECDSASmartAccount`
+
+A `ECDSASmartAccount` is a factory which creates a `SmartAccount` instance
+that uses single ECDSA key for signing payload.
+
+### `create`
+
+Creates a `SmartAccount` instance that uses a single ECDSA key for signing payload.
+
+#### Inputs
+
+| Parameter  | Type                                  | Description                 |
+| ---------- | ------------------------------------- | --------------------------- |
+| `address`  | `string`                              | The account address.        |
+| `secret`   | `string` or `ethers.utils.SigningKey` | The ECDSA private key.      |
+| `provider` | [`Provider`](./providers.md#provider) | The provider to connect to. |
+
+```ts
+static create(address: string, secret: string | utils.SigningKey, provider: Provider): SmartAccount
+```
+
+#### Example
+
+```ts
+import { ECDSASmartAccount, Provider, types } from "zksync-ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY = "<PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const account = ECDSASmartAccount.create(ADDRESS, PRIVATE_KEY, provider);
+```
+
+## `MultisigECDSASmartAccount`
+
+A `MultisigECDSASmartAccount` is a factory which creates a `SmartAccount` instance
+that uses multiple ECDSA keys for signing payloads.
+The signature is generated by concatenating signatures created by signing with each key individually.
+
+### `create`
+
+Creates a `SmartAccount` instance that uses multiple ECDSA keys for signing payloads.
+
+#### Inputs
+
+| Parameter  | Type                                       | Description                         |
+| ---------- | ------------------------------------------ | ----------------------------------- |
+| `address`  | `string`                                   | The account address.                |
+| `secret`   | `string[]` or `ethers.utils.SigningKeyp[]` | The list of the ECDSA private keys. |
+| `provider` | [`Provider`](./providers.md#provider)      | The provider to connect to.         |
+
+```ts
+static create(address: string, secret: string[] | utils.SigningKey[], provider: Provider): SmartAccount
+```
+
+#### Example
+
+```ts
+import { MultisigECDSASmartAccount, Provider, types } from "zksync-ethers";
+
+const ADDRESS = "<ADDRESS>";
+const PRIVATE_KEY1 = "<PRIVATE_KEY1>";
+const PRIVATE_KEY2 = "<PRIVATE_KEY2>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+
+const account = MultisigECDSASmartAccount.create(multisigAddress, [PRIVATE_KEY1, PRIVATE_KEY2], provider);
 ```
