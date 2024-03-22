@@ -48,7 +48,7 @@ https://github.com/smartcontractkit/chainlink-brownie-contracts/blob/main/.githu
 ::: info Project available in Atlas IDE
 This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser.
 
-[Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/matter-labs/zksync-contract-templates&open=Greeter.sol&chainId=300).
+[Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/matter-labs/zksync-hardhat-template&open=Greeter.sol&chainId=300).
 ::: -->
 
 Run the following command in your terminal to create a new project using zkSync CLI.
