@@ -17,7 +17,7 @@ implemented.
 
 If you want to know more about Hyperchains, check this
 [blog post](https://blog.matter-labs.io/introduction-to-hyperchains-fdb33414ead7), or go through
-"Hyperchains" in our docs.
+[Hyperchains](../concepts/hyperchains-hyperscaling.md) in our docs.
 
 ## High-level design
 

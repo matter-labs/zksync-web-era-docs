@@ -18,7 +18,7 @@ Fill in the following details for the zkSync network:
 
 ## Mainnet network info
 
-- Network Name: `zkSync Era Mainnet
+- Network Name: `zkSync Era Mainnet`
 - RPC URL: `https://mainnet.era.zksync.io`
 - Chain ID: `324`
 - Currency Symbol: `ETH`
