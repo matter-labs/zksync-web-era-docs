@@ -28,3 +28,7 @@ The [Portal Bridge](https://bridge.zksync.io/) on zkSync provides a gateway for 
 ### **Owlto Finance**
 
 [Owlto Finance](https://owlto.finance/) is focused on creating a decentralized cross-rollup bridge, emphasizing layer 2 solutions to promote scalability and interoperability.
+
+### **MES Protocol**
+
+[MES Protocol](https://mesprotocol.com/) is a cross-chain bridge that provides instant, low-cost and easy-to-use asset transfer between EVM and non-EVM compatible chains.
