@@ -465,7 +465,7 @@ function prepareForPaymaster(
 
 ### Transaction Execution
 
-To implementing transaction execution, extract the transaction data and execute it:
+To implement transaction execution, extract the transaction data and execute it:
 
 ```solidity
 function _executeTransaction(Transaction calldata _transaction) internal {
