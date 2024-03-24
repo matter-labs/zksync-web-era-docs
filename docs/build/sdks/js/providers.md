@@ -433,7 +433,7 @@ import { Provider, types } from "zksync-ethers";
 
 const testnetPaymasterBytecodeHash = "0x010000f16d2b10ddeb1c32f2c9d222eb1aea0f638ec94a81d4e916c627720e30";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Bytecode: ${await provider.getBytecodeByHash(testnetPaymasterBytecodeHash)}`);
 ```
 
@@ -850,7 +850,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync-ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Raw block transactions: ${toJSON(await provider.getRawBlockTransactions(90_000))}`);
 ```
 
