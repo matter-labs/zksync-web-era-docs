@@ -34,6 +34,16 @@
       ],
       "redirects": [
         {
+          "source": "/build/tooling/zksync-cli/examples/contract-interaction.html",
+          "destination": "/build/tooling/zksync-cli/commands/contract-interaction.html",
+          "type": "302"
+        },
+        {
+          "source": "/build/tooling/zksync-cli/commands.html",
+          "destination": "/build/tooling/zksync-cli/getting-started.html",
+          "type": "302"
+        },
+        {
           "source": "/docs/dev/developer-guides/contracts/system-contracts.html",
           "destination": "/zk-stack/components/smart-contracts/system-contracts.html",
           "type": "302"
@@ -1140,7 +1150,7 @@
         },
         {
           "source": "/docs/tools/zksync-cli/examples/contract-interaction.html",
-          "destination": "/build/tooling/zksync-cli/examples/contract-interaction.html",
+          "destination": "/build/tooling/zksync-cli/commands/contract-interaction.html",
           "type": "302"
         },
         {
@@ -1243,6 +1253,16 @@
         }
       ],
       "redirects": [
+        {
+          "source": "/build/tooling/zksync-cli/examples/contract-interaction.html",
+          "destination": "/build/tooling/zksync-cli/commands/contract-interaction.html",
+          "type": "302"
+        },
+        {
+          "source": "/build/tooling/zksync-cli/commands.html",
+          "destination": "/build/tooling/zksync-cli/getting-started.html",
+          "type": "302"
+        },
         {
           "source": "/docs/dev/developer-guides/contracts/system-contracts.html",
           "destination": "/zk-stack/components/smart-contracts/system-contracts.html",
@@ -2355,7 +2375,7 @@
         },
         {
           "source": "/docs/tools/zksync-cli/examples/contract-interaction.html",
-          "destination": "/build/tooling/zksync-cli/examples/contract-interaction.html",
+          "destination": "/build/tooling/zksync-cli/commands/contract-interaction.html",
           "type": "302"
         },
         {

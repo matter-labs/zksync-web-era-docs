@@ -55,6 +55,7 @@ It will give you options for different types of projects but for this tutorial c
 
 ```bash
 ? What type of project do you want to create? Contracts
+? Ethereum framework: Ethers v6
 ? Template: Hardhat + Solidity
 ? Private key of the wallet responsible for deploying contracts (optional) ***************************************************
 ? Package manager: yarn
@@ -111,6 +112,12 @@ Smart contracts deployed to zkSync must be compiled using our custom compilers:
 - `zkvyper` for Vyper contracts.
 
 As this is a Solidity project, it already has the `hardhat-zksync-solc` plugin installed and configured so there's nothing you need to setup. To compile the contracts in the project, run the following command:
+
+1. Navigate into the project directory:
+
+```sh
+cd hello-zksync
+```
 
 ::: code-tabs
 
