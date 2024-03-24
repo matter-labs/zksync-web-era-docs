@@ -19,7 +19,7 @@ Use the **`zks_getBridgeContracts`** endpoint or **`getDefaultBridgeAddresses`**
 
 - **Node.js**: Ensure Node.js is installed. If not, download it from [here](https://nodejs.org/).
 - **Private Key**: Have access to a private key for the account you'll be using.
-- **L1 RPC Endpoint**: A URL to an Ethereum node to interact with. You can find RPC endpoints for Goerli and Ethereum mainnet on [Chainlist](https://chainlist.org/) or use a node provider like Infura.
+- **L1 RPC Endpoint**: A URL to an Ethereum node to interact with. You can find RPC endpoints for Sepolia and Ethereum mainnet on [Chainlist](https://chainlist.org/) or use a node provider like Infura.
 
 ### Step 1: Understanding L2 to L1 Withdrawals
 
