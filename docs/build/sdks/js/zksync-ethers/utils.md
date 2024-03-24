@@ -198,7 +198,7 @@ export const NONCE_HOLDER_ADDRESS = "0x0000000000000000000000000000000000008003"
   :::
 
 ```typescript
-export const DEFAULT_GAS_PER_PUBDATA_LIMIT = 50000;
+export const DEFAULT_GAS_PER_PUBDATA_LIMIT = 50_000;
 ```
 
 #### `REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT`
@@ -332,10 +332,10 @@ Returns the hash of an EIP712 transaction.
 
 #### Inputs
 
-| Parameter       | Type                                                | Description                                    |
-| --------------- | --------------------------------------------------- | ---------------------------------------------- |
-| `transaction`   | `any`                                               | EIP-712 transaction.                           |
-| `ethSignature?` | [`EthereumSignature`](./types.md#ethereumsignature) | ECDSA signature of the transaction (optional). |
+| Parameter       | Type                                                                   | Description                                    |
+| --------------- | ---------------------------------------------------------------------- | ---------------------------------------------- |
+| `transaction`   | `Transaction` or [`TransactionRequest`](./types.md#transactionrequest) | EIP-712 transaction.                           |
+| `ethSignature?` | [`EthereumSignature`](./types.md#ethereumsignature)                    | ECDSA signature of the transaction (optional). |
 
 ```ts
 function eip712TxHash(transaction: any, ethSignature?: EthereumSignature): string;
@@ -380,17 +380,17 @@ Returns a log containing details of all deployed contracts related to a transact
 
 #### Inputs
 
-| Parameter | Type                                                  | Description          |
-| --------- | ----------------------------------------------------- | -------------------- |
-| `receipt` | [`TransactionReceipt`](./types.md#transactionreceipt) | Transaction receipt. |
+| Parameter | Type                        | Description          |
+| --------- | --------------------------- | -------------------- |
+| `receipt` | `ethers.TransactionReceipt` | Transaction receipt. |
 
 ```ts
-export function getDeployedContracts(receipt: ethers.providers.TransactionReceipt): DeploymentInfo[];
+export function getDeployedContracts(receipt: ethers.TransactionReceipt): DeploymentInfo[];
 ```
 
 ### `getERC20BridgeCalldata`
 
-Returns the calldata sent by an L1 ERC20 bridge to its L2 counterpart during token-bridging.
+Returns the calldata sent by an L1 ERC20 bridge to its L2 counterpart during token bridging.
 
 #### Inputs
 
@@ -400,7 +400,7 @@ Returns the calldata sent by an L1 ERC20 bridge to its L2 counterpart during tok
 | `l1Sender`       | `Address`      | Sender address on L1.                       |
 | `l2Receiver`     | `Address`      | Recipient address on L2.                    |
 | `amount`         | `BigNumberish` | Gas fee for the number of tokens to bridge. |
-| `bridgeData`     | `BytesLike`    | Data                                        |
+| `bridgeData`     | `BytesLike`    | Additional bridge data                      |
 
 ```ts
 export async function getERC20BridgeCalldata(l1TokenAddress: string, l1Sender: string, l2Receiver: string, amount: BigNumberish, bridgeData: BytesLike): Promise<string>;
@@ -412,13 +412,13 @@ Returns the hash of the L2 priority operation from a given transaction receipt a
 
 #### Inputs
 
-| Parameter       | Type                                                  | Description                          |
-| --------------- | ----------------------------------------------------- | ------------------------------------ |
-| `txReceipt`     | [`TransactionReceipt`](./types.md#transactionreceipt) | Receipt of the L1 transaction.       |
-| `zkSyncAddress` | `Address`                                             | Address of zkSync Era main contract. |
+| Parameter       | Type                        | Description                          |
+| --------------- | --------------------------- | ------------------------------------ |
+| `txReceipt`     | `ethers.TransactionReceipt` | Receipt of the L1 transaction.       |
+| `zkSyncAddress` | `Address`                   | Address of zkSync Era main contract. |
 
 ```ts
-export function getL2HashFromPriorityOp(txReceipt: ethers.providers.TransactionReceipt, zkSyncAddress: Address): string;
+export function getL2HashFromPriorityOp(txReceipt: ethers.TransactionReceipt, zkSyncAddress: Address): string;
 ```
 
 ### `getHashedL2ToL1Msg`
@@ -431,7 +431,7 @@ Returns a keccak encoded message with a given sender address and block number fr
 | ----------------- | ----------- | -------------------------------------- |
 | `sender`          | `Address`   | The sender of the message on L2.       |
 | `msg`             | `BytesLike` | Encoded message.                       |
-| `txNumberInBlock` | number      | Index of the transaction in the block. |
+| `txNumberInBlock` | `number`    | Index of the transaction in the block. |
 
 ```ts
 export function getHashedL2ToL1Msg(sender: Address, msg: BytesLike, txNumberInBlock: number): string;
@@ -556,7 +556,7 @@ const isL2ETH = utils.isETH(utils.L2_ETH_TOKEN_ADDRESS); // true
 
 ### `isMessageSignatureCorrect`
 
-Returns true if account abstraction signature is correct.
+Returns whether the account abstraction message signature is correct.
 
 #### Inputs
 
@@ -591,7 +591,7 @@ const isValidSignature = await utils.isMessageSignatureCorrect(provider, ADDRESS
 
 ### `isSignatureCorrect`
 
-Called from [`isMessageSignatureCorrect`](#ismessagesignaturecorrect) and [`isTypedDataSignatureCorrect`](#istypeddatasignaturecorrect). Returns true if account abstraction EIP712
+Called from [`isMessageSignatureCorrect`](#ismessagesignaturecorrect) and [`isTypedDataSignatureCorrect`](#istypeddatasignaturecorrect). Returns true if account abstraction
 signature is correct.
 
 #### Inputs
