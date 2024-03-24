@@ -72,15 +72,15 @@ zk server --components "http_api,eth,state_keeper,housekeeper"
 
 ### Funding accounts
 
-During the `zk stack init` configurator, you have a choice of what base layer to deploy the hyperchain onto: the local geth node, or an Ethereum network (e.g., Sepolia, Goerli). The first step to start interacting with your hyperchain is to fund an account (or a few). This means you need some funds on the base layer.
+During the `zk stack init` configurator, you have a choice of what base layer to deploy the hyperchain onto: the local geth node, or an Ethereum network (e.g., Sepolia). The first step to start interacting with your hyperchain is to fund an account (or a few). This means you need some funds on the base layer.
 
 #### Base layer is the local geth node ([@matterlabs/geth:latest](https://hub.docker.com/r/matterlabs/geth))
 
 - If you chose to deploy on local geth node, you will have a set of addresses that have 100 ETH each. You can find the list [here](https://github.com/matter-labs/local-setup/blob/main/rich-wallets.json) and use these addresses to deposit into your hyperchain via the bridge.
 
-#### Base layer is an Ethereum network (e.g., Sepolia, Goerli)
+#### Base layer is an Ethereum network (e.g., Sepolia)
 
-- If you chose to deploy on an Ethereum network (e.g., Sepolia, Goerli), you need to have an account on the base layer with ETH. You can use the deployer, governor, or operator wallets setup during the the deployment process, or any other one you have funds, to deposit into your hyperchain via the bridge.
+- If you chose to deploy on an Ethereum network (e.g., Sepolia), you need to have an account on the base layer with ETH. You can use the deployer, governor, or operator wallets setup during the the deployment process, or any other one you have funds, to deposit into your hyperchain via the bridge.
 
 Once you have the accounts with funds on the L1 base layer, you can do a deposit via the bridge to your hyperchain, and any further interactions with your hyperchain.
 
@@ -106,7 +106,7 @@ The dApp Portal module allows you to:
 You can run the Portal module locally, and point it to your hyperchain configuration. It comes with scripts that help pulling the hyperchain configuration from your zksync-era repo and adapting to portal needs. Learn more [here](https://github.com/matter-labs/dapp-portal). An example command would look like:
 
 ```bash
-npm run hyperchain:migrate ../zksync-era
+npm run hyperchain:configure ../zksync-era
 npm run dev:node:hyperchain
 ```
 
@@ -114,19 +114,51 @@ You can now navigate to the displayed Portal URL (typically <http://localhost:30
 
 ### Using [Block Explorer](https://github.com/matter-labs/block-explorer)
 
-A free open source block explorer is included with your hyperchain, and is accessible after running the local server. By default, you can access front-end `App` at <http://localhost:3010> in your browser. `API` should be available at <http://localhost:3020>, `Worker` at <http://localhost:3001> and `Data Fetcher` at <http://localhost:3040>.
+A free open source block explorer is available for your hyperchain. Block explorer contains three components [Worker](https://github.com/matter-labs/block-explorer/tree/main/packages/worker), [API](https://github.com/matter-labs/block-explorer/tree/main/packages/api), and [App](https://github.com/matter-labs/block-explorer/tree/main/packages/app), which you can run all together locally and connect to your hyperchain.
 
-#### Editing environment & configuration files for block-explorer
-
-Block explorer contains three components [Worker](https://github.com/matter-labs/block-explorer/tree/main/packages/worker), [API](https://github.com/matter-labs/block-explorer/tree/main/packages/api), and [App](https://github.com/matter-labs/block-explorer/tree/main/packages/app), which you can run all together locally and connect to your hyperchain. For that, you need to set up all the necessary environment and configuration files with your hyperchain settings. You can use a script to build them. See [setting up env variables](https://github.com/matter-labs/block-explorer#%EF%B8%8F-setting-up-env-variables).
-
-Once you have your [zksync-era](https://github.com/matter-labs/zksync-era) repo set up locally, you can run the following command to build environment and configuration files for block explorer based on your [zksync-era](https://github.com/matter-labs/zksync-era) repo configuration:
+Make sure you have your [zksync-era](https://github.com/matter-labs/zksync-era) repo set up locally and the `zk server` is running. The wizard in this guide allows you to run the server in the end. If you chose not to, you’re still able to run it by executing:
 
 ```bash
 zk server --components "http_api,eth,state_keeper,housekeeper"
 ```
 
-The script generates all the necessary configuration files for block-explorer, which you can edit if you need any changes.
+### Running block explorer locally
+
+#### Install block explorer
+
+Clone & install the block explorer repository:
+
+```bash
+cd /path/to/where/you/clone/repos
+git clone https://github.com/matter-labs/block-explorer.git
+cd block-explorer
+npm install
+```
+
+#### Setting up env variables
+
+Next you need to set up all the necessary environment and configuration files with your hyperchain settings. You can use a script to set them up:
+
+```bash
+npm run hyperchain:configure
+```
+
+#### Run block explorer
+
+Afterwards you can run the block explorer:
+
+```bash
+# if you are running block explorer for the first time
+npm run db:create
+```
+
+```bash
+npm run dev
+```
+
+#### Verify block explorer is up and running
+
+By default, you can access front-end `App` at <http://localhost:3010> in your browser. `API` should be available at <http://localhost:3020>, `Worker` at <http://localhost:3001> and `Data Fetcher` at <http://localhost:3040>.
 
 ## Enabling Boojum prover
 
@@ -145,7 +177,7 @@ There are two options for running the Boojum prover: in GPU, or in CPU.
 
 The docker compose file assumes you will be running all components in the same machine. The current minimum requirements for a low TPS scenario are:
 
-- 16 GB VRAM NVIDIA GPU
+- 6 GB VRAM NVIDIA GPU
 - 16 Core CPU
 - 64 GB of RAM
 - 300 GB of Disk Space (SSD preferred)
