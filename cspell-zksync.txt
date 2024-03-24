@@ -30,6 +30,7 @@ mainchain
 offchain
 processed
 zcli
+zkcli
 blockchains
 sidechain
 sidechains

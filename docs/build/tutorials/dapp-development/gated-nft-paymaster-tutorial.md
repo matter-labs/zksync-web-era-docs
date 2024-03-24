@@ -107,7 +107,7 @@ WALLET_PRIVATE_KEY=YourPrivateKeyHere...
 Your private key will be used for paying the costs of deploying the smart contract.
 
 ::: warning
-A heads up! Make sure your account has zkSync Era Testnet Goerli or Sepolia ETH to successfully deploy the contracts.
+A heads up! Make sure your account has zkSync Era Sepolia Testnet or Sepolia ETH to successfully deploy the contracts.
 :::
 
 2. Navigate to `/contracts` directory and open up the `ERC721.sol` contract. We will implement the missing logic for the `mint` function.
