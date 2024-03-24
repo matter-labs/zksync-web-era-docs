@@ -840,3 +840,62 @@ $border-color: #e5e7eb;
             --code-bg-color: #131417;
         }
     }
+
+    // TEMP BANNER RELATED - TO BE REMOVED ONCE IT IS GONE
+    .theme-container {
+        margin-top: 30px;
+    }
+
+    #temp-banner {
+        position: fixed;
+        display: flex;
+        top:0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background: #1755F4;
+        color: white;
+        font-size: small;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+
+        a {
+            color: white;
+            text-decoration: underline;
+        }
+        padding: 0 4px;
+    }
+
+    .navbar {
+        top: 30px;
+    }
+
+    /*responsive*/
+    @media(max-width: 1000px){
+        #temp-banner {
+            height: 40px;
+        }
+
+        .navbar {
+            top: 40px;
+        }
+
+        .theme-container {
+            margin-top: 40px;
+        }
+    }
+
+     @media(max-width: 500px){
+        #temp-banner {
+            height: 60px;
+        }
+
+        .navbar {
+            top: 60px;
+        }
+
+        .theme-container {
+            margin-top: 60px;
+        }
+    }

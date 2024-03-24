@@ -65,7 +65,7 @@ Following error:
 
 ```
 zksolc compiler detected missing libraries! For more details, visit: https://era.zksync.io/docs/tools/hardhat/compiling-libraries.html.
-To compile and deploy libraries, please run: `yarn hardhat deploy-zksync:libraries --private-key <PRIVATE_KEY>`
+To compile and deploy libraries, please run: `yarn hardhat deploy-zksync:libraries`
 For more details on how to use deploy-zksync:libraries task from hardhat-zksync-deploy plugin, visit: https://era.zksync.io/docs/tools/hardhat/hardhat-zksync-deploy.html.
 ```
 
