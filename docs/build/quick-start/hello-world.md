@@ -55,6 +55,7 @@ It will give you options for different types of projects but for this tutorial c
 
 ```bash
 ? What type of project do you want to create? Contracts
+? Ethereum framework: Ethers v6
 ? Template: Hardhat + Solidity
 ? Private key of the wallet responsible for deploying contracts (optional) ***************************************************
 ? Package manager: yarn
@@ -111,6 +112,12 @@ Smart contracts deployed to zkSync must be compiled using our custom compilers:
 - `zkvyper` for Vyper contracts.
 
 As this is a Solidity project, it already has the `hardhat-zksync-solc` plugin installed and configured so there's nothing you need to setup. To compile the contracts in the project, run the following command:
+
+1. Navigate into the project directory:
+
+```sh
+cd hello-zksync
+```
 
 ::: code-tabs
 
@@ -295,6 +302,6 @@ This was your first step towards becoming a zkSync developer. Here is what you c
 
 - Create a frontend for this contract following the [Frontend quickstart](../tutorials/dapp-development/frontend-quickstart-paymaster.md).
 - Join our [developer community in GitHub](https://github.com/zkSync-Community-Hub/zksync-developers/discussions), where you can ask questions and help other developers.
-- Read the [Security and best practices](./best-practices.md) to keep you apps secure.
+- Read the [Security and best practices](./best-practices.md) to keep your apps secure.
 - Learn about the [differences between Ethereum and zkSync](../developer-reference/differences-with-ethereum.md).
 - If you have a project, check out our [migration guide](../tooling/hardhat/migrating-to-zksync.md).
