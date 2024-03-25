@@ -61,7 +61,7 @@ This plugin allows to pre-process contract source code before compilation.
 
 ::: warning CACHE_BREAKER Field Issue
 
-The hardhat-processor plugin adds the CACHE_BREAKER field to the list of libraries, which can lead to failed verification when using [hardhat-zkync-verify](./hardhat-zksync-verify.md) plugin. To prevent this, please include the `--no-compile` flag: `yarn hardhat verify --no-compile `.
+The hardhat-preprocessor plugin adds the CACHE_BREAKER field to the list of libraries, which can lead to failed verification when using [hardhat-zksync-verify](./hardhat-zksync-verify.md) plugin. To prevent this, please include the `--no-compile` flag: `yarn hardhat verify --no-compile `.
 
 :::
 
