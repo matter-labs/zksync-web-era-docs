@@ -55,6 +55,18 @@ In addition, make sure to read about [local testing](../../test-and-debug/gettin
 
 [More information](https://www.npmjs.com/package/hardhat-gas-reporter)
 
+### hardhat-preprocessor
+
+This plugin allows to pre-process contract source code before compilation.
+
+::: warning CACHE_BREAKER Field Issue
+
+The hardhat-processor plugin adds the CACHE_BREAKER field to the list of libraries, which can lead to failed verification when using [hardhat-zkync-verify](./hardhat-zksync-verify.md) plugin. To prevent this, please include the `--no-compile` flag: `yarn hardhat verify --no-compile `.
+
+:::
+
+[More information](https://www.npmjs.com/package/hardhat-preprocessor)
+
 ## Unsupported plugins
 
 ### nomicfoundation/hardhat-network-helpers
