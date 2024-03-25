@@ -15,7 +15,7 @@ To access the testnet funds (Sepolia) you can use one of the following third par
 
 ## LearnWeb3
 
-You can use [LearnWeb3's zkSync Sepolia Faucet](https://learnweb3.io/faucets/zksync_sepolia/) to claim zkSync Sepolia Testnet **0.01 ETH per day**. GitHub authentication is required. 
+You can use [LearnWeb3's zkSync Sepolia Faucet](https://learnweb3.io/faucets/zksync_sepolia/) to claim zkSync Sepolia Testnet **0.01 ETH per day**. GitHub authentication is required.
 
 ## Sepolia faucets
 

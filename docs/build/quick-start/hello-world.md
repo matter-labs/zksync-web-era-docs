@@ -39,8 +39,8 @@ You can check the balance of your account in the [zkSync Sepolia explorer](https
 
 ## Create the project
 
-<!-- 
-The repo used here for atlas is no longer maintained, so it's not a good idea to recommend it in the docs for it to ultimately break. 
+<!--
+The repo used here for atlas is no longer maintained, so it's not a good idea to recommend it in the docs for it to ultimately break.
 
 I did something similar with Chainlink that is running to this day if you want to see the actions file:
 https://github.com/smartcontractkit/chainlink-brownie-contracts/blob/main/.github/workflows/add-and-commit.yml
