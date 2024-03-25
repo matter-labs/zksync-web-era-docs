@@ -369,6 +369,21 @@ EVM legacy assembly example:
 061     RETURN                                    // returns the auxiliary heap array instead
 ```
 
+## Nonces
+
+In Ethereum, each account is associated with a unique identifier known as a nonce. For externally owned accounts (EOAs), the nonce fulfills three key functions: it prevents replay attacks on the network, ensures transactions are executed in the intended sequence, and acts as a unique identifier in the formula for deriving addresses. The nonce is incremented after each transaction is executed.
+
+In the context of smart contracts, the nonce has a singular purpose: it determines the address of a contract deployed from another contract. When a new contract is created using the `create` or `create2` functions, the nonce is increased to signify the deployment of a new contract. Unlike EOAs, which can only increment their nonce by one per transaction, smart contracts have the ability to increase their nonce multiple times within a single transaction.
+
+Conversely, zkSync features native account abstraction, allowing accounts to leverage the nonce for both replay attack protection and address derivation of created contracts. Given that accounts in zkSync can be smart contracts, they may deploy several contracts in a single transaction.
+
+In order to maintain the expected and convenient use of a nonce in both transaction validation and contract deployment contexts, zkSync introduces two different nonces: transaction nonce and deployment nonce. The transaction nonce is used for the transaction validation, while the deployment nonce is incremented in the event of contract deployment. This way, accounts may send many transactions by following only one nonce value and the contract may deploy many other contracts without conflicting with the transaction nonce.
+
+There are also other minor differences between zkSync and Ethereum nonce management:
+
+- Newly created contracts begin with a **deployment nonce** value of zero. This contrasts with Ethereum, where, following the specifications of [EIP-161](https://eips.ethereum.org/EIPS/eip-161), the nonce for newly created contracts starts at one.
+- On zkSync, the deployment nonce is incremented only if the deployment succeeds. On Ethereum nonce on deployment is updated even in case creation failed.
+
 ## Libraries
 
 We rely on the **solc** optimizer for library inlining, so a library may only be used without deployment
@@ -384,8 +399,10 @@ All linking happens at compile-time. Deploy-time linking is not supported.
 Some EVM cryptographic precompiles (notably pairings and RSA) aren't currently available. However, pairing is
 prioritized to allow deployment of both Hyperchains and protocols like Aztec/Dark Forest without modifications.
 
-Ethereum cryptographic primitives like `ecrecover`, `keccak256`, and `sha256` are supported as precompiles.
+Ethereum cryptographic primitives like `ecrecover`, `keccak256`, `sha256`, `ecadd` and `ecmul` are supported as precompiles.
 No actions are required from your side as all the calls to the precompiles are done by the compilers under the hood.
+
+It's important to be aware that the gas costs and behaviors of these precompiles when invoked via delegatecall may differ from those on Ethereum.
 
 ## Native AA vs EIP 4337
 
@@ -395,7 +412,3 @@ The native account abstraction of zkSync and Ethereum's EIP 4337 aim to enhance 
 2. **Account Types**: on zkSync Era, smart contract accounts and paymasters are first-class citizens. Under the hood, all accounts (even EOAs) behave like smart contract accounts; **all accounts support paymasters**.
 3. **Transaction Processing**: EIP 4337 introduces a separate transaction flow for smart contract accounts, which relies on a separate mempool for user operations, and Bundlers - nodes that bundle user operations and sends them to be processed by the EntryPoint contract, resulting in two separate transaction flows. In contrast, on zkSync Era there is a unified mempool for transactions from both Externally Owned Accounts (EOAs) and smart contract accounts. On zkSync Era, the Operator takes on the role of bundling transactions, irrespective of the account type, and sends them to the Bootloader (similar to the EntryPoint contract), which results in a single mempool and transaction flow.
 4. **Paymasters support**: zkSync Era allows both EOAs and smart contract accounts to benefit from paymasters thanks to its single transaction flow. On the other hand, EIP 4337 does not support paymasters for EOAs because paymasters are only implemented in the new transaction flow for smart contract accounts.
-
-### ecrecover
-
-In contrast to Ethereum, zkSync Era ecrecover always return a zero address for the zero digests. Be careful with adapting crypto primitives that rely on that, specifically, it affects [secp256k1 mul verification via ecrecover](https://ethresear.ch/t/you-can-kinda-abuse-ecrecover-to-do-ecmul-in-secp256k1-today/2384).

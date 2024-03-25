@@ -55,6 +55,6 @@ compressed: ( derived_key or enumeration index, compressed_value )
 
 At a high level, contract bytecode is chunked into opcodes (which have a size of 8 bytes), assigned a 2 byte index, and the newly formed byte sequence (indexes) are verified and sent to L1.
 
-This process is split into 2 different parts: (1) [the server side operator](https://github.com/matter-labs/zksync-2-dev/blob/main/core/lib/utils/src/bytecode.rs#L31) handling the compression and (2) [the system contract](https://github.com/matter-labs/system-contracts/blob/main/contracts/BytecodeCompressor.sol) verifying that the compression is correct before sending to L1.
+This process is split into 2 different parts: (1) [the server side operator](https://github.com/matter-labs/zksync-era/blob/main/core/lib/utils/src/bytecode.rs#L33) handling the compression and (2) [the system contract](https://github.com/matter-labs/era-contracts/blob/main/system-contracts/contracts/Compressor.sol#L42) verifying that the compression is correct before sending to L1.
 
 The compressed bytecode makes it way up through `factoryDeps` and the hash of uncompressed bytecode is stored on the `AccountStorage` contract so the hash of the uncompressed bytecode will be part of the state diffs

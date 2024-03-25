@@ -23,7 +23,7 @@ For detailed explanations of the IPaymaster interface please refer to the docume
 
 ### **Step 1 — Understanding the ERC20FixedPaymaster contract**
 
-The `ERC20FixedPaymaster` contract allows transactions to have the gas covered in a specified ERC-20 token for accounts that hold a balance of a specific ERC20 token. For the purposes of this guide we will make use of the [DAI ERC-20 token](https://goerli.explorer.zksync.io/address/0x3e7676937A7E96CFB7616f255b9AD9FF47363D4b).
+The provided `ApprovalPaymaster` contract allows transactions to have the gas covered in a specified ERC-20 token for accounts that hold a balance of a specific ERC20 token. For the purposes of this guide we will make use of the [DAI ERC-20 token](https://sepolia.explorer.zksync.io/address/0x6Ff473f001877D553833B6e312C89b3c8fACa7Ac).
 
 **Key components**:
 
@@ -39,16 +39,27 @@ Using `zksync-cli` create a new project with required dependencies:
 npx zksync-cli create erc20FixedPaymaster
 ```
 
-Choose `Hardhat + Solidity` to setup our project repository. The contract we will be adjusting exists under `/contracts/ApprovalPaymaster.sol` and can be renamed to `ERC20fixedPaymaster.`
+Choose the following options:
+
+```sh
+? What type of project do you want to create? Contracts
+? Ethereum framework Ethers v6
+? Template Hardhat + Solidity
+? Private key of the wallet responsible for deploying contracts (optional)
+? Package manager yarn
+```
+
+The contract for this guide exists under `/contracts/ApprovalPaymaster.sol`.
 
 **Update the Environment File**:
 
-- Modify the `.env-example` file with your private key.
-- Ensure your account has a sufficient balance.
+If you didn't enter your wallet private key in the CLI prompt, enter it in the `.env` file.
+
+Ensure your account has a sufficient balance.
 
 ### Step 3 — Updating the Contract
 
-No modifications are needed for ERC20Fixed paymaster since the provided `ApprovalPaymaster` contract is already configured for this purpose.
+No modifications are needed for `ERC20FixedPaymaster` since the provided `ApprovalPaymaster` contract is already configured for this purpose.
 
 Reviewing the `validateAndPayForPaymasterTransaction` function reveals its simplicity: it verifies if the token is correct, the user holds the token and has provided enough allowance.
 
@@ -95,47 +106,48 @@ dotenv.config();
 // load wallet private key from env file
 const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
 // The address of the DAI token contract
-const TOKEN_ADDRESS = "0x3e7676937A7E96CFB7616f255b9AD9FF47363D4b";
+const TOKEN_ADDRESS = "0x6Ff473f001877D553833B6e312C89b3c8fACa7Ac";
 
 if (!PRIVATE_KEY) throw "⛔️ Private key not detected! Add it to the .env file!";
 
 if (!TOKEN_ADDRESS) throw "⛔️ TOKEN_ADDRESS not detected! Add it to the TOKEN_ADDRESS variable!";
 
 export default async function (hre: HardhatRuntimeEnvironment) {
-  console.log(`Running deploy script for the ERC20fixedPaymaster contract...`);
-  const provider = new Provider("https://testnet.era.zksync.dev");
+  console.log(`Running deploy script for the ApprovalPaymaster contract...`);
+  const provider = new Provider("https://sepolia.era.zksync.dev");
   // The wallet that will deploy the token and the paymaster
   // It is assumed that this wallet already has sufficient funds on zkSync
   const wallet = new Wallet(PRIVATE_KEY);
   const deployer = new Deployer(hre, wallet);
 
   // Deploying the paymaster
-  const paymasterArtifact = await deployer.loadArtifact("ERC20fixedPaymaster");
+  const paymasterArtifact = await deployer.loadArtifact("ApprovalPaymaster");
   const deploymentFee = await deployer.estimateDeployFee(paymasterArtifact, [TOKEN_ADDRESS]);
-  const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
+  const parsedFee = ethers.formatEther(deploymentFee.toString());
   console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
   // Deploy the contract
   const paymaster = await deployer.deploy(paymasterArtifact, [TOKEN_ADDRESS]);
-  console.log(`Paymaster address: ${paymaster.address}`);
+  const paymasterAddress = await paymaster.getAddress();
+  console.log(`Paymaster address: ${paymasterAddress}`);
 
   console.log("Funding paymaster with ETH");
   // Supplying paymaster with ETH
   await (
     await deployer.zkWallet.sendTransaction({
-      to: paymaster.address,
-      value: ethers.utils.parseEther("0.005"),
+      to: paymasterAddress,
+      value: ethers.parseEther("0.005"),
     })
   ).wait();
 
-  let paymasterBalance = await provider.getBalance(paymaster.address);
+  let paymasterBalance = await provider.getBalance(paymasterAddress);
   console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
 
   // Verify contract programmatically
   //
   // Contract MUST be fully qualified name (e.g. path/sourceName:contractName)
-  const contractFullyQualifedName = "contracts/paymasters/ERC20fixedPaymaster.sol:ERC20fixedPaymaster";
+  const contractFullyQualifedName = "contracts/paymasters/ApprovalPaymaster.sol:ApprovalPaymaster";
   const verificationId = await hre.run("verify:verify", {
-    address: paymaster.address,
+    address: paymasterAddress,
     contract: contractFullyQualifedName,
     constructorArguments: [TOKEN_ADDRESS],
     bytecode: paymasterArtifact.bytecode,
@@ -159,7 +171,7 @@ yarn hardhat compile
 Deploy the contract:
 
 ```bash
-yarn hardhat deploy --script erc20FixedPaymaster.ts
+yarn hardhat deploy-zksync --script deploy-erc20FixedPaymaster.ts
 ```
 
 ### Step 5 — Testing the Contract
@@ -214,28 +226,30 @@ import { Wallet, Provider, Contract, utils } from "zksync-ethers";
 import hardhatConfig from "../hardhat.config";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 import * as ethers from "ethers";
-
-import { deployContract, fundAccount, setupDeployer } from "./utils";
+import * as hre from "hardhat";
 
 // load env file
 import dotenv from "dotenv";
 dotenv.config();
 
-// load wallet private key from env file
-const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110";
+// test pk rich wallet from in-memory node
+const PRIVATE_KEY = "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110";
 
-describe("ERC20fixedPaymaster", function () {
+describe.only("ERC20fixedPaymaster", function () {
   let provider: Provider;
   let wallet: Wallet;
   let deployer: Deployer;
   let userWallet: Wallet;
-  let ownerInitialBalance: ethers.BigNumber;
+  let ownerInitialBalance: BigInt;
   let paymaster: Contract;
   let greeter: Contract;
   let token: Contract;
+  let paymasterAddress: string;
+  let tokenAddress: string;
+  let greeterAddress: string;
 
   before(async function () {
-    const deployUrl = hardhatConfig.networks.zkSyncTestnet.url;
+    const deployUrl = hardhatConfig.networks.inMemoryNode.url;
     // setup deployer
     [provider, wallet, deployer] = setupDeployer(deployUrl, PRIVATE_KEY);
     // setup new wallet
@@ -244,27 +258,30 @@ describe("ERC20fixedPaymaster", function () {
     userWallet = new Wallet(emptyWallet.privateKey, provider);
     // deploy contracts
     token = await deployContract(deployer, "MyERC20", ["MyToken", "MyToken", 18]);
-    paymaster = await deployContract(deployer, "ERC20fixedPaymaster", [token.address]);
+    tokenAddress = await token.getAddress();
+    paymaster = await deployContract(deployer, "ApprovalPaymaster", [tokenAddress]);
+    paymasterAddress = await paymaster.getAddress();
     greeter = await deployContract(deployer, "Greeter", ["Hi"]);
+    greeterAddress = await greeter.getAddress();
     // fund paymaster
-    await fundAccount(wallet, paymaster.address, "3");
+    await fundAccount(wallet, paymasterAddress, "3");
     ownerInitialBalance = await wallet.getBalance();
   });
 
   async function executeGreetingTransaction(user: Wallet) {
     const gasPrice = await provider.getGasPrice();
-    const token_address = token.address.toString();
 
-    const paymasterParams = utils.getPaymasterParams(paymaster.address, {
+    const paymasterParams = utils.getPaymasterParams(paymasterAddress, {
       type: "ApprovalBased",
-      token: token_address,
-      minimalAllowance: ethers.BigNumber.from(1),
+      token: tokenAddress,
+      minimalAllowance: BigInt(1),
       // empty bytes as testnet paymaster does not use innerInput
       innerInput: new Uint8Array(),
     });
 
-    const setGreetingTx = await greeter.connect(user).setGreeting("Hola, mundo!", {
-      maxPriorityFeePerGas: ethers.BigNumber.from(0),
+    await greeter.connect(user);
+    const setGreetingTx = await greeter.setGreeting("Hola, mundo!", {
+      maxPriorityFeePerGas: BigInt(0),
       maxFeePerGas: gasPrice,
       // hardcoded for testing
       gasLimit: 6000000,
@@ -280,46 +297,64 @@ describe("ERC20fixedPaymaster", function () {
   }
 
   it("user with MyERC20 token can update message for free", async function () {
-    const initialMintAmount = ethers.utils.parseEther("3");
+    const initialMintAmount = ethers.parseEther("3");
     const success = await token.mint(userWallet.address, initialMintAmount);
     await success.wait();
 
     const userInitialTokenBalance = await token.balanceOf(userWallet.address);
     const userInitialETHBalance = await userWallet.getBalance();
-    const initialPaymasterBalance = await provider.getBalance(paymaster.address);
+    const initialPaymasterBalance = await provider.getBalance(paymasterAddress);
 
     await executeGreetingTransaction(userWallet);
 
     const finalETHBalance = await userWallet.getBalance();
     const finalUserTokenBalance = await token.balanceOf(userWallet.address);
-    const finalPaymasterBalance = await provider.getBalance(paymaster.address);
+    const finalPaymasterBalance = await provider.getBalance(paymasterAddress);
 
     expect(await greeter.greet()).to.equal("Hola, mundo!");
-    expect(initialPaymasterBalance.gt(finalPaymasterBalance)).to.be.true;
+    expect(initialPaymasterBalance).to.be.gt(finalPaymasterBalance);
     expect(userInitialETHBalance).to.eql(finalETHBalance);
     expect(userInitialTokenBalance.gt(finalUserTokenBalance)).to.be.true;
   });
 
   it("should allow owner to withdraw all funds", async function () {
     try {
-      const tx = await paymaster.connect(wallet).withdraw(userWallet.address);
+      await paymaster.connect(wallet);
+      const tx = await paymaster.withdraw(userWallet.address);
       await tx.wait();
     } catch (e) {
       console.error("Error executing withdrawal:", e);
     }
 
-    const finalContractBalance = await provider.getBalance(paymaster.address);
+    const finalContractBalance = await provider.getBalance(paymasterAddress);
 
-    expect(finalContractBalance).to.eql(ethers.BigNumber.from(0));
+    expect(finalContractBalance).to.eql(BigInt(0));
   });
 
   it("should prevent non-owners from withdrawing funds", async function () {
     try {
-      await paymaster.connect(userWallet).withdraw(userWallet.address);
+      await paymaster.connect(userWallet);
+      await paymaster.withdraw(userWallet.address);
     } catch (e) {
       expect(e.message).to.include("Ownable: caller is not the owner");
     }
   });
+
+  async function deployContract(deployer: Deployer, contract: string, params: any[]): Promise<Contract> {
+    const artifact = await deployer.loadArtifact(contract);
+    return await deployer.deploy(artifact, params);
+  }
+
+  async function fundAccount(wallet: Wallet, address: string, amount: string) {
+    await (await wallet.sendTransaction({ to: address, value: ethers.parseEther(amount) })).wait();
+  }
+
+  function setupDeployer(url: string, privateKey: string): [Provider, Wallet, Deployer] {
+    const provider = new Provider(url);
+    const wallet = new Wallet(privateKey, provider);
+    const deployer = new Deployer(hre, wallet);
+    return [provider, wallet, deployer];
+  }
 });
 ```
 
@@ -328,7 +363,7 @@ This particular script assesses the paymaster's ability to cover gas expenses fo
 To execute test:
 
 ```bash
-yarn hardhat test
+yarn hardhat test --network hardhat
 ```
 
 ### Conclusion
