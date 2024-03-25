@@ -121,8 +121,8 @@ NewWalletL1FromSigner(signer *Signer, clientL1 *ethclient.Client, clientL2 *clie
 
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
-ZkSyncEraProvider := "https://testnet.era.zksync.dev"
-EthereumProvider := "https://rpc.ankr.com/eth_goerli"
+ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
+EthereumProvider := "https://rpc.ankr.com/eth_sepolia"
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
@@ -833,6 +833,29 @@ if err != nil {
 }
 ```
 
+### `DeploymentNonce`
+
+Returns the deployment nonce of the account.
+
+#### Inputs
+
+| Parameter | Type                                                | Description   |
+| --------- | --------------------------------------------------- | ------------- |
+| `opts`    | [`CallOpts`](types/accounts.md#callopts) (optional) | Call options. |
+
+```go
+func (a *WalletL2) DeploymentNonce(opts *CallOpts) (*big.Int, error)
+```
+
+#### Example
+
+```go
+deploymentNonce, err := wallet.DeploymentNonce(nil)
+if err != nil {
+    log.Panic(err)
+}
+```
+
 ### `Withdraw`
 
 Initiates the withdrawal process which withdraws ETH or any ERC20 token from the associated account on L2 network to the target account on
@@ -1168,7 +1191,7 @@ func NewBaseDeployer(adapter *AdapterL2) *BaseDeployer
 
 ### `Deploy`
 
-Deploys smart contract using CREATE2 opcode.
+Deploys smart contract using CREATE2 method.
 
 #### Inputs
 
@@ -1199,7 +1222,7 @@ fmt.Println("Transaction: ", hash)
 
 ### `DeployWithCreate`
 
-Deploys smart contract using CREATE opcode.
+Deploys smart contract using CREATE method.
 
 #### Inputs
 
@@ -1230,7 +1253,7 @@ fmt.Println("Transaction: ", hash)
 
 ### `DeployAccount`
 
-Deploys smart account using CREATE2 opcode.
+Deploys smart account using CREATE2 method.
 
 #### Inputs
 
@@ -1274,7 +1297,7 @@ fmt.Println("Transaction: ", hash)
 
 ### `DeployAccountWithCreate`
 
-Deploys smart account using CREATE opcode.
+Deploys smart account using CREATE method.
 
 #### Inputs
 
@@ -1364,8 +1387,8 @@ func NewRandomWallet(chainId int64, clientL2 *clients.Client, clientL1 *ethclien
 
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
-ZkSyncEraProvider := "https://testnet.era.zksync.dev"
-EthereumProvider := "https://rpc.ankr.com/eth_goerli"
+ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
+EthereumProvider := "https://rpc.ankr.com/eth_sepolia"
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
@@ -1455,8 +1478,8 @@ ConnectL1(client *ethclient.Client) (*Wallet, error)
 
 ```go
 PrivateKey     := os.Getenv("PRIVATE_KEY")
-ZkSyncEraProvider := "https://testnet.era.zksync.dev"
-EthereumProvider := "https://rpc.ankr.com/eth_goerli"
+ZkSyncEraProvider := "https://sepolia.era.zksync.dev"
+EthereumProvider := "https://rpc.ankr.com/eth_sepolia"
 
 client, err := clients.Dial(ZkSyncEraProvider)
 if err != nil {
