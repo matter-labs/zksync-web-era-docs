@@ -66,8 +66,8 @@ The intended objective of the `TimeBasedPaymaster` contract is to permit transac
 Include the validation logic in the `validateAndPayForPaymasterTransaction` function in the contract. Insert the following code under the `if(paymasterInputSelector == IPaymasterFlow.general.selector){` condition check:
 
 ```solidity
-uint256 startTime = (block.timestamp / 86400) * 86400 + 15 hours;
- uint256 endTime = startTime + 20 minutes;
+uint256 startTime = (block.timestamp / 86400) * 86400 + (15 * 3600); // Adding 15 hours (15 * 3600 seconds)
+uint256 endTime = startTime + (20 * 60); // Adding 20 minutes (20 * 60 seconds)
 
  require(
    block.timestamp >= startTime && block.timestamp <= endTime,
