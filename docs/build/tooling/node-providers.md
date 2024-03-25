@@ -33,7 +33,7 @@ head:
 
 ### Unifra
 
-[Unifra](https://unifra.io/) is a Web3 developer platform that provides tools, APIs, and node infrastructure, and provides access to zkSync nodes that are nodes are reliabile, scalable, and easy to use.
+[Unifra](https://unifra.io/) is a Web3 developer platform that provides tools, APIs, and node infrastructure, and provides access to zkSync nodes that are nodes are reliable, scalable, and easy to use.
 
 ### Public RPCs
 
