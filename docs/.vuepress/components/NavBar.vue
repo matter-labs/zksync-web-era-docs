@@ -1,8 +1,8 @@
     <template>
         <NavBar>
-        <template #rightStart>
-            <GoogleTranslateSelect default-language-code="en" default-page-language-code="en" :fetch-browser-language="false" trigger="click" @select="handleGoogleTranslateSelect" />
-        </template>
+            <template #rightStart>
+                <GoogleTranslateSelect default-language-code="en" default-page-language-code="en" :fetch-browser-language="false" trigger="click" @select="handleGoogleTranslateSelect" />
+            </template>
         </NavBar>
     </template>
     
