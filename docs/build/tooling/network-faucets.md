@@ -26,3 +26,4 @@ Use any of the following faucets to claim SepoliaETH, which you can bridge to zk
 - [Alchemy Sepolia faucet](https://sepoliafaucet.com/)
 - [Proof of Work Sepolia faucet](https://sepolia-faucet.pk910.de/)
 - [Infura Sepolia faucet](https://www.infura.io/faucet/sepolia/)
+- [Ethereum Ecosystem Sepolia faucet](https://www.ethereum-ecosystem.com/faucets/ethereum-sepolia)
