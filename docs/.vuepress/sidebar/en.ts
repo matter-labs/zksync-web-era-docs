@@ -170,6 +170,10 @@ export const enSidebar = sidebar({
               text: "Verify Contracts with Hardhat",
               link: "/build/tutorials/how-to/verify-contracts.md"
             },
+            {
+              text: "Test Contracts with Hardhat",
+              link: "/build/tutorials/how-to/test-contracts.md"
+            },
           ],
         },
       ]
@@ -416,7 +420,9 @@ export const enSidebar = sidebar({
             "/build/sdks/python/accounts",
             "/build/sdks/python/accounts-l1-l2",
             "/build/sdks/python/contracts",
-            "/build/sdks/python/types"
+            "/build/sdks/python/types",
+            "/build/sdks/python/features",
+            "/build/sdks/python/utils"
           ],
         },
         {
@@ -451,7 +457,12 @@ export const enSidebar = sidebar({
             "/build/sdks/java/getting-started",
             "/build/sdks/java/providers",
             "/build/sdks/java/accounts",
-            "/build/sdks/java/accounts-l1-l2"
+            "/build/sdks/java/accounts-l1-l2",
+            "/build/sdks/java/contracts",
+            "/build/sdks/java/features",
+            "/build/sdks/java/paymaster-utils",
+            "/build/sdks/java/types",
+            "/build/sdks/java/utils"
           ],
         },
         {
@@ -459,9 +470,14 @@ export const enSidebar = sidebar({
           collapsible: true,
           children: [
             "/build/sdks/swift/getting-started",
+            "/build/sdks/swift/clients",
             "/build/sdks/swift/accounts",
             "/build/sdks/swift/accounts-l1-l2",
-            "/build/sdks/swift/paymaster-utils"
+            "/build/sdks/swift/contracts",
+            "/build/sdks/swift/features",
+            "/build/sdks/swift/types",
+            "/build/sdks/swift/paymaster-utils",
+            "/build/sdks/swift/utils"
           ],
         },
         {

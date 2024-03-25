@@ -45,7 +45,7 @@ Now the constraint system is ready! We can start the main part of the test!
 ![Code block showing signature simulation](../../../../assets/images/circuits-address.png)
 
 Here we have hard coded a secret key with its associated public key, and generate a signature. We will test our circuit
-on these inputs! Next we “allocate” these inputs as witnessess:
+on these inputs! Next we “allocate” these inputs as witnesses:
 
 ![Code block showing witness allocation](../../../../assets/images/circuit-allocate.png)
 
