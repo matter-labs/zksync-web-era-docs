@@ -39,22 +39,35 @@ Using `zksync-cli` create a new project with the required dependencies and boile
 npx zksync-cli create timeBasedPaymaster
 ```
 
-Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/GeneralPaymaster.sol`.
+Choose the following options:
+
+```sh
+? What type of project do you want to create? Contracts
+? Ethereum framework Ethers v6
+? Template Hardhat + Solidity
+? Private key of the wallet responsible for deploying contracts (optional)
+? Package manager yarn
+```
+
+The contract for this guide exists under `/contracts/GeneralPaymaster.sol`.
 
 **Update the Environment File**:
 
-- Modify the `.env-example` file with your private key.
-- Ensure your account has a sufficient balance.
+If you didn't enter your wallet private key in the CLI prompt, enter it in the `.env` file.
+
+Ensure your account has a sufficient balance.
 
 ### Step 3 — Updating the Contract
 
+For convenience, rename the `GeneralPaymaster.sol` contract to `TimeBasedPaymaster.sol` also changing the name of the contract in the source file.
+
 The intended objective of the `TimeBasedPaymaster` contract is to permit transactions only between a stipulated timeframe to cover the gas costs.
 
-Include the validation logic in the `validateAndPayForPaymasterTransaction` function in the contract. Insert the following code under the `paymasterInputSelector == IPaymasterFlow.general.selector` condition check:
+Include the validation logic in the `validateAndPayForPaymasterTransaction` function in the contract. Insert the following code under the `if(paymasterInputSelector == IPaymasterFlow.general.selector){` condition check:
 
 ```solidity
-uint256 startTime = (block.timestamp / 86400) * 86400 + 15 hours;
- uint256 endTime = startTime + 20 minutes;
+uint256 startTime = (block.timestamp / 86400) * 86400 + (15 * 3600); // Adding 15 hours (15 * 3600 seconds)
+uint256 endTime = startTime + (20 * 60); // Adding 20 minutes (20 * 60 seconds)
 
  require(
    block.timestamp >= startTime && block.timestamp <= endTime,
@@ -85,30 +98,31 @@ if (!PRIVATE_KEY) throw "⛔️ Private key not detected! Add it to the .env fil
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the TimeBasedPaymaster contract...`);
-  const provider = new Provider("https://testnet.era.zksync.dev");
+  const provider = new Provider("https://sepolia.era.zksync.dev");
 
   const wallet = new Wallet(PRIVATE_KEY);
   const deployer = new Deployer(hre, wallet);
 
   const paymasterArtifact = await deployer.loadArtifact("TimeBasedPaymaster");
   const deploymentFee = await deployer.estimateDeployFee(paymasterArtifact, []);
-  const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
+  const parsedFee = ethers.formatEther(deploymentFee.toString());
   console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
   // Deploy the contract
   const paymaster = await deployer.deploy(paymasterArtifact, []);
-  console.log(`Paymaster address: ${paymaster.address}`);
+  const paymasterAddress = await paymaster.getAddress();
+  console.log(`Paymaster address: ${paymasterAddress}`);
   console.log("constructor args:" + paymaster.interface.encodeDeploy([]));
 
   console.log("Funding paymaster with ETH");
   // Supplying paymaster with ETH
   await (
     await deployer.zkWallet.sendTransaction({
-      to: paymaster.address,
-      value: ethers.utils.parseEther("0.005"),
+      to: paymasterAddress,
+      value: ethers.parseEther("0.005"),
     })
   ).wait();
 
-  let paymasterBalance = await provider.getBalance(paymaster.address);
+  let paymasterBalance = await provider.getBalance(paymasterAddress);
   console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
 
   // Verify contract programmatically
@@ -116,7 +130,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Contract MUST be fully qualified name (e.g. path/sourceName:contractName)
   const contractFullyQualifedName = "contracts/paymasters/TimeBasedPaymaster.sol:TimeBasedPaymaster";
   const verificationId = await hre.run("verify:verify", {
-    address: paymaster.address,
+    address: paymasterAddress,
     contract: contractFullyQualifedName,
     constructorArguments: [],
     bytecode: paymasterArtifact.bytecode,
@@ -141,7 +155,7 @@ yarn hardhat compile
 Deploy the contract:
 
 ```bash
-yarn hardhat deploy-zksync --script timeBasedPaymaster.ts
+yarn hardhat deploy-zksync --script deploy-timeBasedPaymaster.ts
 ```
 
 ### Step 5 — Testing the Contract
@@ -156,43 +170,47 @@ import { Wallet, Provider, Contract, utils } from "zksync-ethers";
 import hardhatConfig from "../hardhat.config";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 import * as ethers from "ethers";
-
-import { deployContract, fundAccount, setupDeployer } from "./utils";
-
+import * as hre from "hardhat";
 import dotenv from "dotenv";
+
 dotenv.config();
 
-const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110";
+// test pk rich wallet from in-memory node
+const PRIVATE_KEY = "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110";
 
-describe("TimeBasedPaymaster", function () {
+describe.only("TimeBasedPaymaster", function () {
   let provider: Provider;
   let wallet: Wallet;
   let deployer: Deployer;
   let userWallet: Wallet;
   let paymaster: Contract;
   let greeter: Contract;
+  let paymasterAddress: string;
 
   before(async function () {
-    const deployUrl = hardhatConfig.networks.zkSyncTestnet.url;
+    const deployUrl = hardhatConfig.networks.inMemoryNode.url;
     [provider, wallet, deployer] = setupDeployer(deployUrl, PRIVATE_KEY);
     userWallet = Wallet.createRandom();
     console.log(`User wallet's address: ${userWallet.address}`);
     userWallet = new Wallet(userWallet.privateKey, provider);
     paymaster = await deployContract(deployer, "TimeBasedPaymaster", []);
+    paymasterAddress = await paymaster.getAddress();
     greeter = await deployContract(deployer, "Greeter", ["Hi"]);
-    await fundAccount(wallet, paymaster.address, "3");
+    await fundAccount(wallet, paymasterAddress, "3");
   });
 
   async function executeGreetingTransaction(user: Wallet) {
     const gasPrice = await provider.getGasPrice();
 
-    const paymasterParams = utils.getPaymasterParams(paymaster.address, {
+    const paymasterParams = utils.getPaymasterParams(paymasterAddress, {
       type: "General",
       innerInput: new Uint8Array(),
     });
 
-    const setGreetingTx = await greeter.connect(user).setGreeting("Hola, mundo!", {
-      maxPriorityFeePerGas: ethers.BigNumber.from(0),
+    await greeter.connect(user);
+
+    const setGreetingTx = await greeter.setGreeting("Hola, mundo!", {
+      maxPriorityFeePerGas: BigInt(0),
       maxFeePerGas: gasPrice,
       gasLimit: 6000000,
       customData: {
@@ -240,13 +258,28 @@ describe("TimeBasedPaymaster", function () {
     // Assert
     expect(errorOccurred).to.be.true;
   });
+  async function deployContract(deployer: Deployer, contract: string, params: any[]): Promise<Contract> {
+    const artifact = await deployer.loadArtifact(contract);
+    return await deployer.deploy(artifact, params);
+  }
+
+  async function fundAccount(wallet: Wallet, address: string, amount: string) {
+    await (await wallet.sendTransaction({ to: address, value: ethers.parseEther(amount) })).wait();
+  }
+
+  function setupDeployer(url: string, privateKey: string): [Provider, Wallet, Deployer] {
+    const provider = new Provider(url);
+    const wallet = new Wallet(privateKey, provider);
+    const deployer = new Deployer(hre, wallet);
+    return [provider, wallet, deployer];
+  }
 });
 ```
 
 This script tests whether the TimeBasedPaymaster contract permits a user to modify a message in the "Greeter" contract without incurring any gas charges at different times. The necessary paymaster parameters are provided when invoking the `setGreeting` method, showcasing our time based paymaster in action.
 
 ```bash
-yarn hardhat test
+yarn hardhat test --network hardhat
 ```
 
 #### Conclusion

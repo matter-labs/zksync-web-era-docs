@@ -35,16 +35,29 @@ Each paymaster should implement the [IPaymaster](https://github.com/matter-labs/
 
 ### Step 2 — Environment Setup
 
-Using `zksync-cli` create a new project with the required dependencies and boilerplate paymaster implementations:
+Using `zksync-cli` create a new project with the required dependencies and boilerplate paymaster implementations.
 
-`npx zksync-cli create gaslessPaymaster`
+```sh
+npx zksync-cli create gaslessPaymaster
+```
 
-Choose `Hardhat + Solidity` to setup the project repository. The contract for this guide exists under `/contracts/GeneralPaymaster.sol`.
+Choose the following options:
+
+```sh
+? What type of project do you want to create? Contracts
+? Ethereum framework Ethers v6
+? Template Hardhat + Solidity
+? Private key of the wallet responsible for deploying contracts (optional)
+? Package manager yarn
+```
+
+The contract for this guide exists under `/contracts/GeneralPaymaster.sol`.
 
 **Update the Environment File**:
 
-- Modify the `.env-example` file with your private key.
-- Ensure your account has a sufficient balance.
+If you didn't enter your wallet private key in the CLI prompt, enter it in the `.env` file.
+
+Ensure your account has a sufficient balance.
 
 ### Step 3 — Updating the Contract
 
@@ -75,7 +88,7 @@ if (!PRIVATE_KEY) throw "⛔️ Private key not detected! Add it to the .env fil
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script for the GaslessPaymaster contract...`);
-  const provider = new Provider("https://testnet.era.zksync.dev");
+  const provider = new Provider("https://sepolia.era.zksync.dev");
 
   // The wallet that will deploy the token and the paymaster
   // It is assumed that this wallet already has sufficient funds on zkSync
@@ -83,24 +96,25 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const deployer = new Deployer(hre, wallet);
 
   // Deploying the paymaster
-  const paymasterArtifact = await deployer.loadArtifact("GaslessPaymaster");
+  const paymasterArtifact = await deployer.loadArtifact("GeneralPaymaster");
   const deploymentFee = await deployer.estimateDeployFee(paymasterArtifact, []);
-  const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
+  const parsedFee = ethers.formatEther(deploymentFee.toString());
   console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
   // Deploy the contract
   const paymaster = await deployer.deploy(paymasterArtifact, []);
-  console.log(`Paymaster address: ${paymaster.address}`);
+  const paymasterAddress = await paymaster.getAddress();
+  console.log(`Paymaster address: ${paymasterAddress}`);
 
   console.log("Funding paymaster with ETH");
   // Supplying paymaster with ETH
   await (
     await deployer.zkWallet.sendTransaction({
-      to: paymaster.address,
-      value: ethers.utils.parseEther("0.005"),
+      to: paymasterAddress,
+      value: ethers.parseEther("0.005"),
     })
   ).wait();
 
-  let paymasterBalance = await provider.getBalance(paymaster.address);
+  let paymasterBalance = await provider.getBalance(paymasterAddress);
   console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
   console.log(`Done!`);
 }
@@ -121,12 +135,14 @@ yarn hardhat compile
 Once compiled, deploy using:
 
 ```bash
-yarn hardhat deploy-zksync --script gaslessPaymaster.ts
+yarn hardhat deploy-zksync --script deploy-gaslessPaymaster.ts
 ```
 
 ### Step 5 — Testing the Contract
 
-To verify the functionality of the GaslessPaymaster contract, let's draft a quick test. Set it up by creating `gaslessTest.test.ts` in the `/test` directory and populating it with the provided script:
+To verify the functionality of the GaslessPaymaster contract, let's draft a quick test.
+
+Set it up by creating `gaslessTest.test.ts` in the `/test` directory and populating it with the provided script:
 
 #### gasless.test.ts
 
@@ -141,37 +157,43 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
+// test pk rich wallet from in-memory node
+const PRIVATE_KEY = "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110";
 
-describe("GaslessPaymaster", function () {
+describe.only("GaslessPaymaster", function () {
   let provider: Provider;
   let wallet: Wallet;
   let deployer: Deployer;
   let emptyWallet: Wallet;
   let userWallet: Wallet;
-  let ownerInitialBalance: ethers.BigNumber;
+  let ownerInitialBalance: BigInt;
   let paymaster: Contract;
   let greeter: Contract;
+  let paymasterAddress: string;
 
   before(async function () {
-    [provider, wallet, deployer] = setupDeployer(hardhatConfig.networks.zkSyncTestnet.url, PRIVATE_KEY);
+    // @ts-ignore
+    [provider, wallet, deployer] = setupDeployer(hardhatConfig.networks.inMemoryNode.url, PRIVATE_KEY);
     emptyWallet = Wallet.createRandom();
     userWallet = new Wallet(emptyWallet.privateKey, provider);
-    paymaster = await deployContract(deployer, "GaslessPaymaster", []);
+    paymaster = await deployContract(deployer, "GeneralPaymaster", []);
+    paymasterAddress = await paymaster.getAddress();
     greeter = await deployContract(deployer, "Greeter", ["Hi"]);
-    await fundAccount(wallet, paymaster.address, "3");
+    await fundAccount(wallet, paymasterAddress, "3");
     ownerInitialBalance = await wallet.getBalance();
   });
 
   async function executeGreetingTransaction(user: Wallet) {
     const gasPrice = await provider.getGasPrice();
-    const paymasterParams = utils.getPaymasterParams(paymaster.address, {
+    const paymasterParams = utils.getPaymasterParams(paymasterAddress, {
       type: "General",
       innerInput: new Uint8Array(),
     });
 
-    const setGreetingTx = await greeter.connect(user).setGreeting("Hola, mundo!", {
-      maxPriorityFeePerGas: ethers.BigNumber.from(0),
+    await greeter.connect(user);
+
+    const setGreetingTx = await greeter.setGreeting("Hola, mundo!", {
+      maxPriorityFeePerGas: BigInt(0),
       maxFeePerGas: gasPrice,
       gasLimit: 6000000,
       customData: {
@@ -196,7 +218,7 @@ describe("GaslessPaymaster", function () {
   }
 
   async function fundAccount(wallet: Wallet, address: string, amount: string) {
-    await (await wallet.sendTransaction({ to: address, value: ethers.utils.parseEther(amount) })).wait();
+    await (await wallet.sendTransaction({ to: address, value: ethers.parseEther(amount) })).wait();
   }
 
   function setupDeployer(url: string, privateKey: string): [Provider, Wallet, Deployer] {
@@ -213,7 +235,7 @@ This script tests whether the GaslessPaymaster contract permits a user to modify
 To execute test:
 
 ```bash
-yarn hardhat test
+yarn hardhat test --network hardhat
 ```
 
 ### Conclusion

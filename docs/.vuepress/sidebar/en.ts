@@ -117,14 +117,6 @@ export const enSidebar = sidebar({
               link: "/build/tutorials/tooling-guides/web3js.md",
             },
             {
-              text: "API3",
-              link: "/build/tutorials/tooling-guides/api3.md",
-            },
-            {
-              text: "DIA",
-              link: "/build/tutorials/tooling-guides/dia.md",
-            },
-            {
               text: "Redstone",
               link: "/build/tutorials/tooling-guides/redstone.md",
             },
@@ -135,10 +127,6 @@ export const enSidebar = sidebar({
             {
               text: "SubQuery",
               link: "/build/tutorials/tooling-guides/subquery.md",
-            },
-            {
-              text: "LayerZero",
-              link: "/build/tutorials/tooling-guides/layerzero.md",
             },
           ],
         },
@@ -181,6 +169,10 @@ export const enSidebar = sidebar({
             {
               text: "Verify Contracts with Hardhat",
               link: "/build/tutorials/how-to/verify-contracts.md"
+            },
+            {
+              text: "Test Contracts with Hardhat",
+              link: "/build/tutorials/how-to/test-contracts.md"
             },
           ],
         },
