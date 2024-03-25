@@ -14,6 +14,11 @@ The following wallets are known for their robustness, ease of use, and compatibi
 [BlockWallet](https://blockwallet.io/networks/zksync-wallet) is designed for zkSync users seeking a decentralized wallet in a user-friendly package.\
 **Availability**: Chrome extension
 
+### Clave
+
+[Clave](https://www.getclave.io/) is a Smart Contract wallet that provides native support for zkSync, and uses Account Abstraction to bridge Web2 UX into Web3. Clave lets you forget private keys and seed phrases by them your phone or laptops secure enclave.\
+**Availability**: App store, Google Play, Desktop (macOS)
+
 ### Echoo
 
 [Echoo](https://www.echooo.xyz/) combines MPC and AI technologies to offer a next-generation AA smart contract wallet with low-cost Layer 2 capabilities.\
