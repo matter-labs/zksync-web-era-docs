@@ -9,7 +9,7 @@ head:
 
 A Web3 Provider object provides application-layer access to underlying blockchain networks.
 
-The [`zksync-ethers`](https://www.npmjs.com/package/zksync-ethers)) library supports provider methods from the [`ethers.js`](https://docs.ethers.io/v6/api/providers) library and
+The [`zksync-ethers`](https://www.npmjs.com/package/zksync-ethers) library supports provider methods from the [`ethers.js`](https://docs.ethers.io/v6/api/providers) library and
 supplies additional functionality.
 
 Two providers are available:
@@ -38,11 +38,11 @@ Returns a zkSync Era `Provider` object.
 
 #### Inputs
 
-| Parameter  | Type                                                                                 | Description                 |
-| ---------- | ------------------------------------------------------------------------------------ | --------------------------- |
-| `url?`     | [`ethers.FetchRequest`](https://docs.ethers.org/v6/api/utils/fetching/#FetchRequest) | Network RPC URL (optional). |
-| `network?` | [`ethers.Networkish`](https://docs.ethers.org/v6/api/providers/#Networkish)          | Network name (optional).    |
-| `options?` | `any`                                                                                | options (optional).         |
+| Parameter  | Type                                                                                 | Description                                                             |
+| ---------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
+| `url?`     | [`ethers.FetchRequest`](https://docs.ethers.org/v6/api/utils/fetching/#FetchRequest) | Network RPC URL (optional).                                             |
+| `network?` | [`ethers.Networkish`](https://docs.ethers.org/v6/api/providers/#Networkish)          | The network name, chain ID, or object with network details. (optional). |
+| `options?` | `any`                                                                                | Additional provider options (optional).                                 |
 
 ```ts
 constructor(url ? : ethers.FetchRequest | string, network ? : Networkish, options ? : any)
@@ -474,7 +474,7 @@ import { Provider, types } from "zksync-ethers";
 
 const testnetPaymasterBytecodeHash = "0x010000f16d2b10ddeb1c32f2c9d222eb1aea0f638ec94a81d4e916c627720e30";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Bytecode: ${await provider.getBytecodeByHash(testnetPaymasterBytecodeHash)}`);
 ```
 
@@ -764,8 +764,6 @@ async getMainContractAddress(): Promise<Address>
 
 #### Example
 
-Helper function: [toJSON](#tojson).
-
 ```ts
 import { Provider, types } from "zksync-ethers";
 
@@ -875,7 +873,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync-ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Raw block transactions: ${toJSON(await provider.getRawBlockTransactions(90_000))}`);
 ```
 
@@ -930,7 +928,7 @@ await txHandle.waitFinalize();
 
 Returns data from a specific transaction given by the transaction hash.
 
-Calls the [`getTransactionDetails`](../../../api.md#zks-gettransactiondetails) JSON-RPC method.
+Calls the [`zks_getTransactionDetails`](../../../api.md#zks-gettransactiondetails) JSON-RPC method.
 
 #### Inputs
 
