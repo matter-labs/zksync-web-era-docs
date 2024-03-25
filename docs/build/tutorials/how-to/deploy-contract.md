@@ -48,7 +48,7 @@ npm i -D @matterlabs/hardhat-zksync-deploy
 
 Once installed, add the plugin at the top of the **hardhat.config.ts** file.
 
-```bash
+```javascript
 import "@matterlabs/hardhat-zksync-deploy";
 ```
 
@@ -101,7 +101,7 @@ npm i -D @matterlabs/hardhat-zksync-solc
 :::
 Add the plugin at the top of the **hardhat.config.ts** file:
 
-```bash
+```javascript
 import "@matterlabs/hardhat-zksync-solc";
 ```
 
@@ -181,8 +181,15 @@ import { Wallet } from "zksync-ethers";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+import dotenv from "dotenv";
 
-const PRIVATE_KEY = "YOUR_PRIVATE_KEY_HERE";
+dotenv.config();
+
+const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
+
+if (!PRIVATE_KEY) {
+  throw new Error("Wallet private key is not configured in .env file!");
+}
 
 // An example of a deploy script
 export default async function (hre: HardhatRuntimeEnvironment) {
@@ -261,7 +268,7 @@ npm i -D @matterlabs/hardhat-zksync-ethers
 
 Add the plugin at the top of the **hardhat.config.ts** file:
 
-```bash
+```javascript
 import "@matterlabs/hardhat-zksync-ethers";
 ```
 
@@ -270,12 +277,31 @@ import "@matterlabs/hardhat-zksync-ethers";
 To deploy contracts with **hardhat-zksync-ethers**, use the similar configuration for our **hardhat.config.ts** as shown [here.](deploy-contract.md#configuration)
 The **accounts** section enables to specify wallet private keys which help us deploy contracts with automatically populated wallet within **hardhat-zksync-ethers** plugin, but it can still be manually created for other use cases.
 
+:::note
+You should store your private key in `.env` file which is explicitly ignored in `.gitignore` file.
+This way you are protected from acidentally exposing your private key in one of your github repositories.
+:::
+
+When you are about to use the private key, load it using:
+
+```javascript
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
+
+if (!PRIVATE_KEY) {
+  throw new Error("Private key is not configured in .env file!");
+}
+```
+
 ```bash
 {
     url: 'https://sepolia.era.zksync.dev', // you should use the URL of the zkSync network RPC
     ethNetwork: 'sepolia',
     zksync: true,
-    accounts:["0xYOUR_ACCOUNT_PRIVATE_KEY"] // put your private key here
+    accounts:[PRIVATE_KEY] // put your private key here
 },
 ```
 
@@ -293,7 +319,6 @@ In this section, we'll create several deployment scripts to demonstrate various 
 Since we've placed the private key inside the `account` section of **hardhat.config.ts**, we're able to automatically connect the default wallet to the network.
 
 :::note hardhat-zksync-ethers does not require deploy folder
-
 These plugins don't use the **hardhat-zksync-deploy** plugin, so the `deploy` folder isn't used for deployments. Instead, scripts will be stored within the `scripts` folder and executed using the `hardhat run scripts/SCRIPT_NAME` command.
 :::
 
@@ -307,13 +332,25 @@ If we want to obtain a wallet instance for a new private key that is not specifi
 const wallet = await hre.zksyncEthers.getWallet(PRIVATE_KEY);
 ```
 
-If we extend the `account` section inside the `network` settings in the **hardhat.config.ts** with more than one account, we can retrieve the wallets by indexes:
+If we extend the `account` section inside the `network` settings in the **hardhat.config.ts** with more than one account, we can retrieve the wallets by indexes.
+
+First load your private keys from `.env`.
+
+```javascript
+const PRIVATE_KEY_1 = process.env.PRIVATE_KEY_1 || "";
+const PRIVATE_KEY_2 = process.env.PRIVATE_KEY_2 || "";
+const PRIVATE_KEY_3 = process.env.PRIVATE_KEY_3 || "";
+```
+
+Update `accounts` settings with loaded private keys:
 
 ```bash
 ....
-accounts: ["0xYOUR_ACCOUNT_PRIVATE_KEY_1", "0xYOUR_ACCOUNT_PRIVATE_KEY_2", "0xYOUR_ACCOUNT_PRIVATE_KEY_3"]
+accounts: [PRIVATE_KEY_1, PRIVATE_KEY_2, PRIVATE_KEY_3]
 ....
 ```
+
+Access wallets by index in the scripts:
 
 ```javascript
 const wallet = await hre.zksyncEthers.getWallet(0); //first account
@@ -389,13 +426,22 @@ To achieve this, we need to create a deploy script.
 
 ```javascript
 import hre from "hardhat";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const NEW_PRIVATE_KEY = process.env.NEW_PRIVATE_KEY || "";
+
+if (!NEW_PRIVATE_KEY) {
+  throw new Error("Wallet private key is not configured in .env file!");
+}
 
 async function main() {
   console.info(`Running deploy`);
   // Returns artifact for contract name
   const artifact = await hre.zksyncEthers.loadArtifact("SimpleStorage");
   // Use a new wallet for this deployment
-  const wallet = await hre.zksyncEthers.getWallet("0xNEW_PRIVATE_KEY");
+  const wallet = await hre.zksyncEthers.getWallet(NEW_PRIVATE_KEY);
   // Get contract factory using abi and bytecode
   const simpleStorageFactory = await hre.zksyncEthers.getContractFactory(artifact.abi, artifact.bytecode, wallet);
   // Deploy contract
