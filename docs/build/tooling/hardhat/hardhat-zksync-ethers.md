@@ -103,8 +103,8 @@ function loadArtifact: (name: string) => Promise<ZkSyncArtifact>;
 function deployContract: (artifact: ZkSyncArtifact, constructorArguments: any[], wallet?: zk.Wallet, overrides?: ethers.Overrides, additionalFactoryDeps?: ethers.BytesLike[]) => Promise<zk.Contract>;
 ```
 
-- `providerL2()` - retruns a `zk.Provider` for L2, automatically connected to the selected network.
-- `providerL1()` - retruns a `ethers.Provider` for L1, automatically connected to the selected network.
+- `providerL2()` - returns a `zk.Provider` for L2, automatically connected to the selected network.
+- `providerL1()` - returns a `ethers.Provider` for L1, automatically connected to the selected network.
 - `getWallet(privateKeyOrIndex?: string | number)` - returns `zk.Wallet` for the given private key or index. If the network is set to local and the private key is not provided, the method will return a wallet for rich accounts with the default index of `0` or the specified index. If the `accounts` object is set in the hardhat config and the private key is not specified, the method will return the wallet for the given account with the default index `0` or for the specified index.
 - `getWallets()` - returns all wallets of type `zk.Wallet`. If the network is set to local, the method will return wallets for rich accounts. If the `accounts` object is set in the hardhat config for the used network, the method will return the wallets for the provided accounts.
 - `getContractFactory(name: string, wallet?: zk.Wallet, deploymentType?: DeploymentType)` - returns a `zk.ContractFactory` for provided artifact name.

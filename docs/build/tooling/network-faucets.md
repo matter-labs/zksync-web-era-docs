@@ -21,7 +21,9 @@ You can use [LearnWeb3's zkSync Sepolia Faucet](https://learnweb3.io/faucets/zks
 
 Use any of the following faucets to claim SepoliaETH, which you can bridge to zkSync testnet using the [TxSync bridge](https://portal.txsync.io/bridge/?network=era-sepolia).
 
-- [LearnWeb3 Sepolia Faucet](https://learnweb3.io/faucets/sepolia)
+- [LearnWeb3 Sepolia faucet](https://learnweb3.io/faucets/sepolia)
 - [QuickNode Sepolia faucet](https://faucet.quicknode.com/ethereum/sepolia)
 - [Alchemy Sepolia faucet](https://sepoliafaucet.com/)
 - [Proof of Work Sepolia faucet](https://sepolia-faucet.pk910.de/)
+- [Infura Sepolia faucet](https://www.infura.io/faucet/sepolia/)
+- [Ethereum Ecosystem Sepolia faucet](https://www.ethereum-ecosystem.com/faucets/ethereum-sepolia)

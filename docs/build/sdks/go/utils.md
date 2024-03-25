@@ -51,6 +51,12 @@ ContractDeployerAddress := common.HexToAddress("0x000000000000000000000000000000
 L1MessengerAddress := common.HexToAddress("0x0000000000000000000000000000000000008008")
 ```
 
+#### Nonce holder
+
+```go
+NonceHolderAddress := common.HexToAddress("0x0000000000000000000000000000000000008003")
+```
+
 ### Gas
 
 #### `DefaultGasPerPubdataLimit`
