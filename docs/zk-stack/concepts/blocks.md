@@ -38,8 +38,8 @@ introduced them mainly as a "compatibility feature" to accommodate various tools
 that changes frequently. This allows these tools to provide feedback to users, confirming that their transaction has
 been added.
 
-As of now, an L2 block is created every 2 seconds (controlled by StateKeeper's config `miniblock_commit_deadline_ms`),
-and it includes all the transactions received during that time period. This periodic creation of L2 blocks ensures that
+As of now, an L2 block is created every 1 seconds (controlled by StateKeeper's config `miniblock_commit_deadline_ms`)
+(You can check difference between `RemainingBlock` and `EstimateTimeInSec` from [block countdown api endpoint](https://block-explorer-api.mainnet.zksync.io/docs#/Block%20API/ApiController_getBlockCountdown)), and it includes all the transactions received during that time period. This periodic creation of L2 blocks ensures that
 transactions are processed and included in the blocks regularly.
 
 ### Block Properties
