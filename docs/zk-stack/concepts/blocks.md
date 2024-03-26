@@ -198,9 +198,8 @@ preserves:
 ### Fictive L2 block & finalizing the batch
 
 At the end of the batch, [the bootloader](https://github.com/code-423n4/2023-10-zksync/blob/ef99273a8fdb19f5912ca38ba46d6bd02071363d/code/system-contracts/bootloader/bootloader.yul#L3812) calls the `setL2Block`
-one more time
-to allow the operator to create a new empty block. This is done purely for some of the technical reasons inside the
-node, where each batch ends with an empty L2 block.
+one more time to allow the operator to create a new empty block. This is done purely for technical reasons inside the
+node, where each batch ends with an empty L2 block. This empty block contains a Transfer event log, representing the bootloader transferring the collected fees to the operator.
 
 We do not enforce that the last block is empty explicitly as it complicates the development process and testing, but in
 practice, it is, and either way, it should be secure.
