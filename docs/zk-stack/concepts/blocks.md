@@ -85,7 +85,7 @@ maintains a list of `SealCriterion` which include:
 - L2 Gas limit.
 - Published data limit (as each L1 batch must publish information about the changed slots to L1, so all the changes must
   fit within the L1 transaction limit).
-- L1 Gas limit (Similar to the above, but ensuring the commit transaction on L1 wouldn't consume more gas than available).
+- L1 Gas limit (Similar to the above, but ensuring the commit, prove and execute transactions on L1 wouldn't consume more gas than available).
 - Circuits Geometry limits - For certain operations like merkle transformation, there is a maximum number of circuits that can be
   included in a single L1 batch. If this limit is exceeded, we wouldn't be able to generate the proof.
 - Timeout (unlikely to ever be used, but ensures if there are not enough transactions to seal based on the other criteria, the batch is still sealed so information is sent to L1).
