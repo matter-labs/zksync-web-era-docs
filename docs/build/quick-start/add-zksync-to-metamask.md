@@ -36,4 +36,14 @@ Fill in the following details for the zkSync network:
 
 Click on "Save" to add the zkSync network to MetaMask.
 
+## Import from Chainlist
+
+To add zkSync as a custom network in Metamask from Chainlist.org, follow these steps:
+
+- Visit https://chainlist.org/chain/324 (Mainnet) or https://chainlist.org/chain/300 (Testnet) on your browser
+- Click Connect
+- Unlock your metamask
+- Show metamask popup `Allow this site to add a network?` then click Approve.
+- Show `Allow this site to switch the network?` and click Switch
+
 Now you should see the zkSync network listed in the Networks section of MetaMask. You can switch to the zkSync network to interact with zkSync applications and contracts.
