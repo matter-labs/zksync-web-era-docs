@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Deploying to a Non-Local Environment | zkSync Docs
+      content: Deploying ZK Stack Hyperchain to a Non-Local Environment | zkSync Docs
 ---
 
 # Deploying to a Non-Local Environment
