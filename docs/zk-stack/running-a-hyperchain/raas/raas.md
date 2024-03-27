@@ -52,7 +52,7 @@ Once you have the accounts with funds on the L1 base layer, you can do a deposit
 
 ### Using your hyperchain RPC
 
-Your RAAS will either provide external RPC nodes, or your server contains them. Both HTTPS as well as WebSocket (WS) services are provided that are fully web3 compatible (and contain some extra ZK Stack functionalities). Learn more about it [here](../../build/api.md).
+Your RAAS will either provide external RPC nodes, or your server contains them. Both HTTPS as well as WebSocket (WS) services are provided that are fully web3 compatible (and contain some extra ZK Stack functionalities). Learn more about it [here](../../../build/api.md).
 
 ### Using [zksync-cli](https://github.com/matter-labs/zksync-cli)
 
@@ -73,7 +73,7 @@ Your RAAS provider likely gave you the option to setup the Portal module during 
 
 If you chose this option, you can navigate to the displayed Portal URL provided by the RAAS.
 
-If did not choose this option but wish to enable it later, you can use the RAAS dashboard, or contact your provide, or follow the guide [here](/zk-stack/running-a-hyperchain/locally/quickstart.md#using-portal) to setup the Portal module for your server.
+If did not choose this option but wish to enable it later, you can use the RAAS dashboard, or contact your provide, or follow the guide [here](../locally/local.md#using-portal) to setup the Portal module for your server.
 
 ### Using [Block Explorer](https://github.com/matter-labs/block-explorer)
 
@@ -81,7 +81,7 @@ A block explorer was likely setup during configuration by your RAAS, and now run
 
 The RAAS provider should have provided you with links to access front-end `App` in your browser, `API`, `Worker`, and `Data Fetcher`.
 
-If a block explorer was not provided, you can follow the guide [here](/zk-stack/running-a-hyperchain/locally/quickstart.md#using-block-explorer) to setup the open source explorer for your server.
+If a block explorer was not provided, you can follow the guide [here](../locally/local.md#using-block-explorer) to setup the open source explorer for your server.
 
 ## Addendum
 
