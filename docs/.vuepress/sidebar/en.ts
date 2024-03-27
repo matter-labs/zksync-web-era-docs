@@ -945,7 +945,7 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "Local",
-              link: "/zk-stack/running-a-hyperchain/locally/quickstart.html",
+              link: "/zk-stack/running-a-hyperchain/locally/local.html",
             },
             {
               text: "In Production",
@@ -959,7 +959,7 @@ export const enSidebar = sidebar({
           children: [
             {
               text: "RAAS",
-              link: "/zk-stack/running-a-hyperchain/raas/quickstart.html",
+              link: "/zk-stack/running-a-hyperchain/raas/raas.html",
             },
           ]
         },
