@@ -172,7 +172,7 @@ Implementation detail - function returns a magic value just like it is designed 
 
 Bridges are completely separate contracts from the Diamond. They are a wrapper for L1 <-> L2 communication on contracts
 on both L1 and L2. Upon locking assets on L1, a request is sent to mint these bridged assets on L2. Upon burning assets
-on L2, a request is sent to unlock them on L2.
+on L2, a request is sent to unlock them on L1.
 
 Unlike the native Ether bridging, all other assets can be bridged by the custom implementation relying on the trustless
 L1 <-> L2 communication.
@@ -288,4 +288,4 @@ struct Deposit {
 ```
 
 Currently, the limit is used only for blocking deposits of the specific token (turning on the limitation and setting the
-limit to zero). And on the near future, this functionality will be completely removed.
+limit to zero). And in the near future, this functionality will be completely removed.

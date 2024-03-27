@@ -610,7 +610,7 @@ export const enSidebar = sidebar({
               link: "/zk-stack/concepts/data-availability/overview.md"
             },
             {
-              text: "Recreating State form L1",
+              text: "Recreating State from L1",
               link: "/zk-stack/concepts/data-availability/recreate-l2-state-from-l1-state-diffs.md"
             },
             {
