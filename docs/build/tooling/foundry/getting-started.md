@@ -11,13 +11,45 @@ head:
 
 The primary prerequisite for using `foundry-zksync` is the [Rust Compiler](https://www.rust-lang.org/tools/install).
 
-### Installation
+### Installation Guide
 
-`foundry-zksync` components can be installed individually or as a suite:
+To integrate `foundry-zksync` into your projects, you have the flexibility to install its components individually or the entire suite at once. Follow the steps below to get started:
 
-- **zkForge**: Run `cargo install --path ./crates/zkforge --profile local --force --locked`.
-- **zkCast**: Execute `cargo install --path ./crates/zkcast --profile local --force --locked`.
-- **Entire Suite**: Use `cargo build --release` for a complete installation.
+1. Clone the repository:
+
+   ```bash
+   git clone git@github.com:matter-labs/foundry-zksync.git
+   ```
+
+2. Navigate to the project directory and switch to the main branch:
+
+   ```bash
+   cd foundry-zksync && git checkout main
+   ```
+
+For component-specific installations:
+
+- **zkForge**: To install, execute:
+
+  ```bash
+  cargo install --path ./crates/zkforge --profile local --force --locked
+  ```
+
+- **zkCast**: To install, run:
+
+  ```bash
+  cargo install --path ./crates/zkcast --profile local --force --locked
+  ```
+
+For the entire suite:
+
+- Execute the following command for a comprehensive installation:
+
+  ```bash
+  cargo build --release
+  ```
+
+Choose the installation that best fits your development needs.
 
 ## Configuration
 
