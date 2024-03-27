@@ -77,18 +77,18 @@ as the container for executing the program and handling the transactions within 
 Most blockchains use factors like time and gas usage to determine when a block should be closed or sealed. However, our
 case is a bit more complex because we also need to consider prover capacity and limits related to publishing to L1.
 
-The decision of when to seal the batch is handled by the code in the [conditional_sealer](https://github.com/matter-labs/zksync-era/blob/main/core/lib/zksync_core/src/state_keeper/seal_criteria/conditional_sealer.rs#20) module. It
-maintains a list of `SealCriterion` and at the time of writing this article, [we have 9 reasons to seal the
-batch](https://github.com/matter-labs/zksync-era/blob/main/core/lib/zksync_core/src/state_keeper/seal_criteria/mod.rs#L106), which include:
+The decision of when to seal the batch is handled by the code in the [conditional_sealer](https://github.com/matter-labs/zksync-era/blob/main/core/lib/zksync_core/src/state_keeper/seal_criteria/conditional_sealer.rs) module. It
+maintains a list of `SealCriterion` which include:
 
-- Transaction slots limit (currently set to 750 transactions in `StateKeeper`'s config - `transaction_slots`).
-- Gas limit (currently set to `MAX_L2_TX_GAS_LIMIT` = 80M).
+- Transaction count limit (that is, how many transactions would fit within a batch).
+- Transaction size limit (that is, the total data/information within the transactions).
+- L2 Gas limit.
 - Published data limit (as each L1 batch must publish information about the changed slots to L1, so all the changes must
-  fit within the L1 transaction limit, currently set to `MAX_PUBDATA_PER_L1_BATCH`= 120k).
-- zkEVM Geometry limits - For certain operations like merkle transformation, there is a maximum number of circuits that can be
+  fit within the L1 transaction limit).
+- L1 Gas limit (Similar to the above, but ensuring the commit, prove and execute transactions on L1 wouldn't consume more gas than available).
+- Circuits Geometry limits - For certain operations like merkle transformation, there is a maximum number of circuits that can be
   included in a single L1 batch. If this limit is exceeded, we wouldn't be able to generate the proof.
-
-We also have a `TimeoutCriterion` - but it is not enabled.
+- Timeout (unlikely to ever be used, but ensures if there are not enough transactions to seal based on the other criteria, the batch is still sealed so information is sent to L1).
 
 However, these sealing criteria pose a significant challenge because it is difficult to predict in advance whether
 adding a given transaction to the current batch will exceed the limits or not. This unpredictability adds complexity to
