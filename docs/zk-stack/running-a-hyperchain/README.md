@@ -10,29 +10,42 @@ head:
 <section>
   <div class="card-container">
     <RouterLink
-      to="/zk-stack/running-a-hyperchain/locally/local"
+      to="/zk-stack/running-a-hyperchain/locally"
       class="card"
     >
       <img  
         src="/images/landing/run-a-hyperchain.png"
-        alt="Deploying and running a ZK Stack hyperchain"
+        alt="Running a ZK Stack hyperchain locally on your own machine"
       >
       <div class="content">
         <h3>Locally</h3>
-        <p>Deploying and running a hyperchain locally on your own machine.</p>
+        <p>Running a hyperchain locally on your own machine.</p>
       </div>
     </RouterLink>
     <RouterLink
-      to="/zk-stack/running-a-hyperchain/raas/raas"
+      to="/zk-stack/running-a-hyperchain/production"
+      class="card"
+    >
+      <img  
+        src="/images/landing/run-a-hyperchain.png"
+        alt="Deploying a ZK Stack hyperchain to a non-local environment"
+      >
+      <div class="content">
+        <h3>In Production</h3>
+        <p>Deploying a hyperchain to a non-local environment.</p>
+      </div>
+    </RouterLink>
+    <RouterLink
+      to="/zk-stack/running-a-hyperchain/raas"
       class="card"
     >
       <img
         src="/images/landing/run-a-hyperchain.png" 
-        alt="Deploying and running a ZK Stack hyperchain via RAAS (Rollup As A Service)"
+        alt="Deploying and running a ZK Stack hyperchain via RaaS (Rollup as a Service)"
       />
       <div class="content">
-        <h3>Rollup As A Service</h3>
-        <p>Deploying and running a hyperchain through a RAAS (Rollup As A Service Provider).</p>
+        <h3>Rollup as a Service</h3>
+        <p>Running and deploying a hyperchain using a RaaS provider.</p>
       </div>
     </RouterLink>
   </div>

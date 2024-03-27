@@ -51,7 +51,7 @@ zk
 
 :::warning
 
-The commands above are not just running docker containers, but are actually building the code from the repo to spin up your hyperchain. For this reason the process might take some time. If you just want to run docker containers to play around with a zkSync chain, you can use `npx zksync-cli dev`. Learn more [here](../../../build/tooling/zksync-cli/getting-started.md).
+The commands above are not just running docker containers, but are actually building the code from the repo to spin up your hyperchain. For this reason the process might take some time. If you just want to run docker containers to play around with a zkSync chain, you can use `npx zksync-cli dev`. Learn more [here](../../build/tooling/zksync-cli/getting-started.md).
 :::
 
 ### Your hyperchain is now deployed
@@ -86,7 +86,7 @@ Once you have the accounts with funds on the L1 base layer, you can do a deposit
 
 ### Using your hyperchain RPC
 
-Your server contains both HTTPS as well as WebSocket (WS) services that are fully web3 compatible (and contain some extra ZK Stack functionalities). Learn more about it [here](../../../build/api.md).
+Your server contains both HTTPS as well as WebSocket (WS) services that are fully web3 compatible (and contain some extra ZK Stack functionalities). Learn more about it [here](../../build/api.md).
 
 ### Using [zksync-cli](https://github.com/matter-labs/zksync-cli)
 

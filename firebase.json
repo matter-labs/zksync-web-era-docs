@@ -34,11 +34,6 @@
       ],
       "redirects": [
         {
-          "source": "/zk-stack/running-a-hyperchain/locally.html",
-          "destination": "/zk-stack/running-a-hyperchain/locally/local.html",
-          "type": "302"
-        },
-        {
           "source": "/build/tooling/zksync-cli/examples/contract-interaction.html",
           "destination": "/build/tooling/zksync-cli/commands/contract-interaction.html",
           "type": "302"
@@ -1258,11 +1253,6 @@
         }
       ],
       "redirects": [
-        {
-          "source": "/zk-stack/running-a-hyperchain/locally.html",
-          "destination": "/zk-stack/running-a-hyperchain/locally/local.html",
-          "type": "302"
-        },
         {
           "source": "/build/tooling/zksync-cli/examples/contract-interaction.html",
           "destination": "/build/tooling/zksync-cli/commands/contract-interaction.html",

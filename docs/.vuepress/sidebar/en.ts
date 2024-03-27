@@ -936,32 +936,16 @@ export const enSidebar = sidebar({
       collapsible: true,
       children: [
         {
-          text: "Overview",
-          link: "/zk-stack/running-a-hyperchain/"
-        },
-        {
           text: "Locally",
-          collapsible: true,
-          children: [
-            {
-              text: "Local",
-              link: "/zk-stack/running-a-hyperchain/locally/local.html",
-            },
-            {
-              text: "In Production",
-              link: "/zk-stack/running-a-hyperchain/locally/production.md"
-            }
-          ]
+          link: "/zk-stack/running-a-hyperchain/locally.html",
         },
         {
-          text: "Rollup As A Service",
-          collapsible: true,
-          children: [
-            {
-              text: "RAAS",
-              link: "/zk-stack/running-a-hyperchain/raas/raas.html",
-            },
-          ]
+          text: "In Production",
+          link: "/zk-stack/running-a-hyperchain/production.md"
+        },
+        {
+          text: "Rollup as a Service",
+          link: "/zk-stack/running-a-hyperchain/raas.html",
         },
       ]
     },
