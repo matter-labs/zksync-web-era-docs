@@ -9,13 +9,13 @@ head:
 
 To access the testnet funds (Sepolia) you can use one of the following third party faucets:
 
-## LearnWeb3
-
-You can use [LearnWeb3's zkSync Sepolia Faucet](https://learnweb3.io/faucets/zksync_sepolia/) to claim zkSync Sepolia Testnet **0.01 ETH per day**.
-
 ## zkSync testnet faucet by Chainstack
 
 [Chainstack Faucet](https://faucet.chainstack.com/zksync-testnet-faucet) is an easy to use Multi-Chain Faucet. You can use Chainstack Faucet to claim zkSync Sepolia Testnet **0.05 ETH every 24 hours**. Chainstack API key is required.
+
+## LearnWeb3
+
+You can use [LearnWeb3's zkSync Sepolia Faucet](https://learnweb3.io/faucets/zksync_sepolia/) to claim zkSync Sepolia Testnet **0.01 ETH per day**. GitHub authentication is required.
 
 ## Sepolia faucets
 

@@ -47,3 +47,5 @@ lib
 .cache/
 .temp/
 .temp
+
+.notes.md
