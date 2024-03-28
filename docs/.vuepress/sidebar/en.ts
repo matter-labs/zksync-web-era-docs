@@ -937,12 +937,16 @@ export const enSidebar = sidebar({
       children: [
         {
           text: "Locally",
-          link: "/zk-stack/running-a-hyperchain/locally.md"
+          link: "/zk-stack/running-a-hyperchain/locally.html",
         },
         {
           text: "In Production",
           link: "/zk-stack/running-a-hyperchain/production.md"
-        }
+        },
+        {
+          text: "Rollup as a Service",
+          link: "/zk-stack/running-a-hyperchain/raas.html",
+        },
       ]
     },
   ],
