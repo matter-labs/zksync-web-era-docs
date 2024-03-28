@@ -14,7 +14,7 @@ The [paymaster utilities library](https://github.com/zksync-sdk/zksync-ethers/bl
 Constant ABI definition for
 the [Paymaster Flow Interface](https://github.com/matter-labs/era-contracts/blob/583cb674a2b942dda34e9f46edb5a9f5b696b90a/l2-contracts/contracts/interfaces/IPaymasterFlow.sol).
 
-```typescript
+```ts
 export const PAYMASTER_FLOW_ABI = new ethers.Interface(require("../abi/IPaymasterFlow.json"));
 ```
 
@@ -59,7 +59,7 @@ Returns a correctly-formed `paymasterParams` object for common [paymaster flows]
 | `paymasterAddress` | `Address`                                     | The non-zero `paymaster` address. |
 | `paymasterInput`   | [`PaymasterInput`](./types.md#paymasterinput) | The input data to the paymaster.  |
 
-```typescript
+```ts
 export function getPaymasterParams(paymasterAddress: Address, paymasterInput: PaymasterInput): PaymasterParams;
 ```
 
