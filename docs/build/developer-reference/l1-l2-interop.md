@@ -25,6 +25,14 @@ L1 to L2 communication is governed by the [`IZkSync.sol`](https://github.com/mat
 - If you prefer to learn-by-doing, the [cross chain governance tutorial](../tutorials/smart-contract-development/cross-chain-tutorial.md) is a practical example of layer interoperability.
   :::
 
+#### L1 to L2 transaction filtering
+
+Hyperchain operator can filter L1→L2 transactions coming through the Diamond proxy. It is achieved by having an address
+of the special contract called TransactionFilterer in the state transition storage. If the filterer exists, it is being
+called in the Mailbox facet with the tx details, and has to return whether the transaction can be executed or not. If
+you want to use this feature, you have to deploy the contract that implements `ITransactionFilterer` interface and set
+its address in the admin facet. Same setter can be used to remove the filterer, it has to be called with the `0` address.
+
 ### Gas estimation
 
 The SDK processes gas estimation for transactions implicitly. However, it is also possible to implement the gas estimation processes explicitly.

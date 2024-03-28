@@ -160,7 +160,7 @@ be able to leverage them when available).
     Hyperchain.
   - `Facets` and `Verifier` are shared across chains that relies on the same ST: `Base`, `Executor` , `Getters`, `Admin`
     , `Mailbox.`The `Verifier` is the contract that actually verifies the proof, and is called by the `Executor`.
-  - Upgrade Mechanism The system requires all chains to be up-to-date with the latest implementation, so whenever an
+  - `Upgrade Mechanism` The system requires all chains to be up-to-date with the latest implementation, so whenever an
     update is needed, we have to “force” each chain to update, but due to decentralization, we have to give each chain a
     time frame (more information in the
     [Upgrade Mechanism](https://www.notion.so/ZK-Stack-shared-bridge-alpha-version-a37c4746f8b54fb899d67e474bfac3bb?pvs=21)
