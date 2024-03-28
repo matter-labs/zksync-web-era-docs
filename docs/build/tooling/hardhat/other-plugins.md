@@ -57,7 +57,7 @@ In addition, make sure to read about [local testing](../../test-and-debug/gettin
 
 ### hardhat-preprocessor
 
-This plugin allows to pre-process contract source code before compilation.
+This plugin enables the pre-processing of contract source code prior to compilation.
 
 ::: warning CACHE_BREAKER Field Issue
 
