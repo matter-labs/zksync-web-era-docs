@@ -314,7 +314,43 @@ To ensure users experience paymasters on testnet, as well as keep supporting pay
 
 The paymaster supports only the [approval based](#approval-based-paymaster-flow) paymaster flow and requires that the `token` param is equal to the token being swapped and `minAllowance` to equal to least `tx.maxFeePerGas * tx.gasLimit`. In addition, the testnet paymaster does not make use of the `_innerInput` parameter, so nothing should be provided (empty `bytes`).
 
-An example of how to use testnet paymaster can be seen in the [quickstart](../../build/quick-start/hello-world.md#paying-fees-using-testnet-paymaster) tutorial.
+An example of how to use testnet paymaster can be seen in the [frontend quickstart](../tutorials/dapp-development/frontend-quickstart-paymaster.md#pay-fees-with-erc20-tokens) tutorial.
+
+### Estimating gas when interacting with a paymaster
+
+While the paymaster pays the fees for the user, it also consumes additional gas compared to a normal transaction, which includes:
+
+1. Computation inside the paymaster's `validateAndPayForPaymasterTransaction` as well as `postTransaction`.
+2. Paymaster sending funds to the bootloader.
+3. Assigning and spending the allowance for the ERC20 tokens by the user. (optional, in case the user pays the paymaster in an ERC20 token)
+
+While the (1) is usually quite negligible (it, of course, depends on the implementation of each individual paymaster), (2) is roughly similar to what the user would pay in a transaction if it was to be spent by the user on its own, the (3) is unique for the paymaster operations, i.e. it is effectively an additional slot that is affected. Especially if the user grants allowance for the first time, since it would require 32 bytes to publish the storage key identifier, which may amount to roughly 400k gas under 50 gwei L1 gas price. Note, that even though the usual flow is "grant `X` allowance to the paymaster + paymaster spends all allowance", which means that the slot is zeroed out at the end of the execution, the cost for write is pre-charged during execution. In other words, we firstly charge for pubdata required for updating the allowance and if the slot has been zeroed out by the end of the transaction, the user will be refunded, but only at the end of the transaction.
+
+All of the above means that the estimation of the transaction must be as close to the final execution as possible. Especially, with regard to pubdata-intensive operations, like writing to storage.
+
+On the front-end side you should provide the corresponding `paymasterInput` to ensure that the paymaster is used during estimation. The corresponding snippet from the [Custom paymaster tutorial](../tutorials/smart-contract-development/paymasters/custom-paymaster-tutorial.md) shows how to do it:
+
+```ts
+const gasLimit = await erc20.estimateGas.mint(wallet.address, 5, {
+  customData: {
+    gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
+    paymasterParams: paymasterParams,
+  },
+});
+```
+
+Here, the `paymasterParams` contain both the address of the paymaster as well as its input.
+
+Often `paymasterInput` contains some parameters that are hard to know at the time of the estimation. For instance: the actual amount of tokens that the user needs to provide. Also, often paymasters may store the pricing data on the server side and so a signature that allows a certain conversion rate may be needed.
+
+If some signature that depends on the content of the transaction is required, it is better to return `magic = 0` from the `validateAndPayForPaymasterTransaction`, while consuming roughly the same amount of gas as verification of a valid signature would require. This way it will ensure that while the transaction wouldn't pass on mainnet (since `magic = 0`) it will still be able to estimate the correct number of gas needed for this function to work. Note, that gas estimation is basically a binary search that searches for the lower number of gas that makes the transaction not fail, so if for some reason the validation is reverted, the gas estimation will try to provide a higher gas value. If it always fails, the gas estimation will fail also. The correctness of the `magic` value is checked during transaction submission only and is not checked during estimation.
+
+Sometimes, unfortunately it will create "chicken and egg" problem. In order to know how much tokens should user grant to the paymaster, the paymaster needs to know the `gasLimit`, but in order to know the `gasLimit` we need to know the state diff created by the changes to the allowance. We already add some % to the estimated gas, so a small difference from the final amount is usually acceptable, but at a relatively close estimate should be provided in the `paymasterParams`.
+
+There are two ways to provide the allowance for estimate:
+
+- If you have a rough estimation on how many funds the user will end up paying, you can use it. If the difference is on the order of a few pubdata bytes, it won't cause the tx to fail as our estimation already takes it into account. This approach is prone to some issues: for instance if user has a balance of 100 USDC and creates a tx that transfers 95 USDC from the users' balance, while during estimation you will assume that the user spends 10 USDC for the fee, the tx will fail (since it wont have enough funds for the actual transaction).
+- Alternatively you could estimate the cost of an individual transaction where the user would just set the allowance to the paymaster and then add this cost on top of the original estimated one. This may introduce a noticeable overhead to the original estimation, since such estimated tx would also include changing the nonce/general validation logic.
 
 ## Signature validation
 

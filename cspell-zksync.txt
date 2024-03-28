@@ -30,6 +30,7 @@ mainchain
 offchain
 processed
 zcli
+zkcli
 blockchains
 sidechain
 sidechains
@@ -82,6 +83,9 @@ IPFS
 Nuxt
 viem
 Wagmi
+zkbuild
+zkout
+zkcreate
 
 // docs restructure
 NVME
@@ -300,6 +304,7 @@ Zerion
 Maverik
 freezability
 predeloyed
+Aave
 
 // testing ci
 Omnibtc

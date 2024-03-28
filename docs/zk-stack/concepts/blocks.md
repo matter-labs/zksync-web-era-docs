@@ -38,8 +38,8 @@ introduced them mainly as a "compatibility feature" to accommodate various tools
 that changes frequently. This allows these tools to provide feedback to users, confirming that their transaction has
 been added.
 
-As of now, an L2 block is created every 2 seconds (controlled by StateKeeper's config `miniblock_commit_deadline_ms`),
-and it includes all the transactions received during that time period. This periodic creation of L2 blocks ensures that
+As of now, an L2 block is created every 1 seconds (controlled by StateKeeper's config `miniblock_commit_deadline_ms`)
+(You can check difference between `RemainingBlock` and `EstimateTimeInSec` from [block countdown api endpoint](https://block-explorer-api.mainnet.zksync.io/docs#/Block%20API/ApiController_getBlockCountdown)), and it includes all the transactions received during that time period. This periodic creation of L2 blocks ensures that
 transactions are processed and included in the blocks regularly.
 
 ### Block Properties
@@ -198,9 +198,8 @@ preserves:
 ### Fictive L2 block & finalizing the batch
 
 At the end of the batch, [the bootloader](https://github.com/code-423n4/2023-10-zksync/blob/ef99273a8fdb19f5912ca38ba46d6bd02071363d/code/system-contracts/bootloader/bootloader.yul#L3812) calls the `setL2Block`
-one more time
-to allow the operator to create a new empty block. This is done purely for some of the technical reasons inside the
-node, where each batch ends with an empty L2 block.
+one more time to allow the operator to create a new empty block. This is done purely for technical reasons inside the
+node, where each batch ends with an empty L2 block. This empty block contains a Transfer event log, representing the bootloader transferring the collected fees to the operator.
 
 We do not enforce that the last block is empty explicitly as it complicates the development process and testing, but in
 practice, it is, and either way, it should be secure.

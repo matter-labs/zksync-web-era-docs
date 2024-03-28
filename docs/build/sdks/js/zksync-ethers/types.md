@@ -210,7 +210,6 @@ Enumerated list of networks and their ids.
 - Mainnet = `1`
 - Ropsten = `3`
 - Rinkeby = `4`
-- Goerli = `5`
 - Sepolia = `6`,
 - localhost = `9`
 
@@ -265,6 +264,17 @@ Interface representation of raw block with transactions
 ## `Signature`
 
 0x-prefixed, hex-encoded, ECDSA signature as string.
+
+## `StorageProof`
+
+Interace representation of Merkle proofs for storage values.
+
+- `address`: `string`;
+- `storageProof` (Array):
+  - `key`: `string`;
+  - `value`: `string`;
+  - `index`: `number`;
+  - `proof`: `string[]`;
 
 ## `Token`
 

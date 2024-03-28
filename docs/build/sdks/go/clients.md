@@ -746,7 +746,7 @@ L2TransactionFromPriorityOp(ctx context.Context, l1TxReceipt *types.Receipt) (*z
 
 ```go
 // Connect to Ethereum network
-ethClient, err := ethclient.Dial("https://rpc.ankr.com/eth_goerli")
+ethClient, err := ethclient.Dial("https://rpc.ankr.com/eth_sepolia")
 if err != nil {
 	log.Panic(err)
 }
@@ -1032,4 +1032,61 @@ if err != nil {
 	log.Panic(err)
 }
 fmt.Println("Gas: ", gas)
+```
+
+### `Proof`
+
+Returns Merkle proofs for one or more storage values at the specified account along with a Merkle proof of their authenticity.
+
+#### Inputs
+
+| Parameter       | Type              | Description                                                                                     |
+| --------------- | ----------------- | ----------------------------------------------------------------------------------------------- |
+| `ctx`           | `context.Context` | Context.                                                                                        |
+| `address`       | `common.Address`  | The account to fetch storage values and proofs for.                                             |
+| `keys`          | `common.Hahs`     | Vector of storage keys in the account.                                                          |
+| `l1BatchNumber` | `*big.Int`        | Number of the L1 batch specifying the point in time at which the requested values are returned. |
+
+```go
+Proof(ctx context.Context, address common.Address, keys []common.Hash, l1BatchNumber *big.Int) (*zkTypes.StorageProof, error)
+```
+
+#### Example
+
+```go
+// Fetching the storage proof for rawNonces storage slot in NonceHolder system contract.
+// mapping(uint256 => uint256) internal rawNonces;
+
+baseClient, ok := client.(*clients.BaseClient)
+if !ok {
+  log.Panic("casting could not be performed")
+}
+
+address := common.HexToAddress("<address>")
+
+// Ensure the address is a 256-bit number by padding it
+// because rawNonces slot uses uint256 for mapping addresses and their nonces.
+addressPadded := common.LeftPadBytes(address.Bytes(), 32)
+
+// Convert the slot number to a hex string and pad it to 32 bytes
+slotBytes := common.Hex2Bytes("0x00") // slot with index 0
+slotPadded := common.LeftPadBytes(slotBytes, 32)
+
+// Concatenate the padded address and slot number
+concatenated := append(addressPadded, slotPadded...)
+storageKey := crypto.Keccak256(concatenated)
+
+l1BatchNumber, err := client.L1BatchNumber(context.Background())
+if err != nil {
+  log.Panic(err)
+}
+
+storageProof, err := baseClient.Proof(
+		context.Background(),
+		utils.NonceHolderAddress,
+		[]common.Hash{common.BytesToHash(storageKey)},
+		l1BatchNumber)
+if err != nil {
+	log.Panic(err)
+}
 ```

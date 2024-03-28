@@ -45,7 +45,7 @@ The DIAOracle contract is designed to retrieve and store the latest price inform
 
 Using `zksync-cli` create a new project with the required dependencies and boilerplate paymaster implementations:
 
-`npx zksync-cli@latest create-project DIAOracle`
+`npx zksync-cli create DIAOracle`
 
 Choose `Hardhat + Solidity` to setup the project repository.
 

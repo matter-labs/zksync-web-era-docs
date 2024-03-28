@@ -18,9 +18,10 @@ contracts and smart accounts. There are the following objects that implement the
 Contract instantiation is the same as in the [`geth`](https://geth.ethereum.org/docs/developers/dapp-developer/native-bindings) library. For
 examples of how to deploy and instantiate contracts and accounts, refer to the following:
 
-- [Deploy smart contracts using CREATE opcode](examples/create.md).
-- [Deploy smart contracts using CREATE2 opcode](examples/create2.md).
-- [Deploy smart accounts using CREATE and CREATE2 opcode](examples/custom-paymaster/deploy-account.md)
+- [Deploy smart contracts using CREATE method](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/08_deploy_create.go).
+- [Deploy smart contracts using CREATE2 method](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/11_deploy_create2.go).
+- [Deploy smart accounts using CREATE method](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/16_deploy_create_account.go).
+- [Deploy smart accounts using CREATE2 method](https://github.com/zksync-sdk/zksync2-examples/blob/main/go/17_deploy_create2_account.go).
 
 ## Contracts interfaces
 

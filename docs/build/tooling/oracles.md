@@ -11,10 +11,6 @@ head:
 
 Welcome to the Oracles page, a comprehensive hub dedicated to interacting with oracle services on zkSync Era. As the demand for decentralized applications continues, the need for reliable and efficient oracle services becomes paramount. Within these sections, you'll unearth specialized usage guides and tangible examples designed to facilitate seamless interactions with a variety of different oracle services.
 
-### API3
-
-[API3](https://api3.org/) empowers smart contracts with its data feeds, termed [dAPIs➚](https://docs.api3.org/guides/dapis/subscribing-self-funded-dapis/). These dAPIs, sourced from first-party oracles, constantly relay signed, updated on-chain data. These feeds are available for zkSync Era. Check out the usage guide below to get started today.
-
 ### DIA
 
 [DIA](https://docs.diadata.org/products/token-price-feeds) token price feeds provide smart contract real-time price information of 3,000+ cryptocurrencies, transparently sourced from 80+ trusted, high-volume DEXs and CEXs. Check out the usage guide below to get started today!
@@ -29,11 +25,7 @@ Welcome to the Oracles page, a comprehensive hub dedicated to interacting with o
 
 ### Usage guides
 
-- [api3](../tutorials/tooling-guides/api3.md)
-
-- [dia](../tutorials/tooling-guides/dia.md)
-
-- [redstone](../tutorials/tooling-guides/redstone.md)
+- [RedStone](../tutorials/tooling-guides/redstone.md)
 
 ### Contribute
 

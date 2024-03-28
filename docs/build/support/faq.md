@@ -101,7 +101,7 @@ While there are a few, rarely used opcodes that we do not support, we have not f
 
 At a very high level, Account Abstraction allows us to make authorizations _programmable_, enabling a greater diversity of wallet and protocol design with use cases including:
 
-- The implementation of smart contract wallets that improve the user experience of private key storage and recovery (eg. [social recovery](https://vitalik.ca/general/2021/01/11/recovery.html), multisig).
+- The implementation of smart contract wallets that improve the user experience of private key storage and recovery (eg. [social recovery](https://vitalik.eth.limo/general/2021/01/11/recovery.html), multisig).
 - The ability to natively pay gas fees in tokens other than ETH.
 - The ability for accounts to change public and private keys.
 - The addition of non-cryptographic modifications, where users can require transactions to have expiry times, confirm slightly out-of-order, and more.
@@ -160,10 +160,6 @@ Our [Block Explorer](https://explorer.zksync.io) will show everything you may ne
 ## Can someone claim the address I have for my contract in other EVM networks in zkSync Era?
 
 The contract address derivation formula is different from the regular EVM approach. Even if a contract is deployed from the same account address with the same nonce, the zkSync Era contract address will not be the same as it is in another EVM network. This means, for example, that no one will be able to claim an existing Ethereum address of your protocol to try to trick users into interacting with a malicious version of it.
-
-## What is the storage limit for smart contracts on zkSync Era?
-
-The current limit is 3600000000 gas.
 
 ## What is Block Gas Limit on zkSync Era?
 

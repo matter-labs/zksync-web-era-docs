@@ -2,10 +2,17 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Deploying to a Non-Local Environment | zkSync Docs
+      content: Deploying ZK Stack Hyperchain to a Non-Local Environment | zkSync Docs
 ---
 
 # Deploying to a Non-Local Environment
+
+:::warning
+
+ZK Stack is still under development. We advise you to only use for local and testnet deployments.
+:::
+
+## Deploying to a non-local environment
 
 The process to deploy to a non local environment is pretty similar to the local one. The wizard allows you to set up URLs to external services (database, RPCs, etc).
 

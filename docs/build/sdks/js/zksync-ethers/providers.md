@@ -9,7 +9,7 @@ head:
 
 A Web3 Provider object provides application-layer access to underlying blockchain networks.
 
-The [`zksync-ethers`](https://www.npmjs.com/package/zksync-ethers)) library supports provider methods from the [`ethers.js`](https://docs.ethers.io/v6/api/providers) library and
+The [`zksync-ethers`](https://www.npmjs.com/package/zksync-ethers) library supports provider methods from the [`ethers.js`](https://docs.ethers.io/v6/api/providers) library and
 supplies additional functionality.
 
 Two providers are available:
@@ -38,11 +38,11 @@ Returns a zkSync Era `Provider` object.
 
 #### Inputs
 
-| Parameter  | Type                                                                                 | Description                 |
-| ---------- | ------------------------------------------------------------------------------------ | --------------------------- |
-| `url?`     | [`ethers.FetchRequest`](https://docs.ethers.org/v6/api/utils/fetching/#FetchRequest) | Network RPC URL (optional). |
-| `network?` | [`ethers.Networkish`](https://docs.ethers.org/v6/api/providers/#Networkish)          | Network name (optional).    |
-| `options?` | `any`                                                                                | options (optional).         |
+| Parameter  | Type                                                                                 | Description                                                             |
+| ---------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
+| `url?`     | [`ethers.FetchRequest`](https://docs.ethers.org/v6/api/utils/fetching/#FetchRequest) | Network RPC URL (optional).                                             |
+| `network?` | [`ethers.Networkish`](https://docs.ethers.org/v6/api/providers/#Networkish)          | The network name, chain ID, or object with network details. (optional). |
+| `options?` | `any`                                                                                | Additional provider options (optional).                                 |
 
 ```ts
 constructor(url ? : ethers.FetchRequest | string, network ? : Networkish, options ? : any)
@@ -132,7 +132,7 @@ async estimateGas(_tx: TransactionRequest): Promise<bigint>
 #### Example
 
 ```ts
-import { Provider, types } from "zksync-ethers";
+import { Provider, types, utils } from "zksync-ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const gasTokenApprove = await provider.estimateGas({
@@ -144,10 +144,10 @@ console.log(`Gas for token approval tx: ${gasTokenApprove}`);
 ```
 
 ```ts
-import { Provider, types } from "zksync-ethers";
+import { Provider, types, utils } from "zksync-ethers";
 
-const ADDRESS = "<ADDRESS>";
-const RECEIVER = "<RECEIVER>";
+const ADDRESS = "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049";
+const RECEIVER = "0xa61464658AfeAf65CccaaFD3a512b69A83B77618";
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const tokenAddress = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
 const paymasterAddress = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
@@ -212,13 +212,14 @@ Calls internal method [`getTransferTx`](#gettransfertx) to get the transfer tran
 
 #### Inputs
 
-| Parameter    | Type                                                                     | Description                         |
-| ------------ | ------------------------------------------------------------------------ | ----------------------------------- |
-| `token`      | `Address`                                                                | Token address.                      |
-| `amount`     | `BigNumberish`                                                           | Amount of token.                    |
-| `from?`      | `Address`                                                                | From address (optional).            |
-| `to?`        | `Address`                                                                | To address (optional).              |
-| `overrides?` | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Ethers overrides object (optional). |
+| Parameter          | Type                                                                     | Description                         |
+| ------------------ | ------------------------------------------------------------------------ | ----------------------------------- |
+| `token`            | `Address`                                                                | Token address.                      |
+| `amount`           | `BigNumberish`                                                           | Amount of token.                    |
+| `from?`            | `Address`                                                                | From address (optional).            |
+| `to?`              | `Address`                                                                | To address (optional).              |
+| `paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams)                          | Paymaster parameters (optional).    |
+| `overrides?`       | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Ethers overrides object (optional). |
 
 ```ts
 async estimateGasTransfer(transaction: {
@@ -226,6 +227,7 @@ async estimateGasTransfer(transaction: {
   amount: BigNumberish;
   from ? : Address;
   token ? : Address;
+  paymasterParams ?: PaymasterParams;
   overrides ? : ethers.Overrides;
 }): Promise<bigint>
 ```
@@ -233,7 +235,7 @@ async estimateGasTransfer(transaction: {
 #### Example
 
 ```ts
-import { Provider, types } from "zksync-ethers";
+import { Provider, types, utils } from "zksync-ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const gasTransfer = await provider.estimateGasTransfer({
@@ -254,14 +256,15 @@ withdrawal transaction and sends it to the [`estimateGas`](#estimategas) method.
 
 #### Inputs
 
-| Parameter        | Type                                                                     | Description                                                                                             |
-| ---------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| `token`          | `Address`                                                                | Token address.                                                                                          |
-| `amount`         | `BigNumberish`                                                           | Amount of token.                                                                                        |
-| `from?`          | `Address`                                                                | From address (optional).                                                                                |
-| `to?`            | `Address`                                                                | To address (optional).                                                                                  |
-| `bridgeAddress?` | `Address`                                                                | Bridge address (optional).                                                                              |
-| `overrides?`     | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). . |
+| Parameter          | Type                                                                     | Description                                                                                             |
+| ------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| `token`            | `Address`                                                                | Token address.                                                                                          |
+| `amount`           | `BigNumberish`                                                           | Amount of token.                                                                                        |
+| `from?`            | `Address`                                                                | From address (optional).                                                                                |
+| `to?`              | `Address`                                                                | To address (optional).                                                                                  |
+| `bridgeAddress?`   | `Address`                                                                | Bridge address (optional).                                                                              |
+| `paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams)                          | Paymaster parameters (optional).                                                                        |
+| `overrides?`       | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). . |
 
 ```ts
 async estimateGasWithdraw(transaction: {
@@ -270,6 +273,7 @@ async estimateGasWithdraw(transaction: {
   from ? : Address;
   to ? : Address;
   bridgeAddress ? : Address;
+  paymasterParams ?: PaymasterParams;
   overrides ? : ethers.Overrides;
 }): Promise<bigint>
 ```
@@ -277,7 +281,7 @@ async estimateGasWithdraw(transaction: {
 #### Example
 
 ```ts
-import { Provider, types } from "zksync-ethers";
+import { Provider, types, utils } from "zksync-ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const gasWithdraw = await provider.estimateGasWithdraw({
@@ -286,6 +290,7 @@ const gasWithdraw = await provider.estimateGasWithdraw({
   to: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
   from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
 });
+console.log(`Gas for withdrawal tx: ${gasWithdraw}`);
 ```
 
 ### `estimateL1ToL2Execute`
@@ -469,7 +474,7 @@ import { Provider, types } from "zksync-ethers";
 
 const testnetPaymasterBytecodeHash = "0x010000f16d2b10ddeb1c32f2c9d222eb1aea0f638ec94a81d4e916c627720e30";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Bytecode: ${await provider.getBytecodeByHash(testnetPaymasterBytecodeHash)}`);
 ```
 
@@ -559,7 +564,7 @@ async getFilterChanges(idx: bigint): Promise<Array<Log | string>>
 #### Example
 
 ```ts
-import { Provider, types } from "zksync-ethers";
+import { Provider, types, utils } from "zksync-ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 const filter = await provider.newFilter({
@@ -741,7 +746,7 @@ async getLogs(filter: Filter | FilterByBlockHash): Promise<Log[]>
 Helper function: [toJSON](#tojson).
 
 ```ts
-import { Provider, types } from "zksync-ethers";
+import { Provider, types, utils } from "zksync-ethers";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Logs: ${toJSON(await provider.getLogs({ fromBlock: 0, toBlock: 5, address: utils.L2_ETH_TOKEN_ADDRESS }))}`);
@@ -758,8 +763,6 @@ async getMainContractAddress(): Promise<Address>
 ```
 
 #### Example
-
-Helper function: [toJSON](#tojson).
 
 ```ts
 import { Provider, types } from "zksync-ethers";
@@ -798,6 +801,55 @@ if (l1TxResponse) {
 }
 ```
 
+### `getProof`
+
+Returns Merkle [`proofs`](./types.md#storageproof) for one or more storage values at the specified account along with a Merkle proof of their authenticity.
+
+Calls the [`zks_getProof`](../../../api.md#zks-getproof) JSON-RPC method.
+
+#### Inputs
+
+| Parameter       | Type       | Description                                                                                     |
+| --------------- | ---------- | ----------------------------------------------------------------------------------------------- |
+| `address`       | `Address`  | The account to fetch storage values and proofs for.                                             |
+| `keys`          | `string[]` | Vector of storage keys in the account.                                                          |
+| `l1BatchNumber` | `number`   | Number of the L1 batch specifying the point in time at which the requested values are returned. |
+
+```ts
+async getProof(address: Address, keys: string[], l1BatchNumber: number): Promise<StorageProof>
+```
+
+#### Example
+
+Helper function: [toJSON](#tojson).
+
+```ts
+import { Provider, types, utils } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const address = "0x082b1BB53fE43810f646dDd71AA2AB201b4C6b04";
+
+// Fetching the storage proof for rawNonces storage slot in NonceHolder system contract.
+// mapping(uint256 => uint256) internal rawNonces;
+
+// Ensure the address is a 256-bit number by padding it
+// because rawNonces slot uses uint256 for mapping addresses and their nonces.
+const addressPadded = ethers.zeroPadValue(address, 32);
+
+// Convert the slot number to a hex string and pad it to 32 bytes.
+const slotPadded = ethers.zeroPadValue(ethers.toBeHex(0), 32);
+
+// Concatenate the padded address and slot number.
+const concatenated = addressPadded + slotPadded.slice(2); // slice to remove '0x' from the slotPadded
+
+// Hash the concatenated string using Keccak-256.
+const storageKey = ethers.keccak256(concatenated);
+
+const l1BatchNumber = await provider.getL1BatchNumber();
+const storageProof = await provider.getProof(utils.NONCE_HOLDER_ADDRESS, [storageKey], l1BatchNumber);
+console.log(`Storage proof: ${toJSON(storageProof)}`);
+```
+
 ### `getRawBlockTransactions`
 
 Returns data of transactions in a block.
@@ -821,7 +873,7 @@ Helper function: [toJSON](#tojson).
 ```ts
 import { Provider, types } from "zksync-ethers";
 
-const provider = Provider.getDefaultProvider(types.Network.Goerli);
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
 console.log(`Raw block transactions: ${toJSON(await provider.getRawBlockTransactions(90_000))}`);
 ```
 
@@ -876,7 +928,7 @@ await txHandle.waitFinalize();
 
 Returns data from a specific transaction given by the transaction hash.
 
-Calls the [`getTransactionDetails`](../../../api.md#zks-gettransactiondetails) JSON-RPC method.
+Calls the [`zks_getTransactionDetails`](../../../api.md#zks-gettransactiondetails) JSON-RPC method.
 
 #### Inputs
 
@@ -962,13 +1014,14 @@ Returns the populated transfer transaction.
 
 #### Inputs
 
-| Parameter    | Type                                                                     | Description                                                                                           |
-| ------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `token`      | `Address`                                                                | Token address.                                                                                        |
-| `amount`     | `BigNumberish`                                                           | Amount of token.                                                                                      |
-| `from?`      | `Address`                                                                | From address (optional).                                                                              |
-| `to?`        | `Address`                                                                | To address (optional).                                                                                |
-| `overrides?` | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| Parameter          | Type                                                                     | Description                                                                                           |
+| ------------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `token`            | `Address`                                                                | Token address.                                                                                        |
+| `amount`           | `BigNumberish`                                                           | Amount of token.                                                                                      |
+| `from?`            | `Address`                                                                | From address (optional).                                                                              |
+| `to?`              | `Address`                                                                | To address (optional).                                                                                |
+| `paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams)                          | Paymaster parameters (optional).                                                                      |
+| `overrides?`       | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
 
 ```ts
 async getTransferTx(transaction: {
@@ -976,20 +1029,51 @@ async getTransferTx(transaction: {
   amount: BigNumberish;
   from ? : Address;
   token ? : Address;
+  paymasterParams?: PaymasterParams;
   overrides ? : ethers.Overrides;
 }): Promise<EthersTransactionRequest>
 ```
 
-#### Example
+#### Examples
+
+Retrieve populated ETH transfer transaction.
 
 ```ts
+import { Provider, types, utils } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+
 const tx = await provider.getTransferTx({
   token: utils.ETH_ADDRESS,
   amount: 7_000_000_000,
   to: "0xa61464658AfeAf65CccaaFD3a512b69A83B77618",
   from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
 });
-console.log(`Gas for transfer tx: ${tx}`);
+console.log(`Transfer tx: ${tx}`);
+```
+
+Retrieve populated ETH transfer transaction using paymaster to facilitate fee payment with an ERC20 token.
+
+```ts
+import { Provider, types, utils } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const token = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
+const paymaster = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
+
+const tx = await provider.getTransferTx({
+  token: utils.ETH_ADDRESS,
+  amount: 7_000_000_000,
+  to: "0xa61464658AfeAf65CccaaFD3a512b69A83B77618",
+  from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+  paymasterParams: utils.getPaymasterParams(paymaster, {
+    type: "ApprovalBased",
+    token: token,
+    minimalAllowance: 1,
+    innerInput: new Uint8Array(),
+  }),
+});
+console.log(`Transfer tx: ${tx}`);
 ```
 
 ### `getWithdrawTx`
@@ -998,14 +1082,15 @@ Returns the populated withdrawal transaction.
 
 #### Inputs
 
-| Parameter        | Type                                                                     | Description                                                                                           |
-| ---------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `token`          | `Address`                                                                | Token address.                                                                                        |
-| `amount`         | `BigNumberish`                                                           | Amount of token.                                                                                      |
-| `from?`          | `Address`                                                                | From address (optional).                                                                              |
-| `to?`            | `Address`                                                                | To address (optional).                                                                                |
-| `bridgeAddress?` | `Address`                                                                | Bridge address (optional).                                                                            |
-| `overrides?`     | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| Parameter          | Type                                                                     | Description                                                                                           |
+| ------------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `token`            | `Address`                                                                | Token address.                                                                                        |
+| `amount`           | `BigNumberish`                                                           | Amount of token.                                                                                      |
+| `from?`            | `Address`                                                                | From address (optional).                                                                              |
+| `to?`              | `Address`                                                                | To address (optional).                                                                                |
+| `bridgeAddress?`   | `Address`                                                                | Bridge address (optional).                                                                            |
+| `paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams)                          | Paymaster parameters (optional).                                                                      |
+| `overrides?`       | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
 
 ```ts
 async getWithdrawTx(transaction: {
@@ -1014,20 +1099,51 @@ async getWithdrawTx(transaction: {
   from ? : Address;
   to ? : Address;
   bridgeAddress ? : Address;
+  paymasterParams?: PaymasterParams;
   overrides ? : ethers.Overrides;
 }): Promise<EthersTransactionRequest>
 ```
 
-#### Example
+#### Examples
+
+Retrieve populated ETH withdrawal transactions.
 
 ```ts
+import { Provider, types, utils } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+
 const tx = await provider.getWithdrawTx({
   token: utils.ETH_ADDRESS,
   amount: 7_000_000_000,
   to: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
   from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
 });
-console.log(`Gas for withdrawal tx: ${tx}`);
+console.log(`Withdrawal tx: ${tx}`);
+```
+
+Retrieve populated ETH withdrawal transaction using paymaster to facilitate fee payment with an ERC20 token.
+
+```ts
+import { Provider, types, utils } from "zksync-ethers";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const token = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
+const paymaster = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
+
+const tx = await provider.getWithdrawTx({
+  token: utils.ETH_ADDRESS,
+  amount: 7_000_000_000,
+  to: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+  from: "0x36615Cf349d7F6344891B1e7CA7C72883F5dc049",
+  paymasterParams: utils.getPaymasterParams(paymaster, {
+    type: "ApprovalBased",
+    token: token,
+    minimalAllowance: 1,
+    innerInput: new Uint8Array(),
+  }),
+});
+console.log(`Withdrawal tx: ${tx}`);
 ```
 
 ### `l1ChainId`

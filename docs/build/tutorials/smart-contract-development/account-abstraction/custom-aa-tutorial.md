@@ -30,7 +30,7 @@ Skip the hassle for test ETH by using `zksync-cli` for local testing. Simply exe
 Download the complete project [here](https://github.com/matter-labs/tutorials/tree/main/custom-aa).
 
 ::: info Project available in Atlas IDE
-This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/atlas-labs-inc/zksync-aa-multisig&open=/scripts/main.ts&chainId=280).
+This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser. [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/atlas-labs-inc/zksync-aa-multisig&open=/scripts/main.ts&chainId=300).
 :::
 
 ## Setup
@@ -41,33 +41,34 @@ This entire tutorial can be run in under a minute using Atlas. Atlas is a smart 
 npx zksync-cli create custom-aa-tutorial --template hardhat_solidity
 ```
 
-This creates a new zkSync Era project called `custom-aa-tutorial` with a basic `Greeter` contract.
+This creates a new zkSync Era project called `custom-aa-tutorial` with a few example contracts.
 
-1. Navigate into the project directory:
+2. Navigate into the project directory:
 
 ```sh
 cd custom-aa-tutorial
 ```
 
-3. For the purposes of this tutorial, we don't need the Greeter related files. So, proceed with removing `Greeter.sol` from our `/contracts` directory:
+3. For the purposes of this tutorial, we don't need the example contracts related files. So, proceed by removing all the files inside the `/contracts` and `/deploy` folders manually or by running the following commands::
 
 ```sh
-rm -rf ./contracts/Greeter.sol
+rm -rf ./contracts/*
+rm -rf ./deploy/*
 ```
 
-4. Similarly, remove the deploy scripts associated with the Greeter contract:
+4. Add the zkSync and OpenZeppelin contract libraries:
 
 ```sh
-rm -rf ./deploy/deploy-greeter.ts && rm -rf ./deploy/use-greeter.ts
+yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts@4.9.5
 ```
 
-5. Add the zkSync and OpenZeppelin contract libraries:
+5. Include the `isSystem: true` setting in the `zksolc` section of the `hardhat.config.ts` configuration file to allow interaction with system contracts:
 
-```sh
-yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts
-```
+::: warning
 
-6. Include the `isSystem: true` setting in the `hardhat.config.ts` configuration file to allow interaction with system contracts:
+This project does not use the latest version available of `@openzeppelin/contracts`. Mae sure you install the specific version mentioned above.
+
+:::
 
 ```ts
 import { HardhatUserConfig } from "hardhat/config";
@@ -80,7 +81,7 @@ const config: HardhatUserConfig = {
   zksolc: {
     version: "latest", // Uses latest available in https://github.com/matter-labs/zksolc-bin/
     settings: {
-      isSystem: true, // make sure to include this line
+      isSystem: true, // ⚠️ Make sure to include this line
     },
   },
   defaultNetwork: "zkSyncTestnet",
@@ -93,7 +94,7 @@ const config: HardhatUserConfig = {
     },
   },
   solidity: {
-    version: "0.8.17",
+    version: "0.8.20",
   },
 };
 
@@ -464,7 +465,7 @@ function prepareForPaymaster(
 
 ### Transaction Execution
 
-To implementing transaction execution, extract the transaction data and execute it:
+To implement transaction execution, extract the transaction data and execute it:
 
 ```solidity
 function _executeTransaction(Transaction calldata _transaction) internal {
@@ -833,7 +834,7 @@ This functionality is built into the SDK.
 ## Deploy the Factory
 
 ::: tip
-Make sure you deposit funds on zkSync Era using [bridges](https://zksync.io/explore#bridges) before running the deployment script.
+Make sure you deposit funds on zkSync Era using [one of the available bridges](https://zksync.io/explore#bridges) before running the deployment script.
 :::
 
 1. In the `deploy` folder, create the file `deploy-factory.ts` and copy/paste the following code, replacing `<WALLET_PRIVATE_KET>` with your private key.
@@ -860,7 +861,9 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     aaArtifact.bytecode,
   ]);
 
-  console.log(`AA factory address: ${factory.address}`);
+  const factoryAddress = await factory.getAddress();
+
+  console.log(`AA factory address: ${factoryAddress}`);
 }
 ```
 
@@ -874,7 +877,8 @@ yarn hardhat deploy-zksync --script deploy-factory.ts
 The output should look like this:
 
 ```txt
-AA factory address: 0x9db333Cb68Fb6D317E3E415269a5b9bE7c72627Ds
+AA factory address: 0x70696950F71BB1cCF36Dbd1B77Ae54f96a79b005
+✨  Done in 15.10s.
 ```
 
 Note that the address will be different for each run.
@@ -886,7 +890,7 @@ Note that the address will be different for each run.
 Now, let's deploy an account and use it to initiate a new transaction.
 
 :::warning
-This section assumes you have an EOA account with sufficient funds on zkSync Era.
+This section assumes you have an EOA account with sufficient funds on zkSync Era to deploy a smart contract account.
 :::
 
 1. In the `deploy` folder, create a file called `deploy-multisig.ts`.
@@ -905,6 +909,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const provider = new Provider("https://sepolia.era.zksync.dev");
   // Private key of the account used to deploy
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>").connect(provider);
+
   const factoryArtifact = await hre.artifacts.readArtifact("AAFactory");
 
   const aaFactory = new ethers.Contract(AA_FACTORY_ADDRESS, factoryArtifact.abi, wallet);
@@ -914,14 +919,15 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const owner2 = Wallet.createRandom();
 
   // For the simplicity of the tutorial, we will use zero hash as salt
-  const salt = ethers.constants.HashZero;
+  const salt = ethers.ZeroHash;
 
   // deploy account owned by owner1 & owner2
   const tx = await aaFactory.deployAccount(salt, owner1.address, owner2.address);
   await tx.wait();
 
   // Getting the address of the deployed contract account
-  const abiCoder = new ethers.utils.AbiCoder();
+  // Always use the JS utility methods
+  const abiCoder = new ethers.AbiCoder();
   const multisigAddress = utils.create2Address(
     AA_FACTORY_ADDRESS,
     await aaFactory.aaBytecodeHash(),
@@ -944,16 +950,18 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 Before the deployed account can submit transactions, we need to deposit some ETH to it for the transaction fees.
 
 ```ts
+console.log("Sending funds to multisig account");
+
 // Send funds to the multisig account we just deployed
 await(
   await wallet.sendTransaction({
     to: multisigAddress,
     // You can increase the amount of ETH sent to the multisig
-    value: ethers.utils.parseEther("0.008"),
+    value: ethers.parseEther("0.008"),
+    nonce: await wallet.getNonce(),
   })
 ).wait();
 
-//Get the balance in the Multisig account
 let multisigBalance = await provider.getBalance(multisigAddress);
 
 console.log(`Multisig account balance is ${multisigBalance.toString()}`);
@@ -962,8 +970,8 @@ console.log(`Multisig account balance is ${multisigBalance.toString()}`);
 Now we can try to deploy a new multisig; the initiator of the transaction will be our deployed account from the previous part.
 
 ```ts
-// The transaction to deploy a new account using the multisig we just deployed
-let aaTx = await aaFactory.populateTransaction.deployAccount(
+// Transaction to deploy a new account using the multisig we just deployed
+let aaTx = await aaFactory.deployAccount.populateTransaction(
   salt,
   // These are accounts that will own the newly deployed account
   Wallet.createRandom().address,
@@ -974,7 +982,7 @@ let aaTx = await aaFactory.populateTransaction.deployAccount(
 Then, we need to fill all the transaction fields:
 
 ```ts
-const gasLimit = await provider.estimateGas(aaTx);
+const gasLimit = await provider.estimateGas({ ...aaTx, from: wallet.address });
 const gasPrice = await provider.getGasPrice();
 
 aaTx = {
@@ -989,7 +997,7 @@ aaTx = {
   customData: {
     gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
   } as types.Eip712Meta,
-  value: ethers.BigNumber.from(0),
+  value: 0n,
 };
 ```
 
@@ -1005,12 +1013,8 @@ Then, we need to sign the transaction and provide the `aaParamas` in the customD
 ```ts
 const signedTxHash = EIP712Signer.getSignedDigest(aaTx);
 
-const signature = ethers.utils.concat([
-  // Note, that `signMessage` wouldn't work here, since we don't want
-  // the signed hash to be prefixed with `\x19Ethereum Signed Message:\n`
-  ethers.utils.joinSignature(owner1._signingKey().signDigest(signedTxHash)),
-  ethers.utils.joinSignature(owner2._signingKey().signDigest(signedTxHash)),
-]);
+// Sign the transaction with both owners
+const signature = ethers.concat([ethers.Signature.from(owner1.signingKey.sign(signedTxHash)).serialized, ethers.Signature.from(owner2.signingKey.sign(signedTxHash)).serialized]);
 
 aaTx.customData = {
   ...aaTx.customData,
@@ -1022,7 +1026,9 @@ Finally, we are ready to send the transaction:
 
 ```ts
 console.log(`The multisig's nonce before the first tx is ${await provider.getTransactionCount(multisigAddress)}`);
-const sentTx = await provider.sendTransaction(utils.serialize(aaTx));
+
+const sentTx = await provider.broadcastTransaction(types.Transaction.from(aaTx).serialized);
+console.log(`Transaction sent from multisig with hash ${sentTx.hash}`);
 await sentTx.wait();
 
 // Checking that the nonce for the account has increased
@@ -1043,12 +1049,13 @@ import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 // Put the address of your AA factory
-const AA_FACTORY_ADDRESS = "<FACTORY-ADDRESS>";
+const AA_FACTORY_ADDRESS = "<FACTORY-ADDRESS>"; //sepolia
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   const provider = new Provider("https://sepolia.era.zksync.dev");
   // Private key of the account used to deploy
   const wallet = new Wallet("<WALLET-PRIVATE-KEY>").connect(provider);
+
   const factoryArtifact = await hre.artifacts.readArtifact("AAFactory");
 
   const aaFactory = new ethers.Contract(AA_FACTORY_ADDRESS, factoryArtifact.abi, wallet);
@@ -1058,7 +1065,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const owner2 = Wallet.createRandom();
 
   // For the simplicity of the tutorial, we will use zero hash as salt
-  const salt = ethers.constants.HashZero;
+  const salt = ethers.ZeroHash;
 
   // deploy account owned by owner1 & owner2
   const tx = await aaFactory.deployAccount(salt, owner1.address, owner2.address);
@@ -1066,7 +1073,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Getting the address of the deployed contract account
   // Always use the JS utility methods
-  const abiCoder = new ethers.utils.AbiCoder();
+  const abiCoder = new ethers.AbiCoder();
+
   const multisigAddress = utils.create2Address(
     AA_FACTORY_ADDRESS,
     await aaFactory.aaBytecodeHash(),
@@ -1081,7 +1089,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     await wallet.sendTransaction({
       to: multisigAddress,
       // You can increase the amount of ETH sent to the multisig
-      value: ethers.utils.parseEther("0.008"),
+      value: ethers.parseEther("0.008"),
+      nonce: await wallet.getNonce(),
     })
   ).wait();
 
@@ -1090,14 +1099,14 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Multisig account balance is ${multisigBalance.toString()}`);
 
   // Transaction to deploy a new account using the multisig we just deployed
-  let aaTx = await aaFactory.populateTransaction.deployAccount(
+  let aaTx = await aaFactory.deployAccount.populateTransaction(
     salt,
     // These are accounts that will own the newly deployed account
     Wallet.createRandom().address,
     Wallet.createRandom().address
   );
 
-  const gasLimit = await provider.estimateGas(aaTx);
+  const gasLimit = await provider.estimateGas({ ...aaTx, from: wallet.address });
   const gasPrice = await provider.getGasPrice();
 
   aaTx = {
@@ -1112,16 +1121,13 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     customData: {
       gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
     } as types.Eip712Meta,
-    value: ethers.BigNumber.from(0),
+    value: 0n,
   };
+
   const signedTxHash = EIP712Signer.getSignedDigest(aaTx);
 
-  const signature = ethers.utils.concat([
-    // Note, that `signMessage` wouldn't work here, since we don't want
-    // the signed hash to be prefixed with `\x19Ethereum Signed Message:\n`
-    ethers.utils.joinSignature(owner1._signingKey().signDigest(signedTxHash)),
-    ethers.utils.joinSignature(owner2._signingKey().signDigest(signedTxHash)),
-  ]);
+  // Sign the transaction with both owners
+  const signature = ethers.concat([ethers.Signature.from(owner1.signingKey.sign(signedTxHash)).serialized, ethers.Signature.from(owner2.signingKey.sign(signedTxHash)).serialized]);
 
   aaTx.customData = {
     ...aaTx.customData,
@@ -1129,7 +1135,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   };
 
   console.log(`The multisig's nonce before the first tx is ${await provider.getTransactionCount(multisigAddress)}`);
-  const sentTx = await provider.sendTransaction(utils.serialize(aaTx));
+
+  const sentTx = await provider.broadcastTransaction(types.Transaction.from(aaTx).serialized);
+  console.log(`Transaction sent from multisig with hash ${sentTx.hash}`);
+
   await sentTx.wait();
 
   // Checking that the nonce for the account has increased
@@ -1150,9 +1159,13 @@ yarn hardhat deploy-zksync --script deploy-multisig.ts
 The output should look something like this:
 
 ```txt
-Multisig deployed on address 0xCEBc59558938bccb43A6C94769F87bBdb770E956
+Multisig account deployed on address 0x4A1e5F7AeA6830372dCa584cbFaaBa1F21298a01
+Sending funds to multisig account
+Multisig account balance is 8000000000000000
 The multisig's nonce before the first tx is 0
+Transaction sent from multisig with hash 0xe91a8665f6777aa3c003844d9d0971a3b3ebbe1f8f3e0d941a3bc797963c7cca
 The multisig's nonce after the first tx is 1
+Multisig account balance is now 7962859900000000
 ```
 
 ::: tip

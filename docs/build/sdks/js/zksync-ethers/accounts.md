@@ -268,7 +268,7 @@ Returns the wallet address.
 async getAddress(): Promise<Address>;
 ```
 
-### Example
+#### Example
 
 ```ts
 import { Wallet, Provider, utils } from "zksync-ethers";
@@ -592,39 +592,71 @@ For convenience, the `Wallet` class has `transfer` method, which can transfer `E
 
 #### Inputs
 
-| Parameter       | Type                                                                     | Description                                                                                           |
-| --------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `tx.to`         | `Address`                                                                | The address of the recipient.                                                                         |
-| `tx.amount`     | `BigNumberish`                                                           | The amount of the token to transfer (optional).                                                       |
-| `tx.token?`     | `Address`                                                                | The address of the token. `ETH` by default (optional).                                                |
-| `tx.overrides?` | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| Parameter                      | Type                                                                     | Description                                                                                           |
+| ------------------------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `transaction.to`               | `Address`                                                                | The address of the recipient.                                                                         |
+| `transaction.amount`           | `BigNumberish`                                                           | The amount of the token to transfer.                                                                  |
+| `transaction.token?`           | `Address`                                                                | The address of the token. `ETH` by default (optional).                                                |
+| `transaction.paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams)                          | Paymaster parameters (optional).                                                                      |
+| `transaction.overrides?`       | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
 
 ```ts
-async transfer(tx: {
+async transfer(transaction: {
   to: Address;
   amount: BigNumberish;
   token?: Address;
+  paymasterParams?: PaymasterParams;
   overrides?: ethers.Overrides;
 }): Promise<TransactionResponse>
 ```
 
-#### Example
+#### Examples
+
+Transfer ETH.
 
 ```ts
 import { Wallet, Provider, utils } from "zksync-ethers";
-import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
-const ethProvider = ethers.getDefaultProvider("sepolia");
-const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
+const wallet = new Wallet(PRIVATE_KEY, provider);
 
 const recipient = Wallet.createRandom();
 
 const transferHandle = await wallet.transfer({
   to: recipient.address,
   amount: ethers.parseEther("0.01"),
+});
+
+const tx = await transferHandle.wait();
+
+console.log(`The sum of ${tx.value} ETH was transferred to ${tx.to}`);
+```
+
+Transfer ETH using paymaster to facilitate fee payment with an ERC20 token.
+
+```ts
+import { Wallet, Provider, utils } from "zksync-ethers";
+
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
+const token = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
+const paymaster = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const wallet = new Wallet(PRIVATE_KEY, provider);
+
+const recipient = Wallet.createRandom();
+
+const transferHandle = await wallet.transfer({
+  to: recipient.address,
+  amount: ethers.parseEther("0.01"),
+  paymasterParams: utils.getPaymasterParams(paymaster, {
+    type: "ApprovalBased",
+    token: token,
+    minimalAllowance: 1,
+    innerInput: new Uint8Array(),
+  }),
 });
 
 const tx = await transferHandle.wait();
@@ -678,7 +710,7 @@ Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync 
 | ------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
 | `token`      | `Address`                                                                | The Ethereum address of the token.                                                                    |
 | `amount`     | `BigNumberish`                                                           | The amount of the token to be approved.                                                               |
-| `overrides?` | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| `overrides?` | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional). |
 
 ```ts
 async approveERC20(
@@ -762,8 +794,8 @@ use the [`allowanceL1`](#getallowancel1) method.
 | `transaction.l2GasLimit?`        | `BigNumberish`                                                           | Maximum amount of L2 gas that transaction can consume during execution on L2 (optional).                                                                                                                                               |
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge an ERC20 token and didn't call the `approveERC20` function beforehand (optional).                                          |
 | `transaction.refundRecipient?`   | `Address`                                                                | The address on L2 that will receive the refund for the transaction. If the transaction fails, it will also be the address to receive l2Value (optional).                                                                               |
-| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
-| `transaction.approveOverrides?`  | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
+| `transaction.approveOverrides?`  | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
 | `transaction.customBridgeData?`  | `BytesLike`                                                              | Additional data that can be sent to a bridge (optional).                                                                                                                                                                               |
 
 ```ts
@@ -833,7 +865,7 @@ Returns populated deposit transaction.
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge an ERC20 token and didn't call the `approveERC20` function beforehand (optional).                                               |
 | `transaction.customBridgeData?`  | `BytesLike`                                                              | Additional data that can be sent to a bridge (optional).                                                                                                                                                                                    |
 | `transaction.refundRecipient?`   | `Address`                                                                | The address on L2 that will receive the refund for the transaction. If the transaction fails, it will also be the address to receive l2Value (optional).                                                                                    |
-| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                       |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                       |
 
 ```ts
 async getDepositTx(transaction: {
@@ -886,7 +918,7 @@ Estimates the amount of gas required for a deposit transaction on L1 network. Ga
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge an ERC20 token and didn't call the `approveERC20` function beforehand (optional).                                               |
 | `transaction.customBridgeData?`  | `BytesLike`                                                              | Additional data that can be sent to a bridge (optional).                                                                                                                                                                                    |
 | `transaction.refundRecipient?`   | `Address`                                                                | The address on L2 that will receive the refund for the transaction. If the transaction fails, it will also be the address to receive l2Value (optional).                                                                                    |
-| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                       |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                       |
 
 ```ts
 async estimateGasDeposit(transaction:
@@ -936,7 +968,7 @@ Retrieves the full needed ETH fee for the deposit. Returns the L1 fee and the L2
 | `transaction.bridgeAddress?`     | `Address`                                                                | The address of the bridge contract to be used. Defaults to the default zkSync bridge (either `L1EthBridge` or `L1Erc20Bridge`) (optional).                                                    |
 | `transaction.customBridgeData?`  | `BytesLike`                                                              | Additional data that can be sent to a bridge (optional).                                                                                                                                      |
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge an ERC20 token and didn't call the `approveERC20` function beforehand (optional). |
-| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                         |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                         |
 
 ```ts
 async getFullRequiredDepositFee(transaction: {
@@ -1008,13 +1040,14 @@ L1 network.
 
 #### Inputs
 
-| Parameter                    | Type                                                                     | Description                                                                                           |
-| ---------------------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `transaction.token`          | `Address`                                                                | The address of the token. `ETH` by default.                                                           |
-| `transaction.amount`         | `BigNumberish`                                                           | The amount of the token to withdraw.                                                                  |
-| `transaction.to?`            | `Address`                                                                | The address of the recipient on L1 (optional).                                                        |
-| `transaction.bridgeAddress?` | `Address`                                                                | The address of the bridge contract to be used (optional).                                             |
-| `transaction.overrides?`     | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| Parameter                      | Type                                                                     | Description                                                                                           |
+| ------------------------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `transaction.token`            | `Address`                                                                | The address of the token. `ETH` by default.                                                           |
+| `transaction.amount`           | `BigNumberish`                                                           | The amount of the token to withdraw.                                                                  |
+| `transaction.to?`              | `Address`                                                                | The address of the recipient on L1 (optional).                                                        |
+| `transaction.bridgeAddress?`   | `Address`                                                                | The address of the bridge contract to be used (optional).                                             |
+| `transaction.paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams)                          | Paymaster parameters (optional).                                                                      |
+| `transaction.overrides?`       | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
 
 ```ts
 async withdraw(transaction: {
@@ -1022,26 +1055,52 @@ async withdraw(transaction: {
   amount: BigNumberish;
   to?: Address;
   bridgeAddress?: Address;
+  paymasterParams?: PaymasterParams;
   overrides?: ethers.Overrides;
 }): Promise<TransactionResponse>
 ```
 
-#### Example
+#### Examples
+
+Withdraw ETH.
 
 ```ts
 import { Wallet, Provider, utils } from "zksync-ethers";
-import { ethers } from "ethers";
 
 const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
 
 const provider = Provider.getDefaultProvider(types.Network.Sepolia);
-const ethProvider = ethers.getDefaultProvider("sepolia");
-const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
+const wallet = new Wallet(PRIVATE_KEY, provider);
 
 const tokenL2 = "0x6a4Fb925583F7D4dF82de62d98107468aE846FD1";
 const tokenWithdrawHandle = await wallet.withdraw({
   token: tokenL2,
-  amount: "10000000",
+  amount: 10_000_000,
+});
+```
+
+Withdraw ETH using paymaster to facilitate fee payment with an ERC20 token.
+
+```ts
+import { Wallet, Provider, utils } from "zksync-ethers";
+
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
+const token = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
+const paymaster = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const wallet = new Wallet(PRIVATE_KEY, provider);
+
+const tokenL2 = "0x6a4Fb925583F7D4dF82de62d98107468aE846FD1";
+const tokenWithdrawHandle = await wallet.withdraw({
+  token: tokenL2,
+  amount: 10_000_000,
+  paymasterParams: utils.getPaymasterParams(paymaster, {
+    type: "ApprovalBased",
+    token: token,
+    minimalAllowance: 1,
+    innerInput: new Uint8Array(),
+  }),
 });
 ```
 
@@ -1055,7 +1114,7 @@ Proves the inclusion of the L2 -> L1 withdrawal message.
 | ---------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `withdrawalHash` | `BytesLike`                                                              | Hash of the L2 transaction where the withdrawal was initiated.                                                                                      |
 | `index?`         | `number`                                                                 | In case there were multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize. Defaults to 0 (optional). |
-| `overrides?`     | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                               |
+| `overrides?`     | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                               |
 
 ```ts
 async finalizeWithdrawal(withdrawalHash: BytesLike, index: number = 0, overrides?: ethers.Overrides): Promise<ethers.ContractTransactionResponse>
@@ -1147,15 +1206,15 @@ Request execution of L2 transaction from L1.
 
 | Name                             | Type                                                                     | Description                                                                                                                                                                                                                            |
 | -------------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `transaction.contractAddress`    | `Address`                                                                | The L2 contract to be called (optional).                                                                                                                                                                                               |
-| `transaction.calldata`           | `BytesLike`                                                              | The input of the L2 transaction (optional).                                                                                                                                                                                            |
+| `transaction.contractAddress`    | `Address`                                                                | The L2 contract to be called.                                                                                                                                                                                                          |
+| `transaction.calldata`           | `BytesLike`                                                              | The input of the L2 transaction.                                                                                                                                                                                                       |
 | `transaction.l2GasLimit`         | `BigNumberish`                                                           | Maximum amount of L2 gas that transaction can consume during execution on L2 (optional).                                                                                                                                               |
 | `transaction.l2Value?`           | `BigNumberish`                                                           | `msg.value` of L2 transaction (optional).                                                                                                                                                                                              |
 | `transaction.factoryDeps?`       | `ethers.BytesLike[]`                                                     | An array of L2 bytecodes that will be marked as known on L2 (optional).                                                                                                                                                                |
 | `transaction.operatorTip?`       | `BigNumberish`                                                           | (_currently is not used_) If the ETH value passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction (optional). |
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | The L2 gas price for each published L1 calldata byte (optional).                                                                                                                                                                       |
 | `transaction.refundRecipient?`   | `Address`                                                                | The address on L2 that will receive the refund for the transaction. If the transaction fails, it will also be the address to receive `l2Value` (optional).                                                                             |
-| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
 
 ```ts
 async requestExecute(transaction: {
@@ -1225,21 +1284,21 @@ await executeTx.wait();
 
 ### `getRequestExecuteTx`
 
-Returns populated deposit transaction.
+Returns populated request execute transaction.
 
 #### Inputs
 
 | Name                             | Type                                                                     | Description                                                                                                                                                                                                                            |
 | -------------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `transaction.contractAddress`    | `Address`                                                                | The L2 contract to be called (optional).                                                                                                                                                                                               |
-| `transaction.calldata`           | `BytesLike`                                                              | The input of the L2 transaction (optional).                                                                                                                                                                                            |
+| `transaction.contractAddress`    | `Address`                                                                | The L2 contract to be called.                                                                                                                                                                                                          |
+| `transaction.calldata`           | `BytesLike`                                                              | The input of the L2 transaction.                                                                                                                                                                                                       |
 | `transaction.l2GasLimit`         | `BigNumberish`                                                           | Maximum amount of L2 gas that transaction can consume during execution on L2 (optional).                                                                                                                                               |
 | `transaction.l2Value?`           | `BigNumberish`                                                           | `msg.value` of L2 transaction (optional).                                                                                                                                                                                              |
 | `transaction.factoryDeps?`       | `ethers.BytesLike[]`                                                     | An array of L2 bytecodes that will be marked as known on L2 (optional).                                                                                                                                                                |
 | `transaction.operatorTip?`       | `BigNumberish`                                                           | (_currently is not used_) If the ETH value passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction (optional). |
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | The L2 gas price for each published L1 calldata byte (optional).                                                                                                                                                                       |
 | `transaction.refundRecipient?`   | `Address`                                                                | The address on L2 that will receive the refund for the transaction. If the transaction fails, it will also be the address to receive `l2Value` (optional).                                                                             |
-| `transaction.overrides`          | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
 
 ```ts
 async getRequestExecuteTx(transaction: {
@@ -1313,15 +1372,15 @@ Estimates the amount of gas required for a request execute transaction.
 
 | Name                             | Type                                                                     | Description                                                                                                                                                                                                                            |
 | -------------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `transaction.contractAddress`    | `Address`                                                                | The L2 contract to be called (optional).                                                                                                                                                                                               |
-| `transaction.calldata`           | `BytesLike`                                                              | The input of the L2 transaction (optional).                                                                                                                                                                                            |
+| `transaction.contractAddress`    | `Address`                                                                | The L2 contract to be called.                                                                                                                                                                                                          |
+| `transaction.calldata`           | `BytesLike`                                                              | The input of the L2 transaction.                                                                                                                                                                                                       |
 | `transaction.l2GasLimit`         | `BigNumberish`                                                           | Maximum amount of L2 gas that transaction can consume during execution on L2 (optional).                                                                                                                                               |
 | `transaction.l2Value?`           | `BigNumberish`                                                           | `msg.value` of L2 transaction (optional).                                                                                                                                                                                              |
 | `transaction.factoryDeps?`       | `ethers.BytesLike[]`                                                     | An array of L2 bytecodes that will be marked as known on L2 (optional).                                                                                                                                                                |
 | `transaction.operatorTip?`       | `BigNumberish`                                                           | (_currently is not used_) If the ETH value passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction (optional). |
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | The L2 gas price for each published L1 calldata byte (optional).                                                                                                                                                                       |
 | `transaction.refundRecipient?`   | `Address`                                                                | The address on L2 that will receive the refund for the transaction. If the transaction fails, it will also be the address to receive `l2Value` (optional).                                                                             |
-| `transaction.overrides`          | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
 
 ```ts
 async estimateGasRequestExecute(transaction: {
@@ -1534,23 +1593,27 @@ But for convenience, the `Wallet` class has `transfer` method, which can transfe
 
 #### Inputs
 
-| Parameter    | Type                                                                     | Description                                                                                           |
-| ------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `tx.to`      | `Address`                                                                | The address of the recipient.                                                                         |
-| `tx.amount`  | `BigNumberish`                                                           | The amount of the token to transfer.                                                                  |
-| `token?`     | `Address`                                                                | The address of the token. `ETH` by default.                                                           |
-| `overrides?` | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| Parameter                      | Type                                                                     | Description                                                                                                |
+| ------------------------------ | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `transaction.to`               | `Address`                                                                | The address of the recipient.                                                                              |
+| `transaction.amount`           | `BigNumberish`                                                           | The amount of the token to transfer.                                                                       |
+| `transaction.token?`           | `Address`                                                                | The address of the token. `ETH` by default.                                                                |
+| `transaction.paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams)                          | Paymaster parameters (optional).                                                                           |
+| `transaction.overrides?`       | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L2 `gasLimit`, <br/>`gasPrice`, `value`, etc (optional). |
 
 ```ts
-async transfer(tx: {
+async transfer(transaction: {
   to: Address;
   amount: BigNumberish;
   token ? : Address;
+  paymasterParams?: PaymasterParams;
   overrides ? : ethers.Overrides;
 }): Promise<ethers.ContractTransaction>
 ```
 
-#### Example
+#### Examples
+
+Transfer ETH.
 
 ```ts
 import { BrowserProvider } from "zksync-ethers";
@@ -1567,6 +1630,32 @@ const transferHandle = signer.transfer({
 });
 ```
 
+Transfer ETH using paymaster to facilitate fee payment with an ERC20 token.
+
+```ts
+import { BrowserProvider } from "zksync-ethers";
+import { ethers } from "ethers";
+
+const token = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
+const paymaster = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
+
+const provider = new BrowserProvider(window.ethereum);
+const signer = provider.getSigner();
+
+const recipient = Wallet.createRandom();
+
+const transferHandle = signer.transfer({
+  to: recipient.address,
+  amount: ethers.parseEther("0.01"),
+  paymasterParams: utils.getPaymasterParams(paymaster, {
+    type: "ApprovalBased",
+    token: token,
+    minimalAllowance: 1,
+    innerInput: new Uint8Array(),
+  }),
+});
+```
+
 ### `withdraw`
 
 Initiates the withdrawal process which withdraws ETH or any ERC20 token from the associated account on L2 network to the target account on
@@ -1574,13 +1663,14 @@ L1 network.
 
 #### Inputs
 
-| Parameter                    | Type                                                                     | Description                                                                                           |
-| ---------------------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `transaction.token`          | `Address`                                                                | The address of the token. `ETH` by default.                                                           |
-| `transaction.amount`         | `BigNumberish`                                                           | The amount of the token to withdraw.                                                                  |
-| `transaction.to?`            | `Address`                                                                | The address of the recipient on L1 (optional).                                                        |
-| `transaction.bridgeAddress?` | `Address`                                                                | The address of the bridge contract to be used (optional).                                             |
-| `overrides?`                 | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| Parameter                      | Type                                                                     | Description                                                                                           |
+| ------------------------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `transaction.token`            | `Address`                                                                | The address of the token. `ETH` by default.                                                           |
+| `transaction.amount`           | `BigNumberish`                                                           | The amount of the token to withdraw.                                                                  |
+| `transaction.to?`              | `Address`                                                                | The address of the recipient on L1 (optional).                                                        |
+| `transaction.bridgeAddress?`   | `Address`                                                                | The address of the bridge contract to be used (optional).                                             |
+| `transaction.paymasterParams?` | [`PaymasterParams`](./types.md#paymasterparams)                          | Paymaster parameters (optional).                                                                      |
+| `overrides?`                   | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
 
 ```ts
 async withdraw(transaction: {
@@ -1588,11 +1678,14 @@ async withdraw(transaction: {
   amount: BigNumberish;
   to?: Address;
   bridgeAddress?: Address;
+  paymasterParams?: PaymasterParams;
   overrides?: ethers.Overrides;
 }): Promise<TransactionResponse>
 ```
 
-#### Example
+#### Examples
+
+Withdraw ETH.
 
 ```ts
 import { BrowserProvider } from "zksync-ethers";
@@ -1604,7 +1697,32 @@ const signer = provider.getSigner();
 const tokenL2 = "0x6a4Fb925583F7D4dF82de62d98107468aE846FD1";
 const tokenWithdrawHandle = await signer.withdraw({
   token: tokenL2,
-  amount: "10000000",
+  amount: 10_000_000,
+});
+```
+
+Withdraw ETH using paymaster to facilitate fee payment with an ERC20 token.
+
+```ts
+import { BrowserProvider } from "zksync-ethers";
+import { ethers } from "ethers";
+
+const token = "0x927488F48ffbc32112F1fF721759649A89721F8F"; // Crown token which can be minted for free
+const paymaster = "0x13D0D8550769f59aa241a41897D4859c87f7Dd46"; // Paymaster for Crown token
+
+const provider = new BrowserProvider(window.ethereum);
+const signer = provider.getSigner();
+
+const tokenL2 = "0x6a4Fb925583F7D4dF82de62d98107468aE846FD1";
+const tokenWithdrawHandle = await signer.withdraw({
+  token: tokenL2,
+  amount: 10_000_000,
+  paymasterParams: utils.getPaymasterParams(paymaster, {
+    type: "ApprovalBased",
+    token: token,
+    minimalAllowance: 1,
+    innerInput: new Uint8Array(),
+  }),
 });
 ```
 
@@ -1784,7 +1902,7 @@ Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync 
 | ------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
 | `token`      | `Address`                                                                | The Ethereum address of the token.                                                                    |
 | `amount`     | `BigNumberish`                                                           | The amount of the token to be approved.                                                               |
-| `overrides?` | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| `overrides?` | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional). |
 
 ```ts
 async approveERC20(
@@ -1864,8 +1982,8 @@ use the [`allowanceL1`](#getallowancel1) method.
 | `transaction.l2GasLimit?`        | `BigNumberish`                                                           | Maximum amount of L2 gas that transaction can consume during execution on L2 (optional).                                                                                                                                                    |
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge an ERC20 token and didn't call the `approveERC20` function beforehand (optional).                                               |
 | `transaction.refundRecipient?`   | `Address`                                                                | The address on L2 that will receive the refund for the transaction. If the transaction fails, it will also be the address to receive l2Value (optional).                                                                                    |
-| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                       |
-| `transaction.approveOverrides?`  | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                       |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                       |
+| `transaction.approveOverrides?`  | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                       |
 | `transaction.customBridgeData?`  | `BytesLike`                                                              | Additional data that can be sent to a bridge (optional).                                                                                                                                                                                    |
 
 ```ts
@@ -1933,7 +2051,7 @@ Returns populated deposit transaction.
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge an ERC20 token and didn't call the `approveERC20` function beforehand (optional).                                               |
 | `transaction.customBridgeData?`  | `BytesLike`                                                              | Additional data that can be sent to a bridge (optional).                                                                                                                                                                                    |
 | `transaction.refundRecipient?`   | `Address`                                                                | The address on L2 that will receive the refund for the transaction. If the transaction fails, it will also be the address to receive l2Value (optional).                                                                                    |
-| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                       |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                       |
 
 ```ts
 async getDepositTx(transaction: {
@@ -1984,7 +2102,7 @@ Estimates the amount of gas required for a deposit transaction on L1 network. Ga
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge an ERC20 token and didn't call the `approveERC20` function beforehand (optional).                                               |
 | `transaction.customBridgeData?`  | `BytesLike`                                                              | Additional data that can be sent to a bridge (optional).                                                                                                                                                                                    |
 | `transaction.refundRecipient?`   | `Address`                                                                | The address on L2 that will receive the refund for the transaction. If the transaction fails, it will also be the address to receive l2Value (optional).                                                                                    |
-| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                       |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                       |
 
 ```ts
 async estimateGasDeposit(transaction:
@@ -2032,7 +2150,7 @@ Retrieves the full needed ETH fee for the deposit. Returns the L1 fee and the L2
 | `transaction.bridgeAddress?`     | `Address`                                                                | The address of the bridge contract to be used. Defaults to the default zkSync bridge (either `L1EthBridge` or `L1Erc20Bridge`) (optional).                                                    |
 | `transaction.customBridgeData?`  | `BytesLike`                                                              | Additional data that can be sent to a bridge (optional).                                                                                                                                      |
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | Whether or not should the token approval be performed under the hood. Set this flag to `true` if you bridge an ERC20 token and didn't call the `approveERC20` function beforehand (optional). |
-| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                         |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                         |
 
 ```ts
 async getFullRequiredDepositFee(transaction: {
@@ -2103,7 +2221,7 @@ Proves the inclusion of the L2 -> L1 withdrawal message.
 | ---------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `withdrawalHash` | `BytesLike`                                                              | Hash of the L2 transaction where the withdrawal was initiated.                                                                                       |
 | `index?`         | `number`                                                                 | In case there were multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize. Defaults to 0) (optional). |
-| `overrides?`     | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                |
+| `overrides?`     | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                |
 
 ```ts
 async finalizeWithdrawal(withdrawalHash: BytesLike, index: number = 0, overrides?: ethers.Overrides): Promise<ethers.ContractTransactionResponse>
@@ -2197,7 +2315,7 @@ Request execution of L2 transaction from L1.
 | `transaction.operatorTip?`       | `BigNumberish`                                                           | (_currently is not used_) If the ETH value passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction (optional). |
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | The L2 gas price for each published L1 calldata byte (optional).                                                                                                                                                                       |
 | `transaction.refundRecipient?`   | `Address`                                                                | The address on L2 that will receive the refund for the transaction. If the transaction fails, it will also be the address to receive `l2Value` (optional).                                                                             |
-| `transaction.overrides`          | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
 
 ```ts
 async requestExecute(transaction: {
@@ -2280,7 +2398,7 @@ Returns populated deposit transaction.
 | `transaction.operatorTip?`       | `BigNumberish`                                                           | (_currently is not used_) If the ETH value passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction (optional). |
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | The L2 gas price for each published L1 calldata byte (optional).                                                                                                                                                                       |
 | `transaction.refundRecipient?`   | `Address`                                                                | The address on L2 that will receive the refund for the transaction. If the transaction fails, it will also be the address to receive `l2Value` (optional).                                                                             |
-| `transaction.overrides`          | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
 
 ```ts
 async getRequestExecuteTx(transaction: {
@@ -2361,7 +2479,7 @@ Estimates the amount of gas required for a request execute transaction.
 | `transaction.operatorTip?`       | `BigNumberish`                                                           | (_currently is not used_) If the ETH value passed with the transaction is not explicitly stated in the overrides, this field will be equal to the tip the operator will receive on top of the base cost of the transaction (optional). |
 | `transaction.gasPerPubdataByte?` | `BigNumberish`                                                           | The L2 gas price for each published L1 calldata byte (optional).                                                                                                                                                                       |
 | `transaction.refundRecipient?`   | `Address`                                                                | The address on L2 that will receive the refund for the transaction. If the transaction fails, it will also be the address to receive `l2Value` (optional).                                                                             |
-| `transaction.overrides`          | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
+| `transaction.overrides?`         | [`ethers.Overrides`](https://docs.ethers.org/v6/api/contract/#Overrides) | Transaction's overrides which may be used to pass L1 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                                                                                                  |
 
 ```ts
 async estimateGasRequestExecute(transaction: {
