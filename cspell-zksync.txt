@@ -127,6 +127,7 @@ Dappradar
 Zetta
 Zetta
 Plonky
+Zeeve
 
 // NFT Marketplaces
 Kreatorland
@@ -208,6 +209,7 @@ Invb
 REDC
 ECADD
 ECMUL
+raas
 
 
 // Used programming language words

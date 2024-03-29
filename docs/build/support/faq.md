@@ -161,10 +161,6 @@ Our [Block Explorer](https://explorer.zksync.io) will show everything you may ne
 
 The contract address derivation formula is different from the regular EVM approach. Even if a contract is deployed from the same account address with the same nonce, the zkSync Era contract address will not be the same as it is in another EVM network. This means, for example, that no one will be able to claim an existing Ethereum address of your protocol to try to trick users into interacting with a malicious version of it.
 
-## What is the storage limit for smart contracts on zkSync Era?
-
-The current limit is 3600000000 gas.
-
 ## What is Block Gas Limit on zkSync Era?
 
 The current value is currently set at roughly 2^32 gas. <br>

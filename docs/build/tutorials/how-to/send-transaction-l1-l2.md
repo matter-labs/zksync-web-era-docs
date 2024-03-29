@@ -233,7 +233,7 @@ Along with zkSync Era's built-in censorship resistance that requires multi-layer
 
 User needs to perform next steps:
 
-1. Run local node dockerized containers. [`Instructions how to run it`](https://github.com/matter-labs/local-setup/tree/main) or use [`zksync-cli`](https://github.com/matter-labs/zksync-cli):
+1. Run local node dockerized containers. [`Instructions how to run it`](../../test-and-debug/dockerized-l1-l2-nodes.md) or use [`zksync-cli`](https://github.com/matter-labs/zksync-cli):
 
 ```npx
   npx zksync-cli dev config
