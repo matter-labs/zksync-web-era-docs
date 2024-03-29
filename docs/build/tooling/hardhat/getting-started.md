@@ -41,7 +41,7 @@ If you are using Vyper, check out the [Vyper plugin documentation](./hardhat-zks
 
 - Make sure your machine satisfies the [system requirements](https://github.com/matter-labs/era-compiler-solidity/tree/main#system-requirements).
 - You have a Node installation and `yarn` or `npm` package manager.
-- You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the
+- You are already familiar with deploying smart contracts on zkSync. If not, please refer to the first section of the [Contract Deployment](../../developer-reference/contract-deployment.md).
 - A wallet with sufficient Sepolia or Göerli `ETH` on Ethereum and zkSync Era Testnet to pay for deploying smart contracts. You can get Sepolia ETH from the [network faucets](../../tooling/network-faucets.md).
   - Get testnet `ETH` for zkSync Era using [bridges](https://zksync.io/explore#bridges) to bridge funds to zkSync.
 - You know how to get your [private key from your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).

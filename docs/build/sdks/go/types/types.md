@@ -306,6 +306,23 @@ type StandardConfiguration struct {
 }
 ```
 
+### `StorageProof`
+
+Merkle proofs for one or more storage values at the specified account
+
+```go
+
+type StorageProof struct {
+	Address string `json:"address"`
+	Proofs  []struct {
+		Key   string   `json:"key"`
+		Proof []string `json:"proof"`
+		Value string   `json:"value"`
+		Index int      `json:"index"`
+	} `json:"storageProof"`
+}
+```
+
 ### `PaymasterParams`
 
 Contains parameters for configuring the custom paymaster for the transaction.

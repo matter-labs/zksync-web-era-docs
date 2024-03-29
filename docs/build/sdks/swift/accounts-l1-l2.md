@@ -25,12 +25,11 @@ to the method specification [`RequestExecute`](accounts.md#requestexecute).
 ## Base cost
 
 `WalletL1` and `Wallet` objects provide an option to calculate base cost for L2 transaction. For more information, please refer to the
-method specification [`BaseCost`](accounts.md#basecost).
+method specification [`BaseCost`](accounts.md#getBaseCost).
 
 ## Claim failed deposit
 
 `WalletL1` and `Wallet` objects provide a claim fail deposit workflow. For more information, please refer to the method specification
-[`ClaimFailedDeposit`](accounts.md#claimfaileddeposit).
 
 ## Withdrawal
 

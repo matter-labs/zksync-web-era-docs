@@ -28,7 +28,7 @@ $ yarn set version berry
 
 ```bash
 # install dependencies
-$ yarn add
+$ yarn
 
 # serve with hot reload at localhost:8080
 $ yarn docs:dev

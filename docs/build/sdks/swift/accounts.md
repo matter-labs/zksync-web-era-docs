@@ -9,698 +9,618 @@ head:
 
 ## Overview
 
-The `accounts` package provides abstractions that wrap operations that interact with an account. An account typically contains a private
-key, allowing it to sign various types of payloads. These are the following interfaces that provide account operations for different
-purposes:
+`zksync2-swift` uses following classes that can sign transactions on zkSync:
 
-- `Signer` provides support for signing EIP-712 transactions as well as other types of transactions
-- `AdapterL1` is associated with an account and provides common operations on the L1 network for the associated account.
-- `AdapterL2` is associated with an account and provides common operations on the L2 network for the associated account.
-- `Deployer` is associated with an account and provides deployment of smart contracts and smart accounts on the L2 network for the
-  associated account.
-- `Adapter` consists of `AdapterL1`, `AdapterL2`, and `Deployer` interfaces.
+- `Wallet`
+- `BaseSigner` class that is used to sign `EIP712`_-typed_ zkSync transactions.
 
-These are the following objects that provide account operations:
+## `Wallet`
 
-- `BaseSigner` implements the `Signer` interface.
-- `WalletL1` implements the `AdapterL1` interface.
-- `WalletL2` implements the `AdapterL2` interface.
-- `BaseDeployer` implements the `Deployer` interface.
-- `Wallet` implements the `Adapter` interface.
-
-In most cases, `Wallet` should be used because it provides all the necessary operations. Other objects and interfaces are separated to make
-the SDK more flexible and extensible.
-
-## `BaseSigner`
-
-### `Init`
-
-Creates a new instance of `BaseSigner` based on the credentials.
-
-```swift
-BaseSigner(credentials, chainId: chainId)
-```
-
-### `Address`
-
-Returns the address associated with the signer.
-
-```swift
-signer.address: String
-```
-
-### `Domain`
-
-Returns the EIP-712 domain used for signing.
-
-```swift
-signer.domain: EIP712Domain
-```
-
-### `PrivateKey`
-
-Returns the private key associated with the signer.
-
-```swift
-signer.credentials.privateKey: Data
-```
-
-### `SignHash`
-
-Signs the given hash using the signer's private key and returns the signature. The hash should be the 32-byte hash of the data to be signed.
-
-```swift
-signer.signMessage(message)
-```
-
-### `SignTypeData`
-
-Signs the given EIP-712 typed data using the signer's private key and returns the signature. The domain parameter is the EIP-712 domain
-separator, and the data parameter is the EIP-712 typed data.
-
-```swift
-signer.signTypedData(domain, typedData: typeddata)
-```
-
-## `WalletL1`
-
-### `Init`
-
-Creates an instance of WalletL1 associated with the account provided by the signer.
-
-```swift
-WalletL1(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
-```
-
-#### Example
-
-```swift
-let credentials = Credentials(<WALLET_PRIVATE_KEY>)
-let chainId = try! zkSync.web3.eth.getChainIdPromise().wait()
-let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://sepolia.era.zksync.dev")!)
-let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_sepolia")!)
-let signer = BaseSigner(credentials, chainId: chainId)
-let wallet = WalletL1(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
-```
-
-### `MainContract`
-
-Returns the zkSync L1 smart contract.
-
-```swift
-func mainContract() async throws -> String
-```
-
-#### Example
-
-```swift
-try await self.zkSync.mainContract()
-```
-
-### `L1BridgeContracts`
-
-Returns L1 bridge contracts.
-
-```swift
-func L1BridgeContracts() async throws -> BridgeAddresses
-```
-
-#### Example
-
-```swift
-try await wallet.L1BridgeContracts()
-```
-
-### `BalanceL1`
-
-Returns the balance of the specified token on L1 that can be either ETH or any ERC20 token.
+### `constructor`
 
 #### Inputs
 
-| Parameter | Type    | Description |
-| --------- | ------- | ----------- |
-| `token`   | `Token` | Token.      |
+| Parameter  | Type         | Description                     |
+| ---------- | ------------ | ------------------------------- |
+| `walletL1` | WalletL1     | Instance of WalletL1 class.     |
+| `walletL2` | WalletL2     | Instance of WalletL2 class.     |
+| `deployer` | BaseDeployer | Instance of BaseDeployer class. |
 
-```swift
-func balanceL1(token: Token) async -> BigUInt
-```
+## `WalletL1` and `WalletL2`
+
+### `constructor`
+
+#### Inputs
+
+| Parameter   | Type           | Description                       |
+| ----------- | -------------- | --------------------------------- |
+| `zkSync`    | ZkSyncClient   | Instance of ZkSyncClient class.   |
+| `ethClient` | EthereumClient | Instance of EthereumClient class. |
+| `web`       | Web3           | Instance of Web3 class.           |
+
+## `BaseDeployer`
+
+### `constructor`
+
+#### Inputs
+
+| Parameter | Type         | Description                     |
+| --------- | ------------ | ------------------------------- |
+| `zkSync`  | ZkSyncClient | Instance of ZkSyncClient class. |
+| `web`     | Web3         | Instance of Web3 class.         |
+| `signer`  | ETHSigner    | Instance of ETHSigner class.    |
 
 #### Example
 
 ```swift
-try await wallet.BalanceL1(Token.ETH)
+let credentials = Credentials("<WALLET_PRIVATE_KEY>")
+
+let l1Web3 = EthereumClientImpl(ZKSyncWeb3RpcIntegrationTests.L1NodeUrl)
+let zkSync = BaseClient(BaseIntegrationEnv.L2NodeUrl)
+let signerL1 = BaseSigner(credentials,
+                        chainId: chainId)
+let signerL2 = BaseSigner(credentials,
+                          chainId: BigUInt(270))
+let walletL1 = WalletL1(zkSync, ethClient: l1Web3, web3: l1Web3.web3, ethSigner: signer)
+let walletL2 = WalletL2(zkSync, ethClient: l1Web3, web3: zkSync.web3, ethSigner: signerL2)
+let baseDeployer = BaseDeployer(adapterL2: walletL2, signer: signerL2)
+let wallet = Wallet(walletL1: walletL1, walletL2: walletL2, deployer: baseDeployer)
 ```
 
-### `AllowanceL1`
+### `mainContract`
+
+#### Inputs
+
+| Parameter     | Type               | Description                                                                       |
+| ------------- | ------------------ | --------------------------------------------------------------------------------- |
+| `transaction` | CodableTransaction | Template transaction which will be used for `writeOperation` and `readOperation`. |
+
+Returns `Contract` wrapper of the zkSync smart contract.
+
+#### Example
+
+```swift
+let result = try! await wallet.walletL1.mainContract()
+```
+
+```swift
+let transaction = CodableTransaction(type: .eip1559, to: EthereumAddress(signer.address)!)
+
+let result = try! await wallet.walletL1.mainContract(transaction: transaction)
+```
+
+### `getL1BridgeContracts`
+
+Returns L1 bridge contracts.
+
+:::note
+
+There is no separate Ether bridge contract, [Main contract](./accounts.md#maincontract) is used instead.
+
+:::
+
+#### Example
+
+```swift
+let result = try! await wallet.walletL1.getL1BridgeContracts()
+```
+
+### `getAddress`
+
+Returns the wallet address.
+
+### Example
+
+```ts
+let result = try! await wallet.walletL1.getAddress()
+```
+
+### `balance`
+
+Returns the amount of the token the `Wallet` has.
+
+#### Inputs
+
+| Parameter     | Type          | Description                                                                                                      |
+| ------------- | ------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `token`       | `String`      | The address of the token. ETH by default (optional).                                                             |
+| `blockNumber` | `BlockNumber` | In which block a balance should be checked on. `committed`, i.e. the latest processed one is the default option. |
+
+#### Example
+
+```ts
+let result = try! await wallet.walletL2.balance()
+```
+
+### `balanceL1`
+
+Returns the amount of the token the `Wallet` has on Ethereum.
+
+#### Inputs
+
+| Parameter   | Type       | Description                                                                                                                 |
+| ----------- | ---------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `token?`    | `Address`  | The address of the token. ETH by default (optional).                                                                        |
+| `blockTag?` | `BlockTag` | In which block a balance should be checked on. `committed`, i.e. the latest processed one is the default option (optional). |
+
+#### Example
+
+```ts
+import { Wallet, Provider, utils } from "zksync-ethers";
+import { ethers } from "ethers";
+
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
+const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
+
+const tokenL1 = "0x56E69Fa1BB0d1402c89E3A4E3417882DeA6B14Be";
+
+console.log(`Token balance: ${await wallet.getBalanceL1(tokenL1)}`);
+```
+
+### `allBalances`
+
+Returns all balances for confirmed tokens given by an account address.
+
+#### Example
+
+```ts
+let result = try! await wallet.walletL2.allBalances()
+```
+
+### `getNonce`
+
+Returns account's nonce number.
+
+#### Inputs
+
+| Parameter | Type          | Description                                                                                                                 |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `block`   | `BlockNumber` | In which block a balance should be checked on. `committed`, i.e. the latest processed one is the default option (optional). |
+
+#### Example
+
+```ts
+let result = try! await wallet.walletL2.getNonce()
+```
+
+### `getDeploymentNonce`
+
+Returns account's deployment nonce number.
+
+```ts
+async getDeploymentNonce(): Promise<bigint>
+```
+
+#### Example
+
+```ts
+import { Wallet, Provider, utils } from "zksync-ethers";
+import { ethers } from "ethers";
+
+const PRIVATE_KEY = "<WALLET_PRIVATE_KEY>";
+
+const provider = Provider.getDefaultProvider(types.Network.Sepolia);
+const ethProvider = ethers.getDefaultProvider("sepolia");
+const wallet = new Wallet(PRIVATE_KEY, provider, ethProvider);
+
+console.log(`Nonce: ${await wallet.getDeploymentNonce()}`);
+```
+
+### `signTransaction`
+
+Returns new and signed CodableTransaction.
+
+#### Inputs
+
+| Parameter     | Type               | Description          |
+| ------------- | ------------------ | -------------------- |
+| `transaction` | CodableTransaction | Transaction request. |
+
+#### Example
+
+```ts
+let transaction = CodableTransaction(type: .eip1559, to: EthereumAddress(signer.address)!)
+
+let result = wallet.walletL2.signTransaction(transaction)
+```
+
+### `sendTransaction`
+
+Broadcast the transaction to the network.
+
+#### Inputs
+
+| Parameter    | Type               | Description          |
+| ------------ | ------------------ | -------------------- |
+| `tranaction` | CodableTransaction | Transaction request. |
+
+#### Example
+
+```ts
+let transaction = CodableTransaction(type: .eip1559, to: EthereumAddress(signer.address)!)
+
+let signed = wallet.walletL2.signTransaction(transaction)
+let result = try! await wallet.walletL2.sendTransaction(signed)
+```
+
+### `transfer`
+
+For convenience, the `Wallet` class has `transfer` method, which can transfer `ETH` or any `ERC20` token within the same interface.
+
+#### Inputs
+
+| Parameter         | Type                                                | Description                                                                                         |
+| ----------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `to`              | `String`                                            | The address of the recipient.                                                                       |
+| `amount`          | `BigUInt`                                           | The amount of the token to transfer (optional).                                                     |
+| `token`           | `String`                                            | The address of the token. `ETH` by default (optional).                                              |
+| `options`         | [`TransactionOption`](./types.md#transactionoption) | Transaction's options which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| `paymasterParams` | [`PaymasterParams`](./types.md#paymasterparams)     | Paymaster parameters (optional).                                                                    |
+
+#### Examples
+
+Transfer ETH.
+
+```swift
+let amount = BigUInt(7_000_000_000)
+
+let result = await wallet.walletL2.transfer("<RECEPIENT_ADDRESS>", amount: amount)
+
+let receipt = await ZkSyncTransactionReceiptProcessor(zkSync: zkSync).waitForTransactionReceipt(hash: result.hash)
+```
+
+Transfer ETH using paymaster to facilitate fee payment with an ERC20 token.
+
+```swift
+let amount = BigUInt(7_000_000_000)
+
+let paymasterInput = Paymaster.encodeApprovalBased(
+  EthereumAddress(ZkSyncWalletIntegrationTests.PaymasterToken)!,
+  minimalAllowance: BigUInt(1),
+  paymasterInput: Data()
+)
+
+let paymasterParams = PaymasterParams(paymaster: EthereumAddress(ZkSyncWalletIntegrationTests.PaymasterAddress)!, paymasterInput: paymasterInput)
+
+let result = await wallet.walletL2.transfer("<RECEPIENT_ADDRESS>", amount: amount, token: ZkSyncAddresses.EthAddress, options: nil, paymasterParams: paymasterParams)
+
+let receipt = await ZkSyncTransactionReceiptProcessor(zkSync: zkSync).waitForTransactionReceipt(hash: result.hash)
+```
+
+### `getAllowanceL1`
 
 Returns the amount of approved tokens for a specific L1 bridge.
 
 #### Inputs
 
-| Parameter       | Type              | Description     |
-| --------------- | ----------------- | --------------- |
-| `token`         | `Token`           | Token.          |
-| `bridgeAddress` | `EthereumAddress` | Bridge address. |
+| Parameter       | Type      | Description                                                                                                      |
+| --------------- | --------- | ---------------------------------------------------------------------------------------------------------------- |
+| `token`         | `String`  | The Ethereum address of the token.                                                                               |
+| `bridgeAddress` | `String?` | The address of the bridge contract to be used. Defaults to the default zkSync bridge `L1Erc20Bridge` (optional). |
+
+#### Example
 
 ```swift
-func allowanceL1(token: Token, bridgeAddress: EthereumAddress) async -> BigUInt
+let tokenL1 = "0x5C221E77624690fff6dd741493D735a17716c26B";
+let result = try await wallet.walletL1.getAllowanceL1(token: tokenL1)
 ```
 
-### `L2TokenAddress`
+### `approveERC20`
 
-Returns the corresponding address on the L2 network for the token on the L1 network.
+Bridging ERC20 tokens from Ethereum requires approving the tokens to the zkSync Ethereum smart contract.
 
 #### Inputs
 
-| Parameter | Type    | Description |
-| --------- | ------- | ----------- |
-| `token`   | `Token` | L1 token.   |
+| Parameter       | Type           | Description                                                                                                      |
+| --------------- | -------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `token`         | `Address`      | The Ethereum address of the token.                                                                               |
+| `amount`        | `BigNumberish` | The amount of the token to be approved.                                                                          |
+| `bridgeAddress` | `String?`      | The address of the bridge contract to be used. Defaults to the default zkSync bridge `L1Erc20Bridge` (optional). |
+
+#### Example
 
 ```swift
-try await L2TokenAddress(token: Token) async throws -> EthereumAddress
+let tokenL1 = "0x5C221E77624690fff6dd741493D735a17716c26B";
+let result = try await wallet.walletL1.approveERC20(token: tokenL1, amount: BigUInt(5))
 ```
 
-### `BaseCost`
+### `getBaseCost`
 
 Returns base cost for L2 transaction.
 
 #### Inputs
 
-| Parameter           | Type                 | Description                                                                            |
-| ------------------- | -------------------- | -------------------------------------------------------------------------------------- |
-| `gasLimit`          | `BigUInt`            | The gasLimit for the the L2 contract call.                                             |
-| `gasPerPubdataByte` | `BigUInt`            | The L2 gas price for each published L1 calldata byte.                                  |
-| `gasPrice`          | `BigUInt` (optional) | The L1 gas price of the L1 transaction that will send the request for an execute call. |
+| Name                | Type      | Description                                                                                       |
+| ------------------- | --------- | ------------------------------------------------------------------------------------------------- |
+| `gasLimit`          | `BigUInt` | The `gasLimit` for the L2 contract call.                                                          |
+| `gasPerPubdataByte` | `BigUInt` | The L2 gas price for each published L1 calldata byte (optional).                                  |
+| `gasPrice`          | `BigUInt` | The L1 gas price of the L1 transaction that will send the request for an execute call (optional). |
+
+#### Example
 
 ```swift
-func baseCost(_ gasLimit: BigUInt, gasPerPubdataByte: BigUInt, gasPrice: BigUInt?) async throws -> [String: Any]
+let result = try await wallet.walletL1.baseCost(gasLimit: BigUInt(100_000))["0"] as? BigUInt else {
+  throw EthereumProviderError.invalidParameter
+}
 ```
 
-### `Deposit`
+### `deposit`
 
 Transfers the specified token from the associated account on the L1 network to the target account on the L2 network. The token can be either
 ETH or any ERC20 token. For ERC20 tokens, enough approved tokens must be associated with the specified L1 bridge (default one or the one
-defined in `BridgeAddress`). In this case, `ApproveERC20` can be enabled to perform token approval. If there are already enough approved
-tokens for the L1 bridge, token approval will be skipped. To check the amount of approved tokens for a specific bridge, use the
-[`AllowanceL1`](#allowancel1) method.
+defined in `transaction.bridgeAddress`). In this case, `transaction.approveERC20` can be enabled to perform token approval. If there are
+already enough approved tokens for the L1 bridge, token approval will be skipped. To check the amount of approved tokens for a specific bridge,
+use the [`allowanceL1`](#getallowancel1) method.
 
 #### Inputs
 
-| Parameter | Type                 | Description        |
-| --------- | -------------------- | ------------------ |
-| `to`      | `String`             | To address.        |
-| `amount`  | `BigUInt`            | Amount to deposit. |
-| `token`   | `Token` (optional)   | Token.             |
-| `nonce`   | `BigUInt` (optional) | Nonce.             |
-
-```swift
-func deposit(_ to: String, amount: BigUInt, token: Token?, nonce: BigUInt?) async throws -> TransactionSendingResult
-```
+| Parameter     | Type                                                  | Description                |
+| ------------- | ----------------------------------------------------- | -------------------------- |
+| `transaction` | [`Deposittransaction`](./types.md#deposittransaction) | DepositTransaction struct. |
 
 #### Example
 
 ```swift
-let amount = BigUInt(1_000_000_000_000)
+let tokenL1 = "0x56E69Fa1BB0d1402c89E3A4E3417882DeA6B14Be"
+let txERC20 = DepositTransaction(token: token, amount: BigUInt(10000000), approveERC20: true)
 
-_ = try! await walletL1.deposit(
-    signer.address,
-    amount: amount,
-    token: Token.ETH
-)
+let resultERC20 = try! await wallet.walletL1.deposit(transaction: txERC20)
+let receiptERC20 = try! await wallet.walletL1.ethClient.waitforTransactionReceipt(transactionHash: resultERC20.hash, timeout: 120, pollLatency: 0.5)
+
+let l2HashERC20 = try! await wallet.walletL1.zkSync.getL2HashFromPriorityOp(receipt: receiptERC20!)
+let l2receiptERC20 = await ZkSyncTransactionReceiptProcessor(zkSync: zkSync).waitForTransactionReceipt(hash: l2HashERC20!)
+
+let txETH = DepositTransaction(token: ZkSyncAddresses.EthAddress, amount: amount)
+
+let resultEth = try! await wallet.walletL1.deposit(transaction: txETH)
+let receiptEth = try! await wallet.walletL1.ethClient.waitforTransactionReceipt(transactionHash: resultEth.hash, timeout: 120, pollLatency: 0.5)
+
+let l2HashEth = try! await wallet.walletL1.zkSync.getL2HashFromPriorityOp(receipt: receiptEth!)
+let l2receiptEth = await ZkSyncTransactionReceiptProcessor(zkSync: zkSync).waitForTransactionReceipt(hash: l2HashEth!)
 ```
 
-### `ClaimFailedDeposit`
+### `getDepositTransaction`
 
-Withdraws funds from the initiated deposit, which failed when finalizing on L2. If the deposit L2 transaction has failed, it sends an L1
-transaction calling `ClaimFailedDeposit` method of the L1 bridge, which results in returning L1 tokens back to the depositor, otherwise throws
-the error.
-
-```swift
-func claimFailedDeposit(_ l1BridgeAddress: String, depositSender: String, l1Token: String, l2TxHash: Data, l2BlockNumber: BigUInt, l2MessageIndex: BigUInt, l2TxNumberInBlock: UInt, proof: [Data]) async throws -> TransactionSendingResult
-```
-
-### `RequestExecute`
-
-Request execution of L2 transaction from L1.
+Returns populated deposit transaction.
 
 #### Inputs
 
-| Parameter         | Type                 | Description          |
-| ----------------- | -------------------- | -------------------- |
-| `contractAddress` | `String`             | Transaction options. |
-| `l2Value`         | `BigUInt`            | L2 value.            |
-| `calldata`        | `Token` (optional)   | Calldata.            |
-| `gasLimit`        | `BigUInt` (optional) | Gas limit.           |
-| `factoryDeps`     | `BigUInt` (optional) | Factory deps.        |
-| `operatorTips`    | `BigUInt` (optional) | Operator tips.       |
-| `gasPrice`        | `BigUInt` (optional) | Gas price.           |
-| `refundRecipient` | `BigUInt` (optional) | Refund recipient.    |
-
-```swift
-func requestExecute(_ contractAddress: String, l2Value: BigUInt, calldata: Data, gasLimit: BigUInt, factoryDeps: [Data]?, operatorTips: BigUInt?, gasPrice: BigUInt?, refundRecipient: String) async throws -> TransactionSendingResult
-```
-
-## `WalletL2`
-
-### `Init`
-
-Creates an instance of WalletL2 associated with the account provided by the signer.
-
-```swift
-WalletL2(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
-```
+| Parameter     | Type                                                  | Description                |
+| ------------- | ----------------------------------------------------- | -------------------------- |
+| `transaction` | [`Deposittransaction`](./types.md#deposittransaction) | DepositTransaction struct. |
 
 #### Example
 
 ```swift
-let credentials = Credentials(<WALLET_PRIVATE_KEY>)
-let chainId = try! zkSync.web3.eth.getChainIdPromise().wait()
-let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://sepolia.era.zksync.dev")!)
-let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_sepolia")!)
-let signer = BaseSigner(credentials, chainId: chainId)
-let wallet = WalletL2(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
+let tokenL1 = "0x56E69Fa1BB0d1402c89E3A4E3417882DeA6B14Be"
+let tx = DepositTransaction(token: tokenL1, amount: BigUInt(10000000), approveERC20: true)
+
+let resultERC20 = try! await wallet.walletL1.getDepositTransaction(transaction: tx)
 ```
 
-### `Address`
+### `estimateGasDeposit`
 
-Returns the address of the associated account.
-
-```swift
-let address: EthereumAddress
-```
-
-#### Example
-
-```swift
-wallet.address
-```
-
-### `Signer`
-
-Returns the signer of the associated account.
-
-```swift
-let signer: ETHSigner
-```
-
-#### Example
-
-```swift
-wallet.signer
-```
-
-### `Balance`
-
-Returns the balance of the specified token that can be either ETH or any ERC20 token. The block number can be `nil`, in which case the
-balance is taken from the latest known block.
+Estimates the amount of gas required for a deposit transaction on L1 network. Gas of approving ERC20 token is not included in estimation.
 
 #### Inputs
 
-| Parameter     | Type          | Description       |
-| ------------- | ------------- | ----------------- |
-| `token`       | `Token`       | L2 token address. |
-| `blockNumber` | `BlockNumber` | Block number.     |
-
-```swift
-func balance(token: Token, blockNumber: BlockNumber) async throws -> BigUInt
-```
+| Parameter     | Type                                                  | Description                |
+| ------------- | ----------------------------------------------------- | -------------------------- |
+| `transaction` | [`Deposittransaction`](./types.md#deposittransaction) | DepositTransaction struct. |
 
 #### Example
 
 ```swift
-try await walletL2.balance(token: Token.ETH, blockNumber: .latest)
+let tokenL1 = "0x56E69Fa1BB0d1402c89E3A4E3417882DeA6B14Be"
+let tx = DepositTransaction(token: tokenL1, amount: BigUInt(10000000), approveERC20: true)
+
+let gas = try! await wallet.walletL1.estimateGasDeposit(transaction: tx)
 ```
 
-### `AllBalances`
+### `getFullRequiredDepositFee`
 
-Returns all balances for confirmed tokens given by an associated account.
+Retrieves the full needed ETH fee for the deposit. Returns the L1 fee and the L2 fee [`FullDepositFee`](./types.md#fulldepositfee).
 
 #### Inputs
 
-| Parameter | Type     | Description |
-| --------- | -------- | ----------- |
-| `address` | `String` | Address.    |
-
-```swift
-func allBalances(_ address: String) async throws -> Dictionary<String, String>
-```
+| Parameter     | Type                                                  | Description                |
+| ------------- | ----------------------------------------------------- | -------------------------- |
+| `transaction` | [`Deposittransaction`](./types.md#deposittransaction) | DepositTransaction struct. |
 
 #### Example
 
 ```swift
-try await walletL2.allBalances(address: <ADDRESS>)
+let tokenL1 = "0x56E69Fa1BB0d1402c89E3A4E3417882DeA6B14Be"
+let tx = DepositTransaction(token: tokenL1, amount: BigUInt(10000000), approveERC20: true)
+
+let fullDepositFee = try! await wallet.walletL1.getFullRequiredDepositFee(transaction: tx)
 ```
 
-### `Withdraw`
+### `withdraw`
 
 Initiates the withdrawal process which withdraws ETH or any ERC20 token from the associated account on L2 network to the target account on
 L1 network.
 
 #### Inputs
 
-| Parameter | Type                 | Description         |
-| --------- | -------------------- | ------------------- |
-| `to`      | `String`             | To address.         |
-| `amount`  | `BigUInt`            | Amount to withdraw. |
-| `token`   | `Token` (optional)   | Token.              |
-| `nonce`   | `BigUInt` (optional) | Nonce.              |
+| Parameter         | Type                                                | Description                                                                                         |
+| ----------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `amount`          | `BigNumberish`                                      | The amount of the token to withdraw.                                                                |
+| `token`           | `Address`                                           | The address of the token. `ETH` by default.                                                         |
+| `to`              | `Address`                                           | The address of the recipient on L1 (optional).                                                      |
+| `options`         | [`TransactionOption`](./types.md#transactionoption) | Transaction's options which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional). |
+| `paymasterParams` | [`PaymasterParams`](./types.md#paymasterparams)     | Paymaster parameters (optional).                                                                    |
 
-```swift
-func withdraw(_ to: String, amount: BigUInt, token: Token?, nonce: BigUInt?) async throws -> TransactionSendingResult
-```
+#### Examples
 
-#### Example
+Withdraw ETH.
 
-```swift
-let amount = BigUInt(1_000_000_000_000)
+````swift
+let result = try! await wallet.walletL2.withdraw(BigUInt(10_000_000), to: nil, token: ZkSyncAddresses.EthAddress)
+let receipt = await ZkSyncTransactionReceiptProcessor(zkSync: zkSync).waitForTransactionReceipt(hash: result!.hash)
 
-_ = try! await walletL2.withdraw(
-    signer.address,
-    amount: amount,
-    token: Token.ETH
+// It should return false
+let isFinalized = await wallet.walletL1.isWithdrawalFinalized(withdrawHash: result!.hash)
+
+let finalizedWithdraw = try! await wallet.walletL1.finalizeWithdrawal(withdrawalHash: result!.hash)```
+````
+
+Withdraw ETH using paymaster to facilitate fee payment with an ERC20 token.
+
+````swift
+let paymasterInput = Paymaster.encodeApprovalBased(
+    EthereumAddress(ZkSyncWalletIntegrationTests.PaymasterToken)!,
+    minimalAllowance: BigUInt(1),
+    paymasterInput: Data()
 )
-```
+let paymasterParams = PaymasterParams(paymaster: EthereumAddress(ZkSyncWalletIntegrationTests.PaymasterAddress)!, paymasterInput: paymasterInput)
 
-### `EstimateGasWithdraw`
+let result = try! await wallet.walletL2.withdraw(BigUInt(10_000_000), to: nil, token: ZkSyncAddresses.EthAddress, paymasterParams: paymasterParams)
+let receipt = await ZkSyncTransactionReceiptProcessor(zkSync: zkSync).waitForTransactionReceipt(hash: result!.hash)
 
-Estimates the amount of gas required for a withdrawal transaction.
+// It should return false
+let isFinalized = await wallet.walletL1.isWithdrawalFinalized(withdrawHash: result!.hash)
 
-#### Inputs
+let finalizedWithdraw = try! await wallet.walletL1.finalizeWithdrawal(withdrawalHash: result!.hash)```
+````
 
-| Parameter     | Type                            | Description             |
-| ------------- | ------------------------------- | ----------------------- |
-| `transaction` | `CodableTransaction` (optional) | Withdrawal transaction. |
+Withdraw ERC20.
 
-```swift
-func estimateGasWithdraw(_ transaction: CodableTransaction) async throws -> BigUInt
-```
+````swift
+let tokenL1 = "0x56E69Fa1BB0d1402c89E3A4E3417882DeA6B14Be"
+let l2DAI = try! await zkSync.l2TokenAddress(address: tokenL1)
 
-#### Example
+let result = try! await wallet.walletL2.withdraw(BigUInt(5), to: nil, token: l2DAI)
+let receipt = await ZkSyncTransactionReceiptProcessor(zkSync: zkSync).waitForTransactionReceipt(hash: result!.hash)
 
-```swift
-try await walletL2.estimateGasWithdraw(transaction)
-```
+// It should return false
+let isFinalized = await wallet.walletL1.isWithdrawalFinalized(withdrawHash: result!.hash)
 
-### `Transfer`
+let finalizedWithdraw = try! await wallet.walletL1.finalizeWithdrawal(withdrawalHash: result!.hash)```
+````
 
-Moves the ETH or any ERC20 token from the associated account to the target account.
+Withdraw ERC20 using paymaster to facilitate fee payment with an ERC20 token.
 
-#### Inputs
+````swift
+let tokenL1 = "0x56E69Fa1BB0d1402c89E3A4E3417882DeA6B14Be"
+let l2DAI = try! await zkSync.l2TokenAddress(address: tokenL1)
 
-| Parameter | Type                 | Description         |
-| --------- | -------------------- | ------------------- |
-| `to`      | `String`             | To address.         |
-| `amount`  | `BigUInt`            | Amount to transfer. |
-| `token`   | `Token` (optional)   | Token.              |
-| `nonce`   | `BigUInt` (optional) | Nonce.              |
-
-```swift
-func transfer(_ to: String, amount: BigUInt, token: Token?, nonce: BigUInt?) async -> TransactionSendingResult
-```
-
-#### Example
-
-```swift
-let amount = BigUInt(1_000_000_000_000)
-
-_ = try! await walletL2.transfer(
-    signer.address,
-    amount: amount,
-    token: Token.ETH
+let paymasterInput = Paymaster.encodeApprovalBased(
+    EthereumAddress(ZkSyncWalletIntegrationTests.PaymasterToken)!,
+    minimalAllowance: BigUInt(1),
+    paymasterInput: Data()
 )
-```
+let paymasterParams = PaymasterParams(paymaster: EthereumAddress(ZkSyncWalletIntegrationTests.PaymasterAddress)!, paymasterInput: paymasterInput)
 
-### `EstimateGasTransfer`
+let result = try! await wallet.walletL2.withdraw(BigUInt(5), to: nil, token: l2DAI, paymasterParams: paymasterParams)
+let receipt = await ZkSyncTransactionReceiptProcessor(zkSync: zkSync).waitForTransactionReceipt(hash: result!.hash)
 
-Estimates the amount of gas required for a transfer transaction.
+// It should return false
+let isFinalized = await wallet.walletL1.isWithdrawalFinalized(withdrawHash: result!.hash)
 
-#### Inputs
+let finalizedWithdraw = try! await wallet.walletL1.finalizeWithdrawal(withdrawalHash: result!.hash)```
+````
 
-| Parameter     | Type                 | Description  |
-| ------------- | -------------------- | ------------ |
-| `transaction` | `CodableTransaction` | Transaction. |
+### `finalizeWithdrawal`
 
-```swift
-func estimateGasTransfer(_ transaction: CodableTransaction) async throws -> BigUInt
-```
-
-#### Example
-
-```swift
-try await walletL2.estimateGasTransfer(transaction)
-```
-
-### `CallContract`
-
-Executes a message call for EIP-712 transaction, which is directly executed in the VM of the node, but never mined into the
-blockchain.
+Proves the inclusion of the L2 -> L1 withdrawal message.
 
 #### Inputs
 
-| Parameter     | Type                 | Description                                                                                                                                                                                 |
-| ------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `transaction` | `CodableTransaction` | Transaction.                                                                                                                                                                                |
-| `blockNumber` | `BigUInt` (optional) | Selects the block height at which the call runs. It can be `nil`, in which case the code is taken from the latest known block. Note that state from very old blocks might not be available. |
-
-```swift
-func callContract(_ transaction: CodableTransaction, blockNumber: BigUInt?) async throws -> Data
-```
+| Name             | Type                                                | Description                                                                                                                                         |
+| ---------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `withdrawalHash` | `String`                                            | Hash of the L2 transaction where the withdrawal was initiated.                                                                                      |
+| `index`          | `Int`                                               | In case there were multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize. Defaults to 0 (optional). |
+| `options`        | [`TransactionOption`](./types.md#transactionoption) | Transaction's options which may be used to pass l2 `gasLimit`, `gasPrice`, `value`, etc (optional).                                                 |
 
 #### Example
 
-```swift
-try await walletL2.callContract(transaction, blockNumber: .latest)
-```
+````swift
+let finalizedWithdraw = try! await wallet.walletL1.finalizeWithdrawal(withdrawalHash: "<WITHDRAW_HASH>")```
+````
 
-### PopulateTransaction
+### `isWithdrawalFinalized`
 
-Designed for users who prefer a simplified approach by providing only the necessary data to create a valid EIP-712 transaction.
-The only required fields are `Transaction.To` and either `Transaction.Data` or `Transaction.Value` (or both, if the method is payable).
-Any other fields that are not set will be prepared by this method.
+Returns whether the withdrawal transaction is finalized on the L1 network.
 
 #### Inputs
 
-| Parameter     | Type                 | Description  |
-| ------------- | -------------------- | ------------ |
-| `transaction` | `CodableTransaction` | Transaction. |
-
-```swift
-func populateTransaction(_ transaction: inout CodableTransaction) async
-```
+| Name             | Type     | Description                                                                                                                                         |
+| ---------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `withdrawalHash` | `String` | Hash of the L2 transaction where the withdrawal was initiated.                                                                                      |
+| `index`          | `Int`    | In case there were multiple withdrawals in one transaction, you may pass an index of the withdrawal you want to finalize. Defaults to 0 (optional). |
 
 #### Example
 
 ```swift
-await walletL2.populateTransaction(transaction)
+let isFinalized = await wallet.walletL1.isWithdrawalFinalized(withdrawHash: "<WITHDRAW_HASH>")
 ```
 
-### `SignTransaction`
+### `requestExecute`
 
-Returns a signed transaction that is ready to be broadcast to the network. The input transaction must be a valid transaction with all fields
-having appropriate values. To obtain a valid transaction, you can use the [`PopulateTransaction`](#populatetransaction) method.
+Request execution of L2 transaction from L1.
 
 #### Inputs
 
-| Parameter     | Type                 | Description  |
-| ------------- | -------------------- | ------------ |
-| `transaction` | `CodableTransaction` | Transaction. |
-
-```swift
-func signTransaction(_ transaction: inout CodableTransaction)
-```
+| Parameter     | Type                                                                | Description                       |
+| ------------- | ------------------------------------------------------------------- | --------------------------------- |
+| `transaction` | [`RequestExecuteTransaction`](./types.md#RequestExecuteTransaction) | RequestExecuteTransaction struct. |
 
 #### Example
 
 ```swift
-await walletL2.populateTransaction(transaction)
+let tx = RequestExecuteTransaction(contractAddress: mainContractAddress, calldata: Data(hex: "0x"), l2Value: BigUInt(7_000_000_000), l2GasLimit: BigUInt(900_000))
+
+let resultEth = try! await wallet.walletL1.deposit(transaction: txETH)
+let receiptEth = try! await wallet.walletL1.ethClient.waitforTransactionReceipt(transactionHash: resultEth.hash, timeout: 120, pollLatency: 0.5)
+
+let l2HashEth = try! await wallet.walletL1.zkSync.getL2HashFromPriorityOp(receipt: receiptEth!)
+let l2receiptEth = await ZkSyncTransactionReceiptProcessor(zkSync: zkSync).waitForTransactionReceipt(hash: l2HashEth!)
 ```
 
-### `SendTransaction`
+### `getRequestExecute`
 
-Injects a transaction into the pending pool for execution. Any unset transaction fields are prepared using the PopulateTransaction method.
+Returns populated CodableTransaction.
 
 #### Inputs
 
-| Parameter     | Type                 | Description  |
-| ------------- | -------------------- | ------------ |
-| `transaction` | `CodableTransaction` | Transaction. |
-
-```swift
-func sendTransaction(_ transaction: CodableTransaction) async throws -> TransactionSendingResult
-```
+| Parameter     | Type                                                                | Description                       |
+| ------------- | ------------------------------------------------------------------- | --------------------------------- |
+| `transaction` | [`RequestExecuteTransaction`](./types.md#RequestExecuteTransaction) | RequestExecuteTransaction struct. |
 
 #### Example
 
 ```swift
-try await walletL2.sendTransaction(transaction)
+let tx = RequestExecuteTransaction(contractAddress: mainContractAddress, calldata: Data(hex: "0x"), l2Value: BigUInt(7_000_000_000))
+
+let requestExecuteTx = try! await wallet.walletL1.getRequestExecute(transaction: tx)
 ```
 
-## `BaseDeployer`
+### `estimateGasRequestExecute`
 
-### `Init`
-
-Creates an instance of `BaseDeployer` based on provided `AdapterL2`.
-
-```swift
-BaseDeployer(adapterL2: walletL2, signer: signer)
-```
-
-### `Deploy`
-
-Deploys smart contract using CREATE2 opcode.
+Estimates the amount of gas required for a request execute transaction.
 
 #### Inputs
 
-| Parameter  | Type              | Description              |
-| ---------- | ----------------- | ------------------------ |
-| `bytecode` | `Data`            | Smart contract bytecode. |
-| `calldata` | `Data` (optional) | Calldata.                |
-| `nonce`    | `Data` (optional) | Nonce.                   |
-
-```swift
-func deploy(_ bytecode: Data, calldata: Data?, nonce: BigUInt?) async -> TransactionSendingResult
-```
+| Parameter     | Type                                                                | Description                       |
+| ------------- | ------------------------------------------------------------------- | --------------------------------- |
+| `transaction` | [`RequestExecuteTransaction`](./types.md#RequestExecuteTransaction) | RequestExecuteTransaction struct. |
 
 #### Example
 
 ```swift
-let url = Bundle.main.url(forResource: "Storage", withExtension: "zbin")!
-let bytecodeData = try! Data(contentsOf: url)
+let tx = RequestExecuteTransaction(contractAddress: mainContractAddress, calldata: Data(hex: "0x"), l2Value: BigUInt(7_000_000_000))
 
-_ = try await deployer.deploy(bytecodeData, calldata: nil, nonce: nil)
+let gas = try! await wallet.walletL1.estimateGasRequestExecute(transaction: tx)
 ```
 
-### `DeployWithCreate`
+## `ETHSigner`
 
-Deploys smart contract using CREATE opcode.
+Provides support for an EIP712 transaction. The methods of this class are mostly used internally.
 
-#### Inputs
+### `getDomain`
 
-| Parameter  | Type              | Description              |
-| ---------- | ----------------- | ------------------------ |
-| `bytecode` | `Data`            | Smart contract bytecode. |
-| `calldata` | `Data` (optional) | Calldata.                |
-| `nonce`    | `Data` (optional) | Nonce.                   |
-
-```swift
-func deployWithCreate(_ bytecode: Data, calldata: Data?, nonce: BigUInt?) async -> TransactionSendingResult
-```
-
-#### Example
-
-```swift
-let url = Bundle.main.url(forResource: "Storage", withExtension: "zbin")!
-let bytecodeData = try! Data(contentsOf: url)
-
-_ = try await deployer.deployWithCreate(bytecodeData, calldata: nil, nonce: nil)
-```
-
-### `DeployAccount`
-
-Deploys smart account using CREATE2 opcode.
-
-#### Inputs
-
-| Parameter  | Type              | Description             |
-| ---------- | ----------------- | ----------------------- |
-| `bytecode` | `Data`            | Smart account bytecode. |
-| `calldata` | `Data` (optional) | Calldata.               |
-| `nonce`    | `Data` (optional) | Nonce.                  |
-
-```swift
-func deployAccount(_ bytecode: Data, calldata: Data?, nonce: BigUInt?) async -> TransactionSendingResult
-```
-
-#### Example
-
-```swift
-let url = Bundle.main.url(forResource: "Storage", withExtension: "zbin")!
-let bytecodeData = try! Data(contentsOf: url)
-
-_ = try await deployer.deployAccount(bytecodeData, calldata: nil, nonce: nil)
-```
-
-### `DeployAccountWithCreate`
-
-Deploys smart account using CREATE opcode.
-
-#### Inputs
-
-| Parameter  | Type              | Description             |
-| ---------- | ----------------- | ----------------------- |
-| `bytecode` | `Data`            | Smart account bytecode. |
-| `calldata` | `Data` (optional) | Calldata.               |
-| `nonce`    | `Data` (optional) | Nonce.                  |
-
-```swift
-func deployAccountWithCreate(_ bytecode: Data, calldata: Data?, nonce: BigUInt?) async -> TransactionSendingResult
-```
-
-#### Example
-
-```swift
-let url = Bundle.main.url(forResource: "Storage", withExtension: "zbin")!
-let bytecodeData = try! Data(contentsOf: url)
-
-_ = try await deployer.deployAccountWithCreate(bytecodeData, calldata: nil, nonce: nil)
-```
-
-## `Wallet`
-
-It contains the same functions as [`WalletL1`](#walletl1), [`WalletL2`](#walletl2), and [`BaseDeployer`](#basedeployer) since it implements
-the Adapter interface, and the usage of those methods is the same.
-
-### `Init`
-
-Creates an instance of Wallet associated with the account provided by the signer. The `clientL2` and `clientL1` parameters are optional;
-if not provided, only `SignTransaction`, `Address` and `Signer` methods can be used, as the rest of the functionalities require communication with the network.
-
-```swift
-WalletL2(zkSync, ethClient: ethClient, web3: web, ethSigner: signer)
-```
-
-#### Example
-
-```swift
-let credentials = Credentials(<WALLET_PRIVATE_KEY>)
-let chainId = try! zkSync.web3.eth.getChainIdPromise().wait()
-let zkSync: ZkSync = ZkSyncImpl(URL(string: "https://sepolia.era.zksync.dev")!)
-let ethereum: web3 = try! Web3.new(URL(string: "https://rpc.ankr.com/eth_sepolia")!)
-let signer = BaseSigner(credentials, chainId: chainId)
-let wallet = Wallet(zkSync, ethClient: ethClient, web3: web3, ethSigner: signer)
-```
-
-### `Nonce`
-
-Returns the account nonce of the associated account. The block number can be `nil`, in which case the nonce is taken from the latest known
-block.
-
-#### Inputs
-
-| Parameter     | Type                     | Description   |
-| ------------- | ------------------------ | ------------- |
-| `blockNumber` | `BlockNumber` (optional) | Block number. |
-
-```swift
-func nonce(at block: BlockNumber = .latest) async throws -> BigUInt
-```
-
-#### Example
-
-```swift
-try await wallet.nonce(at: .exact(9000))
-```
-
-### `PendingNonce`
-
-Returns the account nonce of the associated account in the pending state. This is the nonce that should be used for the next transaction.
-
-```swift
-func pendingNonce() async throws -> BigUInt
-```
-
-#### Example
-
-```swift
-try await wallet.pendingNonce()
-```
+Returns the EIP712 domain.

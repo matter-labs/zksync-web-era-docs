@@ -22,7 +22,7 @@ encoder = PaymasterFlowEncoder(zk_web3)
 
 ## Functions
 
-### `encode_approval_based`
+### `encodeApprovalBased`
 
 Returns encoded input for an approval-based paymaster.
 
