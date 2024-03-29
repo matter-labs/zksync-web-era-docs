@@ -11,6 +11,10 @@ Welcome to this step-by-step guide on establishing a local testing environment u
 1. **Docker and docker-compose**: Ensure that Docker and docker-compose are installed on your machine. If you haven't already installed them, follow the installation [guide](https://docs.docker.com/get-docker/).
 2. **zkSync Hardhat plugins**: A foundational understanding of the zkSync Hardhat plugins will be beneficial. New to zkSync development with Hardhat? Explore the getting started section.
 
+:::warning
+The `matterlabs/local-node` Docker image is currently based on the protocol `Version19` (deprecated on February 5, 2024), and it will be upgraded in the coming months. It should only be used for testing L1 <-> L2 communication.
+:::
+
 ### **Setting Up the Testing Environment**
 
 Clone the dockerized zkSync project repository to your local machine:
