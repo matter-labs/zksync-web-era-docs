@@ -279,7 +279,7 @@ The **accounts** section enables to specify wallet private keys which help us de
 
 :::note
 You should store your private key in `.env` file which is explicitly ignored in `.gitignore` file.
-This way you are protected from acidentally exposing your private key in one of your github repositories.
+This way you are protected from accidentally exposing your private key in one of your github repositories.
 :::
 
 When you are about to use the private key, load it using:
