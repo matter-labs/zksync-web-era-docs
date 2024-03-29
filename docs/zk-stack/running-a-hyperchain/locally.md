@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Deploying Locally | zkSync Docs
+      content: Deploying ZK Stack Hyperchain Locally | zkSync Docs
 ---
 
 # Getting Started with ZK Stack

@@ -36,7 +36,7 @@ async fn main() {
 
 ## Connecting to zkSync Era
 
-To interact with the zkSync network users need to know the endpoint of the operator node. In this tutorial, we will be using the `localnet` from [`matter-labs/local-setup`][localnet]. The localnet runs both an Ethereum node (L1) on port `8545` and an Era node (L2) on port `3050`. You can connect to the zkSync Era network using the following code:
+To interact with the zkSync network users need to know the endpoint of the operator node. In this tutorial, we will be using the `localnet` from [Dockerized L1 - L2 Nodes](../../test-and-debug/dockerized-l1-l2-nodes.md). The `localnet` runs both an Ethereum node (L1) on port `8545` and an Era node (L2) on port `3050`. You can connect to the zkSync Era network using the following code:
 
 ```rust
 use zksync_web3_rs::providers::{Http, Middleware, Provider};
@@ -290,4 +290,3 @@ let withdraw_receipt_l1 = zk_wallet_2.get_eth_provider().unwrap().get_transactio
 [sdk]: https://github.com/lambdaclass/zksync-web3-rs/
 [ethers]: https://crates.io/crates/ethers
 [tokio]: https://tokio.rs/
-[localnet]: https://github.com/matter-labs/local-setup

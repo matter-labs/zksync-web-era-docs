@@ -31,7 +31,7 @@ This is what we're going to do:
 
 ## Fund your wallet
 
-You can get testnet ETH directly into zkSync testnet using the [following faucet provided by LearnWeb3](https://learnweb3.io/faucets/zksync_sepolia/).
+You can get testnet ETH directly into zkSync testnet using the [following faucet provided by Chainstack](https://faucet.chainstack.com/zksync-testnet-faucet).
 
 Another option is to [get SepoliaETH from any of the following faucets](../tooling/network-faucets.md) and bridge it to zkSync Sepolia testnet using the [zkSync bridge](https://portal.zksync.io/bridge/?network=sepolia).
 
@@ -39,11 +39,17 @@ You can check the balance of your account in the [zkSync Sepolia explorer](https
 
 ## Create the project
 
+<!--
+The repo used here for atlas is no longer maintained, so it's not a good idea to recommend it in the docs for it to ultimately break.
+
+I did something similar with Chainlink that is running to this day if you want to see the actions file:
+https://github.com/smartcontractkit/chainlink-brownie-contracts/blob/main/.github/workflows/add-and-commit.yml
+
 ::: info Project available in Atlas IDE
 This entire tutorial can be run in under a minute using Atlas. Atlas is a smart contract IDE that lets you write, deploy, and interact with contracts from your browser.
 
 [Open this project in Atlas](https://app.atlaszk.com/projects?template=https://github.com/matter-labs/zksync-hardhat-template&open=Greeter.sol&chainId=300).
-:::
+::: -->
 
 Run the following command in your terminal to create a new project using zkSync CLI.
 
@@ -63,7 +69,7 @@ It will give you options for different types of projects but for this tutorial c
 
 ::: info
 
-The private key of your wallet will be included in the `.env` file of the project and won't be pushed to GitHub.
+The private key of your wallet will be included in the `.env` file of the project and won't be pushed to GitHub. However, as this means the private key is in plain text, it's recommended to use a private key that isn't associated with any real funds.
 
 :::
 
