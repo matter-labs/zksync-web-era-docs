@@ -49,7 +49,6 @@ export default hopeTheme({
       </div>
 
   <p>Made with ❤️ by <a href='https://matter-labs.io/'>Matter Labs</a></p>
-  <div id="temp-banner"><div>zkSync Goerli Testnet will be shutdown on&nbsp;<strong>March 31st</strong>. Please use zkSync Sepolia Testnet instead. For more information see&nbsp;<a href="https://github.com/zkSync-Community-Hub/zksync-developers/discussions/228" target="_blank">this announcement</a>.</div></div>
   `,
 
   copyright: false,
