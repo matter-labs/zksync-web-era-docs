@@ -52,7 +52,7 @@ Each zkEVM bytecode must adhere to the following format:
 - Its length in words (32-byte chunks) should be odd. In other words, `bytecodeLength % 64 == 32`.
 - It can not be longer than `2^16` 32-byte words, i.e. `2^21` bytes.
 
-Note: the `2^21` is a VM limit, but the deployed bytecode has to be published to L1, that imposes a pubdata limit, which is normally smaller.
+Note: the `2^21` is a VM limit, but the deployed bytecode has to be published to L1, which imposes a pubdata limit, which is normally smaller.
 By default, for each batch, it's set to 100000 bytes for hyperchains using pubdata DA, and 120000 per each EIP-4844 blob.
 
 The 32-byte hash of the bytecode of a zkSync contract is calculated in the following way:
