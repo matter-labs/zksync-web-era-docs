@@ -80,7 +80,7 @@ During the `zk stack init` configurator, you have a choice of what base layer to
 
 #### Base layer is an Ethereum network (e.g., Sepolia)
 
-- If you chose to deploy on an Ethereum network (e.g., Sepolia), you need to have an account on the base layer with ETH. You can use the deployer, governor, or operator wallets setup during the the deployment process, or any other one you have funds, to deposit into your hyperchain via the bridge.
+- If you chose to deploy on an Ethereum network (e.g., Sepolia), you need to have an account on the base layer with ETH. You can use the deployer, governor, or operator wallets setup during the deployment process, or any other one you have funds, to deposit into your hyperchain via the bridge.
 
 Once you have the accounts with funds on the L1 base layer, you can do a deposit via the bridge to your hyperchain, and any further interactions with your hyperchain.
 
