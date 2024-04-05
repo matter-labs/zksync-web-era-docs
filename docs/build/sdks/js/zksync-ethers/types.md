@@ -86,7 +86,7 @@ Interface representation of block information containing various optional and ma
 
 ## `BlockTag`
 
-Pipe-delimited list of block labels that includes block number in denary and hex plus block statuses.
+Pipe-delimited list of block labels that includes block number in binary and hex plus block statuses.
 
 - `BigNumberish`
 - `string` // block hash
@@ -226,6 +226,14 @@ Type defining a paymaster by address and the bytestream input.
 - `paymaster`: `Address`;
 - `paymasterInput`: `BytesLike`;
 
+## `PayloadSigner`
+
+Signs various types of payloads, optionally using a some kind of secret.
+
+- `payload`: `BytesLike`;
+- `secret`: `any`;
+- `provider` `null | Provider`;
+
 ## `PriorityOpResponse`
 
 Interface representation of priority op response that extends [`TransactionResponse`](#transactionresponse) and adds a function that waits to commit a layer 1 transaction, including when given on optional confirmation number.
@@ -265,9 +273,18 @@ Interface representation of raw block with transactions
 
 0x-prefixed, hex-encoded, ECDSA signature as string.
 
+## `SmartAccountSigner`
+
+Encapsulates the required input parameters for creating a signer for [`SmartAccount`](./accounts.md#smartaccount).
+
+- `address`: `string`;
+- `secret`: `any`;
+- `payloadSigner`: `PayloadSigner`;
+- `transactionBuilder`: `TransactionBuilder`;
+
 ## `StorageProof`
 
-Interace representation of Merkle proofs for storage values.
+Interface representation of Merkle proofs for storage values.
 
 - `address`: `string`;
 - `storageProof` (Array):
@@ -285,6 +302,14 @@ Interface representation of token containing various fields.
 - `name`: `string`;
 - `symbol`: `string`;
 - `decimals`: `number`;
+
+## `TransactionBuilder`
+
+Populates missing fields in a transaction with default values.
+
+- `transaction`: `TransactionRequest`;
+- `secret`: `any`;
+- `provider`: `null | Provider`;
 
 ## `TransactionDetails`
 
@@ -332,5 +357,5 @@ Non-enumerated enum list of transaction statuses.
 - Finalized = `finalized`
 
 :::tip More info
-Find the code definition of the types above on the [zkSync Era Github repo.](https://github.com/zksync-sdk/zksync-ethers/blob/main/src/types.ts)
+Find the code definition of the types above on the [zkSync Era GitHub repo.](https://github.com/zksync-sdk/zksync-ethers/blob/main/src/types.ts)
 :::

@@ -392,6 +392,7 @@ export const enSidebar = sidebar({
                 "/build/sdks/js/features",
                 "/build/sdks/js/utils",
                 "/build/sdks/js/paymaster-utils",
+                "/build/sdks/js/smart-account-utils",
                 "/build/sdks/js/types",
                 "/build/sdks/js/front-end",
               ],
@@ -408,6 +409,7 @@ export const enSidebar = sidebar({
                 "/build/sdks/js/zksync-ethers/features",
                 "/build/sdks/js/zksync-ethers/utils",
                 "/build/sdks/js/zksync-ethers/paymaster-utils",
+                "/build/sdks/js/zksync-ethers/smart-account-utils",
                 "/build/sdks/js/zksync-ethers/types",
                 "/build/sdks/js/zksync-ethers/front-end",
                 "/build/sdks/js/zksync-ethers/migration"
