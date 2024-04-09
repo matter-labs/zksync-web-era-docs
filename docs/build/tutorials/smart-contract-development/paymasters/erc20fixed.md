@@ -202,12 +202,10 @@ describe.only("ERC20fixedPaymaster", function () {
     // deploy contracts
     token = await deployContract(deployer, "MyERC20", ["MyToken", "MyToken", 18]);
     tokenAddress = await token.getAddress();
-    console.log("tokenAddress :>> ", tokenAddress);
     paymaster = await deployContract(deployer, "ApprovalPaymaster", [tokenAddress]);
     paymasterAddress = await paymaster.getAddress();
     greeter = await deployContract(deployer, "Greeter", ["Hi"]);
     greeterAddress = await greeter.getAddress();
-    console.log("greeterAddress :>> ", greeterAddress);
     // fund paymaster
     await fundAccount(wallet, paymasterAddress, "3");
     ownerInitialBalance = await wallet.getBalance();
