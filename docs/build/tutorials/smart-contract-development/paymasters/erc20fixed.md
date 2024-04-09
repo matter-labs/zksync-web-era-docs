@@ -222,7 +222,6 @@ describe.only("ERC20fixedPaymaster", function () {
       innerInput: new Uint8Array(),
     });
 
-    // const emptyGreeter = await greeter.connect(user);
     const setGreetingTx = await greeter.connect(user).setGreeting("Hola, mundo!", {
       maxPriorityFeePerGas: BigInt(0),
       maxFeePerGas: gasPrice,
