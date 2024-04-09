@@ -545,6 +545,31 @@ If network argument `--network` or `defaultNetwork` configuration are not specif
 For more details about a dockerized local setup, check out [Local testing](../../test-and-debug/getting-started.md).
 :::
 
+`yarn hardhat deploy-zksync:contract --contract-name <contract name or FQN>`
+
+Provides an easy and fast way to deploy the given contract on the specified network. If the provided command for deploying a single contract is insufficient and you require additional flexibility, such as incorporating additional dependencies or overrides, it would be advisable to utilize a script-based approach.
+
+- `--contract-name <contract name or FQN>` - contract name or FQN, required argument in all tasks, e.g. `hardhat deploy-zksync:proxy --contract-name SomeContract`.
+- `<constructor arguments>` - list of constructor arguments, e.g. `hardhat deploy-zksync:proxy --contract-name Greeter 'Hello'`.
+- `--constructor-args <module name>` - name of javascript module containing complex constructor arguments. Works only if `<constructor arguments>` are not provided e.g. `hardhat deploy-zksync:contract --contract-name ComplexContract --constructor-args args.js`. Example of `args.js` :
+
+```typescript
+module.exports = [
+  "a string argument",
+  "0xabcdef",
+  "42",
+  {
+    property1: "one",
+    property2: 2,
+  },
+];
+```
+
+- `--no-compile`- skip the compilation process, e.g. `hardhat deploy-zksync:beacon --contract-name Contract --no-compile`.
+- `--deployment-type` - specify which deployer smart contract function will be called. Permissible values for this parameter include `create`, `create2`, `createAccount`, and `create2Account`. If this parameter is omitted, the default value will be `create`, e.g. `hardhat deploy-zksync:beacon --contract-name Greeter 'Hello' --deployment-type create2`.
+
+The account used for deployment will be the one specified by the `deployerAccount` configuration within the `hardhat.config.ts` file. If no such configuration is present, the account with index `0` will be used.
+
 `yarn hardhat deploy-zksync:libraries` -- runs compilation and deployment of missing libraries (the list of all missing libraries is provided by the output of `@matterlabs/hardhat-zksync-solc` plugin).
 
 The account used for deployment will be the one specified by the `deployerAccount` configuration within the `hardhat.config.ts` file. If no such configuration is present, the account with index `0` will be used.
