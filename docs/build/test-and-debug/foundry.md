@@ -11,7 +11,7 @@ For instructions on how to install `foundry-zksync` please refer to the [Getting
 
 ## Overview
 
-`foundry-zksync`, a fork of Foundry, provides developers with a tailored testing framework designed specifically for zkSync environments. Utilizing `zkforge test`, you can execute your smart contract tests efficiently. Tests are written in Solidity, and the framework is designed to recognize any contract function prefixed with `test` as a test case. By convention, tests are typically stored within the `test/` directory and have a `.t.sol` extension.
+`foundry-zksync`, a fork of Foundry, provides developers with a tailored testing framework designed specifically for zkSync environments. Utilizing `forge test --zksync`, you can execute your smart contract tests efficiently. Tests are written in Solidity, and the framework is designed to recognize any contract function prefixed with `test` as a test case. By convention, tests are typically stored within the `test/` directory and have a `.t.sol` extension.
 
 :::info
 For more detailed documentation related to Foundry testing please refer to the official upstream Foundry documentation [here](https://book.getfoundry.sh/forge/tests).
@@ -19,10 +19,10 @@ For more detailed documentation related to Foundry testing please refer to the o
 
 ## Running Tests
 
-To initiate your tests, use the `zkforge test` command. This command automatically locates and executes tests across your source directory. Here's an example of executing tests in a standard project setup:
+To initiate your tests, use the `forge test --zksync` command with the `--zksync` flag, or incorporate `vm.zkVm(true)` within your tests. This command automatically locates and executes tests across your source directory. Here's an example of executing tests in a standard project setup:
 
 ```bash
-zkforge test
+forge test --zksync
 
 Running 2 tests for test/Counter.t.sol:CounterTest
 [PASS] testFuzz_SetNumber(uint256) (runs: 256, μ: 27553, ~: 28409)
@@ -35,7 +35,7 @@ Test result: ok. 2 passed; 0 failed; 0 skipped; finished in 96.80ms
 You can run specific tests by filtering based on the contract or test names:
 
 ```bash
-zkforge test --match-contract CounterTest --match-test test_Increment
+forge test --match-contract CounterTest --match-test test_Increment --zksync
 ```
 
 This command will execute only the tests within `CounterTest` that include `test_Increment` in their name.
@@ -43,14 +43,14 @@ This command will execute only the tests within `CounterTest` that include `test
 Similarly, you can use `--match-path` to run tests in files that match a specific glob pattern:
 
 ```bash
-zkforge test --match-path Counter.t.sol
+forge test --match-path test/Counter.t.sol --zksync
 ```
 
 Inverse filters are available through `--no-match-contract`, `--no-match-test`, and `--no-match-path` flags.
 
 ## Watch Mode
 
-To automatically re-run tests upon any file changes, use the `zkforge test --watch --run-all` command.
+To automatically re-run tests upon any file changes, use the `forge test --watch --run-all --zksync` command.
 
 ## Writing Tests
 
