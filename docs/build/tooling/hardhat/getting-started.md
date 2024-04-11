@@ -20,12 +20,12 @@ zkSync Era has the following official plugins for Hardhat:
 - [@matterlabs/hardhat-zksync-solc](./hardhat-zksync-solc.md) - used to compile contracts written in Solidity.
 - [@matterlabs/hardhat-zksync-vyper](./hardhat-zksync-vyper.md) - used to compile contracts written in Vyper.
 - [@matterlabs/hardhat-zksync-deploy](./hardhat-zksync-deploy.md) - used to deploy smart contracts.
-- [@matterlabs/hardhat-zksync-chai-matchers](./hardhat-zksync-chai-matchers.md) - adds zkSync-specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts.
 - [@matterlabs/hardhat-zksync-verify](./hardhat-zksync-verify.md) - used to verify smart contracts.
 - [@matterlabs/hardhat-zksync-verify-vyper](./hardhat-zksync-verify-vyper.md) - used to verify vyper smart contracts.
 - [@matterlabs/hardhat-zksync-upgradable](./hardhat-zksync-upgradable.md) - used to deploy, update, and verify proxy smart contracts.
 - [@matterlabs/hardhat-zksync-ethers](./hardhat-zksync-ethers.md) - wrapper around zksync-ethers with some extra Hardhat-specific functionality.
 - [@matterlabs/hardhat-zksync-node](./hardhat-zksync-node.md) - used to run the zkSync era-test-node locally.
+- [@matterlabs/hardhat-zksync](./hardhat-zksync.md) - used to access to all of the supported plugins and to use them as needed in your project.
 
 ::: tip Additional plugins
 Learn more about [other plugins from the community](./other-plugins.md) that you can use with zkSync Era.

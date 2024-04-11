@@ -7,7 +7,7 @@ head:
 
 # Test smart contracts with Hardhat plugins
 
-This tutorial provides a step-by-step guide on testing smart contracts using the **hardhat-zksync-chai-matchers** plugin in conjunction with the **zkSync Era Test Node** on your local machine. To facilitate this process of running tests on the **zkSync Era Test Node**, you'll also utilize the **hardhat-zksync-node** plugin.
+This tutorial provides a step-by-step guide on testing smart contracts using the **hardhat-chai-matchers** plugin in conjunction with the **zkSync Era Test Node** on your local machine. To facilitate this process of running tests on the **zkSync Era Test Node**, you'll also utilize the **hardhat-zksync-node** plugin.
 
 # Prerequisites
 
@@ -83,9 +83,9 @@ Since we've confirmed that the **zkSync Era Test Node** is functioning properly 
 
 Read more about **hardhat-zksync-node** [here.](../../tooling/hardhat/hardhat-zksync-node.md)
 
-## Integration with hardhat-zksync-chai-matchers plugin
+## Integration with hardhat-chai-matchers plugin
 
-To leverage zkSync-specific capabilities within the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts, it's necessary to use the **hardhat-zksync-chai-matchers** plugin.
+To leverage zkSync-specific capabilities within the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts, it's necessary to use the **hardhat-chai-matchers** plugin.
 
 ### Installation
 
@@ -96,13 +96,13 @@ In the root directory of your project, execute this command:
 @tab:active yarn
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-chai-matchers @nomicfoundation/hardhat-chai-matchers chai @nomiclabs/hardhat-ethers ethers
+yarn add -D  @nomicfoundation/hardhat-chai-matchers chai@4.3.6 @nomiclabs/hardhat-ethers
 ```
 
 @tab npm
 
 ```bash
-npm i -D @matterlabs/hardhat-zksync-chai-matchers
+npm i -D @nomicfoundation/hardhat-chai-matchers
 ```
 
 :::
@@ -111,16 +111,7 @@ After installing it, add the plugin at the top of your **hardhat.config.ts** fil
 
 ```bash
 import "@nomicfoundation/hardhat-chai-matchers"
-import "@matterlabs/hardhat-zksync-chai-matchers";
 ```
-
-::: note Import order matters
-
-To enable the **@matterlabs/hardhat-zksync-chai-matchers** plugin to override **@nomicfoundation/hardhat-chai-matchers**, you must import the latter first, ensuring that all zkSync-specific matchers take override the original ones.
-
-:::
-
-Read more about **hardhat-zksync-chai-matchers** [here.](../../tooling/hardhat/hardhat-zksync-chai-matchers.md)
 
 ### Smart Contract creation
 
@@ -189,7 +180,7 @@ You can find more details about available configuration options in the [official
 
 ### Deploy configuration
 
-We'll use provided example contract for testing with help of **hardhat-zksync-chai-matchers** plugin and deploying it on **zkSync Era Test Node**. Since deployment is involved, we'll also require the **hardhat-zksync-deploy** plugin for assistance. In the same directory, execute the command to install **hardhat-zksync-deploy** plugin:
+We'll use provided example contract for testing with help of **hardhat-chai-matchers** plugin and deploying it on **zkSync Era Test Node**. Since deployment is involved, we'll also require the **hardhat-zksync-deploy** plugin for assistance. In the same directory, execute the command to install **hardhat-zksync-deploy** plugin:
 
 ::: code-tabs
 
@@ -226,7 +217,6 @@ import "@matterlabs/hardhat-zksync-solc";
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-node";
 import "@nomicfoundation/hardhat-chai-matchers";
-import "@matterlabs/hardhat-zksync-chai-matchers";
 
 const config: HardhatUserConfig = {
   zksolc: {
@@ -242,13 +232,13 @@ const config: HardhatUserConfig = {
 export default config;
 ```
 
-Here are the steps to create test cases with the **hardhat-zksync-chai-matchers** plugin:
+Here are the steps to create test cases with the **hardhat-chai-matchers** plugin:
 
 1. Navigate to your project's root directory.
 2. Create a new folder named **test**.
 3. Inside the **test** folder, create a file named **test.ts**.
 
-Once you've completed these steps, you'll be ready to write your tests using the **hardhat-zksync-chai-matchers** plugin.
+Once you've completed these steps, you'll be ready to write your tests using the **hardhat-chai-matchers** plugin.
 
 Here's a brief example showcasing the functionalities of our contract:
 
@@ -258,7 +248,6 @@ import { expect } from "chai";
 import { Wallet, Provider, Contract } from "zksync-ethers";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 import { ZkSyncArtifact } from "@matterlabs/hardhat-zksync-deploy/src/types";
-import { ZkSyncProviderAdapter } from "@matterlabs/hardhat-zksync-node";
 import "@matterlabs/hardhat-zksync-node/dist/type-extensions";
 
 const RICH_PRIVATE_KEY = "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110";

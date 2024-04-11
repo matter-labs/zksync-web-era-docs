@@ -23,11 +23,11 @@ For detailed explanations of the IPaymaster interface please refer to the docume
 
 ### **Step 1 — Understanding the ERC20FixedPaymaster contract**
 
-The provided `ApprovalPaymaster` contract allows transactions to have the gas covered in a specified ERC-20 token for accounts that hold a balance of a specific ERC20 token. For the purposes of this guide we will make use of the [DAI ERC-20 token](https://sepolia.explorer.zksync.io/address/0x6Ff473f001877D553833B6e312C89b3c8fACa7Ac).
+The paymaster smart contract allows transactions to have the gas covered in exchange for 1 unit of a specified ERC20 token.
 
 **Key components**:
 
-- `validateAndPayForPaymasterTransaction`: Validates the user's token balance, checks the transaction allowance, calculates the required ETH, and pays the bootloader.
+- `validateAndPayForPaymasterTransaction`: Validates the user's token balance, checks the transaction allowance, transfers the ERC20 token from the user's account to the paymaster, calculates the required ETH, and pays the bootloader.
 
 Each paymaster should implement the `IPaymaster` interface. We will be using `zksync-cli` to bootstrap the boilerplate code for this paymaster.
 
@@ -59,9 +59,9 @@ Ensure your account has a sufficient balance.
 
 ### Step 3 — Updating the Contract
 
-No modifications are needed for `ERC20FixedPaymaster` since the provided `ApprovalPaymaster` contract is already configured for this purpose.
+The provided `ApprovalPaymaster` contract is already configured for the purpose of this tutorial.
 
-Reviewing the `validateAndPayForPaymasterTransaction` function reveals its simplicity: it verifies if the token is correct, the user holds the token and has provided enough allowance.
+Reviewing the `validateAndPayForPaymasterTransaction` function reveals its simplicity: it verifies if the token is correct, the user holds the token and has provided enough allowance, transfers the ERC20 and pays the bootloader:
 
 ```solidity
 (address token, uint256 amount, bytes memory data) = abi.decode(
@@ -85,100 +85,41 @@ require(
     providedAllowance >= PRICE_FOR_PAYING_FEES,
     "Min allowance too low"
 );
-```
 
-### Step 4 — Deploy the Contract
+// Note, that while the minimal amount of ETH needed is tx.gasPrice * tx.gasLimit,
+// neither paymaster nor account are allowed to access this context variable.
+uint256 requiredETH = _transaction.gasLimit *
+    _transaction.maxFeePerGas;
 
-Create a new file under `/deploy`, for example `deploy-erc20FixedPaymaster.ts`. Insert the provided script:
-
-#### deploy-erc20FixedPaymaster.ts
-
-```typescript
-import { Provider, Wallet } from "zksync-ethers";
-import * as ethers from "ethers";
-import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
-
-// load env file
-import dotenv from "dotenv";
-dotenv.config();
-
-// load wallet private key from env file
-const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
-// The address of the DAI token contract
-const TOKEN_ADDRESS = "0x6Ff473f001877D553833B6e312C89b3c8fACa7Ac";
-
-if (!PRIVATE_KEY) throw "⛔️ Private key not detected! Add it to the .env file!";
-
-if (!TOKEN_ADDRESS) throw "⛔️ TOKEN_ADDRESS not detected! Add it to the TOKEN_ADDRESS variable!";
-
-export default async function (hre: HardhatRuntimeEnvironment) {
-  console.log(`Running deploy script for the ApprovalPaymaster contract...`);
-  const provider = new Provider("https://sepolia.era.zksync.dev");
-  // The wallet that will deploy the token and the paymaster
-  // It is assumed that this wallet already has sufficient funds on zkSync
-  const wallet = new Wallet(PRIVATE_KEY);
-  const deployer = new Deployer(hre, wallet);
-
-  // Deploying the paymaster
-  const paymasterArtifact = await deployer.loadArtifact("ApprovalPaymaster");
-  const deploymentFee = await deployer.estimateDeployFee(paymasterArtifact, [TOKEN_ADDRESS]);
-  const parsedFee = ethers.formatEther(deploymentFee.toString());
-  console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
-  // Deploy the contract
-  const paymaster = await deployer.deploy(paymasterArtifact, [TOKEN_ADDRESS]);
-  const paymasterAddress = await paymaster.getAddress();
-  console.log(`Paymaster address: ${paymasterAddress}`);
-
-  console.log("Funding paymaster with ETH");
-  // Supplying paymaster with ETH
-  await (
-    await deployer.zkWallet.sendTransaction({
-      to: paymasterAddress,
-      value: ethers.parseEther("0.005"),
-    })
-  ).wait();
-
-  let paymasterBalance = await provider.getBalance(paymasterAddress);
-  console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
-
-  // Verify contract programmatically
-  //
-  // Contract MUST be fully qualified name (e.g. path/sourceName:contractName)
-  const contractFullyQualifedName = "contracts/paymasters/ApprovalPaymaster.sol:ApprovalPaymaster";
-  const verificationId = await hre.run("verify:verify", {
-    address: paymasterAddress,
-    contract: contractFullyQualifedName,
-    constructorArguments: [TOKEN_ADDRESS],
-    bytecode: paymasterArtifact.bytecode,
-  });
-  console.log(`${contractFullyQualifedName} verified! VerificationId: ${verificationId}`);
-
-  console.log(`Done!`);
+try
+    IERC20(token).transferFrom(userAddress, thisAddress, amount)
+{} catch (bytes memory revertReason) {
+    // If the revert reason is empty or represented by just a function selector,
+    // we replace the error with a more user-friendly message
+    if (revertReason.length <= 4) {
+        revert("Failed to transferFrom from users' account");
+    } else {
+        assembly {
+            revert(add(0x20, revertReason), mload(revertReason))
+        }
+    }
 }
+
+// The bootloader never returns any data, so it can safely be ignored here.
+(bool success, ) = payable(BOOTLOADER_FORMAL_ADDRESS).call{
+    value: requiredETH
+}("");
+require(
+    success,
+    "Failed to transfer tx fee to the bootloader. Paymaster balance might not be enough."
+);
 ```
 
-:::info
-Update the `TOKEN_ADDRESS` variable to the address of your preferred token.
-:::
+### Step 4 — Testing the Contract
 
-Compile the contract:
+To test the functionality, we'll use a mock ERC-20 token contract. This will help confirm that the paymaster operates as expected. Inside the `/contracts/` directory, create a file named `MyERC20.sol` and insert the following code:
 
-```bash
-yarn hardhat compile
-```
-
-Deploy the contract:
-
-```bash
-yarn hardhat deploy-zksync --script deploy-erc20FixedPaymaster.ts
-```
-
-### Step 5 — Testing the Contract
-
-To test the functionality, you can utilize a mock ERC-20 token contract. This will help confirm that the paymaster operates as expected. Inside the `/contracts/` directory, create a file named `ERC20.sol` and insert the following contract:
-
-#### ERC20.sol
+#### MyERC20.sol
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -215,6 +156,8 @@ contract MyERC20 is ERC20 {
   }
 }
 ```
+
+This is the token we'll use to pay the transaction fees with.
 
 To further validate the operations of the ERC20FixedPaymaster contract, we've provided a test script. Create a file named `erc20FixedPaymaster.test.ts` within the `/test` directory, then populate it with the subsequent script:.
 
@@ -279,8 +222,7 @@ describe.only("ERC20fixedPaymaster", function () {
       innerInput: new Uint8Array(),
     });
 
-    await greeter.connect(user);
-    const setGreetingTx = await greeter.setGreeting("Hola, mundo!", {
+    const setGreetingTx = await greeter.connect(user).setGreeting("Hola, mundo!", {
       maxPriorityFeePerGas: BigInt(0),
       maxFeePerGas: gasPrice,
       // hardcoded for testing
@@ -312,9 +254,9 @@ describe.only("ERC20fixedPaymaster", function () {
     const finalPaymasterBalance = await provider.getBalance(paymasterAddress);
 
     expect(await greeter.greet()).to.equal("Hola, mundo!");
-    expect(initialPaymasterBalance).to.be.gt(finalPaymasterBalance);
+    expect(initialPaymasterBalance > finalPaymasterBalance).to.be.true;
     expect(userInitialETHBalance).to.eql(finalETHBalance);
-    expect(userInitialTokenBalance.gt(finalUserTokenBalance)).to.be.true;
+    expect(userInitialTokenBalance > finalUserTokenBalance).to.be.true;
   });
 
   it("should allow owner to withdraw all funds", async function () {
@@ -350,7 +292,7 @@ describe.only("ERC20fixedPaymaster", function () {
   }
 
   function setupDeployer(url: string, privateKey: string): [Provider, Wallet, Deployer] {
-    const provider = new Provider(url);
+    const provider = new Provider(url, undefined, { cacheTimeout: -5 });
     const wallet = new Wallet(privateKey, provider);
     const deployer = new Deployer(hre, wallet);
     return [provider, wallet, deployer];
@@ -364,6 +306,93 @@ To execute test:
 
 ```bash
 yarn hardhat test --network hardhat
+```
+
+### Step 5 — Deploy to zkSync Sepolia testnet
+
+To deploy the paymaster contract to the zkSync Sepolia testnet, create a new file under `/deploy`, for example `deploy-erc20FixedPaymaster.ts`. Insert the provided script:
+
+#### deploy-erc20FixedPaymaster.ts
+
+```typescript
+import { Provider, Wallet } from "zksync-ethers";
+import * as ethers from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+
+// load env file
+import dotenv from "dotenv";
+dotenv.config();
+
+// load wallet private key from env file
+const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
+// The address of the token to be used. TEST token in this example
+const TOKEN_ADDRESS = "0x7E2026D8f35872923F5459BbEDDB809F6aCEfEB3";
+
+if (!PRIVATE_KEY) throw "⛔️ Private key not detected! Add it to the .env file!";
+
+if (!TOKEN_ADDRESS) throw "⛔️ TOKEN_ADDRESS not detected! Add it to the TOKEN_ADDRESS variable!";
+
+export default async function (hre: HardhatRuntimeEnvironment) {
+  console.log(`Running deploy script for the ApprovalPaymaster contract...`);
+  const provider = new Provider("https://sepolia.era.zksync.dev");
+  // The wallet that will deploy the token and the paymaster
+  // It is assumed that this wallet already has sufficient funds on zkSync
+  const wallet = new Wallet(PRIVATE_KEY);
+  const deployer = new Deployer(hre, wallet);
+
+  // Deploying the paymaster
+  const paymasterArtifact = await deployer.loadArtifact("ApprovalPaymaster");
+  const deploymentFee = await deployer.estimateDeployFee(paymasterArtifact, [TOKEN_ADDRESS]);
+  const parsedFee = ethers.formatEther(deploymentFee.toString());
+  console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
+  // Deploy the contract
+  const paymaster = await deployer.deploy(paymasterArtifact, [TOKEN_ADDRESS]);
+  const paymasterAddress = await paymaster.getAddress();
+  console.log(`Paymaster address: ${paymasterAddress}`);
+
+  console.log("Funding paymaster with ETH");
+  // Supplying paymaster with ETH
+  await (
+    await deployer.zkWallet.sendTransaction({
+      to: paymasterAddress,
+      value: ethers.parseEther("0.005"),
+    })
+  ).wait();
+
+  let paymasterBalance = await provider.getBalance(paymasterAddress);
+  console.log(`Paymaster ETH balance is now ${paymasterBalance.toString()}`);
+
+  // Verify contract programmatically
+  //
+  // Contract MUST be fully qualified name (e.g. path/sourceName:contractName)
+  const contractFullyQualifedName = "contracts/paymasters/ApprovalPaymaster.sol:ApprovalPaymaster";
+  const verificationId = await hre.run("verify:verify", {
+    address: paymasterAddress,
+    contract: contractFullyQualifedName,
+    constructorArguments: [TOKEN_ADDRESS],
+    bytecode: paymasterArtifact.bytecode,
+  });
+  console.log(`${contractFullyQualifedName} verified! VerificationId: ${verificationId}`);
+
+  console.log(`Done!`);
+}
+```
+
+:::info
+Update the `TOKEN_ADDRESS` variable to the address of your preferred token. In the example above we're using a [TEST token deployed in zkSync Sepolia testnet](https://sepolia.explorer.zksync.io/address/0x7E2026D8f35872923F5459BbEDDB809F6aCEfEB3).
+:::
+
+Compile the contract:
+
+```bash
+yarn hardhat compile
+```
+
+Deploy the contract:
+
+```bash
+yarn hardhat deploy-zksync --script deploy-erc20FixedPaymaster.ts
 ```
 
 ### Conclusion

@@ -36,16 +36,16 @@ yarn install
 Add the following additional dependencies:
 
 ```bash
-yarn add -D @matterlabs/hardhat-zksync-chai-matchers @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers
+yarn add -D @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers
 ```
 
-Import `@matterlabs/hardhat-zksync-chai-matchers` into the `hardhat.config.ts` file:
+Import `@nomicfoundation/hardhat-chai-matchers` into the `hardhat.config.ts` file:
 
 ```typescript
-import "@matterlabs/hardhat-zksync-chai-matchers";
+import "@nomicfoundation/hardhat-chai-matchers";
 ```
 
-The `@matterlabs/hardhat-zksync-chai-matchers` plugin adds zkSync specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts. It extends all the functionalities supported by the [hardhat-chai-matchers](https://hardhat.org/hardhat-chai-matchers/docs/overview) plugin, with the idea to preserve the same behaviour and interface.
+The `@nomicfoundation/hardhat-chai-matchers` plugin adds Ethereum specific capabilities to the [Chai](https://www.chaijs.com/) assertion library for testing smart contracts.
 
 Before running tests, a local zkSync Era node is required. If you are unfamiliar with `era_test_node` refer to the documentation [here](era-test-node/). Start `era_test_node`:
 
@@ -294,7 +294,7 @@ Here, we've declared our main test suite. Each test or nested suite inside provi
     it("Should emit an event when the greeting is changed", async function () { ... });
     ```
 
-    We test the emission of an event when the greeting changes in the contract making use of the `hardhat-zksync-chai-matchers`.
+    We test the emission of an event when the greeting changes in the contract making use of the `hardhat-chai-matchers`.
 
 ### Conclusion
 

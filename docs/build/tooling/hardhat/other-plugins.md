@@ -35,9 +35,13 @@ Automatically generate TypeScript bindings for smart contracts.
 
 Plugin used to deploy and update upgradable smart contracts (proxies). Use the [hardhat-zksync-upgradable plugin](./hardhat-zksync-upgradable.md) which provides an easy-to-use interface for interacting with the OpenZeppelin Upgrades Plugins within a Hardhat environment on zkSync.
 
-### hardhat-contract-sizer
+### hardhat-chai-matchers
 
-Generates a report of the bytecode size of the contracts in your project.
+Adds capabilities to make your smart contract tests easy to write and read.
+
+[More information](https://www.npmjs.com/package/@nomicfoundation/hardhat-chai-matchers)
+
+### hardhat-contract-sizer
 
 [More information](https://www.npmjs.com/package/hardhat-contract-sizer)
 

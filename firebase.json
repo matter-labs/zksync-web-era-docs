@@ -1045,12 +1045,12 @@
         },
         {
           "source": "/docs/tools/hardhat/plugins.html",
-          "destination": "/build/tooling/hardhat/hardhat-zksync-toolbox.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync.html",
           "type": "302"
         },
         {
           "source": "/docs/tools/hardhat/plugins.html",
-          "destination": "/build/tooling/hardhat/hardhat-zksync-toolbox.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync.html",
           "type": "302"
         },
         {
@@ -2270,12 +2270,12 @@
         },
         {
           "source": "/docs/tools/hardhat/plugins.html",
-          "destination": "/build/tooling/hardhat/hardhat-zksync-toolbox.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync.html",
           "type": "302"
         },
         {
           "source": "/docs/tools/hardhat/plugins.html",
-          "destination": "/build/tooling/hardhat/hardhat-zksync-toolbox.html",
+          "destination": "/build/tooling/hardhat/hardhat-zksync.html",
           "type": "302"
         },
         {

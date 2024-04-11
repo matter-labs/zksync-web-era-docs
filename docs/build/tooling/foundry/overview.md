@@ -9,7 +9,7 @@ head:
 
 ## Overview
 
-`foundry-zksync` is a specialized fork of [Foundry](https://github.com/foundry-rs/foundry), tailored for zkSync. It extends Foundry's capabilities for Ethereum app development to support zkSync, allowing for the compilation, deployment, testing, and interaction with smart contracts on zkSync. `foundry-zksync` introduces `zkforge` and `zkcast` extensions of Foundry's existing `forge` and `cast` tools but tailored for zkSync usage.
+`foundry-zksync` is a specialized fork of [Foundry](https://github.com/foundry-rs/foundry), tailored for zkSync. It extends Foundry's capabilities for Ethereum app development to support zkSync, allowing for the compilation, deployment, testing, and interaction with smart contracts on zkSync. `foundry-zksync` introduces `--zksync` flag, or the use of `vm.zkVm(true)` to target the zkSync VM.
 
 ### Status and Contribution
 
@@ -36,7 +36,6 @@ head:
 
 While `foundry-zksync` is **alpha stage**, there are some limitations to be aware of, but not limited to:
 
-- **Cheat Codes Support**: Not all cheat codes are fully supported. [View the list of supported cheat codes](https://github.com/matter-labs/foundry-zksync/blob/main/SUPPORTED_CHEATCODES.md).
 - **Compile Time**: Some users may experience slow compiling.
 - **Specific Foundry Features**: Currently features such as `coverage`, `--gas-report` or `--verify` may not work as intended. We are actively working on providing support for these feature types.
 - **Compiling Libraries**: Compiling non-inlinable libraries requires deployment and adding to configuration. For more information please refer to [official docs](https://era.zksync.io/docs/tools/hardhat/compiling-libraries.html).
