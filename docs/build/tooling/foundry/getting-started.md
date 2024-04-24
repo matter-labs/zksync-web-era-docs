@@ -21,13 +21,27 @@ To integrate `foundry-zksync` into your projects, you have the flexibility to in
    git clone git@github.com:matter-labs/foundry-zksync.git
    ```
 
-2. Navigate to the project directory and switch to the main branch:
+2. Navigate to the project directory:
 
    ```bash
-   cd foundry-zksync && git checkout dev
+   cd foundry-zksync
    ```
 
-For component-specific installations:
+3. Prepare the Installation Script: Ensure the script is executable
+
+```bash
+chmod +x ./install-foundry-zksync
+```
+
+4. Run the Installer: Execute the script to install the foundry-zksync binaries forge and cast
+
+```bash
+./install-foundry-zksync
+```
+
+This will install the `forge` and `cast` binaries. You can now begin using `foundry-zksync`!
+
+For component-specific installations from source:
 
 - **Forge**: To install, execute:
 
