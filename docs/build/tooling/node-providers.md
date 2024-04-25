@@ -27,6 +27,10 @@ head:
 
 [DRPC](https://drpc.org/public-endpoints/zksync) offers access to distributed network of independent third-party partners and public nodes for zkSync. They provide a free tier that allows for an unlimited amount of requests over public nodes, or a paid tier which provides access to all providers, as well as other additional features.
 
+### GetBlock
+
+[GetBlock](https://getblock.io/nodes/zksync/) provides access to zkSync API endpoint for your project. With GetBlock you don’t need to know how to run zkSync nodes as they are already are available for mainnet and testnets.
+
 ### Quicknode
 
 [QuickNode](https://www.quicknode.com/chains/zkSync) offers access to hosted zkSync nodes as part of their free Discover Plan. You can configure add-ons, like "Trace Mode" and "Archive Mode" for an additional cost by upgrading to one of their paid plans.
@@ -37,9 +41,10 @@ head:
 
 ### Public RPCs
 
-| Mainnet                                                                                              | Testnet                                                                                                              |
-| ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| [https://mainnet.era.zksync.io](https://mainnet.era.zksync.io)                                       | [https://sepolia.era.zksync.dev](https://sepolia.era.zksync.dev)                                                     |
-| [https://zksync.drpc.org](https://zksync.drpc.org)                                                   | [https://zksync-era-sepolia.blockpi.network/v1/rpc/public](https://zksync-era-sepolia.blockpi.network/v1/rpc/public) |
-| [https://zksync.meowrpc.com](https://zksync.meowrpc.com)                                             |                                                                                                                      |
-| [https://zksync-era.blockpi.network/v1/rpc/public](https://zksync-era.blockpi.network/v1/rpc/public) |                                                                                                                      |
+| Mainnet                                                                                                            | Testnet                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| [https://mainnet.era.zksync.io](https://mainnet.era.zksync.io)                                                     | [https://sepolia.era.zksync.dev](https://sepolia.era.zksync.dev)                                                     |
+| [https://zksync.drpc.org](https://zksync.drpc.org)                                                                 | [https://zksync-era-sepolia.blockpi.network/v1/rpc/public](https://zksync-era-sepolia.blockpi.network/v1/rpc/public) |
+| [https://zksync.meowrpc.com](https://zksync.meowrpc.com)                                                           |                                                                                                                      |
+| [https://zksync-era.blockpi.network/v1/rpc/public](https://zksync-era.blockpi.network/v1/rpc/public)               |                                                                                                                      |
+| [https://go.getblock.io/f76c09905def4618a34946bf71851542](https://go.getblock.io/f76c09905def4618a34946bf71851542) |                                                                                                                      |

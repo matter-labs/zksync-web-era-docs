@@ -240,10 +240,10 @@ Here's an example of what you should expect to see:
 {"jsonrpc":"2.0","result":"0x0000000000000000000000000000000000000000000000000000000000000012","id":1}
 ```
 
-Or, if you prefer, use [`foundry-zksync`](https://github.com/matter-labs/foundry-zksync). Make sure to install and configure `foundry-zksync` before proceeding (for installation instructions, please see this [link](https://github.com/matter-labs/foundry-zksync/tree/main#foundry-with-zksync-era-v01)):
+Or, if you prefer, use [`foundry-zksync`](https://github.com/matter-labs/foundry-zksync). Make sure to install and configure `foundry-zksync` before proceeding (for installation instructions, please see this [link](https://github.com/matter-labs/foundry-zksync?tab=readme-ov-file#-prerequisites)):
 
 ```bash
-zkcast call 0xe1134444211593Cfda9fc9eCc7B43208615556E2 "name()(string)" --rpc-url http://localhost:8011
+cast call 0xe1134444211593Cfda9fc9eCc7B43208615556E2 "name()(string)" --rpc-url http://localhost:8011
 ```
 
 Here's an example of what you should expect to see:
@@ -255,7 +255,7 @@ Uniswap
 Retrieve the balance of a particular contract:
 
 ```bash
-zkcast call 0x40609141Db628BeEE3BfAB8034Fc2D8278D0Cc78 "balanceOf(address)(uint256)"  0x40609141Db628BeEE3BfAB8034Fc2D8278D0Cc78  --rpc-url http://localhost:8011
+cast call 0x40609141Db628BeEE3BfAB8034Fc2D8278D0Cc78 "balanceOf(address)(uint256)"  0x40609141Db628BeEE3BfAB8034Fc2D8278D0Cc78  --rpc-url http://localhost:8011
 ```
 
 Here's an example of what you should expect to see:
@@ -266,25 +266,12 @@ Here's an example of what you should expect to see:
 
 ### Deploying contracts
 
-For the deployment of your contracts, you have the flexibility to choose between two preferred methods: either by using Hardhat with the `hardhat-zksync-deploy` and `hardhat-zksync-solc` plugins, or via `foundry-zksync`. The following example will detail the process using `foundry-zksync`.
+For the deployment of your contracts, you have the flexibility to choose between two preferred methods: either by using Hardhat with the `@matter-labs/hardhat-zksync`, or via `foundry-zksync`. The following example will detail the process using `foundry-zksync`.
 
-Before proceeding, ensure that you've compiled your contracts using `zkforge zk-build`. For instructions on how to do this, please refer to this [link](https://github.com/matter-labs/foundry-zksync#compile-with-zkforge-zk-build).
-
-```bash
-zkforge zkc contracts/Greeter.sol:Greeter --constructor-args "ZkSync and Foundry" --private-key 7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110 --rpc-url http://localhost:8011 --chain 260
-```
-
-Here's an example of what you should expect to see:
+Before proceeding, ensure that you've compiled your contracts using `forge build --zksync`.
 
 ```bash
-Deploying contract...
-+-------------------------------------------------+
-Contract successfully deployed to address: 0x0a40ecde17dc16c4001bf0e4f5d5ff1818219b3b
-Transaction Hash: 0x9d59bea38ca6f3cef365c23f339547bcc8ce28abb8344999ffffa5fa62c9ff8e
-Gas used: 2570407
-Effective gas price: 500
-Block Number: 8072361
-+-------------------------------------------------+
+forge create contracts/Greeter.sol:Greeter --constructor-args "ZkSync and Foundry" --private-key 7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110 --rpc-url http://localhost:8011 --chain 260 --zksync
 ```
 
 ## Testing bootloader and system contracts
@@ -366,8 +353,7 @@ Ensure era-test-node is running in another process before executing yarn test.
 :::
 
 ```typescript
-import "@matterlabs/hardhat-zksync-deploy";
-import "@matterlabs/hardhat-zksync-solc";
+import "@matterlabs/hardhat-zksync";
 
 module.exports = {
   zksolc: {
@@ -399,7 +385,7 @@ module.exports = {
 import { expect } from "chai";
 import { Wallet, Provider, Contract } from "zksync-ethers";
 import * as hre from "hardhat";
-import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+import { Deployer } from "@matterlabs/hardhat-zksync";
 
 const RICH_WALLET_PK = "0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110";
 

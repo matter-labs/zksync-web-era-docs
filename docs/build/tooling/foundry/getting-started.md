@@ -17,37 +17,51 @@ To integrate `foundry-zksync` into your projects, you have the flexibility to in
 
 1. Clone the repository:
 
-   ```bash
-   git clone git@github.com:matter-labs/foundry-zksync.git
-   ```
+```bash
+git clone git@github.com:matter-labs/foundry-zksync.git
+```
 
-2. Navigate to the project directory and switch to the main branch:
+2. Navigate to the project directory:
 
-   ```bash
-   cd foundry-zksync && git checkout dev
-   ```
+```bash
+cd foundry-zksync
+```
 
-For component-specific installations:
+3. Prepare the Installation Script: Ensure the script is executable
+
+```bash
+chmod +x ./install-foundry-zksync
+```
+
+4. Run the Installer: Execute the script to install the foundry-zksync binaries forge and cast
+
+```bash
+./install-foundry-zksync
+```
+
+Once the `forge` and `cast` binaries are installed, you can start using `foundry-zksync`. Source your preferred profile or refresh your terminal window to activate the changes. You are now ready to begin working with `foundry-zksync`!
+
+For component-specific installations from source:
 
 - **Forge**: To install, execute:
 
-  ```bash
-  cargo install --path ./crates/forge --profile local --force --locked
-  ```
+```bash
+cargo install --path ./crates/forge --profile local --force --locked
+```
 
 - **Cast**: To install, run:
 
-  ```bash
-  cargo install --path ./crates/cast --profile local --force --locked
-  ```
+```bash
+cargo install --path ./crates/cast --profile local --force --locked
+```
 
 For the entire suite:
 
 - Execute the following command for a comprehensive installation:
 
-  ```bash
-  cargo build --release
-  ```
+```bash
+cargo build --release
+```
 
 Choose the installation that best fits your development needs.
 

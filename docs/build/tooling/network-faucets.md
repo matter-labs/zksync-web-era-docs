@@ -27,3 +27,7 @@ Use any of the following faucets to claim SepoliaETH, which you can bridge to zk
 - [Proof of Work Sepolia faucet](https://sepolia-faucet.pk910.de/)
 - [Infura Sepolia faucet](https://www.infura.io/faucet/sepolia/)
 - [Ethereum Ecosystem Sepolia faucet](https://www.ethereum-ecosystem.com/faucets/ethereum-sepolia)
+
+## Sepolia USDC faucet
+
+You can use [Circle's Testnet Faucet](https://faucet.circle.com/) to claim testnet USDC on zkSync Sepolia or Ethereum Sepolia Testnet.

@@ -66,7 +66,7 @@ yarn add -D @matterlabs/zksync-contracts @openzeppelin/contracts@4.9.5
 
 ::: warning
 
-This project does not use the latest version available of `@openzeppelin/contracts`. Mae sure you install the specific version mentioned above.
+This project does not use the latest version available of `@openzeppelin/contracts`. Make sure you install the specific version mentioned above.
 
 :::
 
