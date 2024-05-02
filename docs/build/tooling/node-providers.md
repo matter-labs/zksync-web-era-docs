@@ -9,7 +9,7 @@ head:
 
 ### Alchemy
 
-[Alchemy](https://www.alchemy.com/zkSync) is a leading developer platform with powerful APIs, SDKs, and tools to build truly scalable onchain apps. Deploy on zkSync Mainnet and zkSync Sepolia Testnet using Alchemy's free and [paid plans](https://www.alchemy.com/pricing).
+[Alchemy](https://www.alchemy.com/zksync) is a leading developer platform with powerful APIs, SDKs, and tools to build truly scalable onchain apps. Deploy on zkSync Mainnet and zkSync Sepolia Testnet using Alchemy's free and [paid plans](https://www.alchemy.com/pricing).
 
 ### Ankr
 
