@@ -248,7 +248,7 @@ const config: HardhatUserConfig = {
 };
 ```
 
-- `deployerAccounts` represents an object where the default index of the accounts is provided and automatically used in the deployment scripts. If the network name is not specified inside the object, the default index of the account will be `0`. We can change and deafult index for not specified networks if we override `default` name with index that we want.
+- `deployerAccounts` represents an object where the default index of the accounts is provided and automatically used in the deployment scripts. If the network name is not specified inside the object, the default index of the account will be `0`. We can change and default index for not specified networks if we override `default` name with index that we want.
 
 The described objects work together to provide users with a better deployment experience, eliminating the need for manual wallet initialization.
 
@@ -340,7 +340,7 @@ const config: HardhatUserConfig = {
       ethNetwork: "sepolia", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `sepolia`)
       zksync: true,
       // ADDITION
-      forceDeploy: true, // Specify is deploy proccess will use cache mechanism or it will force deploy of the contracts
+      forceDeploy: true, // Specify is deploy process will use cache mechanism or it will force deploy of the contracts
     },
   },
 };
