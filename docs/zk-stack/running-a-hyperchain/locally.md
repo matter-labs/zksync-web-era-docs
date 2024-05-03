@@ -7,9 +7,9 @@ head:
 
 # Getting Started with ZK Stack
 
-:::warning
+::: danger Note
 
-ZK Stack is still under development. We advise you to only use for local and testnet deployments.
+A new and improved ZK Stack CLI is coming very soon. The current version is deprecated and may not function as expected.
 :::
 
 ## Development dependencies
