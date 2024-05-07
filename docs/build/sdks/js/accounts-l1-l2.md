@@ -39,6 +39,6 @@ method specification [`getBaseCost`](accounts.md#getbasecost).
 
 ## Withdrawal
 
-`Wallet` and `Signer` objects provide a withdrawal workflow. For more information, please refer to the method specification [`Deposit`](accounts.md#deposit).
+`Wallet` and `Signer` objects provide a withdrawal workflow. For more information, please refer to the method specification [`Withdraw`](accounts.md#withdraw).
 
 For a complete example of how to execute the deposit workflow, take a look at the following: [Withdraw ETH and ERC20 token](https://github.com/zksync-sdk/zksync2-examples/blob/main/js/src/03_withdraw.ts).
