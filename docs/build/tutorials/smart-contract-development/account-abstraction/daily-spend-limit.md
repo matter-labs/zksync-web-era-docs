@@ -211,7 +211,7 @@ The code below sets and removes the limit.
         _updateLimit(_token, 0, 0, 0, false);
     }
 
-   // verify if the update to a Limit struct is valid
+    // verify if the update to a Limit struct is valid
     // Ensure that users can't freely modify(increase or remove) the daily limit to spend more.
     function isValidUpdate(address _token) internal view returns (bool) {
         // Reverts unless it is first spending after enabling
