@@ -66,6 +66,7 @@ Arweave
 Streamr
 dutterbutter
 zeek
+Cyfrin
 
 // Used libraries
 numberish
@@ -128,6 +129,7 @@ Zetta
 Zetta
 Plonky
 Zeeve
+Chainlink
 
 // NFT Marketplaces
 Kreatorland
@@ -311,3 +313,5 @@ Aave
 // testing ci
 Omnibtc
 Owlto
+Gelato
+VRFs

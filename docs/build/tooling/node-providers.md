@@ -7,6 +7,10 @@ head:
 
 # RPC Providers
 
+### Alchemy
+
+[Alchemy](https://www.alchemy.com/zksync) is a leading developer platform with powerful APIs, SDKs, and tools to build truly scalable onchain apps. Deploy on zkSync Mainnet and zkSync Sepolia Testnet using Alchemy's free and [paid plans](https://www.alchemy.com/pricing).
+
 ### Ankr
 
 [Ankr](https://www.ankr.com/rpc/zksync_era/) provides private and public RPC endpoints for zkSync, powered by a globally distributed and decentralized network of nodes. They offer free and [paid plans](https://www.ankr.com/rpc/pricing/) with increased request limits.
