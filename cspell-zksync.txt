@@ -313,3 +313,5 @@ Aave
 // testing ci
 Omnibtc
 Owlto
+Gelato
+VRFs
