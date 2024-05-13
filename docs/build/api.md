@@ -886,7 +886,7 @@ if the transaction had already been included in the block. The API has a similar
 With this API Consumer apps can apply "optimistic" events in their applications instantly without having to wait for
 zkSync block confirmation time.
 
-It’s expected that the optimistic logs of two uncommitted transaction that modify the same state will not have causal
+It’s expected that the optimistic logs of two uncommitted transactions that modify the same state will not have causal
 relationships between each other.
 
 #### Inputs
