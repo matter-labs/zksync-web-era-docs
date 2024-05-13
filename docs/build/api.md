@@ -880,7 +880,7 @@ curl -X POST -H "Content-Type: application/json" \
 ### `zks_sendRawTransactionWithDetailedOutput`
 
 Executes a transaction and returns its hash as well as storage logs and events that would have been generated
-if the transaction has already been included into the block. The API is behaviourally analogous to
+if the transaction has already been included into the block. The API has a similar behaviour to
 `eth_sendRawTransaction` but with some extra data returned from it.
 
 With this API Consumer apps can apply "optimistic" events in their applications instantly without having to wait for
@@ -891,9 +891,9 @@ relationships between each other.
 
 #### Inputs
 
-| Parameter | Type     | Description                                                                                                |
-| --------- | -------- | ---------------------------------------------------------------------------------------------------------- |
-| `data`    | `string` | The signed transaction. Typically, signed with a library such as ethers.js using the sender's private key. |
+| Parameter | Type     | Description                                                                 |
+| --------- | -------- | --------------------------------------------------------------------------- |
+| `data`    | `string` | The signed transaction. Typically, signed with a library such as ethers.js. |
 
 #### curl example
 
@@ -901,7 +901,6 @@ relationships between each other.
 curl -X POST -H "Content-Type: application/json" \
 --data '{"jsonrpc":"2.0","method":"eth_sendRawTransaction","params":["Signed Transaction"],"id":1}' \
 "https://mainnet.era.zksync.io"
-
 ```
 
 #### Output
