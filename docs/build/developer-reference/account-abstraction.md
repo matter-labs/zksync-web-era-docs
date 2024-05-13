@@ -7,12 +7,6 @@ head:
 
 # Account Abstraction
 
-::: warning
-
-- Please note that with the system update released in Feb 2023, the `ergs` concept is only used by the VM while the API layer operates with `gas`.
-- For more information, read the [changelog].
-  :::
-
 ## Introduction
 
 On Ethereum there are two types of accounts: [externally owned accounts (EOAs)](https://ethereum.org/en/developers/docs/accounts/#externally-owned-accounts-and-key-pairs) and [contracts accounts](https://ethereum.org/en/developers/docs/accounts/#contract-accounts).

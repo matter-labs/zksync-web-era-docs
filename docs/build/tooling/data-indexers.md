@@ -39,6 +39,7 @@ Welcome to the Analytics page, a comprehensive hub dedicated to interacting with
 
 - [the-graph](../tutorials/tooling-guides/the-graph.md)
 - [subquery](../tutorials/tooling-guides/subquery.md)
+- [dipdup](../tutorials/tooling-guides/dipdup.md)
 
 ### Contribute
 
