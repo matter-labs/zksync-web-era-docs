@@ -611,8 +611,8 @@ export const enSidebar = sidebar({
           link: "/zk-stack/concepts/system-upgrades.md"
         },
         {
-          text: "Hyperchains / Hyperscaling",
-          link: "/zk-stack/concepts/hyperchains-hyperscaling.md"
+          text: "ZK Chains",
+          link: "/zk-stack/concepts/zk-chains.md"
         },
         {
           text: "Data Availability",
@@ -945,20 +945,20 @@ export const enSidebar = sidebar({
       ],
     },
     {
-      text: "Running a Hyperchain",
+      text: "Running a ZK Chain",
       collapsible: true,
       children: [
         {
           text: "Locally",
-          link: "/zk-stack/running-a-hyperchain/locally.html",
+          link: "/zk-stack/running-a-zk-chain/locally.html",
         },
         {
           text: "In Production",
-          link: "/zk-stack/running-a-hyperchain/production.md"
+          link: "/zk-stack/running-a-zk-chain/production.md"
         },
         {
           text: "Rollup as a Service",
-          link: "/zk-stack/running-a-hyperchain/raas.html",
+          link: "/zk-stack/running-a-zk-chain/raas.html",
         },
       ]
     },

@@ -23,7 +23,7 @@ zkSync Era is a gigantic leap forward in Layer 2 technologies. It is a long-awai
 - **Future Proof** - Ecosystem projects that adopt zkSync Era now will enjoy all future improvements without the need to change their code, in particular coming from:
   - The prover technology: hardware acceleration and [new proof systems](https://zksync.mirror.xyz/HJ2Pj45EJkRdt5Pau-ZXwkV2ctPx8qFL19STM5jdYhc).
   - The compiler: integration of LLVM-enabled modern programming languages. [Learn more about our compiler toolchain](../../zk-stack/components/compiler/toolchain/overview.md).
-  - Other innovations like [Hyperchains, Hyperbridges and ZK Stack](../../zk-stack/concepts/hyperchains-hyperscaling.md).
+  - Other innovations like [ZK Chains, Hyperbridges and ZK Stack](../../zk-stack/concepts/zk-chains.md).
 
 ## What is the zkEVM?
 
@@ -85,7 +85,7 @@ Almost every smart contract written for EVM will be supported by zkSync Era and 
 You can find more information about the [differences between Ethereum and zkSync Era in this section of the docs](../../build/developer-reference/differences-with-ethereum.md).
 :::
 
-There are a few other distinctions, for example, gas metering will be different (as is the case for other L2s as well). Some EVM’s cryptographic precompiles (notably pairings and RSA) won’t be available in the very first release but will be implemented soon after the launch, with pairing being a priority to allow both Hyperchains and protocols like Aztec/Dark Forest to be deployed without modifications too.
+There are a few other distinctions, for example, gas metering will be different (as is the case for other L2s as well). Some EVM’s cryptographic precompiles (notably pairings and RSA) won’t be available in the very first release but will be implemented soon after the launch, with pairing being a priority to allow both ZK Chains and protocols like Aztec/Dark Forest to be deployed without modifications too.
 
 ## Security expectations
 
@@ -131,7 +131,7 @@ Optimistic rollups suffer from the following key downsides:
   In contrast, zkSync Era is based on zero-knowledge proofs which have important characteristics that optimistic methods do not - they can hyperscale.
 
 ::: tip Hyperscalability
-Read more about [Hyperscalability and ZK Stack here](../../zk-stack/concepts/hyperchains-hyperscaling.md).
+Read more about [Hyperscalability and ZK Stack here](../../zk-stack/concepts/zk-chains.md).
 :::
 
 ## Which Wallets are supported?

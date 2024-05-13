@@ -2,10 +2,10 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Deploying ZK Stack Hyperchain Via RaaS | zkSync Docs
+      content: Deploying ZK Stack Chains Via RaaS | zkSync Docs
 ---
 
-# Deploy Hyperchain Using RaaS
+# Deploy ZK Chains Using RaaS
 
 :::warning
 
@@ -18,7 +18,7 @@ Looking to deploy a ZK Stack chain but worried about complexities? RaaS provider
 
 Use RaaS in to improve scalability, reduce costs, access specialized services, speed up development, enhance interoperability, and maintain flexibility in an ever-evolving technological landscape.
 
-The list of RaaS providers you can use to deploy and customise their your hyperchain:
+The list of RaaS providers you can use to deploy and customise their your ZK Chain:
 
 <!-- * [Caldera](https://www.caldera.xyz/) -->
 

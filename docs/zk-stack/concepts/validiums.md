@@ -36,11 +36,11 @@ However, one potential risk with Validiums is the withholding of off-chain data 
 
 ### Enterprise Solutions
 
-Validiums are ideal for enterprise chains requiring auditability and privacy. By controlling data availability, enterprises can maintain private Hyperchains, making Validiums an attractive choice for these applications.
+Validiums are ideal for enterprise chains requiring auditability and privacy. By controlling data availability, enterprises can maintain private ZK Chains, making Validiums an attractive choice for these applications.
 
 ### Privacy Benefits
 
-For Hyperchains operating in Validium mode, privacy is inherently enhanced as long as the block data remains confidential. This feature is particularly beneficial for enterprise users seeking to protect sensitive information.
+For ZK Chains operating in Validium mode, privacy is inherently enhanced as long as the block data remains confidential. This feature is particularly beneficial for enterprise users seeking to protect sensitive information.
 
 ## Further Resources
 

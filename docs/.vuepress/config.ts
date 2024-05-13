@@ -37,7 +37,7 @@ export default defineUserConfig({
     ],
     [
       "meta",
-      { name: "description", content: "zkSync Docs bring you all information you need about our protocol, APIs, SDKs, ZK Stack, and hyperchains. Start with our guides and tutorials, or go deep into our architecture and protocol specification." },
+      { name: "description", content: "zkSync Docs bring you all information you need about our protocol, APIs, SDKs, ZK Stack, and ZK Chains. Start with our guides and tutorials, or go deep into our architecture and protocol specification." },
     ],
     ["meta", { name: "author", content: "https://matter-labs.io" }],
 
@@ -51,7 +51,7 @@ export default defineUserConfig({
       "meta",
       {
         name: "og:description",
-        content: "zkSync Docs bring you all information you need about our protocol, APIs, SDKs, ZK Stack, and hyperchains. Start with our guides and tutorials, or go deep into our architecture and protocol specification.",
+        content: "zkSync Docs bring you all information you need about our protocol, APIs, SDKs, ZK Stack, and ZK Chains. Start with our guides and tutorials, or go deep into our architecture and protocol specification.",
       },
     ],
     ["meta", { name: "twitter:card", content: "summary" }],
@@ -60,7 +60,7 @@ export default defineUserConfig({
       "meta",
       {
         name: "twitter:description",
-        content: "zkSync Docs bring you all information you need about our protocol, APIs, SDKs, ZK Stack, and hyperchains. Start with our guides and tutorials, or go deep into our architecture and protocol specification.",
+        content: "zkSync Docs bring you all information you need about our protocol, APIs, SDKs, ZK Stack, and ZK Chains. Start with our guides and tutorials, or go deep into our architecture and protocol specification.",
       },
     ],
     ["meta", { name: "twitter:image", content: "https://docs.zksync.io/share_image.png" }],

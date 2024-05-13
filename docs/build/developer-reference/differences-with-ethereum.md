@@ -397,7 +397,7 @@ All linking happens at compile-time. Deploy-time linking is not supported.
 ## Precompiles
 
 Some EVM cryptographic precompiles (notably pairings and RSA) aren't currently available. However, pairing is
-prioritized to allow deployment of both Hyperchains and protocols like Aztec/Dark Forest without modifications.
+prioritized to allow deployment of both ZK Chains and protocols like Aztec/Dark Forest without modifications.
 
 Ethereum cryptographic primitives like `ecrecover`, `keccak256`, `sha256`, `ecadd` and `ecmul` are supported as precompiles.
 No actions are required from your side as all the calls to the precompiles are done by the compilers under the hood.

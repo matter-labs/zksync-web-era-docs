@@ -47,7 +47,7 @@ Finally at the end of the process, we create the proofs and send them to L1. Our
 proof system provides excellent performance, and can be run on just 16Gb of GPU RAM. This will enable the proof
 generation to be truly decentralized.
 
-Up to this point we have only talked about a single chain. We will connect these chains into a single ecosystem, called the hyperchain.
+Up to this point we have only talked about a single chain. We will connect these chains into a single ecosystem, called the zkSync Ecosystem.
 
 ## Transaction data
 

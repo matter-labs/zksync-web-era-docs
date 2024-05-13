@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: "twitter:title"
-      content: Deploying ZK Stack Hyperchain to a Non-Local Environment | zkSync Docs
+      content: Deploying ZK Stack Chain to a Non-Local Environment | zkSync Docs
 ---
 
 # Deploying to a Non-Local Environment
@@ -22,6 +22,6 @@ The wizard allows you to provide a custom database url connector. Make sure you 
 
 ## Server (Sequencer) & Prover
 
-After configuring your hyperchain, you can generate docker images for your server and prover. To do that run `zk stack docker-setup`.
+After configuring your ZK Chain, you can generate docker images for your server and prover. To do that run `zk stack docker-setup`.
 
 This command will guide you to properly name and tag your image. After building it, a docker compose file will be available so you can run the images on whichever cloud environment you desire.

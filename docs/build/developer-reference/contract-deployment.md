@@ -51,8 +51,8 @@ Each zkEVM bytecode must adhere to the following format:
 - Its length must be divisible by 32.
 - Its length in words (32-byte chunks) should be odd. In other words, `bytecodeLength % 64 == 32`.
 - There is a VM limit, the bytecode can not be more than `2^16` 32-byte words, i.e. `2^21` bytes.
-- The bootloader has a memory limit for supplying pubdata of 450999 bytes, therefore limiting the contract size to it as well. This limit is valid for Validium hyperchains, that don’t have to publish the bytecode to the base layer.
-- For rollups that must publish the deployed bytecode to the base layer (e.g. Ethereum), there is an additional pubdata limit, which is normally smaller. By default, for each batch, this limit is set to 100000 bytes for hyperchains using calldata DA, or 120000\*number_of_blobs, for hyperchains using EIP-4844 blobs.
+- The bootloader has a memory limit for supplying pubdata of 450999 bytes, therefore limiting the contract size to it as well. This limit is valid for Validium ZK Chains, that don’t have to publish the bytecode to the base layer.
+- For rollups that must publish the deployed bytecode to the base layer (e.g. Ethereum), there is an additional pubdata limit, which is normally smaller. By default, for each batch, this limit is set to 100000 bytes for ZK Chains using calldata DA, or 120000\*number_of_blobs, for ZK Chains using EIP-4844 blobs.
 
 The 32-byte hash of the bytecode of a zkSync contract is calculated in the following way:
 
