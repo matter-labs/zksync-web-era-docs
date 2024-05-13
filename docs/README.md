@@ -30,7 +30,7 @@ contributors: false
       </div>
     </RouterLink>
     <RouterLink to="/zk-stack" class="card">
-      <img src="/images/landing/zk-chain.png" alt="zkStack">
+      <img src="/images/landing/zk-chain.png" alt="ZK Stack">
       <div class="content">
         <h3>ZK Stack</h3>
         <p>Understand the protocol powering zkSync ZK Chains, including zkSync Era.</p>

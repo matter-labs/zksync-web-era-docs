@@ -36,7 +36,7 @@ then the diamond will be frozen forever.
 The diamond proxy pattern is very flexible and extendable. For now, it allows splitting implementation contracts by
 their logical meaning, removes the limit of bytecode size per contract and implements security features such as
 freezing. In the future, it can also be viewed as [EIP-6900](https://eips.ethereum.org/EIPS/eip-6900) for
-[zkStack](https://blog.matter-labs.io/introducing-the-zk-stack-c24240c2532a), where each ZK Chain can implement a
+[ZK Stack](https://blog.matter-labs.io/introducing-the-zk-stack-c24240c2532a), where each ZK Chain can implement a
 sub-set of allowed implementation contracts.
 
 ### GettersFacet
