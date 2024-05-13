@@ -367,7 +367,7 @@ const getOverrides = async () => {
 2. Import `utils` from `zksync-ethers` SDK as we'll need to use some of its methods next:
 
 ```javascript
-import { Contract, Web3Provider, Provider, utils } from "zksync-ethers";
+import { Contract, BrowserProvider, Provider, utils } from "zksync-ethers";
 ```
 
 3. We need to calculate how many tokens are required to process the transaction. Since the testnet paymaster exchanges any ERC20 token to ETH at a 1:1 rate, the amount is the same as the ETH amount in wei:

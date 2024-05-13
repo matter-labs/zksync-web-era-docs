@@ -25,7 +25,11 @@ Welcome to the Oracles page, a comprehensive hub dedicated to interacting with o
 
 ### Pyth
 
-[Pythnet](https://docs.pyth.network/documentation/pythnet-price-feeds) price feeds use a "pull" price update model, where users are responsible for posting price updates on-chain when needed. Checkout the usage guide to get started today!
+[Pythnet](https://docs.pyth.network/price-feeds) price feeds use a "pull" price update model, where users are responsible for posting price updates on-chain when needed. Checkout the usage guide to get started today!
+
+### Gelato
+
+[Gelato](https://docs.gelato.network/web3-services/vrf/understanding-vrf) provides access to Verifiable Random Functions (VRF) on zkSync. VRFs are cryptographic primitives that generate pseudorandom numbers in a way that is provably secure and verifiable. A VRF allows a holder of a private key to produce a random number along with a proof that the number was generated legitimately (making it publically verifable). More information, including how to use VRFs in your dApp, can be found in the Gelato docs.
 
 ### Usage guides
 

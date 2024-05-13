@@ -239,6 +239,7 @@ psql
 jemalloc
 recid
 plux
+pipx
 
 // ETC
 gitter
@@ -313,3 +314,5 @@ Aave
 // testing ci
 Omnibtc
 Owlto
+Gelato
+VRFs

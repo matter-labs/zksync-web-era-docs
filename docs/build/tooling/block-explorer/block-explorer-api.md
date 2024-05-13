@@ -19,7 +19,7 @@ The following modules are supported:
 - [Logs](https://block-explorer-api.mainnet.zksync.io/docs#/Logs%20API)
 - [Block](https://block-explorer-api.mainnet.zksync.io/docs#/Block%20API)
 
-Check out the API documentation [API docs on Mainnet](https://block-explorer-api.mainnet.zksync.io/docs) | [API docs on Testnet](https://block-explorer-api.testnets.zksync.dev/docs)
+Check out the API documentation [API docs on Mainnet](https://block-explorer-api.mainnet.zksync.io/docs) | [API docs on Testnet](https://block-explorer-api.sepolia.zksync.dev/docs)
 
 :::note Note
 
