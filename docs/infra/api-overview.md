@@ -113,4 +113,4 @@ This namespace holds rollup-specific extensions to the Web3 API. Only the method
 
 ### `en` Namespace
 
-This namespace includes methods that zkSync nodes call on the main node during syncing. If this namespace is active, other kSync nodes can sync using this node.
+This namespace includes methods that zkSync nodes call on the main node during syncing. If this namespace is active, other zkSync nodes can sync using this node.
