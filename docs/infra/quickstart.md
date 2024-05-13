@@ -10,8 +10,17 @@ head:
 ## Prerequisites
 
 - **Installations Required:**
-  - [Docker Compose](https://docs.docker.com/compose/install/)
   - [Docker](https://docs.docker.com/get-docker/)
+  - [Docker Compose](https://docs.docker.com/compose/install/)
+
+## Setup Instructions
+
+1. Clone the zkSync Era repository and navigate to the external node guide:
+
+   ```
+   git clone https://github.com/matter-labs/zksync-era.git
+   cd zksync-era/docs/guides/external-node
+   ```
 
 ## Running a zkSync Node Locally
 
@@ -46,13 +55,6 @@ head:
   cd docker-compose-examples
   docker compose --file testnet-external-node-docker-compose.yml down --volumes
   ```
-
-- **To reset its state, run:**
-
-```sh
-cd docker-compose-examples
-docker compose --file testnet-external-node-docker-compose.yml down --volumes
-```
 
 ### Monitoring Node Status
 
