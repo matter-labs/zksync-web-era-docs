@@ -9,17 +9,18 @@ head:
 
 This section assumes that you have prepared a configuration file as described on the previous page.
 
-## Preferred hardware configuration
+## System Requirements for nodes started from DB dumps
 
-This configuration is approximate, expect updates to these specs.
+This configuration is approximate and should be considered as **minimal** requirements.
 
 - 32-core CPU
 - 64GB RAM
-- SSD storage:
-  - Testnet - ~800 GB (at the time of writing) and will grow over time, so should be constantly monitored
-  - Mainnet - ~400 GB (at the time of writing) and will grow over time, so should be constantly monitored
-  - NVMe recommended
-- 100 Mbps network connection.
+- SSD storage (NVME recommended):
+  - Sepolia Testnet - 10GB zkSync node + 50GB PostgreSQL (at the time of writing, will grow over time, so should be
+    constantly monitored)
+  - Mainnet - 3TB zkSync node + 8TB PostgreSQL (at the time of writing, will grow over time, so should be constantly
+    monitored)
+- 100 Mbps connection (1 Gbps+ recommended)
 
 ### A note about PostgreSQL storage
 
