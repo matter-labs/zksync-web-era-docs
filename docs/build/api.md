@@ -879,8 +879,8 @@ curl -X POST -H "Content-Type: application/json" \
 
 ### `zks_sendRawTransactionWithDetailedOutput`
 
-Executes a transaction and returns its hash as well as storage logs and events that would have been generated
-if the transaction has already been included into the block. The API has a similar behaviour to
+Executes a transaction and returns its hash, storage logs, and events that would have been generated
+if the transaction had already been included in the block. The API has a similar behaviour to
 `eth_sendRawTransaction` but with some extra data returned from it.
 
 With this API Consumer apps can apply "optimistic" events in their applications instantly without having to wait for
