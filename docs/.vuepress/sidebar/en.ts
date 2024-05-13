@@ -553,6 +553,10 @@ export const enSidebar = sidebar({
       link: "/infra/introduction.md",
     },
     {
+      text: "Quickstart",
+      link: "/infra/quickstart.md",
+    },
+    {
       text: "Component Breakdown",
       link: "/infra/component-breakdown.md",
     },
