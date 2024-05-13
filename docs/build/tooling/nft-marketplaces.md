@@ -14,9 +14,9 @@ The following NFT marketplaces are specialized in facilitating the trade, creati
 [Element](https://element.market/) is a community-driven aggregated marketplace where you can buy and sell NFTs across different platforms, save money, and earn rewards.\
 **Specialty**: Aggregated Marketplace, Rewards
 
-### Kreatorland
+### Libera
 
-[Kreatorland](https://kreatorland.com/) is a native NFT marketplace built specifically for the zkSync Era.\
+[Libera](https://libera.xyz/) is a native NFT marketplace built specifically for the zkSync Era.\
 **Specialty**: zkSync Era Native
 
 ### OKX NFT
