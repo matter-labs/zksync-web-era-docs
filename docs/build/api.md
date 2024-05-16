@@ -17,8 +17,8 @@ zkSync Era supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en
 
 :::warning
 
-However, there is a specific difference that we need to pay attention to.
-Methods that return data about a block (such as `eth_getBlockByHash`, `eth_getBlockByNumber`, or Geth's pubsub API `eth_subscribe` with the `newHeads` parameter) do not provide the actual `receiptsRoot`, `transactionsRoot`, and `stateRoot` values. Instead, these fields contain zero values.
+However, there are specific differences that you must be aware of.
+Methods that return data about a block (such as `eth_getBlockByHash`, `eth_getBlockByNumber`, or Geth’s pubsub API `eth_subscribe` with the `newHeads` parameter) do not provide the actual `receiptsRoot`, `transactionsRoot`, and `stateRoot` values. Instead, these fields contain zero values as zkSync’s L2 blocks do not contain the concept of a state root, only L1 batches have it.
 :::
 
 ## RPC endpoint URLs
