@@ -494,7 +494,7 @@ Only special instructions can manipulate fat pointers without automatically clea
   pass to another contract B up the call chain, again without copying data.
 - `ptr.pack` allows putting data in the top 128 bit of the pointer value without clearing the pointer tag.
 
-Doing e.g. `add r1, 0, r2` on a pointer in `r1` clears its tag, and it is now considered as a raw integer.
+Doing e.g. `add r1, 0, r1` on a pointer in `r1` clears its tag, and it is now considered as a raw integer.
 
 Instructions `ld` and `[ld.inc](http://ld.inc)` (without indices 1 or 2) allow loading data by fat pointers, possibly
 incrementing the pointer. It is impossible to write by a fat pointer.
