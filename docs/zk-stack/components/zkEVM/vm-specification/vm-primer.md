@@ -131,7 +131,8 @@ set flags by appending a “set flags” modifier to them, like that:
 sub! r1, r2, r3 ; r3 <- (r1 - r2); EQ = 1
 ```
 
-Most instructions with “set flags” nodifier set the flags as follows:
+Most instructions with “set flags” modifier set the flags as follows:
+
 - `EQ` - if result is zero
 - `LT` - if overflow occurs
 - `GT` - if not `EQ` and not `LT`
@@ -165,7 +166,7 @@ If the condition is not satisfied, we skip the instruction, but still pay its ba
 
 Here is a full list of available predicates:
 
-- `gt` 
+- `gt`
 - `eq`
 - `lt`
 - `ge` (short for “GT or EQ”)

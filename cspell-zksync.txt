@@ -212,6 +212,7 @@ REDC
 ECADD
 ECMUL
 raas
+gtlt
 
 
 // Used programming language words
