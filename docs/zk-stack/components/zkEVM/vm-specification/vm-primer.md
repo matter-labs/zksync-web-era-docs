@@ -131,6 +131,13 @@ set flags by appending a “set flags” modifier to them, like that:
 sub! r1, r2, r3 ; r3 <- (r1 - r2); EQ = 1
 ```
 
+Most instructions with “set flags” nodifier set the flags as follows:
+- `EQ` - if result is zero
+- `LT` - if overflow occurs
+- `GT` - if not `EQ` and not `LT`
+
+Note that the details of the behavior may vary depending on which instruction is used.
+
 You can learn more in the
 [formal specification](./formal-spec.md).
 
@@ -144,27 +151,28 @@ Recall the three flags: LT, EQ and GT.
 For example, this `sub` instruction is only executed if EQ is set:
 
 ```nasm
-sub.if_eq r1, r2, r5
+sub.eq r1, r2, r5
 ```
 
 Here is how we can execute `jump` to a label `.label_if_equals` only if `r1 == r2` :
 
 ```nasm
 sub! r1, r2, r3 ; r3 <- (r1 - r2); EQ = 1 if r1 == r2
-jump.if_eq .label_if_equals
+jump.eq .label_if_equals
 ```
 
 If the condition is not satisfied, we skip the instruction, but still pay its basic cost in gas.
 
 Here is a full list of available predicates:
 
-- `if_gt`
-- `if_eq`
-- `if_lt`
-- `if_ge` (short for “GT or EQ”)
-- `if_le` (short for “LT or EQ”)
-- `if_not_eq`
-- `if_gt_or_eq`
+- `gt` 
+- `eq`
+- `lt`
+- `ge` (short for “GT or EQ”)
+- `le` (short for “LT or EQ”)
+- `ne` (short for "not EQ")
+- `gtlt` (short for "GT" or "LT")
+- `of` (synonym for "LT")
 
 You can learn more in the
 [formal specification](./formal-spec.md).
@@ -188,12 +196,12 @@ sub.s r1, r2, r3 ; r3 <- r2 - r1
 Finally, here is an example of an instruction adorned with all possible modifiers:
 
 ```nasm
-sub.s.if_lt! r8, r4, r12
+sub.s.lt! r8, r4, r12
 ```
 
 Here is a breakdown of modifiers:
 
-- `.if_lt` : is only executed if the LT flag is set
+- `.lt` : is only executed if the LT flag is set
 - `.s` : computes `r4 - r8` instead of `r8 - r4`
 - `!` : sets flags
 
