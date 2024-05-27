@@ -230,8 +230,8 @@ Each call gets its own stack, heap, code memories, and allocated gas.
 
 It is impossible to allocate more than 63/64 of the currently available gas to a far call.
 
-Calls can revert or panic (on executing an illegal instruction for example), which undoes all the changes to storage and
-events emitted during the call, and burns all remaining gas allocated to this call.
+Calls can revert or panic (on executing an illegal instruction for example), which undoes all the changes to storage, transient storage and
+events emitted during the call, and returns unspent gas to the caller.
 
 Suppose we far called a contract $C$. After the execution of $C$, the register `r1` holds a pointer to the return value,
 allowing a read-only access to a fragment of $C$’s heap. Alternatively, `r1` can hold a pointer to the heap of some
@@ -258,7 +258,7 @@ There are three types of situations where control returns to the caller:
 - Return: a normal way of returning to the caller when no errors occurred. The instruction is `ret`.
 - Revert: a recoverable error happened. Unspent gas is returned to the caller, which will execute the exception handler.
   The instruction is `revert`.
-- Panic: an irrecoverable error happened. Same as revert, but unspent gas is burned. The instruction is `ret.panic`.
+- Panic: an irrecoverable error happened. Same as revert, but `LT` flag is set. The instruction is `ret.panic`.
 
 ### Near calls
 
@@ -293,11 +293,8 @@ Additional two arguments:
 As we see, zkEVM supports allocating ergs not only for far calls, but also for near calls. Passing zero will allocate
 all available gas. Unlike in far calls, near calls do not limit the amount of gas passed to 63/64 of available gas.
 
-- On revert, unspent gas of the function is **returned**
-- On panic, unspent gas of the function is **lost**
-
 All near calls inside the contract are sharing the same memory space (heap, stack), and do not roll back the changes to
-this memory if they fail. They do, however, roll back the changes to storage and events.
+this memory if they fail. They do, however, roll back the changes to storage, transient storage and events.
 
 Near calls cannot be used from Solidity to their full extent. Compiler generates them, but makes sure that if functions
 revert or panic, the whole contract reverts of panics. Explicit exception handlers and allocating just a portion of
