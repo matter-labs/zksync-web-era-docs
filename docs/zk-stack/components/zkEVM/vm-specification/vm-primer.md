@@ -134,8 +134,8 @@ sub! r1, r2, r3 ; r3 <- (r1 - r2); EQ = 1
 Most instructions with “set flags” modifier set the flags as follows:
 
 - `EQ` - if result is zero
-- `LT` - if overflow occurs
-- `GT` - if not `EQ` and not `LT`
+- `LT` - if overflow occurs (result is "less" than zero)
+- `GT` - if not `EQ` and not `LT` (result is "greater" than zero)
 
 Note that the details of the behavior may vary depending on which instruction is used.
 
