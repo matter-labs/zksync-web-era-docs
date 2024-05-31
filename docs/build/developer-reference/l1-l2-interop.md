@@ -40,11 +40,9 @@ The SDK processes gas estimation for transactions implicitly. However, it is als
 
 ## L2 to L1
 
-L2 to L1 communication is based on transferring the data as a message, and not on L1 transaction execution.
+L2 to L1 communication is based on transferring data as a message, rather than executing an L1 transaction.
 
-Sending a message requires interacting with the `sendToL1` method of the `L1_MESSENGER_CONTRACT`, passing the message as a raw bytes array. Each message sent emits an [L1MessageSent](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/interfaces/IL1Messenger.sol#L38) event.
-
-The return value from `sendToL1` is the keccak256 hash of the message bytes.
+To send a message, use the `sendToL1` method of the `L1_MESSENGER_CONTRACT` system contract and pass the message as a raw bytes array. Each time a message is sent, it triggers an [L1MessageSent](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/interfaces/IL1Messenger.sol#L38) event. The return value from `sendToL1` is the keccak256 hash of the message bytes.
 
 The example contract below sends its address to L1 via the Messenger system contract.
 
@@ -65,15 +63,15 @@ contract Example {
 }
 ```
 
-:: info L2-L1 message how to
-Find out [how to send a message from L2 to L1 using zksync-ethers](../tutorials/how-to/send-message-l2-l1.md).
+::: info L2-L1 message How-To
+Learn [how to send a message from L2 to L1 using zksync-ethers](../tutorials/how-to/send-message-l2-l1.md).
 :::
 
-Once a message is sent, a proof can be retrieved using the [`zks_getL2ToL1LogProof` JSON RPC API method](../api.md#zks_getl2tol1logproof).
+Once a message is sent, a proof can be retrieved using the [`zks_getL2ToL1LogProof` JSON RPC API method](../api.md#zks_getL2ToL1LogProof).
 
-This proof can be verified in L1 with the [`proveL2MessageInclusion`](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/l1-contracts/contracts/zksync/facets/Mailbox.sol#L35) function, which returns a boolean parameter indicating whether the message was sent successfully to L1 or not.
+This proof can be verified on L1 using the [`proveL2MessageInclusion`](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/l1-contracts/contracts/zksync/facets/Mailbox.sol#L35) function, which returns a boolean value indicating whether the message was successfully sent to L1.
 
-The example contract below receives the proof and the information related to the transaction sent to the L2 messenger contract. It then proves that the message was included in an L2 block.
+The example contract below receives the proof and the information related to the transaction sent to the L2 messenger contract. It then verifies that the message was included in an L2 block.
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
