@@ -277,6 +277,7 @@ export async function proveL2MessageInclusion(l1BatchNumber: ethers.BigNumberish
 
   const res = await mailboxL1Contract.proveL2MessageInclusion(l1BatchNumber, proof.id, messageInfo, proof.proof);
 
+  console.log("Is proof valid?: ", res)
   return res;
 }
 
