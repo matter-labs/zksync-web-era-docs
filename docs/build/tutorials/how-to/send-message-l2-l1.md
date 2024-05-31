@@ -29,7 +29,7 @@ struct L2Message {
 :::tip Verification
 
 - Verification and confirmation is possible using Ethereum data.
-- However, zkSync Era has an efficient [request proof function](#3-retrieve-the-message-proof) which does the same.
+- However, zkSync Era has an efficient [request proof function](#_4-retrieve-the-message-proof) which does the same.
   :::
 
 ## Common use cases
@@ -175,7 +175,7 @@ This script retrieves the transaction receipt. The fields we're interested in ar
 - `l1BatchNumber`: the L1 batch number the transaction was included into.
 - `l1BatchTxIndex`: the index of the transaction in the L1 batch.
 
-Enter the transaction hash from [the previous step](#1-send-the-message) in the `TX_HASH` variable and run the script with:
+Enter the transaction hash from [the previous step](#_2-send-the-message) in the `TX_HASH` variable and run the script with:
 
 ```bash
 ts-node 2.get-tx-details.ts
@@ -217,7 +217,7 @@ try {
 }
 ```
 
-The `getLogProof` method requires the L2 transaction hash and the L2 transaction index, both of which are included in the transaction receipt that [we retrieved in the previous step](#2-retrieve-the-message-transaction-details).
+The `getLogProof` method requires the L2 transaction hash and the L2 transaction index, both of which are included in the transaction receipt that [we retrieved in the previous step](#_3-retrieve-the-message-transaction-details).
 
 Enter the hash and index in the `TX_HASH` and `L2_TX_INDEX` variables and run the script with:
 

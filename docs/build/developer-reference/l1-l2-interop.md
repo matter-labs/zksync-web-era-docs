@@ -67,7 +67,7 @@ contract Example {
 Learn [how to send a message from L2 to L1 using zksync-ethers](../tutorials/how-to/send-message-l2-l1.md).
 :::
 
-Once a message is sent, a proof can be retrieved using the [`zks_getL2ToL1LogProof` JSON RPC API method](../api.md#zks_getL2ToL1LogProof).
+Once a message is sent, a proof can be retrieved using the [`zks_getL2ToL1LogProof` JSON RPC API method](../api.md#zks-getl2tol1logproof).
 
 This proof can be verified on L1 using the [`proveL2MessageInclusion`](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/l1-contracts/contracts/zksync/facets/Mailbox.sol#L35) function, which returns a boolean value indicating whether the message was successfully sent to L1.
 
