@@ -1,3 +1,9 @@
+> [!WARNING]  
+> zksync-web-era-docs will be archived shortly! 
+> Find the latest at [zksync-docs](https://github.com/matter-labs/zksync-docs)
+> 
+> For tutorials and guides, check out the [Community Code](https://github.com/zkSync-Community-Hub/community-code) repo.
+
 # zkSync Documentation
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/matter-labs/zksync-web-v2-docs?color=%234E529A&label=changelog)](CHANGELOG.md)
@@ -11,6 +17,7 @@
 
 [zkSync Docs](https://docs.zksync.io) contain up-to-date information about **zkSync**.
 zkSync Era has built-in EVM compatibility which makes it a unified tool for releasing EVM-compatible ZK rollups.
+
 We call it [zkEVM](https://zksync.io/zkevm): web3, Layer 2, scaling functionality that preserves your battle-tested code and knowledge gained after years of working with Solidity.
 
 ## Build and setup
