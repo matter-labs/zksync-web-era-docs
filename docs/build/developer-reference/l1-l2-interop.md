@@ -29,10 +29,10 @@ L1 to L2 communication is governed by the [`IZkSync.sol`](https://github.com/mat
 
 A hyperchain operator can filter L1→L2 transactions coming through the Diamond proxy. It is achieved by having an
 address of the special contract, responsible for transaction filtering, in the state transition storage. If the filterer
-exists, it is being called in the [Mailbox facet](https://github.com/matter-labs/era-contracts/blob/dev/l1-contracts/contracts/state-transition/chain-deps/facets/Mailbox.sol#L243)
+exists, it is being called in the [Mailbox facet](https://github.com/matter-labs/era-contracts/blob/994897b14eb1d8e77c809da2db3379e7b58125b5/l1-contracts/contracts/state-transition/chain-deps/facets/Mailbox.sol#L243)
 with the tx details and has to return whether the transaction can be executed or not. If you want to use this feature,
-you have to deploy a contract that implements the [`ITransactionFilterer` interface](https://github.com/matter-labs/era-contracts/blob/dev/l1-contracts/contracts/state-transition/chain-interfaces/ITransactionFilterer.sol#L8)
-and set its address in the admin facet's [`setTransactionFilterer`](https://github.com/matter-labs/era-contracts/blob/dev/l1-contracts/contracts/state-transition/chain-deps/facets/Admin.sol#L95)
+you have to deploy a contract that implements the [`ITransactionFilterer` interface](https://github.com/matter-labs/era-contracts/blob/994897b14eb1d8e77c809da2db3379e7b58125b5/l1-contracts/contracts/state-transition/chain-interfaces/ITransactionFilterer.sol#L8)
+and set its address in the admin facet's [`setTransactionFilterer`](https://github.com/matter-labs/era-contracts/blob/994897b14eb1d8e77c809da2db3379e7b58125b5/l1-contracts/contracts/state-transition/chain-deps/facets/Admin.sol#L102)
 function. The same setter can be used to remove the filterer, it has to be called with the `0` address.
 
 ### Gas estimation
