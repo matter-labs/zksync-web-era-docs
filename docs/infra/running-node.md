@@ -5,21 +5,22 @@ head:
       content: Running Node | zkSync Docs
 ---
 
-# Running the External Node
+# Running the zkSync Node
 
 This section assumes that you have prepared a configuration file as described on the previous page.
 
-## Preferred hardware configuration
+## System Requirements for nodes started from DB dumps
 
-This configuration is approximate, expect updates to these specs.
+This configuration is approximate and should be considered as **minimal** requirements.
 
 - 32-core CPU
 - 64GB RAM
-- SSD storage:
-  - Testnet - ~800 GB (at the time of writing) and will grow over time, so should be constantly monitored
-  - Mainnet - ~400 GB (at the time of writing) and will grow over time, so should be constantly monitored
-  - NVMe recommended
-- 100 Mbps network connection.
+- SSD storage (NVME recommended):
+  - Sepolia Testnet - 10GB zkSync node + 50GB PostgreSQL (at the time of writing, will grow over time, so should be
+    constantly monitored)
+  - Mainnet - 3TB zkSync node + 8TB PostgreSQL (at the time of writing, will grow over time, so should be constantly
+    monitored)
+- 100 Mbps connection (1 Gbps+ recommended)
 
 ### A note about PostgreSQL storage
 
@@ -41,9 +42,9 @@ Setting up Postgres is out of the scope of these docs, but the popular choice is
 guides on that, [here's one example](https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/).
 
 Note however that if you run Postgres as a stand-alone Docker image (e.g. not in Docker-compose with a network shared
-between EN and Postgres), EN won't be able to access Postgres via `localhost` or `127.0.0.1` URLs. To make it work,
+between zkSync node and Postgres), zkSync node won't be able to access Postgres via `localhost` or `127.0.0.1` URLs. To make it work,
 you'll have to either run it with a `--network host` (on Linux) or use `host.docker.internal` instead of `localhost` in
-the EN configuration (official docs).
+the zkSync node configuration (official docs).
 
 Besides running Postgres, you are expected to have a DB dump from a corresponding env. You can restore it using
 `pg_restore -O -C <DUMP_PATH> --dbname=<DB_URL>`.
@@ -52,7 +53,7 @@ Besides running Postgres, you are expected to have a DB dump from a correspondin
 
 ## Running
 
-Assuming you have the EN Docker image, an env file with the prepared configuration, and you have restored your DB with
+Assuming you have the zkSync node Docker image, an env file with the prepared configuration, and you have restored your DB with
 the pg dump, that is all you need.
 
 Sample running command:
@@ -70,14 +71,14 @@ in RocksDB (mainly the Merkle tree) is absent. Before the node can make any prog
 RocksDB and verify consistency. The exact time required for that depends on the hardware configuration, but it is
 reasonable to expect the state rebuild on the mainnet to take more than 20 hours.
 
-## Redeploying the EN with a new PG dump
+## Redeploying the zkSync node with a new PG dump
 
-If you've been running the EN for some time and are going to redeploy it using a new PG dump, you should
+If you've been running the zkSync node for some time and are going to redeploy it using a new PG dump, you should
 
-- Stop the EN
+- Stop the zkSync node
 - Remove SK cache (corresponding to `EN_STATE_CACHE_PATH`)
 - Remove your current DB
 - Restore with the new dump
-- Start the EN
+- Start the zkSync node
 
 Monitoring the node behavior and analyzing the state it's in is covered in the observability section.

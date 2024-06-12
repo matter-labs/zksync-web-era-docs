@@ -35,6 +35,10 @@ head:
 
 [GetBlock](https://getblock.io/nodes/zksync/) provides access to zkSync API endpoint for your project. With GetBlock you don’t need to know how to run zkSync nodes as they are already are available for mainnet and testnets.
 
+### NOWNodes
+
+[NOWNodes](https://nownodes.io/nodes) provides Full Node for zkSync with is a high-quality standart and 24/7 support. Free Plan is available.
+
 ### Quicknode
 
 [QuickNode](https://www.quicknode.com/chains/zkSync) offers access to hosted zkSync nodes as part of their free Discover Plan. You can configure add-ons, like "Trace Mode" and "Archive Mode" for an additional cost by upgrading to one of their paid plans.

@@ -8,7 +8,7 @@ head:
 # zkEVM
 
 The zkEVM is used to execute transactions. It is similar in construction to the EVM, so it executes transactions
-similarly, but it plays a fundamentally different role in the zkStack than the EVM does in Ethereum. The EVM is used to
+similarly, but it plays a fundamentally different role in the ZK Stack than the EVM does in Ethereum. The EVM is used to
 execute smart contracts in Ethereum's state transition function. This STF needs a client to implement and run it.
 
 Rollups have a different set of requirements, they need to produce a proof that some client executed the STF correctly.

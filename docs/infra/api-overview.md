@@ -8,49 +8,49 @@ head:
 # API Overview
 
 :::info
-The API exposed by the EN is designed to be Web3-compliant. Any deviation from the Ethereum behavior is likely unintended, and we encourage users to report such discrepancies.
+The API exposed by the zkSync node is designed to be Web3-compliant. Any deviation from the Ethereum behavior is likely unintended, and we encourage users to report such discrepancies.
 :::
 
 ### `eth_` Namespace
 
 Data getters in this namespace operate in the L2 domain. They deal with L2 block numbers, check balances in L2, and more.
 
-| Method                                    | Notes                                                                     |
-| ----------------------------------------- | ------------------------------------------------------------------------- |
-| `eth_blockNumber`                         |                                                                           |
-| `eth_chainId`                             |                                                                           |
-| `eth_call`                                |                                                                           |
-| `eth_estimateGas`                         |                                                                           |
-| `eth_gasPrice`                            |                                                                           |
-| `eth_newFilter`                           | Maximum amount of installed filters is configurable                       |
-| `eth_newBlockFilter`                      | Same as above                                                             |
-| `eth_newPendingTransactionsFilter`        | Same as above                                                             |
-| `eth_uninstallFilter`                     |                                                                           |
-| `eth_getLogs`                             | Maximum amount of returned entities can be configured                     |
-| `eth_getFilterLogs`                       | Same as above                                                             |
-| `eth_getFilterChanges`                    | Same as above                                                             |
-| `eth_getBalance`                          |                                                                           |
-| `eth_getBlockByNumber`                    |                                                                           |
-| `eth_getBlockByHash`                      |                                                                           |
-| `eth_getBlockTransactionCountByNumber`    |                                                                           |
-| `eth_getBlockTransactionCountByHash`      |                                                                           |
-| `eth_getCode`                             |                                                                           |
-| `eth_getStorageAt`                        |                                                                           |
-| `eth_getTransactionCount`                 |                                                                           |
-| `eth_getTransactionByHash`                |                                                                           |
-| `eth_getTransactionByBlockHashAndIndex`   |                                                                           |
-| `eth_getTransactionByBlockNumberAndIndex` |                                                                           |
-| `eth_getTransactionReceipt`               |                                                                           |
-| `eth_protocolVersion`                     |                                                                           |
-| `eth_sendRawTransaction`                  |                                                                           |
-| `eth_syncing`                             | EN is considered synced if it's less than 11 blocks behind the main node. |
-| `eth_coinbase`                            | Always returns a zero address                                             |
-| `eth_accounts`                            | Always returns an empty list                                              |
-| `eth_getCompilers`                        | Always returns an empty list                                              |
-| `eth_hashrate`                            | Always returns zero                                                       |
-| `eth_getUncleCountByBlockHash`            | Always returns zero                                                       |
-| `eth_getUncleCountByBlockNumber`          | Always returns zero                                                       |
-| `eth_mining`                              | Always returns false                                                      |
+| Method                                    | Notes                                                                              |
+| ----------------------------------------- | ---------------------------------------------------------------------------------- |
+| `eth_blockNumber`                         |                                                                                    |
+| `eth_chainId`                             |                                                                                    |
+| `eth_call`                                |                                                                                    |
+| `eth_estimateGas`                         |                                                                                    |
+| `eth_gasPrice`                            |                                                                                    |
+| `eth_newFilter`                           | Maximum amount of installed filters is configurable                                |
+| `eth_newBlockFilter`                      | Same as above                                                                      |
+| `eth_newPendingTransactionsFilter`        | Same as above                                                                      |
+| `eth_uninstallFilter`                     |                                                                                    |
+| `eth_getLogs`                             | Maximum amount of returned entities can be configured                              |
+| `eth_getFilterLogs`                       | Same as above                                                                      |
+| `eth_getFilterChanges`                    | Same as above                                                                      |
+| `eth_getBalance`                          |                                                                                    |
+| `eth_getBlockByNumber`                    |                                                                                    |
+| `eth_getBlockByHash`                      |                                                                                    |
+| `eth_getBlockTransactionCountByNumber`    |                                                                                    |
+| `eth_getBlockTransactionCountByHash`      |                                                                                    |
+| `eth_getCode`                             |                                                                                    |
+| `eth_getStorageAt`                        |                                                                                    |
+| `eth_getTransactionCount`                 |                                                                                    |
+| `eth_getTransactionByHash`                |                                                                                    |
+| `eth_getTransactionByBlockHashAndIndex`   |                                                                                    |
+| `eth_getTransactionByBlockNumberAndIndex` |                                                                                    |
+| `eth_getTransactionReceipt`               |                                                                                    |
+| `eth_protocolVersion`                     |                                                                                    |
+| `eth_sendRawTransaction`                  |                                                                                    |
+| `eth_syncing`                             | zkSync node is considered synced if it's less than 11 blocks behind the main node. |
+| `eth_coinbase`                            | Always returns a zero address                                                      |
+| `eth_accounts`                            | Always returns an empty list                                                       |
+| `eth_getCompilers`                        | Always returns an empty list                                                       |
+| `eth_hashrate`                            | Always returns zero                                                                |
+| `eth_getUncleCountByBlockHash`            | Always returns zero                                                                |
+| `eth_getUncleCountByBlockNumber`          | Always returns zero                                                                |
+| `eth_mining`                              | Always returns false                                                               |
 
 ### **PubSub**
 
@@ -113,4 +113,4 @@ This namespace holds rollup-specific extensions to the Web3 API. Only the method
 
 ### `en` Namespace
 
-This namespace includes methods that external nodes call on the main node during syncing. If this namespace is active, other ENs can sync using this node.
+This namespace includes methods that zkSync nodes call on the main node during syncing. If this namespace is active, other zkSync nodes can sync using this node.

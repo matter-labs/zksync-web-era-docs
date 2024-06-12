@@ -63,6 +63,6 @@ You can output the constructor argument data at deploy time by adding the follow
 const your_constructor_argument = "Hi there!";
 const myContract = await deployer.deploy(artifact, [your_constructor_argument]);
 
-//obtain the Constructor Arguments
+// obtain the Constructor Arguments
 console.log("constructor args:" + myContract.interface.encodeDeploy([your_constructor_argument]));
 ```

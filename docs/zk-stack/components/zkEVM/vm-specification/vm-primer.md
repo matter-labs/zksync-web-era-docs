@@ -131,6 +131,14 @@ set flags by appending a “set flags” modifier to them, like that:
 sub! r1, r2, r3 ; r3 <- (r1 - r2); EQ = 1
 ```
 
+Most instructions with “set flags” modifier set the flags as follows:
+
+- `EQ` - if result is zero
+- `LT` - if overflow occurs (result is "less" than zero)
+- `GT` - if not `EQ` and not `LT` (result is "greater" than zero)
+
+Note that the details of the behavior may vary depending on which instruction is used.
+
 You can learn more in the
 [formal specification](./formal-spec.md).
 
@@ -144,27 +152,28 @@ Recall the three flags: LT, EQ and GT.
 For example, this `sub` instruction is only executed if EQ is set:
 
 ```nasm
-sub.if_eq r1, r2, r5
+sub.eq r1, r2, r5
 ```
 
 Here is how we can execute `jump` to a label `.label_if_equals` only if `r1 == r2` :
 
 ```nasm
 sub! r1, r2, r3 ; r3 <- (r1 - r2); EQ = 1 if r1 == r2
-jump.if_eq .label_if_equals
+jump.eq .label_if_equals
 ```
 
 If the condition is not satisfied, we skip the instruction, but still pay its basic cost in gas.
 
 Here is a full list of available predicates:
 
-- `if_gt`
-- `if_eq`
-- `if_lt`
-- `if_ge` (short for “GT or EQ”)
-- `if_le` (short for “LT or EQ”)
-- `if_not_eq`
-- `if_gt_or_eq`
+- `gt`
+- `eq`
+- `lt`
+- `ge` (short for “GT or EQ”)
+- `le` (short for “LT or EQ”)
+- `ne` (short for "not EQ")
+- `gtlt` (short for "GT" or "LT")
+- `of` (synonym for "LT")
 
 You can learn more in the
 [formal specification](./formal-spec.md).
@@ -188,12 +197,12 @@ sub.s r1, r2, r3 ; r3 <- r2 - r1
 Finally, here is an example of an instruction adorned with all possible modifiers:
 
 ```nasm
-sub.s.if_lt! r8, r4, r12
+sub.s.lt! r8, r4, r12
 ```
 
 Here is a breakdown of modifiers:
 
-- `.if_lt` : is only executed if the LT flag is set
+- `.lt` : is only executed if the LT flag is set
 - `.s` : computes `r4 - r8` instead of `r8 - r4`
 - `!` : sets flags
 
@@ -221,8 +230,8 @@ Each call gets its own stack, heap, code memories, and allocated gas.
 
 It is impossible to allocate more than 63/64 of the currently available gas to a far call.
 
-Calls can revert or panic (on executing an illegal instruction for example), which undoes all the changes to storage and
-events emitted during the call, and burns all remaining gas allocated to this call.
+Calls can revert or panic (on executing an illegal instruction for example), which undoes all the changes to storage, transient storage and
+events emitted during the call, and returns unspent gas to the caller.
 
 Suppose we far called a contract $C$. After the execution of $C$, the register `r1` holds a pointer to the return value,
 allowing a read-only access to a fragment of $C$’s heap. Alternatively, `r1` can hold a pointer to the heap of some
@@ -249,7 +258,7 @@ There are three types of situations where control returns to the caller:
 - Return: a normal way of returning to the caller when no errors occurred. The instruction is `ret`.
 - Revert: a recoverable error happened. Unspent gas is returned to the caller, which will execute the exception handler.
   The instruction is `revert`.
-- Panic: an irrecoverable error happened. Same as revert, but unspent gas is burned. The instruction is `ret.panic`.
+- Panic: an irrecoverable error happened. Same as revert, but `LT` flag is set. The instruction is `ret.panic`.
 
 ### Near calls
 
@@ -284,11 +293,8 @@ Additional two arguments:
 As we see, zkEVM supports allocating ergs not only for far calls, but also for near calls. Passing zero will allocate
 all available gas. Unlike in far calls, near calls do not limit the amount of gas passed to 63/64 of available gas.
 
-- On revert, unspent gas of the function is **returned**
-- On panic, unspent gas of the function is **lost**
-
 All near calls inside the contract are sharing the same memory space (heap, stack), and do not roll back the changes to
-this memory if they fail. They do, however, roll back the changes to storage and events.
+this memory if they fail. They do, however, roll back the changes to storage, transient storage and events.
 
 Near calls cannot be used from Solidity to their full extent. Compiler generates them, but makes sure that if functions
 revert or panic, the whole contract reverts of panics. Explicit exception handlers and allocating just a portion of
@@ -486,7 +492,7 @@ Only special instructions can manipulate fat pointers without automatically clea
   pass to another contract B up the call chain, again without copying data.
 - `ptr.pack` allows putting data in the top 128 bit of the pointer value without clearing the pointer tag.
 
-Doing e.g. `add r1, 0, r2` on a pointer in `r1` clears its tag, and it is now considered as a raw integer.
+Doing e.g. `add r1, 0, r1` on a pointer in `r1` clears its tag, and it is now considered as a raw integer.
 
 Instructions `ld` and `[ld.inc](http://ld.inc)` (without indices 1 or 2) allow loading data by fat pointers, possibly
 incrementing the pointer. It is impossible to write by a fat pointer.

@@ -80,6 +80,7 @@ This command runs a local zkSync In-memory node by initiating a JSON-RPC server.
 - `--fork` - Starts a local network that is a fork of another network. Accepted values are: testnet, mainnet, or a specific URL.
 - `--fork-block-number` - Specifies the block height at which to fork.
 - `--replay-tx` - Transaction hash to replay.
+- `--tag` - Specifies the zkSync era test node release to be used
 
 ::: warning Parameter Restrictions
 

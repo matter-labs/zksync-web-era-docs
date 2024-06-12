@@ -29,17 +29,19 @@ struct L2Message {
 :::tip Verification
 
 - Verification and confirmation is possible using Ethereum data.
-- However, zkSync Era has an efficient [request proof function](#prove-the-result) which does the same.
+- However, zkSync Era has an efficient [request proof function](#_4-retrieve-the-message-proof) which does the same.
   :::
 
 ## Common use cases
 
-Along with zkSync Era's built-in censorship resistance that requires multi-layer interoperability, there are some common use cases that need L2 to L1 transaction functionality, such as:
+Along with zkSync Era's built-in censorship resistance, which requires multi-layer interoperability, there are some common use cases that need L2 to L1 transaction functionality, such as:
 
 - Bridging funds from L2 to L1.
 - Layer 2 governance.
 
-## Step-by-step
+## Example using zksync-ethers
+
+### 1. Project setup
 
 1. Create a project folder and `cd` into it
 
@@ -48,309 +50,278 @@ mkdir message-l2
 cd message-l2
 ```
 
-2. Run
+2. Initialise the project:
 
 ```sh
-yarn init add -y
+yarn init -y
 ```
 
-3. Run
+3. Install the required dependencies:
 
 ```sh
-yarn add -D @matterlabs/zksync-contracts
+yarn add -D zksync-ethers ethers typescript dotenv @matterlabs/zksync-contracts @types/node
 ```
 
-4. Import the zkSync Era library or contract containing the required functionality.
+4. Install `ts-node` globally to execute the scripts that we're going to create:
 
 ```sh
-yarn add zksync-ethers@5 ethers@5 typescript @types/node ts-node
+yarn global add ts-node
 ```
 
-5. In the root folder add `.env` file with private key of wallet to use
+5. In the root folder, add a `.env` file with the private key of the wallet to use:
 
-```js
-"RICH_WALLET_PRIV_KEY=0x..";
+```md
+WALLET_PRIVATE_KEY=0x..;
 ```
 
-6. Create a `file.ts` file in the root directory with the next script:
+### 2. Send the message
+
+To send a message from L2 to L1, we are going to interact with the zkSync messenger contract.
+
+Both the address and ABI are provided in the `utils.L1_MESSENGER_ADDRESS` and `utils.L1_MESSENGER` of `zksync-ethers`. The method we're using is `sendToL1` and we're passing the message in UTF8 bytes format.
+
+Create a `1.send-message.ts` file in the root directory with the next script:
 
 ```ts
-// The following script sends a message from L2 to L1, retrieves the message proof, and validates that the message received in L1 came from an L2 block.
+// The following script sends a message from L2 to L1
 import * as ethers from "ethers";
 import { Provider, utils, Wallet } from "zksync-ethers";
 
 import dotenv from "dotenv";
 dotenv.config();
 
-const TEST_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
+const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
 
-const MESSAGE = "Some L2->L1 message";
+if (!PRIVATE_KEY) {
+  throw new Error("Please provide WALLET_PRIVATE_KEY in .env file");
+}
 
 const l2Provider = new Provider("https://sepolia.era.zksync.dev");
 const l1Provider = ethers.getDefaultProvider("sepolia");
 
-const wallet = new Wallet(TEST_PRIVATE_KEY, l2Provider, l1Provider);
+const wallet = new Wallet(PRIVATE_KEY, l2Provider, l1Provider);
 
-async function sendMessageToL1(text: string) {
-  console.log(`Sending message to L1 with text ${text}`);
-  const textBytes = ethers.utils.toUtf8Bytes(MESSAGE);
+export async function sendMessageToL1(message: string): Promise<string> {
+  console.log(`Sending message to L1 with text ${message}`);
+  const textBytes = ethers.toUtf8Bytes(message);
 
   const messengerContract = new ethers.Contract(utils.L1_MESSENGER_ADDRESS, utils.L1_MESSENGER, wallet);
   const tx = await messengerContract.sendToL1(textBytes);
   await tx.wait();
   console.log("L2 trx hash is ", tx.hash);
-  return tx;
-}
-
-async function getL2MessageProof(blockNumber: ethers.BigNumberish) {
-  console.log(`Getting L2 message proof for block ${blockNumber}`);
-  return await l2Provider.getMessageProof(blockNumber, wallet.address, ethers.utils.keccak256(ethers.utils.toUtf8Bytes(MESSAGE)));
-}
-
-async function proveL2MessageInclusion(l1BatchNumber: ethers.BigNumberish, proof: any, trxIndex: number) {
-  const zkAddress = await l2Provider.getMainContractAddress();
-
-  const mailboxL1Contract = new ethers.Contract(zkAddress, utils.ZKSYNC_MAIN_ABI, l1Provider);
-  // all the information of the message sent from L2
-  const messageInfo = {
-    txNumberInBlock: trxIndex,
-    sender: wallet.address,
-    data: ethers.utils.toUtf8Bytes(MESSAGE),
-  };
-
-  console.log(`Retrieving proof for batch ${l1BatchNumber}, transaction index ${trxIndex} and proof id ${proof.id}`);
-
-  const res = await mailboxL1Contract.proveL2MessageInclusion(l1BatchNumber, proof.id, messageInfo, proof.proof);
-
-  return res;
-}
-
-/**
- * Full end-to-end of an L2-L1 messaging with proof validation.
- * Recommended to run in 3 steps:
- * 1. Send message.
- * 2. Wait for transaction to finalize and block verified
- * 3. Wait for block to be verified and validate proof
- */
-async function main() {
-  // Step 1: send message
-  const l2Trx = await sendMessageToL1(MESSAGE);
-
-  console.log("Waiting for transaction to finalize...");
-
-  // Step 2: waiting to finalize can take a few minutes.
-  const l2Receipt = await l2Trx.waitFinalize();
-
-  // Step 3: get and validate proof (block must be verified)
-  const proof = await getL2MessageProof(l2Receipt.blockNumber);
-
-  console.log(`Proof is: `, proof);
-
-  const { l1BatchNumber, l1BatchTxIndex } = await l2Provider.getTransactionReceipt(l2Receipt.transactionHash);
-
-  console.log("L1 Index for Tx in block :>> ", l1BatchTxIndex);
-
-  console.log("L1 Batch for block :>> ", l1BatchNumber);
-
-  // IMPORTANT: This method requires that the block is verified
-  // and sent to L1!
-  const result = await proveL2MessageInclusion(
-    l1BatchNumber,
-    proof,
-    // @ts-ignore
-    l1BatchTxIndex
-  );
-
-  console.log("Result is :>> ", result);
-  process.exit();
+  console.log(`Check https://sepolia.explorer.zksync.io/tx/${tx.hash}`);
+  return tx.hash;
 }
 
 try {
-  main();
+  // To run this script on stand alone mode, you need to provide the message to send
+  const MESSAGE = "Some L2->L1 message";
+  sendMessageToL1(MESSAGE);
 } catch (error) {
   console.error(error);
 }
 ```
 
-6. Add the following lines to your `package.json` in the root folder:
+Adapt the message in the `MESSAGE` variable and execute the script by running:
 
-```json
-"scripts": {
-   "run-file": "ts-node file.ts"
+```bash
+ts-node 1.send-message.ts
+```
+
+You should see the following output:
+
+```bash
+Sending message to L1 with text Some L2->L1 message
+L2 trx hash is  0x926efb47c374478191645a138c5d110e6a6a499ea542e14bcb583918646f7db5
+Check https://sepolia.explorer.zksync.io/tx/0x926efb47c374478191645a138c5d110e6a6a499ea542e14bcb583918646f7db5
+```
+
+### 3. Retrieve the message transaction details
+
+::: info Transaction must be included in a batch
+In order to continue, we need the transaction that sent the message to be included in a batch and sent to L1. This time varies depending on the network activity and could be around one hour.
+:::
+
+For the next steps we'll need information about the L2 block and L1 batch the transaction was included into. Create a `2.get-tx-details.ts` file in the root directory with the next script:
+
+```ts
+// The following retrieves an L2-L1 transaction details
+import { Provider } from "zksync-ethers";
+
+const l2Provider = new Provider("https://sepolia.era.zksync.dev");
+
+export async function getTransactionDetails(hash: string) {
+  console.log(`Getting L2 tx details for transaction ${hash}`);
+  const l2Receipt = await l2Provider.getTransactionReceipt(hash);
+  console.log(`L2 transaction included in block ${l2Receipt.blockNumber} with index ${l2Receipt.index}`);
+  console.log(`L1 batch number is ${l2Receipt.l1BatchNumber} and tx index in L1 batch is ${l2Receipt.l1BatchTxIndex}`);
+  console.log(`Check https://sepolia.explorer.zksync.io/tx/${hash} for more details`);
+  return l2Receipt;
+}
+
+try {
+  // To run this script on stand alone mode, you need to provide the L2 tx hash
+  const TX_HASH = "";
+  getTransactionDetails(TX_HASH);
+} catch (error) {
+  console.error(error);
 }
 ```
 
-7. To run the script, execute:
+This script retrieves the transaction receipt. The fields we're interested in are:
+
+- `blockNumber`: the L2 block number the transaction was included into.
+- `index`: the index of the transaction in the L2 block.
+- `l1BatchNumber`: the L1 batch number the transaction was included into.
+- `l1BatchTxIndex`: the index of the transaction in the L1 batch.
+
+Enter the transaction hash from [the previous step](#_2-send-the-message) in the `TX_HASH` variable and run the script with:
 
 ```bash
-yarn run-file
+ts-node 2.get-tx-details.ts
 ```
 
-### Example output
+You'll get the following output:
 
-```sh
-Sending message to L1 with text Some L2->L1 message
-L2 trx hash is  0xb6816e16906788ea5867bf868693aa4e7a46b68ccd2091be345e286a984cb39b
-Waiting for transaction to finalize...
-Getting L2 message proof for block 5382192
+```bash
+Getting L2 tx details for transaction 0x7be3434dd5f886bfe2fe446bf833f09d1be08e0a644a4996776fec569c3801a0
+L2 transaction included in block 2607311 with index 0
+L1 batch number is 9120 and tx index in L1 batch is 953
+Check https://sepolia.explorer.zksync.io/tx/0x7be3434dd5f886bfe2fe446bf833f09d1be08e0a644a4996776fec569c3801a0 for more details
+```
+
+### 4. Retrieve the message proof
+
+To retrieve the proof that the message was sent to L1, create a `3.get-proof.ts` file in the root directory with the next script:
+
+```ts
+import { Provider } from "zksync-ethers";
+
+const l2Provider = new Provider("https://sepolia.era.zksync.dev");
+
+export async function getL2LogProof(hash: string, index: number) {
+  console.log(`Getting L2 message proof for transaction ${hash} and index ${index}`);
+  const proof = await l2Provider.getLogProof(hash, index);
+  console.log(`Proof is: `, proof);
+  return proof;
+}
+
+try {
+  // To run this script on stand alone mode, you need to provide the transaction hash and L2 tx index
+  const TX_HASH = "0x7be3434dd5f886bfe2fe446bf833f09d1be08e0a644a4996776fec569c3801a0";
+  const L2_TX_INDEX = 0;
+
+  getL2LogProof(TX_HASH, L2_TX_INDEX);
+} catch (error) {
+  console.error(error);
+}
+```
+
+The `getLogProof` method requires the L2 transaction hash and the L2 transaction index, both of which are included in the transaction receipt that [we retrieved in the previous step](#_3-retrieve-the-message-transaction-details).
+
+Enter the hash and index in the `TX_HASH` and `L2_TX_INDEX` variables and run the script with:
+
+```bash
+ts-node 3.get-proof.ts
+```
+
+You'll get an output similar to this:
+
+```bash
+Getting L2 message proof for transaction 0x7be3434dd5f886bfe2fe446bf833f09d1be08e0a644a4996776fec569c3801a0 and index 0
 Proof is:  {
-  id: 14,
+  id: 15,
   proof: [
-    '0xd92e806d774b16f21a00230a5ee93555dde30138daf8dbbc8c225ad4aa670edd',
-    '0xf970801623a03cf02838550dcca2ecf575ace6ae824e5a3339426e69a582c2d8',
-    '0x389719c677f61f2681950c2136df476e78e74016268806986d4f0599e8055a4b',
-    '0xb1bde90366b509799bd535f03da87f4c2b68e305bfb5166e694809c4caf0df69',
-    '0x94b863aefb6546c8465f7700ec701f6b97ddf71a165a6d1e1ce1dc3c41db2534',
+    '0x871b381c5abfd7365d19ef7bf2b9bd80912b6728a4475dfbaf2f2c652f9912b6',
+    '0x505e3c0e95b3f2c18a11630874013b527820b729cf8443da3b39c0f029a5d354',
+    '0x1d49feee54b5d52f361196a133e1265481afae3fcc3ccfae74ef5df0f0c1bad6',
+    '0x71c3b4937077cd356e32d3f5c413eddff25caf93542a6fa05f0b1c046b6c59d5',
+    '0x33d776ccbbe67db6aaf1ab61ec564d406b33f7f9d12c587a85104077d13cecd3',
     '0x1798a1fd9c8fbb818c98cff190daa7cc10b6e5ac9716b4a2649f7c2ebcef2272',
     '0x66d7c5983afe44cf15ea8cf565b34c6c31ff0cb4dd744524f7842b942d08770d',
     '0xb04e5ee349086985f74b73971ce9dfe76bbed95c84906c5dffd96504e1e5396c',
-    '0xac506ecb5465659b3a927143f6d724f91d8d9c4bdb2463aee111d9aa869874db'
+    '0xac506ecb5465659b3a927143f6d724f91d8d9c4bdb2463aee111d9aa869874db',
+    '0x124b05ec272cecd7538fdafe53b6628d31188ffb6f345139aac3c3c1fd2e470f',
+    '0xc3be9cbd19304d84cca3d045e06b8db3acd68c304fc9cd4cbffe6d18036cb13f',
+    '0xfef7bd9f889811e59e4076a0174087135f080177302763019adaf531257e3a87',
+    '0xa707d1c62d8be699d34cb74804fdd7b4c568b6c1a821066f126c680d4b83e00b',
+    '0xf6e093070e0389d2e529d60fadb855fdded54976ec50ac709e3a36ceaa64c291'
   ],
-  root: '0xbc872eb80a7d5d35dd16283c1b1a768b1e1c36404000edaaa04868c7d6a5907c'
+  root: '0x98ebb6d15a0274a2a40bf7ca42d1576c994f29e23155c10597cd5a0c9ed7e367'
 }
-L1 Index for Tx in block :>>  32
-L1 Batch for block :>>  77512
-Retrieving proof for batch 77512, transaction index 32 and proof id 14
+```
+
+### 5. Verify the message transaction proof
+
+Once we have a proof that the message was sent from L2, we can verify that it was actually included in L1. Create a `4.prove-inclusion.ts` file in the root directory with the next script:
+
+```ts
+import * as ethers from "ethers";
+import { Provider, utils } from "zksync-ethers";
+
+const l2Provider = new Provider("https://sepolia.era.zksync.dev");
+const l1Provider = ethers.getDefaultProvider("sepolia");
+
+export async function proveL2MessageInclusion(l1BatchNumber: ethers.BigNumberish, proof: any, l1BatchTxIndex: number, sender: string, message: string) {
+  const zkAddress = await l2Provider.getMainContractAddress();
+
+  const mailboxL1Contract = new ethers.Contract(zkAddress, utils.ZKSYNC_MAIN_ABI, l1Provider);
+  // all the information of the message sent from L2
+  const messageInfo = {
+    txNumberInBatch: l1BatchTxIndex,
+    sender: sender,
+    data: ethers.toUtf8Bytes(message),
+  };
+
+  console.log(`Retrieving proof for batch ${l1BatchNumber}, transaction index ${l1BatchTxIndex} and proof id ${proof.id}`);
+
+  const res = await mailboxL1Contract.proveL2MessageInclusion(l1BatchNumber, proof.id, messageInfo, proof.proof);
+
+  console.log("Is proof valid?: ", res)
+  return res;
+}
+
+try {
+  // To run this script on stand alone mode, you need to provide the following details
+
+  // The account that sent the transaction in step 1
+  const SENDER = "0x...";
+  // The same message we sent in step 1
+  const MESSAGE = "";
+  // Retrieved in step 2
+  const L1_BATCH_NUMBER = ;
+  const L1_BATCH_TX_INDEX = 953;
+  // The full proof object, including root, proof and id
+  const PROOF = {};
+
+  proveL2MessageInclusion(L1_BATCH_NUMBER, PROOF, L1_BATCH_TX_INDEX, SENDER, MESSAGE);
+} catch (error) {
+  console.error(error);
+}
+
+```
+
+This scripts interacts with the `proveL2MessageInclusion` method of the zkSync contract on L1. This method requires the following parameters:
+
+- `l1BatchNumber`: Batch number the L2 transaction was included into.
+- `proofId`: the `id` of the proof retrieved in step 3.
+- `messageInfo`: an object including:
+  - `txNumberInBatch`: the index of the transaction in the L1 batch.
+  - `sender`: the address of the account that sent the transaction.
+  - `data`: the message formated in UTF8 bytes format.
+- `proof`: the `proof` retrieved in step 3.
+
+Enter all these details in the `SENDER`, `MESSAGE`, `L1_BATCH_NUMBER`, `L1_BATCH_TX_INDEX` and `PROOF` variables and execute the script with:
+
+```bash
+ts-node 4.prove-inclusion.ts
+```
+
+You'll get the following output:
+
+```bash
+Retrieving proof for batch 9120, transaction index 953 and proof id 15
 Result is :>>  true
 ```
 
-## Send a message
-
-Two transactions are required:
-
-- An L2 transaction which sends a message of arbitrary length.
-- An L1 read; implemented by a getter function on an L1 smart contract.
-
-1. Get a `Contract` object that represents the [`L1Messenger`](../../../zk-stack/components/smart-contracts/system-contracts.md#l1messenger) contract.
-
-2. Transform the request into a raw bytes array.
-
-3. Use the [`sendToL1`](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/interfaces/IL1Messenger.sol#L44) function from the [`IL1Messenger.sol`](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/interfaces/IL1Messenger.sol) interface, passing the message as a raw bytes array.
-
-Each sent message emits an [`L1MessageSent`](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/system-contracts/contracts/interfaces/IL1Messenger.sol#L38) event.
-
-```solidity
-event L1MessageSent(address indexed _sender, bytes32 indexed _hash, bytes _message);
-
-function sendToL1(bytes memory _message) external returns (bytes32);
-```
-
-3.1 The return value from `sendToL1` is the `keccak256` hash of the message bytes.
-
-## Prove the result
-
-The [`proveL2MessageInclusion`](https://github.com/matter-labs/era-contracts/blob/6250292a98179cd442516f130540d6f862c06a16/l1-contracts/contracts/zksync/facets/Mailbox.sol#L35) function returns a boolean parameter indicating whether the message was sent successfully to L1.
-
-```solidity
-function proveL2MessageInclusion(
-    uint256 _blockNumber,
-    uint256 _index,
-    L2Message memory _message,
-    bytes32[] calldata _proof
-) public view returns (bool) {
-    return _proveL2LogInclusion(_blockNumber, _index, _L2MessageToLog(_message), _proof);
-}
-```
-
-:::tip Parameter details
-
-- `_blockNumber`: L1 batch number in which the L2 block was included; retrievable using the `getBlock` method.
-- `_index`: Index of the L2 log in the block; returned as `id` by the [`zks_getL2ToL1LogProof`](../../api.md#zks-getl2tol1logproof) method.
-- `_message`: Parameter holding the message data. It should be an object containing:
-  - `sender`: Address that sent the message from L2.
-  - `data`: Message sent in bytes.
-  - `txNumberInBlock`: Index of the transaction in the L2 block; returned as `transactionIndex` with [`getTransactionReceipt`](https://docs.ethers.org/v5/single-page/#/v5/api/providers/provider/-%23-Provider-getTransactionReceipt) on an Ethers `Provider` object.
-- `_proof`: Merkle proof of the message inclusion; retrieved by observing Ethereum or using the `zks_getL2ToL1LogProof` method of the zksync web3 API.
-  :::
-
-## Example
-
-::: code-tabs
-@tab Solidity 1
-
-```solidity
-// The Example contract below sends its address to L1 via the Messenger system contract.
-//SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
-
-// Importing interfaces and addresses of the system contracts
-import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
-
-contract Example {
-    function sendMessageToL1() external returns(bytes32 messageHash) {
-        // Construct the message directly on the contract
-        bytes memory message = abi.encode(address(this));
-
-        messageHash = L1_MESSENGER_CONTRACT.sendToL1(message);
-    }
-}
-```
-
-@tab Solidity 2
-
-```solidity
-// This contract receives the information related to the transaction sent to the L2 messenger contract.
-// It then proves that the message was included in an L2 block.
-//SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
-
-// Importing zkSync contract interface
-import "@matterlabs/zksync-contracts/l1/contracts/zksync/interfaces/IZkSync.sol";
-
-contract Example {
-  // NOTE: The zkSync contract implements only the functionality for proving that a message belongs to a block
-  // but does not guarantee that such a proof was used only once. That's why a contract that uses L2 to L1
-  // communication must take care of the double handling of the message.
-  /// @dev mapping L2 block number => message number => flag
-  /// @dev Used to indicated that zkSync L2 to L1 message was already processed
-  mapping(uint256 => mapping(uint256 => bool)) isL2ToL1MessageProcessed;
-
-  function consumeMessageFromL2(
-    // The address of the zkSync smart contract.
-    // It is not recommended to hardcode it during the alpha testnet as regenesis may happen.
-    address _zkSyncAddress,
-    // zkSync block number in which the message was sent
-    uint256 _l2BlockNumber,
-    // Message index, that can be received via API
-    uint256 _index,
-    // The tx number in block
-    uint16 _l2TxNumberInBlock,
-    // The message that was sent from l2
-    bytes calldata _message,
-    // Merkle proof for the message
-    bytes32[] calldata _proof
-  ) external {
-    // check that the message has not been processed yet
-    require(!isL2ToL1MessageProcessed[_l2BlockNumber][_index]);
-
-    IZkSync zksync = IZkSync(_zkSyncAddress);
-    address someSender = 0x19A5bFCBE15f98Aa073B9F81b58466521479DF8D;
-    L2Message memory message = L2Message({sender: someSender, data: _message, txNumberInBlock:_l2TxNumberInBlock});
-
-    bool success = zksync.proveL2MessageInclusion(
-      _l2BlockNumber,
-      _index,
-      message,
-      _proof
-    );
-    require(success, "Failed to prove message inclusion");
-
-    // Mark message as processed
-    isL2ToL1MessageProcessed[_l2BlockNumber][_index] = true;
-  }
-}
-```
-
-@tab Python
-
-```sh
-// In progress. Check back later.
-```
-
-@tab Go
-
-```sh
-// In progress. Check back later.
-```
-
-:::
+This indicates the proof is valid and the message was actually included in L1.

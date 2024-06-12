@@ -7,7 +7,7 @@ head:
 
 # Using custom chains with zksync-cli
 
-The [zksync-cli](../../zksync-cli/getting-started.md) tool provides a flexible way to add or edit custom chains, enabling you to specify your own chain configuration. This feature is essential for developers looking to interact with ZK Stack Hyperchains.
+The [zksync-cli](../../zksync-cli/getting-started.md) tool provides a flexible way to add or edit custom chains, enabling you to specify your own chain configuration. This feature is essential for developers looking to interact with ZK Stack Chains.
 
 ## Configuring Custom Chains
 

@@ -858,7 +858,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Getting the bytecodeHash of the account
   const bytecodeHash = utils.hashBytecode(aaArtifact.bytecode);
 
-  const factory = await deployer.deploy(factoryArtifact, [bytecodeHash], undefined, [
+  const factory = await deployer.deploy(factoryArtifact, [bytecodeHash], "create", undefined, [
     // Since the factory requires the code of the multisig to be available,
     // we should pass it here as well.
     aaArtifact.bytecode,

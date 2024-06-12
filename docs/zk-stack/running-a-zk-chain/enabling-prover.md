@@ -7,7 +7,7 @@ head:
 
 # Enabling Prover
 
-With the default configuration, your hyperchain is not running a prover, and has a `DummyExecutor` contract, which mainly “accepts” that a batch is executed without proof. This enables you to test it with much lower hardware requirements.
+With the default configuration, your ZK Chain is not running a prover, and has a `DummyExecutor` contract, which mainly “accepts” that a batch is executed without proof. This enables you to test it with much lower hardware requirements.
 
 To enable the prover, run the `zk stack prover-setup` command. It will guide through the necessary configuration.
 

@@ -30,17 +30,17 @@ contributors: false
       </div>
     </RouterLink>
     <RouterLink to="/zk-stack" class="card">
-      <img src="/images/landing/hyperchain.png" alt="zkStack">
+      <img src="/images/landing/zk-chain.png" alt="ZK Stack">
       <div class="content">
         <h3>ZK Stack</h3>
-        <p>Understand the protocol powering zkSync hyperchains, including zkSync Era.</p>
+        <p>Understand the protocol powering zkSync ZK Chains, including zkSync Era.</p>
       </div>
     </RouterLink>
     <RouterLink to="/infra" class="card">
       <img src="/images/landing/run-a-node.png" alt="run a node">
       <div class="content">
         <h3>Run a Node</h3>
-        <p>All the information you need to run a node for zkSync Era or your hyperchain.</p>
+        <p>All the information you need to run a node for zkSync Era or your ZK Chain.</p>
       </div>
     </RouterLink>
   </div>

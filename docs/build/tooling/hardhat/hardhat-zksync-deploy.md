@@ -101,18 +101,16 @@ class Deployer {
   /**
    * @param hre Hardhat runtime environment. This object is provided to scripts by hardhat itself.
    * @param zkWallet The wallet which will be used to deploy the contracts.
-   * @param deploymentType Optional deployment type that relates to the ContractDeployer system contract function to be called. Defaults to deploying regular smart contracts.
    */
-  constructor(hre: HardhatRuntimeEnvironment, zkWallet: zk.Wallet, deploymentType?: zk.types.DeploymentType)
+  constructor(hre: HardhatRuntimeEnvironment, zkWallet: zk.Wallet)
 
   /**
    * Created a `Deployer` object on ethers.Wallet object.
    *
    * @param hre Hardhat runtime environment. This object is provided to scripts by hardhat itself.
    * @param ethWallet The wallet used to deploy smart contracts.
-   * @param deploymentType The optional deployment type that relates to the `ContractDeployer` system contract function to be called. Defaults to deploying regular smart contracts.
    */
-  static fromEthWallet(hre: HardhatRuntimeEnvironment, ethWallet: ethers.Wallet, deploymentType?: zk.types.DeploymentType)
+  static fromEthWallet(hre: HardhatRuntimeEnvironment, ethWallet: ethers.Wallet)
 
   /**
    * Loads an artifact and verifies that it was compiled by `zksolc`.
@@ -136,12 +134,14 @@ class Deployer {
    *
    * @param artifact The previously loaded artifact object.
    * @param constructorArguments The list of arguments to be passed to the contract constructor.
+   * @param deploymentType Optional deployment type that relates to the ContractDeployer system contract function to be called. Defaults to deploying regular smart contracts.
    *
    * @returns Calculated fee in ETH wei.
    */
   public async estimateDeployFee(
     artifact: ZkSyncArtifact,
-    constructorArguments: any[]
+    constructorArguments: any[],
+    deploymentType?: zk.types.DeploymentType
   ): Promise<bigint>
 
   /**
@@ -150,6 +150,7 @@ class Deployer {
     *
     * @param contractNameOrArtifact The previously loaded artifact object, or contract name that will be resolved to artifact in the background.
     * @param constructorArguments The list of arguments to be passed to the contract constructor.
+    * @param deploymentType Optional deployment type that relates to the ContractDeployer system contract function to be called. Defaults to deploying regular smart contracts.
     * @param overrides Optional object with additional deploy transaction parameters.
     * @param additionalFactoryDeps Additional contract bytecodes to be added to the factory dependencies list.
     * The fee amount is requested automatically from the zkSync Era server.
@@ -159,6 +160,7 @@ class Deployer {
   public async deploy(
     contractNameOrArtifact: ZkSyncArtifact | string,
     constructorArguments: any[],
+    deploymentType?: zk.types.DeploymentType,
     overrides?: Overrides,
     additionalFactoryDeps?: ethers.BytesLike[],
   ): Promise<zk.Contract>
@@ -179,6 +181,24 @@ const artifact = await deployer.loadArtifact("ContractName");
 const contract = await deployer.deploy(artifact);
 // Provided contract name
 const contract = await deployer.deploy("ContractName");
+```
+
+:::
+
+:::info salt and deployment type within the deploy method
+You can use the `deploymentType` parameter to specify the `ContractDeployer` system contract function that will be used. Allowed options are `create` (default), `create2`, `createAccount` and `create2Account`.
+
+If salt is needed, provide its value in the overrides parameter. If the salt is omitted, the default value will be `0x0000000000000000000000000000000000000000000000000000000000000000`.
+
+```typescript
+const wallet = new zk.Wallet("PRIVATE_KEY");
+const deployer = new Deployer(hre, zkWallet);
+
+const contract = await deployer.deploy("ContractName", [...args], "create2", {
+  customData: {
+    salt: "0x7935910912126667836566922594852029127629416664760357073852948630",
+  },
+});
 ```
 
 :::
@@ -257,16 +277,6 @@ The described objects work together to provide users with a better deployment ex
 Methods available for use in `hre.deployer` are the same as those available in the `Deployer` class object, as described [here.](#deployer-export) Additionally, `hre.deployer` is extended with specific methods to facilitate the deployment process, making it more straightforward.
 
 ```typescript
-  /**
-   * Set deployment type
-   *
-   * @param deployment type for further deployment actions
-   *
-   */
-  public setDeploymentType(
-    deploymentType: zk.types.DeploymentType
-  ): void
-
   /**
     * Set a new Wallet
     *
@@ -549,8 +559,8 @@ For more details about a dockerized local setup, check out [Local testing](../..
 
 Provides an easy and fast way to deploy the given contract on the specified network. If the provided command for deploying a single contract is insufficient and you require additional flexibility, such as incorporating additional dependencies or overrides, it would be advisable to utilize a script-based approach.
 
-- `--contract-name <contract name or FQN>` - contract name or FQN, required argument in all tasks, e.g. `hardhat deploy-zksync:proxy --contract-name SomeContract`.
-- `<constructor arguments>` - list of constructor arguments, e.g. `hardhat deploy-zksync:proxy --contract-name Greeter 'Hello'`.
+- `--contract-name <contract name or FQN>` - contract name or FQN, required argument in all tasks, e.g. `hardhat deploy-zksync:contract --contract-name SomeContract`.
+- `<constructor arguments>` - list of constructor arguments, e.g. `hardhat deploy-zksync:contract --contract-name Greeter 'Hello'`.
 - `--constructor-args <module name>` - name of javascript module containing complex constructor arguments. Works only if `<constructor arguments>` are not provided e.g. `hardhat deploy-zksync:contract --contract-name ComplexContract --constructor-args args.js`. Example of `args.js` :
 
 ```typescript
@@ -565,8 +575,9 @@ module.exports = [
 ];
 ```
 
-- `--no-compile`- skip the compilation process, e.g. `hardhat deploy-zksync:beacon --contract-name Contract --no-compile`.
-- `--deployment-type` - specify which deployer smart contract function will be called. Permissible values for this parameter include `create`, `create2`, `createAccount`, and `create2Account`. If this parameter is omitted, the default value will be `create`, e.g. `hardhat deploy-zksync:beacon --contract-name Greeter 'Hello' --deployment-type create2`.
+- `--no-compile`- skip the compilation process, e.g. `hardhat deploy-zksync:contract --contract-name Contract --no-compile`.
+- `--deployment-type` - specify which deployer smart contract function will be called. Allowed values for this parameter include `create`, `create2`, `createAccount`, and `create2Account`. If this parameter is omitted, the default value will be `create`, e.g. `hardhat deploy-zksync:contract --contract-name Greeter 'Hello' --deployment-type create2`.
+- `--salt`- salt that will be used in deployment. If the salt parameter are omitted, the default value will be `0x0000000000000000000000000000000000000000000000000000000000000000`, e.g `hardhat deploy-zksync:contract --contract-name Greeter 'Hello' --salt 0x1000000000000000000000000000000000000000000000000000000000000002`.
 
 The account used for deployment will be the one specified by the `deployerAccount` configuration within the `hardhat.config.ts` file. If no such configuration is present, the account with index `0` will be used.
 

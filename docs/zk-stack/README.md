@@ -10,16 +10,16 @@ head:
 <section>
   <div class="card-container">
     <RouterLink
-      to="/zk-stack/running-a-hyperchain/"
+      to="/zk-stack/running-a-zk-chain/"
       class="card"
     >
       <img
-        src="/images/landing/run-a-hyperchain.png" 
-        alt="Run a ZK Stack Hyperchain"
+        src="/images/landing/run-a-zk-chain.png" 
+        alt="Run a ZK Stack ZK Chain"
       />
       <div class="content">
-        <h3>Run a Hyperchain</h3>
-        <p>Quickly spin up a ZK Stack hyperchain on your own machine.</p>
+        <h3>Run a ZK Chain</h3>
+        <p>Quickly spin up a ZK Stack Chain on your own machine.</p>
       </div>
     </RouterLink>
     <RouterLink
@@ -66,7 +66,7 @@ head:
       class="card"
     >
       <img
-        src="/images/landing/hyperchain.png" 
+        src="/images/landing/zk-chain.png" 
         alt="ZK Stack Concepts"
       />
       <div class="content">

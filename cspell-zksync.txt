@@ -212,6 +212,7 @@ REDC
 ECADD
 ECMUL
 raas
+gtlt
 
 
 // Used programming language words
@@ -239,6 +240,7 @@ psql
 jemalloc
 recid
 plux
+pipx
 
 // ETC
 gitter
@@ -313,5 +315,6 @@ Aave
 // testing ci
 Omnibtc
 Owlto
+Gbps
 Gelato
 VRFs

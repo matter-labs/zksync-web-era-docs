@@ -15,6 +15,12 @@ zkSync Era supports the standard [Ethereum JSON-RPC API](https://ethereum.org/en
 - Read the documentation on [EIP-712 transactions](../zk-stack/concepts/transaction-lifecycle.md#eip-712-0x71) for more information.
   :::
 
+:::warning
+
+However, there are specific differences that you must be aware of.
+Methods that return data about a block (such as `eth_getBlockByHash`, `eth_getBlockByNumber`, or Geth’s pubsub API `eth_subscribe` with the `newHeads` parameter) do not provide the actual `receiptsRoot`, `transactionsRoot`, and `stateRoot` values. Instead, these fields contain zero values as zkSync’s L2 blocks do not contain the concept of a state root, only L1 batches have it.
+:::
+
 ## RPC endpoint URLs
 
 :::warning Rate Limits
@@ -874,6 +880,170 @@ curl -X POST -H "Content-Type: application/json" \
   "jsonrpc": "2.0",
   "result": "0x1",
   "id": 1
+}
+```
+
+### `zks_sendRawTransactionWithDetailedOutput`
+
+Executes a transaction and returns its hash, storage logs, and events that would have been generated
+if the transaction had already been included in the block. The API has a similar behaviour to
+`eth_sendRawTransaction` but with some extra data returned from it.
+
+With this API Consumer apps can apply "optimistic" events in their applications instantly without having to wait for
+zkSync block confirmation time.
+
+It’s expected that the optimistic logs of two uncommitted transactions that modify the same state will not have causal
+relationships between each other.
+
+#### Inputs
+
+| Parameter | Type     | Description                                                                 |
+| --------- | -------- | --------------------------------------------------------------------------- |
+| `data`    | `string` | The signed transaction. Typically, signed with a library such as ethers.js. |
+
+#### curl example
+
+```curl
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc":"2.0","method":"eth_sendRawTransaction","params":["Signed Transaction"],"id":1}' \
+"https://mainnet.era.zksync.io"
+```
+
+#### Output
+
+```json
+{
+  "transactionHash": "0xd586a9381ac33a70d1c34704664209242ee90316878fc1695aa8e4cf553c8595",
+  "storageLogs": [
+    {
+      "address": "0x000000000000000000000000000000000000800b",
+      "key": "0x7",
+      "writtenValue": "0x40000000000000000000000006641f961"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800b",
+      "key": "0x6",
+      "writtenValue": "0x5f5e100"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800b",
+      "key": "0x9",
+      "writtenValue": "0xc0000000000000000000000006641f961"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800b",
+      "key": "0x16",
+      "writtenValue": "0xe1ef29fc6c51f74bbdef5bc1406e3c9925d89c5b1f79215648b82ac15419bcbe"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800b",
+      "key": "0xa",
+      "writtenValue": "0x0"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800b",
+      "key": "0x10c",
+      "writtenValue": "0xc0000000000000000000000006641f961"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800b",
+      "key": "0xa",
+      "writtenValue": "0xe3ed371c32f62f3b3a28d51b909b2668e293c6cbfa4b4fd549c8f00a9a93a296"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800b",
+      "key": "0x110",
+      "writtenValue": "0x0"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800b",
+      "key": "0x10f",
+      "writtenValue": "0x88"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800b",
+      "key": "0x1",
+      "writtenValue": "0x8001"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800b",
+      "key": "0x2",
+      "writtenValue": "0x5f5e100"
+    },
+    {
+      "address": "0x0000000000000000000000000000000000008003",
+      "key": "0xeaa2b2fbf0b42c559059e5e9510edc15755f1c1883f0e41d5ba5f9aea4ac201a",
+      "writtenValue": "0x4"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800a",
+      "key": "0xeaa2b2fbf0b42c559059e5e9510edc15755f1c1883f0e41d5ba5f9aea4ac201a",
+      "writtenValue": "0x55ce6fa97340"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800a",
+      "key": "0x31b66141c575a054316a84da9cf4aa6fe0abd373cab1bf4ac029ffc061aae0da",
+      "writtenValue": "0xb9b031bf400"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800b",
+      "key": "0x1",
+      "writtenValue": "0x36615cf349d7f6344891b1e7ca7c72883f5dc049"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800b",
+      "key": "0x1",
+      "writtenValue": "0x8001"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800a",
+      "key": "0x31b66141c575a054316a84da9cf4aa6fe0abd373cab1bf4ac029ffc061aae0da",
+      "writtenValue": "0xa7557c54f00"
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800a",
+      "key": "0xeaa2b2fbf0b42c559059e5e9510edc15755f1c1883f0e41d5ba5f9aea4ac201a",
+      "writtenValue": "0x56f41b001840"
+    }
+  ],
+  "events": [
+    {
+      "address": "0x000000000000000000000000000000000000800a",
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x00000000000000000000000036615cf349d7f6344891b1e7ca7c72883f5dc049",
+        "0x0000000000000000000000000000000000000000000000000000000000008001"
+      ],
+      "data": "0x00000000000000000000000000000000000000000000000000000b9b031bf400",
+      "blockHash": null,
+      "blockNumber": null,
+      "l1BatchNumber": "0x4",
+      "transactionHash": "0xd586a9381ac33a70d1c34704664209242ee90316878fc1695aa8e4cf553c8595",
+      "transactionIndex": "0x0",
+      "logIndex": null,
+      "transactionLogIndex": null,
+      "logType": null,
+      "removed": false
+    },
+    {
+      "address": "0x000000000000000000000000000000000000800a",
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x0000000000000000000000000000000000000000000000000000000000008001",
+        "0x00000000000000000000000036615cf349d7f6344891b1e7ca7c72883f5dc049"
+      ],
+      "data": "0x00000000000000000000000000000000000000000000000000000125ab56a500",
+      "blockHash": null,
+      "blockNumber": null,
+      "l1BatchNumber": "0x4",
+      "transactionHash": "0xd586a9381ac33a70d1c34704664209242ee90316878fc1695aa8e4cf553c8595",
+      "transactionIndex": "0x0",
+      "logIndex": null,
+      "transactionLogIndex": null,
+      "logType": null,
+      "removed": false
+    }
+  ]
 }
 ```
 

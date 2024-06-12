@@ -15,11 +15,11 @@ head:
     >
       <img  
         src="/images/landing/lets-get-started.png" 
-        alt="Running an external node"
+        alt="Running a zkSync node"
       >
       <div class="content">
         <h3>Introduction</h3>
-        <p>Learn more about our external node.</p>
+        <p>Learn more about zkSync nodes.</p>
       </div>
     </RouterLink>
     <RouterLink
@@ -44,8 +44,8 @@ head:
         alt="Diverse Toolkit"
       >
       <div class="content">
-        <h3>External Node Components</h3>
-        <p>Overview of the EN's main components.</p>
+        <h3>zkSync Node Components</h3>
+        <p>Overview of the zkSync node's main components.</p>
       </div>
     </RouterLink>
   </div>
