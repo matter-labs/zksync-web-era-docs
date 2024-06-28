@@ -95,6 +95,7 @@ Pipe-delimited list of block labels that includes block number in binary and hex
 - `latest`
 - `earliest`
 - `pending`
+- `l1_committed` // latest block, that was included into the layer 1 batch committed on Ethereum
 
 ## `ContractAccountInfo`
 
