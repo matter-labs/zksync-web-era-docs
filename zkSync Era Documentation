@@ -1,0 +1,90 @@
+zkSync Era Documentation
+GitHub release (latest SemVer) GitHub license GitHub license Follow us!
+
+zkEVM
+zkEVM is a virtual machine that executes smart contracts in a way that is compatible with zero-knowledge-proof computation. Our zkEVM keeps EVM semantics, but is also ZK-friendly and adopts a traditional register-based CPU architecture.
+
+zkSync Era Docs contain up-to-date information about zkSync Era. zkSync Era has built-in EVM compatibility which makes it a unified tool for releasing EVM-compatible ZK rollups. We call it zkEVM: web3, Layer 2, scaling functionality that preserves your battle-tested code and knowledge gained after years of working with Solidity.
+
+Build and setup
+Initial setup
+The frontend team chose the yarn@berry package manager, so ensure you install node version LTS@14 after configuring yarn.
+
+# configure yarn version: berry or specifically 3.1.1.
+$ yarn set version berry
+Main scripts
+# install dependencies
+$ yarn add
+
+# serve with hot reload at localhost:8080
+$ yarn docs:dev
+# static generation to dist
+$ yarn docs:build
+Development
+The continuous integration pipeline uses prettier and markdownlint to ensure there are no issues with your document, that spelling is correct, and there are no dead links.
+
+You can check it locally as follows:
+
+# check dead links
+$ yarn lint:dead
+# check spelling
+$ yarn lint:spell
+# check with markdownlint
+$ yarn lint:mdl
+# check with prettier
+$ yarn lint:fmt
+# fix with markdownlint
+$ yarn fix:mdl
+# fix with prettier
+$ yarn fix:fmt
+# run all checks
+$ yarn ci
+# run all fixes
+$ yarn ci:fix
+# build for production
+$ yarn ci:build
+If lint:spell doesn't recognize a word, and you’re sure that it’s correct, consider adding it to cspell-zksync.txt.
+
+Contributions
+Adding new tutorials
+To add a new tutorial:
+
+Fork the repository and create a new branch locally to add your changes.
+Add the tutorial markdown file inside the docs/dev/tutorials folder.
+Give the file an SEO-friendly name, as it is included in the live URL.
+In the docs/.vuepress/config.js file, add the tutorial inside this block:
+{
+title: "Tutorials",
+path: "/dev/tutorials",
+collapsable: false,
+children: [
+  "/dev/tutorials/cross-chain-tutorial.md",
+  "/dev/tutorials/custom-aa-tutorial.md",
+  "/dev/tutorials/custom-paymaster-tutorial.md"],
+  // ADD YOUR FILE HERE
+},
+If your tutorial contains images, make sure to compress them using https://squoosh.app/ before adding them to the docs/assets/images folder.
+Finally, create a PR.
+Deployment
+The main branch is automatically deployed to https://console.firebase.google.com/u/0/project/aqwzx-zksync-v2-docs
+
+Deploying does the following:
+
+Installs node modules.
+Prepares, tests, and builds documentation.
+Deploys everything contained in the dist folder as a static website.
+yarn zk-ci-prepare
+yarn firebase deploy
+Extra documentation
+cSpell
+Configuration in .cSpell.json:
+
+version — version of the setting file, always 0.1.
+language — current active spelling language.
+words[] — list of correctly-spelled words.
+dictionaries[]
+"dictionaryDefinitions": [
+  {
+    "name": "zksync", "path": "./cspell-zksync.txt"
+  }
+]
